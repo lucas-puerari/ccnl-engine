@@ -1110,5 +1110,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/agenti-immobiliari-fiaip",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "753cca964ad5f1c320a99b874d24be98b561306f3085e7b3f3a2e1e995970739"
+  }
 }

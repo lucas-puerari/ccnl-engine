@@ -1606,8 +1606,9 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "7992c121ecaa081a98c0c0bb770b99b6aeed656fdacd03d1e6b05a481a2465e4",
-    "published_at": "2026-09-07"
+    "source_hash": "a4db3cec3cd0b00a8d6ceee663552f4b2f7be1318eee57994f83a5928e8a5c0d",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

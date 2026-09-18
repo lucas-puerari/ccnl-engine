@@ -1345,8 +1345,9 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "9ae007009a7cd7be51757d3ea4db8757e44b551b9ecabed1b5268d95d07a6dc8",
-    "published_at": "2026-09-07"
+    "source_hash": "be25d90543404052d4c189c55c341d2b0b617206503feb7fd581b346344580d8",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

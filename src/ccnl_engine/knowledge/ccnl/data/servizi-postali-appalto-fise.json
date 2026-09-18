@@ -1544,8 +1544,9 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "d45ace1fdd0619e7f329c70fc45347da825bed39a1f64ca93661e0044416d023",
-    "published_at": "2026-09-07"
+    "source_hash": "5d500b1a73162fc2e4795b9fd498272ea0945053d4ac2c76b00bf0607df81998",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

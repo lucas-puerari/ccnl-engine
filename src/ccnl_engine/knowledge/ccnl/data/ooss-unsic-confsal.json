@@ -707,8 +707,9 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "a20ccbff39006e74e81af18c0cc2178d442b13e64ab0242b0ffb8d9431fa9efe",
-    "published_at": "2026-09-07"
+    "source_hash": "c68f82ec417d6573200551c7b542a01b2c6fcecf432e5974ace57953d2d7ece7",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

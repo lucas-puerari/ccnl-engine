@@ -1082,8 +1082,9 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "7482460d1771481345c85b8431fad61c60c8bbab76e761ab6ea79c88f2071f99",
-    "published_at": "2026-09-07"
+    "source_hash": "7966a8b267b1f5eeb3124b36d4694c93d7af87203f4ea0442636840e6e35fdd1",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

@@ -1265,8 +1265,9 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1ba3f16f3fc8f3bc10c2d5ec773095caa4099ab8fd90e105312b89fb45fb581",
-    "published_at": "2026-09-12"
+    "source_hash": "914189a3d4ccda5af51152e1635cf70084f4fa5aeb47383609b45f6ec5a7e65d",
+    "published_at": "2026-09-12",
+    "source_type": "contracting_party"
   },
   "work_rules": null
 }

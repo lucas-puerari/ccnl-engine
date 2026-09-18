@@ -1217,5 +1217,16 @@
     "verified_cases": 0,
     "last_reviewed": "2026-09-17",
     "human_reviewed_by": "lucas-puerari@intella.tech"
+  },
+  "ruleset": {
+    "id": "ccnl/vetro-meccanizzato-assovetro",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "518c193a7c7c53e79d4b202e6c62bf85a1ab79d54fea0a5a29375d1e20ab5f03"
   }
 }

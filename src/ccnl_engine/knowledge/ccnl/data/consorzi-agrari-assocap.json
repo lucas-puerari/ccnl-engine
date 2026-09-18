@@ -1228,8 +1228,9 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "6eee80056dd7dbc9a2e9a01de0c7019a4e541d051bdaaa977b2e088e9c6afca7",
-    "published_at": "2026-09-07"
+    "source_hash": "c1e177f78004f2b37ecc418c233a99f66deffca28985fee601f65172f549a080",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

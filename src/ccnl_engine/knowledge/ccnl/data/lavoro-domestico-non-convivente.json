@@ -611,8 +611,9 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "315c2444c752813451f853a0aaf005c748b3662b019a42de5d5815d19e5c1e82",
-    "published_at": "2026-09-07"
+    "source_hash": "58065fbb345b3a4f6793ac268e9c024b0c566ecc1be067bd9dc457a1c26d6fca",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

@@ -1689,8 +1689,9 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8de4e1821c9f5f4760bcc956539c7f86f4aaf68ee9cbf69901d339d24ecc1a60",
-    "published_at": "2026-09-07"
+    "source_hash": "efd3f20c4d8143c9a29ee3bb744e482214341492774f1126f72d7d54e6db4141",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

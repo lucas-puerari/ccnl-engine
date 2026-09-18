@@ -1403,8 +1403,9 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "91ec6f0bf2c5c37c39dd5c4f0c6e2091469c32ee797df8916102a9b3c794dc86",
-    "published_at": "2026-09-07"
+    "source_hash": "7543a6d4d9051d06cc8acba101f8d17e0fc2e595164e8bb0e68cf2d3f0d6bf36",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

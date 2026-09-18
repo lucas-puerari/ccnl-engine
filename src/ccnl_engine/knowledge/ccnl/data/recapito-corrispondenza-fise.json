@@ -1365,8 +1365,9 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "bbb2713a42d4770d15d17474f35c5ab57e75aacb3946db39a6031b58eb628d08",
-    "published_at": "2026-09-07"
+    "source_hash": "95539c13a17411ab49c4edfc00f1e9c82d7a289a53ae07ede94cb73039e213fb",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

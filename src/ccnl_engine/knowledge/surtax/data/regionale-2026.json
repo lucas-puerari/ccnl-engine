@@ -351,6 +351,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "cf136a2e04ce1f9a6e1cdeda51e7f496f8d808dcdd2aaf55f16eceea0479a691"
+    "source_hash": "52a3ff6ada33fd841c483e18d5be540b735f7d4653ceb656e7849d713b3d8ceb",
+    "source_type": "official_primary"
   }
 }

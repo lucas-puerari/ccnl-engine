@@ -2554,8 +2554,9 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "3baa8a93ed40c876e76b88f8e43e1962d29fb32b1105430e693714d59032f839",
-    "published_at": "2026-09-07"
+    "source_hash": "c621a8d07ad2d0c689aaaba0e42733cb9ffcc65b231d9d90bacf6cf8f9036dea",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

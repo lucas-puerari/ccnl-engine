@@ -1882,8 +1882,9 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "ae4d302085f597cf161f6fadfa95c874c5ccc2cc754907871cd1c96267bc21cb",
-    "published_at": "2026-09-07"
+    "source_hash": "0b87887fa9cdcd66bb6a9e1ecb02ff641372f6f60d653e0508b79ac2d4dc29c7",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

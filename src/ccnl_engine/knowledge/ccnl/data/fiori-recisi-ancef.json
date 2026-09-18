@@ -1194,8 +1194,9 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "7add5ff91c102e0341bf0a857c59744e9bc03e10e520ce2ef3a79fd5be9c31ac",
-    "published_at": "2026-09-07"
+    "source_hash": "e7c5d6e2f5e38db95b71a817006d814c11cd7adcdc250922627c40cf64fa9bb2",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

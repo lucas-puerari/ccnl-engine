@@ -1311,8 +1311,9 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "708642067e269627164e29776adc7df61c7c635a4001cf4334ee6f87a7264db1",
-    "published_at": "2026-09-07"
+    "source_hash": "7be5c478edb75bbbf5941410a6422bff50c72f907eb2435ccc8737f472a77466",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

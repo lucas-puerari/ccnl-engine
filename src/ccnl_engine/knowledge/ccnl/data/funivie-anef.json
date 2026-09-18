@@ -1398,8 +1398,9 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "488f9ef10564158fb4b30896369a9862c588ed15b41bdbb4d90ced845e9118e9",
-    "published_at": "2026-09-07"
+    "source_hash": "65e423bcb4a4036552b043823dc7506d1b8c959b5a5bbe2e9f380add75469448",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

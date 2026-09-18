@@ -76654,7 +76654,8 @@
     "effective_until": "2026-12-31",
     "published_at": "2026-09-13",
     "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addirpef_newDF/download/tabella.htm",
-    "source_hash": "2166237c82d5673ef83760507d707b9c5bb8fb5d381c28b8fbe8476c11cdaca1",
-    "verification_status": "verified"
+    "source_hash": "1eb26fc418a1a1b89e4c5b37923abc6b0d7ebb6b5e518548d42a8fe55688c038",
+    "verification_status": "verified",
+    "source_type": "official_primary"
   }
 }

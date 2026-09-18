@@ -2057,8 +2057,9 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "641483f88bface27f136594b5bb6fc0a02f3ba2defc003a071a612e5b841f3aa",
-    "published_at": "2026-09-07"
+    "source_hash": "3fb31cbdd10a597fee7d8033f5f4ecb2b357c9655a34b7acc030ef4445cec188",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

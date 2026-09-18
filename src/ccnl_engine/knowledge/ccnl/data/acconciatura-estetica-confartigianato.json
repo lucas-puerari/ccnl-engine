@@ -916,8 +916,9 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "e7a9dbda152b6959b822052ec07bf7d7a225f76b16d70cc50f6cabb25bdfdc7e",
-    "published_at": "2026-09-07"
+    "source_hash": "374051f12696a458cc4a9d6a744700371794de8b5e1d6225f8b861987077ea38",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

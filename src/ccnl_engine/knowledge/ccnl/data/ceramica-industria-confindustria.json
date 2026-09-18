@@ -1902,8 +1902,9 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "28e846b77727b51791f9cffb0217c7b1ad563cd136eb3045843a65340b965672",
-    "published_at": "2026-09-07"
+    "source_hash": "85cfcfc83bc3c2af2543fac4f0c19a7f8616016e63543a399fa8a74e090fe4dc",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

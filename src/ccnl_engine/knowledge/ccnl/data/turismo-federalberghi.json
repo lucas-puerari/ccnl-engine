@@ -1871,8 +1871,9 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "36fff860b3febfd8966590ce305f5a7b8a2aa42a9170d829fa801185b96a8b28",
-    "published_at": "2026-09-07"
+    "source_hash": "e36073a41c0826616c01daa3e31c33f9112ea7912c8061cb8daaa3a6a9991762",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

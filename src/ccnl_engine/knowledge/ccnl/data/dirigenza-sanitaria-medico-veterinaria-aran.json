@@ -288,8 +288,9 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "64c2372132e410bc0bccabec569a0b3c61ba577097c9d7cc5d0a6ac206c447b1",
-    "published_at": "2026-09-07"
+    "source_hash": "75598d3777df25c90061aa32f8940cac750dc973d9bc048e5121e49f92cb63fa",
+    "published_at": "2026-09-07",
+    "source_type": "institutional_secondary"
   },
   "work_rules": {
     "time_supplements": {

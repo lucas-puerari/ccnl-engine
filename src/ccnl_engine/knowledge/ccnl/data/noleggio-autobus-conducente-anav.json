@@ -3057,7 +3057,8 @@
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "f43dba64b1db19fe647d29583bdb80748dccda7267ba47de9690729524c33f17",
-    "published_at": "2026-09-18"
+    "source_hash": "3a335cd409b3b2ee24a2ddf40714eb0ae3eb380292d7c7755df59b619fc58c87",
+    "published_at": "2026-09-18",
+    "source_type": "contracting_party"
   }
 }

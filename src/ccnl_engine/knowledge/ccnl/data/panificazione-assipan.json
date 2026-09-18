@@ -1429,8 +1429,9 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "cc8adfa4160529d8bef659a6038e1658940f943244f2a10262bf938b22669d99",
-    "published_at": "2026-09-07"
+    "source_hash": "82da7e1c3403b0dcf8c0170970773a997b09a470e502ec43e16050cfa87e2f0f",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

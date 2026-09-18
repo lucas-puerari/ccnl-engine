@@ -5,5 +5,15 @@
     "ceiling": "4000.00",
     "rate": "0.19",
     "notes": "Art. 15 c. 1 lett. b TUIR. Ceiling EUR 4 000 per nucleo familiare per year (max credit EUR 760). Applies to interest paid on a mortgage for the acquisition of the abitazione principale. Household ceiling not modelled — full ceiling applied to the declared amount."
+  },
+  "ruleset": {
+    "id": "tax/2026/art15-deductions",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 15",
+    "source_type": "official_primary",
+    "verification_status": "unverified"
   }
 }

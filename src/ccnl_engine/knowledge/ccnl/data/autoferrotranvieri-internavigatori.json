@@ -4959,8 +4959,9 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "930e120616bb520b8eb0e53c7736e364f667a9c7b58e37e5902d5cf6323cb95e",
-    "published_at": "2026-09-07"
+    "source_hash": "af64f206385011174dbd9f00bcd75446a4e04cf58ae4b5ee2bbe7062e7b8f6f8",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

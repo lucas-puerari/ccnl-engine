@@ -504,8 +504,9 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "c04ca9cfe1a7d8fc8f233d2d38244afe94f301eaa43408dff9824a2bccc77f3f",
-    "published_at": "2026-09-07"
+    "source_hash": "99602e77fae3b1d91733f572ebf9535547576ad69c6e80cd01173a494675bfae",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

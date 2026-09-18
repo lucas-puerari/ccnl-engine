@@ -1709,8 +1709,9 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "1209842d40a1bbe00eafde76bbda51f94ccb1d7e362364fbcbea1c015c6e2482",
-    "published_at": "2026-09-07"
+    "source_hash": "82dce3f9073c3e3e483886438e991a701dbbed0bd499cbd305be4da2deecca6d",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

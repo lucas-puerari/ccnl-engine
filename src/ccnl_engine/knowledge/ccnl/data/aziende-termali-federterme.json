@@ -2077,8 +2077,9 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "dc7222f8ec0dc6c35b7d990ea9058770e29389d5700f0779ffdbe0a0bf4ec189",
-    "published_at": "2026-09-12"
+    "source_hash": "2546b1c18fa7ab09e787f3b0eb95a254c09685a496475ef69b1795473235963a",
+    "published_at": "2026-09-12",
+    "source_type": "commercial_secondary"
   },
   "work_rules": null
 }

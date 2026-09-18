@@ -1286,8 +1286,9 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "4ece5d611c6fcc379fbf9411ad3b25c01247e6fb0c9c0640fe168e826cf12c3d",
-    "published_at": "2026-09-07"
+    "source_hash": "7a876202969c905ac675521eac71c05134fd9b8e349b1ddcdf1cf4dd57325987",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

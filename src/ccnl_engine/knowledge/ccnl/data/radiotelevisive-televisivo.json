@@ -1748,5 +1748,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/radiotelevisive-televisivo",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "c75d3be6523cfee9fbc4e307333b52a5c2a38b506773d9a6adac4db486d358c9"
+  }
 }

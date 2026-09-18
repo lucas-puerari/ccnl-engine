@@ -4,11 +4,26 @@
   "spouse": {
     "dependent_income_threshold": "2840.51",
     "breakpoints": [
-      {"income_up_to": "0.00", "deduction": "800.00"},
-      {"income_up_to": "15000.00", "deduction": "690.00"},
-      {"income_up_to": "40000.00", "deduction": "690.00"},
-      {"income_up_to": "80000.00", "deduction": "0.00"},
-      {"income_up_to": null, "deduction": "0.00"}
+      {
+        "income_up_to": "0.00",
+        "deduction": "800.00"
+      },
+      {
+        "income_up_to": "15000.00",
+        "deduction": "690.00"
+      },
+      {
+        "income_up_to": "40000.00",
+        "deduction": "690.00"
+      },
+      {
+        "income_up_to": "80000.00",
+        "deduction": "0.00"
+      },
+      {
+        "income_up_to": null,
+        "deduction": "0.00"
+      }
     ],
     "notes": "Sub-band supplements (EUR 10-30 in income range 29001-35200) not modelled; EUR 690 flat assumed in 15001-40000 range"
   },
@@ -27,7 +42,14 @@
     "notes": "Post L. 207/2024: only ascendenti conviventi qualify. Other categories (fratelli, sorelle, generi, nuore, suoceri) no longer eligible."
   },
   "ruleset": {
-    "id": "tax/family-deductions/2026",
-    "source_hash": "583f1f205f34fb19780160ecdb5612e70c123200ec617f90372e56d0cc46f341"
+    "id": "tax/2026/family-deductions",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
+    "source_type": "official_primary",
+    "verification_status": "unverified",
+    "source_hash": "adebf4ac015cfca777090945fdccf8973d0a8398515fdcde6a0aa51247dcb8e0"
   }
 }

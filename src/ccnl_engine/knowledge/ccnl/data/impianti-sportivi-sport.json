@@ -1100,7 +1100,8 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "e422dc45ad9c01b21e27611e370be16aa4d7fe1b36b30ec521addb468fa3f99c"
+    "source_hash": "c4e4fd7f9b06310ee78d6cfb03294476cbec4a977c753e8988d725106590c706",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

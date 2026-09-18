@@ -1345,8 +1345,9 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "fcab0e019f353a8e6de7818eb1e5c594f78edb38e45b45c8dddd6c1690b41940",
-    "published_at": "2026-09-07"
+    "source_hash": "5db7bda3be5a139e53084898a370e2a9bac3c1b78088014ebe38e1d774e720ce",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

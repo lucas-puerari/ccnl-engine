@@ -1726,8 +1726,9 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "94ca3b0f31ae8b064ca11ef477eaed77f2a5f0c3fda80939224c95f0fcf522c8",
-    "published_at": "2026-09-18"
+    "source_hash": "7416ec60ad7c21e94cb403cd33e9ff19ed280b4f045afa2ab653356bf2169d5f",
+    "published_at": "2026-09-18",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

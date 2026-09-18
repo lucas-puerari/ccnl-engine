@@ -1271,8 +1271,9 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "8060199c7dde5217115fe032bebeb45a7f9d64def50ce7d8e6c557bc9e9311f5",
-    "published_at": "2026-09-07"
+    "source_hash": "0d4ebbed29ebaf781fb44e9aa7f55b9c6ee3b4c13bf52e401358d826826eb286",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

@@ -43,6 +43,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "464411166aad7c372371251834d10c1c757fcfd9ac3b0d470c8be5d83a0c5162"
+    "source_hash": "3c9f61b17bbb04b6cd039459e664f7a3164c17c1510911e8ca2c22f56971acbf",
+    "source_type": "official_primary"
   }
 }

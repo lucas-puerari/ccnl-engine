@@ -1136,8 +1136,9 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a67023b9e197a57a4004243b01fffac69cdecb7810dc2c6b68d3cd8530a9df56",
-    "published_at": "2026-09-07"
+    "source_hash": "f523640222f2aa81f59603e1582fbba160ef7d484f5afded1d16919cacdb7370",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

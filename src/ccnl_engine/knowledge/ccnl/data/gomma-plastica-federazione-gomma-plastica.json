@@ -2096,8 +2096,9 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "5e911b03d997f418e61c9d266b1a4e1aec33eee53e5072a89b97c34314bd5505",
-    "published_at": "2026-09-07"
+    "source_hash": "b1ead2e2b5b743dace3999c58e9ca6fe97fe5788f46c51e89196a98c03d8b503",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
