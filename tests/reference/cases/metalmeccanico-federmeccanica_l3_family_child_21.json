@@ -13,7 +13,6 @@
     "level_code": "C2",
     "as_of": "2026-09-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "seniority_months": null,
     "negotiated_ral": null,
@@ -28,7 +27,8 @@
       "children_21_or_older": 1,
       "children_21_or_older_disabled": 0,
       "ascendenti_conviventi": 0
-    }
+    },
+    "part_time_ratio": "1"
   },
   "expected": {
     "gross_monthly": "2064.88",

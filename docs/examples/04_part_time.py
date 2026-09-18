@@ -23,20 +23,20 @@ full_time = compute(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )
 part_time = compute(
     PayrollScenario(
         employee=Employee(
-            level_code="4", part_time_pct=Decimal("0.6")
+            level_code="4", part_time_ratio=Decimal("0.6")
         ),  # 60% — 3/5 days
         employment=Employment(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )

@@ -12,10 +12,10 @@
     "level_code": "2",
     "as_of": "2025-12-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 3,
     "category": "impiegato",
-    "negotiated_ral": null
+    "negotiated_ral": null,
+    "part_time_ratio": "1"
   },
   "expected": {
     "ccnl_id": "servizi-postali-appalto-fise",

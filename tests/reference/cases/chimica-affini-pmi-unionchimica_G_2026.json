@@ -7,10 +7,10 @@
     "num_employees": 50,
     "employment_type": "permanent",
     "as_of": "2026-09-01",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "negotiated_ral": null,
-    "weekly_hours": null
+    "weekly_hours": null,
+    "part_time_ratio": "1"
   },
   "expected": {
     "ccnl_id": "chimica-affini-pmi-unionchimica",

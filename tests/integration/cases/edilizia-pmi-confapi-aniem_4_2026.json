@@ -16,7 +16,7 @@
     "level_code": "4",
     "as_of": "2026-01-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "seniority_count": 0,
     "negotiated_ral": null
   },
@@ -24,7 +24,7 @@
     "ccnl_id": "edilizia-pmi-confapi-aniem",
     "level_code": "4",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "year": 2026,
     "seniority_count": 0,
     "base_monthly": "1523.17",

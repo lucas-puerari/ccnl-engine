@@ -82,7 +82,7 @@ def _resolve_chain_and_apprenticeship(
         ValueError: If DestinationRalOverride is used with an
             under-classification apprenticeship track (no percentage factor).
     """
-    effective_factor = scenario.employee.part_time_pct
+    effective_factor = scenario.employee.part_time_ratio
     apprenticeship_pct: Decimal | None = None
     under_level_code: str | None = None
     if isinstance(contract, Apprentice):
@@ -303,7 +303,7 @@ def compute_gross(scenario: PayrollScenario, ccnl: CCNL) -> GrossPay:
     Returns:
         Gross components and bases, before contributions or tax.
     """
-    as_of = scenario.employment.calculation_date
+    as_of = scenario.employment.as_of
     # Resolve inputs
     contract = scenario.employment.contract
     second_level_allowances = scenario.employment.employer.second_level_allowances
@@ -342,7 +342,7 @@ def compute_gross(scenario: PayrollScenario, ccnl: CCNL) -> GrossPay:
 
     chain = (
         chain_full_time.scaled_selective(
-            scenario.employee.part_time_pct, apprenticeship_pct
+            scenario.employee.part_time_ratio, apprenticeship_pct
         )
         if apprenticeship_pct is not None
         else chain_full_time.scaled(effective_factor)
@@ -352,7 +352,7 @@ def compute_gross(scenario: PayrollScenario, ccnl: CCNL) -> GrossPay:
         agreement.ad_personam_monthly if agreement is not None else _ZERO
     )
     scaled_second_level, second_level_monthly_total = _scale_second_level(
-        second_level_allowances, scenario.employee.part_time_pct, apprenticeship_pct
+        second_level_allowances, scenario.employee.part_time_ratio, apprenticeship_pct
     )
 
     gross_monthly = money(

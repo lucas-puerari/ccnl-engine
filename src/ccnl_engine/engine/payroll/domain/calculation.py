@@ -43,6 +43,8 @@ _NO_MATCH: object = object()
 #: semantic boundary of the flag, making the old ``False`` ambiguous.
 _FIELD_RENAMES: dict[str, dict[str, str]] = {
     "Art15Deductions": {"mortgage_pre_1993": "mortgage_pre_2022"},
+    "Employee": {"part_time_pct": "part_time_ratio"},
+    "Employment": {"calculation_date": "as_of"},
 }
 
 
@@ -109,7 +111,7 @@ def _dump(value: object) -> object:  # ruff: ignore[too-many-return-statements]
     if dataclasses.is_dataclass(value):
         return _dump_dataclass(value)
     if hasattr(value, "model_dump"):
-        return _dump(value.model_dump(mode="json"))
+        return _dump(value.model_dump())
     if isinstance(value, dict):
         return _dump_dict(value)
     msg = f"Cannot serialise input value of type {type(value)!r}"
@@ -278,7 +280,7 @@ def _load_by_hint(hint: type, raw: object) -> object:
     if dataclasses.is_dataclass(hint):
         return _load_dataclass(hint, raw)
     if isinstance(hint, type) and hasattr(hint, "model_validate"):
-        return hint.model_validate(raw)
+        return _load_dataclass(hint, raw)
     return _coerce_scalar(raw, hint)
 
 
@@ -296,7 +298,7 @@ def _try_union_member(hint: type, raw: object) -> object:
             return _NO_MATCH
     if isinstance(hint, type) and hasattr(hint, "model_validate"):
         try:
-            return hint.model_validate(raw)
+            return _load_dataclass(hint, raw)
         except Exception:  # ruff: ignore[blind-except] - union trial
             return _NO_MATCH
     return _NO_MATCH
@@ -364,32 +366,46 @@ def _apply_renames(dc_name: str, raw: Mapping[str, object]) -> Mapping[str, obje
     return result
 
 
-def _load_dataclass(dc: type, raw: object) -> object:
-    """Reconstruct a frozen dataclass from a JSON-native *raw* dict.
+def _load_pydantic_model(dc: type, raw: Mapping[str, object]) -> object:
+    """Reconstruct a Pydantic model from a JSON-native dict.
 
-    Fields with dataclass defaults are skipped when absent from *raw* so that
-    old serialised snapshots remain readable after new defaulted fields are
-    added.  Unknown keys that do not appear in the dataclass raise
-    ``ValueError``; the special ``$type`` discriminator key is exempt.
-    Known field renames (see :data:`_FIELD_RENAMES`) are migrated: only
-    truthy values are safe to migrate automatically; a falsy value raises
-    ``ValueError`` because the rename changed the semantic boundary of the
-    flag and the old ``False`` is ambiguous.
+    Applies the same field-validation contract as the dataclass branch:
+    unknown keys raise ``ValueError``; required fields must be present;
+    the ``$type`` discriminator key is exempt and stripped before validation.
 
     Returns:
         A new instance of *dc* built from the snapshot fields.
 
     Raises:
-        TypeError: If *raw* is not a dict.
-        ValueError: If a required field (no default) is missing from *raw*,
-            if an unknown field is present, or if an ambiguous rename value
-            is encountered.
+        ValueError: If an unknown field is present or a required field is
+            missing from *raw*.
     """
-    if not isinstance(raw, Mapping):
-        msg = f"Expected a mapping to build {dc.__name__}, got {type(raw)!r}"
-        raise TypeError(msg)
-    raw = _apply_renames(dc.__name__, raw)
-    # Reject unknown keys (except the $type discriminator).
+    known = set(dc.model_fields.keys()) | {"$type"}  # type: ignore[attr-defined]
+    unknown = set(raw.keys()) - known
+    if unknown:
+        msg = (
+            f"Unknown fields {sorted(unknown)!r} in {dc.__name__} snapshot. "
+            "Remove them or update the snapshot to the current schema."
+        )
+        raise ValueError(msg)
+    for fname, finfo in dc.model_fields.items():  # type: ignore[attr-defined]
+        if finfo.is_required() and fname not in raw:
+            msg = f"Missing field {fname!r} in {dc.__name__} snapshot"
+            raise ValueError(msg)
+    clean = {k: v for k, v in raw.items() if k != "$type"}
+    return dc.model_validate(clean)  # type: ignore[attr-defined]
+
+
+def _load_plain_dataclass(dc: type, raw: Mapping[str, object]) -> object:
+    """Reconstruct a plain frozen dataclass from a JSON-native dict.
+
+    Returns:
+        A new instance of *dc* built from the snapshot fields.
+
+    Raises:
+        ValueError: If an unknown field is present or a required field is
+            missing from *raw*.
+    """
     known = {f.name for f in fields(dc)} | {"$type"}
     unknown = set(raw.keys()) - known
     if unknown:
@@ -412,6 +428,33 @@ def _load_dataclass(dc: type, raw: object) -> object:
             raise ValueError(msg)
         kwargs[f.name] = _load_by_hint(hints[f.name], raw[f.name])
     return dc(**kwargs)
+
+
+def _load_dataclass(dc: type, raw: object) -> object:
+    """Reconstruct a frozen dataclass or Pydantic model from a JSON-native dict.
+
+    Fields with defaults are skipped when absent from *raw* so that
+    old serialised snapshots remain readable after new defaulted fields are
+    added.  Unknown keys that do not appear in the type raise
+    ``ValueError``; the special ``$type`` discriminator key is exempt.
+    Known field renames (see :data:`_FIELD_RENAMES`) are migrated: only
+    truthy values are safe to migrate automatically; a falsy value raises
+    ``ValueError`` because the rename changed the semantic boundary of the
+    flag and the old ``False`` is ambiguous.
+
+    Returns:
+        A new instance of *dc* built from the snapshot fields.
+
+    Raises:
+        TypeError: If *raw* is not a dict.
+    """
+    if not isinstance(raw, Mapping):
+        msg = f"Expected a mapping to build {dc.__name__}, got {type(raw)!r}"
+        raise TypeError(msg)
+    raw = _apply_renames(dc.__name__, raw)
+    if hasattr(dc, "model_fields"):
+        return _load_pydantic_model(dc, raw)
+    return _load_plain_dataclass(dc, raw)
 
 
 def _materialise(

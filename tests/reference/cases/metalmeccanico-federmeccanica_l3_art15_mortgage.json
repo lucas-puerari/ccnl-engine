@@ -13,7 +13,6 @@
     "level_code": "C2",
     "as_of": "2026-09-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "seniority_months": null,
     "negotiated_ral": null,
@@ -25,7 +24,8 @@
     "ivs_ceiling_applies": false,
     "art15_deductions": {
       "mortgage_interest": "3000"
-    }
+    },
+    "part_time_ratio": "1"
   },
   "expected": {
     "gross_monthly": "2064.88",

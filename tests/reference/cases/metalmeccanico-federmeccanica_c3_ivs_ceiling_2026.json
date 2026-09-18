@@ -15,10 +15,10 @@
     "level_code": "C3",
     "as_of": "2026-01-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "negotiated_ral": "130000",
-    "ivs_ceiling_applies": true
+    "ivs_ceiling_applies": true,
+    "part_time_ratio": "1"
   },
   "expected": {
     "ccnl_id": "metalmeccanico-federmeccanica",

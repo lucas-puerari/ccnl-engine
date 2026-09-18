@@ -15,10 +15,10 @@
     "level_code": "BS",
     "as_of": "2026-01-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "negotiated_ral": null,
-    "weekly_hours": 54
+    "weekly_hours": 54,
+    "part_time_ratio": "1"
   },
   "expected": {
     "ccnl_id": "lavoro-domestico-convivente",

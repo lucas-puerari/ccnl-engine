@@ -15,9 +15,13 @@ types reference:
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from ccnl_engine.engine.primitives.domain.primitives import StrictDecimal
 
 _ZERO: Decimal = Decimal(0)
 
@@ -27,8 +31,7 @@ _ZERO: Decimal = Decimal(0)
 # ---------------------------------------------------------------------------
 
 
-@dataclass(frozen=True)
-class SeniorityByCount:
+class SeniorityByCount(BaseModel):
     """Seniority expressed as an explicit number of *scatti* already accrued.
 
     Use this when you know the exact increment count. Mutually exclusive with
@@ -38,21 +41,13 @@ class SeniorityByCount:
         value: Number of seniority increments accrued. Must be ``>= 0``.
     """
 
-    value: int
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that value is non-negative.
-
-        Raises:
-            ValueError: If value is negative.
-        """
-        if self.value < 0:
-            msg = f"SeniorityByCount.value must be >= 0, got {self.value}"
-            raise ValueError(msg)
+    type: Literal["count"] = "count"
+    value: int = Field(ge=0)
 
 
-@dataclass(frozen=True)
-class SeniorityByMonths:
+class SeniorityByMonths(BaseModel):
     """Seniority expressed as months of service elapsed.
 
     The engine derives the increment count from the CCNL cadence rules.
@@ -63,27 +58,18 @@ class SeniorityByMonths:
         value: Months of continuous service elapsed. Must be ``>= 0``.
     """
 
-    value: int
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that value is non-negative.
-
-        Raises:
-            ValueError: If value is negative.
-        """
-        if self.value < 0:
-            msg = f"SeniorityByMonths.value must be >= 0, got {self.value}"
-            raise ValueError(msg)
+    type: Literal["months"] = "months"
+    value: int = Field(ge=0)
 
 
-@dataclass(frozen=True)
-class SeniorityByDate:
+class SeniorityByDate(BaseModel):
     """Seniority expressed as a hire or service-start date.
 
     The engine derives months of service from the gap between this date and
-    :attr:`~ccnl_engine.engine.payroll.domain.scenario.Employment\
-.calculation_date`, then applies the CCNL cadence rules to arrive at an
-    increment count.
+    :attr:`~ccnl_engine.engine.payroll.domain.scenario.Employment.as_of`,
+    then applies the CCNL cadence rules to arrive at an increment count.
 
     Use this when you track the worker's hire date rather than months or
     increment count directly.
@@ -92,6 +78,9 @@ class SeniorityByDate:
         value: Hire date or continuous-service start date.
     """
 
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    type: Literal["date"] = "date"
     value: date
 
 
@@ -104,8 +93,7 @@ Seniority = SeniorityByCount | SeniorityByMonths | SeniorityByDate
 # ---------------------------------------------------------------------------
 
 
-@dataclass(frozen=True)
-class RalOverride:
+class RalOverride(BaseModel):
     """Replace the CCNL-derived gross annual salary with a fixed agreed value.
 
     Valid for any employment type. The value is used as-is (not scaled by
@@ -116,21 +104,20 @@ class RalOverride:
         value: Agreed annual salary in euros. Must be ``> 0``.
     """
 
-    value: Decimal
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that value is positive.
+    type: Literal["ral"] = "ral"
+    value: StrictDecimal
 
-        Raises:
-            ValueError: If value is zero or negative.
-        """
+    @model_validator(mode="after")
+    def _check_positive(self) -> RalOverride:
         if self.value <= _ZERO:
             msg = f"RalOverride.value must be > 0, got {self.value}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class DestinationRalOverride:
+class DestinationRalOverride(BaseModel):
     """Destination-level RAL for a percentage-track apprentice.
 
     The engine applies the apprenticeship percentage to this value to produce
@@ -143,17 +130,17 @@ class DestinationRalOverride:
         value: Destination-level annual salary in euros. Must be ``> 0``.
     """
 
-    value: Decimal
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that value is positive.
+    type: Literal["destination_ral"] = "destination_ral"
+    value: StrictDecimal
 
-        Raises:
-            ValueError: If value is zero or negative.
-        """
+    @model_validator(mode="after")
+    def _check_positive(self) -> DestinationRalOverride:
         if self.value <= _ZERO:
             msg = f"DestinationRalOverride.value must be > 0, got {self.value}"
             raise ValueError(msg)
+        return self
 
 
 #: Union of the two RAL-override strategies.

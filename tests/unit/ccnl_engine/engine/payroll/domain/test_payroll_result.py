@@ -74,7 +74,7 @@ def payroll() -> PayrollResult:
                 ccnl="commercio-confcommercio.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                calculation_date=date(2026, 1, 1),
+                as_of=date(2026, 1, 1),
             ),
         )
     ).result
@@ -94,7 +94,7 @@ def payroll_domestic() -> PayrollResult:
                 ccnl="lavoro-domestico-non-convivente.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=1),
-                calculation_date=date(2026, 1, 1),
+                as_of=date(2026, 1, 1),
             ),
         )
     ).result

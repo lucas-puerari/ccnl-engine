@@ -540,7 +540,7 @@ def compute_salary(
             employee=Employee(
                 level_code=level_code,
                 seniority=seniority,
-                part_time_pct=Decimal(str(round(part_time_pct, 4))),
+                part_time_ratio=Decimal(str(round(part_time_pct, 4))),
                 weekly_hours=weekly_hours_domestic,
                 ivs_ceiling_applies=ivs_ceiling_applies,
                 jurisdiction=jurisdiction,
@@ -550,7 +550,7 @@ def compute_salary(
                 ccnl=filename,
                 contract=contract,
                 employer=employer,
-                calculation_date=_CALC_DATE,
+                as_of=_CALC_DATE,
             ),
             time_supplements=time_supplements,
             absence_days=absence,

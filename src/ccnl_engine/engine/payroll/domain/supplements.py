@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from decimal import Decimal
+
+from pydantic import BaseModel, ConfigDict, model_validator
+
+from ccnl_engine.engine.primitives.domain.primitives import StrictDecimal
 
 _ZERO = Decimal(0)
 
@@ -16,19 +19,7 @@ _HOUR_FIELDS: tuple[str, ...] = (
 )
 
 
-def _validate_non_negative(value: Decimal, name: str) -> None:
-    """Raise ValueError when *value* is negative.
-
-    Raises:
-        ValueError: If ``value < 0``.
-    """
-    if value < _ZERO:
-        msg = f"{name} must be >= 0, got {value}"
-        raise ValueError(msg)
-
-
-@dataclass(frozen=True)
-class WeeklyOvertimeHours:
+class WeeklyOvertimeHours(BaseModel):
     """Per-week overtime hours for one calendar week inside a pay period.
 
     Use :class:`OvertimeHours` at the top level and attach one
@@ -49,20 +40,25 @@ class WeeklyOvertimeHours:
         supplementare_hours: Part-timer extra hours (lavoro supplementare).
     """
 
-    weekday_hours: Decimal = _ZERO
-    night_hours: Decimal = _ZERO
-    holiday_hours: Decimal = _ZERO
-    night_holiday_hours: Decimal = _ZERO
-    supplementare_hours: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that all hour values are non-negative."""
+    weekday_hours: StrictDecimal = _ZERO
+    night_hours: StrictDecimal = _ZERO
+    holiday_hours: StrictDecimal = _ZERO
+    night_holiday_hours: StrictDecimal = _ZERO
+    supplementare_hours: StrictDecimal = _ZERO
+
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> WeeklyOvertimeHours:
         for name in _HOUR_FIELDS:
-            _validate_non_negative(getattr(self, name), name)
+            v = getattr(self, name)
+            if v < _ZERO:
+                msg = f"{name} must be >= 0, got {v}"
+                raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class OvertimeHours:
+class OvertimeHours(BaseModel):
     """Caller-declared supplement hours for one pay period.
 
     All values represent hours worked *in addition to* the standard
@@ -102,23 +98,22 @@ class OvertimeHours:
             data was supplied; all monthly totals are treated as one period.
     """
 
-    weekday_hours: Decimal = _ZERO
-    night_hours: Decimal = _ZERO
-    holiday_hours: Decimal = _ZERO
-    night_holiday_hours: Decimal = _ZERO
-    supplementare_hours: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    weekday_hours: StrictDecimal = _ZERO
+    night_hours: StrictDecimal = _ZERO
+    holiday_hours: StrictDecimal = _ZERO
+    night_holiday_hours: StrictDecimal = _ZERO
+    supplementare_hours: StrictDecimal = _ZERO
     weeks: tuple[WeeklyOvertimeHours, ...] = ()
 
-    def __post_init__(self) -> None:
-        """Validate all hour values and weekly-vs-monthly consistency.
-
-        Raises:
-            ValueError: If any hour value is negative, or if ``weeks`` is
-                non-empty and a monthly field does not equal the sum of
-                the corresponding weekly values.
-        """
+    @model_validator(mode="after")
+    def _check_valid(self) -> OvertimeHours:
         for name in _HOUR_FIELDS:
-            _validate_non_negative(getattr(self, name), name)
+            v = getattr(self, name)
+            if v < _ZERO:
+                msg = f"{name} must be >= 0, got {v}"
+                raise ValueError(msg)
         if self.weeks:
             for name in _HOUR_FIELDS:
                 monthly = getattr(self, name)
@@ -129,6 +124,7 @@ class OvertimeHours:
                         f"sum of weekly values {weekly_sum}"
                     )
                     raise ValueError(msg)
+        return self
 
     @classmethod
     def from_weeks(cls, weeks: tuple[WeeklyOvertimeHours, ...]) -> OvertimeHours:
@@ -155,8 +151,7 @@ class OvertimeHours:
         )
 
 
-@dataclass(frozen=True)
-class AbsenceDays:
+class AbsenceDays(BaseModel):
     """Caller-declared absent days for one pay period.
 
     Represents days for which no contractual pay is due
@@ -174,21 +169,19 @@ class AbsenceDays:
         unpaid_days: Days absent without pay in the period. Must be >= 0.
     """
 
-    unpaid_days: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that unpaid_days is non-negative.
+    unpaid_days: StrictDecimal = _ZERO
 
-        Raises:
-            ValueError: If unpaid_days is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> AbsenceDays:
         if self.unpaid_days < _ZERO:
             msg = f"unpaid_days must be >= 0, got {self.unpaid_days}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class LeaveInput:
+class LeaveInput(BaseModel):
     """Caller-declared leave days taken in one pay period.
 
     Represents paid leave days (*ferie* / *permessi*) consumed during the
@@ -200,21 +193,19 @@ class LeaveInput:
         taken_days: Leave days consumed in the period. Must be >= 0.
     """
 
-    taken_days: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that taken_days is non-negative.
+    taken_days: StrictDecimal = _ZERO
 
-        Raises:
-            ValueError: If taken_days is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> LeaveInput:
         if self.taken_days < _ZERO:
             msg = f"taken_days must be >= 0, got {self.taken_days}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class SickInput:
+class SickInput(BaseModel):
     """Caller-declared sick days for one pay period (malattia ordinaria).
 
     The engine computes the INPS statutory indemnity and the CCNL
@@ -237,30 +228,27 @@ class SickInput:
             all absences.  A separate new episode restarts at ``None``.
     """
 
-    sick_days: Decimal = _ZERO
-    cumulative_sick_days: Decimal | None = None
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate sick day values.
+    sick_days: StrictDecimal = _ZERO
+    cumulative_sick_days: StrictDecimal | None = None
 
-        Raises:
-            ValueError: If ``sick_days`` or ``cumulative_sick_days`` is
-                negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> SickInput:
         if self.sick_days < _ZERO:
             msg = f"sick_days must be >= 0, got {self.sick_days}"
             raise ValueError(msg)
         if self.cumulative_sick_days is not None and self.cumulative_sick_days < _ZERO:
             msg = f"cumulative_sick_days must be >= 0, got {self.cumulative_sick_days}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class FringeBenefitInput:
+class FringeBenefitInput(BaseModel):
     """Caller-declared fringe benefits for the fiscal year (Art. 51 c. 3 TUIR).
 
     Fringe benefits are exempt below the statutory annual threshold
-    (€1.000 or €2.000 with dependent children).  Amounts above the
+    (EUR 1.000 or EUR 2.000 with dependent children).  Amounts above the
     threshold are taxable income; the engine reports the taxable portion
     informally without recomputing IRPEF.
 
@@ -271,22 +259,20 @@ class FringeBenefitInput:
             which threshold applies.
     """
 
-    annual_amount: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    annual_amount: StrictDecimal = _ZERO
     has_dependent_children: bool = False
 
-    def __post_init__(self) -> None:
-        """Validate that annual_amount is non-negative.
-
-        Raises:
-            ValueError: If annual_amount is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> FringeBenefitInput:
         if self.annual_amount < _ZERO:
             msg = f"annual_amount must be >= 0, got {self.annual_amount}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class WelfareInput:
+class WelfareInput(BaseModel):
     """Caller-declared welfare contributions for the fiscal year.
 
     Welfare structured under Art. 51 c. 2 TUIR is fully exempt from
@@ -297,21 +283,19 @@ class WelfareInput:
         annual_amount: Total welfare amount for the year. Must be >= 0.
     """
 
-    annual_amount: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that annual_amount is non-negative.
+    annual_amount: StrictDecimal = _ZERO
 
-        Raises:
-            ValueError: If annual_amount is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> WelfareInput:
         if self.annual_amount < _ZERO:
             msg = f"annual_amount must be >= 0, got {self.annual_amount}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class BonusInput:
+class BonusInput(BaseModel):
     """Caller-declared bonus / premio di risultato for the fiscal year.
 
     When ``eligible_for_pdr`` is True and the worker's gross income from
@@ -335,16 +319,14 @@ class BonusInput:
             >= 0 when provided.
     """
 
-    annual_amount: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    annual_amount: StrictDecimal = _ZERO
     eligible_for_pdr: bool = False
-    prior_year_gross_annual: Decimal | None = None
+    prior_year_gross_annual: StrictDecimal | None = None
 
-    def __post_init__(self) -> None:
-        """Validate that annual_amount and prior_year_gross_annual are non-negative.
-
-        Raises:
-            ValueError: If annual_amount or prior_year_gross_annual is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> BonusInput:
         if self.annual_amount < _ZERO:
             msg = f"annual_amount must be >= 0, got {self.annual_amount}"
             raise ValueError(msg)
@@ -355,3 +337,4 @@ class BonusInput:
                 f"got {self.prior_year_gross_annual}"
             )
             raise ValueError(msg)
+        return self

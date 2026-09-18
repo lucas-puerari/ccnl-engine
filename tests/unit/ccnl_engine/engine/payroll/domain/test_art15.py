@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import dataclasses
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 
@@ -55,5 +55,5 @@ class TestArt15DeductionsFrozen:
     def test_is_frozen(self) -> None:
         """Modifying a field raises FrozenInstanceError."""
         d = Art15Deductions(mortgage_interest=_D("1000"))
-        with pytest.raises(dataclasses.FrozenInstanceError):
+        with pytest.raises(ValidationError):
             d.mortgage_interest = _D("2000")  # type: ignore[misc]

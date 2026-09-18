@@ -81,7 +81,7 @@ def _req(
     as_of: date = _DATE,
     contract: Permanent | FixedTerm | Apprentice = _PERMANENT,
     num_employees: int = 50,
-    part_time_pct: Decimal = Decimal(1),
+    part_time_ratio: Decimal = Decimal(1),
     seniority_count: int | None = None,
     seniority_months: int | None = None,
     negotiated_ral: Decimal | None = None,
@@ -101,15 +101,15 @@ def _req(
     """
     seniority: SeniorityByCount | SeniorityByMonths | None = None
     if seniority_count is not None:
-        seniority = SeniorityByCount(seniority_count)
+        seniority = SeniorityByCount(value=seniority_count)
     elif seniority_months is not None:
-        seniority = SeniorityByMonths(seniority_months)
+        seniority = SeniorityByMonths(value=seniority_months)
 
     ral_override: RalOverride | DestinationRalOverride | None = None
     if negotiated_ral is not None:
-        ral_override = RalOverride(negotiated_ral)
+        ral_override = RalOverride(value=negotiated_ral)
     elif negotiated_destination_ral is not None:
-        ral_override = DestinationRalOverride(negotiated_destination_ral)
+        ral_override = DestinationRalOverride(value=negotiated_destination_ral)
 
     agreement: Agreement | None = None
     if ral_override is not None or ad_personam_monthly != Decimal(0):
@@ -122,7 +122,7 @@ def _req(
         employee=Employee(
             level_code=level_code,
             seniority=seniority,
-            part_time_pct=part_time_pct,
+            part_time_ratio=part_time_ratio,
             weekly_hours=weekly_hours,
             category=category,
             roles=roles,
@@ -137,6 +137,6 @@ def _req(
                 num_employees=num_employees,
                 second_level_allowances=second_level_allowances,
             ),
-            calculation_date=as_of,
+            as_of=as_of,
         ),
     )

@@ -400,7 +400,7 @@ def _run_wr_leave(
             msg = "leave_rules is None despite present=True"
             raise RuntimeError(msg)
         service_months = scenario.employee.seniority_months_as_of(
-            scenario.employment.calculation_date
+            scenario.employment.as_of
         )
         accrued, taken, balance = compute_leave(
             leave_input=leave_input,
@@ -621,7 +621,7 @@ def compute_work_rules(
         ccnl=ccnl,
         base_monthly_full_time=base_monthly_full_time,
         hourly_divisor=gross.hourly_divisor,
-        as_of=scenario.employment.calculation_date,
+        as_of=scenario.employment.as_of,
         wr_warnings=wr_warnings,
     )
     time_supplements_monthly = money(supps.overtime + supps.night + supps.holiday)
