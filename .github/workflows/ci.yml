@@ -80,6 +80,9 @@ jobs:
       - name: Generate coverage matrix
         run: uv run python scripts/docs/gen_coverage_matrix.py
 
+      - name: Generate capability matrix
+        run: uv run python scripts/docs/gen_capability_matrix.py
+
       - name: Build docs (zensical)
         run: uv run zensical build
 
