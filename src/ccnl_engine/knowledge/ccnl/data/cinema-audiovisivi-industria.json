@@ -1,0 +1,1949 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "cinema-audiovisivi-industria",
+    "name": "CCNL Industrie Cineaudiovisive (ANICA)",
+    "cnel_code": "G111",
+    "sector": "Cinema e audiovisivo",
+    "tax_sector": "industria",
+    "agreement_date": "2025-07-23",
+    "signatories": [
+      "ANICA",
+      "SLC-CGIL",
+      "FISTEL-CISL",
+      "UILCOM-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
+        "type": "proxy",
+        "agreement_date": "2025-07-23"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-18",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~2.3k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "Salary model: conglobated (paga base unica, nessuna contingenza/EDR separata). Source: lavoro-economia.it c=153 (CNEL G111), tabella Jul 2026."
+      },
+      {
+        "kind": "info",
+        "text": "Hourly divisor 173 (industria standard, confirmed from lavoro-economia.it). Daily divisor: 26."
+      },
+      {
+        "kind": "info",
+        "text": "Additional months: 14 (tredicesima + quattordicesima). UILCOM informativa 24/07/2025."
+      },
+      {
+        "kind": "info",
+        "text": "Seniority: 5 scatti biennali (cadence_months=24, maximum_count=5). Amounts from published table Jul 2026."
+      },
+      {
+        "kind": "info",
+        "text": "Salary periods: 5 tranches — Jan 2025 (+45 at L4), Jan 2026 (+45 at L4), Jul 2026 (+90, published anchor), Jul 2027 (+90), Jan 2028 (+90). Source: quotidianopiu.it + lavoro-economia.it."
+      },
+      {
+        "kind": "info",
+        "text": "Non-Jul-2026 salary values computed parametrically: each level scaled by the L4 ratio at each tranche. Published Jul 2026 values are the direct source; others are derived."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprenticeship provisions not modeled (primary CCNL text not publicly available). Field left empty."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.65"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.17"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
+          ]
+        },
+        "4S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.46"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.01"
+            }
+          ]
+        },
+        "5S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.79"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "17.56"
+            }
+          ]
+        },
+        "6S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "17.56"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "19.37"
+            }
+          ]
+        },
+        "7S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "20.17"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Scatti di anzianita' — tabella pubblicata"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    }
+  },
+  "apprenticeship": [],
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Livello 1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1211.34",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1244.07",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1309.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "1375.01",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1440.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Livello 2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1352.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1389.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1462.13",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "1535.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1608.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "Livello 3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1510.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1551.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1632.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "1714.41",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1796.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Livello 4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1665.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1710.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1800.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "1890.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1980.32",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "4S",
+      "order": 5,
+      "description": "Livello 4 Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1768.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1816.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1912.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2007.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2103.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 6,
+      "description": "Livello 5",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1820.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1869.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "1968.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2066.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2164.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "5S",
+      "order": 7,
+      "description": "Livello 5 Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1864.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "1915.27",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2016.05",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2116.83",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2217.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 8,
+      "description": "Livello 6",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2043.85",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2099.08",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2209.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2320.00",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2430.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "6S",
+      "order": 9,
+      "description": "Livello 6 Super",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2111.34",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2168.39",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2282.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2396.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2510.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "order": 10,
+      "description": "Livello 7 (QB — Quadro)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2319.86",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2382.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2507.92",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2633.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2758.66",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    {
+      "code": "7S",
+      "order": 11,
+      "description": "Livello 7 Super (QA — Quadro)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2422.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-07-01",
+            "value": "2487.82",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": "2027-07-01",
+            "value": "2618.73",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2026 (fonte primaria)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-07-01",
+            "valid_until": "2028-01-01",
+            "value": "2749.64",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/07/2027 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2880.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                  "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+                },
+                "section": "Tabella retributiva — 01/01/2028 (parametrico)"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T12:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2025-07-23"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Livelli e classificazione"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/cinema-audiovisivi-industria",
+    "version": "2025.1",
+    "effective_from": "2025-01-01",
+    "effective_until": "2027-12-31",
+    "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
+    "verification_status": "unverified",
+    "source_hash": "94ca3b0f31ae8b064ca11ef477eaed77f2a5f0c3fda80939224c95f0fcf522c8",
+    "published_at": "2026-09-18"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario diurno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": "0.25",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+              },
+              "section": "Straordinario — 25% diurno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T12:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-23"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno feriale",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": "0.50",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+              },
+              "section": "Straordinario — 50% notturno feriale"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T12:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-23"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": "0.65",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+              },
+              "section": "Straordinario — 65% festivo diurno"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T12:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-23"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "value": "0.75",
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+                "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+              },
+              "section": "Straordinario — 75% notturno festivo"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T12:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-07-23"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Divisore giornaliero 26 (industria)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Ferie — 26 giorni lavorativi annui"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 270,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
+            "title": "CCNL Industrie Cineaudiovisive (G111) — tabella retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153"
+          },
+          "section": "Malattia — industria standard (270 gg totali)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T12:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-07-23"
+        }
+      }
+    }
+  }
+}
