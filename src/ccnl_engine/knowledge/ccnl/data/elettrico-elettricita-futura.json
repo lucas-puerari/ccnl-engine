@@ -2385,8 +2385,9 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "3cc556b40df6dad04b5088cbc359207718628f8f2cd1b296bc14ab7a36661462",
-    "published_at": "2026-09-07"
+    "source_hash": "9708b79eb1dba7c57f7b82089963aeeb70d0e861e069d60207e16524a889b075",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

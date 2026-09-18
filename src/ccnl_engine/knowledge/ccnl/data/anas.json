@@ -1237,8 +1237,9 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "56c2c1172a0f7d797582c737e7b085d4ba36c9e6a3ecac7672f273e501d00853",
-    "published_at": "2026-09-07"
+    "source_hash": "c895fcce9f08f3723876b01b0352282adcaa6f6ad9bcb5fe966b72aae5b45c87",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

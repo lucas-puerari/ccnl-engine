@@ -1755,8 +1755,9 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "3aa7ee831b51f2b0717029ee661318fdc171d430e96e11b2f39ab61e944cab66",
-    "published_at": "2026-09-08"
+    "source_hash": "2f5e6a430a0a1834bdaa0557e23ee4d5f07baeb2e6b4883d98a1200e87cb9ac9",
+    "published_at": "2026-09-08",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

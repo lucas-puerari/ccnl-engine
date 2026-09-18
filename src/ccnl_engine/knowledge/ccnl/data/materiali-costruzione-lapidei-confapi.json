@@ -1813,5 +1813,16 @@
       }
     }
   ],
-  "apprenticeship": []
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/materiali-costruzione-lapidei-confapi",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "d99fa50771a6b145a5306a5c32d914fdb0386f5f661d4f328b527f16e1ca500e"
+  }
 }

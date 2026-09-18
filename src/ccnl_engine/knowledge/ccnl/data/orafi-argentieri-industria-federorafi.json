@@ -1233,8 +1233,9 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "e293ee2da26b5c20f9115530ad1311a0b904ecebc51aa42df95732d101aae334",
-    "published_at": "2026-09-07"
+    "source_hash": "57b6ef58961ed90e5abe0bf0592115f0f666d459c02e9e67bf4628722bca5697",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

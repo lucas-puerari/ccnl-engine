@@ -1650,8 +1650,9 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "bead6a90b9e8a148fa7fd8eb8028f60e5feb3dfcdeccc13899d52726e8db7aad",
-    "published_at": "2026-09-07"
+    "source_hash": "e63336ad35643d6937d92fe66e764139f13bb1d79dd62b666dde974d462b61e3",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

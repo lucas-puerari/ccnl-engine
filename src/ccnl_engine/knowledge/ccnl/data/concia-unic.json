@@ -7,8 +7,9 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "8f012ff7b967761f53e52ad015b28409479c3d2b9f88374ae54d46a121418b39",
-    "verification_status": "verified"
+    "source_hash": "b03d899e61472fe00e4dba32191e735f6f6361af8cd87fbe433f3463123d5d5d",
+    "verification_status": "verified",
+    "source_type": "contracting_party"
   },
   "meta": {
     "ccnl_id": "concia-unic",

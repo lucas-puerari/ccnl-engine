@@ -1123,8 +1123,9 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "df5ce45eeec4074e2efd6ae1c947187b7020a1fcb4ab28556be3ad8abfbede58",
-    "published_at": "2026-09-07"
+    "source_hash": "db73744a2652ec03c7a3600267e2bc40517b857358916c3871f8159471e58ad2",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

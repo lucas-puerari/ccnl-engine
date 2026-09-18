@@ -1162,8 +1162,9 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "aa3a40e5b8daf12fe4560a379d639e240a100685c5447c57646ea7214ab59c0b",
-    "published_at": "2026-09-07"
+    "source_hash": "a001904291aa418d283d1988ec758d1ce185766d18a9eb8f681efca7eb9c6767",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

@@ -1447,8 +1447,9 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "4bd0035c5af6f2407f325d7af32dd468097355dc4d97f5866229cb5c5b7eb552",
-    "published_at": "2026-09-07"
+    "source_hash": "db4edbd86df971f67cf60044ac07bcb3c07eef4d9e775eb126ad199dd8ae6c0f",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

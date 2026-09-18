@@ -1329,8 +1329,9 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "0fc5ec7be366ca55c172b3da1405c274fb5976ee745587d501ff6410857b45aa",
-    "published_at": "2026-09-07"
+    "source_hash": "773de9ab78fe0f2178564e1b7203668b76f5b6d128c377d1061f2732a399c61d",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

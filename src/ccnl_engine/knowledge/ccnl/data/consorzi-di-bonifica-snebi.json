@@ -2632,8 +2632,9 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "f69658be3ba47427b79aed6f97a04baa89c8edd28a26e00151a3ea3252d49a21",
-    "published_at": "2026-09-07"
+    "source_hash": "c881ea0ca5761d02d7d2f7d9629e81433294ea21010cf685eef366bccd2b787f",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

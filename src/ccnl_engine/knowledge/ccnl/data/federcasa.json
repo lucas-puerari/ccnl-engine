@@ -1079,8 +1079,9 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8fbf7e6d3497729f5422270df1ed2e4300dd490f3d3df31ac9a8c613daea4d18",
-    "published_at": "2026-09-07"
+    "source_hash": "c531eee3a9bdb43bdc2e61ff0b3f417b63481939569bd189684beda2ca6aeb44",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

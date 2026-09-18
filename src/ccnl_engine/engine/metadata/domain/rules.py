@@ -27,6 +27,33 @@ class VerificationStatus(StrEnum):
     NEEDS_REVIEW = "needs_review"
 
 
+class SourceType(StrEnum):
+    """Origin classification of the data behind a ruleset.
+
+    Values:
+        official_primary: Official text published by the signing parties
+            or a government body (e.g. CNEL, MEF, INPS circulars).
+        contracting_party: Published directly by one of the parties
+            (employer federation or union), but not an official consolidated
+            text.
+        institutional_secondary: Published by a public institution but
+            derived from primary sources (e.g. CNEL summaries, INPS guides).
+        commercial_secondary: Third-party commercial site or aggregator
+            (e.g. lavoro-economia.it, contractivo.it).
+        derived: Values computed by back-calculation or inference from other
+            known values; no direct source quote.
+        estimated: Values approximated without a primary source; confidence
+            cannot reach ``high`` without an explicit human review.
+    """
+
+    OFFICIAL_PRIMARY = "official_primary"
+    CONTRACTING_PARTY = "contracting_party"
+    INSTITUTIONAL_SECONDARY = "institutional_secondary"
+    COMMERCIAL_SECONDARY = "commercial_secondary"
+    DERIVED = "derived"
+    ESTIMATED = "estimated"
+
+
 class RulesetReadiness(StrEnum):
     """Production readiness of a CCNL ruleset.
 
@@ -116,9 +143,14 @@ class RulesetIdentity(BaseModel):
             to the current date when unknown (backfilled "as of today").
         source: Primary source reference (URL or identifier). ``"unavailable"``
             when no source is recorded.
+        source_type: Origin classification of the underlying data.
         source_hash: sha256 hex digest of the underlying data file, used by
             the loaders for fail-hard integrity verification.
         verification_status: Confidence level in the recorded data.
+        verified_by: Identifier of the person who verified this ruleset;
+            required when ``verification_status`` is ``"verified"``.
+        verified_at: Date the ruleset was verified; required when
+            ``verification_status`` is ``"verified"``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -129,8 +161,11 @@ class RulesetIdentity(BaseModel):
     effective_until: date | None = None
     published_at: date
     source: str
+    source_type: SourceType
     source_hash: str
     verification_status: VerificationStatus
+    verified_by: str | None = None
+    verified_at: date | None = None
 
     def __str__(self) -> str:
         """Collapse the identity to a compact ``id@version`` string.
@@ -157,6 +192,11 @@ class RulesetIdentity(BaseModel):
             ),
             "published_at": self.published_at.isoformat(),
             "source": self.source,
+            "source_type": str(self.source_type),
             "source_hash": self.source_hash,
             "verification_status": str(self.verification_status),
+            "verified_by": self.verified_by,
+            "verified_at": (
+                self.verified_at.isoformat() if self.verified_at is not None else None
+            ),
         }

@@ -99,6 +99,7 @@ TEST_RULESET_VERIFIED: dict[str, Any] = {
     "effective_until": None,
     "published_at": "2026-01-01",
     "source": "https://example.com",
+    "source_type": "official_primary",
     "source_hash": "e" * 64,
     "verification_status": "verified",
 }

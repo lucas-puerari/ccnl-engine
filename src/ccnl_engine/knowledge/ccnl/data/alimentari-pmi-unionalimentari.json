@@ -1402,8 +1402,9 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "01845f94e7610b58f7cd995fc752162d61b0bd21674c82941cfdb53be448a75c",
-    "published_at": "2026-09-07"
+    "source_hash": "6262f9adb462c9e5bad543c5199f30aadba0950f0295edf383d3a5fdec3eddc6",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

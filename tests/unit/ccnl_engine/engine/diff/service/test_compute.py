@@ -327,6 +327,7 @@ class TestDiffCcnlVerificationStatus:
             "effective_until": None,
             "published_at": "2026-09-01",
             "source": "https://example.com",
+            "source_type": "official_primary",
             "source_hash": "a" * 64,
             "verification_status": "verified",
         }

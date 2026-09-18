@@ -3329,8 +3329,9 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "b3f89c65a6f71f5994d85da91c12da6a25e151a868b3b2b0be1e51625fc90f69",
-    "published_at": "2026-09-07"
+    "source_hash": "aa46f50529a90af02664efac5799c7c84012dd710fc54a76f1087333a35ab00c",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

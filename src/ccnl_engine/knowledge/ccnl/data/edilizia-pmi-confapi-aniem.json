@@ -1347,8 +1347,9 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "681f5be4090da77c011f7bcdfbc0c748b8e89531820cfd96964223a895da442d",
-    "published_at": "2026-09-18"
+    "source_hash": "3bda4184b460cfbc6588026910ce0e7eba381c02d105c4ba4c95f4ebca8ae4c2",
+    "published_at": "2026-09-18",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

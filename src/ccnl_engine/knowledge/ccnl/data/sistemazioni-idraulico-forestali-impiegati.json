@@ -953,7 +953,8 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "32aced800097a00bc3e600d01e6fb6195b582ad8a4d39dbc6aacdfe56b94f78a"
+    "source_hash": "f78eeca73d75eb7a3491d023f80d460704de19c1079b08a62cdb58097b2ebf6a",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

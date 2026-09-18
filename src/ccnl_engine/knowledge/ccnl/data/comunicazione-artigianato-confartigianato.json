@@ -1296,8 +1296,9 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "45ffed8c8fc9eebc6a7a42764c3ef0cb182101559c198f17767a539606c5bdcb",
-    "published_at": "2026-09-07"
+    "source_hash": "7a5a2003fcb9b0f0e1c3eaac0c954242285623f23c4ab6343022069cbbeb301f",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

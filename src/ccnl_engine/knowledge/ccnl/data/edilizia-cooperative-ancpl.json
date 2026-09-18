@@ -1872,8 +1872,9 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "fcf69ba284c6de812454b9b67a2b7e6f5089c82bd6ca10dd24fbeb8e25bf4e26",
-    "published_at": "2026-09-18"
+    "source_hash": "a81704bb96cd9d9f22027928f31309a91057c80072b451e092e15959edcbbaf3",
+    "published_at": "2026-09-18",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

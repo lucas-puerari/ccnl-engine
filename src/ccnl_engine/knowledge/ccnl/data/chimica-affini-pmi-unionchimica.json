@@ -786,8 +786,9 @@
     "effective_until": "2028-12-31",
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
     "verification_status": "unverified",
-    "source_hash": "40d9857db1c4f4155e061330d9205543d473e8a016eea18342981d3280c5a74f",
-    "published_at": "2026-09-07"
+    "source_hash": "7ea438a361b00f17b11a2a649b896c383a0d702dd311ae4a9f9605ef74129e7e",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

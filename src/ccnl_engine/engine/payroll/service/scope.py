@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import SourceType, VerificationStatus
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
 
@@ -91,7 +91,13 @@ def compute_confidence(
         or ruleset_id.verification_status != VerificationStatus.VERIFIED
         for ruleset_id in rulesets
     )
-    if status == "complete" and not any_unverified:
+    any_low_confidence_source = any(
+        ruleset_id is not None
+        and ruleset_id.source_type in {SourceType.DERIVED, SourceType.ESTIMATED}
+        and ruleset_id.verification_status != VerificationStatus.VERIFIED
+        for ruleset_id in rulesets
+    )
+    if status == "complete" and not any_unverified and not any_low_confidence_source:
         return "high"
     return "medium"
 

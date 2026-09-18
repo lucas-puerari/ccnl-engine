@@ -237,8 +237,9 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "f594a886fb6f6653821bc96578a61a8ab9655c2bd74221266e9b8aa9cf51d02d",
-    "published_at": "2026-09-07"
+    "source_hash": "df0232dc9058a57232b1ee803b7a034dcc157217afcbde7f532f33dc484349ab",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

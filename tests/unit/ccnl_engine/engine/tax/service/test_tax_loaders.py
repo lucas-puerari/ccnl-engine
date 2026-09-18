@@ -9,6 +9,7 @@ import pytest
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.tax.service.loaders import (
     _load_year_rules_cached,
+    _try_ruleset,
     load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
@@ -77,6 +78,18 @@ class TestLoadFamilyDeductionRules:
             pytest.raises(ValueError, match="does not match requested year"),
         ):
             load_family_deduction_rules(2026)
+
+
+class TestTryRuleset:
+    """_try_ruleset returns None gracefully for non-dict ruleset values."""
+
+    def test_non_dict_ruleset_returns_none(self) -> None:
+        """A non-dict ruleset value (e.g. a string) returns None."""
+        assert _try_ruleset({"ruleset": "not-a-dict"}) is None
+
+    def test_missing_ruleset_key_returns_none(self) -> None:
+        """A payload without a ruleset key returns None."""
+        assert _try_ruleset({"year": 2026}) is None
 
 
 class TestLoadArt15DeductionRules:

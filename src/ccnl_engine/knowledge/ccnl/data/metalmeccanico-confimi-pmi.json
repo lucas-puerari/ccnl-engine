@@ -1383,8 +1383,9 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "869640b3a9222614665027c3aab7072ce329871f3ceff5004d12314989374724",
-    "published_at": "2026-09-18"
+    "source_hash": "4817d5210d005c0fd0027c8b76473e958a7839633fffdfadae4498bbd960df2d",
+    "published_at": "2026-09-18",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
@@ -1404,7 +1405,9 @@
               }
             ]
           },
-          "applies_to_kinds": ["weekday"],
+          "applies_to_kinds": [
+            "weekday"
+          ],
           "provenance": {
             "location": {
               "source_document": {
@@ -1437,7 +1440,9 @@
               }
             ]
           },
-          "applies_to_kinds": ["night"],
+          "applies_to_kinds": [
+            "night"
+          ],
           "provenance": {
             "location": {
               "source_document": {
@@ -1470,7 +1475,9 @@
               }
             ]
           },
-          "applies_to_kinds": ["holiday"],
+          "applies_to_kinds": [
+            "holiday"
+          ],
           "provenance": {
             "location": {
               "source_document": {
@@ -1503,7 +1510,10 @@
               }
             ]
           },
-          "applies_to_kinds": ["night", "holiday"],
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
           "provenance": {
             "location": {
               "source_document": {

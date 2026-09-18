@@ -1557,8 +1557,9 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "1b0f301683362f100e9699364a62b85b5317dc7ffa45dd3d7a459525e56b5bfe",
-    "published_at": "2026-09-07"
+    "source_hash": "4553aefcb3d88c7f80a08c30d20008ae46531e49ba5dc3c2f77214c0b3bf3480",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

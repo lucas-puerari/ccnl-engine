@@ -1270,8 +1270,9 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9c90a32beabe3df7c843a6407055ed1b943919c24c0435d3350f1e9c2cb6978",
-    "published_at": "2026-09-07"
+    "source_hash": "639395b25408e848a2acc6e0ffe9c342073c4df7fcde2e3fe193afaf3f9d6e59",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

@@ -2179,8 +2179,9 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "ff5c3652aae03fd564ddac0a63284340d85a4b074e68777f488a8bc60222cc3c",
-    "published_at": "2026-09-07"
+    "source_hash": "bad6e4eed7a162045e02e42c88b81e440d0891a8472e6808379710876d41fd5e",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

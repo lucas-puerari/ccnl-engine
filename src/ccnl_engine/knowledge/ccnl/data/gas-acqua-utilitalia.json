@@ -1845,8 +1845,9 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "f868b18b4997cca124ce6519aab5b06555805511917786dcda2115892b5173fe",
-    "published_at": "2026-09-07"
+    "source_hash": "6400c7ef890a0e4efd891abe169885e4fef25817785af02a6e45be7fe7ed664d",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

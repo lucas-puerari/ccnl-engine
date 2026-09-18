@@ -2300,8 +2300,9 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "282bf1c75ebdb34779138f48ec93ea7e1a2d7f41100b743d5fa40e23dd14d52b",
-    "published_at": "2026-09-07"
+    "source_hash": "87ea3aa543ec95cf0669fa139a33d953a3e6fa17261ff0557d211b3187a529e3",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

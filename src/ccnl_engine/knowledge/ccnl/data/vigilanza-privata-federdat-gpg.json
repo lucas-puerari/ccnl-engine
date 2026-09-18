@@ -1302,8 +1302,9 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c32b15dd7f19cd10eac3d5efe24e2a5c11cbb1a31c6de35f35240ee33f068ddf",
-    "published_at": "2026-09-07"
+    "source_hash": "2853730fab90ba93cad7bd4d18f7a5659a71a12449d6a9d38a0bb29ef8440857",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {

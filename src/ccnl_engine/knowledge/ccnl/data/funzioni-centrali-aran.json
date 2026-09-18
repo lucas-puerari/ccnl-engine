@@ -693,8 +693,9 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "5a701067eadbb97054803356ea16a83f153d3881962d4543265705a5640c1a1a",
-    "published_at": "2026-09-07"
+    "source_hash": "8c7f717b26875519beb3c02bd2edd6e9a5641bc5207043780ae4fe793f88c87d",
+    "published_at": "2026-09-07",
+    "source_type": "institutional_secondary"
   },
   "work_rules": {
     "time_supplements": {

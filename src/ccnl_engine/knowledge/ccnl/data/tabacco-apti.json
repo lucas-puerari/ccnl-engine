@@ -1858,5 +1858,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/tabacco-apti",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "ccac668e891260593755b1c51278ca539ebc45dfb74573dc5fd3c7024e7c4136"
+  }
 }

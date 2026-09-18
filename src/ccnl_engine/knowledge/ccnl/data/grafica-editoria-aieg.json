@@ -1979,8 +1979,9 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "08a7c71cb338700d7b7b65be9f9f8370435b2699e4f79b2b960c515364ed237f",
-    "published_at": "2026-09-07"
+    "source_hash": "09322cba7c3eb67fbf12f7bfd1d259b9f7ca2af8922f72d57b4345381523d900",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

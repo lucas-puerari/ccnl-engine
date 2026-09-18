@@ -1934,8 +1934,9 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "0855bef09ad39f617323c360a13a808e00661730f064356af5c36c3058dad91e",
-    "published_at": "2026-09-07"
+    "source_hash": "1f4a9ae1504a807f94d1e08a72ca40dbd610f12590a91a9a3f66242f230831c9",
+    "published_at": "2026-09-07",
+    "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {

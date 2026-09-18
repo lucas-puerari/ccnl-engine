@@ -24,7 +24,11 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import (
+    RulesetIdentity,
+    SourceType,
+    VerificationStatus,
+)
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import (
     FlatMonthlyFund,
@@ -2852,6 +2856,7 @@ class TestComputeConfidence:
             effective_from=date(2026, 1, 1),
             published_at=date(2026, 1, 1),
             source="unavailable",
+            source_type=SourceType.OFFICIAL_PRIMARY,
             source_hash="a" * 64,
             verification_status=VerificationStatus.UNVERIFIED,
         )
@@ -2869,11 +2874,66 @@ class TestComputeConfidence:
             effective_from=date(2026, 1, 1),
             published_at=date(2026, 1, 1),
             source="https://example.com",
+            source_type=SourceType.OFFICIAL_PRIMARY,
             source_hash="b" * 64,
             verification_status=VerificationStatus.VERIFIED,
         )
         prov = (_verified_provenance(),)
         result = compute_confidence("complete", (), prov, rulesets=(verified_ruleset,))
+        assert result == "high"
+
+    def test_derived_unverified_ruleset_blocks_high(self) -> None:
+        """Unverified derived-source ruleset cannot produce high confidence."""
+        derived_ruleset = RulesetIdentity(
+            id="ccnl/test-derived",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="unavailable",
+            source_type=SourceType.DERIVED,
+            source_hash="f" * 64,
+            verification_status=VerificationStatus.UNVERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = compute_confidence(
+            "complete", (), prov, rulesets=(derived_ruleset,)
+        )
+        assert result == "medium"
+
+    def test_estimated_unverified_ruleset_blocks_high(self) -> None:
+        """Unverified estimated-source ruleset cannot produce high confidence."""
+        estimated_ruleset = RulesetIdentity(
+            id="ccnl/test-estimated",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="unavailable",
+            source_type=SourceType.ESTIMATED,
+            source_hash="f" * 64,
+            verification_status=VerificationStatus.UNVERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = compute_confidence(
+            "complete", (), prov, rulesets=(estimated_ruleset,)
+        )
+        assert result == "medium"
+
+    def test_derived_verified_ruleset_allows_high(self) -> None:
+        """Derived source with explicit verification does not block high."""
+        derived_verified = RulesetIdentity(
+            id="ccnl/test-derived-verified",
+            version="2026.1",
+            effective_from=date(2026, 1, 1),
+            published_at=date(2026, 1, 1),
+            source="unavailable",
+            source_type=SourceType.DERIVED,
+            source_hash="f" * 64,
+            verification_status=VerificationStatus.VERIFIED,
+        )
+        prov = (_verified_provenance(),)
+        result = compute_confidence(
+            "complete", (), prov, rulesets=(derived_verified,)
+        )
         assert result == "high"
 
     def test_compute_result_has_confidence_field(self) -> None:
@@ -2952,6 +3012,7 @@ def _var_pay_rules(status: VerificationStatus) -> VariablePayRules:
         effective_from=date(2026, 1, 1),
         published_at=date(2026, 1, 1),
         source="https://example.com",
+        source_type=SourceType.OFFICIAL_PRIMARY,
         source_hash="c" * 64,
         verification_status=status,
     )
@@ -3027,6 +3088,7 @@ class TestConfidenceWithOptionalRulesets:
             "effective_until": None,
             "published_at": "2026-01-01",
             "source": "https://example.com",
+            "source_type": "commercial_secondary",
             "source_hash": "d" * 64,
             "verification_status": "unverified",
         }
@@ -3110,6 +3172,7 @@ def _make_ruleset(suffix: str, status: VerificationStatus) -> RulesetIdentity:
         effective_from=date(2026, 1, 1),
         published_at=date(2026, 1, 1),
         source="https://example.com",
+        source_type=SourceType.OFFICIAL_PRIMARY,
         source_hash="e" * 64,
         verification_status=status,
     )
@@ -3700,6 +3763,7 @@ def _surtax_with_identities(
             effective_from=date(2026, 1, 1),
             published_at=date(2026, 1, 1),
             source="https://example.com",
+            source_type=SourceType.OFFICIAL_PRIMARY,
             source_hash="a" * 64,
             verification_status=regional_status,
         ),
@@ -3709,6 +3773,7 @@ def _surtax_with_identities(
             effective_from=date(2026, 1, 1),
             published_at=date(2026, 1, 1),
             source="https://example.com",
+            source_type=SourceType.OFFICIAL_PRIMARY,
             source_hash="b" * 64,
             verification_status=municipal_status,
         ),
@@ -3781,6 +3846,7 @@ class TestSurtaxRulesetIdentity:
             effective_from=date(2026, 1, 1),
             published_at=date(2026, 1, 1),
             source="https://example.com",
+            source_type=SourceType.OFFICIAL_PRIMARY,
             source_hash="c" * 64,
             verification_status=VerificationStatus.VERIFIED,
         )

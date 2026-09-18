@@ -1393,5 +1393,16 @@
         }
       ]
     }
-  ]
+  ],
+  "ruleset": {
+    "id": "ccnl/tessile-pmi-uniontessile",
+    "version": "2026.2",
+    "effective_from": "2026-01-01",
+    "effective_until": null,
+    "published_at": "2026-09-18",
+    "source": "unavailable",
+    "source_type": "estimated",
+    "verification_status": "unverified",
+    "source_hash": "755d359cf29fe752e3380ab18b80a2f06b6f2af0b3428fa4bb4aaead46876557"
+  }
 }

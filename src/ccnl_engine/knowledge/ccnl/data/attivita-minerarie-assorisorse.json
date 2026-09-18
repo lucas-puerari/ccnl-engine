@@ -1237,7 +1237,8 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "19d69185622012489a987523e22386616bb4edd1d114d3ce055927e6122c44f7",
-    "published_at": "2026-09-18"
+    "source_hash": "440a7e371d179b423fb9bfb51d25916fe2004389c273399ce9a9093765490937",
+    "published_at": "2026-09-18",
+    "source_type": "contracting_party"
   }
 }

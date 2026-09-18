@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from ccnl_engine.engine.metadata import (
     RulesetIdentity,
+    SourceType,
     VerificationStatus,
     source_hash,
 )
@@ -20,6 +21,7 @@ def _identity(**overrides: object) -> RulesetIdentity:
         "effective_until": None,
         "published_at": "2026-09-07",
         "source": "https://example.com/ccnl",
+        "source_type": "official_primary",
         "source_hash": "0" * 64,
         "verification_status": "verified",
     }
@@ -96,8 +98,18 @@ class TestRulesetIdentity:
         assert d["effective_until"] == "2027-12-31"
         assert d["published_at"] == "2026-09-07"
         assert d["source"] == "https://example.com/ccnl"
+        assert d["source_type"] == "official_primary"
         assert d["source_hash"] == "0" * 64
         assert d["verification_status"] == "verified"
+        assert d["verified_by"] is None
+        assert d["verified_at"] is None
+
+    def test_as_dict_verified_at(self) -> None:
+        """as_dict serialises verified_at as an ISO-8601 string."""
+        ident = _identity(verified_by="lucas-puerari", verified_at="2026-09-18")
+        d = ident.as_dict()
+        assert d["verified_by"] == "lucas-puerari"
+        assert d["verified_at"] == "2026-09-18"
 
     def test_as_dict_none_effective_until(self) -> None:
         """as_dict keeps effective_until as None when open-ended."""
@@ -149,3 +161,23 @@ class TestRulesetIdentity:
         restored = RulesetIdentity.model_validate_json(payload)
         assert str(restored) == str(ident)
         assert restored.verification_status is ident.verification_status
+
+    def test_source_type_coerced_to_enum(self) -> None:
+        """source_type string is coerced to the SourceType member."""
+        for st in SourceType:
+            ident = _identity(source_type=st.value)
+            assert ident.source_type is st
+
+    def test_missing_source_type_raises(self) -> None:
+        """source_type is required; omitting it raises ValidationError."""
+        block: dict[str, object] = {
+            "id": "ccnl/test",
+            "version": "2026.1",
+            "effective_from": "2025-01-01",
+            "published_at": "2026-09-07",
+            "source": "https://example.com",
+            "source_hash": "0" * 64,
+            "verification_status": "unverified",
+        }
+        with pytest.raises(ValidationError):
+            RulesetIdentity.model_validate(block)

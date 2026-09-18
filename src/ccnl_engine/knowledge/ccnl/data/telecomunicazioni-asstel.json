@@ -1337,8 +1337,9 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "3edd2e0d86fdeec0d8729e2aeea520cf348693907ba3e686988fd9187756d60e",
-    "published_at": "2026-09-07"
+    "source_hash": "815fe8729a39e9b2a7872a6643dbe7367c85ff77e44fccd1e7332abe2f1da0ab",
+    "published_at": "2026-09-07",
+    "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
