@@ -50,6 +50,18 @@
 <!-- ── Main ─────────────────────────────────────────────────────────────────── -->
 <main>
 
+  <!-- Mode switcher -->
+  <div class="mode-switcher">
+    <button class="mode-btn mode-explore-btn active" id="btn-mode-explore" onclick="setDemoMode('explore')">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+      <span data-i18n="mode.explore.label">Esplora uno scenario</span>
+    </button>
+    <button class="mode-btn mode-integrate-btn" id="btn-mode-integrate" onclick="setDemoMode('integrate')">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
+      <span data-i18n="mode.integrate.label">Integra nel tuo prodotto</span>
+    </button>
+  </div>
+
   <!-- Parameters card -->
   <div class="app-card app-card-pad">
     <div class="card-header">
@@ -284,7 +296,7 @@
                 </div>
                 <input type="number" id="inp-ot-nightholiday" class="input input-bordered input-sm" value="0" min="0" step="0.5" />
               </div>
-              <div class="field-group" style="grid-column: 1 / -1;">
+              <div class="field-group mode-integrate-only" style="grid-column: 1 / -1;">
                 <div class="label-row">
                   <label for="inp-ot-weeks" data-i18n="form.l3.ot_weeks.label">Weekly breakdown (JSON)</label>
                   <span class="tip" tabindex="0" data-tip="Optional. JSON array of per-week objects for CCNLs with tiered weekly bands. When provided, the monthly totals above are ignored. E.g. [{&quot;weekday_hours&quot;:6},{&quot;weekday_hours&quot;:3}]">?</span>
@@ -368,6 +380,12 @@
     <!-- Stale banner -->
     <div id="stale-banner" class="alert alert-warning" style="display:none" data-i18n="results.stale_banner">Hai modificato i dati — aggiorna la stima.</div>
 
+    <!-- Readiness disclaimer (explore mode only) -->
+    <div id="readiness-disclaimer" class="readiness-disclaimer mode-explore-only" style="display:none">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".6" fill="currentColor" stroke="none"/></svg>
+      <span id="readiness-disclaimer-text" data-i18n="mode.explore.disclaimer">Stima indicativa · Ruleset non ancora verificato da un revisore umano. Verifica i valori contro le fonti ufficiali prima di usarli in decisioni.</span>
+    </div>
+
     <!-- Results summary card: scenario → KPIs → meta footer -->
     <div class="results-card">
       <div class="results-card-header">
@@ -416,7 +434,7 @@
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8h12M10 5l3 3-3 3M6 5L3 8l3 3"/></svg>
           <span data-i18n="results.toolbar.compare">Confronta</span>
         </button>
-        <button class="result-tab" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
+        <button class="result-tab mode-integrate-only" id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/></svg>
           <span data-i18n="results.toolbar.snippet">Codice</span>
         </button>
@@ -559,6 +577,18 @@
     </div><!-- /results-card -->
 
   </div><!-- /results -->
+
+  <!-- CTA block -->
+  <div class="demo-cta mode-explore-only">
+    <a class="demo-cta-btn demo-cta-btn-primary" href="https://pypi.org/project/ccnl-engine/" target="_blank" rel="noopener" data-i18n="mode.explore.cta_install">Installa ccnl-engine</a>
+    <a class="demo-cta-btn demo-cta-btn-ghost" href="../docs/" target="_blank" rel="noopener" data-i18n="mode.explore.cta_docs">Apri la documentazione</a>
+    <a class="demo-cta-btn demo-cta-btn-ghost" href="https://github.com/lucas-puerari/ccnl-engine/issues" target="_blank" rel="noopener" data-i18n="mode.explore.cta_issue">Segnala un caso</a>
+  </div>
+  <div class="demo-cta mode-integrate-only">
+    <a class="demo-cta-btn demo-cta-btn-primary" href="https://pypi.org/project/ccnl-engine/" target="_blank" rel="noopener" data-i18n="mode.integrate.cta_install">Installa ccnl-engine</a>
+    <a class="demo-cta-btn demo-cta-btn-ghost" href="../docs/api/index.html" target="_blank" rel="noopener" data-i18n="mode.integrate.cta_api">Apri docs API</a>
+    <a class="demo-cta-btn demo-cta-btn-ghost" href="../docs/getting-started/index.html" target="_blank" rel="noopener" data-i18n="mode.integrate.cta_quickstart">Quickstart</a>
+  </div>
 
 </main>
 
