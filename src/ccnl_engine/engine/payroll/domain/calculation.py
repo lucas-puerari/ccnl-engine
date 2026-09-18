@@ -847,6 +847,10 @@ class Calculation:
             calculation (see :mod:`ccnl_engine.version`).
         ruleset_version: Mapping of ruleset kind (``ccnl``, ``tax``, ``surtax``)
             to the ``id@version`` identity of the ruleset that was used.
+        ruleset_verification: Mapping of ruleset kind to its
+            :class:`~ccnl_engine.engine.metadata.domain.rules.VerificationStatus`
+            value string.  Keys mirror :attr:`ruleset_version`.  Empty for
+            calculations produced by older engine versions.
         input_snapshot: Lossless copy of the raw inputs.
         result: The resulting :class:`PayrollResult`.
         trace: Step-by-step record of the monthly gross computation chain.
@@ -861,13 +865,21 @@ class Calculation:
     trace: CalculationTrace = dataclasses.field(
         default_factory=lambda: CalculationTrace(steps=())
     )
+    ruleset_verification: Mapping[str, str] = dataclasses.field(
+        default_factory=FrozenDict
+    )
 
     def __post_init__(self) -> None:
-        """Freeze ruleset_version so it cannot be mutated after construction."""
+        """Freeze ruleset_version and ruleset_verification after construction."""
         object.__setattr__(
             self,
             "ruleset_version",
             FrozenDict(dict(self.ruleset_version)),
+        )
+        object.__setattr__(
+            self,
+            "ruleset_verification",
+            FrozenDict(dict(self.ruleset_verification)),
         )
 
     def reproduce(self, *, allow_version_drift: bool = False) -> Calculation:
@@ -942,13 +954,18 @@ class Calculation:
             A dictionary with the provenance fields, the input snapshot,
             the payroll result, and the computation trace.
         """
-        return {
+        out: dict[str, object] = {
             "engine_version": self.engine_version,
             "ruleset_version": dict(sorted(self.ruleset_version.items())),
             "input_snapshot": self.input_snapshot.to_dict(),
             "result": self.result.to_dict(),
             "trace": self.trace.to_dict(),
         }
+        if self.ruleset_verification:
+            out["ruleset_verification"] = dict(
+                sorted(self.ruleset_verification.items())
+            )
+        return out
 
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> Calculation:
@@ -980,9 +997,19 @@ class Calculation:
                 )
                 raise TypeError(msg)
         ruleset_version = cast(dict[str, str], rv_raw)
+        rv_raw_ver = cast(dict[str, object], data.get("ruleset_verification", {}))
+        for k, v in rv_raw_ver.items():
+            if not isinstance(k, str) or not isinstance(v, str):
+                msg = (
+                    "Calculation.from_dict: 'ruleset_verification' keys and "
+                    "values must be str"
+                )
+                raise TypeError(msg)
+        ruleset_verification = cast(dict[str, str], rv_raw_ver)
         return cls(
             engine_version=engine_version,
             ruleset_version=ruleset_version,
+            ruleset_verification=ruleset_verification,
             input_snapshot=InputSnapshot.from_dict(
                 cast(dict[str, object], data["input_snapshot"])
             ),

@@ -313,7 +313,7 @@ def compute(
         unused_art15_deduction_annual=fiscal.art15_unused,
         sterilizzazione_clawback_annual=fiscal.sterilizzazione_clawback,
     )
-    return build_calculation(scenario, ccnl, rules, surtax, gross, work, result)
+    return build_calculation(scenario, ccnl, rules, surtax, gross, work, result, fiscal)
 
 
 def _annual_to_scenario(

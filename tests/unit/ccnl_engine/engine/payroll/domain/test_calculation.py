@@ -7,6 +7,7 @@ from collections import UserDict
 from datetime import date
 from decimal import Decimal
 from enum import Enum
+from unittest.mock import patch
 
 import pytest
 
@@ -255,6 +256,57 @@ class TestCalculation:
         assert calc.ruleset_version["tax"] == "test/rules@2026.2"
         assert calc.ruleset_version["inps"] == "test/rules@2026.2"
         assert "surtax" not in calc.ruleset_version
+
+    def test_compute_exposes_ruleset_verification(self) -> None:
+        """Compute populates ruleset_verification with VerificationStatus values."""
+        calc = compute(_req())
+        # The test CCNL has no ruleset identity; tax/inps have verified identities.
+        assert calc.ruleset_verification["ccnl"] == "unverified"
+        assert calc.ruleset_verification["tax"] == "verified"
+        assert calc.ruleset_verification["inps"] == "verified"
+        assert "surtax_regional" not in calc.ruleset_verification
+
+    def test_ruleset_verification_is_frozen(self) -> None:
+        """ruleset_verification must reject item assignment after construction."""
+        calc = compute(_req())
+        with pytest.raises(TypeError):
+            calc.ruleset_verification["ccnl"] = "tampered"  # type: ignore[index]
+
+    def test_to_dict_includes_ruleset_verification(self) -> None:
+        """to_dict() includes ruleset_verification when non-empty."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        assert "ruleset_verification" in d
+        rv = d["ruleset_verification"]
+        assert isinstance(rv, dict)
+        assert rv["tax"] == "verified"
+
+    def test_to_dict_omits_ruleset_verification_when_empty(self) -> None:
+        """to_dict() omits ruleset_verification when the mapping is empty."""
+        calc = compute(_req())
+        calc_no_ver = Calculation(
+            engine_version=calc.engine_version,
+            ruleset_version=calc.ruleset_version,
+            input_snapshot=calc.input_snapshot,
+            result=calc.result,
+            trace=calc.trace,
+        )
+        d = calc_no_ver.to_dict()
+        assert "ruleset_verification" not in d
+
+    def test_from_dict_restores_ruleset_verification(self) -> None:
+        """from_dict() restores ruleset_verification from the dict."""
+        calc = compute(_req())
+        restored = Calculation.from_dict(calc.to_dict())
+        assert restored.ruleset_verification == calc.ruleset_verification
+
+    def test_from_dict_absent_ruleset_verification_gives_empty(self) -> None:
+        """from_dict() with no ruleset_verification key gives an empty mapping."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d.pop("ruleset_verification", None)
+        restored = Calculation.from_dict(d)
+        assert len(restored.ruleset_verification) == 0
         assert type(calc.result.net_annual) is Decimal
 
     def test_to_dict_from_dict_roundtrip(self) -> None:
@@ -504,6 +556,28 @@ class TestDumpLoadBranches:
         # Standard percentage model without inps_ruleset emits a fallback entry.
         assert versions["inps"] == "inps/2026/terziario@2026.2"
         assert "surtax" not in versions
+
+    def test_ruleset_verifications_fallback_when_no_inps_ruleset(self) -> None:
+        """Falls back to 'unverified' for inps when inps_ruleset is absent."""
+        ccnl = make_minimal_ccnl()
+        rules = make_year_rules(ruleset=None, inps_ruleset=None)
+        req = _req()
+        with (
+            patch(
+                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
+                return_value=ccnl,
+            ),
+            patch(
+                "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
+                return_value=rules,
+            ),
+            patch(
+                "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
+                return_value=None,
+            ),
+        ):
+            calc = compute(req)
+        assert calc.ruleset_verification["inps"] == "unverified"
 
 
 class TestLoadDataclassCompat:
@@ -784,6 +858,14 @@ class TestCalculationFromDictStrictValidation:
         d = calc.to_dict()
         d["ruleset_version"] = {"ccnl": 42}
         with pytest.raises(TypeError, match="ruleset_version"):
+            Calculation.from_dict(d)
+
+    def test_ruleset_verification_int_value_rejected(self) -> None:
+        """Integer value in ruleset_verification raises TypeError."""
+        calc = compute(_req())
+        d = calc.to_dict()
+        d["ruleset_verification"] = {"ccnl": 42}
+        with pytest.raises(TypeError, match="ruleset_verification"):
             Calculation.from_dict(d)
 
 

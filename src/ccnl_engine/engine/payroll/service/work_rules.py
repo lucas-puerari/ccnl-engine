@@ -600,6 +600,7 @@ class WorkRulesPay:
     warnings: tuple[str, ...]
     consumed_rulesets: dict[str, str]
     consumed_ruleset_ids: tuple[RulesetIdentity | None, ...]
+    consumed_verifications: dict[str, str]
 
 
 def compute_work_rules(
@@ -668,6 +669,8 @@ def compute_work_rules(
 
     consumed: dict[str, str] = {}
     consumed_ids: list[RulesetIdentity | None] = []
+    consumed_ver: dict[str, str] = {}
+    unverified = "unverified"
     # Register sick-pay rates only when sickness was computed (sick_days > 0
     # and the CCNL supports it).  Always append the identity, including None,
     # so compute_confidence sees an unverified entry when identity is absent.
@@ -678,6 +681,11 @@ def compute_work_rules(
             else f"sick-pay-rates@{_knowledge_version}"
         )
         consumed_ids.append(sick_pay_rates.ruleset)
+        consumed_ver["sick_pay"] = (
+            sick_pay_rates.ruleset.verification_status.value
+            if sick_pay_rates.ruleset is not None
+            else unverified
+        )
     if var_pay.var_pay_rules is not None:
         ruleset = var_pay.var_pay_rules.ruleset
         consumed["variable_pay"] = (
@@ -686,6 +694,9 @@ def compute_work_rules(
             else f"variable-pay-rules/{year}@{_knowledge_version}"
         )
         consumed_ids.append(ruleset)
+        consumed_ver["variable_pay"] = (
+            ruleset.verification_status.value if ruleset is not None else unverified
+        )
 
     return WorkRulesPay(
         base_monthly_full_time=base_monthly_full_time,
@@ -721,4 +732,5 @@ def compute_work_rules(
         warnings=tuple(wr_warnings),
         consumed_rulesets=consumed,
         consumed_ruleset_ids=tuple(consumed_ids),
+        consumed_verifications=consumed_ver,
     )

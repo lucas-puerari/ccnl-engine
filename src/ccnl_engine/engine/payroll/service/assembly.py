@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
@@ -254,6 +255,55 @@ def _ruleset_versions(
     return versions
 
 
+def _ruleset_verifications(
+    ccnl: CCNL,
+    rules: YearRules,
+    surtax: SurtaxRules | None,
+    work: WorkRulesPay,
+    fiscal: FiscalPay,
+) -> dict[str, str]:
+    """Return ``{kind: verification_status}`` for all consumed rulesets.
+
+    Mirrors :func:`_ruleset_versions` but records the
+    :class:`~ccnl_engine.engine.metadata.domain.rules.VerificationStatus`
+    value of each ruleset instead of its ``id@version`` string.  Missing
+    or absent identities default to ``"unverified"``.
+
+    Returns:
+        Mapping of ruleset kind to verification status string.
+    """
+    unverified = "unverified"
+    ver: dict[str, str] = {}
+    ver["ccnl"] = (
+        ccnl.ruleset.verification_status.value
+        if ccnl.ruleset is not None
+        else unverified
+    )
+    ver["tax"] = (
+        rules.ruleset.verification_status.value
+        if rules.ruleset is not None
+        else unverified
+    )
+    if rules.inps_ruleset is not None:
+        ver["inps"] = rules.inps_ruleset.verification_status.value
+    elif rules.domestic_contributions is None:
+        ver["inps"] = unverified
+    if surtax is not None:
+        ver["surtax_regional"] = (
+            surtax.regional_ruleset.verification_status.value
+            if surtax.regional_ruleset is not None
+            else unverified
+        )
+        ver["surtax_municipal"] = (
+            surtax.municipal_ruleset.verification_status.value
+            if surtax.municipal_ruleset is not None
+            else unverified
+        )
+    ver.update(fiscal.consumed_verifications)
+    ver.update(work.consumed_verifications)
+    return ver
+
+
 def build_calculation(
     scenario: PayrollScenario,
     ccnl: CCNL,
@@ -262,6 +312,7 @@ def build_calculation(
     gross: GrossPay,
     work: WorkRulesPay,
     result: PayrollResult,
+    fiscal: FiscalPay,
 ) -> Calculation:
     """Attach the input snapshot, ruleset identities and traces to a result.
 
@@ -353,6 +404,7 @@ def build_calculation(
             uses_family_deductions=uses_family,
             uses_art15_deductions=uses_art15,
         ),
+        ruleset_verification=_ruleset_verifications(ccnl, rules, surtax, work, fiscal),
         input_snapshot=snapshot,
         result=result,
         trace=CalculationTrace(
