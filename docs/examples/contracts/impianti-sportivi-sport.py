@@ -20,7 +20,7 @@ p = compute(
             ccnl="impianti-sportivi-sport.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 7, 1),
+            as_of=date(2026, 7, 1),
         ),
     )
 )

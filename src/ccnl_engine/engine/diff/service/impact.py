@@ -5,7 +5,7 @@ assembles a list of :class:`~ccnl_engine.engine.payroll.domain.scenario.\
 PayrollScenario` objects (e.g. by loading the reference JSON cases) and
 passes them to :func:`count_affected_scenarios`.  The function runs each
 scenario twice -- once at *from_date*, once at *to_date* -- by substituting
-``Employment.calculation_date``, and returns an :class:`ImpactResult` with
+``Employment.as_of``, and returns an :class:`ImpactResult` with
 structured counts so callers can distinguish "no change", "not evaluated",
 and "evaluation failed".
 """
@@ -88,14 +88,10 @@ def _compute_pair(
     Returns:
         A ``(before, after)`` result pair, or ``None`` if either run fails.
     """
-    before_employment = dataclasses.replace(
-        scenario.employment, calculation_date=from_date
-    )
-    after_employment = dataclasses.replace(
-        scenario.employment, calculation_date=to_date
-    )
-    before_scenario = dataclasses.replace(scenario, employment=before_employment)
-    after_scenario = dataclasses.replace(scenario, employment=after_employment)
+    before_employment = scenario.employment.model_copy(update={"as_of": from_date})
+    after_employment = scenario.employment.model_copy(update={"as_of": to_date})
+    before_scenario = scenario.model_copy(update={"employment": before_employment})
+    after_scenario = scenario.model_copy(update={"employment": after_employment})
     try:
         before_result = compute(before_scenario).result
         after_result = compute(after_scenario).result

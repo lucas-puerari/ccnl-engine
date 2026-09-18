@@ -16,9 +16,9 @@
     "level_code": "5",
     "as_of": "2026-06-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
-    "negotiated_ral": null
+    "negotiated_ral": null,
+    "part_time_ratio": "1"
   },
   "expected": {
     "ccnl_id": "metalmeccanico-confimi-pmi",

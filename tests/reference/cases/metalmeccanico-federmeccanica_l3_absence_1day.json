@@ -22,7 +22,6 @@
     "level_code": "C2",
     "as_of": "2026-09-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
     "seniority_count": 0,
     "negotiated_ral": null,
     "months_elapsed": null,
@@ -33,7 +32,8 @@
     "ivs_ceiling_applies": false,
     "absence_days": {
       "unpaid_days": "1"
-    }
+    },
+    "part_time_ratio": "1"
   },
   "expected": {
     "gross_monthly": "2064.88",

@@ -8,7 +8,18 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import Annotated, Any
 
-from pydantic import Field
+from pydantic import BeforeValidator, Field
+
+
+def _reject_float(v: object) -> object:
+    if isinstance(v, float):
+        msg = "float is not accepted; pass Decimal, int or str"
+        raise TypeError(msg)
+    return v
+
+
+#: Decimal that coerces str/int but rejects float.
+StrictDecimal = Annotated[Decimal, BeforeValidator(_reject_float)]
 
 #: Percentage rate bounded to [0, 1] — IRPEF, surtax, somma esente, etc.
 PercentageRate = Annotated[Decimal, Field(ge=Decimal(0), le=Decimal(1))]

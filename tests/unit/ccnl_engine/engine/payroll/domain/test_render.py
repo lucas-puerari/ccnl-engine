@@ -7,7 +7,6 @@ to/from JSON.
 
 from __future__ import annotations
 
-import dataclasses
 import json
 from decimal import Decimal
 
@@ -277,9 +276,10 @@ class TestSterilizzazioneClawbackField:
             "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
             lambda *_: rules,
         )
-        scenario = dataclasses.replace(
-            _req(negotiated_ral=_HIGH_RAL),
-            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        scenario = _req(negotiated_ral=_HIGH_RAL).model_copy(
+            update={
+                "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
+            }
         )
         calc = compute(scenario)
         bd = render_breakdown(calc.result)
@@ -300,9 +300,10 @@ class TestIrpefIdentityAboveClawbackThreshold:
             "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
             lambda *_: rules,
         )
-        scenario = dataclasses.replace(
-            _req(negotiated_ral=_HIGH_RAL),
-            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        scenario = _req(negotiated_ral=_HIGH_RAL).model_copy(
+            update={
+                "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
+            }
         )
         bd = render_breakdown(compute(scenario).result)
         expected = max(
@@ -322,9 +323,10 @@ class TestIrpefIdentityAboveClawbackThreshold:
         """With sterilizzazione active, irpef_net is higher than without."""
         rules_with = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
         rules_without = make_year_rules()
-        scenario = dataclasses.replace(
-            _req(negotiated_ral=_HIGH_RAL),
-            art15_deductions=Art15Deductions(mortgage_interest=Decimal(4000)),
+        scenario = _req(negotiated_ral=_HIGH_RAL).model_copy(
+            update={
+                "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
+            }
         )
         monkeypatch.setattr(
             "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",

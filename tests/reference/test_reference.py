@@ -261,10 +261,10 @@ class TestReferenceCases:
 
         if seniority_months_raw is not None:
             seniority: SeniorityByCount | SeniorityByMonths | None = SeniorityByMonths(
-                int(seniority_months_raw)
+                value=int(seniority_months_raw)
             )
         elif seniority_count_raw:
-            seniority = SeniorityByCount(seniority_count_raw)
+            seniority = SeniorityByCount(value=seniority_count_raw)
         else:
             seniority = None
 
@@ -278,7 +278,7 @@ class TestReferenceCases:
         )
 
         agreement = (
-            Agreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+            Agreement(ral_override=RalOverride(value=Decimal(negotiated_ral_raw)))
             if negotiated_ral_raw is not None
             else None
         )
@@ -295,7 +295,7 @@ class TestReferenceCases:
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=seniority,
-                part_time_pct=Decimal(inputs["part_time_pct"]),
+                part_time_ratio=Decimal(inputs["part_time_ratio"]),
                 weekly_hours=(
                     Decimal(str(weekly_hours_raw))
                     if weekly_hours_raw is not None
@@ -310,7 +310,7 @@ class TestReferenceCases:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=int(inputs["num_employees"])),
-                calculation_date=as_of,
+                as_of=as_of,
                 tax_year=tax_year,
             ),
             time_supplements=time_supplements,
@@ -419,7 +419,7 @@ class TestUpdateScript:
             '{"inputs": {"ccnl_file": "metalmeccanico-federmeccanica.json", '
             '"year": 2026, "tax_sector": "industria", "num_employees": 50, '
             '"level_code": "C2", "as_of": "2026-09-01", '
-            '"employment_type": "permanent", "part_time_pct": "NOT_A_DECIMAL"}, '
+            '"employment_type": "permanent", "part_time_ratio": "NOT_A_DECIMAL"}, '
             '"expected": {}}',
             encoding="utf-8",
         )

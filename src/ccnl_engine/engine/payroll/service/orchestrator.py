@@ -147,7 +147,7 @@ def _resolve_tax_year(employment: Employment) -> int:
     """
     if employment.tax_year is not None:
         return employment.tax_year
-    return employment.calculation_date.year
+    return employment.as_of.year
 
 
 def compute(scenario: PayrollScenario) -> Calculation:
@@ -162,7 +162,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         with all gross, net and cost figures plus a serialisable input snapshot.
     """
     ccnl = load_ccnl(scenario.employment.ccnl)
-    as_of = scenario.employment.calculation_date
+    as_of = scenario.employment.as_of
     year = _resolve_tax_year(scenario.employment)
     rules = load_year_rules(
         year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
@@ -216,7 +216,7 @@ def compute(scenario: PayrollScenario) -> Calculation:
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=scenario.employee.level_code,
         employment_type=scenario.employment.contract.type,
-        part_time_pct=scenario.employee.part_time_pct,
+        part_time_pct=scenario.employee.part_time_ratio,
         as_of=as_of,
         year=as_of.year,
         seniority_count=gross.count,

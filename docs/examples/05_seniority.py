@@ -24,13 +24,13 @@ p_count = compute(
     PayrollScenario(
         employee=Employee(
             level_code="4",
-            seniority=SeniorityByCount(3),  # 3 scatti già maturati
+            seniority=SeniorityByCount(value=3),  # 3 scatti già maturati
         ),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )
@@ -41,13 +41,13 @@ p_months = compute(
     PayrollScenario(
         employee=Employee(
             level_code="4",
-            seniority=SeniorityByMonths(108),
+            seniority=SeniorityByMonths(value=108),
         ),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )

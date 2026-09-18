@@ -19,7 +19,7 @@
     "level_code": "4A",
     "as_of": "2026-01-01",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "seniority_count": 0,
     "negotiated_ral": null
   },
@@ -27,7 +27,7 @@
     "ccnl_id": "tabacco-apti",
     "level_code": "4A",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "year": 2026,
     "seniority_count": 0,
     "base_monthly": "1244.90",

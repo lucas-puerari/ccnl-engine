@@ -30,7 +30,7 @@ ccnl_min = compute(
             ccnl="studi-professionali-confprofessioni.json",
             contract=Permanent(),
             employer=Employer(num_employees=10),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )
@@ -40,13 +40,13 @@ negotiated = compute(
     PayrollScenario(
         employee=Employee(
             level_code="3",
-            agreement=Agreement(ral_override=RalOverride(Decimal("40000.00"))),
+            agreement=Agreement(ral_override=RalOverride(value=Decimal("40000.00"))),
         ),
         employment=Employment(
             ccnl="studi-professionali-confprofessioni.json",
             contract=Permanent(),
             employer=Employer(num_employees=10),
-            calculation_date=date(2026, 1, 1),
+            as_of=date(2026, 1, 1),
         ),
     )
 )

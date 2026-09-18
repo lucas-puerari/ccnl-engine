@@ -19,9 +19,11 @@ Helper sub-objects:
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.contract.domain.ccnl import (
     LevelCategory,
@@ -51,13 +53,13 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
+from ccnl_engine.engine.primitives.domain.primitives import StrictDecimal
 
 _ZERO: Decimal = Decimal(0)
 _ONE: Decimal = Decimal(1)
 
 
-@dataclass(frozen=True)
-class Jurisdiction:
+class Jurisdiction(BaseModel):
     """Fiscal residency of the worker.
 
     Used to compute addizionale regionale and addizionale comunale IRPEF.
@@ -69,12 +71,13 @@ class Jurisdiction:
             residence (e.g. ``"F205"`` for Milan).
     """
 
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     regione: str | None = None
     comune_belfiore: str | None = None
 
 
-@dataclass(frozen=True)
-class Agreement:
+class Agreement(BaseModel):
     """Individual salary terms that override the CCNL tables.
 
     Attributes:
@@ -85,25 +88,29 @@ class Agreement:
 .DestinationRalOverride` for a percentage-track apprentice.
         ad_personam_monthly: Individual frozen monthly supplement added
             directly to gross (e.g. a pre-abolition seniority increment).
-            Not scaled by ``part_time_pct``. Must be ``>= 0``.
+            Not scaled by ``part_time_ratio``. Must be ``>= 0``.
     """
 
-    ral_override: RalOverride | DestinationRalOverride | None = None
-    ad_personam_monthly: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
-    def __post_init__(self) -> None:
-        """Validate that ad_personam_monthly is non-negative.
+    ral_override: (
+        Annotated[
+            RalOverride | DestinationRalOverride,
+            Field(discriminator="type"),
+        ]
+        | None
+    ) = None
+    ad_personam_monthly: StrictDecimal = _ZERO
 
-        Raises:
-            ValueError: If ad_personam_monthly is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> Agreement:
         if self.ad_personam_monthly < _ZERO:
             msg = f"ad_personam_monthly must be >= 0, got {self.ad_personam_monthly}"
             raise ValueError(msg)
+        return self
 
 
-@dataclass(frozen=True)
-class Employee:
+class Employee(BaseModel):
     """Worker-side inputs for payroll computation.
 
     Encodes who the worker is: their CCNL classification level, seniority,
@@ -120,7 +127,7 @@ class Employee:
 .SeniorityByMonths`), or as a hire date
             (:class:`~ccnl_engine.engine.payroll.domain.employee\
 .SeniorityByDate`). ``None`` means no increment applies.
-        part_time_pct: Part-time coefficient in the range ``(0, 1]``.
+        part_time_ratio: Part-time coefficient in the range ``(0, 1]``.
             Full-time workers use the default ``1``.
         weekly_hours: Contractual weekly hours. Required when the tax-rules
             file uses ``domestic_contributions`` (lavoro domestico).
@@ -139,28 +146,33 @@ class Employee:
             ``None`` means the CCNL tables are used unchanged.
     """
 
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     level_code: str
-    seniority: SeniorityByCount | SeniorityByMonths | SeniorityByDate | None = None
-    part_time_pct: Decimal = _ONE
-    weekly_hours: Decimal | None = None
+    seniority: (
+        Annotated[
+            SeniorityByCount | SeniorityByMonths | SeniorityByDate,
+            Field(discriminator="type"),
+        ]
+        | None
+    ) = None
+    part_time_ratio: StrictDecimal = _ONE
+    weekly_hours: StrictDecimal | None = None
     category: LevelCategory | None = None
     roles: frozenset[str] = frozenset()
     ivs_ceiling_applies: bool = False
     jurisdiction: Jurisdiction | None = None
     agreement: Agreement | None = None
 
-    def __post_init__(self) -> None:
-        """Validate part_time_pct and weekly_hours ranges.
-
-        Raises:
-            ValueError: If part_time_pct is not in (0, 1] or weekly_hours <= 0.
-        """
-        if not (_ZERO < self.part_time_pct <= _ONE):
-            msg = f"part_time_pct must be in (0, 1], got {self.part_time_pct}"
+    @model_validator(mode="after")
+    def _check_ranges(self) -> Employee:
+        if not (_ZERO < self.part_time_ratio <= _ONE):
+            msg = f"part_time_ratio must be in (0, 1], got {self.part_time_ratio}"
             raise ValueError(msg)
         if self.weekly_hours is not None and self.weekly_hours <= _ZERO:
             msg = f"weekly_hours must be > 0, got {self.weekly_hours}"
             raise ValueError(msg)
+        return self
 
     @property
     def seniority_count(self) -> int | None:
@@ -196,7 +208,7 @@ class Employee:
         Args:
             as_of: The reference date, typically
                 :attr:`~ccnl_engine.engine.payroll.domain.scenario\
-.Employment.calculation_date`.
+.Employment.as_of`.
 
         Returns:
             Months of service, or ``None`` when seniority is expressed as
@@ -211,7 +223,7 @@ class Employee:
             hire = self.seniority.value
             if hire > as_of:
                 msg = (
-                    f"hire_date {hire} is after calculation_date {as_of}: "
+                    f"hire_date {hire} is after as_of {as_of}: "
                     "cannot compute seniority for a future employee"
                 )
                 raise ValueError(msg)
@@ -219,8 +231,7 @@ class Employee:
         return None
 
 
-@dataclass(frozen=True)
-class Employer:
+class Employer(BaseModel):
     """Employer-side inputs for payroll computation.
 
     Attributes:
@@ -228,28 +239,19 @@ class Employer:
             INPS contribution tier. Must be ``>= 1``.
         second_level_allowances: Allowances from a territorial or company
             second-level agreement (*contrattazione di secondo livello*).
-            Each item is scaled by ``part_time_pct``; whether the
+            Each item is scaled by ``part_time_ratio``; whether the
             apprenticeship percentage also applies is controlled per-item
             by ``apprenticeship_pct_relevant``. Mutually exclusive with
             :attr:`Agreement.ral_override`.
     """
 
-    num_employees: int
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    num_employees: int = Field(ge=1)
     second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
 
-    def __post_init__(self) -> None:
-        """Validate that num_employees is at least 1.
 
-        Raises:
-            ValueError: If num_employees is less than 1.
-        """
-        if self.num_employees < 1:
-            msg = f"num_employees must be >= 1, got {self.num_employees}"
-            raise ValueError(msg)
-
-
-@dataclass(frozen=True)
-class Employment:
+class Employment(BaseModel):
     """The employment relationship.
 
     Ties together which CCNL applies, the contract type, the employer
@@ -264,27 +266,31 @@ class Employment:
             or :class:`~ccnl_engine.engine.payroll.domain.employment\
 .Apprentice`.
         employer: Employer-side inputs including headcount.
-        calculation_date: Reference date for all time-series lookups (base pay,
+        as_of: Reference date for all time-series lookups (base pay,
             seniority amounts, allowances, additional months). Also the
             upper bound for deriving months of service when seniority is
             expressed as a :class:`~ccnl_engine.engine.payroll.domain\
 .employee.SeniorityByDate`.
         tax_year: Override the fiscal year used for tax/INPS rule loading.
-            When ``None`` (default), ``calculation_date.year`` is used.
+            When ``None`` (default), ``as_of.year`` is used.
             Set explicitly when applying a specific year's tax rules to a
             date in a different calendar year (e.g. computing a late-2025
             payslip with 2026 tax rules already in force).
     """
 
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     ccnl: str
-    contract: Permanent | FixedTerm | Apprentice
+    contract: Annotated[
+        Permanent | FixedTerm | Apprentice,
+        Field(discriminator="type"),
+    ]
     employer: Employer
-    calculation_date: date
+    as_of: date
     tax_year: int | None = None
 
 
-@dataclass(frozen=True)
-class PayrollScenario:
+class PayrollScenario(BaseModel):
     """A complete payroll computation scenario.
 
     Composes the worker (:class:`Employee`) and the employment relationship
@@ -300,7 +306,7 @@ class PayrollScenario:
                 ccnl="metalmeccanico-federmeccanica.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                calculation_date=date(2026, 1, 1),
+                as_of=date(2026, 1, 1),
             ),
         ))
 
@@ -322,23 +328,26 @@ class PayrollScenario:
         bonus_input: Optional bonus / PdR data for the fiscal year.
             ``None`` when not requested.
         family: Optional family composition for Art. 12 TUIR deductions.
-            When provided, the engine computes family deductions and subtracts
-            them from ``irpef_net`` (reducing ``net_annual``).  ``None`` means
-            no family deductions are applied and
+            When provided, the engine computes family deductions and
+            subtracts them from ``irpef_net`` (reducing ``net_annual``).
+            ``None`` means no family deductions are applied and
             ``FiscalSimplification.NO_DETRAZIONI_FAMILIARI`` is reported.
-        art15_deductions: Optional Art. 15 TUIR oneri detraibili declared by
-            the worker.  When provided, the engine computes the tax credit
-            (19 % on eligible expenditure up to the statutory ceiling) and
-            subtracts it from ``irpef_net`` (reducing ``net_annual``).
-            ``None`` means no mortgage deductions are applied and
-            ``FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE`` is reported.
+        art15_deductions: Optional Art. 15 TUIR oneri detraibili declared
+            by the worker.  When provided, the engine computes the tax
+            credit (19 % on eligible expenditure up to the statutory
+            ceiling) and subtracts it from ``irpef_net`` (reducing
+            ``net_annual``).  ``None`` means no mortgage deductions are
+            applied and
+            ``FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE`` is
+            reported.
             ``FiscalSimplification.PARTIAL_DETRAZIONI_ART15`` is always
             reported: only mortgage interest is modelled.
             Art. 1 c. 3-4 L. 199/2025 sterilizzazione applies to Art. 15
             TUIR oneri detraibili al 19 % (lett. a, b, d, e; not lett. c
             spese sanitarie): for reddito complessivo > EUR 200 000 the
             credit is reduced by EUR 440. The resulting clawback is
-            reported in ``PayrollResult.sterilizzazione_clawback_annual``.
+            reported in
+            ``PayrollResult.sterilizzazione_clawback_annual``.
         bilateral_funds: Scenario-level bilateral fund contributions (fondi
             bilaterali). Each entry is either a fixed monthly amount
             (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\
@@ -346,11 +355,13 @@ class PayrollScenario:
             (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\
 .RateFund`). The employee portion reduces ``net_annual``; the employer
             portion enters ``employer_cost_annual``. Both reductions are
-            post-tax only — the engine does not model any pre-tax deductibility
-            of the employee contribution.
-            ``FiscalSimplification.NO_BILATERAL_FUNDS`` is reported when the
-            tuple is empty.
+            post-tax only — the engine does not model any pre-tax
+            deductibility of the employee contribution.
+            ``FiscalSimplification.NO_BILATERAL_FUNDS`` is reported when
+            the tuple is empty.
     """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
     employee: Employee
     employment: Employment

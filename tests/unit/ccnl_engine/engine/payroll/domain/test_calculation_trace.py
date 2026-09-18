@@ -326,7 +326,7 @@ class TestTraceInvariant:
 
     def test_invariant_part_time(self) -> None:
         """Invariant holds for a 50% part-time employee."""
-        calc = compute(_req(part_time_pct=_D("0.5"), seniority_count=3))
+        calc = compute(_req(part_time_ratio=_D("0.5"), seniority_count=3))
         self._assert_invariant(calc)
 
     def test_invariant_apprentice(self) -> None:
@@ -404,9 +404,9 @@ class TestTraceInvariant:
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=(
-                    SeniorityByCount(seniority_count) if seniority_count else None
+                    SeniorityByCount(value=seniority_count) if seniority_count else None
                 ),
-                part_time_pct=Decimal(inputs["part_time_pct"]),
+                part_time_ratio=Decimal(inputs["part_time_ratio"]),
                 weekly_hours=(
                     Decimal(str(weekly_hours_raw))
                     if weekly_hours_raw is not None
@@ -420,7 +420,9 @@ class TestTraceInvariant:
                     else None
                 ),
                 agreement=(
-                    Agreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+                    Agreement(
+                        ral_override=RalOverride(value=Decimal(negotiated_ral_raw))
+                    )
                     if negotiated_ral_raw is not None
                     else None
                 ),
@@ -429,7 +431,7 @@ class TestTraceInvariant:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=num_employees),
-                calculation_date=date.fromisoformat(inputs["as_of"]),
+                as_of=date.fromisoformat(inputs["as_of"]),
             ),
         )
         calc = compute(scenario)
@@ -649,9 +651,9 @@ class TestFiscalStepsRoundtrip:
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=(
-                    SeniorityByCount(seniority_count) if seniority_count else None
+                    SeniorityByCount(value=seniority_count) if seniority_count else None
                 ),
-                part_time_pct=Decimal(inputs["part_time_pct"]),
+                part_time_ratio=Decimal(inputs["part_time_ratio"]),
                 weekly_hours=(
                     Decimal(str(weekly_hours_raw))
                     if weekly_hours_raw is not None
@@ -665,7 +667,9 @@ class TestFiscalStepsRoundtrip:
                     else None
                 ),
                 agreement=(
-                    Agreement(ral_override=RalOverride(Decimal(negotiated_ral_raw)))
+                    Agreement(
+                        ral_override=RalOverride(value=Decimal(negotiated_ral_raw))
+                    )
                     if negotiated_ral_raw is not None
                     else None
                 ),
@@ -674,7 +678,7 @@ class TestFiscalStepsRoundtrip:
                 ccnl=inputs["ccnl_file"],
                 contract=contract,
                 employer=Employer(num_employees=num_employees),
-                calculation_date=date.fromisoformat(inputs["as_of"]),
+                as_of=date.fromisoformat(inputs["as_of"]),
             ),
         )
         calc = compute(scenario)

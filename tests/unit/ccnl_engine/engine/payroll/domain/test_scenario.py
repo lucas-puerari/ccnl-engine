@@ -1,7 +1,7 @@
 """Tests for PayrollScenario domain types: validation and properties.
 
 Covers:
-* Employee.__post_init__ — part_time_pct and weekly_hours validation
+* Employee.__post_init__ — part_time_ratio and weekly_hours validation
 * Employee.seniority_count / seniority_months / seniority_months_as_of
 * Agreement.__post_init__ — ad_personam_monthly validation
 * Employer.__post_init__ — num_employees validation
@@ -15,6 +15,7 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByCount,
@@ -41,32 +42,32 @@ _D = Decimal
 
 
 class TestEmployeeValidation:
-    """Employee.__post_init__ enforces part_time_pct and weekly_hours."""
+    """Employee.__post_init__ enforces part_time_ratio and weekly_hours."""
 
-    def test_part_time_pct_zero_raises(self) -> None:
-        """part_time_pct=0 is rejected."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            Employee(level_code="4", part_time_pct=_D("0"))
+    def test_part_time_ratio_zero_raises(self) -> None:
+        """part_time_ratio=0 is rejected."""
+        with pytest.raises(ValueError, match="part_time_ratio"):
+            Employee(level_code="4", part_time_ratio=_D("0"))
 
-    def test_part_time_pct_negative_raises(self) -> None:
-        """Negative part_time_pct is rejected."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            Employee(level_code="4", part_time_pct=_D("-0.5"))
+    def test_part_time_ratio_negative_raises(self) -> None:
+        """Negative part_time_ratio is rejected."""
+        with pytest.raises(ValueError, match="part_time_ratio"):
+            Employee(level_code="4", part_time_ratio=_D("-0.5"))
 
-    def test_part_time_pct_above_one_raises(self) -> None:
-        """part_time_pct > 1 is rejected."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            Employee(level_code="4", part_time_pct=_D("1.01"))
+    def test_part_time_ratio_above_one_raises(self) -> None:
+        """part_time_ratio > 1 is rejected."""
+        with pytest.raises(ValueError, match="part_time_ratio"):
+            Employee(level_code="4", part_time_ratio=_D("1.01"))
 
-    def test_part_time_pct_one_accepted(self) -> None:
-        """part_time_pct=1 (full-time) is valid."""
-        e = Employee(level_code="4", part_time_pct=_D("1"))
-        assert e.part_time_pct == _D("1")
+    def test_part_time_ratio_one_accepted(self) -> None:
+        """part_time_ratio=1 (full-time) is valid."""
+        e = Employee(level_code="4", part_time_ratio=_D("1"))
+        assert e.part_time_ratio == _D("1")
 
-    def test_part_time_pct_half_accepted(self) -> None:
-        """part_time_pct=0.5 is valid."""
-        e = Employee(level_code="4", part_time_pct=_D("0.5"))
-        assert e.part_time_pct == _D("0.5")
+    def test_part_time_ratio_half_accepted(self) -> None:
+        """part_time_ratio=0.5 is valid."""
+        e = Employee(level_code="4", part_time_ratio=_D("0.5"))
+        assert e.part_time_ratio == _D("0.5")
 
     def test_weekly_hours_zero_raises(self) -> None:
         """weekly_hours=0 is rejected."""
@@ -99,13 +100,13 @@ class TestEmployeeSeniorityProperties:
 
     def test_seniority_count_from_by_count(self) -> None:
         """seniority_count returns the value when seniority is SeniorityByCount."""
-        e = Employee(level_code="4", seniority=SeniorityByCount(3))
+        e = Employee(level_code="4", seniority=SeniorityByCount(value=3))
         assert e.seniority_count == 3
         assert e.seniority_months is None
 
     def test_seniority_months_from_by_months(self) -> None:
         """seniority_months returns the value when seniority is SeniorityByMonths."""
-        e = Employee(level_code="4", seniority=SeniorityByMonths(36))
+        e = Employee(level_code="4", seniority=SeniorityByMonths(value=36))
         assert e.seniority_months == 36
         assert e.seniority_count is None
 
@@ -117,7 +118,7 @@ class TestEmployeeSeniorityProperties:
 
     def test_seniority_months_none_for_by_date(self) -> None:
         """seniority_months returns None when expressed as a date (no as_of)."""
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2023, 1, 1)))
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2023, 1, 1)))
         assert e.seniority_months is None
         assert e.seniority_count is None
 
@@ -127,24 +128,24 @@ class TestSeniorityMonthsAsOf:
 
     def test_by_months_returns_stored_value(self) -> None:
         """SeniorityByMonths: stored value is returned regardless of as_of."""
-        e = Employee(level_code="4", seniority=SeniorityByMonths(36))
+        e = Employee(level_code="4", seniority=SeniorityByMonths(value=36))
         assert e.seniority_months_as_of(date(2026, 1, 1)) == 36
 
     def test_by_date_computes_calendar_months(self) -> None:
         """SeniorityByDate: months gap between hire and as_of is computed."""
         # Hired 2023-01-01, calculation 2026-01-01 → 36 months exactly.
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2023, 1, 1)))
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2023, 1, 1)))
         assert e.seniority_months_as_of(date(2026, 1, 1)) == 36
 
     def test_by_date_mid_year_gap(self) -> None:
         """SeniorityByDate: partial-year gaps computed correctly."""
         # Hired 2022-03-01, calculation 2026-09-01 → 54 months.
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2022, 3, 1)))
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2022, 3, 1)))
         assert e.seniority_months_as_of(date(2026, 9, 1)) == 54
 
     def test_by_count_returns_none(self) -> None:
         """SeniorityByCount: months not applicable — None returned."""
-        e = Employee(level_code="4", seniority=SeniorityByCount(3))
+        e = Employee(level_code="4", seniority=SeniorityByCount(value=3))
         assert e.seniority_months_as_of(date(2026, 1, 1)) is None
 
     def test_none_seniority_returns_none(self) -> None:
@@ -154,24 +155,24 @@ class TestSeniorityMonthsAsOf:
 
     def test_by_date_future_hire_raises(self) -> None:
         """hire_date in a future month raises ValueError."""
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 10, 1)))
-        with pytest.raises(ValueError, match=r"hire_date.*after.*calculation_date"):
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2026, 10, 1)))
+        with pytest.raises(ValueError, match=r"hire_date.*after.*as_of"):
             e.seniority_months_as_of(date(2026, 9, 1))
 
     def test_by_date_same_month_future_day_raises(self) -> None:
         """hire_date later in the same month raises ValueError."""
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 9, 30)))
-        with pytest.raises(ValueError, match=r"hire_date.*after.*calculation_date"):
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2026, 9, 30)))
+        with pytest.raises(ValueError, match=r"hire_date.*after.*as_of"):
             e.seniority_months_as_of(date(2026, 9, 1))
 
     def test_by_date_same_day_returns_zero(self) -> None:
-        """hire_date == calculation_date returns 0 months (first day of employment)."""
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 9, 1)))
+        """hire_date == as_of returns 0 months (first day of employment)."""
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2026, 9, 1)))
         assert e.seniority_months_as_of(date(2026, 9, 1)) == 0
 
     def test_by_date_prior_month_returns_one(self) -> None:
         """hire_date in the immediately preceding month returns 1."""
-        e = Employee(level_code="4", seniority=SeniorityByDate(date(2026, 8, 31)))
+        e = Employee(level_code="4", seniority=SeniorityByDate(value=date(2026, 8, 31)))
         assert e.seniority_months_as_of(date(2026, 9, 1)) == 1
 
 
@@ -242,7 +243,7 @@ class TestEmploymentTaxYear:
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=_DATE,
+            as_of=_DATE,
         )
         assert emp.tax_year is None
 
@@ -252,21 +253,21 @@ class TestEmploymentTaxYear:
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=_DATE,
+            as_of=_DATE,
             tax_year=2026,
         )
         assert emp.tax_year == 2026
 
-    def test_tax_year_can_differ_from_calculation_date_year(self) -> None:
-        """tax_year may differ from calculation_date.year (cross-year computation)."""
+    def test_tax_year_can_differ_from_as_of_year(self) -> None:
+        """tax_year may differ from as_of.year (cross-year computation)."""
         emp = Employment(
             ccnl="test.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2025, 11, 1),
+            as_of=date(2025, 11, 1),
             tax_year=2026,
         )
-        assert emp.calculation_date.year == 2025
+        assert emp.as_of.year == 2025
         assert emp.tax_year == 2026
 
 
@@ -307,7 +308,7 @@ class TestPayrollScenario:
                 ccnl="test.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                calculation_date=_DATE,
+                as_of=_DATE,
             ),
         )
         assert scenario.employee.level_code == "4"
@@ -322,8 +323,8 @@ class TestPayrollScenario:
                 ccnl="test.json",
                 contract=Permanent(),
                 employer=Employer(num_employees=50),
-                calculation_date=_DATE,
+                as_of=_DATE,
             ),
         )
-        with pytest.raises((AttributeError, TypeError)):
+        with pytest.raises((AttributeError, TypeError, ValidationError)):
             scenario.employee = Employee(level_code="5")  # type: ignore[misc]

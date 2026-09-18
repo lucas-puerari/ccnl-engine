@@ -91,9 +91,9 @@ def _build_seniority(
     seniority_count_raw = int(inputs["seniority_count"])
     seniority_months_raw = inputs.get("seniority_months")
     if seniority_months_raw is not None:
-        return SeniorityByMonths(int(seniority_months_raw))
+        return SeniorityByMonths(value=int(seniority_months_raw))
     if seniority_count_raw:
-        return SeniorityByCount(seniority_count_raw)
+        return SeniorityByCount(value=seniority_count_raw)
     return None
 
 
@@ -206,7 +206,7 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
     )
     ral_raw = inputs.get("negotiated_ral")
     agreement = (
-        Agreement(ral_override=RalOverride(Decimal(ral_raw)))
+        Agreement(ral_override=RalOverride(value=Decimal(ral_raw)))
         if ral_raw is not None
         else None
     )
@@ -216,7 +216,7 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
         employee=Employee(
             level_code=inputs["level_code"],
             seniority=_build_seniority(inputs),
-            part_time_pct=Decimal(inputs["part_time_pct"]),
+            part_time_ratio=Decimal(inputs["part_time_ratio"]),
             weekly_hours=(
                 Decimal(str(inputs["weekly_hours"]))
                 if inputs.get("weekly_hours") is not None
@@ -231,7 +231,7 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
             ccnl=inputs["ccnl_file"],
             contract=_build_contract(inputs),
             employer=Employer(num_employees=int(inputs["num_employees"])),
-            calculation_date=as_of,
+            as_of=as_of,
             tax_year=tax_year,
         ),
         time_supplements=_build_supplements(inputs),

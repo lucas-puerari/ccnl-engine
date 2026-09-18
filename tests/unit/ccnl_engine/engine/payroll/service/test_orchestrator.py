@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import dataclasses
 from datetime import UTC, date, datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -190,24 +189,24 @@ class TestInputModels:
 
     def test_seniority_by_count_negative_raises(self) -> None:
         """SeniorityByCount with value < 0 must raise at construction."""
-        with pytest.raises(ValueError, match="must be >= 0"):
-            SeniorityByCount(-1)
+        with pytest.raises(ValueError, match="greater than or equal to 0"):
+            SeniorityByCount(value=-1)
 
     def test_seniority_by_months_negative_raises(self) -> None:
         """SeniorityByMonths with value < 0 must raise at construction."""
-        with pytest.raises(ValueError, match="must be >= 0"):
-            SeniorityByMonths(-1)
+        with pytest.raises(ValueError, match="greater than or equal to 0"):
+            SeniorityByMonths(value=-1)
 
-    def test_part_time_pct_out_of_range_raises(self) -> None:
-        """Employee with part_time_pct outside (0, 1] must raise."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            Employee(level_code="4", part_time_pct=Decimal(0))
+    def test_part_time_ratio_out_of_range_raises(self) -> None:
+        """Employee with part_time_ratio outside (0, 1] must raise."""
+        with pytest.raises(ValueError, match="part_time_ratio"):
+            Employee(level_code="4", part_time_ratio=Decimal(0))
 
     @pytest.mark.parametrize("pct", ["-0.1", "1.01"])
-    def test_part_time_pct_boundary(self, pct: str) -> None:
-        """part_time_pct outside (0, 1] must raise at any invalid value."""
-        with pytest.raises(ValueError, match="part_time_pct"):
-            Employee(level_code="4", part_time_pct=_D(pct))
+    def test_part_time_ratio_boundary(self, pct: str) -> None:
+        """part_time_ratio outside (0, 1] must raise at any invalid value."""
+        with pytest.raises(ValueError, match="part_time_ratio"):
+            Employee(level_code="4", part_time_ratio=_D(pct))
 
     def test_weekly_hours_zero_raises(self) -> None:
         """Employee with weekly_hours <= 0 must raise at construction."""
@@ -222,12 +221,12 @@ class TestInputModels:
     def test_ral_override_zero_raises(self) -> None:
         """RalOverride with value <= 0 must raise at construction."""
         with pytest.raises(ValueError, match="must be > 0"):
-            RalOverride(_D(0))
+            RalOverride(value=_D(0))
 
     def test_destination_ral_override_negative_raises(self) -> None:
         """DestinationRalOverride with value <= 0 must raise at construction."""
         with pytest.raises(ValueError, match="must be > 0"):
-            DestinationRalOverride(_D("-1"))
+            DestinationRalOverride(value=_D("-1"))
 
 
 # ---------------------------------------------------------------------------
@@ -352,11 +351,11 @@ class TestComputePermanent:
             compute(_req(seniority_count=2))
 
     def test_part_time_scales_all_components(self) -> None:
-        """part_time_pct=0.5 halves every component; components sum to gross."""
+        """part_time_ratio=0.5 halves every component; components sum to gross."""
         _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.fixed_allowances": [_allowance("edr", "10.33")]
         })
-        r = compute(_req(part_time_pct=_D("0.50"), seniority_count=1))
+        r = compute(_req(part_time_ratio=_D("0.50"), seniority_count=1))
 
         assert r.base_monthly == _D("500.00")
         assert r.seniority_monthly == _D("10.00")
@@ -382,7 +381,7 @@ class TestComputePermanent:
 
     def test_ad_personam_added_unscaled(self) -> None:
         """ad_personam_monthly is added as given, even under part-time."""
-        r = compute(_req(part_time_pct=_D("0.50"), ad_personam_monthly=_D("30.00")))
+        r = compute(_req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00")))
         assert r.ad_personam_monthly == _D("30.00")
         assert r.gross_monthly == _D("530.00")
         assert r.gross_annual == _D("6360.00")
@@ -1232,9 +1231,9 @@ class TestApprenticeTrace:
         would show "4@test" (destination).  After the fix it must show "3@test".
         """
         _mock_ccnl[0] = _DEFAULT_CCNL_UC
-        scenario = dataclasses.replace(
-            _req(level_code="4", contract=Apprentice(months_elapsed=0)),
-        )
+        scenario = _req(
+            level_code="4", contract=Apprentice(months_elapsed=0)
+        ).model_copy()
         try:
             calc = compute(scenario)
             base_steps = [
@@ -1272,9 +1271,10 @@ class TestR7SubRulesetIdentities:
     def test_variable_pay_ruleset_present_with_fringe_benefit_input(self) -> None:
         """R7: fringe benefit input causes variable_pay to appear in ruleset_version."""
         calc = compute(
-            dataclasses.replace(
-                _req(),
-                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("500")),
+            _req().model_copy(
+                update={
+                    "fringe_benefit_input": FringeBenefitInput(annual_amount=_D("500"))
+                }
             )
         )
         assert "variable_pay" in calc.ruleset_version
@@ -1282,11 +1282,12 @@ class TestR7SubRulesetIdentities:
     def test_variable_pay_ruleset_present_with_bonus_input(self) -> None:
         """R7: bonus input causes variable_pay to appear in ruleset_version."""
         calc = compute(
-            dataclasses.replace(
-                _req(),
-                bonus_input=BonusInput(
-                    annual_amount=_D("1000"), eligible_for_pdr=False
-                ),
+            _req().model_copy(
+                update={
+                    "bonus_input": BonusInput(
+                        annual_amount=_D("1000"), eligible_for_pdr=False
+                    )
+                }
             )
         )
         assert "variable_pay" in calc.ruleset_version
@@ -1294,9 +1295,8 @@ class TestR7SubRulesetIdentities:
     def test_family_deductions_ruleset_present_when_dependents(self) -> None:
         """family_deductions appears in ruleset_version when scenario.family is set."""
         calc = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(children_21_or_older=1),
+            _req().model_copy(
+                update={"family": FamilyComposition(children_21_or_older=1)}
             )
         )
         assert "family_deductions" in calc.ruleset_version, (
@@ -1312,9 +1312,10 @@ class TestR7SubRulesetIdentities:
     def test_art15_deductions_ruleset_present_when_oneri_set(self) -> None:
         """art15_deductions appears in ruleset_version when art15_deductions is set."""
         calc = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("2000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("2000"))
+                }
             )
         )
         assert "art15_deductions" in calc.ruleset_version, (
@@ -1334,9 +1335,8 @@ class TestL3Warning:
         """Emit a warning when time_supplements is set but CCNL has no L3 data."""
         # The test CCNL (built by _build_ccnl / _req) has no work_rules block.
         # dataclasses.replace adds time_supplements without touching other fields.
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(weekday_hours=_D("5")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(weekday_hours=_D("5"))}
         )
         result = compute(scenario).result
         assert any("time_supplements" in w for w in result.warnings), (
@@ -1360,9 +1360,8 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(weekday_hours=_D("5")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(weekday_hours=_D("5"))}
         )
         try:
             result = compute(scenario).result
@@ -1387,9 +1386,8 @@ class TestL3Warning:
         scope, so holiday_work would be 'excluded' even when hours were supplied.
         """
         # Test CCNL has no work_rules, so schema is absent.
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(night_holiday_hours=_D("2")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(night_holiday_hours=_D("2"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1428,12 +1426,13 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(
-                weekday_hours=_D("5"),
-                night_hours=_D("3"),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "time_supplements": OvertimeHours(
+                    weekday_hours=_D("5"),
+                    night_hours=_D("3"),
+                )
+            }
         )
         try:
             result = compute(scenario).result
@@ -1475,9 +1474,8 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(supplementare_hours=_D("10")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(supplementare_hours=_D("10"))}
         )
         try:
             result = compute(scenario).result
@@ -1513,9 +1511,8 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(holiday_hours=_D("4")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(holiday_hours=_D("4"))}
         )
         try:
             result = compute(scenario).result
@@ -1572,9 +1569,8 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(weekday_hours=_D("10")),
+        scenario = _req().model_copy(
+            update={"time_supplements": OvertimeHours(weekday_hours=_D("10"))}
         )
         try:
             result = compute(scenario).result
@@ -1625,7 +1621,7 @@ class TestL3Warning:
             WeeklyOvertimeHours(weekday_hours=_D("5")),
             WeeklyOvertimeHours(weekday_hours=_D("5")),
         ))
-        scenario = dataclasses.replace(_req(), time_supplements=oh)
+        scenario = _req().model_copy(update={"time_supplements": oh})
         try:
             result = compute(scenario).result
             assert not any("tiered weekly thresholds" in w for w in result.warnings), (
@@ -1641,10 +1637,8 @@ class TestL3Warning:
         "time_supplements requested but not modelled", because the caller
         effectively passed no hours.  Scope items must show 'excluded'.
         """
-        scenario = dataclasses.replace(
-            _req(),
-            time_supplements=OvertimeHours(),  # all fields default to 0
-        )
+        # all fields default to 0
+        scenario = _req().model_copy(update={"time_supplements": OvertimeHours()})
         result = compute(scenario).result
         assert not any("time_supplements" in w for w in result.warnings), (
             f"Unexpected time_supplements warning for zero hours: {result.warnings}"
@@ -1658,9 +1652,8 @@ class TestL3Absence:
 
     def test_warning_when_ccnl_has_no_absence_rules(self) -> None:
         """Emit a warning when absence_days is set but CCNL has no absence rules."""
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("2")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
         )
         result = compute(scenario).result
         assert any("absence_days" in w for w in result.warnings), (
@@ -1679,9 +1672,8 @@ class TestL3Absence:
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={"work_rules": CCNLWorkRules(absence_rules=absence_rules)}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("1")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("1"))}
         )
         result = compute(scenario).result
         # No warning: schema is present.
@@ -1701,9 +1693,8 @@ class TestL3Absence:
 
     def test_absence_scope_not_computed_when_days_but_no_schema(self) -> None:
         """Absence is not_computed when days given but CCNL has no schema."""
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("3"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1720,9 +1711,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("2")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1743,9 +1733,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("27")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("27"))}
         )
         result = compute(scenario).result
         gross = result.gross_monthly
@@ -1770,9 +1759,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("26")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("26"))}
         )
         result = compute(scenario).result
         gross = result.gross_monthly
@@ -1790,9 +1778,8 @@ class TestL3Absence:
         "absence_days requested but not modelled", because the caller
         effectively requested no absence.  Scope item must show 'excluded'.
         """
-        scenario = dataclasses.replace(
-            _req(),
-            absence_days=AbsenceDays(unpaid_days=_D("0")),
+        scenario = _req().model_copy(
+            update={"absence_days": AbsenceDays(unpaid_days=_D("0"))}
         )
         result = compute(scenario).result
         assert not any("absence_days" in w for w in result.warnings), (
@@ -1809,9 +1796,8 @@ class TestL3Leave:
 
     def test_warning_when_ccnl_has_no_leave_rules(self) -> None:
         """Emit a warning when leave_input is set but CCNL has no leave_rules."""
-        scenario = dataclasses.replace(
-            _req(),
-            leave_input=LeaveInput(taken_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
         result = compute(scenario).result
         assert any("leave_input" in w for w in result.warnings), (
@@ -1825,9 +1811,8 @@ class TestL3Leave:
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
-        scenario = dataclasses.replace(
-            _req(),
-            leave_input=LeaveInput(taken_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
         result = compute(scenario).result
         assert not any("leave_input" in w for w in result.warnings)
@@ -1849,9 +1834,8 @@ class TestL3Leave:
             update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
         # Employee with 48 months → senior tier (25 days/year → 2.08/month)
-        scenario = dataclasses.replace(
-            _req(seniority_months=48),
-            leave_input=LeaveInput(taken_days=_D("0")),
+        scenario = _req(seniority_months=48).model_copy(
+            update={"leave_input": LeaveInput(taken_days=_D("0"))}
         )
         result = compute(scenario).result
         assert result.leave_accrued_days_monthly == _D("2.08")
@@ -1864,9 +1848,8 @@ class TestL3Leave:
 
     def test_leave_scope_not_computed_when_input_but_no_schema(self) -> None:
         """Leave is not_computed when input given but CCNL has no leave_rules."""
-        scenario = dataclasses.replace(
-            _req(),
-            leave_input=LeaveInput(taken_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1881,9 +1864,8 @@ class TestL3Leave:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            leave_input=LeaveInput(taken_days=_D("2")),
+        scenario = _req().model_copy(
+            update={"leave_input": LeaveInput(taken_days=_D("2"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1895,9 +1877,8 @@ class TestL3Sickness:
 
     def test_warning_when_ccnl_has_no_sickness_rules(self) -> None:
         """Emit a warning when sick_input is set but CCNL has no sickness_rules."""
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(sick_days=_D("5")),
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("5"))}
         )
         result = compute(scenario).result
         assert any("sick_input" in w for w in result.warnings), (
@@ -1917,9 +1898,8 @@ class TestL3Sickness:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(sick_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("3"))}
         )
         result = compute(scenario).result
         assert not any("sick_input" in w for w in result.warnings)
@@ -1935,9 +1915,8 @@ class TestL3Sickness:
 
     def test_sick_scope_not_computed_when_input_but_no_schema(self) -> None:
         """Sickness is not_computed when input given but CCNL has no sickness_rules."""
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(sick_days=_D("5")),
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("5"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1955,9 +1934,8 @@ class TestL3Sickness:
                 )
             }
         )
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(sick_days=_D("5")),
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("5"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -1978,10 +1956,8 @@ class TestL3Sickness:
         zero-valued SickInput must not emit the 'not modelled' warning and
         must leave the sickness scope as 'excluded', exactly like sick_input=None.
         """
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(),  # sick_days defaults to 0
-        )
+        # sick_days defaults to 0
+        scenario = _req().model_copy(update={"sick_input": SickInput()})
         result = compute(scenario).result
         assert not any("sick_input" in w for w in result.warnings), (
             f"Unexpected sick_input warning for zero sick days: {result.warnings}"
@@ -1996,7 +1972,7 @@ class TestL3Sickness:
         with sick_input=None and one with sick_input=SickInput() (zero days).
         """
         result_none = compute(_req()).result
-        scenario_zero = dataclasses.replace(_req(), sick_input=SickInput())
+        scenario_zero = _req().model_copy(update={"sick_input": SickInput()})
         result_zero = compute(scenario_zero).result
         # Scope entry must match.
         scope_none = {s.feature: s.status for s in result_none.calculation_scope}
@@ -2027,9 +2003,8 @@ class TestL3Sickness:
             _fail,
         )
         # Default CCNL has no work_rules (no sickness schema).
-        scenario = dataclasses.replace(
-            _req(),
-            sick_input=SickInput(sick_days=_D("3")),
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("3"))}
         )
         result = compute(scenario).result
         # Loader was not called; the result degrades gracefully with a warning.
@@ -2073,9 +2048,8 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_scope_verified_when_input_given(self) -> None:
         """fringe_benefit scope is verified when input is provided."""
-        scenario = dataclasses.replace(
-            _req(),
-            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800")),
+        scenario = _req().model_copy(
+            update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -2083,9 +2057,8 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_below_threshold_not_taxable(self) -> None:
         """Fringe benefit below €1.000 threshold: taxable_annual is zero."""
-        scenario = dataclasses.replace(
-            _req(),
-            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800")),
+        scenario = _req().model_copy(
+            update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
         )
         result = compute(scenario).result
         assert result.fringe_benefit_annual == _D("800")
@@ -2094,9 +2067,10 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_above_threshold_taxable(self) -> None:
         """R15: Fringe benefit above €1.000 threshold: ENTIRE amount is taxable."""
-        scenario = dataclasses.replace(
-            _req(),
-            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400")),
+        scenario = _req().model_copy(
+            update={
+                "fringe_benefit_input": FringeBenefitInput(annual_amount=_D("1400"))
+            }
         )
         result = compute(scenario).result
         assert result.fringe_benefit_annual == _D("1400")
@@ -2104,9 +2078,8 @@ class TestL3VariablePay:
 
     def test_welfare_scope_verified_when_input_given(self) -> None:
         """Welfare scope is verified when input is provided."""
-        scenario = dataclasses.replace(
-            _req(),
-            welfare_input=WelfareInput(annual_amount=_D("600")),
+        scenario = _req().model_copy(
+            update={"welfare_input": WelfareInput(annual_amount=_D("600"))}
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -2115,9 +2088,12 @@ class TestL3VariablePay:
 
     def test_bonus_pdr_eligible_applies_flat_tax(self) -> None:
         """PdR-eligible bonus within ceiling: flat tax computed correctly."""
-        scenario = dataclasses.replace(
-            _req(),
-            bonus_input=BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+        scenario = _req().model_copy(
+            update={
+                "bonus_input": BonusInput(
+                    annual_amount=_D("2000"), eligible_for_pdr=True
+                )
+            }
         )
         result = compute(scenario).result
         scope = {item.feature: item.status for item in result.calculation_scope}
@@ -2130,11 +2106,16 @@ class TestL3VariablePay:
         """gross_annual and net_annual are unchanged with variable-pay inputs."""
         baseline = compute(_req()).result
         with_inputs = compute(
-            dataclasses.replace(
-                _req(),
-                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400")),
-                welfare_input=WelfareInput(annual_amount=_D("600")),
-                bonus_input=BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+            _req().model_copy(
+                update={
+                    "fringe_benefit_input": FringeBenefitInput(
+                        annual_amount=_D("1400")
+                    ),
+                    "welfare_input": WelfareInput(annual_amount=_D("600")),
+                    "bonus_input": BonusInput(
+                        annual_amount=_D("2000"), eligible_for_pdr=True
+                    ),
+                }
             )
         ).result
         assert with_inputs.gross_annual == baseline.gross_annual
@@ -2148,9 +2129,8 @@ class TestL3VariablePay:
         compute_welfare() does not consume the variable-pay rules file; only
         fringe-benefit and bonus/PdR inputs trigger its load and registration.
         """
-        scenario = dataclasses.replace(
-            _req(),
-            welfare_input=WelfareInput(annual_amount=_D("500")),
+        scenario = _req().model_copy(
+            update={"welfare_input": WelfareInput(annual_amount=_D("500"))}
         )
         calc = compute(scenario)
         assert "variable_pay" not in calc.ruleset_version
@@ -2169,7 +2149,7 @@ class TestL3FamilyDeductions:
     def test_no_family_leaves_irpef_net_unchanged(self) -> None:
         """Without family input, irpef_net equals baseline (no deduction)."""
         baseline = compute(_req()).result
-        with_none = compute(dataclasses.replace(_req(), family=None)).result
+        with_none = compute(_req().model_copy(update={"family": None})).result
         assert with_none.irpef_net == baseline.irpef_net
         assert with_none.family_deduction_annual == _D("0")
 
@@ -2177,9 +2157,8 @@ class TestL3FamilyDeductions:
         """Spouse deduction is subtracted from irpef_net."""
         baseline = compute(_req()).result
         with_spouse = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
             )
         ).result
         assert with_spouse.family_deduction_spouse_annual > _D("0")
@@ -2188,9 +2167,8 @@ class TestL3FamilyDeductions:
     def test_family_deduction_children_and_other_zero_when_not_set(self) -> None:
         """Children/other fields are zero when only spouse is set."""
         result = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
             )
         ).result
         assert result.family_deduction_children_annual == _D("0")
@@ -2200,10 +2178,7 @@ class TestL3FamilyDeductions:
         """Family with no eligible dependents: deduction zero, irpef_net unchanged."""
         baseline = compute(_req()).result
         with_empty_family = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(),
-            )
+            _req().model_copy(update={"family": FamilyComposition()})
         ).result
         assert with_empty_family.family_deduction_annual == _D("0")
         assert with_empty_family.irpef_net == baseline.irpef_net
@@ -2212,9 +2187,8 @@ class TestL3FamilyDeductions:
         """When employer does not withhold IRPEF, unused = total deduction."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         result = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
             )
         ).result
         assert result.family_deduction_spouse_annual > _D("0")
@@ -2225,9 +2199,8 @@ class TestL3FamilyDeductions:
         """gross_annual is unchanged by family deductions."""
         baseline = compute(_req()).result
         with_family = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
             )
         ).result
         assert with_family.gross_annual == baseline.gross_annual
@@ -2242,7 +2215,9 @@ class TestL3FamilyDeductions:
         """
         result_no_fam = compute(_req()).result
         result_spouse = compute(
-            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
+            )
         ).result
         # taxable_income < gross_annual, so the taper (95000 - RC) / 95000
         # is larger when RC = taxable_income.  The deduction must be strictly
@@ -2266,7 +2241,9 @@ class TestL3FamilyDeductions:
         whether fam_total is positive.
         """
         result = compute(
-            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
+            )
         ).result
         assert (
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI
@@ -2275,7 +2252,7 @@ class TestL3FamilyDeductions:
 
     def test_no_detrazioni_familiari_present_when_family_is_none(self) -> None:
         """NO_DETRAZIONI_FAMILIARI is present when no family data is provided."""
-        result = compute(dataclasses.replace(_req(), family=None)).result
+        result = compute(_req().model_copy(update={"family": None})).result
         sfs = result.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
 
@@ -2285,7 +2262,9 @@ class TestL3FamilyDeductions:
         FamilyComposition() with no dependents: has_any_dependent is False, so
         the engine skips the Art. 12 computation and keeps the flag set.
         """
-        result = compute(dataclasses.replace(_req(), family=FamilyComposition())).result
+        result = compute(
+            _req().model_copy(update={"family": FamilyComposition()})
+        ).result
         sfs = result.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
 
@@ -2317,11 +2296,15 @@ class TestSterilizzazioneDetrazioni:
         """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
-            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
+            )
         ).result
         _mock_rules[0] = make_year_rules()
         baseline = compute(
-            dataclasses.replace(_req(), family=FamilyComposition(spouse_dependent=True))
+            _req().model_copy(
+                update={"family": FamilyComposition(spouse_dependent=True)}
+            )
         ).result
         assert baseline.family_deduction_annual == with_strd.family_deduction_annual
         assert with_strd.sterilizzazione_clawback_annual == _D("0")
@@ -2352,14 +2335,14 @@ class TestSterilizzazioneDetrazioni:
         art15 = Art15Deductions(mortgage_interest=_D("3000"))
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
-            dataclasses.replace(
-                _req(negotiated_ral=_D("50000")), art15_deductions=art15
+            _req(negotiated_ral=_D("50000")).model_copy(
+                update={"art15_deductions": art15}
             )
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(
-            dataclasses.replace(
-                _req(negotiated_ral=_D("50000")), art15_deductions=art15
+            _req(negotiated_ral=_D("50000")).model_copy(
+                update={"art15_deductions": art15}
             )
         ).result
         # Art. 13 (work_income_deduction) is not affected.
@@ -2396,16 +2379,18 @@ class TestSterilizzazioneDetrazioni:
             sterilizzazione_detrazioni={"threshold": "200000", "reduction": "440"}
         )
         with_strd = compute(
-            dataclasses.replace(
-                _req(negotiated_ral=high_income),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            _req(negotiated_ral=high_income).model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
+                }
             )
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(
-            dataclasses.replace(
-                _req(negotiated_ral=high_income),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            _req(negotiated_ral=high_income).model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
+                }
             )
         ).result
         # Clawback fires: Art. 15 credit is 760; min(440, 760) = 440.
@@ -2424,18 +2409,20 @@ class TestSterilizzazioneDetrazioni:
         """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         result = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            _req().model_copy(
+                update={
+                    "family": FamilyComposition(spouse_dependent=True),
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
+                }
             )
         ).result
         _mock_rules[0] = make_year_rules()
         result_no_strd = compute(
-            dataclasses.replace(
-                _req(),
-                family=FamilyComposition(spouse_dependent=True),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            _req().model_copy(
+                update={
+                    "family": FamilyComposition(spouse_dependent=True),
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
+                }
             )
         ).result
         # Verify sterilizzazione fired and family deductions are present.
@@ -2469,7 +2456,7 @@ class TestArt15Deductions:
     def test_no_art15_leaves_irpef_net_unchanged(self) -> None:
         """Without art15_deductions, irpef_net equals baseline."""
         baseline = compute(_req()).result
-        with_none = compute(dataclasses.replace(_req(), art15_deductions=None)).result
+        with_none = compute(_req().model_copy(update={"art15_deductions": None})).result
         assert with_none.irpef_net == baseline.irpef_net
         assert with_none.art15_deduction_annual == _D("0")
 
@@ -2482,9 +2469,10 @@ class TestArt15Deductions:
         """
         baseline = compute(_req()).result
         with_art15 = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
+                }
             )
         ).result
         assert with_art15.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
@@ -2494,9 +2482,10 @@ class TestArt15Deductions:
     def test_ceiling_cap_applied(self) -> None:
         """Interest above EUR 4 000 ceiling: credit capped at EUR 760."""
         result = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("9999")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("9999"))
+                }
             )
         ).result
         assert result.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
@@ -2504,9 +2493,10 @@ class TestArt15Deductions:
     def test_no_detrazioni_art15_mortgage_tag_removed_when_computed(self) -> None:
         """NO_DETRAZIONI_ART15_MORTGAGE absent when mortgage interest is provided."""
         result = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("1000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("1000"))
+                }
             )
         ).result
         sfs = result.fiscal_simplifications
@@ -2519,9 +2509,10 @@ class TestArt15Deductions:
         that the other categories are always out of scope.
         """
         result = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("1000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("1000"))
+                }
             )
         ).result
         sfs = result.fiscal_simplifications
@@ -2543,9 +2534,10 @@ class TestArt15Deductions:
         """When employer does not withhold IRPEF, unused = total credit."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         result = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
+                }
             )
         ).result
         assert result.art15_deduction_annual == _D("570.00")
@@ -2556,9 +2548,8 @@ class TestArt15Deductions:
         """Art15Deductions with zero mortgage_interest: no deduction, tags kept."""
         baseline = compute(_req()).result
         with_zero = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("0")),
+            _req().model_copy(
+                update={"art15_deductions": Art15Deductions(mortgage_interest=_D("0"))}
             )
         ).result
         assert with_zero.art15_deduction_annual == _D("0")
@@ -2571,9 +2562,10 @@ class TestArt15Deductions:
         """gross_annual is unchanged by Art. 15 deductions."""
         baseline = compute(_req()).result
         with_art15 = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("2000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("2000"))
+                }
             )
         ).result
         assert with_art15.gross_annual == baseline.gross_annual
@@ -2590,16 +2582,18 @@ class TestArt15Deductions:
             sterilizzazione_detrazioni={"threshold": "10000", "reduction": "440"}
         )
         with_strd = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
+                }
             )
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
+                }
             )
         ).result
         # art15_deduction_annual reports the raw pre-clawback credit in both.
@@ -2620,9 +2614,10 @@ class TestArt15Deductions:
             sterilizzazione_detrazioni={"threshold": "10000", "reduction": "440"}
         )
         result = compute(
-            dataclasses.replace(
-                _req(),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("3000")),
+            _req().model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
+                }
             )
         ).result
         # art15 = 3000 * 0.19 = 570; unchanged by sterilizzazione.
@@ -2648,9 +2643,10 @@ class TestArt15Deductions:
             }
         )
         result = compute(
-            dataclasses.replace(
-                _req(negotiated_ral=_D("25000")),
-                art15_deductions=Art15Deductions(mortgage_interest=_D("4000")),
+            _req(negotiated_ral=_D("25000")).model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
+                }
             )
         ).result
         # art15 = min(4000, 4000) * 0.19 = 760 (at EUR 4 000 ceiling).
@@ -2668,11 +2664,12 @@ class TestArt15MortgagePre2022:
         # Level 2 (base 600/month) puts taxable income in the TI band.
         baseline = compute(_req(level_code="2")).result
         with_post_2021 = compute(
-            dataclasses.replace(
-                _req(level_code="2"),
-                art15_deductions=Art15Deductions(
-                    mortgage_interest=_D("3000"), mortgage_pre_2022=False
-                ),
+            _req(level_code="2").model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(
+                        mortgage_interest=_D("3000"), mortgage_pre_2022=False
+                    )
+                }
             )
         ).result
         # Art. 15 credit still applied to IRPEF
@@ -2686,11 +2683,12 @@ class TestArt15MortgagePre2022:
         """Pre-2022 mortgage qualifies for TI relevant_deductions."""
         baseline = compute(_req(level_code="2")).result
         with_pre_2022 = compute(
-            dataclasses.replace(
-                _req(level_code="2"),
-                art15_deductions=Art15Deductions(
-                    mortgage_interest=_D("3000"), mortgage_pre_2022=True
-                ),
+            _req(level_code="2").model_copy(
+                update={
+                    "art15_deductions": Art15Deductions(
+                        mortgage_interest=_D("3000"), mortgage_pre_2022=True
+                    )
+                }
             )
         ).result
         # Art. 15 credit still applied to IRPEF
@@ -2983,7 +2981,7 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
             lambda _: verified,
         )
-        result = compute(dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT))
+        result = compute(_req().model_copy(update={"fringe_benefit_input": _FB_INPUT}))
         assert result.result.confidence == "high"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
@@ -2996,7 +2994,7 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
             lambda _: unverified,
         )
-        result = compute(dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT))
+        result = compute(_req().model_copy(update={"fringe_benefit_input": _FB_INPUT}))
         assert result.result.confidence == "medium"
 
     def test_ccnl_without_ruleset_limits_confidence_to_medium(self) -> None:
@@ -3061,7 +3059,9 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules.load_sick_pay_rates",
             lambda: rates_no_ruleset,
         )
-        scenario = dataclasses.replace(_req(), sick_input=SickInput(sick_days=_D("3")))
+        scenario = _req().model_copy(
+            update={"sick_input": SickInput(sick_days=_D("3"))}
+        )
         calc = compute(scenario)
         assert "sick_pay" in calc.ruleset_version
 
@@ -3086,7 +3086,7 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
             lambda _: rules_no_ruleset,
         )
-        scenario = dataclasses.replace(_req(), fringe_benefit_input=_FB_INPUT)
+        scenario = _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
         calc = compute(scenario)
         assert "variable_pay" in calc.ruleset_version
 
@@ -3158,7 +3158,7 @@ class TestConfidenceFamilyArt15:
         is treated as an unverified consumed source.
         """
         _mock_ccnl[0] = _verified_ccnl()
-        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
         assert result.result.confidence == "medium"
 
     def test_family_with_verified_ruleset_allows_high(
@@ -3171,7 +3171,7 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
             lambda _: verified,
         )
-        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
         assert result.result.confidence == "high"
 
     def test_family_with_unverified_ruleset_downgrades_confidence(
@@ -3184,7 +3184,7 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
             lambda _: unverified,
         )
-        result = compute(dataclasses.replace(_req(), family=_FAMILY_INPUT))
+        result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
         assert result.result.confidence == "medium"
 
     def test_art15_without_ruleset_downgrades_confidence(self) -> None:
@@ -3194,7 +3194,7 @@ class TestConfidenceFamilyArt15:
         returns None, treated as an unverified consumed source.
         """
         _mock_ccnl[0] = _verified_ccnl()
-        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
         assert result.result.confidence == "medium"
 
     def test_art15_with_verified_ruleset_allows_high(
@@ -3207,7 +3207,7 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
             lambda _: verified,
         )
-        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
         assert result.result.confidence == "high"
 
     def test_art15_with_unverified_ruleset_downgrades_confidence(
@@ -3220,7 +3220,7 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
             lambda _: unverified,
         )
-        result = compute(dataclasses.replace(_req(), art15_deductions=_ART15_INPUT))
+        result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
         assert result.result.confidence == "medium"
 
     def test_no_optional_features_confidence_unaffected(self) -> None:
@@ -3284,14 +3284,15 @@ class TestBilateralFunds:
 
     def test_no_bilateral_funds_flag_absent_when_funds_present(self) -> None:
         """NO_BILATERAL_FUNDS is cleared when at least one fund is provided."""
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("5"),
-                    employer_monthly=_D("10"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("5"),
+                        employer_monthly=_D("10"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         sfs = result.fiscal_simplifications
@@ -3300,14 +3301,15 @@ class TestBilateralFunds:
     def test_flat_monthly_fund_reduces_net_annual(self) -> None:
         """Employee flat monthly contribution (x 12) is subtracted from net_annual."""
         baseline = compute(_req()).result
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("20"),
-                    employer_monthly=_D("0"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("20"),
+                        employer_monthly=_D("0"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         expected_net = money(baseline.net_annual - _D("20") * 12)
@@ -3316,14 +3318,15 @@ class TestBilateralFunds:
     def test_flat_monthly_fund_increases_employer_cost(self) -> None:
         """Employer flat monthly contribution (x 12) enters employer_cost_annual."""
         baseline = compute(_req()).result
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("0"),
-                    employer_monthly=_D("15"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("0"),
+                        employer_monthly=_D("15"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         expected_cost = money(baseline.employer_cost_annual + _D("15") * 12)
@@ -3333,11 +3336,14 @@ class TestBilateralFunds:
         """RateFund with base='tfr_base' is applied and reduces net_annual."""
         baseline = compute(_req()).result
         rate = _D("0.01")
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                RateFund(employee_rate=rate, employer_rate=_D("0"), base="tfr_base"),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    RateFund(
+                        employee_rate=rate, employer_rate=_D("0"), base="tfr_base"
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         # bilateral_employee_annual must be positive (tfr_base > 0)
@@ -3354,15 +3360,16 @@ class TestBilateralFunds:
         """RateFund with base='gross_annual' applies rate to gross_annual."""
         baseline = compute(_req()).result
         rate = _D("0.005")
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                RateFund(
-                    employee_rate=rate,
-                    employer_rate=rate,
-                    base="gross_annual",
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    RateFund(
+                        employee_rate=rate,
+                        employer_rate=rate,
+                        base="gross_annual",
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         expected_employee = money(baseline.gross_annual * rate)
@@ -3377,28 +3384,30 @@ class TestBilateralFunds:
     def test_gross_annual_not_mutated_by_bilateral_funds(self) -> None:
         """gross_annual is unchanged when bilateral_funds are provided."""
         baseline = compute(_req()).result
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("50"),
-                    employer_monthly=_D("50"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("50"),
+                        employer_monthly=_D("50"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         assert result.gross_annual == baseline.gross_annual
 
     def test_bilateral_funds_scope_item_verified_when_present(self) -> None:
         """bilateral_funds scope item is 'verified' when funds are provided."""
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("10"),
-                    employer_monthly=_D("10"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("10"),
+                        employer_monthly=_D("10"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         scope_map = {item.feature: item.status for item in result.calculation_scope}
@@ -3413,18 +3422,19 @@ class TestBilateralFunds:
     def test_multiple_funds_accumulate(self) -> None:
         """Multiple funds in the tuple accumulate correctly."""
         baseline = compute(_req()).result
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("10"),
-                    employer_monthly=_D("20"),
-                ),
-                FlatMonthlyFund(
-                    employee_monthly=_D("5"),
-                    employer_monthly=_D("8"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("10"),
+                        employer_monthly=_D("20"),
+                    ),
+                    FlatMonthlyFund(
+                        employee_monthly=_D("5"),
+                        employer_monthly=_D("8"),
+                    ),
+                )
+            }
         )
         result = compute(scenario).result
         expected_emp = money((_D("10") + _D("5")) * 12)
@@ -3452,12 +3462,12 @@ class TestIvsCeilingWarning:
         ivs_ceiling_applies: bool = False,
     ) -> PayrollScenario:
         base = _req(ivs_ceiling_applies=ivs_ceiling_applies)
-        return dataclasses.replace(
-            base,
-            employee=dataclasses.replace(
-                base.employee,
-                seniority=SeniorityByDate(hire_date),
-            ),
+        return base.model_copy(
+            update={
+                "employee": base.employee.model_copy(
+                    update={"seniority": SeniorityByDate(value=hire_date)}
+                )
+            }
         )
 
     def test_post_1996_hire_no_ceiling_emits_warning(self) -> None:
@@ -3536,9 +3546,8 @@ class TestIvsCeilingWarning:
     def test_seniority_none_base_above_known_ceiling_warns(self) -> None:
         """seniority=None warns when base exceeds a known IVS ceiling."""
         base = _req()
-        scenario = dataclasses.replace(
-            base,
-            employee=dataclasses.replace(base.employee, seniority=None),
+        scenario = base.model_copy(
+            update={"employee": base.employee.model_copy(update={"seniority": None})}
         )
         result = _ivs_ceiling_warning(scenario, _DATE, _D("130000"), _D("120000"))
         assert result is not None
@@ -3548,9 +3557,8 @@ class TestIvsCeilingWarning:
     def test_seniority_none_no_ceiling_no_warning(self) -> None:
         """seniority=None does not warn when the IVS ceiling is unknown."""
         base = _req()
-        scenario = dataclasses.replace(
-            base,
-            employee=dataclasses.replace(base.employee, seniority=None),
+        scenario = base.model_copy(
+            update={"employee": base.employee.model_copy(update={"seniority": None})}
         )
         result = _ivs_ceiling_warning(scenario, _DATE, _D("200000"), None)
         assert result is None
@@ -3558,9 +3566,8 @@ class TestIvsCeilingWarning:
     def test_seniority_none_base_at_ceiling_no_warning(self) -> None:
         """seniority=None does not warn when base does not exceed the ceiling."""
         base = _req()
-        scenario = dataclasses.replace(
-            base,
-            employee=dataclasses.replace(base.employee, seniority=None),
+        scenario = base.model_copy(
+            update={"employee": base.employee.model_copy(update={"seniority": None})}
         )
         result = _ivs_ceiling_warning(scenario, _DATE, _D("100000"), _D("120000"))
         assert result is None
@@ -3581,14 +3588,15 @@ class TestNoAssegnoUnico:
 
     def test_always_present_with_bilateral_funds(self) -> None:
         """NO_ASSEGNO_UNICO is present even when bilateral funds are supplied."""
-        scenario = dataclasses.replace(
-            _req(),
-            bilateral_funds=(
-                FlatMonthlyFund(
-                    employee_monthly=_D("10"),
-                    employer_monthly=_D("20"),
-                ),
-            ),
+        scenario = _req().model_copy(
+            update={
+                "bilateral_funds": (
+                    FlatMonthlyFund(
+                        employee_monthly=_D("10"),
+                        employer_monthly=_D("20"),
+                    ),
+                )
+            }
         )
         r = compute(scenario).result
         assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications

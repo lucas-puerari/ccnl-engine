@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from decimal import Decimal
+
+from pydantic import BaseModel, ConfigDict, model_validator
+
+from ccnl_engine.engine.primitives.domain.primitives import StrictDecimal
 
 _ZERO = Decimal(0)
 
 
-@dataclass(frozen=True)
-class Art15Deductions:
+class Art15Deductions(BaseModel):
     """Oneri detraibili declared by the worker (Art. 15 TUIR).
 
     The employer (*sostituto d'imposta*) applies these deductions against
@@ -40,18 +42,17 @@ class Art15Deductions:
             Defaults to False (post-2021 / origin unknown).
     """
 
-    mortgage_interest: Decimal = _ZERO
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    mortgage_interest: StrictDecimal = _ZERO
     mortgage_pre_2022: bool = False
 
-    def __post_init__(self) -> None:
-        """Validate that mortgage_interest is non-negative.
-
-        Raises:
-            ValueError: If mortgage_interest is negative.
-        """
+    @model_validator(mode="after")
+    def _check_non_negative(self) -> Art15Deductions:
         if self.mortgage_interest < _ZERO:
             msg = f"mortgage_interest must be >= 0, got {self.mortgage_interest}"
             raise ValueError(msg)
+        return self
 
     @property
     def has_any_onere(self) -> bool:

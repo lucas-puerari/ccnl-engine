@@ -20,7 +20,7 @@ p = compute(
             ccnl="ortofrutticoli-agrumari.json",
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=date(2026, 6, 1),
+            as_of=date(2026, 6, 1),
         ),
     )
 )

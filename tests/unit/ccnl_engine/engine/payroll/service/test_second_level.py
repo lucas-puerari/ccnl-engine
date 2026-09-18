@@ -3,7 +3,7 @@
 Covers:
 * guard: second_level_allowances incompatible with a RAL override
 * basic amount lands in gross_monthly, gross_annual, contribution base, TFR base
-* part_time_pct scaling
+* part_time_ratio scaling
 * months_per_year override (annualised with 1 month instead of additional_months)
 * contribution_relevant=False excludes from INPS base
 * tfr_relevant=False excludes from TFR base
@@ -144,12 +144,12 @@ class TestSecondLevelBasic:
 
 
 class TestSecondLevelPartTime:
-    """second_level_monthly is scaled by part_time_pct."""
+    """second_level_monthly is scaled by part_time_ratio."""
 
     def test_part_time_scales_supplement(self) -> None:
         """At 50% PT the supplement is halved."""
         result = compute(
-            _req(part_time_pct=_D("0.5"), second_level_allowances=(_SL_100,))
+            _req(part_time_ratio=_D("0.5"), second_level_allowances=(_SL_100,))
         )
         assert result.second_level_monthly == _D("50.00")
 
@@ -241,7 +241,7 @@ class TestSecondLevelApprenticeshipPct:
         assert result.second_level_monthly == _D("80.00")
 
     def test_pct_relevant_false_skips_apprenticeship_factor(self) -> None:
-        """When apprenticeship_pct_relevant=False only part_time_pct applies."""
+        """When apprenticeship_pct_relevant=False only part_time_ratio applies."""
         full_value = SupplementaryAllowance(
             code="EDR",
             description="EDR not reduced by apprenticeship %",

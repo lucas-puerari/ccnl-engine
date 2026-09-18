@@ -32,13 +32,13 @@ def _scenario(
     return PayrollScenario(
         employee=Employee(
             level_code=level_code,
-            seniority=SeniorityByCount(0),
+            seniority=SeniorityByCount(value=0),
         ),
         employment=Employment(
             ccnl=ccnl_file,
             contract=Permanent(),
             employer=Employer(num_employees=50),
-            calculation_date=as_of,
+            as_of=as_of,
         ),
     )
 

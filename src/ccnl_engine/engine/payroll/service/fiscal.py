@@ -611,7 +611,7 @@ def compute_fiscal(
         ccnl,
         gross.worker_category,
         gross.contribution_base,
-        scenario.employment.calculation_date,
+        scenario.employment.as_of,
     )
     tfr_annual = _contrib.tfr(gross.tfr_base, rules)
     bilateral_employee_annual, bilateral_employer_annual = _compute_bilateral_funds(

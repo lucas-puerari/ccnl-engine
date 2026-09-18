@@ -187,12 +187,12 @@ class TestPartTimeScaling:
         scenario_half = _req(
             level_code="4",
             seniority_count=seniority_count,
-            part_time_pct=Decimal("0.50"),
+            part_time_ratio=Decimal("0.50"),
         )
         scenario_full = _req(
             level_code="4",
             seniority_count=seniority_count,
-            part_time_pct=Decimal(1),
+            part_time_ratio=Decimal(1),
         )
 
         with (

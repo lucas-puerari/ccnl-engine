@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-
-_ZERO = 0
+from pydantic import BaseModel, ConfigDict, Field
 
 
-@dataclass(frozen=True)
-class FamilyComposition:
+class FamilyComposition(BaseModel):
     """Composition of the worker's fiscally dependent family unit.
 
     Used to compute Art. 12 TUIR deductions applied by the employer as
@@ -39,25 +36,12 @@ class FamilyComposition:
         trigger a deduction computation.
     """
 
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     spouse_dependent: bool = False
-    children_21_or_older: int = 0
-    children_21_or_older_disabled: int = 0
-    ascendenti_conviventi: int = 0
-
-    def __post_init__(self) -> None:
-        """Validate that all counts are non-negative.
-
-        Raises:
-            ValueError: If any count field is negative.
-        """
-        for name in (
-            "children_21_or_older",
-            "children_21_or_older_disabled",
-            "ascendenti_conviventi",
-        ):
-            if getattr(self, name) < _ZERO:
-                msg = f"{name} must be >= 0, got {getattr(self, name)}"
-                raise ValueError(msg)
+    children_21_or_older: int = Field(default=0, ge=0)
+    children_21_or_older_disabled: int = Field(default=0, ge=0)
+    ascendenti_conviventi: int = Field(default=0, ge=0)
 
     @property
     def total_eligible_children(self) -> int:

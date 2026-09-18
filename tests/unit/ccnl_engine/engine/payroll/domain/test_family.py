@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pytest
+from pydantic import ValidationError
 
 from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 
@@ -32,19 +33,17 @@ class TestFamilyCompositionValidation:
 
     def test_children_negative_raises(self) -> None:
         """Negative children_21_or_older raises ValueError."""
-        with pytest.raises(ValueError, match="children_21_or_older must be >= 0"):
+        with pytest.raises(ValueError, match="children_21_or_older"):
             FamilyComposition(children_21_or_older=-1)
 
     def test_disabled_negative_raises(self) -> None:
         """Negative children_21_or_older_disabled raises ValueError."""
-        with pytest.raises(
-            ValueError, match="children_21_or_older_disabled must be >= 0"
-        ):
+        with pytest.raises(ValueError, match="children_21_or_older_disabled"):
             FamilyComposition(children_21_or_older_disabled=-1)
 
     def test_ascendenti_negative_raises(self) -> None:
         """Negative ascendenti_conviventi raises ValueError."""
-        with pytest.raises(ValueError, match="ascendenti_conviventi must be >= 0"):
+        with pytest.raises(ValueError, match="ascendenti_conviventi"):
             FamilyComposition(ascendenti_conviventi=-1)
 
     def test_all_positive_accepted(self) -> None:
@@ -98,5 +97,5 @@ class TestFamilyCompositionProperties:
     def test_frozen_cannot_mutate(self) -> None:
         """FamilyComposition is frozen and cannot be mutated after creation."""
         fc = FamilyComposition(children_21_or_older=1)
-        with pytest.raises((AttributeError, TypeError)):
+        with pytest.raises((AttributeError, TypeError, ValidationError)):
             fc.children_21_or_older = 2  # type: ignore[misc]
