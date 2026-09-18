@@ -7,9 +7,9 @@ See [Domain: Components](../domain/components.md) for the legal background.
 
 ## Part-time
 
-Pass `part_time_pct` (a `Decimal` between 0 and 1 exclusive) to
-`WorkArrangement`. Base salary, seniority, and contractual allowances all scale
-proportionally. Individually frozen *ad personam* amounts do not scale.
+Pass `part_time_ratio` (a `Decimal` between 0 and 1 exclusive) to `Employee`.
+Base salary, seniority, and contractual allowances all scale proportionally.
+Individually frozen *ad personam* amounts do not scale.
 
 ```python
 --8<-- "docs/examples/04_part_time.py"
@@ -48,7 +48,7 @@ This is mutually exclusive with `Employer.second_level_allowances`.
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
 training funds, supplementary pension). Pass a tuple of fund inputs on
-`PayrollScenario.bilateral_funds`:
+`AnnualPayrollScenario.bilateral_funds`:
 
 ```python
 from decimal import Decimal
@@ -67,7 +67,7 @@ fon_te = RateFund(
     base="tfr_base",          # or "gross_annual"
 )
 
-scenario = PayrollScenario(
+scenario = AnnualPayrollScenario(
     ...
     bilateral_funds=(est, fon_te),
 )

@@ -5,31 +5,41 @@ applicable rules — and returns a fully itemised `PayrollResult`. It is a pure
 function: given the same inputs and the same knowledge base version, it always
 produces the same output.
 
-## Entry point: `compute()`
+## Entry points: `estimate_annual()` and `compute_month()`
+
+For annual gross-to-net figures, pass an `AnnualPayrollScenario` to
+`estimate_annual()`:
 
 ```python
 from datetime import date
 from ccnl_engine import (
-    Employee, Employer, Employment,
-    OvertimeHours, PayrollScenario, Permanent, compute,
+    AnnualPayrollScenario, Employee, Employer, Employment,
+    Permanent, estimate_annual,
 )
 
-calculation = compute(PayrollScenario(
+calculation = estimate_annual(AnnualPayrollScenario(
     employee=Employee(level_code="C3"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
         contract=Permanent(),
         employer=Employer(num_employees=50),
-        calculation_date=date(2026, 1, 1),
+        as_of=date(2026, 1, 1),
     ),
-    # L3: optional work-rules inputs (informational — not in net_annual)
-    time_supplements=OvertimeHours(weekday_hours=8),
 ))
-
 result = calculation.result
 ```
 
-`compute()` returns a `Calculation`, not a `PayrollResult` directly. The
+To add period-specific events (overtime, absences, benefits), use
+`compute_month()` with a `PayPeriod`:
+
+```python
+from ccnl_engine import OvertimeHours, PayPeriod, compute_month
+
+period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=8))
+calculation = compute_month(scenario, period)
+```
+
+Both entry points return a `Calculation`, not a `PayrollResult` directly. The
 `Calculation` wraps the result with the engine version, ruleset identities,
 and a serialisable input snapshot — everything needed to reproduce or audit
 the figure later. See [Trust: Versioning](../trust/index.md#versioning).
@@ -73,9 +83,10 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 
 | Type | What it describes |
 |---|---|
-| `PayrollScenario` | Top-level container: employee + employment + optional L3 inputs |
+| `AnnualPayrollScenario` | Structural scenario: employee + employment (no period events) |
+| `PayPeriod` | Period-specific events: overtime, absences, benefits (passed to `compute_month`) |
 | `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
-| `Employment` | CCNL file, contract type, employer, calculation date |
+| `Employment` | CCNL file, contract type, employer, reference date (`as_of`) |
 | `Employer` | Headcount tier, second-level allowances |
 | `OvertimeHours` | Weekday/night/holiday overtime hours (L3, informational); attach `WeeklyOvertimeHours` entries for CCNLs with per-week band thresholds |
 | `WeeklyOvertimeHours` | Per-calendar-week hours used to partition tiered overtime bands accurately |

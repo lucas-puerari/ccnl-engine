@@ -15,7 +15,7 @@ a feature, the output is `0` and `calculation_scope` records
 ## Inputs
 
 All seven input types are frozen dataclasses. Pass any combination as keyword
-arguments on `PayrollScenario`:
+fields on `PayPeriod`, then pass the `PayPeriod` to `compute_month()`:
 
 ```python
 from ccnl_engine import (
@@ -107,7 +107,7 @@ engine starts carenza from day 1.
 
 ```python
 # First period of an episode: 5 days, carenza of 3 → INPS covers days 4-5
-result1 = compute(..., sick_input=SickInput(sick_days=Decimal(5)))
+result1 = compute_month(scenario, PayPeriod(sick_input=SickInput(sick_days=Decimal(5))))
 ```
 
 *Continuation of the same episode:* pass the number of episode days already
@@ -115,10 +115,10 @@ computed in the previous period.
 
 ```python
 # Second period: episode continues, 3 more days, carenza already elapsed
-result2 = compute(..., sick_input=SickInput(
+result2 = compute_month(scenario, PayPeriod(sick_input=SickInput(
     sick_days=Decimal(3),
     cumulative_sick_days=Decimal(5),  # days from result1 period
-))
+)))
 ```
 
 *Separate new episode* (e.g. a distinct illness later in the year): pass
@@ -161,19 +161,21 @@ taxable.
 from datetime import date
 from decimal import Decimal
 from ccnl_engine import (
-    AbsenceDays, BonusInput, Employee, Employer, Employment,
-    FringeBenefitInput, LeaveInput, OvertimeHours,
-    PayrollScenario, Permanent, SickInput, WelfareInput, compute,
+    AbsenceDays, AnnualPayrollScenario, BonusInput, Employee, Employer,
+    Employment, FringeBenefitInput, LeaveInput, OvertimeHours, PayPeriod,
+    Permanent, SickInput, WelfareInput, compute_month,
 )
 
-calculation = compute(PayrollScenario(
+scenario = AnnualPayrollScenario(
     employee=Employee(level_code="C3"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
         contract=Permanent(),
         employer=Employer(num_employees=50),
-        calculation_date=date(2026, 9, 1),
+        as_of=date(2026, 9, 1),
     ),
+)
+period = PayPeriod(
     time_supplements=OvertimeHours(
         weekday_hours=Decimal(8),
         night_hours=Decimal(4),
@@ -184,7 +186,8 @@ calculation = compute(PayrollScenario(
     fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(800)),
     welfare_input=WelfareInput(annual_amount=Decimal(500)),
     bonus_input=BonusInput(annual_amount=Decimal(1000), eligible_for_pdr=True),
-))
+)
+calculation = compute_month(scenario, period)
 
 r = calculation.result
 print(r.overtime_supplement_monthly)        # weekday overtime gross

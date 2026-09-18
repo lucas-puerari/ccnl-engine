@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `compute()`, `Calculation`, `InputSnapshot`, `PayrollScenario`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
+| [Engine](engine.md) | `estimate_annual()`, `compute_month()`, `Calculation`, `AnnualPayrollScenario`, `PayPeriod`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -19,10 +19,16 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 ```python
 from ccnl_engine import (
-    # Core function
+    # Entry points
+    estimate_annual,
+    compute_month,
+    # Scenarios
+    AnnualPayrollScenario,  # structural: employee + employment
+    PayPeriod,              # period events: overtime, absences, benefits
+    # Legacy entry point (still supported)
     compute,
-    # Scenario and inputs
     PayrollScenario,
+    # Shared input models
     Employee,
     Employment,
     Employer,
@@ -42,7 +48,7 @@ from ccnl_engine import (
     # Dependants and deductions
     FamilyComposition,
     Art15Deductions,
-    # Supplements
+    # Period events (used in PayPeriod)
     OvertimeHours,
     WeeklyOvertimeHours,
     AbsenceDays,
@@ -55,12 +61,25 @@ from ccnl_engine import (
     PayrollResult,
     FiscalSimplification,
     ScopeItem,
+    # Grouped output views
+    PayrollPeriod,
+    PayrollPay,
+    PayrollTax,
+    PayrollEmployer,
+    PayrollQuality,
     # Calculation envelope
     Calculation,
     CalculationTrace,
     InputSnapshot,
     TraceCategory,
     TraceStep,
+    # Serialisation
+    scenario_schema,
+    result_schema,
+    # CCNL discovery
+    list_ccnls,
+    get_ccnl,
+    search_ccnls,
     # Rendering
     AnnualBreakdown,
     render_breakdown,

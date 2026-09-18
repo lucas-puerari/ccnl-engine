@@ -121,7 +121,7 @@ The `tax_sector` must match the CCNL's `meta.tax_sector`. Valid values:
 ## Surtax rules
 
 Regional and municipal surtax rates are loaded separately and passed
-optionally to `compute()`. When omitted, the regional and municipal
+optionally to `estimate_annual()` or `compute_month()`. When omitted, the regional and municipal
 components are zero and appear in `calculation_scope` as `"excluded"`.
 
 ```python

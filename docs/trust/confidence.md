@@ -13,19 +13,22 @@ do not set it.
 | `"high"` | Complete computation, no warnings, every salary-table source and every consumed ruleset is `"verified"` |
 
 ```python
-from ccnl_engine import compute, PayrollScenario, Employee, Employment, Employer, Permanent
+from ccnl_engine import (
+    AnnualPayrollScenario, Employee, Employment, Employer,
+    Permanent, estimate_annual,
+)
 from datetime import date
 
-scenario = PayrollScenario(
+scenario = AnnualPayrollScenario(
     employee=Employee(level_code="C2"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
         contract=Permanent(),
         employer=Employer(num_employees=50),
-        calculation_date=date(2026, 1, 1),
+        as_of=date(2026, 1, 1),
     ),
 )
-result = compute(scenario).result
+result = estimate_annual(scenario).result
 print(result.confidence)   # "low" | "medium" | "high"
 ```
 
@@ -80,7 +83,7 @@ as a contract whose JSON schema is missing a required block.
 ## Using confidence in practice
 
 ```python
-result = compute(scenario).result
+result = estimate_annual(scenario).result
 
 if result.confidence == "low":
     # Something is wrong — read warnings before using the number
