@@ -78,6 +78,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "estimate_annual",
     "get_ccnl",
     "list_ccnls",
+    "load_payroll_bundle",
+    "PayrollBundle",
     "render_breakdown",
     "result_schema",
     "scenario_schema",

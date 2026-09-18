@@ -63,6 +63,7 @@ from ccnl_engine.engine.errors import (
 )
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund, RateFund
+from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
@@ -146,6 +147,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.domain.supplements import (
     WelfareInput as Welfare,
 )
+from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
     compute_month,
@@ -195,6 +197,7 @@ __all__ = [
     "OutOfScopeError",
     "OvertimeHours",
     "PayPeriod",
+    "PayrollBundle",
     "PayrollEmployer",
     "PayrollFigures",
     "PayrollPay",
@@ -230,6 +233,7 @@ __all__ = [
     "estimate_annual",
     "get_ccnl",
     "list_ccnls",
+    "load_payroll_bundle",
     "render_breakdown",
     "result_schema",
     "scenario_schema",
