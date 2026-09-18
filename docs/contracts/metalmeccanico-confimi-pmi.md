@@ -66,9 +66,6 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    MODELLED TRANCHES: only 2026-06-01, 2027-06-01 and 2028-06-01 are modelled (from the October 2025 biennium renewal and subsequent tranche schedule). Earlier tranches under the renewal (e.g. October or November 2025) were not available per-level in the sources consulted and are therefore not included.
-
-!!! warning ""
     APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text.
 
 !!! warning ""
@@ -92,6 +89,8 @@ These are deliberate modelling approximations. Read them before using this contr
     
     CATEGORY ELIMINATION: Art. of the CCNL eliminated Category 1 from 2022-01-01; workers formerly in cat.1 automatically moved to cat.2. This JSON models levels 2-9 (plus 8Q/9Q) as in force from 2026-06-01.
     
+    SALARY TRANCHES: the October 2025 renewal schedules the first increase at 2026-06-01 (no tranche at signature). Three tranches modelled: 2026-06-01, 2027-06-01, 2028-06-01.
+    
     HOURLY DIVISOR: 173 hours/month (40 h/week x 52/12). Confirmed by kitech.it and the official CCNL text for calculation of hourly pay.
     
     MONTHLY PAYMENTS: 13 (tredicesima only). Source: ilccnl.it and official CNEL PDF.
@@ -107,3 +106,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/metalmeccanico-confimi-pmi.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/metalmeccanico-confimi-pmi.py"
+```
