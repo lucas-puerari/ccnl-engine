@@ -15,7 +15,10 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 )
 from ccnl_engine.engine.contract.domain.validity import SalaryGapError, TimeSeries
 from ccnl_engine.engine.metadata import RulesetIdentity
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import (
+    RulesetReadiness,
+    VerificationStatus,
+)
 from ccnl_engine.engine.primitives import FrozenDict
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
@@ -765,6 +768,12 @@ class CCNLVerification(BaseModel):
     Attributes:
         confidence: Editorial confidence in the data values — ``verified``,
             ``unverified``, or ``needs_review``.
+        readiness: Production readiness of the ruleset as a whole —
+            ``exploratory``, ``reviewed``, or ``production``. Separate from
+            ``confidence``: a ruleset can be ``confidence=verified`` for its
+            key values but still ``readiness=exploratory`` if it lacks an
+            owner, reference cases, or an update-policy entry. Defaults to
+            ``exploratory`` for all unclassified rulesets.
         verified_cases: Number of end-to-end payroll scenarios manually
             cross-checked against a reference payslip or official source.
         last_reviewed: ISO date of the most recent human review.
@@ -774,6 +783,7 @@ class CCNLVerification(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     confidence: VerificationStatus = VerificationStatus.UNVERIFIED
+    readiness: RulesetReadiness = RulesetReadiness.EXPLORATORY
     verified_cases: int = 0
     last_reviewed: date | None = None
     human_reviewed_by: str | None = None

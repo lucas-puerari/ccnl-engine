@@ -20,7 +20,10 @@ from datetime import UTC, date, datetime
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, NoteKind
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.metadata.domain.rules import (
+    RulesetReadiness,
+    VerificationStatus,
+)
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionMethod
 
 # Data classes
@@ -40,6 +43,7 @@ class CCNLCoverageRow:
     coverage_pct: int
     """0-100 score: L1 x 50% + L2 x 35% + work_rules x 15% - penalty."""
     verification_label: str
+    readiness: RulesetReadiness
     gross: str
     net: str
     work_rules: str
@@ -109,6 +113,12 @@ _VERIFICATION_EMOJI = {
     "Needs review": "🔍",
 }
 
+_READINESS_SYMBOL = {
+    RulesetReadiness.EXPLORATORY: "🧪",
+    RulesetReadiness.REVIEWED: "👁",
+    RulesetReadiness.PRODUCTION: "🏭",
+}
+
 
 def _verification_label(ccnl: CCNL) -> str:
     vs = ccnl.verification.confidence
@@ -132,6 +142,7 @@ def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
         agreement_year=year,
         coverage_pct=_coverage_pct(ccnl),
         verification_label=_verification_label(ccnl),
+        readiness=ccnl.verification.readiness,
         gross=ccnl.coverage.gross,
         net=ccnl.coverage.net,
         work_rules=ccnl.coverage.work_rules,
@@ -161,9 +172,9 @@ def build_coverage_report() -> CoverageReport:
 _CONTRACTS_PREAMBLE_TEMPLATE = """\
 # CCNL Coverage
 
-{count} contract configurations covering an estimated **16 million employees**[^4]
+{count} contract configurations covering an estimated **16 million employees**[^1]
 across private and public sectors -- including ARAN public-sector agreements (funzioni
-centrali, locali, sanità, istruzione) and one Presidential Decree (DPR 53/2025[^3]).
+centrali, locali, sanità, istruzione) and one Presidential Decree (DPR 53/2025[^2]).
 Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024).
 
 → [Domain: What is a CCNL](../domain/index.md)
@@ -178,6 +189,9 @@ Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024)
 | 🔲 | Not yet implemented |
 | 🤖 | Machine extracted |
 | 🧑 | Human reviewed |
+| 🧪 | Exploratory — demo, research, prototyping only |
+| 👁 | Reviewed — key values human-verified; use with disclaimer |
+| 🏭 | Production — full review, reference case, named owner |
 
 **L1 — Gross:** base salary, seniority, fixed allowances,
 additional months, hourly rate.
@@ -196,16 +210,16 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 """
 
 _CONTRACTS_FOOTER = """
-[^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, \
-CCNL renewal communications.
-[^2]: Salary tables extracted from official CCNL documents using AI-assisted \
-tooling, no manual human review. Verify against the official source before use \
-in production.
-[^3]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is \
+[^1]: Estimated represented population. Individual contracts may cover overlapping \
+worker populations; figures should not be summed to derive total coverage.
+[^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is \
 set by Presidential Decree, not a CNEL-registered agreement. \
 D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
-[^4]: Estimated represented population. Individual contracts may cover overlapping \
-worker populations; figures should not be summed to derive total coverage.
+[^3]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, \
+CCNL renewal communications.
+[^4]: Salary tables extracted from official CCNL documents using AI-assisted \
+tooling, no manual human review. Verify against the official source before use \
+in production.
 """
 
 
@@ -225,23 +239,24 @@ def render_contracts_index(report: CoverageReport) -> str:
         auto_header,
         preamble,
         (
-            "| # | CNEL | CCNL | Sector | Workers (~)[^1]"
-            " | Renewal | Coverage | L1 | L2 | L3 | Ext[^2] |"
+            "| # | CNEL | CCNL | Sector | Workers (~)[^3]"
+            " | Renewal | Coverage | L1 | L2 | L3 | Readiness | Ext[^4] |"
         ),
-        "|---|---|---|---|---:|:---:|---:|:---:|:---:|:---:|:---:|",
+        "|---|---|---|---|---:|:---:|---:|:---:|:---:|:---:|:---:|:---:|",
     ]
     for i, row in enumerate(report.ccnl_rows, 1):
         l1 = _LAYER_SYMBOL[row.gross]
         l2 = _LAYER_SYMBOL[row.net]
         l3 = _LAYER_SYMBOL[row.work_rules]
         ext = _VERIFICATION_EMOJI[row.verification_label]
+        readiness = _READINESS_SYMBOL[row.readiness]
         workers = row.workers_estimate or "—"
         renewal = row.agreement_year or "—"
         link = f"[{row.name}]({row.ccnl_id}.md)"
         lines.append(
             f"| {i} | {row.cnel_code} | {link} | {row.sector}"
             f" | {workers} | {renewal} | {row.coverage_pct}%"
-            f" | {l1} | {l2} | {l3} | {ext} |"
+            f" | {l1} | {l2} | {l3} | {readiness} | {ext} |"
         )
     lines.append(_CONTRACTS_FOOTER)
     return "\n".join(lines)
