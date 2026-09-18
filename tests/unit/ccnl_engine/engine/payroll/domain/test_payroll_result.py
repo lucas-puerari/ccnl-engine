@@ -9,13 +9,13 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
     FiscalSimplification,
-    PayrollScenario,
     Permanent,
-    compute,
+    estimate_annual,
 )
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
@@ -67,8 +67,8 @@ def payroll() -> PayrollResult:
     Returns:
         A PayrollResult for CCNL Commercio level 4, 2026, permanent full-time.
     """
-    return compute(
-        PayrollScenario(
+    return estimate_annual(
+        AnnualPayrollScenario(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="commercio-confcommercio.json",
@@ -87,8 +87,8 @@ def payroll_domestic() -> PayrollResult:
     Returns:
         A PayrollResult for CCNL Lavoro Domestico level C, 2026, full-time 40h.
     """
-    return compute(
-        PayrollScenario(
+    return estimate_annual(
+        AnnualPayrollScenario(
             employee=Employee(level_code="C", weekly_hours=Decimal(40)),
             employment=Employment(
                 ccnl="lavoro-domestico-non-convivente.json",

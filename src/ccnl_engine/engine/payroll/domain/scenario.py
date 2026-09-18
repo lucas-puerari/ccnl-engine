@@ -375,3 +375,70 @@ class PayrollScenario(BaseModel):
     family: FamilyComposition | None = None
     art15_deductions: Art15Deductions | None = None
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
+
+
+class PayPeriod(BaseModel):
+    """Period-specific payroll events for a single pay period.
+
+    Passed to :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.compute_month` alongside an :class:`AnnualPayrollScenario` to supply
+    the month's variable events (overtime, absences, sick leave, benefits).
+
+    All fields are optional — a ``PayPeriod()`` with no arguments represents
+    a standard month with no special events.
+
+    Attributes:
+        time_supplements: Overtime, night, and holiday hours for the period.
+            ``None`` means no supplement computation.
+        absence_days: Unpaid absence days in the period. ``None`` means none.
+        leave_input: Ferie/permessi days taken in the period. ``None`` means
+            no leave tracking.
+        sick_input: Sick-leave days in the period. ``None`` means no sickness.
+        fringe_benefit_input: Annual fringe-benefit amount (Art. 51 c. 3
+            TUIR). Reported per-period but compared against the annual
+            threshold. ``None`` means no fringe computation.
+        welfare_input: Annual welfare amount (Art. 51 c. 2 TUIR). ``None``
+            means no welfare.
+        bonus_input: Annual bonus / PdR data. ``None`` means no bonus.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    time_supplements: OvertimeHours | None = None
+    absence_days: AbsenceDays | None = None
+    leave_input: LeaveInput | None = None
+    sick_input: SickInput | None = None
+    fringe_benefit_input: FringeBenefitInput | None = None
+    welfare_input: WelfareInput | None = None
+    bonus_input: BonusInput | None = None
+
+
+class AnnualPayrollScenario(BaseModel):
+    """Structural payroll scenario without period-specific events.
+
+    Use :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.estimate_annual` to compute annual gross-to-net figures, or
+    :func:`~ccnl_engine.engine.payroll.service.orchestrator.compute_month`
+    together with a :class:`PayPeriod` to compute a specific month with its
+    variable events.
+
+    Compared to the legacy :class:`PayrollScenario`, this class holds only
+    the structural fields that describe *who the worker is* and *what the
+    employment relationship is*.  Period-specific events (overtime, absences,
+    sick leave, fringe benefits, bonuses) live in :class:`PayPeriod`.
+
+    Attributes:
+        employee: Worker-side inputs.
+        employment: Employment relationship inputs.
+        family: Optional family composition for Art. 12 TUIR deductions.
+        art15_deductions: Optional Art. 15 TUIR oneri detraibili.
+        bilateral_funds: Bilateral fund contributions (fondi bilaterali).
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    employee: Employee
+    employment: Employment
+    family: FamilyComposition | None = None
+    art15_deductions: Art15Deductions | None = None
+    bilateral_funds: tuple[BilateralFundInput, ...] = ()

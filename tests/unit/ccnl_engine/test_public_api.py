@@ -10,6 +10,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "AbsenceDays",
     "Agreement",
     "AnnualBreakdown",
+    "AnnualPayrollScenario",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
@@ -27,7 +28,9 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "InputSnapshot",
     "Jurisdiction",
     "LeaveInput",
+    "MonthlyPayrollReport",
     "OvertimeHours",
+    "PayPeriod",
     "PayrollResult",
     "PayrollScenario",
     "Permanent",
@@ -42,8 +45,9 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "TraceStep",
     "WelfareInput",
     "WeeklyOvertimeHours",
-    "compute",
+    "compute_month",
     "engine_version",
+    "estimate_annual",
     "render_breakdown",
 })
 

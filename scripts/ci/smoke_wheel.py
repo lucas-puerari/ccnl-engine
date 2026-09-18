@@ -13,14 +13,14 @@ from decimal import Decimal
 
 from ccnl_engine import (
     Agreement,
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
     Permanent,
     RalOverride,
     SeniorityByDate,
-    compute,
+    estimate_annual,
 )
 
 
@@ -31,7 +31,7 @@ def main() -> int:
         0 when the end-to-end scenario produces a positive net_annual;
         1 on any exception or unexpected result.
     """
-    scenario = PayrollScenario(
+    scenario = AnnualPayrollScenario(
         employee=Employee(
             level_code="II",
             seniority=SeniorityByDate(value=date(2020, 1, 1)),
@@ -46,9 +46,9 @@ def main() -> int:
         ),
     )
     try:
-        result = compute(scenario)
+        result = estimate_annual(scenario)
     except Exception as exc:  # noqa: BLE001
-        print(f"FAIL: compute() raised {type(exc).__name__}: {exc}")
+        print(f"FAIL: estimate_annual() raised {type(exc).__name__}: {exc}")
         return 1
 
     net = result.result.net_annual
