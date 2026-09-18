@@ -9840,3 +9840,71 @@ class TestLoadTabaccoApti:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadEdiliziaPmiConfapiAniem:
+    """Unit tests for edilizia-pmi-confapi-aniem.json (CNEL F018)."""
+
+    def test_edilizia_pmi_confapi_aniem_loads(self) -> None:
+        """Contract loads with correct id and CNEL code F018."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        assert ccnl.meta.ccnl_id == "edilizia-pmi-confapi-aniem"
+        assert ccnl.meta.cnel_code == "F018"
+
+    def test_edilizia_pmi_confapi_aniem_has_7_levels(self) -> None:
+        """Seven levels: 1, 2, 3, 4, 5, 6, 7."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        assert len(ccnl.levels) == 7
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7"}
+
+    def test_edilizia_pmi_confapi_aniem_level4_salary_2025(self) -> None:
+        """Level 4 base salary at 01/04/2025 tranche: 1523.17 EUR."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2025, 4, 1)) == Decimal("1523.17")
+
+    def test_edilizia_pmi_confapi_aniem_level4_salary_2027(self) -> None:
+        """Level 4 base salary at 01/03/2027 tranche: 1628.17 EUR."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        lv = ccnl.level_by_code("4")
+        assert lv.base_salary.value_at(date(2027, 3, 1)) == Decimal("1628.17")
+
+    def test_edilizia_pmi_confapi_aniem_level_ordering(self) -> None:
+        """Level 1 has lowest order; level 7 has highest order."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "1"
+        assert by_order[-1].code == "7"
+
+    def test_edilizia_pmi_confapi_aniem_additional_months(self) -> None:
+        """Tredicesima only: 13 additional months."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 4, 1)) == Decimal(
+            13
+        )
+
+    def test_edilizia_pmi_confapi_aniem_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (Art. 25 CCNL, 40h/week)."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 4, 1)) == Decimal(173)
+
+    def test_edilizia_pmi_confapi_aniem_split_model_fixed_allowances(self) -> None:
+        """All levels carry CONTINGENZA + EDR (split salary model)."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes
+            assert "EDR" in codes
+
+    def test_edilizia_pmi_confapi_aniem_tax_sector(self) -> None:
+        """Tax sector is edilizia."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
+
+    def test_edilizia_pmi_confapi_aniem_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), max 5 increments (Art. 49)."""
+        ccnl = load_ccnl("edilizia-pmi-confapi-aniem.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

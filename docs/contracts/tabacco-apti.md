@@ -99,3 +99,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/tabacco-apti.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/tabacco-apti.py"
+```
