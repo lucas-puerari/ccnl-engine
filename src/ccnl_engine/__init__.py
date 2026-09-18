@@ -91,7 +91,12 @@ from ccnl_engine.engine.payroll.domain.employment import (
 from ccnl_engine.engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import (
+    PayrollEmployer,
+    PayrollPay,
+    PayrollPeriod,
+    PayrollQuality,
     PayrollResult,
+    PayrollTax,
     ScopeItem,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
@@ -181,11 +186,16 @@ __all__ = [
     "MonthlyPayrollReport",
     "OvertimeHours",
     "PayPeriod",
+    "PayrollEmployer",
     "PayrollFigures",
+    "PayrollPay",
+    "PayrollPeriod",
+    "PayrollQuality",
     "PayrollReport",
     "PayrollResult",
     "PayrollScenario",
     "PayrollSnapshot",
+    "PayrollTax",
     "PayrollTrace",
     "PayrollWarning",
     "Permanent",

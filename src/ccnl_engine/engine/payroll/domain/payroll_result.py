@@ -481,3 +481,250 @@ class PayrollResult:
             their original types.
         """
         return cls.from_dict(json.loads(raw))
+
+    @property
+    def period(self) -> PayrollPeriod:
+        """Contract and period identification fields."""
+        return PayrollPeriod.from_result(self)
+
+    @property
+    def pay(self) -> PayrollPay:
+        """Employee gross and net pay breakdown."""
+        return PayrollPay.from_result(self)
+
+    @property
+    def tax(self) -> PayrollTax:
+        """IRPEF chain, deductions, and fiscal metadata."""
+        return PayrollTax.from_result(self)
+
+    @property
+    def employer(self) -> PayrollEmployer:
+        """Employer cost breakdown and contributions."""
+        return PayrollEmployer.from_result(self)
+
+    @property
+    def quality(self) -> PayrollQuality:
+        """Computation quality metadata."""
+        return PayrollQuality.from_result(self)
+
+
+@dataclass(frozen=True)
+class PayrollPeriod:
+    """Contract and period identification for a payroll computation."""
+
+    ccnl_id: str
+    level_code: str
+    employment_type: str
+    part_time_pct: Decimal
+    as_of: _date
+    year: int
+    apprenticeship_pct: Decimal | None
+    apprenticeship_under_level_code: str | None
+
+    @classmethod
+    def from_result(cls, r: PayrollResult) -> PayrollPeriod:
+        """Build a :class:`PayrollPeriod` from a :class:`PayrollResult`.
+
+        Returns:
+            A new :class:`PayrollPeriod` populated from *r*.
+        """
+        return cls(
+            ccnl_id=r.ccnl_id,
+            level_code=r.level_code,
+            employment_type=r.employment_type,
+            part_time_pct=r.part_time_pct,
+            as_of=r.as_of,
+            year=r.year,
+            apprenticeship_pct=r.apprenticeship_pct,
+            apprenticeship_under_level_code=r.apprenticeship_under_level_code,
+        )
+
+
+@dataclass(frozen=True)
+class PayrollPay:
+    """Employee pay components, gross breakdown, and L3 event amounts."""
+
+    seniority_count: int
+    base_monthly: Decimal
+    seniority_monthly: Decimal
+    allowances_monthly: Decimal
+    ad_personam_monthly: Decimal
+    second_level_monthly: Decimal
+    gross_monthly: Decimal
+    gross_annual: Decimal
+    hourly_rate: Decimal
+    inps_employee_annual: Decimal
+    bilateral_employee_annual: Decimal
+    net_annual: Decimal
+    net_monthly: Decimal
+    absence_deduction_monthly: Decimal
+    effective_gross_monthly: Decimal
+    leave_accrued_days_monthly: Decimal
+    leave_taken_days_monthly: Decimal
+    leave_balance_days: Decimal
+    sick_days_monthly: Decimal
+    sick_carenza_days_monthly: Decimal
+    sick_inps_indemnity_monthly: Decimal
+    sick_company_integration_monthly: Decimal
+    fringe_benefit_annual: Decimal
+    fringe_benefit_threshold_annual: Decimal
+    fringe_benefit_taxable_annual: Decimal
+    welfare_annual: Decimal
+    bonus_annual: Decimal
+    bonus_pdr_flat_tax_annual: Decimal
+    bonus_ordinary_taxable_annual: Decimal
+    base_monthly_full_time: Decimal
+    overtime_supplement_monthly: Decimal
+    night_supplement_monthly: Decimal
+    holiday_supplement_monthly: Decimal
+    time_supplements_monthly: Decimal
+    time_supplements_annual_projection: Decimal
+
+    @classmethod
+    def from_result(cls, r: PayrollResult) -> PayrollPay:
+        """Build a :class:`PayrollPay` from a :class:`PayrollResult`.
+
+        Returns:
+            A new :class:`PayrollPay` populated from *r*.
+        """
+        return cls(
+            seniority_count=r.seniority_count,
+            base_monthly=r.base_monthly,
+            seniority_monthly=r.seniority_monthly,
+            allowances_monthly=r.allowances_monthly,
+            ad_personam_monthly=r.ad_personam_monthly,
+            second_level_monthly=r.second_level_monthly,
+            gross_monthly=r.gross_monthly,
+            gross_annual=r.gross_annual,
+            hourly_rate=r.hourly_rate,
+            inps_employee_annual=r.inps_employee_annual,
+            bilateral_employee_annual=r.bilateral_employee_annual,
+            net_annual=r.net_annual,
+            net_monthly=r.net_monthly,
+            absence_deduction_monthly=r.absence_deduction_monthly,
+            effective_gross_monthly=r.effective_gross_monthly,
+            leave_accrued_days_monthly=r.leave_accrued_days_monthly,
+            leave_taken_days_monthly=r.leave_taken_days_monthly,
+            leave_balance_days=r.leave_balance_days,
+            sick_days_monthly=r.sick_days_monthly,
+            sick_carenza_days_monthly=r.sick_carenza_days_monthly,
+            sick_inps_indemnity_monthly=r.sick_inps_indemnity_monthly,
+            sick_company_integration_monthly=r.sick_company_integration_monthly,
+            fringe_benefit_annual=r.fringe_benefit_annual,
+            fringe_benefit_threshold_annual=r.fringe_benefit_threshold_annual,
+            fringe_benefit_taxable_annual=r.fringe_benefit_taxable_annual,
+            welfare_annual=r.welfare_annual,
+            bonus_annual=r.bonus_annual,
+            bonus_pdr_flat_tax_annual=r.bonus_pdr_flat_tax_annual,
+            bonus_ordinary_taxable_annual=r.bonus_ordinary_taxable_annual,
+            base_monthly_full_time=r.base_monthly_full_time,
+            overtime_supplement_monthly=r.overtime_supplement_monthly,
+            night_supplement_monthly=r.night_supplement_monthly,
+            holiday_supplement_monthly=r.holiday_supplement_monthly,
+            time_supplements_monthly=r.time_supplements_monthly,
+            time_supplements_annual_projection=r.time_supplements_annual_projection,
+        )
+
+
+@dataclass(frozen=True)
+class PayrollTax:
+    """IRPEF chain, addizionali, and fiscal deductions."""
+
+    taxable_income: Decimal
+    irpef_gross: Decimal
+    work_income_deduction: Decimal
+    irpef_net: Decimal
+    employer_withholds_irpef: bool
+    addizionale_regionale_annual: Decimal
+    addizionale_comunale_annual: Decimal
+    ulteriore_detrazione_lavoro: Decimal
+    somma_esente: Decimal
+    trattamento_integrativo: Decimal
+    fiscal_simplifications: frozenset[FiscalSimplification]
+    family_deduction_spouse_annual: Decimal
+    family_deduction_children_annual: Decimal
+    family_deduction_other_annual: Decimal
+    family_deduction_annual: Decimal
+    unused_family_deduction_annual: Decimal
+    art15_deduction_annual: Decimal
+    unused_art15_deduction_annual: Decimal
+    sterilizzazione_clawback_annual: Decimal
+
+    @classmethod
+    def from_result(cls, r: PayrollResult) -> PayrollTax:
+        """Build a :class:`PayrollTax` from a :class:`PayrollResult`.
+
+        Returns:
+            A new :class:`PayrollTax` populated from *r*.
+        """
+        return cls(
+            taxable_income=r.taxable_income,
+            irpef_gross=r.irpef_gross,
+            work_income_deduction=r.work_income_deduction,
+            irpef_net=r.irpef_net,
+            employer_withholds_irpef=r.employer_withholds_irpef,
+            addizionale_regionale_annual=r.addizionale_regionale_annual,
+            addizionale_comunale_annual=r.addizionale_comunale_annual,
+            ulteriore_detrazione_lavoro=r.ulteriore_detrazione_lavoro,
+            somma_esente=r.somma_esente,
+            trattamento_integrativo=r.trattamento_integrativo,
+            fiscal_simplifications=r.fiscal_simplifications,
+            family_deduction_spouse_annual=r.family_deduction_spouse_annual,
+            family_deduction_children_annual=r.family_deduction_children_annual,
+            family_deduction_other_annual=r.family_deduction_other_annual,
+            family_deduction_annual=r.family_deduction_annual,
+            unused_family_deduction_annual=r.unused_family_deduction_annual,
+            art15_deduction_annual=r.art15_deduction_annual,
+            unused_art15_deduction_annual=r.unused_art15_deduction_annual,
+            sterilizzazione_clawback_annual=r.sterilizzazione_clawback_annual,
+        )
+
+
+@dataclass(frozen=True)
+class PayrollEmployer:
+    """Employer cost breakdown and social contributions."""
+
+    inps_employer_annual: Decimal
+    employer_funds_annual: Decimal
+    tfr_annual: Decimal
+    bilateral_employer_annual: Decimal
+    employer_cost_annual: Decimal
+
+    @classmethod
+    def from_result(cls, r: PayrollResult) -> PayrollEmployer:
+        """Build a :class:`PayrollEmployer` from a :class:`PayrollResult`.
+
+        Returns:
+            A new :class:`PayrollEmployer` populated from *r*.
+        """
+        return cls(
+            inps_employer_annual=r.inps_employer_annual,
+            employer_funds_annual=r.employer_funds_annual,
+            tfr_annual=r.tfr_annual,
+            bilateral_employer_annual=r.bilateral_employer_annual,
+            employer_cost_annual=r.employer_cost_annual,
+        )
+
+
+@dataclass(frozen=True)
+class PayrollQuality:
+    """Computation quality and coverage metadata."""
+
+    status: Literal["partial", "complete"]
+    confidence: Literal["low", "medium", "high"]
+    calculation_scope: tuple[ScopeItem, ...]
+    warnings: tuple[str, ...]
+
+    @classmethod
+    def from_result(cls, r: PayrollResult) -> PayrollQuality:
+        """Build a :class:`PayrollQuality` from a :class:`PayrollResult`.
+
+        Returns:
+            A new :class:`PayrollQuality` populated from *r*.
+        """
+        return cls(
+            status=r.status,
+            confidence=r.confidence,
+            calculation_scope=r.calculation_scope,
+            warnings=r.warnings,
+        )
