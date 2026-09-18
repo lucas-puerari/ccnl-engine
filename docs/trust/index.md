@@ -4,6 +4,23 @@ A payroll figure is only as useful as the confidence you can place in it.
 This section documents every mechanism the engine uses to make its results
 verifiable, reproducible, and transparent about their own limits.
 
+## Ruleset readiness {#readiness}
+
+Before reading about result-level signals, understand the ruleset-level
+classification that tells you whether a CCNL is cleared for a given use context.
+
+| Tier | Symbol | Meaning | Safe for |
+|---|:---:|---|---|
+| `exploratory` | 🧪 | Extracted and traced; no human review of key values | Demo, research, prototyping |
+| `reviewed` | 👁 | Key L1 values human-verified against primary sources | Product simulations with explicit disclaimer |
+| `production` | 🏭 | Full review, reference case, named owner, update policy | Operational flows |
+
+The `readiness` tier is exposed on every CCNL through `ccnl.verification.readiness`
+and shown in the [CCNL coverage matrix](../contracts/index.md).
+
+See [Readiness](readiness.md) for promotion criteria and the current status of
+each tier.
+
 ## Three verifiability layers
 
 Every result carries three independent layers:
