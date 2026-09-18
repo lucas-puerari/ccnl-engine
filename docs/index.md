@@ -28,6 +28,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
 | [Engine](engine/index.md) | How to use `estimate_annual()` / `compute_month()` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
+| [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
 | [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
 

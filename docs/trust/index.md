@@ -144,6 +144,17 @@ Reference cases live in `tests/integration/cases/` and are byte-identical
 assertions — the test fails if a salary table change shifts any output by
 even one cent.
 
+## Data operations
+
+See [Data operations](data-operations.md) for:
+
+- update targets after CCNL renewals and statutory rate changes
+- changelog format and economic diff per release
+- error reporting process
+- deprecation and version compatibility guarantees
+
+---
+
 ## Coverage notes and simplifications
 
 Each contract's documentation page lists its `coverage.notes` — the
