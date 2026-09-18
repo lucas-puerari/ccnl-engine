@@ -1,0 +1,1243 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "attivita-minerarie-assorisorse",
+    "name": "CCNL Attivita Minerarie (ASSORISORSE)",
+    "cnel_code": "B282",
+    "sector": "Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva",
+    "tax_sector": "industria",
+    "agreement_date": "2022-07-13",
+    "signatories": [
+      "ASSORISORSE",
+      "FILCTEM-CGIL",
+      "FEMCA-CISL",
+      "UILTEC-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
+        "type": "associazione",
+        "agreement_date": "2022-07-13"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-18",
+      "human_reviewed": true
+    },
+    "workers_estimate": "~3000"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: conglobated. Art. 17 shows Minimi di Retribuzione as a single total amount per level with no separate contingenza column. base_salary = total monthly minimum; fixed_allowances = [] for all levels."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY PERIODS: 4 tranches — baseline 2022-04-01 (pre-increase values); I tranche 2023-01-01; II tranche 2023-12-01; III tranche 2025-01-01. IPCA 9% applied over contract duration 2022-2025."
+      },
+      {
+        "kind": "info",
+        "text": "SIGNATORIES: ASSORISORSE (Risorse Naturali ed Energie Sostenibili) + FILCTEM-CGIL + FEMCA-CISL + UILTEC-UIL. Agreement signed Roma, 13 luglio 2022. Renews CCNL 11 aprile 2019."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173 assumed (40h/week x 52/12 = 173.33 standard industria convention). Not explicitly confirmed from scanned PDF — verify against Art. orario."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL MONTHS: 13 assumed (tredicesima only, standard for Confindustria-affiliated mining). Not explicitly confirmed from scanned PDF — verify against Art. gratifica natalizia."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Work rules (overtime rates, leave, sickness) not modeled — source document is a renewal protocol covering salary increases and HSE provisions, not the full CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "COVERAGE: ~3,000 workers, ~70 enterprises (miniere, cave, saline, metallurgia estrattiva non-ferrosa). INPS code B282 active."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "not_implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 0,
+      "amount_by_level": {},
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. anzianita - not modeled (scanned PDF, amounts not extracted)"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "1S",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "8",
+      "order": 1,
+      "description": "Livello 8 - Operai ausiliari e addetti a cernita",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "1557.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "1590.56",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "1646.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1705.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "order": 2,
+      "description": "Livello 7 - Operai generici con mansioni semplici",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "1686.20",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "1724.53",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "1788.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1856.57",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 3,
+      "description": "Livello 6 - Operai comuni",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "1796.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "1838.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "1907.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "1981.71",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Livello 5 - Operai comuni con autonomia operativa",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "1903.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "1948.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2023.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2103.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 5,
+      "description": "Livello 4 - Operai qualificati e addetti a mansioni specifiche",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "2013.34",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "2061.67",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2142.23",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2228.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 6,
+      "description": "Livello 3 - Impiegati d ordine e operai specializzati",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "2215.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "2270.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2362.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2460.22",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "description": "Livello 2 - Impiegati di concetto e operai altamente specializzati",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "2486.63",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "2549.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2655.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2768.11",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "description": "Livello 1 - Impiegati direttivi e tecnici specializzati",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "2684.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "2753.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2868.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "2991.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    },
+    {
+      "code": "1S",
+      "order": 9,
+      "description": "Livello 1 Super - Quadri direttivi e tecnici di alta specializzazione",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2022-04-01",
+            "valid_until": "2023-01-01",
+            "value": "2719.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-01-01",
+            "valid_until": "2023-12-01",
+            "value": "2791.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2023-12-01",
+            "valid_until": "2025-01-01",
+            "value": "2910.54",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "3037.95",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+                  "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+                  "kind": "associazione",
+                  "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+                },
+                "section": "Art. 17 - Minimi di Retribuzione, tabella annuale"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2022-04-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
+            "title": "Rinnovo CCNL Attivita Minerarie 2022-2025 (ASSORISORSE + FILCTEM/FEMCA/UILTEC)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf"
+          },
+          "section": "Art. 17 - Minimi di Retribuzione"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/attivita-minerarie-assorisorse",
+    "version": "2026.1",
+    "effective_from": "2022-04-01",
+    "effective_until": null,
+    "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
+    "verification_status": "unverified",
+    "source_hash": "19d69185622012489a987523e22386616bb4edd1d114d3ce055927e6122c44f7",
+    "published_at": "2026-09-18"
+  }
+}
