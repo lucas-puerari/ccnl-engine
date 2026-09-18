@@ -2895,9 +2895,7 @@ class TestComputeConfidence:
             verification_status=VerificationStatus.UNVERIFIED,
         )
         prov = (_verified_provenance(),)
-        result = compute_confidence(
-            "complete", (), prov, rulesets=(derived_ruleset,)
-        )
+        result = compute_confidence("complete", (), prov, rulesets=(derived_ruleset,))
         assert result == "medium"
 
     def test_estimated_unverified_ruleset_blocks_high(self) -> None:
@@ -2913,9 +2911,7 @@ class TestComputeConfidence:
             verification_status=VerificationStatus.UNVERIFIED,
         )
         prov = (_verified_provenance(),)
-        result = compute_confidence(
-            "complete", (), prov, rulesets=(estimated_ruleset,)
-        )
+        result = compute_confidence("complete", (), prov, rulesets=(estimated_ruleset,))
         assert result == "medium"
 
     def test_derived_verified_ruleset_allows_high(self) -> None:
@@ -2931,9 +2927,7 @@ class TestComputeConfidence:
             verification_status=VerificationStatus.VERIFIED,
         )
         prov = (_verified_provenance(),)
-        result = compute_confidence(
-            "complete", (), prov, rulesets=(derived_verified,)
-        )
+        result = compute_confidence("complete", (), prov, rulesets=(derived_verified,))
         assert result == "high"
 
     def test_compute_result_has_confidence_field(self) -> None:
