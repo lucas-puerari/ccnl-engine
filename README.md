@@ -6,9 +6,16 @@
 [![Coverage](https://lucas-puerari.github.io/ccnl-engine/coverage-badge.svg)](https://github.com/lucas-puerari/ccnl-engine/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A Python library for modeling Italian collective labor agreements (CCNL) as structured, versioned data and computing gross-to-net salary and employer cost from first principles.
+A Python engine for auditable Italian payroll simulations. CCNL-aware gross-to-net and
+employer cost, versioned rules, provenance tracking, and explicit calculation scope.
+Built for technical teams in HR, payroll, and compensation.
 
 **[Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [Demo](https://lucas-puerari.github.io/ccnl-engine/demo/)**
+
+> **Scope boundary:** this is a simulation engine for embedding in products and analyses,
+> not a payroll processor and not a cedolino replacement. It does not file contributions,
+> generate official payslips, or connect to INPS/Agenzia delle Entrate. For production
+> payroll processing use a certified HRMS or payroll bureau.
 
 ## Motivation
 

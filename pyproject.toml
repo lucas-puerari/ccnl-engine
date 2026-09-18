@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ccnl-engine"
 version = "0.5.1"
-description = "Italian CCNL payroll engine: gross-to-net and employer cost from first principles"
+description = "Python engine for auditable Italian payroll simulations: CCNL-aware gross-to-net, employer cost, versioned rules, provenance and explicit scope."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Lucas Puerari", email = "puerari.lucas@gmail.com" }]
