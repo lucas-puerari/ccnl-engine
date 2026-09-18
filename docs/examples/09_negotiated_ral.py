@@ -33,7 +33,7 @@ ccnl_min = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 # Same worker with a negotiated RAL of 40 000 EUR.
 negotiated = compute(
@@ -49,7 +49,7 @@ negotiated = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Gross annual — CCNL minimum:  {ccnl_min.gross_annual} EUR")
 print(f"Gross annual — negotiated:    {negotiated.gross_annual} EUR")

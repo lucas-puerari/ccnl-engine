@@ -257,13 +257,6 @@ class TestCalculation:
         assert "surtax" not in calc.ruleset_version
         assert type(calc.result.net_annual) is Decimal
 
-    def test_result_delegation(self) -> None:
-        """Unknown attributes read through to the PayrollResult result."""
-        calc = compute(_req())
-        assert calc.net_annual == calc.result.net_annual
-        assert calc.gross_annual == calc.result.gross_annual
-        assert calc.level_code == calc.result.level_code
-
     def test_to_dict_from_dict_roundtrip(self) -> None:
         """to_dict/from_dict round-trips the full calculation."""
         calc = compute(_req())
@@ -544,12 +537,6 @@ class TestR2R19R20Fixes:
         hint: type = typing.Literal["impiegato", "operaio"]  # type: ignore[assignment]
         with pytest.raises(ValueError, match="expected one of"):
             _load_by_hint(hint, "supervisore")
-
-    def test_getattr_missing_result_raises_attribute_error(self) -> None:
-        """__getattr__ raises AttributeError when result is uninitialised."""
-        calc = object.__new__(Calculation)
-        with pytest.raises(AttributeError):
-            _ = calc.net_annual
 
 
 class TestDeepImmutability:

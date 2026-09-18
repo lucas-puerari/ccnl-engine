@@ -1327,7 +1327,7 @@ class TestLoadAlimentariFederalimentare:
                     as_of=date(2026, 1, 1),
                 ),
             )
-        )
+        ).result
         assert result.apprenticeship_under_level_code == "4"
         assert result.apprenticeship_pct is None
 
@@ -2702,7 +2702,7 @@ class TestLoadBccCreditoCooperativo:
                     as_of=date(2026, 6, 1),
                 ),
             )
-        )
+        ).result
         # At 12 months, pay level is 2AP2 (under-classification)
         assert result.apprenticeship_under_level_code == "2AP2"
         assert result.gross_monthly > 0

@@ -33,7 +33,7 @@ p = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Gross monthly:         {p.gross_monthly} EUR")
 print(f"INPS employee annual:  {p.inps_employee_annual} EUR")

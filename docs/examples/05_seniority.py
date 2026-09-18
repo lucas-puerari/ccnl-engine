@@ -33,7 +33,7 @@ p_count = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 # --- Via service months (engine derives the count) ---
 # Commercio cadence is 36 months. 108 months → 3 increments (at months 36, 72, 108).
@@ -50,7 +50,7 @@ p_months = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(
     f"Via count   — seniority count: {p_count.seniority_count},"

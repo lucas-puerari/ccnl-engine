@@ -32,7 +32,7 @@ apprentice = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 # Compare with the same level at permanent employment.
 permanent = compute(
@@ -45,7 +45,7 @@ permanent = compute(
             as_of=date(2026, 1, 1),
         ),
     )
-)
+).result
 
 print(f"Apprenticeship %:    {apprentice.apprenticeship_pct}")
 print(f"Gross monthly — apprentice:  {apprentice.gross_monthly} EUR")

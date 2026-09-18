@@ -23,7 +23,7 @@ p = compute(
             as_of=date(2026, 7, 1),
         ),
     )
-)
+).result
 print(f"Gross monthly: {p.gross_monthly} EUR")
 print(f"Net annual:    {p.net_annual} EUR")
 print(f"Employer cost: {p.employer_cost_annual} EUR")

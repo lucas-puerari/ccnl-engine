@@ -179,7 +179,7 @@ class TestExcludedCategories:
             "levels.2.category": "operaio",
             "parameters.seniority_increments.excluded_categories": ["operaio"],
         })
-        r = compute(_req(seniority_months=120))
+        r = compute(_req(seniority_months=120)).result
         assert r.seniority_count == 0
         assert r.seniority_monthly == _D("0.00")
 
@@ -216,7 +216,7 @@ class TestExcludedCategories:
                 "provenance": TEST_PROV,
             },
         })
-        r = compute(_req(seniority_months=48))
+        r = compute(_req(seniority_months=48)).result
         assert r.seniority_count == 0
         assert r.seniority_monthly == _D("0.00")
 

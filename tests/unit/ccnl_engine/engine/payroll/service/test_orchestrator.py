@@ -269,7 +269,7 @@ class TestComputePermanent:
 
     def test_full_time_no_seniority(self) -> None:
         """Permanent, full-time, no seniority: standard salary chain."""
-        r = compute(_req())
+        r = compute(_req()).result
 
         assert r.ccnl_id == "test"
         assert r.level_code == "4"
@@ -301,7 +301,7 @@ class TestComputePermanent:
 
     def test_with_seniority_count(self) -> None:
         """seniority_count=2 adds 2 * 20 = 40 to monthly gross."""
-        r = compute(_req(seniority_count=2))
+        r = compute(_req(seniority_count=2)).result
 
         assert r.seniority_count == 2
         assert r.seniority_monthly == _D("40.00")
@@ -314,7 +314,7 @@ class TestComputePermanent:
     )
     def test_seniority_months_derivation(self, months: int, expected: int) -> None:
         """Count = 1 + (months - cadence) // cadence, clamped to the maximum."""
-        r = compute(_req(seniority_months=months))
+        r = compute(_req(seniority_months=months)).result
         assert r.seniority_count == expected
 
     @pytest.mark.parametrize(
@@ -325,7 +325,7 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months": 48
         })
-        r = compute(_req(seniority_months=months))
+        r = compute(_req(seniority_months=months)).result
         assert r.seniority_count == expected
 
     def test_seniority_first_cadence_by_level(self) -> None:
@@ -333,18 +333,19 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months_by_level": {"4": 48}
         })
-        r47 = compute(_req(seniority_months=47))
-        r48 = compute(_req(seniority_months=48))
+        r47 = compute(_req(seniority_months=47)).result
+        r48 = compute(_req(seniority_months=48)).result
         assert r47.seniority_count == 0
         assert r48.seniority_count == 1
-        assert compute(_req(level_code="3", seniority_months=36)).seniority_count == 1
+        res = compute(_req(level_code="3", seniority_months=36)).result
+        assert res.seniority_count == 1
 
     def test_seniority_per_level_maximum(self) -> None:
         """maximum_count_by_level overrides maximum_count for that level."""
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.maximum_count_by_level": {"4": 1}
         })
-        r = compute(_req(seniority_months=360))
+        r = compute(_req(seniority_months=360)).result
         assert r.seniority_count == 1
         assert r.seniority_monthly == _D("20.00")
         with pytest.raises(ValueError, match="exceeds the maximum of 1"):
@@ -355,7 +356,7 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.fixed_allowances": [_allowance("edr", "10.33")]
         })
-        r = compute(_req(part_time_ratio=_D("0.50"), seniority_count=1))
+        r = compute(_req(part_time_ratio=_D("0.50"), seniority_count=1)).result
 
         assert r.base_monthly == _D("500.00")
         assert r.seniority_monthly == _D("10.00")
@@ -366,14 +367,14 @@ class TestComputePermanent:
     def test_negotiated_ral(self) -> None:
         """RalOverride overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
-        r = compute(_req(negotiated_ral=ral))
+        r = compute(_req(negotiated_ral=ral)).result
 
         assert r.gross_annual == ral
         assert r.gross_monthly == _D("1666.67")
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
-        r = compute(_req(level_code="3", seniority_count=5))
+        r = compute(_req(level_code="3", seniority_count=5)).result
 
         assert r.seniority_monthly == _D("0.00")
         assert r.base_monthly == _D("800.00")
@@ -381,7 +382,9 @@ class TestComputePermanent:
 
     def test_ad_personam_added_unscaled(self) -> None:
         """ad_personam_monthly is added as given, even under part-time."""
-        r = compute(_req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00")))
+        r = compute(
+            _req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00"))
+        ).result
         assert r.ad_personam_monthly == _D("30.00")
         assert r.gross_monthly == _D("530.00")
         assert r.gross_annual == _D("6360.00")
@@ -403,8 +406,8 @@ class TestComputeAllowances:
                 _allowance("quadro", "100.00", role="quadro"),
             ]
         })
-        plain = compute(_req())
-        quadro = compute(_req(roles=frozenset({"quadro"})))
+        plain = compute(_req()).result
+        quadro = compute(_req(roles=frozenset({"quadro"}))).result
         assert plain.allowances_monthly == _D("10.00")
         assert quadro.allowances_monthly == _D("110.00")
 
@@ -416,7 +419,7 @@ class TestComputeAllowances:
                 _allowance("ind", "50.00", months_per_year=12)
             ],
         })
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.gross_monthly == _D("1050.00")
         assert r.gross_annual == _D("14600.00")  # 1000*14 + 50*12
 
@@ -432,11 +435,10 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r = compute(_req())
-        base = compute(_req())  # mock still has custom CCNL — need default for base
+        r = compute(_req()).result
         # Re-fetch base with default CCNL
         _mock_ccnl[0] = _DEFAULT_CCNL
-        base = compute(_req())
+        base = compute(_req()).result
         _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.fixed_allowances": [
                 _allowance(
@@ -447,7 +449,7 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.gross_annual == _D("13200.00")
         assert r.inps_employee_annual == base.inps_employee_annual
         assert r.inps_employer_annual == base.inps_employer_annual
@@ -470,9 +472,9 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r_with_exclusion = compute(_req(negotiated_ral=ral))
+        r_with_exclusion = compute(_req(negotiated_ral=ral)).result
         _mock_ccnl[0] = _DEFAULT_CCNL
-        r_clean = compute(_req(negotiated_ral=ral))
+        r_clean = compute(_req(negotiated_ral=ral)).result
 
         assert r_with_exclusion.gross_annual == ral
         # Contribution and TFR bases must be identical regardless of CCNL allowances.
@@ -503,9 +505,9 @@ class TestComputeEmployerFunds:
             "levels.2.category": "operaio",
             "levels.1.category": "impiegato",
         })
-        operaio = compute(_req())
-        impiegato = compute(_req(level_code="3"))
-        uncategorised = compute(_req(level_code="2"))
+        operaio = compute(_req()).result
+        impiegato = compute(_req(level_code="3")).result
+        uncategorised = compute(_req(level_code="2")).result
         assert operaio.employer_funds_annual == _D("1200.00")
         assert operaio.employer_cost_annual == (
             operaio.gross_annual
@@ -520,7 +522,7 @@ class TestComputeEmployerFunds:
         """A fund with applies_to_categories=None applies to every level."""
         fund = {**self._FUND, "applies_to_categories": None}
         _mock_ccnl[0] = _build_ccnl(**{"parameters.employer_funds": [fund]})
-        r = compute(_req(level_code="3"))
+        r = compute(_req(level_code="3")).result
         assert r.employer_funds_annual == _D("960.00")
 
     def test_employer_rate_by_category(self) -> None:
@@ -539,8 +541,8 @@ class TestComputeEmployerFunds:
             "levels.1.category": "impiegato",
             "levels.2.category": "operaio",
         })
-        impiegato = compute(_req(level_code="3"))
-        operaio = compute(_req())
+        impiegato = compute(_req(level_code="3")).result
+        operaio = compute(_req()).result
         assert impiegato.inps_employer_annual == _D("1920.00")  # 9600 * 0.20
         assert operaio.inps_employer_annual == _D("3600.00")  # 12000 * 0.30
 
@@ -555,8 +557,8 @@ class TestComputeFixedTerm:
 
     def test_fixed_term_naspi_addizionale(self) -> None:
         """Employer INPS for fixed-term must exceed permanent by 1.4% of gross."""
-        r_fixed = compute(_req(contract=_FIXED_TERM))
-        r_perm = compute(_req())
+        r_fixed = compute(_req(contract=_FIXED_TERM)).result
+        r_perm = compute(_req()).result
 
         expected_diff = r_fixed.gross_annual * _D("0.014")
         actual_diff = r_fixed.inps_employer_annual - r_perm.inps_employer_annual
@@ -595,8 +597,8 @@ class TestComputeIvsCeilingSplit:
         """RAL below the massimale: ceiling split equals flat rate."""
         ral = _D("80000.00")
         _mock_rules[0] = self._rules_with_ceiling()
-        r_capped = compute(self._scenario(ral, ivs_ceiling_applies=True))
-        r_flat = compute(self._scenario(ral, ivs_ceiling_applies=False))
+        r_capped = compute(self._scenario(ral, ivs_ceiling_applies=True)).result
+        r_flat = compute(self._scenario(ral, ivs_ceiling_applies=False)).result
         assert r_capped.inps_employee_annual == r_flat.inps_employee_annual
         assert r_capped.inps_employer_annual == r_flat.inps_employer_annual
 
@@ -614,7 +616,7 @@ class TestComputeIvsCeilingSplit:
         expected_employer = money(ceiling * er_ivs_rate + ral * er_non_ivs)
 
         _mock_rules[0] = self._rules_with_ceiling()
-        r = compute(self._scenario(ral, ivs_ceiling_applies=True))
+        r = compute(self._scenario(ral, ivs_ceiling_applies=True)).result
         assert r.inps_employee_annual == expected_employee
         assert r.inps_employer_annual == expected_employer
 
@@ -622,7 +624,7 @@ class TestComputeIvsCeilingSplit:
         """ivs_ceiling_applies=False: flat rate even when ceiling is configured."""
         ral = _D("150000.00")
         _mock_rules[0] = self._rules_with_ceiling()
-        r = compute(self._scenario(ral, ivs_ceiling_applies=False))
+        r = compute(self._scenario(ral, ivs_ceiling_applies=False)).result
         assert r.inps_employee_annual == _D("150000.00") * _D("0.0919")
         assert r.inps_employer_annual == _D("150000.00") * _D("0.2898")
 
@@ -637,7 +639,7 @@ class TestComputeIrpefFloor:
 
     def test_irpef_net_floored_at_zero(self) -> None:
         """Low income: deduction > irpef_gross → irpef_net == 0."""
-        r = compute(_req(negotiated_ral=_D("5000.00")))
+        r = compute(_req(negotiated_ral=_D("5000.00"))).result
 
         assert r.irpef_net == _D("0.00")
         assert r.net_annual == r.gross_annual - r.inps_employee_annual
@@ -656,31 +658,31 @@ class TestComputeWithholdingExempt:
     def test_irpef_net_is_zero(self) -> None:
         """Exempt employer: irpef_net must be zero regardless of income."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.irpef_net == _D("0.00")
 
     def test_employer_withholds_irpef_flag_false(self) -> None:
         """Exempt employer: employer_withholds_irpef must be False."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.employer_withholds_irpef is False
 
     def test_net_annual_excludes_irpef(self) -> None:
         """Net = gross - INPS employee; IRPEF not deducted by employer."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.net_annual == r.gross_annual - r.inps_employee_annual
 
     def test_irpef_informational_fields_nonzero(self) -> None:
         """irpef_gross and work_income_deduction remain as informational."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.irpef_gross > _D("0.00")
         assert r.work_income_deduction >= _D("0.00")
 
     def test_standard_ccnl_withholds_irpef(self) -> None:
         """Standard CCNL: employer_withholds_irpef must be True."""
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.employer_withholds_irpef is True
 
 
@@ -705,7 +707,7 @@ class TestComputeDomesticInps:
     def test_hours_bracket_permanent(self) -> None:
         """weekly_hours > 24 → hours bracket; permanent uses base employer rate."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = compute(_req(weekly_hours=_D("40")))
+        r = compute(_req(weekly_hours=_D("40"))).result
 
         annual_hours = _D("40") * _D("52")
         assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
@@ -714,7 +716,7 @@ class TestComputeDomesticInps:
     def test_hours_bracket_fixed_term(self) -> None:
         """weekly_hours > 24 + FixedTerm → hours bracket fixed-term rate."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = compute(_req(contract=_FIXED_TERM, weekly_hours=_D("40")))
+        r = compute(_req(contract=_FIXED_TERM, weekly_hours=_D("40"))).result
 
         annual_hours = _D("40") * _D("52")
         assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
@@ -727,7 +729,7 @@ class TestComputeDomesticInps:
         hourly_rate = 1000 * 12 / (20 * 52) = 11.54 → bracket up_to=11.70.
         """
         _mock_rules[0] = _DOMESTIC_RULES
-        r = compute(_req(weekly_hours=_D("20")))
+        r = compute(_req(weekly_hours=_D("20"))).result
 
         annual_hours = _D("20") * _D("52")
         assert r.inps_employee_annual == money(_D("0.48") * annual_hours)
@@ -736,7 +738,7 @@ class TestComputeDomesticInps:
     def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
         """Net = gross - INPS employee - irpef_net for domestic path."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = compute(_req(weekly_hours=_D("40")))
+        r = compute(_req(weekly_hours=_D("40"))).result
         assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
 
     def test_no_ivs_ceiling_warning_for_domestic_contracts(self) -> None:
@@ -749,7 +751,7 @@ class TestComputeDomesticInps:
         _mock_rules[0] = _DOMESTIC_RULES
         # seniority_months=12 implies a clearly post-1996 hire: without the
         # guard, _ivs_ceiling_warning would emit "contributions are overstated".
-        r = compute(_req(weekly_hours=_D("40"), seniority_months=12))
+        r = compute(_req(weekly_hours=_D("40"), seniority_months=12)).result
         ivs_warnings = [w for w in r.warnings if "overstated" in w]
         assert ivs_warnings == [], (
             f"Unexpected IVS warning on domestic contract: {r.warnings}"
@@ -812,7 +814,7 @@ class TestComputeAddizionali:
 
     def test_without_surtax_parameter_both_zero(self) -> None:
         """When no jurisdiction set (default), both addizionali are zero."""
-        r = compute(_req())
+        r = compute(_req()).result
         assert r.addizionale_regionale_annual == Decimal("0.00")
         assert r.addizionale_comunale_annual == Decimal("0.00")
         assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
@@ -889,7 +891,7 @@ class TestComputeAddizionali:
                 negotiated_ral=tiny_ral,
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
             )
-        )
+        ).result
         assert r.addizionale_comunale_annual == Decimal("0.00")
 
     def test_irpef_zero_suppresses_addizionali(self) -> None:
@@ -1034,7 +1036,7 @@ class TestProvenanceChain:
         ccnl = CCNL.model_validate(make_ccnl_dict())
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = compute(_req())
+        result = compute(_req()).result
         # Level 4 has provenance on the level and on its salary period.
         assert len(result.provenance) >= 1
 
@@ -1062,7 +1064,7 @@ class TestProvenanceChain:
         ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = compute(_req())
+        result = compute(_req()).result
         assert result.provenance == (prov_level, prov_period)
 
     def test_allowance_and_seniority_provenance_collected(self) -> None:
@@ -1097,7 +1099,7 @@ class TestProvenanceChain:
         ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = compute(_req())
+        result = compute(_req()).result
         assert prov_allowance in result.provenance
         assert prov_seniority in result.provenance
 
