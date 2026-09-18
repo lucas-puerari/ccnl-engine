@@ -9999,3 +9999,79 @@ class TestLoadEdiliziaCooperativeAncpl:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadMetalmeccanicoConfimiPmi:
+    """Tests for CCNL Metalmeccanici Piccola Industria CONFIMI (C01A)."""
+
+    def test_metalmeccanico_confimi_pmi_loads(self) -> None:
+        """File loads; ccnl_id and CNEL code are correct."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        assert ccnl.meta.ccnl_id == "metalmeccanico-confimi-pmi"
+        assert ccnl.meta.cnel_code == "C01A"
+
+    def test_metalmeccanico_confimi_pmi_has_10_levels(self) -> None:
+        """Contract has exactly 10 levels: 2-7, 8, 8Q, 9, 9Q."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert len(ccnl.levels) == 10
+        assert codes == {"2", "3", "4", "5", "6", "7", "8", "8Q", "9", "9Q"}
+
+    def test_metalmeccanico_confimi_pmi_level5_salary_t1(self) -> None:
+        """Level 5 base salary is 2251.35 EUR at T1 tranche (01/06/2026)."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        lv5 = next(lv for lv in ccnl.levels if lv.code == "5")
+        period = next(
+            p
+            for p in lv5.base_salary.periods
+            if p.valid_from.isoformat() == "2026-06-01"
+        )
+        assert period.value == Decimal("2251.35")
+
+    def test_metalmeccanico_confimi_pmi_level5_salary_t2(self) -> None:
+        """Level 5 base salary is 2306.35 EUR at T2 tranche (01/06/2027)."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        lv5 = next(lv for lv in ccnl.levels if lv.code == "5")
+        period = next(
+            p
+            for p in lv5.base_salary.periods
+            if p.valid_from.isoformat() == "2027-06-01"
+        )
+        assert period.value == Decimal("2306.35")
+
+    def test_metalmeccanico_confimi_pmi_level_ordering(self) -> None:
+        """Level 2 is lowest-order; 9Q is highest-order."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        sorted_lvs = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_lvs[0].code == "2"
+        assert sorted_lvs[-1].code == "9Q"
+
+    def test_metalmeccanico_confimi_pmi_additional_months(self) -> None:
+        """Additional months is 13 (tredicesima only)."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 6, 1))
+        assert val == Decimal(13)
+
+    def test_metalmeccanico_confimi_pmi_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1)) == Decimal(173)
+
+    def test_metalmeccanico_confimi_pmi_conglobated_levels_2_to_7(self) -> None:
+        """Levels 2-7 have no fixed allowances (conglobated model)."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        for code in ("2", "3", "4", "5", "6", "7"):
+            lv = next(lv for lv in ccnl.levels if lv.code == code)
+            assert lv.fixed_allowances == ()
+
+    def test_metalmeccanico_confimi_pmi_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_metalmeccanico_confimi_pmi_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), max 5 increments."""
+        ccnl = load_ccnl("metalmeccanico-confimi-pmi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
