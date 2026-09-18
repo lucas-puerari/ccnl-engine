@@ -9772,3 +9772,71 @@ class TestLoadTessilePmiUniontessile:
         assert "FONDAPI" in funds
         assert funds["FONDAPI"].rate.value_at(date(2024, 4, 1)) == Decimal("0.0190")
         assert funds["FONDAPI"].rate.value_at(date(2025, 3, 1)) == Decimal("0.0200")
+
+
+class TestLoadTabaccoApti:
+    """Unit tests for tabacco-apti.json (CNEL E042)."""
+
+    def test_tabacco_apti_loads(self) -> None:
+        """Contract loads with correct id and CNEL code E042."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        assert ccnl.meta.ccnl_id == "tabacco-apti"
+        assert ccnl.meta.cnel_code == "E042"
+
+    def test_tabacco_apti_has_9_levels(self) -> None:
+        """Nine levels: 1S, 1, 2, 3A, 3B, 4A, 4B, 5, 6."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        assert len(ccnl.levels) == 9
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1S", "1", "2", "3A", "3B", "4A", "4B", "5", "6"}
+
+    def test_tabacco_apti_level4a_salary_2025(self) -> None:
+        """Level 4A at Jan 2025 tranche: 1194.90 EUR (Allegato A)."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        lv = ccnl.level_by_code("4A")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("1194.90")
+
+    def test_tabacco_apti_level4a_salary_2026(self) -> None:
+        """Level 4A at Jan 2026 tranche: 1244.90 EUR (Allegato A)."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        lv = ccnl.level_by_code("4A")
+        assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1244.90")
+
+    def test_tabacco_apti_level_ordering(self) -> None:
+        """Level 1S is highest order; level 6 is lowest order."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert by_order[0].code == "6"
+        assert by_order[-1].code == "1S"
+
+    def test_tabacco_apti_additional_months(self) -> None:
+        """Tredicesima + quattordicesima: 14 additional months."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 1, 1)) == Decimal(
+            14
+        )
+
+    def test_tabacco_apti_hourly_divisor(self) -> None:
+        """Hourly divisor is 173 (40h/week; CCNL text)."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 1, 1)) == Decimal(173)
+
+    def test_tabacco_apti_split_model_fixed_allowances(self) -> None:
+        """All levels have CONTINGENZA + EDR; no level has zero allowances."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes
+            assert "EDR" in codes
+
+    def test_tabacco_apti_tax_sector(self) -> None:
+        """Tax sector is industria (INPS settore industria)."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_tabacco_apti_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), 5 increments max."""
+        ccnl = load_ccnl("tabacco-apti.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5

@@ -131,6 +131,7 @@ nav = [
     { "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)" = "contracts/sistemazioni-idraulico-forestali-operai.md" },
     { "CCNL Servizi Postali in Appalto (FISE-ARE)" = "contracts/servizi-postali-appalto-fise.md" },
     { "CCNL per i dipendenti degli studi e delle attività profes…" = "contracts/studi-professionali-confprofessioni.md" },
+    { "CCNL Tabacco Lavorazione Foglia Secca (APTI)" = "contracts/tabacco-apti.md" },
     { "CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)" = "contracts/telecomunicazioni-asstel.md" },
     { "CCNL Terziario Distribuzione e Servizi — Confesercenti" = "contracts/terziario-confesercenti.md" },
     { "CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato" = "contracts/tessile-moda-artigianato-confartigianato.md" },
