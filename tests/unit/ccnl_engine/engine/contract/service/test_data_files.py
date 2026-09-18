@@ -10075,3 +10075,82 @@ class TestLoadMetalmeccanicoConfimiPmi:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadNoleggioAutobusConducenteAnav:
+    """Tests for CCNL Noleggio Autobus con Conducente ANAV (IC36)."""
+
+    def test_noleggio_autobus_conducente_anav_loads(self) -> None:
+        """CCNL id and CNEL code match."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        assert ccnl.meta.ccnl_id == "noleggio-autobus-conducente-anav"
+        assert ccnl.meta.cnel_code == "IC36"
+
+    def test_noleggio_autobus_conducente_anav_has_11_levels(self) -> None:
+        """Eleven levels: C4-C1, B3-B1, A2-A1, Q2-Q1."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        assert len(ccnl.levels) == 11
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {
+            "C4",
+            "C3",
+            "C2",
+            "C1",
+            "B3",
+            "B2",
+            "B1",
+            "A2",
+            "A1",
+            "Q2",
+            "Q1",
+        }
+
+    def test_noleggio_autobus_conducente_anav_level_c2_salary_t1(self) -> None:
+        """C2 base_salary at 2025-07-01 tranche = 1126.97."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C2")
+        assert lv.base_salary.value_at(date(2025, 7, 1)) == Decimal("1126.97")
+
+    def test_noleggio_autobus_conducente_anav_level_c2_salary_t2(self) -> None:
+        """C2 base_salary at 2026-08-01 tranche = 1226.97."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C2")
+        assert lv.base_salary.value_at(date(2026, 8, 1)) == Decimal("1226.97")
+
+    def test_noleggio_autobus_conducente_anav_level_ordering(self) -> None:
+        """Q1 is highest order; C4 is lowest order."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "C4"
+        assert ordered[-1].code == "Q1"
+
+    def test_noleggio_autobus_conducente_anav_additional_months(self) -> None:
+        """Fourteen mensilita (tredicesima + quattordicesima)."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        assert ccnl.parameters.additional_months.value_at(date(2026, 9, 1)) == Decimal(
+            14
+        )
+
+    def test_noleggio_autobus_conducente_anav_hourly_divisor(self) -> None:
+        """Hourly divisor = 173."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == 173
+
+    def test_noleggio_autobus_conducente_anav_split_model_c2(self) -> None:
+        """C2 has CONTINGENZA, EDR, EDR_RINNOVO as fixed allowances."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "C2")
+        codes = {a.code for a in lv.fixed_allowances}
+        assert codes == {"CONTINGENZA", "EDR", "EDR_RINNOVO"}
+
+    def test_noleggio_autobus_conducente_anav_tax_sector(self) -> None:
+        """Tax sector is terziario."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
+
+    def test_noleggio_autobus_conducente_anav_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), max 9 increments."""
+        ccnl = load_ccnl("noleggio-autobus-conducente-anav.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 9
