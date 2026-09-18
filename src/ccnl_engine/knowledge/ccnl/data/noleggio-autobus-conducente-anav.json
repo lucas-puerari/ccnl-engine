@@ -1,0 +1,3063 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "noleggio-autobus-conducente-anav",
+    "name": "CCNL Noleggio Autobus con Conducente (ANAV)",
+    "cnel_code": "IC36",
+    "sector": "Trasporti - Noleggio autobus con conducente",
+    "tax_sector": "terziario",
+    "agreement_date": "2025-05-23",
+    "signatories": [
+      "ANAV",
+      "FILT-CGIL",
+      "FIT-CISL",
+      "UILTRASPORTI"
+    ],
+    "sources": [
+      {
+        "url": "https://www.redigo.info/2025/05/27/ccnl-noleggio-autobus-con-conducente-laccordo-di-rinnovo-2024-2026/",
+        "type": "news",
+        "agreement_date": "2025-05-23"
+      },
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548",
+        "type": "table",
+        "agreement_date": "2025-05-23"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-18",
+      "human_reviewed": true
+    },
+    "workers_estimate": "~5422"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = retribuzione tabellare; fixed_allowances per level: CONTINGENZA (frozen) + EDR (10.33, frozen since Protocollo 1992) + EDR_RINNOVO (new EDR from 2025-07-01, per level, 14 mensilita) + INDENNITA_FUNZIONE (Q1=67.00, Q2=51.00 only)."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TABLE: 2024-2026 contract signed 23/05/2025, validity 01/01/2024-31/12/2026. Two salary tranches: T1 from 01/07/2025 (+60 EUR at C2, riparametrate), T2 from 01/08/2026 (+100 EUR at C2, riparametrate). New EDR (EDR_RINNOVO) introduced from 01/07/2025: 40.00 EUR at C2, riparametrate per level, paid for 14 mensilita."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173, consistent with 40h/week x 52/12 = 173.33 convention; ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima)."
+      },
+      {
+        "kind": "info",
+        "text": "TAX SECTOR: terziario (same classification as IC35 autorimesse; bus rental companies fall under ATECO division 49 which uses terziario INPS rates)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Overtime bands not modeled (no standard rates found in public sources; article-specific complexity)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "partial"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2024-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 9,
+      "amount_by_level": {
+        "Q1": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "Q2": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "33.10"
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "32.19"
+            }
+          ]
+        },
+        "B1": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "30.36"
+            }
+          ]
+        },
+        "B2": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "29.57"
+            }
+          ]
+        },
+        "B3": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "29.39"
+            }
+          ]
+        },
+        "C1": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "29.23"
+            }
+          ]
+        },
+        "C2": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "27.17"
+            }
+          ]
+        },
+        "C3": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "26.61"
+            }
+          ]
+        },
+        "C4": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "25.35"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-tabella-retributiva",
+            "title": "kitech-ic36-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Scatti di anzianita"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "professionalizzante",
+      "destination_levels": [
+        "Q1",
+        "Q2",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "B3",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "C4",
+      "order": 1,
+      "description": "Livello C4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "796.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "841.03",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "915.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "511.44",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "29.85",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "C3",
+      "order": 2,
+      "description": "Livello C3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "995.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1051.27",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1144.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "515.67",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "37.31",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "C2",
+      "order": 3,
+      "description": "Livello C2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1066.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1126.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1226.97",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "517.26",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "C1",
+      "order": 4,
+      "description": "Livello C1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1210.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1278.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1391.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "520.75",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "45.37",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "B3",
+      "order": 5,
+      "description": "Livello B3",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1234.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1303.59",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1419.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "521.06",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "46.27",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "B2",
+      "order": 6,
+      "description": "Livello B2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1289.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1362.46",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1483.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "522.46",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "48.36",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "B1",
+      "order": 7,
+      "description": "Livello B1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1353.62",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1429.74",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1556.61",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "524.10",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "50.75",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "A2",
+      "order": 8,
+      "description": "Livello A2",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1496.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1581.12",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1721.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "527.49",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "56.12",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "A1",
+      "order": 9,
+      "description": "Livello A1",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1592.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1682.05",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1831.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "529.75",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "59.70",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "Q2",
+      "order": 10,
+      "description": "Livello Q2 (quadro)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1592.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1682.05",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1831.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "529.75",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "59.70",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennita' di funzione quadri Q2 (frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "51.00",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    },
+    {
+      "code": "Q1",
+      "order": 11,
+      "description": "Livello Q1 (quadro)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": "2025-07-01",
+            "value": "1592.49",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-07-01",
+            "valid_until": "2026-08-01",
+            "value": "1682.05",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-08-01",
+            "valid_until": null,
+            "value": "1831.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "kitech-ic36-548-tabella-retributiva",
+                  "title": "kitech-ic36-548-tabella-retributiva",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                },
+                "section": "Tabella retributiva"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-sonnet-4-6",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2024-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza (frozen since 1993 Protocol)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "529.75",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Protocollo 1992, frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "10.33",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "EDR_RINNOVO",
+          "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": null,
+                "value": "59.70",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        },
+        {
+          "code": "INDENNITA_FUNZIONE",
+          "description": "Indennita' di funzione quadri Q1 (frozen)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "67.00",
+                "provenance": {
+                  "location": {
+                    "source_document": {
+                      "document_id": "kitech-ic36-548-tabella-retributiva",
+                      "title": "kitech-ic36-548-tabella-retributiva",
+                      "kind": "tabella_retributiva",
+                      "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+                    },
+                    "section": "Tabella retributiva"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-sonnet-4-6",
+                    "extraction_timestamp": "2026-09-18T00:00:00",
+                    "verification_status": "unverified",
+                    "effective_from": "2024-01-01"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "kitech-ic36-548-tabella-retributiva",
+                "title": "kitech-ic36-548-tabella-retributiva",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+              },
+              "section": "Tabella retributiva"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-sonnet-4-6",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "kitech-ic36-548-tabella-retributiva",
+            "title": "kitech-ic36-548-tabella-retributiva",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+          },
+          "section": "Tabella retributiva"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-sonnet-4-6",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-01-01"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "noleggio-autobus-conducente-anav",
+    "version": "1.0.0",
+    "effective_from": "2024-01-01",
+    "effective_until": "2026-12-31",
+    "source": "verbale-accordo-23052025",
+    "verification_status": "unverified",
+    "source_hash": "f43dba64b1db19fe647d29583bdb80748dccda7267ba47de9690729524c33f17",
+    "published_at": "2026-09-18"
+  }
+}

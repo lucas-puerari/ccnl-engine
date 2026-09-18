@@ -106,6 +106,7 @@ nav = [
     { "CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MEC…" = "contracts/metalmeccanico-confimi-pmi.md" },
     { "CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Con…" = "contracts/metalmeccanico-confapi.md" },
     { "CCNL Metalmeccanici e Installatori di Impianti (Federmecc…" = "contracts/metalmeccanico-federmeccanica.md" },
+    { "CCNL Noleggio Autobus con Conducente (ANAV)" = "contracts/noleggio-autobus-conducente-anav.md" },
     { "CCNL Pulizia Artigianato — Confartigianato (K521)" = "contracts/pulizia-artigianato-confartigianato.md" },
     { "CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi …" = "contracts/multiservizi-anip.md" },
     { "CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSI…" = "contracts/ooss-unsic-confsal.md" },
