@@ -10154,3 +10154,70 @@ class TestLoadNoleggioAutobusConducenteAnav:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 9
+
+
+class TestLoadMaterialiCostruzioneLapideiConfapi:
+    """Tests for CCNL Materiali da Costruzione PMI Lapidei CONFAPI ANIEM (F020)."""
+
+    def test_materiali_costruzione_lapidei_confapi_loads(self) -> None:
+        """CCNL id and CNEL code match."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        assert ccnl.meta.ccnl_id == "materiali-costruzione-lapidei-confapi"
+        assert ccnl.meta.cnel_code == "F020"
+
+    def test_materiali_costruzione_lapidei_confapi_has_8_levels(self) -> None:
+        """Eight levels: 1 (highest) through 8 (lowest)."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "8"}
+
+    def test_materiali_costruzione_lapidei_confapi_level1_salary_2022(self) -> None:
+        """Level 1 base_salary at 2022-01-01 tranche = 2605.54."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert lv.base_salary.value_at(date(2022, 1, 1)) == Decimal("2605.54")
+
+    def test_materiali_costruzione_lapidei_confapi_level1_salary_2025(self) -> None:
+        """Level 1 base_salary at 2025-01-01 tranche = 2795.46."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        lv = next(lv for lv in ccnl.levels if lv.code == "1")
+        assert lv.base_salary.value_at(date(2025, 1, 1)) == Decimal("2795.46")
+
+    def test_materiali_costruzione_lapidei_confapi_level_ordering(self) -> None:
+        """Level 1 is highest order; level 8 is lowest order."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert ordered[0].code == "8"
+        assert ordered[-1].code == "1"
+
+    def test_materiali_costruzione_lapidei_confapi_additional_months(self) -> None:
+        """Thirteen mensilita (tredicesima only)."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        assert ccnl.parameters.additional_months.value_at(date(2025, 1, 1)) == Decimal(
+            13
+        )
+
+    def test_materiali_costruzione_lapidei_confapi_hourly_divisor(self) -> None:
+        """Hourly divisor = 174 (Art. 24 Disciplina Lapidei)."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2025, 1, 1)) == 174
+
+    def test_materiali_costruzione_lapidei_confapi_split_model_edr(self) -> None:
+        """All levels have EDR as fixed allowance (split model)."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "EDR" in codes
+
+    def test_materiali_costruzione_lapidei_confapi_tax_sector(self) -> None:
+        """Tax sector is industria."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        assert ccnl.meta.tax_sector == TaxSector.INDUSTRIA
+
+    def test_materiali_costruzione_lapidei_confapi_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), max 5 increments."""
+        ccnl = load_ccnl("materiali-costruzione-lapidei-confapi.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
