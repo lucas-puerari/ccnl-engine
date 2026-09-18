@@ -486,11 +486,6 @@ class PayrollResult:
         return cls.from_dict(json.loads(raw))
 
     @property
-    def period(self) -> PayrollPeriod:
-        """Contract and period identification fields."""
-        return PayrollPeriod.from_result(self)
-
-    @property
     def pay(self) -> PayrollPay:
         """Employee gross and net pay breakdown."""
         return PayrollPay.from_result(self)
@@ -509,38 +504,6 @@ class PayrollResult:
     def quality(self) -> PayrollQuality:
         """Computation quality metadata."""
         return PayrollQuality.from_result(self)
-
-
-@dataclass(frozen=True)
-class PayrollPeriod:
-    """Contract and period identification for a payroll computation."""
-
-    ccnl_id: str
-    level_code: str
-    employment_type: str
-    part_time_pct: Decimal
-    as_of: _date
-    year: int
-    apprenticeship_pct: Decimal | None
-    apprenticeship_under_level_code: str | None
-
-    @classmethod
-    def from_result(cls, r: PayrollResult) -> PayrollPeriod:
-        """Build a :class:`PayrollPeriod` from a :class:`PayrollResult`.
-
-        Returns:
-            A new :class:`PayrollPeriod` populated from *r*.
-        """
-        return cls(
-            ccnl_id=r.ccnl_id,
-            level_code=r.level_code,
-            employment_type=r.employment_type,
-            part_time_pct=r.part_time_pct,
-            as_of=r.as_of,
-            year=r.year,
-            apprenticeship_pct=r.apprenticeship_pct,
-            apprenticeship_under_level_code=r.apprenticeship_under_level_code,
-        )
 
 
 @dataclass(frozen=True)

@@ -98,7 +98,6 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollEmployer,
     PayrollPay,
-    PayrollPeriod,
     PayrollQuality,
     PayrollResult,
     PayrollTax,
@@ -107,6 +106,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollResult as PayrollFigures,
 )
+from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.quality import (
     ConfidenceLevel,
     CoverageStatus,
@@ -151,6 +151,8 @@ from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
     compute_month,
+    compute_period,
+    compute_year,
     estimate_annual,
 )
 from ccnl_engine.engine.payroll.service.render import (
@@ -227,8 +229,11 @@ __all__ = [
     "WeeklyOvertimeHours",
     "Welfare",
     "WelfareInput",
+    "YTDState",
     "compute",
     "compute_month",
+    "compute_period",
+    "compute_year",
     "engine_version",
     "estimate_annual",
     "get_ccnl",

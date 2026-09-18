@@ -3,15 +3,18 @@
 from __future__ import annotations
 
 from datetime import date
+from decimal import Decimal
 from typing import TYPE_CHECKING, assert_never
 
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByCount,
     SeniorityByDate,
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualPayrollScenario,
     PayPeriod,
@@ -35,8 +38,6 @@ from ccnl_engine.engine.tax.service.loaders import (
 )
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import (
@@ -400,3 +401,108 @@ def compute_month(
         with all payroll figures including period events.
     """
     return compute(_annual_to_scenario(scenario, period), bundle)
+
+
+def _accrue_ytd(ytd: YTDState, calc: Calculation) -> YTDState:
+    """Return a new YTDState with one month's contribution appended.
+
+    The engine produces annualized figures; dividing by 12 gives the
+    per-period share that accumulates in the YTD totals.
+
+    Returns:
+        A new :class:`~ccnl_engine.engine.payroll.domain.period.YTDState`
+        with the monthly share of *calc* added to *ytd*.
+    """
+    twelve = Decimal(12)
+    r = calc.result
+    return YTDState(
+        taxable_income=ytd.taxable_income + r.taxable_income / twelve,
+        irpef_withheld=ytd.irpef_withheld + r.irpef_net / twelve,
+        inps_employee=ytd.inps_employee + r.inps_employee_annual / twelve,
+    )
+
+
+def compute_period(
+    scenario: AnnualPayrollScenario,
+    period: PayrollPeriod,
+    bundle: PayrollBundle | None = None,
+) -> Calculation:
+    """Compute payroll for a single month of competence.
+
+    Uses *period.year* and *period.month* as the reference date for all
+    time-series lookups, overriding the ``as_of`` field in
+    *scenario.employment*.  The period-specific events in *period.events*
+    are merged into the scenario exactly as in :func:`compute_month`.
+
+    The year-to-date state in *period.ytd* is stored in the period
+    descriptor and is available for chaining across months; it does not
+    alter the underlying annualized calculation in this version.
+
+    Args:
+        scenario: The annual payroll scenario (structural fields only).
+        period: The month descriptor including YTD state and period events.
+        bundle: Optional pre-loaded knowledge bundle.  When ``None``,
+            rulesets are loaded on demand.
+
+    Returns:
+        A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        for the specified month.
+    """
+    updated = scenario.model_copy(
+        update={
+            "employment": scenario.employment.model_copy(
+                update={"as_of": date(period.year, period.month, 1)}
+            )
+        }
+    )
+    return compute_month(updated, period.events, bundle)
+
+
+def compute_year(
+    scenario: AnnualPayrollScenario,
+    year: int,
+    *,
+    bundle: PayrollBundle | None = None,
+    month_events: list[PayPeriod] | None = None,
+) -> list[Calculation]:
+    """Compute payroll for all twelve months of *year*.
+
+    Calls :func:`compute_period` for each month 1-12, threading the
+    year-to-date progressive state forward from each period into the next.
+    The *scenario.employment.as_of* date is overridden per month; all other
+    structural fields are reused for every period.
+
+    Args:
+        scenario: The annual payroll scenario (structural fields only).
+        year: The calendar year to compute (e.g. ``2026``).
+        bundle: Optional pre-loaded knowledge bundle shared across all twelve
+            calls.  When ``None``, rulesets are loaded on demand.
+        month_events: List of exactly twelve :class:`~ccnl_engine.PayPeriod`
+            instances, one per month January-December.  When ``None``, every
+            month uses a default :class:`~ccnl_engine.PayPeriod` (no special
+            events).
+
+    Returns:
+        A list of twelve
+        :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        instances, one per month in calendar order.
+
+    Raises:
+        InvalidInputError: When *month_events* is provided but does not
+            contain exactly 12 entries.
+    """
+    events: list[PayPeriod] = (
+        month_events if month_events is not None else [PayPeriod() for _ in range(12)]
+    )
+    if len(events) != 12:
+        msg = f"month_events must have exactly 12 entries, got {len(events)}"
+        raise InvalidInputError(msg, feature="payroll_period")
+    results: list[Calculation] = []
+    ytd = YTDState()
+    for i, ev in enumerate(events):
+        month = i + 1
+        period = PayrollPeriod(year=year, month=month, events=ev, ytd=ytd)
+        calc = compute_period(scenario, period, bundle)
+        ytd = _accrue_ytd(ytd, calc)
+        results.append(calc)
+    return results
