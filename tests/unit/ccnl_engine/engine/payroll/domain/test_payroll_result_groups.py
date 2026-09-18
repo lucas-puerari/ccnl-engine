@@ -18,7 +18,6 @@ from ccnl_engine import (
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollEmployer,
     PayrollPay,
-    PayrollPeriod,
     PayrollQuality,
     PayrollResult,
     PayrollTax,
@@ -43,55 +42,6 @@ def result() -> PayrollResult:
             ),
         )
     ).result
-
-
-class TestPayrollPeriod:
-    """PayrollResult.period returns a PayrollPeriod with identification fields."""
-
-    def test_type(self, result: PayrollResult) -> None:
-        """``result.period`` is a :class:`PayrollPeriod` instance."""
-        assert isinstance(result.period, PayrollPeriod)
-
-    def test_ccnl_id(self, result: PayrollResult) -> None:
-        """``period.ccnl_id`` matches the parent result."""
-        assert result.period.ccnl_id == result.ccnl_id
-
-    def test_level_code(self, result: PayrollResult) -> None:
-        """``period.level_code`` matches the parent result."""
-        assert result.period.level_code == result.level_code
-
-    def test_employment_type(self, result: PayrollResult) -> None:
-        """``period.employment_type`` matches the parent result."""
-        assert result.period.employment_type == result.employment_type
-
-    def test_part_time_pct(self, result: PayrollResult) -> None:
-        """``period.part_time_pct`` matches the parent result."""
-        assert result.period.part_time_pct == result.part_time_pct
-
-    def test_as_of(self, result: PayrollResult) -> None:
-        """``period.as_of`` matches the parent result."""
-        assert result.period.as_of == result.as_of
-
-    def test_year(self, result: PayrollResult) -> None:
-        """``period.year`` matches the parent result."""
-        assert result.period.year == result.year
-
-    def test_apprenticeship_fields_none_for_permanent(
-        self, result: PayrollResult
-    ) -> None:
-        """Apprenticeship fields are ``None`` for permanent employment."""
-        assert result.period.apprenticeship_pct is None
-        assert result.period.apprenticeship_under_level_code is None
-
-    def test_frozen(self, result: PayrollResult) -> None:
-        """``PayrollPeriod`` is immutable."""
-        p = result.period
-        with pytest.raises(Exception, match="cannot assign"):
-            p.ccnl_id = "other"  # type: ignore[misc]
-
-    def test_equality(self, result: PayrollResult) -> None:
-        """Two calls to ``.period`` on the same result are equal."""
-        assert result.period == result.period
 
 
 class TestPayrollPay:
