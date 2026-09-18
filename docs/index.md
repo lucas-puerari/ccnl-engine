@@ -29,6 +29,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Engine](engine/index.md) | How to use `estimate_annual()` / `compute_month()` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
 | [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
+| [Correctness layers](trust/correctness.md) | Software, source, and case correctness — what each layer means and how to read them |
 | [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
 
