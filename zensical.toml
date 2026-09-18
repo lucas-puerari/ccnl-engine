@@ -23,8 +23,10 @@ nav = [
   ]},
   { "Trust" = [
     { "Overview"          = "trust/index.md" },
+    { "Readiness"         = "trust/readiness.md" },
     { "Provenance"        = "trust/provenance.md" },
     { "Confidence"        = "trust/confidence.md" },
+    { "Data operations"   = "trust/data-operations.md" },
   ]},
   { "Examples"   = "examples.md" },
   { "Contracts"  = [
