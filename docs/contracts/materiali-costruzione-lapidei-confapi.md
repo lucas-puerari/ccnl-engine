@@ -10,6 +10,7 @@
 | **Ruleset version** | `—` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
+| **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
 
@@ -21,11 +22,34 @@
 
 ## Coverage
 
+### Funzionalità
+
 | Layer | Status |
 |---|---|
 | **L1 — Gross** | ✅ implemented |
 | **L2 — Net** | ✅ implemented |
 | **L3 — Work rules** | 🔲 not_implemented |
+
+### Verifica
+
+| | |
+|---|---|
+| **Readiness** | 🧪 Exploratory |
+| **Confidence** | 🔴 Unverified |
+| **Last human review** | — |
+
+### Freschezza
+
+| | |
+|---|---|
+| **Last renewal** | 2025-09-09 |
+| **Last verified** | — |
+| **Next salary event** | — |
+
+### Semplificazioni note
+
+2 semplificazioni documentate.
+Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
@@ -63,7 +87,7 @@ Latest effective values per level (monthly gross, EUR).
 These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
 
 !!! warning ""
-    SIMPLIFICATION: Apprenticeship not modelled. Art. 3 provides sotto-inquadramento with variable offsets (2 levels below for first half, 1 level below for second half) — cannot be expressed as fixed pay_level_code. Omitted pending engine support for offset-based apprenticeship.
+    SIMPLIFICATION: Apprenticeship not modelled. Art. 3 defines three periods (0-12 months 2 levels below, 12-24 months 1 level below, 24-36 months destination pay) with a special 18-month track for L6 and destination pay in period 3. The engine supports ApprenticeshipUnderClassification with levels_below periods, but L6's shorter duration and period-3 destination-pay override require per-destination customisation not yet extracted from source. Deferred pending dedicated source review.
 
 !!! warning ""
     SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred.
@@ -96,3 +120,9 @@ These are deliberate modelling approximations. Read them before using this contr
     ```json
     --8<-- "src/ccnl_engine/knowledge/ccnl/data/materiali-costruzione-lapidei-confapi.json"
     ```
+
+## Usage example
+
+```python
+--8<-- "docs/examples/contracts/materiali-costruzione-lapidei-confapi.py"
+```

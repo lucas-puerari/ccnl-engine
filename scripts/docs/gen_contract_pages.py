@@ -40,6 +40,12 @@ VERIFICATION_BADGE: dict[str, str] = {
     "needs_review": "🟡 Needs review",
 }
 
+READINESS_BADGE: dict[str, str] = {
+    "exploratory": "🧪 Exploratory",
+    "reviewed": "👁 Reviewed",
+    "production": "🏭 Production",
+}
+
 EXTRACTION_BADGE: dict[str, str] = {
     "manual": "🧑 Manual",
     "ai": "🤖 AI-assisted",
@@ -247,6 +253,8 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
     ruleset_version = ruleset.get("version") or ruleset.get("id") or "—"
     ext_method = extraction.get("method") or "—"
     ext_status = ruleset.get("verification_status") or "unverified"
+    verification = data.get("verification", {})
+    readiness = verification.get("readiness", "exploratory")
     signatories = meta.get("signatories") or []
 
     lines: list[str] = [
@@ -262,6 +270,7 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
         f"| **Ruleset version** | `{ruleset_version}` |",
         f"| **Extraction** | {EXTRACTION_BADGE.get(ext_method, ext_method)} |",
         f"| **Verification** | {VERIFICATION_BADGE.get(ext_status, ext_status)} |",
+        f"| **Readiness** | {READINESS_BADGE.get(readiness, readiness)} |",
         "",
         "[← Contracts index](index.md)",
         "",
@@ -273,27 +282,102 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
     return lines
 
 
-def _coverage_section(coverage: dict[str, Any]) -> list[str]:
-    """Build the coverage table section.
+def _next_salary_event(levels: list[dict[str, Any]]) -> str:
+    """Return the earliest future salary tranche date across all levels.
+
+    Returns:
+        ISO-8601 date string, or '—' when no future tranches are recorded.
+    """
+    future: list[str] = []
+    for level in levels:
+        bs = level.get("base_salary") or {}
+        periods = bs.get("periods", []) if isinstance(bs, dict) else []
+        for period in periods:
+            vf = period.get("valid_from", "")
+            if vf > TODAY:
+                future.append(vf)
+    return min(future) if future else "—"
+
+
+def _coverage_section(
+    coverage: dict[str, Any],
+    verification: dict[str, Any],
+    meta: dict[str, Any],
+    levels: list[dict[str, Any]],
+) -> list[str]:
+    """Build the 4-axis coverage card.
+
+    Axes: Funzionalità (L1/L2/L3), Verifica (readiness + confidence),
+    Freschezza (renewal date + last human review + next event),
+    Semplificazioni (count of simplification notes).
 
     Returns:
         List of markdown lines.
     """
 
-    def row(label: str, status: str | None) -> str:
+    def layer_row(label: str, status: str | None) -> str:
         icon = COVERAGE_ICON.get(status, "—")
         return f"| **{label}** | {icon} {status or '—'} |"
 
-    return [
+    notes = coverage.get("notes") or []
+    simp_count = sum(1 for n in notes if n.get("kind") == "simplification")
+    missing_count = sum(1 for n in notes if n.get("kind") == "missing")
+
+    readiness = verification.get("readiness", "exploratory")
+    confidence = verification.get("confidence", "unverified")
+    last_reviewed = verification.get("last_reviewed") or "—"
+    sources = meta.get("sources") or []
+    agreement_date = (
+        meta.get("agreement_date")
+        or (sources[0].get("published_on") if sources else None)
+        or "—"
+    )
+    next_event = _next_salary_event(levels)
+
+    lines: list[str] = [
         "## Coverage",
+        "",
+        "### Funzionalità",
         "",
         "| Layer | Status |",
         "|---|---|",
-        row("L1 — Gross", coverage.get("gross")),
-        row("L2 — Net", coverage.get("net")),
-        row("L3 — Work rules", coverage.get("work_rules")),
+        layer_row("L1 — Gross", coverage.get("gross")),
+        layer_row("L2 — Net", coverage.get("net")),
+        layer_row("L3 — Work rules", coverage.get("work_rules")),
+        "",
+        "### Verifica",
+        "",
+        "| | |",
+        "|---|---|",
+        f"| **Readiness** | {READINESS_BADGE.get(readiness, readiness)} |",
+        f"| **Confidence** | {VERIFICATION_BADGE.get(confidence, confidence)} |",
+        f"| **Last human review** | {last_reviewed} |",
+        "",
+        "### Freschezza",
+        "",
+        "| | |",
+        "|---|---|",
+        f"| **Last renewal** | {agreement_date} |",
+        f"| **Last verified** | {last_reviewed} |",
+        f"| **Next salary event** | {next_event} |",
+        "",
+        "### Semplificazioni note",
         "",
     ]
+    simp_s = "e" if simp_count == 1 else "i"
+    simp_a = "a" if simp_count == 1 else "e"
+    missing_suffix = f" {missing_count} feature mancanti." if missing_count else ""
+    if simp_count:
+        lines.extend([
+            f"{simp_count} semplificazion{simp_s} documentat{simp_a}.{missing_suffix}",
+            "Vedi [Known simplifications](#known-simplifications) per i dettagli.",
+        ])
+    else:
+        lines.append("Nessuna semplificazione documentata.")
+        if missing_count:
+            lines.append(f"{missing_count} feature non ancora implementate.")
+    lines.append("")
+    return lines
 
 
 def _simplification_lines(notes_by_kind: dict[str, list[str]]) -> list[str]:
@@ -423,10 +507,13 @@ def generate_page(json_path: Path) -> str:
     ccnl_id = json_path.stem
 
     coverage = data.get("coverage", {})
+    verification = data.get("verification", {})
+    meta = data.get("meta", {})
+    levels = data.get("levels", [])
 
     lines: list[str] = []
     lines.extend(_header_section(data, ccnl_id))
-    lines.extend(_coverage_section(coverage))
+    lines.extend(_coverage_section(coverage, verification, meta, levels))
     lines.extend(_body_sections(data))
     lines.extend(_tail_section(ccnl_id))
 

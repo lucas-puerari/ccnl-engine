@@ -10,6 +10,7 @@
 | **Ruleset version** | `—` |
 | **Extraction** | 🧑 Manual |
 | **Verification** | 🔴 Unverified |
+| **Readiness** | 🧪 Exploratory |
 
 [← Contracts index](index.md)
 
@@ -21,11 +22,34 @@
 
 ## Coverage
 
+### Funzionalità
+
 | Layer | Status |
 |---|---|
 | **L1 — Gross** | ✅ implemented |
 | **L2 — Net** | ✅ implemented |
 | **L3 — Work rules** | 🔲 not_implemented |
+
+### Verifica
+
+| | |
+|---|---|
+| **Readiness** | 🧪 Exploratory |
+| **Confidence** | 🟢 Verified |
+| **Last human review** | 2026-09-17 |
+
+### Freschezza
+
+| | |
+|---|---|
+| **Last renewal** | 2026-04-09 |
+| **Last verified** | 2026-09-17 |
+| **Next salary event** | — |
+
+### Semplificazioni note
+
+2 semplificazioni documentate.
+Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
 
