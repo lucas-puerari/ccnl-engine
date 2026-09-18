@@ -9908,3 +9908,94 @@ class TestLoadEdiliziaPmiConfapiAniem:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestLoadEdiliziaCooperativeAncpl:
+    """Unit tests for CCNL Edilizia Cooperative ANCPL (F016)."""
+
+    def test_edilizia_cooperative_ancpl_loads(self) -> None:
+        """Contract loads with correct id and CNEL code F016."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        assert ccnl.meta.ccnl_id == "edilizia-cooperative-ancpl"
+        assert ccnl.meta.cnel_code == "F016"
+
+    def test_edilizia_cooperative_ancpl_has_10_levels(self) -> None:
+        """Contract has 10 levels including Q variants."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        codes = {lv.code for lv in ccnl.levels}
+        assert codes == {"1", "2", "3", "4", "5", "6", "7", "7Q", "8", "8Q"}
+
+    def test_edilizia_cooperative_ancpl_level4_salary_t1(self) -> None:
+        """Level 4 paga base is 1485.49 EUR at T1 tranche (01/02/2025)."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        period = next(
+            p
+            for p in lv4.base_salary.periods
+            if p.valid_from.isoformat() == "2025-02-01"
+        )
+        assert period.value == Decimal("1485.49")
+
+    def test_edilizia_cooperative_ancpl_level4_salary_t2(self) -> None:
+        """Level 4 paga base is 1553.74 EUR at T2 tranche (01/03/2026)."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        period = next(
+            p
+            for p in lv4.base_salary.periods
+            if p.valid_from.isoformat() == "2026-03-01"
+        )
+        assert period.value == Decimal("1553.74")
+
+    def test_edilizia_cooperative_ancpl_level4_salary_t3(self) -> None:
+        """Level 4 paga base is 1621.99 EUR at T3 tranche (01/03/2027)."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        lv4 = next(lv for lv in ccnl.levels if lv.code == "4")
+        period = next(
+            p
+            for p in lv4.base_salary.periods
+            if p.valid_from.isoformat() == "2027-03-01"
+        )
+        assert period.value == Decimal("1621.99")
+
+    def test_edilizia_cooperative_ancpl_level_ordering(self) -> None:
+        """Level 1 is lowest, 8Q is highest."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        sorted_lvs = sorted(ccnl.levels, key=lambda lv: lv.order)
+        assert sorted_lvs[0].code == "1"
+        assert sorted_lvs[-1].code == "8Q"
+
+    def test_edilizia_cooperative_ancpl_additional_months(self) -> None:
+        """Additional months is 13."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        val = ccnl.parameters.additional_months.value_at(date(2026, 1, 1))
+        assert val == Decimal(13)
+
+    def test_edilizia_cooperative_ancpl_hourly_divisor(self) -> None:
+        """Hourly divisor is 173."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
+
+    def test_edilizia_cooperative_ancpl_split_model_fixed_allowances(self) -> None:
+        """All levels carry CONTINGENZA + EDR; Q levels also carry INDENNITA_FUNZIONE."""  # noqa: E501
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        for lv in ccnl.levels:
+            codes = {a.code for a in lv.fixed_allowances}
+            assert "CONTINGENZA" in codes
+            assert "EDR" in codes
+            if lv.code in {"7Q", "8Q"}:
+                assert "INDENNITA_FUNZIONE" in codes
+            else:
+                assert "INDENNITA_FUNZIONE" not in codes
+
+    def test_edilizia_cooperative_ancpl_tax_sector(self) -> None:
+        """Tax sector is edilizia."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        assert ccnl.meta.tax_sector == TaxSector.EDILIZIA
+
+    def test_edilizia_cooperative_ancpl_seniority_cadence(self) -> None:
+        """Seniority: biennial (24 months), max 5 increments."""
+        ccnl = load_ccnl("edilizia-cooperative-ancpl.json")
+        si = ccnl.parameters.seniority_increments
+        assert si.cadence_months == 24
+        assert si.maximum_count == 5
