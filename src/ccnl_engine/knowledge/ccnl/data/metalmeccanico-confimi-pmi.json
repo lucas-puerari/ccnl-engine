@@ -1,0 +1,1597 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "metalmeccanico-confimi-pmi",
+    "name": "CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)",
+    "cnel_code": "C01A",
+    "sector": "metalmeccanico",
+    "tax_sector": "industria",
+    "signatories": [
+      "CONFIMI IMPRESA MECCANICA",
+      "FIM-CISL",
+      "UILM-UIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445",
+        "type": "table",
+        "agreement_date": "2025-10-28"
+      },
+      {
+        "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028",
+        "type": "table",
+        "agreement_date": "2025-10-28"
+      },
+      {
+        "url": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
+        "type": "agreement",
+        "agreement_date": "2025-10-28"
+      },
+      {
+        "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf",
+        "type": "official_ccnl",
+        "agreement_date": null
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-18T00:00:00",
+      "human_reviewed": false
+    },
+    "workers_estimate": "~100k"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "CONGLOBATED MODEL (levels 2-7): base_salary = total minimo tabellare per the CONFIMI table (paga base + contingenza + EDR all consolidated). fixed_allowances is empty for levels 2-7."
+      },
+      {
+        "kind": "info",
+        "text": "ELEMENTO RETRIBUTIVO (levels 8, 9, 8Q, 9Q): per the official CNEL/CONFIMI text, categories 8 and 9 carry an 'elemento retributivo' of EUR 59.39/month fixed alongside the minimo. Modelled as a fixed_allowance with code ELEMENTO_RETRIBUTIVO."
+      },
+      {
+        "kind": "info",
+        "text": "FUNZIONE QUADRO (levels 8Q, 9Q): quadri in cat.8 receive EUR 49.06/month and in cat.9 EUR 69.72/month as 'funzione quadro'. Modelled as fixed_allowance FUNZIONE_QUADRO. Amounts treated as perpetual; future tranche indexation not sourced."
+      },
+      {
+        "kind": "info",
+        "text": "CATEGORY ELIMINATION: Art. of the CCNL eliminated Category 1 from 2022-01-01; workers formerly in cat.1 automatically moved to cat.2. This JSON models levels 2-9 (plus 8Q/9Q) as in force from 2026-06-01."
+      },
+      {
+        "kind": "info",
+        "text": "SALARY TRANCHES: the October 2025 renewal schedules the first increase at 2026-06-01 (no tranche at signature). Three tranches modelled: 2026-06-01, 2027-06-01, 2028-06-01."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text."
+      },
+      {
+        "kind": "simplification",
+        "text": "WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173 hours/month (40 h/week x 52/12). Confirmed by kitech.it and the official CCNL text for calculation of hourly pay."
+      },
+      {
+        "kind": "info",
+        "text": "MONTHLY PAYMENTS: 13 (tredicesima only). Source: ilccnl.it and official CNEL PDF."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: 5 biennali. Amounts from the official CNEL C01A text: cat.2=21.59, cat.3=25.05, cat.4=26.75, cat.5=29.64, cat.6=32.43, cat.7=36.41, cat.8=40.95, cat.9=45.96. Levels 8Q and 9Q use the same scatto as cat.8 and cat.9 respectively."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: uses 2026-industria.json. Standard industry rates."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-10-28",
+          "valid_until": null,
+          "value": "173",
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Parametri contrattuali — divisore orario"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-10-28",
+          "valid_until": null,
+          "value": "13",
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Mensilita' aggiuntive — tredicesima"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+            "kind": "cnel",
+            "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+          },
+          "section": "Scatti di anzianita' — 5 biennali"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-01-01"
+        }
+      },
+      "amount_by_level": {
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "21.59"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "25.05"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "26.75"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "29.64"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "32.43"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "36.41"
+            }
+          ]
+        },
+        "8": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "40.95"
+            }
+          ]
+        },
+        "8Q": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "40.95"
+            }
+          ]
+        },
+        "9": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "45.96"
+            }
+          ]
+        },
+        "9Q": {
+          "periods": [
+            {
+              "valid_from": "2022-01-01",
+              "valid_until": null,
+              "value": "45.96"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "levels": [
+    {
+      "code": "2",
+      "order": 1,
+      "description": "Category 2 — semi-skilled worker, standard repetitive operations",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 2"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "1816.13",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 2 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "1860.50",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 2 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "1896.80",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 2 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "3",
+      "order": 2,
+      "description": "Category 3 — skilled worker, qualified operations",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 3"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2013.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 3 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2063.18",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 3 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2103.44",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 3 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "4",
+      "order": 3,
+      "description": "Category 4 — specialist worker, complex independent operations",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 4"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2101.93",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 4 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2153.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 4 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2195.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 4 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "5",
+      "order": 4,
+      "description": "Category 5 — highly skilled worker, autonomous complex tasks",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 5"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2251.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 5 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2306.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 5 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2351.35",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 5 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "6",
+      "order": 5,
+      "description": "Category 6 — senior specialist, team coordinator or technical reference",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 6"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2414.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 6 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2473.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 6 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2521.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 6 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "7",
+      "order": 6,
+      "description": "Category 7 — expert specialist, university-level role or equivalent experience",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 7"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2591.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 7 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2654.47",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 7 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2706.26",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 7 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": []
+    },
+    {
+      "code": "8",
+      "order": 7,
+      "description": "Category 8 — senior specialist or impiegato direttivo; includes elemento retributivo",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 8"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2818.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 8 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2887.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 8 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2943.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 8 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ELEMENTO_RETRIBUTIVO",
+          "description": "Elemento retributivo Cat. 8 e 9 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Indennita' e altri elementi retributivi — Elemento retributivo 59,39 Cat. 8 e 9"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "8Q",
+      "order": 8,
+      "description": "Category 8Q — quadro (middle management), with funzione quadro allowance",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+            "kind": "cnel",
+            "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+          },
+          "section": "Funzione quadro — Cat. 8Q"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "2818.30",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 8Q — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "2887.15",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 8Q — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "2943.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 8Q — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ELEMENTO_RETRIBUTIVO",
+          "description": "Elemento retributivo Cat. 8 e 9 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Indennita' e altri elementi retributivi — Elemento retributivo 59,39 Cat. 8 e 9"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        },
+        {
+          "code": "FUNZIONE_QUADRO",
+          "description": "Indennita' funzione quadro Cat. 8 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "49.06"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Funzione quadro — EUR 49,06 Cat. 8"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "9",
+      "order": 9,
+      "description": "Category 9 — expert specialist, senior impiegato direttivo; includes elemento retributivo",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Tabella retributiva — Categoria 9"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "3133.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 9 — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "3209.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 9 — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3272.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 9 — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ELEMENTO_RETRIBUTIVO",
+          "description": "Elemento retributivo Cat. 8 e 9 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Indennita' e altri elementi retributivi — Elemento retributivo 59,39 Cat. 8 e 9"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "9Q",
+      "order": 10,
+      "description": "Category 9Q — senior quadro (senior management), with funzione quadro allowance",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+            "kind": "cnel",
+            "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+          },
+          "section": "Funzione quadro — Cat. 9Q"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-06-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-06-01",
+            "valid_until": "2027-06-01",
+            "value": "3133.25",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-kitech-445",
+                  "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+                },
+                "section": "Tabella retributiva — Categoria 9Q — 01/06/2026"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2026-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-06-01",
+            "valid_until": "2028-06-01",
+            "value": "3209.79",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 9Q — 01/06/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2027-06-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-06-01",
+            "valid_until": null,
+            "value": "3272.42",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
+                  "title": "CCNL Metalmeccanici CONFIMI — Tabelle 2026-2028 (consulentidellavoro.ts.it, agosto 2026)",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.consulentidellavoro.ts.it/index.php/circolari-e-news/172-tabelle-stipendi-ccnl-metalmeccanica-confimi-pmi-aggiornamento-2026-2027-2028"
+                },
+                "section": "Tabella retributiva — Categoria 9Q — 01/06/2028"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "unverified",
+                "effective_from": "2028-06-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "ELEMENTO_RETRIBUTIVO",
+          "description": "Elemento retributivo Cat. 8 e 9 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "59.39"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Indennita' e altri elementi retributivi — Elemento retributivo 59,39 Cat. 8 e 9"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        },
+        {
+          "code": "FUNZIONE_QUADRO",
+          "description": "Indennita' funzione quadro Cat. 9 (official CNEL C01A text, CONFIMI)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "69.72"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI IMPRESA MECCANICA — testo ufficiale CNEL C01A",
+                "kind": "cnel",
+                "url": "https://www.direzionelavoro.it/sites/default/files/files_pubblici/Accordo%20C01A%20CONFIMI.pdf"
+              },
+              "section": "Funzione quadro — EUR 69,72 Cat. 9"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2026-06-01"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "apprenticeship": [],
+  "ruleset": {
+    "id": "ccnl/metalmeccanico-confimi-pmi",
+    "version": "2025.1",
+    "effective_from": "2025-10-28",
+    "effective_until": null,
+    "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
+    "verification_status": "unverified",
+    "source_hash": "869640b3a9222614665027c3aab7072ce329871f3ceff5004d12314989374724",
+    "published_at": "2026-09-18"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "value": 0.15,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["weekday"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Art. straordinario — maggiorazione 15%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["night"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Art. straordinario — notturno 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["holiday"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Art. straordinario — festivo 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-28",
+                "value": 0.6,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": ["night", "holiday"],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-c01a-confimi-kitech-445",
+                "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+                "kind": "tabella_retributiva",
+                "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+              },
+              "section": "Art. straordinario — notturno festivo 60%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "unverified",
+              "effective_from": "2025-10-28"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Art. orario — divisore mensile standard"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-28"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "22",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "22"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Art. ferie — 22 giorni lavorativi"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-28"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0.6",
+      "full_pay_integration_rate": "0.75",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-c01a-confimi-kitech-445",
+            "title": "CCNL Metalmeccanici Piccola Industria CONFIMI — Tabella retributiva (kitech.it CodiceCateg=445)",
+            "kind": "tabella_retributiva",
+            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=445"
+          },
+          "section": "Art. malattia — 60% gg1-3, 75% gg4-180"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-10-28"
+        }
+      }
+    }
+  }
+}
