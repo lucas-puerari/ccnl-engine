@@ -1,0 +1,1677 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "edilizia-pmi-confapi-aniem",
+    "name": "CCNL Edilizia PMI CONFAPI ANIEM",
+    "cnel_code": "F018",
+    "sector": "Edilizia",
+    "tax_sector": "edilizia",
+    "agreement_date": "2025-04-15",
+    "signatories": [
+      "CONFAPI ANIEM",
+      "FENEAL UIL",
+      "FILCA CISL",
+      "FILLEA CGIL"
+    ],
+    "sources": [
+      {
+        "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+        "type": "primary",
+        "agreement_date": "2025-04-15"
+      }
+    ],
+    "extraction": {
+      "method": "ai",
+      "model": "claude-sonnet-4-6",
+      "timestamp": "2026-09-18",
+      "human_reviewed": true
+    },
+    "workers_estimate": "~70000"
+  },
+  "coverage": {
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SPLIT MODEL: paga_base (changes each tranche) + contingenza (frozen) + EDR (frozen at 10.33). Tranche 1: 01/04/2025; Tranche 2: 01/03/2027. Source: FILLEA CGIL testo armonizzato 15/04/2025 (Art. 25 and tabelle allegate)."
+      },
+      {
+        "kind": "info",
+        "text": "CONGLOBATED CHECK: L1 01/04/2025 total 1611.78 / 173 = 9.317 (non-integer). L4 = 2055.65 / 173 = 11.88 (matches official hourly table). Split model confirmed."
+      },
+      {
+        "kind": "info",
+        "text": "HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table."
+      },
+      {
+        "kind": "info",
+        "text": "ITS (Indennita' Territoriale di Settore) not modelled: varies by province/region. National table footnote: 'A questa Tabella occorre aggiungere l'ITS che varia da territorio a territorio'. The national tabular minimum does not include ITS."
+      },
+      {
+        "kind": "info",
+        "text": "CASSA EDILE: for blue-collar workers (levels 1-4), holidays (8.5%) and Christmas bonus (10%) accrue through the Edilcassa system rather than direct employer payment. The engine models the Christmas bonus as a direct 13th month. Consequences: (1) employer_cost_annual underestimates by ~18.5% of gross for blue-collar workers; (2) net_monthly is correct."
+      },
+      {
+        "kind": "info",
+        "text": "ADDITIONAL_MONTHS: 13 monthly payments (gratifica natalizia). Impiegati (Art. 64) additionally receive a premio annuo equal to one monthly salary (14th month). Engine models 13 for all levels as an approximation; the 14th month for impiegati is not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "SENIORITY: Art. 49 lists impiegati scatti biennali by category. Level 1 has no explicit Art. 49 amount; engine uses 8.22 (Impiegati 4a category, same as level 2) as an approximation. For operai (levels 1-4), seniority is governed by the Cassa Edile anzianita' professionale edile (APE) system; engine uses the Art. 49 impiegati amounts as an approximation."
+      },
+      {
+        "kind": "info",
+        "text": "EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled."
+      },
+      {
+        "kind": "info",
+        "text": "INPS: reuses 2026-edilizia.json (proxy rates, employer_tiers=[], employee_rate=null inherited from F012). Cassa Edile ~18.5% contribution is separate and not included in INPS rates."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprenticeship destination conflicts. Art. G defines 4 operai groups and 3 impiegati bands. Engine tracks use disjoint destination_levels: level '2' -> gruppo_4 (36m); level '3' -> gruppo_3 (48m, ref=L2); levels '4'/'5' -> gruppo_2 (51m, ref=L3); levels '6'/'7' -> gruppo_1 (60m, ref=L3). Level '1' has no apprenticeship track (manual labor). Operai gruppo_3 (also exits at level '2', 48m) not modelled separately."
+      },
+      {
+        "kind": "simplification",
+        "text": "SIMPLIFICATION: Apprentice base per Art. G includes ITS and EVR alongside paga_base + contingenza. Engine covers only paga_base + contingenza; apprentice gross is understated where ITS applies."
+      }
+    ],
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "implemented"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-04-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-04-01",
+          "valid_until": null,
+          "value": "13"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Art. 49 — Scatti di anzianita' impiegati: biennale, max 5"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      },
+      "amount_by_level": {
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "8.22"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "8.22"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "8.99"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "9.61"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "10.46"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "12.84"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2025-04-01",
+              "valid_until": null,
+              "value": "13.94"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "apprenticeship": [
+    {
+      "type": "percentage",
+      "name": "gruppo_4",
+      "destination_levels": [
+        "2"
+      ],
+      "reference_level": "2",
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.84"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_impiegati_3",
+      "destination_levels": [
+        "3"
+      ],
+      "reference_level": "2",
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_impiegati_4_5",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "reference_level": "3",
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 48,
+          "months_until": 51,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 51,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_impiegati_6_7",
+      "destination_levels": [
+        "6",
+        "7"
+      ],
+      "reference_level": "3",
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.74"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.76"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.79"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.86"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.91"
+        },
+        {
+          "months_from": 48,
+          "months_until": 54,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 54,
+          "months_until": 60,
+          "percentage": "0.96"
+        },
+        {
+          "months_from": 60,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1",
+      "order": 1,
+      "description": "Livello I — manodopera generica",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1087.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1162.99",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "513.46"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "2",
+      "order": 2,
+      "description": "Livello II — operaio qualificato / impiegato d'ordine",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1272.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1360.69",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "517.16"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "3",
+      "order": 3,
+      "description": "Livello III — operaio specializzato / impiegato di 3a categoria",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1414.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1551.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "520.00"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "4",
+      "order": 4,
+      "description": "Livello IV — operaio di 4o livello / assistente tecnico",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1523.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1628.17",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "522.15"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "5",
+      "order": 5,
+      "description": "Livello V — impiegato di 2a categoria",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1631.98",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "1744.48",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "524.31"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "6",
+      "order": 6,
+      "description": "Livello VI — impiegato di 1a categoria",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "1958.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2093.36",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "530.79"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    {
+      "code": "7",
+      "order": 7,
+      "description": "Livello VII — impiegato di 1a categoria Super / Quadro",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-04-01",
+            "valid_until": "2027-03-01",
+            "value": "2175.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/04/2025"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-03-01",
+            "valid_until": null,
+            "value": "2325.96",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-aniem-armonizzato-15042025",
+                  "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                  "kind": "tabella_retributiva",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+                },
+                "section": "Allegato tabella retributiva — 01/03/2027"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-04-15"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita' di contingenza — frozen since 1992 Protocol",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "535.12"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione — frozen at EUR 10.33 since 1994",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Allegato tabella retributiva — colonna EDR"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Allegato tabella retributiva — livelli e paga base"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "ccnl/edilizia-pmi-confapi-aniem",
+    "version": "2025.1",
+    "effective_from": "2025-04-01",
+    "effective_until": null,
+    "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+    "verification_status": "verified",
+    "source_hash": "681f5be4090da77c011f7bcdfbc0c748b8e89531820cfd96964223a895da442d",
+    "published_at": "2026-09-18"
+  },
+  "work_rules": {
+    "time_supplements": {
+      "hourly_base_method": "minimo_tabellare",
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.35,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — maggiorazione straordinario diurno 35%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Lavoro notturno non in turni avvicendati",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.28,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — notturno non in turni 28%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Lavoro festivo ordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.45,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — festivo 45%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_STRAORDINARIO",
+          "description": "Lavoro festivo straordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.55,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — festivo straordinario 55%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_STRAORDINARIO",
+          "description": "Lavoro notturno straordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.4,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "weekday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — notturno straordinario 40%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_NOTTURNO",
+          "description": "Lavoro festivo notturno straordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — festivo notturno 50%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_NOTTURNO_STRAORDINARIO",
+          "description": "Lavoro festivo notturno straordinario",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-01",
+                "value": 0.7,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night",
+            "holiday"
+          ],
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniem-armonizzato-15042025",
+                "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+                "kind": "tabella_retributiva",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+              },
+              "section": "Art. 19 — festivo notturno straordinario 70%"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2025-04-15"
+            }
+          }
+        }
+      ]
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_26",
+      "daily_hours": null,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Divisore giornaliero 26 (edilizia industria standard)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    "leave_rules": {
+      "default_annual_days": "20",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "20"
+        }
+      ],
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Art. 15 — ferie operai: 4 settimane (160 ore / 20 giorni lavorativi)"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    },
+    "sickness_rules": {
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "1",
+      "max_duration_days": 180,
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-aniem-armonizzato-15042025",
+            "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+            "kind": "tabella_retributiva",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+          },
+          "section": "Art. 26 — malattia operai: integrazione al 100% fino a 180 giorni"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-04-15"
+        }
+      }
+    }
+  }
+}
