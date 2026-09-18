@@ -143,6 +143,7 @@ nav = [
     { "CCNL per i lavoratori dell'industria tessile, abbigliamen…" = "contracts/tessile-smi.md" },
     { "CCNL Trasporto Aereo — Gestori Aeroportuali" = "contracts/trasporto-aereo-assaeroporti.md" },
     { "CCNL Attività Ferroviarie — AGENS" = "contracts/trasporto-ferroviario-agens.md" },
+    { "CCNL Attività Minerarie (ASSORISORSE)" = "contracts/attivita-minerarie-assorisorse.md" },
     { "CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcomme…" = "contracts/turismo-confcommercio.md" },
     { "CCNL Turismo — Assoturismo-Confesercenti" = "contracts/turismo-confesercenti.md" },
     { "CCNL Turismo — Federalberghi/Faita" = "contracts/turismo-federalberghi.md" },

@@ -161,6 +161,7 @@ note (max -20%). work_rules status defaults to not_implemented for most contract
 | 121 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 122 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | 100% | ✅ | ✅ | ✅ | 🤖 |
 | 123 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | trasporti | ~5k | — | 100% | ✅ | ⚠️ | ✅ | 🤖 |
+| 124 | B282 | [CCNL Attività Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | industria estrattiva | ~3k | 2022 | 65% | ✅ | 🚫 | ✅ | 🤖 |
 
 [^1]: Approximate estimates. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.
 [^2]: Salary tables extracted from official CCNL documents using AI-assisted tooling, no manual human review. Verify against the official source before use in production.
