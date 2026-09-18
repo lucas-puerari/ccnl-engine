@@ -1,0 +1,1862 @@
+{
+  "schema_version": "0.5",
+  "meta": {
+    "ccnl_id": "tabacco-apti",
+    "name": "CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto",
+    "cnel_code": "E042",
+    "sector": "lavorazione foglia di tabacco",
+    "tax_sector": "industria",
+    "signatories": [
+      "APTI",
+      "FLAI-CGIL",
+      "FAI-CISL",
+      "UILA-UIL"
+    ],
+    "agreement_date": "2025-07-02",
+    "validity": {
+      "valid_from": "2025-01-01",
+      "valid_until": "2028-12-31"
+    },
+    "workers_estimate": "~2k",
+    "sources": [
+      {
+        "document_id": "tabacco-apti-rinnovo-2025",
+        "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+        "kind": "altro",
+        "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+      },
+      {
+        "document_id": "tabacco-apti-lavoro-economia",
+        "title": "CCNL Tabacco (Lavorazione) — lavoro-economia.it",
+        "kind": "tabella_retributiva",
+        "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=25"
+      }
+    ],
+    "extraction": {
+      "method": "manual",
+      "timestamp": "2026-09-18T00:00:00",
+      "human_reviewed": true
+    }
+  },
+  "coverage": {
+    "gross": "implemented",
+    "net": "implemented",
+    "work_rules": "implemented",
+    "notes": [
+      {
+        "kind": "info",
+        "text": "SALARY MODEL: split. base_salary = minimo tabellare (4 tranches: +60 at 4A on 01/01/2025, +50 on 01/01/2026, +50 on 01/01/2027, +40 on 01/01/2028). 50/50 parametric formula verified against published Allegato A table."
+      },
+      {
+        "kind": "info",
+        "text": "CONTINGENZA: per-level amounts frozen at 01/11/1991 (Allegato B, CCNL 2021). EDR 10.33 EUR uniform for all levels (Accordo Interconfederale 31/07/1992)."
+      },
+      {
+        "kind": "source",
+        "text": "SENIORITY: cadence 24 months, maximum 5 scatti. Amounts from Article 32 of the 2025 renewal. Operai amounts roughly doubled vs 2021 CCNL (4A/B: 5.68->12.00, 5: 5.42->11.00, 6: 5.16->10.00)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP: under_classification for destinations 2, 3A, 3B, 4A, 4B (36-month, 10/12/14 periods) and level 1 (36-month, 10/10/16 periods). Destination 5 (24-month exception, Article 6) not modeled. Level 1S is not an apprenticeship destination."
+      },
+      {
+        "kind": "simplification",
+        "text": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled."
+      }
+    ]
+  },
+  "verification": {
+    "confidence": "needs_review",
+    "verified_cases": 1,
+    "last_reviewed": "2026-09-18",
+    "human_reviewed_by": "lucas-puerari@intella.tech"
+  },
+  "parameters": {
+    "hourly_divisor": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "173"
+        }
+      ]
+    },
+    "additional_months": {
+      "periods": [
+        {
+          "valid_from": "2025-01-01",
+          "valid_until": null,
+          "value": "14"
+        }
+      ]
+    },
+    "seniority_increments": {
+      "cadence_months": 24,
+      "maximum_count": 5,
+      "amount_by_level": {
+        "1S": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "17.00"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "17.00"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "15.00"
+            }
+          ]
+        },
+        "3A": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.00"
+            }
+          ]
+        },
+        "3B": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.00"
+            }
+          ]
+        },
+        "4A": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.00"
+            }
+          ]
+        },
+        "4B": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.00"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "11.00"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "10.00"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Articolo 32 — Aumenti periodici di anzianita"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      }
+    },
+    "employer_funds": [
+      {
+        "code": "ALIFOND",
+        "description": "Fondo nazionale pensione complementare industria alimentare e settori affini",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "0.0150"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "apprendistato professionalizzante (livelli 2-4)",
+      "destination_levels": [
+        "2",
+        "3A",
+        "3B",
+        "4A",
+        "4B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 22,
+          "levels_below": 1
+        },
+        {
+          "months_from": 22,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "apprendistato professionalizzante (livello 1)",
+      "destination_levels": [
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "levels_below": 2
+        },
+        {
+          "months_from": 10,
+          "months_until": 20,
+          "levels_below": 1
+        },
+        {
+          "months_from": 20,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "code": "1S",
+      "order": 9,
+      "category": "impiegato",
+      "description": "Categoria Super — funzioni direttive di particolare rilievo",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2078.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2147.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2216.02",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2271.18",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "529.23"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "1",
+      "order": 8,
+      "category": "impiegato",
+      "description": "1a Categoria — funzioni direttive amministrative o tecniche",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1922.92",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1988.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2054.18",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2106.68",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "527.25"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "order": 7,
+      "category": "impiegato",
+      "description": "2a Categoria — funzioni di concetto con coordinamento",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1678.01",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1738.38",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1798.75",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1847.04",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "520.55"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "3A",
+      "order": 6,
+      "category": "impiegato",
+      "description": "3a Categoria A — compiti esecutivi tecnici o amministrativi con iniziativa",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1469.06",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1524.95",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1580.84",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1625.55",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "515.76"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "3B",
+      "order": 5,
+      "category": "impiegato",
+      "description": "3a Categoria B — compiti esecutivi tecnici o amministrativi",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1314.94",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1367.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1420.10",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1462.16",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "511.87"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "4A",
+      "order": 4,
+      "category": "operaio",
+      "description": "4a Categoria A — qualificazione per il processo di lavorazione del tabacco",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1194.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1244.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1294.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1334.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "508.45"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "4B",
+      "order": 3,
+      "category": "operaio",
+      "description": "4a Categoria B — conoscenze tecnico-pratiche di controllo o produzione",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1142.43",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1191.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1240.19",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1279.29",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "507.67"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "order": 2,
+      "category": "operaio",
+      "description": "5a Categoria — mansioni operative standard",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1107.52",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1155.65",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1203.78",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1242.28",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "506.52"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "order": 1,
+      "category": "operaio",
+      "description": "6a Categoria — mansioni semplici di prima assunzione",
+      "provenance": {
+        "location": {
+          "source_document": {
+            "document_id": "tabacco-apti-rinnovo-2025",
+            "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+            "kind": "altro",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+          },
+          "section": "Allegato A - Minimi retributivi mensili"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-18T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-01-01"
+        }
+      },
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "988.31",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2025-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1033.88",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2026-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1079.45",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2027-01-01"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1115.90",
+            "provenance": {
+              "location": {
+                "source_document": {
+                  "document_id": "tabacco-apti-rinnovo-2025",
+                  "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+                  "kind": "altro",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+                },
+                "section": "Allegato A - Minimi retributivi mensili"
+              },
+              "extraction": {
+                "method": "manual",
+                "extraction_timestamp": "2026-09-18T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2028-01-01"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennita di contingenza congelata al 01/11/1991 (Allegato B)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "505.03"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Allegato B - Indennita di Contingenza"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1991-11-01"
+            }
+          }
+        },
+        {
+          "code": "EDR",
+          "description": "Elemento Distinto della Retribuzione (Accordo Interconfederale 31/07/1992)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "10.33"
+              }
+            ]
+          },
+          "provenance": {
+            "location": {
+              "source_document": {
+                "document_id": "tabacco-apti-2021",
+                "title": "CCNL Tabacco Lavorazione foglia 2021-2024",
+                "kind": "altro",
+                "url": "https://www.flai.it/contratti/ccnl/ccnl-tabacco/"
+              },
+              "section": "Elemento Distinto della Retribuzione"
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-09-18T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "1993-01-01"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
