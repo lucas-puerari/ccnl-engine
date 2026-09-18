@@ -44,6 +44,16 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
 
 _ZERO = Decimal(0)
+_UNVERIFIED = "unverified"
+
+
+def _vs(identity: RulesetIdentity | None) -> str:
+    """Return verification status string, or ``"unverified"`` when absent.
+
+    Returns:
+        Verification status value, or ``"unverified"`` for absent identities.
+    """
+    return identity.verification_status.value if identity is not None else _UNVERIFIED
 
 
 def _inps_domestic(
@@ -491,6 +501,7 @@ class FiscalPay:
     """Annual contributions, tax, deductions and net pay."""
 
     consumed_ruleset_ids: tuple[RulesetIdentity | None, ...]
+    consumed_verifications: dict[str, str]
     inps_employee_annual: Decimal
     inps_employer_annual: Decimal
     inps_employee_additional_annual: Decimal
@@ -587,6 +598,82 @@ def _collect_fiscal_rulesets(
     if surtax_com_consumed:
         ids.append(surtax_municipal_ruleset)
     return tuple(ids)
+
+
+def _collect_fiscal_verifications(
+    fam_ruleset: RulesetIdentity | None,
+    art15_ruleset: RulesetIdentity | None,
+    surtax_reg_id: RulesetIdentity | None,
+    surtax_com_id: RulesetIdentity | None,
+    *,
+    family_consumed: bool,
+    art15_consumed: bool,
+    surtax_reg_consumed: bool,
+    surtax_com_consumed: bool,
+) -> dict[str, str]:
+    """Return ``{kind: verification_status}`` for optional fiscal rulesets.
+
+    Mirrors :func:`_collect_fiscal_rulesets` but records the verification
+    status string instead of the identity object.  Absent identities default
+    to ``"unverified"``.
+
+    Returns:
+        Mapping of ruleset kind to verification status string.
+    """
+    ver: dict[str, str] = {}
+    if family_consumed:
+        ver["family_deductions"] = _vs(fam_ruleset)
+    if art15_consumed:
+        ver["art15_deductions"] = _vs(art15_ruleset)
+    if surtax_reg_consumed:
+        ver["surtax_regional"] = _vs(surtax_reg_id)
+    if surtax_com_consumed:
+        ver["surtax_municipal"] = _vs(surtax_com_id)
+    return ver
+
+
+def _fiscal_consumed(
+    scenario: PayrollScenario,
+    surtax: SurtaxRules | None,
+    fam_ruleset: RulesetIdentity | None,
+    art15_ruleset: RulesetIdentity | None,
+    *,
+    has_any_dependent: bool,
+    surtax_reg_consumed: bool,
+    surtax_com_consumed: bool,
+) -> tuple[tuple[RulesetIdentity | None, ...], dict[str, str]]:
+    """Return ``(consumed_ids, consumed_verifications)`` for optional fiscal rulesets.
+
+    Returns:
+        2-tuple of consumed ruleset identity tuple and verification mapping.
+    """
+    art15_used = (
+        scenario.art15_deductions is not None
+        and scenario.art15_deductions.has_any_onere
+    )
+    surtax_reg_id = surtax.regional_ruleset if surtax is not None else None
+    surtax_com_id = surtax.municipal_ruleset if surtax is not None else None
+    ids = _collect_fiscal_rulesets(
+        fam_ruleset,
+        art15_ruleset,
+        surtax_reg_id,
+        surtax_com_id,
+        family_consumed=has_any_dependent,
+        art15_consumed=art15_used,
+        surtax_reg_consumed=surtax_reg_consumed,
+        surtax_com_consumed=surtax_com_consumed,
+    )
+    ver = _collect_fiscal_verifications(
+        fam_ruleset,
+        art15_ruleset,
+        surtax_reg_id,
+        surtax_com_id,
+        family_consumed=has_any_dependent,
+        art15_consumed=art15_used,
+        surtax_reg_consumed=surtax_reg_consumed,
+        surtax_com_consumed=surtax_com_consumed,
+    )
+    return ids, ver
 
 
 def compute_fiscal(
@@ -800,20 +887,19 @@ def compute_fiscal(
         + tfr_annual
     )
 
-    consumed_ruleset_ids = _collect_fiscal_rulesets(
+    consumed_ruleset_ids, consumed_ver = _fiscal_consumed(
+        scenario,
+        surtax,
         fam_ruleset,
         art15_ruleset,
-        surtax.regional_ruleset if surtax is not None else None,
-        surtax.municipal_ruleset if surtax is not None else None,
-        family_consumed=has_any_dependent,
-        art15_consumed=scenario.art15_deductions is not None
-        and scenario.art15_deductions.has_any_onere,
+        has_any_dependent=has_any_dependent,
         surtax_reg_consumed=surtax_reg_consumed,
         surtax_com_consumed=surtax_com_consumed,
     )
 
     return FiscalPay(
         consumed_ruleset_ids=consumed_ruleset_ids,
+        consumed_verifications=consumed_ver,
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
         inps_employee_additional_annual=inps_employee_additional_annual,
