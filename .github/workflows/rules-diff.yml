@@ -52,7 +52,11 @@ jobs:
           script: |
             const fs = require('fs');
             const marker = '<!-- rules-diff -->';
-            const report = fs.readFileSync('/tmp/rules-diff-report.md', 'utf8');
+            const LIMIT = 65000;
+            let report = fs.readFileSync('/tmp/rules-diff-report.md', 'utf8');
+            if (report.length > LIMIT) {
+              report = report.slice(0, LIMIT) + '\n\n_(report truncated — too many changes to display in full)_';
+            }
             const body = `${marker}\n${report}`;
 
             const { data: comments } = await github.rest.issues.listComments({
