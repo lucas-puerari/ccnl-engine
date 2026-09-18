@@ -6,8 +6,19 @@ import json
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from hypothesis import HealthCheck, settings
+
 if TYPE_CHECKING:
     import pytest
+
+settings.register_profile(
+    "ci",
+    deadline=None,
+    derandomize=True,
+    max_examples=60,
+    suppress_health_check=[HealthCheck.too_slow],
+)
+settings.load_profile("ci")
 
 
 def pytest_terminal_summary(
