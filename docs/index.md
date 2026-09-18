@@ -27,7 +27,7 @@ collective labor agreements (CCNL) and statutory contribution rates.
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
 | [Engine](engine/index.md) | How to use `compute()` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
-| [Contracts](contracts/index.md) | All 100+ supported contracts — salary tables, sources, coverage |
+| [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
 | [API reference](api/index.md) | Full reference for every public type and function |
 
 ---
@@ -74,7 +74,7 @@ full walkthrough of all three layers.
 - Second-level bargaining — territorial and company supplementary allowances
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
-**L3 — Work rules (105/105 contracts):**
+**L3 — Work rules (125/125 contracts):**
 
 L3 outputs are **informational**: they are reported alongside the payroll but
 do not mutate `gross_annual` or `net_annual`. Supply any combination of the
