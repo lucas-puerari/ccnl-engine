@@ -1707,7 +1707,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "d407793e44e9991d390b3bafa33d6279ebef8b8acf996aa176b8e896b9e06a41",
+    "source_hash": "cac02b3fb779acdaa52537e54e00674f1bbb799383543bcc246cf0e258ef9894",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1835,8 +1835,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

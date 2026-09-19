@@ -894,7 +894,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "f0200bdadb8053c9f61a1ab83bf9325df8090e05d58728672afd1a6a81fa3839",
+    "source_hash": "22eaf4495785047096e2764e44932d294e006286b098c90708b90c1db75cac27",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1022,8 +1022,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

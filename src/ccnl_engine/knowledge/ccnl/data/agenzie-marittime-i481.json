@@ -1099,7 +1099,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "e75e50c36a03bdce0b80c653557ee6e17b80f2aac8864540fe6f7d67abd3d712",
+    "source_hash": "485afe36f5ee9717796df5c6ac0487fc7594296b7382a92c28129c718eea087e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1227,8 +1227,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

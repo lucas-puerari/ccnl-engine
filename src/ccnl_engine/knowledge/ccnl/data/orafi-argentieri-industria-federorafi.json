@@ -1233,7 +1233,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "57b6ef58961ed90e5abe0bf0592115f0f666d459c02e9e67bf4628722bca5697",
+    "source_hash": "49b69776e170a50c366769562da7c8be5cd94bb3f44d43bee2072c6acf26c6c2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1277,7 +1277,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (ore successive)",
           "kind": "percentage",
           "rate": {
@@ -1309,7 +1309,8 @@
               "verification_status": "unverified",
               "effective_from": "2017-05-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_NOTTURNO",

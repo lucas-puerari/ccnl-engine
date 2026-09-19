@@ -1190,7 +1190,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "f8776c85b5a33e8eb3c54ad0d8acb150c88724ae3daf4da70d598bae80a292d0",
+    "source_hash": "e4e1fb781a7ba1fb490ad536c9bd4084af2724d7cd0e2db8157c99153221ec68",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1283,8 +1283,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

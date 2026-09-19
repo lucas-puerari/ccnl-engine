@@ -1398,7 +1398,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "65e423bcb4a4036552b043823dc7506d1b8c959b5a5bbe2e9f380add75469448",
+    "source_hash": "0fc685fc8bce9f5185e8d3e924bc604e778e41c2d5ab289a4eb1c8997063cb37",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1526,8 +1526,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

@@ -5061,7 +5061,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "73034fe5c6b469ad83317606a9038d9573eedc6a4498009e92d2905ddac876c2",
+    "source_hash": "123c7cd8e4bc36083f8be7bfab8a34d418dc511cc945273fb1c0a3d60a93fceb",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5105,7 +5105,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (oltre 39h settimanali)",
           "kind": "percentage",
           "rate": {
@@ -5137,7 +5137,8 @@
               "verification_status": "unverified",
               "effective_from": "2023-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_NOTTURNO",

@@ -1346,7 +1346,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "2cba84e600b80536e6fe83e0640b52ca4326a4dc0a788dfa3c928d1e08d1c14b",
+    "source_hash": "17f0f419fbc8edd52cf7a2f0ca2957d36d3052c223ecbc5ec415585b091fa7b2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1474,8 +1474,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

@@ -2385,7 +2385,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "9708b79eb1dba7c57f7b82089963aeeb70d0e861e069d60207e16524a889b075",
+    "source_hash": "2f50870462d430053f169c58fe46051b52232096caf860a144a28128cb5a448e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2513,8 +2513,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

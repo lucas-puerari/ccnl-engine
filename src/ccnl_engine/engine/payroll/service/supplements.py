@@ -101,6 +101,7 @@ def _supplements_for_kind(
     hourly_base: Decimal,
     as_of: date,
     weekly_hours: Sequence[Decimal] | None = None,
+    kind_to_hours: dict[WorkKind, Decimal] | None = None,
 ) -> list[tuple[Decimal, str, str, str]]:
     """Compute (amount, bucket, label, detail) entries for one work kind.
 
@@ -118,6 +119,9 @@ def _supplements_for_kind(
     CCNLs with per-week hour caps; prefer supplying ``weekly_hours`` for
     those contracts.
 
+    Bands with non-empty ``required_context_kinds`` are skipped unless all
+    of those kinds have non-zero hours in ``kind_to_hours``.
+
     Args:
         kind: The :class:`WorkKind` being processed.
         bands: Bands that list ``kind`` in their ``applies_to_kinds``.
@@ -126,12 +130,20 @@ def _supplements_for_kind(
         hourly_base: Full-time hourly rate (base / divisor).
         as_of: Reference date for time-series rate lookups.
         weekly_hours: Per-week hour list, or ``None`` for the monthly path.
+        kind_to_hours: Full map of declared hours per kind, for conditional
+            band evaluation.
 
     Returns:
         List of ``(amount, bucket_key, label, detail)`` tuples for non-zero
         contributions.
     """
-    sorted_bands = sorted(bands, key=lambda b: b.hour_threshold_per_week or 0)
+    ctx = kind_to_hours or {}
+    eligible = [
+        b for b in bands
+        if not b.required_context_kinds
+        or all(ctx.get(rk, _ZERO) > _ZERO for rk in b.required_context_kinds)
+    ]
+    sorted_bands = sorted(eligible, key=lambda b: b.hour_threshold_per_week or 0)
     hours_periods: Sequence[Decimal] = (
         weekly_hours if weekly_hours is not None else [total_hours]
     )
@@ -254,7 +266,7 @@ def compute_time_supplements(
             continue
         weekly = weekly_kind_hours[kind] if weekly_kind_hours is not None else None
         for amount, bucket, label, detail in _supplements_for_kind(
-            kind, bands, total_hours, hourly_base, as_of, weekly
+            kind, bands, total_hours, hourly_base, as_of, weekly, kind_to_hours
         ):
             buckets[bucket] += amount
             trace.append(

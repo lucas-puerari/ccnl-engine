@@ -2057,7 +2057,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3fb31cbdd10a597fee7d8033f5f4ecb2b357c9655a34b7acc030ef4445cec188",
+    "source_hash": "f9edd57ca7d470f47c10443a3f95756957e9ba4873c5517f76ca06e61703c175",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2185,8 +2185,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

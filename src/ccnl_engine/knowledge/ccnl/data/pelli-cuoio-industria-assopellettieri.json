@@ -1128,7 +1128,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "74e52b90a84365a46901427ab02eadcb3cb10f2369d1acceb07b2d5b60f72712",
+    "source_hash": "3ad0bbeafc768df87c29efcd4fbeca56509208dc93a7949130ef17dac1e6114f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1256,8 +1256,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

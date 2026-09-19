@@ -3329,7 +3329,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "aa46f50529a90af02664efac5799c7c84012dd710fc54a76f1087333a35ab00c",
+    "source_hash": "ad90d0a6cf5c220ef8176d644b34a1ec4b97f437c5467bb117f6a50edb57f620",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3373,7 +3373,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (76-150h/anno)",
           "kind": "percentage",
           "rate": {
@@ -3405,10 +3405,11 @@
               "verification_status": "unverified",
               "effective_from": "2023-03-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA_2",
           "description": "Straordinario feriale (oltre 150h/anno)",
           "kind": "percentage",
           "rate": {
@@ -3440,7 +3441,8 @@
               "verification_status": "unverified",
               "effective_from": "2023-03-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 16
         },
         {
           "code": "OT_NOTTURNO",

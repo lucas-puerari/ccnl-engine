@@ -1606,7 +1606,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "a4db3cec3cd0b00a8d6ceee663552f4b2f7be1318eee57994f83a5928e8a5c0d",
+    "source_hash": "1c843b0a37674d145d53a00604c514719a905834cf498639efbd1cf0272f3814",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1650,7 +1650,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale diurno >48h",
           "kind": "percentage",
           "rate": {
@@ -1682,7 +1682,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_FESTIVO",

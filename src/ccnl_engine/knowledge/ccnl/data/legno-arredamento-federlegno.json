@@ -2968,7 +2968,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "458f3bf0e8e34245c1b1525ab9508dac1e6d7b5830b56b1eaa98b1d7b7be19be",
+    "source_hash": "8a074c524802eccac8f6126364dc6278d4cdafbbe34681915c4d1b8d228befa7",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -3096,8 +3096,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

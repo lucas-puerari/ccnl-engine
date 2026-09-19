@@ -1726,7 +1726,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "7416ec60ad7c21e94cb403cd33e9ff19ed280b4f045afa2ab653356bf2169d5f",
+    "source_hash": "8db7a13e7385e0877869a9e2ad9e78613f473da6cd72b93815d9d82a404768bc",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
@@ -1854,8 +1854,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

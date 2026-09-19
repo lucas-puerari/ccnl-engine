@@ -1539,7 +1539,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "6a629254be5ff1835349ab9804127802c298fbd1ad067412383baa3dbe264714",
+    "source_hash": "b104ce2bf78ceb302aef3dfba4691d48af634edf2e3e64ce0af0fe3ae945106a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1667,8 +1667,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

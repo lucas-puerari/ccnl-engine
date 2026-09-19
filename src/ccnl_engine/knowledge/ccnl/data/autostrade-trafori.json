@@ -3986,7 +3986,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "21e8ce51e759878395d8674a1806ae537085000d92d636e66d35f06e7bbce3c2",
+    "source_hash": "87b65dbe92d12880127d4b47b4ca79079bd251b0e27a04521ffed9f1c7522ae2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4114,8 +4114,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

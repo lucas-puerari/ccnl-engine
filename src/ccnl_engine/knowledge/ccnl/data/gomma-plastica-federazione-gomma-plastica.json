@@ -2096,7 +2096,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "b1ead2e2b5b743dace3999c58e9ca6fe97fe5788f46c51e89196a98c03d8b503",
+    "source_hash": "7fea76f7837b496355f77a9a189c0ebe9a34d8b64f23e0b8e446b31b614c6794",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2140,7 +2140,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (49a ora sett.)",
           "kind": "percentage",
           "rate": {
@@ -2172,10 +2172,11 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA_2",
           "description": "Straordinario feriale (oltre 49h sett.)",
           "kind": "percentage",
           "rate": {
@@ -2207,7 +2208,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 16
         },
         {
           "code": "OT_NOTTURNO",
@@ -2312,7 +2314,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         }
       ]
     },

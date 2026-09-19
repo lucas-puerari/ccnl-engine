@@ -1298,7 +1298,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "f6c4875826da8a1d175a6d2d7de9e92db19f7fbfdf3761b6c07ba28c668221e5",
+    "source_hash": "e02a4e50b917304c7ca6861ed3fe1c586f3dd8d69a601d6e0029cb3b8458990a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1426,8 +1426,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {
