@@ -211,11 +211,17 @@ def _fiscal_scope(
         scenario.art15_deductions is not None
         and scenario.art15_deductions.has_any_onere
     )
+    inail_rate = scenario.employment.employer.inail_rate
     return [
         _computed("base_salary"),
         _computed("seniority"),
         _computed("inps_employee"),
         _computed("inps_employer"),
+        (
+            _computed("inail", elig="caller_declared", qual="estimated")
+            if inail_rate is not None
+            else _excluded("inail")
+        ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (
