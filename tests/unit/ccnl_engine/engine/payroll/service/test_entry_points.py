@@ -10,6 +10,7 @@ import pytest
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualPayrollScenario,
     Employee,
@@ -197,9 +198,9 @@ class TestEstimateAnnual:
         assert result.result.net_annual > Decimal(0)
 
     def test_no_period_events_in_result(self) -> None:
-        """estimate_annual without period events has zero overtime supplement."""
+        """estimate_annual returns an AnnualEstimate, not a PeriodPayroll."""
         result = estimate_annual(_base_scenario())
-        assert result.result.overtime_supplement_monthly == Decimal(0)
+        assert not isinstance(result.result, PeriodPayroll)
 
     def test_equivalent_to_compute_without_events(self) -> None:
         """estimate_annual matches compute() with no period events."""
@@ -223,6 +224,7 @@ class TestEstimatePeriodEffects:
             _base_scenario(),
             PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
         )
+        assert isinstance(with_overtime.result, PeriodPayroll)
         assert with_overtime.result.overtime_supplement_monthly > Decimal(0)
         assert with_overtime.result.time_supplements_monthly > Decimal(0)
 
@@ -247,6 +249,7 @@ class TestEstimatePeriodEffects:
             _base_scenario(),
             PayPeriod(sick_input=SickInput(sick_days=Decimal(5))),
         )
+        assert isinstance(sick.result, PeriodPayroll)
         assert sick.result.sick_days_monthly == Decimal(5)
 
     def test_fringe_benefit_in_period(self) -> None:
@@ -257,6 +260,7 @@ class TestEstimatePeriodEffects:
                 fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
             ),
         )
+        assert isinstance(result.result, PeriodPayroll)
         assert result.result.fringe_benefit_annual == Decimal(300)
 
     def test_welfare_in_period(self) -> None:
@@ -265,6 +269,7 @@ class TestEstimatePeriodEffects:
             _base_scenario(),
             PayPeriod(welfare_input=WelfareInput(annual_amount=Decimal(200))),
         )
+        assert isinstance(result.result, PeriodPayroll)
         assert result.result.welfare_annual == Decimal(200)
 
     def test_bonus_in_period(self) -> None:
@@ -277,6 +282,7 @@ class TestEstimatePeriodEffects:
                 )
             ),
         )
+        assert isinstance(result.result, PeriodPayroll)
         assert result.result.bonus_annual == Decimal(1000)
 
     def test_absence_days_reflected_in_result(self) -> None:
@@ -286,5 +292,6 @@ class TestEstimatePeriodEffects:
             _base_scenario(),
             PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
         )
+        assert isinstance(with_absence.result, PeriodPayroll)
         assert with_absence.result.absence_deduction_monthly > Decimal(0)
         assert with_absence.result.net_annual == base.result.net_annual

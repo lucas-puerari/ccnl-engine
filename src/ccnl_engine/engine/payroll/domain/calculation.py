@@ -22,7 +22,7 @@ from enum import Enum, StrEnum
 from types import UnionType
 from typing import TYPE_CHECKING, Literal, cast, get_origin
 
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 from ccnl_engine.engine.primitives import FrozenDict
 
@@ -838,6 +838,22 @@ class InputSnapshot:
         return cls.from_dict(json.loads(raw))
 
 
+def _result_from_dict(data: dict[str, object]) -> AnnualEstimate:
+    """Deserialize a result dict into AnnualEstimate or PeriodPayroll.
+
+    Returns:
+        A :class:`PeriodPayroll` when *data* has a ``pay_period`` key,
+        otherwise a plain :class:`AnnualEstimate`.
+    """
+    from ccnl_engine.engine.payroll.domain.payroll_result import (  # noqa: PLC0415
+        PeriodPayroll,
+    )
+
+    if "pay_period" in data:
+        return PeriodPayroll.from_dict(data)
+    return AnnualEstimate.from_dict(data)
+
+
 @dataclass(frozen=True)
 class Calculation:
     """A payroll computation together with everything needed to replay it.
@@ -852,7 +868,7 @@ class Calculation:
             value string.  Keys mirror :attr:`ruleset_version`.  Empty for
             calculations produced by older engine versions.
         input_snapshot: Lossless copy of the raw inputs.
-        result: The resulting :class:`PayrollResult`.
+        result: The resulting :class:`AnnualEstimate` (or :class:`PeriodPayroll`).
         trace: Step-by-step record of the monthly gross computation chain.
             An empty trace signals that the calculation was produced by an
             older engine version that did not emit one.
@@ -861,7 +877,7 @@ class Calculation:
     engine_version: str
     ruleset_version: Mapping[str, str]
     input_snapshot: InputSnapshot
-    result: PayrollResult
+    result: AnnualEstimate
     trace: CalculationTrace = dataclasses.field(
         default_factory=lambda: CalculationTrace(steps=())
     )
@@ -1013,7 +1029,7 @@ class Calculation:
             input_snapshot=InputSnapshot.from_dict(
                 cast(dict[str, object], data["input_snapshot"])
             ),
-            result=PayrollResult.from_dict(cast(dict[str, object], data["result"])),
+            result=_result_from_dict(cast(dict[str, object], data["result"])),
             trace=(
                 CalculationTrace.from_dict(cast(dict[str, object], data["trace"]))
                 if "trace" in data

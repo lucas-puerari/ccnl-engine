@@ -41,12 +41,14 @@ part_time = estimate_annual(
     )
 ).result
 
-print(f"Gross monthly — full-time:  {full_time.gross_monthly} EUR")
-print(f"Gross monthly — part-time:  {part_time.gross_monthly} EUR")
+print(f"Gross monthly — full-time:  {full_time.earnings.gross_monthly} EUR")
+print(f"Gross monthly — part-time:  {part_time.earnings.gross_monthly} EUR")
 print(f"Net annual   — full-time:   {full_time.net_annual} EUR")
 print(f"Net annual   — part-time:   {part_time.net_annual} EUR")
-print(f"Employer cost — full-time:  {full_time.employer_cost_annual} EUR")
-print(f"Employer cost — part-time:  {part_time.employer_cost_annual} EUR")
+print(f"Employer cost — full-time:  {full_time.employer_cost.employer_cost_annual} EUR")
+print(f"Employer cost — part-time:  {part_time.employer_cost.employer_cost_annual} EUR")
 
 # Gross is scaled proportionally.
-assert part_time.gross_monthly == full_time.gross_monthly * Decimal("0.6")
+assert part_time.earnings.gross_monthly == full_time.earnings.gross_monthly * Decimal(
+    "0.6"
+)

@@ -8,7 +8,7 @@ import typing
 from datetime import date as _date
 from decimal import Decimal
 
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
 from ccnl_engine.engine.payroll.domain.scenario import AnnualPayrollScenario
 
 _SCALAR_MAP: dict[object, dict[str, object]] = {
@@ -62,39 +62,39 @@ def _hint_to_schema(hint: object) -> dict[str, object]:
 
 
 def result_schema() -> dict[str, object]:
-    """Return the JSON Schema for :class:`PayrollResult`.
+    """Return the JSON Schema for :class:`AnnualEstimate`.
 
     The schema describes the output of :func:`~ccnl_engine.compute` and
     :func:`~ccnl_engine.estimate_annual`, as produced by
     :meth:`~ccnl_engine.engine.payroll.domain.payroll_result\
-.PayrollResult.to_dict`.
+.AnnualEstimate.to_dict`.
 
-    Field types follow :meth:`PayrollResult.to_dict` encoding rules:
+    Field types follow :meth:`AnnualEstimate.to_dict` encoding rules:
     all :class:`~decimal.Decimal` amounts are ``{"type": "string"}``,
     dates are ``{"type": "string", "format": "date"}``.
 
     Returns:
         A JSON Schema dict (Draft 2020-12 compatible).
     """
-    hints = typing.get_type_hints(PayrollResult)
+    hints = typing.get_type_hints(AnnualEstimate)
     fields_with_defaults = frozenset(
         f.name
-        for f in dataclasses.fields(PayrollResult)
+        for f in dataclasses.fields(AnnualEstimate)
         if f.default is not dataclasses.MISSING
         or f.default_factory is not dataclasses.MISSING
     )
     required = sorted(
         f.name
-        for f in dataclasses.fields(PayrollResult)
+        for f in dataclasses.fields(AnnualEstimate)
         if f.name not in fields_with_defaults
     )
     properties: dict[str, object] = {
         f.name: _hint_to_schema(hints[f.name])
-        for f in dataclasses.fields(PayrollResult)
+        for f in dataclasses.fields(AnnualEstimate)
     }
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "title": "PayrollResult",
+        "title": "AnnualEstimate",
         "type": "object",
         "properties": properties,
         "required": required,

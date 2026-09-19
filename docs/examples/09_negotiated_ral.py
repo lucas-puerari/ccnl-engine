@@ -51,7 +51,7 @@ negotiated = estimate_annual(
     )
 ).result
 
-print(f"Gross annual — CCNL minimum:  {ccnl_min.gross_annual} EUR")
-print(f"Gross annual — negotiated:    {negotiated.gross_annual} EUR")
+print(f"Gross annual — CCNL minimum:  {ccnl_min.earnings.gross_annual} EUR")
+print(f"Gross annual — negotiated:    {negotiated.earnings.gross_annual} EUR")
 print(f"Net annual   — CCNL minimum:  {ccnl_min.net_annual} EUR")
 print(f"Net annual   — negotiated:    {negotiated.net_annual} EUR")

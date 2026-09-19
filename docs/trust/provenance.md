@@ -116,15 +116,17 @@ from ccnl_engine import (
     estimate_annual,
 )
 
-calc = estimate_annual(AnnualPayrollScenario(
-    employee=Employee(level_code="4"),
-    employment=Employment(
-        ccnl="commercio-confcommercio.json",
-        contract=Permanent(),
-        employer=Employer(num_employees=50),
-        as_of=date(2026, 1, 1),
-    ),
-))
+calc = estimate_annual(
+    AnnualPayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=date(2026, 1, 1),
+        ),
+    )
+)
 result = calc.result
 
 for prov in result.provenance:

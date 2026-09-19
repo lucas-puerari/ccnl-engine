@@ -102,5 +102,5 @@ Latest effective values per level (monthly gross, EUR).
 ## Usage example
 
 ```python
---8<-- "docs/examples/contracts/contoterzismo-caiagromec.py"
+--8 < --"docs/examples/contracts/contoterzismo-caiagromec.py"
 ```

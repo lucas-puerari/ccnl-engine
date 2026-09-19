@@ -48,10 +48,13 @@ class TestAnnualBreakdownFields:
     """render_breakdown maps PayrollResult fields to AnnualBreakdown."""
 
     def test_ulteriore_detrazione_lavoro(self) -> None:
-        """ulteriore_detrazione_lavoro matches result.ulteriore_detrazione_lavoro."""
+        """ulteriore_detrazione_lavoro matches result.taxes field."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.ulteriore_detrazione_lavoro == calc.result.ulteriore_detrazione_lavoro
+        assert (
+            bd.ulteriore_detrazione_lavoro
+            == calc.result.taxes.ulteriore_detrazione_lavoro
+        )
 
     def test_somma_esente_zero_when_rules_absent(self) -> None:
         """somma_esente is zero when year rules carry no somma_esente config."""
@@ -72,34 +75,34 @@ class TestAnnualBreakdownFields:
         assert bd.bilateral_employer_annual == _ZERO
 
     def test_gross_annual(self) -> None:
-        """gross_annual matches result.gross_annual."""
+        """gross_annual matches result.earnings.gross_annual."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.gross_annual == calc.result.gross_annual
+        assert bd.gross_annual == calc.result.earnings.gross_annual
 
     def test_inps_employee_annual(self) -> None:
-        """inps_employee_annual matches result.inps_employee_annual."""
+        """inps_employee_annual matches result.contributions.inps_employee_annual."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.inps_employee_annual == calc.result.inps_employee_annual
+        assert bd.inps_employee_annual == calc.result.contributions.inps_employee_annual
 
     def test_taxable_income(self) -> None:
-        """taxable_income matches result.taxable_income."""
+        """taxable_income matches result.taxes.taxable_income."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.taxable_income == calc.result.taxable_income
+        assert bd.taxable_income == calc.result.taxes.taxable_income
 
     def test_irpef_gross(self) -> None:
-        """irpef_gross matches result.irpef_gross."""
+        """irpef_gross matches result.taxes.irpef_gross."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.irpef_gross == calc.result.irpef_gross
+        assert bd.irpef_gross == calc.result.taxes.irpef_gross
 
     def test_irpef_net(self) -> None:
-        """irpef_net matches result.irpef_net."""
+        """irpef_net matches result.taxes.irpef_net."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.irpef_net == calc.result.irpef_net
+        assert bd.irpef_net == calc.result.taxes.irpef_net
 
     def test_net_annual(self) -> None:
         """net_annual matches result.net_annual."""
@@ -108,10 +111,10 @@ class TestAnnualBreakdownFields:
         assert bd.net_annual == calc.result.net_annual
 
     def test_employer_cost_annual(self) -> None:
-        """employer_cost_annual matches result.employer_cost_annual."""
+        """employer_cost_annual matches result.employer_cost.employer_cost_annual."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.employer_cost_annual == calc.result.employer_cost_annual
+        assert bd.employer_cost_annual == calc.result.employer_cost.employer_cost_annual
 
     def test_family_deduction_zero_when_absent(self) -> None:
         """family_deduction_annual is zero when no family was supplied."""
@@ -126,10 +129,10 @@ class TestAnnualBreakdownFields:
         assert bd.art15_deduction_annual == _ZERO
 
     def test_employer_withholds_irpef(self) -> None:
-        """employer_withholds_irpef matches result.employer_withholds_irpef."""
+        """employer_withholds_irpef matches result.taxes.employer_withholds_irpef."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        assert bd.employer_withholds_irpef == calc.result.employer_withholds_irpef
+        assert bd.employer_withholds_irpef == calc.result.taxes.employer_withholds_irpef
 
 
 class TestAnnualBreakdownNetMonthlyApprox:
@@ -259,7 +262,7 @@ class TestSterilizzazioneClawbackField:
         """sterilizzazione_clawback_annual mirrors the result field."""
         calc = compute(_req())
         bd = render_breakdown(calc.result)
-        expected = calc.result.sterilizzazione_clawback_annual
+        expected = calc.result.taxes.sterilizzazione_clawback_annual
         assert bd.sterilizzazione_clawback_annual == expected
 
     def test_exposed_in_to_dict(self) -> None:
@@ -284,7 +287,7 @@ class TestSterilizzazioneClawbackField:
         calc = compute(scenario)
         bd = render_breakdown(calc.result)
         assert bd.sterilizzazione_clawback_annual > _ZERO
-        result_clawback = calc.result.sterilizzazione_clawback_annual
+        result_clawback = calc.result.taxes.sterilizzazione_clawback_annual
         assert bd.sterilizzazione_clawback_annual == result_clawback
 
 

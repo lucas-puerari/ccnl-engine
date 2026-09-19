@@ -40,13 +40,20 @@ fixed_term = estimate_annual(
     )
 ).result
 
-print(f"Employer INPS — permanent:   {permanent.inps_employer_annual} EUR")
-print(f"Employer INPS — fixed-term:  {fixed_term.inps_employer_annual} EUR")
+print(
+    f"Employer INPS — permanent:   {permanent.contributions.inps_employer_annual} EUR"
+)
+print(
+    f"Employer INPS — fixed-term:  {fixed_term.contributions.inps_employer_annual} EUR"
+)
 print(
     f"NASpI addizionale:           "
-    f"{fixed_term.inps_employer_annual - permanent.inps_employer_annual} EUR"
+    f"{fixed_term.contributions.inps_employer_annual - permanent.contributions.inps_employer_annual} EUR"
 )
 
 # Gross and net are identical; only the employer side differs.
 assert fixed_term.net_annual == permanent.net_annual
-assert fixed_term.inps_employer_annual > permanent.inps_employer_annual
+assert (
+    fixed_term.contributions.inps_employer_annual
+    > permanent.contributions.inps_employer_annual
+)

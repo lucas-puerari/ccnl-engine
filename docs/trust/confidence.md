@@ -14,8 +14,12 @@ do not set it.
 
 ```python
 from ccnl_engine import (
-    AnnualPayrollScenario, Employee, Employment, Employer,
-    Permanent, estimate_annual,
+    AnnualPayrollScenario,
+    Employee,
+    Employment,
+    Employer,
+    Permanent,
+    estimate_annual,
 )
 from datetime import date
 
@@ -29,7 +33,7 @@ scenario = AnnualPayrollScenario(
     ),
 )
 result = estimate_annual(scenario).result
-print(result.confidence)   # "low" | "medium" | "high"
+print(result.confidence)  # "low" | "medium" | "high"
 ```
 
 ## Derivation logic
@@ -93,8 +97,7 @@ if result.confidence == "low":
 elif result.confidence == "medium":
     # Result is usable; check what's excluded
     excluded = [
-        item.feature for item in result.calculation_scope
-        if item.status == "excluded"
+        item.feature for item in result.calculation_scope if item.status == "excluded"
     ]
     if excluded:
         print("Excluded from net:", excluded)

@@ -26,6 +26,6 @@ p = estimate_annual(
         ),
     )
 ).result
-print(f"Gross monthly: {p.gross_monthly} EUR")
-print(f"INPS employer annual: {p.inps_employer_annual} EUR")
-print(f"Employer withholds IRPEF: {p.employer_withholds_irpef}")
+print(f"Gross monthly: {p.earnings.gross_monthly} EUR")
+print(f"INPS employer annual: {p.contributions.inps_employer_annual} EUR")
+print(f"Employer withholds IRPEF: {p.taxes.employer_withholds_irpef}")

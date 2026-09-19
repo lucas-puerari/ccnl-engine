@@ -35,14 +35,14 @@ p = estimate_annual(
     )
 ).result
 
-print(f"Gross monthly:         {p.gross_monthly} EUR")
-print(f"INPS employee annual:  {p.inps_employee_annual} EUR")
-print(f"INPS employer annual:  {p.inps_employer_annual} EUR")
-print(f"Employer withholds IRPEF: {p.employer_withholds_irpef}")
-print(f"IRPEF gross (informational): {p.irpef_gross} EUR")
-print(f"IRPEF net (zero — not withheld): {p.irpef_net} EUR")
+print(f"Gross monthly:         {p.earnings.gross_monthly} EUR")
+print(f"INPS employee annual:  {p.contributions.inps_employee_annual} EUR")
+print(f"INPS employer annual:  {p.contributions.inps_employer_annual} EUR")
+print(f"Employer withholds IRPEF: {p.taxes.employer_withholds_irpef}")
+print(f"IRPEF gross (informational): {p.taxes.irpef_gross} EUR")
+print(f"IRPEF net (zero — not withheld): {p.taxes.irpef_net} EUR")
 print(f"Net annual:            {p.net_annual} EUR")
 
 # The employer is not a sostituto d'imposta for domestic workers.
-assert not p.employer_withholds_irpef
-assert p.irpef_net == Decimal(0)
+assert not p.taxes.employer_withholds_irpef
+assert p.taxes.irpef_net == Decimal(0)

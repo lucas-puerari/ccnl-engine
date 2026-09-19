@@ -61,7 +61,7 @@ class TestNonNegativity:
         """Gross and net annual figures are always non-negative."""
         scenario = _req(level_code=level_code, seniority_count=seniority_count)
         result = _compute(scenario).result
-        assert result.gross_annual >= Decimal(0)
+        assert result.earnings.gross_annual >= Decimal(0)
         assert result.net_annual >= Decimal(0)
 
 
@@ -78,9 +78,13 @@ class TestDecimalQuantization:
         """gross_annual and net_annual have at most two decimal places."""
         scenario = _req(level_code=level_code, seniority_count=seniority_count)
         result = _compute(scenario).result
-        assert result.gross_annual == result.gross_annual.quantize(Decimal("0.01"))
+        assert result.earnings.gross_annual == (
+            result.earnings.gross_annual.quantize(Decimal("0.01"))
+        )
         assert result.net_annual == result.net_annual.quantize(Decimal("0.01"))
-        assert result.gross_monthly == result.gross_monthly.quantize(Decimal("0.01"))
+        assert result.earnings.gross_monthly == (
+            result.earnings.gross_monthly.quantize(Decimal("0.01"))
+        )
 
 
 class TestNetLeGross:
@@ -94,7 +98,7 @@ class TestNetLeGross:
         """net_annual <= gross_annual: taxes and contributions are non-negative."""
         scenario = _req(level_code=level_code, seniority_count=seniority_count)
         result = _compute(scenario).result
-        assert result.net_annual <= result.gross_annual
+        assert result.net_annual <= result.earnings.gross_annual
 
 
 class TestSeniorityMonotonicity:
@@ -109,7 +113,7 @@ class TestSeniorityMonotonicity:
         assume(low < high)
         low_result = _compute(_req(level_code="4", seniority_count=low)).result
         high_result = _compute(_req(level_code="4", seniority_count=high)).result
-        assert high_result.gross_annual >= low_result.gross_annual
+        assert high_result.earnings.gross_annual >= low_result.earnings.gross_annual
 
 
 class TestLevelMonotonicity:
@@ -119,13 +123,13 @@ class TestLevelMonotonicity:
         """Level 4 gross >= level 3 gross at zero seniority."""
         r4 = _compute(_req(level_code="4", seniority_count=0)).result
         r3 = _compute(_req(level_code="3", seniority_count=0)).result
-        assert r4.gross_annual >= r3.gross_annual
+        assert r4.earnings.gross_annual >= r3.earnings.gross_annual
 
     def test_level3_gross_ge_level2(self) -> None:
         """Level 3 gross >= level 2 gross at zero seniority."""
         r3 = _compute(_req(level_code="3", seniority_count=0)).result
         r2 = _compute(_req(level_code="2", seniority_count=0)).result
-        assert r3.gross_annual >= r2.gross_annual
+        assert r3.earnings.gross_annual >= r2.earnings.gross_annual
 
 
 class TestDeterminism:
@@ -142,7 +146,7 @@ class TestDeterminism:
         scenario = _req(level_code=level_code, seniority_count=seniority_count)
         r1 = _compute(scenario).result
         r2 = _compute(scenario).result
-        assert r1.gross_annual == r2.gross_annual
+        assert r1.earnings.gross_annual == r2.earnings.gross_annual
         assert r1.net_annual == r2.net_annual
 
 
@@ -157,7 +161,7 @@ class TestPartTimeScaling:
         part = _compute(
             _req(level_code="4", seniority_count=0, part_time_ratio=ratio)
         ).result
-        assert part.gross_annual <= full.gross_annual
+        assert part.earnings.gross_annual <= full.earnings.gross_annual
 
 
 class TestApprenticePayLeDestination:
@@ -170,4 +174,4 @@ class TestApprenticePayLeDestination:
         )
         app_result = _compute(app_scenario).result
         perm_result = _compute(_req(level_code="4", seniority_count=0)).result
-        assert app_result.gross_annual <= perm_result.gross_annual
+        assert app_result.earnings.gross_annual <= perm_result.earnings.gross_annual

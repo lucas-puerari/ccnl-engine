@@ -122,5 +122,5 @@ Destination levels: `6`
 ## Usage example
 
 ```python
---8<-- "docs/examples/contracts/commercio-confcommercio.py"
+--8 < --"docs/examples/contracts/commercio-confcommercio.py"
 ```

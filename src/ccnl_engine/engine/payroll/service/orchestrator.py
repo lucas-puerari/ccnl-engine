@@ -13,7 +13,15 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByDate,
     SeniorityByMonths,
 )
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    AnnualEstimate,
+    Contributions,
+    Coverage,
+    Earnings,
+    EmployerCost,
+    PeriodPayroll,
+    Taxes,
+)
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualPayrollScenario,
@@ -155,9 +163,127 @@ def _resolve_tax_year(employment: Employment) -> int:
     return employment.as_of.year
 
 
+def _build_earnings(gross: object, work: object) -> Earnings:
+    """Build :class:`Earnings` from the gross and work-rules payloads.
+
+    Returns:
+        Earnings sub-object populated from *gross* and *work*.
+    """
+    from ccnl_engine.engine.payroll.service.gross import GrossPay  # noqa: PLC0415
+    from ccnl_engine.engine.payroll.service.work_rules import (  # noqa: PLC0415
+        WorkRulesPay,
+    )
+
+    g = gross
+    w = work
+    assert isinstance(g, GrossPay)
+    assert isinstance(w, WorkRulesPay)
+    return Earnings(
+        seniority_count=g.count,
+        base_monthly=g.chain.base,
+        seniority_monthly=g.chain.seniority,
+        allowances_monthly=g.chain.allowances_total,
+        ad_personam_monthly=g.ad_personam,
+        second_level_monthly=g.second_level_monthly_total,
+        gross_monthly=g.gross_monthly,
+        gross_annual=g.gross_annual,
+        hourly_rate=w.hourly_rate,
+        apprenticeship_pct=g.apprenticeship_pct,
+        apprenticeship_under_level_code=g.under_level_code,
+    )
+
+
+def _build_contributions(fiscal: object) -> Contributions:
+    """Build :class:`Contributions` from the fiscal payload.
+
+    Returns:
+        Contributions sub-object populated from *fiscal*.
+    """
+    from ccnl_engine.engine.payroll.service.fiscal import FiscalPay  # noqa: PLC0415
+
+    f = fiscal
+    assert isinstance(f, FiscalPay)
+    return Contributions(
+        inps_employee_annual=f.inps_employee_annual,
+        inps_employer_annual=f.inps_employer_annual,
+        employer_funds_annual=f.employer_funds_annual,
+        tfr_annual=f.tfr_annual,
+        bilateral_employee_annual=f.bilateral_employee_annual,
+        bilateral_employer_annual=f.bilateral_employer_annual,
+    )
+
+
+def _build_taxes(fiscal: object) -> Taxes:
+    """Build :class:`Taxes` from the fiscal payload.
+
+    Returns:
+        Taxes sub-object populated from *fiscal*.
+    """
+    from ccnl_engine.engine.payroll.service.fiscal import FiscalPay  # noqa: PLC0415
+
+    f = fiscal
+    assert isinstance(f, FiscalPay)
+    return Taxes(
+        taxable_income=f.taxable_income,
+        irpef_gross=f.irpef_gross,
+        work_income_deduction=f.work_income_deduction,
+        ulteriore_detrazione_lavoro=f.ulteriore_detrazione_lavoro,
+        somma_esente=f.somma_esente,
+        irpef_net=f.irpef_net,
+        employer_withholds_irpef=f.employer_withholds_irpef,
+        addizionale_regionale_annual=f.addizionale_regionale,
+        addizionale_comunale_annual=f.addizionale_comunale,
+        trattamento_integrativo=f.trattamento_integrativo,
+        fiscal_simplifications=f.fiscal_simplifications,
+        family_deduction_spouse_annual=f.fam_spouse,
+        family_deduction_children_annual=f.fam_children,
+        family_deduction_other_annual=f.fam_other,
+        family_deduction_annual=f.fam_total,
+        unused_family_deduction_annual=f.fam_unused,
+        art15_deduction_annual=f.art15_total,
+        unused_art15_deduction_annual=f.art15_unused,
+        sterilizzazione_clawback_annual=f.sterilizzazione_clawback,
+    )
+
+
+def _scenario_period(scenario: PayrollScenario) -> PayPeriod | None:
+    """Build a PayPeriod from scenario period events, or None when all are absent.
+
+    Returns:
+        A :class:`PayPeriod` populated from *scenario*, or ``None`` when no
+        period events are set.
+    """
+    fields = (
+        scenario.time_supplements,
+        scenario.absence_days,
+        scenario.leave_input,
+        scenario.sick_input,
+        scenario.fringe_benefit_input,
+        scenario.welfare_input,
+        scenario.bonus_input,
+    )
+    if all(f is None for f in fields):
+        return None
+    from ccnl_engine.engine.payroll.domain.scenario import (  # noqa: PLC0415
+        PayPeriod as _PayPeriod,
+    )
+
+    return _PayPeriod(
+        time_supplements=scenario.time_supplements,
+        absence_days=scenario.absence_days,
+        leave_input=scenario.leave_input,
+        sick_input=scenario.sick_input,
+        fringe_benefit_input=scenario.fringe_benefit_input,
+        welfare_input=scenario.welfare_input,
+        bonus_input=scenario.bonus_input,
+    )
+
+
 def compute(
     scenario: PayrollScenario,
     bundle: PayrollBundle | None = None,
+    *,
+    _period: PayPeriod | None = None,
 ) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
@@ -179,6 +305,8 @@ def compute(
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures plus a serialisable input snapshot.
     """
+    if _period is None:
+        _period = _scenario_period(scenario)
     as_of = scenario.employment.as_of
     year = _resolve_tax_year(scenario.employment)
     if bundle is not None:
@@ -235,82 +363,62 @@ def compute(
         (*work.warnings, ivs_warn) if ivs_warn is not None else work.warnings
     )
 
-    result = PayrollResult(
-        ccnl_id=ccnl.meta.ccnl_id,
-        level_code=scenario.employee.level_code,
-        employment_type=scenario.employment.contract.type,
-        part_time_pct=scenario.employee.part_time_ratio,
-        as_of=as_of,
-        year=as_of.year,
-        seniority_count=gross.count,
-        base_monthly=gross.chain.base,
-        seniority_monthly=gross.chain.seniority,
-        allowances_monthly=gross.chain.allowances_total,
-        ad_personam_monthly=gross.ad_personam,
-        second_level_monthly=gross.second_level_monthly_total,
-        gross_monthly=gross.gross_monthly,
-        gross_annual=gross.gross_annual,
-        hourly_rate=work.hourly_rate,
-        apprenticeship_pct=gross.apprenticeship_pct,
-        apprenticeship_under_level_code=gross.under_level_code,
-        inps_employee_annual=fiscal.inps_employee_annual,
-        inps_employer_annual=fiscal.inps_employer_annual,
-        employer_funds_annual=fiscal.employer_funds_annual,
-        tfr_annual=fiscal.tfr_annual,
-        bilateral_employee_annual=fiscal.bilateral_employee_annual,
-        bilateral_employer_annual=fiscal.bilateral_employer_annual,
-        taxable_income=fiscal.taxable_income,
-        irpef_gross=fiscal.irpef_gross,
-        work_income_deduction=fiscal.work_income_deduction,
-        ulteriore_detrazione_lavoro=fiscal.ulteriore_detrazione_lavoro,
-        somma_esente=fiscal.somma_esente,
-        irpef_net=fiscal.irpef_net,
-        employer_withholds_irpef=fiscal.employer_withholds_irpef,
-        addizionale_regionale_annual=fiscal.addizionale_regionale,
-        addizionale_comunale_annual=fiscal.addizionale_comunale,
-        trattamento_integrativo=fiscal.trattamento_integrativo,
-        fiscal_simplifications=fiscal.fiscal_simplifications,
-        net_annual=fiscal.net_annual,
-        net_monthly=fiscal.net_monthly,
-        employer_cost_annual=fiscal.employer_cost_annual,
-        provenance=provenance,
+    coverage = Coverage(
         status=result_status,
         confidence=compute_confidence(
             result_status, result_warnings, provenance, consumed_rulesets
         ),
         calculation_scope=calculation_scope,
         warnings=result_warnings,
-        base_monthly_full_time=work.base_monthly_full_time,
-        overtime_supplement_monthly=work.overtime_supp,
-        night_supplement_monthly=work.night_supp,
-        holiday_supplement_monthly=work.holiday_supp,
-        time_supplements_monthly=work.time_supplements_monthly,
-        time_supplements_annual_projection=work.time_supplements_annual_projection,
-        absence_deduction_monthly=work.absence_deduction_monthly,
-        effective_gross_monthly=work.effective_gross_monthly,
-        leave_accrued_days_monthly=work.leave_accrued_days_monthly,
-        leave_taken_days_monthly=work.leave_taken_days_monthly,
-        leave_balance_days=work.leave_balance_days,
-        sick_days_monthly=work.sick_days_monthly,
-        sick_carenza_days_monthly=work.sick_carenza_days_monthly,
-        sick_inps_indemnity_monthly=work.sick_inps_indemnity_monthly,
-        sick_company_integration_monthly=work.sick_company_integration_monthly,
-        fringe_benefit_annual=work.fringe_benefit_annual,
-        fringe_benefit_threshold_annual=work.fringe_benefit_threshold_annual,
-        fringe_benefit_taxable_annual=work.fringe_benefit_taxable_annual,
-        welfare_annual=work.welfare_annual,
-        bonus_annual=work.bonus_annual,
-        bonus_pdr_flat_tax_annual=work.bonus_pdr_flat_tax_annual,
-        bonus_ordinary_taxable_annual=work.bonus_ordinary_taxable_annual,
-        family_deduction_spouse_annual=fiscal.fam_spouse,
-        family_deduction_children_annual=fiscal.fam_children,
-        family_deduction_other_annual=fiscal.fam_other,
-        family_deduction_annual=fiscal.fam_total,
-        unused_family_deduction_annual=fiscal.fam_unused,
-        art15_deduction_annual=fiscal.art15_total,
-        unused_art15_deduction_annual=fiscal.art15_unused,
-        sterilizzazione_clawback_annual=fiscal.sterilizzazione_clawback,
+        consumed_rulesets=consumed_rulesets,
     )
+    base: dict[str, object] = {
+        "ccnl_id": ccnl.meta.ccnl_id,
+        "level_code": scenario.employee.level_code,
+        "employment_type": scenario.employment.contract.type,
+        "part_time_pct": scenario.employee.part_time_ratio,
+        "as_of": as_of,
+        "year": as_of.year,
+        "contract_effective_date": as_of,
+        "tax_rule_year": year,
+        "earnings": _build_earnings(gross, work),
+        "contributions": _build_contributions(fiscal),
+        "taxes": _build_taxes(fiscal),
+        "employer_cost": EmployerCost(employer_cost_annual=fiscal.employer_cost_annual),
+        "coverage": coverage,
+        "provenance": provenance,
+        "net_annual": fiscal.net_annual,
+        "net_monthly": fiscal.net_monthly,
+    }
+    if _period is not None:
+        result: AnnualEstimate = PeriodPayroll(
+            **base,  # type: ignore[arg-type]
+            pay_period=_period,
+            base_monthly_full_time=work.base_monthly_full_time,
+            overtime_supplement_monthly=work.overtime_supp,
+            night_supplement_monthly=work.night_supp,
+            holiday_supplement_monthly=work.holiday_supp,
+            time_supplements_monthly=work.time_supplements_monthly,
+            time_supplements_annual_projection=work.time_supplements_annual_projection,
+            absence_deduction_monthly=work.absence_deduction_monthly,
+            effective_gross_monthly=work.effective_gross_monthly,
+            leave_accrued_days_monthly=work.leave_accrued_days_monthly,
+            leave_taken_days_monthly=work.leave_taken_days_monthly,
+            leave_balance_days=work.leave_balance_days,
+            sick_days_monthly=work.sick_days_monthly,
+            sick_carenza_days_monthly=work.sick_carenza_days_monthly,
+            sick_inps_indemnity_monthly=work.sick_inps_indemnity_monthly,
+            sick_company_integration_monthly=work.sick_company_integration_monthly,
+            fringe_benefit_annual=work.fringe_benefit_annual,
+            fringe_benefit_threshold_annual=work.fringe_benefit_threshold_annual,
+            fringe_benefit_taxable_annual=work.fringe_benefit_taxable_annual,
+            welfare_annual=work.welfare_annual,
+            bonus_annual=work.bonus_annual,
+            bonus_pdr_flat_tax_annual=work.bonus_pdr_flat_tax_annual,
+            bonus_ordinary_taxable_annual=work.bonus_ordinary_taxable_annual,
+        )
+    else:
+        result = AnnualEstimate(**base)  # type: ignore[arg-type]
     return build_calculation(scenario, ccnl, rules, surtax, gross, work, result, fiscal)
 
 
@@ -401,7 +509,7 @@ def estimate_period_effects(
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with annual figures plus informational period-event fields.
     """
-    return compute(_annual_to_scenario(scenario, period), bundle)
+    return compute(_annual_to_scenario(scenario, period), bundle, _period=period)
 
 
 def _accrue_ytd(ytd: YTDState, calc: Calculation) -> YTDState:
@@ -417,9 +525,9 @@ def _accrue_ytd(ytd: YTDState, calc: Calculation) -> YTDState:
     twelve = Decimal(12)
     r = calc.result
     return YTDState(
-        taxable_income=ytd.taxable_income + r.taxable_income / twelve,
-        irpef_withheld=ytd.irpef_withheld + r.irpef_net / twelve,
-        inps_employee=ytd.inps_employee + r.inps_employee_annual / twelve,
+        taxable_income=ytd.taxable_income + r.taxes.taxable_income / twelve,
+        irpef_withheld=ytd.irpef_withheld + r.taxes.irpef_net / twelve,
+        inps_employee=ytd.inps_employee + r.contributions.inps_employee_annual / twelve,
     )
 
 
@@ -456,7 +564,9 @@ def compute_period(
             )
         }
     )
-    return estimate_period_effects(updated, period.events, bundle)
+    return compute(
+        _annual_to_scenario(updated, period.events), bundle, _period=period.events
+    )
 
 
 def compute_year(

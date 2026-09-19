@@ -22,7 +22,9 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
-    from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+    from ccnl_engine.engine.payroll.domain.payroll_result import (
+        AnnualEstimate as PayrollResult,
+    )
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 
 
@@ -106,6 +108,11 @@ def _results_differ(before: PayrollResult, after: PayrollResult) -> bool:
     Returns:
         ``True`` when the results differ in at least one monetary field.
     """
-    before_dict = {k: v for k, v in dataclasses.asdict(before).items() if k != "as_of"}
-    after_dict = {k: v for k, v in dataclasses.asdict(after).items() if k != "as_of"}
+    date_keys = {"as_of", "contract_effective_date"}
+    before_dict = {
+        k: v for k, v in dataclasses.asdict(before).items() if k not in date_keys
+    }
+    after_dict = {
+        k: v for k, v in dataclasses.asdict(after).items() if k not in date_keys
+    }
     return before_dict != after_dict

@@ -31,15 +31,15 @@ payroll = calculation.result
 
 print(f"CCNL:              {payroll.ccnl_id}")
 print(f"Level:             {payroll.level_code}")
-print(f"Gross monthly:     {payroll.gross_monthly} EUR")
-print(f"Gross annual:      {payroll.gross_annual} EUR")
+print(f"Gross monthly:     {payroll.earnings.gross_monthly} EUR")
+print(f"Gross annual:      {payroll.earnings.gross_annual} EUR")
 print(f"Net annual:        {payroll.net_annual} EUR")
 print(f"Net monthly:       {payroll.net_monthly} EUR")
-print(f"Employer cost:     {payroll.employer_cost_annual} EUR")
+print(f"Employer cost:     {payroll.employer_cost.employer_cost_annual} EUR")
 
 # Grouped views give structured access to related output fields.
-print(f"Status:            {payroll.quality.status}")
-print(f"Confidence:        {payroll.quality.confidence}")
+print(f"Status:            {payroll.coverage.status}")
+print(f"Confidence:        {payroll.coverage.confidence}")
 
 # The Calculation also records the engine/ruleset version and a full input
 # snapshot, so any figure can be reproduced exactly at a later date.

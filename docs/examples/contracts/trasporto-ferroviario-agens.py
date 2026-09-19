@@ -24,6 +24,6 @@ p = estimate_annual(
         ),
     )
 ).result
-print(f"Gross monthly: {p.gross_monthly} EUR")
+print(f"Gross monthly: {p.earnings.gross_monthly} EUR")
 print(f"Net annual:    {p.net_annual} EUR")
-print(f"Employer cost: {p.employer_cost_annual} EUR")
+print(f"Employer cost: {p.employer_cost.employer_cost_annual} EUR")

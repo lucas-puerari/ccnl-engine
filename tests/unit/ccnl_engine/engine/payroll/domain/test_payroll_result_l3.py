@@ -17,18 +17,18 @@ from ccnl_engine import (
     estimate_annual,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
-    PayrollResult,
+    AnnualEstimate,
     ScopeItem,
     _coerce_scalar,
 )
 
 
 @pytest.fixture(scope="module")
-def payroll() -> PayrollResult:
-    """Return a real PayrollResult for tests.
+def payroll() -> AnnualEstimate:
+    """Return a real AnnualEstimate for tests.
 
     Returns:
-        A PayrollResult for CCNL Metalmeccanico Federmeccanica level C2.
+        An :class:`AnnualEstimate` for metalmeccanico C2 level, 2026.
     """
     return estimate_annual(
         AnnualPayrollScenario(
@@ -44,7 +44,7 @@ def payroll() -> PayrollResult:
 
 
 class TestScopeItemCoerce:
-    """_coerce_scalar ScopeItem branch (payroll_result.py:62) is exercised here."""
+    """_coerce_scalar ScopeItem branch is exercised here."""
 
     def test_coerce_scope_item_from_dict(self) -> None:
         """ScopeItem is reconstructed from a plain dict."""
@@ -67,12 +67,12 @@ class TestScopeItemCoerce:
 
 
 class TestToDictScopeItem:
-    """to_dict tuple branch: dataclasses.is_dataclass path (lines 278-281)."""
+    """to_dict tuple branch: dataclasses.is_dataclass path."""
 
-    def test_scope_items_serialised_as_dicts(self, payroll: PayrollResult) -> None:
+    def test_scope_items_serialised_as_dicts(self, payroll: AnnualEstimate) -> None:
         """calculation_scope ScopeItem entries are serialised via asdict()."""
-        result = dataclasses.replace(
-            payroll,
+        new_coverage = dataclasses.replace(
+            payroll.coverage,
             calculation_scope=(
                 ScopeItem(
                     feature="overtime",
@@ -90,8 +90,9 @@ class TestToDictScopeItem:
                 ),
             ),
         )
+        result = dataclasses.replace(payroll, coverage=new_coverage)
         d = result.to_dict()
-        raw_scope = cast("list[object]", d["calculation_scope"])
+        raw_scope = cast("list[object]", d["coverage"]["calculation_scope"])  # type: ignore[index]
         assert raw_scope == [
             {
                 "feature": "overtime",
@@ -99,7 +100,7 @@ class TestToDictScopeItem:
                 "integration_status": "included_in_totals",
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
-                "assumptions": (),
+                "assumptions": [],
             },
             {
                 "feature": "irpef",
@@ -107,41 +108,34 @@ class TestToDictScopeItem:
                 "integration_status": "included_in_totals",
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
-                "assumptions": (),
+                "assumptions": [],
             },
         ]
 
-    def test_warnings_serialised_as_list(self, payroll: PayrollResult) -> None:
+    def test_warnings_serialised_as_list(self, payroll: AnnualEstimate) -> None:
         """Warnings tuple is serialised as a plain list of strings."""
-        result = dataclasses.replace(payroll, warnings=("something was skipped",))
+        new_coverage = dataclasses.replace(
+            payroll.coverage, warnings=("something was skipped",)
+        )
+        result = dataclasses.replace(payroll, coverage=new_coverage)
         d = result.to_dict()
-        assert d["warnings"] == ["something was skipped"]
+        assert d["coverage"]["warnings"] == ["something was skipped"]  # type: ignore[index]
 
 
 class TestFromDictHasDefault:
-    """from_dict skips fields with defaults missing from dict (line 318)."""
+    """from_dict skips fields with defaults missing from dict."""
 
-    def test_roundtrip_missing_l3_defaults(self, payroll: PayrollResult) -> None:
-        """A dict lacking the new L3 fields round-trips via from_dict."""
+    def test_roundtrip_without_schema_version(self, payroll: AnnualEstimate) -> None:
+        """A dict lacking schema_version round-trips via from_dict using the default."""
         d = payroll.to_dict()
-        # Remove all fields that have defaults to simulate an old serialised dict.
-        for field in dataclasses.fields(PayrollResult):
-            if (
-                field.default is not dataclasses.MISSING
-                or field.default_factory is not dataclasses.MISSING
-            ):
-                d.pop(field.name, None)
-
-        rebuilt = PayrollResult.from_dict(d)
-        # Required fields match.
-        assert rebuilt.gross_monthly == payroll.gross_monthly
+        d.pop("schema_version")
+        rebuilt = AnnualEstimate.from_dict(d)
         assert rebuilt.net_annual == payroll.net_annual
-        # Defaulted fields come back as their defaults.
-        assert rebuilt.warnings == ()
-        assert rebuilt.calculation_scope == ()
-        assert rebuilt.status == "partial"
+        assert rebuilt.coverage.warnings == payroll.coverage.warnings
+        assert rebuilt.coverage.calculation_scope == payroll.coverage.calculation_scope
+        assert rebuilt.coverage.status == payroll.coverage.status
 
-    def test_from_dict_with_scope_items(self, payroll: PayrollResult) -> None:
+    def test_from_dict_with_scope_items(self, payroll: AnnualEstimate) -> None:
         """from_dict reconstructs ScopeItem entries from a serialised scope."""
         scope = (
             ScopeItem(
@@ -152,7 +146,8 @@ class TestFromDictHasDefault:
                 source_quality="n_a",
             ),
         )
-        result = dataclasses.replace(payroll, calculation_scope=scope)
+        new_coverage = dataclasses.replace(payroll.coverage, calculation_scope=scope)
+        result = dataclasses.replace(payroll, coverage=new_coverage)
         d = result.to_dict()
-        rebuilt = PayrollResult.from_dict(d)
-        assert rebuilt.calculation_scope == scope
+        rebuilt = AnnualEstimate.from_dict(d)
+        assert rebuilt.coverage.calculation_scope == scope

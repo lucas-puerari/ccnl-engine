@@ -54,11 +54,15 @@ p = estimate_annual(
 
 print(f"Net annual (no addizionali):    {baseline.net_annual} EUR")
 print(f"Net annual (with addizionali):  {p.net_annual} EUR")
-print(f"Addizionale regionale:          {p.addizionale_regionale_annual} EUR")
-print(f"Addizionale comunale:           {p.addizionale_comunale_annual} EUR")
+print(f"Addizionale regionale:          {p.taxes.addizionale_regionale_annual} EUR")
+print(f"Addizionale comunale:           {p.taxes.addizionale_comunale_annual} EUR")
 
 # When addizionali are computed they are no longer in fiscal_simplifications.
-assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE not in p.fiscal_simplifications
-assert FiscalSimplification.NO_ADDIZIONALE_COMUNALE not in p.fiscal_simplifications
-assert p.addizionale_regionale_annual > Decimal(0)
-assert p.addizionale_comunale_annual > Decimal(0)
+assert (
+    FiscalSimplification.NO_ADDIZIONALE_REGIONALE not in p.taxes.fiscal_simplifications
+)
+assert (
+    FiscalSimplification.NO_ADDIZIONALE_COMUNALE not in p.taxes.fiscal_simplifications
+)
+assert p.taxes.addizionale_regionale_annual > Decimal(0)
+assert p.taxes.addizionale_comunale_annual > Decimal(0)

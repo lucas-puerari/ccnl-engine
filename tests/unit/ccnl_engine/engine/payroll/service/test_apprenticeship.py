@@ -83,17 +83,18 @@ class TestComputeApprenticePercentage:
         """Apprentice salary = destination-level salary * pct (0.80)."""
         r = compute(_req(contract=Apprentice(months_elapsed=0)))
 
-        assert r.result.apprenticeship_pct == _D("0.80")
-        assert r.result.apprenticeship_under_level_code is None
-        assert r.result.base_monthly == _D("800.00")
-        assert r.result.gross_annual == _D("9600.00")
+        assert r.result.earnings.apprenticeship_pct == _D("0.80")
+        assert r.result.earnings.apprenticeship_under_level_code is None
+        assert r.result.earnings.base_monthly == _D("800.00")
+        assert r.result.earnings.gross_annual == _D("9600.00")
         assert r.result.employment_type == "apprentice"
 
     def test_apprentice_contribution_rates(self) -> None:
         """Apprentices use the reduced statutory INPS rates."""
         r = compute(_req(contract=Apprentice(months_elapsed=0)))
-        assert r.result.inps_employee_annual == _D("560.64")  # 9600 * 0.0584
-        assert r.result.inps_employer_annual == _D("1114.56")  # 9600 * 0.1161
+        rc = r.result.contributions
+        assert rc.inps_employee_annual == _D("560.64")  # 9600*0.0584
+        assert rc.inps_employer_annual == _D("1114.56")  # 9600*0.1161
 
     def test_small_firm_rates_by_months(self) -> None:
         """Small-firm employer rate steps at 12 and 24 months."""
@@ -112,7 +113,7 @@ class TestComputeApprenticePercentage:
         rates = [
             compute(
                 _req(contract=Apprentice(months_elapsed=m))
-            ).result.inps_employer_annual
+            ).result.contributions.inps_employer_annual
             for m in (0, 11, 12, 23, 24)
         ]
         assert rates == [
@@ -126,7 +127,7 @@ class TestComputeApprenticePercentage:
     def test_seniority_not_accrued_without_apprentice_amount(self) -> None:
         """Without apprentice_amount the level increment does not apply."""
         r = compute(_req(contract=Apprentice(months_elapsed=0), seniority_count=2))
-        assert r.result.seniority_monthly == _D("0.00")
+        assert r.result.earnings.seniority_monthly == _D("0.00")
 
     def test_apprentice_amount(self) -> None:
         """apprentice_amount replaces the level increment for apprentices."""
@@ -134,15 +135,15 @@ class TestComputeApprenticePercentage:
             "parameters.seniority_increments.apprentice_amount": _series("6.00")
         })
         r = compute(_req(contract=Apprentice(months_elapsed=0), seniority_count=2))
-        assert r.result.seniority_monthly == _D("9.60")  # 12 * 0.80
+        assert r.result.earnings.seniority_monthly == _D("9.60")  # 12 * 0.80
 
     def test_negotiated_ral(self) -> None:
         """RalOverride is the actual apprentice salary; no further scaling."""
         ral = _D("20000.00")
         r = compute(_req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral))
 
-        assert r.result.gross_annual == _D("20000.00")
-        assert r.result.gross_monthly == _D("1666.67")
+        assert r.result.earnings.gross_annual == _D("20000.00")
+        assert r.result.earnings.gross_monthly == _D("1666.67")
 
     def test_negotiated_destination_ral(self) -> None:
         """DestinationRalOverride * apprenticeship_pct yields the actual pay."""
@@ -154,8 +155,8 @@ class TestComputeApprenticePercentage:
             )
         )
 
-        assert r.result.gross_annual == _D("16000.00")  # 20000 * 0.80
-        assert r.result.gross_monthly == _D("1333.33")
+        assert r.result.earnings.gross_annual == _D("16000.00")  # 20000 * 0.80
+        assert r.result.earnings.gross_monthly == _D("1333.33")
 
     def test_negotiated_destination_ral_requires_percentage_track(self) -> None:
         """DestinationRalOverride on an under-classification track raises."""
@@ -193,7 +194,7 @@ class TestComputeApprenticePercentage:
         with pytest.raises(OutOfScopeError, match=r"set Apprentice\.track"):
             compute(_req(contract=Apprentice(months_elapsed=0)))
         r = compute(_req(contract=Apprentice(months_elapsed=0, track="gruppo_2")))
-        assert r.result.apprenticeship_pct == _D("0.70")
+        assert r.result.earnings.apprenticeship_pct == _D("0.70")
 
     def test_named_track_not_covering_level_raises(self) -> None:
         """A named track must cover the requested destination level."""
@@ -225,8 +226,8 @@ class TestComputeApprenticePercentage:
         _mock_ccnl[0] = CCNL.model_validate(data)
         r = compute(_req(contract=Apprentice(months_elapsed=0)))
         # base: 1000 * 0.80 = 800; allowance: 200 (exempt, not scaled by 0.80)
-        assert r.result.base_monthly == _D("800.00")
-        assert r.result.allowances_monthly == _D("200.00")
+        assert r.result.earnings.base_monthly == _D("800.00")
+        assert r.result.earnings.allowances_monthly == _D("200.00")
 
 
 # ---------------------------------------------------------------------------
@@ -242,9 +243,9 @@ class TestComputeApprenticeUnderClassification:
         _mock_ccnl[0] = _DEFAULT_CCNL_UC
         r = compute(_req(contract=Apprentice(months_elapsed=0)))
 
-        assert r.result.apprenticeship_under_level_code == "3"
-        assert r.result.apprenticeship_pct is None
-        assert r.result.gross_annual == _D("9600.00")
+        assert r.result.earnings.apprenticeship_under_level_code == "3"
+        assert r.result.earnings.apprenticeship_pct is None
+        assert r.result.earnings.gross_annual == _D("9600.00")
 
     def test_levels_below_progression(self) -> None:
         """Each period resolves the pay level by order offset."""
@@ -259,7 +260,7 @@ class TestComputeApprenticeUnderClassification:
         codes = [
             compute(
                 _req(contract=Apprentice(months_elapsed=m))
-            ).result.apprenticeship_under_level_code
+            ).result.earnings.apprenticeship_under_level_code
             for m in (0, 12, 24)
         ]
         assert codes == ["2", "3", "4"]
@@ -271,8 +272,8 @@ class TestComputeApprenticeUnderClassification:
         ccnl = _build_ccnl("under_classification", **{"apprenticeship.0": track})
         _mock_ccnl[0] = ccnl
         r = compute(_req(contract=Apprentice(months_elapsed=0)))
-        assert r.result.base_monthly == _D("900.00")
-        assert r.result.apprenticeship_under_level_code == "3"
+        assert r.result.earnings.base_monthly == _D("900.00")
+        assert r.result.earnings.apprenticeship_under_level_code == "3"
 
     def test_negotiated_ral(self) -> None:
         """RalOverride overrides the under-classification pay computation."""
@@ -280,5 +281,5 @@ class TestComputeApprenticeUnderClassification:
         _mock_ccnl[0] = _DEFAULT_CCNL_UC
         r = compute(_req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral))
 
-        assert r.result.gross_annual == ral
-        assert r.result.gross_monthly == _D("1666.67")
+        assert r.result.earnings.gross_annual == ral
+        assert r.result.earnings.gross_monthly == _D("1666.67")

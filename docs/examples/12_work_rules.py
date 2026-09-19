@@ -11,6 +11,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    PeriodPayroll,
     AbsenceDays,
     AnnualPayrollScenario,
     BonusInput,
@@ -61,11 +62,12 @@ period = PayPeriod(
 calculation = estimate_period_effects(scenario, period)
 
 r = calculation.result
+assert isinstance(r, PeriodPayroll)
 
 # ── Base payroll (L1 + L2) ────────────────────────────────────────────────────
-print(f"Gross monthly:              {r.gross_monthly} EUR")
+print(f"Gross monthly:              {r.earnings.gross_monthly} EUR")
 print(f"Net annual:                 {r.net_annual} EUR")
-print(f"Employer cost:              {r.employer_cost_annual} EUR")
+print(f"Employer cost:              {r.employer_cost.employer_cost_annual} EUR")
 
 # ── L3: time supplements (informational) ──────────────────────────────────────
 print(f"\nOvertime supplement:        {r.overtime_supplement_monthly} EUR/month")
@@ -92,7 +94,7 @@ print(f"PdR flat tax (annual):      {r.bonus_pdr_flat_tax_annual} EUR")
 
 # ── Scope: which features were actually computed? ──────────────────────────────
 print("\nCalculation scope:")
-for item in r.calculation_scope:
+for item in r.coverage.calculation_scope:
     if item.feature.startswith((
         "overtime",
         "absence",

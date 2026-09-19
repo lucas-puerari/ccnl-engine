@@ -24,6 +24,7 @@ from ccnl_engine import (
     OvertimeHours,
     PayPeriod,
     Permanent,
+    PeriodPayroll,
     estimate_period_effects,
 )
 
@@ -40,14 +41,15 @@ scenario = AnnualPayrollScenario(
 period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
 calculation = estimate_period_effects(scenario, period)
 p = calculation.result
+assert isinstance(p, PeriodPayroll)
 
 # --- 2. The headline numbers ---
 print("=== Payroll result ===")
-print(f"  Gross monthly:         {p.gross_monthly} EUR")
-print(f"  INPS employee (year):  {p.inps_employee_annual} EUR")
-print(f"  IRPEF net (year):      {p.irpef_net} EUR")
+print(f"  Gross monthly:         {p.earnings.gross_monthly} EUR")
+print(f"  INPS employee (year):  {p.contributions.inps_employee_annual} EUR")
+print(f"  IRPEF net (year):      {p.taxes.irpef_net} EUR")
 print(f"  Net monthly:           {p.net_monthly} EUR")
-print(f"  Employer cost (year):  {p.employer_cost_annual} EUR")
+print(f"  Employer cost (year):  {p.employer_cost.employer_cost_annual} EUR")
 
 if p.overtime_supplement_monthly:
     print(f"\n  [L3] Overtime supplement: {p.overtime_supplement_monthly} EUR/month")
@@ -56,7 +58,7 @@ if p.overtime_supplement_monthly:
 
 # --- 3. Explicit scope — what the engine did and did not compute ---
 print("\n=== Calculation scope ===")
-for item in p.calculation_scope:
+for item in p.coverage.calculation_scope:
     icon = {"computed": "✓", "excluded": "○", "not_computed": "?", "partial": "~"}.get(
         item.calculation_status, item.calculation_status
     )
@@ -64,14 +66,14 @@ for item in p.calculation_scope:
         f"  {icon}  {item.feature}  [{item.calculation_status}/{item.integration_status}]"
     )
 
-if p.warnings:
+if p.coverage.warnings:
     print("\n  Warnings:")
-    for w in p.warnings:
+    for w in p.coverage.warnings:
         print(f"    ! {w}")
 
 # status and confidence are top-level signals for the caller
-print(f"\n  status:     {p.status}")
-print(f"  confidence: {p.confidence}")
+print(f"\n  status:     {p.coverage.status}")
+print(f"  confidence: {p.coverage.confidence}")
 
 # --- 4. Ruleset versioning — exact snapshot for reproducibility ---
 print("\n=== Ruleset versions ===")

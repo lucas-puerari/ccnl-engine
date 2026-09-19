@@ -140,5 +140,5 @@ Destination levels: `A2`, `C3`, `D2`
 ## Usage example
 
 ```python
---8<-- "docs/examples/contracts/lavanderie-industriali-assosistema.py"
+--8 < --"docs/examples/contracts/lavanderie-industriali-assosistema.py"
 ```

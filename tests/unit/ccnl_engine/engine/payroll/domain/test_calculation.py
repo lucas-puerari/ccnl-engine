@@ -27,15 +27,24 @@ from ccnl_engine.engine.payroll.domain.calculation import (
 )
 from ccnl_engine.engine.payroll.domain.employee import RalOverride, SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.scenario import (
+    AnnualPayrollScenario,
     Employee,
     Employer,
     Employment,
+    PayPeriod,
     PayrollScenario,
 )
-from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.supplements import (
+    FringeBenefitInput,
+    OvertimeHours,
+)
 from ccnl_engine.engine.payroll.service.assembly import _ruleset_versions
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    compute,
+    estimate_period_effects,
+)
 from ccnl_engine.engine.primitives import FrozenDict
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -975,3 +984,33 @@ class TestStrictDecimalFloat:
         """Passing float to a StrictDecimal field raises TypeError."""
         with pytest.raises(TypeError, match="float is not accepted"):
             RalOverride(value=1.5)  # type: ignore[arg-type]
+
+
+def _annual_scenario() -> AnnualPayrollScenario:
+    return AnnualPayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl=_CCNL_FILENAME,
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=date(2026, 6, 1),
+        ),
+    )
+
+
+class TestResultFromDictPeriodPayroll:
+    """_result_from_dict dispatches to PeriodPayroll when pay_period key present."""
+
+    def test_calculation_roundtrip_with_period_gives_period_payroll(self) -> None:
+        """Calculation.from_dict on a period result produces PeriodPayroll."""
+        calc = estimate_period_effects(
+            _annual_scenario(),
+            PayPeriod(
+                fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
+            ),
+        )
+        assert isinstance(calc.result, PeriodPayroll)
+        raw = calc.to_dict()
+        restored = Calculation.from_dict(raw)
+        assert isinstance(restored.result, PeriodPayroll)
+        assert restored.result.net_annual == calc.result.net_annual

@@ -24,7 +24,7 @@ from ccnl_engine import (
     estimate_period_effects,
     # Scenarios
     AnnualPayrollScenario,  # structural: employee + employment
-    PayPeriod,              # period events: overtime, absences, benefits
+    PayPeriod,  # period events: overtime, absences, benefits
     # Legacy entry point (still supported)
     compute,
     PayrollScenario,

@@ -19,8 +19,13 @@ fields on `PayPeriod`, then pass the `PayPeriod` to `estimate_period_effects()`:
 
 ```python
 from ccnl_engine import (
-    AbsenceDays, BonusInput, FringeBenefitInput,
-    LeaveInput, OvertimeHours, SickInput, WelfareInput,
+    AbsenceDays,
+    BonusInput,
+    FringeBenefitInput,
+    LeaveInput,
+    OvertimeHours,
+    SickInput,
+    WelfareInput,
     WeeklyOvertimeHours,
 )
 ```
@@ -107,7 +112,9 @@ engine starts carenza from day 1.
 
 ```python
 # First period of an episode: 5 days, carenza of 3 → INPS covers days 4-5
-result1 = estimate_period_effects(scenario, PayPeriod(sick_input=SickInput(sick_days=Decimal(5))))
+result1 = estimate_period_effects(
+    scenario, PayPeriod(sick_input=SickInput(sick_days=Decimal(5)))
+)
 ```
 
 *Continuation of the same episode:* pass the number of episode days already
@@ -115,10 +122,15 @@ computed in the previous period.
 
 ```python
 # Second period: episode continues, 3 more days, carenza already elapsed
-result2 = estimate_period_effects(scenario, PayPeriod(sick_input=SickInput(
-    sick_days=Decimal(3),
-    cumulative_sick_days=Decimal(5),  # days from result1 period
-)))
+result2 = estimate_period_effects(
+    scenario,
+    PayPeriod(
+        sick_input=SickInput(
+            sick_days=Decimal(3),
+            cumulative_sick_days=Decimal(5),  # days from result1 period
+        )
+    ),
+)
 ```
 
 *Separate new episode* (e.g. a distinct illness later in the year): pass
@@ -161,9 +173,20 @@ taxable.
 from datetime import date
 from decimal import Decimal
 from ccnl_engine import (
-    AbsenceDays, AnnualPayrollScenario, BonusInput, Employee, Employer,
-    Employment, FringeBenefitInput, LeaveInput, OvertimeHours, PayPeriod,
-    Permanent, SickInput, WelfareInput, estimate_period_effects,
+    AbsenceDays,
+    AnnualPayrollScenario,
+    BonusInput,
+    Employee,
+    Employer,
+    Employment,
+    FringeBenefitInput,
+    LeaveInput,
+    OvertimeHours,
+    PayPeriod,
+    Permanent,
+    SickInput,
+    WelfareInput,
+    estimate_period_effects,
 )
 
 scenario = AnnualPayrollScenario(
@@ -190,16 +213,16 @@ period = PayPeriod(
 calculation = estimate_period_effects(scenario, period)
 
 r = calculation.result
-print(r.overtime_supplement_monthly)        # weekday overtime gross
-print(r.night_supplement_monthly)           # night premium
-print(r.absence_deduction_monthly)          # deduction for unpaid absence
-print(r.leave_accrued_days_monthly)         # days accrued this period
-print(r.sick_inps_indemnity_monthly)        # INPS indemnity (informational)
-print(r.sick_company_integration_monthly)   # employer complement
-print(r.fringe_benefit_annual)              # total fringe (exempt+taxable)
-print(r.welfare_annual)                     # welfare (always exempt)
-print(r.bonus_annual)                       # total bonus
-print(r.bonus_pdr_flat_tax_annual)          # imposta sostitutiva (0 if not eligible)
+print(r.overtime_supplement_monthly)  # weekday overtime gross
+print(r.night_supplement_monthly)  # night premium
+print(r.absence_deduction_monthly)  # deduction for unpaid absence
+print(r.leave_accrued_days_monthly)  # days accrued this period
+print(r.sick_inps_indemnity_monthly)  # INPS indemnity (informational)
+print(r.sick_company_integration_monthly)  # employer complement
+print(r.fringe_benefit_annual)  # total fringe (exempt+taxable)
+print(r.welfare_annual)  # welfare (always exempt)
+print(r.bonus_annual)  # total bonus
+print(r.bonus_pdr_flat_tax_annual)  # imposta sostitutiva (0 if not eligible)
 ```
 
 ---
