@@ -59,6 +59,7 @@ class FiscalPay:
     inail_employer_annual: Decimal
     inps_employer_exemption_annual: Decimal
     maternity_inps_indemnity_annual: Decimal
+    workplace_injury_inail_indemnity_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -86,6 +87,15 @@ class FiscalPay:
     employer_cost_annual: Decimal
     employer_withholds_irpef: bool
     fiscal_simplifications: frozenset[FiscalSimplification]
+
+
+def _injury_indemnity(raw: Decimal | None) -> Decimal:
+    """Return the caller-declared workplace injury INAIL indemnity, or zero.
+
+    Returns:
+        The indemnity amount, or zero when absent.
+    """
+    return money(raw) if raw is not None else _ZERO
 
 
 def _maternity_indemnity(raw: Decimal | None) -> Decimal:
@@ -298,6 +308,9 @@ def compute_fiscal(
     maternity_inps_indemnity_annual = _maternity_indemnity(
         scenario.maternity_inps_indemnity_annual
     )
+    workplace_injury_inail_indemnity_annual = _injury_indemnity(
+        scenario.workplace_injury_inail_indemnity_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -483,6 +496,7 @@ def compute_fiscal(
         + inps_employer_annual
         - inps_employer_exemption_annual
         - maternity_inps_indemnity_annual
+        - workplace_injury_inail_indemnity_annual
         + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
@@ -508,6 +522,7 @@ def compute_fiscal(
         inail_employer_annual=inail_employer_annual,
         inps_employer_exemption_annual=inps_employer_exemption_annual,
         maternity_inps_indemnity_annual=maternity_inps_indemnity_annual,
+        workplace_injury_inail_indemnity_annual=workplace_injury_inail_indemnity_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         bilateral_employee_annual=bilateral_employee_annual,

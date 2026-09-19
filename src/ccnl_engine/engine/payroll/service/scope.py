@@ -215,6 +215,7 @@ def _fiscal_scope(
     exemption = scenario.employment.employer.inps_employer_exemption_annual
     prior_irpef = scenario.prior_period_irpef_withheld
     maternity = scenario.maternity_inps_indemnity_annual
+    injury = scenario.workplace_injury_inail_indemnity_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -251,6 +252,15 @@ def _fiscal_scope(
             )
             if maternity is not None
             else _excluded("maternity_leave")
+        ),
+        (
+            _computed(
+                "workplace_injury",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if injury is not None
+            else _excluded("workplace_injury")
         ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
