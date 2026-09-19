@@ -23,8 +23,8 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
-    compute_month,
     estimate_annual,
+    estimate_period_effects,
 )
 from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 from tests.helpers import (
@@ -232,7 +232,7 @@ class TestLoadPayrollBundle:
 
 
 class TestComputeWithBundle:
-    """Tests for bundle injection into compute / estimate_annual / compute_month."""
+    """Bundle injection into compute / estimate_annual / estimate_period_effects."""
 
     def test_compute_with_bundle_skips_loaders(self) -> None:
         """Loaders are never called when a bundle is supplied."""
@@ -314,8 +314,8 @@ class TestComputeWithBundle:
             estimate_annual(_SCENARIO)
         mock_ccnl.assert_called_once()
 
-    def test_compute_month_with_bundle(self) -> None:
-        """compute_month skips loaders when a bundle is supplied."""
+    def test_estimate_period_effects_with_bundle(self) -> None:
+        """estimate_period_effects skips loaders when a bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
@@ -324,12 +324,12 @@ class TestComputeWithBundle:
                 "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
             ) as mock_ccnl,
         ):
-            calc = compute_month(_SCENARIO, _PERIOD, bundle)
+            calc = estimate_period_effects(_SCENARIO, _PERIOD, bundle)
         mock_ccnl.assert_not_called()
         assert calc is not None
 
-    def test_compute_month_without_bundle(self) -> None:
-        """compute_month calls loaders when no bundle is supplied."""
+    def test_estimate_period_effects_without_bundle(self) -> None:
+        """estimate_period_effects calls loaders when no bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         with (
@@ -346,5 +346,5 @@ class TestComputeWithBundle:
                 return_value=None,
             ),
         ):
-            compute_month(_SCENARIO, _PERIOD, None)
+            estimate_period_effects(_SCENARIO, _PERIOD, None)
         mock_ccnl.assert_called_once()

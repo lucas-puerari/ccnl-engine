@@ -139,7 +139,7 @@ class TestComputePeriod:
         """compute_period overrides as_of to date(year, month, 1)."""
         captured: list[date] = []
 
-        original_compute_month = _orch.compute_month
+        original = _orch.estimate_period_effects
 
         def _capturing(
             scenario: AnnualPayrollScenario,
@@ -149,13 +149,13 @@ class TestComputePeriod:
             """Capture the as_of date then delegate to the real function.
 
             Returns:
-                The Calculation produced by the real compute_month.
+                The Calculation produced by the real estimate_period_effects.
             """
             captured.append(scenario.employment.as_of)
-            return original_compute_month(scenario, events, bundle)
+            return original(scenario, events, bundle)
 
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.compute_month",
+            "ccnl_engine.engine.payroll.service.orchestrator.estimate_period_effects",
             side_effect=_capturing,
         ):
             compute_period(_SCENARIO, PayrollPeriod(year=2026, month=7))
@@ -168,7 +168,7 @@ class TestComputePeriod:
         result = compute_period(_SCENARIO, PayrollPeriod(year=2026, month=1))
         assert isinstance(result, Calculation)
 
-    def test_passes_events_to_compute_month(self) -> None:
+    def test_passes_events_to_estimate_period_effects(self) -> None:
         """Period events are forwarded to the underlying compute."""
         events = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
         result = compute_period(

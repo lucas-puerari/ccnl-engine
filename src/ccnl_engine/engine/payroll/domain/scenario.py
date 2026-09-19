@@ -381,7 +381,7 @@ class PayPeriod(BaseModel):
     """Period-specific payroll events for a single pay period.
 
     Passed to :func:`~ccnl_engine.engine.payroll.service.orchestrator\
-.compute_month` alongside an :class:`AnnualPayrollScenario` to supply
+.estimate_period_effects` alongside an :class:`AnnualPayrollScenario` to supply
     the month's variable events (overtime, absences, sick leave, benefits).
 
     All fields are optional — a ``PayPeriod()`` with no arguments represents
@@ -418,9 +418,9 @@ class AnnualPayrollScenario(BaseModel):
 
     Use :func:`~ccnl_engine.engine.payroll.service.orchestrator\
 .estimate_annual` to compute annual gross-to-net figures, or
-    :func:`~ccnl_engine.engine.payroll.service.orchestrator.compute_month`
-    together with a :class:`PayPeriod` to compute a specific month with its
-    variable events.
+    :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.estimate_period_effects` together with a :class:`PayPeriod` to include
+    the month's variable events in the result fields.
 
     Compared to the legacy :class:`PayrollScenario`, this class holds only
     the structural fields that describe *who the worker is* and *what the

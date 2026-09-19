@@ -1,4 +1,4 @@
-"""Tests for the estimate_annual and compute_month public entry points."""
+"""Tests for the estimate_annual and estimate_period_effects entry points."""
 
 from __future__ import annotations
 
@@ -8,10 +8,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
-from ccnl_engine.engine.payroll.domain.calculation import (
-    Calculation,
-    MonthlyPayrollReport,
-)
+from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualPayrollScenario,
@@ -33,8 +30,8 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.orchestrator import (
     _annual_to_scenario,
     compute,
-    compute_month,
     estimate_annual,
+    estimate_period_effects,
 )
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -212,37 +209,41 @@ class TestEstimateAnnual:
         assert annual.result.net_annual == direct.result.net_annual
 
 
-class TestComputeMonth:
-    """Integration tests for compute_month."""
+class TestEstimatePeriodEffects:
+    """Integration tests for estimate_period_effects."""
 
-    def test_returns_monthly_payroll_report(self) -> None:
-        """compute_month returns a MonthlyPayrollReport."""
-        result = compute_month(_base_scenario(), PayPeriod())
-        assert isinstance(result, MonthlyPayrollReport)
-
-    def test_monthly_report_is_calculation(self) -> None:
-        """MonthlyPayrollReport is currently Calculation."""
-        result = compute_month(_base_scenario(), PayPeriod())
+    def test_returns_calculation(self) -> None:
+        """estimate_period_effects returns a Calculation."""
+        result = estimate_period_effects(_base_scenario(), PayPeriod())
         assert isinstance(result, Calculation)
 
-    def test_overtime_affects_result(self) -> None:
+    def test_overtime_supplement_non_zero(self) -> None:
         """Overtime hours in PayPeriod produce a non-zero supplement."""
-        with_overtime = compute_month(
+        with_overtime = estimate_period_effects(
             _base_scenario(),
             PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
         )
         assert with_overtime.result.overtime_supplement_monthly > Decimal(0)
         assert with_overtime.result.time_supplements_monthly > Decimal(0)
 
-    def test_empty_period_equals_estimate_annual(self) -> None:
-        """compute_month with empty PayPeriod matches estimate_annual."""
+    def test_net_annual_unchanged_by_overtime(self) -> None:
+        """net_annual is not altered by period events — it remains an estimate."""
         base = estimate_annual(_base_scenario())
-        monthly = compute_month(_base_scenario(), PayPeriod())
-        assert monthly.result.net_annual == base.result.net_annual
+        with_overtime = estimate_period_effects(
+            _base_scenario(),
+            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
+        )
+        assert with_overtime.result.net_annual == base.result.net_annual
+
+    def test_empty_period_equals_estimate_annual(self) -> None:
+        """estimate_period_effects with empty PayPeriod matches estimate_annual."""
+        base = estimate_annual(_base_scenario())
+        with_empty = estimate_period_effects(_base_scenario(), PayPeriod())
+        assert with_empty.result.net_annual == base.result.net_annual
 
     def test_sick_days_appear_in_result(self) -> None:
         """Sick days in PayPeriod are reflected in sick_days_monthly."""
-        sick = compute_month(
+        sick = estimate_period_effects(
             _base_scenario(),
             PayPeriod(sick_input=SickInput(sick_days=Decimal(5))),
         )
@@ -250,7 +251,7 @@ class TestComputeMonth:
 
     def test_fringe_benefit_in_period(self) -> None:
         """FringeBenefitInput in PayPeriod propagates to fringe_benefit_annual."""
-        result = compute_month(
+        result = estimate_period_effects(
             _base_scenario(),
             PayPeriod(
                 fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
@@ -260,7 +261,7 @@ class TestComputeMonth:
 
     def test_welfare_in_period(self) -> None:
         """WelfareInput in PayPeriod propagates to welfare_annual."""
-        result = compute_month(
+        result = estimate_period_effects(
             _base_scenario(),
             PayPeriod(welfare_input=WelfareInput(annual_amount=Decimal(200))),
         )
@@ -268,7 +269,7 @@ class TestComputeMonth:
 
     def test_bonus_in_period(self) -> None:
         """BonusInput in PayPeriod propagates to bonus_annual."""
-        result = compute_month(
+        result = estimate_period_effects(
             _base_scenario(),
             PayPeriod(
                 bonus_input=BonusInput(
@@ -278,10 +279,12 @@ class TestComputeMonth:
         )
         assert result.result.bonus_annual == Decimal(1000)
 
-
-class TestMonthlyPayrollReport:
-    """MonthlyPayrollReport is currently an alias for Calculation."""
-
-    def test_is_calculation_alias(self) -> None:
-        """MonthlyPayrollReport is Calculation."""
-        assert MonthlyPayrollReport is Calculation
+    def test_absence_days_reflected_in_result(self) -> None:
+        """Absence days produce a deduction; net_annual remains the annual estimate."""
+        base = estimate_annual(_base_scenario())
+        with_absence = estimate_period_effects(
+            _base_scenario(),
+            PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+        )
+        assert with_absence.result.absence_deduction_monthly > Decimal(0)
+        assert with_absence.result.net_annual == base.result.net_annual

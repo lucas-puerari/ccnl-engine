@@ -10,7 +10,7 @@ Every payroll figure is backed by three trust layers:
    what it could not model, so callers are never silently wrong.
 
 This example walks through all three layers for a metalmeccanico C2 payslip.
-Period-specific events (overtime) live in PayPeriod, passed to compute_month().
+Period-specific events (overtime) live in PayPeriod, passed to estimate_period_effects().
 """
 
 from datetime import date
@@ -24,7 +24,7 @@ from ccnl_engine import (
     OvertimeHours,
     PayPeriod,
     Permanent,
-    compute_month,
+    estimate_period_effects,
 )
 
 # --- 1. Compute ---
@@ -38,7 +38,7 @@ scenario = AnnualPayrollScenario(
     ),
 )
 period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
-calculation = compute_month(scenario, period)
+calculation = estimate_period_effects(scenario, period)
 p = calculation.result
 
 # --- 2. The headline numbers ---

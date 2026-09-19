@@ -5,7 +5,7 @@ applicable rules — and returns a fully itemised `PayrollResult`. It is a pure
 function: given the same inputs and the same knowledge base version, it always
 produces the same output.
 
-## Entry points: `estimate_annual()` and `compute_month()`
+## Entry points: `estimate_annual()` and `estimate_period_effects()`
 
 For annual gross-to-net figures, pass an `AnnualPayrollScenario` to
 `estimate_annual()`:
@@ -30,13 +30,13 @@ result = calculation.result
 ```
 
 To add period-specific events (overtime, absences, benefits), use
-`compute_month()` with a `PayPeriod`:
+`estimate_period_effects()` with a `PayPeriod`:
 
 ```python
-from ccnl_engine import OvertimeHours, PayPeriod, compute_month
+from ccnl_engine import OvertimeHours, PayPeriod, estimate_period_effects
 
 period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=8))
-calculation = compute_month(scenario, period)
+calculation = estimate_period_effects(scenario, period)
 ```
 
 Both entry points return a `Calculation`, not a `PayrollResult` directly. The
@@ -84,7 +84,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | Type | What it describes |
 |---|---|
 | `AnnualPayrollScenario` | Structural scenario: employee + employment (no period events) |
-| `PayPeriod` | Period-specific events: overtime, absences, benefits (passed to `compute_month`) |
+| `PayPeriod` | Period-specific events: overtime, absences, benefits (passed to `estimate_period_effects`) |
 | `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
 | `Employment` | CCNL file, contract type, employer, reference date (`as_of`) |
 | `Employer` | Headcount tier, second-level allowances |

@@ -5,7 +5,10 @@ Public API
 Two entry points are available:
 
 - :func:`estimate_annual` — annual gross-to-net estimate (no period events).
-- :func:`compute_month` — monthly payroll including period-specific events.
+- :func:`estimate_period_effects` — annual estimate with informational
+  period-event fields (overtime, absences, fringe, bonuses).  Net and cost
+  totals remain annualised; use this when you need the per-period breakdown
+  fields alongside the structural figures.
 
 All types needed to call them and inspect their results are re-exported from
 this module.
@@ -68,7 +71,6 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
     InputSnapshot,
-    MonthlyPayrollReport,
     TraceCategory,
     TraceStep,
 )
@@ -150,10 +152,10 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
-    compute_month,
     compute_period,
     compute_year,
     estimate_annual,
+    estimate_period_effects,
 )
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
@@ -195,7 +197,6 @@ __all__ = [
     "Jurisdiction",
     "Leave",
     "LeaveInput",
-    "MonthlyPayrollReport",
     "OutOfScopeError",
     "OvertimeHours",
     "PayPeriod",
@@ -231,11 +232,11 @@ __all__ = [
     "WelfareInput",
     "YTDState",
     "compute",
-    "compute_month",
     "compute_period",
     "compute_year",
     "engine_version",
     "estimate_annual",
+    "estimate_period_effects",
     "get_ccnl",
     "list_ccnls",
     "load_payroll_bundle",
