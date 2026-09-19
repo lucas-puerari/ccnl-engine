@@ -81,6 +81,7 @@ class FiscalPay:
     irpef_net: Decimal
     conguaglio_annual: Decimal
     termination_residual_leave_payout_annual: Decimal
+    contract_renewal_arrears_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -328,6 +329,9 @@ def compute_fiscal(
     termination_tfr_liquidation_annual = _termination_amount(
         scenario.termination_tfr_liquidation_annual
     )
+    contract_renewal_arrears_annual = _termination_amount(
+        scenario.contract_renewal_arrears_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -503,6 +507,7 @@ def compute_fiscal(
             - bilateral_employee_annual
             - work.bonus_pdr_flat_tax_annual
             + termination_residual_leave_payout_annual
+            + contract_renewal_arrears_annual
         )
     else:
         net_annual = money(
@@ -510,6 +515,7 @@ def compute_fiscal(
             - inps_employee_annual
             - bilateral_employee_annual
             + termination_residual_leave_payout_annual
+            + contract_renewal_arrears_annual
         )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
@@ -519,6 +525,7 @@ def compute_fiscal(
         - maternity_inps_indemnity_annual
         - workplace_injury_inail_indemnity_annual
         + termination_residual_leave_payout_annual
+        + contract_renewal_arrears_annual
         + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
@@ -566,6 +573,7 @@ def compute_fiscal(
         irpef_net=irpef_net,
         conguaglio_annual=conguaglio_annual,
         termination_residual_leave_payout_annual=termination_residual_leave_payout_annual,
+        contract_renewal_arrears_annual=contract_renewal_arrears_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,
