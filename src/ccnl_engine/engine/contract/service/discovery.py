@@ -9,6 +9,7 @@ from functools import cache
 from typing import NewType
 
 from ccnl_engine.engine.errors import UnknownCcnlError
+from ccnl_engine.engine.io.service.bundled_resources import BundledResourceStore
 
 CcnlId = NewType("CcnlId", str)
 
@@ -38,11 +39,10 @@ def _load_all() -> tuple[CcnlInfo, ...]:
         Tuple of :class:`CcnlInfo` sorted by ccnl_id.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
+    store = BundledResourceStore(pkg)
     items: list[CcnlInfo] = []
-    for resource in sorted(pkg.iterdir(), key=lambda r: r.name):
-        if not resource.name.endswith(".json"):
-            continue
-        meta = json.loads(resource.read_text()).get("meta", {})
+    for filename in store.list_json():
+        meta = json.loads(store.read_json(filename)).get("meta", {})
         items.append(
             CcnlInfo(
                 ccnl_id=CcnlId(meta["ccnl_id"]),

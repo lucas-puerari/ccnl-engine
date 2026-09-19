@@ -21,6 +21,8 @@ from ccnl_engine import (
     RalOverride,
     SeniorityByDate,
     estimate_annual,
+    get_ccnl,
+    list_ccnls,
 )
 
 
@@ -57,6 +59,20 @@ def main() -> int:
         return 1
 
     print(f"OK: net_annual={net}")
+
+    ccnls = list_ccnls()
+    if len(ccnls) != 125:
+        print(f"FAIL: list_ccnls() returned {len(ccnls)} items, expected 125")
+        return 1
+
+    slug = ccnls[0].ccnl_id
+    by_slug = get_ccnl(slug)
+    by_code = get_ccnl(by_slug.cnel_code)
+    if by_slug != by_code:
+        print("FAIL: get_ccnl by slug and by CNEL code returned different results")
+        return 1
+
+    print(f"OK: list_ccnls()={len(ccnls)}, get_ccnl resolved '{slug}' and CNEL code")
     return 0
 
 
