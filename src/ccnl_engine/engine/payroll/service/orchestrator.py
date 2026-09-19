@@ -251,6 +251,7 @@ def _build_taxes(fiscal: object) -> Taxes:
         sterilizzazione_clawback_annual=f.sterilizzazione_clawback,
         conguaglio_annual=f.conguaglio_annual,
         termination_residual_leave_payout_annual=f.termination_residual_leave_payout_annual,
+        contract_renewal_arrears_annual=f.contract_renewal_arrears_annual,
     )
 
 

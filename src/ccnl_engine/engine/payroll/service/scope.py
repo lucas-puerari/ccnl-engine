@@ -218,6 +218,7 @@ def _fiscal_scope(
     injury = scenario.workplace_injury_inail_indemnity_annual
     term_leave = scenario.termination_residual_leave_payout_annual
     term_tfr = scenario.termination_tfr_liquidation_annual
+    arrears = scenario.contract_renewal_arrears_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -281,6 +282,15 @@ def _fiscal_scope(
             )
             if term_tfr is not None
             else _excluded("termination_tfr")
+        ),
+        (
+            _computed(
+                "contract_renewal_arrears",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if arrears is not None
+            else _excluded("contract_renewal_arrears")
         ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),

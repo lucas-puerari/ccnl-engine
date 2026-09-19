@@ -575,3 +575,26 @@ class TestTerminationPayouts:
         """Negative termination_tfr_liquidation_annual is rejected."""
         with pytest.raises(ValidationError, match="termination_tfr_liquidation_annual"):
             _base_scenario(termination_tfr_liquidation_annual=Decimal(-1))
+
+
+class TestContractRenewalArrears:
+    """PayrollScenario contract_renewal_arrears_annual field validation."""
+
+    def test_arrears_none_by_default(self) -> None:
+        """contract_renewal_arrears_annual defaults to None."""
+        assert _base_scenario().contract_renewal_arrears_annual is None
+
+    def test_arrears_zero_accepted(self) -> None:
+        """contract_renewal_arrears_annual=0 is valid."""
+        s = _base_scenario(contract_renewal_arrears_annual=Decimal(0))
+        assert s.contract_renewal_arrears_annual == Decimal(0)
+
+    def test_arrears_positive_accepted(self) -> None:
+        """A positive contract_renewal_arrears_annual is accepted."""
+        s = _base_scenario(contract_renewal_arrears_annual=Decimal("2400.00"))
+        assert s.contract_renewal_arrears_annual == Decimal("2400.00")
+
+    def test_negative_arrears_raises(self) -> None:
+        """Negative contract_renewal_arrears_annual is rejected."""
+        with pytest.raises(ValidationError, match="contract_renewal_arrears_annual"):
+            _base_scenario(contract_renewal_arrears_annual=Decimal(-1))
