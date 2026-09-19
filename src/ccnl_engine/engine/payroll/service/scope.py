@@ -162,6 +162,12 @@ def _partial(
     )
 
 
+def _caller_declared_or_excluded(feature: str, value: object) -> ScopeItem:
+    if value is not None:
+        return _computed(feature, elig="caller_declared", qual="estimated")
+    return _excluded(feature)
+
+
 def _work_feature(feature: str, requested: bool, supported: bool) -> ScopeItem:
     """Classify a work-time feature from request and support flags.
 
@@ -219,79 +225,21 @@ def _fiscal_scope(
     term_leave = scenario.termination_residual_leave_payout_annual
     term_tfr = scenario.termination_tfr_liquidation_annual
     arrears = scenario.contract_renewal_arrears_annual
+    una_tantum = scenario.una_tantum_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
         _computed("inps_employee"),
         _computed("inps_employer"),
-        (
-            _computed("inail", elig="caller_declared", qual="estimated")
-            if inail_rate is not None
-            else _excluded("inail")
-        ),
-        (
-            _computed(
-                "contribution_exemption",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if exemption is not None
-            else _excluded("contribution_exemption")
-        ),
-        (
-            _computed(
-                "fiscal_adjustment",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if prior_irpef is not None
-            else _excluded("fiscal_adjustment")
-        ),
-        (
-            _computed(
-                "maternity_leave",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if maternity is not None
-            else _excluded("maternity_leave")
-        ),
-        (
-            _computed(
-                "workplace_injury",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if injury is not None
-            else _excluded("workplace_injury")
-        ),
-        (
-            _computed(
-                "termination_residual_leave",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if term_leave is not None
-            else _excluded("termination_residual_leave")
-        ),
-        (
-            _computed(
-                "termination_tfr",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if term_tfr is not None
-            else _excluded("termination_tfr")
-        ),
-        (
-            _computed(
-                "contract_renewal_arrears",
-                elig="caller_declared",
-                qual="estimated",
-            )
-            if arrears is not None
-            else _excluded("contract_renewal_arrears")
-        ),
+        _caller_declared_or_excluded("inail", inail_rate),
+        _caller_declared_or_excluded("contribution_exemption", exemption),
+        _caller_declared_or_excluded("fiscal_adjustment", prior_irpef),
+        _caller_declared_or_excluded("maternity_leave", maternity),
+        _caller_declared_or_excluded("workplace_injury", injury),
+        _caller_declared_or_excluded("termination_residual_leave", term_leave),
+        _caller_declared_or_excluded("termination_tfr", term_tfr),
+        _caller_declared_or_excluded("contract_renewal_arrears", arrears),
+        _caller_declared_or_excluded("una_tantum", una_tantum),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (

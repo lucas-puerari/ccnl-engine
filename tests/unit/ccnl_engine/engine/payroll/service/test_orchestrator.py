@@ -4180,3 +4180,19 @@ class TestSurtaxRulesetIdentity:
             )
         )
         assert calc.result.coverage.confidence == "medium"
+
+
+class TestCallerDeclaredScope:
+    """Caller-declared optional fields appear as caller_declared scope items."""
+
+    def test_inail_rate_produces_caller_declared_scope_item(self) -> None:
+        """Setting inail_rate yields a caller_declared inail scope item."""
+        calc = estimate_annual(_req(inail_rate=_D("0.015")))
+        scope = {item.feature: item for item in calc.result.coverage.calculation_scope}
+        assert scope["inail"].eligibility_status == "caller_declared"
+
+    def test_no_inail_rate_produces_excluded_scope_item(self) -> None:
+        """Omitting inail_rate yields an excluded inail scope item."""
+        calc = estimate_annual(_req())
+        scope = {item.feature: item for item in calc.result.coverage.calculation_scope}
+        assert scope["inail"].calculation_status == "excluded"
