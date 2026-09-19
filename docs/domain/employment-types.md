@@ -16,7 +16,7 @@ limit; full INPS rates apply. This is the baseline from which all other types
 deviate.
 
 ```python
---8<-- "docs/examples/01_quickstart.py"
+--8 < --"docs/examples/01_quickstart.py"
 ```
 
 ## Fixed-term (*tempo determinato*)
@@ -27,7 +27,7 @@ as a disincentive to systematic precarious use. Gross and net pay are unchanged
 relative to a permanent worker at the same level.
 
 ```python
---8<-- "docs/examples/03_fixed_term.py"
+--8 < --"docs/examples/03_fixed_term.py"
 ```
 
 ## Apprenticeship (*apprendistato*)
@@ -48,7 +48,7 @@ The `Apprentice` type covers both salary tracks used by Italian CCNLs:
 The engine automatically detects which track the loaded CCNL uses.
 
 ```python
---8<-- "docs/examples/06_apprentice.py"
+--8 < --"docs/examples/06_apprentice.py"
 ```
 
 **API reference:** [`Permanent`](../api/models.md), [`FixedTerm`](../api/models.md),

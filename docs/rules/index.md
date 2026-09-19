@@ -44,9 +44,9 @@ accidentally edited files are caught before any computation.
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
-print(ccnl.ruleset.id)          # "ccnl/metalmeccanico-federmeccanica"
-print(ccnl.ruleset.version)     # "2026.2"
-print(ccnl.ruleset.source_hash) # "4a7b..."
+print(ccnl.ruleset.id)  # "ccnl/metalmeccanico-federmeccanica"
+print(ccnl.ruleset.version)  # "2026.2"
+print(ccnl.ruleset.source_hash)  # "4a7b..."
 ```
 
 The ruleset identity is propagated into every `Calculation` so a payroll

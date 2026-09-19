@@ -13,19 +13,25 @@ For annual gross-to-net figures, pass an `AnnualPayrollScenario` to
 ```python
 from datetime import date
 from ccnl_engine import (
-    AnnualPayrollScenario, Employee, Employer, Employment,
-    Permanent, estimate_annual,
+    AnnualPayrollScenario,
+    Employee,
+    Employer,
+    Employment,
+    Permanent,
+    estimate_annual,
 )
 
-calculation = estimate_annual(AnnualPayrollScenario(
-    employee=Employee(level_code="C3"),
-    employment=Employment(
-        ccnl="metalmeccanico-federmeccanica.json",
-        contract=Permanent(),
-        employer=Employer(num_employees=50),
-        as_of=date(2026, 1, 1),
-    ),
-))
+calculation = estimate_annual(
+    AnnualPayrollScenario(
+        employee=Employee(level_code="C3"),
+        employment=Employment(
+            ccnl="metalmeccanico-federmeccanica.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=date(2026, 1, 1),
+        ),
+    )
+)
 result = calculation.result
 ```
 
@@ -106,12 +112,12 @@ Full type reference: [API: Engine](../api/engine.md).
 The result contains every gross, net, and cost component. Key fields:
 
 ```python
-result.gross_monthly          # total monthly gross (base + seniority + allowances)
-result.net_annual             # annual net after INPS, IRPEF, surtax
-result.employer_cost_annual   # total annual employer cost
-result.confidence             # "low" | "medium" | "high"
-result.calculation_scope      # list of ScopeItem(feature, status)
-result.warnings               # active gaps the caller must know
+result.gross_monthly  # total monthly gross (base + seniority + allowances)
+result.net_annual  # annual net after INPS, IRPEF, surtax
+result.employer_cost_annual  # total annual employer cost
+result.confidence  # "low" | "medium" | "high"
+result.calculation_scope  # list of ScopeItem(feature, status)
+result.warnings  # active gaps the caller must know
 ```
 
 See [Trust: Confidence](../trust/confidence.md) for how the three-tier

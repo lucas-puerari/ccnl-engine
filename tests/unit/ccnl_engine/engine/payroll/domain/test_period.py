@@ -137,31 +137,8 @@ class TestComputePeriod:
 
     def test_uses_period_year_and_month_as_as_of(self) -> None:
         """compute_period overrides as_of to date(year, month, 1)."""
-        captured: list[date] = []
-
-        original = _orch.estimate_period_effects
-
-        def _capturing(
-            scenario: AnnualPayrollScenario,
-            events: PayPeriod,
-            bundle: PayrollBundle | None = None,
-        ) -> Calculation:
-            """Capture the as_of date then delegate to the real function.
-
-            Returns:
-                The Calculation produced by the real estimate_period_effects.
-            """
-            captured.append(scenario.employment.as_of)
-            return original(scenario, events, bundle)
-
-        with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.estimate_period_effects",
-            side_effect=_capturing,
-        ):
-            compute_period(_SCENARIO, PayrollPeriod(year=2026, month=7))
-
-        assert len(captured) == 1
-        assert captured[0] == date(2026, 7, 1)
+        result = compute_period(_SCENARIO, PayrollPeriod(year=2026, month=7))
+        assert result.result.as_of == date(2026, 7, 1)
 
     def test_result_is_calculation(self) -> None:
         """compute_period returns a Calculation."""
@@ -312,4 +289,7 @@ class TestComputeYear:
         assert len(first_half) == 6
         assert len(second_half) == 6
         # level 3 earns more than level 4 in commercio-confcommercio
-        assert first_half[0].result.gross_monthly > second_half[0].result.gross_monthly
+        assert (
+            first_half[0].result.earnings.gross_monthly
+            > second_half[0].result.earnings.gross_monthly
+        )

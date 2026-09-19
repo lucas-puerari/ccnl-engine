@@ -1,4 +1,4 @@
-"""PayrollResult — the output record of compute()."""
+"""AnnualEstimate and PeriodPayroll — result types of compute()."""
 
 from __future__ import annotations
 
@@ -6,31 +6,19 @@ import dataclasses
 import json
 import types
 import typing
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date as _date
 from decimal import Decimal
-from typing import Literal, cast
+from typing import TYPE_CHECKING, Literal, cast
 
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
+if TYPE_CHECKING:
+    from ccnl_engine.engine.payroll.domain.scenario import PayPeriod
+
 _ZERO = Decimal(0)
-
-
-def _serialise_tuple_item(v: object) -> object:
-    """Serialise one item from a tuple field for JSON output.
-
-    Pydantic models use ``model_dump``; plain dataclasses use ``asdict``;
-    everything else is returned as-is.
-
-    Returns:
-        A JSON-native representation of *v*.
-    """
-    if hasattr(v, "model_dump"):
-        return v.model_dump(mode="json")
-    if dataclasses.is_dataclass(v):
-        return dataclasses.asdict(v)  # type: ignore[arg-type]
-    return v
 
 
 @dataclass(frozen=True)
@@ -187,7 +175,7 @@ def _coerce_scalar(raw: object, hint: type) -> object:
     if hint is ScopeItem and isinstance(raw, dict):
         return _coerce_scope_item(cast(dict[str, object], raw))
     if hint == frozenset[FiscalSimplification]:
-        return frozenset(FiscalSimplification(v) for v in raw)  # type: ignore[attr-defined]
+        return frozenset(FiscalSimplification(v) for v in cast(list[str], raw))
     return _validate_primitive(raw, hint) if hint in _STRICT_PRIMITIVES else raw
 
 
@@ -223,134 +211,47 @@ def _coerce(raw: object, hint: type) -> object:
     return _coerce_scalar(raw, hint)
 
 
-@dataclass(frozen=True)
-class PayrollResult:
-    """Full gross-to-net and employer-cost breakdown for one payroll computation.
+def _serialise_value(value: object) -> object:  # noqa: PLR0911  # noqa: PLR0911
+    """Recursively serialise a value to a JSON-native type.
 
-    Monthly components (``base_monthly``, ``seniority_monthly``,
-    ``allowances_monthly``, ``ad_personam_monthly``) are already scaled by
-    ``part_time_pct`` and sum to ``gross_monthly``.
-
-    All ``Decimal`` amounts are in EUR. Annual figures assume the contract-wide
-    ``additional_months`` pay structure (typically 13 or 14 months).
-
-    Attributes:
-        ccnl_id: Identifier of the CCNL used (from ``CCNLMeta.id``).
-        level_code: Classification level code used for the computation.
-        employment_type: String tag of the employment type
-            (``"permanent"``, ``"fixed_term"``, or ``"apprentice"``).
-        part_time_pct: Part-time coefficient applied to gross and
-            contribution bases. ``1`` for a full-time worker.
-        as_of: Reference date used to resolve all time-series values.
-        year: Calendar year of the pay period (``as_of.year``).  This is
-            always the year of the calculation date, regardless of any
-            explicit ``tax_year`` override.  To find the fiscal year used
-            to load IRPEF brackets and contribution rules, see
-            :attr:`~ccnl_engine.engine.payroll.domain.calculation\
-.InputSnapshot.year`.
-
-        seniority_count: Number of seniority increments (*scatti di
-            anzianità*) applied. ``0`` when no seniority applies.
-        base_monthly: Base monthly pay from the CCNL table, scaled by
-            ``part_time_pct``.
-        seniority_monthly: Monthly seniority increment amount, scaled by
-            ``part_time_pct``.
-        allowances_monthly: Sum of all applicable fixed monthly allowances,
-            scaled by ``part_time_pct``.
-        ad_personam_monthly: Individual frozen monthly element (e.g.
-            pre-abolition seniority) added directly to gross, **not** scaled
-            by ``part_time_pct``.  Contrast with ``second_level_monthly``,
-            which is the collective supplement scaled by ``part_time_pct``.
-        second_level_monthly: Total scaled monthly amount from second-level
-            (territorial or company) agreements — the sum of all
-            :class:`~ccnl_engine.domain.ccnl.SupplementaryAllowance` items
-            passed via ``Scenario.second_level_allowances``, each scaled by
-            ``part_time_pct`` (and optionally by the apprenticeship percentage).
-            Zero when no second-level allowances are provided.
-        gross_monthly: Total monthly gross pay (sum of the five monthly
-            components: ``base_monthly``, ``seniority_monthly``,
-            ``allowances_monthly``, ``ad_personam_monthly``,
-            ``second_level_monthly``).
-        gross_annual: Annual gross pay, accounting for additional months
-            (``gross_monthly * additional_months``).
-        hourly_rate: Hourly gross rate derived from the contractual weekly
-            hours and the standard number of months per year.
-
-        apprenticeship_pct: Percentage applied to destination-level pay for
-            percentage-track apprentices (e.g. ``Decimal("0.80")``). ``None``
-            for non-apprentice or under-classification contracts.
-        apprenticeship_under_level_code: Destination level code for
-            under-classification apprentices. ``None`` otherwise.
-
-        inps_employee_annual: Employee INPS contribution for the year.
-        inps_employer_annual: Employer INPS contribution for the year,
-            including any NASpI addizionale for fixed-term contracts.
-        employer_funds_annual: Employer contribution to contractual funds
-            (e.g. Cassa Edile, Fondapi) for the year.
-        tfr_annual: TFR (*Trattamento di Fine Rapporto*) accrual for the
-            year (Art. 2120 c.c.).
-        bilateral_employee_annual: Employee contribution to scenario-level
-            bilateral funds (fondi bilaterali). Zero when
-            ``scenario.bilateral_funds`` is empty. Reduces ``net_annual``
-            post-tax.
-        bilateral_employer_annual: Employer contribution to scenario-level
-            bilateral funds. Zero when ``scenario.bilateral_funds`` is
-            empty. Enters ``employer_cost_annual``.
-
-        taxable_income: IRPEF taxable base (``gross_annual``
-            minus ``inps_employee_annual``).
-        irpef_gross: IRPEF before work-income deduction (Art. 11 TUIR).
-        work_income_deduction: Work-income tax deduction (Art. 13 TUIR).
-        irpef_net: IRPEF actually withheld (``irpef_gross``
-            minus ``work_income_deduction``, floored at zero).
-        employer_withholds_irpef: ``False`` when the employer is not a
-            *sostituto d'imposta* (e.g. lavoro domestico); in that case
-            ``irpef_gross`` and ``work_income_deduction`` are informational
-            only and ``irpef_net`` is zero.
-
-        addizionale_regionale_annual: Annual addizionale regionale IRPEF
-            (Art. 50 TUIR), computed from the regional marginal bracket table.
-            Zero when ``Scenario.regione`` is ``None`` or no
-            :class:`~ccnl_engine.engine.surtax.models.SurtaxRules` was passed to
-            :func:`~ccnl_engine.engine.compute.compute`.
-        addizionale_comunale_annual: Annual addizionale comunale IRPEF
-            (Art. 1 D.Lgs. 360/1998), computed from the municipal bracket
-            table and exemption threshold.  Zero when
-            ``Scenario.comune_belfiore`` is ``None`` or no
-            :class:`~ccnl_engine.engine.surtax.models.SurtaxRules` was passed.
-
-        somma_esente: Somma esente bonus (L. 207/2024): flat-rate net bonus
-            added for reddito complessivo up to 20 000 EUR; ``0`` when not
-            applicable or when the tax data file does not carry the parameters.
-        trattamento_integrativo: Trattamento integrativo bonus (Art. 1 D.L.
-            3/2020), if computed; ``0`` when not applicable or when the tax
-            data file does not carry the required parameters.
-        fiscal_simplifications: Set of fiscal elements omitted from this
-            computation. Callers can check membership to know which items are
-            absent from the net figure.
-
-        net_annual: Annual net pay (``gross_annual`` minus
-            ``inps_employee_annual`` minus ``irpef_net`` minus
-            ``addizionale_regionale_annual`` minus
-            ``addizionale_comunale_annual`` plus ``trattamento_integrativo``
-            plus ``somma_esente``).
-        net_monthly: Monthly net pay (``net_annual / additional_months``).
-            Rounded to two decimal places; for contracts with fractional
-            additional-months divisors (e.g. 13.5 or 14), a sub-cent
-            remainder is absorbed by the rounding — the sum of monthly
-            figures may differ from ``net_annual`` by up to EUR 0.01.
-
-        employer_cost_annual: Total annual employer cost
-            (``gross_annual`` + ``inps_employer_annual``
-            + ``employer_funds_annual`` + ``tfr_annual``).
+    Returns:
+        A JSON-serialisable representation of *value*.
     """
+    if isinstance(value, Decimal):
+        return str(value)
+    if isinstance(value, _date):
+        return value.isoformat()
+    if isinstance(value, frozenset):
+        return sorted(str(v) for v in value)
+    if isinstance(value, tuple):
+        return [_serialise_value(v) for v in value]
+    if dataclasses.is_dataclass(value) and not isinstance(value, type):
+        return _serialise_dataclass(value)
+    if hasattr(value, "model_dump"):
+        return value.model_dump(mode="json")
+    return value
 
-    ccnl_id: str
-    level_code: str
-    employment_type: str
-    part_time_pct: Decimal
-    as_of: _date
-    year: int
+
+def _serialise_dataclass(obj: object) -> dict[str, object]:
+    """Serialise a dataclass instance to a plain dict.
+
+    Returns:
+        A dict with each field serialised via :func:`_serialise_value`.
+    """
+    out: dict[str, object] = {}
+    for f in dataclasses.fields(obj):  # type: ignore[arg-type]
+        out[f.name] = _serialise_value(getattr(obj, f.name))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Sub-objects
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class Earnings:
+    """Gross pay breakdown: base, seniority, allowances, and summary totals."""
 
     seniority_count: int
     base_monthly: Decimal
@@ -361,9 +262,35 @@ class PayrollResult:
     gross_monthly: Decimal
     gross_annual: Decimal
     hourly_rate: Decimal
-
     apprenticeship_pct: Decimal | None
     apprenticeship_under_level_code: str | None
+
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a plain dict.
+
+        Returns:
+            Dict with Decimal fields as strings, None preserved.
+        """
+        return _serialise_dataclass(self)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> Earnings:
+        """Reconstruct from a serialised dict.
+
+        Returns:
+            A new :class:`Earnings` with all fields restored.
+        """
+        hints = typing.get_type_hints(cls)
+        fields = {
+            f.name: _coerce(data[f.name], hints[f.name])
+            for f in dataclasses.fields(cls)
+        }
+        return cls(**fields)  # type: ignore[arg-type]
+
+
+@dataclass(frozen=True, kw_only=True)
+class Contributions:
+    """Employee and employer social contributions for the year."""
 
     inps_employee_annual: Decimal
     inps_employer_annual: Decimal
@@ -372,319 +299,42 @@ class PayrollResult:
     bilateral_employee_annual: Decimal
     bilateral_employer_annual: Decimal
 
-    taxable_income: Decimal
-    irpef_gross: Decimal
-    work_income_deduction: Decimal
-    irpef_net: Decimal
-    employer_withholds_irpef: bool
-
-    addizionale_regionale_annual: Decimal
-    addizionale_comunale_annual: Decimal
-
-    ulteriore_detrazione_lavoro: Decimal
-    somma_esente: Decimal
-    trattamento_integrativo: Decimal
-    fiscal_simplifications: frozenset[FiscalSimplification]
-
-    net_annual: Decimal
-    net_monthly: Decimal
-
-    employer_cost_annual: Decimal
-
-    provenance: tuple[RuleProvenance, ...] = ()
-
-    # --- Status and warnings ---
-    status: Literal["partial", "complete"] = "partial"
-    confidence: Literal["low", "medium", "high"] = "medium"
-    calculation_scope: tuple[ScopeItem, ...] = ()
-    warnings: tuple[str, ...] = ()
-
-    # --- L3: absence (informational; gross_annual/net_annual not mutated) ---
-    absence_deduction_monthly: Decimal = _ZERO
-    effective_gross_monthly: Decimal = _ZERO
-
-    # --- L3: leave (informational; gross_annual/net_annual not mutated) ---
-    leave_accrued_days_monthly: Decimal = _ZERO
-    leave_taken_days_monthly: Decimal = _ZERO
-    leave_balance_days: Decimal = _ZERO
-
-    # --- L3: sickness (informational; gross_annual/net_annual not mutated) ---
-    sick_days_monthly: Decimal = _ZERO
-    sick_carenza_days_monthly: Decimal = _ZERO
-    sick_inps_indemnity_monthly: Decimal = _ZERO
-    sick_company_integration_monthly: Decimal = _ZERO
-
-    # --- L3: fringe benefits (informational; taxable_income not mutated) ---
-    fringe_benefit_annual: Decimal = _ZERO
-    fringe_benefit_threshold_annual: Decimal = _ZERO
-    fringe_benefit_taxable_annual: Decimal = _ZERO
-
-    # --- L3: welfare (informational; always tax-exempt) ---
-    welfare_annual: Decimal = _ZERO
-
-    # --- L3: bonus / PdR (informational; IRPEF chain not extended) ---
-    bonus_annual: Decimal = _ZERO
-    bonus_pdr_flat_tax_annual: Decimal = _ZERO
-    bonus_ordinary_taxable_annual: Decimal = _ZERO
-
-    # --- L3: family deductions (Art. 12 TUIR; mutates irpef_net/net_annual) ---
-    # Unlike other L3 features these are NOT informational: they reduce irpef_net.
-    family_deduction_spouse_annual: Decimal = _ZERO
-    family_deduction_children_annual: Decimal = _ZERO
-    family_deduction_other_annual: Decimal = _ZERO
-    family_deduction_annual: Decimal = _ZERO
-    unused_family_deduction_annual: Decimal = _ZERO
-
-    # --- L3: Art. 15 deductions (mutates irpef_net/net_annual) ---
-    # NOT informational: the credit reduces irpef_net directly.
-    # This is the pre-clawback Art. 15 credit; the sterilizzazione reduction
-    # (Art. 1 c. 3-4 L. 199/2025) is captured in sterilizzazione_clawback_annual.
-    art15_deduction_annual: Decimal = _ZERO
-    unused_art15_deduction_annual: Decimal = _ZERO
-    # Art. 1 c. 3-4 L. 199/2025 sterilizzazione: EUR 440 clawback applied to
-    # Art. 15 TUIR oneri detraibili al 19 % (lett. a, b, d, e; not spese
-    # sanitarie lett. c) when reddito complessivo > EUR 200 000.
-    # Zero for taxpayers below the threshold.
-    sterilizzazione_clawback_annual: Decimal = _ZERO
-
-    # --- L3: time supplements (informational; not in gross_annual/net_annual) ---
-    base_monthly_full_time: Decimal = _ZERO
-    overtime_supplement_monthly: Decimal = _ZERO
-    night_supplement_monthly: Decimal = _ZERO
-    holiday_supplement_monthly: Decimal = _ZERO
-    time_supplements_monthly: Decimal = _ZERO
-    time_supplements_annual_projection: Decimal = _ZERO
-
-    # --- Serialisation metadata ---
-    schema_version: str = "1"
-
     def to_dict(self) -> dict[str, object]:
-        """Serialise the payroll to a plain Python dictionary.
-
-        All ``Decimal`` amounts are converted to ``str`` to avoid floating-point
-        loss. ``date`` is serialised as an ISO-8601 string. ``frozenset`` fields
-        are converted to sorted lists of strings for deterministic output.
+        """Serialise to a plain dict.
 
         Returns:
-            A dictionary with only JSON-native types (``str``, ``int``, ``bool``,
-            ``list``, ``None``).
+            Dict with Decimal fields as strings.
         """
-        out: dict[str, object] = {}
-        for field in dataclasses.fields(self):
-            value = getattr(self, field.name)
-            if isinstance(value, Decimal):
-                out[field.name] = str(value)
-            elif isinstance(value, _date):
-                out[field.name] = value.isoformat()
-            elif isinstance(value, frozenset):
-                out[field.name] = sorted(str(v) for v in value)
-            elif isinstance(value, tuple):
-                out[field.name] = [_serialise_tuple_item(v) for v in value]
-            else:
-                out[field.name] = value
-        return out
-
-    def to_json(self) -> str:
-        """Serialise the payroll to a JSON string.
-
-        Returns:
-            A compact JSON string. See :meth:`to_dict` for the encoding rules.
-        """
-        return json.dumps(self.to_dict())
+        return _serialise_dataclass(self)
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> PayrollResult:
-        """Reconstruct a :class:`PayrollResult` from a ``to_dict()`` dict.
-
-        Args:
-            data: A dictionary as produced by :meth:`to_dict`.
+    def from_dict(cls, data: dict[str, object]) -> Contributions:
+        """Reconstruct from a serialised dict.
 
         Returns:
-            A new :class:`PayrollResult` with all fields restored to
-            their original types.
-
-        Raises:
-            TypeError: If *data* contains unexpected keys.
-            ValueError: If a required field is absent from ``data``.
+            A new :class:`Contributions` with all fields restored.
         """
-        allowed = frozenset(f.name for f in dataclasses.fields(cls))
-        extra = set(data) - allowed
-        if extra:
-            msg = f"PayrollResult.from_dict: unexpected keys: {sorted(extra)}"
-            raise TypeError(msg)
         hints = typing.get_type_hints(cls)
-        kwargs: dict[str, object] = {}
-        for field in dataclasses.fields(cls):
-            if field.name not in data:
-                has_default = (
-                    field.default is not dataclasses.MISSING
-                    or field.default_factory is not dataclasses.MISSING
-                )
-                if has_default:
-                    continue  # let the dataclass constructor supply the default
-                msg = f"Missing field: {field.name!r}"
-                raise ValueError(msg) from None
-            kwargs[field.name] = _coerce(data[field.name], hints[field.name])
-        return cls(**kwargs)  # type: ignore[arg-type]
-
-    @classmethod
-    def from_json(cls, raw: str) -> PayrollResult:
-        """Reconstruct a :class:`PayrollResult` from a JSON string.
-
-        Args:
-            raw: A JSON string as returned by :meth:`to_json`.
-
-        Returns:
-            A new :class:`PayrollResult` with all fields restored to
-            their original types.
-        """
-        return cls.from_dict(json.loads(raw))
-
-    @property
-    def effective_net_monthly(self) -> Decimal:
-        """Monthly take-home adjusted for L3 events.
-
-        Adjusts the structural ``net_monthly`` (annualized net / months) for
-        the period-specific events that actually occurred: unpaid absences
-        reduce the figure while overtime and sick-pay amounts add to it.
-        IRPEF is not recomputed on the delta; the adjustment is a best-effort
-        approximation suited for monthly payslip presentation.
-
-        Returns:
-            ``net_monthly`` minus ``absence_deduction_monthly`` plus
-            ``time_supplements_monthly``, ``sick_inps_indemnity_monthly``,
-            and ``sick_company_integration_monthly``.
-        """
-        return (
-            self.net_monthly
-            - self.absence_deduction_monthly
-            + self.time_supplements_monthly
-            + self.sick_inps_indemnity_monthly
-            + self.sick_company_integration_monthly
-        )
-
-    @property
-    def pay(self) -> PayrollPay:
-        """Employee gross and net pay breakdown."""
-        return PayrollPay.from_result(self)
-
-    @property
-    def tax(self) -> PayrollTax:
-        """IRPEF chain, deductions, and fiscal metadata."""
-        return PayrollTax.from_result(self)
-
-    @property
-    def employer(self) -> PayrollEmployer:
-        """Employer cost breakdown and contributions."""
-        return PayrollEmployer.from_result(self)
-
-    @property
-    def quality(self) -> PayrollQuality:
-        """Computation quality metadata."""
-        return PayrollQuality.from_result(self)
+        fields = {
+            f.name: _coerce(data[f.name], hints[f.name])
+            for f in dataclasses.fields(cls)
+        }
+        return cls(**fields)  # type: ignore[arg-type]
 
 
-@dataclass(frozen=True)
-class PayrollPay:
-    """Employee pay components, gross breakdown, and L3 event amounts."""
-
-    seniority_count: int
-    base_monthly: Decimal
-    seniority_monthly: Decimal
-    allowances_monthly: Decimal
-    ad_personam_monthly: Decimal
-    second_level_monthly: Decimal
-    gross_monthly: Decimal
-    gross_annual: Decimal
-    hourly_rate: Decimal
-    inps_employee_annual: Decimal
-    bilateral_employee_annual: Decimal
-    net_annual: Decimal
-    net_monthly: Decimal
-    absence_deduction_monthly: Decimal
-    effective_gross_monthly: Decimal
-    leave_accrued_days_monthly: Decimal
-    leave_taken_days_monthly: Decimal
-    leave_balance_days: Decimal
-    sick_days_monthly: Decimal
-    sick_carenza_days_monthly: Decimal
-    sick_inps_indemnity_monthly: Decimal
-    sick_company_integration_monthly: Decimal
-    fringe_benefit_annual: Decimal
-    fringe_benefit_threshold_annual: Decimal
-    fringe_benefit_taxable_annual: Decimal
-    welfare_annual: Decimal
-    bonus_annual: Decimal
-    bonus_pdr_flat_tax_annual: Decimal
-    bonus_ordinary_taxable_annual: Decimal
-    base_monthly_full_time: Decimal
-    overtime_supplement_monthly: Decimal
-    night_supplement_monthly: Decimal
-    holiday_supplement_monthly: Decimal
-    time_supplements_monthly: Decimal
-    time_supplements_annual_projection: Decimal
-    effective_net_monthly: Decimal
-
-    @classmethod
-    def from_result(cls, r: PayrollResult) -> PayrollPay:
-        """Build a :class:`PayrollPay` from a :class:`PayrollResult`.
-
-        Returns:
-            A new :class:`PayrollPay` populated from *r*.
-        """
-        return cls(
-            seniority_count=r.seniority_count,
-            base_monthly=r.base_monthly,
-            seniority_monthly=r.seniority_monthly,
-            allowances_monthly=r.allowances_monthly,
-            ad_personam_monthly=r.ad_personam_monthly,
-            second_level_monthly=r.second_level_monthly,
-            gross_monthly=r.gross_monthly,
-            gross_annual=r.gross_annual,
-            hourly_rate=r.hourly_rate,
-            inps_employee_annual=r.inps_employee_annual,
-            bilateral_employee_annual=r.bilateral_employee_annual,
-            net_annual=r.net_annual,
-            net_monthly=r.net_monthly,
-            absence_deduction_monthly=r.absence_deduction_monthly,
-            effective_gross_monthly=r.effective_gross_monthly,
-            leave_accrued_days_monthly=r.leave_accrued_days_monthly,
-            leave_taken_days_monthly=r.leave_taken_days_monthly,
-            leave_balance_days=r.leave_balance_days,
-            sick_days_monthly=r.sick_days_monthly,
-            sick_carenza_days_monthly=r.sick_carenza_days_monthly,
-            sick_inps_indemnity_monthly=r.sick_inps_indemnity_monthly,
-            sick_company_integration_monthly=r.sick_company_integration_monthly,
-            fringe_benefit_annual=r.fringe_benefit_annual,
-            fringe_benefit_threshold_annual=r.fringe_benefit_threshold_annual,
-            fringe_benefit_taxable_annual=r.fringe_benefit_taxable_annual,
-            welfare_annual=r.welfare_annual,
-            bonus_annual=r.bonus_annual,
-            bonus_pdr_flat_tax_annual=r.bonus_pdr_flat_tax_annual,
-            bonus_ordinary_taxable_annual=r.bonus_ordinary_taxable_annual,
-            base_monthly_full_time=r.base_monthly_full_time,
-            overtime_supplement_monthly=r.overtime_supplement_monthly,
-            night_supplement_monthly=r.night_supplement_monthly,
-            holiday_supplement_monthly=r.holiday_supplement_monthly,
-            time_supplements_monthly=r.time_supplements_monthly,
-            time_supplements_annual_projection=r.time_supplements_annual_projection,
-            effective_net_monthly=r.effective_net_monthly,
-        )
-
-
-@dataclass(frozen=True)
-class PayrollTax:
+@dataclass(frozen=True, kw_only=True)
+class Taxes:
     """IRPEF chain, addizionali, and fiscal deductions."""
 
     taxable_income: Decimal
     irpef_gross: Decimal
     work_income_deduction: Decimal
+    ulteriore_detrazione_lavoro: Decimal
+    somma_esente: Decimal
     irpef_net: Decimal
     employer_withholds_irpef: bool
     addizionale_regionale_annual: Decimal
     addizionale_comunale_annual: Decimal
-    ulteriore_detrazione_lavoro: Decimal
-    somma_esente: Decimal
     trattamento_integrativo: Decimal
     fiscal_simplifications: frozenset[FiscalSimplification]
     family_deduction_spouse_annual: Decimal
@@ -696,81 +346,387 @@ class PayrollTax:
     unused_art15_deduction_annual: Decimal
     sterilizzazione_clawback_annual: Decimal
 
-    @classmethod
-    def from_result(cls, r: PayrollResult) -> PayrollTax:
-        """Build a :class:`PayrollTax` from a :class:`PayrollResult`.
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a plain dict.
 
         Returns:
-            A new :class:`PayrollTax` populated from *r*.
+            Dict with Decimal fields as strings, frozenset as sorted list.
         """
-        return cls(
-            taxable_income=r.taxable_income,
-            irpef_gross=r.irpef_gross,
-            work_income_deduction=r.work_income_deduction,
-            irpef_net=r.irpef_net,
-            employer_withholds_irpef=r.employer_withholds_irpef,
-            addizionale_regionale_annual=r.addizionale_regionale_annual,
-            addizionale_comunale_annual=r.addizionale_comunale_annual,
-            ulteriore_detrazione_lavoro=r.ulteriore_detrazione_lavoro,
-            somma_esente=r.somma_esente,
-            trattamento_integrativo=r.trattamento_integrativo,
-            fiscal_simplifications=r.fiscal_simplifications,
-            family_deduction_spouse_annual=r.family_deduction_spouse_annual,
-            family_deduction_children_annual=r.family_deduction_children_annual,
-            family_deduction_other_annual=r.family_deduction_other_annual,
-            family_deduction_annual=r.family_deduction_annual,
-            unused_family_deduction_annual=r.unused_family_deduction_annual,
-            art15_deduction_annual=r.art15_deduction_annual,
-            unused_art15_deduction_annual=r.unused_art15_deduction_annual,
-            sterilizzazione_clawback_annual=r.sterilizzazione_clawback_annual,
-        )
+        return _serialise_dataclass(self)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> Taxes:
+        """Reconstruct from a serialised dict.
+
+        Returns:
+            A new :class:`Taxes` with all fields restored.
+        """
+        hints = typing.get_type_hints(cls)
+        fields = {
+            f.name: _coerce(data[f.name], hints[f.name])
+            for f in dataclasses.fields(cls)
+        }
+        return cls(**fields)  # type: ignore[arg-type]
 
 
-@dataclass(frozen=True)
-class PayrollEmployer:
-    """Employer cost breakdown and social contributions."""
+@dataclass(frozen=True, kw_only=True)
+class EmployerCost:
+    """Total annual employer cost."""
 
-    inps_employer_annual: Decimal
-    employer_funds_annual: Decimal
-    tfr_annual: Decimal
-    bilateral_employer_annual: Decimal
     employer_cost_annual: Decimal
 
-    @classmethod
-    def from_result(cls, r: PayrollResult) -> PayrollEmployer:
-        """Build a :class:`PayrollEmployer` from a :class:`PayrollResult`.
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a plain dict.
 
         Returns:
-            A new :class:`PayrollEmployer` populated from *r*.
+            Dict with employer_cost_annual as string.
         """
-        return cls(
-            inps_employer_annual=r.inps_employer_annual,
-            employer_funds_annual=r.employer_funds_annual,
-            tfr_annual=r.tfr_annual,
-            bilateral_employer_annual=r.bilateral_employer_annual,
-            employer_cost_annual=r.employer_cost_annual,
-        )
+        return _serialise_dataclass(self)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> EmployerCost:
+        """Reconstruct from a serialised dict.
+
+        Returns:
+            A new :class:`EmployerCost` with all fields restored.
+        """
+        hints = typing.get_type_hints(cls)
+        fields = {
+            f.name: _coerce(data[f.name], hints[f.name])
+            for f in dataclasses.fields(cls)
+        }
+        return cls(**fields)  # type: ignore[arg-type]
 
 
-@dataclass(frozen=True)
-class PayrollQuality:
-    """Computation quality and coverage metadata."""
+@dataclass(frozen=True, kw_only=True)
+class Coverage:
+    """Computation quality and coverage metadata.
+
+    ``consumed_rulesets`` records the exact identity of every policy consumed
+    during the computation.  A ``None`` entry means a ruleset was consumed but
+    its identity is absent or incomplete (treated as unverified).
+    """
 
     status: Literal["partial", "complete"]
     confidence: Literal["low", "medium", "high"]
     calculation_scope: tuple[ScopeItem, ...]
     warnings: tuple[str, ...]
+    consumed_rulesets: tuple[RulesetIdentity | None, ...] = field(default_factory=tuple)
 
-    @classmethod
-    def from_result(cls, r: PayrollResult) -> PayrollQuality:
-        """Build a :class:`PayrollQuality` from a :class:`PayrollResult`.
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a plain dict.
 
         Returns:
-            A new :class:`PayrollQuality` populated from *r*.
+            Dict with tuples serialised as lists.
         """
-        return cls(
-            status=r.status,
-            confidence=r.confidence,
-            calculation_scope=r.calculation_scope,
-            warnings=r.warnings,
+        return _serialise_dataclass(self)
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> Coverage:
+        """Reconstruct from a serialised dict.
+
+        Returns:
+            A new :class:`Coverage` with all fields restored.
+        """
+        hints = typing.get_type_hints(cls)
+        kwargs: dict[str, object] = {}
+        for f in dataclasses.fields(cls):
+            if f.name not in data:
+                continue  # use dataclass default
+            kwargs[f.name] = _coerce(data[f.name], hints[f.name])
+        return cls(**kwargs)  # type: ignore[arg-type]
+
+
+# ---------------------------------------------------------------------------
+# Result types
+# ---------------------------------------------------------------------------
+
+
+def _has_default(f: dataclasses.Field[object]) -> bool:
+    no_default = f.default is dataclasses.MISSING
+    no_factory = f.default_factory is dataclasses.MISSING
+    return not (no_default and no_factory)
+
+
+_SUB_OBJECT_DECODERS: dict[
+    str, type[Earnings | Contributions | Taxes | EmployerCost | Coverage]
+] = {
+    "earnings": Earnings,
+    "contributions": Contributions,
+    "taxes": Taxes,
+    "employer_cost": EmployerCost,
+    "coverage": Coverage,
+}
+
+
+def _decode_field(
+    name: str,
+    raw: object,
+    hint: type,
+    extra_decoders: dict[str, object] | None = None,
+) -> object:
+    """Coerce *raw* to the type expected for field *name*.
+
+    Returns:
+        The decoded value from a sub-object decoder or :func:`_coerce`.
+    """
+    if isinstance(raw, dict):
+        decoder = _SUB_OBJECT_DECODERS.get(name)
+        if decoder is not None:
+            return decoder.from_dict(cast(dict[str, object], raw))
+        if extra_decoders:
+            extra = extra_decoders.get(name)
+            if callable(extra):
+                return extra(raw)
+    return _coerce(raw, hint)
+
+
+@dataclass(frozen=True, kw_only=True)
+class AnnualEstimate:
+    """Annual gross-to-net and employer-cost estimate for one payroll scenario.
+
+    All monetary amounts are in EUR. Annual figures assume the contract-wide
+    ``additional_months`` pay structure (typically 13 or 14 months).
+
+    Attributes:
+        ccnl_id: Identifier of the CCNL used (from ``CCNLMeta.id``).
+        level_code: Classification level code used for the computation.
+        employment_type: String tag of the employment type
+            (``"permanent"``, ``"fixed_term"``, or ``"apprentice"``).
+        part_time_pct: Part-time coefficient applied to gross and
+            contribution bases.  ``1`` for a full-time worker.
+        as_of: Reference date used to resolve all time-series values.
+        year: Calendar year of the pay period.
+        contract_effective_date: Date from which the applicable CCNL
+            salary rates are effective.  Equal to ``as_of`` when the
+            contract rate period started on or before the reference date.
+        tax_rule_year: Calendar year used to load IRPEF brackets and
+            contribution rules.  May differ from ``year`` when an explicit
+            ``tax_year`` override was passed to the scenario.
+        earnings: Gross pay breakdown: base, seniority, allowances, total.
+        contributions: Employee and employer social contributions.
+        taxes: IRPEF chain, addizionali, and fiscal deductions.
+        employer_cost: Total annual employer cost.
+        coverage: Computation quality, scope, and consumed-policy identity.
+        provenance: Ordered provenance of salary rules consumed.
+        net_annual: Annual net pay.
+        net_monthly: Monthly net pay (``net_annual / additional_months``).
+        schema_version: Serialisation schema version.
+    """
+
+    ccnl_id: str
+    level_code: str
+    employment_type: str
+    part_time_pct: Decimal
+    as_of: _date
+    year: int
+    contract_effective_date: _date
+    tax_rule_year: int
+
+    earnings: Earnings
+    contributions: Contributions
+    taxes: Taxes
+    employer_cost: EmployerCost
+    coverage: Coverage
+    provenance: tuple[RuleProvenance, ...]
+
+    net_annual: Decimal
+    net_monthly: Decimal
+
+    schema_version: str = field(default="2")
+
+    def to_dict(self) -> dict[str, object]:
+        """Serialise to a plain Python dictionary.
+
+        All ``Decimal`` amounts are converted to ``str``.  ``date`` fields are
+        ISO-8601 strings.  Sub-objects are serialised as nested dicts.
+        ``RuleProvenance`` entries use ``model_dump(mode="json")``.
+
+        Returns:
+            A dictionary with only JSON-native types.
+        """
+        out: dict[str, object] = {}
+        for f in dataclasses.fields(self):
+            value = getattr(self, f.name)
+            out[f.name] = _serialise_value(value)
+        return out
+
+    def to_json(self) -> str:
+        """Serialise to a JSON string.
+
+        Returns:
+            A compact JSON string. See :meth:`to_dict` for encoding rules.
+        """
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> AnnualEstimate:
+        """Reconstruct from a ``to_dict()`` dict.
+
+        Args:
+            data: A dictionary as produced by :meth:`to_dict`.
+
+        Returns:
+            A new :class:`AnnualEstimate` with all fields restored.
+
+        Raises:
+            TypeError: If *data* contains unexpected keys.
+            ValueError: If a required field is absent from *data*.
+        """
+        allowed = frozenset(f.name for f in dataclasses.fields(cls))
+        extra = set(data) - allowed
+        if extra:
+            msg = f"AnnualEstimate.from_dict: unexpected keys: {sorted(extra)}"
+            raise TypeError(msg)
+        hints = typing.get_type_hints(cls)
+        kwargs: dict[str, object] = {}
+        for f in dataclasses.fields(cls):
+            if f.name not in data:
+                if _has_default(f):
+                    continue
+                msg = f"Missing field: {f.name!r}"
+                raise ValueError(msg) from None
+            kwargs[f.name] = _decode_field(f.name, data[f.name], hints[f.name])
+        return cls(**kwargs)  # type: ignore[arg-type]
+
+    @classmethod
+    def from_json(cls, raw: str) -> AnnualEstimate:
+        """Reconstruct from a JSON string.
+
+        Args:
+            raw: A JSON string as returned by :meth:`to_json`.
+
+        Returns:
+            A new :class:`AnnualEstimate` equal to the original.
+        """
+        return cls.from_dict(json.loads(raw))
+
+
+@dataclass(frozen=True, kw_only=True)
+class PeriodPayroll(AnnualEstimate):
+    """Period-specific payroll: annual estimate enriched with L3 event amounts.
+
+    Extends :class:`AnnualEstimate` with the period-specific inputs and
+    informational breakdown fields.  The L3 amounts (absence deductions,
+    overtime supplements, sick-pay indemnities, fringe benefits, etc.) do
+    **not** flow into ``net_annual`` or ``employer_cost`` in this version —
+    those remain annualised structural estimates.
+
+    Attributes:
+        pay_period: The period-specific events that were merged into the
+            structural scenario.
+        base_monthly_full_time: Full-time equivalent base monthly pay before
+            part-time scaling.
+        overtime_supplement_monthly: Estimated monthly overtime supplement.
+        night_supplement_monthly: Estimated monthly night-shift supplement.
+        holiday_supplement_monthly: Estimated monthly holiday supplement.
+        time_supplements_monthly: Sum of all time-based supplements.
+        time_supplements_annual_projection: Annualised projection of
+            ``time_supplements_monthly``.
+        absence_deduction_monthly: Pay reduction for unpaid absence days.
+        effective_gross_monthly: Gross monthly adjusted for absence deduction.
+        leave_accrued_days_monthly: Leave days accrued in this period.
+        leave_taken_days_monthly: Leave days consumed in this period.
+        leave_balance_days: Remaining leave balance after this period.
+        sick_days_monthly: Total sick-leave days in this period.
+        sick_carenza_days_monthly: Unpaid waiting-period sick days.
+        sick_inps_indemnity_monthly: INPS sick-pay indemnity for this period.
+        sick_company_integration_monthly: Employer top-up on INPS indemnity.
+        fringe_benefit_annual: Total fringe-benefit amount (informational).
+        fringe_benefit_threshold_annual: Applicable tax-free threshold.
+        fringe_benefit_taxable_annual: Taxable fringe-benefit amount.
+        welfare_annual: Welfare contribution amount (tax-exempt).
+        bonus_annual: Total bonus / PdR amount (informational).
+        bonus_pdr_flat_tax_annual: PdR flat-tax amount.
+        bonus_ordinary_taxable_annual: Ordinary taxable bonus portion.
+    """
+
+    pay_period: PayPeriod
+
+    base_monthly_full_time: Decimal = field(default=_ZERO)
+    overtime_supplement_monthly: Decimal = field(default=_ZERO)
+    night_supplement_monthly: Decimal = field(default=_ZERO)
+    holiday_supplement_monthly: Decimal = field(default=_ZERO)
+    time_supplements_monthly: Decimal = field(default=_ZERO)
+    time_supplements_annual_projection: Decimal = field(default=_ZERO)
+    absence_deduction_monthly: Decimal = field(default=_ZERO)
+    effective_gross_monthly: Decimal = field(default=_ZERO)
+    leave_accrued_days_monthly: Decimal = field(default=_ZERO)
+    leave_taken_days_monthly: Decimal = field(default=_ZERO)
+    leave_balance_days: Decimal = field(default=_ZERO)
+    sick_days_monthly: Decimal = field(default=_ZERO)
+    sick_carenza_days_monthly: Decimal = field(default=_ZERO)
+    sick_inps_indemnity_monthly: Decimal = field(default=_ZERO)
+    sick_company_integration_monthly: Decimal = field(default=_ZERO)
+    fringe_benefit_annual: Decimal = field(default=_ZERO)
+    fringe_benefit_threshold_annual: Decimal = field(default=_ZERO)
+    fringe_benefit_taxable_annual: Decimal = field(default=_ZERO)
+    welfare_annual: Decimal = field(default=_ZERO)
+    bonus_annual: Decimal = field(default=_ZERO)
+    bonus_pdr_flat_tax_annual: Decimal = field(default=_ZERO)
+    bonus_ordinary_taxable_annual: Decimal = field(default=_ZERO)
+
+    @property
+    def effective_net_monthly(self) -> Decimal:
+        """Monthly take-home adjusted for L3 events.
+
+        Returns:
+            ``net_monthly`` minus absence deduction plus time supplements
+            and sick-pay amounts.
+        """
+        return (
+            self.net_monthly
+            - self.absence_deduction_monthly
+            + self.time_supplements_monthly
+            + self.sick_inps_indemnity_monthly
+            + self.sick_company_integration_monthly
         )
+
+    @classmethod
+    def from_dict(cls, data: dict[str, object]) -> PeriodPayroll:
+        """Reconstruct from a ``to_dict()`` dict.
+
+        Args:
+            data: A dictionary as produced by :meth:`to_dict`.
+
+        Returns:
+            A new :class:`PeriodPayroll` with all fields restored.
+
+        Raises:
+            TypeError: If *data* contains unexpected keys.
+            ValueError: If a required field is absent from *data*.
+        """
+        from ccnl_engine.engine.payroll.domain.scenario import (  # noqa: PLC0415
+            PayPeriod,
+        )
+
+        allowed = frozenset(f.name for f in dataclasses.fields(cls))
+        extra = set(data) - allowed
+        if extra:
+            msg = f"PeriodPayroll.from_dict: unexpected keys: {sorted(extra)}"
+            raise TypeError(msg)
+        hints = typing.get_type_hints(cls, localns={"PayPeriod": PayPeriod})
+        extra_decoders: dict[str, object] = {"pay_period": PayPeriod.model_validate}
+        kwargs: dict[str, object] = {}
+        for f in dataclasses.fields(cls):
+            if f.name not in data:
+                if _has_default(f):
+                    continue
+                msg = f"Missing field: {f.name!r}"
+                raise ValueError(msg) from None
+            kwargs[f.name] = _decode_field(
+                f.name, data[f.name], hints[f.name], extra_decoders
+            )
+        return cls(**kwargs)  # type: ignore[arg-type]
+
+    @classmethod
+    def from_json(cls, raw: str) -> PeriodPayroll:
+        """Reconstruct from a JSON string.
+
+        Args:
+            raw: A JSON string as returned by :meth:`to_json`.
+
+        Returns:
+            A new :class:`PeriodPayroll` equal to the original.
+        """
+        return cls.from_dict(json.loads(raw))

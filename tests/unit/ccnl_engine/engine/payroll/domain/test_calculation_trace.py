@@ -266,10 +266,10 @@ class TestTraceOnCalculation:
         assert calc.trace.steps[-1].category == TraceCategory.GROSS
 
     def test_trace_gross_amount_matches_result(self) -> None:
-        """The GROSS trace step amount equals result.gross_monthly."""
+        """The GROSS trace step amount equals result.earnings.gross_monthly."""
         calc = compute(_req())
         gross_step = calc.trace.steps[-1]
-        assert gross_step.amount == calc.result.gross_monthly
+        assert gross_step.amount == calc.result.earnings.gross_monthly
 
     def test_trace_base_salary_detail_contains_level(self) -> None:
         """BASE_SALARY detail contains the level code."""
@@ -567,12 +567,12 @@ class TestFiscalStepsRoundtrip:
         assert net_step.amount == calc.result.net_annual
 
     def test_fiscal_trace_contains_gross_step(self) -> None:
-        """Fiscal steps include a GROSS step matching result.gross_annual."""
+        """Fiscal steps include a GROSS step matching result.earnings.gross_annual."""
         calc = compute(_req())
         gross_step = next(
             s for s in calc.trace.fiscal_steps if s.category == TraceCategory.GROSS
         )
-        assert gross_step.amount == calc.result.gross_annual
+        assert gross_step.amount == calc.result.earnings.gross_annual
 
     def test_fiscal_steps_roundtrip(self) -> None:
         """Calculation.to_dict/from_dict preserves fiscal_steps."""

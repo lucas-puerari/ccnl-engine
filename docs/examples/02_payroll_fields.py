@@ -35,36 +35,38 @@ p = calculation.result
 
 # --- Pay components (monthly, already scaled by part_time_pct) ---
 print("=== Monthly pay breakdown ===")
-print(f"  Base:           {p.base_monthly} EUR")
-print(f"  Seniority:      {p.seniority_monthly} EUR  ({p.seniority_count} scatti)")
-print(f"  Allowances:     {p.allowances_monthly} EUR")
-print(f"  Gross monthly:  {p.gross_monthly} EUR")
-print(f"  Hourly rate:    {p.hourly_rate} EUR/h")
+print(f"  Base:           {p.earnings.base_monthly} EUR")
+print(
+    f"  Seniority:      {p.earnings.seniority_monthly} EUR  ({p.earnings.seniority_count} scatti)"
+)
+print(f"  Allowances:     {p.earnings.allowances_monthly} EUR")
+print(f"  Gross monthly:  {p.earnings.gross_monthly} EUR")
+print(f"  Hourly rate:    {p.earnings.hourly_rate} EUR/h")
 
 # --- Annual figures ---
 print("\n=== Annual ===")
-print(f"  Gross annual:          {p.gross_annual} EUR")
-print(f"  INPS employee:         {p.inps_employee_annual} EUR")
-print(f"  INPS employer:         {p.inps_employer_annual} EUR")
-print(f"  TFR accrual:           {p.tfr_annual} EUR")
-print(f"  Taxable income:        {p.taxable_income} EUR")
-print(f"  IRPEF gross:           {p.irpef_gross} EUR")
-print(f"  Work income deduction: {p.work_income_deduction} EUR")
-print(f"  IRPEF net:             {p.irpef_net} EUR")
-print(f"  Trattamento integrativo: {p.trattamento_integrativo} EUR")
+print(f"  Gross annual:          {p.earnings.gross_annual} EUR")
+print(f"  INPS employee:         {p.contributions.inps_employee_annual} EUR")
+print(f"  INPS employer:         {p.contributions.inps_employer_annual} EUR")
+print(f"  TFR accrual:           {p.contributions.tfr_annual} EUR")
+print(f"  Taxable income:        {p.taxes.taxable_income} EUR")
+print(f"  IRPEF gross:           {p.taxes.irpef_gross} EUR")
+print(f"  Work income deduction: {p.taxes.work_income_deduction} EUR")
+print(f"  IRPEF net:             {p.taxes.irpef_net} EUR")
+print(f"  Trattamento integrativo: {p.taxes.trattamento_integrativo} EUR")
 print(f"  Net annual:            {p.net_annual} EUR")
 print(f"  Net monthly:           {p.net_monthly} EUR")
-print(f"  Employer cost annual:  {p.employer_cost_annual} EUR")
+print(f"  Employer cost annual:  {p.employer_cost.employer_cost_annual} EUR")
 
 # --- Fiscal simplifications: items NOT computed by the engine ---
 # Always check this set before presenting results to end users.
 print("\n=== Fiscal simplifications (omitted items) ===")
-for item in sorted(p.fiscal_simplifications, key=str):
+for item in sorted(p.taxes.fiscal_simplifications, key=str):
     print(f"  {item.value}")
 
 # Regional and municipal surcharges are zero when not explicitly requested.
-assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE in p.fiscal_simplifications
-assert p.addizionale_regionale_annual == Decimal(0)
+assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE in p.taxes.fiscal_simplifications
+assert p.taxes.addizionale_regionale_annual == Decimal(0)
 
 # --- Serialisation ---
 as_dict = p.to_dict()  # all Decimal → str, date → ISO string, frozenset → list

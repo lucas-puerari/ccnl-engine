@@ -333,6 +333,36 @@ _INCLUDED_FIELDS = {
 }
 
 
+_SUB_OBJECT_FIELDS: dict[str, str] = {
+    "seniority_count": "earnings",
+    "base_monthly": "earnings",
+    "seniority_monthly": "earnings",
+    "allowances_monthly": "earnings",
+    "ad_personam_monthly": "earnings",
+    "gross_monthly": "earnings",
+    "gross_annual": "earnings",
+    "hourly_rate": "earnings",
+    "apprenticeship_pct": "earnings",
+    "apprenticeship_under_level_code": "earnings",
+    "inps_employee_annual": "contributions",
+    "inps_employer_annual": "contributions",
+    "employer_funds_annual": "contributions",
+    "tfr_annual": "contributions",
+    "bilateral_employee_annual": "contributions",
+    "bilateral_employer_annual": "contributions",
+    "taxable_income": "taxes",
+    "irpef_gross": "taxes",
+    "work_income_deduction": "taxes",
+    "ulteriore_detrazione_lavoro": "taxes",
+    "irpef_net": "taxes",
+    "addizionale_regionale_annual": "taxes",
+    "addizionale_comunale_annual": "taxes",
+    "trattamento_integrativo": "taxes",
+    "fiscal_simplifications": "taxes",
+    "employer_cost_annual": "employer_cost",
+}
+
+
 def _serialise_result(result: object) -> dict[str, Any]:
     """Extract the fields recorded in expected blocks from a PayrollResult.
 
@@ -341,7 +371,9 @@ def _serialise_result(result: object) -> dict[str, Any]:
     """
     out: dict[str, Any] = {}
     for field in _INCLUDED_FIELDS:
-        value = getattr(result, field)
+        sub = _SUB_OBJECT_FIELDS.get(field)
+        obj = getattr(result, sub) if sub else result
+        value = getattr(obj, field)
         if field in _DECIMAL_FIELDS:
             out[field] = str(value) if value is not None else None
         elif isinstance(value, frozenset):

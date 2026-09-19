@@ -581,67 +581,89 @@ def compute_salary(
         "engine_version": calculation.engine_version,
         "ruleset_version": dict(calculation.ruleset_version),
         # pay components
-        "base_monthly": float(payroll.base_monthly),
-        "seniority_monthly": float(payroll.seniority_monthly),
-        "allowances_monthly": float(payroll.allowances_monthly),
-        "ad_personam_monthly": float(payroll.ad_personam_monthly),
-        "second_level_monthly": float(payroll.second_level_monthly),
-        "gross_monthly": float(payroll.gross_monthly),
-        "gross_annual": float(payroll.gross_annual),
-        "hourly_rate": float(payroll.hourly_rate),
-        "seniority_count": payroll.seniority_count,
+        "base_monthly": float(payroll.earnings.base_monthly),
+        "seniority_monthly": float(payroll.earnings.seniority_monthly),
+        "allowances_monthly": float(payroll.earnings.allowances_monthly),
+        "ad_personam_monthly": float(payroll.earnings.ad_personam_monthly),
+        "second_level_monthly": float(payroll.earnings.second_level_monthly),
+        "gross_monthly": float(payroll.earnings.gross_monthly),
+        "gross_annual": float(payroll.earnings.gross_annual),
+        "hourly_rate": float(payroll.earnings.hourly_rate),
+        "seniority_count": payroll.earnings.seniority_count,
         # apprenticeship
         "apprenticeship_pct": (
-            float(payroll.apprenticeship_pct)
-            if payroll.apprenticeship_pct is not None
+            float(payroll.earnings.apprenticeship_pct)
+            if payroll.earnings.apprenticeship_pct is not None
             else None
         ),
-        "apprenticeship_under_level_code": payroll.apprenticeship_under_level_code,
+        "apprenticeship_under_level_code": payroll.earnings.apprenticeship_under_level_code,
         # mensilità — read from CCNL parameters (not derived from ratio, which
         # loses precision when allowances carry per-component months_per_year).
         "additional_months": float(
             load_ccnl(filename).parameters.additional_months.value_at(payroll.as_of)
         ),
         # employee deductions
-        "inps_employee_annual": float(payroll.inps_employee_annual),
-        "taxable_income": float(payroll.taxable_income),
-        "irpef_gross": float(payroll.irpef_gross),
-        "work_income_deduction": float(payroll.work_income_deduction),
-        "ulteriore_detrazione_lavoro": float(payroll.ulteriore_detrazione_lavoro),
-        "irpef_net": float(payroll.irpef_net),
-        "addizionale_regionale_annual": float(payroll.addizionale_regionale_annual),
-        "addizionale_comunale_annual": float(payroll.addizionale_comunale_annual),
-        "trattamento_integrativo": float(payroll.trattamento_integrativo),
-        "somma_esente": float(payroll.somma_esente),
-        "bilateral_employee_annual": float(payroll.bilateral_employee_annual),
+        "inps_employee_annual": float(payroll.contributions.inps_employee_annual),
+        "taxable_income": float(payroll.taxes.taxable_income),
+        "irpef_gross": float(payroll.taxes.irpef_gross),
+        "work_income_deduction": float(payroll.taxes.work_income_deduction),
+        "ulteriore_detrazione_lavoro": float(payroll.taxes.ulteriore_detrazione_lavoro),
+        "irpef_net": float(payroll.taxes.irpef_net),
+        "addizionale_regionale_annual": float(
+            payroll.taxes.addizionale_regionale_annual
+        ),
+        "addizionale_comunale_annual": float(payroll.taxes.addizionale_comunale_annual),
+        "trattamento_integrativo": float(payroll.taxes.trattamento_integrativo),
+        "somma_esente": float(payroll.taxes.somma_esente),
+        "bilateral_employee_annual": float(
+            payroll.contributions.bilateral_employee_annual
+        ),
         # net
         "net_annual": float(payroll.net_annual),
         "net_monthly": float(payroll.net_monthly),
         # employer
-        "inps_employer_annual": float(payroll.inps_employer_annual),
-        "employer_funds_annual": float(payroll.employer_funds_annual),
-        "tfr_annual": float(payroll.tfr_annual),
-        "bilateral_employer_annual": float(payroll.bilateral_employer_annual),
-        "employer_cost_annual": float(payroll.employer_cost_annual),
-        "overtime_supplement_monthly": float(payroll.overtime_supplement_monthly),
-        "night_supplement_monthly": float(payroll.night_supplement_monthly),
-        "holiday_supplement_monthly": float(payroll.holiday_supplement_monthly),
-        "absence_deduction_monthly": float(payroll.absence_deduction_monthly),
-        "effective_gross_monthly": float(payroll.effective_gross_monthly),
-        "leave_accrued_days_monthly": float(payroll.leave_accrued_days_monthly),
-        "leave_balance_days": float(payroll.leave_balance_days),
-        "sick_inps_indemnity_monthly": float(payroll.sick_inps_indemnity_monthly),
-        "sick_company_integration_monthly": float(
-            payroll.sick_company_integration_monthly
+        "inps_employer_annual": float(payroll.contributions.inps_employer_annual),
+        "employer_funds_annual": float(payroll.contributions.employer_funds_annual),
+        "tfr_annual": float(payroll.contributions.tfr_annual),
+        "bilateral_employer_annual": float(
+            payroll.contributions.bilateral_employer_annual
         ),
-        "fringe_benefit_annual": float(payroll.fringe_benefit_annual),
-        "welfare_annual": float(payroll.welfare_annual),
-        "bonus_annual": float(payroll.bonus_annual),
-        "bonus_pdr_flat_tax_annual": float(payroll.bonus_pdr_flat_tax_annual),
+        "employer_cost_annual": float(payroll.employer_cost.employer_cost_annual),
+        "overtime_supplement_monthly": float(
+            getattr(payroll, "overtime_supplement_monthly", 0)
+        ),
+        "night_supplement_monthly": float(
+            getattr(payroll, "night_supplement_monthly", 0)
+        ),
+        "holiday_supplement_monthly": float(
+            getattr(payroll, "holiday_supplement_monthly", 0)
+        ),
+        "absence_deduction_monthly": float(
+            getattr(payroll, "absence_deduction_monthly", 0)
+        ),
+        "effective_gross_monthly": float(
+            getattr(payroll, "effective_gross_monthly", payroll.net_monthly)
+        ),
+        "leave_accrued_days_monthly": float(
+            getattr(payroll, "leave_accrued_days_monthly", 0)
+        ),
+        "leave_balance_days": float(getattr(payroll, "leave_balance_days", 0)),
+        "sick_inps_indemnity_monthly": float(
+            getattr(payroll, "sick_inps_indemnity_monthly", 0)
+        ),
+        "sick_company_integration_monthly": float(
+            getattr(payroll, "sick_company_integration_monthly", 0)
+        ),
+        "fringe_benefit_annual": float(getattr(payroll, "fringe_benefit_annual", 0)),
+        "welfare_annual": float(getattr(payroll, "welfare_annual", 0)),
+        "bonus_annual": float(getattr(payroll, "bonus_annual", 0)),
+        "bonus_pdr_flat_tax_annual": float(
+            getattr(payroll, "bonus_pdr_flat_tax_annual", 0)
+        ),
         # flags
-        "employer_withholds_irpef": payroll.employer_withholds_irpef,
+        "employer_withholds_irpef": payroll.taxes.employer_withholds_irpef,
         "fiscal_simplifications": sorted(
-            str(s) for s in payroll.fiscal_simplifications
+            str(s) for s in payroll.taxes.fiscal_simplifications
         ),
         # trust — calculation trace
         "trace": calculation.trace.to_dict(),
@@ -660,8 +682,8 @@ def compute_salary(
             for p in payroll.provenance
         ],
         # trust — result quality signals
-        "confidence": payroll.confidence,
-        "warnings": list(payroll.warnings),
+        "confidence": payroll.coverage.confidence,
+        "warnings": list(payroll.coverage.warnings),
         "calculation_scope": [
             {
                 "feature": s.feature,
@@ -670,6 +692,6 @@ def compute_salary(
                 "eligibility_status": s.eligibility_status,
                 "source_quality": s.source_quality,
             }
-            for s in payroll.calculation_scope
+            for s in payroll.coverage.calculation_scope
         ],
     })

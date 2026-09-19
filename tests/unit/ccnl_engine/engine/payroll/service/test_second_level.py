@@ -101,40 +101,45 @@ class TestSecondLevelBasic:
     """second_level_monthly flows into gross, contribution, and TFR bases."""
 
     def test_second_level_monthly_on_payroll(self) -> None:
-        """PayrollResult.second_level_monthly equals the scaled allowance total."""
+        """earnings.second_level_monthly equals the scaled allowance total."""
         result = compute(_req(second_level_allowances=(_SL_100,))).result
-        assert result.second_level_monthly == _D("100.00")
+        assert result.earnings.second_level_monthly == _D("100.00")
 
     def test_zero_when_no_allowances(self) -> None:
         """second_level_monthly is zero when no allowances are supplied."""
         result = compute(_req()).result
-        assert result.second_level_monthly == _D("0.00")
+        assert result.earnings.second_level_monthly == _D("0.00")
 
     def test_gross_monthly_includes_supplement(self) -> None:
         """gross_monthly = base + second_level when no other components."""
         result = compute(_req(second_level_allowances=(_SL_100,))).result
         expected = money(_D("1000.00") + _D("100.00"))
-        assert result.gross_monthly == expected
+        assert result.earnings.gross_monthly == expected
 
     def test_gross_annual_includes_supplement(self) -> None:
         """gross_annual adds second_level * additional_months."""
         result = compute(_req(second_level_allowances=(_SL_100,))).result
         # base 1000 * 12 + supplement 100 * 12 = 13200
-        assert result.gross_annual == _D("13200.00")
+        assert result.earnings.gross_annual == _D("13200.00")
 
     def test_inps_base_includes_supplement(self) -> None:
         """INPS employee contribution is computed on gross including second-level."""
         base_result = compute(_req()).result
         sl_result = compute(_req(second_level_allowances=(_SL_100,))).result
         # Supplement adds 1200/year to the INPS base; employee rate = 9.19%
-        delta = sl_result.inps_employee_annual - base_result.inps_employee_annual
+        delta = (
+            sl_result.contributions.inps_employee_annual
+            - base_result.contributions.inps_employee_annual
+        )
         assert delta == money(_D("1200.00") * _D("0.0919"))
 
     def test_tfr_includes_supplement(self) -> None:
         """TFR accrual base includes the second-level supplement."""
         base_result = compute(_req()).result
         sl_result = compute(_req(second_level_allowances=(_SL_100,))).result
-        delta = sl_result.tfr_annual - base_result.tfr_annual
+        delta = (
+            sl_result.contributions.tfr_annual - base_result.contributions.tfr_annual
+        )
         assert delta == money(_D("1200.00") / _D("13.5"))
 
 
@@ -151,7 +156,7 @@ class TestSecondLevelPartTime:
         result = compute(
             _req(part_time_ratio=_D("0.5"), second_level_allowances=(_SL_100,))
         ).result
-        assert result.second_level_monthly == _D("50.00")
+        assert result.earnings.second_level_monthly == _D("50.00")
 
 
 # ---------------------------------------------------------------------------
@@ -172,9 +177,9 @@ class TestSecondLevelMonthsPerYear:
         )
         result = compute(_req(second_level_allowances=(once_a_year,))).result
         # base 12000 + prize 300 (1 month only)
-        assert result.gross_annual == _D("12300.00")
+        assert result.earnings.gross_annual == _D("12300.00")
         # second_level_monthly still shows the full scaled monthly amount
-        assert result.second_level_monthly == _D("300.00")
+        assert result.earnings.second_level_monthly == _D("300.00")
 
 
 # ---------------------------------------------------------------------------
@@ -196,8 +201,11 @@ class TestSecondLevelContributionRelevance:
         base_result = compute(_req()).result
         sl_result = compute(_req(second_level_allowances=(exempt,))).result
         # Supplement in gross but not in INPS base → INPS unchanged
-        assert sl_result.inps_employee_annual == base_result.inps_employee_annual
-        assert sl_result.gross_annual > base_result.gross_annual
+        assert (
+            sl_result.contributions.inps_employee_annual
+            == base_result.contributions.inps_employee_annual
+        )
+        assert sl_result.earnings.gross_annual > base_result.earnings.gross_annual
 
 
 # ---------------------------------------------------------------------------
@@ -218,8 +226,10 @@ class TestSecondLevelTfrRelevance:
         )
         base_result = compute(_req()).result
         sl_result = compute(_req(second_level_allowances=(no_tfr,))).result
-        assert sl_result.tfr_annual == base_result.tfr_annual
-        assert sl_result.gross_annual > base_result.gross_annual
+        assert (
+            sl_result.contributions.tfr_annual == base_result.contributions.tfr_annual
+        )
+        assert sl_result.earnings.gross_annual > base_result.earnings.gross_annual
 
 
 # ---------------------------------------------------------------------------
@@ -238,7 +248,7 @@ class TestSecondLevelApprenticeshipPct:
             _req(contract=self._APPRENTICE, second_level_allowances=(_SL_100,))
         ).result
         # 100 * 1 (PT) * 0.80 (apprenticeship_pct) = 80
-        assert result.second_level_monthly == _D("80.00")
+        assert result.earnings.second_level_monthly == _D("80.00")
 
     def test_pct_relevant_false_skips_apprenticeship_factor(self) -> None:
         """When apprenticeship_pct_relevant=False only part_time_ratio applies."""
@@ -252,7 +262,7 @@ class TestSecondLevelApprenticeshipPct:
             _req(contract=self._APPRENTICE, second_level_allowances=(full_value,))
         ).result
         # 100 * 1 (PT) — apprenticeship_pct NOT applied
-        assert result.second_level_monthly == _D("100.00")
+        assert result.earnings.second_level_monthly == _D("100.00")
 
 
 # ---------------------------------------------------------------------------

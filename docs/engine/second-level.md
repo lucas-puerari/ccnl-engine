@@ -20,7 +20,7 @@ Set a flag to `False` to exclude the allowance from that base (e.g. a productivi
 bonus that is INPS-exempt under Art. 1 c. 182 L. 208/2015).
 
 ```python
---8<-- "docs/examples/08_second_level.py"
+--8 < --"docs/examples/08_second_level.py"
 ```
 
 !!! note

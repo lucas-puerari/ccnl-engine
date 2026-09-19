@@ -10,7 +10,25 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     TraceStep as TraceStep,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
-    PayrollResult as PayrollResult,
+    AnnualEstimate as AnnualEstimate,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    Contributions as Contributions,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    Coverage as Coverage,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    Earnings as Earnings,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    EmployerCost as EmployerCost,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    PeriodPayroll as PeriodPayroll,
+)
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    Taxes as Taxes,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
 from ccnl_engine.engine.payroll.service.render import (
@@ -22,8 +40,14 @@ from ccnl_engine.engine.payroll.service.render import (
 
 __all__ = [
     "AnnualBreakdown",
+    "AnnualEstimate",
     "CalculationTrace",
-    "PayrollResult",
+    "Contributions",
+    "Coverage",
+    "Earnings",
+    "EmployerCost",
+    "PeriodPayroll",
+    "Taxes",
     "TraceCategory",
     "TraceStep",
     "compute",

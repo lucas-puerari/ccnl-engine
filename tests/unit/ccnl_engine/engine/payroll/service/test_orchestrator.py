@@ -50,7 +50,7 @@ from ccnl_engine.engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
+from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll, ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     Employee,
@@ -124,7 +124,9 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+    from ccnl_engine.engine.payroll.domain.payroll_result import (
+        AnnualEstimate as PayrollResult,
+    )
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules as SurtaxRulesT
     from ccnl_engine.engine.tax.domain.art15 import Art15DeductionRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
@@ -286,36 +288,46 @@ class TestComputePermanent:
         assert r.part_time_pct == _D(1)
         assert r.as_of == _DATE
         assert r.year == 2026
-        assert r.seniority_count == 0
+        assert r.earnings.seniority_count == 0
 
-        assert r.base_monthly == _D("1000.00")
-        assert r.seniority_monthly == _D("0.00")
-        assert r.allowances_monthly == _D("0.00")
-        assert r.ad_personam_monthly == _D("0.00")
-        assert r.gross_monthly == _D("1000.00")
-        assert r.gross_annual == _D("12000.00")
-        assert r.hourly_rate == money(_D("1000.00") / _D("168"))
-        assert r.employer_funds_annual == _D("0.00")
+        assert r.earnings.base_monthly == _D("1000.00")
+        assert r.earnings.seniority_monthly == _D("0.00")
+        assert r.earnings.allowances_monthly == _D("0.00")
+        assert r.earnings.ad_personam_monthly == _D("0.00")
+        assert r.earnings.gross_monthly == _D("1000.00")
+        assert r.earnings.gross_annual == _D("12000.00")
+        assert r.earnings.hourly_rate == money(_D("1000.00") / _D("168"))
+        assert r.contributions.employer_funds_annual == _D("0.00")
 
-        assert r.apprenticeship_pct is None
-        assert r.apprenticeship_under_level_code is None
+        assert r.earnings.apprenticeship_pct is None
+        assert r.earnings.apprenticeship_under_level_code is None
 
         # Relational invariants
-        assert r.taxable_income == r.gross_annual - r.inps_employee_annual
-        assert r.irpef_net == max(_D(0), r.irpef_gross - r.work_income_deduction)
-        assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
-        assert r.employer_cost_annual == (
-            r.gross_annual + r.inps_employer_annual + r.tfr_annual
+        assert r.taxes.taxable_income == (
+            r.earnings.gross_annual - r.contributions.inps_employee_annual
+        )
+        assert r.taxes.irpef_net == max(
+            _D(0), r.taxes.irpef_gross - r.taxes.work_income_deduction
+        )
+        assert r.net_annual == (
+            r.earnings.gross_annual
+            - r.contributions.inps_employee_annual
+            - r.taxes.irpef_net
+        )
+        assert r.employer_cost.employer_cost_annual == (
+            r.earnings.gross_annual
+            + r.contributions.inps_employer_annual
+            + r.contributions.tfr_annual
         )
 
     def test_with_seniority_count(self) -> None:
         """seniority_count=2 adds 2 * 20 = 40 to monthly gross."""
         r = compute(_req(seniority_count=2)).result
 
-        assert r.seniority_count == 2
-        assert r.seniority_monthly == _D("40.00")
-        assert r.gross_monthly == _D("1040.00")
-        assert r.gross_annual == _D("12480.00")
+        assert r.earnings.seniority_count == 2
+        assert r.earnings.seniority_monthly == _D("40.00")
+        assert r.earnings.gross_monthly == _D("1040.00")
+        assert r.earnings.gross_annual == _D("12480.00")
 
     @pytest.mark.parametrize(
         ("months", "expected"),
@@ -324,7 +336,7 @@ class TestComputePermanent:
     def test_seniority_months_derivation(self, months: int, expected: int) -> None:
         """Count = 1 + (months - cadence) // cadence, clamped to the maximum."""
         r = compute(_req(seniority_months=months)).result
-        assert r.seniority_count == expected
+        assert r.earnings.seniority_count == expected
 
     @pytest.mark.parametrize(
         ("months", "expected"), [(47, 0), (48, 1), (83, 1), (84, 2), (120, 3)]
@@ -335,7 +347,7 @@ class TestComputePermanent:
             "parameters.seniority_increments.first_cadence_months": 48
         })
         r = compute(_req(seniority_months=months)).result
-        assert r.seniority_count == expected
+        assert r.earnings.seniority_count == expected
 
     def test_seniority_first_cadence_by_level(self) -> None:
         """Per-level first cadence (e.g. operai lump step at 48 months)."""
@@ -344,10 +356,10 @@ class TestComputePermanent:
         })
         r47 = compute(_req(seniority_months=47)).result
         r48 = compute(_req(seniority_months=48)).result
-        assert r47.seniority_count == 0
-        assert r48.seniority_count == 1
+        assert r47.earnings.seniority_count == 0
+        assert r48.earnings.seniority_count == 1
         res = compute(_req(level_code="3", seniority_months=36)).result
-        assert res.seniority_count == 1
+        assert res.earnings.seniority_count == 1
 
     def test_seniority_per_level_maximum(self) -> None:
         """maximum_count_by_level overrides maximum_count for that level."""
@@ -355,8 +367,8 @@ class TestComputePermanent:
             "parameters.seniority_increments.maximum_count_by_level": {"4": 1}
         })
         r = compute(_req(seniority_months=360)).result
-        assert r.seniority_count == 1
-        assert r.seniority_monthly == _D("20.00")
+        assert r.earnings.seniority_count == 1
+        assert r.earnings.seniority_monthly == _D("20.00")
         with pytest.raises(ValueError, match="exceeds the maximum of 1"):
             compute(_req(seniority_count=2))
 
@@ -367,36 +379,36 @@ class TestComputePermanent:
         })
         r = compute(_req(part_time_ratio=_D("0.50"), seniority_count=1)).result
 
-        assert r.base_monthly == _D("500.00")
-        assert r.seniority_monthly == _D("10.00")
-        assert r.allowances_monthly == _D("5.17")
-        assert r.gross_monthly == _D("515.17")
-        assert r.gross_annual == _D("6182.04")
+        assert r.earnings.base_monthly == _D("500.00")
+        assert r.earnings.seniority_monthly == _D("10.00")
+        assert r.earnings.allowances_monthly == _D("5.17")
+        assert r.earnings.gross_monthly == _D("515.17")
+        assert r.earnings.gross_annual == _D("6182.04")
 
     def test_negotiated_ral(self) -> None:
         """RalOverride overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
         r = compute(_req(negotiated_ral=ral)).result
 
-        assert r.gross_annual == ral
-        assert r.gross_monthly == _D("1666.67")
+        assert r.earnings.gross_annual == ral
+        assert r.earnings.gross_monthly == _D("1666.67")
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
         r = compute(_req(level_code="3", seniority_count=5)).result
 
-        assert r.seniority_monthly == _D("0.00")
-        assert r.base_monthly == _D("800.00")
-        assert r.gross_annual == _D("9600.00")
+        assert r.earnings.seniority_monthly == _D("0.00")
+        assert r.earnings.base_monthly == _D("800.00")
+        assert r.earnings.gross_annual == _D("9600.00")
 
     def test_ad_personam_added_unscaled(self) -> None:
         """ad_personam_monthly is added as given, even under part-time."""
         r = compute(
             _req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00"))
         ).result
-        assert r.ad_personam_monthly == _D("30.00")
-        assert r.gross_monthly == _D("530.00")
-        assert r.gross_annual == _D("6360.00")
+        assert r.earnings.ad_personam_monthly == _D("30.00")
+        assert r.earnings.gross_monthly == _D("530.00")
+        assert r.earnings.gross_annual == _D("6360.00")
 
 
 # ---------------------------------------------------------------------------
@@ -417,8 +429,8 @@ class TestComputeAllowances:
         })
         plain = compute(_req()).result
         quadro = compute(_req(roles=frozenset({"quadro"}))).result
-        assert plain.allowances_monthly == _D("10.00")
-        assert quadro.allowances_monthly == _D("110.00")
+        assert plain.earnings.allowances_monthly == _D("10.00")
+        assert quadro.earnings.allowances_monthly == _D("110.00")
 
     def test_months_per_year(self) -> None:
         """An allowance paid 12 times contributes 12 x monthly to gross_annual."""
@@ -429,8 +441,8 @@ class TestComputeAllowances:
             ],
         })
         r = compute(_req()).result
-        assert r.gross_monthly == _D("1050.00")
-        assert r.gross_annual == _D("14600.00")  # 1000*14 + 50*12
+        assert r.earnings.gross_monthly == _D("1050.00")
+        assert r.earnings.gross_annual == _D("14600.00")  # 1000*14 + 50*12
 
     def test_relevance_flags(self) -> None:
         """Non-relevant allowances are excluded from the INPS and TFR bases."""
@@ -459,11 +471,19 @@ class TestComputeAllowances:
             ]
         })
         r = compute(_req()).result
-        assert r.gross_annual == _D("13200.00")
-        assert r.inps_employee_annual == base.inps_employee_annual
-        assert r.inps_employer_annual == base.inps_employer_annual
-        assert r.tfr_annual == base.tfr_annual
-        assert r.taxable_income == r.gross_annual - r.inps_employee_annual
+        assert r.earnings.gross_annual == _D("13200.00")
+        assert (
+            r.contributions.inps_employee_annual
+            == base.contributions.inps_employee_annual
+        )
+        assert (
+            r.contributions.inps_employer_annual
+            == base.contributions.inps_employer_annual
+        )
+        assert r.contributions.tfr_annual == base.contributions.tfr_annual
+        assert r.taxes.taxable_income == (
+            r.earnings.gross_annual - r.contributions.inps_employee_annual
+        )
 
     def test_negotiated_ral_ignores_contribution_exclusions(self) -> None:
         """RalOverride must not have CCNL allowance exclusions subtracted from it.
@@ -485,11 +505,20 @@ class TestComputeAllowances:
         _mock_ccnl[0] = _DEFAULT_CCNL
         r_clean = compute(_req(negotiated_ral=ral)).result
 
-        assert r_with_exclusion.gross_annual == ral
+        assert r_with_exclusion.earnings.gross_annual == ral
         # Contribution and TFR bases must be identical regardless of CCNL allowances.
-        assert r_with_exclusion.inps_employee_annual == r_clean.inps_employee_annual
-        assert r_with_exclusion.inps_employer_annual == r_clean.inps_employer_annual
-        assert r_with_exclusion.tfr_annual == r_clean.tfr_annual
+        assert (
+            r_with_exclusion.contributions.inps_employee_annual
+            == r_clean.contributions.inps_employee_annual
+        )
+        assert (
+            r_with_exclusion.contributions.inps_employer_annual
+            == r_clean.contributions.inps_employer_annual
+        )
+        assert (
+            r_with_exclusion.contributions.tfr_annual
+            == r_clean.contributions.tfr_annual
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -517,22 +546,22 @@ class TestComputeEmployerFunds:
         operaio = compute(_req()).result
         impiegato = compute(_req(level_code="3")).result
         uncategorised = compute(_req(level_code="2")).result
-        assert operaio.employer_funds_annual == _D("1200.00")
-        assert operaio.employer_cost_annual == (
-            operaio.gross_annual
-            + operaio.inps_employer_annual
-            + operaio.employer_funds_annual
-            + operaio.tfr_annual
+        assert operaio.contributions.employer_funds_annual == _D("1200.00")
+        assert operaio.employer_cost.employer_cost_annual == (
+            operaio.earnings.gross_annual
+            + operaio.contributions.inps_employer_annual
+            + operaio.contributions.employer_funds_annual
+            + operaio.contributions.tfr_annual
         )
-        assert impiegato.employer_funds_annual == _D("0.00")
-        assert uncategorised.employer_funds_annual == _D("0.00")
+        assert impiegato.contributions.employer_funds_annual == _D("0.00")
+        assert uncategorised.contributions.employer_funds_annual == _D("0.00")
 
     def test_fund_without_category_restriction(self) -> None:
         """A fund with applies_to_categories=None applies to every level."""
         fund = {**self._FUND, "applies_to_categories": None}
         _mock_ccnl[0] = _build_ccnl(**{"parameters.employer_funds": [fund]})
         r = compute(_req(level_code="3")).result
-        assert r.employer_funds_annual == _D("960.00")
+        assert r.contributions.employer_funds_annual == _D("960.00")
 
     def test_employer_rate_by_category(self) -> None:
         """Employer rate override applies to matching categories only."""
@@ -552,8 +581,8 @@ class TestComputeEmployerFunds:
         })
         impiegato = compute(_req(level_code="3")).result
         operaio = compute(_req()).result
-        assert impiegato.inps_employer_annual == _D("1920.00")  # 9600 * 0.20
-        assert operaio.inps_employer_annual == _D("3600.00")  # 12000 * 0.30
+        assert impiegato.contributions.inps_employer_annual == _D("1920.00")  # 9600*0.2
+        assert operaio.contributions.inps_employer_annual == _D("3600.00")  # 12000*0.30
 
 
 # ---------------------------------------------------------------------------
@@ -569,8 +598,11 @@ class TestComputeFixedTerm:
         r_fixed = compute(_req(contract=_FIXED_TERM)).result
         r_perm = compute(_req()).result
 
-        expected_diff = r_fixed.gross_annual * _D("0.014")
-        actual_diff = r_fixed.inps_employer_annual - r_perm.inps_employer_annual
+        expected_diff = r_fixed.earnings.gross_annual * _D("0.014")
+        actual_diff = (
+            r_fixed.contributions.inps_employer_annual
+            - r_perm.contributions.inps_employer_annual
+        )
         assert abs(actual_diff - expected_diff) <= _D("0.01")
         assert r_fixed.employment_type == "fixed_term"
 
@@ -608,8 +640,14 @@ class TestComputeIvsCeilingSplit:
         _mock_rules[0] = self._rules_with_ceiling()
         r_capped = compute(self._scenario(ral, ivs_ceiling_applies=True)).result
         r_flat = compute(self._scenario(ral, ivs_ceiling_applies=False)).result
-        assert r_capped.inps_employee_annual == r_flat.inps_employee_annual
-        assert r_capped.inps_employer_annual == r_flat.inps_employer_annual
+        assert (
+            r_capped.contributions.inps_employee_annual
+            == r_flat.contributions.inps_employee_annual
+        )
+        assert (
+            r_capped.contributions.inps_employer_annual
+            == r_flat.contributions.inps_employer_annual
+        )
 
     def test_above_ceiling_ivs_capped_non_ivs_uncapped(self) -> None:
         """RAL above massimale: IVS portion capped, non-IVS applied to full base."""
@@ -626,16 +664,16 @@ class TestComputeIvsCeilingSplit:
 
         _mock_rules[0] = self._rules_with_ceiling()
         r = compute(self._scenario(ral, ivs_ceiling_applies=True)).result
-        assert r.inps_employee_annual == expected_employee
-        assert r.inps_employer_annual == expected_employer
+        assert r.contributions.inps_employee_annual == expected_employee
+        assert r.contributions.inps_employer_annual == expected_employer
 
     def test_ceiling_flag_false_skips_split(self) -> None:
         """ivs_ceiling_applies=False: flat rate even when ceiling is configured."""
         ral = _D("150000.00")
         _mock_rules[0] = self._rules_with_ceiling()
         r = compute(self._scenario(ral, ivs_ceiling_applies=False)).result
-        assert r.inps_employee_annual == _D("150000.00") * _D("0.0919")
-        assert r.inps_employer_annual == _D("150000.00") * _D("0.2898")
+        assert r.contributions.inps_employee_annual == _D("150000.00") * _D("0.0919")
+        assert r.contributions.inps_employer_annual == _D("150000.00") * _D("0.2898")
 
 
 # ---------------------------------------------------------------------------
@@ -650,8 +688,10 @@ class TestComputeIrpefFloor:
         """Low income: deduction > irpef_gross → irpef_net == 0."""
         r = compute(_req(negotiated_ral=_D("5000.00"))).result
 
-        assert r.irpef_net == _D("0.00")
-        assert r.net_annual == r.gross_annual - r.inps_employee_annual
+        assert r.taxes.irpef_net == _D("0.00")
+        assert r.net_annual == (
+            r.earnings.gross_annual - r.contributions.inps_employee_annual
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -668,31 +708,33 @@ class TestComputeWithholdingExempt:
         """Exempt employer: irpef_net must be zero regardless of income."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         r = compute(_req()).result
-        assert r.irpef_net == _D("0.00")
+        assert r.taxes.irpef_net == _D("0.00")
 
     def test_employer_withholds_irpef_flag_false(self) -> None:
         """Exempt employer: employer_withholds_irpef must be False."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         r = compute(_req()).result
-        assert r.employer_withholds_irpef is False
+        assert r.taxes.employer_withholds_irpef is False
 
     def test_net_annual_excludes_irpef(self) -> None:
         """Net = gross - INPS employee; IRPEF not deducted by employer."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         r = compute(_req()).result
-        assert r.net_annual == r.gross_annual - r.inps_employee_annual
+        assert r.net_annual == (
+            r.earnings.gross_annual - r.contributions.inps_employee_annual
+        )
 
     def test_irpef_informational_fields_nonzero(self) -> None:
         """irpef_gross and work_income_deduction remain as informational."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
         r = compute(_req()).result
-        assert r.irpef_gross > _D("0.00")
-        assert r.work_income_deduction >= _D("0.00")
+        assert r.taxes.irpef_gross > _D("0.00")
+        assert r.taxes.work_income_deduction >= _D("0.00")
 
     def test_standard_ccnl_withholds_irpef(self) -> None:
         """Standard CCNL: employer_withholds_irpef must be True."""
         r = compute(_req()).result
-        assert r.employer_withholds_irpef is True
+        assert r.taxes.employer_withholds_irpef is True
 
 
 # ---------------------------------------------------------------------------
@@ -719,8 +761,8 @@ class TestComputeDomesticInps:
         r = compute(_req(weekly_hours=_D("40"))).result
 
         annual_hours = _D("40") * _D("52")
-        assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
-        assert r.inps_employer_annual == money(_D("0.93") * annual_hours)
+        assert r.contributions.inps_employee_annual == money(_D("0.31") * annual_hours)
+        assert r.contributions.inps_employer_annual == money(_D("0.93") * annual_hours)
 
     def test_hours_bracket_fixed_term(self) -> None:
         """weekly_hours > 24 + FixedTerm → hours bracket fixed-term rate."""
@@ -728,8 +770,8 @@ class TestComputeDomesticInps:
         r = compute(_req(contract=_FIXED_TERM, weekly_hours=_D("40"))).result
 
         annual_hours = _D("40") * _D("52")
-        assert r.inps_employee_annual == money(_D("0.31") * annual_hours)
-        assert r.inps_employer_annual == money(_D("1.01") * annual_hours)
+        assert r.contributions.inps_employee_annual == money(_D("0.31") * annual_hours)
+        assert r.contributions.inps_employer_annual == money(_D("1.01") * annual_hours)
 
     def test_wage_bracket_mid(self) -> None:
         """weekly_hours <= 24 → wage bracket selected by annualised hourly rate.
@@ -741,14 +783,18 @@ class TestComputeDomesticInps:
         r = compute(_req(weekly_hours=_D("20"))).result
 
         annual_hours = _D("20") * _D("52")
-        assert r.inps_employee_annual == money(_D("0.48") * annual_hours)
-        assert r.inps_employer_annual == money(_D("1.44") * annual_hours)
+        assert r.contributions.inps_employee_annual == money(_D("0.48") * annual_hours)
+        assert r.contributions.inps_employer_annual == money(_D("1.44") * annual_hours)
 
     def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
         """Net = gross - INPS employee - irpef_net for domestic path."""
         _mock_rules[0] = _DOMESTIC_RULES
         r = compute(_req(weekly_hours=_D("40"))).result
-        assert r.net_annual == r.gross_annual - r.inps_employee_annual - r.irpef_net
+        assert r.net_annual == (
+            r.earnings.gross_annual
+            - r.contributions.inps_employee_annual
+            - r.taxes.irpef_net
+        )
 
     def test_no_ivs_ceiling_warning_for_domestic_contracts(self) -> None:
         """Domestic contracts must not emit a false IVS ceiling warning.
@@ -761,9 +807,9 @@ class TestComputeDomesticInps:
         # seniority_months=12 implies a clearly post-1996 hire: without the
         # guard, _ivs_ceiling_warning would emit "contributions are overstated".
         r = compute(_req(weekly_hours=_D("40"), seniority_months=12)).result
-        ivs_warnings = [w for w in r.warnings if "overstated" in w]
+        ivs_warnings = [w for w in r.coverage.warnings if "overstated" in w]
         assert ivs_warnings == [], (
-            f"Unexpected IVS warning on domestic contract: {r.warnings}"
+            f"Unexpected IVS warning on domestic contract: {r.coverage.warnings}"
         )
 
 
@@ -824,60 +870,60 @@ class TestComputeAddizionali:
     def test_without_surtax_parameter_both_zero(self) -> None:
         """When no jurisdiction set (default), both addizionali are zero."""
         r = compute(_req()).result
-        assert r.addizionale_regionale_annual == Decimal("0.00")
-        assert r.addizionale_comunale_annual == Decimal("0.00")
-        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
-        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+        assert r.taxes.addizionale_regionale_annual == Decimal("0.00")
+        assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.taxes.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.taxes.fiscal_simplifications
 
     def test_regione_only(self) -> None:
         """With regione set, addizionale regionale > 0; comunale still zero."""
         r = self._result(regione="TestRegione")
-        assert r.addizionale_regionale_annual > Decimal(0)
-        assert r.addizionale_comunale_annual == Decimal("0.00")
-        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
-        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+        assert r.taxes.addizionale_regionale_annual > Decimal(0)
+        assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.taxes.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.taxes.fiscal_simplifications
 
     def test_comune_only(self) -> None:
         """With comune_belfiore set, addizionale comunale > 0; regionale zero."""
         r = self._result(comune_belfiore="X001")
-        assert r.addizionale_comunale_annual > Decimal(0)
-        assert r.addizionale_regionale_annual == Decimal("0.00")
-        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
-        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
+        assert r.taxes.addizionale_comunale_annual > Decimal(0)
+        assert r.taxes.addizionale_regionale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.taxes.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.taxes.fiscal_simplifications
 
     def test_both_set_both_computed(self) -> None:
         """With both fields set, both surtaxes are computed; neither flag set."""
         r = self._result(regione="TestRegione", comune_belfiore="X001")
-        assert r.addizionale_regionale_annual > Decimal(0)
-        assert r.addizionale_comunale_annual > Decimal(0)
-        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
-        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
+        assert r.taxes.addizionale_regionale_annual > Decimal(0)
+        assert r.taxes.addizionale_comunale_annual > Decimal(0)
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.taxes.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.taxes.fiscal_simplifications
 
     def test_both_reduce_net_annual(self) -> None:
         """Net annual is reduced by the sum of both addizionali."""
         r = self._result(regione="TestRegione", comune_belfiore="X001")
         expected_net = (
-            r.gross_annual
-            - r.inps_employee_annual
-            - r.irpef_net
-            - r.addizionale_regionale_annual
-            - r.addizionale_comunale_annual
-            + r.trattamento_integrativo
+            r.earnings.gross_annual
+            - r.contributions.inps_employee_annual
+            - r.taxes.irpef_net
+            - r.taxes.addizionale_regionale_annual
+            - r.taxes.addizionale_comunale_annual
+            + r.taxes.trattamento_integrativo
         )
         assert r.net_annual == expected_net
 
     def test_unknown_regione_produces_zero(self) -> None:
         """Unknown region name → addizionale regionale is zero, no flag."""
         r = self._result(regione="RegioneSconosciuta")
-        assert r.addizionale_regionale_annual == Decimal("0.00")
+        assert r.taxes.addizionale_regionale_annual == Decimal("0.00")
         # No flag: the caller passed a region, we just didn't find it
-        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_REGIONALE not in r.taxes.fiscal_simplifications
 
     def test_unknown_comune_produces_zero(self) -> None:
         """Unknown codice catastale → addizionale comunale zero, no flag."""
         r = self._result(comune_belfiore="Z999")
-        assert r.addizionale_comunale_annual == Decimal("0.00")
-        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.fiscal_simplifications
+        assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
+        assert _FS.NO_ADDIZIONALE_COMUNALE not in r.taxes.fiscal_simplifications
 
     def test_soglia_exempts_low_income(self) -> None:
         """Income below the soglia yields zero comunal surtax."""
@@ -901,7 +947,7 @@ class TestComputeAddizionali:
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
             )
         ).result
-        assert r.addizionale_comunale_annual == Decimal("0.00")
+        assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
 
     def test_irpef_zero_suppresses_addizionali(self) -> None:
         """When IRPEF is fully offset by deductions, addizionali are zero.
@@ -920,17 +966,17 @@ class TestComputeAddizionali:
                 ),
             )
         ).result
-        assert r.irpef_net == _D("0.00"), "irpef_net must be zero in no-tax area"
-        assert r.addizionale_regionale_annual == _D("0.00")
-        assert r.addizionale_comunale_annual == _D("0.00")
-        assert _FS.NO_ADDIZIONALE_REGIONALE in r.fiscal_simplifications
-        assert _FS.NO_ADDIZIONALE_COMUNALE in r.fiscal_simplifications
+        assert r.taxes.irpef_net == _D("0.00"), "irpef_net must be zero in no-tax area"
+        assert r.taxes.addizionale_regionale_annual == _D("0.00")
+        assert r.taxes.addizionale_comunale_annual == _D("0.00")
+        assert _FS.NO_ADDIZIONALE_REGIONALE in r.taxes.fiscal_simplifications
+        assert _FS.NO_ADDIZIONALE_COMUNALE in r.taxes.fiscal_simplifications
 
 
 class TestFiscalFlagsExclusivity:
     """Addizionale flags are mutually exclusive regardless of TI-rules presence.
 
-    When ``YearRules.trattamento_integrativo`` is ``None`` (no TI data in the
+    When ``YearRules.taxes.trattamento_integrativo`` is ``None`` (no TI data in the
     bundle), ``_compute_ti`` must NOT seed the flag set with
     ``ADDIZIONALE_*_UNKNOWN``.  ``_compute_addizionali`` must further ensure
     that ``NO_ADDIZIONALE_*`` and ``ADDIZIONALE_*_UNKNOWN`` are never
@@ -963,7 +1009,7 @@ class TestFiscalFlagsExclusivity:
         ADDIZIONALE_*_UNKNOWN must be absent.
         """
         r = compute(_req()).result
-        sfs = r.fiscal_simplifications
+        sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
         assert _FS.NO_ADDIZIONALE_COMUNALE in sfs
         assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
@@ -984,7 +1030,7 @@ class TestFiscalFlagsExclusivity:
                 ),
             )
         ).result
-        sfs = r.fiscal_simplifications
+        sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE not in sfs
         assert _FS.NO_ADDIZIONALE_COMUNALE not in sfs
         assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
@@ -1005,7 +1051,7 @@ class TestFiscalFlagsExclusivity:
                 ),
             )
         ).result
-        sfs = r.fiscal_simplifications
+        sfs = r.taxes.fiscal_simplifications
         assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN in sfs
         assert _FS.ADDIZIONALE_COMUNALE_UNKNOWN in sfs
         assert _FS.NO_ADDIZIONALE_REGIONALE not in sfs
@@ -1030,7 +1076,7 @@ class TestFiscalFlagsExclusivity:
                 ),
             )
         ).result
-        sfs = r.fiscal_simplifications
+        sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
         assert _FS.NO_ADDIZIONALE_COMUNALE in sfs
         assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN not in sfs
@@ -1369,17 +1415,19 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            assert any("gross_incl_allowances" in w for w in result.warnings), (
-                f"Expected gross_incl_allowances warning, got: {result.warnings}"
+            assert isinstance(result, PeriodPayroll)
+            warnings = result.coverage.warnings
+            assert any("gross_incl_allowances" in w for w in warnings), (
+                f"Expected gross_incl_allowances warning, got: {warnings}"
             )
             assert result.overtime_supplement_monthly == _D("0")
             assert result.time_supplements_monthly == _D("0")
             # Scope must show not_computed because method is unsupported
             ot_scope = next(
-                s for s in result.calculation_scope if s.feature == "overtime"
+                s for s in result.coverage.calculation_scope if s.feature == "overtime"
             )
             assert ot_scope.calculation_status == "not_computed"
-            assert result.status == "partial"
+            assert result.coverage.status == "partial"
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
 
@@ -1405,7 +1453,9 @@ class TestL3Warning:
             ),
             applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[weekday_band])  # type: ignore[arg-type]
+        ts_schema = TimeSupplements(
+            overtime_bands=[weekday_band]  # type: ignore[arg-type]
+        )
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1416,7 +1466,7 @@ class TestL3Warning:
             result = compute(scenario).result
             scope = {
                 item.feature: item.calculation_status
-                for item in result.calculation_scope
+                for item in result.coverage.calculation_scope
             }
             # night_holiday_hours → holiday scope, no matching band → not_computed
             assert scope["holiday_work"] == "not_computed", (
@@ -1451,7 +1501,9 @@ class TestL3Warning:
             ),
             applies_to_kinds=[WorkKind.NIGHT],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[night_band])  # type: ignore[arg-type]
+        ts_schema = TimeSupplements(
+            overtime_bands=[night_band]  # type: ignore[arg-type]
+        )
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1467,7 +1519,7 @@ class TestL3Warning:
             result = compute(scenario).result
             scope = {
                 item.feature: item.calculation_status
-                for item in result.calculation_scope
+                for item in result.coverage.calculation_scope
             }
             assert scope["overtime"] == "not_computed", (
                 f"Expected not_computed for overtime (no weekday band), got:"
@@ -1502,7 +1554,9 @@ class TestL3Warning:
             ),
             applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
         )
-        ts_schema = TimeSupplements(overtime_bands=[weekday_band])  # type: ignore[arg-type]
+        ts_schema = TimeSupplements(
+            overtime_bands=[weekday_band]  # type: ignore[arg-type]
+        )
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
@@ -1513,14 +1567,14 @@ class TestL3Warning:
             result = compute(scenario).result
             scope = {
                 item.feature: item.calculation_status
-                for item in result.calculation_scope
+                for item in result.coverage.calculation_scope
             }
             assert scope["overtime"] == "not_computed", (
                 f"Expected not_computed (no supplementare band), got:"
                 f" {scope['overtime']}"
             )
-            assert any("supplementare" in w for w in result.warnings), (
-                f"Expected supplementare warning, got: {result.warnings}"
+            assert any("supplementare" in w for w in result.coverage.warnings), (
+                f"Expected supplementare warning, got: {result.coverage.warnings}"
             )
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
@@ -1553,13 +1607,13 @@ class TestL3Warning:
             result = compute(scenario).result
             scope = {
                 item.feature: item.calculation_status
-                for item in result.calculation_scope
+                for item in result.coverage.calculation_scope
             }
             assert scope["holiday_work"] == "not_computed", (
                 f"Expected not_computed (no holiday band), got: {scope['holiday_work']}"
             )
-            assert any("holiday" in w for w in result.warnings), (
-                f"Expected holiday warning, got: {result.warnings}"
+            assert any("holiday" in w for w in result.coverage.warnings), (
+                f"Expected holiday warning, got: {result.coverage.warnings}"
             )
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
@@ -1612,8 +1666,9 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            assert any("tiered weekly thresholds" in w for w in result.warnings), (
-                f"Expected tiered-band warning, got: {result.warnings}"
+            warnings = result.coverage.warnings
+            assert any("tiered weekly thresholds" in w for w in warnings), (
+                f"Expected tiered-band warning, got: {warnings}"
             )
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
@@ -1662,8 +1717,9 @@ class TestL3Warning:
         scenario = _req().model_copy(update={"time_supplements": oh})
         try:
             result = compute(scenario).result
-            assert not any("tiered weekly thresholds" in w for w in result.warnings), (
-                f"Unexpected tiered warning with weeks supplied: {result.warnings}"
+            warnings = result.coverage.warnings
+            assert not any("tiered weekly thresholds" in w for w in warnings), (
+                f"Unexpected tiered warning with weeks supplied: {warnings}"
             )
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
@@ -1678,10 +1734,13 @@ class TestL3Warning:
         # all fields default to 0
         scenario = _req().model_copy(update={"time_supplements": OvertimeHours()})
         result = compute(scenario).result
-        assert not any("time_supplements" in w for w in result.warnings), (
-            f"Unexpected time_supplements warning for zero hours: {result.warnings}"
+        warnings = result.coverage.warnings
+        assert not any("time_supplements" in w for w in warnings), (
+            f"Unexpected time_supplements warning for zero hours: {warnings}"
         )
-        ot_scope = next(s for s in result.calculation_scope if s.feature == "overtime")
+        ot_scope = next(
+            s for s in result.coverage.calculation_scope if s.feature == "overtime"
+        )
         assert ot_scope.calculation_status == "excluded"
 
 
@@ -1709,10 +1768,11 @@ class TestL3Absence:
             update={"absence_days": AbsenceDays(unpaid_days=_D("1"))}
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         # No warning: schema is present.
-        assert not any("absence_days" in w for w in result.warnings)
+        assert not any("absence_days" in w for w in result.coverage.warnings)
         # Deduction must be > 0 and equals gross / 26.
-        gross = result.gross_monthly
+        gross = result.earnings.gross_monthly
         expected = (gross / _D("26")).quantize(_D("0.01"))
         assert result.absence_deduction_monthly == expected
         # effective_gross = gross - deduction.
@@ -1722,7 +1782,8 @@ class TestL3Absence:
         """Absence scope item is excluded when no absence_days supplied."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["absence"] == "excluded"
 
@@ -1750,7 +1811,8 @@ class TestL3Absence:
         )
         result = compute(scenario).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["absence"] == "computed"
 
@@ -1773,11 +1835,12 @@ class TestL3Absence:
             update={"absence_days": AbsenceDays(unpaid_days=_D("27"))}
         )
         result = compute(scenario).result
-        gross = result.gross_monthly
+        assert isinstance(result, PeriodPayroll)
+        gross = result.earnings.gross_monthly
         assert result.absence_deduction_monthly == gross
         assert result.effective_gross_monthly == _D("0.00")
-        assert any("capped" in w for w in result.warnings), (
-            f"Expected cap warning, got: {result.warnings}"
+        assert any("capped" in w for w in result.coverage.warnings), (
+            f"Expected cap warning, got: {result.coverage.warnings}"
         )
 
     def test_absence_deduction_at_boundary_no_cap(self) -> None:
@@ -1799,12 +1862,13 @@ class TestL3Absence:
             update={"absence_days": AbsenceDays(unpaid_days=_D("26"))}
         )
         result = compute(scenario).result
-        gross = result.gross_monthly
+        assert isinstance(result, PeriodPayroll)
+        gross = result.earnings.gross_monthly
         expected_deduction = _D("999.96")  # round(1000/26)=38.46; 38.46*26=999.96
         assert result.absence_deduction_monthly == expected_deduction
         assert result.effective_gross_monthly == gross - expected_deduction
-        assert not any("capped" in w for w in result.warnings), (
-            f"Unexpected cap warning, got: {result.warnings}"
+        assert not any("capped" in w for w in result.coverage.warnings), (
+            f"Unexpected cap warning, got: {result.coverage.warnings}"
         )
 
     def test_zero_absence_days_no_warning_when_no_schema(self) -> None:
@@ -1818,11 +1882,11 @@ class TestL3Absence:
             update={"absence_days": AbsenceDays(unpaid_days=_D("0"))}
         )
         result = compute(scenario).result
-        assert not any("absence_days" in w for w in result.warnings), (
-            f"Unexpected absence_days warning for zero days: {result.warnings}"
+        assert not any("absence_days" in w for w in result.coverage.warnings), (
+            f"Unexpected absence_days warning for zero days: {result.coverage.warnings}"
         )
         absence_scope = next(
-            s for s in result.calculation_scope if s.feature == "absence"
+            s for s in result.coverage.calculation_scope if s.feature == "absence"
         )
         assert absence_scope.calculation_status == "excluded"
 
@@ -1848,7 +1912,8 @@ class TestL3Leave:
             update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
         result = compute(scenario).result
-        assert not any("leave_input" in w for w in result.warnings)
+        assert isinstance(result, PeriodPayroll)
+        assert not any("leave_input" in w for w in result.coverage.warnings)
         # 20 / 12 = 1.67
         assert result.leave_accrued_days_monthly == _D("1.67")
         assert result.leave_taken_days_monthly == _D("3")
@@ -1871,13 +1936,15 @@ class TestL3Leave:
             update={"leave_input": LeaveInput(taken_days=_D("0"))}
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         assert result.leave_accrued_days_monthly == _D("2.08")
 
     def test_leave_scope_excluded_when_no_input(self) -> None:
         """Leave scope item is excluded when no leave_input supplied."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["leave"] == "excluded"
 
@@ -1903,7 +1970,8 @@ class TestL3Leave:
         )
         result = compute(scenario).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["leave"] == "computed"
 
@@ -1935,7 +2003,8 @@ class TestL3Sickness:
             update={"sick_input": SickInput(sick_days=_D("3"))}
         )
         result = compute(scenario).result
-        assert not any("sick_input" in w for w in result.warnings)
+        assert isinstance(result, PeriodPayroll)
+        assert not any("sick_input" in w for w in result.coverage.warnings)
         # 3 days: only carenza, no INPS indemnity
         assert result.sick_days_monthly == _D("3")
         assert result.sick_inps_indemnity_monthly == _D("0")
@@ -1944,7 +2013,8 @@ class TestL3Sickness:
         """Sickness is excluded when no sick_input is provided."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["sickness"] == "excluded"
 
@@ -1973,17 +2043,15 @@ class TestL3Sickness:
         )
         result = compute(scenario).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["sickness"] == "computed"
 
     def test_sick_all_zero_when_no_input(self) -> None:
-        """All sickness output fields are zero when no sick_input is provided."""
+        """No sick_input produces AnnualEstimate (no period fields)."""
         result = compute(_req()).result
-        assert result.sick_days_monthly == _D("0")
-        assert result.sick_carenza_days_monthly == _D("0")
-        assert result.sick_inps_indemnity_monthly == _D("0")
-        assert result.sick_company_integration_monthly == _D("0")
+        assert not isinstance(result, PeriodPayroll)
 
     def test_zero_sick_days_no_warning_when_no_schema(self) -> None:
         """SickInput() with zero sick_days is treated as not requested.
@@ -1995,11 +2063,13 @@ class TestL3Sickness:
         # sick_days defaults to 0
         scenario = _req().model_copy(update={"sick_input": SickInput()})
         result = compute(scenario).result
-        assert not any("sick_input" in w for w in result.warnings), (
-            f"Unexpected sick_input warning for zero sick days: {result.warnings}"
+        warnings = result.coverage.warnings
+        assert not any("sick_input" in w for w in warnings), (
+            f"Unexpected sick_input warning for zero sick days: {warnings}"
         )
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["sickness"] == "excluded"
 
@@ -2014,16 +2084,18 @@ class TestL3Sickness:
         result_zero = compute(scenario_zero).result
         # Scope entry must match.
         scope_none = {
-            s.feature: s.calculation_status for s in result_none.calculation_scope
+            s.feature: s.calculation_status
+            for s in result_none.coverage.calculation_scope
         }
         scope_zero = {
-            s.feature: s.calculation_status for s in result_zero.calculation_scope
+            s.feature: s.calculation_status
+            for s in result_zero.coverage.calculation_scope
         }
         assert scope_none["sickness"] == scope_zero["sickness"]
         # Overall result status must match.
-        assert result_none.status == result_zero.status
+        assert result_none.coverage.status == result_zero.coverage.status
         # Confidence must match.
-        assert result_none.confidence == result_zero.confidence
+        assert result_none.coverage.confidence == result_zero.coverage.confidence
 
     def test_sick_pay_loader_not_called_when_ccnl_has_no_sickness_rules(
         self, monkeypatch: pytest.MonkeyPatch
@@ -2059,7 +2131,8 @@ class TestL3VariablePay:
         """fringe_benefit scope is excluded when no fringe_benefit_input."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["fringe_benefit"] == "excluded"
 
@@ -2067,7 +2140,8 @@ class TestL3VariablePay:
         """Welfare scope is excluded when no welfare_input."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["welfare"] == "excluded"
 
@@ -2075,20 +2149,15 @@ class TestL3VariablePay:
         """bonus_pdr scope is excluded when no bonus_input."""
         result = compute(_req()).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["bonus_pdr"] == "excluded"
 
     def test_all_variable_pay_fields_zero_when_no_inputs(self) -> None:
-        """All variable-pay output fields are zero when no inputs are provided."""
+        """No variable-pay inputs produces AnnualEstimate (no period fields)."""
         result = compute(_req()).result
-        assert result.fringe_benefit_annual == _D("0")
-        assert result.fringe_benefit_threshold_annual == _D("0")
-        assert result.fringe_benefit_taxable_annual == _D("0")
-        assert result.welfare_annual == _D("0")
-        assert result.bonus_annual == _D("0")
-        assert result.bonus_pdr_flat_tax_annual == _D("0")
-        assert result.bonus_ordinary_taxable_annual == _D("0")
+        assert not isinstance(result, PeriodPayroll)
 
     def test_fringe_benefit_scope_verified_when_input_given(self) -> None:
         """fringe_benefit scope is verified when input is provided."""
@@ -2097,7 +2166,8 @@ class TestL3VariablePay:
         )
         result = compute(scenario).result
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["fringe_benefit"] == "computed"
 
@@ -2107,6 +2177,7 @@ class TestL3VariablePay:
             update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         assert result.fringe_benefit_annual == _D("800")
         assert result.fringe_benefit_threshold_annual == _D("1000.00")
         assert result.fringe_benefit_taxable_annual == _D("0")
@@ -2119,6 +2190,7 @@ class TestL3VariablePay:
             }
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         assert result.fringe_benefit_annual == _D("1400")
         assert result.fringe_benefit_taxable_annual == _D("1400.00")
 
@@ -2128,8 +2200,10 @@ class TestL3VariablePay:
             update={"welfare_input": WelfareInput(annual_amount=_D("600"))}
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["welfare"] == "computed"
         assert result.welfare_annual == _D("600")
@@ -2144,8 +2218,10 @@ class TestL3VariablePay:
             }
         )
         result = compute(scenario).result
+        assert isinstance(result, PeriodPayroll)
         scope = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope["bonus_pdr"] == "computed"
         assert result.bonus_annual == _D("2000")
@@ -2168,10 +2244,10 @@ class TestL3VariablePay:
                 }
             )
         ).result
-        assert with_inputs.gross_annual == baseline.gross_annual
+        assert with_inputs.earnings.gross_annual == baseline.earnings.gross_annual
         assert with_inputs.net_annual == baseline.net_annual
-        assert with_inputs.taxable_income == baseline.taxable_income
-        assert with_inputs.irpef_net == baseline.irpef_net
+        assert with_inputs.taxes.taxable_income == baseline.taxes.taxable_income
+        assert with_inputs.taxes.irpef_net == baseline.taxes.irpef_net
 
     def test_welfare_only_does_not_register_variable_pay_ruleset(self) -> None:
         """A welfare-only scenario must not include variable_pay in ruleset_version.
@@ -2200,8 +2276,8 @@ class TestL3FamilyDeductions:
         """Without family input, irpef_net equals baseline (no deduction)."""
         baseline = compute(_req()).result
         with_none = compute(_req().model_copy(update={"family": None})).result
-        assert with_none.irpef_net == baseline.irpef_net
-        assert with_none.family_deduction_annual == _D("0")
+        assert with_none.taxes.irpef_net == baseline.taxes.irpef_net
+        assert with_none.taxes.family_deduction_annual == _D("0")
 
     def test_spouse_deduction_reduces_irpef_net(self) -> None:
         """Spouse deduction is subtracted from irpef_net."""
@@ -2211,8 +2287,8 @@ class TestL3FamilyDeductions:
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
-        assert with_spouse.family_deduction_spouse_annual > _D("0")
-        assert with_spouse.irpef_net < baseline.irpef_net
+        assert with_spouse.taxes.family_deduction_spouse_annual > _D("0")
+        assert with_spouse.taxes.irpef_net < baseline.taxes.irpef_net
 
     def test_family_deduction_children_and_other_zero_when_not_set(self) -> None:
         """Children/other fields are zero when only spouse is set."""
@@ -2221,8 +2297,8 @@ class TestL3FamilyDeductions:
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
-        assert result.family_deduction_children_annual == _D("0")
-        assert result.family_deduction_other_annual == _D("0")
+        assert result.taxes.family_deduction_children_annual == _D("0")
+        assert result.taxes.family_deduction_other_annual == _D("0")
 
     def test_no_dependents_flags_no_deduction(self) -> None:
         """Family with no eligible dependents: deduction zero, irpef_net unchanged."""
@@ -2230,8 +2306,8 @@ class TestL3FamilyDeductions:
         with_empty_family = compute(
             _req().model_copy(update={"family": FamilyComposition()})
         ).result
-        assert with_empty_family.family_deduction_annual == _D("0")
-        assert with_empty_family.irpef_net == baseline.irpef_net
+        assert with_empty_family.taxes.family_deduction_annual == _D("0")
+        assert with_empty_family.taxes.irpef_net == baseline.taxes.irpef_net
 
     def test_exempt_employer_family_unused_equals_total(self) -> None:
         """When employer does not withhold IRPEF, unused = total deduction."""
@@ -2241,9 +2317,12 @@ class TestL3FamilyDeductions:
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
-        assert result.family_deduction_spouse_annual > _D("0")
-        assert result.unused_family_deduction_annual == result.family_deduction_annual
-        assert result.irpef_net == _D("0.00")
+        assert result.taxes.family_deduction_spouse_annual > _D("0")
+        assert (
+            result.taxes.unused_family_deduction_annual
+            == result.taxes.family_deduction_annual
+        )
+        assert result.taxes.irpef_net == _D("0.00")
 
     def test_gross_annual_not_mutated_by_family_deductions(self) -> None:
         """gross_annual is unchanged by family deductions."""
@@ -2253,7 +2332,7 @@ class TestL3FamilyDeductions:
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
-        assert with_family.gross_annual == baseline.gross_annual
+        assert with_family.earnings.gross_annual == baseline.earnings.gross_annual
 
     def test_family_deduction_taper_uses_taxable_income(self) -> None:
         """Art. 12 taper uses taxable_income (gross minus INPS), not gross_annual.
@@ -2272,11 +2351,11 @@ class TestL3FamilyDeductions:
         # taxable_income < gross_annual, so the taper (95000 - RC) / 95000
         # is larger when RC = taxable_income.  The deduction must be strictly
         # greater than what the wrong (gross_annual) base would give.
-        gross = result_no_fam.gross_annual
-        taxable = result_no_fam.taxable_income
+        gross = result_no_fam.earnings.gross_annual
+        taxable = result_no_fam.taxes.taxable_income
         assert taxable < gross
         # Deduction must be positive and taper-dependent
-        assert result_spouse.family_deduction_spouse_annual > _D("0")
+        assert result_spouse.taxes.family_deduction_spouse_annual > _D("0")
         # Expected: taper(taxable) > taper(gross), so deduction is larger.
         limit = _D("95000")
         taper_taxable = max(_D("0"), (limit - taxable) / limit)
@@ -2297,13 +2376,13 @@ class TestL3FamilyDeductions:
         ).result
         assert (
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI
-            not in result.fiscal_simplifications
+            not in result.taxes.fiscal_simplifications
         )
 
     def test_no_detrazioni_familiari_present_when_family_is_none(self) -> None:
         """NO_DETRAZIONI_FAMILIARI is present when no family data is provided."""
         result = compute(_req().model_copy(update={"family": None})).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
 
     def test_no_detrazioni_familiari_present_when_no_dependents(self) -> None:
@@ -2315,7 +2394,7 @@ class TestL3FamilyDeductions:
         result = compute(
             _req().model_copy(update={"family": FamilyComposition()})
         ).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
 
 
@@ -2356,8 +2435,11 @@ class TestSterilizzazioneDetrazioni:
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
-        assert baseline.family_deduction_annual == with_strd.family_deduction_annual
-        assert with_strd.sterilizzazione_clawback_annual == _D("0")
+        assert (
+            baseline.taxes.family_deduction_annual
+            == with_strd.taxes.family_deduction_annual
+        )
+        assert with_strd.taxes.sterilizzazione_clawback_annual == _D("0")
 
     def test_sterilizzazione_no_art15_no_clawback(self) -> None:
         """Without Art. 15 deductions, sterilizzazione clawback is zero.
@@ -2369,8 +2451,8 @@ class TestSterilizzazioneDetrazioni:
         with_strd = compute(_req()).result
         _mock_rules[0] = make_year_rules()
         without_strd = compute(_req()).result
-        assert with_strd.sterilizzazione_clawback_annual == _D("0")
-        assert with_strd.irpef_net == without_strd.irpef_net
+        assert with_strd.taxes.sterilizzazione_clawback_annual == _D("0")
+        assert with_strd.taxes.irpef_net == without_strd.taxes.irpef_net
 
     def test_sterilizzazione_increases_irpef_net(self) -> None:
         """Sterilizzazione reduces Art. 15 oneri credit → irpef_net increases.
@@ -2396,16 +2478,19 @@ class TestSterilizzazioneDetrazioni:
             )
         ).result
         # Art. 13 (work_income_deduction) is not affected.
-        assert with_strd.work_income_deduction == without_strd.work_income_deduction
+        assert (
+            with_strd.taxes.work_income_deduction
+            == without_strd.taxes.work_income_deduction
+        )
         # Clawback fires at 440 (< 570 credit).
-        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
+        assert with_strd.taxes.sterilizzazione_clawback_annual == _D("440.00")
         # irpef_net increases by the clawback amount.
         assert (
-            with_strd.irpef_net - without_strd.irpef_net
-            == with_strd.sterilizzazione_clawback_annual
+            with_strd.taxes.irpef_net - without_strd.taxes.irpef_net
+            == with_strd.taxes.sterilizzazione_clawback_annual
         )
         # Raw art15_deduction_annual field is the pre-clawback credit.
-        assert with_strd.art15_deduction_annual == _D("570.00")
+        assert with_strd.taxes.art15_deduction_annual == _D("570.00")
 
     def test_sterilizzazione_below_threshold_no_effect(self) -> None:
         """Income <= threshold: no clawback; irpef_net unchanged."""
@@ -2415,8 +2500,8 @@ class TestSterilizzazioneDetrazioni:
         with_high_threshold = compute(_req()).result
         _mock_rules[0] = make_year_rules()
         without = compute(_req()).result
-        assert with_high_threshold.sterilizzazione_clawback_annual == _D("0")
-        assert with_high_threshold.irpef_net == without.irpef_net
+        assert with_high_threshold.taxes.sterilizzazione_clawback_annual == _D("0")
+        assert with_high_threshold.taxes.irpef_net == without.taxes.irpef_net
 
     def test_sterilizzazione_at_high_income_art15_reduced(self) -> None:
         """At real 200k+ income with Art. 15 oneri, clawback fires on the credit.
@@ -2444,11 +2529,11 @@ class TestSterilizzazioneDetrazioni:
             )
         ).result
         # Clawback fires: Art. 15 credit is 760; min(440, 760) = 440.
-        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
+        assert with_strd.taxes.sterilizzazione_clawback_annual == _D("440.00")
         # Raw art15_deduction_annual still shows the pre-clawback credit.
-        assert with_strd.art15_deduction_annual == _D("760.00")
+        assert with_strd.taxes.art15_deduction_annual == _D("760.00")
         # irpef_net increases by the clawback.
-        assert with_strd.irpef_net - without_strd.irpef_net == _D("440.00")
+        assert with_strd.taxes.irpef_net - without_strd.taxes.irpef_net == _D("440.00")
 
     def test_sterilizzazione_with_family_and_art15_pins_unused(self) -> None:
         """art15_unused is recomputed against the effective credit after clawback.
@@ -2476,21 +2561,24 @@ class TestSterilizzazioneDetrazioni:
             )
         ).result
         # Verify sterilizzazione fired and family deductions are present.
-        assert result.sterilizzazione_clawback_annual == _D("440.00")
-        assert result.family_deduction_annual > _D("0")
+        assert result.taxes.sterilizzazione_clawback_annual == _D("440.00")
+        assert result.taxes.family_deduction_annual > _D("0")
         # Raw art15_deduction_annual reports the pre-clawback credit in both.
-        assert result.art15_deduction_annual == result_no_strd.art15_deduction_annual
+        assert (
+            result.taxes.art15_deduction_annual
+            == result_no_strd.taxes.art15_deduction_annual
+        )
         # art15_unused is lower with sterilizzazione because the effective credit
         # is smaller (320 vs 760 EUR), so less credit needs to be absorbed.
-        assert result.unused_art15_deduction_annual <= (
-            result_no_strd.unused_art15_deduction_annual
+        assert result.taxes.unused_art15_deduction_annual <= (
+            result_no_strd.taxes.unused_art15_deduction_annual
         )
         # The reduction in unused is bounded by the clawback amount.
         delta = (
-            result_no_strd.unused_art15_deduction_annual
-            - result.unused_art15_deduction_annual
+            result_no_strd.taxes.unused_art15_deduction_annual
+            - result.taxes.unused_art15_deduction_annual
         )
-        assert _D("0") <= delta <= result.sterilizzazione_clawback_annual
+        assert _D("0") <= delta <= result.taxes.sterilizzazione_clawback_annual
 
 
 # ---------------------------------------------------------------------------
@@ -2507,8 +2595,8 @@ class TestArt15Deductions:
         """Without art15_deductions, irpef_net equals baseline."""
         baseline = compute(_req()).result
         with_none = compute(_req().model_copy(update={"art15_deductions": None})).result
-        assert with_none.irpef_net == baseline.irpef_net
-        assert with_none.art15_deduction_annual == _D("0")
+        assert with_none.taxes.irpef_net == baseline.taxes.irpef_net
+        assert with_none.taxes.art15_deduction_annual == _D("0")
 
     def test_mortgage_deduction_reduces_irpef_net(self) -> None:
         """Art. 15 mortgage credit is subtracted from irpef_net, clamped at 0.
@@ -2525,9 +2613,9 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        assert with_art15.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
-        expected = max(_D("0"), baseline.irpef_net - _D("570.00"))
-        assert with_art15.irpef_net == expected
+        assert with_art15.taxes.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
+        expected = max(_D("0"), baseline.taxes.irpef_net - _D("570.00"))
+        assert with_art15.taxes.irpef_net == expected
 
     def test_ceiling_cap_applied(self) -> None:
         """Interest above EUR 4 000 ceiling: credit capped at EUR 760."""
@@ -2538,7 +2626,7 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        assert result.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
+        assert result.taxes.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
 
     def test_no_detrazioni_art15_mortgage_tag_removed_when_computed(self) -> None:
         """NO_DETRAZIONI_ART15_MORTGAGE absent when mortgage interest is provided."""
@@ -2549,7 +2637,7 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE not in sfs
 
     def test_partial_detrazioni_art15_always_set_when_mortgage_present(self) -> None:
@@ -2565,19 +2653,19 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
     def test_no_detrazioni_art15_mortgage_tag_present_when_not_set(self) -> None:
         """NO_DETRAZIONI_ART15_MORTGAGE present when mortgage not provided."""
         result = compute(_req()).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE in sfs
 
     def test_partial_detrazioni_art15_always_set_when_no_art15(self) -> None:
         """PARTIAL_DETRAZIONI_ART15 always set, even without any Art. 15 input."""
         result = compute(_req()).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
     def test_exempt_employer_art15_unused_equals_total(self) -> None:
@@ -2590,9 +2678,12 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        assert result.art15_deduction_annual == _D("570.00")
-        assert result.unused_art15_deduction_annual == result.art15_deduction_annual
-        assert result.irpef_net == _D("0.00")
+        assert result.taxes.art15_deduction_annual == _D("570.00")
+        assert (
+            result.taxes.unused_art15_deduction_annual
+            == result.taxes.art15_deduction_annual
+        )
+        assert result.taxes.irpef_net == _D("0.00")
 
     def test_zero_interest_has_no_effect(self) -> None:
         """Art15Deductions with zero mortgage_interest: no deduction, tags kept."""
@@ -2602,9 +2693,9 @@ class TestArt15Deductions:
                 update={"art15_deductions": Art15Deductions(mortgage_interest=_D("0"))}
             )
         ).result
-        assert with_zero.art15_deduction_annual == _D("0")
-        assert with_zero.irpef_net == baseline.irpef_net
-        sfs = with_zero.fiscal_simplifications
+        assert with_zero.taxes.art15_deduction_annual == _D("0")
+        assert with_zero.taxes.irpef_net == baseline.taxes.irpef_net
+        sfs = with_zero.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE in sfs
         assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
@@ -2618,7 +2709,7 @@ class TestArt15Deductions:
                 }
             )
         ).result
-        assert with_art15.gross_annual == baseline.gross_annual
+        assert with_art15.earnings.gross_annual == baseline.earnings.gross_annual
 
     def test_sterilizzazione_reduces_art15_increases_irpef(self) -> None:
         """Sterilizzazione fires on Art. 15 oneri; clawback = 440.
@@ -2647,10 +2738,10 @@ class TestArt15Deductions:
             )
         ).result
         # art15_deduction_annual reports the raw pre-clawback credit in both.
-        assert with_strd.art15_deduction_annual == _D("570.00")
-        assert without_strd.art15_deduction_annual == _D("570.00")
+        assert with_strd.taxes.art15_deduction_annual == _D("570.00")
+        assert without_strd.taxes.art15_deduction_annual == _D("570.00")
         # Clawback fires on Art. 15 → sterilizzazione_clawback = 440.
-        assert with_strd.sterilizzazione_clawback_annual == _D("440.00")
+        assert with_strd.taxes.sterilizzazione_clawback_annual == _D("440.00")
 
     def test_exempt_employer_sterilizzazione_art15_unused_unchanged(self) -> None:
         """Exempt employer + sterilizzazione: art15_unused equals full art15_total.
@@ -2671,10 +2762,13 @@ class TestArt15Deductions:
             )
         ).result
         # art15 = 3000 * 0.19 = 570; unchanged by sterilizzazione.
-        assert result.art15_deduction_annual == _D("570.00")
+        assert result.taxes.art15_deduction_annual == _D("570.00")
         # Exempt employer: all art15 is unused (irpef_net stays 0 regardless).
-        assert result.unused_art15_deduction_annual == result.art15_deduction_annual
-        assert result.irpef_net == _D("0.00")
+        assert (
+            result.taxes.unused_art15_deduction_annual
+            == result.taxes.art15_deduction_annual
+        )
+        assert result.taxes.irpef_net == _D("0.00")
 
     def test_ulteriore_detrazione_reduces_art15_available_capacity(self) -> None:
         """Ulteriore detrazione consumes IRPEF capacity before Art. 15 credits.
@@ -2700,10 +2794,10 @@ class TestArt15Deductions:
             )
         ).result
         # art15 = min(4000, 4000) * 0.19 = 760 (at EUR 4 000 ceiling).
-        assert result.art15_deduction_annual == _D("760.00")
+        assert result.taxes.art15_deduction_annual == _D("760.00")
         # UDL = 5 000 exhausts all IRPEF before Art. 15 → full credit is unused.
-        assert result.ulteriore_detrazione_lavoro == _D("5000.00")
-        assert result.unused_art15_deduction_annual == _D("760.00")
+        assert result.taxes.ulteriore_detrazione_lavoro == _D("5000.00")
+        assert result.taxes.unused_art15_deduction_annual == _D("760.00")
 
 
 class TestArt15MortgagePre2022:
@@ -2723,10 +2817,11 @@ class TestArt15MortgagePre2022:
             )
         ).result
         # Art. 15 credit still applied to IRPEF
-        assert with_post_2021.art15_deduction_annual == _D("570.00")
+        assert with_post_2021.taxes.art15_deduction_annual == _D("570.00")
         # TI unaffected by post-2021 mortgage
         assert (
-            with_post_2021.trattamento_integrativo == baseline.trattamento_integrativo
+            with_post_2021.taxes.trattamento_integrativo
+            == baseline.taxes.trattamento_integrativo
         )
 
     def test_pre_2022_mortgage_included_in_ti_relevant_deductions(self) -> None:
@@ -2742,9 +2837,12 @@ class TestArt15MortgagePre2022:
             )
         ).result
         # Art. 15 credit still applied to IRPEF
-        assert with_pre_2022.art15_deduction_annual == _D("570.00")
+        assert with_pre_2022.taxes.art15_deduction_annual == _D("570.00")
         # TI may increase because relevant_deductions grew (or remain at max)
-        assert with_pre_2022.trattamento_integrativo >= baseline.trattamento_integrativo
+        assert (
+            with_pre_2022.taxes.trattamento_integrativo
+            >= baseline.taxes.trattamento_integrativo
+        )
 
 
 def _scope_computed(feature: str) -> ScopeItem:
@@ -2847,14 +2945,14 @@ class TestComputeResultStatus:
     def test_compute_sets_status_on_result(self) -> None:
         """compute() populates status='complete' for a basic scenario."""
         result = compute(_req()).result
-        assert result.status in {"complete", "partial"}
+        assert result.coverage.status in {"complete", "partial"}
 
     def test_compute_status_is_complete_without_work_rules_input(self) -> None:
         """No L3 inputs and L3 schema present → complete (all excluded)."""
         result = compute(_req()).result
         # No overtime/leave/sick input: all L3 scope items are 'excluded'.
         # All L1/L2 items are 'computed'.
-        assert result.status == "complete"
+        assert result.coverage.status == "complete"
 
 
 def _verified_provenance() -> RuleProvenance:
@@ -3043,7 +3141,7 @@ class TestComputeConfidence:
     def test_compute_result_has_confidence_field(self) -> None:
         """compute() populates confidence on the result."""
         result = compute(_req()).result
-        assert result.confidence in {"low", "medium", "high"}
+        assert result.coverage.confidence in {"low", "medium", "high"}
 
 
 # ---------------------------------------------------------------------------
@@ -3144,7 +3242,7 @@ class TestConfidenceWithOptionalRulesets:
         """Verified var-pay ruleset + fringe_benefit (informational_only) → medium.
 
         fringe_benefit is always integration_status=informational_only, so
-        result.status is "partial" and confidence tops out at "medium".  A
+        result.coverage.status is "partial" and confidence tops out at "medium".  A
         verified ruleset does not degrade confidence further.
         """
         _mock_ccnl[0] = _verified_ccnl()
@@ -3154,7 +3252,7 @@ class TestConfidenceWithOptionalRulesets:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"fringe_benefit_input": _FB_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3167,7 +3265,7 @@ class TestConfidenceWithOptionalRulesets:
             lambda _: unverified,
         )
         result = compute(_req().model_copy(update={"fringe_benefit_input": _FB_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_ccnl_without_ruleset_limits_confidence_to_medium(self) -> None:
         """Verified CCNL provenance but absent ruleset block → at most medium.
@@ -3186,7 +3284,7 @@ class TestConfidenceWithOptionalRulesets:
         # Intentionally no "ruleset" key → ccnl.ruleset = None
         _mock_ccnl[0] = CCNL.model_validate(raw)
         result = compute(_req())
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_unverified_ccnl_ruleset_downgrades_confidence(self) -> None:
         """Unverified CCNL ruleset → confidence medium."""
@@ -3211,7 +3309,7 @@ class TestConfidenceWithOptionalRulesets:
         raw["ruleset"] = ruleset_block
         _mock_ccnl[0] = CCNL.model_validate(raw)
         result = compute(_req())
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_sick_pay_rates_without_ruleset_not_added_to_ids(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3337,7 +3435,7 @@ class TestConfidenceFamilyArt15:
         """
         _mock_ccnl[0] = _verified_ccnl()
         result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_family_with_verified_ruleset_still_medium(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3356,7 +3454,7 @@ class TestConfidenceFamilyArt15:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_family_with_unverified_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3369,7 +3467,7 @@ class TestConfidenceFamilyArt15:
             lambda _: unverified,
         )
         result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_art15_without_ruleset_downgrades_confidence(self) -> None:
         """Art. 15 deductions with no ruleset block in JSON → medium.
@@ -3379,7 +3477,7 @@ class TestConfidenceFamilyArt15:
         """
         _mock_ccnl[0] = _verified_ccnl()
         result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_art15_with_verified_ruleset_stays_medium(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3387,7 +3485,7 @@ class TestConfidenceFamilyArt15:
         """Art. 15 deductions with a verified ruleset + verified CCNL → medium.
 
         art15_deductions is always calculation_status=partial (simplified model),
-        so result.status is "partial" and confidence tops out at "medium".  A
+        so result.coverage.status is "partial" and confidence tops out at "medium".  A
         verified ruleset does not degrade confidence further.
         """
         _mock_ccnl[0] = _verified_ccnl()
@@ -3397,7 +3495,7 @@ class TestConfidenceFamilyArt15:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_art15_with_unverified_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3410,13 +3508,13 @@ class TestConfidenceFamilyArt15:
             lambda _: unverified,
         )
         result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
-        assert result.result.confidence == "medium"
+        assert result.result.coverage.confidence == "medium"
 
     def test_no_optional_features_confidence_unaffected(self) -> None:
         """No family or Art. 15 inputs: consumed_ruleset_ids stays empty."""
         _mock_ccnl[0] = _verified_ccnl()
         result = compute(_req())
-        assert result.result.confidence == "high"
+        assert result.result.coverage.confidence == "high"
 
     def test_none_ruleset_in_compute_confidence_is_unverified(self) -> None:
         """compute_confidence treats None ruleset entries as unverified."""
@@ -3468,7 +3566,7 @@ class TestBilateralFunds:
     def test_no_bilateral_funds_flag_present_when_no_funds(self) -> None:
         """NO_BILATERAL_FUNDS is set when bilateral_funds is empty."""
         result = compute(_req()).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_BILATERAL_FUNDS in sfs
 
     def test_no_bilateral_funds_flag_absent_when_funds_present(self) -> None:
@@ -3484,7 +3582,7 @@ class TestBilateralFunds:
             }
         )
         result = compute(scenario).result
-        sfs = result.fiscal_simplifications
+        sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_BILATERAL_FUNDS not in sfs
 
     def test_flat_monthly_fund_reduces_net_annual(self) -> None:
@@ -3518,8 +3616,10 @@ class TestBilateralFunds:
             }
         )
         result = compute(scenario).result
-        expected_cost = money(baseline.employer_cost_annual + _D("15") * 12)
-        assert result.employer_cost_annual == expected_cost
+        expected_cost = money(
+            baseline.employer_cost.employer_cost_annual + _D("15") * 12
+        )
+        assert result.employer_cost.employer_cost_annual == expected_cost
 
     def test_rate_fund_tfr_base_computation(self) -> None:
         """RateFund with base='tfr_base' is applied and reduces net_annual."""
@@ -3536,14 +3636,17 @@ class TestBilateralFunds:
         )
         result = compute(scenario).result
         # bilateral_employee_annual must be positive (tfr_base > 0)
-        assert result.bilateral_employee_annual > _D("0")
+        assert result.contributions.bilateral_employee_annual > _D("0")
         # net_annual decreases by exactly bilateral_employee_annual
         assert result.net_annual == money(
-            baseline.net_annual - result.bilateral_employee_annual
+            baseline.net_annual - result.contributions.bilateral_employee_annual
         )
         # employer side unaffected
-        assert result.bilateral_employer_annual == _D("0")
-        assert result.employer_cost_annual == baseline.employer_cost_annual
+        assert result.contributions.bilateral_employer_annual == _D("0")
+        assert (
+            result.employer_cost.employer_cost_annual
+            == baseline.employer_cost.employer_cost_annual
+        )
 
     def test_rate_fund_gross_annual_computation(self) -> None:
         """RateFund with base='gross_annual' applies rate to gross_annual."""
@@ -3561,13 +3664,13 @@ class TestBilateralFunds:
             }
         )
         result = compute(scenario).result
-        expected_employee = money(baseline.gross_annual * rate)
-        expected_employer = money(baseline.gross_annual * rate)
-        assert result.bilateral_employee_annual == expected_employee
-        assert result.bilateral_employer_annual == expected_employer
+        expected_employee = money(baseline.earnings.gross_annual * rate)
+        expected_employer = money(baseline.earnings.gross_annual * rate)
+        assert result.contributions.bilateral_employee_annual == expected_employee
+        assert result.contributions.bilateral_employer_annual == expected_employer
         assert result.net_annual == money(baseline.net_annual - expected_employee)
-        assert result.employer_cost_annual == money(
-            baseline.employer_cost_annual + expected_employer
+        assert result.employer_cost.employer_cost_annual == money(
+            baseline.employer_cost.employer_cost_annual + expected_employer
         )
 
     def test_gross_annual_not_mutated_by_bilateral_funds(self) -> None:
@@ -3584,7 +3687,7 @@ class TestBilateralFunds:
             }
         )
         result = compute(scenario).result
-        assert result.gross_annual == baseline.gross_annual
+        assert result.earnings.gross_annual == baseline.earnings.gross_annual
 
     def test_bilateral_funds_scope_item_verified_when_present(self) -> None:
         """bilateral_funds scope item is 'verified' when funds are provided."""
@@ -3600,7 +3703,8 @@ class TestBilateralFunds:
         )
         result = compute(scenario).result
         scope_map = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope_map["bilateral_funds"] == "computed"
 
@@ -3608,7 +3712,8 @@ class TestBilateralFunds:
         """bilateral_funds scope item is 'excluded' when no funds provided."""
         result = compute(_req()).result
         scope_map = {
-            item.feature: item.calculation_status for item in result.calculation_scope
+            item.feature: item.calculation_status
+            for item in result.coverage.calculation_scope
         }
         assert scope_map["bilateral_funds"] == "excluded"
 
@@ -3632,11 +3737,11 @@ class TestBilateralFunds:
         result = compute(scenario).result
         expected_emp = money((_D("10") + _D("5")) * 12)
         expected_er = money((_D("20") + _D("8")) * 12)
-        assert result.bilateral_employee_annual == expected_emp
-        assert result.bilateral_employer_annual == expected_er
+        assert result.contributions.bilateral_employee_annual == expected_emp
+        assert result.contributions.bilateral_employer_annual == expected_er
         assert result.net_annual == money(baseline.net_annual - expected_emp)
-        assert result.employer_cost_annual == money(
-            baseline.employer_cost_annual + expected_er
+        assert result.employer_cost.employer_cost_annual == money(
+            baseline.employer_cost.employer_cost_annual + expected_er
         )
 
 
@@ -3666,51 +3771,51 @@ class TestIvsCeilingWarning:
     def test_post_1996_hire_no_ceiling_emits_warning(self) -> None:
         """Hire date on or after 1996-01-01 with ivs=False yields a warning."""
         r = compute(self._scenario_with_hire_date(date(1996, 6, 1))).result
-        assert any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_post_1996_hire_with_ceiling_no_warning(self) -> None:
         """Hire date after 1996-01-01 with ivs=True produces no warning."""
         r = compute(
             self._scenario_with_hire_date(date(2000, 1, 1), ivs_ceiling_applies=True)
         ).result
-        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_pre_1996_hire_no_warning(self) -> None:
         """Hire date before 1996-01-01 produces no warning."""
         r = compute(self._scenario_with_hire_date(date(1990, 3, 15))).result
-        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_post_1996_hire_warning_contains_overstated(self) -> None:
         """Warning for post-1996 hire must mention 'overstated'."""
         r = compute(self._scenario_with_hire_date(date(2000, 6, 1))).result
-        assert any("overstated" in w for w in r.warnings)
+        assert any("overstated" in w for w in r.coverage.warnings)
 
     def test_seniority_by_months_post_1996_emits_warning(self) -> None:
         """SeniorityByMonths implying post-1996 hire triggers the warning."""
         # 120 months = 10 years of seniority; implied hire ~2016, post-1996
         r = compute(_req(seniority_months=120)).result
-        assert any("overstated" in w for w in r.warnings)
+        assert any("overstated" in w for w in r.coverage.warnings)
 
     def test_seniority_by_months_pre_1996_no_warning(self) -> None:
         """SeniorityByMonths implying pre-1996 hire produces no warning."""
         # 480 months = 40 years; implied hire ~1986, pre-1996
         r = compute(_req(seniority_months=480)).result
-        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_seniority_by_months_with_ceiling_no_warning(self) -> None:
         """SeniorityByMonths with ivs_ceiling_applies=True produces no warning."""
         r = compute(_req(seniority_months=120, ivs_ceiling_applies=True)).result
-        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_seniority_by_count_emits_warning(self) -> None:
         """SeniorityByCount with ivs_ceiling_applies=False triggers warning."""
         r = compute(_req(seniority_count=2)).result
-        assert any("overstated" in w for w in r.warnings)
+        assert any("overstated" in w for w in r.coverage.warnings)
 
     def test_seniority_by_count_with_ceiling_no_warning(self) -> None:
         """SeniorityByCount with ivs_ceiling_applies=True produces no warning."""
         r = compute(_req(seniority_count=2, ivs_ceiling_applies=True)).result
-        assert not any("ivs_ceiling_applies" in w for w in r.warnings)
+        assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_base_at_or_below_ceiling_no_warning(self) -> None:
         """Post-1996 hire produces no warning when base does not exceed ceiling."""
@@ -3777,7 +3882,7 @@ class TestNoAssegnoUnico:
     def test_always_present_default_scenario(self) -> None:
         """Default scenario includes NO_ASSEGNO_UNICO simplification."""
         r = compute(_req()).result
-        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications
+        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.taxes.fiscal_simplifications
 
     def test_always_present_with_bilateral_funds(self) -> None:
         """NO_ASSEGNO_UNICO is present even when bilateral funds are supplied."""
@@ -3792,7 +3897,7 @@ class TestNoAssegnoUnico:
             }
         )
         r = compute(scenario).result
-        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.fiscal_simplifications
+        assert FiscalSimplification.NO_ASSEGNO_UNICO in r.taxes.fiscal_simplifications
 
 
 class TestBackCalculationProvenance:
@@ -4001,7 +4106,7 @@ class TestSurtaxRulesetIdentity:
                 jurisdiction=Jurisdiction(regione="TestRegione"),
             )
         )
-        assert calc.result.confidence == "medium"
+        assert calc.result.coverage.confidence == "medium"
 
     def test_unverified_municipal_downgrades_confidence_when_applied(self) -> None:
         """Unverified municipal ruleset → medium confidence when entry was applied."""
@@ -4015,7 +4120,7 @@ class TestSurtaxRulesetIdentity:
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
             )
         )
-        assert calc.result.confidence == "medium"
+        assert calc.result.coverage.confidence == "medium"
 
     def test_unverified_municipal_not_consumed_when_regione_only(self) -> None:
         """Unverified municipal ruleset does not downgrade confidence: regione only."""
@@ -4029,7 +4134,7 @@ class TestSurtaxRulesetIdentity:
                 jurisdiction=Jurisdiction(regione="TestRegione"),
             )
         )
-        assert calc.result.confidence == "high"
+        assert calc.result.coverage.confidence == "high"
 
     def test_both_applied_both_identities_affect_confidence(self) -> None:
         """Both entries applied: unverified municipal identity downgrades confidence."""
@@ -4045,4 +4150,4 @@ class TestSurtaxRulesetIdentity:
                 ),
             )
         )
-        assert calc.result.confidence == "medium"
+        assert calc.result.coverage.confidence == "medium"

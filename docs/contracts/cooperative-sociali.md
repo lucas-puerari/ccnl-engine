@@ -147,5 +147,5 @@ percentage: 1.00
 ## Usage example
 
 ```python
---8<-- "docs/examples/contracts/cooperative-sociali.py"
+--8 < --"docs/examples/contracts/cooperative-sociali.py"
 ```

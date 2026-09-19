@@ -47,13 +47,21 @@ permanent = estimate_annual(
     )
 ).result
 
-print(f"Apprenticeship %:    {apprentice.apprenticeship_pct}")
-print(f"Gross monthly — apprentice:  {apprentice.gross_monthly} EUR")
-print(f"Gross monthly — permanent:   {permanent.gross_monthly} EUR")
-print(f"Employer INPS — apprentice:  {apprentice.inps_employer_annual} EUR")
-print(f"Employer INPS — permanent:   {permanent.inps_employer_annual} EUR")
-print(f"Employer cost — apprentice:  {apprentice.employer_cost_annual} EUR")
-print(f"Employer cost — permanent:   {permanent.employer_cost_annual} EUR")
+print(f"Apprenticeship %:    {apprentice.earnings.apprenticeship_pct}")
+print(f"Gross monthly — apprentice:  {apprentice.earnings.gross_monthly} EUR")
+print(f"Gross monthly — permanent:   {permanent.earnings.gross_monthly} EUR")
+print(
+    f"Employer INPS — apprentice:  {apprentice.contributions.inps_employer_annual} EUR"
+)
+print(
+    f"Employer INPS — permanent:   {permanent.contributions.inps_employer_annual} EUR"
+)
+print(
+    f"Employer cost — apprentice:  {apprentice.employer_cost.employer_cost_annual} EUR"
+)
+print(
+    f"Employer cost — permanent:   {permanent.employer_cost.employer_cost_annual} EUR"
+)
 
-assert apprentice.apprenticeship_pct is not None
-assert apprentice.gross_annual < permanent.gross_annual
+assert apprentice.earnings.apprenticeship_pct is not None
+assert apprentice.earnings.gross_annual < permanent.earnings.gross_annual

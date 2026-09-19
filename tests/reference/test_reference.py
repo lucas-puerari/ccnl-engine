@@ -20,6 +20,10 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     import types
 
+    from ccnl_engine.engine.payroll.domain.payroll_result import (
+        AnnualEstimate,
+    )
+
 import pytest
 
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
@@ -59,6 +63,64 @@ from ccnl_engine.engine.payroll.service.orchestrator import compute
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
+
+# Map flat legacy field names → accessor on AnnualEstimate.
+_FIELD_PATH_MAP: dict[str, Any] = {
+    "part_time_ratio": lambda r: r.part_time_pct,
+    "gross_monthly": lambda r: r.earnings.gross_monthly,
+    "gross_annual": lambda r: r.earnings.gross_annual,
+    "base_monthly": lambda r: r.earnings.base_monthly,
+    "seniority_monthly": lambda r: r.earnings.seniority_monthly,
+    "allowances_monthly": lambda r: r.earnings.allowances_monthly,
+    "ad_personam_monthly": lambda r: r.earnings.ad_personam_monthly,
+    "second_level_monthly": lambda r: r.earnings.second_level_monthly,
+    "hourly_rate": lambda r: r.earnings.hourly_rate,
+    "seniority_count": lambda r: r.earnings.seniority_count,
+    "apprenticeship_pct": lambda r: r.earnings.apprenticeship_pct,
+    "apprenticeship_under_level_code": (
+        lambda r: r.earnings.apprenticeship_under_level_code
+    ),
+    "inps_employee_annual": lambda r: r.contributions.inps_employee_annual,
+    "inps_employer_annual": lambda r: r.contributions.inps_employer_annual,
+    "employer_funds_annual": lambda r: r.contributions.employer_funds_annual,
+    "tfr_annual": lambda r: r.contributions.tfr_annual,
+    "bilateral_employee_annual": lambda r: r.contributions.bilateral_employee_annual,
+    "bilateral_employer_annual": lambda r: r.contributions.bilateral_employer_annual,
+    "taxable_income": lambda r: r.taxes.taxable_income,
+    "irpef_gross": lambda r: r.taxes.irpef_gross,
+    "work_income_deduction": lambda r: r.taxes.work_income_deduction,
+    "ulteriore_detrazione_lavoro": lambda r: r.taxes.ulteriore_detrazione_lavoro,
+    "somma_esente": lambda r: r.taxes.somma_esente,
+    "irpef_net": lambda r: r.taxes.irpef_net,
+    "employer_withholds_irpef": lambda r: r.taxes.employer_withholds_irpef,
+    "addizionale_regionale_annual": lambda r: r.taxes.addizionale_regionale_annual,
+    "addizionale_comunale_annual": lambda r: r.taxes.addizionale_comunale_annual,
+    "trattamento_integrativo": lambda r: r.taxes.trattamento_integrativo,
+    "fiscal_simplifications": lambda r: r.taxes.fiscal_simplifications,
+    "family_deduction_annual": lambda r: r.taxes.family_deduction_annual,
+    "family_deduction_spouse_annual": lambda r: r.taxes.family_deduction_spouse_annual,
+    "family_deduction_children_annual": (
+        lambda r: r.taxes.family_deduction_children_annual
+    ),
+    "family_deduction_other_annual": lambda r: r.taxes.family_deduction_other_annual,
+    "art15_deduction_annual": lambda r: r.taxes.art15_deduction_annual,
+    "unused_family_deduction_annual": lambda r: r.taxes.unused_family_deduction_annual,
+    "unused_art15_deduction_annual": lambda r: r.taxes.unused_art15_deduction_annual,
+    "employer_cost_annual": lambda r: r.employer_cost.employer_cost_annual,
+    "warnings": lambda r: r.coverage.warnings,
+}
+
+
+def _get_field(result: AnnualEstimate, field: str) -> object:
+    """Return the value of a field on *result*, using sub-object paths as needed.
+
+    Returns:
+        The field value, routed through *_FIELD_PATH_MAP* or via ``getattr``.
+    """
+    accessor = _FIELD_PATH_MAP.get(field)
+    if accessor is not None:
+        return accessor(result)
+    return getattr(result, field)
 
 
 def _build_absence_days(inputs: dict[str, Any]) -> AbsenceDays | None:
@@ -345,9 +407,9 @@ class TestReferenceCases:
 
         result = compute(scenario).result
 
-        # Compare each field in expected against the live PayrollResult
+        # Compare each field in expected against the live result
         for field, raw_value in expected.items():
-            _assert_field(field, getattr(result, field), raw_value)
+            _assert_field(field, _get_field(result, field), raw_value)
 
 
 class TestReferenceBuilders:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from datetime import date
-from typing import cast
+from typing import Literal, cast
 
 import pytest
 
@@ -18,7 +18,7 @@ from ccnl_engine import (
     result_schema,
     scenario_schema,
 )
-from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
 from ccnl_engine.engine.payroll.service.schemas import _hint_to_schema
 
 
@@ -27,7 +27,7 @@ def scenario() -> AnnualPayrollScenario:
     """Return a minimal AnnualPayrollScenario for serialisation tests.
 
     Returns:
-        An :class:`AnnualPayrollScenario` for CCNL Commercio level 4, 2026.
+        A minimal :class:`AnnualPayrollScenario` for Commercio.
     """
     return AnnualPayrollScenario(
         employee=Employee(level_code="4"),
@@ -41,11 +41,11 @@ def scenario() -> AnnualPayrollScenario:
 
 
 @pytest.fixture(scope="module")
-def result(scenario: AnnualPayrollScenario) -> PayrollResult:
-    """Return a PayrollResult for the shared scenario.
+def result(scenario: AnnualPayrollScenario) -> AnnualEstimate:
+    """Return an AnnualEstimate for the shared scenario.
 
     Returns:
-        A :class:`PayrollResult` produced by :func:`estimate_annual`.
+        The :class:`AnnualEstimate` produced by :func:`estimate_annual`.
     """
     return estimate_annual(scenario).result
 
@@ -82,30 +82,30 @@ class TestAnnualPayrollScenarioSerialisation:
 
 
 class TestPayrollResultSchemaVersion:
-    """PayrollResult includes schema_version in to_dict output."""
+    """AnnualEstimate includes schema_version in to_dict output."""
 
-    def test_schema_version_field_exists(self, result: PayrollResult) -> None:
+    def test_schema_version_field_exists(self, result: AnnualEstimate) -> None:
         """``result.schema_version`` is accessible on the instance."""
-        assert result.schema_version == "1"
+        assert result.schema_version == "2"
 
-    def test_schema_version_in_to_dict(self, result: PayrollResult) -> None:
+    def test_schema_version_in_to_dict(self, result: AnnualEstimate) -> None:
         """``to_dict()`` output includes ``schema_version``."""
         d = result.to_dict()
-        assert d["schema_version"] == "1"
+        assert d["schema_version"] == "2"
 
     def test_from_dict_roundtrip_with_schema_version(
-        self, result: PayrollResult
+        self, result: AnnualEstimate
     ) -> None:
         """``from_dict(to_dict())`` roundtrip succeeds with schema_version present."""
-        restored = PayrollResult.from_dict(result.to_dict())
-        assert restored.schema_version == "1"
+        restored = AnnualEstimate.from_dict(result.to_dict())
+        assert restored.schema_version == "2"
 
-    def test_from_dict_without_schema_version(self, result: PayrollResult) -> None:
+    def test_from_dict_without_schema_version(self, result: AnnualEstimate) -> None:
         """``from_dict`` works on dicts missing schema_version (uses default)."""
         d = result.to_dict()
         d.pop("schema_version")
-        restored = PayrollResult.from_dict(d)
-        assert restored.schema_version == "1"
+        restored = AnnualEstimate.from_dict(d)
+        assert restored.schema_version == "2"
 
 
 class TestScenarioSchema:
@@ -136,7 +136,7 @@ class TestScenarioSchema:
 
 
 class TestResultSchema:
-    """result_schema() returns a valid JSON Schema for PayrollResult."""
+    """result_schema() returns a valid JSON Schema for AnnualEstimate."""
 
     def test_returns_dict(self) -> None:
         """``result_schema()`` returns a dict."""
@@ -146,19 +146,19 @@ class TestResultSchema:
         """The schema has a ``$schema`` declaration."""
         assert "$schema" in result_schema()
 
-    def test_title_is_payroll_result(self) -> None:
-        """The schema title is ``"PayrollResult"``."""
-        assert result_schema()["title"] == "PayrollResult"
+    def test_title_is_annual_estimate(self) -> None:
+        """The schema title is ``"AnnualEstimate"``."""
+        assert result_schema()["title"] == "AnnualEstimate"
 
     def test_has_required(self) -> None:
         """The schema lists required fields."""
         required = cast("list[str]", result_schema().get("required", []))
         assert len(required) > 0
 
-    def test_gross_annual_schema(self) -> None:
-        """``gross_annual`` maps to ``{"type": "string"}`` (Decimal as str)."""
+    def test_net_annual_schema(self) -> None:
+        """``net_annual`` maps to ``{"type": "string"}`` (Decimal as str)."""
         props = cast("dict[str, object]", result_schema().get("properties", {}))
-        assert props["gross_annual"] == {"type": "string"}
+        assert props["net_annual"] == {"type": "string"}
 
     def test_as_of_schema(self) -> None:
         """``as_of`` maps to date format schema."""
@@ -170,10 +170,10 @@ class TestResultSchema:
         props = cast("dict[str, object]", result_schema().get("properties", {}))
         assert props["year"] == {"type": "integer"}
 
-    def test_employer_withholds_irpef_schema(self) -> None:
-        """``employer_withholds_irpef`` maps to boolean schema."""
+    def test_earnings_in_properties(self) -> None:
+        """``earnings`` sub-object is present in the result schema properties."""
         props = cast("dict[str, object]", result_schema().get("properties", {}))
-        assert props["employer_withholds_irpef"] == {"type": "boolean"}
+        assert "earnings" in props
 
     def test_schema_version_in_properties(self) -> None:
         """``schema_version`` is present in the result schema properties."""
@@ -184,10 +184,10 @@ class TestResultSchema:
         """``additionalProperties`` is False (strict schema)."""
         assert result_schema()["additionalProperties"] is False
 
-    def test_gross_annual_in_required(self) -> None:
-        """``gross_annual`` is listed as a required field."""
+    def test_net_annual_in_required(self) -> None:
+        """``net_annual`` is listed as a required field."""
         required = cast("list[str]", result_schema().get("required", []))
-        assert "gross_annual" in required
+        assert "net_annual" in required
 
     def test_schema_version_not_required(self) -> None:
         """``schema_version`` is not in required (it has a default)."""
@@ -201,3 +201,20 @@ class TestHintToSchema:
     def test_non_optional_union_falls_through(self) -> None:
         """A Union of two non-None types returns the fallback empty dict."""
         assert _hint_to_schema(int | str) == {}
+
+    def test_optional_union_returns_one_of(self) -> None:
+        """Optional[str] (str | None) returns a oneOf with null."""
+        assert _hint_to_schema(str | None) == {
+            "oneOf": [{"type": "string"}, {"type": "null"}]
+        }
+
+    def test_literal_returns_enum(self) -> None:
+        """Literal['a', 'b'] returns an enum schema."""
+        assert _hint_to_schema(Literal["a", "b"]) == {"enum": ["a", "b"]}
+
+    def test_frozenset_returns_array_of_strings(self) -> None:
+        """frozenset[str] returns an array-of-strings schema."""
+        assert _hint_to_schema(frozenset[str]) == {
+            "type": "array",
+            "items": {"type": "string"},
+        }

@@ -1,7 +1,7 @@
 """Payroll breakdown renderer.
 
 Produces a structured, human-readable annual breakdown from a
-:class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult`,
+:class:`~ccnl_engine.engine.payroll.domain.payroll_result.AnnualEstimate`,
 ordered in the conventional Italian payslip sequence (lordo → INPS →
 imponibile → IRPEF → detrazioni → netto).
 
@@ -22,7 +22,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.payroll_result import PayrollResult
+    from ccnl_engine.engine.payroll.domain.payroll_result import (
+        AnnualEstimate as PayrollResult,
+    )
 
 
 @dataclass(frozen=True)
@@ -133,26 +135,26 @@ def render_breakdown(result: PayrollResult) -> AnnualBreakdown:
     """
     return AnnualBreakdown(
         net_monthly_approx=result.net_monthly,
-        gross_annual=result.gross_annual,
-        inps_employee_annual=result.inps_employee_annual,
-        taxable_income=result.taxable_income,
-        irpef_gross=result.irpef_gross,
-        work_income_deduction=result.work_income_deduction,
-        ulteriore_detrazione_lavoro=result.ulteriore_detrazione_lavoro,
-        family_deduction_annual=result.family_deduction_annual,
-        art15_deduction_annual=result.art15_deduction_annual,
-        sterilizzazione_clawback_annual=result.sterilizzazione_clawback_annual,
-        irpef_net=result.irpef_net,
-        addizionale_regionale_annual=result.addizionale_regionale_annual,
-        addizionale_comunale_annual=result.addizionale_comunale_annual,
-        trattamento_integrativo=result.trattamento_integrativo,
-        somma_esente=result.somma_esente,
-        bilateral_employee_annual=result.bilateral_employee_annual,
+        gross_annual=result.earnings.gross_annual,
+        inps_employee_annual=result.contributions.inps_employee_annual,
+        taxable_income=result.taxes.taxable_income,
+        irpef_gross=result.taxes.irpef_gross,
+        work_income_deduction=result.taxes.work_income_deduction,
+        ulteriore_detrazione_lavoro=result.taxes.ulteriore_detrazione_lavoro,
+        family_deduction_annual=result.taxes.family_deduction_annual,
+        art15_deduction_annual=result.taxes.art15_deduction_annual,
+        sterilizzazione_clawback_annual=result.taxes.sterilizzazione_clawback_annual,
+        irpef_net=result.taxes.irpef_net,
+        addizionale_regionale_annual=result.taxes.addizionale_regionale_annual,
+        addizionale_comunale_annual=result.taxes.addizionale_comunale_annual,
+        trattamento_integrativo=result.taxes.trattamento_integrativo,
+        somma_esente=result.taxes.somma_esente,
+        bilateral_employee_annual=result.contributions.bilateral_employee_annual,
         net_annual=result.net_annual,
-        inps_employer_annual=result.inps_employer_annual,
-        employer_funds_annual=result.employer_funds_annual,
-        tfr_annual=result.tfr_annual,
-        bilateral_employer_annual=result.bilateral_employer_annual,
-        employer_cost_annual=result.employer_cost_annual,
-        employer_withholds_irpef=result.employer_withholds_irpef,
+        inps_employer_annual=result.contributions.inps_employer_annual,
+        employer_funds_annual=result.contributions.employer_funds_annual,
+        tfr_annual=result.contributions.tfr_annual,
+        bilateral_employer_annual=result.contributions.bilateral_employer_annual,
+        employer_cost_annual=result.employer_cost.employer_cost_annual,
+        employer_withholds_irpef=result.taxes.employer_withholds_irpef,
     )

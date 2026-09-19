@@ -69,13 +69,13 @@ with_2l = estimate_annual(
     )
 ).result
 
-print(f"Second-level monthly:     {with_2l.second_level_monthly} EUR")
-print(f"Gross monthly — base:     {base.gross_monthly} EUR")
-print(f"Gross monthly — with 2L:  {with_2l.gross_monthly} EUR")
+print(f"Second-level monthly:     {with_2l.earnings.second_level_monthly} EUR")
+print(f"Gross monthly — base:     {base.earnings.gross_monthly} EUR")
+print(f"Gross monthly — with 2L:  {with_2l.earnings.gross_monthly} EUR")
 print(f"Net annual   — base:      {base.net_annual} EUR")
 print(f"Net annual   — with 2L:   {with_2l.net_annual} EUR")
-print(f"Employer cost — base:     {base.employer_cost_annual} EUR")
-print(f"Employer cost — with 2L:  {with_2l.employer_cost_annual} EUR")
+print(f"Employer cost — base:     {base.employer_cost.employer_cost_annual} EUR")
+print(f"Employer cost — with 2L:  {with_2l.employer_cost.employer_cost_annual} EUR")
 
-assert with_2l.gross_annual > base.gross_annual
+assert with_2l.earnings.gross_annual > base.earnings.gross_annual
 assert with_2l.net_annual > base.net_annual

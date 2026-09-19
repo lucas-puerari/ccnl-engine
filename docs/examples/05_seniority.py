@@ -53,15 +53,15 @@ p_months = estimate_annual(
 ).result
 
 print(
-    f"Via count   — seniority count: {p_count.seniority_count},"
-    f" monthly: {p_count.seniority_monthly} EUR"
+    f"Via count   — seniority count: {p_count.earnings.seniority_count},"
+    f" monthly: {p_count.earnings.seniority_monthly} EUR"
 )
 print(
-    f"Via months  — seniority count: {p_months.seniority_count},"
-    f" monthly: {p_months.seniority_monthly} EUR"
+    f"Via months  — seniority count: {p_months.earnings.seniority_count},"
+    f" monthly: {p_months.earnings.seniority_monthly} EUR"
 )
 
 # Both yield the same result when the months imply the same number of increments.
-assert p_count.seniority_count == p_months.seniority_count
-assert p_count.seniority_monthly == p_months.seniority_monthly
-assert p_count.gross_annual == p_months.gross_annual
+assert p_count.earnings.seniority_count == p_months.earnings.seniority_count
+assert p_count.earnings.seniority_monthly == p_months.earnings.seniority_monthly
+assert p_count.earnings.gross_annual == p_months.earnings.gross_annual
