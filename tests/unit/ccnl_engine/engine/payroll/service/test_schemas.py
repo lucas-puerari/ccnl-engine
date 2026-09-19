@@ -51,34 +51,36 @@ def result(scenario: AnnualEstimateInput) -> AnnualEstimate:
 
 
 class TestAnnualPayrollScenarioSerialisation:
-    """AnnualEstimateInput.to_dict/from_dict/to_json/from_json round-trip."""
+    """AnnualEstimateInput Pydantic model_dump / model_validate round-trip."""
 
-    def test_to_dict_returns_dict(self, scenario: AnnualEstimateInput) -> None:
-        """``to_dict()`` returns a plain dict."""
-        assert isinstance(scenario.to_dict(), dict)
+    def test_model_dump_returns_dict(self, scenario: AnnualEstimateInput) -> None:
+        """``model_dump(mode='json')`` returns a plain dict."""
+        assert isinstance(scenario.model_dump(mode="json"), dict)
 
-    def test_to_dict_contains_employment_type(
+    def test_model_dump_contains_employment_type(
         self, scenario: AnnualEstimateInput
     ) -> None:
         """The serialised dict includes the employment type discriminator."""
-        d = scenario.to_dict()
+        d = scenario.model_dump(mode="json")
         contract = cast("dict[str, object]", d["employment"])["contract"]
         assert cast("dict[str, object]", contract)["type"] == "permanent"
 
-    def test_to_json_returns_str(self, scenario: AnnualEstimateInput) -> None:
-        """``to_json()`` returns a valid JSON string."""
-        raw = scenario.to_json()
+    def test_model_dump_json_returns_str(self, scenario: AnnualEstimateInput) -> None:
+        """``model_dump_json()`` returns a valid JSON string."""
+        raw = scenario.model_dump_json()
         assert isinstance(raw, str)
         parsed = json.loads(raw)
         assert isinstance(parsed, dict)
 
-    def test_from_dict_roundtrip(self, scenario: AnnualEstimateInput) -> None:
-        """``from_dict(to_dict())`` reconstructs an equal scenario."""
-        assert AnnualEstimateInput.from_dict(scenario.to_dict()) == scenario
+    def test_model_validate_roundtrip(self, scenario: AnnualEstimateInput) -> None:
+        """``model_validate(model_dump())`` reconstructs an equal scenario."""
+        d = scenario.model_dump(mode="json")
+        assert AnnualEstimateInput.model_validate(d) == scenario
 
-    def test_from_json_roundtrip(self, scenario: AnnualEstimateInput) -> None:
-        """``from_json(to_json())`` reconstructs an equal scenario."""
-        assert AnnualEstimateInput.from_json(scenario.to_json()) == scenario
+    def test_model_validate_json_roundtrip(self, scenario: AnnualEstimateInput) -> None:
+        """``model_validate_json(model_dump_json())`` reconstructs an equal scenario."""
+        raw = scenario.model_dump_json()
+        assert AnnualEstimateInput.model_validate_json(raw) == scenario
 
 
 class TestPayrollResultSchemaVersion:

@@ -47,6 +47,7 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
     estimate_period_effects,
 )
 from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.serialization.envelope import reproduce
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _CCNL_FILENAME,
@@ -337,7 +338,7 @@ class TestCalculation:
     def test_reproduce_identical_result(self) -> None:
         """reproduce() yields the identical result without external args."""
         calc = estimate_annual(_req())
-        replayed = calc.reproduce()
+        replayed = reproduce(calc)
         assert replayed.result == calc.result
         assert replayed.input_snapshot == calc.input_snapshot
         assert replayed.engine_version == calc.engine_version
@@ -345,7 +346,7 @@ class TestCalculation:
     def test_reproduce_preserves_seniority_variant(self) -> None:
         """Union member type is preserved through snapshot/reproduce."""
         calc = estimate_annual(_req(seniority_count=2))
-        replayed = calc.reproduce()
+        replayed = reproduce(calc)
         assert isinstance(replayed.input_snapshot, InputSnapshot)
         # The materialised seniority should still be by-count.
         scenario = replayed.input_snapshot.materialise()
@@ -359,7 +360,7 @@ class TestCalculation:
         d["engine_version"] = "0.0.0"
         stale = Calculation.from_dict(d)
         with pytest.raises(ValueError, match="version drift"):
-            stale.reproduce()
+            reproduce(stale)
 
     def test_reproduce_allow_drift_flag_suppresses_error(self) -> None:
         """reproduce(allow_version_drift=True) succeeds despite mismatch."""
@@ -367,7 +368,7 @@ class TestCalculation:
         d = calc.to_dict()
         d["engine_version"] = "0.0.0"
         stale = Calculation.from_dict(d)
-        replayed = stale.reproduce(allow_version_drift=True)
+        replayed = reproduce(stale, allow_version_drift=True)
         assert replayed.result.net_annual == calc.result.net_annual
 
     def test_reproduce_raises_on_ruleset_version_drift(self) -> None:
@@ -377,7 +378,7 @@ class TestCalculation:
         d["ruleset_version"] = {"ccnl": "old@0", "tax": "old@0"}
         stale = Calculation.from_dict(d)
         with pytest.raises(ValueError, match="version drift"):
-            stale.reproduce()
+            reproduce(stale)
 
     def test_copy_deepcopy_snapshot(self) -> None:
         """copy.deepcopy on InputSnapshot must not raise TypeError."""
@@ -689,7 +690,7 @@ class TestDeepImmutability:
         d = calc.to_dict()
         # Tamper with the serialised copy — must not affect reproduce().
         d["input_snapshot"]["scenario"]["employee"]["level_code"] = "1"  # type: ignore[index]
-        replayed = calc.reproduce()
+        replayed = reproduce(calc)
         assert replayed.result.net_annual == original_net
 
     def test_deep_freeze_user_dict_produces_frozen_dict(self) -> None:
@@ -809,7 +810,7 @@ class TestNestedBoolValidation:
         calc = estimate_annual(_req())
         original_net = calc.result.net_annual
         restored = Calculation.from_dict(calc.to_dict())
-        replayed = restored.reproduce()
+        replayed = reproduce(restored)
         assert replayed.result.net_annual == original_net
 
 
