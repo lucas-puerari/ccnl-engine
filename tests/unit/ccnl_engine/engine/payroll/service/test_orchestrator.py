@@ -3262,7 +3262,7 @@ class TestConfidenceWithOptionalRulesets:
         _mock_ccnl[0] = _verified_ccnl()
         verified = _var_pay_rules(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: verified,
         )
         result = estimate_annual(
@@ -3277,7 +3277,7 @@ class TestConfidenceWithOptionalRulesets:
         _mock_ccnl[0] = _verified_ccnl()
         unverified = _var_pay_rules(VerificationStatus.UNVERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: unverified,
         )
         result = estimate_annual(
@@ -3372,7 +3372,7 @@ class TestConfidenceWithOptionalRulesets:
             ruleset=None,
         )
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.work_rules.load_variable_pay_rules",
+            "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: rules_no_ruleset,
         )
         scenario = _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
