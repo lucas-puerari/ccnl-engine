@@ -136,36 +136,17 @@ class TestDemoGlue:
             "The pages.yml sed pass would silently produce a broken page."
         )
 
-    def test_has_l3_includes_ot_weeks(self) -> None:
-        """hasL3 in generateSnippet must reference otWeeks.
+    def test_generate_snippet_removed(self) -> None:
+        """The code-snippet tab and generateSnippet must not exist in ui.js.
 
-        Without this, a snippet generated from weekly-only overtime omits
-        ``from decimal import Decimal`` and raises NameError when executed.
+        The code-snippet tab and its supporting logic were removed; this guard
+        ensures they are not accidentally reintroduced.
         """
         ui_js = _PROJECT_ROOT / "demo" / "ui.js"
         js = ui_js.read_text(encoding="utf-8")
-        # Locate generateSnippet, then find hasL3 inside it.
-        func_idx = js.find("function generateSnippet(")
-        assert func_idx != -1, "generateSnippet not found in ui.js"
-        depth = 0
-        func_end = func_idx
-        for i, ch in enumerate(js[func_idx:], start=func_idx):
-            if ch == "{":
-                depth += 1
-            elif ch == "}":
-                depth -= 1
-                if depth == 0:
-                    func_end = i
-                    break
-        func_body = js[func_idx:func_end]
-        has_l3_idx = func_body.find("const hasL3 =")
-        assert has_l3_idx != -1, "hasL3 assignment not found inside generateSnippet"
-        stmt_end = func_body.find(";", has_l3_idx)
-        has_l3_stmt = func_body[has_l3_idx:stmt_end]
-        assert "otWeeks" in has_l3_stmt, (
-            "hasL3 in generateSnippet does not reference otWeeks. "
-            "Snippets generated with only weekly overtime will omit "
-            "'from decimal import Decimal' and raise NameError."
+        assert "generateSnippet" not in js, (
+            "generateSnippet found in ui.js — the code-snippet tab was "
+            "intentionally removed; do not reintroduce it here."
         )
 
     def test_do_compute_catches_pyodide_errors(self) -> None:
@@ -262,13 +243,12 @@ class TestDemoGlue:
             "#compare-error element missing from index.html. "
             "showCompareError() will throw TypeError at runtime."
         )
-        # The element must appear inside panel-compare (before panel-code).
+        # The element must appear after panel-compare opens.
         panel_compare_idx = html.find('id="panel-compare"')
         compare_error_idx = html.find('id="compare-error"')
-        panel_code_idx = html.find('id="panel-code"')
-        assert panel_compare_idx < compare_error_idx < panel_code_idx, (
-            "#compare-error must appear inside #panel-compare, "
-            "not outside or in a different panel."
+        assert panel_compare_idx != -1, "#panel-compare not found in index.html"
+        assert panel_compare_idx < compare_error_idx, (
+            "#compare-error must appear inside #panel-compare."
         )
 
     def test_compute_salary_invalid_weeks_json_returns_error(self) -> None:
