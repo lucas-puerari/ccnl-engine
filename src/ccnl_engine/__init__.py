@@ -211,7 +211,6 @@ __all__ = [
     "PayrollBundle",
     "PayrollPeriod",
     "PayrollReport",
-
     "PayrollSnapshot",
     "PayrollTrace",
     "PayrollWarning",

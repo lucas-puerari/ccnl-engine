@@ -202,9 +202,9 @@ class TestEstimateAnnual:
         """estimate_annual matches compute() with no period events."""
         s = _base_scenario()
         annual = estimate_annual(s)
-        direct = estimate_annual(AnnualEstimateInput(
-            employee=s.employee, employment=s.employment
-        ))
+        direct = estimate_annual(
+            AnnualEstimateInput(employee=s.employee, employment=s.employment)
+        )
         assert annual.result.net_annual == direct.result.net_annual
 
 
