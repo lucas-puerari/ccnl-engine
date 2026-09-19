@@ -335,6 +335,8 @@ class Taxes:
     una_tantum_annual: Decimal
     personal_withholdings_annual: Decimal
     additional_irpef_base_annual: Decimal
+    territorial_supplement_annual: Decimal
+    company_supplement_annual: Decimal
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a plain dict.
