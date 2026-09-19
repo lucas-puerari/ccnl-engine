@@ -24,6 +24,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.metadata.domain.rules import (
     RulesetIdentity,
     SourceType,
@@ -1337,20 +1338,13 @@ class TestR7SubRulesetIdentities:
 class TestL3Warning:
     """Orchestrator warning path for missing L3 schema."""
 
-    def test_warning_emitted_when_ccnl_has_no_l3(self) -> None:
-        """Emit a warning when time_supplements is set but CCNL has no L3 data."""
-        # The test CCNL (built by _build_ccnl / _req) has no work_rules block.
-        # dataclasses.replace adds time_supplements without touching other fields.
+    def test_raises_out_of_scope_when_ccnl_has_no_l3(self) -> None:
+        """Raise OutOfScopeError when time_supplements set but CCNL has no L3 schema."""
         scenario = _req().model_copy(
             update={"time_supplements": OvertimeHours(weekday_hours=_D("5"))}
         )
-        result = compute(scenario).result
-        assert any("time_supplements" in w for w in result.warnings), (
-            f"Expected warning about time_supplements, got: {result.warnings}"
-        )
-        # Supplement fields must stay zero (no schema → nothing computed).
-        assert result.overtime_supplement_monthly == _D("0")
-        assert result.time_supplements_monthly == _D("0")
+        with pytest.raises(OutOfScopeError, match="not modelled"):
+            compute(scenario)
 
     def test_warning_and_not_computed_when_gross_incl_allowances(self) -> None:
         """R10: hourly_base_method='gross_incl_allowances' emits warning, returns 0.
@@ -1386,24 +1380,46 @@ class TestL3Warning:
             _mock_ccnl[0] = _DEFAULT_CCNL
 
     def test_night_holiday_hours_contribute_to_holiday_scope(self) -> None:
-        """R9: night_holiday_hours > 0 sets holiday_work to not_computed (no schema).
+        """R9: night_holiday_hours > 0 sets holiday_work to not_computed.
 
         Before the fix, night_holiday_hours was not counted toward the holiday
         scope, so holiday_work would be 'excluded' even when hours were supplied.
+        Verified with a schema-present CCNL that has no NIGHT_HOLIDAY band.
         """
-        # Test CCNL has no work_rules, so schema is absent.
+        weekday_band = OvertimeBand(
+            code="STR",
+            description="Straordinario feriale",
+            kind=TimeSupplementKind("percentage"),
+            rate=TimeSeries(
+                periods=(
+                    ValidityPeriod(
+                        valid_from=date(2020, 1, 1),
+                        valid_until=None,
+                        value=_D("0.25"),
+                    ),
+                )
+            ),
+            applies_to_kinds=[WorkKind.WEEKDAY],  # type: ignore[arg-type]
+        )
+        ts_schema = TimeSupplements(overtime_bands=[weekday_band])  # type: ignore[arg-type]
+        _mock_ccnl[0] = _build_ccnl(
+            work_rules={"time_supplements": ts_schema.model_dump()}
+        )
         scenario = _req().model_copy(
             update={"time_supplements": OvertimeHours(night_holiday_hours=_D("2"))}
         )
-        result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        # With fix: night_holiday_hours counts toward holiday → not_computed (no schema)
-        assert scope["holiday_work"] == "not_computed", (
-            f"Expected holiday_work not_computed, got: {scope['holiday_work']}"
-        )
-        # Overtime and night must remain excluded (no hours for those buckets)
-        assert scope["overtime"] == "excluded"
-        assert scope["night_work"] == "excluded"
+        try:
+            result = compute(scenario).result
+            scope = {item.feature: item.status for item in result.calculation_scope}
+            # night_holiday_hours → holiday scope, no matching band → not_computed
+            assert scope["holiday_work"] == "not_computed", (
+                f"Expected holiday_work not_computed, got: {scope['holiday_work']}"
+            )
+            # Overtime and night must remain excluded (no hours for those buckets)
+            assert scope["overtime"] == "excluded"
+            assert scope["night_work"] == "excluded"
+        finally:
+            _mock_ccnl[0] = _DEFAULT_CCNL
 
     def test_not_computed_when_schema_present_but_no_kind_band(self) -> None:
         """Schema present but no band for the requested WorkKind → not_computed.
@@ -1656,18 +1672,13 @@ class TestL3Warning:
 class TestL3Absence:
     """Orchestrator behaviour for L3 absence deduction."""
 
-    def test_warning_when_ccnl_has_no_absence_rules(self) -> None:
-        """Emit a warning when absence_days is set but CCNL has no absence rules."""
+    def test_raises_out_of_scope_when_ccnl_has_no_absence_rules(self) -> None:
+        """Raise OutOfScopeError when absence_days set but CCNL has no schema."""
         scenario = _req().model_copy(
             update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
         )
-        result = compute(scenario).result
-        assert any("absence_days" in w for w in result.warnings), (
-            f"Expected absence_days warning, got: {result.warnings}"
-        )
-        assert result.absence_deduction_monthly == _D("0")
-        # effective_gross_monthly equals gross_monthly when deduction is zero
-        assert result.effective_gross_monthly == result.gross_monthly
+        with pytest.raises(OutOfScopeError, match="not modelled"):
+            compute(scenario)
 
     def test_absence_deduction_with_wr_schema(self) -> None:
         """Compute absence deduction when CCNL has absence_rules (by_26 method)."""
@@ -1697,14 +1708,13 @@ class TestL3Absence:
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["absence"] == "excluded"
 
-    def test_absence_scope_not_computed_when_days_but_no_schema(self) -> None:
-        """Absence is not_computed when days given but CCNL has no schema."""
+    def test_raises_out_of_scope_when_absence_days_but_no_schema(self) -> None:
+        """OutOfScopeError raised when absence_days given but CCNL has no schema."""
         scenario = _req().model_copy(
             update={"absence_days": AbsenceDays(unpaid_days=_D("3"))}
         )
-        result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["absence"] == "not_computed"
+        with pytest.raises(OutOfScopeError):
+            compute(scenario)
 
     def test_absence_scope_verified_with_schema(self) -> None:
         """Absence is verified when days given and CCNL has absence_rules."""
@@ -1800,16 +1810,13 @@ class TestL3Absence:
 class TestL3Leave:
     """Orchestrator behaviour for L3 leave accrual."""
 
-    def test_warning_when_ccnl_has_no_leave_rules(self) -> None:
-        """Emit a warning when leave_input is set but CCNL has no leave_rules."""
+    def test_raises_out_of_scope_when_ccnl_has_no_leave_rules(self) -> None:
+        """Raise OutOfScopeError when leave_input set but CCNL has no leave schema."""
         scenario = _req().model_copy(
             update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
-        result = compute(scenario).result
-        assert any("leave_input" in w for w in result.warnings), (
-            f"Expected leave_input warning, got: {result.warnings}"
-        )
-        assert result.leave_accrued_days_monthly == _D("0")
+        with pytest.raises(OutOfScopeError, match="not modelled"):
+            compute(scenario)
 
     def test_leave_accrual_with_wr_schema(self) -> None:
         """Compute leave accrual when CCNL has leave_rules (flat, no tiers)."""
@@ -1852,14 +1859,13 @@ class TestL3Leave:
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["leave"] == "excluded"
 
-    def test_leave_scope_not_computed_when_input_but_no_schema(self) -> None:
-        """Leave is not_computed when input given but CCNL has no leave_rules."""
+    def test_raises_out_of_scope_when_leave_input_but_no_schema(self) -> None:
+        """OutOfScopeError raised when leave_input given but CCNL has no schema."""
         scenario = _req().model_copy(
             update={"leave_input": LeaveInput(taken_days=_D("3"))}
         )
-        result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["leave"] == "not_computed"
+        with pytest.raises(OutOfScopeError):
+            compute(scenario)
 
     def test_leave_scope_verified_with_schema(self) -> None:
         """Leave is verified when input given and CCNL has leave_rules."""
@@ -1881,16 +1887,13 @@ class TestL3Leave:
 class TestL3Sickness:
     """Orchestrator behaviour for L3 sickness (malattia ordinaria)."""
 
-    def test_warning_when_ccnl_has_no_sickness_rules(self) -> None:
-        """Emit a warning when sick_input is set but CCNL has no sickness_rules."""
+    def test_raises_out_of_scope_when_ccnl_has_no_sickness_rules(self) -> None:
+        """Raise OutOfScopeError when sick_input set but CCNL has no sickness schema."""
         scenario = _req().model_copy(
             update={"sick_input": SickInput(sick_days=_D("5"))}
         )
-        result = compute(scenario).result
-        assert any("sick_input" in w for w in result.warnings), (
-            f"Expected sick_input warning, got: {result.warnings}"
-        )
-        assert result.sick_days_monthly == _D("0")
+        with pytest.raises(OutOfScopeError, match="not modelled"):
+            compute(scenario)
 
     def test_sickness_computed_with_wr_schema(self) -> None:
         """Compute sick-leave indemnity when CCNL has sickness_rules."""
@@ -1919,14 +1922,13 @@ class TestL3Sickness:
         scope = {item.feature: item.status for item in result.calculation_scope}
         assert scope["sickness"] == "excluded"
 
-    def test_sick_scope_not_computed_when_input_but_no_schema(self) -> None:
-        """Sickness is not_computed when input given but CCNL has no sickness_rules."""
+    def test_raises_out_of_scope_when_sick_input_but_no_schema(self) -> None:
+        """OutOfScopeError raised when sick_input given but CCNL has no schema."""
         scenario = _req().model_copy(
             update={"sick_input": SickInput(sick_days=_D("5"))}
         )
-        result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["sickness"] == "not_computed"
+        with pytest.raises(OutOfScopeError):
+            compute(scenario)
 
     def test_sick_scope_verified_with_schema(self) -> None:
         """Sickness is verified when input given and CCNL has sickness_rules."""
@@ -1995,9 +1997,8 @@ class TestL3Sickness:
         """load_sick_pay_rates must not be called when the CCNL has no sickness_rules.
 
         Regression guard for the lazy-load gate: with positive sick days but no
-        CCNL sickness schema the loader must be bypassed entirely, so a missing
-        or corrupt sick-pay file cannot block a calculation that does not consume
-        it.
+        CCNL sickness schema OutOfScopeError is raised before the loader is
+        reached, so a missing or corrupt sick-pay file cannot block a calculation.
         """
 
         def _fail() -> None:
@@ -2012,12 +2013,9 @@ class TestL3Sickness:
         scenario = _req().model_copy(
             update={"sick_input": SickInput(sick_days=_D("3"))}
         )
-        result = compute(scenario).result
-        # Loader was not called; the result degrades gracefully with a warning.
-        assert any("sick_input" in w for w in result.warnings)
-        assert result.sick_days_monthly == _D("0")
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["sickness"] == "not_computed"
+        # OutOfScopeError is raised before load_sick_pay_rates is ever called.
+        with pytest.raises(OutOfScopeError, match="not modelled"):
+            compute(scenario)
 
 
 class TestL3VariablePay:

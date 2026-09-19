@@ -8,6 +8,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.contract.domain.ccnl import WorkKind
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
 from ccnl_engine.engine.payroll.service.leave import compute_leave
 from ccnl_engine.engine.payroll.service.rounding import money
@@ -197,10 +198,11 @@ def _run_wr_supplements(
     Returns:
         :class:`_SupplementsResult` with zero amounts and ``False`` support
         flags when the CCNL has no work-rules schema or no hours were
-        supplied. A warning is appended to ``wr_warnings`` in the latter
-        case.
+        supplied.
 
     Raises:
+        OutOfScopeError: If any hours are requested but the CCNL has no
+            time_supplements schema.
         RuntimeError: If ``work_rules`` or ``time_supplements`` is ``None``
             despite ``wr_schema_present=True`` (indicates a data bug).
     """
@@ -232,16 +234,8 @@ def _run_wr_supplements(
     ) == _ZERO:
         return zero_result
     if not wr_schema_present:
-        wr_warnings.append("time_supplements requested but not modelled for this CCNL")
-        return _SupplementsResult(
-            overtime=_ZERO,
-            night=_ZERO,
-            holiday=_ZERO,
-            trace=(),
-            overtime_supported=False,
-            night_supported=False,
-            holiday_supported=False,
-        )
+        msg = "time_supplements requested but not modelled for this CCNL"
+        raise OutOfScopeError(msg, feature="overtime", reason="no_schema")
     work_rules_ts = ccnl.work_rules
     if (  # pragma: no cover
         work_rules_ts is None or work_rules_ts.time_supplements is None
@@ -329,10 +323,10 @@ def _run_wr_absence(
     Returns:
         :class:`_AbsenceResult` with zero deduction and
         ``effective_gross == gross_monthly`` when no absence is supplied or
-        the CCNL has no absence rules. A warning is appended to
-        ``wr_warnings`` in the latter case.
+        the CCNL has no absence rules.
 
     Raises:
+        OutOfScopeError: If unpaid_days > 0 but the CCNL has no absence schema.
         RuntimeError: If ``work_rules`` or ``absence_rules`` is ``None``
             despite ``present=True`` (indicates a data bug).
     """
@@ -364,7 +358,8 @@ def _run_wr_absence(
                 )
                 deduction = gross_monthly
         else:
-            wr_warnings.append("absence_days requested but not modelled for this CCNL")
+            msg = "absence_days requested but not modelled for this CCNL"
+            raise OutOfScopeError(msg, feature="absence", reason="no_schema")
     return _AbsenceResult(
         deduction=deduction,
         effective_gross=money(gross_monthly - deduction),
@@ -375,16 +370,16 @@ def _run_wr_absence(
 def _run_wr_leave(
     scenario: PayrollScenario,
     ccnl: CCNL,
-    wr_warnings: list[str],
 ) -> _LeaveResult:
     """Run the work-rules leave-accrual block.
 
     Returns:
         :class:`_LeaveResult` with zero day counters when no leave input is
-        supplied or the CCNL has no leave rules. A warning is appended to
-        ``wr_warnings`` in the latter case.
+        supplied.
 
     Raises:
+        OutOfScopeError: If leave_input is supplied but the CCNL has no
+            leave_rules schema.
         RuntimeError: If ``work_rules`` or ``leave_rules`` is ``None``
             despite ``present=True`` (indicates a data bug).
     """
@@ -408,8 +403,8 @@ def _run_wr_leave(
             service_months=service_months,
         )
         return _LeaveResult(accrued=accrued, taken=taken, balance=balance, present=True)
-    wr_warnings.append("leave_input requested but not modelled for this CCNL")
-    return _LeaveResult(accrued=_ZERO, taken=_ZERO, balance=_ZERO, present=present)
+    msg = "leave_input requested but not modelled for this CCNL"
+    raise OutOfScopeError(msg, feature="leave", reason="no_schema")
 
 
 def _run_wr_sickness(
@@ -417,7 +412,6 @@ def _run_wr_sickness(
     ccnl: CCNL,
     sick_pay_rates: InpsSickPayRates | None,
     gross_monthly: Decimal,
-    wr_warnings: list[str],
 ) -> _SicknessResult:
     """Run the work-rules sickness block.
 
@@ -426,10 +420,10 @@ def _run_wr_sickness(
 
     Returns:
         :class:`_SicknessResult` with zero amounts when sick input is absent
-        or ``sick_days == 0``.  A warning is appended to ``wr_warnings`` when
-        ``sick_days > 0`` but the CCNL has no sickness schema.
+        or ``sick_days == 0``.
 
     Raises:
+        OutOfScopeError: If sick_days > 0 but the CCNL has no sickness schema.
         RuntimeError: If ``work_rules`` or ``sickness_rules`` is ``None``
             despite ``present=True``, or if ``sick_pay_rates`` is ``None``
             when sickness computation is attempted (indicates a caller bug).
@@ -470,14 +464,8 @@ def _run_wr_sickness(
             company_integration=company_integration,
             present=True,
         )
-    wr_warnings.append("sick_input requested but not modelled for this CCNL")
-    return _SicknessResult(
-        sick_days=_ZERO,
-        carenza_days=_ZERO,
-        inps_indemnity=_ZERO,
-        company_integration=_ZERO,
-        present=present,
-    )
+    msg = "sick_input requested but not modelled for this CCNL"
+    raise OutOfScopeError(msg, feature="sickness", reason="no_schema")
 
 
 def _run_wr_variable_pay(
@@ -638,7 +626,7 @@ def compute_work_rules(
         hourly_rate=hourly_rate,
         wr_warnings=wr_warnings,
     )
-    leave = _run_wr_leave(scenario=scenario, ccnl=ccnl, wr_warnings=wr_warnings)
+    leave = _run_wr_leave(scenario=scenario, ccnl=ccnl)
 
     # Load sick-pay rates only when sick days were actually requested AND the
     # CCNL supports the sickness feature, so the ruleset is not registered as
@@ -658,7 +646,6 @@ def compute_work_rules(
         ccnl=ccnl,
         sick_pay_rates=sick_pay_rates,
         gross_monthly=gross.gross_monthly,
-        wr_warnings=wr_warnings,
     )
     var_pay = _run_wr_variable_pay(
         scenario=scenario,
