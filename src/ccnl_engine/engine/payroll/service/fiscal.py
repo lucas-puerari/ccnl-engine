@@ -83,6 +83,7 @@ class FiscalPay:
     termination_residual_leave_payout_annual: Decimal
     contract_renewal_arrears_annual: Decimal
     una_tantum_annual: Decimal
+    personal_withholdings_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -334,6 +335,9 @@ def compute_fiscal(
         scenario.contract_renewal_arrears_annual
     )
     una_tantum_annual = _termination_amount(scenario.una_tantum_annual)
+    personal_withholdings_annual = _termination_amount(
+        scenario.personal_withholdings_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -511,6 +515,7 @@ def compute_fiscal(
             + termination_residual_leave_payout_annual
             + contract_renewal_arrears_annual
             + una_tantum_annual
+            - personal_withholdings_annual
         )
     else:
         net_annual = money(
@@ -520,6 +525,7 @@ def compute_fiscal(
             + termination_residual_leave_payout_annual
             + contract_renewal_arrears_annual
             + una_tantum_annual
+            - personal_withholdings_annual
         )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
@@ -580,6 +586,7 @@ def compute_fiscal(
         termination_residual_leave_payout_annual=termination_residual_leave_payout_annual,
         contract_renewal_arrears_annual=contract_renewal_arrears_annual,
         una_tantum_annual=una_tantum_annual,
+        personal_withholdings_annual=personal_withholdings_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,

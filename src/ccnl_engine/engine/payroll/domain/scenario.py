@@ -388,6 +388,12 @@ class Employment(BaseModel):
     tax_year: int | None = None
 
 
+def _check_optional_non_negative(name: str, value: Decimal | None) -> None:
+    if value is not None and value < _ZERO:
+        msg = f"{name} must be >= 0, got {value}"
+        raise ValueError(msg)
+
+
 class PayrollScenario(BaseModel):
     """A complete payroll computation scenario.
 
@@ -484,66 +490,35 @@ class PayrollScenario(BaseModel):
     termination_tfr_liquidation_annual: StrictDecimal | None = None
     contract_renewal_arrears_annual: StrictDecimal | None = None
     una_tantum_annual: StrictDecimal | None = None
+    personal_withholdings_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
-        if (
-            self.prior_period_irpef_withheld is not None
-            and self.prior_period_irpef_withheld < _ZERO
-        ):
-            msg = (
-                "prior_period_irpef_withheld must be >= 0, "
-                f"got {self.prior_period_irpef_withheld}"
-            )
-            raise ValueError(msg)
-        if (
-            self.maternity_inps_indemnity_annual is not None
-            and self.maternity_inps_indemnity_annual < _ZERO
-        ):
-            msg = (
-                "maternity_inps_indemnity_annual must be >= 0, "
-                f"got {self.maternity_inps_indemnity_annual}"
-            )
-            raise ValueError(msg)
-        if (
-            self.workplace_injury_inail_indemnity_annual is not None
-            and self.workplace_injury_inail_indemnity_annual < _ZERO
-        ):
-            msg = (
-                "workplace_injury_inail_indemnity_annual must be >= 0, "
-                f"got {self.workplace_injury_inail_indemnity_annual}"
-            )
-            raise ValueError(msg)
-        if (
-            self.termination_residual_leave_payout_annual is not None
-            and self.termination_residual_leave_payout_annual < _ZERO
-        ):
-            msg = (
-                "termination_residual_leave_payout_annual must be >= 0, "
-                f"got {self.termination_residual_leave_payout_annual}"
-            )
-            raise ValueError(msg)
-        if (
-            self.termination_tfr_liquidation_annual is not None
-            and self.termination_tfr_liquidation_annual < _ZERO
-        ):
-            msg = (
-                "termination_tfr_liquidation_annual must be >= 0, "
-                f"got {self.termination_tfr_liquidation_annual}"
-            )
-            raise ValueError(msg)
-        if (
-            self.contract_renewal_arrears_annual is not None
-            and self.contract_renewal_arrears_annual < _ZERO
-        ):
-            msg = (
-                "contract_renewal_arrears_annual must be >= 0, "
-                f"got {self.contract_renewal_arrears_annual}"
-            )
-            raise ValueError(msg)
-        if self.una_tantum_annual is not None and self.una_tantum_annual < _ZERO:
-            msg = f"una_tantum_annual must be >= 0, got {self.una_tantum_annual}"
-            raise ValueError(msg)
+        _check_optional_non_negative(
+            "prior_period_irpef_withheld", self.prior_period_irpef_withheld
+        )
+        _check_optional_non_negative(
+            "maternity_inps_indemnity_annual", self.maternity_inps_indemnity_annual
+        )
+        _check_optional_non_negative(
+            "workplace_injury_inail_indemnity_annual",
+            self.workplace_injury_inail_indemnity_annual,
+        )
+        _check_optional_non_negative(
+            "termination_residual_leave_payout_annual",
+            self.termination_residual_leave_payout_annual,
+        )
+        _check_optional_non_negative(
+            "termination_tfr_liquidation_annual",
+            self.termination_tfr_liquidation_annual,
+        )
+        _check_optional_non_negative(
+            "contract_renewal_arrears_annual", self.contract_renewal_arrears_annual
+        )
+        _check_optional_non_negative("una_tantum_annual", self.una_tantum_annual)
+        _check_optional_non_negative(
+            "personal_withholdings_annual", self.personal_withholdings_annual
+        )
         return self
 
 

@@ -621,3 +621,26 @@ class TestUnaTantum:
         """Negative una_tantum_annual is rejected."""
         with pytest.raises(ValidationError, match="una_tantum_annual"):
             _base_scenario(una_tantum_annual=Decimal(-1))
+
+
+class TestPersonalWithholdings:
+    """PayrollScenario personal_withholdings_annual field validation."""
+
+    def test_withholdings_none_by_default(self) -> None:
+        """personal_withholdings_annual defaults to None."""
+        assert _base_scenario().personal_withholdings_annual is None
+
+    def test_withholdings_zero_accepted(self) -> None:
+        """personal_withholdings_annual=0 is valid."""
+        s = _base_scenario(personal_withholdings_annual=Decimal(0))
+        assert s.personal_withholdings_annual == Decimal(0)
+
+    def test_withholdings_positive_accepted(self) -> None:
+        """A positive personal_withholdings_annual is accepted."""
+        s = _base_scenario(personal_withholdings_annual=Decimal("500.00"))
+        assert s.personal_withholdings_annual == Decimal("500.00")
+
+    def test_negative_withholdings_raises(self) -> None:
+        """Negative personal_withholdings_annual is rejected."""
+        with pytest.raises(ValidationError, match="personal_withholdings_annual"):
+            _base_scenario(personal_withholdings_annual=Decimal(-1))
