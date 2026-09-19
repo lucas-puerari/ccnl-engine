@@ -14,6 +14,10 @@ from typing import TYPE_CHECKING, Literal, cast
 from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.serialization.codec import (
+    _STRICT_PRIMITIVES,
+    _validate_primitive,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.scenario import PeriodPayrollInput
@@ -84,7 +88,6 @@ _CALC_STATUSES = frozenset({"computed", "partial", "not_computed", "excluded"})
 _INTEG_STATUSES = frozenset({"included_in_totals", "informational_only", "n_a"})
 _ELIG_STATUSES = frozenset({"engine_verified", "caller_declared", "unknown", "n_a"})
 _QUAL_STATUSES = frozenset({"verified_primary", "unverified", "estimated", "n_a"})
-_STRICT_PRIMITIVES: frozenset[type] = frozenset({bool, int, str})
 
 
 def _coerce_scope_item(raw: dict[str, object]) -> ScopeItem:
@@ -127,32 +130,6 @@ def _coerce_scope_item(raw: dict[str, object]) -> ScopeItem:
         source_quality=qual,  # type: ignore[arg-type]
         assumptions=assumptions,
     )
-
-
-def _validate_primitive(raw: object, hint: type) -> object:
-    """Validate *raw* against a strict primitive *hint* and return it unchanged.
-
-    ``bool`` is checked before ``int`` because ``bool`` is a subclass of
-    ``int`` in Python and the two must not be confused.
-
-    Returns:
-        *raw* when it matches *hint* exactly.
-
-    Raises:
-        TypeError: When *raw* does not match the exact primitive *hint*.
-    """
-    if hint is bool:
-        if not isinstance(raw, bool):
-            msg = f"expected bool, got {type(raw).__name__!r}"
-            raise TypeError(msg)
-    elif hint is int:
-        if not isinstance(raw, int) or isinstance(raw, bool):
-            msg = f"expected int, got {type(raw).__name__!r}"
-            raise TypeError(msg)
-    elif not isinstance(raw, str):
-        msg = f"expected str, got {type(raw).__name__!r}"
-        raise TypeError(msg)
-    return raw
 
 
 def _coerce_scalar(raw: object, hint: type) -> object:

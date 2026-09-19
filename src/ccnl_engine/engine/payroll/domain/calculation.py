@@ -22,9 +22,16 @@ from enum import Enum, StrEnum
 from types import UnionType
 from typing import TYPE_CHECKING, Literal, cast, get_origin
 
-from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    AnnualEstimate,
+    PeriodPayroll,
+)
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.serialization.codec import (
+    _STRICT_PRIMITIVES,
+    _validate_primitive,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import TaxSector
@@ -149,35 +156,6 @@ def _deep_thaw(value: object) -> object:
     if isinstance(value, tuple):
         return [_deep_thaw(v) for v in value]
     return value
-
-
-_STRICT_PRIMITIVES: frozenset[type] = frozenset({bool, int, str})
-
-
-def _validate_primitive(raw: object, hint: type) -> object:
-    """Validate *raw* against a strict primitive *hint* and return it unchanged.
-
-    ``bool`` is checked before ``int`` because ``bool`` is a subclass of
-    ``int`` in Python and the two must not be confused.
-
-    Returns:
-        *raw* when it matches *hint* exactly.
-
-    Raises:
-        TypeError: When *raw* does not match the exact primitive *hint*.
-    """
-    if hint is bool:
-        if not isinstance(raw, bool):
-            msg = f"expected bool, got {type(raw).__name__!r}"
-            raise TypeError(msg)
-    elif hint is int:
-        if not isinstance(raw, int) or isinstance(raw, bool):
-            msg = f"expected int, got {type(raw).__name__!r}"
-            raise TypeError(msg)
-    elif not isinstance(raw, str):
-        msg = f"expected str, got {type(raw).__name__!r}"
-        raise TypeError(msg)
-    return raw
 
 
 def _coerce_scalar(raw: object, hint: type) -> object:
@@ -845,10 +823,6 @@ def _result_from_dict(data: dict[str, object]) -> AnnualEstimate:
         A :class:`PeriodPayroll` when *data* has a ``pay_period`` key,
         otherwise a plain :class:`AnnualEstimate`.
     """
-    from ccnl_engine.engine.payroll.domain.payroll_result import (  # noqa: PLC0415
-        PeriodPayroll,
-    )
-
     if "pay_period" in data:
         return PeriodPayroll.from_dict(data)
     return AnnualEstimate.from_dict(data)
@@ -897,71 +871,6 @@ class Calculation:
             "ruleset_verification",
             FrozenDict(dict(self.ruleset_verification)),
         )
-
-    def reproduce(self, *, allow_version_drift: bool = False) -> Calculation:
-        """Replay this calculation using the scenario stored in the snapshot.
-
-        The :class:`PayrollScenario` is rebuilt from the snapshot and passed
-        back through :func:`~ccnl_engine.engine.payroll.service.orchestrator\
-.compute`, which re-loads the rulesets from the currently installed knowledge
-        base. The returned :class:`Calculation` will carry the same inputs and
-        an identical :attr:`result` when the knowledge base has not changed.
-
-        Args:
-            allow_version_drift: When ``True``, proceed even if the engine
-                version or ruleset identities differ from those recorded in
-                this artefact; the divergence is recorded in the returned
-                :class:`Calculation` but no error is raised.  Defaults to
-                ``False``.
-
-        Returns:
-            A new :class:`Calculation` equal to the original when no drift
-            has occurred.
-
-        Raises:
-            ValueError: When *allow_version_drift* is ``False`` and either
-                the installed engine version or any ruleset identity does not
-                match the values recorded in this artefact.
-        """
-        from ccnl_engine.engine.payroll.service.orchestrator import (  # ruff: ignore[import-outside-top-level] - import cycle
-            compute,
-        )
-        from ccnl_engine.version import (  # ruff: ignore[import-outside-top-level] - import cycle
-            __version__ as current_engine_version,
-        )
-
-        scenario = self.input_snapshot.materialise()
-        new_calc = compute(scenario)
-
-        drift: list[str] = []
-        if self.engine_version != current_engine_version:
-            drift.append(
-                f"engine_version: recorded={self.engine_version!r}, "
-                f"current={current_engine_version!r}"
-            )
-        for key, recorded_ver in self.ruleset_version.items():
-            current_ver = new_calc.ruleset_version.get(key)
-            if current_ver != recorded_ver:
-                drift.append(
-                    f"ruleset {key!r}: recorded={recorded_ver!r}, "
-                    f"current={current_ver!r}"
-                )
-        drift.extend(
-            f"ruleset {key!r}: recorded=<absent>, "
-            f"current={new_calc.ruleset_version[key]!r}"
-            for key in new_calc.ruleset_version
-            if key not in self.ruleset_version
-        )
-
-        if drift and not allow_version_drift:
-            lines = "\n  ".join(drift)
-            msg = (
-                "reproduce() detected version drift; pass "
-                "allow_version_drift=True to proceed:\n  " + lines
-            )
-            raise ValueError(msg)
-
-        return new_calc
 
     def to_dict(self) -> dict[str, object]:
         """Serialise the full calculation to a JSON-native dict.
