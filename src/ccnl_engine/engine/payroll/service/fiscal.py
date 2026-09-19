@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.gross import GrossPay
+    from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import DomesticInpsRates, YearRules
 
@@ -688,6 +689,7 @@ def compute_fiscal(
     surtax: SurtaxRules | None,
     gross: GrossPay,
     year: int,
+    work: WorkRulesPay,
 ) -> FiscalPay:
     """Apply the annual fiscal chain to resolved gross pay.
 
@@ -721,7 +723,12 @@ def compute_fiscal(
         gross.gross_annual,
     )
 
-    taxable_income = money(gross.gross_annual - inps_employee_annual)
+    taxable_income = money(
+        gross.gross_annual
+        - inps_employee_annual
+        + work.fringe_benefit_taxable_annual
+        + work.bonus_ordinary_taxable_annual
+    )
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     eligible_work_days = (
         scenario.tax_basis.eligible_work_days
@@ -886,6 +893,7 @@ def compute_fiscal(
             + trattamento_integrativo
             + somma_esente_amount
             - bilateral_employee_annual
+            - work.bonus_pdr_flat_tax_annual
         )
     else:
         net_annual = money(

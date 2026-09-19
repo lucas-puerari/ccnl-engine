@@ -1,5 +1,5 @@
 {
-  "_description": "Bonus PdR eligible — CCNL Metalmeccanico Federmeccanica, C2, €2.000 bonus with PdR regime (1% flat tax per L.207/2024 c.385, gross_annual well below €80.000 ceiling)",
+  "_description": "Bonus PdR eligible — CCNL Metalmeccanico Federmeccanica, C2, €2.000 bonus with PdR regime (1% flat tax per L.207/2024 c.385, prior-year gross €50.000 below €80.000 ceiling)",
   "source": {
     "document": "L. 208/2015 art. 1 cc. 182-190",
     "section": "Premio di risultato — imposta sostitutiva 1% (R16: L.207/2024)",
@@ -24,7 +24,8 @@
     "ivs_ceiling_applies": false,
     "bonus_input": {
       "annual_amount": "2000",
-      "eligible_for_pdr": true
+      "eligible_for_pdr": true,
+      "prior_year_gross_annual": "50000"
     },
     "part_time_ratio": "1"
   },
@@ -34,9 +35,9 @@
     "bonus_annual": "2000",
     "bonus_pdr_flat_tax_annual": "20.00",
     "bonus_ordinary_taxable_annual": "0.00",
-    "net_monthly": "1689.00",
+    "net_monthly": "1687.46",
     "irpef_net": "2339.05",
-    "net_annual": "21956.95",
+    "net_annual": "21936.95",
     "ulteriore_detrazione_lavoro": "1000",
     "fiscal_simplifications": [
       "no_addizionale_comunale",

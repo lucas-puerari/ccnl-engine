@@ -148,6 +148,7 @@ class _VariablePayResult:
     bonus: Decimal
     bonus_pdr_flat_tax: Decimal
     bonus_ordinary_taxable: Decimal
+    bonus_pdr_missing_prior_year: bool
     var_pay_rules: VariablePayRules | None
 
 
@@ -469,7 +470,6 @@ def _run_wr_sickness(
 
 def _run_wr_variable_pay(
     scenario: PayrollScenario,
-    gross_annual: Decimal,
     year: int,
     wr_warnings: list[str],
 ) -> _VariablePayResult:
@@ -506,6 +506,7 @@ def _run_wr_variable_pay(
             bonus=_ZERO,
             bonus_pdr_flat_tax=_ZERO,
             bonus_ordinary_taxable=_ZERO,
+            bonus_pdr_missing_prior_year=False,
             var_pay_rules=None,
         )
 
@@ -516,6 +517,7 @@ def _run_wr_variable_pay(
     bonus_annual = _ZERO
     pdr_flat_tax = _ZERO
     bonus_ordinary = _ZERO
+    pdr_missing_prior_year = False
     var_pay_rules: VariablePayRules | None
 
     if rules_needed:
@@ -525,8 +527,18 @@ def _run_wr_variable_pay(
                 fb_input, var_pay_rules.fringe_benefit
             )
         if bonus_input is not None:
+            missing_prior = (
+                bonus_input.eligible_for_pdr
+                and bonus_input.prior_year_gross_annual is None
+            )
+            if missing_prior:
+                pdr_missing_prior_year = True
+                wr_warnings.append(
+                    "bonus_input: prior_year_gross_annual required for PdR "
+                    "regime verification — bonus treated as ordinary income"
+                )
             bonus_annual, pdr_flat_tax, bonus_ordinary = compute_bonus(
-                bonus_input, var_pay_rules.pdr, gross_annual, wr_warnings
+                bonus_input, var_pay_rules.pdr, wr_warnings
             )
     else:
         var_pay_rules = None
@@ -541,6 +553,7 @@ def _run_wr_variable_pay(
         bonus=bonus_annual,
         bonus_pdr_flat_tax=pdr_flat_tax,
         bonus_ordinary_taxable=bonus_ordinary,
+        bonus_pdr_missing_prior_year=pdr_missing_prior_year,
         var_pay_rules=var_pay_rules,
     )
 
@@ -577,6 +590,7 @@ class WorkRulesPay:
     bonus_annual: Decimal
     bonus_pdr_flat_tax_annual: Decimal
     bonus_ordinary_taxable_annual: Decimal
+    bonus_pdr_missing_prior_year: bool
     wr_overtime_supported: bool
     wr_night_supported: bool
     wr_holiday_supported: bool
@@ -648,7 +662,6 @@ def compute_work_rules(
     )
     var_pay = _run_wr_variable_pay(
         scenario=scenario,
-        gross_annual=gross.gross_annual,
         year=year,
         wr_warnings=wr_warnings,
     )
@@ -708,6 +721,7 @@ def compute_work_rules(
         bonus_annual=var_pay.bonus,
         bonus_pdr_flat_tax_annual=var_pay.bonus_pdr_flat_tax,
         bonus_ordinary_taxable_annual=var_pay.bonus_ordinary_taxable,
+        bonus_pdr_missing_prior_year=var_pay.bonus_pdr_missing_prior_year,
         wr_overtime_supported=supps.overtime_supported,
         wr_night_supported=supps.night_supported,
         wr_holiday_supported=supps.holiday_supported,

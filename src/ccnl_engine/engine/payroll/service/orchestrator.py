@@ -354,8 +354,8 @@ def compute(
         surtax = load_surtax_rules(year) if needs_surtax else None
 
     gross = compute_gross(scenario, ccnl)
-    fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year)
     work = compute_work_rules(scenario, ccnl, gross, year)
+    fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year, work)
     calculation_scope = build_scope(scenario, fiscal, work)
     provenance = _collect_provenance(
         gross.level,
