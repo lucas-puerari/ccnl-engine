@@ -60,6 +60,7 @@ class FiscalPay:
     inps_employer_exemption_annual: Decimal
     maternity_inps_indemnity_annual: Decimal
     workplace_injury_inail_indemnity_annual: Decimal
+    termination_tfr_liquidation_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -79,6 +80,7 @@ class FiscalPay:
     somma_esente: Decimal
     irpef_net: Decimal
     conguaglio_annual: Decimal
+    termination_residual_leave_payout_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -94,6 +96,15 @@ def _injury_indemnity(raw: Decimal | None) -> Decimal:
 
     Returns:
         The indemnity amount, or zero when absent.
+    """
+    return money(raw) if raw is not None else _ZERO
+
+
+def _termination_amount(raw: Decimal | None) -> Decimal:
+    """Return the caller-declared termination amount, or zero when absent.
+
+    Returns:
+        The termination amount, or zero when absent.
     """
     return money(raw) if raw is not None else _ZERO
 
@@ -311,6 +322,12 @@ def compute_fiscal(
     workplace_injury_inail_indemnity_annual = _injury_indemnity(
         scenario.workplace_injury_inail_indemnity_annual
     )
+    termination_residual_leave_payout_annual = _termination_amount(
+        scenario.termination_residual_leave_payout_annual
+    )
+    termination_tfr_liquidation_annual = _termination_amount(
+        scenario.termination_tfr_liquidation_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -485,10 +502,14 @@ def compute_fiscal(
             + somma_esente_amount
             - bilateral_employee_annual
             - work.bonus_pdr_flat_tax_annual
+            + termination_residual_leave_payout_annual
         )
     else:
         net_annual = money(
-            gross.gross_annual - inps_employee_annual - bilateral_employee_annual
+            gross.gross_annual
+            - inps_employee_annual
+            - bilateral_employee_annual
+            + termination_residual_leave_payout_annual
         )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
@@ -497,6 +518,7 @@ def compute_fiscal(
         - inps_employer_exemption_annual
         - maternity_inps_indemnity_annual
         - workplace_injury_inail_indemnity_annual
+        + termination_residual_leave_payout_annual
         + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
@@ -523,6 +545,7 @@ def compute_fiscal(
         inps_employer_exemption_annual=inps_employer_exemption_annual,
         maternity_inps_indemnity_annual=maternity_inps_indemnity_annual,
         workplace_injury_inail_indemnity_annual=workplace_injury_inail_indemnity_annual,
+        termination_tfr_liquidation_annual=termination_tfr_liquidation_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         bilateral_employee_annual=bilateral_employee_annual,
@@ -542,6 +565,7 @@ def compute_fiscal(
         somma_esente=somma_esente_amount,
         irpef_net=irpef_net,
         conguaglio_annual=conguaglio_annual,
+        termination_residual_leave_payout_annual=termination_residual_leave_payout_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,

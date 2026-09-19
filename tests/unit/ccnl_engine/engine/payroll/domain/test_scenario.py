@@ -531,3 +531,47 @@ class TestWorkplaceInjuryIndemnity:
             ValidationError, match="workplace_injury_inail_indemnity_annual"
         ):
             _base_scenario(workplace_injury_inail_indemnity_annual=Decimal(-1))
+
+
+class TestTerminationPayouts:
+    """PayrollScenario termination payout field validation."""
+
+    def test_residual_leave_none_by_default(self) -> None:
+        """termination_residual_leave_payout_annual defaults to None."""
+        assert _base_scenario().termination_residual_leave_payout_annual is None
+
+    def test_residual_leave_zero_accepted(self) -> None:
+        """termination_residual_leave_payout_annual=0 is valid."""
+        s = _base_scenario(termination_residual_leave_payout_annual=Decimal(0))
+        assert s.termination_residual_leave_payout_annual == Decimal(0)
+
+    def test_residual_leave_positive_accepted(self) -> None:
+        """A positive termination_residual_leave_payout_annual is accepted."""
+        s = _base_scenario(termination_residual_leave_payout_annual=Decimal("1200.00"))
+        assert s.termination_residual_leave_payout_annual == Decimal("1200.00")
+
+    def test_negative_residual_leave_raises(self) -> None:
+        """Negative termination_residual_leave_payout_annual is rejected."""
+        with pytest.raises(
+            ValidationError, match="termination_residual_leave_payout_annual"
+        ):
+            _base_scenario(termination_residual_leave_payout_annual=Decimal(-1))
+
+    def test_tfr_liquidation_none_by_default(self) -> None:
+        """termination_tfr_liquidation_annual defaults to None."""
+        assert _base_scenario().termination_tfr_liquidation_annual is None
+
+    def test_tfr_liquidation_zero_accepted(self) -> None:
+        """termination_tfr_liquidation_annual=0 is valid."""
+        s = _base_scenario(termination_tfr_liquidation_annual=Decimal(0))
+        assert s.termination_tfr_liquidation_annual == Decimal(0)
+
+    def test_tfr_liquidation_positive_accepted(self) -> None:
+        """A positive termination_tfr_liquidation_annual is accepted."""
+        s = _base_scenario(termination_tfr_liquidation_annual=Decimal("8000.00"))
+        assert s.termination_tfr_liquidation_annual == Decimal("8000.00")
+
+    def test_negative_tfr_liquidation_raises(self) -> None:
+        """Negative termination_tfr_liquidation_annual is rejected."""
+        with pytest.raises(ValidationError, match="termination_tfr_liquidation_annual"):
+            _base_scenario(termination_tfr_liquidation_annual=Decimal(-1))

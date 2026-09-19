@@ -480,6 +480,8 @@ class PayrollScenario(BaseModel):
     prior_period_irpef_withheld: StrictDecimal | None = None
     maternity_inps_indemnity_annual: StrictDecimal | None = None
     workplace_injury_inail_indemnity_annual: StrictDecimal | None = None
+    termination_residual_leave_payout_annual: StrictDecimal | None = None
+    termination_tfr_liquidation_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -508,6 +510,24 @@ class PayrollScenario(BaseModel):
             msg = (
                 "workplace_injury_inail_indemnity_annual must be >= 0, "
                 f"got {self.workplace_injury_inail_indemnity_annual}"
+            )
+            raise ValueError(msg)
+        if (
+            self.termination_residual_leave_payout_annual is not None
+            and self.termination_residual_leave_payout_annual < _ZERO
+        ):
+            msg = (
+                "termination_residual_leave_payout_annual must be >= 0, "
+                f"got {self.termination_residual_leave_payout_annual}"
+            )
+            raise ValueError(msg)
+        if (
+            self.termination_tfr_liquidation_annual is not None
+            and self.termination_tfr_liquidation_annual < _ZERO
+        ):
+            msg = (
+                "termination_tfr_liquidation_annual must be >= 0, "
+                f"got {self.termination_tfr_liquidation_annual}"
             )
             raise ValueError(msg)
         return self

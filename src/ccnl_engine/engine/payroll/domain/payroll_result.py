@@ -275,6 +275,7 @@ class Contributions:
     inps_employer_exemption_annual: Decimal
     maternity_inps_indemnity_annual: Decimal
     workplace_injury_inail_indemnity_annual: Decimal
+    termination_tfr_liquidation_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -327,6 +328,7 @@ class Taxes:
     unused_art15_deduction_annual: Decimal
     sterilizzazione_clawback_annual: Decimal
     conguaglio_annual: Decimal
+    termination_residual_leave_payout_annual: Decimal
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a plain dict.

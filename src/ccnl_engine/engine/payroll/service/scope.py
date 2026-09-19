@@ -216,6 +216,8 @@ def _fiscal_scope(
     prior_irpef = scenario.prior_period_irpef_withheld
     maternity = scenario.maternity_inps_indemnity_annual
     injury = scenario.workplace_injury_inail_indemnity_annual
+    term_leave = scenario.termination_residual_leave_payout_annual
+    term_tfr = scenario.termination_tfr_liquidation_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -261,6 +263,24 @@ def _fiscal_scope(
             )
             if injury is not None
             else _excluded("workplace_injury")
+        ),
+        (
+            _computed(
+                "termination_residual_leave",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if term_leave is not None
+            else _excluded("termination_residual_leave")
+        ),
+        (
+            _computed(
+                "termination_tfr",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if term_tfr is not None
+            else _excluded("termination_tfr")
         ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
