@@ -13,6 +13,9 @@ class FiscalSimplification(StrEnum):
     ``NO_ADDIZIONALE_*`` — jurisdiction not provided by the caller (excluded).
     ``ADDIZIONALE_*_UNKNOWN`` — jurisdiction provided but not found in the bundle;
     the addizionale is zero and the scope entry is ``not_computed``.
+    ``ADDIZIONALE_COMUNALE_ADVANCE_ONLY`` — comunale rates in the bundle are from a
+    prior tax year and represent only the advance (acconto); the balance (saldo) is
+    not computed. Scope entry is ``partial``.
     ``NO_DETRAZIONI_ART15_MORTGAGE`` — Art. 15 mortgage interest not provided;
     cleared when ``scenario.art15_deductions.mortgage_interest`` is non-zero.
     ``PARTIAL_DETRAZIONI_ART15`` — always set; the engine models only mortgage
@@ -36,6 +39,7 @@ class FiscalSimplification(StrEnum):
     NO_ADDIZIONALE_COMUNALE = "no_addizionale_comunale"
     ADDIZIONALE_REGIONALE_UNKNOWN = "addizionale_regionale_unknown"
     ADDIZIONALE_COMUNALE_UNKNOWN = "addizionale_comunale_unknown"
+    ADDIZIONALE_COMUNALE_ADVANCE_ONLY = "addizionale_comunale_advance_only"
     NO_TRATTAMENTO_INTEGRATIVO = "no_trattamento_integrativo"
     NO_DETRAZIONI_FAMILIARI = "no_detrazioni_familiari"
     NO_DETRAZIONI_ART15_MORTGAGE = "no_detrazioni_art15_mortgage"
