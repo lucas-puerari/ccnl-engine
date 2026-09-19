@@ -87,6 +87,8 @@ class FiscalPay:
     additional_irpef_base_annual: Decimal
     health_fund_employee_annual: Decimal
     health_fund_employer_annual: Decimal
+    territorial_supplement_annual: Decimal
+    company_supplement_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -350,6 +352,10 @@ def compute_fiscal(
     health_fund_employer_annual = _termination_amount(
         scenario.health_fund_employer_annual
     )
+    territorial_supplement_annual = _termination_amount(
+        scenario.territorial_supplement_annual
+    )
+    company_supplement_annual = _termination_amount(scenario.company_supplement_annual)
 
     taxable_income = money(
         gross.gross_annual
@@ -530,6 +536,8 @@ def compute_fiscal(
             + una_tantum_annual
             - personal_withholdings_annual
             - health_fund_employee_annual
+            + territorial_supplement_annual
+            + company_supplement_annual
         )
     else:
         net_annual = money(
@@ -541,6 +549,8 @@ def compute_fiscal(
             + una_tantum_annual
             - personal_withholdings_annual
             - health_fund_employee_annual
+            + territorial_supplement_annual
+            + company_supplement_annual
         )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
@@ -556,6 +566,8 @@ def compute_fiscal(
         + employer_funds_annual
         + bilateral_employer_annual
         + health_fund_employer_annual
+        + territorial_supplement_annual
+        + company_supplement_annual
         + tfr_annual
     )
 
@@ -606,6 +618,8 @@ def compute_fiscal(
         additional_irpef_base_annual=additional_irpef_base_annual,
         health_fund_employee_annual=health_fund_employee_annual,
         health_fund_employer_annual=health_fund_employer_annual,
+        territorial_supplement_annual=territorial_supplement_annual,
+        company_supplement_annual=company_supplement_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,

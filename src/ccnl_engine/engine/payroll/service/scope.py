@@ -230,6 +230,8 @@ def _fiscal_scope(
     extra_irpef = scenario.additional_irpef_base_annual
     health_employee = scenario.health_fund_employee_annual
     health_employer = scenario.health_fund_employer_annual
+    territorial = scenario.territorial_supplement_annual
+    company = scenario.company_supplement_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -248,6 +250,8 @@ def _fiscal_scope(
         _caller_declared_or_excluded("additional_irpef_base", extra_irpef),
         _caller_declared_or_excluded("health_fund_employee", health_employee),
         _caller_declared_or_excluded("health_fund_employer", health_employer),
+        _caller_declared_or_excluded("territorial_supplement", territorial),
+        _caller_declared_or_excluded("company_supplement", company),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (

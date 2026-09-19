@@ -494,6 +494,8 @@ class PayrollScenario(BaseModel):
     additional_irpef_base_annual: StrictDecimal | None = None
     health_fund_employee_annual: StrictDecimal | None = None
     health_fund_employer_annual: StrictDecimal | None = None
+    territorial_supplement_annual: StrictDecimal | None = None
+    company_supplement_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -530,6 +532,12 @@ class PayrollScenario(BaseModel):
         )
         _check_optional_non_negative(
             "health_fund_employer_annual", self.health_fund_employer_annual
+        )
+        _check_optional_non_negative(
+            "territorial_supplement_annual", self.territorial_supplement_annual
+        )
+        _check_optional_non_negative(
+            "company_supplement_annual", self.company_supplement_annual
         )
         return self
 

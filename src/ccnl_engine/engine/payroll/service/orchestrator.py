@@ -257,6 +257,8 @@ def _build_taxes(fiscal: object) -> Taxes:
         una_tantum_annual=f.una_tantum_annual,
         personal_withholdings_annual=f.personal_withholdings_annual,
         additional_irpef_base_annual=f.additional_irpef_base_annual,
+        territorial_supplement_annual=f.territorial_supplement_annual,
+        company_supplement_annual=f.company_supplement_annual,
     )
 
 

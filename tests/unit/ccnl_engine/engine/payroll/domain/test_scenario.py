@@ -713,3 +713,49 @@ class TestHealthFundEmployer:
         """Negative health_fund_employer_annual is rejected."""
         with pytest.raises(ValidationError, match="health_fund_employer_annual"):
             _base_scenario(health_fund_employer_annual=Decimal(-1))
+
+
+class TestTerritorialSupplement:
+    """PayrollScenario territorial_supplement_annual field validation."""
+
+    def test_territorial_supplement_none_by_default(self) -> None:
+        """territorial_supplement_annual defaults to None."""
+        assert _base_scenario().territorial_supplement_annual is None
+
+    def test_territorial_supplement_zero_accepted(self) -> None:
+        """territorial_supplement_annual=0 is valid."""
+        s = _base_scenario(territorial_supplement_annual=Decimal(0))
+        assert s.territorial_supplement_annual == Decimal(0)
+
+    def test_territorial_supplement_positive_accepted(self) -> None:
+        """A positive territorial_supplement_annual is accepted."""
+        s = _base_scenario(territorial_supplement_annual=Decimal("600.00"))
+        assert s.territorial_supplement_annual == Decimal("600.00")
+
+    def test_negative_territorial_supplement_raises(self) -> None:
+        """Negative territorial_supplement_annual is rejected."""
+        with pytest.raises(ValidationError, match="territorial_supplement_annual"):
+            _base_scenario(territorial_supplement_annual=Decimal(-1))
+
+
+class TestCompanySupplement:
+    """PayrollScenario company_supplement_annual field validation."""
+
+    def test_company_supplement_none_by_default(self) -> None:
+        """company_supplement_annual defaults to None."""
+        assert _base_scenario().company_supplement_annual is None
+
+    def test_company_supplement_zero_accepted(self) -> None:
+        """company_supplement_annual=0 is valid."""
+        s = _base_scenario(company_supplement_annual=Decimal(0))
+        assert s.company_supplement_annual == Decimal(0)
+
+    def test_company_supplement_positive_accepted(self) -> None:
+        """A positive company_supplement_annual is accepted."""
+        s = _base_scenario(company_supplement_annual=Decimal("800.00"))
+        assert s.company_supplement_annual == Decimal("800.00")
+
+    def test_negative_company_supplement_raises(self) -> None:
+        """Negative company_supplement_annual is rejected."""
+        with pytest.raises(ValidationError, match="company_supplement_annual"):
+            _base_scenario(company_supplement_annual=Decimal(-1))
