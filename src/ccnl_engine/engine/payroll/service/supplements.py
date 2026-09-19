@@ -139,7 +139,8 @@ def _supplements_for_kind(
     """
     ctx = kind_to_hours or {}
     eligible = [
-        b for b in bands
+        b
+        for b in bands
         if not b.required_context_kinds
         or all(ctx.get(rk, _ZERO) > _ZERO for rk in b.required_context_kinds)
     ]
