@@ -491,6 +491,7 @@ class PayrollScenario(BaseModel):
     contract_renewal_arrears_annual: StrictDecimal | None = None
     una_tantum_annual: StrictDecimal | None = None
     personal_withholdings_annual: StrictDecimal | None = None
+    additional_irpef_base_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -518,6 +519,9 @@ class PayrollScenario(BaseModel):
         _check_optional_non_negative("una_tantum_annual", self.una_tantum_annual)
         _check_optional_non_negative(
             "personal_withholdings_annual", self.personal_withholdings_annual
+        )
+        _check_optional_non_negative(
+            "additional_irpef_base_annual", self.additional_irpef_base_annual
         )
         return self
 

@@ -84,6 +84,7 @@ class FiscalPay:
     contract_renewal_arrears_annual: Decimal
     una_tantum_annual: Decimal
     personal_withholdings_annual: Decimal
+    additional_irpef_base_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -338,12 +339,16 @@ def compute_fiscal(
     personal_withholdings_annual = _termination_amount(
         scenario.personal_withholdings_annual
     )
+    additional_irpef_base_annual = _termination_amount(
+        scenario.additional_irpef_base_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
         - inps_employee_annual
         + work.fringe_benefit_taxable_annual
         + work.bonus_ordinary_taxable_annual
+        + additional_irpef_base_annual
     )
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
     eligible_work_days = (
@@ -587,6 +592,7 @@ def compute_fiscal(
         contract_renewal_arrears_annual=contract_renewal_arrears_annual,
         una_tantum_annual=una_tantum_annual,
         personal_withholdings_annual=personal_withholdings_annual,
+        additional_irpef_base_annual=additional_irpef_base_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,
