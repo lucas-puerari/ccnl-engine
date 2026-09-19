@@ -598,3 +598,26 @@ class TestContractRenewalArrears:
         """Negative contract_renewal_arrears_annual is rejected."""
         with pytest.raises(ValidationError, match="contract_renewal_arrears_annual"):
             _base_scenario(contract_renewal_arrears_annual=Decimal(-1))
+
+
+class TestUnaTantum:
+    """PayrollScenario una_tantum_annual field validation."""
+
+    def test_una_tantum_none_by_default(self) -> None:
+        """una_tantum_annual defaults to None."""
+        assert _base_scenario().una_tantum_annual is None
+
+    def test_una_tantum_zero_accepted(self) -> None:
+        """una_tantum_annual=0 is valid."""
+        s = _base_scenario(una_tantum_annual=Decimal(0))
+        assert s.una_tantum_annual == Decimal(0)
+
+    def test_una_tantum_positive_accepted(self) -> None:
+        """A positive una_tantum_annual is accepted."""
+        s = _base_scenario(una_tantum_annual=Decimal("3000.00"))
+        assert s.una_tantum_annual == Decimal("3000.00")
+
+    def test_negative_una_tantum_raises(self) -> None:
+        """Negative una_tantum_annual is rejected."""
+        with pytest.raises(ValidationError, match="una_tantum_annual"):
+            _base_scenario(una_tantum_annual=Decimal(-1))

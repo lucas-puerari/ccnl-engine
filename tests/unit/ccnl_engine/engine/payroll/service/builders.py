@@ -93,6 +93,8 @@ def _req(
     jurisdiction: Jurisdiction | None = None,
     ivs_ceiling_applies: bool = False,
     weekly_hours: Decimal | None = None,
+    inail_rate: Decimal | None = None,
+    inps_employer_exemption_annual: Decimal | None = None,
 ) -> AnnualEstimateInput:
     """Build an AnnualEstimateInput with test defaults; override any field via kwargs.
 
@@ -136,6 +138,8 @@ def _req(
             employer=Employer(
                 num_employees=num_employees,
                 second_level_allowances=second_level_allowances,
+                inail_rate=inail_rate,
+                inps_employer_exemption_annual=inps_employer_exemption_annual,
             ),
             as_of=as_of,
         ),

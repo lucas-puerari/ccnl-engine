@@ -483,6 +483,7 @@ class PayrollScenario(BaseModel):
     termination_residual_leave_payout_annual: StrictDecimal | None = None
     termination_tfr_liquidation_annual: StrictDecimal | None = None
     contract_renewal_arrears_annual: StrictDecimal | None = None
+    una_tantum_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -539,6 +540,9 @@ class PayrollScenario(BaseModel):
                 "contract_renewal_arrears_annual must be >= 0, "
                 f"got {self.contract_renewal_arrears_annual}"
             )
+            raise ValueError(msg)
+        if self.una_tantum_annual is not None and self.una_tantum_annual < _ZERO:
+            msg = f"una_tantum_annual must be >= 0, got {self.una_tantum_annual}"
             raise ValueError(msg)
         return self
 
