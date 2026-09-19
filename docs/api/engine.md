@@ -18,7 +18,7 @@ See [Guide: Employment types](../domain/employment-types.md) and
 
 Both `estimate_annual()` and `estimate_period_effects()` return a `Calculation` that
 bundles the engine version, the ruleset revisions used, a snapshot of the
-inputs, and the resulting `PayrollResult` (`.result`).
+inputs, and the resulting `AnnualEstimate` (`.result`).
 
 ::: ccnl_engine.engine.payroll.domain.calculation
     options:
@@ -49,9 +49,9 @@ inputs, and the resulting `PayrollResult` (`.result`).
         - RalOverride
         - DestinationRalOverride
 
-## PayrollResult
+## AnnualEstimate
 
 ::: ccnl_engine.engine.payroll.domain.payroll_result
     options:
       members:
-        - PayrollResult
+        - AnnualEstimate

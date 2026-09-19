@@ -141,7 +141,7 @@ ti = by_cat[TraceCategory.TRATTAMENTO_INTEGRATIVO].amount
 net_from_trace = gross - inps - irpef - add_reg - add_com + ti
 
 print(f"\n  Closure check: {net_from_trace} EUR (from trace steps)")
-print(f"  Result field:  {p.net_annual} EUR (from PayrollResult)")
+print(f"  Result field:  {p.net_annual} EUR (from AnnualEstimate)")
 assert net_from_trace == p.net_annual, (
     f"fiscal closure violated: {net_from_trace} != {p.net_annual}"
 )

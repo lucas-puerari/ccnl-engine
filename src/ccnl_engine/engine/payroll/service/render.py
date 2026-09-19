@@ -22,9 +22,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.payroll_result import (
-        AnnualEstimate as PayrollResult,
-    )
+    from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
 
 
 @dataclass(frozen=True)
@@ -118,8 +116,8 @@ class AnnualBreakdown:
         return json.dumps(self.to_dict())
 
 
-def render_breakdown(result: PayrollResult) -> AnnualBreakdown:
-    """Produce an :class:`AnnualBreakdown` from a :class:`PayrollResult`.
+def render_breakdown(result: AnnualEstimate) -> AnnualBreakdown:
+    """Produce an :class:`AnnualBreakdown` from an :class:`AnnualEstimate`.
 
     Reads all relevant fields from *result* and returns them arranged in the
     conventional Italian payslip order.  The monthly approximation is taken
@@ -127,7 +125,7 @@ def render_breakdown(result: PayrollResult) -> AnnualBreakdown:
     as computed by the orchestrator).
 
     Args:
-        result: A computed :class:`PayrollResult`.
+        result: A computed :class:`AnnualEstimate`.
 
     Returns:
         An :class:`AnnualBreakdown` with all annual figures and a monthly

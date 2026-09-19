@@ -1,7 +1,7 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
 Build an AnnualPayrollScenario and pass it to estimate_annual(). The
-returned Calculation wraps the PayrollResult (``calculation.result``)
+returned Calculation wraps the AnnualEstimate (``calculation.result``)
 together with the engine and ruleset versions that produced it.
 """
 
@@ -46,7 +46,7 @@ print(f"Confidence:        {payroll.coverage.confidence}")
 print(f"Engine version:    {calculation.engine_version}")
 print(f"Ruleset version:   {calculation.ruleset_version}")
 
-# PayrollResult.provenance carries the ordered chain of RuleProvenance objects
+# AnnualEstimate.provenance carries the ordered chain of RuleProvenance objects
 # that contributed to the computed pay — one entry per level, active salary
 # period, applied allowance, and seniority-increment rule.
 for prov in payroll.provenance:
