@@ -1429,7 +1429,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "82da7e1c3403b0dcf8c0170970773a997b09a470e502ec43e16050cfa87e2f0f",
+    "source_hash": "6f79809e0d6238e760a012fcb4126c21af14e91885a0373b71de5b036d617173",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1473,7 +1473,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (oltre 48h sett.)",
           "kind": "percentage",
           "rate": {
@@ -1505,7 +1505,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_NOTTURNO",

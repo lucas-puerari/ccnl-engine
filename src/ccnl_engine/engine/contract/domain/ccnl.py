@@ -6,7 +6,7 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import Any, Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
@@ -126,6 +126,8 @@ class OvertimeBand(BaseModel):
     ``applies_to_kinds`` lists the :class:`WorkKind` values this band covers.
     ``hour_threshold_per_day`` / ``hour_threshold_per_week`` optionally restrict
     the band to hours *beyond* that threshold (straordinario, not supplementare).
+    ``required_context_kinds``, when non-empty, makes this a conditional band:
+    it is only applied when ALL listed kinds also have non-zero declared hours.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -137,6 +139,7 @@ class OvertimeBand(BaseModel):
     hour_threshold_per_day: int | None = None
     hour_threshold_per_week: int | None = None
     applies_to_kinds: tuple[WorkKind, ...]
+    required_context_kinds: tuple[WorkKind, ...] = ()
     provenance: "RuleProvenance | None" = None
 
 
@@ -159,6 +162,47 @@ class TimeSupplements(BaseModel):
         "minimo_tabellare"
     )
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
+
+    @field_validator("overtime_bands")
+    @classmethod
+    def _no_ambiguous_collisions(
+        cls, bands: tuple["OvertimeBand", ...]
+    ) -> tuple["OvertimeBand", ...]:
+        """Reject overlapping bands with no threshold or context predicate.
+
+        Two or more bands for the same WorkKind are only allowed when they are
+        disambiguated by ``hour_threshold_per_week``, ``hour_threshold_per_day``,
+        or ``required_context_kinds``. Bands that overlap without any such
+        predicate are ambiguous and cannot be applied deterministically.
+
+        Returns:
+            The validated bands tuple unchanged.
+
+        Raises:
+            ValueError: If two or more unconditional bands share a WorkKind
+                with no threshold to distinguish them.
+        """
+        unconditional: dict[str, list[str]] = {}
+        for band in bands:
+            is_conditional = bool(band.required_context_kinds)
+            has_threshold = (
+                band.hour_threshold_per_week is not None
+                or band.hour_threshold_per_day is not None
+            )
+            if not is_conditional and not has_threshold:
+                for k in band.applies_to_kinds:
+                    unconditional.setdefault(k, []).append(band.code)
+        collisions = {k: codes for k, codes in unconditional.items() if len(codes) > 1}
+        if collisions:
+            details = "; ".join(
+                f"{k}: {codes}" for k, codes in sorted(collisions.items())
+            )
+            msg = (
+                "Ambiguous OvertimeBand collisions (missing threshold or predicate): "
+                + details
+            )
+            raise ValueError(msg)
+        return bands
 
 
 class DailyDivisorMethod(StrEnum):

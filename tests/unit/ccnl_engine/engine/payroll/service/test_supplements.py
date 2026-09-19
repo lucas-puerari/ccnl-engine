@@ -532,3 +532,144 @@ class TestComputeTimeSupplementsWeeklyBreakdown:
             oh_weekly, schema, _BASE, _DIVISOR, _AS_OF
         )
         assert ot_m == ot_w
+
+
+class TestConditionalBands:
+    """Tests for required_context_kinds conditional band logic."""
+
+    def test_conditional_band_skipped_when_context_absent(self) -> None:
+        """Conditional band skipped when required context kind has no hours."""
+        base_band = _band("OT_NOTTURNO", "percentage", "0.28", ["night"])
+        cond_band = OvertimeBand(
+            code="OT_NOTTURNO_STRAORDINARIO",
+            description="Straordinario notturno",
+            kind=TimeSupplementKind("percentage"),
+            rate=_ts("0.40"),
+            applies_to_kinds=(WorkKind.WEEKDAY,),
+            required_context_kinds=(WorkKind.NIGHT,),
+        )
+        schema = TimeSupplements(
+            overtime_bands=(base_band, cond_band),
+        )
+        # Night hours only — weekday conditional band must not fire
+        ot, ni, _ho, _ = compute_time_supplements(
+            OvertimeHours(night_hours=Decimal(1)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        hourly_base = _BASE / _DIVISOR
+        assert ni == _money(Decimal(1) * Decimal("0.28") * hourly_base)
+        assert ot == Decimal(0)
+
+    def test_conditional_band_applied_when_context_present(self) -> None:
+        """Band with required_context_kinds fires when all context kinds have hours."""
+        base_band = _band("OT_NOTTURNO", "percentage", "0.28", ["night"])
+        cond_band = OvertimeBand(
+            code="OT_NOTTURNO_STRAORDINARIO",
+            description="Straordinario notturno",
+            kind=TimeSupplementKind("percentage"),
+            rate=_ts("0.40"),
+            applies_to_kinds=(WorkKind.WEEKDAY,),
+            required_context_kinds=(WorkKind.NIGHT,),
+        )
+        schema = TimeSupplements(
+            overtime_bands=(base_band, cond_band),
+        )
+        # Both night and weekday hours — conditional band fires for weekday
+        ot, ni, _ho, _steps = compute_time_supplements(
+            OvertimeHours(night_hours=Decimal(1), weekday_hours=Decimal(4)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        hourly_base = _BASE / _DIVISOR
+        assert ni == _money(Decimal(1) * Decimal("0.28") * hourly_base)
+        assert ot == _money(Decimal(4) * Decimal("0.40") * hourly_base)
+
+    def test_ambiguous_collision_rejected_at_schema_load(self) -> None:
+        """TimeSupplements rejects same-kind bands with no threshold or predicate."""
+        with pytest.raises(Exception, match="Ambiguous OvertimeBand"):
+            TimeSupplements(
+                overtime_bands=(
+                    _band("OT_A", "percentage", "0.15", ["weekday"]),
+                    _band("OT_B", "percentage", "0.20", ["weekday"]),
+                ),
+            )
+
+
+class TestRegressionCases:
+    """Regression tests for the two known mis-selection bugs.
+
+    commercio-confcommercio: 4 weekday hours → OT_DIURNO (15%), not OT_DIURNO_EXTRA.
+    edilizia-pmi-confapi-aniem: 1 night hour → OT_NOTTURNO (28%), not higher band.
+    """
+
+    def test_commercio_4_weekday_hours_selects_lower_rate(self) -> None:
+        """With 4 weekday hours (below threshold 8), base rate applies."""
+        schema = TimeSupplements(
+            overtime_bands=(
+                OvertimeBand(
+                    code="OT_DIURNO",
+                    description="Straordinario diurno",
+                    kind=TimeSupplementKind("percentage"),
+                    rate=_ts("0.15"),
+                    applies_to_kinds=(WorkKind.WEEKDAY,),
+                ),
+                OvertimeBand(
+                    code="OT_DIURNO_EXTRA",
+                    description="Straordinario diurno extra",
+                    kind=TimeSupplementKind("percentage"),
+                    rate=_ts("0.20"),
+                    applies_to_kinds=(WorkKind.WEEKDAY,),
+                    hour_threshold_per_week=8,
+                ),
+            ),
+        )
+        hourly_base = _BASE / _DIVISOR
+        ot, ni, _ho, steps = compute_time_supplements(
+            OvertimeHours(weekday_hours=Decimal(4)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        # 4 hours all below threshold=8 → 15% rate
+        assert ot == _money(Decimal(4) * Decimal("0.15") * hourly_base)
+        assert ni == Decimal(0)
+        assert len(steps) == 2  # one band + total
+
+    def test_edilizia_1_night_hour_selects_base_rate(self) -> None:
+        """1 night hour selects OT_NOTTURNO (28%); conditional band excluded."""
+        schema = TimeSupplements(
+            overtime_bands=(
+                OvertimeBand(
+                    code="OT_NOTTURNO",
+                    description="Notturno",
+                    kind=TimeSupplementKind("percentage"),
+                    rate=_ts("0.28"),
+                    applies_to_kinds=(WorkKind.NIGHT,),
+                ),
+                OvertimeBand(
+                    code="OT_NOTTURNO_STRAORDINARIO",
+                    description="Notturno straordinario",
+                    kind=TimeSupplementKind("percentage"),
+                    rate=_ts("0.40"),
+                    applies_to_kinds=(WorkKind.WEEKDAY,),
+                    required_context_kinds=(WorkKind.NIGHT,),
+                ),
+            ),
+        )
+        hourly_base = _BASE / _DIVISOR
+        ot, ni, _ho, _steps = compute_time_supplements(
+            OvertimeHours(night_hours=Decimal(1)),
+            schema,
+            _BASE,
+            _DIVISOR,
+            _AS_OF,
+        )
+        # Only night declared → OT_NOTTURNO at 28%; conditional band skipped
+        assert ni == _money(Decimal(1) * Decimal("0.28") * hourly_base)
+        assert ot == Decimal(0)

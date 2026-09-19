@@ -693,7 +693,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c7f717b26875519beb3c02bd2edd6e9a5641bc5207043780ae4fe793f88c87d",
+    "source_hash": "bf61e29ebe0bc52d693b7dec0a26e03678c2408790b1b0730a1a833aa8e19269",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -821,8 +821,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

@@ -1270,7 +1270,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "639395b25408e848a2acc6e0ffe9c342073c4df7fcde2e3fe193afaf3f9d6e59",
+    "source_hash": "cb40a6582f6b4ba5297133a1b34b5d5a8a236c39c58b133eb3bc77570214f1a2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1398,8 +1398,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

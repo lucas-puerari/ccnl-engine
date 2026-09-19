@@ -1311,7 +1311,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "7be5c478edb75bbbf5941410a6422bff50c72f907eb2435ccc8737f472a77466",
+    "source_hash": "87e08d8f4b803e22fe3a200bb07cbd02d71a631f5d666c572c430ad6c3be581c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1439,8 +1439,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

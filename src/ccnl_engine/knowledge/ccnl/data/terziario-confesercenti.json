@@ -1709,7 +1709,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "82dce3f9073c3e3e483886438e991a701dbbed0bd499cbd305be4da2deecca6d",
+    "source_hash": "11442241196c787f563c3317b83ba125c89d6eb2ab8e58a3d58da4b571b14a68",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1753,7 +1753,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale diurno >48h",
           "kind": "percentage",
           "rate": {
@@ -1785,7 +1785,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_FESTIVO",

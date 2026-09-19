@@ -504,7 +504,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "99602e77fae3b1d91733f572ebf9535547576ad69c6e80cd01173a494675bfae",
+    "source_hash": "d876fc69ddf9211ef493449943acdd017e77a7c3db60548103409fac20a71137",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -632,8 +632,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

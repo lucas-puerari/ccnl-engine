@@ -1315,7 +1315,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "d587e508c34fa5428c77a346b016e112a5efd439dd431cbcef8e48a9dc982a38",
+    "source_hash": "8c706b03d865e0a739b1969fdae9581846044125184e21365f5046d46033a2e8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1443,8 +1443,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

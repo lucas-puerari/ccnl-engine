@@ -12,11 +12,6 @@ Built for technical teams in HR, payroll, and compensation.
 
 **[Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [Demo](https://lucas-puerari.github.io/ccnl-engine/demo/)**
 
-> **Scope boundary:** this is a simulation engine for embedding in products and analyses,
-> not a payroll processor and not a cedolino replacement. It does not file contributions,
-> generate official payslips, or connect to INPS/Agenzia delle Entrate. For production
-> payroll processing use a certified HRMS or payroll bureau.
-
 ## Motivation
 
 I never really understood employment contracts or pay slips. The whole system strikes me as needlessly complicated. On top of that, finding reliable CCNL information online feels like an uphill battle: conflicting figures are everywhere, and identifying authoritative sources is harder than it should be. This project grew out of a desire to understand a little more. I make no claim to becoming an expert, but I hope to make this information more accessible and comprehensible for everyone.

@@ -1123,7 +1123,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "db73744a2652ec03c7a3600267e2bc40517b857358916c3871f8159471e58ad2",
+    "source_hash": "1ab60ffb1f95b96a1b62e64a056e81742f6842da71cd2ffc1f3e5162ecb2a9cc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1251,8 +1251,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

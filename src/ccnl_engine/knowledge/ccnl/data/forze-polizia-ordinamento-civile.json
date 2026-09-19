@@ -2141,7 +2141,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "eb08704e5d0cb0ecf6541e9bfab888f8f312b00ef4e44637f03cf32474d9a41c",
+    "source_hash": "6b9afdeddae702a12b0b4ed419081c980accee4a58b2c81b5c6a723eb7bb50c3",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -2269,8 +2269,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

@@ -292,7 +292,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "944a86c3536d9f7a0f7ed7a9dca53f65ff9c9f6c12b92578b28ae648ae9af029",
+    "source_hash": "d205fdc71a01d1a3fc4b4534cbb40b3d24a76417c98c2aa21e80fa9668091da7",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -350,8 +350,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {
@@ -404,7 +403,8 @@
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         }
       ]
     },

@@ -10221,3 +10221,29 @@ class TestLoadMaterialiCostruzioneLapideiConfapi:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+class TestOvertimeBandInvariants:
+    """Parametric invariants over all 125 bundled CCNL JSON files.
+
+    Every CCNL must satisfy the no-ambiguous-collision invariant: two or more
+    bands for the same WorkKind without a threshold or conditional predicate
+    cannot be applied deterministically.
+
+    This test validates that the bundle validator in TimeSupplements is in sync
+    with the actual data — i.e. no file triggers the validator at load time.
+    """
+
+    @pytest.mark.parametrize("entry", _JSON_FILES, ids=lambda e: e.name)
+    def test_no_ambiguous_band_collisions(self, entry: object) -> None:
+        """Loading every CCNL file must not raise DataIntegrityError or ValueError.
+
+        The TimeSupplements.no_ambiguous_collisions validator rejects ambiguous
+        band layouts.  Passing here proves all 125 files are collision-free.
+        """
+        ccnl = load_ccnl(getattr(entry, "name", str(entry)))
+        wr = ccnl.work_rules
+        if wr is None or wr.time_supplements is None:
+            return
+        # Validator already ran during load_ccnl; reaching here means it passed.
+        assert wr.time_supplements is not None

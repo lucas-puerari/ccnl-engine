@@ -1392,7 +1392,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "bd7a44f1c5cfd255adcc2ed729a1991d080d5a538756d7f5439291bd2075f6fc",
+    "source_hash": "6b8c9e25f6ad9732b4cdfbd9cdee3e25f33c30907329095e89576bc2aeb39bab",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1520,8 +1520,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

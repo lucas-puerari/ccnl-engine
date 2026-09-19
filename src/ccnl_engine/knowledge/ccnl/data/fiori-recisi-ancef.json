@@ -1194,7 +1194,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "e7c5d6e2f5e38db95b71a817006d814c11cd7adcdc250922627c40cf64fa9bb2",
+    "source_hash": "544bea5ce9a7d05ee801eb40ad048c166ddfa8e56611682194595960c7a885e2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1238,7 +1238,7 @@
           }
         },
         {
-          "code": "OT_DIURNO",
+          "code": "OT_DIURNO_EXTRA",
           "description": "Straordinario feriale (oltre 48h settimanali)",
           "kind": "percentage",
           "rate": {
@@ -1270,7 +1270,8 @@
               "verification_status": "unverified",
               "effective_from": "2023-01-01"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_NOTTURNO",

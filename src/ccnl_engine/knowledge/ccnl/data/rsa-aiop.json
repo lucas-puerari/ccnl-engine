@@ -1098,7 +1098,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "595cc20089762e455debef5873ab55e692cb393cb2a12f63ada0c12432e64909",
+    "source_hash": "613bb9ab5975226ff00fbefbbbd97e1f377e63bf420a7c24c68a4f624f03af2a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1226,8 +1226,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

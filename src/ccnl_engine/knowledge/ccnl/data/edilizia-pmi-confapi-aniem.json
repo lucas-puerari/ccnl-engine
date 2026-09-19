@@ -1347,7 +1347,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "3bda4184b460cfbc6588026910ce0e7eba381c02d105c4ba4c95f4ebca8ae4c2",
+    "source_hash": "fde71aa2d3497b73710e71dfbb32af172fa778a85cfdc61988dced6f6fc91beb",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1493,7 +1493,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         },
         {
           "code": "OT_NOTTURNO_STRAORDINARIO",
@@ -1510,7 +1511,6 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
             "weekday"
           ],
           "provenance": {
@@ -1529,7 +1529,10 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "required_context_kinds": [
+            "night"
+          ]
         },
         {
           "code": "OT_FESTIVO_NOTTURNO",
@@ -1546,8 +1549,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {
@@ -1582,8 +1584,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {
@@ -1601,7 +1602,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "hour_threshold_per_week": 8
         }
       ]
     },

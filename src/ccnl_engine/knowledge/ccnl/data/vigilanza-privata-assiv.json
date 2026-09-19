@@ -1345,7 +1345,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "be25d90543404052d4c189c55c341d2b0b617206503feb7fd581b346344580d8",
+    "source_hash": "5615ba2d477824b63db6f68f9d29a7db30a6b3fd3ce3ea06b6de4aedf93cc352",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1438,8 +1438,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

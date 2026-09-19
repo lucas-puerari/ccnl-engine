@@ -900,7 +900,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "f088aeed1271e099bcbc34734e43a4f9c0f5f25fb357563364d84823e5e9ec11",
+    "source_hash": "f2503bd9b39d96cbad4d3cfde09062497544d2132cfa31650306e8ae83fe0c42",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1028,8 +1028,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

@@ -1136,7 +1136,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f523640222f2aa81f59603e1582fbba160ef7d484f5afded1d16919cacdb7370",
+    "source_hash": "5709519c606d8aeea52b4ec5acbd8856c1b8b4c5b3c1d5d1211501fd989d9bad",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1264,8 +1264,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

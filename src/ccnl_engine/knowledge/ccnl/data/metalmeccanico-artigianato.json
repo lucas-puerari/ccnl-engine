@@ -2102,7 +2102,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "8f12bdb89689f6986f72bfa620408ec3848634ee15e87aede75310a5a8678616",
+    "source_hash": "6370d75d29fff129d344c432394792af066a1cd7c40402649ff7c2adcb429ca9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2230,8 +2230,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

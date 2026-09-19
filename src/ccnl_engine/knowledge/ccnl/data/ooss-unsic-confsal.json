@@ -707,7 +707,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "c68f82ec417d6573200551c7b542a01b2c6fcecf432e5974ace57953d2d7ece7",
+    "source_hash": "7b470a217759ff1dc0c2310d76ff84540f8cefa90e7e7fcfb657807b03e4173c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -835,8 +835,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

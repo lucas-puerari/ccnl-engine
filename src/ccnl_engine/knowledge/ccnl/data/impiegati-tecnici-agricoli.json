@@ -599,7 +599,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "193ae4b4e3eda3d71c177ecc77c2b8209dd1078f6a6c291d7caf0abab3ecc3b4",
+    "source_hash": "a452770eb187a2194674e11ad99095cea449bdde2f8c80e45f76fbe980b41c0b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -727,8 +727,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

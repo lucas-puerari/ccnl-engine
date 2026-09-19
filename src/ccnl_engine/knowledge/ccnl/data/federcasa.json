@@ -1079,7 +1079,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "c531eee3a9bdb43bdc2e61ff0b3f417b63481939569bd189684beda2ca6aeb44",
+    "source_hash": "1ecdb18b2594bc85377ca5755cc057a73e72680cde67b066a8a373dbf05f4c6d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1207,8 +1207,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

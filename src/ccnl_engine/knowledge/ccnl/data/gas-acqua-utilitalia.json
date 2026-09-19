@@ -1845,7 +1845,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "6400c7ef890a0e4efd891abe169885e4fef25817785af02a6e45be7fe7ed664d",
+    "source_hash": "c0a9d34d7aa906d661c3a078f0780cd591deedb5e7ebb00f567ab6ccf7f4116b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1973,8 +1973,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

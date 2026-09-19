@@ -2300,7 +2300,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "87ea3aa543ec95cf0669fa139a33d953a3e6fa17261ff0557d211b3187a529e3",
+    "source_hash": "89791f1960f26697c67fc2d0576da5fa4ec7ce1d1909c9a4a4a945563e63e661",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2428,8 +2428,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

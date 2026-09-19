@@ -1447,7 +1447,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "db4edbd86df971f67cf60044ac07bcb3c07eef4d9e775eb126ad199dd8ae6c0f",
+    "source_hash": "24c4c0e0046fde8d11537954feb912842dea4699b4860b841d18972ebe3490dc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1575,8 +1575,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

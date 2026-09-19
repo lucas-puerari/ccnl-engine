@@ -1689,7 +1689,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "efd3f20c4d8143c9a29ee3bb744e482214341492774f1126f72d7d54e6db4141",
+    "source_hash": "ef335a291f8453fc00b838943aaf587787e7c44efd40e76378d2cc358339cd93",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1817,8 +1817,7 @@
             ]
           },
           "applies_to_kinds": [
-            "night",
-            "holiday"
+            "night_holiday"
           ],
           "provenance": {
             "location": {

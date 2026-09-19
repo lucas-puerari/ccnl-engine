@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
 from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -79,25 +78,25 @@ def _warn_missing_kind_bands(
 def _kinds_with_tiered_weekly_bands(
     bands: Sequence[OvertimeBand],
 ) -> set[WorkKind]:
-    """Return kinds that have more than one band for the same work kind.
+    """Return kinds that have tiered weekly bands (threshold-partitioned).
 
     A kind has tiered weekly bands when the CCNL partitions it by
-    ``hour_threshold_per_week`` (e.g. first 4 h/week at one rate, the
-    rest at a higher rate).  Without a per-week breakdown the engine
-    treats the monthly total as a single week, which may overstate the
-    higher band.
+    ``hour_threshold_per_week`` (e.g. first 8 h/week at one rate, the
+    rest at a higher rate).  Only bands with a ``hour_threshold_per_week``
+    value are counted; unconditional single-threshold bands and conditional
+    bands are excluded.
 
     Args:
         bands: All overtime bands from the CCNL schema.
 
     Returns:
-        Set of :class:`WorkKind` values that have two or more bands.
+        Set of :class:`WorkKind` values that have two or more tiered bands.
     """
-    kind_count: dict[WorkKind, int] = defaultdict(int)
+    kinds_with_threshold: set[WorkKind] = set()
     for band in bands:
-        for kind in band.applies_to_kinds:
-            kind_count[kind] += 1
-    return {k for k, n in kind_count.items() if n > 1}
+        if band.hour_threshold_per_week is not None:
+            kinds_with_threshold.update(band.applies_to_kinds)
+    return kinds_with_threshold
 
 
 # ---------------------------------------------------------------------------
