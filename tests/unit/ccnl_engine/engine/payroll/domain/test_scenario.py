@@ -250,6 +250,26 @@ class TestEmployerValidation:
         with pytest.raises(ValueError, match="inail_rate"):
             Employer(num_employees=1, inail_rate=Decimal("-0.001"))
 
+    def test_exemption_none_by_default(self) -> None:
+        """inps_employer_exemption_annual defaults to None."""
+        emp = Employer(num_employees=1)
+        assert emp.inps_employer_exemption_annual is None
+
+    def test_exemption_zero_accepted(self) -> None:
+        """inps_employer_exemption_annual=0 is valid."""
+        emp = Employer(num_employees=1, inps_employer_exemption_annual=Decimal(0))
+        assert emp.inps_employer_exemption_annual == Decimal(0)
+
+    def test_exemption_positive_accepted(self) -> None:
+        """A positive exemption amount is accepted."""
+        emp = Employer(num_employees=1, inps_employer_exemption_annual=Decimal(8060))
+        assert emp.inps_employer_exemption_annual == Decimal(8060)
+
+    def test_negative_exemption_raises(self) -> None:
+        """Negative inps_employer_exemption_annual is rejected."""
+        with pytest.raises(ValueError, match="inps_employer_exemption_annual"):
+            Employer(num_employees=1, inps_employer_exemption_annual=Decimal(-1))
+
 
 # ---------------------------------------------------------------------------
 # Employment.tax_year override
