@@ -12,7 +12,9 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
+    PayPeriod,
     Permanent,
+    compute_month,
     estimate_annual,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
@@ -22,6 +24,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollResult,
     PayrollTax,
 )
+from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays, OvertimeHours
 
 
 @pytest.fixture(scope="module")
@@ -137,6 +140,55 @@ class TestPayrollEmployer:
         e = result.employer
         with pytest.raises(Exception, match="cannot assign"):
             e.employer_cost_annual = Decimal(0)  # type: ignore[misc]
+
+
+class TestEffectiveNetMonthly:
+    """Tests for PayrollResult.effective_net_monthly and PayrollPay."""
+
+    def test_baseline_equals_net_monthly(self, result: PayrollResult) -> None:
+        """Without L3 events effective_net_monthly equals net_monthly."""
+        assert result.effective_net_monthly == result.net_monthly
+
+    def test_pay_view_baseline_equals_net_monthly(self, result: PayrollResult) -> None:
+        """PayrollPay.effective_net_monthly equals net_monthly at baseline."""
+        assert result.pay.effective_net_monthly == result.net_monthly
+
+    def test_absence_reduces_effective_net_monthly(self) -> None:
+        """Absence deduction lowers effective_net_monthly below net_monthly."""
+        scenario = AnnualPayrollScenario(
+            employee=Employee(level_code="C2"),
+            employment=Employment(
+                ccnl="metalmeccanico-federmeccanica.json",
+                contract=Permanent(),
+                employer=Employer(num_employees=50),
+                as_of=date(2026, 1, 1),
+            ),
+        )
+        r = compute_month(
+            scenario,
+            PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+        ).result
+        assert r.absence_deduction_monthly > Decimal(0)
+        assert r.effective_net_monthly == r.net_monthly - r.absence_deduction_monthly
+        assert r.effective_net_monthly < r.net_monthly
+
+    def test_overtime_increases_effective_net_monthly(self) -> None:
+        """Time supplements raise effective_net_monthly above net_monthly."""
+        scenario = AnnualPayrollScenario(
+            employee=Employee(level_code="C2"),
+            employment=Employment(
+                ccnl="metalmeccanico-federmeccanica.json",
+                contract=Permanent(),
+                employer=Employer(num_employees=50),
+                as_of=date(2026, 1, 1),
+            ),
+        )
+        r = compute_month(
+            scenario,
+            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10))),
+        ).result
+        assert r.time_supplements_monthly > Decimal(0)
+        assert r.effective_net_monthly > r.net_monthly
 
 
 class TestPayrollQuality:

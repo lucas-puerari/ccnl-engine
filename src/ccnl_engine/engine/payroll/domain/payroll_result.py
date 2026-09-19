@@ -486,6 +486,29 @@ class PayrollResult:
         return cls.from_dict(json.loads(raw))
 
     @property
+    def effective_net_monthly(self) -> Decimal:
+        """Monthly take-home adjusted for L3 events.
+
+        Adjusts the structural ``net_monthly`` (annualized net / months) for
+        the period-specific events that actually occurred: unpaid absences
+        reduce the figure while overtime and sick-pay amounts add to it.
+        IRPEF is not recomputed on the delta; the adjustment is a best-effort
+        approximation suited for monthly payslip presentation.
+
+        Returns:
+            ``net_monthly`` minus ``absence_deduction_monthly`` plus
+            ``time_supplements_monthly``, ``sick_inps_indemnity_monthly``,
+            and ``sick_company_integration_monthly``.
+        """
+        return (
+            self.net_monthly
+            - self.absence_deduction_monthly
+            + self.time_supplements_monthly
+            + self.sick_inps_indemnity_monthly
+            + self.sick_company_integration_monthly
+        )
+
+    @property
     def pay(self) -> PayrollPay:
         """Employee gross and net pay breakdown."""
         return PayrollPay.from_result(self)
@@ -545,6 +568,7 @@ class PayrollPay:
     holiday_supplement_monthly: Decimal
     time_supplements_monthly: Decimal
     time_supplements_annual_projection: Decimal
+    effective_net_monthly: Decimal
 
     @classmethod
     def from_result(cls, r: PayrollResult) -> PayrollPay:
@@ -589,6 +613,7 @@ class PayrollPay:
             holiday_supplement_monthly=r.holiday_supplement_monthly,
             time_supplements_monthly=r.time_supplements_monthly,
             time_supplements_annual_projection=r.time_supplements_annual_projection,
+            effective_net_monthly=r.effective_net_monthly,
         )
 
 
