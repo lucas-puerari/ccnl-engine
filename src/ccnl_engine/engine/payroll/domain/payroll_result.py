@@ -280,6 +280,8 @@ class Contributions:
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
     bilateral_employer_annual: Decimal
+    health_fund_employee_annual: Decimal
+    health_fund_employer_annual: Decimal
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a plain dict.

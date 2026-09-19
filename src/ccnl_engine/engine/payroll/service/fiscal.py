@@ -85,6 +85,8 @@ class FiscalPay:
     una_tantum_annual: Decimal
     personal_withholdings_annual: Decimal
     additional_irpef_base_annual: Decimal
+    health_fund_employee_annual: Decimal
+    health_fund_employer_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -342,6 +344,12 @@ def compute_fiscal(
     additional_irpef_base_annual = _termination_amount(
         scenario.additional_irpef_base_annual
     )
+    health_fund_employee_annual = _termination_amount(
+        scenario.health_fund_employee_annual
+    )
+    health_fund_employer_annual = _termination_amount(
+        scenario.health_fund_employer_annual
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -521,6 +529,7 @@ def compute_fiscal(
             + contract_renewal_arrears_annual
             + una_tantum_annual
             - personal_withholdings_annual
+            - health_fund_employee_annual
         )
     else:
         net_annual = money(
@@ -531,6 +540,7 @@ def compute_fiscal(
             + contract_renewal_arrears_annual
             + una_tantum_annual
             - personal_withholdings_annual
+            - health_fund_employee_annual
         )
     net_monthly = money(net_annual / gross.additional_months)
     employer_cost_annual = money(
@@ -545,6 +555,7 @@ def compute_fiscal(
         + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
+        + health_fund_employer_annual
         + tfr_annual
     )
 
@@ -593,6 +604,8 @@ def compute_fiscal(
         una_tantum_annual=una_tantum_annual,
         personal_withholdings_annual=personal_withholdings_annual,
         additional_irpef_base_annual=additional_irpef_base_annual,
+        health_fund_employee_annual=health_fund_employee_annual,
+        health_fund_employer_annual=health_fund_employer_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,

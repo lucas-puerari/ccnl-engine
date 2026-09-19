@@ -228,6 +228,8 @@ def _fiscal_scope(
     una_tantum = scenario.una_tantum_annual
     withholdings = scenario.personal_withholdings_annual
     extra_irpef = scenario.additional_irpef_base_annual
+    health_employee = scenario.health_fund_employee_annual
+    health_employer = scenario.health_fund_employer_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -244,6 +246,8 @@ def _fiscal_scope(
         _caller_declared_or_excluded("una_tantum", una_tantum),
         _caller_declared_or_excluded("personal_withholdings", withholdings),
         _caller_declared_or_excluded("additional_irpef_base", extra_irpef),
+        _caller_declared_or_excluded("health_fund_employee", health_employee),
+        _caller_declared_or_excluded("health_fund_employer", health_employer),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (
