@@ -25,6 +25,7 @@ from ccnl_engine import (
     PeriodPayrollInput,
     Permanent,
     PeriodPayroll,
+    TaxPeriod,
     estimate_period_effects,
 )
 
@@ -38,7 +39,14 @@ scenario = AnnualEstimateInput(
         as_of=date(2026, 6, 1),
     ),
 )
-period = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
+period = PeriodPayrollInput(
+    tax_period=TaxPeriod(
+        start=date(2026, 1, 1),
+        end=date(2026, 12, 31),
+        eligible_work_days=365,
+    ),
+    time_supplements=OvertimeHours(weekday_hours=Decimal(10)),
+)
 calculation = estimate_period_effects(scenario, period)
 p = calculation.result
 assert isinstance(p, PeriodPayroll)

@@ -24,6 +24,7 @@ from ccnl_engine import (
     PeriodPayrollInput,
     Permanent,
     SickInput,
+    TaxPeriod,
     WelfareInput,
     estimate_period_effects,
 )
@@ -38,6 +39,11 @@ scenario = AnnualEstimateInput(
     ),
 )
 period = PeriodPayrollInput(
+    tax_period=TaxPeriod(
+        start=date(2026, 1, 1),
+        end=date(2026, 12, 31),
+        eligible_work_days=365,
+    ),
     # Overtime: 8 weekday hours + 4 night hours in the period
     time_supplements=OvertimeHours(
         weekday_hours=Decimal(8),

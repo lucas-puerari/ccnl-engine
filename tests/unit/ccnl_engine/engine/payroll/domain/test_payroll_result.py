@@ -16,6 +16,7 @@ from ccnl_engine import (
     FiscalSimplification,
     PeriodPayrollInput,
     Permanent,
+    TaxPeriod,
     estimate_annual,
     estimate_period_effects,
 )
@@ -453,7 +454,12 @@ class TestPeriodPayrollSerde:
         calc = estimate_period_effects(
             scenario,
             PeriodPayrollInput(
-                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+                tax_period=TaxPeriod(
+                    start=date(2026, 1, 1),
+                    end=date(2026, 12, 31),
+                    eligible_work_days=365,
+                ),
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
             ),
         )
         assert isinstance(calc.result, PeriodPayroll)

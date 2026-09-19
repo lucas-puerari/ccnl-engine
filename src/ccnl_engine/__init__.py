@@ -120,11 +120,13 @@ from ccnl_engine.engine.payroll.domain.quality import (
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     AnnualEstimateInput,
+    AnnualizedAssumption,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
     PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -173,6 +175,7 @@ __all__ = [
     "AnnualBreakdown",
     "AnnualEstimate",
     "AnnualEstimateInput",
+    "AnnualizedAssumption",
     "Apprentice",
     "Art15Deductions",
     "Bonus",
@@ -226,6 +229,7 @@ __all__ = [
     "SickInput",
     "SickLeave",
     "SupplementaryAllowance",
+    "TaxPeriod",
     "Taxes",
     "TraceCategory",
     "TraceStep",

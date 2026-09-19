@@ -35,6 +35,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employment,
     PayrollScenario,
     PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     FringeBenefitInput,
@@ -1008,7 +1009,12 @@ class TestResultFromDictPeriodPayroll:
         calc = estimate_period_effects(
             _annual_scenario(),
             PeriodPayrollInput(
-                fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
+                tax_period=TaxPeriod(
+                    start=date(2026, 1, 1),
+                    end=date(2026, 12, 31),
+                    eligible_work_days=365,
+                ),
+                fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300)),
             ),
         )
         assert isinstance(calc.result, PeriodPayroll)
