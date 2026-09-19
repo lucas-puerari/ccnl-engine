@@ -230,6 +230,26 @@ class TestEmployerValidation:
         emp = Employer(num_employees=10000)
         assert emp.num_employees == 10000
 
+    def test_inail_rate_none_by_default(self) -> None:
+        """inail_rate defaults to None (INAIL not modelled)."""
+        emp = Employer(num_employees=1)
+        assert emp.inail_rate is None
+
+    def test_inail_rate_zero_accepted(self) -> None:
+        """inail_rate=0 is valid (zero-rate edge case)."""
+        emp = Employer(num_employees=1, inail_rate=Decimal("0.000"))
+        assert emp.inail_rate == Decimal(0)
+
+    def test_inail_rate_positive_accepted(self) -> None:
+        """A positive inail_rate is accepted."""
+        emp = Employer(num_employees=1, inail_rate=Decimal("0.015"))
+        assert emp.inail_rate == Decimal("0.015")
+
+    def test_negative_inail_rate_raises(self) -> None:
+        """Negative inail_rate is rejected."""
+        with pytest.raises(ValueError, match="inail_rate"):
+            Employer(num_employees=1, inail_rate=Decimal("-0.001"))
+
 
 # ---------------------------------------------------------------------------
 # Employment.tax_year override

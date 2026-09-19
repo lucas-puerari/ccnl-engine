@@ -56,6 +56,7 @@ class FiscalPay:
     inps_employee_annual: Decimal
     inps_employer_annual: Decimal
     inps_employee_additional_annual: Decimal
+    inail_employer_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -255,6 +256,10 @@ def compute_fiscal(
         gross.tfr_base,
         gross.gross_annual,
     )
+    inail_rate = scenario.employment.employer.inail_rate
+    inail_employer_annual = (
+        money(gross.gross_annual * inail_rate) if inail_rate is not None else _ZERO
+    )
 
     taxable_income = money(
         gross.gross_annual
@@ -436,6 +441,7 @@ def compute_fiscal(
     employer_cost_annual = money(
         gross.gross_annual
         + inps_employer_annual
+        + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
         + tfr_annual
@@ -457,6 +463,7 @@ def compute_fiscal(
         inps_employee_annual=inps_employee_annual,
         inps_employer_annual=inps_employer_annual,
         inps_employee_additional_annual=inps_employee_additional_annual,
+        inail_employer_annual=inail_employer_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         bilateral_employee_annual=bilateral_employee_annual,
