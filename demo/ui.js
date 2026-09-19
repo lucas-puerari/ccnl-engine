@@ -24,31 +24,6 @@ function _updateThemeIcon(theme) {
 }
 initTheme();
 
-// ── Demo mode ────────────────────────────────────────────────────────────────
-
-function setDemoMode(mode) {
-  const body = document.body;
-  body.classList.remove("demo-explore", "demo-integrate");
-  body.classList.add(mode === "integrate" ? "demo-integrate" : "demo-explore");
-  document.getElementById("btn-mode-explore")?.classList.toggle("active", mode === "explore");
-  document.getElementById("btn-mode-integrate")?.classList.toggle("active", mode === "integrate");
-  // When switching away from integrate while code tab is active, fall back to detail
-  if (mode === "explore") {
-    const codeTab = document.getElementById("tab-code");
-    if (codeTab?.classList.contains("active")) {
-      document.getElementById("tab-detail")?.click();
-    }
-  }
-  try { sessionStorage.setItem("ccnl_demo_mode", mode); } catch (_) {}
-}
-
-function initDemoMode() {
-  let mode = "explore";
-  try { mode = sessionStorage.getItem("ccnl_demo_mode") || "explore"; } catch (_) {}
-  setDemoMode(mode);
-}
-initDemoMode();
-
 // ── i18n ────────────────────────────────────────────────────────────────────
 
 let _i18nStrings = {};
@@ -1310,7 +1285,7 @@ function doCompute(pyodide) {
   document.getElementById("readiness-disclaimer").style.display = "";
   clearStale();
 
-  // Cache for toolbar actions (download, snippet, compare)
+  // Cache for toolbar actions (download, compare)
   _lastResult = r;
   _lastParams = {
     file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths, appTrack,
@@ -1323,10 +1298,10 @@ function doCompute(pyodide) {
   if (!_compareActive) switchTab("detail");
 }
 
-// ── Download / Snippet / Compare ─────────────────────────────────────────────
+// ── Download / Compare ───────────────────────────────────────────────────────
 
 let _lastResult   = null;  // most recent doCompute() result object
-let _lastParams   = null;  // most recent form params (for snippet)
+let _lastParams   = null;  // most recent form params
 let _compareActive = false;
 
 function downloadResult() {
@@ -1342,196 +1317,16 @@ function downloadResult() {
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
 }
 
-function generateSnippet(params, r) {
-  const hasL3 = params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0
-    || params.otNightHol > 0 || params.absenceDays > 0 || params.leaveDays > 0
-    || params.sickDays > 0 || params.fringeAnnual > 0 || params.welfareAnnual > 0
-    || params.bonusAnnual > 0 || params.bonusPdr
-    || !!(params.otWeeks && params.otWeeks.trim());
-  const needsDecimal = params.ptPct < 1 || params.adPersonam > 0
-    || params.ralOverride > 0 || params.secondLevel > 0 || hasL3
-    || (r && r.weekly_hours !== null && r.weekly_hours !== undefined);
-  const decimalImport = needsDecimal ? "\nfrom decimal import Decimal" : "";
-
-  // Contract
-  const imports = ["compute", "Employee", "Employer", "Employment", "PayrollScenario"];
-  let contractExpr;
-  if (params.empType === "fixed_term") {
-    imports.push("FixedTerm");
-    contractExpr = "FixedTerm()";
-  } else if (params.empType === "apprentice") {
-    imports.push("Apprentice");
-    const trackArg = params.appTrack ? `, track="${params.appTrack}"` : "";
-    contractExpr = `Apprentice(months_elapsed=${params.appMonths || 0}${trackArg})`;
-  } else {
-    imports.push("Permanent");
-    contractExpr = "Permanent()";
-  }
-
-  // Seniority
-  let senStr = "";
-  if (params.senValue > 0) {
-    if (params.senMode === "months") {
-      imports.push("SeniorityByMonths");
-      senStr = `\n        seniority=SeniorityByMonths(value=${params.senValue}),`;
-    } else {
-      imports.push("SeniorityByCount");
-      senStr = `\n        seniority=SeniorityByCount(value=${params.senValue}),`;
-    }
-  }
-
-  // Part-time
-  const ptStr = params.ptPct < 1
-    ? `\n        part_time_pct=Decimal("${params.ptPct}"),` : "";
-
-  // IVS ceiling
-  const ivsStr = params.ivsApplies
-    ? `\n        ivs_ceiling_applies=True,` : "";
-
-  // Jurisdiction
-  let jurStr = "";
-  if (params.regione || params.comune) {
-    imports.push("Jurisdiction");
-    const rp = params.regione ? `\n            regione="${params.regione}",` : "";
-    const cp = params.comune  ? `\n            comune_belfiore="${params.comune}",` : "";
-    jurStr = `\n        jurisdiction=Jurisdiction(${rp}${cp}\n        ),`;
-  }
-
-  // Agreement (ad personam / RAL override)
-  let agrStr = "";
-  if (params.adPersonam > 0 || params.ralOverride > 0) {
-    imports.push("Agreement");
-    const adp = params.adPersonam > 0
-      ? `\n            ad_personam_monthly=Decimal("${params.adPersonam}"),` : "";
-    if (params.ralOverride > 0) imports.push("RalOverride");
-    const ral = params.ralOverride > 0
-      ? `\n            ral_override=RalOverride(Decimal("${params.ralOverride}")),` : "";
-    agrStr = `\n        agreement=Agreement(${adp}${ral}\n        ),`;
-  }
-
-  // Employer — second-level allowance via SupplementaryAllowance
-  let empExpr;
-  if (params.secondLevel > 0) {
-    imports.push("SupplementaryAllowance");
-    empExpr = `Employer(\n        num_employees=${params.employees},`
-      + `\n        second_level_allowances=(\n`
-      + `            SupplementaryAllowance(\n`
-      + `                code="SL",\n`
-      + `                description="Second-level agreement",\n`
-      + `                monthly=Decimal("${params.secondLevel}"),\n`
-      + `            ),\n`
-      + `        ),\n`
-      + `    )`;
-  } else {
-    empExpr = `Employer(num_employees=${params.employees})`;
-  }
-
-  // weekly_hours (domestic workers)
-  const weeklyHoursStr = (r && r.weekly_hours !== null && r.weekly_hours !== undefined)
-    ? `\n        weekly_hours=Decimal("${r.weekly_hours}"),` : "";
-
-  // L3 supplement inputs
-  let l3Lines = "";
-  const hasOt = params.otWeekday > 0 || params.otNight > 0 || params.otHoliday > 0 || params.otNightHol > 0;
-  if (params.otWeeks) {
-    // Weekly breakdown path
-    imports.push("OvertimeHours");
-    imports.push("WeeklyOvertimeHours");
-    let weeksArr;
-    try { weeksArr = JSON.parse(params.otWeeks); } catch { weeksArr = []; }
-    const weekLines = weeksArr.map((w) => {
-      const fields = ["weekday_hours","night_hours","holiday_hours","night_holiday_hours","supplementare_hours"]
-        .filter(k => w[k])
-        .map(k => `${k}=Decimal("${w[k]}")`)
-        .join(", ");
-      return `        WeeklyOvertimeHours(${fields}),`;
-    }).join("\n");
-    l3Lines += `\n    time_supplements=OvertimeHours.from_weeks((\n${weekLines}\n    )),`;
-  } else if (hasOt) {
-    imports.push("OvertimeHours");
-    const wh  = params.otWeekday  > 0 ? `\n        weekday_hours=Decimal("${params.otWeekday}"),`  : "";
-    const nh  = params.otNight    > 0 ? `\n        night_hours=Decimal("${params.otNight}"),`    : "";
-    const hh  = params.otHoliday  > 0 ? `\n        holiday_hours=Decimal("${params.otHoliday}"),`  : "";
-    const nhh = params.otNightHol > 0 ? `\n        night_holiday_hours=Decimal("${params.otNightHol}"),` : "";
-    l3Lines += `\n    time_supplements=OvertimeHours(${wh}${nh}${hh}${nhh}\n    ),`;
-  }
-  if (params.absenceDays > 0) {
-    imports.push("AbsenceDays");
-    l3Lines += `\n    absence_days=AbsenceDays(unpaid_days=Decimal("${params.absenceDays}")),`;
-  }
-  if (params.leaveDays > 0) {
-    imports.push("LeaveInput");
-    l3Lines += `\n    leave_input=LeaveInput(taken_days=Decimal("${params.leaveDays}")),`;
-  }
-  if (params.sickDays > 0) {
-    imports.push("SickInput");
-    l3Lines += `\n    sick_input=SickInput(sick_days=Decimal("${params.sickDays}")),`;
-  }
-  if (params.fringeAnnual > 0) {
-    imports.push("FringeBenefitInput");
-    l3Lines += `\n    fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal("${params.fringeAnnual}")),`;
-  }
-  if (params.welfareAnnual > 0) {
-    imports.push("WelfareInput");
-    l3Lines += `\n    welfare_input=WelfareInput(annual_amount=Decimal("${params.welfareAnnual}")),`;
-  }
-  if (params.bonusAnnual > 0 || params.bonusPdr) {
-    imports.push("BonusInput");
-    const pdrArg = params.bonusPdr ? `, eligible_for_pdr=True` : "";
-    l3Lines += `\n    bonus_input=BonusInput(annual_amount=Decimal("${params.bonusAnnual || 0}")${pdrArg}),`;
-  }
-
-  const calcDate = r && r.as_of
-    ? `date.fromisoformat("${r.as_of}")` : "date.today()";
-
-  const importLine = `from ccnl_engine import (\n    ${imports.sort().join(",\n    ")},\n)`;
-
-  return `from datetime import date${decimalImport}
-${importLine}
-
-result = compute(PayrollScenario(
-    employee=Employee(
-        level_code="${params.levelCode}",${senStr}${ptStr}${weeklyHoursStr}${ivsStr}${jurStr}${agrStr}
-    ),
-    employment=Employment(
-        ccnl="${params.file}",
-        contract=${contractExpr},
-        employer=${empExpr},
-        calculation_date=${calcDate},
-    ),${l3Lines}
-))
-# Net monthly: ${fmtM(r.net_monthly)}  Gross monthly: ${fmtM(r.gross_monthly)}
-print(f"Netto: {result.result.net_monthly:.2f}  Lordo: {result.result.gross_monthly:.2f}")`;
-}
-
-function showSnippet() {
-  // Legacy shim — now handled by switchTab("code")
-  switchTab("code");
-}
-
-function copySnippet() {
-  if (!_lastParams || !_lastResult) return;
-  navigator.clipboard.writeText(generateSnippet(_lastParams, _lastResult)).then(() => {
-    const btn = document.getElementById("btn-copy-snippet");
-    const orig = btn.textContent;
-    btn.textContent = t("snippet.copied");
-    setTimeout(() => { btn.textContent = orig; }, 1500);
-  });
-}
 
 function toggleComparePanel() {
   // Legacy shim — now handled by switchTab
   switchTab(_compareActive ? "detail" : "compare");
 }
 
-const _TABS = ["detail", "compare", "code"];
+const _TABS = ["detail", "compare"];
 
 function switchTab(id) {
   if (!_TABS.includes(id)) return;
-  // Populate snippet when switching to code tab
-  if (id === "code" && _lastResult && _lastParams) {
-    document.getElementById("snippet-code").textContent = generateSnippet(_lastParams, _lastResult);
-  }
   // Update _compareActive flag
   _compareActive = (id === "compare");
 
@@ -1683,10 +1478,8 @@ async function main() {
     document.getElementById("sel-ccnl").addEventListener("change", () => onCcnlChange(pyodide));
     document.getElementById("calc-btn").addEventListener("click", () => doCompute(pyodide));
     document.getElementById("btn-download").addEventListener("click", downloadResult);
-    document.getElementById("btn-copy-snippet").addEventListener("click", copySnippet);
     document.getElementById("tab-detail").addEventListener("click",  () => switchTab("detail"));
     document.getElementById("tab-compare").addEventListener("click", () => switchTab("compare"));
-    document.getElementById("tab-code").addEventListener("click",    () => switchTab("code"));
     initCompare(pyodide);
 
     // Mark results as stale whenever any form input changes after the first calculation.
