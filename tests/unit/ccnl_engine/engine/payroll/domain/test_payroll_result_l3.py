@@ -9,7 +9,7 @@ from typing import cast
 import pytest
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -31,7 +31,7 @@ def payroll() -> AnnualEstimate:
         An :class:`AnnualEstimate` for metalmeccanico C2 level, 2026.
     """
     return estimate_annual(
-        AnnualPayrollScenario(
+        AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",

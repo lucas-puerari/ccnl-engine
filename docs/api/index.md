@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `estimate_annual()`, `estimate_period_effects()`, `Calculation`, `AnnualPayrollScenario`, `PayPeriod`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
+| [Engine](engine.md) | `estimate_annual()`, `estimate_period_effects()`, `Calculation`, `AnnualEstimateInput`, `PeriodPayrollInput`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -23,8 +23,8 @@ from ccnl_engine import (
     estimate_annual,
     estimate_period_effects,
     # Scenarios
-    AnnualPayrollScenario,  # structural: employee + employment
-    PayPeriod,  # period events: overtime, absences, benefits
+    AnnualEstimateInput,  # structural: employee + employment
+    PeriodPayrollInput,  # period events: overtime, absences, benefits
     # Legacy entry point (still supported)
     compute,
     PayrollScenario,
@@ -48,7 +48,7 @@ from ccnl_engine import (
     # Dependants and deductions
     FamilyComposition,
     Art15Deductions,
-    # Period events (used in PayPeriod)
+    # Period events (used in PeriodPayrollInput)
     OvertimeHours,
     WeeklyOvertimeHours,
     AbsenceDays,

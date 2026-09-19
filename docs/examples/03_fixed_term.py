@@ -12,13 +12,13 @@ from ccnl_engine import (
     Employer,
     Employment,
     FixedTerm,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     estimate_annual,
 )
 
 permanent = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -29,7 +29,7 @@ permanent = estimate_annual(
     )
 ).result
 fixed_term = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

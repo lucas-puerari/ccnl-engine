@@ -14,11 +14,11 @@ from ccnl_engine.engine.payroll.domain.bundle import (
 )
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayPeriod,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
@@ -39,7 +39,7 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _req,
 )
 
-_SCENARIO = AnnualPayrollScenario(
+_SCENARIO = AnnualEstimateInput(
     employee=Employee(level_code="4"),
     employment=Employment(
         ccnl=_CCNL_FILENAME,
@@ -48,7 +48,7 @@ _SCENARIO = AnnualPayrollScenario(
         as_of=date(2026, 6, 1),
     ),
 )
-_PERIOD = PayPeriod()
+_PERIOD = PeriodPayrollInput()
 
 
 def _make_empty_surtax() -> SurtaxRules:

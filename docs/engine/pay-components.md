@@ -48,7 +48,7 @@ This is mutually exclusive with `Employer.second_level_allowances`.
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
 training funds, supplementary pension). Pass a tuple of fund inputs on
-`AnnualPayrollScenario.bilateral_funds`:
+`AnnualEstimateInput.bilateral_funds`:
 
 ```python
 from decimal import Decimal
@@ -67,7 +67,7 @@ fon_te = RateFund(
     base="tfr_base",          # or "gross_annual"
 )
 
-scenario = AnnualPayrollScenario(
+scenario = AnnualEstimateInput(
     ...
     bilateral_funds=(est, fon_te),
 )

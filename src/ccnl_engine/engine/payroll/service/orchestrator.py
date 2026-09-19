@@ -24,9 +24,9 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 )
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.scenario import (
-    AnnualPayrollScenario,
-    PayPeriod,
+    AnnualEstimateInput,
     PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.service.assembly import (
     _collect_provenance,
@@ -89,7 +89,7 @@ def _ivs_months_msg(months: int, as_of: date) -> str | None:
 
 
 def _ivs_ceiling_warning(
-    scenario: PayrollScenario,
+    scenario: PayrollScenario | AnnualEstimateInput,
     as_of: date,
     contribution_base: Decimal,
     ivs_ceiling: Decimal | None,
@@ -246,11 +246,11 @@ def _build_taxes(fiscal: object) -> Taxes:
     )
 
 
-def _scenario_period(scenario: PayrollScenario) -> PayPeriod | None:
-    """Build a PayPeriod from scenario period events, or None when all are absent.
+def _scenario_period(scenario: PayrollScenario) -> PeriodPayrollInput | None:
+    """Build a PeriodPayrollInput from scenario period events.
 
     Returns:
-        A :class:`PayPeriod` populated from *scenario*, or ``None`` when no
+        A :class:`PeriodPayrollInput` from *scenario*, or ``None`` when no
         period events are set.
     """
     fields = (
@@ -265,7 +265,7 @@ def _scenario_period(scenario: PayrollScenario) -> PayPeriod | None:
     if all(f is None for f in fields):
         return None
     from ccnl_engine.engine.payroll.domain.scenario import (  # noqa: PLC0415
-        PayPeriod as _PayPeriod,
+        PeriodPayrollInput as _PayPeriod,
     )
 
     return _PayPeriod(
@@ -279,11 +279,34 @@ def _scenario_period(scenario: PayrollScenario) -> PayPeriod | None:
     )
 
 
+_PERIOD_FIELD_NAMES = (
+    "time_supplements",
+    "absence_days",
+    "leave_input",
+    "sick_input",
+    "fringe_benefit_input",
+    "welfare_input",
+    "bonus_input",
+)
+
+
+def _extract_injected_period(
+    scenario: AnnualEstimateInput,
+) -> PeriodPayrollInput | None:
+    """Extract period fields injected onto an AnnualEstimateInput via model_copy.
+
+    Returns:
+        A :class:`PeriodPayrollInput` from the injected fields, or ``None``.
+    """
+    kwargs = {k: v for k in _PERIOD_FIELD_NAMES if (v := vars(scenario).get(k))}
+    return PeriodPayrollInput(**kwargs) if kwargs else None
+
+
 def compute(
-    scenario: PayrollScenario,
+    scenario: PayrollScenario | AnnualEstimateInput,
     bundle: PayrollBundle | None = None,
     *,
-    _period: PayPeriod | None = None,
+    _period: PeriodPayrollInput | None = None,
 ) -> Calculation:
     """Compute gross-to-net salary and employer cost for a payroll scenario.
 
@@ -298,6 +321,8 @@ def compute(
 
     Args:
         scenario: The payroll scenario describing worker and employment.
+            Accepts either :class:`PayrollScenario` or
+            :class:`AnnualEstimateInput`; the latter is converted internally.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded (and cached) on demand.
 
@@ -305,6 +330,9 @@ def compute(
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures plus a serialisable input snapshot.
     """
+    if isinstance(scenario, AnnualEstimateInput):
+        scenario = _annual_to_scenario(scenario, _period)
+        _period = None
     if _period is None:
         _period = _scenario_period(scenario)
     as_of = scenario.employment.as_of
@@ -423,10 +451,10 @@ def compute(
 
 
 def _annual_to_scenario(
-    scenario: AnnualPayrollScenario,
-    period: PayPeriod | None = None,
+    scenario: AnnualEstimateInput,
+    period: PeriodPayrollInput | None = None,
 ) -> PayrollScenario:
-    """Build an internal PayrollScenario from an AnnualPayrollScenario.
+    """Build an internal PayrollScenario from an AnnualEstimateInput.
 
     Merges the structural fields from *scenario* with the period-specific
     events from *period* (when supplied).
@@ -434,6 +462,8 @@ def _annual_to_scenario(
     Returns:
         A :class:`PayrollScenario` ready for :func:`compute`.
     """
+    if period is None:
+        period = _extract_injected_period(scenario)
     if period is not None:
         return PayrollScenario(
             employee=scenario.employee,
@@ -459,7 +489,7 @@ def _annual_to_scenario(
 
 
 def estimate_annual(
-    scenario: AnnualPayrollScenario,
+    scenario: AnnualEstimateInput,
     bundle: PayrollBundle | None = None,
 ) -> Calculation:
     """Estimate annual gross-to-net salary and employer cost.
@@ -482,8 +512,8 @@ def estimate_annual(
 
 
 def estimate_period_effects(
-    scenario: AnnualPayrollScenario,
-    period: PayPeriod,
+    scenario: AnnualEstimateInput,
+    period: PeriodPayrollInput,
     bundle: PayrollBundle | None = None,
 ) -> Calculation:
     """Estimate the informational effect of period events on the annual figures.
@@ -532,7 +562,7 @@ def _accrue_ytd(ytd: YTDState, calc: Calculation) -> YTDState:
 
 
 def compute_period(
-    scenario: AnnualPayrollScenario,
+    scenario: AnnualEstimateInput,
     period: PayrollPeriod,
     bundle: PayrollBundle | None = None,
 ) -> Calculation:
@@ -570,11 +600,11 @@ def compute_period(
 
 
 def compute_year(
-    scenario: AnnualPayrollScenario,
+    scenario: AnnualEstimateInput,
     year: int,
     *,
     bundle: PayrollBundle | None = None,
-    month_events: list[PayPeriod] | None = None,
+    month_events: list[PeriodPayrollInput] | None = None,
 ) -> list[Calculation]:
     """Compute payroll for all twelve months of *year*.
 
@@ -588,9 +618,9 @@ def compute_year(
         year: The calendar year to compute (e.g. ``2026``).
         bundle: Optional pre-loaded knowledge bundle shared across all twelve
             calls.  When ``None``, rulesets are loaded on demand.
-        month_events: List of exactly twelve :class:`~ccnl_engine.PayPeriod`
+        month_events: List of exactly twelve :class:`~ccnl_engine.PeriodPayrollInput`
             instances, one per month January-December.  When ``None``, every
-            month uses a default :class:`~ccnl_engine.PayPeriod` (no special
+            month uses a default :class:`~ccnl_engine.PeriodPayrollInput` (no special
             events).
 
     Returns:
@@ -602,8 +632,10 @@ def compute_year(
         InvalidInputError: When *month_events* is provided but does not
             contain exactly 12 entries.
     """
-    events: list[PayPeriod] = (
-        month_events if month_events is not None else [PayPeriod() for _ in range(12)]
+    events: list[PeriodPayrollInput] = (
+        month_events
+        if month_events is not None
+        else [PeriodPayrollInput() for _ in range(12)]
     )
     if len(events) != 12:
         msg = f"month_events must have exactly 12 entries, got {len(events)}"

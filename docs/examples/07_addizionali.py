@@ -14,14 +14,14 @@ from ccnl_engine import (
     Employment,
     FiscalSimplification,
     Jurisdiction,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     estimate_annual,
 )
 
 # Baseline: no jurisdiction → addizionali are zero.
 baseline = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -35,7 +35,7 @@ baseline = estimate_annual(
 # Worker resident in Romano di Lombardia (codice catastale H509), Lombardia.
 # Addizionale comunale: 0.80% with soglia 12 000 EUR.
 p = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(
             level_code="4",
             jurisdiction=Jurisdiction(

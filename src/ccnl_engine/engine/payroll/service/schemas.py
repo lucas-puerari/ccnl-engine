@@ -9,7 +9,7 @@ from datetime import date as _date
 from decimal import Decimal
 
 from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
-from ccnl_engine.engine.payroll.domain.scenario import AnnualPayrollScenario
+from ccnl_engine.engine.payroll.domain.scenario import AnnualEstimateInput
 
 _SCALAR_MAP: dict[object, dict[str, object]] = {
     Decimal: {"type": "string"},
@@ -21,7 +21,7 @@ _SCALAR_MAP: dict[object, dict[str, object]] = {
 
 
 def scenario_schema() -> dict[str, object]:
-    """Return the JSON Schema for :class:`AnnualPayrollScenario`.
+    """Return the JSON Schema for :class:`AnnualEstimateInput`.
 
     The schema is derived from the Pydantic model definition and includes
     all nested types and discriminated-union tags.
@@ -29,7 +29,7 @@ def scenario_schema() -> dict[str, object]:
     Returns:
         A JSON Schema dict (Draft 2020-12 compatible).
     """
-    return AnnualPayrollScenario.model_json_schema()
+    return AnnualEstimateInput.model_json_schema()
 
 
 def _hint_to_schema(hint: object) -> dict[str, object]:

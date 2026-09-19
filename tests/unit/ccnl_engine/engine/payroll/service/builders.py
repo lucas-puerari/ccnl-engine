@@ -24,11 +24,11 @@ from ccnl_engine.engine.payroll.domain.employment import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
 )
 from tests.helpers import TEST_PROV, make_ccnl_dict, make_year_rules
 
@@ -93,11 +93,11 @@ def _req(
     jurisdiction: Jurisdiction | None = None,
     ivs_ceiling_applies: bool = False,
     weekly_hours: Decimal | None = None,
-) -> PayrollScenario:
-    """Build a PayrollScenario with test defaults; override any field via kwargs.
+) -> AnnualEstimateInput:
+    """Build an AnnualEstimateInput with test defaults; override any field via kwargs.
 
     Returns:
-        A PayrollScenario with the given overrides applied.
+        An AnnualEstimateInput with the given overrides applied.
     """
     seniority: SeniorityByCount | SeniorityByMonths | None = None
     if seniority_count is not None:
@@ -118,7 +118,7 @@ def _req(
             ad_personam_monthly=ad_personam_monthly,
         )
 
-    return PayrollScenario(
+    return AnnualEstimateInput(
         employee=Employee(
             level_code=level_code,
             seniority=seniority,

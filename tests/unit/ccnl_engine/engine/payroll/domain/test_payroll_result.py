@@ -9,12 +9,12 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     FiscalSimplification,
-    PayPeriod,
+    PeriodPayrollInput,
     Permanent,
     estimate_annual,
     estimate_period_effects,
@@ -76,7 +76,7 @@ def payroll() -> AnnualEstimate:
         An :class:`AnnualEstimate` for CCNL Commercio level 4, 2026.
     """
     return estimate_annual(
-        AnnualPayrollScenario(
+        AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="commercio-confcommercio.json",
@@ -96,7 +96,7 @@ def payroll_domestic() -> AnnualEstimate:
         An :class:`AnnualEstimate` where employer_withholds_irpef is False.
     """
     return estimate_annual(
-        AnnualPayrollScenario(
+        AnnualEstimateInput(
             employee=Employee(level_code="C", weekly_hours=Decimal(40)),
             employment=Employment(
                 ccnl="lavoro-domestico-non-convivente.json",
@@ -441,7 +441,7 @@ class TestPeriodPayrollSerde:
         Returns:
             A :class:`PeriodPayroll` for CCNL Commercio level 4 with overtime.
         """
-        scenario = AnnualPayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="commercio-confcommercio.json",
@@ -452,7 +452,9 @@ class TestPeriodPayrollSerde:
         )
         calc = estimate_period_effects(
             scenario,
-            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
+            PeriodPayrollInput(
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+            ),
         )
         assert isinstance(calc.result, PeriodPayroll)
         return calc.result

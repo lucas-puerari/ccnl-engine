@@ -11,7 +11,7 @@ from decimal import Decimal
 from typing import cast
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -21,7 +21,7 @@ from ccnl_engine import (
 )
 
 calculation = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="C2"),
         employment=Employment(
             ccnl="metalmeccanico-federmeccanica.json",

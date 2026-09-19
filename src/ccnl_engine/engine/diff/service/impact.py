@@ -2,7 +2,7 @@
 
 This module is intentionally decoupled from the test directory.  The caller
 assembles a list of :class:`~ccnl_engine.engine.payroll.domain.scenario.\
-PayrollScenario` objects (e.g. by loading the reference JSON cases) and
+AnnualEstimateInput` objects (e.g. by loading the reference JSON cases) and
 passes them to :func:`count_affected_scenarios`.  The function runs each
 scenario twice -- once at *from_date*, once at *to_date* -- by substituting
 ``Employment.as_of``, and returns an :class:`ImpactResult` with
@@ -16,14 +16,14 @@ import dataclasses
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain.scenario import AnnualEstimateInput
 
 
 @dataclass(frozen=True)
@@ -42,14 +42,14 @@ class ImpactResult:
 
 
 def count_affected_scenarios(
-    scenarios: Iterable[PayrollScenario],
+    scenarios: Iterable[AnnualEstimateInput],
     from_date: date,
     to_date: date,
 ) -> ImpactResult:
     """Count scenarios whose payroll result changes between two dates.
 
-    Each scenario is run twice: once with ``Employment.calculation_date`` set
-    to *from_date* and once with *to_date*.  A scenario is *affected* when
+    Each scenario is run twice: once with ``Employment.as_of`` set to
+    *from_date* and once with *to_date*.  A scenario is *affected* when
     any :class:`~ccnl_engine.engine.payroll.domain.payroll_result.\
 AnnualEstimate` field (other than ``as_of``) differs between the two runs.
 
@@ -79,7 +79,7 @@ AnnualEstimate` field (other than ``as_of``) differs between the two runs.
 
 
 def _compute_pair(
-    scenario: PayrollScenario,
+    scenario: AnnualEstimateInput,
     from_date: date,
     to_date: date,
 ) -> tuple[AnnualEstimate, AnnualEstimate] | None:
@@ -93,8 +93,8 @@ def _compute_pair(
     before_scenario = scenario.model_copy(update={"employment": before_employment})
     after_scenario = scenario.model_copy(update={"employment": after_employment})
     try:
-        before_result = compute(before_scenario).result
-        after_result = compute(after_scenario).result
+        before_result = estimate_annual(before_scenario).result
+        after_result = estimate_annual(after_scenario).result
     except Exception:  # noqa: BLE001
         return None
     return before_result, after_result

@@ -15,7 +15,7 @@ a feature, the output is `0` and `calculation_scope` records
 ## Inputs
 
 All seven input types are frozen dataclasses. Pass any combination as keyword
-fields on `PayPeriod`, then pass the `PayPeriod` to `estimate_period_effects()`:
+fields on `PeriodPayrollInput`, then pass the `PeriodPayrollInput` to `estimate_period_effects()`:
 
 ```python
 from ccnl_engine import (
@@ -113,7 +113,7 @@ engine starts carenza from day 1.
 ```python
 # First period of an episode: 5 days, carenza of 3 → INPS covers days 4-5
 result1 = estimate_period_effects(
-    scenario, PayPeriod(sick_input=SickInput(sick_days=Decimal(5)))
+    scenario, PeriodPayrollInput(sick_input=SickInput(sick_days=Decimal(5)))
 )
 ```
 
@@ -124,7 +124,7 @@ computed in the previous period.
 # Second period: episode continues, 3 more days, carenza already elapsed
 result2 = estimate_period_effects(
     scenario,
-    PayPeriod(
+    PeriodPayrollInput(
         sick_input=SickInput(
             sick_days=Decimal(3),
             cumulative_sick_days=Decimal(5),  # days from result1 period
@@ -174,7 +174,7 @@ from datetime import date
 from decimal import Decimal
 from ccnl_engine import (
     AbsenceDays,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     BonusInput,
     Employee,
     Employer,
@@ -182,14 +182,14 @@ from ccnl_engine import (
     FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
-    PayPeriod,
+    PeriodPayrollInput,
     Permanent,
     SickInput,
     WelfareInput,
     estimate_period_effects,
 )
 
-scenario = AnnualPayrollScenario(
+scenario = AnnualEstimateInput(
     employee=Employee(level_code="C3"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
@@ -198,7 +198,7 @@ scenario = AnnualPayrollScenario(
         as_of=date(2026, 9, 1),
     ),
 )
-period = PayPeriod(
+period = PeriodPayrollInput(
     time_supplements=OvertimeHours(
         weekday_hours=Decimal(8),
         night_hours=Decimal(4),

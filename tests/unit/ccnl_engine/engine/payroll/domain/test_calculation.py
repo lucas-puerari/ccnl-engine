@@ -29,12 +29,12 @@ from ccnl_engine.engine.payroll.domain.employee import RalOverride, SeniorityByC
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.scenario import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayPeriod,
     PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     FringeBenefitInput,
@@ -43,6 +43,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.assembly import _ruleset_versions
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
+    estimate_annual,
     estimate_period_effects,
 )
 from ccnl_engine.engine.primitives import FrozenDict
@@ -258,7 +259,7 @@ class TestCalculation:
 
     def test_compute_returns_calculation(self) -> None:
         """Compute returns a Calculation with engine version and rulesets."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         assert isinstance(calc, Calculation)
         assert calc.engine_version == "0.5.1"
         assert calc.ruleset_version["ccnl"] == "test@2026.2"
@@ -268,7 +269,7 @@ class TestCalculation:
 
     def test_compute_exposes_ruleset_verification(self) -> None:
         """Compute populates ruleset_verification with VerificationStatus values."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         # The test CCNL has no ruleset identity; tax/inps have verified identities.
         assert calc.ruleset_verification["ccnl"] == "unverified"
         assert calc.ruleset_verification["tax"] == "verified"
@@ -277,13 +278,13 @@ class TestCalculation:
 
     def test_ruleset_verification_is_frozen(self) -> None:
         """ruleset_verification must reject item assignment after construction."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         with pytest.raises(TypeError):
             calc.ruleset_verification["ccnl"] = "tampered"  # type: ignore[index]
 
     def test_to_dict_includes_ruleset_verification(self) -> None:
         """to_dict() includes ruleset_verification when non-empty."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         assert "ruleset_verification" in d
         rv = d["ruleset_verification"]
@@ -292,7 +293,7 @@ class TestCalculation:
 
     def test_to_dict_omits_ruleset_verification_when_empty(self) -> None:
         """to_dict() omits ruleset_verification when the mapping is empty."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         calc_no_ver = Calculation(
             engine_version=calc.engine_version,
             ruleset_version=calc.ruleset_version,
@@ -305,13 +306,13 @@ class TestCalculation:
 
     def test_from_dict_restores_ruleset_verification(self) -> None:
         """from_dict() restores ruleset_verification from the dict."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         restored = Calculation.from_dict(calc.to_dict())
         assert restored.ruleset_verification == calc.ruleset_verification
 
     def test_from_dict_absent_ruleset_verification_gives_empty(self) -> None:
         """from_dict() with no ruleset_verification key gives an empty mapping."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d.pop("ruleset_verification", None)
         restored = Calculation.from_dict(d)
@@ -320,7 +321,7 @@ class TestCalculation:
 
     def test_to_dict_from_dict_roundtrip(self) -> None:
         """to_dict/from_dict round-trips the full calculation."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         restored = Calculation.from_dict(calc.to_dict())
         assert restored == calc
         assert restored.engine_version == calc.engine_version
@@ -329,13 +330,13 @@ class TestCalculation:
 
     def test_to_json_from_json_roundtrip(self) -> None:
         """to_json/from_json round-trips through a JSON string."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         restored = Calculation.from_json(calc.to_json())
         assert restored == calc
 
     def test_reproduce_identical_result(self) -> None:
         """reproduce() yields the identical result without external args."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         replayed = calc.reproduce()
         assert replayed.result == calc.result
         assert replayed.input_snapshot == calc.input_snapshot
@@ -343,7 +344,7 @@ class TestCalculation:
 
     def test_reproduce_preserves_seniority_variant(self) -> None:
         """Union member type is preserved through snapshot/reproduce."""
-        calc = compute(_req(seniority_count=2))
+        calc = estimate_annual(_req(seniority_count=2))
         replayed = calc.reproduce()
         assert isinstance(replayed.input_snapshot, InputSnapshot)
         # The materialised seniority should still be by-count.
@@ -353,7 +354,7 @@ class TestCalculation:
 
     def test_reproduce_raises_on_engine_version_drift(self) -> None:
         """reproduce() raises ValueError when engine_version does not match."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["engine_version"] = "0.0.0"
         stale = Calculation.from_dict(d)
@@ -362,7 +363,7 @@ class TestCalculation:
 
     def test_reproduce_allow_drift_flag_suppresses_error(self) -> None:
         """reproduce(allow_version_drift=True) succeeds despite mismatch."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["engine_version"] = "0.0.0"
         stale = Calculation.from_dict(d)
@@ -371,7 +372,7 @@ class TestCalculation:
 
     def test_reproduce_raises_on_ruleset_version_drift(self) -> None:
         """reproduce() raises ValueError when a ruleset identity does not match."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["ruleset_version"] = {"ccnl": "old@0", "tax": "old@0"}
         stale = Calculation.from_dict(d)
@@ -380,32 +381,32 @@ class TestCalculation:
 
     def test_copy_deepcopy_snapshot(self) -> None:
         """copy.deepcopy on InputSnapshot must not raise TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         snapshot_copy = copy.deepcopy(calc.input_snapshot)
         assert snapshot_copy == calc.input_snapshot
 
     def test_copy_deepcopy_calculation(self) -> None:
         """copy.deepcopy on a full Calculation must not raise TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         calc_copy = copy.deepcopy(calc)
         assert calc_copy == calc
         assert calc_copy.result == calc.result
 
     def test_copy_shallow_snapshot(self) -> None:
         """copy.copy on InputSnapshot must not raise TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         snapshot_copy = copy.copy(calc.input_snapshot)
         assert snapshot_copy == calc.input_snapshot
 
     def test_ruleset_version_is_frozen(self) -> None:
         """ruleset_version must reject item assignment after construction."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         with pytest.raises(TypeError):
             calc.ruleset_version["ccnl"] = "tampered"  # type: ignore[index]
 
     def test_snapshot_scenario_is_frozen(self) -> None:
         """snapshot.scenario must reject item assignment after construction."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         with pytest.raises(TypeError):
             calc.input_snapshot.scenario["ccnl"] = "tampered"  # type: ignore[index]
 
@@ -668,13 +669,13 @@ class TestDeepImmutability:
 
     def test_ruleset_version_is_immutable(self) -> None:
         """Assigning a key on ruleset_version raises TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         with pytest.raises(TypeError):
             calc.ruleset_version["ccnl"] = "tampered"  # type: ignore[index]
 
     def test_from_dict_without_trace_key_uses_empty_trace(self) -> None:
         """from_dict() succeeds and returns empty trace when 'trace' key is absent."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d.pop("trace")
         restored = Calculation.from_dict(d)
@@ -683,7 +684,7 @@ class TestDeepImmutability:
 
     def test_reproduce_stable_after_to_dict_mutation(self) -> None:
         """reproduce() is stable even if to_dict() output is mutated."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         original_net = calc.result.net_annual
         d = calc.to_dict()
         # Tamper with the serialised copy — must not affect reproduce().
@@ -805,7 +806,7 @@ class TestNestedBoolValidation:
 
     def test_replay_identity(self) -> None:
         """A round-tripped snapshot reproduces the same net_annual."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         original_net = calc.result.net_annual
         restored = Calculation.from_dict(calc.to_dict())
         replayed = restored.reproduce()
@@ -855,7 +856,7 @@ class TestCalculationFromDictStrictValidation:
 
     def test_engine_version_int_rejected(self) -> None:
         """Integer engine_version raises TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["engine_version"] = 5
         with pytest.raises(TypeError, match="engine_version"):
@@ -863,7 +864,7 @@ class TestCalculationFromDictStrictValidation:
 
     def test_ruleset_version_int_value_rejected(self) -> None:
         """Integer value in ruleset_version raises TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["ruleset_version"] = {"ccnl": 42}
         with pytest.raises(TypeError, match="ruleset_version"):
@@ -871,7 +872,7 @@ class TestCalculationFromDictStrictValidation:
 
     def test_ruleset_verification_int_value_rejected(self) -> None:
         """Integer value in ruleset_verification raises TypeError."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = calc.to_dict()
         d["ruleset_verification"] = {"ccnl": 42}
         with pytest.raises(TypeError, match="ruleset_verification"):
@@ -986,8 +987,8 @@ class TestStrictDecimalFloat:
             RalOverride(value=1.5)  # type: ignore[arg-type]
 
 
-def _annual_scenario() -> AnnualPayrollScenario:
-    return AnnualPayrollScenario(
+def _annual_scenario() -> AnnualEstimateInput:
+    return AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl=_CCNL_FILENAME,
@@ -1005,7 +1006,7 @@ class TestResultFromDictPeriodPayroll:
         """Calculation.from_dict on a period result produces PeriodPayroll."""
         calc = estimate_period_effects(
             _annual_scenario(),
-            PayPeriod(
+            PeriodPayrollInput(
                 fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
             ),
         )

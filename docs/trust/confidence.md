@@ -14,7 +14,7 @@ do not set it.
 
 ```python
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employment,
     Employer,
@@ -23,7 +23,7 @@ from ccnl_engine import (
 )
 from datetime import date
 
-scenario = AnnualPayrollScenario(
+scenario = AnnualEstimateInput(
     employee=Employee(level_code="C2"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",

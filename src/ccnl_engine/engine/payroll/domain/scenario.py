@@ -377,14 +377,14 @@ class PayrollScenario(BaseModel):
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
 
 
-class PayPeriod(BaseModel):
+class PeriodPayrollInput(BaseModel):
     """Period-specific payroll events for a single pay period.
 
     Passed to :func:`~ccnl_engine.engine.payroll.service.orchestrator\
-.estimate_period_effects` alongside an :class:`AnnualPayrollScenario` to supply
+.estimate_period_effects` alongside an :class:`AnnualEstimateInput` to supply
     the month's variable events (overtime, absences, sick leave, benefits).
 
-    All fields are optional — a ``PayPeriod()`` with no arguments represents
+    All fields are optional — a ``PeriodPayrollInput()`` with no arguments represents
     a standard month with no special events.
 
     Attributes:
@@ -413,19 +413,19 @@ class PayPeriod(BaseModel):
     bonus_input: BonusInput | None = None
 
 
-class AnnualPayrollScenario(BaseModel):
+class AnnualEstimateInput(BaseModel):
     """Structural payroll scenario without period-specific events.
 
     Use :func:`~ccnl_engine.engine.payroll.service.orchestrator\
 .estimate_annual` to compute annual gross-to-net figures, or
     :func:`~ccnl_engine.engine.payroll.service.orchestrator\
-.estimate_period_effects` together with a :class:`PayPeriod` to include
+.estimate_period_effects` together with a :class:`PeriodPayrollInput` to include
     the month's variable events in the result fields.
 
     Compared to the legacy :class:`PayrollScenario`, this class holds only
     the structural fields that describe *who the worker is* and *what the
     employment relationship is*.  Period-specific events (overtime, absences,
-    sick leave, fringe benefits, bonuses) live in :class:`PayPeriod`.
+    sick leave, fringe benefits, bonuses) live in :class:`PeriodPayrollInput`.
 
     Attributes:
         employee: Worker-side inputs.
@@ -460,25 +460,25 @@ class AnnualPayrollScenario(BaseModel):
         return self.model_dump_json()
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> AnnualPayrollScenario:
+    def from_dict(cls, data: dict[str, object]) -> AnnualEstimateInput:
         """Reconstruct from a :meth:`to_dict` dictionary.
 
         Args:
             data: A dict as produced by :meth:`to_dict`.
 
         Returns:
-            A new :class:`AnnualPayrollScenario` with all fields restored.
+            A new :class:`AnnualEstimateInput` with all fields restored.
         """
         return cls.model_validate(data)
 
     @classmethod
-    def from_json(cls, raw: str) -> AnnualPayrollScenario:
+    def from_json(cls, raw: str) -> AnnualEstimateInput:
         """Reconstruct from a JSON string.
 
         Args:
             raw: A JSON string as returned by :meth:`to_json`.
 
         Returns:
-            A new :class:`AnnualPayrollScenario` with all fields restored.
+            A new :class:`AnnualEstimateInput` with all fields restored.
         """
         return cls.model_validate_json(raw)

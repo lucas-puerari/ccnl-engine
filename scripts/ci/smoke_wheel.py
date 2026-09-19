@@ -13,7 +13,7 @@ from decimal import Decimal
 
 from ccnl_engine import (
     Agreement,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -33,7 +33,7 @@ def main() -> int:
         0 when the end-to-end scenario produces a positive net_annual;
         1 on any exception or unexpected result.
     """
-    scenario = AnnualPayrollScenario(
+    scenario = AnnualEstimateInput(
         employee=Employee(
             level_code="II",
             seniority=SeniorityByDate(value=date(2020, 1, 1)),

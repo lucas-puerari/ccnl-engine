@@ -15,7 +15,10 @@ import pytest
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
 from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    compute,
+    estimate_annual,
+)
 from ccnl_engine.engine.payroll.service.render import render_breakdown
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import _req
@@ -49,7 +52,7 @@ class TestAnnualBreakdownFields:
 
     def test_ulteriore_detrazione_lavoro(self) -> None:
         """ulteriore_detrazione_lavoro matches result.taxes field."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert (
             bd.ulteriore_detrazione_lavoro
@@ -58,79 +61,79 @@ class TestAnnualBreakdownFields:
 
     def test_somma_esente_zero_when_rules_absent(self) -> None:
         """somma_esente is zero when year rules carry no somma_esente config."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.somma_esente == _ZERO
 
     def test_bilateral_employee_zero_when_no_funds(self) -> None:
         """bilateral_employee_annual is zero when no bilateral funds were supplied."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.bilateral_employee_annual == _ZERO
 
     def test_bilateral_employer_zero_when_no_funds(self) -> None:
         """bilateral_employer_annual is zero when no bilateral funds were supplied."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.bilateral_employer_annual == _ZERO
 
     def test_gross_annual(self) -> None:
         """gross_annual matches result.earnings.gross_annual."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.gross_annual == calc.result.earnings.gross_annual
 
     def test_inps_employee_annual(self) -> None:
         """inps_employee_annual matches result.contributions.inps_employee_annual."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.inps_employee_annual == calc.result.contributions.inps_employee_annual
 
     def test_taxable_income(self) -> None:
         """taxable_income matches result.taxes.taxable_income."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.taxable_income == calc.result.taxes.taxable_income
 
     def test_irpef_gross(self) -> None:
         """irpef_gross matches result.taxes.irpef_gross."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.irpef_gross == calc.result.taxes.irpef_gross
 
     def test_irpef_net(self) -> None:
         """irpef_net matches result.taxes.irpef_net."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.irpef_net == calc.result.taxes.irpef_net
 
     def test_net_annual(self) -> None:
         """net_annual matches result.net_annual."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.net_annual == calc.result.net_annual
 
     def test_employer_cost_annual(self) -> None:
         """employer_cost_annual matches result.employer_cost.employer_cost_annual."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.employer_cost_annual == calc.result.employer_cost.employer_cost_annual
 
     def test_family_deduction_zero_when_absent(self) -> None:
         """family_deduction_annual is zero when no family was supplied."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.family_deduction_annual == _ZERO
 
     def test_art15_deduction_zero_when_absent(self) -> None:
         """art15_deduction_annual is zero when no Art. 15 input was supplied."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.art15_deduction_annual == _ZERO
 
     def test_employer_withholds_irpef(self) -> None:
         """employer_withholds_irpef matches result.taxes.employer_withholds_irpef."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.employer_withholds_irpef == calc.result.taxes.employer_withholds_irpef
 
@@ -140,13 +143,13 @@ class TestAnnualBreakdownNetMonthlyApprox:
 
     def test_net_monthly_approx_nonzero(self) -> None:
         """net_monthly_approx is non-zero for a standard full-time scenario."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.net_monthly_approx > _ZERO
 
     def test_net_monthly_approx_equals_result_net_monthly(self) -> None:
         """net_monthly_approx equals result.net_monthly (from orchestrator)."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.net_monthly_approx == calc.result.net_monthly
 
@@ -156,7 +159,7 @@ class TestAnnualBreakdownSerialisation:
 
     def test_to_dict_has_gross_annual(self) -> None:
         """to_dict includes gross_annual as a string."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         d = bd.to_dict()
         assert "gross_annual" in d
@@ -164,13 +167,13 @@ class TestAnnualBreakdownSerialisation:
 
     def test_to_dict_has_net_annual(self) -> None:
         """to_dict includes net_annual as a string."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = render_breakdown(calc.result).to_dict()
         assert "net_annual" in d
 
     def test_to_json_is_valid_json(self) -> None:
         """to_json returns parseable JSON."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         raw = render_breakdown(calc.result).to_json()
         parsed = json.loads(raw)
         assert "net_annual" in parsed
@@ -181,7 +184,7 @@ class TestNetReconciliation:
 
     def test_net_annual_reconciles(self) -> None:
         """net_annual equals gross minus INPS minus IRPEF plus bonuses."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         r = calc.result
         bd = render_breakdown(r)
         expected = (
@@ -198,7 +201,7 @@ class TestNetReconciliation:
 
     def test_employer_cost_reconciles(self) -> None:
         """employer_cost_annual equals gross plus employer charges."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         r = calc.result
         bd = render_breakdown(r)
         expected = (
@@ -254,20 +257,20 @@ class TestSterilizzazioneClawbackField:
 
     def test_zero_without_threshold_rules(self) -> None:
         """Field is zero in a default (low-income, no threshold) scenario."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         assert bd.sterilizzazione_clawback_annual == _ZERO
 
     def test_matches_result_field(self) -> None:
         """sterilizzazione_clawback_annual mirrors the result field."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         bd = render_breakdown(calc.result)
         expected = calc.result.taxes.sterilizzazione_clawback_annual
         assert bd.sterilizzazione_clawback_annual == expected
 
     def test_exposed_in_to_dict(self) -> None:
         """sterilizzazione_clawback_annual appears in to_dict as a string."""
-        calc = compute(_req())
+        calc = estimate_annual(_req())
         d = render_breakdown(calc.result).to_dict()
         assert "sterilizzazione_clawback_annual" in d
         assert isinstance(d["sterilizzazione_clawback_annual"], str)

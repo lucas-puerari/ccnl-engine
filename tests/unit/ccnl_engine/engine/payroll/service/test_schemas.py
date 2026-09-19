@@ -9,7 +9,7 @@ from typing import Literal, cast
 import pytest
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -23,13 +23,13 @@ from ccnl_engine.engine.payroll.service.schemas import _hint_to_schema
 
 
 @pytest.fixture(scope="module")
-def scenario() -> AnnualPayrollScenario:
-    """Return a minimal AnnualPayrollScenario for serialisation tests.
+def scenario() -> AnnualEstimateInput:
+    """Return a minimal AnnualEstimateInput for serialisation tests.
 
     Returns:
-        A minimal :class:`AnnualPayrollScenario` for Commercio.
+        A minimal :class:`AnnualEstimateInput` for Commercio.
     """
-    return AnnualPayrollScenario(
+    return AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -41,7 +41,7 @@ def scenario() -> AnnualPayrollScenario:
 
 
 @pytest.fixture(scope="module")
-def result(scenario: AnnualPayrollScenario) -> AnnualEstimate:
+def result(scenario: AnnualEstimateInput) -> AnnualEstimate:
     """Return an AnnualEstimate for the shared scenario.
 
     Returns:
@@ -51,34 +51,34 @@ def result(scenario: AnnualPayrollScenario) -> AnnualEstimate:
 
 
 class TestAnnualPayrollScenarioSerialisation:
-    """AnnualPayrollScenario.to_dict/from_dict/to_json/from_json round-trip."""
+    """AnnualEstimateInput.to_dict/from_dict/to_json/from_json round-trip."""
 
-    def test_to_dict_returns_dict(self, scenario: AnnualPayrollScenario) -> None:
+    def test_to_dict_returns_dict(self, scenario: AnnualEstimateInput) -> None:
         """``to_dict()`` returns a plain dict."""
         assert isinstance(scenario.to_dict(), dict)
 
     def test_to_dict_contains_employment_type(
-        self, scenario: AnnualPayrollScenario
+        self, scenario: AnnualEstimateInput
     ) -> None:
         """The serialised dict includes the employment type discriminator."""
         d = scenario.to_dict()
         contract = cast("dict[str, object]", d["employment"])["contract"]
         assert cast("dict[str, object]", contract)["type"] == "permanent"
 
-    def test_to_json_returns_str(self, scenario: AnnualPayrollScenario) -> None:
+    def test_to_json_returns_str(self, scenario: AnnualEstimateInput) -> None:
         """``to_json()`` returns a valid JSON string."""
         raw = scenario.to_json()
         assert isinstance(raw, str)
         parsed = json.loads(raw)
         assert isinstance(parsed, dict)
 
-    def test_from_dict_roundtrip(self, scenario: AnnualPayrollScenario) -> None:
+    def test_from_dict_roundtrip(self, scenario: AnnualEstimateInput) -> None:
         """``from_dict(to_dict())`` reconstructs an equal scenario."""
-        assert AnnualPayrollScenario.from_dict(scenario.to_dict()) == scenario
+        assert AnnualEstimateInput.from_dict(scenario.to_dict()) == scenario
 
-    def test_from_json_roundtrip(self, scenario: AnnualPayrollScenario) -> None:
+    def test_from_json_roundtrip(self, scenario: AnnualEstimateInput) -> None:
         """``from_json(to_json())`` reconstructs an equal scenario."""
-        assert AnnualPayrollScenario.from_json(scenario.to_json()) == scenario
+        assert AnnualEstimateInput.from_json(scenario.to_json()) == scenario
 
 
 class TestPayrollResultSchemaVersion:
@@ -109,7 +109,7 @@ class TestPayrollResultSchemaVersion:
 
 
 class TestScenarioSchema:
-    """scenario_schema() returns a valid JSON Schema for AnnualPayrollScenario."""
+    """scenario_schema() returns a valid JSON Schema for AnnualEstimateInput."""
 
     def test_returns_dict(self) -> None:
         """``scenario_schema()`` returns a dict."""
