@@ -6,8 +6,10 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING, assert_never
 
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByCount,
     SeniorityByDate,
@@ -41,10 +43,6 @@ from ccnl_engine.engine.payroll.service.scope import (
     compute_result_status,
 )
 from ccnl_engine.engine.payroll.service.work_rules import compute_work_rules
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import (
-    load_year_rules,
-)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
@@ -52,6 +50,8 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
     from ccnl_engine.engine.payroll.domain.scenario import Employment
 
+
+_default_repo: BundledKnowledgeRepository = BundledKnowledgeRepository()
 
 _IVS_CEILING_THRESHOLD = date(1996, 1, 1)
 
@@ -343,15 +343,15 @@ def compute(
         rules = bundle.rules
         surtax = bundle.surtax
     else:
-        ccnl = load_ccnl(scenario.employment.ccnl)
-        rules = load_year_rules(
+        ccnl = _default_repo.load_ccnl(scenario.employment.ccnl)
+        rules = _default_repo.load_year_rules(
             year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
         )
         j = scenario.employee.jurisdiction
         needs_surtax = j is not None and (
             j.regione is not None or j.comune_belfiore is not None
         )
-        surtax = load_surtax_rules(year) if needs_surtax else None
+        surtax = _default_repo.load_surtax_rules(year) if needs_surtax else None
 
     gross = compute_gross(scenario, ccnl)
     work = compute_work_rules(scenario, ccnl, gross, year)

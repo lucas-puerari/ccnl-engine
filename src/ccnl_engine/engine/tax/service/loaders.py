@@ -8,11 +8,13 @@ from decimal import Decimal
 from functools import cache
 from typing import TYPE_CHECKING, Any, Protocol
 
-from pydantic import ValidationError
-
 from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled import read_bundled
-from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
+from ccnl_engine.engine.io.service.loader_utils import (
+    as_ruleset,
+    try_ruleset,
+    verify_ruleset_hash,
+)
 from ccnl_engine.engine.tax.domain.art15 import (
     Art15DeductionRules,
     MortgageInterestRules,
@@ -44,6 +46,39 @@ if TYPE_CHECKING:
     from importlib.abc import Traversable
 
     from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+    from ccnl_engine.engine.metadata import RulesetIdentity
+
+
+def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.as_ruleset`.
+
+    Returns:
+        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        or ``None`` when the dict carries no ``ruleset`` block.
+    """
+    return as_ruleset(raw)
+
+
+def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.try_ruleset`.
+
+    Returns:
+        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        or ``None`` when absent or invalid.
+    """
+    return try_ruleset(raw)
+
+
+def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
+    """Verify the payload's ``ruleset.source_hash``.
+
+    Delegates to ``loader_utils.verify_ruleset_hash``.
+
+    Args:
+        payload: The full JSON payload dict.
+        filename: Source file name, included in any error message.
+    """
+    verify_ruleset_hash(payload, filename)
 
 
 class _Tier(Protocol):
@@ -170,68 +205,6 @@ def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
     data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
     _verify_ruleset_hash(data, filename)
     return data
-
-
-def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
-    """Parse a raw dict's ``ruleset`` block into a :class:`RulesetIdentity`.
-
-    Returns:
-        The parsed identity, or ``None`` when the dict carries no ``ruleset``.
-    """
-    block = raw.get("ruleset")
-    if not isinstance(block, dict):
-        return None
-    return RulesetIdentity.model_validate(block)
-
-
-def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
-    """Parse a raw dict's ``ruleset`` block, returning ``None`` on any error.
-
-    Unlike :func:`_as_ruleset`, this silently returns ``None`` when the block
-    is present but incomplete (e.g. missing required fields such as
-    ``verification_status``).  Used for optional-feature loaders whose JSON
-    files may carry partial provenance metadata.
-
-    Returns:
-        The parsed identity, or ``None`` when absent or invalid.
-    """
-    block = raw.get("ruleset")
-    if not isinstance(block, dict):
-        return None
-    try:
-        return RulesetIdentity.model_validate(block)
-    except ValidationError:
-        return None
-
-
-def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
-    """Verify a recorded ``ruleset.source_hash`` against the payload.
-
-    The check is skipped when the file carries no ``ruleset`` block or no
-    ``source_hash``; a stale hash means the data file was hand-modified after
-    the provenance backfill.
-
-    Raises:
-        DataIntegrityError: If the recomputed hash differs from the recorded one.
-    """
-    ruleset = payload.get("ruleset")
-    if not isinstance(ruleset, dict):
-        return
-    recorded = ruleset.get("source_hash")
-    if not isinstance(recorded, str):
-        return
-    if source_hash(payload) != recorded:
-        msg = (
-            f"ruleset source_hash mismatch in {filename}; data file has been "
-            "modified without updating its ruleset block."
-        )
-        raise DataIntegrityError(
-            msg,
-            remediation=(
-                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
-                "source_hash for the modified file."
-            ),
-        )
 
 
 def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:

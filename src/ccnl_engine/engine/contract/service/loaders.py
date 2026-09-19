@@ -8,9 +8,8 @@ from functools import cache
 from typing import Any
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
-from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled import read_bundled
-from ccnl_engine.engine.metadata import source_hash
+from ccnl_engine.engine.io.service.loader_utils import verify_ruleset_hash
 
 
 @cache
@@ -42,28 +41,7 @@ def load_ccnl(filename: str) -> CCNL:
 def _verify_ruleset_hash(payload: dict[str, Any]) -> None:
     """Verify a recorded ``ruleset.source_hash`` against the payload.
 
-    The check is skipped when the file carries no ``ruleset`` block or no
-    ``source_hash``; a stale hash means the data file was hand-modified after
-    the provenance backfill.
-
-    Raises:
-        DataIntegrityError: If the recomputed hash differs from the recorded one.
+    Delegates to :func:`~ccnl_engine.engine.io.service.loader_utils\
+.verify_ruleset_hash`.
     """
-    ruleset = payload.get("ruleset")
-    if not isinstance(ruleset, dict):
-        return
-    recorded = ruleset.get("source_hash")
-    if not isinstance(recorded, str):
-        return
-    if source_hash(payload) != recorded:
-        msg = (
-            "CCNL ruleset source_hash mismatch; data file has been modified "
-            "without updating its ruleset block."
-        )
-        raise DataIntegrityError(
-            msg,
-            remediation=(
-                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
-                "source_hash for the modified file."
-            ),
-        )
+    verify_ruleset_hash(payload)

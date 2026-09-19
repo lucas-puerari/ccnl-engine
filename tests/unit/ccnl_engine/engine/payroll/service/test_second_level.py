@@ -45,22 +45,27 @@ _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
 _mock_rules: list[object] = [_RULES]
 
 
+class _MockRepo:
+    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+
+    def load_ccnl(self, filename: str) -> CCNL:
+        return _mock_ccnl[0]
+
+    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+        return _mock_rules[0]
+
+    def load_surtax_rules(self, year: int) -> None:
+        return
+
+
 @pytest.fixture(autouse=True)
 def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the three loaders in orchestrator and reset mock state."""
+    """Patch the repository in orchestrator and reset mock state."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_RULES]
     monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-        lambda _: _mock_ccnl[0],
-    )
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-        lambda *_: _mock_rules[0],
-    )
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-        lambda _: None,
+        "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+        _MockRepo(),
     )
 
 
