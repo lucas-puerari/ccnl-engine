@@ -211,6 +211,7 @@ def _build_contributions(fiscal: object) -> Contributions:
         inps_employer_exemption_annual=f.inps_employer_exemption_annual,
         maternity_inps_indemnity_annual=f.maternity_inps_indemnity_annual,
         workplace_injury_inail_indemnity_annual=f.workplace_injury_inail_indemnity_annual,
+        termination_tfr_liquidation_annual=f.termination_tfr_liquidation_annual,
         employer_funds_annual=f.employer_funds_annual,
         tfr_annual=f.tfr_annual,
         bilateral_employee_annual=f.bilateral_employee_annual,
@@ -249,6 +250,7 @@ def _build_taxes(fiscal: object) -> Taxes:
         unused_art15_deduction_annual=f.art15_unused,
         sterilizzazione_clawback_annual=f.sterilizzazione_clawback,
         conguaglio_annual=f.conguaglio_annual,
+        termination_residual_leave_payout_annual=f.termination_residual_leave_payout_annual,
     )
 
 
