@@ -213,6 +213,7 @@ def _fiscal_scope(
     )
     inail_rate = scenario.employment.employer.inail_rate
     exemption = scenario.employment.employer.inps_employer_exemption_annual
+    prior_irpef = scenario.prior_period_irpef_withheld
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -231,6 +232,15 @@ def _fiscal_scope(
             )
             if exemption is not None
             else _excluded("contribution_exemption")
+        ),
+        (
+            _computed(
+                "fiscal_adjustment",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if prior_irpef is not None
+            else _excluded("fiscal_adjustment")
         ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),

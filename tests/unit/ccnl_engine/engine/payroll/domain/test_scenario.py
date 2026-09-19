@@ -442,3 +442,44 @@ class TestTaxPeriod:
             eligible_work_days=365,
         )
         assert tp.type == "tax_period"
+
+
+# ---------------------------------------------------------------------------
+# PayrollScenario.prior_period_irpef_withheld validation
+# ---------------------------------------------------------------------------
+
+
+def _base_scenario(**kwargs: object) -> PayrollScenario:
+    return PayrollScenario(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="test.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=_DATE,
+        ),
+        **kwargs,  # type: ignore[arg-type]
+    )
+
+
+class TestPriorIrpefWithheld:
+    """PayrollScenario.prior_period_irpef_withheld validation."""
+
+    def test_prior_irpef_none_by_default(self) -> None:
+        """prior_period_irpef_withheld defaults to None."""
+        assert _base_scenario().prior_period_irpef_withheld is None
+
+    def test_prior_irpef_zero_accepted(self) -> None:
+        """prior_period_irpef_withheld=0 is valid."""
+        s = _base_scenario(prior_period_irpef_withheld=Decimal(0))
+        assert s.prior_period_irpef_withheld == Decimal(0)
+
+    def test_prior_irpef_positive_accepted(self) -> None:
+        """A positive prior_period_irpef_withheld is accepted."""
+        s = _base_scenario(prior_period_irpef_withheld=Decimal("1500.00"))
+        assert s.prior_period_irpef_withheld == Decimal("1500.00")
+
+    def test_negative_prior_irpef_raises(self) -> None:
+        """Negative prior_period_irpef_withheld is rejected."""
+        with pytest.raises(ValidationError, match="prior_period_irpef_withheld"):
+            _base_scenario(prior_period_irpef_withheld=Decimal(-1))

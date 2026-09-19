@@ -246,6 +246,7 @@ def _build_taxes(fiscal: object) -> Taxes:
         art15_deduction_annual=f.art15_total,
         unused_art15_deduction_annual=f.art15_unused,
         sterilizzazione_clawback_annual=f.sterilizzazione_clawback,
+        conguaglio_annual=f.conguaglio_annual,
     )
 
 
