@@ -207,6 +207,7 @@ def _build_contributions(fiscal: object) -> Contributions:
     return Contributions(
         inps_employee_annual=f.inps_employee_annual,
         inps_employer_annual=f.inps_employer_annual,
+        inps_employer_exemption_annual=f.inps_employer_exemption_annual,
         employer_funds_annual=f.employer_funds_annual,
         tfr_annual=f.tfr_annual,
         bilateral_employee_annual=f.bilateral_employee_annual,

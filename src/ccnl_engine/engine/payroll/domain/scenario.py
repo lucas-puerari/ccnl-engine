@@ -310,12 +310,32 @@ class Employer(BaseModel):
             apprenticeship percentage also applies is controlled per-item
             by ``apprenticeship_pct_relevant``. Mutually exclusive with
             :attr:`Agreement.ral_override`.
+        inps_employer_exemption_annual: Caller-declared annual INPS employer
+            contribution exemption (e.g. Esonero contributivo, Decontribuzione
+            Sud). When set, the engine subtracts this amount from
+            ``employer_cost_annual``, capped at ``inps_employer_annual``
+            (cannot exceed the contribution itself). Must be ``>= 0``.
+            ``None`` means no exemption is applied.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
 
     num_employees: int = Field(ge=1)
     second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
+    inps_employer_exemption_annual: StrictDecimal | None = None
+
+    @model_validator(mode="after")
+    def _check_exemption(self) -> Employer:
+        if (
+            self.inps_employer_exemption_annual is not None
+            and self.inps_employer_exemption_annual < _ZERO
+        ):
+            msg = (
+                "inps_employer_exemption_annual must be >= 0, "
+                f"got {self.inps_employer_exemption_annual}"
+            )
+            raise ValueError(msg)
+        return self
 
 
 class Employment(BaseModel):

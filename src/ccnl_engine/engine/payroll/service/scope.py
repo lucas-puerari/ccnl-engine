@@ -211,11 +211,21 @@ def _fiscal_scope(
         scenario.art15_deductions is not None
         and scenario.art15_deductions.has_any_onere
     )
+    exemption = scenario.employment.employer.inps_employer_exemption_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
         _computed("inps_employee"),
         _computed("inps_employer"),
+        (
+            _computed(
+                "contribution_exemption",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if exemption is not None
+            else _excluded("contribution_exemption")
+        ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (
