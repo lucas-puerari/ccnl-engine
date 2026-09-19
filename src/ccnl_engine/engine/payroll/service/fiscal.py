@@ -57,6 +57,7 @@ class FiscalPay:
     inps_employer_annual: Decimal
     inps_employee_additional_annual: Decimal
     inail_employer_annual: Decimal
+    inps_employer_exemption_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal
@@ -83,6 +84,15 @@ class FiscalPay:
     employer_cost_annual: Decimal
     employer_withholds_irpef: bool
     fiscal_simplifications: frozenset[FiscalSimplification]
+
+
+def _inps_exemption(inps_employer_annual: Decimal, raw: Decimal | None) -> Decimal:
+    """Apply the caller-declared INPS employer exemption, capped at the contribution.
+
+    Returns:
+        Exemption amount to subtract from employer cost, or zero when absent.
+    """
+    return money(min(inps_employer_annual, raw)) if raw is not None else _ZERO
 
 
 def _update_simplification_flags(
@@ -259,6 +269,10 @@ def compute_fiscal(
     inail_rate = scenario.employment.employer.inail_rate
     inail_employer_annual = (
         money(gross.gross_annual * inail_rate) if inail_rate is not None else _ZERO
+    )
+    inps_employer_exemption_annual = _inps_exemption(
+        inps_employer_annual,
+        scenario.employment.employer.inps_employer_exemption_annual,
     )
 
     taxable_income = money(
@@ -441,6 +455,7 @@ def compute_fiscal(
     employer_cost_annual = money(
         gross.gross_annual
         + inps_employer_annual
+        - inps_employer_exemption_annual
         + inail_employer_annual
         + employer_funds_annual
         + bilateral_employer_annual
@@ -464,6 +479,7 @@ def compute_fiscal(
         inps_employer_annual=inps_employer_annual,
         inps_employee_additional_annual=inps_employee_additional_annual,
         inail_employer_annual=inail_employer_annual,
+        inps_employer_exemption_annual=inps_employer_exemption_annual,
         employer_funds_annual=employer_funds_annual,
         tfr_annual=tfr_annual,
         bilateral_employee_annual=bilateral_employee_annual,

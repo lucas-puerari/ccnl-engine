@@ -317,6 +317,12 @@ class Employer(BaseModel):
             is not modelled (reported as ``not_computed`` in the scope).
             The INAIL massimale and minimale retributivi are not applied;
             the caller is responsible for providing the correct net rate.
+        inps_employer_exemption_annual: Caller-declared annual INPS employer
+            contribution exemption (e.g. Esonero contributivo, Decontribuzione
+            Sud). When set, the engine subtracts this amount from
+            ``employer_cost_annual``, capped at ``inps_employer_annual``
+            (cannot exceed the contribution itself). Must be ``>= 0``.
+            ``None`` means no exemption is applied.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -324,11 +330,21 @@ class Employer(BaseModel):
     num_employees: int = Field(ge=1)
     second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
     inail_rate: StrictDecimal | None = None
+    inps_employer_exemption_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
-    def _check_inail_rate(self) -> Employer:
+    def _check_rates(self) -> Employer:
         if self.inail_rate is not None and self.inail_rate < _ZERO:
             msg = f"inail_rate must be >= 0, got {self.inail_rate}"
+            raise ValueError(msg)
+        if (
+            self.inps_employer_exemption_annual is not None
+            and self.inps_employer_exemption_annual < _ZERO
+        ):
+            msg = (
+                "inps_employer_exemption_annual must be >= 0, "
+                f"got {self.inps_employer_exemption_annual}"
+            )
             raise ValueError(msg)
         return self
 
