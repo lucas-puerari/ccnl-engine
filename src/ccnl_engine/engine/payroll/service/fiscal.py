@@ -272,6 +272,7 @@ def _compute_ti(
             relevant_deductions,
             ti_rules,
             eligible_work_days,
+            constants=rules.work_deduction,
         )
         simplifications: frozenset[FiscalSimplification] = frozenset({
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
@@ -754,7 +755,7 @@ def compute_fiscal(
         else 365
     )
     work_income_deduction = _irpef.work_income_deduction(
-        taxable_income, eligible_work_days
+        taxable_income, eligible_work_days, rules.work_deduction
     )
     employer_withholds_irpef = not ccnl.meta.withholding_exempt
 

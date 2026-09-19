@@ -490,6 +490,42 @@ class SommaEsenteRules(BaseModel):
         return self
 
 
+class WorkDeductionRules(BaseModel):
+    """Art. 13 co. 1 TUIR work-income deduction constants for a fiscal year.
+
+    These values are statutory and sector-agnostic. They are versioned here
+    so a future year can update the schedule without touching irpef.py.
+    Defaults encode the 2026 values (circolare AdE 4/E/2025, p. 6).
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    detr_flat: Decimal = Decimal(1955)
+    """Flat deduction for reddito complessivo <= detr_lo (EUR)."""
+    detr_a: Decimal = Decimal(1910)
+    """Base coefficient for reddito complessivo > detr_lo (EUR)."""
+    detr_b_coeff: Decimal = Decimal(1190)
+    """Variable coefficient for detr_lo < RC <= detr_mid band (EUR)."""
+    detr_b_span: Decimal = Decimal(13000)
+    """Width of the middle band: detr_mid - detr_lo (EUR)."""
+    detr_c_span: Decimal = Decimal(22000)
+    """Width of the upper band: detr_high - detr_mid (EUR)."""
+    detr_lo: Decimal = Decimal(15000)
+    """Lower income threshold; flat deduction applies at or below (EUR)."""
+    detr_mid: Decimal = Decimal(28000)
+    """Mid income threshold; separates middle and upper bands (EUR)."""
+    detr_high: Decimal = Decimal(50000)
+    """Upper income threshold; deduction is zero above this (EUR)."""
+    detr_increment: Decimal = Decimal(65)
+    """Art. 13 co. 1 lett. b-bis EUR 65 increment (applies in increment range)."""
+    increment_lo: Decimal = Decimal(25000)
+    """Lower bound of the EUR 65 increment range (exclusive, EUR)."""
+    increment_hi: Decimal = Decimal(35000)
+    """Upper bound of the EUR 65 increment range (inclusive, EUR)."""
+    seventy_five: Decimal = Decimal(75)
+    """Trattamento integrativo corrective (Art. 1 co. 3 L. 207/2024, EUR)."""
+
+
 class SterilizzazioneDetrazioniRules(BaseModel):
     """Sterilizzazione detrazioni for high-income earners.
 
@@ -532,6 +568,7 @@ class YearRulesRaw(BaseModel):
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
+    work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
@@ -591,6 +628,7 @@ class YearRules(BaseModel):
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
     somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
+    work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None

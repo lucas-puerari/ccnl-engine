@@ -18,6 +18,7 @@ from decimal import ROUND_FLOOR, Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.tax.domain.rules import WorkDeductionRules
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -33,25 +34,11 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
-
-# ---------------------------------------------------------------------------
-# Art. 13 co. 1 TUIR — work-income deduction statutory constants (2026).
-# Source: Agenzia delle Entrate, circolare 4/E/2025, p. 6.
-# ---------------------------------------------------------------------------
-_DETR_FLAT = Decimal(1955)  # flat deduction for RC ≤ 15 000
-_DETR_A = Decimal(1910)  # base coefficient for RC > 15 000
-_DETR_B_COEFF = Decimal(1190)  # variable coefficient for 15 000<RC≤28 000
-_DETR_B_SPAN = Decimal(13000)  # 28 000 - 15 000
-_DETR_C_SPAN = Decimal(22000)  # 50 000 - 28 000
-_DETR_LO = Decimal(15000)  # lower threshold
-_DETR_MID = Decimal(28000)  # mid threshold
-_DETR_HIGH = Decimal(50000)  # upper threshold (zero above)
-_DETR_INCREMENT = Decimal(65)  # Art. 13 co. 1 lett. b-bis increment
-_INCREMENT_LO = Decimal(25000)  # lower bound of increment range
-_INCREMENT_HI = Decimal(35000)  # upper bound of increment range
-_SEVENTY_FIVE = Decimal(75)  # TI corrective (L. 207/2024 co. 3)
 _TEN_THOUSAND = Decimal(10000)
-_DAYS_IN_YEAR = 365  # statutory denominator for part-year pro-rata
+_DAYS_IN_YEAR = 365  # statutory denominator for Art. 13 co. 6 TUIR pro-rata
+
+# Default Art. 13 constants (2026). Callers may pass rules.work_deduction instead.
+_DEFAULT_WD = WorkDeductionRules()
 
 
 def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
@@ -92,7 +79,9 @@ def _trunc4(ratio: Decimal) -> Decimal:
 
 
 def work_income_deduction(
-    gross_income: Decimal, eligible_work_days: int = _DAYS_IN_YEAR
+    gross_income: Decimal,
+    eligible_work_days: int = _DAYS_IN_YEAR,
+    constants: WorkDeductionRules | None = None,
 ) -> Decimal:
     """Compute the Art. 13 co. 1 TUIR work-income deduction.
 
@@ -117,24 +106,29 @@ def work_income_deduction(
         eligible_work_days: Calendar days in the tax year for which the
             worker is employed.  Determines the pro-rata ratio applied to
             the full-year deduction amount.
+        constants: Versioned Art. 13 statutory constants. Defaults to the
+            2026 schedule when ``None``.
 
     Returns:
         The applicable deduction, rounded to two decimal places.
     """
+    c = constants if constants is not None else _DEFAULT_WD
     if gross_income <= _ZERO:
         return _ZERO
-    if gross_income <= _DETR_LO:
-        full_year = _DETR_FLAT
+    if gross_income <= c.detr_lo:
+        full_year = c.detr_flat
     else:
         increment = (
-            _DETR_INCREMENT if _INCREMENT_LO < gross_income <= _INCREMENT_HI else _ZERO
+            c.detr_increment
+            if c.increment_lo < gross_income <= c.increment_hi
+            else _ZERO
         )
-        if gross_income <= _DETR_MID:
-            ratio = _trunc4((_DETR_MID - gross_income) / _DETR_B_SPAN)
-            full_year = _DETR_A + _DETR_B_COEFF * ratio + increment
-        elif gross_income <= _DETR_HIGH:
-            ratio = _trunc4((_DETR_HIGH - gross_income) / _DETR_C_SPAN)
-            full_year = _DETR_A * ratio + increment
+        if gross_income <= c.detr_mid:
+            ratio = _trunc4((c.detr_mid - gross_income) / c.detr_b_span)
+            full_year = c.detr_a + c.detr_b_coeff * ratio + increment
+        elif gross_income <= c.detr_high:
+            ratio = _trunc4((c.detr_high - gross_income) / c.detr_c_span)
+            full_year = c.detr_a * ratio + increment
         else:
             return _ZERO
     if eligible_work_days == _DAYS_IN_YEAR:
@@ -150,6 +144,7 @@ def trattamento_integrativo(
     relevant_deductions: Decimal,
     rules: TrattamentoIntegrativoRules,
     eligible_work_days: int = _DAYS_IN_YEAR,
+    constants: WorkDeductionRules | None = None,
 ) -> Decimal:
     """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
 
@@ -187,18 +182,21 @@ def trattamento_integrativo(
         eligible_work_days: Calendar days in the tax year for which the
             worker is employed.  Scales the max bonus and the 75 EUR
             corrective proportionally.
+        constants: Versioned Art. 13 statutory constants (supplies the 75 EUR
+            corrective). Defaults to the 2026 schedule when ``None``.
 
     Returns:
         The trattamento integrativo amount, rounded to two decimal places.
     """
+    c = constants if constants is not None else _DEFAULT_WD
     if gross_annual > rules.threshold_upper:
         return _ZERO
     if eligible_work_days == _DAYS_IN_YEAR:
         prorata = _ONE
-        seventy_five = _SEVENTY_FIVE
+        seventy_five = c.seventy_five
     else:
         prorata = _trunc4(Decimal(eligible_work_days) / _DAYS_IN_YEAR)
-        seventy_five = money(_SEVENTY_FIVE * prorata)
+        seventy_five = money(c.seventy_five * prorata)
     max_amount = money(rules.max_amount * prorata)
     if gross_annual <= rules.threshold_mid:
         # Eligibility condition: IRPEF > (Art. 13 deduction - EUR 75 corrective).
