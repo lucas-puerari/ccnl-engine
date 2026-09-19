@@ -1040,9 +1040,3 @@ class Calculation:
             A new :class:`Calculation` equal to the original.
         """
         return cls.from_dict(json.loads(raw))
-
-
-MonthlyPayrollReport = Calculation
-"""Return type of :func:`~ccnl_engine.engine.payroll.service.orchestrator\
-.compute_month`.  Currently an alias for :class:`Calculation`; will gain
-period-specific grouping (.period sub-object) in a future release."""

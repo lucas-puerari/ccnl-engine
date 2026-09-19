@@ -40,10 +40,7 @@ from ccnl_engine.engine.tax.service.loaders import (
 if TYPE_CHECKING:
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
-    from ccnl_engine.engine.payroll.domain.calculation import (
-        Calculation,
-        MonthlyPayrollReport,
-    )
+    from ccnl_engine.engine.payroll.domain.calculation import Calculation
     from ccnl_engine.engine.payroll.domain.scenario import Employment
 
 
@@ -376,29 +373,33 @@ def estimate_annual(
     return compute(_annual_to_scenario(scenario), bundle)
 
 
-def compute_month(
+def estimate_period_effects(
     scenario: AnnualPayrollScenario,
     period: PayPeriod,
     bundle: PayrollBundle | None = None,
-) -> MonthlyPayrollReport:
-    """Compute payroll for a specific month including period-specific events.
+) -> Calculation:
+    """Estimate the informational effect of period events on the annual figures.
 
-    Runs the full payroll computation chain with the variable events from
-    *period* (overtime hours, absences, sick leave, fringe benefits, bonuses)
-    merged into the structural scenario.  The resulting ``net_annual`` and
-    ``employer_cost_annual`` figures reflect the actual events of the month.
+    Merges the period-specific events from *period* (overtime hours, absences,
+    sick leave, fringe benefits, bonuses) into the structural scenario and runs
+    the computation chain.  The period events appear in dedicated result fields
+    (e.g. ``overtime_supplement_monthly``, ``sick_days_monthly``) but do **not**
+    flow into ``net_annual`` or ``employer_cost_annual`` in this version — those
+    figures remain annualised estimates.
+
+    Use :func:`estimate_annual` when you need the structural annual gross-to-net.
+    Use this function only when you need the per-period breakdown fields alongside
+    the annual figures.
 
     Args:
         scenario: The annual payroll scenario (structural fields only).
-        period: The period-specific events for the month.
+        period: The period-specific events to merge in.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded on demand.
 
     Returns:
-        A :class:`~ccnl_engine.engine.payroll.domain.calculation\
-.MonthlyPayrollReport` (currently an alias for
-        :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`)
-        with all payroll figures including period events.
+        A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
+        with annual figures plus informational period-event fields.
     """
     return compute(_annual_to_scenario(scenario, period), bundle)
 
@@ -432,7 +433,7 @@ def compute_period(
     Uses *period.year* and *period.month* as the reference date for all
     time-series lookups, overriding the ``as_of`` field in
     *scenario.employment*.  The period-specific events in *period.events*
-    are merged into the scenario exactly as in :func:`compute_month`.
+    are merged into the scenario exactly as in :func:`estimate_period_effects`.
 
     The year-to-date state in *period.ytd* is stored in the period
     descriptor and is available for chaining across months; it does not
@@ -455,7 +456,7 @@ def compute_period(
             )
         }
     )
-    return compute_month(updated, period.events, bundle)
+    return estimate_period_effects(updated, period.events, bundle)
 
 
 def compute_year(

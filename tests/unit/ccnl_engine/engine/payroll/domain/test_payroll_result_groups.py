@@ -14,8 +14,8 @@ from ccnl_engine import (
     Employment,
     PayPeriod,
     Permanent,
-    compute_month,
     estimate_annual,
+    estimate_period_effects,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollEmployer,
@@ -164,7 +164,7 @@ class TestEffectiveNetMonthly:
                 as_of=date(2026, 1, 1),
             ),
         )
-        r = compute_month(
+        r = estimate_period_effects(
             scenario,
             PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
         ).result
@@ -183,7 +183,7 @@ class TestEffectiveNetMonthly:
                 as_of=date(2026, 1, 1),
             ),
         )
-        r = compute_month(
+        r = estimate_period_effects(
             scenario,
             PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10))),
         ).result

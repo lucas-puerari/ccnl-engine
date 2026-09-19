@@ -1,7 +1,7 @@
 # Second-level bargaining
 
 Company or territorial agreements may add allowances on top of the national CCNL
-minimum. These are modelled by passing an `Employer` object to `estimate_annual()` or `compute_month()`.
+minimum. These are modelled by passing an `Employer` object to `estimate_annual()` or `estimate_period_effects()`.
 
 See [Domain: Second-level bargaining](../domain/components.md#12-second-level-bargaining-contrattazione-di-secondo-livello)
 for the legal background.

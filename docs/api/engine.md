@@ -11,12 +11,12 @@ See [Guide: Employment types](../domain/employment-types.md) and
     options:
       members:
         - estimate_annual
-        - compute_month
+        - estimate_period_effects
         - compute
 
 ## Calculation
 
-Both `estimate_annual()` and `compute_month()` return a `Calculation` that
+Both `estimate_annual()` and `estimate_period_effects()` return a `Calculation` that
 bundles the engine version, the ruleset revisions used, a snapshot of the
 inputs, and the resulting `PayrollResult` (`.result`).
 
