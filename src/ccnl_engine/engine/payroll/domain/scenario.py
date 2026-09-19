@@ -310,12 +310,27 @@ class Employer(BaseModel):
             apprenticeship percentage also applies is controlled per-item
             by ``apprenticeship_pct_relevant``. Mutually exclusive with
             :attr:`Agreement.ral_override`.
+        inail_rate: Caller-supplied INAIL tariff rate (e.g. ``Decimal("0.015")``
+            for 1.5%). When set, the engine computes the INAIL employer
+            contribution as ``gross_annual * inail_rate`` and adds it to
+            ``employer_cost_annual``. Must be ``>= 0``. ``None`` means INAIL
+            is not modelled (reported as ``not_computed`` in the scope).
+            The INAIL massimale and minimale retributivi are not applied;
+            the caller is responsible for providing the correct net rate.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
 
     num_employees: int = Field(ge=1)
     second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
+    inail_rate: StrictDecimal | None = None
+
+    @model_validator(mode="after")
+    def _check_inail_rate(self) -> Employer:
+        if self.inail_rate is not None and self.inail_rate < _ZERO:
+            msg = f"inail_rate must be >= 0, got {self.inail_rate}"
+            raise ValueError(msg)
+        return self
 
 
 class Employment(BaseModel):
