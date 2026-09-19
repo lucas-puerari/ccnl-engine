@@ -43,7 +43,11 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.family import FamilyComposition
+from ccnl_engine.engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     Employee,
@@ -170,12 +174,24 @@ def _build_family(inputs: dict[str, Any]) -> FamilyComposition | None:
     raw = inputs.get("family")
     if raw is None:
         return None
-    return FamilyComposition(
-        spouse_dependent=bool(raw.get("spouse_dependent", False)),
-        children_21_or_older=int(raw.get("children_21_or_older", 0)),
-        children_21_or_older_disabled=int(raw.get("children_21_or_older_disabled", 0)),
-        ascendenti_conviventi=int(raw.get("ascendenti_conviventi", 0)),
-    )
+    deps: list[Dependent] = []
+    for d in raw.get("dependents", []):
+        rel = DependentRelationship(d["relationship"])
+        birth_date_raw = d.get("birth_date")
+        birth_date = date.fromisoformat(birth_date_raw) if birth_date_raw else None
+        deps.append(
+            Dependent(
+                relationship=rel,
+                birth_date=birth_date,
+                disabled=bool(d.get("disabled", False)),
+                own_income=Decimal(str(d.get("own_income", "0"))),
+                months_dependent=int(d.get("months_dependent", 12)),
+                allocation_pct=Decimal(str(d.get("allocation_pct", "100"))),
+                cohabiting=bool(d.get("cohabiting", True)),
+                residency_eligibility=bool(d.get("residency_eligibility", True)),
+            )
+        )
+    return FamilyComposition(dependents=tuple(deps))
 
 
 def _build_art15(inputs: dict[str, Any]) -> Art15Deductions | None:

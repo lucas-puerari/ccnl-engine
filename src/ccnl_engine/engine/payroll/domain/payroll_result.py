@@ -43,7 +43,7 @@ class ScopeItem:
     """
 
     feature: str
-    status: Literal["verified", "excluded", "not_computed"]
+    status: Literal["verified", "excluded", "not_computed", "caller_declared"]
 
 
 def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:

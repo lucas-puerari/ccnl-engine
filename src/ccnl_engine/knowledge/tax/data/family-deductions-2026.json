@@ -30,10 +30,9 @@
   "children": {
     "auu_age_cutoff": 21,
     "base_amount": "950.00",
-    "disability_supplement": "400.00",
     "income_ceiling": "95000.00",
     "income_ceiling_increment_per_child": "15000.00",
-    "notes": "Figli under 21 not eligible (AUU from 2022-03-01, D.Lgs. 230/2021). Figli 21-29 and 30+ with disability are eligible."
+    "notes": "Figli under 21 not eligible (AUU, D.Lgs. 230/2021). Figli 21-29 eligible; figli 30+ only with certified disability (L. 104/92)."
   },
   "other_dependents": {
     "dependent_income_threshold": "2840.51",
@@ -50,6 +49,6 @@
     "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "adebf4ac015cfca777090945fdccf8973d0a8398515fdcde6a0aa51247dcb8e0"
+    "source_hash": "16073be13104067ea7ad2454659bc70834433e016dfcce1a452da4597c04fb39"
   }
 }

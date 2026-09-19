@@ -36,16 +36,13 @@ class ChildrenDeductionRules(BaseModel):
 
     Post D.Lgs. 230/2021 (Assegno Unico), children under ``auu_age_cutoff``
     (21) are covered by AUU and are no longer eligible for Art. 12 deductions.
-    Eligible children are those aged 21 or older (up to 29) and those aged
-    30+ with certified disability.
+    Eligible children are those aged 21-29 and disabled children aged 30+.
+    Non-disabled children aged 30 or older are not eligible.
 
-    Tapering formula per child::
+    Tapering formula per eligible child::
 
         deduction = base_amount
             * max(0, (income_ceiling - gross_annual) / income_ceiling)
-
-    Disabled children (``n_disabled``) receive ``base_amount +
-    disability_supplement`` each (Art. 12 c. 1 lett. c second period TUIR).
 
     When there are N children, ``income_ceiling`` increases by
     ``income_ceiling_increment_per_child`` for each child beyond the first.
@@ -55,7 +52,6 @@ class ChildrenDeductionRules(BaseModel):
 
     auu_age_cutoff: int = Field(ge=0)
     base_amount: Decimal = Field(gt=Decimal(0))
-    disability_supplement: Decimal = Field(ge=Decimal(0))
     income_ceiling: Decimal = Field(gt=Decimal(0))
     income_ceiling_increment_per_child: Decimal = Field(ge=Decimal(0))
     notes: str = ""
