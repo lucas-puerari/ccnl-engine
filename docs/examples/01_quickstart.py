@@ -1,6 +1,6 @@
 """Quickstart: permanent employee, full-time, no seniority.
 
-Build an AnnualPayrollScenario and pass it to estimate_annual(). The
+Build an AnnualEstimateInput and pass it to estimate_annual(). The
 returned Calculation wraps the AnnualEstimate (``calculation.result``)
 together with the engine and ruleset versions that produced it.
 """
@@ -8,7 +8,7 @@ together with the engine and ruleset versions that produced it.
 from datetime import date
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -17,7 +17,7 @@ from ccnl_engine import (
 )
 
 calculation = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

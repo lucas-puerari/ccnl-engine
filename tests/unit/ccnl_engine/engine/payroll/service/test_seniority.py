@@ -7,7 +7,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    estimate_annual,
+)
 from ccnl_engine.engine.payroll.service.seniority import _resolve_tier_amount
 from tests.helpers import TEST_PROV, make_ccnl_dict
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -102,7 +104,7 @@ class TestTieredSeniority:
         level_code: str = "4",
     ) -> AnnualEstimate:
         _mock_ccnl[0] = self._TIERED_CCNL
-        return compute(
+        return estimate_annual(
             _req(
                 level_code=level_code,
                 seniority_months=seniority_months,
@@ -179,7 +181,7 @@ class TestExcludedCategories:
             "levels.2.category": "operaio",
             "parameters.seniority_increments.excluded_categories": ["operaio"],
         })
-        r = compute(_req(seniority_months=120)).result
+        r = estimate_annual(_req(seniority_months=120)).result
         assert r.earnings.seniority_count == 0
         assert r.earnings.seniority_monthly == _D("0.00")
 
@@ -216,7 +218,7 @@ class TestExcludedCategories:
                 "provenance": TEST_PROV,
             },
         })
-        r = compute(_req(seniority_months=48)).result
+        r = estimate_annual(_req(seniority_months=48)).result
         assert r.earnings.seniority_count == 0
         assert r.earnings.seniority_monthly == _D("0.00")
 
@@ -274,7 +276,7 @@ class TestServiceGatedAllowances:
         seniority_count: int | None = None,
     ) -> AnnualEstimate:
         _mock_ccnl[0] = self._GATED_CCNL
-        return compute(
+        return estimate_annual(
             _req(
                 seniority_months=seniority_months,
                 seniority_count=seniority_count,

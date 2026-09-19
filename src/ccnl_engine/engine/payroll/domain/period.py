@@ -6,7 +6,7 @@ import dataclasses
 from decimal import Decimal
 from typing import Literal
 
-from ccnl_engine.engine.payroll.domain.scenario import PayPeriod
+from ccnl_engine.engine.payroll.domain.scenario import PeriodPayrollInput
 
 _ZERO = Decimal(0)
 
@@ -58,6 +58,6 @@ class PayrollPeriod:
 
     year: int
     month: int
-    events: PayPeriod = dataclasses.field(default_factory=PayPeriod)
+    events: PeriodPayrollInput = dataclasses.field(default_factory=PeriodPayrollInput)
     ytd: YTDState = dataclasses.field(default_factory=YTDState)
     status: Literal["open", "closed"] = "open"

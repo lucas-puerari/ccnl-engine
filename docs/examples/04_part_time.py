@@ -11,13 +11,13 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     estimate_annual,
 )
 
 full_time = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -28,7 +28,7 @@ full_time = estimate_annual(
     )
 ).result
 part_time = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(
             level_code="4", part_time_ratio=Decimal("0.6")
         ),  # 60% — 3/5 days

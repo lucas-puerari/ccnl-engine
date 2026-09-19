@@ -8,11 +8,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayPeriod,
+    PeriodPayrollInput,
     Permanent,
     estimate_annual,
     estimate_period_effects,
@@ -37,7 +37,7 @@ def result() -> AnnualEstimate:
         An :class:`AnnualEstimate` for the nominal test scenario.
     """
     return estimate_annual(
-        AnnualPayrollScenario(
+        AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="commercio-confcommercio.json",
@@ -160,7 +160,7 @@ class TestEffectiveNetMonthly:
 
     def test_baseline_equals_net_monthly(self) -> None:
         """Without L3 events effective_net_monthly equals net_monthly."""
-        scenario = AnnualPayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -169,13 +169,13 @@ class TestEffectiveNetMonthly:
                 as_of=date(2026, 1, 1),
             ),
         )
-        r = estimate_period_effects(scenario, PayPeriod()).result
+        r = estimate_period_effects(scenario, PeriodPayrollInput()).result
         assert isinstance(r, PeriodPayroll)
         assert r.effective_net_monthly == r.net_monthly
 
     def test_absence_reduces_effective_net_monthly(self) -> None:
         """Absence deduction lowers effective_net_monthly below net_monthly."""
-        scenario = AnnualPayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -186,7 +186,7 @@ class TestEffectiveNetMonthly:
         )
         r = estimate_period_effects(
             scenario,
-            PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+            PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
         ).result
         assert isinstance(r, PeriodPayroll)
         assert r.absence_deduction_monthly > Decimal(0)
@@ -195,7 +195,7 @@ class TestEffectiveNetMonthly:
 
     def test_overtime_increases_effective_net_monthly(self) -> None:
         """Time supplements raise effective_net_monthly above net_monthly."""
-        scenario = AnnualPayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -206,7 +206,9 @@ class TestEffectiveNetMonthly:
         )
         r = estimate_period_effects(
             scenario,
-            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10))),
+            PeriodPayrollInput(
+                time_supplements=OvertimeHours(weekday_hours=Decimal(10))
+            ),
         ).result
         assert isinstance(r, PeriodPayroll)
         assert r.time_supplements_monthly > Decimal(0)

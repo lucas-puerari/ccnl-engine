@@ -7,13 +7,13 @@ produces the same output.
 
 ## Entry points: `estimate_annual()` and `estimate_period_effects()`
 
-For annual gross-to-net figures, pass an `AnnualPayrollScenario` to
+For annual gross-to-net figures, pass an `AnnualEstimateInput` to
 `estimate_annual()`:
 
 ```python
 from datetime import date
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -22,7 +22,7 @@ from ccnl_engine import (
 )
 
 calculation = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="C3"),
         employment=Employment(
             ccnl="metalmeccanico-federmeccanica.json",
@@ -36,12 +36,12 @@ result = calculation.result
 ```
 
 To add period-specific events (overtime, absences, benefits), use
-`estimate_period_effects()` with a `PayPeriod`:
+`estimate_period_effects()` with a `PeriodPayrollInput`:
 
 ```python
-from ccnl_engine import OvertimeHours, PayPeriod, estimate_period_effects
+from ccnl_engine import OvertimeHours, PeriodPayrollInput, estimate_period_effects
 
-period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=8))
+period = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=8))
 calculation = estimate_period_effects(scenario, period)
 ```
 
@@ -89,8 +89,8 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 
 | Type | What it describes |
 |---|---|
-| `AnnualPayrollScenario` | Structural scenario: employee + employment (no period events) |
-| `PayPeriod` | Period-specific events: overtime, absences, benefits (passed to `estimate_period_effects`) |
+| `AnnualEstimateInput` | Structural scenario: employee + employment (no period events) |
+| `PeriodPayrollInput` | Period-specific events: overtime, absences, benefits (passed to `estimate_period_effects`) |
 | `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
 | `Employment` | CCNL file, contract type, employer, reference date (`as_of`) |
 | `Employer` | Headcount tier, second-level allowances |

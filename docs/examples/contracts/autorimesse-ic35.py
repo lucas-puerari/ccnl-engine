@@ -6,13 +6,13 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     estimate_annual,
 )
 
 p = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(
             level_code="B2",
         ),

@@ -1,8 +1,8 @@
 """L3 work rules: overtime, absence, leave, sick pay, welfare, bonus.
 
-Period-specific events (overtime, absences, benefits) live in PayPeriod and
+Period-specific events (overtime, absences, benefits) live in PeriodPayrollInput and
 are passed to estimate_period_effects() alongside the structural
-AnnualPayrollScenario.  The engine reports each as an informational line item
+AnnualEstimateInput.  The engine reports each as an informational line item
 — the amounts do NOT mutate gross_annual or net_annual.  Check
 calculation_scope to see which features the CCNL actually models.
 """
@@ -13,7 +13,7 @@ from decimal import Decimal
 from ccnl_engine import (
     PeriodPayroll,
     AbsenceDays,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     BonusInput,
     Employee,
     Employer,
@@ -21,14 +21,14 @@ from ccnl_engine import (
     FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
-    PayPeriod,
+    PeriodPayrollInput,
     Permanent,
     SickInput,
     WelfareInput,
     estimate_period_effects,
 )
 
-scenario = AnnualPayrollScenario(
+scenario = AnnualEstimateInput(
     employee=Employee(level_code="C3"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
@@ -37,7 +37,7 @@ scenario = AnnualPayrollScenario(
         as_of=date(2026, 9, 1),
     ),
 )
-period = PayPeriod(
+period = PeriodPayrollInput(
     # Overtime: 8 weekday hours + 4 night hours in the period
     time_supplements=OvertimeHours(
         weekday_hours=Decimal(8),

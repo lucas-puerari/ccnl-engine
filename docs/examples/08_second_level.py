@@ -19,7 +19,7 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     estimate_annual,
 )
@@ -47,7 +47,7 @@ employer_2l = Employer(
 )
 
 base = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",
@@ -58,7 +58,7 @@ base = estimate_annual(
     )
 ).result
 with_2l = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

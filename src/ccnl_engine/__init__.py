@@ -27,11 +27,11 @@ Usage::
 
     from ccnl_engine import (
         estimate_annual,
-        AnnualPayrollScenario, Employee, Employment, Employer,
+        AnnualEstimateInput, Employee, Employment, Employer,
         Permanent,
     )
 
-    result = estimate_annual(AnnualPayrollScenario(
+    result = estimate_annual(AnnualEstimateInput(
         employee=Employee(level_code="C2"),
         employment=Employment(
             ccnl="metalmeccanico-federmeccanica.json",
@@ -119,13 +119,12 @@ from ccnl_engine.engine.payroll.domain.quality import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayPeriod,
-    PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -173,7 +172,7 @@ __all__ = [
     "Agreement",
     "AnnualBreakdown",
     "AnnualEstimate",
-    "AnnualPayrollScenario",
+    "AnnualEstimateInput",
     "Apprentice",
     "Art15Deductions",
     "Bonus",
@@ -209,15 +208,14 @@ __all__ = [
     "LeaveInput",
     "OutOfScopeError",
     "OvertimeHours",
-    "PayPeriod",
     "PayrollBundle",
     "PayrollPeriod",
     "PayrollReport",
-    "PayrollScenario",
     "PayrollSnapshot",
     "PayrollTrace",
     "PayrollWarning",
     "PeriodPayroll",
+    "PeriodPayrollInput",
     "Permanent",
     "RalOverride",
     "RateFund",

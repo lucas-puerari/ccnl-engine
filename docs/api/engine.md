@@ -31,8 +31,8 @@ inputs, and the resulting `AnnualEstimate` (`.result`).
 ::: ccnl_engine.engine.payroll.domain.scenario
     options:
       members:
-        - AnnualPayrollScenario
-        - PayPeriod
+        - AnnualEstimateInput
+        - PeriodPayrollInput
         - PayrollScenario
         - Employee
         - Employment

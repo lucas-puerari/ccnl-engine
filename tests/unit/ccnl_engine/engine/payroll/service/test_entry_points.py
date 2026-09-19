@@ -12,12 +12,11 @@ from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.scenario import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayPeriod,
-    PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -30,7 +29,6 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.orchestrator import (
     _annual_to_scenario,
-    compute,
     estimate_annual,
     estimate_period_effects,
 )
@@ -39,8 +37,8 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _AS_OF = date(2026, 1, 1)
 
 
-def _base_scenario() -> AnnualPayrollScenario:
-    return AnnualPayrollScenario(
+def _base_scenario() -> AnnualEstimateInput:
+    return AnnualEstimateInput(
         employee=Employee(level_code="C2"),
         employment=Employment(
             ccnl=_CCNL,
@@ -52,10 +50,10 @@ def _base_scenario() -> AnnualPayrollScenario:
 
 
 class TestAnnualPayrollScenario:
-    """Construction and field access for AnnualPayrollScenario."""
+    """Construction and field access for AnnualEstimateInput."""
 
     def test_minimal_construction(self) -> None:
-        """AnnualPayrollScenario initialises with defaults for optional fields."""
+        """AnnualEstimateInput initialises with defaults for optional fields."""
         s = _base_scenario()
         assert s.employee.level_code == "C2"
         assert s.employment.ccnl == _CCNL
@@ -64,15 +62,15 @@ class TestAnnualPayrollScenario:
         assert s.bilateral_funds == ()
 
     def test_frozen(self) -> None:
-        """AnnualPayrollScenario is immutable."""
+        """AnnualEstimateInput is immutable."""
         s = _base_scenario()
         with pytest.raises(Exception, match="frozen"):
             s.employee = Employee(level_code="D1")  # type: ignore[misc]
 
     def test_extra_field_rejected(self) -> None:
-        """AnnualPayrollScenario rejects unknown fields."""
+        """AnnualEstimateInput rejects unknown fields."""
         with pytest.raises(Exception, match="extra"):
-            AnnualPayrollScenario.model_validate({
+            AnnualEstimateInput.model_validate({
                 "employee": {"level_code": "C2"},
                 "employment": {
                     "ccnl": _CCNL,
@@ -85,11 +83,11 @@ class TestAnnualPayrollScenario:
 
 
 class TestPayPeriod:
-    """Construction and field access for PayPeriod."""
+    """Construction and field access for PeriodPayrollInput."""
 
     def test_empty_period(self) -> None:
-        """An empty PayPeriod has all-None event fields."""
-        p = PayPeriod()
+        """An empty PeriodPayrollInput has all-None event fields."""
+        p = PeriodPayrollInput()
         assert p.time_supplements is None
         assert p.absence_days is None
         assert p.leave_input is None
@@ -99,14 +97,14 @@ class TestPayPeriod:
         assert p.bonus_input is None
 
     def test_period_with_overtime(self) -> None:
-        """PayPeriod stores OvertimeHours correctly."""
-        p = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))
+        """PeriodPayrollInput stores OvertimeHours correctly."""
+        p = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))
         assert p.time_supplements is not None
         assert p.time_supplements.weekday_hours == Decimal(8)
 
     def test_period_with_all_fields(self) -> None:
-        """PayPeriod accepts every optional event field."""
-        p = PayPeriod(
+        """PeriodPayrollInput accepts every optional event field."""
+        p = PeriodPayrollInput(
             time_supplements=OvertimeHours(weekday_hours=Decimal(4)),
             absence_days=AbsenceDays(unpaid_days=Decimal(1)),
             leave_input=LeaveInput(taken_days=Decimal(2)),
@@ -121,15 +119,15 @@ class TestPayPeriod:
         assert p.welfare_input.annual_amount == Decimal(200)
 
     def test_frozen(self) -> None:
-        """PayPeriod is immutable."""
-        p = PayPeriod()
+        """PeriodPayrollInput is immutable."""
+        p = PeriodPayrollInput()
         with pytest.raises(Exception, match="frozen"):
             p.time_supplements = OvertimeHours()  # type: ignore[misc]
 
     def test_extra_field_rejected(self) -> None:
-        """PayPeriod rejects unknown fields."""
+        """PeriodPayrollInput rejects unknown fields."""
         with pytest.raises(Exception, match="extra"):
-            PayPeriod.model_validate({"unknown_field": True})
+            PeriodPayrollInput.model_validate({"unknown_field": True})
 
 
 class TestAnnualToScenario:
@@ -139,7 +137,6 @@ class TestAnnualToScenario:
         """_annual_to_scenario with no period yields all-None event fields."""
         s = _base_scenario()
         result = _annual_to_scenario(s)
-        assert isinstance(result, PayrollScenario)
         assert result.employee is s.employee
         assert result.employment is s.employment
         assert result.time_supplements is None
@@ -149,19 +146,18 @@ class TestAnnualToScenario:
     def test_with_period_merges_events(self) -> None:
         """_annual_to_scenario with a period merges period event fields."""
         s = _base_scenario()
-        period = PayPeriod(
+        period = PeriodPayrollInput(
             time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
             absence_days=AbsenceDays(unpaid_days=Decimal(1)),
         )
         result = _annual_to_scenario(s, period)
-        assert isinstance(result, PayrollScenario)
         assert result.time_supplements is period.time_supplements
         assert result.absence_days is period.absence_days
         assert result.welfare_input is None
 
     def test_bilateral_funds_propagated(self) -> None:
-        """Bilateral funds from AnnualPayrollScenario carry over."""
-        s = AnnualPayrollScenario(
+        """Bilateral funds from AnnualEstimateInput carry over."""
+        s = AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl=_CCNL,
@@ -206,7 +202,9 @@ class TestEstimateAnnual:
         """estimate_annual matches compute() with no period events."""
         s = _base_scenario()
         annual = estimate_annual(s)
-        direct = compute(PayrollScenario(employee=s.employee, employment=s.employment))
+        direct = estimate_annual(
+            AnnualEstimateInput(employee=s.employee, employment=s.employment)
+        )
         assert annual.result.net_annual == direct.result.net_annual
 
 
@@ -215,14 +213,16 @@ class TestEstimatePeriodEffects:
 
     def test_returns_calculation(self) -> None:
         """estimate_period_effects returns a Calculation."""
-        result = estimate_period_effects(_base_scenario(), PayPeriod())
+        result = estimate_period_effects(_base_scenario(), PeriodPayrollInput())
         assert isinstance(result, Calculation)
 
     def test_overtime_supplement_non_zero(self) -> None:
-        """Overtime hours in PayPeriod produce a non-zero supplement."""
+        """Overtime hours in PeriodPayrollInput produce a non-zero supplement."""
         with_overtime = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
+            PeriodPayrollInput(
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+            ),
         )
         assert isinstance(with_overtime.result, PeriodPayroll)
         assert with_overtime.result.overtime_supplement_monthly > Decimal(0)
@@ -233,30 +233,32 @@ class TestEstimatePeriodEffects:
         base = estimate_annual(_base_scenario())
         with_overtime = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8))),
+            PeriodPayrollInput(
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+            ),
         )
         assert with_overtime.result.net_annual == base.result.net_annual
 
     def test_empty_period_equals_estimate_annual(self) -> None:
-        """estimate_period_effects with empty PayPeriod matches estimate_annual."""
+        """estimate_period_effects with empty period matches estimate_annual."""
         base = estimate_annual(_base_scenario())
-        with_empty = estimate_period_effects(_base_scenario(), PayPeriod())
+        with_empty = estimate_period_effects(_base_scenario(), PeriodPayrollInput())
         assert with_empty.result.net_annual == base.result.net_annual
 
     def test_sick_days_appear_in_result(self) -> None:
-        """Sick days in PayPeriod are reflected in sick_days_monthly."""
+        """Sick days in PeriodPayrollInput are reflected in sick_days_monthly."""
         sick = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(sick_input=SickInput(sick_days=Decimal(5))),
+            PeriodPayrollInput(sick_input=SickInput(sick_days=Decimal(5))),
         )
         assert isinstance(sick.result, PeriodPayroll)
         assert sick.result.sick_days_monthly == Decimal(5)
 
     def test_fringe_benefit_in_period(self) -> None:
-        """FringeBenefitInput in PayPeriod propagates to fringe_benefit_annual."""
+        """FringeBenefitInput in the period propagates to fringe_benefit_annual."""
         result = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(
+            PeriodPayrollInput(
                 fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
             ),
         )
@@ -264,19 +266,19 @@ class TestEstimatePeriodEffects:
         assert result.result.fringe_benefit_annual == Decimal(300)
 
     def test_welfare_in_period(self) -> None:
-        """WelfareInput in PayPeriod propagates to welfare_annual."""
+        """WelfareInput in PeriodPayrollInput propagates to welfare_annual."""
         result = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(welfare_input=WelfareInput(annual_amount=Decimal(200))),
+            PeriodPayrollInput(welfare_input=WelfareInput(annual_amount=Decimal(200))),
         )
         assert isinstance(result.result, PeriodPayroll)
         assert result.result.welfare_annual == Decimal(200)
 
     def test_bonus_in_period(self) -> None:
-        """BonusInput in PayPeriod propagates to bonus_annual."""
+        """BonusInput in PeriodPayrollInput propagates to bonus_annual."""
         result = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(
+            PeriodPayrollInput(
                 bonus_input=BonusInput(
                     annual_amount=Decimal(1000), eligible_for_pdr=False
                 )
@@ -290,7 +292,7 @@ class TestEstimatePeriodEffects:
         base = estimate_annual(_base_scenario())
         with_absence = estimate_period_effects(
             _base_scenario(),
-            PayPeriod(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+            PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
         )
         assert isinstance(with_absence.result, PeriodPayroll)
         assert with_absence.result.absence_deduction_monthly > Decimal(0)

@@ -16,7 +16,7 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Permanent,
     RalOverride,
     estimate_annual,
@@ -24,7 +24,7 @@ from ccnl_engine import (
 
 # CCNL minimum for the level.
 ccnl_min = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="3"),
         employment=Employment(
             ccnl="studi-professionali-confprofessioni.json",
@@ -37,7 +37,7 @@ ccnl_min = estimate_annual(
 
 # Same worker with a negotiated RAL of 40 000 EUR.
 negotiated = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(
             level_code="3",
             agreement=Agreement(ral_override=RalOverride(value=Decimal("40000.00"))),

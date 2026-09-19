@@ -81,7 +81,7 @@ full walkthrough of all three layers.
 
 L3 outputs are **informational**: they are reported alongside the payroll but
 do not mutate `gross_annual` or `net_annual`. Supply any combination of the
-inputs below to `PayPeriod`; the engine reports each one as `verified`
+inputs below to `PeriodPayrollInput`; the engine reports each one as `verified`
 or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 
 - Overtime pay (lavoro straordinario diurno, notturno, festivo) — `OvertimeHours`

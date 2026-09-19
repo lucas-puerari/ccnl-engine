@@ -12,12 +12,12 @@ from ccnl_engine.engine.diff.service.impact import (
 from ccnl_engine.engine.payroll.domain.employee import SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -28,8 +28,8 @@ def _scenario(
     ccnl_file: str = "metalmeccanico-federmeccanica.json",
     level_code: str = "C2",
     as_of: date = date(2026, 1, 1),
-) -> PayrollScenario:
-    return PayrollScenario(
+) -> AnnualEstimateInput:
+    return AnnualEstimateInput(
         employee=Employee(
             level_code=level_code,
             seniority=SeniorityByCount(value=0),
@@ -52,10 +52,10 @@ class TestResultsDiffer:
     """_results_differ compares two AnnualEstimate-like objects field by field."""
 
     def test_identical_results_not_different(self) -> None:
-        """Two compute() calls at the same date produce identical results."""
+        """Two estimate_annual() calls at the same date produce identical results."""
         s = _scenario()
-        r1 = compute(s).result
-        r2 = compute(s).result
+        r1 = estimate_annual(s).result
+        r2 = estimate_annual(s).result
         assert not _results_differ(r1, r2)
 
     def test_different_results_are_different(self) -> None:
@@ -63,8 +63,8 @@ class TestResultsDiffer:
         # metalmeccanico has a tranche at 2026-06-01; only 2026 tax data exists
         s_before = _scenario(as_of=date(2026, 1, 1))
         s_after = _scenario(as_of=date(2026, 7, 1))
-        r_before = compute(s_before).result
-        r_after = compute(s_after).result
+        r_before = estimate_annual(s_before).result
+        r_after = estimate_annual(s_after).result
         assert _results_differ(r_before, r_after)
 
     def test_same_tranche_not_different(self) -> None:
@@ -72,8 +72,8 @@ class TestResultsDiffer:
         # Both dates fall within 2026-01-01..2026-06-01 (same tranche)
         s1 = _scenario(as_of=date(2026, 1, 1))
         s2 = _scenario(as_of=date(2026, 3, 1))
-        r1 = compute(s1).result
-        r2 = compute(s2).result
+        r1 = estimate_annual(s1).result
+        r2 = estimate_annual(s2).result
         # Same tranche: no monetary difference
         assert not _results_differ(r1, r2)
 
@@ -111,7 +111,7 @@ class TestCountAffectedScenarios:
         assert result.failed == 0
 
     def test_failing_scenario_increments_failed(self) -> None:
-        """A scenario that raises during compute() increments failed, not affected."""
+        """A scenario that raises during estimate_annual() increments failed."""
         scenarios = [_scenario(ccnl_file="nonexistent.json")]
         result = count_affected_scenarios(scenarios, date(2026, 1, 1), date(2026, 7, 1))
         assert result.affected == 0

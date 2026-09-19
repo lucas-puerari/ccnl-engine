@@ -108,7 +108,7 @@ so provenance survives round-trips through storage and APIs.
 from datetime import date
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
@@ -117,7 +117,7 @@ from ccnl_engine import (
 )
 
 calc = estimate_annual(
-    AnnualPayrollScenario(
+    AnnualEstimateInput(
         employee=Employee(level_code="4"),
         employment=Employment(
             ccnl="commercio-confcommercio.json",

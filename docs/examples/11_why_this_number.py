@@ -10,26 +10,26 @@ Every payroll figure is backed by three trust layers:
    what it could not model, so callers are never silently wrong.
 
 This example walks through all three layers for a metalmeccanico C2 payslip.
-Period-specific events (overtime) live in PayPeriod, passed to estimate_period_effects().
+Period-specific events (overtime) live in PeriodPayrollInput, passed to estimate_period_effects().
 """
 
 from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     OvertimeHours,
-    PayPeriod,
+    PeriodPayrollInput,
     Permanent,
     PeriodPayroll,
     estimate_period_effects,
 )
 
 # --- 1. Compute ---
-scenario = AnnualPayrollScenario(
+scenario = AnnualEstimateInput(
     employee=Employee(level_code="C2"),
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
@@ -38,7 +38,7 @@ scenario = AnnualPayrollScenario(
         as_of=date(2026, 6, 1),
     ),
 )
-period = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
+period = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
 calculation = estimate_period_effects(scenario, period)
 p = calculation.result
 assert isinstance(p, PeriodPayroll)

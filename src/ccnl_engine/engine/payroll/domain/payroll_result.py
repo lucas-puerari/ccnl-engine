@@ -16,7 +16,7 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.scenario import PayPeriod
+    from ccnl_engine.engine.payroll.domain.scenario import PeriodPayrollInput
 
 _ZERO = Decimal(0)
 
@@ -641,7 +641,7 @@ class PeriodPayroll(AnnualEstimate):
         bonus_ordinary_taxable_annual: Ordinary taxable bonus portion.
     """
 
-    pay_period: PayPeriod
+    pay_period: PeriodPayrollInput
 
     base_monthly_full_time: Decimal = field(default=_ZERO)
     overtime_supplement_monthly: Decimal = field(default=_ZERO)
@@ -697,7 +697,7 @@ class PeriodPayroll(AnnualEstimate):
             ValueError: If a required field is absent from *data*.
         """
         from ccnl_engine.engine.payroll.domain.scenario import (  # noqa: PLC0415
-            PayPeriod,
+            PeriodPayrollInput,
         )
 
         allowed = frozenset(f.name for f in dataclasses.fields(cls))
@@ -705,8 +705,12 @@ class PeriodPayroll(AnnualEstimate):
         if extra:
             msg = f"PeriodPayroll.from_dict: unexpected keys: {sorted(extra)}"
             raise TypeError(msg)
-        hints = typing.get_type_hints(cls, localns={"PayPeriod": PayPeriod})
-        extra_decoders: dict[str, object] = {"pay_period": PayPeriod.model_validate}
+        hints = typing.get_type_hints(
+            cls, localns={"PeriodPayrollInput": PeriodPayrollInput}
+        )
+        extra_decoders: dict[str, object] = {
+            "pay_period": PeriodPayrollInput.model_validate
+        }
         kwargs: dict[str, object] = {}
         for f in dataclasses.fields(cls):
             if f.name not in data:

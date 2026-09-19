@@ -10,14 +10,14 @@ import pytest
 
 import ccnl_engine.engine.payroll.service.orchestrator as _orch
 from ccnl_engine import (
-    AnnualPayrollScenario,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     InvalidInputError,
-    PayPeriod,
     PayrollBundle,
     PayrollPeriod,
+    PeriodPayrollInput,
     Permanent,
     YTDState,
     compute_period,
@@ -31,7 +31,7 @@ from tests.helpers import make_minimal_ccnl, make_year_rules
 
 _CCNL = "commercio-confcommercio.json"
 
-_SCENARIO = AnnualPayrollScenario(
+_SCENARIO = AnnualEstimateInput(
     employee=Employee(level_code="4"),
     employment=Employment(
         ccnl=_CCNL,
@@ -95,9 +95,9 @@ class TestPayrollPeriodDomain:
         assert p.month == 3
 
     def test_default_events_is_empty_payperiod(self) -> None:
-        """Events defaults to a PayPeriod with no special events."""
+        """Events defaults to a PeriodPayrollInput with no special events."""
         p = PayrollPeriod(year=2026, month=1)
-        assert isinstance(p.events, PayPeriod)
+        assert isinstance(p.events, PeriodPayrollInput)
         assert p.events.time_supplements is None
 
     def test_default_ytd_is_zero(self) -> None:
@@ -147,7 +147,9 @@ class TestComputePeriod:
 
     def test_passes_events_to_estimate_period_effects(self) -> None:
         """Period events are forwarded to the underlying compute."""
-        events = PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(10)))
+        events = PeriodPayrollInput(
+            time_supplements=OvertimeHours(weekday_hours=Decimal(10))
+        )
         result = compute_period(
             _SCENARIO, PayrollPeriod(year=2026, month=1, events=events)
         )
@@ -198,8 +200,8 @@ class TestComputeYear:
 
     def test_accepts_month_events(self) -> None:
         """compute_year accepts per-month events."""
-        events = [PayPeriod()] * 11 + [
-            PayPeriod(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))
+        events = [PeriodPayrollInput()] * 11 + [
+            PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))
         ]
         results = compute_year(_SCENARIO, 2026, month_events=events)
         assert len(results) == 12
@@ -207,7 +209,7 @@ class TestComputeYear:
     def test_wrong_month_events_length_raises(self) -> None:
         """Providing fewer than 12 month_events raises InvalidInputError."""
         with pytest.raises(InvalidInputError):
-            compute_year(_SCENARIO, 2026, month_events=[PayPeriod()] * 6)
+            compute_year(_SCENARIO, 2026, month_events=[PeriodPayrollInput()] * 6)
 
     def test_ytd_threads_across_months(self) -> None:
         """Each period in compute_year receives the cumulative YTD from prior months."""
@@ -216,7 +218,7 @@ class TestComputeYear:
         original_compute_period = _orch.compute_period
 
         def _capturing(
-            scenario: AnnualPayrollScenario,
+            scenario: AnnualEstimateInput,
             period: PayrollPeriod,
             bundle: PayrollBundle | None = None,
         ) -> Calculation:
@@ -241,7 +243,7 @@ class TestComputeYear:
 
     def test_mid_year_hire_partial_sequence(self) -> None:
         """compute_period called for each month independently covers hire mid-year."""
-        july_scenario = AnnualPayrollScenario(
+        july_scenario = AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl=_CCNL,
@@ -260,7 +262,7 @@ class TestComputeYear:
 
     def test_ral_change_mid_year(self) -> None:
         """Scenarios with different levels can be computed period-by-period."""
-        scenario_l3 = AnnualPayrollScenario(
+        scenario_l3 = AnnualEstimateInput(
             employee=Employee(level_code="3"),
             employment=Employment(
                 ccnl=_CCNL,
@@ -269,7 +271,7 @@ class TestComputeYear:
                 as_of=date(2026, 1, 1),
             ),
         )
-        scenario_l4 = AnnualPayrollScenario(
+        scenario_l4 = AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl=_CCNL,
