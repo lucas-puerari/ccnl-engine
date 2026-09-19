@@ -3468,7 +3468,7 @@ class TestConfidenceFamilyArt15:
         _mock_ccnl[0] = _verified_ccnl()
         verified = _family_rules_with_status(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
+            "ccnl_engine.engine.payroll.service.fiscal_deductions.load_family_deduction_rules",
             lambda _: verified,
         )
         result = estimate_annual(_req().model_copy(update={"family": _FAMILY_INPUT}))
@@ -3481,7 +3481,7 @@ class TestConfidenceFamilyArt15:
         _mock_ccnl[0] = _verified_ccnl()
         unverified = _family_rules_with_status(VerificationStatus.UNVERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.fiscal.load_family_deduction_rules",
+            "ccnl_engine.engine.payroll.service.fiscal_deductions.load_family_deduction_rules",
             lambda _: unverified,
         )
         result = estimate_annual(_req().model_copy(update={"family": _FAMILY_INPUT}))
@@ -3511,7 +3511,7 @@ class TestConfidenceFamilyArt15:
         _mock_ccnl[0] = _verified_ccnl()
         verified = _art15_rules_with_status(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
+            "ccnl_engine.engine.payroll.service.fiscal_deductions.load_art15_deduction_rules",
             lambda _: verified,
         )
         result = estimate_annual(
@@ -3526,7 +3526,7 @@ class TestConfidenceFamilyArt15:
         _mock_ccnl[0] = _verified_ccnl()
         unverified = _art15_rules_with_status(VerificationStatus.UNVERIFIED)
         monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.fiscal.load_art15_deduction_rules",
+            "ccnl_engine.engine.payroll.service.fiscal_deductions.load_art15_deduction_rules",
             lambda _: unverified,
         )
         result = estimate_annual(
