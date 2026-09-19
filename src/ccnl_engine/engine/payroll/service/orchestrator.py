@@ -253,6 +253,7 @@ def _build_taxes(fiscal: object) -> Taxes:
         termination_residual_leave_payout_annual=f.termination_residual_leave_payout_annual,
         contract_renewal_arrears_annual=f.contract_renewal_arrears_annual,
         una_tantum_annual=f.una_tantum_annual,
+        personal_withholdings_annual=f.personal_withholdings_annual,
     )
 
 
