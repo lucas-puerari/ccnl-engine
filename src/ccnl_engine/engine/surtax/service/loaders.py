@@ -92,6 +92,8 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         municipal_ruleset=com.ruleset,
         regionale=reg.rates,
         comunale=com.rates,
+        comunale_rates_are_advance=com.rates_are_advance,
+        comunale_advance_fraction=com.advance_fraction,
     )
 
 

@@ -81,6 +81,39 @@ class RegionaleEntry(BaseModel):
         return self
 
 
+class ComunaleDeduction(BaseModel):
+    """Optional deduction subtracted from the computed comunale surtax.
+
+    ``fixed`` is subtracted unconditionally; ``per_dependent`` is multiplied
+    by the number of dependents before subtracting.  Both default to zero.
+    The net surtax is floored at zero after deductions.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    fixed: Decimal = Decimal(0)
+    """Fixed annual deduction from the computed surtax."""
+    per_dependent: Decimal = Decimal(0)
+    """Additional deduction per dependent (multiplied by dependent count)."""
+
+
+class WithholdingCalendar(BaseModel):
+    """Informational model describing when surtax installments are withheld.
+
+    This model describes the withholding schedule for employer-withheld surtax
+    installments.  It does not affect the computed annual amount; the engine
+    always computes the annual figure.  Period-level monthly distribution is
+    out of scope for this model.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    advance_month: int = 11
+    """Month (1-12) in which the advance (acconto) installment is withheld."""
+    balance_installments: int = 11
+    """Number of equal installments for the balance (saldo), starting March."""
+
+
 class ComunaleEntry(BaseModel):
     """Addizionale comunale IRPEF for one municipality.
 
@@ -103,6 +136,15 @@ class ComunaleEntry(BaseModel):
 
     exemption_threshold: Decimal = Decimal(0)
     """Exemption threshold: if taxable income ≤ threshold, the surtax is zero."""
+    deduction: ComunaleDeduction = Field(default_factory=ComunaleDeduction)
+    """Optional fixed or per-dependent deduction from the computed surtax."""
+    safeguard_clause: Decimal | None = None
+    """Max increase from prior year (clausola di salvaguardia); not computable
+    without prior-year taxable income — present as data only."""
+    withholding_calendar: WithholdingCalendar = Field(
+        default_factory=WithholdingCalendar
+    )
+    """Informational withholding schedule for this municipality."""
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -133,6 +175,10 @@ class ComunaleRaw(BaseModel):
     rates: dict[str, ComunaleEntry]
     sources: list[SourceDocument] = []
     extraction: ExtractionTrace | None = None
+    rates_are_advance: bool = False
+    """True when rates come from a prior year and represent the advance (acconto)."""
+    advance_fraction: Decimal = Decimal("0.30")
+    """Fraction of the bracket sum used as the current-year advance."""
 
 
 class SurtaxRules(BaseModel):
@@ -157,3 +203,7 @@ class SurtaxRules(BaseModel):
     municipal_ruleset: RulesetIdentity | None = None
     regionale: dict[str, RegionaleEntry]
     comunale: dict[str, ComunaleEntry]
+    comunale_rates_are_advance: bool = False
+    """True when comunale rates are from a prior year (advance only)."""
+    comunale_advance_fraction: Decimal = Decimal("0.30")
+    """Fraction of the bracket sum used as the current-year advance."""

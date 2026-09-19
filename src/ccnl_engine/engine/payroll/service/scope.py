@@ -180,16 +180,19 @@ def _surtax_scope(
     no_flag: FiscalSimplification,
     unknown_flag: FiscalSimplification,
     fs: frozenset[FiscalSimplification],
+    advance_flag: FiscalSimplification | None = None,
 ) -> ScopeItem:
     """Classify a surtax feature given its exclude and unknown simplification flags.
 
     Returns:
-        Excluded, not_computed, or computed scope item for the feature.
+        Excluded, not_computed, partial, or computed scope item for the feature.
     """
     if no_flag in fs:
         return _excluded(feature)
     if unknown_flag in fs:
         return _not_computed(feature)
+    if advance_flag is not None and advance_flag in fs:
+        return _partial(feature, assumptions=("advance_only",))
     return _computed(feature)
 
 
@@ -236,6 +239,7 @@ def _fiscal_scope(
             FiscalSimplification.NO_ADDIZIONALE_COMUNALE,
             FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN,
             fs,
+            advance_flag=FiscalSimplification.ADDIZIONALE_COMUNALE_ADVANCE_ONLY,
         ),
         (
             _computed("family_deductions", elig="caller_declared")
