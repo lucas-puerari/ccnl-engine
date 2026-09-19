@@ -44,7 +44,11 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByMonths,
 )
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
-from ccnl_engine.engine.payroll.domain.family import FamilyComposition
+from ccnl_engine.engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
 from ccnl_engine.engine.payroll.domain.scenario import (
@@ -1303,7 +1307,7 @@ class TestR7SubRulesetIdentities:
         """family_deductions appears in ruleset_version when scenario.family is set."""
         calc = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(children_21_or_older=1)}
+                update={"family": FamilyComposition(dependents=(_CHILD_DEP,))}
             )
         )
         assert "family_deductions" in calc.ruleset_version, (
@@ -2162,7 +2166,7 @@ class TestL3FamilyDeductions:
         baseline = compute(_req()).result
         with_spouse = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert with_spouse.family_deduction_spouse_annual > _D("0")
@@ -2172,7 +2176,7 @@ class TestL3FamilyDeductions:
         """Children/other fields are zero when only spouse is set."""
         result = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert result.family_deduction_children_annual == _D("0")
@@ -2192,7 +2196,7 @@ class TestL3FamilyDeductions:
         _mock_ccnl[0] = self._EXEMPT_CCNL
         result = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert result.family_deduction_spouse_annual > _D("0")
@@ -2204,7 +2208,7 @@ class TestL3FamilyDeductions:
         baseline = compute(_req()).result
         with_family = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert with_family.gross_annual == baseline.gross_annual
@@ -2220,7 +2224,7 @@ class TestL3FamilyDeductions:
         result_no_fam = compute(_req()).result
         result_spouse = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         # taxable_income < gross_annual, so the taper (95000 - RC) / 95000
@@ -2246,7 +2250,7 @@ class TestL3FamilyDeductions:
         """
         result = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert (
@@ -2301,13 +2305,13 @@ class TestSterilizzazioneDetrazioni:
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
         with_strd = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         _mock_rules[0] = make_year_rules()
         baseline = compute(
             _req().model_copy(
-                update={"family": FamilyComposition(spouse_dependent=True)}
+                update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
             )
         ).result
         assert baseline.family_deduction_annual == with_strd.family_deduction_annual
@@ -2415,7 +2419,7 @@ class TestSterilizzazioneDetrazioni:
         result = compute(
             _req().model_copy(
                 update={
-                    "family": FamilyComposition(spouse_dependent=True),
+                    "family": FamilyComposition(dependents=(_SPOUSE_DEP,)),
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
                 }
             )
@@ -2424,7 +2428,7 @@ class TestSterilizzazioneDetrazioni:
         result_no_strd = compute(
             _req().model_copy(
                 update={
-                    "family": FamilyComposition(spouse_dependent=True),
+                    "family": FamilyComposition(dependents=(_SPOUSE_DEP,)),
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
                 }
             )
@@ -3194,7 +3198,11 @@ def _art15_rules_with_status(status: VerificationStatus) -> Art15DeductionRules:
     )
 
 
-_FAMILY_INPUT = FamilyComposition(spouse_dependent=True)
+_SPOUSE_DEP = Dependent(relationship=DependentRelationship.SPOUSE)
+_CHILD_DEP = Dependent(
+    relationship=DependentRelationship.CHILD, birth_date=date(2000, 1, 1)
+)
+_FAMILY_INPUT = FamilyComposition(dependents=(_SPOUSE_DEP,))
 _ART15_INPUT = Art15Deductions(mortgage_interest=_D("4000"))
 
 
@@ -3218,10 +3226,16 @@ class TestConfidenceFamilyArt15:
         result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
         assert result.result.confidence == "medium"
 
-    def test_family_with_verified_ruleset_allows_high(
+    def test_family_with_verified_ruleset_still_medium(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Family deductions with a verified ruleset + verified CCNL → high."""
+        """Family deductions scope is caller_declared even with a verified ruleset.
+
+        The engine cannot verify dependent eligibility (residency, disability
+        certification, own income), so family_deductions is always
+        ``"caller_declared"`` → result status is ``"partial"`` → confidence
+        ``"medium"`` regardless of ruleset verification.
+        """
         _mock_ccnl[0] = _verified_ccnl()
         verified = _family_rules_with_status(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
@@ -3229,7 +3243,7 @@ class TestConfidenceFamilyArt15:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"family": _FAMILY_INPUT}))
-        assert result.result.confidence == "high"
+        assert result.result.confidence == "medium"
 
     def test_family_with_unverified_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch

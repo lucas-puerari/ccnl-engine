@@ -22,6 +22,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "CalculationTrace",
     "ConfidenceLevel",
     "CoverageStatus",
+    "Dependent",
+    "DependentRelationship",
     "DestinationRalOverride",
     "Employee",
     "Employer",

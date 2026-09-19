@@ -23,10 +23,12 @@
     "comune_belfiore": null,
     "ivs_ceiling_applies": false,
     "family": {
-      "spouse_dependent": false,
-      "children_21_or_older": 1,
-      "children_21_or_older_disabled": 0,
-      "ascendenti_conviventi": 0
+      "dependents": [
+        {
+          "relationship": "child",
+          "birth_date": "2001-01-01"
+        }
+      ]
     },
     "part_time_ratio": "1"
   },

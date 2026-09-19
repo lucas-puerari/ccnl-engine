@@ -1,58 +1,80 @@
-"""FamilyComposition — caller-supplied family unit for Art. 12 TUIR deductions."""
+"""Family domain models for Art. 12 TUIR deductions."""
 
 from __future__ import annotations
+
+from datetime import date
+from decimal import Decimal
+from enum import StrEnum
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class FamilyComposition(BaseModel):
-    """Composition of the worker's fiscally dependent family unit.
+class DependentRelationship(StrEnum):
+    """Relationship category of a fiscally dependent family member."""
 
-    Used to compute Art. 12 TUIR deductions applied by the employer as
-    *sostituto d'imposta*.  The engine uses ``taxable_income`` (gross minus
-    INPS employee contributions) as a proxy for *reddito complessivo* (other
-    income sources are not modelled — this is a documented simplification).
+    SPOUSE = "spouse"
+    CHILD = "child"
+    ASCENDANT = "ascendant"
 
-    Computed deductions reduce ``irpef_net`` and therefore increase
-    ``net_annual`` (unlike all other L3 features, which are informational
-    only).
+
+class Dependent(BaseModel):
+    """One fiscally dependent family member for Art. 12 TUIR purposes.
+
+    The caller declares the dependent; the engine uses the fields to determine
+    eligibility and pro-rate the deduction.  Fields the engine cannot verify
+    (residency, disability certification) are taken as declared.
 
     Attributes:
-        spouse_dependent: ``True`` when the worker's spouse (or civil partner)
-            is fiscally dependent (own income <= EUR 2840.51).  Triggers the
-            Art. 12 c. 1 lett. a deduction.
-        children_21_or_older: Number of eligible children aged 21 or older.
-            Children under 21 are covered by Assegno Unico Universale
-            (D.Lgs. 230/2021 from 2022-03-01) and are NOT eligible.
-        children_21_or_older_disabled: Number of eligible children aged 21
-            or older with certified disability (Legge 104/92).  These receive
-            a higher deduction (``disability_supplement`` from the rules file).
-        ascendenti_conviventi: Number of fiscally dependent ascendants
-            (parents, grandparents) living with the taxpayer.  Post L. 207/2024
-            only ascendants qualify; other relatives no longer do.
-
-    Note:
-        All counts default to zero.  Pass at least one non-default value to
-        trigger a deduction computation.
+        relationship: Relationship to the worker.
+        birth_date: Date of birth, used to determine age-based eligibility for
+            children.  ``None`` means the caller has not supplied it; the engine
+            treats the dependent as eligible (caller_declared).
+        disabled: ``True`` when disability is certified under Legge 104/92.
+        own_income: Dependent's own annual income (EUR).  Used to check the
+            2840.51 EUR threshold for spouses and ascendants.
+        months_dependent: Months of the tax year the dependent was fiscally
+            dependent (1-12).  Used for pro-rata deduction.
+        allocation_pct: Percentage of the deduction allocated to this worker
+            (0-100).  Use 50 for shared-custody children; 100 otherwise.
+        cohabiting: ``True`` when the ascendant lives with the worker.  Only
+            relevant for ascendants (Art. 12 c. 1 lett. d post L. 207/2024).
+        residency_eligibility: ``True`` when citizenship/residency conditions
+            are met (Art. 12 c. 2-bis).  Caller-declared; not engine-verified.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
 
-    spouse_dependent: bool = False
-    children_21_or_older: int = Field(default=0, ge=0)
-    children_21_or_older_disabled: int = Field(default=0, ge=0)
-    ascendenti_conviventi: int = Field(default=0, ge=0)
+    relationship: DependentRelationship
+    birth_date: date | None = None
+    disabled: bool = False
+    own_income: Decimal = Field(default=Decimal(0), ge=Decimal(0))
+    months_dependent: int = Field(default=12, ge=1, le=12)
+    allocation_pct: Decimal = Field(
+        default=Decimal(100), ge=Decimal(0), le=Decimal(100)
+    )
+    cohabiting: bool = True
+    residency_eligibility: bool = True
 
-    @property
-    def total_eligible_children(self) -> int:
-        """Total number of eligible children (standard + disabled)."""
-        return self.children_21_or_older + self.children_21_or_older_disabled
+
+class FamilyComposition(BaseModel):
+    """Caller-supplied family unit for Art. 12 TUIR deductions.
+
+    Used to compute family deductions applied by the employer as
+    *sostituto d'imposta*.  The engine uses ``taxable_income`` (gross minus
+    INPS employee contributions) as a proxy for *reddito complessivo*.
+
+    Computed deductions reduce ``irpef_net`` and therefore increase
+    ``net_annual`` (unlike all other L3 features, which are informational
+    only).  The scope status is ``"caller_declared"`` because eligibility
+    conditions (residency, disability certification, dependent's full income)
+    are declared by the caller and not engine-verified.
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    dependents: tuple[Dependent, ...] = ()
 
     @property
     def has_any_dependent(self) -> bool:
-        """True when at least one dependent triggers a deduction."""
-        return (
-            self.spouse_dependent
-            or self.total_eligible_children > 0
-            or self.ascendenti_conviventi > 0
-        )
+        """True when at least one dependent is declared."""
+        return bool(self.dependents)

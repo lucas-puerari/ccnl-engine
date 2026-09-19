@@ -95,7 +95,11 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.family import FamilyComposition
+from ccnl_engine.engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     PayrollEmployer,
@@ -182,6 +186,8 @@ __all__ = [
     "ConfidenceLevel",
     "CoverageStatus",
     "DataIntegrityError",
+    "Dependent",
+    "DependentRelationship",
     "DestinationRalOverride",
     "Employee",
     "Employer",

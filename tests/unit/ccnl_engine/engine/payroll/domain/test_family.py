@@ -1,101 +1,121 @@
-"""Unit tests for FamilyComposition domain model."""
+"""Unit tests for Dependent and FamilyComposition domain models."""
 
 from __future__ import annotations
+
+from datetime import date
+from decimal import Decimal
 
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.payroll.domain.family import FamilyComposition
+from ccnl_engine.engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
+
+_SPOUSE = DependentRelationship.SPOUSE
+_CHILD = DependentRelationship.CHILD
+_ASCENDANT = DependentRelationship.ASCENDANT
+
+
+class TestDependentDefaults:
+    """Dependent — default field values."""
+
+    def test_defaults(self) -> None:
+        """Defaults: own_income=0, months=12, alloc=100, cohabiting, eligible."""
+        dep = Dependent(relationship=_SPOUSE)
+        assert dep.birth_date is None
+        assert dep.disabled is False
+        assert dep.own_income == Decimal(0)
+        assert dep.months_dependent == 12
+        assert dep.allocation_pct == Decimal(100)
+        assert dep.cohabiting is True
+        assert dep.residency_eligibility is True
+
+    def test_string_relationship_coerced(self) -> None:
+        """StrEnum coerces plain string to DependentRelationship via pydantic."""
+        dep = Dependent.model_validate({"relationship": "child"})
+        assert dep.relationship == _CHILD
+
+    def test_birth_date_accepted(self) -> None:
+        """birth_date is stored as-is when supplied."""
+        d = date(2000, 6, 15)
+        dep = Dependent(relationship=_CHILD, birth_date=d)
+        assert dep.birth_date == d
+
+
+class TestDependentValidation:
+    """Dependent — field constraints."""
+
+    def test_negative_own_income_raises(self) -> None:
+        """own_income must be >= 0."""
+        with pytest.raises(ValidationError):
+            Dependent(relationship=_SPOUSE, own_income=Decimal(-1))
+
+    def test_months_below_one_raises(self) -> None:
+        """months_dependent must be >= 1."""
+        with pytest.raises(ValidationError):
+            Dependent(relationship=_CHILD, months_dependent=0)
+
+    def test_months_above_twelve_raises(self) -> None:
+        """months_dependent must be <= 12."""
+        with pytest.raises(ValidationError):
+            Dependent(relationship=_CHILD, months_dependent=13)
+
+    def test_allocation_below_zero_raises(self) -> None:
+        """allocation_pct must be >= 0."""
+        with pytest.raises(ValidationError):
+            Dependent(relationship=_CHILD, allocation_pct=Decimal(-1))
+
+    def test_allocation_above_hundred_raises(self) -> None:
+        """allocation_pct must be <= 100."""
+        with pytest.raises(ValidationError):
+            Dependent(relationship=_CHILD, allocation_pct=Decimal(101))
+
+    def test_frozen(self) -> None:
+        """Dependent is frozen and cannot be mutated."""
+        dep = Dependent(relationship=_SPOUSE)
+        with pytest.raises((AttributeError, TypeError, ValidationError)):
+            dep.disabled = True  # type: ignore[misc]
 
 
 class TestFamilyCompositionDefaults:
-    """FamilyComposition — default values and zero-state."""
+    """FamilyComposition — default empty state."""
 
-    def test_default_all_zero(self) -> None:
-        """All numeric fields default to zero; spouse defaults to False."""
-        fc = FamilyComposition()
-        assert fc.spouse_dependent is False
-        assert fc.children_21_or_older == 0
-        assert fc.children_21_or_older_disabled == 0
-        assert fc.ascendenti_conviventi == 0
+    def test_default_empty(self) -> None:
+        """Default: no dependents."""
+        assert FamilyComposition().dependents == ()
 
     def test_has_any_dependent_false_by_default(self) -> None:
-        """has_any_dependent is False when all fields are at their defaults."""
+        """has_any_dependent is False when no dependents are declared."""
         assert FamilyComposition().has_any_dependent is False
 
-    def test_total_eligible_children_zero_by_default(self) -> None:
-        """total_eligible_children is zero when no children are set."""
-        assert FamilyComposition().total_eligible_children == 0
 
+class TestFamilyCompositionHasAnyDependent:
+    """FamilyComposition.has_any_dependent — truth table."""
 
-class TestFamilyCompositionValidation:
-    """FamilyComposition — validation at construction time."""
+    def test_spouse_sets_flag(self) -> None:
+        """One spouse dependent → has_any_dependent True."""
+        fc = FamilyComposition(dependents=(Dependent(relationship=_SPOUSE),))
+        assert fc.has_any_dependent is True
 
-    def test_children_negative_raises(self) -> None:
-        """Negative children_21_or_older raises ValueError."""
-        with pytest.raises(ValueError, match="children_21_or_older"):
-            FamilyComposition(children_21_or_older=-1)
+    def test_child_sets_flag(self) -> None:
+        """One child dependent → has_any_dependent True."""
+        fc = FamilyComposition(dependents=(Dependent(relationship=_CHILD),))
+        assert fc.has_any_dependent is True
 
-    def test_disabled_negative_raises(self) -> None:
-        """Negative children_21_or_older_disabled raises ValueError."""
-        with pytest.raises(ValueError, match="children_21_or_older_disabled"):
-            FamilyComposition(children_21_or_older_disabled=-1)
+    def test_ascendant_sets_flag(self) -> None:
+        """One ascendant dependent → has_any_dependent True."""
+        fc = FamilyComposition(dependents=(Dependent(relationship=_ASCENDANT),))
+        assert fc.has_any_dependent is True
 
-    def test_ascendenti_negative_raises(self) -> None:
-        """Negative ascendenti_conviventi raises ValueError."""
-        with pytest.raises(ValueError, match="ascendenti_conviventi"):
-            FamilyComposition(ascendenti_conviventi=-1)
+    def test_empty_dependents_false(self) -> None:
+        """Empty tuple → has_any_dependent False."""
+        assert FamilyComposition(dependents=()).has_any_dependent is False
 
-    def test_all_positive_accepted(self) -> None:
-        """All positive values construct without error."""
-        fc = FamilyComposition(
-            spouse_dependent=True,
-            children_21_or_older=2,
-            children_21_or_older_disabled=1,
-            ascendenti_conviventi=1,
-        )
-        assert fc.spouse_dependent is True
-        assert fc.children_21_or_older == 2
-
-
-class TestFamilyCompositionProperties:
-    """FamilyComposition — derived properties."""
-
-    def test_total_eligible_children_sum(self) -> None:
-        """total_eligible_children sums standard and disabled children."""
-        fc = FamilyComposition(children_21_or_older=2, children_21_or_older_disabled=1)
-        assert fc.total_eligible_children == 3
-
-    def test_has_any_dependent_spouse(self) -> None:
-        """has_any_dependent is True when spouse_dependent is True."""
-        assert FamilyComposition(spouse_dependent=True).has_any_dependent is True
-
-    def test_has_any_dependent_children(self) -> None:
-        """has_any_dependent is True when children_21_or_older > 0."""
-        assert FamilyComposition(children_21_or_older=1).has_any_dependent is True
-
-    def test_has_any_dependent_disabled(self) -> None:
-        """has_any_dependent is True when children_21_or_older_disabled > 0."""
-        assert (
-            FamilyComposition(children_21_or_older_disabled=1).has_any_dependent is True
-        )
-
-    def test_has_any_dependent_ascendenti(self) -> None:
-        """has_any_dependent is True when ascendenti_conviventi > 0."""
-        assert FamilyComposition(ascendenti_conviventi=1).has_any_dependent is True
-
-    def test_has_any_dependent_all_zero(self) -> None:
-        """has_any_dependent is False when all fields are explicitly zero."""
-        fc = FamilyComposition(
-            spouse_dependent=False,
-            children_21_or_older=0,
-            children_21_or_older_disabled=0,
-            ascendenti_conviventi=0,
-        )
-        assert fc.has_any_dependent is False
-
-    def test_frozen_cannot_mutate(self) -> None:
-        """FamilyComposition is frozen and cannot be mutated after creation."""
-        fc = FamilyComposition(children_21_or_older=1)
+    def test_frozen(self) -> None:
+        """FamilyComposition is frozen and cannot be mutated."""
+        fc = FamilyComposition(dependents=(Dependent(relationship=_SPOUSE),))
         with pytest.raises((AttributeError, TypeError, ValidationError)):
-            fc.children_21_or_older = 2  # type: ignore[misc]
+            fc.dependents = ()  # type: ignore[misc]

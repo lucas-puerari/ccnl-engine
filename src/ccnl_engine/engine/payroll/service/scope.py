@@ -32,7 +32,7 @@ def compute_result_status(
         ``"complete"`` or ``"partial"``.
     """
     for item in scope:
-        if item.status == "not_computed":
+        if item.status in {"not_computed", "caller_declared"}:
             return "partial"
     return "complete"
 
@@ -205,7 +205,7 @@ def build_scope(
         ScopeItem(
             feature="family_deductions",
             status=(
-                "verified"
+                "caller_declared"
                 if (scenario.family is not None and scenario.family.has_any_dependent)
                 else "excluded"
             ),

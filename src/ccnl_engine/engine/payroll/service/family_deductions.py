@@ -10,6 +10,11 @@ other income sources are not modelled.
 
 Deductions are annual figures.  Monthly conguaglio (year-end reconciliation)
 is out of scope.
+
+Eligibility is caller-declared.  The engine enforces the age-based AUU cutoff
+and the 30+/non-disabled exclusion when ``birth_date`` is supplied, but
+residency, disability certification, and own-income thresholds are taken as
+declared by the caller.
 """
 
 from __future__ import annotations
@@ -17,10 +22,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.payroll.domain.family import DependentRelationship
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.engine.payroll.domain.family import Dependent, FamilyComposition
     from ccnl_engine.engine.tax.domain.family import (
         ChildrenDeductionRules,
         FamilyDeductionRules,
@@ -30,6 +36,12 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
 
 _ZERO = Decimal(0)
+_HUNDRED = Decimal(100)
+_TWELVE = Decimal(12)
+
+_REL_SPOUSE = DependentRelationship.SPOUSE
+_REL_CHILD = DependentRelationship.CHILD
+_REL_ASCENDANT = DependentRelationship.ASCENDANT
 
 
 def _interpolate(
@@ -81,74 +93,123 @@ def _deduction_from_breakpoints(
     return money(points[-1].deduction)
 
 
+def _child_is_eligible(dep: Dependent, auu_age_cutoff: int, ref_year: int) -> bool:
+    """Return whether a child dependent is eligible for Art. 12 lett. c.
+
+    When ``birth_date`` is absent the caller has not supplied age; the child is
+    treated as eligible (status stays ``"caller_declared"``).
+
+    Returns:
+        ``True`` when the child qualifies for the deduction.
+    """
+    if dep.birth_date is None:
+        return True
+    age = ref_year - dep.birth_date.year
+    if age < auu_age_cutoff:
+        return False
+    return not (age >= 30 and not dep.disabled)
+
+
 def _spouse_deduction(
     gross_annual: Decimal,
     rules: SpouseDeductionRules,
+    spouse: Dependent | None,
 ) -> Decimal:
     """Return the Art. 12 c. 1 lett. a spouse deduction.
 
+    Returns zero when ``spouse`` is ``None`` or when the spouse's own income
+    exceeds the dependent income threshold.
+
     Returns:
         Annual deduction amount, rounded to two decimal places.
-        Zero when ``gross_annual`` exceeds the taper ceiling.
     """
-    return _deduction_from_breakpoints(gross_annual, rules.breakpoints)
+    if spouse is None:
+        return _ZERO
+    if spouse.own_income > rules.dependent_income_threshold:
+        return _ZERO
+    base = _deduction_from_breakpoints(gross_annual, rules.breakpoints)
+    return money(base * Decimal(spouse.months_dependent) / _TWELVE)
 
 
 def _children_deduction(
     gross_annual: Decimal,
     rules: ChildrenDeductionRules,
-    n_standard: int,
-    n_disabled: int,
+    children: list[Dependent],
+    ref_year: int,
 ) -> Decimal:
     """Return the Art. 12 c. 1 lett. c children deduction.
 
-    Each eligible child gives a deduction tapered by income.  The taper
-    ceiling increases by ``income_ceiling_increment_per_child`` for each child
-    beyond the first.
+    Eligible children are those aged 21-29 and disabled children aged 30+.
+    When ``birth_date`` is absent the child is treated as eligible.
 
-    Args:
-        gross_annual: Annual gross pay (proxy for reddito complessivo).
-        rules: Children deduction parameters.
-        n_standard: Number of standard eligible children (age >= AUU cutoff).
-        n_disabled: Number of disabled eligible children (age >= AUU cutoff).
+    Each child's deduction is pro-rated by ``months_dependent`` and
+    ``allocation_pct``.
 
     Returns:
         Total annual deduction for all eligible children, rounded.
     """
-    total_children = n_standard + n_disabled
-    if total_children == 0:
+    eligible = [
+        c for c in children if _child_is_eligible(c, rules.auu_age_cutoff, ref_year)
+    ]
+    total = len(eligible)
+    if total == 0:
         return _ZERO
 
-    # Adjust the income ceiling for multiple children (Art. 12 c. 1 lett. c).
-    extra_children = max(0, total_children - 1)
-    effective_ceiling = (
-        rules.income_ceiling
-        + Decimal(extra_children) * rules.income_ceiling_increment_per_child
+    extra = max(0, total - 1)
+    ceiling = (
+        rules.income_ceiling + Decimal(extra) * rules.income_ceiling_increment_per_child
     )
+    taper = max(_ZERO, (ceiling - gross_annual) / ceiling)
 
-    taper = max(_ZERO, (effective_ceiling - gross_annual) / effective_ceiling)
-    deduction_standard = money(rules.base_amount * taper) * n_standard
-    disabled_per_child = rules.base_amount + rules.disability_supplement
-    deduction_disabled = money(disabled_per_child * taper) * n_disabled
-    return money(deduction_standard + deduction_disabled)
+    result = _ZERO
+    for child in eligible:
+        per_child = money(rules.base_amount * taper)
+        pro_rata = (
+            per_child
+            * Decimal(child.months_dependent)
+            / _TWELVE
+            * child.allocation_pct
+            / _HUNDRED
+        )
+        result += money(pro_rata)
+    return money(result)
 
 
 def _other_deduction(
     gross_annual: Decimal,
     rules: OtherDependentRules,
-    n_ascendenti: int,
+    ascendants: list[Dependent],
 ) -> Decimal:
     """Return the Art. 12 c. 1 lett. d other-dependents deduction.
 
-    Only ascendenti conviventi qualify post L. 207/2024.
+    Only cohabiting ascendants with residency eligibility and own income
+    within the threshold qualify (post L. 207/2024).
 
     Returns:
         Total annual deduction for all qualifying ascendants, rounded.
     """
-    if n_ascendenti == 0:
+    eligible = [
+        a
+        for a in ascendants
+        if a.cohabiting
+        and a.residency_eligibility
+        and a.own_income <= rules.dependent_income_threshold
+    ]
+    if not eligible:
         return _ZERO
     taper = max(_ZERO, (rules.income_ceiling - gross_annual) / rules.income_ceiling)
-    return money(money(rules.amount * taper) * n_ascendenti)
+    result = _ZERO
+    for asc in eligible:
+        per_asc = money(rules.amount * taper)
+        pro_rata = (
+            per_asc
+            * Decimal(asc.months_dependent)
+            / _TWELVE
+            * asc.allocation_pct
+            / _HUNDRED
+        )
+        result += money(pro_rata)
+    return money(result)
 
 
 def compute_family_deductions(
@@ -162,8 +223,9 @@ def compute_family_deductions(
     ``total_deduction`` from ``irpef_gross - work_income_deduction``
     (floored at zero) to obtain the effective ``irpef_net``.
 
-    The engine uses ``gross_annual`` as a proxy for *reddito complessivo*.
-    Other income sources (rental, financial, etc.) are not modelled.
+    Age-based eligibility for children uses ``rules.year`` as the reference
+    year.  Eligibility conditions the engine cannot verify (disability
+    certification, residency) are taken as declared.
 
     Args:
         family: Caller-supplied family composition.
@@ -175,19 +237,12 @@ def compute_family_deductions(
         other_deduction, total_deduction).  All amounts are positive and
         rounded to two decimal places.
     """
-    spouse = (
-        _spouse_deduction(gross_annual, rules.spouse)
-        if family.spouse_dependent
-        else _ZERO
-    )
-    children = _children_deduction(
-        gross_annual,
-        rules.children,
-        family.children_21_or_older,
-        family.children_21_or_older_disabled,
-    )
-    other = _other_deduction(
-        gross_annual, rules.other_dependents, family.ascendenti_conviventi
-    )
-    total = money(spouse + children + other)
-    return spouse, children, other, total
+    spouse = next((d for d in family.dependents if d.relationship == _REL_SPOUSE), None)
+    children = [d for d in family.dependents if d.relationship == _REL_CHILD]
+    ascendants = [d for d in family.dependents if d.relationship == _REL_ASCENDANT]
+
+    sp = _spouse_deduction(gross_annual, rules.spouse, spouse)
+    ch = _children_deduction(gross_annual, rules.children, children, rules.year)
+    ot = _other_deduction(gross_annual, rules.other_dependents, ascendants)
+    total = money(sp + ch + ot)
+    return sp, ch, ot, total
