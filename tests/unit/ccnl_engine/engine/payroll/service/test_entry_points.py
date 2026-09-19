@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
 from ccnl_engine.engine.payroll.domain.employment import Permanent
@@ -17,6 +18,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employer,
     Employment,
     PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -35,6 +37,11 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _AS_OF = date(2026, 1, 1)
+_FULL_YEAR_TAX_PERIOD = TaxPeriod(
+    start=date(2026, 1, 1),
+    end=date(2026, 12, 31),
+    eligible_work_days=365,
+)
 
 
 def _base_scenario() -> AnnualEstimateInput:
@@ -213,7 +220,10 @@ class TestEstimatePeriodEffects:
 
     def test_returns_calculation(self) -> None:
         """estimate_period_effects returns a Calculation."""
-        result = estimate_period_effects(_base_scenario(), PeriodPayrollInput())
+        result = estimate_period_effects(
+            _base_scenario(),
+            PeriodPayrollInput(tax_period=_FULL_YEAR_TAX_PERIOD),
+        )
         assert isinstance(result, Calculation)
 
     def test_overtime_supplement_non_zero(self) -> None:
@@ -221,7 +231,8 @@ class TestEstimatePeriodEffects:
         with_overtime = estimate_period_effects(
             _base_scenario(),
             PeriodPayrollInput(
-                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
             ),
         )
         assert isinstance(with_overtime.result, PeriodPayroll)
@@ -234,7 +245,8 @@ class TestEstimatePeriodEffects:
         with_overtime = estimate_period_effects(
             _base_scenario(),
             PeriodPayrollInput(
-                time_supplements=OvertimeHours(weekday_hours=Decimal(8))
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
             ),
         )
         assert with_overtime.result.net_annual == base.result.net_annual
@@ -242,14 +254,20 @@ class TestEstimatePeriodEffects:
     def test_empty_period_equals_estimate_annual(self) -> None:
         """estimate_period_effects with empty period matches estimate_annual."""
         base = estimate_annual(_base_scenario())
-        with_empty = estimate_period_effects(_base_scenario(), PeriodPayrollInput())
+        with_empty = estimate_period_effects(
+            _base_scenario(),
+            PeriodPayrollInput(tax_period=_FULL_YEAR_TAX_PERIOD),
+        )
         assert with_empty.result.net_annual == base.result.net_annual
 
     def test_sick_days_appear_in_result(self) -> None:
         """Sick days in PeriodPayrollInput are reflected in sick_days_monthly."""
         sick = estimate_period_effects(
             _base_scenario(),
-            PeriodPayrollInput(sick_input=SickInput(sick_days=Decimal(5))),
+            PeriodPayrollInput(
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                sick_input=SickInput(sick_days=Decimal(5)),
+            ),
         )
         assert isinstance(sick.result, PeriodPayroll)
         assert sick.result.sick_days_monthly == Decimal(5)
@@ -259,7 +277,8 @@ class TestEstimatePeriodEffects:
         result = estimate_period_effects(
             _base_scenario(),
             PeriodPayrollInput(
-                fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300))
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                fringe_benefit_input=FringeBenefitInput(annual_amount=Decimal(300)),
             ),
         )
         assert isinstance(result.result, PeriodPayroll)
@@ -269,7 +288,10 @@ class TestEstimatePeriodEffects:
         """WelfareInput in PeriodPayrollInput propagates to welfare_annual."""
         result = estimate_period_effects(
             _base_scenario(),
-            PeriodPayrollInput(welfare_input=WelfareInput(annual_amount=Decimal(200))),
+            PeriodPayrollInput(
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                welfare_input=WelfareInput(annual_amount=Decimal(200)),
+            ),
         )
         assert isinstance(result.result, PeriodPayroll)
         assert result.result.welfare_annual == Decimal(200)
@@ -279,9 +301,10 @@ class TestEstimatePeriodEffects:
         result = estimate_period_effects(
             _base_scenario(),
             PeriodPayrollInput(
+                tax_period=_FULL_YEAR_TAX_PERIOD,
                 bonus_input=BonusInput(
                     annual_amount=Decimal(1000), eligible_for_pdr=False
-                )
+                ),
             ),
         )
         assert isinstance(result.result, PeriodPayroll)
@@ -292,8 +315,20 @@ class TestEstimatePeriodEffects:
         base = estimate_annual(_base_scenario())
         with_absence = estimate_period_effects(
             _base_scenario(),
-            PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+            PeriodPayrollInput(
+                tax_period=_FULL_YEAR_TAX_PERIOD,
+                absence_days=AbsenceDays(unpaid_days=Decimal(3)),
+            ),
         )
         assert isinstance(with_absence.result, PeriodPayroll)
         assert with_absence.result.absence_deduction_monthly > Decimal(0)
         assert with_absence.result.net_annual == base.result.net_annual
+
+
+class TestEstimatePeriodEffectsValidation:
+    """estimate_period_effects rejects inputs missing required fields."""
+
+    def test_missing_tax_period_raises(self) -> None:
+        """InvalidInputError raised when PeriodPayrollInput.tax_period is None."""
+        with pytest.raises(InvalidInputError, match="tax_period"):
+            estimate_period_effects(_base_scenario(), PeriodPayrollInput())

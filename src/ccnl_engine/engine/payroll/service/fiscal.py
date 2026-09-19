@@ -13,6 +13,7 @@ from ccnl_engine.engine.payroll.domain.bilateral_funds import (
 )
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.payroll.domain.scenario import TaxPeriod
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.engine.payroll.service.art15_deductions import (
@@ -239,6 +240,7 @@ def _compute_ti(
     work_income_deduction: Decimal,
     relevant_deductions: Decimal,
     rules: YearRules,
+    eligible_work_days: int = 365,
 ) -> tuple[Decimal, frozenset[FiscalSimplification]]:
     """Return (trattamento_integrativo, fiscal_simplifications) for the scenario.
 
@@ -254,6 +256,8 @@ def _compute_ti(
         relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
             deductions (used for the 15 000-28 000 requisito check).
         rules: Resolved tax rules for the year.
+        eligible_work_days: Calendar days in the tax year for which the
+            worker is employed.  Passed through to the TI formula.
 
     Returns:
         Tuple of (ti_amount, fiscal_simplifications_frozenset).
@@ -266,6 +270,7 @@ def _compute_ti(
             work_income_deduction,
             relevant_deductions,
             ti_rules,
+            eligible_work_days,
         )
         simplifications: frozenset[FiscalSimplification] = frozenset({
             FiscalSimplification.NO_ADDIZIONALE_REGIONALE,
@@ -718,7 +723,14 @@ def compute_fiscal(
 
     taxable_income = money(gross.gross_annual - inps_employee_annual)
     irpef_gross = _irpef.irpef_gross(taxable_income, rules)
-    work_income_deduction = _irpef.work_income_deduction(taxable_income)
+    eligible_work_days = (
+        scenario.tax_basis.eligible_work_days
+        if isinstance(scenario.tax_basis, TaxPeriod)
+        else 365
+    )
+    work_income_deduction = _irpef.work_income_deduction(
+        taxable_income, eligible_work_days
+    )
     employer_withholds_irpef = not ccnl.meta.withholding_exempt
 
     # Family deductions (Art. 12 TUIR): computed when scenario.family is set.
@@ -748,7 +760,7 @@ def compute_fiscal(
     ud_rules = rules.ulteriore_detrazione
     if ud_rules is not None:
         ulteriore_detrazione_lavoro = _irpef.ulteriore_detrazione_lavoro(
-            taxable_income, ud_rules
+            taxable_income, ud_rules, eligible_work_days
         )
     else:
         ulteriore_detrazione_lavoro = _ZERO
@@ -823,6 +835,7 @@ def compute_fiscal(
         work_income_deduction,
         relevant_deductions,
         rules,
+        eligible_work_days,
     )
 
     # Somma esente (L. 207/2024): flat-rate net bonus for reddito complessivo

@@ -14,6 +14,7 @@ from ccnl_engine import (
     Employment,
     PeriodPayrollInput,
     Permanent,
+    TaxPeriod,
     estimate_annual,
     estimate_period_effects,
 )
@@ -169,7 +170,16 @@ class TestEffectiveNetMonthly:
                 as_of=date(2026, 1, 1),
             ),
         )
-        r = estimate_period_effects(scenario, PeriodPayrollInput()).result
+        r = estimate_period_effects(
+            scenario,
+            PeriodPayrollInput(
+                tax_period=TaxPeriod(
+                    start=date(2026, 1, 1),
+                    end=date(2026, 12, 31),
+                    eligible_work_days=365,
+                )
+            ),
+        ).result
         assert isinstance(r, PeriodPayroll)
         assert r.effective_net_monthly == r.net_monthly
 
@@ -186,7 +196,14 @@ class TestEffectiveNetMonthly:
         )
         r = estimate_period_effects(
             scenario,
-            PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=Decimal(3))),
+            PeriodPayrollInput(
+                tax_period=TaxPeriod(
+                    start=date(2026, 1, 1),
+                    end=date(2026, 12, 31),
+                    eligible_work_days=365,
+                ),
+                absence_days=AbsenceDays(unpaid_days=Decimal(3)),
+            ),
         ).result
         assert isinstance(r, PeriodPayroll)
         assert r.absence_deduction_monthly > Decimal(0)
@@ -207,7 +224,12 @@ class TestEffectiveNetMonthly:
         r = estimate_period_effects(
             scenario,
             PeriodPayrollInput(
-                time_supplements=OvertimeHours(weekday_hours=Decimal(10))
+                tax_period=TaxPeriod(
+                    start=date(2026, 1, 1),
+                    end=date(2026, 12, 31),
+                    eligible_work_days=365,
+                ),
+                time_supplements=OvertimeHours(weekday_hours=Decimal(10)),
             ),
         ).result
         assert isinstance(r, PeriodPayroll)

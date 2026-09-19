@@ -25,11 +25,13 @@ from ccnl_engine.engine.payroll.domain.employee import (
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualizedAssumption,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
     PayrollScenario,
+    TaxPeriod,
 )
 
 _DATE = date(2026, 6, 1)
@@ -328,3 +330,75 @@ class TestPayrollScenario:
         )
         with pytest.raises((AttributeError, TypeError, ValidationError)):
             scenario.employee = Employee(level_code="5")  # type: ignore[misc]
+
+
+class TestAnnualizedAssumption:
+    """AnnualizedAssumption validation."""
+
+    def test_default_type(self) -> None:
+        """AnnualizedAssumption.type is 'annualized'."""
+        assert AnnualizedAssumption().type == "annualized"
+
+    def test_frozen(self) -> None:
+        """AnnualizedAssumption is immutable."""
+        a = AnnualizedAssumption()
+        with pytest.raises((AttributeError, TypeError, ValidationError)):
+            a.type = "other"  # type: ignore[misc,assignment]
+
+
+class TestTaxPeriod:
+    """TaxPeriod validation."""
+
+    def test_valid(self) -> None:
+        """TaxPeriod accepts valid inputs."""
+        tp = TaxPeriod(
+            start=date(2026, 1, 1),
+            end=date(2026, 12, 31),
+            eligible_work_days=365,
+        )
+        assert tp.eligible_work_days == 365
+
+    def test_valid_partial_year(self) -> None:
+        """TaxPeriod accepts eligible_work_days less than span."""
+        tp = TaxPeriod(
+            start=date(2026, 3, 1),
+            end=date(2026, 12, 31),
+            eligible_work_days=200,
+        )
+        assert tp.eligible_work_days == 200
+
+    def test_start_after_end_raises(self) -> None:
+        """TaxPeriod rejects start > end."""
+        with pytest.raises(ValidationError, match=r"start.*after.*end|end.*start"):
+            TaxPeriod(
+                start=date(2026, 12, 31),
+                end=date(2026, 1, 1),
+                eligible_work_days=1,
+            )
+
+    def test_eligible_work_days_zero_raises(self) -> None:
+        """TaxPeriod rejects eligible_work_days == 0."""
+        with pytest.raises(ValidationError, match="eligible_work_days"):
+            TaxPeriod(
+                start=date(2026, 1, 1),
+                end=date(2026, 12, 31),
+                eligible_work_days=0,
+            )
+
+    def test_eligible_work_days_exceeds_span_raises(self) -> None:
+        """TaxPeriod rejects eligible_work_days > (end - start).days + 1."""
+        with pytest.raises(ValidationError, match="eligible_work_days"):
+            TaxPeriod(
+                start=date(2026, 6, 1),
+                end=date(2026, 6, 30),
+                eligible_work_days=31,
+            )
+
+    def test_discriminator_type(self) -> None:
+        """TaxPeriod.type is 'tax_period'."""
+        tp = TaxPeriod(
+            start=date(2026, 1, 1),
+            end=date(2026, 12, 31),
+            eligible_work_days=365,
+        )
+        assert tp.type == "tax_period"

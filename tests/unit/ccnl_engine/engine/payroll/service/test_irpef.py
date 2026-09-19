@@ -591,3 +591,88 @@ class TestSommaEsente:
     def test_well_above_ceiling_returns_zero(self) -> None:
         """High income: benefit is zero."""
         assert somma_esente(Decimal(50000), _SE_RULES) == Decimal(0)
+
+
+class TestWorkIncomeDeductionProrata:
+    """work_income_deduction() with eligible_work_days < 365."""
+
+    def test_half_year_scales_flat_band(self) -> None:
+        """RC <= 15000: full_year=1955, pro-rata 182/365=0.4986, result ~974.73."""
+        result = work_income_deduction(Decimal(10000), eligible_work_days=182)
+        assert result > Decimal(0)
+        assert result < Decimal(1955)
+
+    def test_mid_band_prorata(self) -> None:
+        """RC in (15000, 28000]: result is less than full-year amount."""
+        full = work_income_deduction(Decimal(20000))
+        part = work_income_deduction(Decimal(20000), eligible_work_days=182)
+        assert part < full
+        assert part > Decimal(0)
+
+    def test_upper_band_prorata(self) -> None:
+        """RC in (28000, 50000]: result is less than full-year amount."""
+        full = work_income_deduction(Decimal(40000))
+        part = work_income_deduction(Decimal(40000), eligible_work_days=180)
+        assert part < full
+        assert part > Decimal(0)
+
+
+class TestUlterioreDetrazioneProrata:
+    """ulteriore_detrazione_lavoro() with eligible_work_days < 365."""
+
+    def test_flat_band_prorata(self) -> None:
+        """RC in (20000, 32000]: full_year=1000, part-year is proportionally less."""
+        full = ulteriore_detrazione_lavoro(Decimal(25000), _UD_RULES)
+        part = ulteriore_detrazione_lavoro(
+            Decimal(25000), _UD_RULES, eligible_work_days=182
+        )
+        assert part < full
+        assert part > Decimal(0)
+
+    def test_taper_band_prorata(self) -> None:
+        """RC in (32000, 40000]: tapered full-year is further scaled by days."""
+        full = ulteriore_detrazione_lavoro(Decimal(36000), _UD_RULES)
+        part = ulteriore_detrazione_lavoro(
+            Decimal(36000), _UD_RULES, eligible_work_days=90
+        )
+        assert part < full
+        assert part > Decimal(0)
+
+
+class TestTrattamentoIntegrativoProrata:
+    """trattamento_integrativo() with eligible_work_days < 365."""
+
+    def test_low_band_prorata_max_amount_scaled(self) -> None:
+        """RC <= 15000: max_amount is scaled by days/365.
+
+        Full-year: irpef_gross (2300) > threshold (1955-75=1880) → max_amount 1200.
+        Half-year (182d): prorata≈0.4986, seventy_five≈37.39, threshold≈940.61;
+        irpef_gross (2300) > 940.61 → scaled max_amount (≈598).
+        """
+        full = trattamento_integrativo(
+            Decimal(10000), Decimal(2300), Decimal(1955), Decimal(1955), _TI_RULES
+        )
+        part = trattamento_integrativo(
+            Decimal(10000),
+            Decimal(2300),
+            Decimal(978),
+            Decimal(978),
+            _TI_RULES,
+            eligible_work_days=182,
+        )
+        assert full == Decimal(1200)
+        assert part < full
+        assert part > Decimal(0)
+
+    def test_mid_band_prorata(self) -> None:
+        """RC in (15000, 28000]: bonus is capped by scaled max_amount."""
+        part = trattamento_integrativo(
+            Decimal(20000),
+            Decimal(1500),
+            Decimal(800),
+            Decimal(2000),
+            _TI_RULES,
+            eligible_work_days=182,
+        )
+        assert part > Decimal(0)
+        assert part <= Decimal(1200)

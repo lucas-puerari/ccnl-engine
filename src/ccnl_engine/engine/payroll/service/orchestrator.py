@@ -25,6 +25,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
+    AnnualizedAssumption,
     PayrollScenario,
     PeriodPayrollInput,
 )
@@ -468,6 +469,9 @@ def _annual_to_scenario(
         return PayrollScenario(
             employee=scenario.employee,
             employment=scenario.employment,
+            tax_basis=period.tax_period
+            if period.tax_period is not None
+            else AnnualizedAssumption(),
             family=scenario.family,
             art15_deductions=scenario.art15_deductions,
             bilateral_funds=scenario.bilateral_funds,
@@ -531,14 +535,32 @@ def estimate_period_effects(
 
     Args:
         scenario: The annual payroll scenario (structural fields only).
-        period: The period-specific events to merge in.
+        period: The period-specific events to merge in.  Must include
+            :attr:`~ccnl_engine.engine.payroll.domain.scenario\
+.PeriodPayrollInput.tax_period` for fiscal pro-rata; the function raises
+            :exc:`~ccnl_engine.engine.errors.InvalidInputError` when absent.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded on demand.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with annual figures plus informational period-event fields.
+
+    Raises:
+        InvalidInputError: When ``period.tax_period`` is ``None``.
     """
+    if period.tax_period is None:
+        msg = "period.tax_period is required for period payroll computation"
+        raise InvalidInputError(
+            msg,
+            feature="tax_period",
+            remediation=(
+                "Set PeriodPayrollInput.tax_period to a TaxPeriod with "
+                "the worker's employment start, end, and eligible_work_days "
+                "in the tax year.  Never omit it: the engine does not "
+                "silently apply 365/365 for period computations."
+            ),
+        )
     return compute(_annual_to_scenario(scenario, period), bundle, _period=period)
 
 

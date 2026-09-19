@@ -19,6 +19,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employer,
     Employment,
     PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
@@ -48,7 +49,12 @@ _SCENARIO = AnnualEstimateInput(
         as_of=date(2026, 6, 1),
     ),
 )
-_PERIOD = PeriodPayrollInput()
+_FULL_YEAR_TAX_PERIOD = TaxPeriod(
+    start=date(2026, 1, 1),
+    end=date(2026, 12, 31),
+    eligible_work_days=365,
+)
+_PERIOD = PeriodPayrollInput(tax_period=_FULL_YEAR_TAX_PERIOD)
 
 
 def _make_empty_surtax() -> SurtaxRules:
