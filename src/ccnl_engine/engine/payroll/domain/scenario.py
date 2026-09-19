@@ -479,6 +479,7 @@ class PayrollScenario(BaseModel):
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
     prior_period_irpef_withheld: StrictDecimal | None = None
     maternity_inps_indemnity_annual: StrictDecimal | None = None
+    workplace_injury_inail_indemnity_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -498,6 +499,15 @@ class PayrollScenario(BaseModel):
             msg = (
                 "maternity_inps_indemnity_annual must be >= 0, "
                 f"got {self.maternity_inps_indemnity_annual}"
+            )
+            raise ValueError(msg)
+        if (
+            self.workplace_injury_inail_indemnity_annual is not None
+            and self.workplace_injury_inail_indemnity_annual < _ZERO
+        ):
+            msg = (
+                "workplace_injury_inail_indemnity_annual must be >= 0, "
+                f"got {self.workplace_injury_inail_indemnity_annual}"
             )
             raise ValueError(msg)
         return self

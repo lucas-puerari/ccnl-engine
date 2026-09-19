@@ -506,3 +506,28 @@ class TestMaternityIndemnity:
         """Negative maternity_inps_indemnity_annual is rejected."""
         with pytest.raises(ValidationError, match="maternity_inps_indemnity_annual"):
             _base_scenario(maternity_inps_indemnity_annual=Decimal(-1))
+
+
+class TestWorkplaceInjuryIndemnity:
+    """PayrollScenario.workplace_injury_inail_indemnity_annual validation."""
+
+    def test_injury_none_by_default(self) -> None:
+        """workplace_injury_inail_indemnity_annual defaults to None."""
+        assert _base_scenario().workplace_injury_inail_indemnity_annual is None
+
+    def test_injury_zero_accepted(self) -> None:
+        """workplace_injury_inail_indemnity_annual=0 is valid."""
+        s = _base_scenario(workplace_injury_inail_indemnity_annual=Decimal(0))
+        assert s.workplace_injury_inail_indemnity_annual == Decimal(0)
+
+    def test_injury_positive_accepted(self) -> None:
+        """A positive workplace_injury_inail_indemnity_annual is accepted."""
+        s = _base_scenario(workplace_injury_inail_indemnity_annual=Decimal("800.00"))
+        assert s.workplace_injury_inail_indemnity_annual == Decimal("800.00")
+
+    def test_negative_injury_raises(self) -> None:
+        """Negative workplace_injury_inail_indemnity_annual is rejected."""
+        with pytest.raises(
+            ValidationError, match="workplace_injury_inail_indemnity_annual"
+        ):
+            _base_scenario(workplace_injury_inail_indemnity_annual=Decimal(-1))
