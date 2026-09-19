@@ -57,10 +57,12 @@ if p.overtime_supplement_monthly:
 # --- 3. Explicit scope — what the engine did and did not compute ---
 print("\n=== Calculation scope ===")
 for item in p.calculation_scope:
-    icon = {"verified": "✓", "excluded": "○", "not_computed": "?"}.get(
-        item.status, item.status
+    icon = {"computed": "✓", "excluded": "○", "not_computed": "?", "partial": "~"}.get(
+        item.calculation_status, item.calculation_status
     )
-    print(f"  {icon}  {item.feature}  [{item.status}]")
+    print(
+        f"  {icon}  {item.feature}  [{item.calculation_status}/{item.integration_status}]"
+    )
 
 if p.warnings:
     print("\n  Warnings:")

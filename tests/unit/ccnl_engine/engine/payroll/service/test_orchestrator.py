@@ -1378,7 +1378,7 @@ class TestL3Warning:
             ot_scope = next(
                 s for s in result.calculation_scope if s.feature == "overtime"
             )
-            assert ot_scope.status == "not_computed"
+            assert ot_scope.calculation_status == "not_computed"
             assert result.status == "partial"
         finally:
             _mock_ccnl[0] = _DEFAULT_CCNL
@@ -1414,7 +1414,10 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            scope = {item.feature: item.status for item in result.calculation_scope}
+            scope = {
+                item.feature: item.calculation_status
+                for item in result.calculation_scope
+            }
             # night_holiday_hours → holiday scope, no matching band → not_computed
             assert scope["holiday_work"] == "not_computed", (
                 f"Expected holiday_work not_computed, got: {scope['holiday_work']}"
@@ -1462,12 +1465,15 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            scope = {item.feature: item.status for item in result.calculation_scope}
+            scope = {
+                item.feature: item.calculation_status
+                for item in result.calculation_scope
+            }
             assert scope["overtime"] == "not_computed", (
                 f"Expected not_computed for overtime (no weekday band), got:"
                 f" {scope['overtime']}"
             )
-            assert scope["night_work"] == "verified", (
+            assert scope["night_work"] == "computed", (
                 f"Expected verified for night_work (band present), got:"
                 f" {scope['night_work']}"
             )
@@ -1505,7 +1511,10 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            scope = {item.feature: item.status for item in result.calculation_scope}
+            scope = {
+                item.feature: item.calculation_status
+                for item in result.calculation_scope
+            }
             assert scope["overtime"] == "not_computed", (
                 f"Expected not_computed (no supplementare band), got:"
                 f" {scope['overtime']}"
@@ -1542,7 +1551,10 @@ class TestL3Warning:
         )
         try:
             result = compute(scenario).result
-            scope = {item.feature: item.status for item in result.calculation_scope}
+            scope = {
+                item.feature: item.calculation_status
+                for item in result.calculation_scope
+            }
             assert scope["holiday_work"] == "not_computed", (
                 f"Expected not_computed (no holiday band), got: {scope['holiday_work']}"
             )
@@ -1670,7 +1682,7 @@ class TestL3Warning:
             f"Unexpected time_supplements warning for zero hours: {result.warnings}"
         )
         ot_scope = next(s for s in result.calculation_scope if s.feature == "overtime")
-        assert ot_scope.status == "excluded"
+        assert ot_scope.calculation_status == "excluded"
 
 
 class TestL3Absence:
@@ -1709,7 +1721,9 @@ class TestL3Absence:
     def test_absence_scope_excluded_when_no_days(self) -> None:
         """Absence scope item is excluded when no absence_days supplied."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["absence"] == "excluded"
 
     def test_raises_out_of_scope_when_absence_days_but_no_schema(self) -> None:
@@ -1735,8 +1749,10 @@ class TestL3Absence:
             update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["absence"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["absence"] == "computed"
 
     def test_absence_deduction_capped_when_exceeds_gross(self) -> None:
         """Deduction exceeding gross_monthly is capped and a warning emitted.
@@ -1808,7 +1824,7 @@ class TestL3Absence:
         absence_scope = next(
             s for s in result.calculation_scope if s.feature == "absence"
         )
-        assert absence_scope.status == "excluded"
+        assert absence_scope.calculation_status == "excluded"
 
 
 class TestL3Leave:
@@ -1860,7 +1876,9 @@ class TestL3Leave:
     def test_leave_scope_excluded_when_no_input(self) -> None:
         """Leave scope item is excluded when no leave_input supplied."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["leave"] == "excluded"
 
     def test_raises_out_of_scope_when_leave_input_but_no_schema(self) -> None:
@@ -1884,8 +1902,10 @@ class TestL3Leave:
             update={"leave_input": LeaveInput(taken_days=_D("2"))}
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["leave"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["leave"] == "computed"
 
 
 class TestL3Sickness:
@@ -1923,7 +1943,9 @@ class TestL3Sickness:
     def test_sick_scope_excluded_when_no_input(self) -> None:
         """Sickness is excluded when no sick_input is provided."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["sickness"] == "excluded"
 
     def test_raises_out_of_scope_when_sick_input_but_no_schema(self) -> None:
@@ -1950,8 +1972,10 @@ class TestL3Sickness:
             update={"sick_input": SickInput(sick_days=_D("5"))}
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["sickness"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["sickness"] == "computed"
 
     def test_sick_all_zero_when_no_input(self) -> None:
         """All sickness output fields are zero when no sick_input is provided."""
@@ -1974,7 +1998,9 @@ class TestL3Sickness:
         assert not any("sick_input" in w for w in result.warnings), (
             f"Unexpected sick_input warning for zero sick days: {result.warnings}"
         )
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["sickness"] == "excluded"
 
     def test_zero_sick_days_same_result_as_no_input(self) -> None:
@@ -1987,8 +2013,12 @@ class TestL3Sickness:
         scenario_zero = _req().model_copy(update={"sick_input": SickInput()})
         result_zero = compute(scenario_zero).result
         # Scope entry must match.
-        scope_none = {s.feature: s.status for s in result_none.calculation_scope}
-        scope_zero = {s.feature: s.status for s in result_zero.calculation_scope}
+        scope_none = {
+            s.feature: s.calculation_status for s in result_none.calculation_scope
+        }
+        scope_zero = {
+            s.feature: s.calculation_status for s in result_zero.calculation_scope
+        }
         assert scope_none["sickness"] == scope_zero["sickness"]
         # Overall result status must match.
         assert result_none.status == result_zero.status
@@ -2028,19 +2058,25 @@ class TestL3VariablePay:
     def test_fringe_benefit_scope_excluded_when_no_input(self) -> None:
         """fringe_benefit scope is excluded when no fringe_benefit_input."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["fringe_benefit"] == "excluded"
 
     def test_welfare_scope_excluded_when_no_input(self) -> None:
         """Welfare scope is excluded when no welfare_input."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["welfare"] == "excluded"
 
     def test_bonus_pdr_scope_excluded_when_no_input(self) -> None:
         """bonus_pdr scope is excluded when no bonus_input."""
         result = compute(_req()).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope["bonus_pdr"] == "excluded"
 
     def test_all_variable_pay_fields_zero_when_no_inputs(self) -> None:
@@ -2060,8 +2096,10 @@ class TestL3VariablePay:
             update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["fringe_benefit"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["fringe_benefit"] == "computed"
 
     def test_fringe_benefit_below_threshold_not_taxable(self) -> None:
         """Fringe benefit below €1.000 threshold: taxable_annual is zero."""
@@ -2090,8 +2128,10 @@ class TestL3VariablePay:
             update={"welfare_input": WelfareInput(annual_amount=_D("600"))}
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["welfare"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["welfare"] == "computed"
         assert result.welfare_annual == _D("600")
 
     def test_bonus_pdr_eligible_applies_flat_tax(self) -> None:
@@ -2104,8 +2144,10 @@ class TestL3VariablePay:
             }
         )
         result = compute(scenario).result
-        scope = {item.feature: item.status for item in result.calculation_scope}
-        assert scope["bonus_pdr"] == "verified"
+        scope = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope["bonus_pdr"] == "computed"
         assert result.bonus_annual == _D("2000")
         assert result.bonus_pdr_flat_tax_annual == _D("20.00")
         assert result.bonus_ordinary_taxable_annual == _D("0")
@@ -2705,30 +2747,96 @@ class TestArt15MortgagePre2022:
         assert with_pre_2022.trattamento_integrativo >= baseline.trattamento_integrativo
 
 
+def _scope_computed(feature: str) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="computed",
+        integration_status="included_in_totals",
+        eligibility_status="engine_verified",
+        source_quality="verified_primary",
+    )
+
+
+def _scope_excluded(feature: str) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="excluded",
+        integration_status="n_a",
+        eligibility_status="n_a",
+        source_quality="n_a",
+    )
+
+
+def _scope_not_computed(feature: str) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="not_computed",
+        integration_status="n_a",
+        eligibility_status="n_a",
+        source_quality="n_a",
+    )
+
+
+def _scope_informational(feature: str) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="computed",
+        integration_status="informational_only",
+        eligibility_status="engine_verified",
+        source_quality="verified_primary",
+    )
+
+
+def _scope_caller_declared(feature: str) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="computed",
+        integration_status="included_in_totals",
+        eligibility_status="caller_declared",
+        source_quality="verified_primary",
+    )
+
+
 class TestComputeResultStatus:
     """Unit tests for compute_result_status helper."""
 
-    def test_all_verified_returns_complete(self) -> None:
-        """All verified scope items → complete."""
+    def test_all_computed_returns_complete(self) -> None:
+        """All computed scope items → complete."""
         scope = (
-            ScopeItem(feature="base_salary", status="verified"),
-            ScopeItem(feature="irpef", status="verified"),
+            _scope_computed("base_salary"),
+            _scope_computed("irpef"),
         )
         assert compute_result_status(scope) == "complete"
 
     def test_excluded_items_do_not_block_complete(self) -> None:
         """Excluded items are acceptable; result is still complete."""
         scope = (
-            ScopeItem(feature="base_salary", status="verified"),
-            ScopeItem(feature="overtime", status="excluded"),
+            _scope_computed("base_salary"),
+            _scope_excluded("overtime"),
         )
         assert compute_result_status(scope) == "complete"
 
     def test_not_computed_returns_partial(self) -> None:
         """A single not_computed item forces partial status."""
         scope = (
-            ScopeItem(feature="base_salary", status="verified"),
-            ScopeItem(feature="overtime", status="not_computed"),
+            _scope_computed("base_salary"),
+            _scope_not_computed("overtime"),
+        )
+        assert compute_result_status(scope) == "partial"
+
+    def test_informational_only_returns_partial(self) -> None:
+        """informational_only integration_status forces partial status."""
+        scope = (
+            _scope_computed("base_salary"),
+            _scope_informational("fringe_benefit"),
+        )
+        assert compute_result_status(scope) == "partial"
+
+    def test_caller_declared_returns_partial(self) -> None:
+        """caller_declared eligibility_status forces partial status."""
+        scope = (
+            _scope_computed("base_salary"),
+            _scope_caller_declared("family_deductions"),
         )
         assert compute_result_status(scope) == "partial"
 
@@ -2745,7 +2853,7 @@ class TestComputeResultStatus:
         """No L3 inputs and L3 schema present → complete (all excluded)."""
         result = compute(_req()).result
         # No overtime/leave/sick input: all L3 scope items are 'excluded'.
-        # All L1/L2 items are 'verified'.
+        # All L1/L2 items are 'computed'.
         assert result.status == "complete"
 
 
@@ -3030,10 +3138,15 @@ _FB_INPUT = FringeBenefitInput(annual_amount=_D("500"))
 class TestConfidenceWithOptionalRulesets:
     """Unverified optional rulesets downgrade confidence from high to medium."""
 
-    def test_verified_var_pay_ruleset_allows_high_confidence(
+    def test_verified_var_pay_ruleset_does_not_downgrade_confidence(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Verified var-pay ruleset + verified CCNL provenance → high."""
+        """Verified var-pay ruleset + fringe_benefit (informational_only) → medium.
+
+        fringe_benefit is always integration_status=informational_only, so
+        result.status is "partial" and confidence tops out at "medium".  A
+        verified ruleset does not degrade confidence further.
+        """
         _mock_ccnl[0] = _verified_ccnl()
         verified = _var_pay_rules(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
@@ -3041,7 +3154,7 @@ class TestConfidenceWithOptionalRulesets:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"fringe_benefit_input": _FB_INPUT}))
-        assert result.result.confidence == "high"
+        assert result.result.confidence == "medium"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3268,10 +3381,15 @@ class TestConfidenceFamilyArt15:
         result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
         assert result.result.confidence == "medium"
 
-    def test_art15_with_verified_ruleset_allows_high(
+    def test_art15_with_verified_ruleset_stays_medium(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Art. 15 deductions with a verified ruleset + verified CCNL → high."""
+        """Art. 15 deductions with a verified ruleset + verified CCNL → medium.
+
+        art15_deductions is always calculation_status=partial (simplified model),
+        so result.status is "partial" and confidence tops out at "medium".  A
+        verified ruleset does not degrade confidence further.
+        """
         _mock_ccnl[0] = _verified_ccnl()
         verified = _art15_rules_with_status(VerificationStatus.VERIFIED)
         monkeypatch.setattr(
@@ -3279,7 +3397,7 @@ class TestConfidenceFamilyArt15:
             lambda _: verified,
         )
         result = compute(_req().model_copy(update={"art15_deductions": _ART15_INPUT}))
-        assert result.result.confidence == "high"
+        assert result.result.confidence == "medium"
 
     def test_art15_with_unverified_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
@@ -3481,13 +3599,17 @@ class TestBilateralFunds:
             }
         )
         result = compute(scenario).result
-        scope_map = {item.feature: item.status for item in result.calculation_scope}
-        assert scope_map["bilateral_funds"] == "verified"
+        scope_map = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
+        assert scope_map["bilateral_funds"] == "computed"
 
     def test_bilateral_funds_scope_item_excluded_when_absent(self) -> None:
         """bilateral_funds scope item is 'excluded' when no funds provided."""
         result = compute(_req()).result
-        scope_map = {item.feature: item.status for item in result.calculation_scope}
+        scope_map = {
+            item.feature: item.calculation_status for item in result.calculation_scope
+        }
         assert scope_map["bilateral_funds"] == "excluded"
 
     def test_multiple_funds_accumulate(self) -> None:

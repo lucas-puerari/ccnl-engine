@@ -37,13 +37,44 @@ def _serialise_tuple_item(v: object) -> object:
 class ScopeItem:
     """One entry in the calculation scope list.
 
-    Attributes:
-        feature: Engine feature name (e.g. ``"overtime"``, ``"irpef"``).
-        status: Whether it was computed, excluded, or not available.
+    Four orthogonal axes describe how a feature was handled:
+
+    ``calculation_status``
+        Whether the engine computed the feature (``"computed"``), partially
+        computed it (``"partial"``), could not compute it (``"not_computed"``),
+        or the caller did not request it (``"excluded"``).
+
+    ``integration_status``
+        How the computed amount relates to the period totals:
+        ``"included_in_totals"`` when it affects net/gross, ``"informational_only"``
+        when it is reported but not wired into the net formula, ``"n_a"`` for
+        excluded or not-computed features.
+
+    ``eligibility_status``
+        Verification level of the inputs that triggered the computation:
+        ``"engine_verified"`` when the engine could check all inputs,
+        ``"caller_declared"`` when the caller asserted conditions the engine
+        cannot verify (e.g. dependent eligibility, disability certification),
+        ``"unknown"`` when the engine has no schema to check against, ``"n_a"``
+        otherwise.
+
+    ``source_quality``
+        Quality of the normative data source behind the computation:
+        ``"verified_primary"`` for a verified primary source, ``"unverified"``
+        for an unverified or secondary source, ``"estimated"`` for a derived or
+        estimated rule, ``"n_a"`` when no source applies.
+
+    ``assumptions``
+        Typed simplification flags active for this feature (e.g.
+        ``"partial_detrazioni_art15"``).
     """
 
     feature: str
-    status: Literal["verified", "excluded", "not_computed", "caller_declared"]
+    calculation_status: Literal["computed", "partial", "not_computed", "excluded"]
+    integration_status: Literal["included_in_totals", "informational_only", "n_a"]
+    eligibility_status: Literal["engine_verified", "caller_declared", "unknown", "n_a"]
+    source_quality: Literal["verified_primary", "unverified", "estimated", "n_a"]
+    assumptions: tuple[str, ...] = ()
 
 
 def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:
@@ -61,7 +92,10 @@ def _unwrap_optional(raw: object, hint: type) -> tuple[object, type]:
     return raw, hint
 
 
-_SCOPE_ITEM_STATUSES = frozenset({"verified", "excluded", "not_computed"})
+_CALC_STATUSES = frozenset({"computed", "partial", "not_computed", "excluded"})
+_INTEG_STATUSES = frozenset({"included_in_totals", "informational_only", "n_a"})
+_ELIG_STATUSES = frozenset({"engine_verified", "caller_declared", "unknown", "n_a"})
+_QUAL_STATUSES = frozenset({"verified_primary", "unverified", "estimated", "n_a"})
 _STRICT_PRIMITIVES: frozenset[type] = frozenset({bool, int, str})
 
 
@@ -69,21 +103,42 @@ def _coerce_scope_item(raw: dict[str, object]) -> ScopeItem:
     """Reconstruct a :class:`ScopeItem` from a dict, validating field types.
 
     Returns:
-        A new :class:`ScopeItem` with validated ``feature`` and ``status``.
+        A new :class:`ScopeItem` with validated axis fields.
 
     Raises:
         TypeError: When ``feature`` is not a ``str``.
-        ValueError: When ``status`` is not one of the allowed literals.
+        ValueError: When any axis field holds an invalid literal value.
     """
     feature = raw["feature"]
     if not isinstance(feature, str):
         msg = f"ScopeItem.feature must be str, got {type(feature).__name__!r}"
         raise TypeError(msg)
-    status = raw["status"]
-    if status not in _SCOPE_ITEM_STATUSES:
-        msg = f"ScopeItem.status must be one of {sorted(_SCOPE_ITEM_STATUSES)!r}"
+    calc = raw["calculation_status"]
+    if calc not in _CALC_STATUSES:
+        msg = f"ScopeItem.calculation_status must be one of {sorted(_CALC_STATUSES)!r}"
         raise ValueError(msg)
-    return ScopeItem(feature=feature, status=status)  # type: ignore[arg-type]
+    integ = raw["integration_status"]
+    if integ not in _INTEG_STATUSES:
+        msg = f"ScopeItem.integration_status must be one of {sorted(_INTEG_STATUSES)!r}"
+        raise ValueError(msg)
+    elig = raw["eligibility_status"]
+    if elig not in _ELIG_STATUSES:
+        msg = f"ScopeItem.eligibility_status must be one of {sorted(_ELIG_STATUSES)!r}"
+        raise ValueError(msg)
+    qual = raw["source_quality"]
+    if qual not in _QUAL_STATUSES:
+        msg = f"ScopeItem.source_quality must be one of {sorted(_QUAL_STATUSES)!r}"
+        raise ValueError(msg)
+    raw_assumptions = raw.get("assumptions") or []
+    assumptions = tuple(str(a) for a in raw_assumptions)  # type: ignore[attr-defined]
+    return ScopeItem(
+        feature=feature,
+        calculation_status=calc,  # type: ignore[arg-type]
+        integration_status=integ,  # type: ignore[arg-type]
+        eligibility_status=elig,  # type: ignore[arg-type]
+        source_quality=qual,  # type: ignore[arg-type]
+        assumptions=assumptions,
+    )
 
 
 def _validate_primitive(raw: object, hint: type) -> object:
