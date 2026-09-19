@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 from typing import TYPE_CHECKING
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from hypothesis import assume, given
 from hypothesis import strategies as st
@@ -24,6 +24,11 @@ _DEFAULT_CCNL = _build_ccnl()
 _LEVEL_CODES = ["2", "3", "4"]
 _SENIORITY_MAX = 10
 
+_MOCK_REPO = MagicMock()
+_MOCK_REPO.load_ccnl.return_value = _DEFAULT_CCNL
+_MOCK_REPO.load_year_rules.return_value = _RULES
+_MOCK_REPO.load_surtax_rules.return_value = None
+
 
 def _compute(scenario: object) -> Calculation:
     """Run compute() with the test CCNL and rules mocked in.
@@ -31,19 +36,9 @@ def _compute(scenario: object) -> Calculation:
     Returns:
         Calculation result with all gross, net, and cost figures.
     """
-    with (
-        patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-            return_value=_DEFAULT_CCNL,
-        ),
-        patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-            return_value=_RULES,
-        ),
-        patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-            return_value=None,
-        ),
+    with patch(
+        "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+        new=_MOCK_REPO,
     ):
         return compute(scenario)  # type: ignore[arg-type]
 

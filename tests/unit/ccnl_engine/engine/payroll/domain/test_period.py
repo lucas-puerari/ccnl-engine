@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -158,11 +158,13 @@ class TestComputePeriod:
     def test_accepts_bundle(self) -> None:
         """compute_period accepts an optional bundle and skips loaders."""
         bundle = _make_bundle()
+        mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-        ) as mock_ccnl:
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
+        ):
             compute_period(_SCENARIO, PayrollPeriod(year=2026, month=3), bundle)
-        mock_ccnl.assert_not_called()
+        mock_repo.load_ccnl.assert_not_called()
 
     def test_deterministic(self) -> None:
         """Same period inputs always produce the same result."""
@@ -192,11 +194,13 @@ class TestComputeYear:
     def test_accepts_bundle(self) -> None:
         """compute_year accepts an optional bundle."""
         bundle = _make_bundle()
+        mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-        ) as mock_ccnl:
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
+        ):
             compute_year(_SCENARIO, 2026, bundle=bundle)
-        mock_ccnl.assert_not_called()
+        mock_repo.load_ccnl.assert_not_called()
 
     def test_accepts_month_events(self) -> None:
         """compute_year accepts per-month events."""

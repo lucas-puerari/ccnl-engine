@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import date
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -246,21 +246,15 @@ class TestComputeWithBundle:
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
         req = _req()
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-            ) as mock_ccnl,
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules"
-            ) as mock_rules,
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules"
-            ) as mock_surtax,
+        mock_repo = MagicMock()
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             calc = compute(req, bundle)
-        mock_ccnl.assert_not_called()
-        mock_rules.assert_not_called()
-        mock_surtax.assert_not_called()
+        mock_repo.load_ccnl.assert_not_called()
+        mock_repo.load_year_rules.assert_not_called()
+        mock_repo.load_surtax_rules.assert_not_called()
         assert calc is not None
 
     def test_compute_without_bundle_uses_loaders(self) -> None:
@@ -268,89 +262,71 @@ class TestComputeWithBundle:
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         req = _req()
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-                return_value=ccnl,
-            ) as mock_ccnl,
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-                return_value=rules,
-            ),
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-                return_value=None,
-            ),
+        mock_repo = MagicMock()
+        mock_repo.load_ccnl.return_value = ccnl
+        mock_repo.load_year_rules.return_value = rules
+        mock_repo.load_surtax_rules.return_value = None
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             compute(req, None)
-        mock_ccnl.assert_called_once()
+        mock_repo.load_ccnl.assert_called_once()
 
     def test_estimate_annual_with_bundle(self) -> None:
         """estimate_annual skips loaders when a bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-            ) as mock_ccnl,
+        mock_repo = MagicMock()
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             calc = estimate_annual(_SCENARIO, bundle)
-        mock_ccnl.assert_not_called()
+        mock_repo.load_ccnl.assert_not_called()
         assert calc is not None
 
     def test_estimate_annual_without_bundle(self) -> None:
         """estimate_annual calls loaders when no bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-                return_value=ccnl,
-            ) as mock_ccnl,
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-                return_value=rules,
-            ),
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-                return_value=None,
-            ),
+        mock_repo = MagicMock()
+        mock_repo.load_ccnl.return_value = ccnl
+        mock_repo.load_year_rules.return_value = rules
+        mock_repo.load_surtax_rules.return_value = None
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             estimate_annual(_SCENARIO)
-        mock_ccnl.assert_called_once()
+        mock_repo.load_ccnl.assert_called_once()
 
     def test_estimate_period_effects_with_bundle(self) -> None:
         """estimate_period_effects skips loaders when a bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl"
-            ) as mock_ccnl,
+        mock_repo = MagicMock()
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             calc = estimate_period_effects(_SCENARIO, _PERIOD, bundle)
-        mock_ccnl.assert_not_called()
+        mock_repo.load_ccnl.assert_not_called()
         assert calc is not None
 
     def test_estimate_period_effects_without_bundle(self) -> None:
         """estimate_period_effects calls loaders when no bundle is supplied."""
         ccnl = make_minimal_ccnl()
         rules = make_year_rules()
-        with (
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-                return_value=ccnl,
-            ) as mock_ccnl,
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-                return_value=rules,
-            ),
-            patch(
-                "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-                return_value=None,
-            ),
+        mock_repo = MagicMock()
+        mock_repo.load_ccnl.return_value = ccnl
+        mock_repo.load_year_rules.return_value = rules
+        mock_repo.load_surtax_rules.return_value = None
+        with patch(
+            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            new=mock_repo,
         ):
             estimate_period_effects(_SCENARIO, _PERIOD, None)
-        mock_ccnl.assert_called_once()
+        mock_repo.load_ccnl.assert_called_once()

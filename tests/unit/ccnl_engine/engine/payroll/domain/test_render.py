@@ -26,21 +26,31 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import _req
 _DEFAULT_CCNL = make_minimal_ccnl()
 _DEFAULT_RULES = make_year_rules()
 
+_mock_ccnl: list[object] = [_DEFAULT_CCNL]
+_mock_rules: list[object] = [_DEFAULT_RULES]
+
+
+class _MockRepo:
+    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+
+    def load_ccnl(self, filename: str) -> object:
+        return _mock_ccnl[0]
+
+    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+        return _mock_rules[0]
+
+    def load_surtax_rules(self, year: int) -> None:
+        return
+
 
 @pytest.fixture(autouse=True)
 def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch CCNL and tax loaders so tests do not read real knowledge files."""
+    """Patch the repository in orchestrator and reset mock state."""
+    _mock_ccnl[:] = [_DEFAULT_CCNL]
+    _mock_rules[:] = [_DEFAULT_RULES]
     monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_ccnl",
-        lambda _: _DEFAULT_CCNL,
-    )
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-        lambda *_: _DEFAULT_RULES,
-    )
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator.load_surtax_rules",
-        lambda _: None,
+        "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+        _MockRepo(),
     )
 
 
@@ -275,13 +285,10 @@ class TestSterilizzazioneClawbackField:
         assert "sterilizzazione_clawback_annual" in d
         assert isinstance(d["sterilizzazione_clawback_annual"], str)
 
-    def test_nonzero_above_threshold(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_nonzero_above_threshold(self) -> None:
         """Clawback > 0 at high income with Art. 15 and threshold rules."""
         rules = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
-        monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-            lambda *_: rules,
-        )
+        _mock_rules[0] = rules
         scenario = _req(negotiated_ral=_HIGH_RAL).model_copy(
             update={
                 "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
@@ -297,15 +304,10 @@ class TestSterilizzazioneClawbackField:
 class TestIrpefIdentityAboveClawbackThreshold:
     """irpef_net = max(0, irpef_gross - deductions + clawback) at high income."""
 
-    def test_irpef_identity_with_clawback(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_irpef_identity_with_clawback(self) -> None:
         """irpef_net equals the statutory formula including the clawback."""
         rules = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
-        monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-            lambda *_: rules,
-        )
+        _mock_rules[0] = rules
         scenario = _req(negotiated_ral=_HIGH_RAL).model_copy(
             update={
                 "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
@@ -323,9 +325,7 @@ class TestIrpefIdentityAboveClawbackThreshold:
         )
         assert bd.irpef_net == expected
 
-    def test_clawback_increases_irpef_net(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_clawback_increases_irpef_net(self) -> None:
         """With sterilizzazione active, irpef_net is higher than without."""
         rules_with = make_year_rules(sterilizzazione_detrazioni=_STRD_RULES)
         rules_without = make_year_rules()
@@ -334,15 +334,9 @@ class TestIrpefIdentityAboveClawbackThreshold:
                 "art15_deductions": Art15Deductions(mortgage_interest=Decimal(4000))
             }
         )
-        monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-            lambda *_: rules_with,
-        )
+        _mock_rules[0] = rules_with
         bd_with = render_breakdown(compute(scenario).result)
-        monkeypatch.setattr(
-            "ccnl_engine.engine.payroll.service.orchestrator.load_year_rules",
-            lambda *_: rules_without,
-        )
+        _mock_rules[0] = rules_without
         bd_without = render_breakdown(compute(scenario).result)
         assert bd_with.irpef_net > bd_without.irpef_net
         delta = bd_with.irpef_net - bd_without.irpef_net
