@@ -663,7 +663,13 @@ def compute_salary(
         "confidence": payroll.confidence,
         "warnings": list(payroll.warnings),
         "calculation_scope": [
-            {"feature": s.feature, "status": s.status}
+            {
+                "feature": s.feature,
+                "calculation_status": s.calculation_status,
+                "integration_status": s.integration_status,
+                "eligibility_status": s.eligibility_status,
+                "source_quality": s.source_quality,
+            }
             for s in payroll.calculation_scope
         ],
     })

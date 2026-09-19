@@ -48,11 +48,17 @@ class TestScopeItemCoerce:
 
     def test_coerce_scope_item_from_dict(self) -> None:
         """ScopeItem is reconstructed from a plain dict."""
-        raw = {"feature": "overtime", "status": "verified"}
+        raw = {
+            "feature": "overtime",
+            "calculation_status": "computed",
+            "integration_status": "included_in_totals",
+            "eligibility_status": "engine_verified",
+            "source_quality": "verified_primary",
+        }
         result = _coerce_scalar(raw, ScopeItem)
         assert isinstance(result, ScopeItem)
         assert result.feature == "overtime"
-        assert result.status == "verified"
+        assert result.calculation_status == "computed"
 
     def test_coerce_non_dict_passthrough(self) -> None:
         """A non-dict raw value for ScopeItem is returned unchanged."""
@@ -68,15 +74,41 @@ class TestToDictScopeItem:
         result = dataclasses.replace(
             payroll,
             calculation_scope=(
-                ScopeItem(feature="overtime", status="verified"),
-                ScopeItem(feature="irpef", status="verified"),
+                ScopeItem(
+                    feature="overtime",
+                    calculation_status="computed",
+                    integration_status="included_in_totals",
+                    eligibility_status="engine_verified",
+                    source_quality="verified_primary",
+                ),
+                ScopeItem(
+                    feature="irpef",
+                    calculation_status="computed",
+                    integration_status="included_in_totals",
+                    eligibility_status="engine_verified",
+                    source_quality="verified_primary",
+                ),
             ),
         )
         d = result.to_dict()
         raw_scope = cast("list[object]", d["calculation_scope"])
         assert raw_scope == [
-            {"feature": "overtime", "status": "verified"},
-            {"feature": "irpef", "status": "verified"},
+            {
+                "feature": "overtime",
+                "calculation_status": "computed",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "engine_verified",
+                "source_quality": "verified_primary",
+                "assumptions": (),
+            },
+            {
+                "feature": "irpef",
+                "calculation_status": "computed",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "engine_verified",
+                "source_quality": "verified_primary",
+                "assumptions": (),
+            },
         ]
 
     def test_warnings_serialised_as_list(self, payroll: PayrollResult) -> None:
@@ -111,7 +143,15 @@ class TestFromDictHasDefault:
 
     def test_from_dict_with_scope_items(self, payroll: PayrollResult) -> None:
         """from_dict reconstructs ScopeItem entries from a serialised scope."""
-        scope = (ScopeItem(feature="overtime", status="excluded"),)
+        scope = (
+            ScopeItem(
+                feature="overtime",
+                calculation_status="excluded",
+                integration_status="n_a",
+                eligibility_status="n_a",
+                source_quality="n_a",
+            ),
+        )
         result = dataclasses.replace(payroll, calculation_scope=scope)
         d = result.to_dict()
         rebuilt = PayrollResult.from_dict(d)

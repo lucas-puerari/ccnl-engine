@@ -102,4 +102,4 @@ for item in r.calculation_scope:
         "welfare",
         "bonus",
     )):
-        print(f"  {item.feature:<30} {item.status}")
+        print(f"  {item.feature:<30} {item.calculation_status}")

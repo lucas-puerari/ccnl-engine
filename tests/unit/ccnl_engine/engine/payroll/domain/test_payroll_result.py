@@ -271,17 +271,84 @@ class TestFromDictStrictValidation:
             PayrollResult.from_dict(d)
 
     def test_scope_item_invalid_status_rejected(self, payroll: PayrollResult) -> None:
-        """ScopeItem with invalid status value raises ValueError."""
+        """ScopeItem with invalid calculation_status value raises ValueError."""
         d = payroll.to_dict()
-        d["calculation_scope"] = [{"feature": "irpef", "status": "invalid_status"}]
-        with pytest.raises(ValueError, match=r"ScopeItem\.status"):
+        d["calculation_scope"] = [
+            {
+                "feature": "irpef",
+                "calculation_status": "invalid_status",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "engine_verified",
+                "source_quality": "verified_primary",
+            }
+        ]
+        with pytest.raises(ValueError, match=r"ScopeItem\.calculation_status"):
             PayrollResult.from_dict(d)
 
     def test_scope_item_non_str_feature_rejected(self, payroll: PayrollResult) -> None:
         """ScopeItem with integer feature raises TypeError."""
         d = payroll.to_dict()
-        d["calculation_scope"] = [{"feature": 42, "status": "verified"}]
+        d["calculation_scope"] = [
+            {
+                "feature": 42,
+                "calculation_status": "computed",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "engine_verified",
+                "source_quality": "verified_primary",
+            }
+        ]
         with pytest.raises(TypeError, match=r"ScopeItem\.feature"):
+            PayrollResult.from_dict(d)
+
+    def test_scope_item_invalid_integration_status_rejected(
+        self, payroll: PayrollResult
+    ) -> None:
+        """ScopeItem with invalid integration_status value raises ValueError."""
+        d = payroll.to_dict()
+        d["calculation_scope"] = [
+            {
+                "feature": "irpef",
+                "calculation_status": "computed",
+                "integration_status": "bad_value",
+                "eligibility_status": "engine_verified",
+                "source_quality": "verified_primary",
+            }
+        ]
+        with pytest.raises(ValueError, match=r"ScopeItem\.integration_status"):
+            PayrollResult.from_dict(d)
+
+    def test_scope_item_invalid_eligibility_status_rejected(
+        self, payroll: PayrollResult
+    ) -> None:
+        """ScopeItem with invalid eligibility_status value raises ValueError."""
+        d = payroll.to_dict()
+        d["calculation_scope"] = [
+            {
+                "feature": "irpef",
+                "calculation_status": "computed",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "bad_value",
+                "source_quality": "verified_primary",
+            }
+        ]
+        with pytest.raises(ValueError, match=r"ScopeItem\.eligibility_status"):
+            PayrollResult.from_dict(d)
+
+    def test_scope_item_invalid_source_quality_rejected(
+        self, payroll: PayrollResult
+    ) -> None:
+        """ScopeItem with invalid source_quality value raises ValueError."""
+        d = payroll.to_dict()
+        d["calculation_scope"] = [
+            {
+                "feature": "irpef",
+                "calculation_status": "computed",
+                "integration_status": "included_in_totals",
+                "eligibility_status": "engine_verified",
+                "source_quality": "bad_value",
+            }
+        ]
+        with pytest.raises(ValueError, match=r"ScopeItem\.source_quality"):
             PayrollResult.from_dict(d)
 
     def test_status_invalid_literal_rejected(self, payroll: PayrollResult) -> None:
