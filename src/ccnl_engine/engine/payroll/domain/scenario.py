@@ -477,6 +477,20 @@ class PayrollScenario(BaseModel):
     family: FamilyComposition | None = None
     art15_deductions: Art15Deductions | None = None
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
+    prior_period_irpef_withheld: StrictDecimal | None = None
+
+    @model_validator(mode="after")
+    def _check_prior_irpef(self) -> PayrollScenario:
+        if (
+            self.prior_period_irpef_withheld is not None
+            and self.prior_period_irpef_withheld < _ZERO
+        ):
+            msg = (
+                "prior_period_irpef_withheld must be >= 0, "
+                f"got {self.prior_period_irpef_withheld}"
+            )
+            raise ValueError(msg)
+        return self
 
 
 class PeriodPayrollInput(BaseModel):

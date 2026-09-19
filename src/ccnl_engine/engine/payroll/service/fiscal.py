@@ -76,6 +76,7 @@ class FiscalPay:
     ulteriore_detrazione_lavoro: Decimal
     somma_esente: Decimal
     irpef_net: Decimal
+    conguaglio_annual: Decimal
     trattamento_integrativo: Decimal
     addizionale_regionale: Decimal
     addizionale_comunale: Decimal
@@ -84,6 +85,16 @@ class FiscalPay:
     employer_cost_annual: Decimal
     employer_withholds_irpef: bool
     fiscal_simplifications: frozenset[FiscalSimplification]
+
+
+def _conguaglio(irpef_net: Decimal, prior_withheld: Decimal | None) -> Decimal:
+    """Compute fiscal adjustment (conguaglio) against prior-period withholding.
+
+    Returns:
+        Difference (positive = under-withheld, negative = over-withheld),
+        or zero when no prior figure is supplied.
+    """
+    return money(irpef_net - prior_withheld) if prior_withheld is not None else _ZERO
 
 
 def _inps_exemption(inps_employer_annual: Decimal, raw: Decimal | None) -> Decimal:
@@ -373,6 +384,7 @@ def compute_fiscal(
         )
     )
     irpef_net = irpef_fiscal if employer_withholds_irpef else _ZERO
+    conguaglio_annual = _conguaglio(irpef_net, scenario.prior_period_irpef_withheld)
 
     # Trattamento integrativo (Art. 1 D.L. 3/2020): computed when the tax
     # data file carries the required parameters.
@@ -440,6 +452,7 @@ def compute_fiscal(
             gross.gross_annual
             - inps_employee_annual
             - irpef_net
+            - conguaglio_annual
             - addizionale_regionale
             - addizionale_comunale
             + trattamento_integrativo
@@ -498,6 +511,7 @@ def compute_fiscal(
         ulteriore_detrazione_lavoro=ulteriore_detrazione_lavoro,
         somma_esente=somma_esente_amount,
         irpef_net=irpef_net,
+        conguaglio_annual=conguaglio_annual,
         trattamento_integrativo=trattamento_integrativo,
         addizionale_regionale=addizionale_regionale,
         addizionale_comunale=addizionale_comunale,

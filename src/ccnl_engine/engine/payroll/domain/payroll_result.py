@@ -324,6 +324,7 @@ class Taxes:
     art15_deduction_annual: Decimal
     unused_art15_deduction_annual: Decimal
     sterilizzazione_clawback_annual: Decimal
+    conguaglio_annual: Decimal
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a plain dict.
