@@ -147,22 +147,6 @@ def _not_computed(feature: str) -> ScopeItem:
     )
 
 
-def _informational(
-    feature: str,
-    *,
-    elig: Literal[
-        "engine_verified", "caller_declared", "unknown", "n_a"
-    ] = "engine_verified",
-) -> ScopeItem:
-    return ScopeItem(
-        feature=feature,
-        calculation_status="computed",
-        integration_status="informational_only",
-        eligibility_status=elig,
-        source_quality="verified_primary",
-    )
-
-
 def _partial(
     feature: str,
     *,
@@ -298,13 +282,15 @@ def _work_time_scope(
             scenario.sick_input is not None and scenario.sick_input.sick_days > _ZERO,
             work.wr_sickness_present,
         ),
-        _informational("fringe_benefit")
+        _computed("fringe_benefit")
         if scenario.fringe_benefit_input is not None
         else _excluded("fringe_benefit"),
         _computed("welfare", elig="caller_declared")
         if scenario.welfare_input is not None
         else _excluded("welfare"),
-        _informational("bonus_pdr")
+        _not_computed("bonus_pdr")
+        if scenario.bonus_input is not None and work.bonus_pdr_missing_prior_year
+        else _computed("bonus_pdr")
         if scenario.bonus_input is not None
         else _excluded("bonus_pdr"),
         _computed("bilateral_funds")

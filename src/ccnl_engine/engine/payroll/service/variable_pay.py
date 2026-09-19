@@ -1,12 +1,9 @@
 """Variable-pay computation service (fringe benefits, welfare, PdR bonus).
 
-All outputs are *informational*: ``gross_annual``, ``taxable_income``,
-``net_annual``, and ``irpef_net`` are never mutated.
-
 Fringe benefits (Art. 51 c. 3 TUIR):
     Amounts up to the statutory threshold are fully exempt.  The excess
-    is reported as ``fringe_benefit_taxable_annual``; its IRPEF impact is
-    not computed here (would require extending the L2 fiscal chain).
+    (``fringe_benefit_taxable_annual``) is added to the IRPEF taxable base
+    by the fiscal service.
 
 Welfare (Art. 51 c. 2 TUIR):
     Welfare contributions are unconditionally exempt from IRPEF and
@@ -14,12 +11,13 @@ Welfare (Art. 51 c. 2 TUIR):
     echoes the amount without verifying platform eligibility.
 
 Premio di risultato / Bonus (L. 208/2015 art. 1 cc. 182-190):
-    If the bonus is PdR-eligible and the worker's gross employment income
-    does not exceed the statutory ceiling, a flat substitutive tax applies
-    up to the statutory maximum.  The remaining amount is reported as
-    ordinarily taxable; its IRPEF impact is not recomputed.
-    When the income ceiling is exceeded a warning is appended and the
-    full bonus is reported as ordinarily taxable.
+    If the bonus is PdR-eligible, ``prior_year_gross_annual`` must be
+    supplied; without it the PdR regime cannot be verified and the full
+    amount is treated as ordinarily taxable (``not_computed`` scope item).
+    When eligibility is confirmed, a flat substitutive tax applies up to
+    the statutory maximum; the excess is ordinarily taxable and enters the
+    IRPEF base.  When the prior-year income ceiling is exceeded a warning
+    is appended and the full bonus is ordinarily taxable.
 """
 
 from __future__ import annotations
@@ -86,21 +84,21 @@ def compute_welfare(welfare_input: WelfareInput) -> Decimal:
 def compute_bonus(
     bonus_input: BonusInput,
     pdr_rules: PdRRules,
-    gross_annual: Decimal,
     l3_warnings: list[str],
 ) -> tuple[Decimal, Decimal, Decimal]:
     """Compute PdR flat tax and ordinarily taxable bonus amount.
 
-    When the bonus is not PdR-eligible, the entire amount is reported as
-    ordinarily taxable.  When PdR-eligible but the worker's gross annual
-    income exceeds the statutory ceiling, the PdR regime does not apply
-    and a warning is appended.
+    When the bonus is not PdR-eligible, the entire amount is ordinarily
+    taxable.  When PdR-eligible, ``prior_year_gross_annual`` must be
+    supplied; without it the PdR regime cannot be verified and the full
+    amount is treated as ordinarily taxable (caller should set
+    ``bonus_pdr_missing_prior_year`` and emit a ``not_computed`` scope
+    item).  When the prior-year income ceiling is exceeded a warning is
+    appended and the full bonus is ordinarily taxable.
 
     Args:
         bonus_input: Caller-declared annual bonus and PdR eligibility flag.
         pdr_rules: Statutory PdR parameters for the fiscal year.
-        gross_annual: Worker's gross annual employment income, used to
-            check the income ceiling for PdR eligibility.
         l3_warnings: Mutable list; a warning is appended when the income
             ceiling disqualifies PdR treatment.
 
@@ -117,12 +115,13 @@ def compute_bonus(
     if not bonus_input.eligible_for_pdr:
         return amount, _ZERO, amount
 
-    # R16: use prior-year gross for the ceiling check when provided.
-    ceiling_income = (
-        bonus_input.prior_year_gross_annual
-        if bonus_input.prior_year_gross_annual is not None
-        else gross_annual
-    )
+    # R16: prior_year_gross_annual is required for PdR ceiling check.
+    # When absent the caller treats the bonus as not_computed and passes
+    # all-ordinary; this branch handles the "prior year provided" path only.
+    if bonus_input.prior_year_gross_annual is None:
+        return amount, _ZERO, amount
+
+    ceiling_income = bonus_input.prior_year_gross_annual
     if ceiling_income > pdr_rules.income_ceiling:
         l3_warnings.append(
             "bonus_input: PdR regime not applicable — income "

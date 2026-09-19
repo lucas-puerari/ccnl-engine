@@ -131,7 +131,6 @@ class TestComputeBonus:
         annual, flat_tax, ordinary = compute_bonus(
             BonusInput(annual_amount=_ZERO, eligible_for_pdr=True),
             _standard_pdr_rules(),
-            gross_annual=_D("30000"),
             l3_warnings=warnings,
         )
         assert annual == _ZERO
@@ -145,7 +144,6 @@ class TestComputeBonus:
         annual, flat_tax, ordinary = compute_bonus(
             BonusInput(annual_amount=_D("2000"), eligible_for_pdr=False),
             _standard_pdr_rules(),
-            gross_annual=_D("30000"),
             l3_warnings=warnings,
         )
         assert annual == _D("2000")
@@ -153,16 +151,31 @@ class TestComputeBonus:
         assert ordinary == _D("2000")
         assert warnings == []
 
+    def test_pdr_eligible_missing_prior_year_returns_all_ordinary(self) -> None:
+        """PdR eligible but no prior_year_gross_annual: all ordinary, no flat tax."""
+        warnings: list[str] = []
+        annual, flat_tax, ordinary = compute_bonus(
+            BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+            _standard_pdr_rules(),
+            l3_warnings=warnings,
+        )
+        assert annual == _D("2000")
+        assert flat_tax == _ZERO
+        assert ordinary == _D("2000")
+
     def test_pdr_eligible_below_ceiling_below_max(self) -> None:
-        """R16: PdR eligible, income within ceiling, bonus within max amount.
+        """R16: PdR eligible with prior year within ceiling, bonus within max amount.
 
         bonus=2000, flat_tax=2000*0.01=20, ordinary=0.
         """
         warnings: list[str] = []
         annual, flat_tax, ordinary = compute_bonus(
-            BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+            BonusInput(
+                annual_amount=_D("2000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("50000"),
+            ),
             _standard_pdr_rules(),
-            gross_annual=_D("50000"),
             l3_warnings=warnings,
         )
         assert annual == _D("2000")
@@ -177,9 +190,12 @@ class TestComputeBonus:
         """
         warnings: list[str] = []
         annual, flat_tax, ordinary = compute_bonus(
-            BonusInput(annual_amount=_D("6000"), eligible_for_pdr=True),
+            BonusInput(
+                annual_amount=_D("6000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("50000"),
+            ),
             _standard_pdr_rules(),
-            gross_annual=_D("50000"),
             l3_warnings=warnings,
         )
         assert annual == _D("6000")
@@ -188,12 +204,15 @@ class TestComputeBonus:
         assert warnings == []
 
     def test_pdr_eligible_income_above_ceiling_emits_warning(self) -> None:
-        """PdR eligible but income > €80.000: warning emitted, all ordinary."""
+        """PdR eligible but prior-year income > ceiling: warning, all ordinary."""
         warnings: list[str] = []
         annual, flat_tax, ordinary = compute_bonus(
-            BonusInput(annual_amount=_D("2000"), eligible_for_pdr=True),
+            BonusInput(
+                annual_amount=_D("2000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("90000"),
+            ),
             _standard_pdr_rules(),
-            gross_annual=_D("90000"),
             l3_warnings=warnings,
         )
         assert annual == _D("2000")
@@ -203,12 +222,15 @@ class TestComputeBonus:
         assert "ceiling" in warnings[0]
 
     def test_pdr_eligible_income_exactly_at_ceiling(self) -> None:
-        """R16: Income exactly at €80.000 ceiling: PdR regime applies (not exceeded)."""
+        """R16: Prior-year income exactly at €80.000 ceiling: PdR regime applies."""
         warnings: list[str] = []
         _, flat_tax, ordinary = compute_bonus(
-            BonusInput(annual_amount=_D("1000"), eligible_for_pdr=True),
+            BonusInput(
+                annual_amount=_D("1000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("80000"),
+            ),
             _standard_pdr_rules(),
-            gross_annual=_D("80000"),
             l3_warnings=warnings,
         )
         assert flat_tax == _D("10.00")
@@ -216,10 +238,8 @@ class TestComputeBonus:
         assert warnings == []
 
     def test_prior_year_gross_used_for_ceiling_check(self) -> None:
-        """R16: prior_year_gross_annual overrides gross_annual for ceiling check."""
+        """R16: prior_year_gross_annual is the authoritative ceiling check value."""
         warnings: list[str] = []
-        # Current year gross is 50 000 (within ceiling), but prior year was 90 000
-        # (above ceiling). PdR regime must NOT apply.
         _, flat_tax, ordinary = compute_bonus(
             BonusInput(
                 annual_amount=_D("2000"),
@@ -227,7 +247,6 @@ class TestComputeBonus:
                 prior_year_gross_annual=_D("90000"),
             ),
             _standard_pdr_rules(),
-            gross_annual=_D("50000"),
             l3_warnings=warnings,
         )
         assert flat_tax == _ZERO

@@ -2218,7 +2218,9 @@ class TestL3VariablePay:
         scenario = _req().model_copy(
             update={
                 "bonus_input": BonusInput(
-                    annual_amount=_D("2000"), eligible_for_pdr=True
+                    annual_amount=_D("2000"),
+                    eligible_for_pdr=True,
+                    prior_year_gross_annual=_D("50000"),
                 )
             }
         )
@@ -2234,7 +2236,7 @@ class TestL3VariablePay:
         assert result.bonus_ordinary_taxable_annual == _D("0")
 
     def test_gross_annual_not_mutated_by_variable_pay(self) -> None:
-        """gross_annual and net_annual are unchanged with variable-pay inputs."""
+        """gross_annual is unchanged; fringe (above threshold) raises taxable_income."""
         baseline = estimate_annual(_req()).result
         with_inputs = estimate_annual(
             _req().model_copy(
@@ -2244,15 +2246,20 @@ class TestL3VariablePay:
                     ),
                     "welfare_input": WelfareInput(annual_amount=_D("600")),
                     "bonus_input": BonusInput(
-                        annual_amount=_D("2000"), eligible_for_pdr=True
+                        annual_amount=_D("2000"),
+                        eligible_for_pdr=True,
+                        prior_year_gross_annual=_D("50000"),
                     ),
                 }
             )
         ).result
+        # gross_annual (base salary) is never altered by variable-pay inputs
         assert with_inputs.earnings.gross_annual == baseline.earnings.gross_annual
-        assert with_inputs.net_annual == baseline.net_annual
-        assert with_inputs.taxes.taxable_income == baseline.taxes.taxable_income
-        assert with_inputs.taxes.irpef_net == baseline.taxes.irpef_net
+        # fringe above threshold (€1400 > €1000) adds to taxable_income
+        assert with_inputs.taxes.taxable_income > baseline.taxes.taxable_income
+        # higher taxable_income means more IRPEF and lower net
+        assert with_inputs.taxes.irpef_net > baseline.taxes.irpef_net
+        assert with_inputs.net_annual < baseline.net_annual
 
     def test_welfare_only_does_not_register_variable_pay_ruleset(self) -> None:
         """A welfare-only scenario must not include variable_pay in ruleset_version.
@@ -3246,11 +3253,11 @@ class TestConfidenceWithOptionalRulesets:
     def test_verified_var_pay_ruleset_does_not_downgrade_confidence(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Verified var-pay ruleset + fringe_benefit (informational_only) → medium.
+        """Verified var-pay ruleset + fringe_benefit (below threshold) → high.
 
-        fringe_benefit is always integration_status=informational_only, so
-        result.coverage.status is "partial" and confidence tops out at "medium".  A
-        verified ruleset does not degrade confidence further.
+        fringe_benefit below threshold is integration_status=included_in_totals
+        (taxable amount is zero), so result.coverage.status is "complete" when
+        all provenance and rulesets are verified → confidence reaches "high".
         """
         _mock_ccnl[0] = _verified_ccnl()
         verified = _var_pay_rules(VerificationStatus.VERIFIED)
@@ -3261,7 +3268,7 @@ class TestConfidenceWithOptionalRulesets:
         result = estimate_annual(
             _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
         )
-        assert result.result.coverage.confidence == "medium"
+        assert result.result.coverage.confidence == "high"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch
