@@ -227,6 +227,7 @@ def _fiscal_scope(
     arrears = scenario.contract_renewal_arrears_annual
     una_tantum = scenario.una_tantum_annual
     withholdings = scenario.personal_withholdings_annual
+    extra_irpef = scenario.additional_irpef_base_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -242,6 +243,7 @@ def _fiscal_scope(
         _caller_declared_or_excluded("contract_renewal_arrears", arrears),
         _caller_declared_or_excluded("una_tantum", una_tantum),
         _caller_declared_or_excluded("personal_withholdings", withholdings),
+        _caller_declared_or_excluded("additional_irpef_base", extra_irpef),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
         (

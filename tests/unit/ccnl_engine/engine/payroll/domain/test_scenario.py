@@ -644,3 +644,26 @@ class TestPersonalWithholdings:
         """Negative personal_withholdings_annual is rejected."""
         with pytest.raises(ValidationError, match="personal_withholdings_annual"):
             _base_scenario(personal_withholdings_annual=Decimal(-1))
+
+
+class TestAdditionalIrpefBase:
+    """PayrollScenario additional_irpef_base_annual field validation."""
+
+    def test_additional_irpef_base_none_by_default(self) -> None:
+        """additional_irpef_base_annual defaults to None."""
+        assert _base_scenario().additional_irpef_base_annual is None
+
+    def test_additional_irpef_base_zero_accepted(self) -> None:
+        """additional_irpef_base_annual=0 is valid."""
+        s = _base_scenario(additional_irpef_base_annual=Decimal(0))
+        assert s.additional_irpef_base_annual == Decimal(0)
+
+    def test_additional_irpef_base_positive_accepted(self) -> None:
+        """A positive additional_irpef_base_annual is accepted."""
+        s = _base_scenario(additional_irpef_base_annual=Decimal("1200.00"))
+        assert s.additional_irpef_base_annual == Decimal("1200.00")
+
+    def test_negative_additional_irpef_base_raises(self) -> None:
+        """Negative additional_irpef_base_annual is rejected."""
+        with pytest.raises(ValidationError, match="additional_irpef_base_annual"):
+            _base_scenario(additional_irpef_base_annual=Decimal(-1))
