@@ -22,9 +22,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
-    from ccnl_engine.engine.payroll.domain.payroll_result import (
-        AnnualEstimate as PayrollResult,
-    )
+    from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 
 
@@ -53,7 +51,7 @@ def count_affected_scenarios(
     Each scenario is run twice: once with ``Employment.calculation_date`` set
     to *from_date* and once with *to_date*.  A scenario is *affected* when
     any :class:`~ccnl_engine.engine.payroll.domain.payroll_result.\
-PayrollResult` field (other than ``as_of``) differs between the two runs.
+AnnualEstimate` field (other than ``as_of``) differs between the two runs.
 
     Computation errors are tracked in ``ImpactResult.failed`` so callers can
     distinguish "no change" from "all scenarios errored".
@@ -84,7 +82,7 @@ def _compute_pair(
     scenario: PayrollScenario,
     from_date: date,
     to_date: date,
-) -> tuple[PayrollResult, PayrollResult] | None:
+) -> tuple[AnnualEstimate, AnnualEstimate] | None:
     """Run *scenario* at both dates.
 
     Returns:
@@ -102,7 +100,7 @@ def _compute_pair(
     return before_result, after_result
 
 
-def _results_differ(before: PayrollResult, after: PayrollResult) -> bool:
+def _results_differ(before: AnnualEstimate, after: AnnualEstimate) -> bool:
     """Return True if any field other than ``as_of`` differs.
 
     Returns:

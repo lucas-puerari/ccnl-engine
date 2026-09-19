@@ -347,7 +347,7 @@ class PayrollScenario(BaseModel):
             spese sanitarie): for reddito complessivo > EUR 200 000 the
             credit is reduced by EUR 440. The resulting clawback is
             reported in
-            ``PayrollResult.sterilizzazione_clawback_annual``.
+            ``AnnualEstimate.sterilizzazione_clawback_annual``.
         bilateral_funds: Scenario-level bilateral fund contributions (fondi
             bilaterali). Each entry is either a fixed monthly amount
             (:class:`~ccnl_engine.engine.payroll.domain.bilateral_funds\

@@ -24,13 +24,13 @@ Minimal call: load a CCNL, build an `Employee`, call `estimate_annual()`.
 --8 < --"docs/examples/01_quickstart.py"
 ```
 
-### Reading the PayrollResult
+### Reading the AnnualEstimate
 
 `estimate_annual()` returns a `Calculation`: a frozen dataclass that bundles the
-`PayrollResult` (`calculation.result`) with the engine version, the CCNL / tax / INPS /
+`AnnualEstimate` (`calculation.result`) with the engine version, the CCNL / tax / INPS /
 surtax ruleset revisions used (`calculation.ruleset_version`) and a snapshot of
 the inputs (`calculation.input_snapshot`). Attribute reads are forwarded onto
-the `PayrollResult`, so `calculation.net_annual` works too.
+the `AnnualEstimate`, so `calculation.net_annual` works too.
 
 ```python
 --8 < --"docs/examples/02_payroll_fields.py"

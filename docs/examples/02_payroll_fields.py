@@ -1,6 +1,6 @@
-"""Reading the PayrollResult: key output fields and their meaning.
+"""Reading the AnnualEstimate: key output fields and their meaning.
 
-estimate_annual() returns a Calculation that bundles the PayrollResult
+estimate_annual() returns a Calculation that bundles the AnnualEstimate
 (``calculation.result``) with the engine version, the ruleset revisions
 used and a snapshot of the inputs. This example walks through the most
 commonly used fields and the grouped views (.pay, .tax, .employer).
@@ -85,7 +85,7 @@ employee_snap = cast("dict[str, object]", snapshot_scenario["employee"])
 assert employee_snap["level_code"] == "C2"
 
 # --- Rule provenance chain ---
-# PayrollResult.provenance is an ordered tuple of RuleProvenance objects — one
+# AnnualEstimate.provenance is an ordered tuple of RuleProvenance objects — one
 # per rule that actually contributed to the computed pay (level declaration,
 # active salary-period tranche, each applied allowance, seniority rule).
 # Every entry links back to the primary source document and section.

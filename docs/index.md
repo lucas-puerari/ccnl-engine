@@ -43,7 +43,7 @@ Every result carries three verifiability layers:
    INPS circular, tax schedule) with a URL, section, and verification status.
 2. **Versioning** — `calculation.ruleset_version` records the exact knowledge-base
    snapshot, so any figure can be reproduced verbatim after a CCNL renewal.
-3. **Scope** — `PayrollResult.calculation_scope` declares every feature as
+3. **Scope** — `AnnualEstimate.calculation_scope` declares every feature as
    `verified`, `excluded`, or `not_computed`, so callers are never silently wrong.
 
 ```python
@@ -98,7 +98,7 @@ or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
 - Art. 15 mortgage-interest deduction — `Art15Deductions`
 - Regional/municipal surtax — `Jurisdiction` (omitting it excludes surtax and reports it in `calculation_scope`)
 
-Every gap is reported in `PayrollResult.warnings` or `calculation_scope` so
+Every gap is reported in `AnnualEstimate.warnings` or `calculation_scope` so
 callers are never silently wrong.
 
 ---

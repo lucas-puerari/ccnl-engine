@@ -1,4 +1,4 @@
-"""Fiscal simplification tags for PayrollResult."""
+"""Fiscal simplification tags for AnnualEstimate."""
 
 from enum import StrEnum
 

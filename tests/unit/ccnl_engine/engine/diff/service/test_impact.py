@@ -49,7 +49,7 @@ def _scenario(
 
 
 class TestResultsDiffer:
-    """_results_differ compares two PayrollResult-like objects field by field."""
+    """_results_differ compares two AnnualEstimate-like objects field by field."""
 
     def test_identical_results_not_different(self) -> None:
         """Two compute() calls at the same date produce identical results."""

@@ -158,12 +158,12 @@ class AbsenceDays(BaseModel):
     (assenza non retribuita). The engine computes the deduction
     based on the per-CCNL daily divisor method and reports it
     as :attr:`~ccnl_engine.engine.payroll.domain.payroll_result\
-.PayrollResult.absence_deduction_monthly`.
+.AnnualEstimate.absence_deduction_monthly`.
 
     The deduction is informational: ``gross_annual`` and ``net_annual``
     are not mutated. Use
     :attr:`~ccnl_engine.engine.payroll.domain.payroll_result\
-.PayrollResult.effective_gross_monthly` for the net-of-absence figure.
+.AnnualEstimate.effective_gross_monthly` for the net-of-absence figure.
 
     Attributes:
         unpaid_days: Days absent without pay in the period. Must be >= 0.

@@ -1,7 +1,7 @@
 """Calculation provenance: what a payroll computation used and how to replay it.
 
 A :class:`Calculation` wraps the
-:class:`~ccnl_engine.engine.payroll.domain.payroll_result.PayrollResult` with
+:class:`~ccnl_engine.engine.payroll.domain.payroll_result.AnnualEstimate` with
 everything needed to reproduce it later: the engine version that ran it, the
 identity/version of every ruleset it consumed, and a serialisable snapshot of
 the raw inputs. The snapshot can be serialised to JSON and, given the same
@@ -84,7 +84,7 @@ def _dump(value: object) -> object:  # ruff: ignore[too-many-return-statements]
     """Convert an input value to a JSON-native object (lossless round-trip).
 
     Any key named ``source_hash`` is not special here; this helper only shapes
-    values for :class:`InputSnapshot`, mirroring :meth:`PayrollResult.to_dict`
+    values for :class:`InputSnapshot`, mirroring :meth:`AnnualEstimate.to_dict`
     for the richer input dataclasses.
 
     Returns:
@@ -690,7 +690,7 @@ class InputSnapshot:
     """Serialisable, lossless copy of the inputs to one payroll computation.
 
     Attributes:
-        ccnl_id: Identifier of the CCNL used (mirrors ``PayrollResult.ccnl_id``).
+        ccnl_id: Identifier of the CCNL used (mirrors ``AnnualEstimate.ccnl_id``).
         tax_sector: INPS tax-sector classification used to load tax rules.
         year: Fiscal/tax year of the computation (from ``YearRules.year``).
         uses_surtax: ``True`` when addizionale rules were applied.
