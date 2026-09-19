@@ -216,6 +216,8 @@ def _build_contributions(fiscal: object) -> Contributions:
         tfr_annual=f.tfr_annual,
         bilateral_employee_annual=f.bilateral_employee_annual,
         bilateral_employer_annual=f.bilateral_employer_annual,
+        health_fund_employee_annual=f.health_fund_employee_annual,
+        health_fund_employer_annual=f.health_fund_employer_annual,
     )
 
 

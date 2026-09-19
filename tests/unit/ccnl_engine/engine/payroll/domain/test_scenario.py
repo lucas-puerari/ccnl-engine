@@ -667,3 +667,49 @@ class TestAdditionalIrpefBase:
         """Negative additional_irpef_base_annual is rejected."""
         with pytest.raises(ValidationError, match="additional_irpef_base_annual"):
             _base_scenario(additional_irpef_base_annual=Decimal(-1))
+
+
+class TestHealthFundEmployee:
+    """PayrollScenario health_fund_employee_annual field validation."""
+
+    def test_health_fund_employee_none_by_default(self) -> None:
+        """health_fund_employee_annual defaults to None."""
+        assert _base_scenario().health_fund_employee_annual is None
+
+    def test_health_fund_employee_zero_accepted(self) -> None:
+        """health_fund_employee_annual=0 is valid."""
+        s = _base_scenario(health_fund_employee_annual=Decimal(0))
+        assert s.health_fund_employee_annual == Decimal(0)
+
+    def test_health_fund_employee_positive_accepted(self) -> None:
+        """A positive health_fund_employee_annual is accepted."""
+        s = _base_scenario(health_fund_employee_annual=Decimal("240.00"))
+        assert s.health_fund_employee_annual == Decimal("240.00")
+
+    def test_negative_health_fund_employee_raises(self) -> None:
+        """Negative health_fund_employee_annual is rejected."""
+        with pytest.raises(ValidationError, match="health_fund_employee_annual"):
+            _base_scenario(health_fund_employee_annual=Decimal(-1))
+
+
+class TestHealthFundEmployer:
+    """PayrollScenario health_fund_employer_annual field validation."""
+
+    def test_health_fund_employer_none_by_default(self) -> None:
+        """health_fund_employer_annual defaults to None."""
+        assert _base_scenario().health_fund_employer_annual is None
+
+    def test_health_fund_employer_zero_accepted(self) -> None:
+        """health_fund_employer_annual=0 is valid."""
+        s = _base_scenario(health_fund_employer_annual=Decimal(0))
+        assert s.health_fund_employer_annual == Decimal(0)
+
+    def test_health_fund_employer_positive_accepted(self) -> None:
+        """A positive health_fund_employer_annual is accepted."""
+        s = _base_scenario(health_fund_employer_annual=Decimal("480.00"))
+        assert s.health_fund_employer_annual == Decimal("480.00")
+
+    def test_negative_health_fund_employer_raises(self) -> None:
+        """Negative health_fund_employer_annual is rejected."""
+        with pytest.raises(ValidationError, match="health_fund_employer_annual"):
+            _base_scenario(health_fund_employer_annual=Decimal(-1))

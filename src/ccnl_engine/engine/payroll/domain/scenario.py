@@ -492,6 +492,8 @@ class PayrollScenario(BaseModel):
     una_tantum_annual: StrictDecimal | None = None
     personal_withholdings_annual: StrictDecimal | None = None
     additional_irpef_base_annual: StrictDecimal | None = None
+    health_fund_employee_annual: StrictDecimal | None = None
+    health_fund_employer_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -522,6 +524,12 @@ class PayrollScenario(BaseModel):
         )
         _check_optional_non_negative(
             "additional_irpef_base_annual", self.additional_irpef_base_annual
+        )
+        _check_optional_non_negative(
+            "health_fund_employee_annual", self.health_fund_employee_annual
+        )
+        _check_optional_non_negative(
+            "health_fund_employer_annual", self.health_fund_employer_annual
         )
         return self
 
