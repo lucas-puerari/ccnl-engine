@@ -483,3 +483,26 @@ class TestPriorIrpefWithheld:
         """Negative prior_period_irpef_withheld is rejected."""
         with pytest.raises(ValidationError, match="prior_period_irpef_withheld"):
             _base_scenario(prior_period_irpef_withheld=Decimal(-1))
+
+
+class TestMaternityIndemnity:
+    """PayrollScenario.maternity_inps_indemnity_annual validation."""
+
+    def test_maternity_none_by_default(self) -> None:
+        """maternity_inps_indemnity_annual defaults to None."""
+        assert _base_scenario().maternity_inps_indemnity_annual is None
+
+    def test_maternity_zero_accepted(self) -> None:
+        """maternity_inps_indemnity_annual=0 is valid."""
+        s = _base_scenario(maternity_inps_indemnity_annual=Decimal(0))
+        assert s.maternity_inps_indemnity_annual == Decimal(0)
+
+    def test_maternity_positive_accepted(self) -> None:
+        """A positive maternity_inps_indemnity_annual is accepted."""
+        s = _base_scenario(maternity_inps_indemnity_annual=Decimal("3200.00"))
+        assert s.maternity_inps_indemnity_annual == Decimal("3200.00")
+
+    def test_negative_maternity_raises(self) -> None:
+        """Negative maternity_inps_indemnity_annual is rejected."""
+        with pytest.raises(ValidationError, match="maternity_inps_indemnity_annual"):
+            _base_scenario(maternity_inps_indemnity_annual=Decimal(-1))

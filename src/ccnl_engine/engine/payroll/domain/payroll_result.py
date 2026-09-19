@@ -273,6 +273,7 @@ class Contributions:
     inps_employer_annual: Decimal
     inail_employer_annual: Decimal
     inps_employer_exemption_annual: Decimal
+    maternity_inps_indemnity_annual: Decimal
     employer_funds_annual: Decimal
     tfr_annual: Decimal
     bilateral_employee_annual: Decimal

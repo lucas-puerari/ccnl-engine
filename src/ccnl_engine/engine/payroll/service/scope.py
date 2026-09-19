@@ -214,6 +214,7 @@ def _fiscal_scope(
     inail_rate = scenario.employment.employer.inail_rate
     exemption = scenario.employment.employer.inps_employer_exemption_annual
     prior_irpef = scenario.prior_period_irpef_withheld
+    maternity = scenario.maternity_inps_indemnity_annual
     return [
         _computed("base_salary"),
         _computed("seniority"),
@@ -241,6 +242,15 @@ def _fiscal_scope(
             )
             if prior_irpef is not None
             else _excluded("fiscal_adjustment")
+        ),
+        (
+            _computed(
+                "maternity_leave",
+                elig="caller_declared",
+                qual="estimated",
+            )
+            if maternity is not None
+            else _excluded("maternity_leave")
         ),
         _computed("tfr"),
         _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),

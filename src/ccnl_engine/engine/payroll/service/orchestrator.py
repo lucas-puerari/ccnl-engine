@@ -209,6 +209,7 @@ def _build_contributions(fiscal: object) -> Contributions:
         inps_employer_annual=f.inps_employer_annual,
         inail_employer_annual=f.inail_employer_annual,
         inps_employer_exemption_annual=f.inps_employer_exemption_annual,
+        maternity_inps_indemnity_annual=f.maternity_inps_indemnity_annual,
         employer_funds_annual=f.employer_funds_annual,
         tfr_annual=f.tfr_annual,
         bilateral_employee_annual=f.bilateral_employee_annual,

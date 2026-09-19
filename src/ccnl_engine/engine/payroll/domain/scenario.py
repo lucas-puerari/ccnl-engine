@@ -478,6 +478,7 @@ class PayrollScenario(BaseModel):
     art15_deductions: Art15Deductions | None = None
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
     prior_period_irpef_withheld: StrictDecimal | None = None
+    maternity_inps_indemnity_annual: StrictDecimal | None = None
 
     @model_validator(mode="after")
     def _check_prior_irpef(self) -> PayrollScenario:
@@ -488,6 +489,15 @@ class PayrollScenario(BaseModel):
             msg = (
                 "prior_period_irpef_withheld must be >= 0, "
                 f"got {self.prior_period_irpef_withheld}"
+            )
+            raise ValueError(msg)
+        if (
+            self.maternity_inps_indemnity_annual is not None
+            and self.maternity_inps_indemnity_annual < _ZERO
+        ):
+            msg = (
+                "maternity_inps_indemnity_annual must be >= 0, "
+                f"got {self.maternity_inps_indemnity_annual}"
             )
             raise ValueError(msg)
         return self
