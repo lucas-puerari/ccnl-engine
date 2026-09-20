@@ -1,7 +1,7 @@
 """Hatchling build hook: compress JSON data files into .json.gz for the wheel.
 
 Only active for standard wheel builds (not editable installs or sdists).
-Each .json file in the four knowledge data directories is compressed with
+Each .json file in the five knowledge data directories is compressed with
 gzip (level 9, mtime=0 for reproducibility) and injected into the wheel via
 force_include.
 The plain .json files are excluded from the wheel by the pyproject.toml
@@ -23,6 +23,10 @@ _DATA_DIRS: list[tuple[str, str]] = [
     ("ccnl_engine/knowledge/tax/data", "src/ccnl_engine/knowledge/tax/data"),
     ("ccnl_engine/knowledge/inps/data", "src/ccnl_engine/knowledge/inps/data"),
     ("ccnl_engine/knowledge/surtax/data", "src/ccnl_engine/knowledge/surtax/data"),
+    (
+        "ccnl_engine/knowledge/capabilities/data",
+        "src/ccnl_engine/knowledge/capabilities/data",
+    ),
 ]
 
 

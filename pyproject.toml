@@ -169,6 +169,7 @@ exclude = [
     "src/ccnl_engine/knowledge/tax/data/*.json",
     "src/ccnl_engine/knowledge/inps/data/*.json",
     "src/ccnl_engine/knowledge/surtax/data/*.json",
+    "src/ccnl_engine/knowledge/capabilities/data/*.json",
 ]
 
 [tool.hatch.build.targets.sdist]

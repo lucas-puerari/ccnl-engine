@@ -67,3 +67,15 @@ class TestBundledKnowledgeRepository:
             lambda _: sentinel,
         )
         assert repo.load_surtax_rules(2026) is sentinel
+
+    def test_load_capability_catalog_delegates(
+        self, repo: BundledKnowledgeRepository, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """load_capability_catalog delegates to load_capability_catalog function."""
+        sentinel = object()
+        monkeypatch.setattr(
+            "ccnl_engine.engine.io.service.bundled_knowledge_repository"
+            ".load_capability_catalog",
+            lambda _: sentinel,
+        )
+        assert repo.load_capability_catalog(2026) is sentinel
