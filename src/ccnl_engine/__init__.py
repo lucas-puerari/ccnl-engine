@@ -128,6 +128,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
+    compute_period_payroll,
     estimate_annual,
     estimate_period_effects,
 )
@@ -198,6 +199,7 @@ __all__ = [
     "WelfareInput",
     "YTDState",
     "compute",
+    "compute_period_payroll",
     "engine_version",
     "estimate_annual",
     "estimate_period_effects",

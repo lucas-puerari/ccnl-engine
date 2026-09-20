@@ -64,6 +64,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "WelfareInput",
     "WeeklyOvertimeHours",
     "compute",
+    "compute_period_payroll",
     "engine_version",
     "estimate_annual",
     "estimate_period_effects",

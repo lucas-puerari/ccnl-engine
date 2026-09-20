@@ -25,7 +25,12 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     PeriodPayroll,
     Taxes,
 )
+from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
+from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PeriodPayrollRequest,
+    PeriodPayrollResult,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
     AnnualizedAssumption,
@@ -46,6 +51,7 @@ from ccnl_engine.engine.payroll.service.ledger_builder import (
     post_variable_pay,
 )
 from ccnl_engine.engine.payroll.service.reconciliation import ReconciliationService
+from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.scope import (
     build_scope,
     compute_confidence,
@@ -63,6 +69,7 @@ if TYPE_CHECKING:
 _default_repo: BundledKnowledgeRepository = BundledKnowledgeRepository()
 
 _IVS_CEILING_THRESHOLD = date(1996, 1, 1)
+_ZERO = Decimal(0)
 
 
 def _ivs_date_msg(hire_date: date) -> str | None:
@@ -166,7 +173,6 @@ def _net_monthly(ledger: Ledger, gross: object) -> Decimal:
         Decimal net monthly.
     """
     from ccnl_engine.engine.payroll.service.gross import GrossPay  # noqa: PLC0415
-    from ccnl_engine.engine.payroll.service.rounding import money  # noqa: PLC0415
 
     assert isinstance(gross, GrossPay)
     return money(ledger.total(AccountKind.NET_PAY) / gross.additional_months)
@@ -723,3 +729,110 @@ def compute_year(
         ytd = _accrue_ytd(ytd, calc)
         results.append(calc)
     return results
+
+
+def compute_period_payroll(
+    request: PeriodPayrollRequest,
+    bundle: PayrollBundle | None = None,
+) -> PeriodPayrollResult:
+    """Compute a single payroll period with YTD-based conguaglio IRPEF.
+
+    Injects the real cumulative IRPEF withheld from ``request.opening_state``
+    into the fiscal chain so the period conguaglio is computed against actual
+    YTD withholdings rather than zero.  Pass ``PayrollState.zero()`` as
+    ``opening_state`` for the first period of the year (January).
+
+    The closing YTD state can be passed directly as the ``opening_state`` of
+    the next :class:`~PeriodPayrollRequest`.
+
+    Args:
+        request: Period payroll request: structural scenario, period events,
+            and the YTD opening state accumulated from all prior periods.
+        bundle: Optional pre-loaded knowledge bundle.  When ``None``,
+            rulesets are loaded on demand.
+
+    Returns:
+        A :class:`~PeriodPayrollResult` with the opening and closing YTD
+        states, the key period figures, and all ledger entries.
+    """
+    opening = request.opening_state
+    scenario = _annual_to_scenario(request.structural, request.period)
+    if opening.irpef_withheld_ytd != _ZERO:
+        scenario = scenario.model_copy(
+            update={"prior_period_irpef_withheld": opening.irpef_withheld_ytd}
+        )
+    calc = compute(scenario, bundle)
+    r = calc.result
+    twelve = Decimal(12)
+    period_gross = money(r.earnings.gross_annual / twelve)
+    period_net = r.net_monthly
+    period_employer_cost = money(r.employer_cost.employer_cost_annual / twelve)
+    period_leave_accrued = (
+        r.leave_accrued_days_monthly if isinstance(r, PeriodPayroll) else _ZERO
+    )
+    period_leave_taken = (
+        r.leave_taken_days_monthly if isinstance(r, PeriodPayroll) else _ZERO
+    )
+    period_sick = r.sick_days_monthly if isinstance(r, PeriodPayroll) else _ZERO
+    new_leave_accrued = opening.leave_accrued_days_ytd + period_leave_accrued
+    new_leave_taken = opening.leave_taken_days_ytd + period_leave_taken
+    closing = PayrollState(
+        gross_annual_ytd=opening.gross_annual_ytd + period_gross,
+        inps_employee_annual_ytd=(
+            opening.inps_employee_annual_ytd
+            + money(r.contributions.inps_employee_annual / twelve)
+        ),
+        inps_employer_annual_ytd=(
+            opening.inps_employer_annual_ytd
+            + money(r.contributions.inps_employer_annual / twelve)
+        ),
+        inail_employer_annual_ytd=(
+            opening.inail_employer_annual_ytd
+            + money(r.contributions.inail_employer_annual / twelve)
+        ),
+        taxable_income_ytd=(
+            opening.taxable_income_ytd + money(r.taxes.taxable_income / twelve)
+        ),
+        irpef_gross_ytd=(opening.irpef_gross_ytd + money(r.taxes.irpef_gross / twelve)),
+        irpef_withheld_ytd=(
+            opening.irpef_withheld_ytd + money(r.taxes.irpef_net / twelve)
+        ),
+        work_income_deduction_ytd=(
+            opening.work_income_deduction_ytd
+            + money(r.taxes.work_income_deduction / twelve)
+        ),
+        fam_deductions_ytd=(
+            opening.fam_deductions_ytd + money(r.taxes.family_deduction_annual / twelve)
+        ),
+        art15_deductions_ytd=(
+            opening.art15_deductions_ytd
+            + money(r.taxes.art15_deduction_annual / twelve)
+        ),
+        trattamento_integrativo_ytd=(
+            opening.trattamento_integrativo_ytd
+            + money(r.taxes.trattamento_integrativo / twelve)
+        ),
+        addizionale_regionale_ytd=(
+            opening.addizionale_regionale_ytd
+            + money(r.taxes.addizionale_regionale_annual / twelve)
+        ),
+        addizionale_comunale_ytd=(
+            opening.addizionale_comunale_ytd
+            + money(r.taxes.addizionale_comunale_annual / twelve)
+        ),
+        tfr_annual_ytd=(
+            opening.tfr_annual_ytd + money(r.contributions.tfr_annual / twelve)
+        ),
+        leave_accrued_days_ytd=new_leave_accrued,
+        leave_taken_days_ytd=new_leave_taken,
+        leave_balance_days=new_leave_accrued - new_leave_taken,
+        sick_days_ytd=opening.sick_days_ytd + period_sick,
+    )
+    return PeriodPayrollResult(
+        opening_state=opening,
+        closing_state=closing,
+        period_gross=period_gross,
+        period_net=period_net,
+        period_employer_cost=period_employer_cost,
+        ledger_entries=calc.ledger_entries,
+    )
