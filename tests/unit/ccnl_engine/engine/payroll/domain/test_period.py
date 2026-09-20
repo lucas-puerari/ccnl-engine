@@ -159,7 +159,7 @@ class TestComputePeriod:
         bundle = _make_bundle()
         mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             compute_period(_SCENARIO, PayrollPeriod(year=2026, month=3), bundle)
@@ -195,7 +195,7 @@ class TestComputeYear:
         bundle = _make_bundle()
         mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             compute_year(_SCENARIO, 2026, bundle=bundle)
@@ -234,7 +234,7 @@ class TestComputeYear:
             return original_compute_period(scenario, period, bundle)
 
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator.compute_period",
+            "ccnl_engine.engine.payroll.service.period_service.compute_period",
             side_effect=_capturing,
         ):
             compute_year(_SCENARIO, 2026)

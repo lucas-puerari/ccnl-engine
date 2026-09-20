@@ -54,7 +54,7 @@ def _compute(scenario: object) -> object:
         Calculation result with all gross, net and cost figures.
     """
     with patch(
-        "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
         new=_MOCK_REPO,
     ):
         return compute(scenario)  # type: ignore[arg-type]
