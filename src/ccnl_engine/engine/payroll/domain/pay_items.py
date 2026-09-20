@@ -19,10 +19,27 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
-from enum import StrEnum
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
+
+from ccnl_engine.engine.payroll.domain.treatments import (
+    ContributionTreatment,
+    CostTreatment,
+    TaxTreatment,
+    TfrTreatment,
+)
+
+__all__ = [
+    "CompetencePeriod",
+    "ContributionTreatment",
+    "CostTreatment",
+    "PayItem",
+    "PayItemPolicy",
+    "PolicyDecision",
+    "TaxTreatment",
+    "TfrTreatment",
+]
 
 
 class CompetencePeriod(BaseModel):
@@ -32,47 +49,6 @@ class CompetencePeriod(BaseModel):
 
     year: int
     month: int = Field(ge=1, le=12)
-
-
-# ---------------------------------------------------------------------------
-# Treatment enums
-# ---------------------------------------------------------------------------
-
-
-class TaxTreatment(StrEnum):
-    """How a pay item is treated for IRPEF purposes."""
-
-    ORDINARY = "ordinary"
-    SEPARATE = "separate"
-    SUBSTITUTE = "substitute"
-    EXEMPT = "exempt"
-    NON_CASH_TAXABLE = "non_cash_taxable"
-
-
-class ContributionTreatment(StrEnum):
-    """How a pay item enters the INPS contribution base."""
-
-    INCLUDED = "included"
-    EXCLUDED = "excluded"
-    CAPPED = "capped"
-    SPECIAL_BASE = "special_base"
-
-
-class TfrTreatment(StrEnum):
-    """How a pay item affects the TFR accrual base."""
-
-    INCLUDED = "included"
-    EXCLUDED = "excluded"
-    SPECIAL = "special"
-
-
-class CostTreatment(StrEnum):
-    """Perspective from which the item enters the employer cost."""
-
-    EMPLOYEE_CASH = "employee_cash"
-    EMPLOYER_COST = "employer_cost"
-    THIRD_PARTY_CASH = "third_party_cash"
-    ACCRUAL_ONLY = "accrual_only"
 
 
 # ---------------------------------------------------------------------------
