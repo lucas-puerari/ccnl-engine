@@ -41,6 +41,7 @@ from ccnl_engine.engine.payroll.service.gross import compute_gross
 from ccnl_engine.engine.payroll.service.ledger_builder import (
     post_contributions_and_taxes,
     post_earnings,
+    post_variable_pay,
 )
 from ccnl_engine.engine.payroll.service.scope import (
     build_scope,
@@ -379,6 +380,7 @@ def compute(
     work = compute_work_rules(scenario, ccnl, gross, year)
     fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year, work)
     post_contributions_and_taxes(fiscal, as_of, ledger)
+    post_variable_pay(work, as_of, ledger)
     calculation_scope = build_scope(scenario, fiscal, work, ccnl.coverage)
     provenance = _collect_provenance(
         gross.level,

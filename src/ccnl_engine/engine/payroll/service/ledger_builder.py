@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
     from ccnl_engine.engine.payroll.service.gross import GrossPay
+    from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
 
 _ZERO = Decimal(0)
 
@@ -134,5 +135,88 @@ def post_contributions_and_taxes(
                 pay_item_kind="irpef",
                 account=AccountKind.IRPEF,
                 amount=fiscal.irpef_net,
+            )
+        )
+
+
+def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
+    """Post overtime, absences, bonuses and fringe benefits as ledger entries.
+
+    Supplements (overtime, night, holiday) post to GROSS_EARNINGS as positive
+    amounts.  Absence deductions post to GROSS_EARNINGS as negative amounts.
+    Bonus and taxable fringe benefits post to GROSS_EARNINGS.  Welfare posts
+    to NET_PAY.  Zero-amount entries are silently skipped.
+
+    Args:
+        work: The resolved work-rules pay components.
+        as_of: The competence date used to derive the year/month for the entries.
+        ledger: The ledger to append to.
+    """
+    period = CompetencePeriod(year=as_of.year, month=as_of.month)
+    yymm = f"{period.year}_{period.month:02d}"
+
+    supplement_pairs = (
+        (work.overtime_supp, "overtime_supplement"),
+        (work.night_supp, "night_supplement"),
+        (work.holiday_supp, "holiday_supplement"),
+    )
+    for amount, kind in supplement_pairs:
+        if amount != _ZERO:
+            ledger.append(
+                LedgerEntry(
+                    entry_id=f"{kind}_{yymm}",
+                    competence_period=period,
+                    pay_item_id=f"{kind}_{yymm}",
+                    pay_item_kind=kind,
+                    account=AccountKind.GROSS_EARNINGS,
+                    amount=amount,
+                )
+            )
+
+    if work.absence_deduction_monthly != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"absence_deduction_{yymm}",
+                competence_period=period,
+                pay_item_id=f"absence_deduction_{yymm}",
+                pay_item_kind="absence_deduction",
+                account=AccountKind.GROSS_EARNINGS,
+                amount=-work.absence_deduction_monthly,
+            )
+        )
+
+    if work.bonus_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"bonus_{yymm}",
+                competence_period=period,
+                pay_item_id=f"bonus_{yymm}",
+                pay_item_kind="bonus",
+                account=AccountKind.GROSS_EARNINGS,
+                amount=work.bonus_annual,
+            )
+        )
+
+    if work.fringe_benefit_taxable_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"fringe_benefit_taxable_{yymm}",
+                competence_period=period,
+                pay_item_id=f"fringe_benefit_taxable_{yymm}",
+                pay_item_kind="fringe_benefit_taxable",
+                account=AccountKind.GROSS_EARNINGS,
+                amount=work.fringe_benefit_taxable_annual,
+            )
+        )
+
+    if work.welfare_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"welfare_{yymm}",
+                competence_period=period,
+                pay_item_id=f"welfare_{yymm}",
+                pay_item_kind="welfare",
+                account=AccountKind.NET_PAY,
+                amount=work.welfare_annual,
             )
         )
