@@ -23,10 +23,10 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,
     estimate_annual,
     estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 from tests.helpers import (
     TEST_RULESET_VERIFIED,
@@ -251,7 +251,7 @@ class TestComputeWithBundle:
             "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
-            calc = compute(req, bundle)
+            calc = compute(_annual_to_scenario(req), bundle)
         mock_repo.load_ccnl.assert_not_called()
         mock_repo.load_year_rules.assert_not_called()
         mock_repo.load_surtax_rules.assert_not_called()
@@ -270,7 +270,7 @@ class TestComputeWithBundle:
             "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
-            compute(req, None)
+            compute(_annual_to_scenario(req), None)
         mock_repo.load_ccnl.assert_called_once()
 
     def test_estimate_annual_with_bundle(self) -> None:

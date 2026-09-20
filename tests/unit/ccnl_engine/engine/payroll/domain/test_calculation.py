@@ -11,6 +11,7 @@ from enum import Enum
 import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import (
     _NO_MATCH,
@@ -32,7 +33,6 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
     PeriodPayrollInput,
     TaxPeriod,
 )
@@ -42,7 +42,6 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.assembly import _ruleset_versions
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,
     estimate_annual,
     estimate_period_effects,
 )
@@ -53,6 +52,8 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _CCNL_FILENAME,
     _req,
 )
+
+compute = estimate_annual
 
 # ---------------------------------------------------------------------------
 # Minimal pure dataclass for exercising the legacy dataclass code paths
@@ -100,8 +101,8 @@ def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
     )
 
 
-def _scenario() -> PayrollScenario:
-    return PayrollScenario(
+def _scenario() -> _InternalScenario:
+    return _InternalScenario(
         employee=Employee(
             level_code="4",
             seniority=SeniorityByCount(value=2),
@@ -128,14 +129,14 @@ class TestInputSnapshot:
             uses_surtax=True,
         )
         recovered = snapshot.materialise()
-        assert isinstance(recovered, PayrollScenario)
+        assert isinstance(recovered, _InternalScenario)
         assert snapshot.ccnl_id == "test"
         assert snapshot.year == 2026
         assert snapshot.uses_surtax is True
 
     def test_materialise_preserves_tax_year_override(self) -> None:
         """materialise() round-trips Optional[int] tax_year when non-None."""
-        scenario = PayrollScenario(
+        scenario = _InternalScenario(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl=_CCNL_FILENAME,
@@ -1014,3 +1015,21 @@ class TestResultFromDictPeriodPayroll:
         restored = Calculation.from_dict(raw)
         assert isinstance(restored.result, PeriodPayroll)
         assert restored.result.net_annual == calc.result.net_annual
+
+
+class TestInternalScenarioValidation:
+    """_InternalScenario rejects negative override amounts."""
+
+    def test_negative_prior_irpef_raises(self) -> None:
+        """Negative prior_period_irpef_withheld is rejected by _InternalScenario."""
+        with pytest.raises(Exception, match="prior_period_irpef_withheld"):
+            _InternalScenario(
+                employee=Employee(level_code="4"),
+                employment=Employment(
+                    ccnl=_CCNL_FILENAME,
+                    contract=Permanent(),
+                    employer=Employer(num_employees=50),
+                    as_of=date(2026, 6, 1),
+                ),
+                prior_period_irpef_withheld=Decimal(-1),
+            )

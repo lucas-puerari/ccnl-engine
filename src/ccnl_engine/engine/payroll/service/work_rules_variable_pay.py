@@ -14,7 +14,7 @@ from ccnl_engine.engine.payroll.service.variable_pay import (
 from ccnl_engine.engine.tax.service.loaders import load_variable_pay_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
 
 _ZERO = Decimal(0)
@@ -34,7 +34,7 @@ class _VariablePayResult:
 
 
 def _run_wr_variable_pay(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     year: int,
     wr_warnings: list[str],
 ) -> _VariablePayResult:

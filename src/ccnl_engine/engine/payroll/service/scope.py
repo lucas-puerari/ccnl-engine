@@ -17,7 +17,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.identity import CCNLCoverage
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -275,7 +275,7 @@ def _surtax_scope(
 
 
 def _fiscal_scope(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     fiscal: FiscalPay,
 ) -> list[ScopeItem]:
     """Build scope items for fiscal (L1/L2) features.
@@ -489,7 +489,7 @@ def _fiscal_scope(
 
 
 def _work_time_scope(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     work: WorkRulesPay,
 ) -> list[ScopeItem]:
     """Build scope items for work-time and variable-pay (L3) features.
@@ -560,7 +560,7 @@ def _limitations_scope(ccnl_coverage: CCNLCoverage | None) -> list[ScopeItem]:
 
 
 def build_scope(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     fiscal: FiscalPay,
     work: WorkRulesPay,
     ccnl_coverage: CCNLCoverage | None = None,

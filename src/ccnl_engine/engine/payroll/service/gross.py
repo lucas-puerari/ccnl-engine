@@ -29,17 +29,17 @@ if TYPE_CHECKING:
         LevelCategory,
         SupplementaryAllowance,
     )
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.domain.employee import RalOverrideMode
     from ccnl_engine.engine.payroll.domain.employment import (
         Permanent,
     )
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
 
 _ZERO = Decimal(0)
 
 
 def _resolve_worker_category(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     level: Level,
 ) -> LevelCategory | None:
     """Return the effective worker category.
@@ -61,7 +61,7 @@ def _resolve_chain_and_apprenticeship(
     level: Level,
     contract: Permanent | FixedTerm | Apprentice,
     count: int,
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     as_of: date,
     worker_category: LevelCategory | None,
     seniority_months_val: int | None,
@@ -131,7 +131,7 @@ def _resolve_chain_and_apprenticeship(
 
 
 def _extract_ral_override(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
 ) -> RalOverrideMode | None:
     """Extract the RAL-override mode from the scenario's agreement.
 
@@ -313,7 +313,7 @@ class GrossPay:
     tfr_base: Decimal
 
 
-def compute_gross(scenario: PayrollScenario, ccnl: CCNL) -> GrossPay:
+def compute_gross(scenario: _InternalScenario, ccnl: CCNL) -> GrossPay:
     """Resolve contractual pay and agreed overrides.
 
     Returns:

@@ -11,7 +11,7 @@ from ccnl_engine.engine.payroll.service.sickness import compute_sickness
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates
 
 _ZERO = Decimal(0)
@@ -27,7 +27,7 @@ class _SicknessResult:
 
 
 def _run_wr_sickness(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     sick_pay_rates: InpsSickPayRates | None,
     gross_monthly: Decimal,

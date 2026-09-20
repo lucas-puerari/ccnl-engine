@@ -8,7 +8,7 @@ from ccnl_engine.engine.payroll.service.fiscal_helpers import _vs
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.metadata import RulesetIdentity
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
 
 
@@ -70,7 +70,7 @@ def _collect_fiscal_verifications(
 
 
 def _fiscal_consumed(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     surtax: SurtaxRules | None,
     fam_ruleset: RulesetIdentity | None,
     art15_ruleset: RulesetIdentity | None,

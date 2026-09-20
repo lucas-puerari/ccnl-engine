@@ -30,10 +30,10 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    _annual_to_scenario,
     estimate_annual,
     estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _AS_OF = date(2026, 1, 1)

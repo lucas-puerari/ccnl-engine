@@ -48,7 +48,6 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
 from ccnl_engine.engine.payroll.domain.period_payroll import (
     PeriodPayrollResult as PeriodPayrollResult,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute_payroll_year as compute_payroll_year,
 )
@@ -83,7 +82,6 @@ __all__ = [
     "Taxes",
     "TraceCategory",
     "TraceStep",
-    "compute",
     "compute_payroll_year",
     "compute_period_payroll",
     "render_breakdown",

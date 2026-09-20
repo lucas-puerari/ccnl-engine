@@ -35,7 +35,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import (
         CCNL,
     )
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
@@ -47,7 +47,7 @@ __all__ = ["FiscalPay", "compute_fiscal"]
 
 
 def compute_fiscal(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     rules: YearRules,
     surtax: SurtaxRules | None,

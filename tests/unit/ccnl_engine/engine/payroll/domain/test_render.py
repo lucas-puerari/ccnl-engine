@@ -14,14 +14,13 @@ import pytest
 
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund
-from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
-from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,
-    estimate_annual,
-)
+from ccnl_engine.engine.payroll.domain.scenario import AnnualEstimateInput
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.render import render_breakdown
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import _req
+
+compute = estimate_annual
 
 _DEFAULT_CCNL = make_minimal_ccnl()
 _DEFAULT_RULES = make_year_rules()
@@ -233,7 +232,7 @@ class TestBilateralFunds:
             employee_monthly=Decimal(5),
             employer_monthly=Decimal(3),
         )
-        scenario = PayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=_req().employee,
             employment=_req().employment,
             bilateral_funds=(fund,),
@@ -248,7 +247,7 @@ class TestBilateralFunds:
             employee_monthly=Decimal(5),
             employer_monthly=Decimal(3),
         )
-        scenario = PayrollScenario(
+        scenario = AnnualEstimateInput(
             employee=_req().employee,
             employment=_req().employment,
             bilateral_funds=(fund,),

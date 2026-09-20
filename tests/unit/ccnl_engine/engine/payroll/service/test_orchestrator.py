@@ -41,7 +41,7 @@ from ccnl_engine.engine.payroll.domain.bilateral_funds import (
     FlatMonthlyFund,
     RateFund,
 )
-from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
+from ccnl_engine.engine.payroll.domain.calculation import Calculation, TraceCategory
 from ccnl_engine.engine.payroll.domain.employee import (
     DestinationRalOverride,
     RalOverride,
@@ -68,6 +68,8 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
     Employee,
     Jurisdiction,
+    PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -82,8 +84,8 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.assembly import _collect_provenance
 from ccnl_engine.engine.payroll.service.orchestrator import (
     _ivs_ceiling_warning,
-    compute,
     estimate_annual,
+    estimate_period_effects,
 )
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.scope import (
@@ -146,6 +148,32 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.art15 import Art15DeductionRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
+
+_TEST_TAX_PERIOD = TaxPeriod(
+    start=_DATE,
+    end=date(2026, 12, 31),
+    eligible_work_days=(date(2026, 12, 31) - _DATE).days + 1,
+)
+
+
+def compute(
+    scenario: AnnualEstimateInput,
+    period: PeriodPayrollInput | None = None,
+) -> Calculation:
+    """Route to estimate_period_effects or estimate_annual.
+
+    When calling with a period that has no tax_period set, a test-default
+    TaxPeriod covering the remainder of 2026 from _DATE is injected.
+
+    Returns:
+        Calculation from the appropriate estimator.
+    """
+    if period is not None:
+        if period.tax_period is None:
+            period = period.model_copy(update={"tax_period": _TEST_TAX_PERIOD})
+        return estimate_period_effects(scenario, period)
+    return estimate_annual(scenario)
+
 
 _DEFAULT_CCNL = _build_ccnl()
 _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
@@ -1351,25 +1379,21 @@ class TestR7SubRulesetIdentities:
 
     def test_variable_pay_ruleset_present_with_fringe_benefit_input(self) -> None:
         """R7: fringe benefit input causes variable_pay to appear in ruleset_version."""
-        calc = estimate_annual(
-            _req().model_copy(
-                update={
-                    "fringe_benefit_input": FringeBenefitInput(annual_amount=_D("500"))
-                }
-            )
+        calc = compute(
+            _req(),
+            PeriodPayrollInput(
+                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("500"))
+            ),
         )
         assert "variable_pay" in calc.ruleset_version
 
     def test_variable_pay_ruleset_present_with_bonus_input(self) -> None:
         """R7: bonus input causes variable_pay to appear in ruleset_version."""
-        calc = estimate_annual(
-            _req().model_copy(
-                update={
-                    "bonus_input": BonusInput(
-                        annual_amount=_D("1000"), eligible_for_pdr=False
-                    )
-                }
-            )
+        calc = compute(
+            _req(),
+            PeriodPayrollInput(
+                bonus_input=BonusInput(annual_amount=_D("1000"), eligible_for_pdr=False)
+            ),
         )
         assert "variable_pay" in calc.ruleset_version
 
@@ -1414,11 +1438,11 @@ class TestL3Warning:
 
     def test_raises_out_of_scope_when_ccnl_has_no_l3(self) -> None:
         """Raise OutOfScopeError when time_supplements set but CCNL has no L3 schema."""
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(weekday_hours=_D("5"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(weekday_hours=_D("5"))
         )
         with pytest.raises(OutOfScopeError, match="not modelled"):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_warning_and_not_computed_when_gross_incl_allowances(self) -> None:
         """R10: hourly_base_method='gross_incl_allowances' emits warning, returns 0.
@@ -1434,11 +1458,11 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(weekday_hours=_D("5"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(weekday_hours=_D("5"))
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             assert isinstance(result, PeriodPayroll)
             warnings = result.coverage.warnings
             assert any("gross_incl_allowances" in w for w in warnings), (
@@ -1483,11 +1507,11 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(night_holiday_hours=_D("2"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(night_holiday_hours=_D("2"))
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             scope = {
                 item.feature: item.calculation_status
                 for item in result.coverage.calculation_scope
@@ -1531,16 +1555,14 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={
-                "time_supplements": OvertimeHours(
-                    weekday_hours=_D("5"),
-                    night_hours=_D("3"),
-                )
-            }
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(
+                weekday_hours=_D("5"),
+                night_hours=_D("3"),
+            )
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             scope = {
                 item.feature: item.calculation_status
                 for item in result.coverage.calculation_scope
@@ -1584,11 +1606,11 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(supplementare_hours=_D("10"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(supplementare_hours=_D("10"))
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             scope = {
                 item.feature: item.calculation_status
                 for item in result.coverage.calculation_scope
@@ -1624,11 +1646,11 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(holiday_hours=_D("4"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(holiday_hours=_D("4"))
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             scope = {
                 item.feature: item.calculation_status
                 for item in result.coverage.calculation_scope
@@ -1685,11 +1707,11 @@ class TestL3Warning:
         _mock_ccnl[0] = _build_ccnl(
             work_rules={"time_supplements": ts_schema.model_dump()}
         )
-        scenario = _req().model_copy(
-            update={"time_supplements": OvertimeHours(weekday_hours=_D("10"))}
+        period = PeriodPayrollInput(
+            time_supplements=OvertimeHours(weekday_hours=_D("10"))
         )
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             warnings = result.coverage.warnings
             assert any("tiered weekly thresholds" in w for w in warnings), (
                 f"Expected tiered-band warning, got: {warnings}"
@@ -1738,9 +1760,9 @@ class TestL3Warning:
             WeeklyOvertimeHours(weekday_hours=_D("5")),
             WeeklyOvertimeHours(weekday_hours=_D("5")),
         ))
-        scenario = _req().model_copy(update={"time_supplements": oh})
+        period = PeriodPayrollInput(time_supplements=oh)
         try:
-            result = compute(scenario).result
+            result = compute(_req(), period).result
             warnings = result.coverage.warnings
             assert not any("tiered weekly thresholds" in w for w in warnings), (
                 f"Unexpected tiered warning with weeks supplied: {warnings}"
@@ -1756,8 +1778,8 @@ class TestL3Warning:
         effectively passed no hours.  Scope items must show 'excluded'.
         """
         # all fields default to 0
-        scenario = _req().model_copy(update={"time_supplements": OvertimeHours()})
-        result = compute(scenario).result
+        period = PeriodPayrollInput(time_supplements=OvertimeHours())
+        result = compute(_req(), period).result
         warnings = result.coverage.warnings
         assert not any("time_supplements" in w for w in warnings), (
             f"Unexpected time_supplements warning for zero hours: {warnings}"
@@ -1773,11 +1795,9 @@ class TestL3Absence:
 
     def test_raises_out_of_scope_when_ccnl_has_no_absence_rules(self) -> None:
         """Raise OutOfScopeError when absence_days set but CCNL has no schema."""
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
-        )
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("2")))
         with pytest.raises(OutOfScopeError, match="not modelled"):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_absence_deduction_with_wr_schema(self) -> None:
         """Compute absence deduction when CCNL has absence_rules (by_26 method)."""
@@ -1788,10 +1808,8 @@ class TestL3Absence:
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={"work_rules": CCNLWorkRules(absence_rules=absence_rules)}
         )
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("1"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("1")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         # No warning: schema is present.
         assert not any("absence_days" in w for w in result.coverage.warnings)
@@ -1813,11 +1831,9 @@ class TestL3Absence:
 
     def test_raises_out_of_scope_when_absence_days_but_no_schema(self) -> None:
         """OutOfScopeError raised when absence_days given but CCNL has no schema."""
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("3"))}
-        )
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("3")))
         with pytest.raises(OutOfScopeError):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_absence_scope_verified_with_schema(self) -> None:
         """Absence is verified when days given and CCNL has absence_rules."""
@@ -1830,10 +1846,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("2"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("2")))
+        result = compute(_req(), period).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -1855,10 +1869,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("27"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("27")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         gross = result.earnings.gross_monthly
         assert result.absence_deduction_monthly == gross
@@ -1882,10 +1894,8 @@ class TestL3Absence:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("26"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("26")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         gross = result.earnings.gross_monthly
         expected_deduction = _D("999.96")  # round(1000/26)=38.46; 38.46*26=999.96
@@ -1902,10 +1912,8 @@ class TestL3Absence:
         "absence_days requested but not modelled", because the caller
         effectively requested no absence.  Scope item must show 'excluded'.
         """
-        scenario = _req().model_copy(
-            update={"absence_days": AbsenceDays(unpaid_days=_D("0"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(absence_days=AbsenceDays(unpaid_days=_D("0")))
+        result = compute(_req(), period).result
         assert not any("absence_days" in w for w in result.coverage.warnings), (
             f"Unexpected absence_days warning for zero days: {result.coverage.warnings}"
         )
@@ -1920,11 +1928,9 @@ class TestL3Leave:
 
     def test_raises_out_of_scope_when_ccnl_has_no_leave_rules(self) -> None:
         """Raise OutOfScopeError when leave_input set but CCNL has no leave schema."""
-        scenario = _req().model_copy(
-            update={"leave_input": LeaveInput(taken_days=_D("3"))}
-        )
+        period = PeriodPayrollInput(leave_input=LeaveInput(taken_days=_D("3")))
         with pytest.raises(OutOfScopeError, match="not modelled"):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_leave_accrual_with_wr_schema(self) -> None:
         """Compute leave accrual when CCNL has leave_rules (flat, no tiers)."""
@@ -1932,10 +1938,8 @@ class TestL3Leave:
         _mock_ccnl[0] = _DEFAULT_CCNL.model_copy(
             update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
-        scenario = _req().model_copy(
-            update={"leave_input": LeaveInput(taken_days=_D("3"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(leave_input=LeaveInput(taken_days=_D("3")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         assert not any("leave_input" in w for w in result.coverage.warnings)
         # 20 / 12 = 1.67
@@ -1956,10 +1960,10 @@ class TestL3Leave:
             update={"work_rules": CCNLWorkRules(leave_rules=leave_rules)}
         )
         # Employee with 48 months → senior tier (25 days/year → 2.08/month)
-        scenario = _req(seniority_months=48).model_copy(
-            update={"leave_input": LeaveInput(taken_days=_D("0"))}
-        )
-        result = compute(scenario).result
+        result = compute(
+            _req(seniority_months=48),
+            PeriodPayrollInput(leave_input=LeaveInput(taken_days=_D("0"))),
+        ).result
         assert isinstance(result, PeriodPayroll)
         assert result.leave_accrued_days_monthly == _D("2.08")
 
@@ -1974,11 +1978,9 @@ class TestL3Leave:
 
     def test_raises_out_of_scope_when_leave_input_but_no_schema(self) -> None:
         """OutOfScopeError raised when leave_input given but CCNL has no schema."""
-        scenario = _req().model_copy(
-            update={"leave_input": LeaveInput(taken_days=_D("3"))}
-        )
+        period = PeriodPayrollInput(leave_input=LeaveInput(taken_days=_D("3")))
         with pytest.raises(OutOfScopeError):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_leave_scope_verified_with_schema(self) -> None:
         """Leave is verified when input given and CCNL has leave_rules."""
@@ -1989,10 +1991,8 @@ class TestL3Leave:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"leave_input": LeaveInput(taken_days=_D("2"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(leave_input=LeaveInput(taken_days=_D("2")))
+        result = compute(_req(), period).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2005,11 +2005,9 @@ class TestL3Sickness:
 
     def test_raises_out_of_scope_when_ccnl_has_no_sickness_rules(self) -> None:
         """Raise OutOfScopeError when sick_input set but CCNL has no sickness schema."""
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("5"))}
-        )
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("5")))
         with pytest.raises(OutOfScopeError, match="not modelled"):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_sickness_computed_with_wr_schema(self) -> None:
         """Compute sick-leave indemnity when CCNL has sickness_rules."""
@@ -2023,10 +2021,8 @@ class TestL3Sickness:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("3"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("3")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         assert not any("sick_input" in w for w in result.coverage.warnings)
         # 3 days: only carenza, no INPS indemnity
@@ -2044,11 +2040,9 @@ class TestL3Sickness:
 
     def test_raises_out_of_scope_when_sick_input_but_no_schema(self) -> None:
         """OutOfScopeError raised when sick_input given but CCNL has no schema."""
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("5"))}
-        )
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("5")))
         with pytest.raises(OutOfScopeError):
-            compute(scenario)
+            compute(_req(), period)
 
     def test_sick_scope_verified_with_schema(self) -> None:
         """Sickness is verified when input given and CCNL has sickness_rules."""
@@ -2062,10 +2056,8 @@ class TestL3Sickness:
                 )
             }
         )
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("5"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("5")))
+        result = compute(_req(), period).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2085,8 +2077,8 @@ class TestL3Sickness:
         must leave the sickness scope as 'excluded', exactly like sick_input=None.
         """
         # sick_days defaults to 0
-        scenario = _req().model_copy(update={"sick_input": SickInput()})
-        result = compute(scenario).result
+        period = PeriodPayrollInput(sick_input=SickInput())
+        result = compute(_req(), period).result
         warnings = result.coverage.warnings
         assert not any("sick_input" in w for w in warnings), (
             f"Unexpected sick_input warning for zero sick days: {warnings}"
@@ -2104,8 +2096,8 @@ class TestL3Sickness:
         with sick_input=None and one with sick_input=SickInput() (zero days).
         """
         result_none = estimate_annual(_req()).result
-        scenario_zero = _req().model_copy(update={"sick_input": SickInput()})
-        result_zero = compute(scenario_zero).result
+        period_zero = PeriodPayrollInput(sick_input=SickInput())
+        result_zero = compute(_req(), period_zero).result
         # Scope entry must match.
         scope_none = {
             s.feature: s.calculation_status
@@ -2140,12 +2132,10 @@ class TestL3Sickness:
             _fail,
         )
         # Default CCNL has no work_rules (no sickness schema).
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("3"))}
-        )
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("3")))
         # OutOfScopeError is raised before load_sick_pay_rates is ever called.
         with pytest.raises(OutOfScopeError, match="not modelled"):
-            compute(scenario)
+            compute(_req(), period)
 
 
 class TestL3VariablePay:
@@ -2185,10 +2175,10 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_scope_verified_when_input_given(self) -> None:
         """fringe_benefit scope is verified when input is provided."""
-        scenario = _req().model_copy(
-            update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
+        period = PeriodPayrollInput(
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800"))
         )
-        result = compute(scenario).result
+        result = compute(_req(), period).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2197,10 +2187,10 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_below_threshold_not_taxable(self) -> None:
         """Fringe benefit below €1.000 threshold: taxable_annual is zero."""
-        scenario = _req().model_copy(
-            update={"fringe_benefit_input": FringeBenefitInput(annual_amount=_D("800"))}
+        period = PeriodPayrollInput(
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("800"))
         )
-        result = compute(scenario).result
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         assert result.fringe_benefit_annual == _D("800")
         assert result.fringe_benefit_threshold_annual == _D("1000.00")
@@ -2208,22 +2198,18 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_above_threshold_taxable(self) -> None:
         """R15: Fringe benefit above €1.000 threshold: ENTIRE amount is taxable."""
-        scenario = _req().model_copy(
-            update={
-                "fringe_benefit_input": FringeBenefitInput(annual_amount=_D("1400"))
-            }
+        period = PeriodPayrollInput(
+            fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400"))
         )
-        result = compute(scenario).result
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         assert result.fringe_benefit_annual == _D("1400")
         assert result.fringe_benefit_taxable_annual == _D("1400.00")
 
     def test_welfare_scope_verified_when_input_given(self) -> None:
         """Welfare scope is verified when input is provided."""
-        scenario = _req().model_copy(
-            update={"welfare_input": WelfareInput(annual_amount=_D("600"))}
-        )
-        result = compute(scenario).result
+        period = PeriodPayrollInput(welfare_input=WelfareInput(annual_amount=_D("600")))
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         scope = {
             item.feature: item.calculation_status
@@ -2234,16 +2220,14 @@ class TestL3VariablePay:
 
     def test_bonus_pdr_eligible_applies_flat_tax(self) -> None:
         """PdR-eligible bonus within ceiling: flat tax computed correctly."""
-        scenario = _req().model_copy(
-            update={
-                "bonus_input": BonusInput(
-                    annual_amount=_D("2000"),
-                    eligible_for_pdr=True,
-                    prior_year_gross_annual=_D("50000"),
-                )
-            }
+        period = PeriodPayrollInput(
+            bonus_input=BonusInput(
+                annual_amount=_D("2000"),
+                eligible_for_pdr=True,
+                prior_year_gross_annual=_D("50000"),
+            )
         )
-        result = compute(scenario).result
+        result = compute(_req(), period).result
         assert isinstance(result, PeriodPayroll)
         scope = {
             item.feature: item.calculation_status
@@ -2257,20 +2241,17 @@ class TestL3VariablePay:
     def test_gross_annual_not_mutated_by_variable_pay(self) -> None:
         """gross_annual is unchanged; fringe (above threshold) raises taxable_income."""
         baseline = estimate_annual(_req()).result
-        with_inputs = estimate_annual(
-            _req().model_copy(
-                update={
-                    "fringe_benefit_input": FringeBenefitInput(
-                        annual_amount=_D("1400")
-                    ),
-                    "welfare_input": WelfareInput(annual_amount=_D("600")),
-                    "bonus_input": BonusInput(
-                        annual_amount=_D("2000"),
-                        eligible_for_pdr=True,
-                        prior_year_gross_annual=_D("50000"),
-                    ),
-                }
-            )
+        with_inputs = compute(
+            _req(),
+            PeriodPayrollInput(
+                fringe_benefit_input=FringeBenefitInput(annual_amount=_D("1400")),
+                welfare_input=WelfareInput(annual_amount=_D("600")),
+                bonus_input=BonusInput(
+                    annual_amount=_D("2000"),
+                    eligible_for_pdr=True,
+                    prior_year_gross_annual=_D("50000"),
+                ),
+            ),
         ).result
         # gross_annual (base salary) is never altered by variable-pay inputs
         assert with_inputs.earnings.gross_annual == baseline.earnings.gross_annual
@@ -2286,10 +2267,8 @@ class TestL3VariablePay:
         compute_welfare() does not consume the variable-pay rules file; only
         fringe-benefit and bonus/PdR inputs trigger its load and registration.
         """
-        scenario = _req().model_copy(
-            update={"welfare_input": WelfareInput(annual_amount=_D("500"))}
-        )
-        calc = compute(scenario)
+        period = PeriodPayrollInput(welfare_input=WelfareInput(annual_amount=_D("500")))
+        calc = compute(_req(), period)
         assert "variable_pay" not in calc.ruleset_version
 
 
@@ -3357,9 +3336,7 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: verified,
         )
-        result = estimate_annual(
-            _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
-        )
+        result = compute(_req(), PeriodPayrollInput(fringe_benefit_input=_FB_INPUT))
         assert result.result.coverage.confidence == "medium"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
@@ -3372,9 +3349,7 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: unverified,
         )
-        result = estimate_annual(
-            _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
-        )
+        result = compute(_req(), PeriodPayrollInput(fringe_benefit_input=_FB_INPUT))
         assert result.result.coverage.confidence == "medium"
 
     def test_ccnl_without_ruleset_limits_confidence_to_medium(self) -> None:
@@ -3440,10 +3415,8 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules.load_sick_pay_rates",
             lambda: rates_no_ruleset,
         )
-        scenario = _req().model_copy(
-            update={"sick_input": SickInput(sick_days=_D("3"))}
-        )
-        calc = compute(scenario)
+        period = PeriodPayrollInput(sick_input=SickInput(sick_days=_D("3")))
+        calc = compute(_req(), period)
         assert "sick_pay" in calc.ruleset_version
 
     def test_var_pay_rules_without_ruleset_not_added_to_ids(
@@ -3467,8 +3440,8 @@ class TestConfidenceWithOptionalRulesets:
             "ccnl_engine.engine.payroll.service.work_rules_variable_pay.load_variable_pay_rules",
             lambda _: rules_no_ruleset,
         )
-        scenario = _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
-        calc = compute(scenario)
+        period = PeriodPayrollInput(fringe_benefit_input=_FB_INPUT)
+        calc = compute(_req(), period)
         assert "variable_pay" in calc.ruleset_version
 
 

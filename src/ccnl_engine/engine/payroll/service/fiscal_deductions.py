@@ -21,7 +21,7 @@ from ccnl_engine.engine.tax.service.loaders import (
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.metadata import RulesetIdentity
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
@@ -79,7 +79,7 @@ def _compute_ti(
 
 
 def _run_wr_family_deductions(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     reddito_complessivo: Decimal,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
@@ -108,7 +108,7 @@ def _run_wr_family_deductions(
 
 
 def _run_wr_art15_deductions(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     irpef_gross: Decimal,
     work_income_deduction: Decimal,
     fam_total: Decimal,

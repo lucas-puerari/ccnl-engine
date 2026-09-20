@@ -14,10 +14,8 @@ from ccnl_engine.engine.payroll.domain.employee import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.payroll.domain.scenario import (
-        AnnualEstimateInput,
-        PayrollScenario,
-    )
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
+    from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
 
 _IVS_CEILING_THRESHOLD = date(1996, 1, 1)
 
@@ -56,7 +54,7 @@ def _ivs_months_msg(months: int, as_of: date) -> str | None:
 
 
 def _ivs_ceiling_warning(
-    scenario: PayrollScenario | AnnualEstimateInput,
+    scenario: _InternalScenario | AnnualEstimateInput,
     as_of: date,
     contribution_base: Decimal,
     ivs_ceiling: Decimal | None,

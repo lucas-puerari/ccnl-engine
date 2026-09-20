@@ -44,11 +44,12 @@ from ccnl_engine.engine.payroll.domain.family import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -59,7 +60,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
@@ -372,7 +373,7 @@ class TestReferenceCases:
         welfare_input = _build_welfare_input(inputs)
         bonus_input = _build_bonus_input(inputs)
 
-        scenario = PayrollScenario(
+        annual_input = AnnualEstimateInput(
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=seniority,
@@ -394,6 +395,10 @@ class TestReferenceCases:
                 as_of=as_of,
                 tax_year=tax_year,
             ),
+            family=_build_family(inputs),
+            art15_deductions=_build_art15_deductions(inputs),
+        )
+        period_input = PeriodPayrollInput(
             time_supplements=time_supplements,
             absence_days=absence_days,
             leave_input=leave_input,
@@ -401,11 +406,9 @@ class TestReferenceCases:
             fringe_benefit_input=fringe_benefit_input,
             welfare_input=welfare_input,
             bonus_input=bonus_input,
-            family=_build_family(inputs),
-            art15_deductions=_build_art15_deductions(inputs),
         )
 
-        result = compute(scenario).result
+        result = compute(_annual_to_scenario(annual_input, period_input)).result
 
         # Compare each field in expected against the live result
         for field, raw_value in expected.items():

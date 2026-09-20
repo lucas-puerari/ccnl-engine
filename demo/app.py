@@ -28,11 +28,12 @@ from ccnl_engine.engine.payroll.domain.employment import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -44,7 +45,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WeeklyOvertimeHours,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 
 
@@ -409,6 +410,33 @@ def _build_time_supplements(
     )
 
 
+def _build_period_input(
+    time_supplements: OvertimeHours | None,
+    absence: AbsenceDays | None,
+    leave: LeaveInput | None,
+    sick: SickInput | None,
+    fringe: FringeBenefitInput | None,
+    welfare: WelfareInput | None,
+    bonus: BonusInput | None,
+) -> PeriodPayrollInput | None:
+    """Return a PeriodPayrollInput when any period field is set, else None.
+
+    Returns:
+        A populated PeriodPayrollInput, or None when all inputs are absent.
+    """
+    if not any((time_supplements, absence, leave, sick, fringe, welfare, bonus)):
+        return None
+    return PeriodPayrollInput(
+        time_supplements=time_supplements,
+        absence_days=absence,
+        leave_input=leave,
+        sick_input=sick,
+        fringe_benefit_input=fringe,
+        welfare_input=welfare,
+        bonus_input=bonus,
+    )
+
+
 def compute_salary(
     filename: str,
     level_code: str,
@@ -538,7 +566,7 @@ def compute_salary(
     )
 
     try:
-        scenario = PayrollScenario(
+        annual = AnnualEstimateInput(
             employee=Employee(
                 level_code=level_code,
                 seniority=seniority,
@@ -554,15 +582,11 @@ def compute_salary(
                 employer=employer,
                 as_of=_CALC_DATE,
             ),
-            time_supplements=time_supplements,
-            absence_days=absence,
-            leave_input=leave,
-            sick_input=sick,
-            fringe_benefit_input=fringe,
-            welfare_input=welfare,
-            bonus_input=bonus,
         )
-        calculation = compute(scenario)
+        period = _build_period_input(
+            time_supplements, absence, leave, sick, fringe, welfare, bonus
+        )
+        calculation = compute(_annual_to_scenario(annual, period))
         payroll = calculation.result
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
