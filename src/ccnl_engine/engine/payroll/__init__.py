@@ -33,6 +33,12 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_state import (
     PayrollState as PayrollState,
 )
+from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PeriodPayrollRequest as PeriodPayrollRequest,
+)
+from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PeriodPayrollResult as PeriodPayrollResult,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown as AnnualBreakdown,
@@ -51,6 +57,8 @@ __all__ = [
     "EmployerCost",
     "PayrollState",
     "PeriodPayroll",
+    "PeriodPayrollRequest",
+    "PeriodPayrollResult",
     "Taxes",
     "TraceCategory",
     "TraceStep",

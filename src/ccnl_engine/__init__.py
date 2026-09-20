@@ -101,6 +101,10 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 )
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
+from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PeriodPayrollRequest,
+    PeriodPayrollResult,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     AnnualEstimateInput,
@@ -174,6 +178,8 @@ __all__ = [
     "PayrollState",
     "PeriodPayroll",
     "PeriodPayrollInput",
+    "PeriodPayrollRequest",
+    "PeriodPayrollResult",
     "Permanent",
     "RalOverride",
     "RateFund",
