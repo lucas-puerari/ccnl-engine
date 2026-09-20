@@ -13,39 +13,36 @@ import operator
 from datetime import UTC, date, datetime
 from decimal import Decimal
 
-from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.io.service.bundled import read_bundled
-from ccnl_engine.engine.payroll.domain.employee import (
-    RalOverride,
-    SeniorityByCount,
-    SeniorityByMonths,
-)
-from ccnl_engine.engine.payroll.domain.employment import (
-    Apprentice,
-    FixedTerm,
-    Permanent,
-)
-from ccnl_engine.engine.payroll.domain.scenario import (
+from ccnl_engine import (
     Agreement,
     AnnualEstimateInput,
+    Apprentice,
     Employee,
     Employer,
     Employment,
+    FixedTerm,
     Jurisdiction,
+    OvertimeHours,
     PeriodPayrollInput,
+    Permanent,
+    RalOverride,
+    SeniorityByCount,
+    SeniorityByMonths,
+    SupplementaryAllowance,
+    WeeklyOvertimeHours,
+    estimate_annual,
+    estimate_period_effects,
 )
+from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     BonusInput,
     FringeBenefitInput,
     LeaveInput,
-    OvertimeHours,
     SickInput,
-    WeeklyOvertimeHours,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 
 
@@ -586,7 +583,11 @@ def compute_salary(
         period = _build_period_input(
             time_supplements, absence, leave, sick, fringe, welfare, bonus
         )
-        calculation = compute(_annual_to_scenario(annual, period))
+        calculation = (
+            estimate_annual(annual)
+            if period is None
+            else estimate_period_effects(annual, period)
+        )
         payroll = calculation.result
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
