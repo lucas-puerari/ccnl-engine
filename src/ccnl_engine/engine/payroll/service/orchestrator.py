@@ -423,7 +423,11 @@ def compute(
         "part_time_ratio": scenario.employee.part_time_ratio,
         "as_of": as_of,
         "year": as_of.year,
-        "contract_effective_date": as_of,
+        "contract_effective_date": (
+            p.valid_from
+            if (p := gross.level.base_salary.period_at(as_of)) is not None
+            else as_of  # pragma: no cover
+        ),
         "tax_rule_year": year,
         "earnings": _build_earnings(gross, work),
         "contributions": _build_contributions(fiscal),

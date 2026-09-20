@@ -115,6 +115,7 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_family_deduction_rules,
 )
 from tests.helpers import (
+    TEST_PROV,
     TEST_RULESET_VERIFIED,
     make_ccnl_dict,
     make_domestic_year_rules,
@@ -4265,3 +4266,31 @@ class TestCallerDeclaredScope:
         calc = estimate_annual(_req())
         scope = {item.feature: item for item in calc.result.coverage.calculation_scope}
         assert scope["inail"].calculation_status == "excluded"
+
+
+class TestContractEffectiveDate:
+    """contract_effective_date reflects the resolved salary tranche, not as_of."""
+
+    def test_uses_tranche_valid_from_not_as_of(self) -> None:
+        """contract_effective_date is the tranche valid_from, not as_of itself."""
+        r = estimate_annual(_req(as_of=_DATE)).result
+        # default CCNL: base_salary valid_from=2020-01-01, as_of=2026-06-01
+        assert r.contract_effective_date == date(2020, 1, 1)
+        assert r.contract_effective_date != _DATE
+
+    def test_mid_year_tranche_update_uses_tranche_start(self) -> None:
+        """When a salary update starts mid-year, its valid_from is returned."""
+        _mock_ccnl[0] = _build_ccnl(**{
+            "levels.2.base_salary": {
+                "periods": [
+                    {
+                        "valid_from": "2026-04-01",
+                        "valid_until": None,
+                        "value": "1000.00",
+                        "provenance": TEST_PROV,
+                    }
+                ]
+            }
+        })
+        r = estimate_annual(_req(as_of=date(2026, 6, 1))).result
+        assert r.contract_effective_date == date(2026, 4, 1)
