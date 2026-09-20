@@ -23,6 +23,12 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     TimeSupplements,
     WorkKind,
 )
+from ccnl_engine.engine.contract.domain.identity import (
+    CCNLCoverage,
+    CoverageNote,
+    CoverageStatus,
+    NoteKind,
+)
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.metadata.domain.rules import (
@@ -75,6 +81,7 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
 )
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.scope import (
+    _limitations_scope,
     compute_confidence,
     compute_result_status,
 )
@@ -2970,8 +2977,70 @@ class TestComputeResultStatus:
         """No L3 inputs and L3 schema present → complete (all excluded)."""
         result = estimate_annual(_req()).result
         # No overtime/leave/sick input: all L3 scope items are 'excluded'.
-        # All L1/L2 items are 'computed'.
+        # All L1/L2 items are 'computed'. Mock CCNL has no simplification
+        # notes, so ccnl_limitations is not injected.
         assert result.coverage.status == "complete"
+
+
+def _coverage(
+    *notes: CoverageNote,
+    gross: CoverageStatus = CoverageStatus.IMPLEMENTED,
+    net: CoverageStatus = CoverageStatus.IMPLEMENTED,
+) -> CCNLCoverage:
+    """Build a CCNLCoverage with the given notes for _limitations_scope tests.
+
+    Returns:
+        A :class:`CCNLCoverage` for unit-testing _limitations_scope.
+    """
+    return CCNLCoverage(gross=gross, net=net, notes=notes)
+
+
+class TestLimitationsScope:
+    """Unit tests for _limitations_scope helper."""
+
+    def test_none_coverage_returns_empty(self) -> None:
+        """None coverage → no scope items added."""
+        assert _limitations_scope(None) == []
+
+    def test_no_applicable_notes_returns_empty(self) -> None:
+        """Coverage with only info/source notes → no scope item."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.INFO, text="hourly divisor confirmed"),
+            CoverageNote(kind=NoteKind.SOURCE, text="source: official PDF"),
+        )
+        assert _limitations_scope(cov) == []
+
+    def test_simplification_note_returns_scope_item(self) -> None:
+        """Coverage with a simplification note → informational_only scope item."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.SIMPLIFICATION, text="hourly rate approx")
+        )
+        result = _limitations_scope(cov)
+        assert len(result) == 1
+        assert result[0].feature == "ccnl_limitations"
+        assert result[0].integration_status == "informational_only"
+        assert result[0].calculation_status == "computed"
+
+    def test_missing_note_returns_scope_item(self) -> None:
+        """Coverage with a missing note → informational_only scope item."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.INFO, text="info"),
+            CoverageNote(kind=NoteKind.MISSING, text="overtime data absent"),
+            gross=CoverageStatus.PARTIAL,
+        )
+        result = _limitations_scope(cov)
+        assert len(result) == 1
+        assert result[0].feature == "ccnl_limitations"
+
+    def test_limitations_force_partial_status(self) -> None:
+        """compute_result_status with ccnl_limitations item → partial."""
+        cov = _coverage(CoverageNote(kind=NoteKind.SIMPLIFICATION, text="approx"))
+        scope = (
+            _scope_computed("base_salary"),
+            _scope_computed("irpef"),
+            *_limitations_scope(cov),
+        )
+        assert compute_result_status(scope) == "partial"
 
 
 def _verified_provenance() -> RuleProvenance:
