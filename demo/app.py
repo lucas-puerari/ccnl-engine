@@ -323,7 +323,7 @@ def _build_employer(
 
 
 def _resolve_ccnl_meta(
-    filename: str, part_time_pct: float
+    filename: str, part_time_ratio: float
 ) -> tuple[str, Decimal | None]:
     """Return (ccnl_name, weekly_hours_domestic).
 
@@ -342,7 +342,9 @@ def _resolve_ccnl_meta(
     if not is_domestic:
         return ccnl.meta.name, None
     divisor = ccnl.parameters.hourly_divisor.value_at(_CALC_DATE)
-    weekly = divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_pct, 4)))
+    weekly = (
+        divisor * Decimal(12) / Decimal(52) * Decimal(str(round(part_time_ratio, 4)))
+    )
     return ccnl.meta.name, weekly
 
 
@@ -412,7 +414,7 @@ def compute_salary(
     level_code: str,
     employment_type: str,
     num_employees: int,
-    part_time_pct: float = 1.0,
+    part_time_ratio: float = 1.0,
     seniority_value: int = 0,
     seniority_mode: str = "count",
     months_elapsed: int = 0,
@@ -443,7 +445,7 @@ def compute_salary(
         level_code: Level code within the CCNL.
         employment_type: ``"permanent"``, ``"fixed_term"``, or ``"apprentice"``.
         num_employees: Employer headcount (drives INPS rate tier).
-        part_time_pct: Part-time fraction in (0, 1], default full-time.
+        part_time_ratio: Part-time fraction in (0, 1], default full-time.
         seniority_value: Seniority quantity (increments or months, per mode).
         seniority_mode: ``"count"`` (default) or ``"months"``.
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
@@ -493,7 +495,7 @@ def compute_salary(
     agreement = _build_agreement(ad_personam_monthly, ral_override)
     employer = _build_employer(num_employees, second_level_monthly)
 
-    ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_pct)
+    ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_ratio)
 
     try:
         time_supplements = _build_time_supplements(
@@ -540,7 +542,7 @@ def compute_salary(
             employee=Employee(
                 level_code=level_code,
                 seniority=seniority,
-                part_time_ratio=Decimal(str(round(part_time_pct, 4))),
+                part_time_ratio=Decimal(str(round(part_time_ratio, 4))),
                 weekly_hours=weekly_hours_domestic,
                 ivs_ceiling_applies=ivs_ceiling_applies,
                 jurisdiction=jurisdiction,
@@ -576,7 +578,7 @@ def compute_salary(
         "employment_type": payroll.employment_type,
         "year": payroll.year,
         "as_of": payroll.as_of.isoformat(),
-        "part_time_pct": float(payroll.part_time_pct),
+        "part_time_ratio": float(payroll.part_time_ratio),
         # provenance
         "engine_version": calculation.engine_version,
         "ruleset_version": dict(calculation.ruleset_version),

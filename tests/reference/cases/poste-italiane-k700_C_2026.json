@@ -25,7 +25,7 @@
     "ccnl_id": "poste-italiane-k700",
     "level_code": "C",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "year": 2026,
     "seniority_count": 0,
     "base_monthly": "1381.56",

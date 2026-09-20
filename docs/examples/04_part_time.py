@@ -1,6 +1,6 @@
 """Part-time contract: scaling gross, INPS, and TFR.
 
-part_time_pct scales base pay, seniority, and most allowances.
+part_time_ratio scales base pay, seniority, and most allowances.
 ad_personam_monthly is NOT scaled (it is an individual frozen element).
 """
 

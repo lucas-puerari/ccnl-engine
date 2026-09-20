@@ -16,7 +16,7 @@
     "ccnl_id": "trasporto-aereo-assaeroporti",
     "level_code": "4",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "seniority_count": 0,
     "base_monthly": "1367.47",
     "seniority_monthly": "0.00",

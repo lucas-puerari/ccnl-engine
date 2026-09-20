@@ -23,7 +23,7 @@
     "ccnl_id": "metalmeccanico-artigianato",
     "level_code": "3",
     "employment_type": "apprentice",
-    "part_time_pct": "0.5",
+    "part_time_ratio": "0.5",
     "year": 2026,
     "seniority_count": 0,
     "base_monthly": "649.31",
