@@ -9,9 +9,13 @@ import pytest
 
 from ccnl_engine.engine.payroll.domain.bundle import make_bundle
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger
+from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger, LedgerEntry
+from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
 from ccnl_engine.engine.payroll.service.gross import GrossPay
-from ccnl_engine.engine.payroll.service.ledger_builder import post_earnings
+from ccnl_engine.engine.payroll.service.ledger_builder import (
+    post_earnings,
+    post_fiscal_summary,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -300,3 +304,150 @@ class TestPostEarningsZeroAmounts:
         ledger = Ledger()
         post_earnings(self._zero_chain_gross(), _DATE, ledger)
         assert ledger.entries() == ()
+
+
+_ZERO = Decimal(0)
+_V = Decimal("1000.00")
+
+
+def _zero_fiscal(**overrides: object) -> FiscalPay:
+    """Build a FiscalPay with all monetary fields zeroed and optional overrides.
+
+    Returns:
+        A :class:`FiscalPay` with all fields at zero unless overridden.
+    """
+    base: dict[str, object] = {
+        "consumed_ruleset_ids": (),
+        "consumed_verifications": {},
+        "inps_employee_annual": _ZERO,
+        "inps_employer_annual": _ZERO,
+        "inps_employee_additional_annual": _ZERO,
+        "inail_employer_annual": _ZERO,
+        "inps_employer_exemption_annual": _ZERO,
+        "maternity_inps_indemnity_annual": _ZERO,
+        "workplace_injury_inail_indemnity_annual": _ZERO,
+        "termination_tfr_liquidation_annual": _ZERO,
+        "employer_funds_annual": _ZERO,
+        "tfr_annual": _ZERO,
+        "bilateral_employee_annual": _ZERO,
+        "bilateral_employer_annual": _ZERO,
+        "taxable_income": _ZERO,
+        "irpef_gross": _ZERO,
+        "work_income_deduction": _ZERO,
+        "fam_spouse": _ZERO,
+        "fam_children": _ZERO,
+        "fam_other": _ZERO,
+        "fam_total": _ZERO,
+        "fam_unused": _ZERO,
+        "art15_total": _ZERO,
+        "art15_unused": _ZERO,
+        "sterilizzazione_clawback": _ZERO,
+        "ulteriore_detrazione_lavoro": _ZERO,
+        "somma_esente": _ZERO,
+        "irpef_net": _ZERO,
+        "conguaglio_annual": _ZERO,
+        "termination_residual_leave_payout_annual": _ZERO,
+        "contract_renewal_arrears_annual": _ZERO,
+        "una_tantum_annual": _ZERO,
+        "personal_withholdings_annual": _ZERO,
+        "additional_irpef_base_annual": _ZERO,
+        "health_fund_employee_annual": _ZERO,
+        "health_fund_employer_annual": _ZERO,
+        "territorial_supplement_annual": _ZERO,
+        "company_supplement_annual": _ZERO,
+        "trattamento_integrativo": _ZERO,
+        "addizionale_regionale": _ZERO,
+        "addizionale_comunale": _ZERO,
+        "net_annual": _ZERO,
+        "net_monthly": _ZERO,
+        "employer_cost_annual": _ZERO,
+        "employer_withholds_irpef": False,
+        "fiscal_simplifications": frozenset(),
+    }
+    base.update(overrides)
+    return FiscalPay(**base)  # type: ignore[arg-type]
+
+
+def _post_summary(fiscal: FiscalPay) -> tuple[LedgerEntry, ...]:
+    ledger = Ledger()
+    post_fiscal_summary(fiscal, _DATE, ledger)
+    return ledger.entries()
+
+
+class TestPostFiscalSummary:
+    """post_fiscal_summary posts net_annual and employer_cost_annual to ledger."""
+
+    def test_net_pay_entry_exists(self) -> None:
+        """net_pay_total entry is posted when net_annual is non-zero."""
+        entries = _post_summary(_zero_fiscal(net_annual=_V))
+        kinds = [e.pay_item_kind for e in entries]
+        assert "net_pay_total" in kinds
+
+    def test_net_pay_account(self) -> None:
+        """net_pay_total is posted to NET_PAY account."""
+        entries = _post_summary(_zero_fiscal(net_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
+        assert entry.account == AccountKind.NET_PAY
+
+    def test_net_pay_amount(self) -> None:
+        """net_pay_total entry amount matches net_annual."""
+        entries = _post_summary(_zero_fiscal(net_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
+        assert entry.amount == _V
+
+    def test_employer_cost_entry_exists(self) -> None:
+        """employer_cost_total entry is posted when employer_cost_annual is non-zero."""
+        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
+        kinds = [e.pay_item_kind for e in entries]
+        assert "employer_cost_total" in kinds
+
+    def test_employer_cost_account(self) -> None:
+        """employer_cost_total is posted to EMPLOYER_COST account."""
+        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
+        assert entry.account == AccountKind.EMPLOYER_COST
+
+    def test_employer_cost_amount(self) -> None:
+        """employer_cost_total entry amount matches employer_cost_annual."""
+        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
+        assert entry.amount == _V
+
+    def test_no_entries_when_both_zero(self) -> None:
+        """All-zero FiscalPay produces no entries in post_fiscal_summary."""
+        entries = _post_summary(_zero_fiscal())
+        assert entries == ()
+
+    def test_entry_id_format_net(self) -> None:
+        """entry_id for net follows net_pay_{year}_{month:02d}."""
+        entries = _post_summary(_zero_fiscal(net_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
+        assert entry.entry_id == f"net_pay_{_DATE.year}_{_DATE.month:02d}"
+
+    def test_entry_id_format_cost(self) -> None:
+        """entry_id for employer cost follows employer_cost_{year}_{month:02d}."""
+        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
+        assert entry.entry_id == f"employer_cost_{_DATE.year}_{_DATE.month:02d}"
+
+    def test_orchestrator_net_matches_ledger(self) -> None:
+        """Orchestrator result net_annual equals ledger.total(NET_PAY)."""
+        bundle = make_bundle(_DEFAULT_CCNL, _RULES, None)
+        calc = estimate_annual(_req(), bundle=bundle)
+        net_from_result = calc.result.net_annual
+        net_from_ledger = next(
+            e.amount for e in calc.ledger_entries if e.pay_item_kind == "net_pay_total"
+        )
+        assert net_from_result == net_from_ledger
+
+    def test_orchestrator_employer_cost_matches_ledger(self) -> None:
+        """Employer cost from result matches ledger EMPLOYER_COST total."""
+        bundle = make_bundle(_DEFAULT_CCNL, _RULES, None)
+        calc = estimate_annual(_req(), bundle=bundle)
+        cost_from_result = calc.result.employer_cost.employer_cost_annual
+        cost_from_ledger = next(
+            e.amount
+            for e in calc.ledger_entries
+            if e.pay_item_kind == "employer_cost_total"
+        )
+        assert cost_from_result == cost_from_ledger

@@ -248,37 +248,13 @@ class TestFringeBenefitTaxable:
 
 
 class TestWelfare:
-    """post_variable_pay posts welfare_annual to NET_PAY."""
+    """Welfare is captured in the fiscal summary, not posted by post_variable_pay."""
 
-    def test_welfare_entry_exists(self) -> None:
-        """Welfare entry is posted when welfare_annual is non-zero."""
+    def test_no_welfare_entry_in_variable_pay(self) -> None:
+        """welfare_annual does not produce a ledger entry in post_variable_pay."""
         entries = _post(_zero_work(welfare_annual=_V))
-        kinds = [e.pay_item_kind for e in entries]
-        assert "welfare" in kinds
-
-    def test_welfare_account(self) -> None:
-        """Welfare is posted to NET_PAY (not GROSS_EARNINGS)."""
-        entries = _post(_zero_work(welfare_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "welfare")
-        assert entry.account == AccountKind.NET_PAY
-
-    def test_welfare_amount(self) -> None:
-        """Welfare entry amount matches welfare_annual."""
-        entries = _post(_zero_work(welfare_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "welfare")
-        assert entry.amount == _V
-
-    def test_no_welfare_entry_when_zero(self) -> None:
-        """No welfare when welfare_annual is zero."""
-        entries = _post(_zero_work())
         kinds = [e.pay_item_kind for e in entries]
         assert "welfare" not in kinds
-
-    def test_welfare_entry_id_format(self) -> None:
-        """entry_id follows welfare_{year}_{month:02d} pattern."""
-        entries = _post(_zero_work(welfare_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "welfare")
-        assert entry.entry_id == f"welfare_{_DATE.year}_{_DATE.month:02d}"
 
 
 class TestZeroAmountsSkipped:
@@ -301,7 +277,6 @@ class TestCompetencePeriod:
             "holiday_supp",
             "bonus_annual",
             "fringe_benefit_taxable_annual",
-            "welfare_annual",
         ],
     )
     def test_competence_period_matches_as_of(self, field: str) -> None:
@@ -321,8 +296,8 @@ class TestCompetencePeriod:
 class TestEntryCount:
     """Number of entries reflects non-zero variable pay components."""
 
-    def test_all_variable_components_produce_seven_entries(self) -> None:
-        """All seven components populated yields seven ledger entries."""
+    def test_all_variable_components_produce_six_entries(self) -> None:
+        """All six posted components yield six ledger entries (welfare excluded)."""
         work = _zero_work(
             overtime_supp=_V,
             night_supp=_V,
@@ -330,10 +305,9 @@ class TestEntryCount:
             absence_deduction_monthly=_V,
             bonus_annual=_V,
             fringe_benefit_taxable_annual=_V,
-            welfare_annual=_V,
         )
         entries = _post(work)
-        assert len(entries) == 7
+        assert len(entries) == 6
 
     @pytest.mark.parametrize(
         ("field", "count"),
@@ -344,7 +318,6 @@ class TestEntryCount:
             ("absence_deduction_monthly", 1),
             ("bonus_annual", 1),
             ("fringe_benefit_taxable_annual", 1),
-            ("welfare_annual", 1),
         ],
     )
     def test_single_component_yields_one_entry(self, field: str, count: int) -> None:

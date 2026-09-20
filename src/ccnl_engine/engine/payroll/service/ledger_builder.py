@@ -216,8 +216,9 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
 
     Supplements (overtime, night, holiday) post to GROSS_EARNINGS as positive
     amounts.  Absence deductions post to GROSS_EARNINGS as negative amounts.
-    Bonus and taxable fringe benefits post to GROSS_EARNINGS.  Welfare posts
-    to NET_PAY.  Zero-amount entries are silently skipped.
+    Bonus and taxable fringe benefits post to GROSS_EARNINGS.  Welfare is
+    captured in the fiscal summary (see :func:`post_fiscal_summary`).
+    Zero-amount entries are silently skipped.
 
     Args:
         work: The resolved work-rules pay components.
@@ -281,14 +282,44 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
             )
         )
 
-    if work.welfare_annual != _ZERO:
+
+def post_fiscal_summary(fiscal: FiscalPay, as_of: date, ledger: Ledger) -> None:
+    """Post the computed net and employer cost totals to the ledger.
+
+    Posts ``fiscal.net_annual`` to :attr:`~AccountKind.NET_PAY` and
+    ``fiscal.employer_cost_annual`` to :attr:`~AccountKind.EMPLOYER_COST`.
+    These are the canonical sources for the result totals; the orchestrator
+    reads them via :meth:`~Ledger.total` rather than from the fiscal object
+    directly.  Zero-amount entries are silently skipped.
+
+    Args:
+        fiscal: The resolved fiscal-pay components.
+        as_of: The competence date used to derive the year/month for entries.
+        ledger: The ledger to append to.
+    """
+    period = CompetencePeriod(year=as_of.year, month=as_of.month)
+    yymm = f"{period.year}_{period.month:02d}"
+
+    if fiscal.net_annual != _ZERO:
         ledger.append(
             LedgerEntry(
-                entry_id=f"welfare_{yymm}",
+                entry_id=f"net_pay_{yymm}",
                 competence_period=period,
-                pay_item_id=f"welfare_{yymm}",
-                pay_item_kind="welfare",
+                pay_item_id=f"net_pay_{yymm}",
+                pay_item_kind="net_pay_total",
                 account=AccountKind.NET_PAY,
-                amount=work.welfare_annual,
+                amount=fiscal.net_annual,
+            )
+        )
+
+    if fiscal.employer_cost_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"employer_cost_{yymm}",
+                competence_period=period,
+                pay_item_id=f"employer_cost_{yymm}",
+                pay_item_kind="employer_cost_total",
+                account=AccountKind.EMPLOYER_COST,
+                amount=fiscal.employer_cost_annual,
             )
         )

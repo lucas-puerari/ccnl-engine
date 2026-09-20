@@ -224,12 +224,12 @@ class TestLedgerEntryCountWithContributions:
     @pytest.mark.parametrize(
         ("inail_rate", "expected_count"),
         [
-            (None, 5),
-            (Decimal("0.005"), 6),
+            (None, 7),
+            (Decimal("0.005"), 8),
         ],
     )
     def test_entry_count(self, inail_rate: Decimal | None, expected_count: int) -> None:
-        """base_salary + inps_employee + inps_employer + irpef + tfr [+ inail]."""
+        """Total entries: earnings + contributions + irpef + tfr + summary [+ inail]."""
         calc = _calc(inail_rate=inail_rate)
         assert len(calc.ledger_entries) == expected_count
 
