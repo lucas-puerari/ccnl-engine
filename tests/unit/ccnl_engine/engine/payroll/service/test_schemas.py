@@ -88,26 +88,26 @@ class TestPayrollResultSchemaVersion:
 
     def test_schema_version_field_exists(self, result: AnnualEstimate) -> None:
         """``result.schema_version`` is accessible on the instance."""
-        assert result.schema_version == "2"
+        assert result.schema_version == "3"
 
     def test_schema_version_in_to_dict(self, result: AnnualEstimate) -> None:
         """``to_dict()`` output includes ``schema_version``."""
         d = result.to_dict()
-        assert d["schema_version"] == "2"
+        assert d["schema_version"] == "3"
 
     def test_from_dict_roundtrip_with_schema_version(
         self, result: AnnualEstimate
     ) -> None:
         """``from_dict(to_dict())`` roundtrip succeeds with schema_version present."""
         restored = AnnualEstimate.from_dict(result.to_dict())
-        assert restored.schema_version == "2"
+        assert restored.schema_version == "3"
 
     def test_from_dict_without_schema_version(self, result: AnnualEstimate) -> None:
         """``from_dict`` works on dicts missing schema_version (uses default)."""
         d = result.to_dict()
         d.pop("schema_version")
         restored = AnnualEstimate.from_dict(d)
-        assert restored.schema_version == "2"
+        assert restored.schema_version == "3"
 
 
 class TestScenarioSchema:
