@@ -144,11 +144,7 @@ jobs:
         run: uv pip install -e .
 
       - name: Verify reference cases are up to date
-        run: >
-          uv run python scripts/ci/update_reference_cases.py --dry-run
-          || (echo "Reference cases are out of date. Run
-          'uv run python scripts/ci/update_reference_cases.py' locally
-          and commit the result." && exit 1)
+        run: uv run python scripts/ci/update_reference_cases.py --dry-run
 
   check-provenance:
     name: Check reference case provenance

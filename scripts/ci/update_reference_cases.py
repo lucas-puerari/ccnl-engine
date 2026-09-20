@@ -420,19 +420,22 @@ def _serialise_result(result: object) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def _update_case(path: Path, *, dry_run: bool) -> bool:
+def _update_case(path: Path, *, dry_run: bool) -> tuple[bool, bool]:
     """Re-run compute() for one case and update its expected block.
 
     Preserves the existing key order in ``expected``; new fields are appended
     after all pre-existing ones.  Only value differences trigger a change.
 
     Returns:
-        ``True`` when the file was (or would be) changed, ``False`` otherwise.
+        A tuple ``(changed, has_source)``.  ``changed`` is ``True`` when the
+        file was (or would be) changed; ``has_source`` is ``True`` when the
+        case carries a non-empty ``source`` field (independent oracle).
 
     Raises:
         RuntimeError: when ``compute()`` or scenario construction fails.
     """
     data = json.loads(path.read_text(encoding="utf-8"))
+    has_source: bool = bool(data.get("source"))
     inputs = data["inputs"]
 
     try:
@@ -458,7 +461,7 @@ def _update_case(path: Path, *, dry_run: bool) -> bool:
         k not in old_expected for k in merged
     )
     if not changed:
-        return False
+        return False, has_source
 
     if dry_run:
         old_str = json.dumps(old_expected, indent=2, ensure_ascii=False)
@@ -474,21 +477,78 @@ def _update_case(path: Path, *, dry_run: bool) -> bool:
         )
         if diff:
             print("\n".join(diff))
-        return True
+        return True, has_source
 
     data["expected"] = merged
     path.write_text(
         json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     print(f"Updated: {path.name}")
-    return True
+    return True, has_source
+
+
+def _classify_results(
+    paths: list[Path], results: list[tuple[bool, bool]]
+) -> tuple[list[Path], list[Path]]:
+    """Split changed cases into oracle regressions and auto-promotions.
+
+    Returns:
+        A tuple ``(oracle_regressions, auto_promotions)``.
+    """
+    oracle_regressions = [
+        p
+        for p, (changed, has_src) in zip(paths, results, strict=True)
+        if changed and has_src
+    ]
+    auto_promotions = [
+        p
+        for p, (changed, has_src) in zip(paths, results, strict=True)
+        if changed and not has_src
+    ]
+    return oracle_regressions, auto_promotions
+
+
+def _report_oracle_regressions(regressions: list[Path]) -> None:
+    """Print a structured error for independently-verified cases that diverged."""
+    names = "\n".join(f"  {p.name}" for p in regressions)
+    print(
+        f"\n{len(regressions)} independently-verified case(s) diverged "
+        f"from the engine output:\n{names}\n\n"
+        "These cases have a 'source' field — their expected values were "
+        "verified against an external document.\n"
+        "Do NOT run the update script to fix this: investigate why the engine "
+        "output changed, then either correct the engine or re-verify the case "
+        "against the source and update the 'source.verified_at' date.",
+        file=sys.stderr,
+    )
+
+
+def _report_auto_promotions(promotions: list[Path]) -> None:
+    """Print a structured warning for engine-generated cases that are out of date."""
+    names = "\n".join(f"  {p.name}" for p in promotions)
+    print(
+        f"\n{len(promotions)} engine-generated case(s) are out of date:\n{names}\n\n"
+        "These cases have no 'source' field.\n"
+        "Run `uv run python scripts/ci/update_reference_cases.py` locally, "
+        "review the diff carefully to confirm the change is intentional, "
+        "and where possible add a 'source' block documenting the "
+        "external reference that verifies the expected values.",
+        file=sys.stderr,
+    )
 
 
 def main() -> None:
     """Entry point for the reference-case update script.
 
-    Exits with code 1 when running in dry-run mode and at least one case
-    would change.
+    In dry-run mode, exits with code 1 when any case would change and
+    distinguishes two categories:
+
+    * **Oracle regression** — a case with a ``source`` field would change.
+      This indicates the engine diverged from a value verified against an
+      external document.  Do NOT auto-update; investigate the cause.
+    * **Auto-promotion** — a case without a ``source`` field would change.
+      Running the script would silently crystallise engine output as the new
+      expected value.  Acceptable only after manual review of the diff.
     """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -511,17 +571,18 @@ def main() -> None:
         else sorted(_CASES_DIR.glob("*.json"))
     )
 
-    changed_count = sum(_update_case(p, dry_run=args.dry_run) for p in paths)
+    results = [_update_case(p, dry_run=args.dry_run) for p in paths]
+    oracle_regressions, auto_promotions = _classify_results(paths, results)
 
-    if args.dry_run and changed_count:
-        print(
-            f"\n{changed_count} case(s) out of date. "
-            "Run `uv run python scripts/ci/update_reference_cases.py` to fix.",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-
-    if not args.dry_run:
+    if args.dry_run:
+        if oracle_regressions:
+            _report_oracle_regressions(oracle_regressions)
+        if auto_promotions:
+            _report_auto_promotions(auto_promotions)
+        if oracle_regressions or auto_promotions:
+            sys.exit(1)
+    else:
+        changed_count = len(oracle_regressions) + len(auto_promotions)
         print(f"Done. {changed_count} case(s) updated.")
 
 
