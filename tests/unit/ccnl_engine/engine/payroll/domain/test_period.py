@@ -158,11 +158,9 @@ class TestComputePeriod:
         """compute_period accepts an optional bundle and skips loaders."""
         bundle = _make_bundle()
         mock_repo = MagicMock()
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            compute_period(_SCENARIO, PayrollPeriod(year=2026, month=3), bundle)
+        compute_period(
+            _SCENARIO, PayrollPeriod(year=2026, month=3), bundle, repo=mock_repo
+        )
         mock_repo.load_ccnl.assert_not_called()
 
     def test_deterministic(self) -> None:
@@ -194,11 +192,7 @@ class TestComputeYear:
         """compute_year accepts an optional bundle."""
         bundle = _make_bundle()
         mock_repo = MagicMock()
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            compute_year(_SCENARIO, 2026, bundle=bundle)
+        compute_year(_SCENARIO, 2026, bundle=bundle, repo=mock_repo)
         mock_repo.load_ccnl.assert_not_called()
 
     def test_accepts_month_events(self) -> None:
@@ -224,6 +218,8 @@ class TestComputeYear:
             scenario: AnnualEstimateInput,
             period: PayrollPeriod,
             bundle: PayrollBundle | None = None,
+            *,
+            repo: object = None,
         ) -> Calculation:
             """Capture each period's YTD then delegate.
 

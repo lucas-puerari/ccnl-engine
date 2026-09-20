@@ -19,6 +19,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     OvertimeBand,
     SicknessRules,
     SupplementaryAllowance,
+    TaxSector,
     TimeSupplementKind,
     TimeSupplements,
     WorkKind,
@@ -148,7 +149,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.art15 import Art15DeductionRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
-
 _TEST_TAX_PERIOD = TaxPeriod(
     start=_DATE,
     end=date(2026, 12, 31),
@@ -171,8 +171,8 @@ def compute(
     if period is not None:
         if period.tax_period is None:
             period = period.model_copy(update={"tax_period": _TEST_TAX_PERIOD})
-        return estimate_period_effects(scenario, period)
-    return estimate_annual(scenario)
+        return estimate_period_effects(scenario, period, repo=_REPO)
+    return estimate_annual(scenario, repo=_REPO)
 
 
 _DEFAULT_CCNL = _build_ccnl()
@@ -183,33 +183,34 @@ _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
 # ---------------------------------------------------------------------------
 
 _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
-_mock_rules: list[object] = [_RULES]
+_mock_rules: list[YearRules] = [_RULES]
 _mock_surtax: list[SurtaxRulesT | None] = [None]
 
 
 class _MockRepo:
-    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+    """KnowledgeRepository stub for the autouse _reset_mock_state fixture."""
 
     def load_ccnl(self, filename: str) -> CCNL:
         return _mock_ccnl[0]
 
-    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
         return _mock_rules[0]
 
-    def load_surtax_rules(self, year: int) -> object:
+    def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         return _mock_surtax[0]
 
 
+_REPO = _MockRepo()
+
+
 @pytest.fixture(autouse=True)
-def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the repository in orchestrator and reset mock state."""
+def _reset_mock_state() -> None:
+    """Reset mutable mock state before each test."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_RULES]
     _mock_surtax[:] = [None]
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        _MockRepo(),
-    )
 
 
 def _rule_provenance(tag: str) -> RuleProvenance:
@@ -299,25 +300,26 @@ class TestComputeValidation:
     def test_unknown_level_code_raises(self) -> None:
         """Unknown level_code must raise ValueError."""
         with pytest.raises(ValueError, match="NOPE"):
-            estimate_annual(_req(level_code="NOPE"))
+            estimate_annual(_req(level_code="NOPE"), repo=_REPO)
 
     def test_seniority_count_above_maximum_raises(self) -> None:
         """SeniorityByCount above the level maximum must raise ValueError."""
         with pytest.raises(ValueError, match="exceeds the maximum of 10"):
-            estimate_annual(_req(seniority_count=11))
+            estimate_annual(_req(seniority_count=11), repo=_REPO)
 
     def test_second_level_with_ral_override_raises(self) -> None:
         """second_level_allowances cannot be combined with a RAL override."""
         sl = SupplementaryAllowance(code="X", description="X", monthly=_D("100"))
         with pytest.raises(ValueError, match="RAL override"):
             estimate_annual(
-                _req(negotiated_ral=_D("20000"), second_level_allowances=(sl,))
+                _req(negotiated_ral=_D("20000"), second_level_allowances=(sl,)),
+                repo=_REPO,
             )
 
     def test_negotiated_destination_ral_on_non_apprentice_raises(self) -> None:
         """DestinationRalOverride with a non-Apprentice contract raises."""
         with pytest.raises(ValueError, match="only valid for Apprentice"):
-            estimate_annual(_req(negotiated_destination_ral=_D("20000.00")))
+            estimate_annual(_req(negotiated_destination_ral=_D("20000.00")), repo=_REPO)
 
 
 # ---------------------------------------------------------------------------
@@ -330,7 +332,7 @@ class TestComputePermanent:
 
     def test_full_time_no_seniority(self) -> None:
         """Permanent, full-time, no seniority: standard salary chain."""
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
 
         assert r.ccnl_id == "test"
         assert r.level_code == "4"
@@ -372,7 +374,7 @@ class TestComputePermanent:
 
     def test_with_seniority_count(self) -> None:
         """seniority_count=2 adds 2 * 20 = 40 to monthly gross."""
-        r = estimate_annual(_req(seniority_count=2)).result
+        r = estimate_annual(_req(seniority_count=2), repo=_REPO).result
 
         assert r.earnings.seniority_count == 2
         assert r.earnings.seniority_monthly == _D("40.00")
@@ -385,7 +387,7 @@ class TestComputePermanent:
     )
     def test_seniority_months_derivation(self, months: int, expected: int) -> None:
         """Count = 1 + (months - cadence) // cadence, clamped to the maximum."""
-        r = estimate_annual(_req(seniority_months=months)).result
+        r = estimate_annual(_req(seniority_months=months), repo=_REPO).result
         assert r.earnings.seniority_count == expected
 
     @pytest.mark.parametrize(
@@ -396,7 +398,7 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months": 48
         })
-        r = estimate_annual(_req(seniority_months=months)).result
+        r = estimate_annual(_req(seniority_months=months), repo=_REPO).result
         assert r.earnings.seniority_count == expected
 
     def test_seniority_first_cadence_by_level(self) -> None:
@@ -404,11 +406,13 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.first_cadence_months_by_level": {"4": 48}
         })
-        r47 = estimate_annual(_req(seniority_months=47)).result
-        r48 = estimate_annual(_req(seniority_months=48)).result
+        r47 = estimate_annual(_req(seniority_months=47), repo=_REPO).result
+        r48 = estimate_annual(_req(seniority_months=48), repo=_REPO).result
         assert r47.earnings.seniority_count == 0
         assert r48.earnings.seniority_count == 1
-        res = estimate_annual(_req(level_code="3", seniority_months=36)).result
+        res = estimate_annual(
+            _req(level_code="3", seniority_months=36), repo=_REPO
+        ).result
         assert res.earnings.seniority_count == 1
 
     def test_seniority_per_level_maximum(self) -> None:
@@ -416,18 +420,20 @@ class TestComputePermanent:
         _mock_ccnl[0] = _build_ccnl(**{
             "parameters.seniority_increments.maximum_count_by_level": {"4": 1}
         })
-        r = estimate_annual(_req(seniority_months=360)).result
+        r = estimate_annual(_req(seniority_months=360), repo=_REPO).result
         assert r.earnings.seniority_count == 1
         assert r.earnings.seniority_monthly == _D("20.00")
         with pytest.raises(ValueError, match="exceeds the maximum of 1"):
-            estimate_annual(_req(seniority_count=2))
+            estimate_annual(_req(seniority_count=2), repo=_REPO)
 
     def test_part_time_scales_all_components(self) -> None:
         """part_time_ratio=0.5 halves every component; components sum to gross."""
         _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.fixed_allowances": [_allowance("edr", "10.33")]
         })
-        r = estimate_annual(_req(part_time_ratio=_D("0.50"), seniority_count=1)).result
+        r = estimate_annual(
+            _req(part_time_ratio=_D("0.50"), seniority_count=1), repo=_REPO
+        ).result
 
         assert r.earnings.base_monthly == _D("500.00")
         assert r.earnings.seniority_monthly == _D("10.00")
@@ -438,14 +444,14 @@ class TestComputePermanent:
     def test_negotiated_ral(self) -> None:
         """RalOverride overrides gross_annual; gross_monthly stays consistent."""
         ral = _D("20000.00")
-        r = estimate_annual(_req(negotiated_ral=ral)).result
+        r = estimate_annual(_req(negotiated_ral=ral), repo=_REPO).result
 
         assert r.earnings.gross_annual == ral
         assert r.earnings.gross_monthly == _D("1666.67")
 
     def test_level_without_seniority_entry(self) -> None:
         """Level '3' has no seniority in amount_by_level — seniority stays zero."""
-        r = estimate_annual(_req(level_code="3", seniority_count=5)).result
+        r = estimate_annual(_req(level_code="3", seniority_count=5), repo=_REPO).result
 
         assert r.earnings.seniority_monthly == _D("0.00")
         assert r.earnings.base_monthly == _D("800.00")
@@ -454,7 +460,8 @@ class TestComputePermanent:
     def test_ad_personam_added_unscaled(self) -> None:
         """ad_personam_monthly is added as given, even under part-time."""
         r = estimate_annual(
-            _req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00"))
+            _req(part_time_ratio=_D("0.50"), ad_personam_monthly=_D("30.00")),
+            repo=_REPO,
         ).result
         assert r.earnings.ad_personam_monthly == _D("30.00")
         assert r.earnings.gross_monthly == _D("530.00")
@@ -477,8 +484,8 @@ class TestComputeAllowances:
                 _allowance("quadro", "100.00", role="quadro"),
             ]
         })
-        plain = estimate_annual(_req()).result
-        quadro = estimate_annual(_req(roles=frozenset({"quadro"}))).result
+        plain = estimate_annual(_req(), repo=_REPO).result
+        quadro = estimate_annual(_req(roles=frozenset({"quadro"})), repo=_REPO).result
         assert plain.earnings.allowances_monthly == _D("10.00")
         assert quadro.earnings.allowances_monthly == _D("110.00")
 
@@ -490,7 +497,7 @@ class TestComputeAllowances:
                 _allowance("ind", "50.00", months_per_year=12)
             ],
         })
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.earnings.gross_monthly == _D("1050.00")
         assert r.earnings.gross_annual == _D("14600.00")  # 1000*14 + 50*12
 
@@ -506,10 +513,10 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         # Re-fetch base with default CCNL
         _mock_ccnl[0] = _DEFAULT_CCNL
-        base = estimate_annual(_req()).result
+        base = estimate_annual(_req(), repo=_REPO).result
         _mock_ccnl[0] = _build_ccnl(**{
             "levels.2.fixed_allowances": [
                 _allowance(
@@ -520,7 +527,7 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.earnings.gross_annual == _D("13200.00")
         assert (
             r.contributions.inps_employee_annual
@@ -551,9 +558,9 @@ class TestComputeAllowances:
                 )
             ]
         })
-        r_with_exclusion = estimate_annual(_req(negotiated_ral=ral)).result
+        r_with_exclusion = estimate_annual(_req(negotiated_ral=ral), repo=_REPO).result
         _mock_ccnl[0] = _DEFAULT_CCNL
-        r_clean = estimate_annual(_req(negotiated_ral=ral)).result
+        r_clean = estimate_annual(_req(negotiated_ral=ral), repo=_REPO).result
 
         assert r_with_exclusion.earnings.gross_annual == ral
         # Contribution and TFR bases must be identical regardless of CCNL allowances.
@@ -593,9 +600,9 @@ class TestComputeEmployerFunds:
             "levels.2.category": "operaio",
             "levels.1.category": "impiegato",
         })
-        operaio = estimate_annual(_req()).result
-        impiegato = estimate_annual(_req(level_code="3")).result
-        uncategorised = estimate_annual(_req(level_code="2")).result
+        operaio = estimate_annual(_req(), repo=_REPO).result
+        impiegato = estimate_annual(_req(level_code="3"), repo=_REPO).result
+        uncategorised = estimate_annual(_req(level_code="2"), repo=_REPO).result
         assert operaio.contributions.employer_funds_annual == _D("1200.00")
         assert operaio.employer_cost.employer_cost_annual == (
             operaio.earnings.gross_annual
@@ -610,7 +617,7 @@ class TestComputeEmployerFunds:
         """A fund with applies_to_categories=None applies to every level."""
         fund = {**self._FUND, "applies_to_categories": None}
         _mock_ccnl[0] = _build_ccnl(**{"parameters.employer_funds": [fund]})
-        r = estimate_annual(_req(level_code="3")).result
+        r = estimate_annual(_req(level_code="3"), repo=_REPO).result
         assert r.contributions.employer_funds_annual == _D("960.00")
 
     def test_employer_rate_by_category(self) -> None:
@@ -629,8 +636,8 @@ class TestComputeEmployerFunds:
             "levels.1.category": "impiegato",
             "levels.2.category": "operaio",
         })
-        impiegato = estimate_annual(_req(level_code="3")).result
-        operaio = estimate_annual(_req()).result
+        impiegato = estimate_annual(_req(level_code="3"), repo=_REPO).result
+        operaio = estimate_annual(_req(), repo=_REPO).result
         assert impiegato.contributions.inps_employer_annual == _D("1920.00")  # 9600*0.2
         assert operaio.contributions.inps_employer_annual == _D("3600.00")  # 12000*0.30
 
@@ -645,8 +652,8 @@ class TestComputeFixedTerm:
 
     def test_fixed_term_naspi_addizionale(self) -> None:
         """Employer INPS for fixed-term must exceed permanent by 1.4% of gross."""
-        r_fixed = estimate_annual(_req(contract=_FIXED_TERM)).result
-        r_perm = estimate_annual(_req()).result
+        r_fixed = estimate_annual(_req(contract=_FIXED_TERM), repo=_REPO).result
+        r_perm = estimate_annual(_req(), repo=_REPO).result
 
         expected_diff = r_fixed.earnings.gross_annual * _D("0.014")
         actual_diff = (
@@ -738,7 +745,7 @@ class TestComputeIrpefFloor:
 
     def test_irpef_net_floored_at_zero(self) -> None:
         """Low income: deduction > irpef_gross → irpef_net == 0."""
-        r = estimate_annual(_req(negotiated_ral=_D("5000.00"))).result
+        r = estimate_annual(_req(negotiated_ral=_D("5000.00")), repo=_REPO).result
 
         assert r.taxes.irpef_net == _D("0.00")
         assert r.net_annual == (
@@ -759,19 +766,19 @@ class TestComputeWithholdingExempt:
     def test_irpef_net_is_zero(self) -> None:
         """Exempt employer: irpef_net must be zero regardless of income."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.taxes.irpef_net == _D("0.00")
 
     def test_employer_withholds_irpef_flag_false(self) -> None:
         """Exempt employer: employer_withholds_irpef must be False."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.taxes.employer_withholds_irpef is False
 
     def test_net_annual_excludes_irpef(self) -> None:
         """Net = gross - INPS employee; IRPEF not deducted by employer."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.net_annual == (
             r.earnings.gross_annual - r.contributions.inps_employee_annual
         )
@@ -779,13 +786,13 @@ class TestComputeWithholdingExempt:
     def test_irpef_informational_fields_nonzero(self) -> None:
         """irpef_gross and work_income_deduction remain as informational."""
         _mock_ccnl[0] = self._EXEMPT_CCNL
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.taxes.irpef_gross > _D("0.00")
         assert r.taxes.work_income_deduction >= _D("0.00")
 
     def test_standard_ccnl_withholds_irpef(self) -> None:
         """Standard CCNL: employer_withholds_irpef must be True."""
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.taxes.employer_withholds_irpef is True
 
 
@@ -805,12 +812,12 @@ class TestComputeDomesticInps:
         """domestic_contributions set but weekly_hours=None must raise."""
         _mock_rules[0] = _DOMESTIC_RULES
         with pytest.raises(ValueError, match="weekly_hours is required"):
-            estimate_annual(_req())
+            estimate_annual(_req(), repo=_REPO)
 
     def test_hours_bracket_permanent(self) -> None:
         """weekly_hours > 24 → hours bracket; permanent uses base employer rate."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = estimate_annual(_req(weekly_hours=_D("40"))).result
+        r = estimate_annual(_req(weekly_hours=_D("40")), repo=_REPO).result
 
         annual_hours = _D("40") * _D("52")
         assert r.contributions.inps_employee_annual == money(_D("0.31") * annual_hours)
@@ -819,7 +826,9 @@ class TestComputeDomesticInps:
     def test_hours_bracket_fixed_term(self) -> None:
         """weekly_hours > 24 + FixedTerm → hours bracket fixed-term rate."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = estimate_annual(_req(contract=_FIXED_TERM, weekly_hours=_D("40"))).result
+        r = estimate_annual(
+            _req(contract=_FIXED_TERM, weekly_hours=_D("40")), repo=_REPO
+        ).result
 
         annual_hours = _D("40") * _D("52")
         assert r.contributions.inps_employee_annual == money(_D("0.31") * annual_hours)
@@ -832,7 +841,7 @@ class TestComputeDomesticInps:
         hourly_rate = 1000 * 12 / (20 * 52) = 11.54 → bracket up_to=11.70.
         """
         _mock_rules[0] = _DOMESTIC_RULES
-        r = estimate_annual(_req(weekly_hours=_D("20"))).result
+        r = estimate_annual(_req(weekly_hours=_D("20")), repo=_REPO).result
 
         annual_hours = _D("20") * _D("52")
         assert r.contributions.inps_employee_annual == money(_D("0.48") * annual_hours)
@@ -841,7 +850,7 @@ class TestComputeDomesticInps:
     def test_net_is_gross_minus_inps_minus_irpef(self) -> None:
         """Net = gross - INPS employee - irpef_net for domestic path."""
         _mock_rules[0] = _DOMESTIC_RULES
-        r = estimate_annual(_req(weekly_hours=_D("40"))).result
+        r = estimate_annual(_req(weekly_hours=_D("40")), repo=_REPO).result
         assert r.net_annual == (
             r.earnings.gross_annual
             - r.contributions.inps_employee_annual
@@ -858,7 +867,9 @@ class TestComputeDomesticInps:
         _mock_rules[0] = _DOMESTIC_RULES
         # seniority_months=12 implies a clearly post-1996 hire: without the
         # guard, _ivs_ceiling_warning would emit "contributions are overstated".
-        r = estimate_annual(_req(weekly_hours=_D("40"), seniority_months=12)).result
+        r = estimate_annual(
+            _req(weekly_hours=_D("40"), seniority_months=12), repo=_REPO
+        ).result
         ivs_warnings = [w for w in r.coverage.warnings if "overstated" in w]
         assert ivs_warnings == [], (
             f"Unexpected IVS warning on domestic contract: {r.coverage.warnings}"
@@ -916,12 +927,13 @@ class TestComputeAddizionali:
                     else None
                 ),
                 negotiated_ral=negotiated_ral,
-            )
+            ),
+            repo=_REPO,
         ).result
 
     def test_without_surtax_parameter_both_zero(self) -> None:
         """When no jurisdiction set (default), both addizionali are zero."""
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert r.taxes.addizionale_regionale_annual == Decimal("0.00")
         assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
         assert _FS.NO_ADDIZIONALE_REGIONALE in r.taxes.fiscal_simplifications
@@ -997,7 +1009,8 @@ class TestComputeAddizionali:
                 as_of=date(2026, 1, 1),
                 negotiated_ral=tiny_ral,
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
-            )
+            ),
+            repo=_REPO,
         ).result
         assert r.taxes.addizionale_comunale_annual == Decimal("0.00")
 
@@ -1016,7 +1029,8 @@ class TestComputeAddizionali:
                 jurisdiction=Jurisdiction(
                     regione="TestRegione", comune_belfiore="X001"
                 ),
-            )
+            ),
+            repo=_REPO,
         ).result
         assert r.taxes.irpef_net == _D("0.00"), "irpef_net must be zero in no-tax area"
         assert r.taxes.addizionale_regionale_annual == _D("0.00")
@@ -1060,7 +1074,7 @@ class TestFiscalFlagsExclusivity:
         jurisdiction is provided, both axes must carry NO_ADDIZIONALE_*, and
         ADDIZIONALE_*_UNKNOWN must be absent.
         """
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
         assert _FS.NO_ADDIZIONALE_COMUNALE in sfs
@@ -1080,7 +1094,8 @@ class TestFiscalFlagsExclusivity:
                 jurisdiction=Jurisdiction(
                     regione="KnownRegione", comune_belfiore="K001"
                 ),
-            )
+            ),
+            repo=_REPO,
         ).result
         sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE not in sfs
@@ -1101,7 +1116,8 @@ class TestFiscalFlagsExclusivity:
                 jurisdiction=Jurisdiction(
                     regione="UnknownRegione", comune_belfiore="Z999"
                 ),
-            )
+            ),
+            repo=_REPO,
         ).result
         sfs = r.taxes.fiscal_simplifications
         assert _FS.ADDIZIONALE_REGIONALE_UNKNOWN in sfs
@@ -1126,7 +1142,8 @@ class TestFiscalFlagsExclusivity:
                 jurisdiction=Jurisdiction(
                     regione="UnknownRegione", comune_belfiore="Z999"
                 ),
-            )
+            ),
+            repo=_REPO,
         ).result
         sfs = r.taxes.fiscal_simplifications
         assert _FS.NO_ADDIZIONALE_REGIONALE in sfs
@@ -1143,7 +1160,7 @@ class TestProvenanceChain:
         ccnl = CCNL.model_validate(make_ccnl_dict())
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         # Level 4 has provenance on the level and on its salary period.
         assert len(result.provenance) >= 1
 
@@ -1171,7 +1188,7 @@ class TestProvenanceChain:
         ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert result.provenance == (prov_level, prov_period)
 
     def test_allowance_and_seniority_provenance_collected(self) -> None:
@@ -1206,7 +1223,7 @@ class TestProvenanceChain:
         ccnl = ccnl.model_copy(update={"levels": new_levels, "parameters": new_params})
         _mock_ccnl[0] = ccnl
         _mock_rules[0] = make_year_rules()
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert prov_allowance in result.provenance
         assert prov_seniority in result.provenance
 
@@ -1358,7 +1375,7 @@ class TestApprenticeTrace:
 
     def test_trace_shows_destination_level_for_non_apprentice(self) -> None:
         """For a standard (non-apprentice) employee, trace uses the declared level."""
-        calc = estimate_annual(_req(level_code="4"))
+        calc = estimate_annual(_req(level_code="4"), repo=_REPO)
         base_steps = [
             s for s in calc.trace.steps if s.category == TraceCategory.BASE_SALARY
         ]
@@ -1373,7 +1390,7 @@ class TestR7SubRulesetIdentities:
 
     def test_no_sub_rulesets_when_no_optional_inputs(self) -> None:
         """Without sick/variable-pay inputs, no sub-ruleset keys appear."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert "sick_pay" not in calc.ruleset_version
         assert "variable_pay" not in calc.ruleset_version
 
@@ -1402,7 +1419,8 @@ class TestR7SubRulesetIdentities:
         calc = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_CHILD_DEP,))}
-            )
+            ),
+            repo=_REPO,
         )
         assert "family_deductions" in calc.ruleset_version, (
             f"Expected family_deductions in ruleset_version,"
@@ -1411,7 +1429,7 @@ class TestR7SubRulesetIdentities:
 
     def test_family_deductions_ruleset_absent_without_dependents(self) -> None:
         """family_deductions absent when no dependents in the scenario."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert "family_deductions" not in calc.ruleset_version
 
     def test_art15_deductions_ruleset_present_when_oneri_set(self) -> None:
@@ -1421,7 +1439,8 @@ class TestR7SubRulesetIdentities:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("2000"))
                 }
-            )
+            ),
+            repo=_REPO,
         )
         assert "art15_deductions" in calc.ruleset_version, (
             f"Expected art15_deductions in ruleset_version, got: {calc.ruleset_version}"
@@ -1429,7 +1448,7 @@ class TestR7SubRulesetIdentities:
 
     def test_art15_deductions_ruleset_absent_without_oneri(self) -> None:
         """art15_deductions absent when art15_deductions is None."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert "art15_deductions" not in calc.ruleset_version
 
 
@@ -1822,7 +1841,7 @@ class TestL3Absence:
 
     def test_absence_scope_excluded_when_no_days(self) -> None:
         """Absence scope item is excluded when no absence_days supplied."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -1969,7 +1988,7 @@ class TestL3Leave:
 
     def test_leave_scope_excluded_when_no_input(self) -> None:
         """Leave scope item is excluded when no leave_input supplied."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2031,7 +2050,7 @@ class TestL3Sickness:
 
     def test_sick_scope_excluded_when_no_input(self) -> None:
         """Sickness is excluded when no sick_input is provided."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2066,7 +2085,7 @@ class TestL3Sickness:
 
     def test_sick_all_zero_when_no_input(self) -> None:
         """No sick_input produces AnnualEstimate (no period fields)."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert not isinstance(result, PeriodPayroll)
 
     def test_zero_sick_days_no_warning_when_no_schema(self) -> None:
@@ -2095,7 +2114,7 @@ class TestL3Sickness:
         confidence, result_status, and scope must be identical for a scenario
         with sick_input=None and one with sick_input=SickInput() (zero days).
         """
-        result_none = estimate_annual(_req()).result
+        result_none = estimate_annual(_req(), repo=_REPO).result
         period_zero = PeriodPayrollInput(sick_input=SickInput())
         result_zero = compute(_req(), period_zero).result
         # Scope entry must match.
@@ -2143,7 +2162,7 @@ class TestL3VariablePay:
 
     def test_fringe_benefit_scope_excluded_when_no_input(self) -> None:
         """fringe_benefit scope is excluded when no fringe_benefit_input."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2152,7 +2171,7 @@ class TestL3VariablePay:
 
     def test_welfare_scope_excluded_when_no_input(self) -> None:
         """Welfare scope is excluded when no welfare_input."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2161,7 +2180,7 @@ class TestL3VariablePay:
 
     def test_bonus_pdr_scope_excluded_when_no_input(self) -> None:
         """bonus_pdr scope is excluded when no bonus_input."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -2170,7 +2189,7 @@ class TestL3VariablePay:
 
     def test_all_variable_pay_fields_zero_when_no_inputs(self) -> None:
         """No variable-pay inputs produces AnnualEstimate (no period fields)."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert not isinstance(result, PeriodPayroll)
 
     def test_fringe_benefit_scope_verified_when_input_given(self) -> None:
@@ -2240,7 +2259,7 @@ class TestL3VariablePay:
 
     def test_gross_annual_not_mutated_by_variable_pay(self) -> None:
         """gross_annual is unchanged; fringe (above threshold) raises taxable_income."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_inputs = compute(
             _req(),
             PeriodPayrollInput(
@@ -2284,18 +2303,21 @@ class TestL3FamilyDeductions:
 
     def test_no_family_leaves_irpef_net_unchanged(self) -> None:
         """Without family input, irpef_net equals baseline (no deduction)."""
-        baseline = estimate_annual(_req()).result
-        with_none = estimate_annual(_req().model_copy(update={"family": None})).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
+        with_none = estimate_annual(
+            _req().model_copy(update={"family": None}), repo=_REPO
+        ).result
         assert with_none.taxes.irpef_net == baseline.taxes.irpef_net
         assert with_none.taxes.family_deduction_annual == _D("0")
 
     def test_spouse_deduction_reduces_irpef_net(self) -> None:
         """Spouse deduction is subtracted from irpef_net."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_spouse = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert with_spouse.taxes.family_deduction_spouse_annual > _D("0")
         assert with_spouse.taxes.irpef_net < baseline.taxes.irpef_net
@@ -2305,16 +2327,17 @@ class TestL3FamilyDeductions:
         result = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert result.taxes.family_deduction_children_annual == _D("0")
         assert result.taxes.family_deduction_other_annual == _D("0")
 
     def test_no_dependents_flags_no_deduction(self) -> None:
         """Family with no eligible dependents: deduction zero, irpef_net unchanged."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_empty_family = estimate_annual(
-            _req().model_copy(update={"family": FamilyComposition()})
+            _req().model_copy(update={"family": FamilyComposition()}), repo=_REPO
         ).result
         assert with_empty_family.taxes.family_deduction_annual == _D("0")
         assert with_empty_family.taxes.irpef_net == baseline.taxes.irpef_net
@@ -2325,7 +2348,8 @@ class TestL3FamilyDeductions:
         result = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert result.taxes.family_deduction_spouse_annual > _D("0")
         assert (
@@ -2336,11 +2360,12 @@ class TestL3FamilyDeductions:
 
     def test_gross_annual_not_mutated_by_family_deductions(self) -> None:
         """gross_annual is unchanged by family deductions."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_family = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert with_family.earnings.gross_annual == baseline.earnings.gross_annual
 
@@ -2352,11 +2377,12 @@ class TestL3FamilyDeductions:
         uses taxable_income (< gross_annual) so the taper and resulting
         deduction are larger than they would be if computed on gross_annual.
         """
-        result_no_fam = estimate_annual(_req()).result
+        result_no_fam = estimate_annual(_req(), repo=_REPO).result
         result_spouse = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         # taxable_income < gross_annual, so the taper (95000 - RC) / 95000
         # is larger when RC = taxable_income.  The deduction must be strictly
@@ -2382,7 +2408,8 @@ class TestL3FamilyDeductions:
         result = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert (
             FiscalSimplification.NO_DETRAZIONI_FAMILIARI
@@ -2391,7 +2418,9 @@ class TestL3FamilyDeductions:
 
     def test_no_detrazioni_familiari_present_when_family_is_none(self) -> None:
         """NO_DETRAZIONI_FAMILIARI is present when no family data is provided."""
-        result = estimate_annual(_req().model_copy(update={"family": None})).result
+        result = estimate_annual(
+            _req().model_copy(update={"family": None}), repo=_REPO
+        ).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
 
@@ -2402,7 +2431,7 @@ class TestL3FamilyDeductions:
         the engine skips the Art. 12 computation and keeps the flag set.
         """
         result = estimate_annual(
-            _req().model_copy(update={"family": FamilyComposition()})
+            _req().model_copy(update={"family": FamilyComposition()}), repo=_REPO
         ).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_FAMILIARI in sfs
@@ -2437,13 +2466,15 @@ class TestSterilizzazioneDetrazioni:
         with_strd = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         _mock_rules[0] = make_year_rules()
         baseline = estimate_annual(
             _req().model_copy(
                 update={"family": FamilyComposition(dependents=(_SPOUSE_DEP,))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert (
             baseline.taxes.family_deduction_annual
@@ -2458,9 +2489,9 @@ class TestSterilizzazioneDetrazioni:
         nothing to reduce and irpef_net is unchanged.
         """
         _mock_rules[0] = make_year_rules(sterilizzazione_detrazioni=self._STRD_RULES)
-        with_strd = estimate_annual(_req()).result
+        with_strd = estimate_annual(_req(), repo=_REPO).result
         _mock_rules[0] = make_year_rules()
-        without_strd = estimate_annual(_req()).result
+        without_strd = estimate_annual(_req(), repo=_REPO).result
         assert with_strd.taxes.sterilizzazione_clawback_annual == _D("0")
         assert with_strd.taxes.irpef_net == without_strd.taxes.irpef_net
 
@@ -2479,13 +2510,15 @@ class TestSterilizzazioneDetrazioni:
         with_strd = estimate_annual(
             _req(negotiated_ral=_D("50000")).model_copy(
                 update={"art15_deductions": art15}
-            )
+            ),
+            repo=_REPO,
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = estimate_annual(
             _req(negotiated_ral=_D("50000")).model_copy(
                 update={"art15_deductions": art15}
-            )
+            ),
+            repo=_REPO,
         ).result
         # Art. 13 (work_income_deduction) is not affected.
         assert (
@@ -2507,9 +2540,9 @@ class TestSterilizzazioneDetrazioni:
         _mock_rules[0] = make_year_rules(
             sterilizzazione_detrazioni={"threshold": "9999999", "reduction": "440"}
         )
-        with_high_threshold = estimate_annual(_req()).result
+        with_high_threshold = estimate_annual(_req(), repo=_REPO).result
         _mock_rules[0] = make_year_rules()
-        without = estimate_annual(_req()).result
+        without = estimate_annual(_req(), repo=_REPO).result
         assert with_high_threshold.taxes.sterilizzazione_clawback_annual == _D("0")
         assert with_high_threshold.taxes.irpef_net == without.taxes.irpef_net
 
@@ -2528,7 +2561,8 @@ class TestSterilizzazioneDetrazioni:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = estimate_annual(
@@ -2536,7 +2570,8 @@ class TestSterilizzazioneDetrazioni:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # Clawback fires: Art. 15 credit is 760; min(440, 760) = 440.
         assert with_strd.taxes.sterilizzazione_clawback_annual == _D("440.00")
@@ -2559,7 +2594,8 @@ class TestSterilizzazioneDetrazioni:
                     "family": FamilyComposition(dependents=(_SPOUSE_DEP,)),
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         _mock_rules[0] = make_year_rules()
         result_no_strd = estimate_annual(
@@ -2568,7 +2604,8 @@ class TestSterilizzazioneDetrazioni:
                     "family": FamilyComposition(dependents=(_SPOUSE_DEP,)),
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000")),
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # Verify sterilizzazione fired and family deductions are present.
         assert result.taxes.sterilizzazione_clawback_annual == _D("440.00")
@@ -2603,9 +2640,9 @@ class TestArt15Deductions:
 
     def test_no_art15_leaves_irpef_net_unchanged(self) -> None:
         """Without art15_deductions, irpef_net equals baseline."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_none = estimate_annual(
-            _req().model_copy(update={"art15_deductions": None})
+            _req().model_copy(update={"art15_deductions": None}), repo=_REPO
         ).result
         assert with_none.taxes.irpef_net == baseline.taxes.irpef_net
         assert with_none.taxes.art15_deduction_annual == _D("0")
@@ -2617,13 +2654,14 @@ class TestArt15Deductions:
         (551.36), so irpef_net is floored at 0 — excess credit is lost per
         Italian tax law.
         """
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_art15 = estimate_annual(
             _req().model_copy(
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         assert with_art15.taxes.art15_deduction_annual == _D("570.00")  # 3000 * 0.19
         expected = max(_D("0"), baseline.taxes.irpef_net - _D("570.00"))
@@ -2636,7 +2674,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("9999"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         assert result.taxes.art15_deduction_annual == _D("760.00")  # 4000 * 0.19
 
@@ -2647,7 +2686,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("1000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE not in sfs
@@ -2663,20 +2703,21 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("1000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
     def test_no_detrazioni_art15_mortgage_tag_present_when_not_set(self) -> None:
         """NO_DETRAZIONI_ART15_MORTGAGE present when mortgage not provided."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE in sfs
 
     def test_partial_detrazioni_art15_always_set_when_no_art15(self) -> None:
         """PARTIAL_DETRAZIONI_ART15 always set, even without any Art. 15 input."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.PARTIAL_DETRAZIONI_ART15 in sfs
 
@@ -2688,7 +2729,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         assert result.taxes.art15_deduction_annual == _D("570.00")
         assert (
@@ -2699,11 +2741,12 @@ class TestArt15Deductions:
 
     def test_zero_interest_has_no_effect(self) -> None:
         """Art15Deductions with zero mortgage_interest: no deduction, tags kept."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_zero = estimate_annual(
             _req().model_copy(
                 update={"art15_deductions": Art15Deductions(mortgage_interest=_D("0"))}
-            )
+            ),
+            repo=_REPO,
         ).result
         assert with_zero.taxes.art15_deduction_annual == _D("0")
         assert with_zero.taxes.irpef_net == baseline.taxes.irpef_net
@@ -2713,13 +2756,14 @@ class TestArt15Deductions:
 
     def test_gross_annual_not_mutated_by_art15_deductions(self) -> None:
         """gross_annual is unchanged by Art. 15 deductions."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         with_art15 = estimate_annual(
             _req().model_copy(
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("2000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         assert with_art15.earnings.gross_annual == baseline.earnings.gross_annual
 
@@ -2739,7 +2783,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         _mock_rules[0] = make_year_rules()
         without_strd = estimate_annual(
@@ -2747,7 +2792,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # art15_deduction_annual reports the raw pre-clawback credit in both.
         assert with_strd.taxes.art15_deduction_annual == _D("570.00")
@@ -2771,7 +2817,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("3000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # art15 = 3000 * 0.19 = 570; unchanged by sterilizzazione.
         assert result.taxes.art15_deduction_annual == _D("570.00")
@@ -2803,7 +2850,8 @@ class TestArt15Deductions:
                 update={
                     "art15_deductions": Art15Deductions(mortgage_interest=_D("4000"))
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # art15 = min(4000, 4000) * 0.19 = 760 (at EUR 4 000 ceiling).
         assert result.taxes.art15_deduction_annual == _D("760.00")
@@ -2818,7 +2866,7 @@ class TestArt15MortgagePre2022:
     def test_post_2021_mortgage_excluded_from_ti_relevant_deductions(self) -> None:
         """Post-2021 mortgage (default) does not affect trattamento_integrativo."""
         # Level 2 (base 600/month) puts taxable income in the TI band.
-        baseline = estimate_annual(_req(level_code="2")).result
+        baseline = estimate_annual(_req(level_code="2"), repo=_REPO).result
         with_post_2021 = estimate_annual(
             _req(level_code="2").model_copy(
                 update={
@@ -2826,7 +2874,8 @@ class TestArt15MortgagePre2022:
                         mortgage_interest=_D("3000"), mortgage_pre_2022=False
                     )
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # Art. 15 credit still applied to IRPEF
         assert with_post_2021.taxes.art15_deduction_annual == _D("570.00")
@@ -2838,7 +2887,7 @@ class TestArt15MortgagePre2022:
 
     def test_pre_2022_mortgage_included_in_ti_relevant_deductions(self) -> None:
         """Pre-2022 mortgage qualifies for TI relevant_deductions."""
-        baseline = estimate_annual(_req(level_code="2")).result
+        baseline = estimate_annual(_req(level_code="2"), repo=_REPO).result
         with_pre_2022 = estimate_annual(
             _req(level_code="2").model_copy(
                 update={
@@ -2846,7 +2895,8 @@ class TestArt15MortgagePre2022:
                         mortgage_interest=_D("3000"), mortgage_pre_2022=True
                     )
                 }
-            )
+            ),
+            repo=_REPO,
         ).result
         # Art. 15 credit still applied to IRPEF
         assert with_pre_2022.taxes.art15_deduction_annual == _D("570.00")
@@ -2961,12 +3011,12 @@ class TestComputeResultStatus:
 
     def test_compute_sets_status_on_result(self) -> None:
         """compute() populates status='complete' for a basic scenario."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert result.coverage.status in {"complete", "partial"}
 
     def test_compute_status_is_complete_without_work_rules_input(self) -> None:
         """No L3 inputs and L3 schema present → complete (all excluded)."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         # No overtime/leave/sick input: all L3 scope items are 'excluded'.
         # All L1/L2 items are 'computed'. Mock CCNL has no simplification
         # notes, so ccnl_limitations is not injected.
@@ -3225,7 +3275,7 @@ class TestComputeConfidence:
 
     def test_compute_result_has_confidence_field(self) -> None:
         """compute() populates confidence on the result."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert result.coverage.confidence in {"low", "medium", "high"}
 
 
@@ -3368,7 +3418,7 @@ class TestConfidenceWithOptionalRulesets:
         raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
         # Intentionally no "ruleset" key → ccnl.ruleset = None
         _mock_ccnl[0] = CCNL.model_validate(raw)
-        result = estimate_annual(_req())
+        result = estimate_annual(_req(), repo=_REPO)
         assert result.result.coverage.confidence == "medium"
 
     def test_unverified_ccnl_ruleset_downgrades_confidence(self) -> None:
@@ -3393,7 +3443,7 @@ class TestConfidenceWithOptionalRulesets:
         raw["parameters"]["seniority_increments"]["provenance"] = _VERIFIED_PROV
         raw["ruleset"] = ruleset_block
         _mock_ccnl[0] = CCNL.model_validate(raw)
-        result = estimate_annual(_req())
+        result = estimate_annual(_req(), repo=_REPO)
         assert result.result.coverage.confidence == "medium"
 
     def test_sick_pay_rates_without_ruleset_not_added_to_ids(
@@ -3517,7 +3567,9 @@ class TestConfidenceFamilyArt15:
         is treated as an unverified consumed source.
         """
         _mock_ccnl[0] = _verified_ccnl()
-        result = estimate_annual(_req().model_copy(update={"family": _FAMILY_INPUT}))
+        result = estimate_annual(
+            _req().model_copy(update={"family": _FAMILY_INPUT}), repo=_REPO
+        )
         assert result.result.coverage.confidence == "medium"
 
     def test_family_with_verified_ruleset_still_medium(
@@ -3536,7 +3588,9 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal_deductions.load_family_deduction_rules",
             lambda _: verified,
         )
-        result = estimate_annual(_req().model_copy(update={"family": _FAMILY_INPUT}))
+        result = estimate_annual(
+            _req().model_copy(update={"family": _FAMILY_INPUT}), repo=_REPO
+        )
         assert result.result.coverage.confidence == "medium"
 
     def test_family_with_unverified_ruleset_downgrades_confidence(
@@ -3549,7 +3603,9 @@ class TestConfidenceFamilyArt15:
             "ccnl_engine.engine.payroll.service.fiscal_deductions.load_family_deduction_rules",
             lambda _: unverified,
         )
-        result = estimate_annual(_req().model_copy(update={"family": _FAMILY_INPUT}))
+        result = estimate_annual(
+            _req().model_copy(update={"family": _FAMILY_INPUT}), repo=_REPO
+        )
         assert result.result.coverage.confidence == "medium"
 
     def test_art15_without_ruleset_downgrades_confidence(self) -> None:
@@ -3560,7 +3616,7 @@ class TestConfidenceFamilyArt15:
         """
         _mock_ccnl[0] = _verified_ccnl()
         result = estimate_annual(
-            _req().model_copy(update={"art15_deductions": _ART15_INPUT})
+            _req().model_copy(update={"art15_deductions": _ART15_INPUT}), repo=_REPO
         )
         assert result.result.coverage.confidence == "medium"
 
@@ -3580,7 +3636,7 @@ class TestConfidenceFamilyArt15:
             lambda _: verified,
         )
         result = estimate_annual(
-            _req().model_copy(update={"art15_deductions": _ART15_INPUT})
+            _req().model_copy(update={"art15_deductions": _ART15_INPUT}), repo=_REPO
         )
         assert result.result.coverage.confidence == "medium"
 
@@ -3595,14 +3651,14 @@ class TestConfidenceFamilyArt15:
             lambda _: unverified,
         )
         result = estimate_annual(
-            _req().model_copy(update={"art15_deductions": _ART15_INPUT})
+            _req().model_copy(update={"art15_deductions": _ART15_INPUT}), repo=_REPO
         )
         assert result.result.coverage.confidence == "medium"
 
     def test_no_optional_features_confidence_unaffected(self) -> None:
         """No family or Art. 15 inputs: consumed_ruleset_ids stays empty."""
         _mock_ccnl[0] = _verified_ccnl()
-        result = estimate_annual(_req())
+        result = estimate_annual(_req(), repo=_REPO)
         assert result.result.coverage.confidence == "high"
 
     def test_none_ruleset_in_compute_confidence_is_unverified(self) -> None:
@@ -3654,7 +3710,7 @@ class TestBilateralFunds:
 
     def test_no_bilateral_funds_flag_present_when_no_funds(self) -> None:
         """NO_BILATERAL_FUNDS is set when bilateral_funds is empty."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         sfs = result.taxes.fiscal_simplifications
         assert FiscalSimplification.NO_BILATERAL_FUNDS in sfs
 
@@ -3676,7 +3732,7 @@ class TestBilateralFunds:
 
     def test_flat_monthly_fund_reduces_net_annual(self) -> None:
         """Employee flat monthly contribution (x 12) is subtracted from net_annual."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         scenario = _req().model_copy(
             update={
                 "bilateral_funds": (
@@ -3693,7 +3749,7 @@ class TestBilateralFunds:
 
     def test_flat_monthly_fund_increases_employer_cost(self) -> None:
         """Employer flat monthly contribution (x 12) enters employer_cost_annual."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         scenario = _req().model_copy(
             update={
                 "bilateral_funds": (
@@ -3712,7 +3768,7 @@ class TestBilateralFunds:
 
     def test_rate_fund_tfr_base_computation(self) -> None:
         """RateFund with base='tfr_base' is applied and reduces net_annual."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         rate = _D("0.01")
         scenario = _req().model_copy(
             update={
@@ -3739,7 +3795,7 @@ class TestBilateralFunds:
 
     def test_rate_fund_gross_annual_computation(self) -> None:
         """RateFund with base='gross_annual' applies rate to gross_annual."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         rate = _D("0.005")
         scenario = _req().model_copy(
             update={
@@ -3764,7 +3820,7 @@ class TestBilateralFunds:
 
     def test_gross_annual_not_mutated_by_bilateral_funds(self) -> None:
         """gross_annual is unchanged when bilateral_funds are provided."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         scenario = _req().model_copy(
             update={
                 "bilateral_funds": (
@@ -3799,7 +3855,7 @@ class TestBilateralFunds:
 
     def test_bilateral_funds_scope_item_excluded_when_absent(self) -> None:
         """bilateral_funds scope item is 'excluded' when no funds provided."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         scope_map = {
             item.feature: item.calculation_status
             for item in result.coverage.calculation_scope
@@ -3808,7 +3864,7 @@ class TestBilateralFunds:
 
     def test_multiple_funds_accumulate(self) -> None:
         """Multiple funds in the tuple accumulate correctly."""
-        baseline = estimate_annual(_req()).result
+        baseline = estimate_annual(_req(), repo=_REPO).result
         scenario = _req().model_copy(
             update={
                 "bilateral_funds": (
@@ -3882,28 +3938,32 @@ class TestIvsCeilingWarning:
     def test_seniority_by_months_post_1996_emits_warning(self) -> None:
         """SeniorityByMonths implying post-1996 hire triggers the warning."""
         # 120 months = 10 years of seniority; implied hire ~2016, post-1996
-        r = estimate_annual(_req(seniority_months=120)).result
+        r = estimate_annual(_req(seniority_months=120), repo=_REPO).result
         assert any("overstated" in w for w in r.coverage.warnings)
 
     def test_seniority_by_months_pre_1996_no_warning(self) -> None:
         """SeniorityByMonths implying pre-1996 hire produces no warning."""
         # 480 months = 40 years; implied hire ~1986, pre-1996
-        r = estimate_annual(_req(seniority_months=480)).result
+        r = estimate_annual(_req(seniority_months=480), repo=_REPO).result
         assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_seniority_by_months_with_ceiling_no_warning(self) -> None:
         """SeniorityByMonths with ivs_ceiling_applies=True produces no warning."""
-        r = estimate_annual(_req(seniority_months=120, ivs_ceiling_applies=True)).result
+        r = estimate_annual(
+            _req(seniority_months=120, ivs_ceiling_applies=True), repo=_REPO
+        ).result
         assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_seniority_by_count_emits_warning(self) -> None:
         """SeniorityByCount with ivs_ceiling_applies=False triggers warning."""
-        r = estimate_annual(_req(seniority_count=2)).result
+        r = estimate_annual(_req(seniority_count=2), repo=_REPO).result
         assert any("overstated" in w for w in r.coverage.warnings)
 
     def test_seniority_by_count_with_ceiling_no_warning(self) -> None:
         """SeniorityByCount with ivs_ceiling_applies=True produces no warning."""
-        r = estimate_annual(_req(seniority_count=2, ivs_ceiling_applies=True)).result
+        r = estimate_annual(
+            _req(seniority_count=2, ivs_ceiling_applies=True), repo=_REPO
+        ).result
         assert not any("ivs_ceiling_applies" in w for w in r.coverage.warnings)
 
     def test_base_at_or_below_ceiling_no_warning(self) -> None:
@@ -3970,7 +4030,7 @@ class TestNoAssegnoUnico:
 
     def test_always_present_default_scenario(self) -> None:
         """Default scenario includes NO_ASSEGNO_UNICO simplification."""
-        r = estimate_annual(_req()).result
+        r = estimate_annual(_req(), repo=_REPO).result
         assert FiscalSimplification.NO_ASSEGNO_UNICO in r.taxes.fiscal_simplifications
 
     def test_always_present_with_bilateral_funds(self) -> None:
@@ -4035,7 +4095,7 @@ class TestBackCalculationProvenance:
             monthly=_D("100"),
             provenance=self._back_calc_provenance(),
         )
-        calc = estimate_annual(_req(second_level_allowances=(sl,)))
+        calc = estimate_annual(_req(second_level_allowances=(sl,)), repo=_REPO)
         assert calc.result is not None
 
     def test_back_calc_inputs_are_frozen(self) -> None:
@@ -4130,7 +4190,8 @@ class TestSurtaxRulesetIdentity:
             _req(
                 as_of=date(2026, 1, 1),
                 jurisdiction=Jurisdiction(regione="TestRegione"),
-            )
+            ),
+            repo=_REPO,
         )
         assert "surtax_regional" in calc.ruleset_version
         assert "surtax_municipal" in calc.ruleset_version
@@ -4145,7 +4206,8 @@ class TestSurtaxRulesetIdentity:
             _req(
                 as_of=date(2026, 1, 1),
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
-            )
+            ),
+            repo=_REPO,
         )
         assert "surtax_regional" in calc.ruleset_version
         assert "surtax_municipal" in calc.ruleset_version
@@ -4193,7 +4255,8 @@ class TestSurtaxRulesetIdentity:
             _req(
                 as_of=date(2026, 1, 1),
                 jurisdiction=Jurisdiction(regione="TestRegione"),
-            )
+            ),
+            repo=_REPO,
         )
         assert calc.result.coverage.confidence == "medium"
 
@@ -4207,7 +4270,8 @@ class TestSurtaxRulesetIdentity:
             _req(
                 as_of=date(2026, 1, 1),
                 jurisdiction=Jurisdiction(comune_belfiore="X001"),
-            )
+            ),
+            repo=_REPO,
         )
         assert calc.result.coverage.confidence == "medium"
 
@@ -4221,7 +4285,8 @@ class TestSurtaxRulesetIdentity:
             _req(
                 as_of=date(2026, 1, 1),
                 jurisdiction=Jurisdiction(regione="TestRegione"),
-            )
+            ),
+            repo=_REPO,
         )
         assert calc.result.coverage.confidence == "high"
 
@@ -4237,7 +4302,8 @@ class TestSurtaxRulesetIdentity:
                 jurisdiction=Jurisdiction(
                     regione="TestRegione", comune_belfiore="X001"
                 ),
-            )
+            ),
+            repo=_REPO,
         )
         assert calc.result.coverage.confidence == "medium"
 
@@ -4247,13 +4313,13 @@ class TestCallerDeclaredScope:
 
     def test_inail_rate_produces_caller_declared_scope_item(self) -> None:
         """Setting inail_rate yields a caller_declared inail scope item."""
-        calc = estimate_annual(_req(inail_rate=_D("0.015")))
+        calc = estimate_annual(_req(inail_rate=_D("0.015")), repo=_REPO)
         scope = {item.feature: item for item in calc.result.coverage.calculation_scope}
         assert scope["inail"].eligibility_status == "caller_declared"
 
     def test_no_inail_rate_produces_excluded_scope_item(self) -> None:
         """Omitting inail_rate yields an excluded inail scope item."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         scope = {item.feature: item for item in calc.result.coverage.calculation_scope}
         assert scope["inail"].calculation_status == "excluded"
 
@@ -4263,7 +4329,7 @@ class TestContractEffectiveDate:
 
     def test_uses_tranche_valid_from_not_as_of(self) -> None:
         """contract_effective_date is the tranche valid_from, not as_of itself."""
-        r = estimate_annual(_req(as_of=_DATE)).result
+        r = estimate_annual(_req(as_of=_DATE), repo=_REPO).result
         # default CCNL: base_salary valid_from=2020-01-01, as_of=2026-06-01
         assert r.contract_effective_date == date(2020, 1, 1)
         assert r.contract_effective_date != _DATE
@@ -4282,5 +4348,5 @@ class TestContractEffectiveDate:
                 ]
             }
         })
-        r = estimate_annual(_req(as_of=date(2026, 6, 1))).result
+        r = estimate_annual(_req(as_of=date(2026, 6, 1)), repo=_REPO).result
         assert r.contract_effective_date == date(2026, 4, 1)

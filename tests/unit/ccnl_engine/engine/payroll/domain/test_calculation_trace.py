@@ -14,6 +14,7 @@ import json
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -53,6 +54,10 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _req,
 )
 
+if TYPE_CHECKING:
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.rules import YearRules
+
 _CASES_DIR = Path(__file__).parents[5] / "integration" / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
@@ -73,33 +78,34 @@ _DEFAULT_CCNL = make_minimal_ccnl()
 _DEFAULT_RULES = make_year_rules()
 
 _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
-_mock_rules: list[object] = [_DEFAULT_RULES]
-_mock_surtax: list[object] = [None]
+_mock_rules: list[YearRules] = [_DEFAULT_RULES]
+_mock_surtax: list[SurtaxRules | None] = [None]
 
 
 class _MockRepo:
-    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+    """KnowledgeRepository stub for the autouse _reset_mock_state fixture."""
 
     def load_ccnl(self, filename: str) -> CCNL:
         return _mock_ccnl[0]
 
-    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
         return _mock_rules[0]
 
-    def load_surtax_rules(self, year: int) -> object:
+    def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         return _mock_surtax[0]
 
 
+_REPO = _MockRepo()
+
+
 @pytest.fixture(autouse=True)
-def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the repository in orchestrator and reset mock state."""
+def _reset_mock_state() -> None:
+    """Reset mutable mock state before each test."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_DEFAULT_RULES]
     _mock_surtax[:] = [None]
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        _MockRepo(),
-    )
 
 
 class TestTraceStep:
@@ -263,23 +269,23 @@ class TestTraceOnCalculation:
 
     def test_compute_produces_trace(self) -> None:
         """compute() returns a Calculation with a non-empty trace."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert len(calc.trace.steps) > 0
 
     def test_trace_ends_with_gross(self) -> None:
         """The last trace step is always the GROSS summary."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert calc.trace.steps[-1].category == TraceCategory.GROSS
 
     def test_trace_gross_amount_matches_result(self) -> None:
         """The GROSS trace step amount equals result.earnings.gross_monthly."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         gross_step = calc.trace.steps[-1]
         assert gross_step.amount == calc.result.earnings.gross_monthly
 
     def test_trace_base_salary_detail_contains_level(self) -> None:
         """BASE_SALARY detail contains the level code."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         base_step = next(
             s for s in calc.trace.steps if s.category == TraceCategory.BASE_SALARY
         )
@@ -287,19 +293,19 @@ class TestTraceOnCalculation:
 
     def test_calculation_to_dict_from_dict_roundtrip(self) -> None:
         """Calculation.to_dict/from_dict preserves the trace."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         restored = Calculation.from_dict(calc.to_dict())
         assert restored.trace == calc.trace
 
     def test_calculation_to_json_from_json_roundtrip(self) -> None:
         """Calculation.to_json/from_json preserves the trace."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         restored = Calculation.from_json(calc.to_json())
         assert restored.trace == calc.trace
 
     def test_trace_dict_has_steps_key(self) -> None:
         """to_dict includes a 'trace' key with a 'steps' list."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         d = calc.to_dict()
         assert "trace" in d
         assert isinstance(d["trace"], dict)
@@ -327,22 +333,24 @@ class TestTraceInvariant:
 
     def test_invariant_basic(self) -> None:
         """Invariant holds for a standard full-time employee (no allowances)."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         self._assert_invariant(calc)
 
     def test_invariant_part_time(self) -> None:
         """Invariant holds for a 50% part-time employee."""
-        calc = estimate_annual(_req(part_time_ratio=_D("0.5"), seniority_count=3))
+        calc = estimate_annual(
+            _req(part_time_ratio=_D("0.5"), seniority_count=3), repo=_REPO
+        )
         self._assert_invariant(calc)
 
     def test_invariant_apprentice(self) -> None:
         """Invariant holds for a percentage-based apprentice."""
-        calc = estimate_annual(_req(contract=Apprentice(months_elapsed=12)))
+        calc = estimate_annual(_req(contract=Apprentice(months_elapsed=12)), repo=_REPO)
         self._assert_invariant(calc)
 
     def test_invariant_ral_override(self) -> None:
         """Invariant holds even when a negotiated RAL overrides the gross."""
-        calc = estimate_annual(_req(negotiated_ral=_D("15000.00")))
+        calc = estimate_annual(_req(negotiated_ral=_D("15000.00")), repo=_REPO)
         # RAL override → a RAL_OVERRIDE step bridges the delta
         has_ral_step = any(
             s.category == TraceCategory.RAL_OVERRIDE for s in calc.trace.steps
@@ -352,7 +360,7 @@ class TestTraceInvariant:
 
     def test_invariant_zero_seniority(self) -> None:
         """Invariant holds when seniority count is zero (no scatti)."""
-        calc = estimate_annual(_req(seniority_count=0))
+        calc = estimate_annual(_req(seniority_count=0), repo=_REPO)
         self._assert_invariant(calc)
 
     def test_invariant_zero_second_level_skipped(self) -> None:
@@ -362,7 +370,7 @@ class TestTraceInvariant:
             description="Bonus aziendale",
             monthly=Decimal("0.00"),
         )
-        calc = estimate_annual(_req(second_level_allowances=(sl,)))
+        calc = estimate_annual(_req(second_level_allowances=(sl,)), repo=_REPO)
         second_level_steps = [
             s for s in calc.trace.steps if s.category == TraceCategory.SECOND_LEVEL
         ]
@@ -553,12 +561,12 @@ class TestFiscalStepsRoundtrip:
 
     def test_compute_produces_fiscal_steps(self) -> None:
         """compute() returns a Calculation with non-empty fiscal_steps."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         assert len(calc.trace.fiscal_steps) > 0
 
     def test_fiscal_steps_all_annual(self) -> None:
         """Every fiscal step has period='annual'."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         for step in calc.trace.fiscal_steps:
             assert step.period == "annual", (
                 f"step {step.category} has period={step.period!r}"
@@ -566,7 +574,7 @@ class TestFiscalStepsRoundtrip:
 
     def test_fiscal_trace_contains_net_step(self) -> None:
         """Fiscal steps include a NET step matching result.net_annual."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         net_step = next(
             s for s in calc.trace.fiscal_steps if s.category == TraceCategory.NET
         )
@@ -574,7 +582,7 @@ class TestFiscalStepsRoundtrip:
 
     def test_fiscal_trace_contains_gross_step(self) -> None:
         """Fiscal steps include a GROSS step matching result.earnings.gross_annual."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         gross_step = next(
             s for s in calc.trace.fiscal_steps if s.category == TraceCategory.GROSS
         )
@@ -582,19 +590,19 @@ class TestFiscalStepsRoundtrip:
 
     def test_fiscal_steps_roundtrip(self) -> None:
         """Calculation.to_dict/from_dict preserves fiscal_steps."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         restored = Calculation.from_dict(calc.to_dict())
         assert restored.trace.fiscal_steps == calc.trace.fiscal_steps
 
     def test_fiscal_steps_json_roundtrip(self) -> None:
         """Calculation.to_json/from_json preserves fiscal_steps."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         restored = Calculation.from_json(calc.to_json())
         assert restored.trace.fiscal_steps == calc.trace.fiscal_steps
 
     def test_fiscal_steps_carry_formula_and_source(self) -> None:
         """compute() produces fiscal steps with formula/source populated."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         by_cat = {s.category: s for s in calc.trace.fiscal_steps}
         # INPS step must have both formula and source
         inps = by_cat[TraceCategory.INPS_EMPLOYEE]
@@ -609,7 +617,7 @@ class TestFiscalStepsRoundtrip:
 
     def test_contribution_base_step_present(self) -> None:
         """compute() emits a CONTRIBUTION_BASE fiscal step."""
-        calc = estimate_annual(_req())
+        calc = estimate_annual(_req(), repo=_REPO)
         cats = {s.category for s in calc.trace.fiscal_steps}
         assert TraceCategory.CONTRIBUTION_BASE in cats
 

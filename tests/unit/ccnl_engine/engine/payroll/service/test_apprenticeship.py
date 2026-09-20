@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import copy
+from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.engine.contract.domain.apprenticeship import ApprenticeshipPeriod
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.service.apprenticeship import _find_period_index
@@ -24,6 +25,10 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _series,
 )
 
+if TYPE_CHECKING:
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.rules import YearRules
+
 _DEFAULT_CCNL = _build_ccnl()
 _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
 
@@ -32,31 +37,32 @@ _DEFAULT_CCNL_UC = _build_ccnl("under_classification")
 # ---------------------------------------------------------------------------
 
 _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
-_mock_rules: list[object] = [_RULES]
+_mock_rules: list[YearRules] = [_RULES]
 
 
 class _MockRepo:
-    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+    """KnowledgeRepository stub for the autouse _reset_mock_state fixture."""
 
     def load_ccnl(self, filename: str) -> CCNL:
         return _mock_ccnl[0]
 
-    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
         return _mock_rules[0]
 
-    def load_surtax_rules(self, year: int) -> None:
-        return
+    def load_surtax_rules(self, year: int) -> SurtaxRules | None:
+        return None
+
+
+_REPO = _MockRepo()
 
 
 @pytest.fixture(autouse=True)
-def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the repository in orchestrator and reset mock state."""
+def _reset_mock_state() -> None:
+    """Reset mutable mock state before each test."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_RULES]
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        _MockRepo(),
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -88,7 +94,7 @@ class TestComputeApprenticePercentage:
 
     def test_basic(self) -> None:
         """Apprentice salary = destination-level salary * pct (0.80)."""
-        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
 
         assert r.result.earnings.apprenticeship_pct == _D("0.80")
         assert r.result.earnings.apprenticeship_under_level_code is None
@@ -98,7 +104,7 @@ class TestComputeApprenticePercentage:
 
     def test_apprentice_contribution_rates(self) -> None:
         """Apprentices use the reduced statutory INPS rates."""
-        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
         rc = r.result.contributions
         assert rc.inps_employee_annual == _D("560.64")  # 9600*0.0584
         assert rc.inps_employer_annual == _D("1114.56")  # 9600*0.1161
@@ -119,7 +125,7 @@ class TestComputeApprenticePercentage:
         )
         rates = [
             estimate_annual(
-                _req(contract=Apprentice(months_elapsed=m))
+                _req(contract=Apprentice(months_elapsed=m)), repo=_REPO
             ).result.contributions.inps_employer_annual
             for m in (0, 11, 12, 23, 24)
         ]
@@ -134,7 +140,7 @@ class TestComputeApprenticePercentage:
     def test_seniority_not_accrued_without_apprentice_amount(self) -> None:
         """Without apprentice_amount the level increment does not apply."""
         r = estimate_annual(
-            _req(contract=Apprentice(months_elapsed=0), seniority_count=2)
+            _req(contract=Apprentice(months_elapsed=0), seniority_count=2), repo=_REPO
         )
         assert r.result.earnings.seniority_monthly == _D("0.00")
 
@@ -144,7 +150,7 @@ class TestComputeApprenticePercentage:
             "parameters.seniority_increments.apprentice_amount": _series("6.00")
         })
         r = estimate_annual(
-            _req(contract=Apprentice(months_elapsed=0), seniority_count=2)
+            _req(contract=Apprentice(months_elapsed=0), seniority_count=2), repo=_REPO
         )
         assert r.result.earnings.seniority_monthly == _D("9.60")  # 12 * 0.80
 
@@ -152,7 +158,7 @@ class TestComputeApprenticePercentage:
         """RalOverride is the actual apprentice salary; no further scaling."""
         ral = _D("20000.00")
         r = estimate_annual(
-            _req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral)
+            _req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral), repo=_REPO
         )
 
         assert r.result.earnings.gross_annual == _D("20000.00")
@@ -165,7 +171,8 @@ class TestComputeApprenticePercentage:
             _req(
                 contract=Apprentice(months_elapsed=0),
                 negotiated_destination_ral=ral,
-            )
+            ),
+            repo=_REPO,
         )
 
         assert r.result.earnings.gross_annual == _D("16000.00")  # 20000 * 0.80
@@ -179,7 +186,8 @@ class TestComputeApprenticePercentage:
                 _req(
                     contract=Apprentice(months_elapsed=0),
                     negotiated_destination_ral=_D("20000.00"),
-                )
+                ),
+                repo=_REPO,
             )
 
     def test_level_without_track_raises(self) -> None:
@@ -187,13 +195,16 @@ class TestComputeApprenticePercentage:
         with pytest.raises(
             OutOfScopeError, match=r"eligible destination levels: \['4'\]"
         ):
-            estimate_annual(_req(level_code="3", contract=Apprentice(months_elapsed=0)))
+            estimate_annual(
+                _req(level_code="3", contract=Apprentice(months_elapsed=0)),
+                repo=_REPO,
+            )
 
     def test_no_tracks_raises(self) -> None:
         """A CCNL without apprenticeship tracks reports its coverage status."""
         _mock_ccnl[0] = _build_ccnl("none")
         with pytest.raises(OutOfScopeError, match=r"coverage.net is partial"):
-            estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+            estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
 
     def test_ambiguous_tracks_require_name(self) -> None:
         """Two tracks on one level: the caller must name the track."""
@@ -205,9 +216,9 @@ class TestComputeApprenticePercentage:
         ccnl = CCNL.model_validate(data)
         _mock_ccnl[0] = ccnl
         with pytest.raises(OutOfScopeError, match=r"set Apprentice\.track"):
-            estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+            estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
         r = estimate_annual(
-            _req(contract=Apprentice(months_elapsed=0, track="gruppo_2"))
+            _req(contract=Apprentice(months_elapsed=0, track="gruppo_2")), repo=_REPO
         )
         assert r.result.earnings.apprenticeship_pct == _D("0.70")
 
@@ -220,13 +231,17 @@ class TestComputeApprenticePercentage:
                 _req(
                     level_code="3",
                     contract=Apprentice(months_elapsed=0, track="standard"),
-                )
+                ),
+                repo=_REPO,
             )
 
     def test_unknown_track_name_raises(self) -> None:
         """An unknown track name raises ValueError."""
         with pytest.raises(ValueError, match="no apprenticeship track named 'nope'"):
-            estimate_annual(_req(contract=Apprentice(months_elapsed=0, track="nope")))
+            estimate_annual(
+                _req(contract=Apprentice(months_elapsed=0, track="nope")),
+                repo=_REPO,
+            )
 
     def test_pct_exempt_allowance_paid_at_full_value(self) -> None:
         """Allowances with apprenticeship_pct_relevant=False are not scaled by pct.
@@ -239,7 +254,7 @@ class TestComputeApprenticePercentage:
             _allowance("EDR", "200.00", apprenticeship_pct_relevant=False)
         ]
         _mock_ccnl[0] = CCNL.model_validate(data)
-        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
         # base: 1000 * 0.80 = 800; allowance: 200 (exempt, not scaled by 0.80)
         assert r.result.earnings.base_monthly == _D("800.00")
         assert r.result.earnings.allowances_monthly == _D("200.00")
@@ -256,7 +271,7 @@ class TestComputeApprenticeUnderClassification:
     def test_basic(self) -> None:
         """Apprentice paid one level below (level '3': 800/month * 12 = 9600)."""
         _mock_ccnl[0] = _DEFAULT_CCNL_UC
-        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
 
         assert r.result.earnings.apprenticeship_under_level_code == "3"
         assert r.result.earnings.apprenticeship_pct is None
@@ -274,7 +289,7 @@ class TestComputeApprenticeUnderClassification:
         _mock_ccnl[0] = ccnl
         codes = [
             estimate_annual(
-                _req(contract=Apprentice(months_elapsed=m))
+                _req(contract=Apprentice(months_elapsed=m)), repo=_REPO
             ).result.earnings.apprenticeship_under_level_code
             for m in (0, 12, 24)
         ]
@@ -286,7 +301,7 @@ class TestComputeApprenticeUnderClassification:
         track["periods"][0]["midpoint_to_destination"] = True
         ccnl = _build_ccnl("under_classification", **{"apprenticeship.0": track})
         _mock_ccnl[0] = ccnl
-        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)))
+        r = estimate_annual(_req(contract=Apprentice(months_elapsed=0)), repo=_REPO)
         assert r.result.earnings.base_monthly == _D("900.00")
         assert r.result.earnings.apprenticeship_under_level_code == "3"
 
@@ -295,7 +310,7 @@ class TestComputeApprenticeUnderClassification:
         ral = _D("20000.00")
         _mock_ccnl[0] = _DEFAULT_CCNL_UC
         r = estimate_annual(
-            _req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral)
+            _req(contract=Apprentice(months_elapsed=0), negotiated_ral=ral), repo=_REPO
         )
 
         assert r.result.earnings.gross_annual == ral

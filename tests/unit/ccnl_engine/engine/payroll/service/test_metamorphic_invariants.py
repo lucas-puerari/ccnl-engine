@@ -17,7 +17,7 @@ Properties covered:
 from __future__ import annotations
 
 from decimal import Decimal
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
 from hypothesis import given
@@ -53,11 +53,7 @@ def _compute(scenario: object) -> object:
     Returns:
         Calculation result with all gross, net and cost figures.
     """
-    with patch(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        new=_MOCK_REPO,
-    ):
-        return compute(scenario)  # type: ignore[arg-type]
+    return compute(scenario, repo=_MOCK_REPO)  # type: ignore[arg-type]
 
 
 # ---------------------------------------------------------------------------
