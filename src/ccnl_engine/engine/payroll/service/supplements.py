@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.contract.domain.ccnl import TimeSupplementKind, WorkKind
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory, TraceStep
 from ccnl_engine.engine.payroll.service.rounding import money
 
@@ -50,13 +51,32 @@ def _supplement_for_band(
 
     Returns:
         Supplement amount for the given band, not yet rounded.
+
+    Raises:
+        OutOfScopeError: If the band uses ``INDENNITA_PER_SHIFT``, which is
+            not yet supported (shift count is not modelled).
     """
     if hours <= _ZERO:
         return _ZERO
+    if band.kind == TimeSupplementKind.INDENNITA_PER_SHIFT:
+        msg = (
+            f"Band {band.code!r}: INDENNITA_PER_SHIFT is not yet supported"
+            " — shift count is not modelled; the rate cannot be applied"
+            " correctly."
+        )
+        raise OutOfScopeError(
+            msg,
+            reason="indennita_per_shift_unsupported",
+            feature="time_supplements",
+            remediation=(
+                "Remove bands with kind='indennita_per_shift' from the CCNL"
+                " until the shift-count model is implemented."
+            ),
+        )
     rate = _band_rate(band, as_of)
     if band.kind == TimeSupplementKind.PERCENTAGE:
         return hours * rate * hourly_base
-    # INDENNITA_PER_HOUR or INDENNITA_PER_SHIFT: rate is per hour/shift
+    # INDENNITA_PER_HOUR: rate is per hour
     return hours * rate
 
 
@@ -136,7 +156,26 @@ def _supplements_for_kind(
     Returns:
         List of ``(amount, bucket_key, label, detail)`` tuples for non-zero
         contributions.
+
+    Raises:
+        OutOfScopeError: If any band uses ``hour_threshold_per_day``, which
+            is not yet supported (only per-week segmentation is implemented).
     """
+    for band in bands:
+        if band.hour_threshold_per_day is not None:
+            msg = (
+                f"Band {band.code!r}: hour_threshold_per_day is not yet"
+                " supported — only hour_threshold_per_week is segmented."
+            )
+            raise OutOfScopeError(
+                msg,
+                reason="hour_threshold_per_day_unsupported",
+                feature="time_supplements",
+                remediation=(
+                    "Remove hour_threshold_per_day from bands until"
+                    " per-day segmentation is implemented."
+                ),
+            )
     ctx = kind_to_hours or {}
     eligible = [
         b
