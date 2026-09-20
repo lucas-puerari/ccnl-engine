@@ -20,6 +20,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund, RateFund
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
@@ -30,7 +31,6 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
 )
 from ccnl_engine.engine.payroll.domain.supplements import FringeBenefitInput
 from ccnl_engine.engine.payroll.service import irpef as _irpef
@@ -57,13 +57,13 @@ def _scenario(
     contract: Permanent | FixedTerm | Apprentice = _PERMANENT,
     part_time_ratio: Decimal = Decimal(1),
     fringe_benefit_input: FringeBenefitInput | None = None,
-) -> PayrollScenario:
-    """Build a minimal PayrollScenario with test defaults.
+) -> _InternalScenario:
+    """Build a minimal _InternalScenario with test defaults.
 
     Returns:
-        A PayrollScenario for use in stage-level tests.
+        An _InternalScenario for use in stage-level tests.
     """
-    return PayrollScenario(
+    return _InternalScenario(
         employee=Employee(
             level_code=level_code,
             part_time_ratio=part_time_ratio,

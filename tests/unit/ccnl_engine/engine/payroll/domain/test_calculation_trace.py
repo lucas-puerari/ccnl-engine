@@ -23,6 +23,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     TaxSector,
 )
 from ccnl_engine.engine.contract.service.loaders import load_ccnl as _real_load_ccnl
+from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.payroll.domain.calculation import (
     Calculation,
     CalculationTrace,
@@ -37,12 +38,9 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,
-    estimate_annual,
-)
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
+from ccnl_engine.engine.payroll.service.pipeline import compute
 from ccnl_engine.engine.surtax.service.loaders import (
     load_surtax_rules as _real_load_surtax,
 )
@@ -408,7 +406,7 @@ class TestTraceInvariant:
             regione is not None or comune is not None or ivs_ceiling_applies
         )
 
-        scenario = PayrollScenario(
+        scenario = _InternalScenario(
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=(
@@ -655,7 +653,7 @@ class TestFiscalStepsRoundtrip:
             regione is not None or comune is not None or ivs_ceiling_applies
         )
 
-        scenario = PayrollScenario(
+        scenario = _InternalScenario(
             employee=Employee(
                 level_code=inputs["level_code"],
                 seniority=(

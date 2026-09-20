@@ -15,8 +15,8 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import CCNL, OvertimeBand
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.domain.calculation import TraceStep
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 
 _ZERO = Decimal(0)
@@ -90,7 +90,7 @@ def _warn_tiered_bands_without_weeks(
 
 
 def _run_wr_supplements(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     base_monthly_full_time: Decimal,
     hourly_divisor: Decimal,

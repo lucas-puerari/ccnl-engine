@@ -17,19 +17,12 @@ from ccnl_engine.engine.payroll.service.period_service import (
     compute_period_payroll,
     compute_year,
 )
-from ccnl_engine.engine.payroll.service.pipeline import (
-    _annual_to_scenario as _annual_to_scenario,  # noqa: PLC0414
-)
-from ccnl_engine.engine.payroll.service.pipeline import (
-    compute,
-)
 from ccnl_engine.engine.payroll.service.year_service import (
     compute_payroll_year,
     summarize_payroll_year,
 )
 
 __all__ = [
-    "compute",
     "compute_payroll_year",
     "compute_period",
     "compute_period_payroll",

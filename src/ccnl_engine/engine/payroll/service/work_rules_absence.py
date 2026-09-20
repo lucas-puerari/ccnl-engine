@@ -12,7 +12,7 @@ from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 
 _ZERO = Decimal(0)
 
@@ -25,7 +25,7 @@ class _AbsenceResult:
 
 
 def _run_wr_absence(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     gross_monthly: Decimal,
     hourly_rate: Decimal,

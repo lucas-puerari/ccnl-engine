@@ -27,7 +27,7 @@ from ccnl_engine.engine.contract.domain.absence import AbsenceRules, DailyDiviso
 from ccnl_engine.engine.payroll.domain.employment import FixedTerm, Permanent
 from ccnl_engine.engine.payroll.domain.supplements import AbsenceDays
 from ccnl_engine.engine.payroll.service.absence import compute_absence_deduction
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual as compute
 from ccnl_engine.engine.payroll.service.rounding import money
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _RULES,

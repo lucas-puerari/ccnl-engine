@@ -130,7 +130,6 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute,
     compute_payroll_year,
     compute_period_payroll,
     estimate_annual,
@@ -206,7 +205,6 @@ __all__ = [
     "WeeklyOvertimeHours",
     "WelfareInput",
     "YTDState",
-    "compute",
     "compute_payroll_year",
     "compute_period_payroll",
     "engine_version",

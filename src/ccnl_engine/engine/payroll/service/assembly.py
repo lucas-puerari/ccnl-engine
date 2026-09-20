@@ -27,9 +27,9 @@ if TYPE_CHECKING:
         SeniorityIncrements,
         SupplementaryAllowance,
     )
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.domain.ledger import Ledger
     from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
@@ -306,7 +306,7 @@ def _ruleset_verifications(
 
 
 def build_calculation(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     rules: YearRules,
     surtax: SurtaxRules | None,

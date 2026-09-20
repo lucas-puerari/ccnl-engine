@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.pipeline import compute
 from ccnl_engine.version import __version__ as _current_engine_version
 
 if TYPE_CHECKING:

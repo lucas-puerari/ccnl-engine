@@ -33,23 +33,41 @@ from ccnl_engine.engine.payroll.domain.family import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
+    PeriodPayrollInput,
+    TaxPeriod,
 )
 from ccnl_engine.engine.payroll.domain.supplements import FringeBenefitInput
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    estimate_annual,
+    estimate_period_effects,
+)
+
+_DEFAULT_TAX_PERIOD = TaxPeriod(
+    start=date(2026, 1, 1),
+    end=date(2026, 12, 31),
+    eligible_work_days=365,
+)
 
 
-def _run(scenario: PayrollScenario) -> object:
-    """Call compute() and return the AnnualEstimate result.
+def _run(
+    scenario: AnnualEstimateInput,
+    period: PeriodPayrollInput | None = None,
+) -> object:
+    """Call estimate_annual/estimate_period_effects and return the result.
 
     Returns:
         The AnnualEstimate from the Calculation.
     """
-    return compute(scenario).result
+    if period is not None:
+        if period.tax_period is None:
+            period = period.model_copy(update={"tax_period": _DEFAULT_TAX_PERIOD})
+        return estimate_period_effects(scenario, period).result
+    return estimate_annual(scenario).result
 
 
 # ---------------------------------------------------------------------------
@@ -68,8 +86,8 @@ class TestOrdinaryFullTimePermanent:
     IRPEF 2026 brackets: 23% up to 28000, 33% up to 50000 (L. 199/2025).
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="3"),
             employment=Employment(
                 ccnl="alimentari-federalimentare.json",
@@ -118,8 +136,8 @@ class TestApprenticeUnderLevel:
     Destination level: 3; pay level: 2 (one below destination).
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="3"),
             employment=Employment(
                 ccnl="autoscuole-unasca.json",
@@ -164,8 +182,8 @@ class TestApprenticePartTime50:
     Small firm (12 employees): apprentice INPS rate.
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="3", part_time_ratio=Decimal("0.5")),
             employment=Employment(
                 ccnl="metalmeccanico-artigianato.json",
@@ -211,8 +229,8 @@ class TestIvsCeilingHighEarner:
     IRPEF 2026 brackets applied (L. 199/2025).
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(
                 level_code="C3",
                 ivs_ceiling_applies=True,
@@ -260,8 +278,8 @@ class TestFamilySpouseDeduction:
     (Sub-band supplements not modelled; fiscal simplification declared.)
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -309,8 +327,8 @@ class TestFamilyChildOver21:
     deduction = money(950 * taper) = 707.04 EUR.
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -359,8 +377,8 @@ class TestSurtaxRegionaleAndComunale:
     Taxable income: 25 394.73 EUR.
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(
                 level_code="C3",
                 jurisdiction=Jurisdiction(
@@ -412,8 +430,8 @@ class TestFringeBenefitAboveThreshold:
     IRPEF increase: 1400 * 23% = 322 EUR (23% bracket at this income).
     """
 
-    def _scenario(self) -> PayrollScenario:
-        return PayrollScenario(
+    def _annual_scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="C2"),
             employment=Employment(
                 ccnl="metalmeccanico-federmeccanica.json",
@@ -421,6 +439,10 @@ class TestFringeBenefitAboveThreshold:
                 employer=Employer(num_employees=50),
                 as_of=date(2026, 9, 1),
             ),
+        )
+
+    def _period(self) -> PeriodPayrollInput:
+        return PeriodPayrollInput(
             fringe_benefit_input=FringeBenefitInput(
                 annual_amount=Decimal(1400),
                 has_dependent_children=False,
@@ -429,22 +451,22 @@ class TestFringeBenefitAboveThreshold:
 
     def test_fringe_benefit_taxable_annual(self) -> None:
         """Entire 1 400 EUR is taxable (amount > 1 000 threshold)."""
-        result = _run(self._scenario())
+        result = _run(self._annual_scenario(), self._period())
         assert result.fringe_benefit_taxable_annual == Decimal("1400.00")  # type: ignore[attr-defined]
 
     def test_fringe_benefit_threshold_annual(self) -> None:
         """Standard threshold (no children): EUR 1 000.00."""
-        result = _run(self._scenario())
+        result = _run(self._annual_scenario(), self._period())
         assert result.fringe_benefit_threshold_annual == Decimal("1000.00")  # type: ignore[attr-defined]
 
     def test_irpef_net(self) -> None:
         """irpef_net higher than no-fringe scenario (1 400 fully taxable)."""
-        result = _run(self._scenario())
+        result = _run(self._annual_scenario(), self._period())
         assert result.taxes.irpef_net == Decimal("2724.21")  # type: ignore[attr-defined]
 
     def test_net_annual(self) -> None:
         """net_annual reduced by full IRPEF on 1 400 fringe."""
-        result = _run(self._scenario())
+        result = _run(self._annual_scenario(), self._period())
         assert result.net_annual == Decimal("21571.79")  # type: ignore[attr-defined]
 
 
@@ -463,8 +485,8 @@ class TestConguaglioNetAnnualR3:
     a second time on top of the already-subtracted irpef_net.
     """
 
-    def _scenario(self, prior: Decimal | None = None) -> PayrollScenario:
-        return PayrollScenario(
+    def _annual_scenario(self) -> AnnualEstimateInput:
+        return AnnualEstimateInput(
             employee=Employee(level_code="3"),
             employment=Employment(
                 ccnl="alimentari-federalimentare.json",
@@ -472,37 +494,50 @@ class TestConguaglioNetAnnualR3:
                 employer=Employer(num_employees=50),
                 as_of=date(2026, 1, 1),
             ),
-            prior_period_irpef_withheld=prior,
         )
 
     def test_no_prior_withholding_conguaglio_zero(self) -> None:
         """With no prior withholding, conguaglio_annual is zero."""
-        result = _run(self._scenario())
+        result = _run(self._annual_scenario())
         assert result.taxes.conguaglio_annual == Decimal(0)  # type: ignore[attr-defined]
 
     def test_net_annual_unchanged_under_withholding(self) -> None:
         """net_annual must not change when prior_period_irpef_withheld < irpef_net."""
-        base = _run(self._scenario())
-        under = _run(self._scenario(prior=Decimal("1000.00")))
+        base = _run(self._annual_scenario())
+        under = _run(
+            self._annual_scenario(),
+            PeriodPayrollInput(prior_period_irpef_withheld=Decimal("1000.00")),
+        )
         assert under.net_annual == base.net_annual  # type: ignore[attr-defined]
 
     def test_net_annual_unchanged_over_withholding(self) -> None:
         """net_annual must not change when prior_period_irpef_withheld > irpef_net."""
-        base = _run(self._scenario())
+        base = _run(self._annual_scenario())
         irpef_net = base.taxes.irpef_net  # type: ignore[attr-defined]
-        over = _run(self._scenario(prior=irpef_net + Decimal("500.00")))
+        over = _run(
+            self._annual_scenario(),
+            PeriodPayrollInput(
+                prior_period_irpef_withheld=irpef_net + Decimal("500.00")
+            ),
+        )
         assert over.net_annual == base.net_annual  # type: ignore[attr-defined]
 
     def test_conguaglio_under_withheld_is_positive(self) -> None:
         """conguaglio_annual > 0 when more tax is owed than was pre-withheld."""
         prior = Decimal("1000.00")
-        base_irpef = _run(self._scenario()).taxes.irpef_net  # type: ignore[attr-defined]
-        result = _run(self._scenario(prior=prior))
+        base_irpef = _run(self._annual_scenario()).taxes.irpef_net  # type: ignore[attr-defined]
+        result = _run(
+            self._annual_scenario(),
+            PeriodPayrollInput(prior_period_irpef_withheld=prior),
+        )
         assert result.taxes.conguaglio_annual == base_irpef - prior  # type: ignore[attr-defined]
 
     def test_conguaglio_over_withheld_is_negative(self) -> None:
         """conguaglio_annual < 0 when more was pre-withheld than total liability."""
-        base_irpef = _run(self._scenario()).taxes.irpef_net  # type: ignore[attr-defined]
+        base_irpef = _run(self._annual_scenario()).taxes.irpef_net  # type: ignore[attr-defined]
         prior = base_irpef + Decimal("500.00")
-        result = _run(self._scenario(prior=prior))
+        result = _run(
+            self._annual_scenario(),
+            PeriodPayrollInput(prior_period_irpef_withheld=prior),
+        )
         assert result.taxes.conguaglio_annual == Decimal("-500.00")  # type: ignore[attr-defined]

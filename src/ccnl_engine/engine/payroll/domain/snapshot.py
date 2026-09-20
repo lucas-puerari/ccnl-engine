@@ -7,7 +7,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, cast
 
-from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.serialization.dataclass_codec import (
     _deep_freeze,
     _deep_thaw,
@@ -19,13 +19,13 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 
 
-def _materialise(scenario_data: Mapping[str, object]) -> PayrollScenario:
-    """Rebuild the :class:`PayrollScenario` from the snapshot.
+def _materialise(scenario_data: Mapping[str, object]) -> _InternalScenario:
+    """Rebuild the :class:`_InternalScenario` from the snapshot.
 
     Returns:
-        The reconstructed :class:`PayrollScenario`.
+        The reconstructed :class:`_InternalScenario`.
     """
-    return cast(PayrollScenario, _load_by_hint(PayrollScenario, scenario_data))
+    return cast(_InternalScenario, _load_by_hint(_InternalScenario, scenario_data))
 
 
 @dataclass(frozen=True)
@@ -53,13 +53,13 @@ class InputSnapshot:
     @classmethod
     def capture(
         cls,
-        scenario: PayrollScenario,
+        scenario: _InternalScenario,
         ccnl_id: str,
         tax_sector: TaxSector,
         year: int,
         uses_surtax: bool,
     ) -> InputSnapshot:
-        """Build a snapshot from a live :class:`PayrollScenario`.
+        """Build a snapshot from a live :class:`_InternalScenario`.
 
         Returns:
             A new snapshot carrying the JSON-native copy of the scenario.
@@ -72,11 +72,11 @@ class InputSnapshot:
             scenario=cast(dict[str, object], _dump(scenario)),
         )
 
-    def materialise(self) -> PayrollScenario:
-        """Rebuild the :class:`PayrollScenario` from the snapshot.
+    def materialise(self) -> _InternalScenario:
+        """Rebuild the :class:`_InternalScenario` from the snapshot.
 
         Returns:
-            The reconstructed :class:`PayrollScenario`.
+            The reconstructed :class:`_InternalScenario`.
         """
         return _materialise(self.scenario)
 

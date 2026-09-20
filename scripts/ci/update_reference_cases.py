@@ -50,11 +50,12 @@ from ccnl_engine.engine.payroll.domain.family import (
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
+    PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
@@ -65,7 +66,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     SickInput,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 
 _CASES_DIR = Path(__file__).parent.parent.parent / "tests" / "reference" / "cases"
 
@@ -204,11 +205,14 @@ def _build_art15(inputs: dict[str, Any]) -> Art15Deductions | None:
     )
 
 
-def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
-    """Reconstruct the PayrollScenario from a case's inputs dict.
+def _build_scenario(
+    inputs: dict[str, Any],
+) -> tuple[AnnualEstimateInput, PeriodPayrollInput | None]:
+    """Reconstruct the scenario from a case's inputs dict.
 
     Returns:
-        A fully initialised :class:`PayrollScenario` ready for ``compute()``.
+        A tuple of ``(AnnualEstimateInput, PeriodPayrollInput | None)``
+        ready for ``_annual_to_scenario`` + ``compute()``.
     """
     as_of = date.fromisoformat(inputs["as_of"])
     tax_year_raw = int(inputs["year"])
@@ -228,7 +232,7 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
     )
     ivs = bool(inputs.get("ivs_ceiling_applies"))
 
-    return PayrollScenario(
+    annual = AnnualEstimateInput(
         employee=Employee(
             level_code=inputs["level_code"],
             seniority=_build_seniority(inputs),
@@ -250,16 +254,44 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
             as_of=as_of,
             tax_year=tax_year,
         ),
-        time_supplements=_build_supplements(inputs),
-        absence_days=_build_absence(inputs),
-        leave_input=_build_leave(inputs),
-        sick_input=_build_sick(inputs),
-        fringe_benefit_input=_build_fringe(inputs),
-        welfare_input=_build_welfare(inputs),
-        bonus_input=_build_bonus(inputs),
         family=_build_family(inputs),
         art15_deductions=_build_art15(inputs),
     )
+
+    time_supplements = _build_supplements(inputs)
+    absence_days = _build_absence(inputs)
+    leave_input = _build_leave(inputs)
+    sick_input = _build_sick(inputs)
+    fringe_benefit_input = _build_fringe(inputs)
+    welfare_input = _build_welfare(inputs)
+    bonus_input = _build_bonus(inputs)
+
+    has_period = any(
+        x is not None
+        for x in (
+            time_supplements,
+            absence_days,
+            leave_input,
+            sick_input,
+            fringe_benefit_input,
+            welfare_input,
+            bonus_input,
+        )
+    )
+    period = (
+        PeriodPayrollInput(
+            time_supplements=time_supplements,
+            absence_days=absence_days,
+            leave_input=leave_input,
+            sick_input=sick_input,
+            fringe_benefit_input=fringe_benefit_input,
+            welfare_input=welfare_input,
+            bonus_input=bonus_input,
+        )
+        if has_period
+        else None
+    )
+    return annual, period
 
 
 # ---------------------------------------------------------------------------
@@ -404,8 +436,8 @@ def _update_case(path: Path, *, dry_run: bool) -> bool:
     inputs = data["inputs"]
 
     try:
-        scenario = _build_scenario(inputs)
-        result = compute(scenario).result
+        annual, period = _build_scenario(inputs)
+        result = compute(_annual_to_scenario(annual, period)).result
     except Exception as exc:
         msg = f"{path.name}: {exc}"
         raise RuntimeError(msg) from exc

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
@@ -18,7 +19,6 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
     AnnualizedAssumption,
-    PayrollScenario,
     PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.service.assembly import (
@@ -53,22 +53,12 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
-    from ccnl_engine.engine.payroll.domain.scenario import Employment
+    from ccnl_engine.engine.payroll.domain.employment import Employment
 
 
 _default_repo: BundledKnowledgeRepository = BundledKnowledgeRepository()
 
 _ZERO = Decimal(0)
-
-_PERIOD_FIELD_NAMES = (
-    "time_supplements",
-    "absence_days",
-    "leave_input",
-    "sick_input",
-    "fringe_benefit_input",
-    "welfare_input",
-    "bonus_input",
-)
 
 
 def _resolve_tax_year(employment: Employment) -> int:
@@ -85,7 +75,7 @@ def _resolve_tax_year(employment: Employment) -> int:
     return employment.as_of.year
 
 
-def _scenario_period(scenario: PayrollScenario) -> PeriodPayrollInput | None:
+def _scenario_period(scenario: _InternalScenario) -> PeriodPayrollInput | None:
     """Build a PeriodPayrollInput from scenario period events.
 
     Returns:
@@ -103,11 +93,7 @@ def _scenario_period(scenario: PayrollScenario) -> PeriodPayrollInput | None:
     )
     if all(f is None for f in fields):
         return None
-    from ccnl_engine.engine.payroll.domain.scenario import (  # noqa: PLC0415
-        PeriodPayrollInput as _PayPeriod,
-    )
-
-    return _PayPeriod(
+    return PeriodPayrollInput(
         time_supplements=scenario.time_supplements,
         absence_days=scenario.absence_days,
         leave_input=scenario.leave_input,
@@ -118,42 +104,30 @@ def _scenario_period(scenario: PayrollScenario) -> PeriodPayrollInput | None:
     )
 
 
-def _extract_injected_period(
-    scenario: AnnualEstimateInput,
-) -> PeriodPayrollInput | None:
-    """Extract period fields injected onto an AnnualEstimateInput via model_copy.
-
-    Returns:
-        A :class:`PeriodPayrollInput` from the injected fields, or ``None``.
-    """
-    kwargs = {k: v for k in _PERIOD_FIELD_NAMES if (v := vars(scenario).get(k))}
-    return PeriodPayrollInput(**kwargs) if kwargs else None
-
-
 def _annual_to_scenario(
     scenario: AnnualEstimateInput,
     period: PeriodPayrollInput | None = None,
-) -> PayrollScenario:
-    """Build an internal PayrollScenario from an AnnualEstimateInput.
+) -> _InternalScenario:
+    """Build an internal scenario from an AnnualEstimateInput.
 
     Merges the structural fields from *scenario* with the period-specific
     events from *period* (when supplied).
 
     Returns:
-        A :class:`PayrollScenario` ready for :func:`compute`.
+        A :class:`_InternalScenario` ready for :func:`compute`.
     """
-    if period is None:
-        period = _extract_injected_period(scenario)
     if period is not None:
-        return PayrollScenario(
+        return _InternalScenario(
             employee=scenario.employee,
             employment=scenario.employment,
-            tax_basis=period.tax_period
-            if period.tax_period is not None
-            else AnnualizedAssumption(),
             family=scenario.family,
             art15_deductions=scenario.art15_deductions,
             bilateral_funds=scenario.bilateral_funds,
+            tax_basis=(
+                period.tax_period
+                if period.tax_period is not None
+                else AnnualizedAssumption()
+            ),
             time_supplements=period.time_supplements,
             absence_days=period.absence_days,
             leave_input=period.leave_input,
@@ -161,8 +135,27 @@ def _annual_to_scenario(
             fringe_benefit_input=period.fringe_benefit_input,
             welfare_input=period.welfare_input,
             bonus_input=period.bonus_input,
+            prior_period_irpef_withheld=period.prior_period_irpef_withheld,
+            maternity_inps_indemnity_annual=period.maternity_inps_indemnity_annual,
+            workplace_injury_inail_indemnity_annual=(
+                period.workplace_injury_inail_indemnity_annual
+            ),
+            termination_residual_leave_payout_annual=(
+                period.termination_residual_leave_payout_annual
+            ),
+            termination_tfr_liquidation_annual=(
+                period.termination_tfr_liquidation_annual
+            ),
+            contract_renewal_arrears_annual=period.contract_renewal_arrears_annual,
+            una_tantum_annual=period.una_tantum_annual,
+            personal_withholdings_annual=period.personal_withholdings_annual,
+            additional_irpef_base_annual=period.additional_irpef_base_annual,
+            health_fund_employee_annual=period.health_fund_employee_annual,
+            health_fund_employer_annual=period.health_fund_employer_annual,
+            territorial_supplement_annual=period.territorial_supplement_annual,
+            company_supplement_annual=period.company_supplement_annual,
         )
-    return PayrollScenario(
+    return _InternalScenario(
         employee=scenario.employee,
         employment=scenario.employment,
         family=scenario.family,
@@ -172,12 +165,12 @@ def _annual_to_scenario(
 
 
 def compute(
-    scenario: PayrollScenario | AnnualEstimateInput,
+    scenario: _InternalScenario,
     bundle: PayrollBundle | None = None,
     *,
     _period: PeriodPayrollInput | None = None,
 ) -> Calculation:
-    """Compute gross-to-net salary and employer cost for a payroll scenario.
+    """Compute gross-to-net salary and employer cost for an internal scenario.
 
     Loads the CCNL, tax/INPS rules, and (when jurisdiction is set) surtax
     rules from the bundled knowledge base, then runs the full payroll
@@ -189,9 +182,7 @@ def compute(
     I/O even when the individual loaders are not yet cached.
 
     Args:
-        scenario: The payroll scenario describing worker and employment.
-            Accepts either :class:`PayrollScenario` or
-            :class:`AnnualEstimateInput`; the latter is converted internally.
+        scenario: The internal payroll scenario built by :func:`_annual_to_scenario`.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded (and cached) on demand.
 
@@ -199,9 +190,6 @@ def compute(
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures plus a serialisable input snapshot.
     """
-    if isinstance(scenario, AnnualEstimateInput):
-        scenario = _annual_to_scenario(scenario, _period)
-        _period = None
     if _period is None:
         _period = _scenario_period(scenario)
     as_of = scenario.employment.as_of

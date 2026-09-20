@@ -17,12 +17,12 @@ from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.domain.scenario import (
+    AnnualEstimateInput,
     Employee,
     Employer,
     Employment,
-    PayrollScenario,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual as compute
 from ccnl_engine.engine.payroll.service.seniority import seniority_maximum
 from ccnl_engine.engine.tax.domain.rules import YearRules
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
@@ -1318,7 +1318,7 @@ class TestLoadAlimentariFederalimentare:
     def test_alimentari_federalimentare_apprentice_under_classification(self) -> None:
         """Apprentice 5 months elapsed → under level 4 (period 0-9 months)."""
         result = compute(
-            PayrollScenario(
+            AnnualEstimateInput(
                 employee=Employee(level_code="3A"),
                 employment=Employment(
                     ccnl="alimentari-federalimentare.json",
@@ -2693,7 +2693,7 @@ class TestLoadBccCreditoCooperativo:
     def test_bcc_credito_cooperativo_apprentice_compute(self) -> None:
         """Apprentice 12 months elapsed → salary at 2AP2 level."""
         result = compute(
-            PayrollScenario(
+            AnnualEstimateInput(
                 employee=Employee(level_code="3AP1"),
                 employment=Employment(
                     ccnl="bcc-credito-cooperativo.json",

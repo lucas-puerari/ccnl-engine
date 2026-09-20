@@ -11,7 +11,7 @@ from ccnl_engine.engine.payroll.service.leave import compute_leave
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 
 _ZERO = Decimal(0)
 
@@ -25,7 +25,7 @@ class _LeaveResult:
 
 
 def _run_wr_leave(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
 ) -> _LeaveResult:
     """Run the work-rules leave-accrual block.

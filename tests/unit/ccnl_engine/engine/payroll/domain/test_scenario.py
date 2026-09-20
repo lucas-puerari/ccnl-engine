@@ -25,12 +25,13 @@ from ccnl_engine.engine.payroll.domain.employee import (
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
+    AnnualEstimateInput,
     AnnualizedAssumption,
     Employee,
     Employer,
     Employment,
     Jurisdiction,
-    PayrollScenario,
+    PeriodPayrollInput,
     TaxPeriod,
 )
 
@@ -339,12 +340,12 @@ class TestJurisdiction:
 # ---------------------------------------------------------------------------
 
 
-class TestPayrollScenario:
-    """PayrollScenario composes Employee and Employment."""
+class TestAnnualEstimateInput:
+    """AnnualEstimateInput composes Employee and Employment."""
 
     def test_basic_construction(self) -> None:
-        """PayrollScenario stores employee and employment."""
-        scenario = PayrollScenario(
+        """AnnualEstimateInput stores employee and employment."""
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="test.json",
@@ -358,8 +359,8 @@ class TestPayrollScenario:
         assert scenario.employment.tax_year is None
 
     def test_frozen(self) -> None:
-        """PayrollScenario is immutable (frozen dataclass)."""
-        scenario = PayrollScenario(
+        """AnnualEstimateInput is immutable (frozen model)."""
+        scenario = AnnualEstimateInput(
             employee=Employee(level_code="4"),
             employment=Employment(
                 ccnl="test.json",
@@ -449,17 +450,8 @@ class TestTaxPeriod:
 # ---------------------------------------------------------------------------
 
 
-def _base_scenario(**kwargs: object) -> PayrollScenario:
-    return PayrollScenario(
-        employee=Employee(level_code="4"),
-        employment=Employment(
-            ccnl="test.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=_DATE,
-        ),
-        **kwargs,  # type: ignore[arg-type]
-    )
+def _base_period(**kwargs: object) -> PeriodPayrollInput:
+    return PeriodPayrollInput(**kwargs)  # type: ignore[arg-type]
 
 
 class TestPriorIrpefWithheld:
@@ -467,22 +459,22 @@ class TestPriorIrpefWithheld:
 
     def test_prior_irpef_none_by_default(self) -> None:
         """prior_period_irpef_withheld defaults to None."""
-        assert _base_scenario().prior_period_irpef_withheld is None
+        assert _base_period().prior_period_irpef_withheld is None
 
     def test_prior_irpef_zero_accepted(self) -> None:
         """prior_period_irpef_withheld=0 is valid."""
-        s = _base_scenario(prior_period_irpef_withheld=Decimal(0))
+        s = _base_period(prior_period_irpef_withheld=Decimal(0))
         assert s.prior_period_irpef_withheld == Decimal(0)
 
     def test_prior_irpef_positive_accepted(self) -> None:
         """A positive prior_period_irpef_withheld is accepted."""
-        s = _base_scenario(prior_period_irpef_withheld=Decimal("1500.00"))
+        s = _base_period(prior_period_irpef_withheld=Decimal("1500.00"))
         assert s.prior_period_irpef_withheld == Decimal("1500.00")
 
     def test_negative_prior_irpef_raises(self) -> None:
         """Negative prior_period_irpef_withheld is rejected."""
         with pytest.raises(ValidationError, match="prior_period_irpef_withheld"):
-            _base_scenario(prior_period_irpef_withheld=Decimal(-1))
+            _base_period(prior_period_irpef_withheld=Decimal(-1))
 
 
 class TestMaternityIndemnity:
@@ -490,22 +482,22 @@ class TestMaternityIndemnity:
 
     def test_maternity_none_by_default(self) -> None:
         """maternity_inps_indemnity_annual defaults to None."""
-        assert _base_scenario().maternity_inps_indemnity_annual is None
+        assert _base_period().maternity_inps_indemnity_annual is None
 
     def test_maternity_zero_accepted(self) -> None:
         """maternity_inps_indemnity_annual=0 is valid."""
-        s = _base_scenario(maternity_inps_indemnity_annual=Decimal(0))
+        s = _base_period(maternity_inps_indemnity_annual=Decimal(0))
         assert s.maternity_inps_indemnity_annual == Decimal(0)
 
     def test_maternity_positive_accepted(self) -> None:
         """A positive maternity_inps_indemnity_annual is accepted."""
-        s = _base_scenario(maternity_inps_indemnity_annual=Decimal("3200.00"))
+        s = _base_period(maternity_inps_indemnity_annual=Decimal("3200.00"))
         assert s.maternity_inps_indemnity_annual == Decimal("3200.00")
 
     def test_negative_maternity_raises(self) -> None:
         """Negative maternity_inps_indemnity_annual is rejected."""
         with pytest.raises(ValidationError, match="maternity_inps_indemnity_annual"):
-            _base_scenario(maternity_inps_indemnity_annual=Decimal(-1))
+            _base_period(maternity_inps_indemnity_annual=Decimal(-1))
 
 
 class TestWorkplaceInjuryIndemnity:
@@ -513,16 +505,16 @@ class TestWorkplaceInjuryIndemnity:
 
     def test_injury_none_by_default(self) -> None:
         """workplace_injury_inail_indemnity_annual defaults to None."""
-        assert _base_scenario().workplace_injury_inail_indemnity_annual is None
+        assert _base_period().workplace_injury_inail_indemnity_annual is None
 
     def test_injury_zero_accepted(self) -> None:
         """workplace_injury_inail_indemnity_annual=0 is valid."""
-        s = _base_scenario(workplace_injury_inail_indemnity_annual=Decimal(0))
+        s = _base_period(workplace_injury_inail_indemnity_annual=Decimal(0))
         assert s.workplace_injury_inail_indemnity_annual == Decimal(0)
 
     def test_injury_positive_accepted(self) -> None:
         """A positive workplace_injury_inail_indemnity_annual is accepted."""
-        s = _base_scenario(workplace_injury_inail_indemnity_annual=Decimal("800.00"))
+        s = _base_period(workplace_injury_inail_indemnity_annual=Decimal("800.00"))
         assert s.workplace_injury_inail_indemnity_annual == Decimal("800.00")
 
     def test_negative_injury_raises(self) -> None:
@@ -530,7 +522,7 @@ class TestWorkplaceInjuryIndemnity:
         with pytest.raises(
             ValidationError, match="workplace_injury_inail_indemnity_annual"
         ):
-            _base_scenario(workplace_injury_inail_indemnity_annual=Decimal(-1))
+            _base_period(workplace_injury_inail_indemnity_annual=Decimal(-1))
 
 
 class TestTerminationPayouts:
@@ -538,16 +530,16 @@ class TestTerminationPayouts:
 
     def test_residual_leave_none_by_default(self) -> None:
         """termination_residual_leave_payout_annual defaults to None."""
-        assert _base_scenario().termination_residual_leave_payout_annual is None
+        assert _base_period().termination_residual_leave_payout_annual is None
 
     def test_residual_leave_zero_accepted(self) -> None:
         """termination_residual_leave_payout_annual=0 is valid."""
-        s = _base_scenario(termination_residual_leave_payout_annual=Decimal(0))
+        s = _base_period(termination_residual_leave_payout_annual=Decimal(0))
         assert s.termination_residual_leave_payout_annual == Decimal(0)
 
     def test_residual_leave_positive_accepted(self) -> None:
         """A positive termination_residual_leave_payout_annual is accepted."""
-        s = _base_scenario(termination_residual_leave_payout_annual=Decimal("1200.00"))
+        s = _base_period(termination_residual_leave_payout_annual=Decimal("1200.00"))
         assert s.termination_residual_leave_payout_annual == Decimal("1200.00")
 
     def test_negative_residual_leave_raises(self) -> None:
@@ -555,26 +547,26 @@ class TestTerminationPayouts:
         with pytest.raises(
             ValidationError, match="termination_residual_leave_payout_annual"
         ):
-            _base_scenario(termination_residual_leave_payout_annual=Decimal(-1))
+            _base_period(termination_residual_leave_payout_annual=Decimal(-1))
 
     def test_tfr_liquidation_none_by_default(self) -> None:
         """termination_tfr_liquidation_annual defaults to None."""
-        assert _base_scenario().termination_tfr_liquidation_annual is None
+        assert _base_period().termination_tfr_liquidation_annual is None
 
     def test_tfr_liquidation_zero_accepted(self) -> None:
         """termination_tfr_liquidation_annual=0 is valid."""
-        s = _base_scenario(termination_tfr_liquidation_annual=Decimal(0))
+        s = _base_period(termination_tfr_liquidation_annual=Decimal(0))
         assert s.termination_tfr_liquidation_annual == Decimal(0)
 
     def test_tfr_liquidation_positive_accepted(self) -> None:
         """A positive termination_tfr_liquidation_annual is accepted."""
-        s = _base_scenario(termination_tfr_liquidation_annual=Decimal("8000.00"))
+        s = _base_period(termination_tfr_liquidation_annual=Decimal("8000.00"))
         assert s.termination_tfr_liquidation_annual == Decimal("8000.00")
 
     def test_negative_tfr_liquidation_raises(self) -> None:
         """Negative termination_tfr_liquidation_annual is rejected."""
         with pytest.raises(ValidationError, match="termination_tfr_liquidation_annual"):
-            _base_scenario(termination_tfr_liquidation_annual=Decimal(-1))
+            _base_period(termination_tfr_liquidation_annual=Decimal(-1))
 
 
 class TestContractRenewalArrears:
@@ -582,22 +574,22 @@ class TestContractRenewalArrears:
 
     def test_arrears_none_by_default(self) -> None:
         """contract_renewal_arrears_annual defaults to None."""
-        assert _base_scenario().contract_renewal_arrears_annual is None
+        assert _base_period().contract_renewal_arrears_annual is None
 
     def test_arrears_zero_accepted(self) -> None:
         """contract_renewal_arrears_annual=0 is valid."""
-        s = _base_scenario(contract_renewal_arrears_annual=Decimal(0))
+        s = _base_period(contract_renewal_arrears_annual=Decimal(0))
         assert s.contract_renewal_arrears_annual == Decimal(0)
 
     def test_arrears_positive_accepted(self) -> None:
         """A positive contract_renewal_arrears_annual is accepted."""
-        s = _base_scenario(contract_renewal_arrears_annual=Decimal("2400.00"))
+        s = _base_period(contract_renewal_arrears_annual=Decimal("2400.00"))
         assert s.contract_renewal_arrears_annual == Decimal("2400.00")
 
     def test_negative_arrears_raises(self) -> None:
         """Negative contract_renewal_arrears_annual is rejected."""
         with pytest.raises(ValidationError, match="contract_renewal_arrears_annual"):
-            _base_scenario(contract_renewal_arrears_annual=Decimal(-1))
+            _base_period(contract_renewal_arrears_annual=Decimal(-1))
 
 
 class TestUnaTantum:
@@ -605,22 +597,22 @@ class TestUnaTantum:
 
     def test_una_tantum_none_by_default(self) -> None:
         """una_tantum_annual defaults to None."""
-        assert _base_scenario().una_tantum_annual is None
+        assert _base_period().una_tantum_annual is None
 
     def test_una_tantum_zero_accepted(self) -> None:
         """una_tantum_annual=0 is valid."""
-        s = _base_scenario(una_tantum_annual=Decimal(0))
+        s = _base_period(una_tantum_annual=Decimal(0))
         assert s.una_tantum_annual == Decimal(0)
 
     def test_una_tantum_positive_accepted(self) -> None:
         """A positive una_tantum_annual is accepted."""
-        s = _base_scenario(una_tantum_annual=Decimal("3000.00"))
+        s = _base_period(una_tantum_annual=Decimal("3000.00"))
         assert s.una_tantum_annual == Decimal("3000.00")
 
     def test_negative_una_tantum_raises(self) -> None:
         """Negative una_tantum_annual is rejected."""
         with pytest.raises(ValidationError, match="una_tantum_annual"):
-            _base_scenario(una_tantum_annual=Decimal(-1))
+            _base_period(una_tantum_annual=Decimal(-1))
 
 
 class TestPersonalWithholdings:
@@ -628,22 +620,22 @@ class TestPersonalWithholdings:
 
     def test_withholdings_none_by_default(self) -> None:
         """personal_withholdings_annual defaults to None."""
-        assert _base_scenario().personal_withholdings_annual is None
+        assert _base_period().personal_withholdings_annual is None
 
     def test_withholdings_zero_accepted(self) -> None:
         """personal_withholdings_annual=0 is valid."""
-        s = _base_scenario(personal_withholdings_annual=Decimal(0))
+        s = _base_period(personal_withholdings_annual=Decimal(0))
         assert s.personal_withholdings_annual == Decimal(0)
 
     def test_withholdings_positive_accepted(self) -> None:
         """A positive personal_withholdings_annual is accepted."""
-        s = _base_scenario(personal_withholdings_annual=Decimal("500.00"))
+        s = _base_period(personal_withholdings_annual=Decimal("500.00"))
         assert s.personal_withholdings_annual == Decimal("500.00")
 
     def test_negative_withholdings_raises(self) -> None:
         """Negative personal_withholdings_annual is rejected."""
         with pytest.raises(ValidationError, match="personal_withholdings_annual"):
-            _base_scenario(personal_withholdings_annual=Decimal(-1))
+            _base_period(personal_withholdings_annual=Decimal(-1))
 
 
 class TestAdditionalIrpefBase:
@@ -651,22 +643,22 @@ class TestAdditionalIrpefBase:
 
     def test_additional_irpef_base_none_by_default(self) -> None:
         """additional_irpef_base_annual defaults to None."""
-        assert _base_scenario().additional_irpef_base_annual is None
+        assert _base_period().additional_irpef_base_annual is None
 
     def test_additional_irpef_base_zero_accepted(self) -> None:
         """additional_irpef_base_annual=0 is valid."""
-        s = _base_scenario(additional_irpef_base_annual=Decimal(0))
+        s = _base_period(additional_irpef_base_annual=Decimal(0))
         assert s.additional_irpef_base_annual == Decimal(0)
 
     def test_additional_irpef_base_positive_accepted(self) -> None:
         """A positive additional_irpef_base_annual is accepted."""
-        s = _base_scenario(additional_irpef_base_annual=Decimal("1200.00"))
+        s = _base_period(additional_irpef_base_annual=Decimal("1200.00"))
         assert s.additional_irpef_base_annual == Decimal("1200.00")
 
     def test_negative_additional_irpef_base_raises(self) -> None:
         """Negative additional_irpef_base_annual is rejected."""
         with pytest.raises(ValidationError, match="additional_irpef_base_annual"):
-            _base_scenario(additional_irpef_base_annual=Decimal(-1))
+            _base_period(additional_irpef_base_annual=Decimal(-1))
 
 
 class TestHealthFundEmployee:
@@ -674,22 +666,22 @@ class TestHealthFundEmployee:
 
     def test_health_fund_employee_none_by_default(self) -> None:
         """health_fund_employee_annual defaults to None."""
-        assert _base_scenario().health_fund_employee_annual is None
+        assert _base_period().health_fund_employee_annual is None
 
     def test_health_fund_employee_zero_accepted(self) -> None:
         """health_fund_employee_annual=0 is valid."""
-        s = _base_scenario(health_fund_employee_annual=Decimal(0))
+        s = _base_period(health_fund_employee_annual=Decimal(0))
         assert s.health_fund_employee_annual == Decimal(0)
 
     def test_health_fund_employee_positive_accepted(self) -> None:
         """A positive health_fund_employee_annual is accepted."""
-        s = _base_scenario(health_fund_employee_annual=Decimal("240.00"))
+        s = _base_period(health_fund_employee_annual=Decimal("240.00"))
         assert s.health_fund_employee_annual == Decimal("240.00")
 
     def test_negative_health_fund_employee_raises(self) -> None:
         """Negative health_fund_employee_annual is rejected."""
         with pytest.raises(ValidationError, match="health_fund_employee_annual"):
-            _base_scenario(health_fund_employee_annual=Decimal(-1))
+            _base_period(health_fund_employee_annual=Decimal(-1))
 
 
 class TestHealthFundEmployer:
@@ -697,22 +689,22 @@ class TestHealthFundEmployer:
 
     def test_health_fund_employer_none_by_default(self) -> None:
         """health_fund_employer_annual defaults to None."""
-        assert _base_scenario().health_fund_employer_annual is None
+        assert _base_period().health_fund_employer_annual is None
 
     def test_health_fund_employer_zero_accepted(self) -> None:
         """health_fund_employer_annual=0 is valid."""
-        s = _base_scenario(health_fund_employer_annual=Decimal(0))
+        s = _base_period(health_fund_employer_annual=Decimal(0))
         assert s.health_fund_employer_annual == Decimal(0)
 
     def test_health_fund_employer_positive_accepted(self) -> None:
         """A positive health_fund_employer_annual is accepted."""
-        s = _base_scenario(health_fund_employer_annual=Decimal("480.00"))
+        s = _base_period(health_fund_employer_annual=Decimal("480.00"))
         assert s.health_fund_employer_annual == Decimal("480.00")
 
     def test_negative_health_fund_employer_raises(self) -> None:
         """Negative health_fund_employer_annual is rejected."""
         with pytest.raises(ValidationError, match="health_fund_employer_annual"):
-            _base_scenario(health_fund_employer_annual=Decimal(-1))
+            _base_period(health_fund_employer_annual=Decimal(-1))
 
 
 class TestTerritorialSupplement:
@@ -720,22 +712,22 @@ class TestTerritorialSupplement:
 
     def test_territorial_supplement_none_by_default(self) -> None:
         """territorial_supplement_annual defaults to None."""
-        assert _base_scenario().territorial_supplement_annual is None
+        assert _base_period().territorial_supplement_annual is None
 
     def test_territorial_supplement_zero_accepted(self) -> None:
         """territorial_supplement_annual=0 is valid."""
-        s = _base_scenario(territorial_supplement_annual=Decimal(0))
+        s = _base_period(territorial_supplement_annual=Decimal(0))
         assert s.territorial_supplement_annual == Decimal(0)
 
     def test_territorial_supplement_positive_accepted(self) -> None:
         """A positive territorial_supplement_annual is accepted."""
-        s = _base_scenario(territorial_supplement_annual=Decimal("600.00"))
+        s = _base_period(territorial_supplement_annual=Decimal("600.00"))
         assert s.territorial_supplement_annual == Decimal("600.00")
 
     def test_negative_territorial_supplement_raises(self) -> None:
         """Negative territorial_supplement_annual is rejected."""
         with pytest.raises(ValidationError, match="territorial_supplement_annual"):
-            _base_scenario(territorial_supplement_annual=Decimal(-1))
+            _base_period(territorial_supplement_annual=Decimal(-1))
 
 
 class TestCompanySupplement:
@@ -743,19 +735,19 @@ class TestCompanySupplement:
 
     def test_company_supplement_none_by_default(self) -> None:
         """company_supplement_annual defaults to None."""
-        assert _base_scenario().company_supplement_annual is None
+        assert _base_period().company_supplement_annual is None
 
     def test_company_supplement_zero_accepted(self) -> None:
         """company_supplement_annual=0 is valid."""
-        s = _base_scenario(company_supplement_annual=Decimal(0))
+        s = _base_period(company_supplement_annual=Decimal(0))
         assert s.company_supplement_annual == Decimal(0)
 
     def test_company_supplement_positive_accepted(self) -> None:
         """A positive company_supplement_annual is accepted."""
-        s = _base_scenario(company_supplement_annual=Decimal("800.00"))
+        s = _base_period(company_supplement_annual=Decimal("800.00"))
         assert s.company_supplement_annual == Decimal("800.00")
 
     def test_negative_company_supplement_raises(self) -> None:
         """Negative company_supplement_annual is rejected."""
         with pytest.raises(ValidationError, match="company_supplement_annual"):
-            _base_scenario(company_supplement_annual=Decimal(-1))
+            _base_period(company_supplement_annual=Decimal(-1))

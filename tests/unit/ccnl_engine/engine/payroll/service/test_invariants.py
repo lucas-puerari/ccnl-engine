@@ -10,7 +10,7 @@ from hypothesis import assume, given
 from hypothesis import strategies as st
 
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
-from ccnl_engine.engine.payroll.service.orchestrator import compute
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual as compute
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _RULES,
     _build_ccnl,

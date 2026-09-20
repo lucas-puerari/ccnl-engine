@@ -22,8 +22,8 @@ from ccnl_engine.knowledge.version import __version__ as _knowledge_version
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
     from ccnl_engine.engine.metadata import RulesetIdentity
+    from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
     from ccnl_engine.engine.payroll.domain.calculation import TraceStep
-    from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates
 
@@ -72,7 +72,7 @@ class WorkRulesPay:
 
 
 def compute_work_rules(
-    scenario: PayrollScenario,
+    scenario: _InternalScenario,
     ccnl: CCNL,
     gross: GrossPay,
     year: int,

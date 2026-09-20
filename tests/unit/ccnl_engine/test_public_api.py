@@ -66,7 +66,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "UnknownLevelError",
     "WelfareInput",
     "WeeklyOvertimeHours",
-    "compute",
     "compute_payroll_year",
     "compute_period_payroll",
     "engine_version",
