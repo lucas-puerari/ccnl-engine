@@ -3258,11 +3258,11 @@ class TestConfidenceWithOptionalRulesets:
     def test_verified_var_pay_ruleset_does_not_downgrade_confidence(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Verified var-pay ruleset + fringe_benefit (below threshold) → high.
+        """Verified var-pay ruleset + fringe_benefit → medium (informational).
 
-        fringe_benefit below threshold is integration_status=included_in_totals
-        (taxable amount is zero), so result.coverage.status is "complete" when
-        all provenance and rulesets are verified → confidence reaches "high".
+        fringe_benefit is integration_status=informational_only, so
+        result.coverage.status is "partial" even when all provenance and
+        rulesets are verified. Confidence reaches "medium", not "high".
         """
         _mock_ccnl[0] = _verified_ccnl()
         verified = _var_pay_rules(VerificationStatus.VERIFIED)
@@ -3273,7 +3273,7 @@ class TestConfidenceWithOptionalRulesets:
         result = estimate_annual(
             _req().model_copy(update={"fringe_benefit_input": _FB_INPUT})
         )
-        assert result.result.coverage.confidence == "high"
+        assert result.result.coverage.confidence == "medium"
 
     def test_unverified_var_pay_ruleset_downgrades_confidence(
         self, monkeypatch: pytest.MonkeyPatch

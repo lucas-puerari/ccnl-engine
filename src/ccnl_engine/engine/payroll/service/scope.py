@@ -162,6 +162,25 @@ def _partial(
     )
 
 
+def _informational(
+    feature: str,
+    *,
+    elig: Literal[
+        "engine_verified", "caller_declared", "unknown", "n_a"
+    ] = "engine_verified",
+    qual: Literal[
+        "verified_primary", "unverified", "estimated", "n_a"
+    ] = "verified_primary",
+) -> ScopeItem:
+    return ScopeItem(
+        feature=feature,
+        calculation_status="computed",
+        integration_status="informational_only",
+        eligibility_status=elig,
+        source_quality=qual,
+    )
+
+
 def _caller_declared_or_excluded(feature: str, value: object) -> ScopeItem:
     if value is not None:
         return _computed(feature, elig="caller_declared", qual="estimated")
@@ -171,6 +190,9 @@ def _caller_declared_or_excluded(feature: str, value: object) -> ScopeItem:
 def _work_feature(feature: str, requested: bool, supported: bool) -> ScopeItem:
     """Classify a work-time feature from request and support flags.
 
+    L3 work-time amounts are informational: they are computed and stored in
+    the result but do not flow into ``net_annual`` or ``employer_cost``.
+
     Returns:
         The appropriate :class:`ScopeItem` for the feature.
     """
@@ -178,7 +200,7 @@ def _work_feature(feature: str, requested: bool, supported: bool) -> ScopeItem:
         return _excluded(feature)
     if not supported:
         return _not_computed(feature)
-    return _computed(feature)
+    return _informational(feature)
 
 
 def _surtax_scope(
@@ -322,18 +344,18 @@ def _work_time_scope(
             scenario.sick_input is not None and scenario.sick_input.sick_days > _ZERO,
             work.wr_sickness_present,
         ),
-        _computed("fringe_benefit")
+        _informational("fringe_benefit")
         if scenario.fringe_benefit_input is not None
         else _excluded("fringe_benefit"),
-        _computed("welfare", elig="caller_declared")
+        _informational("welfare", elig="caller_declared")
         if scenario.welfare_input is not None
         else _excluded("welfare"),
         _not_computed("bonus_pdr")
         if scenario.bonus_input is not None and work.bonus_pdr_missing_prior_year
-        else _computed("bonus_pdr")
+        else _informational("bonus_pdr")
         if scenario.bonus_input is not None
         else _excluded("bonus_pdr"),
-        _computed("bilateral_funds")
+        _informational("bilateral_funds")
         if len(scenario.bilateral_funds) > 0
         else _excluded("bilateral_funds"),
     ]
