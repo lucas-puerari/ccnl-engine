@@ -128,6 +128,16 @@ class TestPayPeriod:
         with pytest.raises(Exception, match="extra_monthly_payments"):
             PeriodPayrollInput(extra_monthly_payments=3)
 
+    def test_is_addizionali_settlement_defaults_false(self) -> None:
+        """is_addizionali_settlement defaults to False for a standard month."""
+        p = PeriodPayrollInput()
+        assert p.is_addizionali_settlement is False
+
+    def test_is_addizionali_settlement_true(self) -> None:
+        """is_addizionali_settlement=True is accepted for the December saldo."""
+        p = PeriodPayrollInput(is_addizionali_settlement=True)
+        assert p.is_addizionali_settlement is True
+
     def test_period_with_overtime(self) -> None:
         """PeriodPayrollInput stores OvertimeHours correctly."""
         p = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))

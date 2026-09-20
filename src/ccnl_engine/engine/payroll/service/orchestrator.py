@@ -764,6 +764,7 @@ def compute_period_payroll(
     additional_months = ccnl.parameters.additional_months.value_at(as_of)
     multiplier = Decimal(1 + request.period.extra_monthly_payments)
     twelve = Decimal(12)
+    eleven = Decimal(11)
     scenario = _annual_to_scenario(request.structural, request.period)
     if opening.irpef_withheld_ytd != _ZERO:
         scenario = scenario.model_copy(
@@ -773,7 +774,25 @@ def compute_period_payroll(
     r = calc.result
     base_gross = money(r.earnings.gross_annual / additional_months)
     period_gross = money(base_gross * multiplier)
-    period_net = money(r.net_monthly * multiplier)
+    reg_annual = r.taxes.addizionale_regionale_annual
+    com_annual = r.taxes.addizionale_comunale_annual
+    if request.period.is_addizionali_settlement:
+        period_addizionale_reg = money(reg_annual - opening.addizionale_regionale_ytd)
+        period_addizionale_com = money(com_annual - opening.addizionale_comunale_ytd)
+    else:
+        period_addizionale_reg = money(reg_annual / eleven)
+        period_addizionale_com = money(com_annual / eleven)
+    # Engine net_monthly bakes addizionale/additional_months per period; undo it
+    # (scaled by multiplier) and substitute the correct period amount.
+    engine_addizionale_period = money(
+        (reg_annual + com_annual) / additional_months * multiplier
+    )
+    period_net = money(
+        r.net_monthly * multiplier
+        + engine_addizionale_period
+        - period_addizionale_reg
+        - period_addizionale_com
+    )
     period_employer_cost = money(
         (r.employer_cost.employer_cost_annual / additional_months) * multiplier
     )
@@ -834,12 +853,10 @@ def compute_period_payroll(
             + money(r.taxes.trattamento_integrativo / twelve)
         ),
         addizionale_regionale_ytd=(
-            opening.addizionale_regionale_ytd
-            + money(r.taxes.addizionale_regionale_annual / twelve)
+            opening.addizionale_regionale_ytd + period_addizionale_reg
         ),
         addizionale_comunale_ytd=(
-            opening.addizionale_comunale_ytd
-            + money(r.taxes.addizionale_comunale_annual / twelve)
+            opening.addizionale_comunale_ytd + period_addizionale_com
         ),
         tfr_annual_ytd=(
             opening.tfr_annual_ytd
