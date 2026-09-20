@@ -33,7 +33,7 @@ calculation = estimate_annual(
 )
 p = calculation.result
 
-# --- Pay components (monthly, already scaled by part_time_pct) ---
+# --- Pay components (monthly, already scaled by part_time_ratio) ---
 print("=== Monthly pay breakdown ===")
 print(f"  Base:           {p.earnings.base_monthly} EUR")
 print(

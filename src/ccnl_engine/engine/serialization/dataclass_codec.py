@@ -31,9 +31,11 @@ _NO_MATCH: object = object()
 #: ``False`` is rejected with ``ValueError`` because the rename changed the
 #: semantic boundary of the flag, making the old ``False`` ambiguous.
 _FIELD_RENAMES: dict[str, dict[str, str]] = {
+    "AnnualEstimate": {"part_time_pct": "part_time_ratio"},
     "Art15Deductions": {"mortgage_pre_1993": "mortgage_pre_2022"},
     "Employee": {"part_time_pct": "part_time_ratio"},
     "Employment": {"calculation_date": "as_of"},
+    "PeriodPayroll": {"part_time_pct": "part_time_ratio"},
 }
 
 

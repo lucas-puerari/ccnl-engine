@@ -25,7 +25,7 @@
     "ccnl_id": "dirigenza-sanitaria-area-sanita-aran",
     "level_code": "DIRIGENTE",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "year": 2026,
     "seniority_count": 0,
     "base_monthly": "3846.60",

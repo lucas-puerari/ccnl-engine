@@ -485,7 +485,7 @@ class AnnualEstimate:
         level_code: Classification level code used for the computation.
         employment_type: String tag of the employment type
             (``"permanent"``, ``"fixed_term"``, or ``"apprentice"``).
-        part_time_pct: Part-time coefficient applied to gross and
+        part_time_ratio: Part-time coefficient applied to gross and
             contribution bases.  ``1`` for a full-time worker.
         as_of: Reference date used to resolve all time-series values.
         year: Calendar year of the pay period.
@@ -509,7 +509,7 @@ class AnnualEstimate:
     ccnl_id: str
     level_code: str
     employment_type: str
-    part_time_pct: Decimal
+    part_time_ratio: Decimal
     as_of: _date
     year: int
     contract_effective_date: _date

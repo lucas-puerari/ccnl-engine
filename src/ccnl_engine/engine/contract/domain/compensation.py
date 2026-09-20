@@ -77,7 +77,7 @@ class SupplementaryAllowance(BaseModel):
       for percentage-based apprentices (the apprenticeship percentage does not
       apply).
 
-    The amount is always scaled by ``Scenario.part_time_pct``; the
+    The amount is always scaled by ``part_time_ratio``; the
     ``apprenticeship_pct_relevant`` flag further controls whether the
     apprenticeship percentage is applied on top of that.
 

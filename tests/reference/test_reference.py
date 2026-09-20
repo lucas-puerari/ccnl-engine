@@ -66,7 +66,7 @@ _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
 # Map flat legacy field names → accessor on AnnualEstimate.
 _FIELD_PATH_MAP: dict[str, Any] = {
-    "part_time_ratio": lambda r: r.part_time_pct,
+    "part_time_ratio": lambda r: r.part_time_ratio,
     "gross_monthly": lambda r: r.earnings.gross_monthly,
     "gross_annual": lambda r: r.earnings.gross_annual,
     "base_monthly": lambda r: r.earnings.base_monthly,

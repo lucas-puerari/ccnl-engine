@@ -54,7 +54,7 @@
     "bilateral_employer_annual": "0.00",
     "apprenticeship_pct": null,
     "apprenticeship_under_level_code": null,
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "taxable_income": "20993.76",
     "tfr_annual": "1712.47",
     "ad_personam_monthly": "0.00"

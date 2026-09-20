@@ -293,7 +293,7 @@ class TestComputePermanent:
         assert r.ccnl_id == "test"
         assert r.level_code == "4"
         assert r.employment_type == "permanent"
-        assert r.part_time_pct == _D(1)
+        assert r.part_time_ratio == _D(1)
         assert r.as_of == _DATE
         assert r.year == 2026
         assert r.earnings.seniority_count == 0

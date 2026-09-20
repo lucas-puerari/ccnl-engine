@@ -24,7 +24,7 @@
     "ccnl_id": "lavoro-domestico-convivente",
     "level_code": "CS",
     "employment_type": "permanent",
-    "part_time_pct": "1",
+    "part_time_ratio": "1",
     "year": 2026,
     "seniority_count": 2,
     "base_monthly": "1193.84",

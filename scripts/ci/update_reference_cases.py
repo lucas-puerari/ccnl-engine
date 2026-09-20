@@ -267,7 +267,7 @@ def _build_scenario(inputs: dict[str, Any]) -> PayrollScenario:
 # ---------------------------------------------------------------------------
 
 _DECIMAL_FIELDS = {
-    "part_time_pct",
+    "part_time_ratio",
     "base_monthly",
     "seniority_monthly",
     "allowances_monthly",
@@ -300,7 +300,7 @@ _INCLUDED_FIELDS = {
     "ccnl_id",
     "level_code",
     "employment_type",
-    "part_time_pct",
+    "part_time_ratio",
     "year",
     "seniority_count",
     "base_monthly",

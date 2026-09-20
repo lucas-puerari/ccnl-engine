@@ -420,7 +420,7 @@ def compute(
         "ccnl_id": ccnl.meta.ccnl_id,
         "level_code": scenario.employee.level_code,
         "employment_type": scenario.employment.contract.type,
-        "part_time_pct": scenario.employee.part_time_ratio,
+        "part_time_ratio": scenario.employee.part_time_ratio,
         "as_of": as_of,
         "year": as_of.year,
         "contract_effective_date": as_of,

@@ -217,10 +217,10 @@ def _override_gross(
 
 def _scale_second_level(
     allowances: Sequence[SupplementaryAllowance],
-    part_time_pct: Decimal,
+    part_time_ratio: Decimal,
     apprenticeship_pct: Decimal | None,
 ) -> tuple[tuple[tuple[Decimal, SupplementaryAllowance], ...], Decimal]:
-    """Scale second-level allowances by part_time_pct and optionally apprenticeship_pct.
+    """Scale second-level allowances by part_time_ratio and apprenticeship_pct.
 
     All applicable scaling factors (part-time, then apprenticeship when present
     and relevant) are combined *before* a single ``money()`` rounding call.
@@ -235,7 +235,7 @@ def _scale_second_level(
     items: list[tuple[Decimal, SupplementaryAllowance]] = []
     total = _ZERO
     for sl in allowances:
-        raw = sl.monthly * part_time_pct
+        raw = sl.monthly * part_time_ratio
         if apprenticeship_pct is not None and sl.apprenticeship_pct_relevant:
             raw *= apprenticeship_pct
         scaled = money(raw)
