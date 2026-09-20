@@ -44,6 +44,7 @@ from ccnl_engine.engine.payroll.service.ledger_builder import (
     post_earnings,
     post_variable_pay,
 )
+from ccnl_engine.engine.payroll.service.reconciliation import ReconciliationService
 from ccnl_engine.engine.payroll.service.scope import (
     build_scope,
     compute_confidence,
@@ -383,6 +384,7 @@ def compute(
     post_contributions_and_taxes(fiscal, as_of, ledger)
     post_variable_pay(work, as_of, ledger)
     post_arrears_termination_tfr(fiscal, as_of, ledger)
+    ReconciliationService().check(ledger)
     calculation_scope = build_scope(scenario, fiscal, work, ccnl.coverage)
     provenance = _collect_provenance(
         gross.level,
