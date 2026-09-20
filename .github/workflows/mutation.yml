@@ -1,0 +1,52 @@
+name: Mutation Testing
+
+on:
+  schedule:
+    # Every Monday at 03:00 UTC.
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: mutation-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  mutation:
+    name: Mutation campaign (core modules)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Install package (editable)
+        run: uv pip install -e .
+
+      - name: Run mutation campaign
+        run: uv run mutmut run
+
+      - name: Export CI/CD stats
+        run: uv run mutmut export-cicd-stats
+
+      - name: Check mutation score (minimum 90%)
+        run: uv run python scripts/ci/check_mutation_score.py --min-score 90.0
+
+      - name: Upload mutation results
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: mutation-results
+          path: mutants/mutmut-cicd-stats.json
+          retention-days: 30
