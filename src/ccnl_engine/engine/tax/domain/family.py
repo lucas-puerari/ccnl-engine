@@ -46,6 +46,14 @@ class ChildrenDeductionRules(BaseModel):
 
     When there are N children, ``income_ceiling`` increases by
     ``income_ceiling_increment_per_child`` for each child beyond the first.
+
+    Income-threshold eligibility (Art. 12 c. 2):
+    - ``dependent_income_threshold``: general own-income limit for fiscal
+      dependency (EUR 2 840.51).
+    - ``young_child_income_threshold``: higher limit for children under
+      ``young_age_cutoff`` years old (EUR 4 000 for children under 24, per
+      the 2024 reform). ``None`` means the general threshold applies to all.
+    - ``young_age_cutoff``: age below which the higher threshold applies.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -54,6 +62,11 @@ class ChildrenDeductionRules(BaseModel):
     base_amount: Decimal = Field(gt=Decimal(0))
     income_ceiling: Decimal = Field(gt=Decimal(0))
     income_ceiling_increment_per_child: Decimal = Field(ge=Decimal(0))
+    dependent_income_threshold: Decimal = Field(
+        default=Decimal("2840.51"), gt=Decimal(0)
+    )
+    young_child_income_threshold: Decimal | None = Field(default=None, gt=Decimal(0))
+    young_age_cutoff: int = Field(default=24, ge=0)
     notes: str = ""
 
 

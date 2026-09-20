@@ -5,8 +5,9 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
+from typing import Self
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class DependentRelationship(StrEnum):
@@ -73,6 +74,16 @@ class FamilyComposition(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
 
     dependents: tuple[Dependent, ...] = ()
+
+    @model_validator(mode="after")
+    def _check_one_spouse(self) -> Self:
+        spouses = [
+            d for d in self.dependents if d.relationship == DependentRelationship.SPOUSE
+        ]
+        if len(spouses) > 1:
+            msg = f"FamilyComposition accepts at most one spouse; got {len(spouses)}"
+            raise ValueError(msg)
+        return self
 
     @property
     def has_any_dependent(self) -> bool:
