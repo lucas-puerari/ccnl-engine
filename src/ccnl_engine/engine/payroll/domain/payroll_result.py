@@ -658,22 +658,6 @@ class PeriodPayroll(AnnualEstimate):
     bonus_pdr_flat_tax_annual: Decimal = field(default=_ZERO)
     bonus_ordinary_taxable_annual: Decimal = field(default=_ZERO)
 
-    @property
-    def effective_net_monthly(self) -> Decimal:
-        """Monthly take-home adjusted for L3 events.
-
-        Returns:
-            ``net_monthly`` minus absence deduction plus time supplements
-            and sick-pay amounts.
-        """
-        return (
-            self.net_monthly
-            - self.absence_deduction_monthly
-            + self.time_supplements_monthly
-            + self.sick_inps_indemnity_monthly
-            + self.sick_company_integration_monthly
-        )
-
     @classmethod
     def from_dict(cls, data: dict[str, object]) -> PeriodPayroll:
         """Reconstruct from a ``to_dict()`` dict.

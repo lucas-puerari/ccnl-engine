@@ -66,8 +66,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "estimate_period_effects",
     "get_ccnl",
     "YTDState",
-    "compute_period",
-    "compute_year",
     "list_ccnls",
     "load_payroll_bundle",
     "PayrollBundle",
