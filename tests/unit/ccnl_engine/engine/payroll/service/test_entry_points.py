@@ -103,6 +103,31 @@ class TestPayPeriod:
         assert p.welfare_input is None
         assert p.bonus_input is None
 
+    def test_extra_monthly_payments_defaults_zero(self) -> None:
+        """extra_monthly_payments defaults to 0 for a standard month."""
+        p = PeriodPayrollInput()
+        assert p.extra_monthly_payments == 0
+
+    def test_extra_monthly_payments_one(self) -> None:
+        """extra_monthly_payments=1 is accepted (single bonus month)."""
+        p = PeriodPayrollInput(extra_monthly_payments=1)
+        assert p.extra_monthly_payments == 1
+
+    def test_extra_monthly_payments_two(self) -> None:
+        """extra_monthly_payments=2 is accepted (two bonuses in one period)."""
+        p = PeriodPayrollInput(extra_monthly_payments=2)
+        assert p.extra_monthly_payments == 2
+
+    def test_extra_monthly_payments_negative_rejected(self) -> None:
+        """extra_monthly_payments cannot be negative."""
+        with pytest.raises(Exception, match="extra_monthly_payments"):
+            PeriodPayrollInput(extra_monthly_payments=-1)
+
+    def test_extra_monthly_payments_above_max_rejected(self) -> None:
+        """extra_monthly_payments cannot exceed 2."""
+        with pytest.raises(Exception, match="extra_monthly_payments"):
+            PeriodPayrollInput(extra_monthly_payments=3)
+
     def test_period_with_overtime(self) -> None:
         """PeriodPayrollInput stores OvertimeHours correctly."""
         p = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=Decimal(8)))

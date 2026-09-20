@@ -756,6 +756,14 @@ def compute_period_payroll(
         states, the key period figures, and all ledger entries.
     """
     opening = request.opening_state
+    as_of = request.structural.employment.as_of
+    if bundle is not None:
+        ccnl = bundle.ccnl
+    else:
+        ccnl = _default_repo.load_ccnl(request.structural.employment.ccnl)
+    additional_months = ccnl.parameters.additional_months.value_at(as_of)
+    multiplier = Decimal(1 + request.period.extra_monthly_payments)
+    twelve = Decimal(12)
     scenario = _annual_to_scenario(request.structural, request.period)
     if opening.irpef_withheld_ytd != _ZERO:
         scenario = scenario.model_copy(
@@ -763,10 +771,12 @@ def compute_period_payroll(
         )
     calc = compute(scenario, bundle)
     r = calc.result
-    twelve = Decimal(12)
-    period_gross = money(r.earnings.gross_annual / twelve)
-    period_net = r.net_monthly
-    period_employer_cost = money(r.employer_cost.employer_cost_annual / twelve)
+    base_gross = money(r.earnings.gross_annual / additional_months)
+    period_gross = money(base_gross * multiplier)
+    period_net = money(r.net_monthly * multiplier)
+    period_employer_cost = money(
+        (r.employer_cost.employer_cost_annual / additional_months) * multiplier
+    )
     period_leave_accrued = (
         r.leave_accrued_days_monthly if isinstance(r, PeriodPayroll) else _ZERO
     )
@@ -780,22 +790,33 @@ def compute_period_payroll(
         gross_annual_ytd=opening.gross_annual_ytd + period_gross,
         inps_employee_annual_ytd=(
             opening.inps_employee_annual_ytd
-            + money(r.contributions.inps_employee_annual / twelve)
+            + money(
+                r.contributions.inps_employee_annual / additional_months * multiplier
+            )
         ),
         inps_employer_annual_ytd=(
             opening.inps_employer_annual_ytd
-            + money(r.contributions.inps_employer_annual / twelve)
+            + money(
+                r.contributions.inps_employer_annual / additional_months * multiplier
+            )
         ),
         inail_employer_annual_ytd=(
             opening.inail_employer_annual_ytd
-            + money(r.contributions.inail_employer_annual / twelve)
+            + money(
+                r.contributions.inail_employer_annual / additional_months * multiplier
+            )
         ),
         taxable_income_ytd=(
-            opening.taxable_income_ytd + money(r.taxes.taxable_income / twelve)
+            opening.taxable_income_ytd
+            + money(r.taxes.taxable_income / additional_months * multiplier)
         ),
-        irpef_gross_ytd=(opening.irpef_gross_ytd + money(r.taxes.irpef_gross / twelve)),
+        irpef_gross_ytd=(
+            opening.irpef_gross_ytd
+            + money(r.taxes.irpef_gross / additional_months * multiplier)
+        ),
         irpef_withheld_ytd=(
-            opening.irpef_withheld_ytd + money(r.taxes.irpef_net / twelve)
+            opening.irpef_withheld_ytd
+            + money(r.taxes.irpef_net / additional_months * multiplier)
         ),
         work_income_deduction_ytd=(
             opening.work_income_deduction_ytd
@@ -821,7 +842,8 @@ def compute_period_payroll(
             + money(r.taxes.addizionale_comunale_annual / twelve)
         ),
         tfr_annual_ytd=(
-            opening.tfr_annual_ytd + money(r.contributions.tfr_annual / twelve)
+            opening.tfr_annual_ytd
+            + money(r.contributions.tfr_annual / additional_months * multiplier)
         ),
         leave_accrued_days_ytd=new_leave_accrued,
         leave_taken_days_ytd=new_leave_taken,
