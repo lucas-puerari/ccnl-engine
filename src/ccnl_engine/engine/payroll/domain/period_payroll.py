@@ -120,3 +120,33 @@ class PayrollYearResult:
 
     periods: tuple[PeriodPayrollResult, ...]
     closing_state: PayrollState
+
+
+@dataclass(frozen=True)
+class AnnualPayrollSummary:
+    """Annual payroll summary derived from aggregating period results.
+
+    Produced by :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.summarize_payroll_year`.  All monetary totals are the sum of the
+    corresponding per-period figures.  The :attr:`closing_state` is the
+    final YTD progressive state after December and mirrors
+    :attr:`PayrollYearResult.closing_state`.
+
+    Attributes:
+        total_gross: Sum of :attr:`PeriodPayrollResult.period_gross`
+            across all twelve periods.
+        total_net: Sum of :attr:`PeriodPayrollResult.period_net`
+            across all twelve periods.
+        total_employer_cost: Sum of
+            :attr:`PeriodPayrollResult.period_employer_cost` across all
+            twelve periods.
+        closing_state: Final YTD state after December.
+        ledger_entries: All ledger entries from every period, concatenated
+            in calendar order (January first, December last).
+    """
+
+    total_gross: Decimal
+    total_net: Decimal
+    total_employer_cost: Decimal
+    closing_state: PayrollState
+    ledger_entries: tuple[LedgerEntry, ...]

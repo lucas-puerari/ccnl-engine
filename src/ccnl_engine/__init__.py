@@ -102,6 +102,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
+    AnnualPayrollSummary,
     PayrollYearRequest,
     PayrollYearResult,
     PeriodPayrollRequest,
@@ -134,6 +135,7 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
     compute_period_payroll,
     estimate_annual,
     estimate_period_effects,
+    summarize_payroll_year,
 )
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
@@ -148,6 +150,7 @@ __all__ = [
     "AnnualBreakdown",
     "AnnualEstimate",
     "AnnualEstimateInput",
+    "AnnualPayrollSummary",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
@@ -216,4 +219,5 @@ __all__ = [
     "result_schema",
     "scenario_schema",
     "search_ccnls",
+    "summarize_payroll_year",
 ]

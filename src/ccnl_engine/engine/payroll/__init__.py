@@ -34,6 +34,9 @@ from ccnl_engine.engine.payroll.domain.payroll_state import (
     PayrollState as PayrollState,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import (
+    AnnualPayrollSummary as AnnualPayrollSummary,
+)
+from ccnl_engine.engine.payroll.domain.period_payroll import (
     PayrollYearRequest as PayrollYearRequest,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import (
@@ -52,6 +55,9 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute_period_payroll as compute_period_payroll,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    summarize_payroll_year as summarize_payroll_year,
+)
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown as AnnualBreakdown,
 )
@@ -62,6 +68,7 @@ from ccnl_engine.engine.payroll.service.render import (
 __all__ = [
     "AnnualBreakdown",
     "AnnualEstimate",
+    "AnnualPayrollSummary",
     "CalculationTrace",
     "Contributions",
     "Coverage",
@@ -80,4 +87,5 @@ __all__ = [
     "compute_payroll_year",
     "compute_period_payroll",
     "render_breakdown",
+    "summarize_payroll_year",
 ]

@@ -28,6 +28,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
+    AnnualPayrollSummary,
     PayrollYearRequest,
     PayrollYearResult,
     PeriodPayrollRequest,
@@ -920,3 +921,33 @@ def compute_payroll_year(
         results.append(r)
         state = r.closing_state
     return PayrollYearResult(periods=tuple(results), closing_state=state)
+
+
+def summarize_payroll_year(result: PayrollYearResult) -> AnnualPayrollSummary:
+    """Derive an annual payroll summary from aggregating period results.
+
+    Sums the per-period figures (gross, net, employer cost) across all twelve
+    periods and collects every ledger entry into a single flat tuple.  The
+    :attr:`~AnnualPayrollSummary.closing_state` mirrors
+    :attr:`PayrollYearResult.closing_state`, which already holds the final
+    year-to-date progressives after December.
+
+    Args:
+        result: A completed :class:`PayrollYearResult` returned by
+            :func:`compute_payroll_year`.
+
+    Returns:
+        An :class:`AnnualPayrollSummary` with the annual totals and all
+        ledger entries from every period in calendar order.
+    """
+    total_gross = sum((p.period_gross for p in result.periods), _ZERO)
+    total_net = sum((p.period_net for p in result.periods), _ZERO)
+    total_employer_cost = sum((p.period_employer_cost for p in result.periods), _ZERO)
+    ledger_entries = tuple(entry for p in result.periods for entry in p.ledger_entries)
+    return AnnualPayrollSummary(
+        total_gross=total_gross,
+        total_net=total_net,
+        total_employer_cost=total_employer_cost,
+        closing_state=result.closing_state,
+        ledger_entries=ledger_entries,
+    )

@@ -12,6 +12,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "AnnualBreakdown",
     "AnnualEstimate",
     "AnnualEstimateInput",
+    "AnnualPayrollSummary",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
@@ -80,6 +81,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "result_schema",
     "scenario_schema",
     "search_ccnls",
+    "summarize_payroll_year",
 })
 
 
