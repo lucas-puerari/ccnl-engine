@@ -477,7 +477,7 @@ class TestPeriodPayrollSerde:
         d = period_payroll.to_dict()
         del d["schema_version"]
         restored = PeriodPayroll.from_dict(d)
-        assert restored.schema_version == "2"
+        assert restored.schema_version == "3"
 
 
 class TestCoverageFromDictOptional:

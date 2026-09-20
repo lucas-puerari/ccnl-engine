@@ -11,8 +11,8 @@ from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
 from ccnl_engine.engine.payroll.domain.components import (
     ScopeItem,
     _coerce,
-    _serialise_dataclass,
 )
+from ccnl_engine.engine.serialization.result_codec import _serialise_dataclass
 
 
 @dataclass(frozen=True, kw_only=True)

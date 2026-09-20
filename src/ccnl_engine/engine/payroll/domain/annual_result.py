@@ -16,11 +16,13 @@ from ccnl_engine.engine.payroll.domain.components import (
     EmployerCost,
     Taxes,
     _coerce,
-    _has_default,
-    _serialise_value,
 )
 from ccnl_engine.engine.payroll.domain.coverage import Coverage
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.serialization.result_codec import (
+    _has_default,
+    _serialise_value,
+)
 
 _SUB_OBJECT_DECODERS: dict[
     str, type[Earnings | Contributions | Taxes | EmployerCost | Coverage]
@@ -107,7 +109,7 @@ class AnnualEstimate:
     net_annual: Decimal
     net_monthly: Decimal
 
-    schema_version: str = field(default="2")
+    schema_version: str = field(default="3")
 
     def to_dict(self) -> dict[str, object]:
         """Serialise to a plain Python dictionary.

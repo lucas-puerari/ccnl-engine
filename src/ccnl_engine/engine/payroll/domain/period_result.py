@@ -13,7 +13,7 @@ from ccnl_engine.engine.payroll.domain.annual_result import (
     AnnualEstimate,
     _decode_field,
 )
-from ccnl_engine.engine.payroll.domain.components import _has_default
+from ccnl_engine.engine.serialization.result_codec import _has_default
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.scenario import PeriodPayrollInput
