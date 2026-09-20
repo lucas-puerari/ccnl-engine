@@ -7,7 +7,12 @@ from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.metadata.domain.rules import SourceType, VerificationStatus
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    CalculationStatus,
+    EligibilityStatus,
+    ScopeItem,
+    SourceQuality,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.identity import CCNLCoverage
@@ -25,7 +30,7 @@ def compute_result_status(
 ) -> Literal["complete", "partial"]:
     """Derive the overall result status from the calculation scope.
 
-    Returns ``"complete"`` when every scope item is included in totals and
+    Returns ``"complete"`` when every scope item is integrated into totals and
     fully engine-verified (nothing requested was blocked or caller-declared).
     Returns ``"partial"`` otherwise.
 
@@ -33,11 +38,20 @@ def compute_result_status(
         ``"complete"`` or ``"partial"``.
     """
     for item in scope:
-        if item.calculation_status in {"not_computed", "partial"}:
+        if item.calculation_status in {
+            CalculationStatus.NOT_COMPUTED,
+            CalculationStatus.PARTIAL,
+        }:
             return "partial"
-        if item.integration_status == "informational_only":
+        if item.calculation_status == CalculationStatus.COMPUTED and not (
+            item.gross_integrated
+            or item.contribution_integrated
+            or item.tax_integrated
+            or item.net_integrated
+            or item.cost_integrated
+        ):
             return "partial"
-        if item.eligibility_status == "caller_declared":
+        if item.eligibility_status == EligibilityStatus.CALLER_DECLARED:
             return "partial"
     return "complete"
 
@@ -110,18 +124,23 @@ def compute_confidence(
 def _computed(
     feature: str,
     *,
-    elig: Literal[
-        "engine_verified", "caller_declared", "unknown", "n_a"
-    ] = "engine_verified",
-    qual: Literal[
-        "verified_primary", "unverified", "estimated", "n_a"
-    ] = "verified_primary",
+    elig: EligibilityStatus = EligibilityStatus.ENGINE_VERIFIED,
+    qual: SourceQuality = SourceQuality.VERIFIED_PRIMARY,
     assumptions: tuple[str, ...] = (),
+    gross: bool = True,
+    contribution: bool = True,
+    tax: bool = True,
+    net: bool = True,
+    cost: bool = True,
 ) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="computed",
-        integration_status="included_in_totals",
+        calculation_status=CalculationStatus.COMPUTED,
+        gross_integrated=gross,
+        contribution_integrated=contribution,
+        tax_integrated=tax,
+        net_integrated=net,
+        cost_integrated=cost,
         eligibility_status=elig,
         source_quality=qual,
         assumptions=assumptions,
@@ -131,20 +150,18 @@ def _computed(
 def _excluded(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="excluded",
-        integration_status="n_a",
-        eligibility_status="n_a",
-        source_quality="n_a",
+        calculation_status=CalculationStatus.EXCLUDED,
+        eligibility_status=EligibilityStatus.N_A,
+        source_quality=SourceQuality.N_A,
     )
 
 
 def _not_computed(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="not_computed",
-        integration_status="n_a",
-        eligibility_status="n_a",
-        source_quality="n_a",
+        calculation_status=CalculationStatus.NOT_COMPUTED,
+        eligibility_status=EligibilityStatus.N_A,
+        source_quality=SourceQuality.N_A,
     )
 
 
@@ -152,13 +169,22 @@ def _partial(
     feature: str,
     *,
     assumptions: tuple[str, ...] = (),
+    gross: bool = True,
+    contribution: bool = True,
+    tax: bool = True,
+    net: bool = True,
+    cost: bool = True,
 ) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="partial",
-        integration_status="included_in_totals",
-        eligibility_status="engine_verified",
-        source_quality="verified_primary",
+        calculation_status=CalculationStatus.PARTIAL,
+        gross_integrated=gross,
+        contribution_integrated=contribution,
+        tax_integrated=tax,
+        net_integrated=net,
+        cost_integrated=cost,
+        eligibility_status=EligibilityStatus.ENGINE_VERIFIED,
+        source_quality=SourceQuality.VERIFIED_PRIMARY,
         assumptions=assumptions,
     )
 
@@ -166,25 +192,38 @@ def _partial(
 def _informational(
     feature: str,
     *,
-    elig: Literal[
-        "engine_verified", "caller_declared", "unknown", "n_a"
-    ] = "engine_verified",
-    qual: Literal[
-        "verified_primary", "unverified", "estimated", "n_a"
-    ] = "verified_primary",
+    elig: EligibilityStatus = EligibilityStatus.ENGINE_VERIFIED,
+    qual: SourceQuality = SourceQuality.VERIFIED_PRIMARY,
 ) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="computed",
-        integration_status="informational_only",
+        calculation_status=CalculationStatus.COMPUTED,
         eligibility_status=elig,
         source_quality=qual,
     )
 
 
-def _caller_declared_or_excluded(feature: str, value: object) -> ScopeItem:
+def _caller_declared_or_excluded(
+    feature: str,
+    value: object,
+    *,
+    gross: bool = True,
+    contribution: bool = True,
+    tax: bool = True,
+    net: bool = True,
+    cost: bool = True,
+) -> ScopeItem:
     if value is not None:
-        return _computed(feature, elig="caller_declared", qual="estimated")
+        return _computed(
+            feature,
+            elig=EligibilityStatus.CALLER_DECLARED,
+            qual=SourceQuality.ESTIMATED,
+            gross=gross,
+            contribution=contribution,
+            tax=tax,
+            net=net,
+            cost=cost,
+        )
     return _excluded(feature)
 
 
@@ -221,8 +260,18 @@ def _surtax_scope(
     if unknown_flag in fs:
         return _not_computed(feature)
     if advance_flag is not None and advance_flag in fs:
-        return _partial(feature, assumptions=("advance_only",))
-    return _computed(feature)
+        return _partial(
+            feature,
+            assumptions=("advance_only",),
+            gross=False,
+            contribution=False,
+            tax=True,
+            net=True,
+            cost=False,
+        )
+    return _computed(
+        feature, gross=False, contribution=False, tax=True, net=True, cost=False
+    )
 
 
 def _fiscal_scope(
@@ -258,34 +307,144 @@ def _fiscal_scope(
     return [
         _computed("base_salary"),
         _computed("seniority"),
-        _computed("inps_employee"),
-        _computed("inps_employer"),
-        _caller_declared_or_excluded("inail", inail_rate),
-        _caller_declared_or_excluded("contribution_exemption", exemption),
-        _caller_declared_or_excluded("fiscal_adjustment", prior_irpef),
+        _computed(
+            "inps_employee",
+            gross=False,
+            contribution=True,
+            tax=False,
+            net=True,
+            cost=False,
+        ),
+        _computed(
+            "inps_employer",
+            gross=False,
+            contribution=True,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
+        _caller_declared_or_excluded(
+            "inail",
+            inail_rate,
+            gross=False,
+            contribution=False,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
+        _caller_declared_or_excluded(
+            "contribution_exemption",
+            exemption,
+            gross=False,
+            contribution=True,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
+        _caller_declared_or_excluded(
+            "fiscal_adjustment",
+            prior_irpef,
+            gross=False,
+            contribution=False,
+            tax=True,
+            net=True,
+            cost=False,
+        ),
         _caller_declared_or_excluded("maternity_leave", maternity),
         _caller_declared_or_excluded("workplace_injury", injury),
         _caller_declared_or_excluded("termination_residual_leave", term_leave),
-        _caller_declared_or_excluded("termination_tfr", term_tfr),
+        _caller_declared_or_excluded(
+            "termination_tfr",
+            term_tfr,
+            gross=False,
+            contribution=False,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
         _caller_declared_or_excluded("contract_renewal_arrears", arrears),
         _caller_declared_or_excluded("una_tantum", una_tantum),
-        _caller_declared_or_excluded("personal_withholdings", withholdings),
-        _caller_declared_or_excluded("additional_irpef_base", extra_irpef),
-        _caller_declared_or_excluded("health_fund_employee", health_employee),
-        _caller_declared_or_excluded("health_fund_employer", health_employer),
+        _caller_declared_or_excluded(
+            "personal_withholdings",
+            withholdings,
+            gross=False,
+            contribution=False,
+            tax=True,
+            net=True,
+            cost=False,
+        ),
+        _caller_declared_or_excluded(
+            "additional_irpef_base",
+            extra_irpef,
+            gross=False,
+            contribution=False,
+            tax=True,
+            net=False,
+            cost=False,
+        ),
+        _caller_declared_or_excluded(
+            "health_fund_employee",
+            health_employee,
+            gross=False,
+            contribution=True,
+            tax=False,
+            net=True,
+            cost=False,
+        ),
+        _caller_declared_or_excluded(
+            "health_fund_employer",
+            health_employer,
+            gross=False,
+            contribution=False,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
         _caller_declared_or_excluded("territorial_supplement", territorial),
         _caller_declared_or_excluded("company_supplement", company),
-        _computed("tfr"),
-        _computed("irpef") if fiscal.employer_withholds_irpef else _excluded("irpef"),
+        _computed(
+            "tfr",
+            gross=False,
+            contribution=False,
+            tax=False,
+            net=False,
+            cost=True,
+        ),
+        (
+            _computed(
+                "irpef",
+                gross=False,
+                contribution=False,
+                tax=True,
+                net=True,
+                cost=False,
+            )
+            if fiscal.employer_withholds_irpef
+            else _excluded("irpef")
+        ),
         (
             _excluded("trattamento_integrativo")
             if FiscalSimplification.NO_TRATTAMENTO_INTEGRATIVO in fs
-            else _computed("trattamento_integrativo")
+            else _computed(
+                "trattamento_integrativo",
+                gross=False,
+                contribution=False,
+                tax=True,
+                net=True,
+                cost=False,
+            )
         ),
         (
             _excluded("ulteriore_detrazione_lavoro")
             if FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO in fs
-            else _computed("ulteriore_detrazione_lavoro")
+            else _computed(
+                "ulteriore_detrazione_lavoro",
+                gross=False,
+                contribution=False,
+                tax=True,
+                net=True,
+                cost=False,
+            )
         ),
         _surtax_scope(
             "addizionale_regionale",
@@ -301,12 +460,28 @@ def _fiscal_scope(
             advance_flag=FiscalSimplification.ADDIZIONALE_COMUNALE_ADVANCE_ONLY,
         ),
         (
-            _computed("family_deductions", elig="caller_declared")
+            _computed(
+                "family_deductions",
+                elig=EligibilityStatus.CALLER_DECLARED,
+                gross=False,
+                contribution=False,
+                tax=True,
+                net=True,
+                cost=False,
+            )
             if family_ok
             else _excluded("family_deductions")
         ),
         (
-            _partial("art15_deductions", assumptions=("partial_detrazioni_art15",))
+            _partial(
+                "art15_deductions",
+                assumptions=("partial_detrazioni_art15",),
+                gross=False,
+                contribution=False,
+                tax=True,
+                net=True,
+                cost=False,
+            )
             if art15_ok
             else _excluded("art15_deductions")
         ),
@@ -348,7 +523,7 @@ def _work_time_scope(
         _informational("fringe_benefit")
         if scenario.fringe_benefit_input is not None
         else _excluded("fringe_benefit"),
-        _informational("welfare", elig="caller_declared")
+        _informational("welfare", elig=EligibilityStatus.CALLER_DECLARED)
         if scenario.welfare_input is not None
         else _excluded("welfare"),
         _not_computed("bonus_pdr")

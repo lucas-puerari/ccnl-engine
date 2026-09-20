@@ -56,7 +56,13 @@ from ccnl_engine.engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll, ScopeItem
+from ccnl_engine.engine.payroll.domain.payroll_result import (
+    CalculationStatus,
+    EligibilityStatus,
+    PeriodPayroll,
+    ScopeItem,
+    SourceQuality,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
     AnnualEstimateInput,
@@ -2875,50 +2881,55 @@ class TestArt15MortgagePre2022:
 def _scope_computed(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="computed",
-        integration_status="included_in_totals",
-        eligibility_status="engine_verified",
-        source_quality="verified_primary",
+        calculation_status=CalculationStatus.COMPUTED,
+        gross_integrated=True,
+        contribution_integrated=True,
+        tax_integrated=True,
+        net_integrated=True,
+        cost_integrated=True,
+        eligibility_status=EligibilityStatus.ENGINE_VERIFIED,
+        source_quality=SourceQuality.VERIFIED_PRIMARY,
     )
 
 
 def _scope_excluded(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="excluded",
-        integration_status="n_a",
-        eligibility_status="n_a",
-        source_quality="n_a",
+        calculation_status=CalculationStatus.EXCLUDED,
+        eligibility_status=EligibilityStatus.N_A,
+        source_quality=SourceQuality.N_A,
     )
 
 
 def _scope_not_computed(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="not_computed",
-        integration_status="n_a",
-        eligibility_status="n_a",
-        source_quality="n_a",
+        calculation_status=CalculationStatus.NOT_COMPUTED,
+        eligibility_status=EligibilityStatus.N_A,
+        source_quality=SourceQuality.N_A,
     )
 
 
 def _scope_informational(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="computed",
-        integration_status="informational_only",
-        eligibility_status="engine_verified",
-        source_quality="verified_primary",
+        calculation_status=CalculationStatus.COMPUTED,
+        eligibility_status=EligibilityStatus.ENGINE_VERIFIED,
+        source_quality=SourceQuality.VERIFIED_PRIMARY,
     )
 
 
 def _scope_caller_declared(feature: str) -> ScopeItem:
     return ScopeItem(
         feature=feature,
-        calculation_status="computed",
-        integration_status="included_in_totals",
-        eligibility_status="caller_declared",
-        source_quality="verified_primary",
+        calculation_status=CalculationStatus.COMPUTED,
+        gross_integrated=True,
+        contribution_integrated=True,
+        tax_integrated=True,
+        net_integrated=True,
+        cost_integrated=True,
+        eligibility_status=EligibilityStatus.CALLER_DECLARED,
+        source_quality=SourceQuality.VERIFIED_PRIMARY,
     )
 
 
@@ -2950,7 +2961,7 @@ class TestComputeResultStatus:
         assert compute_result_status(scope) == "partial"
 
     def test_informational_only_returns_partial(self) -> None:
-        """informational_only integration_status forces partial status."""
+        """Informational scope item (no integration axes) forces partial status."""
         scope = (
             _scope_computed("base_salary"),
             _scope_informational("fringe_benefit"),
@@ -3012,15 +3023,21 @@ class TestLimitationsScope:
         assert _limitations_scope(cov) == []
 
     def test_simplification_note_returns_scope_item(self) -> None:
-        """Coverage with a simplification note → informational_only scope item."""
+        """Coverage with a simplification note → informational scope item."""
         cov = _coverage(
             CoverageNote(kind=NoteKind.SIMPLIFICATION, text="hourly rate approx")
         )
         result = _limitations_scope(cov)
         assert len(result) == 1
         assert result[0].feature == "ccnl_limitations"
-        assert result[0].integration_status == "informational_only"
-        assert result[0].calculation_status == "computed"
+        assert result[0].calculation_status == CalculationStatus.COMPUTED
+        assert not any([
+            result[0].gross_integrated,
+            result[0].contribution_integrated,
+            result[0].tax_integrated,
+            result[0].net_integrated,
+            result[0].cost_integrated,
+        ])
 
     def test_missing_note_returns_scope_item(self) -> None:
         """Coverage with a missing note → informational_only scope item."""
@@ -3330,7 +3347,7 @@ class TestConfidenceWithOptionalRulesets:
     ) -> None:
         """Verified var-pay ruleset + fringe_benefit → medium (informational).
 
-        fringe_benefit is integration_status=informational_only, so
+        fringe_benefit is informational (no integration axes), so
         result.coverage.status is "partial" even when all provenance and
         rulesets are verified. Confidence reaches "medium", not "high".
         """

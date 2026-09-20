@@ -690,7 +690,11 @@ def compute_salary(
             {
                 "feature": s.feature,
                 "calculation_status": s.calculation_status,
-                "integration_status": s.integration_status,
+                "gross_integrated": s.gross_integrated,
+                "contribution_integrated": s.contribution_integrated,
+                "tax_integrated": s.tax_integrated,
+                "net_integrated": s.net_integrated,
+                "cost_integrated": s.cost_integrated,
                 "eligibility_status": s.eligibility_status,
                 "source_quality": s.source_quality,
             }

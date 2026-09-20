@@ -300,7 +300,6 @@ class TestFromDictStrictValidation:
             {
                 "feature": "irpef",
                 "calculation_status": "invalid_status",
-                "integration_status": "included_in_totals",
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
             }
@@ -315,29 +314,11 @@ class TestFromDictStrictValidation:
             {
                 "feature": 42,
                 "calculation_status": "computed",
-                "integration_status": "included_in_totals",
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
             }
         ]
         with pytest.raises(TypeError, match=r"ScopeItem\.feature"):
-            AnnualEstimate.from_dict(d)
-
-    def test_scope_item_invalid_integration_status_rejected(
-        self, payroll: AnnualEstimate
-    ) -> None:
-        """ScopeItem with invalid integration_status value raises ValueError."""
-        d = payroll.to_dict()
-        d["coverage"]["calculation_scope"] = [  # type: ignore[index]
-            {
-                "feature": "irpef",
-                "calculation_status": "computed",
-                "integration_status": "bad_value",
-                "eligibility_status": "engine_verified",
-                "source_quality": "verified_primary",
-            }
-        ]
-        with pytest.raises(ValueError, match=r"ScopeItem\.integration_status"):
             AnnualEstimate.from_dict(d)
 
     def test_scope_item_invalid_eligibility_status_rejected(
@@ -349,7 +330,6 @@ class TestFromDictStrictValidation:
             {
                 "feature": "irpef",
                 "calculation_status": "computed",
-                "integration_status": "included_in_totals",
                 "eligibility_status": "bad_value",
                 "source_quality": "verified_primary",
             }
@@ -366,7 +346,6 @@ class TestFromDictStrictValidation:
             {
                 "feature": "irpef",
                 "calculation_status": "computed",
-                "integration_status": "included_in_totals",
                 "eligibility_status": "engine_verified",
                 "source_quality": "bad_value",
             }

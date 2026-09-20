@@ -70,9 +70,19 @@ for item in p.coverage.calculation_scope:
     icon = {"computed": "✓", "excluded": "○", "not_computed": "?", "partial": "~"}.get(
         item.calculation_status, item.calculation_status
     )
-    print(
-        f"  {icon}  {item.feature}  [{item.calculation_status}/{item.integration_status}]"
-    )
+    axes = [
+        a
+        for a, v in [
+            ("gross", item.gross_integrated),
+            ("contrib", item.contribution_integrated),
+            ("tax", item.tax_integrated),
+            ("net", item.net_integrated),
+            ("cost", item.cost_integrated),
+        ]
+        if v
+    ]
+    axes_str = ",".join(axes) if axes else "informational"
+    print(f"  {icon}  {item.feature}  [{item.calculation_status}/{axes_str}]")
 
 if p.coverage.warnings:
     print("\n  Warnings:")
