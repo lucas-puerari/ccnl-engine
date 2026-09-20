@@ -17,9 +17,8 @@ class YTDState:
 
     Carries the cumulative fiscal and contributive figures that have already
     been computed for earlier months in the same tax year.  Pass these into
-    :class:`PayrollPeriod` so that :func:`~ccnl_engine.compute_period` and
-    :func:`~ccnl_engine.compute_year` can produce deterministic, reproducible
-    results independent of call order.
+    :class:`PayrollPeriod` so that period calculations produce deterministic,
+    reproducible results independent of call order.
 
     Attributes:
         taxable_income: Cumulative IRPEF taxable income from prior periods.
@@ -40,10 +39,6 @@ class PayrollPeriod:
     Groups the calendar month, period-specific payroll events, and the
     year-to-date progressive state accumulated from prior periods into a
     single immutable value.
-
-    Pass to :func:`~ccnl_engine.compute_period` for a deterministic
-    single-period calculation.  Build a sequence of twelve and pass to
-    :func:`~ccnl_engine.compute_year` to aggregate a full payroll year.
 
     Attributes:
         year: Calendar year of competence (e.g. ``2026``).
