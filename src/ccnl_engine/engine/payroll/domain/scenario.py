@@ -575,6 +575,12 @@ class PeriodPayrollInput(BaseModel):
             ``2`` when both fall in the same period.  Defaults to ``0`` for a
             standard month.  The caller is responsible for distributing the
             bonus months correctly across the twelve periods of the year.
+        is_addizionali_settlement: When ``True``, this period is the addizionali
+            settlement (saldo dicembre).  The engine withholds the remaining
+            balance: ``annual_addizionale - addizionale_withheld_ytd`` from the
+            opening :class:`~ccnl_engine.engine.payroll.domain.payroll_state\
+.PayrollState`.  For standard months the addizionale is divided evenly
+            over eleven installments.  Defaults to ``False``.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -588,6 +594,7 @@ class PeriodPayrollInput(BaseModel):
     welfare_input: WelfareInput | None = None
     bonus_input: BonusInput | None = None
     extra_monthly_payments: int = Field(default=0, ge=0, le=2)
+    is_addizionali_settlement: bool = False
 
 
 class AnnualEstimateInput(BaseModel):

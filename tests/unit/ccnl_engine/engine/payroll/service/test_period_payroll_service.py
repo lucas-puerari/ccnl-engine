@@ -18,9 +18,13 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     Employee,
     Employer,
     Employment,
+    Jurisdiction,
     PeriodPayrollInput,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import compute_period_payroll
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    compute_period_payroll,
+    estimate_annual,
+)
 from ccnl_engine.engine.payroll.service.rounding import money
 
 _ZERO = Decimal(0)
@@ -357,3 +361,101 @@ class TestComputePeriodPayrollExtraMonthlyPayments:
         r_bonus = compute_period_payroll(req_bonus)
         expected_ytd = r_normal.closing_state.gross_annual_ytd + r_bonus.period_gross
         assert r_bonus.closing_state.gross_annual_ytd == expected_ytd
+
+
+_JURISDICTION = Jurisdiction(regione="Lombardia", comune_belfiore="F205")
+
+
+def _structural_with_jurisdiction() -> AnnualEstimateInput:
+    """Return a structural scenario with Lombardia/Milano jurisdiction.
+
+    Returns:
+        :class:`AnnualEstimateInput` with Lombardia/Milano jurisdiction.
+    """
+    return AnnualEstimateInput(
+        employee=Employee(level_code=_LEVEL, jurisdiction=_JURISDICTION),
+        employment=Employment(
+            ccnl=_CCNL,
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=_AS_OF,
+        ),
+    )
+
+
+class TestComputePeriodPayrollAddizionali:
+    """Addizionali regionali/comunali: monthly installments and December saldo."""
+
+    def test_standard_period_addizionale_is_annual_over_eleven(self) -> None:
+        """Each standard period withholds addizionale_annual / 11."""
+        structural = _structural_with_jurisdiction()
+        annual = estimate_annual(structural)
+        reg_annual = annual.result.taxes.addizionale_regionale_annual
+        com_annual = annual.result.taxes.addizionale_comunale_annual
+        req = PeriodPayrollRequest(
+            structural=structural,
+            period=PeriodPayrollInput(),
+            opening_state=PayrollState.zero(),
+        )
+        result = compute_period_payroll(req)
+        expected_reg = money(reg_annual / Decimal(11))
+        expected_com = money(com_annual / Decimal(11))
+        assert result.closing_state.addizionale_regionale_ytd == expected_reg
+        assert result.closing_state.addizionale_comunale_ytd == expected_com
+
+    def test_settlement_period_withholds_balance(self) -> None:
+        """Settlement period withholds annual - ytd_withheld."""
+        structural = _structural_with_jurisdiction()
+        annual = estimate_annual(structural)
+        reg_annual = annual.result.taxes.addizionale_regionale_annual
+        com_annual = annual.result.taxes.addizionale_comunale_annual
+        state = PayrollState.zero()
+        for _ in range(11):
+            req = PeriodPayrollRequest(
+                structural=structural,
+                period=PeriodPayrollInput(),
+                opening_state=state,
+            )
+            state = compute_period_payroll(req).closing_state
+        req_saldo = PeriodPayrollRequest(
+            structural=structural,
+            period=PeriodPayrollInput(is_addizionali_settlement=True),
+            opening_state=state,
+        )
+        result = compute_period_payroll(req_saldo)
+        assert result.closing_state.addizionale_regionale_ytd == reg_annual
+        assert result.closing_state.addizionale_comunale_ytd == com_annual
+
+    def test_eleven_plus_settlement_reconciles_to_annual(self) -> None:
+        """11 standard + 1 settlement totals exactly to the annual addizionale."""
+        structural = _structural_with_jurisdiction()
+        annual = estimate_annual(structural)
+        reg_annual = annual.result.taxes.addizionale_regionale_annual
+        com_annual = annual.result.taxes.addizionale_comunale_annual
+        state = PayrollState.zero()
+        for _ in range(11):
+            req = PeriodPayrollRequest(
+                structural=structural,
+                period=PeriodPayrollInput(),
+                opening_state=state,
+            )
+            state = compute_period_payroll(req).closing_state
+        req_saldo = PeriodPayrollRequest(
+            structural=structural,
+            period=PeriodPayrollInput(is_addizionali_settlement=True),
+            opening_state=state,
+        )
+        final = compute_period_payroll(req_saldo).closing_state
+        assert final.addizionale_regionale_ytd == reg_annual
+        assert final.addizionale_comunale_ytd == com_annual
+
+    def test_no_addizionali_when_no_jurisdiction(self) -> None:
+        """Without a jurisdiction, addizionale ytd remains zero after settlement."""
+        req = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(is_addizionali_settlement=True),
+            opening_state=PayrollState.zero(),
+        )
+        result = compute_period_payroll(req)
+        assert result.closing_state.addizionale_regionale_ytd == _ZERO
+        assert result.closing_state.addizionale_comunale_ytd == _ZERO
