@@ -17,6 +17,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import cast
 
+from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     PeriodPayroll,
@@ -56,6 +57,7 @@ __all__ = [
     "Calculation",
     "CalculationTrace",
     "InputSnapshot",
+    "LedgerEntry",
     "TraceCategory",
     "TraceStep",
     "_apply_renames",
@@ -119,6 +121,9 @@ class Calculation:
     )
     ruleset_verification: Mapping[str, str] = dataclasses.field(
         default_factory=FrozenDict
+    )
+    ledger_entries: tuple[LedgerEntry, ...] = dataclasses.field(
+        default_factory=tuple, compare=False
     )
 
     def __post_init__(self) -> None:
