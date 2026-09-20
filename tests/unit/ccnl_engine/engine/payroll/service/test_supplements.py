@@ -12,6 +12,7 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     WorkKind,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.engine.errors import OutOfScopeError
 from ccnl_engine.engine.payroll.domain.calculation import TraceCategory
 from ccnl_engine.engine.payroll.domain.supplements import (
     OvertimeHours,
@@ -177,21 +178,21 @@ class TestComputeTimeSupplements:
         )
         assert ni == Decimal("20.00")  # 4h * EUR 5.00
 
-    def test_indennita_per_shift_band(self) -> None:
-        """An indennita_per_shift band uses rate * count directly."""
+    def test_indennita_per_shift_band_raises(self) -> None:
+        """An indennita_per_shift band raises OutOfScopeError."""
         schema_shift = TimeSupplements(
             overtime_bands=[  # type: ignore[arg-type]
                 _band("SHIFT_NOTTE", "indennita_per_shift", "10.00", ["night"])
             ]
         )
-        _ot, ni, _ho, _steps = compute_time_supplements(
-            OvertimeHours(night_hours=Decimal(3)),
-            schema_shift,
-            _BASE,
-            _DIVISOR,
-            _AS_OF,
-        )
-        assert ni == Decimal("30.00")  # 3 shifts * EUR 10.00
+        with pytest.raises(OutOfScopeError, match="INDENNITA_PER_SHIFT"):
+            compute_time_supplements(
+                OvertimeHours(night_hours=Decimal(3)),
+                schema_shift,
+                _BASE,
+                _DIVISOR,
+                _AS_OF,
+            )
 
     def test_supplementare_counts_toward_overtime(self) -> None:
         """supplementare_hours accumulate into the overtime total."""
@@ -673,3 +674,50 @@ class TestRegressionCases:
         # Only night declared → OT_NOTTURNO at 28%; conditional band skipped
         assert ni == _money(Decimal(1) * Decimal("0.28") * hourly_base)
         assert ot == Decimal(0)
+
+
+class TestUnsupportedFields:
+    """Bands with unsupported fields raise OutOfScopeError."""
+
+    def _band(
+        self,
+        code: str = "TEST",
+        kind: TimeSupplementKind = TimeSupplementKind.PERCENTAGE,
+        hour_threshold_per_day: int | None = None,
+        hour_threshold_per_week: int | None = None,
+    ) -> OvertimeBand:
+        return OvertimeBand(
+            code=code,
+            description=code,
+            kind=kind,
+            rate=_ts("0.10"),
+            applies_to_kinds=(WorkKind.WEEKDAY,),
+            hour_threshold_per_day=hour_threshold_per_day,
+            hour_threshold_per_week=hour_threshold_per_week,
+        )
+
+    def test_indennita_per_shift_raises(self) -> None:
+        """Band with kind=INDENNITA_PER_SHIFT raises OutOfScopeError."""
+        band = self._band(kind=TimeSupplementKind.INDENNITA_PER_SHIFT)
+        schema = TimeSupplements(overtime_bands=(band,))
+        with pytest.raises(OutOfScopeError, match="INDENNITA_PER_SHIFT"):
+            compute_time_supplements(
+                OvertimeHours(weekday_hours=Decimal(1)),
+                schema,
+                _BASE,
+                _DIVISOR,
+                _AS_OF,
+            )
+
+    def test_hour_threshold_per_day_raises(self) -> None:
+        """Band with hour_threshold_per_day set raises OutOfScopeError."""
+        band = self._band(hour_threshold_per_day=8)
+        schema = TimeSupplements(overtime_bands=(band,))
+        with pytest.raises(OutOfScopeError, match="hour_threshold_per_day"):
+            compute_time_supplements(
+                OvertimeHours(weekday_hours=Decimal(1)),
+                schema,
+                _BASE,
+                _DIVISOR,
+                _AS_OF,
+            )
