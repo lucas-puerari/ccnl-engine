@@ -10,6 +10,7 @@ from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import ScopeItem
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.contract.domain.identity import CCNLCoverage
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
@@ -361,14 +362,51 @@ def _work_time_scope(
     ]
 
 
+def _limitations_scope(ccnl_coverage: CCNLCoverage | None) -> list[ScopeItem]:
+    """Return a scope item when the CCNL declares applicable limitations.
+
+    A ``simplification`` or ``missing`` coverage note represents a known
+    engine approximation or data gap.  The result cannot be ``complete``
+    when such notes are present: at least one modelled item deviates from
+    the actual contractual rule.
+
+    Returns:
+        A one-element list with an ``informational_only`` scope item, or an
+        empty list when no applicable limitation notes are found.
+    """
+    from ccnl_engine.engine.contract.domain.identity import NoteKind  # noqa: PLC0415
+
+    if ccnl_coverage is None:
+        return []
+    applicable_kinds = {NoteKind.SIMPLIFICATION, NoteKind.MISSING}
+    if not any(n.kind in applicable_kinds for n in ccnl_coverage.notes):
+        return []
+    return [_informational("ccnl_limitations")]
+
+
 def build_scope(
     scenario: PayrollScenario,
     fiscal: FiscalPay,
     work: WorkRulesPay,
+    ccnl_coverage: CCNLCoverage | None = None,
 ) -> tuple[ScopeItem, ...]:
     """Describe which requested features were computed.
+
+    Args:
+        scenario: The payroll scenario being computed.
+        fiscal: Fiscal computation results.
+        work: Work-rules computation results.
+        ccnl_coverage: Optional CCNL coverage block.  When provided and it
+            contains ``simplification`` or ``missing`` notes, a synthetic
+            ``ccnl_limitations`` scope item is appended so that
+            ``compute_result_status`` returns ``"partial"`` rather than
+            ``"complete"``.
 
     Returns:
         Scope entries in their stable presentation order.
     """
-    return tuple(_fiscal_scope(scenario, fiscal) + _work_time_scope(scenario, work))
+    return tuple(
+        _fiscal_scope(scenario, fiscal)
+        + _work_time_scope(scenario, work)
+        + _limitations_scope(ccnl_coverage)
+    )
