@@ -30,6 +30,9 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     Taxes as Taxes,
 )
+from ccnl_engine.engine.payroll.domain.payroll_state import (
+    PayrollState as PayrollState,
+)
 from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown as AnnualBreakdown,
@@ -46,6 +49,7 @@ __all__ = [
     "Coverage",
     "Earnings",
     "EmployerCost",
+    "PayrollState",
     "PeriodPayroll",
     "Taxes",
     "TraceCategory",

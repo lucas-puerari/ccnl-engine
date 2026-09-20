@@ -99,6 +99,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     PeriodPayroll,
     Taxes,
 )
+from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
@@ -170,6 +171,7 @@ __all__ = [
     "OvertimeHours",
     "PayrollBundle",
     "PayrollPeriod",
+    "PayrollState",
     "PeriodPayroll",
     "PeriodPayrollInput",
     "Permanent",
