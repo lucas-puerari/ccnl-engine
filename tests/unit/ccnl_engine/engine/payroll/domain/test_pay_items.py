@@ -289,31 +289,34 @@ class TestPayItemDiscriminatedUnion:
 class TestPayItemSpecificConstruction:
     """Direct construction of each PayItem variant confirms kind field."""
 
-    @pytest.mark.parametrize(("variant", "kind_str"), [
-        (BaseSalaryEarning(**_base()), "base_salary_earning"),
-        (FixedAllowanceEarning(**_base()), "fixed_allowance_earning"),
-        (SeniorityEarning(**_base()), "seniority_earning"),
-        (OvertimeEarning(**_base()), "overtime_earning"),
-        (NightHolidayShiftEarning(**_base()), "night_holiday_shift_earning"),
-        (BonusEarning(**_base()), "bonus_earning"),
-        (ProductivityBonusEarning(**_base()), "productivity_bonus_earning"),
-        (ContractRenewalArrears(**_base()), "contract_renewal_arrears"),
-        (OneOffEarning(**_base()), "one_off_earning"),
-        (FringeBenefitItem(**_base()), "fringe_benefit_item"),
-        (WelfareItem(**_base()), "welfare_item"),
-        (AbsenceDeduction(**_base(), absence_days=_D(0)), "absence_deduction"),
-        (LeaveSettlementItem(**_base()), "leave_settlement_item"),
-        (SicknessItem(**_base(), sick_days=_D(1)), "sickness_item"),
-        (MaternityItem(**_base()), "maternity_item"),
-        (WorkInjuryItem(**_base()), "work_injury_item"),
-        (EmployeeWithholdingItem(**_base()), "employee_withholding_item"),
-        (EmployerContributionItem(**_base()), "employer_contribution_item"),
-        (TerminationItem(**_base()), "termination_item"),
-        (TfrAccrualItem(**_base()), "tfr_accrual_item"),
-        (TfrSettlementItem(**_base()), "tfr_settlement_item"),
-        (TaxCreditItem(**_base()), "tax_credit_item"),
-        (TaxRefundItem(**_base()), "tax_refund_item"),
-    ])
+    @pytest.mark.parametrize(
+        ("variant", "kind_str"),
+        [
+            (BaseSalaryEarning(**_base()), "base_salary_earning"),
+            (FixedAllowanceEarning(**_base()), "fixed_allowance_earning"),
+            (SeniorityEarning(**_base()), "seniority_earning"),
+            (OvertimeEarning(**_base()), "overtime_earning"),
+            (NightHolidayShiftEarning(**_base()), "night_holiday_shift_earning"),
+            (BonusEarning(**_base()), "bonus_earning"),
+            (ProductivityBonusEarning(**_base()), "productivity_bonus_earning"),
+            (ContractRenewalArrears(**_base()), "contract_renewal_arrears"),
+            (OneOffEarning(**_base()), "one_off_earning"),
+            (FringeBenefitItem(**_base()), "fringe_benefit_item"),
+            (WelfareItem(**_base()), "welfare_item"),
+            (AbsenceDeduction(**_base(), absence_days=_D(0)), "absence_deduction"),
+            (LeaveSettlementItem(**_base()), "leave_settlement_item"),
+            (SicknessItem(**_base(), sick_days=_D(1)), "sickness_item"),
+            (MaternityItem(**_base()), "maternity_item"),
+            (WorkInjuryItem(**_base()), "work_injury_item"),
+            (EmployeeWithholdingItem(**_base()), "employee_withholding_item"),
+            (EmployerContributionItem(**_base()), "employer_contribution_item"),
+            (TerminationItem(**_base()), "termination_item"),
+            (TfrAccrualItem(**_base()), "tfr_accrual_item"),
+            (TfrSettlementItem(**_base()), "tfr_settlement_item"),
+            (TaxCreditItem(**_base()), "tax_credit_item"),
+            (TaxRefundItem(**_base()), "tax_refund_item"),
+        ],
+    )
     def test_kind_field(self, variant: object, kind_str: str) -> None:
         """Each variant's kind field matches its expected string literal."""
         assert variant.kind == kind_str  # type: ignore[attr-defined]
