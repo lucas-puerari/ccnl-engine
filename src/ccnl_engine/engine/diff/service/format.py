@@ -1,4 +1,6 @@
-"""Human-readable formatter for :class:`~ccnl_engine.engine.diff.domain.diff.RulesDiff`.
+"""Human-readable formatter for RulesDiff.
+
+See :class:`~ccnl_engine.engine.diff.service.compute.RulesDiff`.
 
 The canonical output format matches the specification::
 
@@ -32,14 +34,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.diff.domain.diff import RulesDiff
+    from ccnl_engine.engine.diff.service.compute import RulesDiff
 
 
 def format_diff(diff: RulesDiff) -> str:
     """Return the canonical multi-line text representation of *diff*.
 
     Args:
-        diff: A :class:`~ccnl_engine.engine.diff.domain.diff.RulesDiff`
+        diff: A :class:`~ccnl_engine.engine.diff.service.compute.RulesDiff`
             produced by :func:`~ccnl_engine.engine.diff.compute.diff_ccnl`.
 
     Returns:

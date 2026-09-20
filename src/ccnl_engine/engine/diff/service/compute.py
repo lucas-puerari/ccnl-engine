@@ -1,4 +1,4 @@
-"""Rules Diff computation.
+"""Rules Diff domain types and computation.
 
 :func:`diff_ccnl` walks every date-indexed :class:`~ccnl_engine.engine.\
 contract.domain.validity.TimeSeries` in a :class:`~ccnl_engine.engine.\
@@ -9,14 +9,15 @@ depend on the knowledge-base loader.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import UTC, date, datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
-from ccnl_engine.engine.diff.domain.diff import RuleChange, RulesDiff
 from ccnl_engine.engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
+    from datetime import datetime as _datetime
     from decimal import Decimal
 
     from ccnl_engine.engine.contract.domain.ccnl import (
@@ -26,6 +27,37 @@ if TYPE_CHECKING:
         SeniorityTier,
     )
     from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
+    from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+
+RegressionStatus = Literal["passed", "failed", "not_run"]
+
+
+@dataclass(frozen=True)
+class RuleChange:
+    """One changed rule between two dates within a CCNL."""
+
+    path: str
+    label: str
+    unit: str
+    from_value: Decimal | None
+    to_value: Decimal | None
+    effective_date: date
+    provenance: RuleProvenance | None
+
+
+@dataclass(frozen=True)
+class RulesDiff:
+    """Summary of all rule changes observed between two dates in a CCNL."""
+
+    ccnl_id: str
+    from_date: date
+    to_date: date
+    changes: tuple[RuleChange, ...]
+    affected_rules: int
+    affected_scenarios: int
+    regression_status: RegressionStatus
+    verification_status: str
+    generated_at: _datetime
 
 
 def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
@@ -43,7 +75,7 @@ def diff_ccnl(ccnl: CCNL, from_date: date, to_date: date) -> RulesDiff:
         to_date: Reference date representing the *after* state.
 
     Returns:
-        A :class:`~ccnl_engine.engine.diff.domain.diff.RulesDiff` with
+        A :class:`~ccnl_engine.engine.diff.service.compute.RulesDiff` with
         ``affected_scenarios=0`` and ``regression_status="not_run"``.
         Use :func:`~ccnl_engine.engine.diff.impact.count_affected_scenarios`
         and ``dataclasses.replace`` to annotate those fields.

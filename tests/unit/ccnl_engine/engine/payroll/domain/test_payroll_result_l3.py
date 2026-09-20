@@ -18,7 +18,10 @@ from ccnl_engine import (
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
+    CalculationStatus,
+    EligibilityStatus,
     ScopeItem,
+    SourceQuality,
     _coerce_scalar,
 )
 
@@ -51,14 +54,15 @@ class TestScopeItemCoerce:
         raw = {
             "feature": "overtime",
             "calculation_status": "computed",
-            "integration_status": "included_in_totals",
+            "gross_integrated": True,
             "eligibility_status": "engine_verified",
             "source_quality": "verified_primary",
         }
         result = _coerce_scalar(raw, ScopeItem)
         assert isinstance(result, ScopeItem)
         assert result.feature == "overtime"
-        assert result.calculation_status == "computed"
+        assert result.calculation_status == CalculationStatus.COMPUTED
+        assert result.gross_integrated is True
 
     def test_coerce_non_dict_passthrough(self) -> None:
         """A non-dict raw value for ScopeItem is returned unchanged."""
@@ -76,17 +80,18 @@ class TestToDictScopeItem:
             calculation_scope=(
                 ScopeItem(
                     feature="overtime",
-                    calculation_status="computed",
-                    integration_status="included_in_totals",
-                    eligibility_status="engine_verified",
-                    source_quality="verified_primary",
+                    calculation_status=CalculationStatus.COMPUTED,
+                    gross_integrated=True,
+                    eligibility_status=EligibilityStatus.ENGINE_VERIFIED,
+                    source_quality=SourceQuality.VERIFIED_PRIMARY,
                 ),
                 ScopeItem(
                     feature="irpef",
-                    calculation_status="computed",
-                    integration_status="included_in_totals",
-                    eligibility_status="engine_verified",
-                    source_quality="verified_primary",
+                    calculation_status=CalculationStatus.COMPUTED,
+                    tax_integrated=True,
+                    net_integrated=True,
+                    eligibility_status=EligibilityStatus.ENGINE_VERIFIED,
+                    source_quality=SourceQuality.VERIFIED_PRIMARY,
                 ),
             ),
         )
@@ -97,7 +102,11 @@ class TestToDictScopeItem:
             {
                 "feature": "overtime",
                 "calculation_status": "computed",
-                "integration_status": "included_in_totals",
+                "gross_integrated": True,
+                "contribution_integrated": False,
+                "tax_integrated": False,
+                "net_integrated": False,
+                "cost_integrated": False,
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
                 "assumptions": [],
@@ -105,7 +114,11 @@ class TestToDictScopeItem:
             {
                 "feature": "irpef",
                 "calculation_status": "computed",
-                "integration_status": "included_in_totals",
+                "gross_integrated": False,
+                "contribution_integrated": False,
+                "tax_integrated": True,
+                "net_integrated": True,
+                "cost_integrated": False,
                 "eligibility_status": "engine_verified",
                 "source_quality": "verified_primary",
                 "assumptions": [],
@@ -140,10 +153,9 @@ class TestFromDictHasDefault:
         scope = (
             ScopeItem(
                 feature="overtime",
-                calculation_status="excluded",
-                integration_status="n_a",
-                eligibility_status="n_a",
-                source_quality="n_a",
+                calculation_status=CalculationStatus.EXCLUDED,
+                eligibility_status=EligibilityStatus.N_A,
+                source_quality=SourceQuality.N_A,
             ),
         )
         new_coverage = dataclasses.replace(payroll.coverage, calculation_scope=scope)
