@@ -247,11 +247,7 @@ class TestComputeWithBundle:
         bundle = make_bundle(ccnl, rules, None)
         req = _req()
         mock_repo = MagicMock()
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            calc = compute(_annual_to_scenario(req), bundle)
+        calc = compute(_annual_to_scenario(req), bundle, repo=mock_repo)
         mock_repo.load_ccnl.assert_not_called()
         mock_repo.load_year_rules.assert_not_called()
         mock_repo.load_surtax_rules.assert_not_called()
@@ -266,11 +262,7 @@ class TestComputeWithBundle:
         mock_repo.load_ccnl.return_value = ccnl
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            compute(_annual_to_scenario(req), None)
+        compute(_annual_to_scenario(req), None, repo=mock_repo)
         mock_repo.load_ccnl.assert_called_once()
 
     def test_estimate_annual_with_bundle(self) -> None:
@@ -279,11 +271,7 @@ class TestComputeWithBundle:
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
         mock_repo = MagicMock()
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            calc = estimate_annual(_SCENARIO, bundle)
+        calc = estimate_annual(_SCENARIO, bundle, repo=mock_repo)
         mock_repo.load_ccnl.assert_not_called()
         assert calc is not None
 
@@ -295,11 +283,7 @@ class TestComputeWithBundle:
         mock_repo.load_ccnl.return_value = ccnl
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            estimate_annual(_SCENARIO)
+        estimate_annual(_SCENARIO, repo=mock_repo)
         mock_repo.load_ccnl.assert_called_once()
 
     def test_estimate_period_effects_with_bundle(self) -> None:
@@ -308,11 +292,7 @@ class TestComputeWithBundle:
         rules = make_year_rules()
         bundle = make_bundle(ccnl, rules, None)
         mock_repo = MagicMock()
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            calc = estimate_period_effects(_SCENARIO, _PERIOD, bundle)
+        calc = estimate_period_effects(_SCENARIO, _PERIOD, bundle, repo=mock_repo)
         mock_repo.load_ccnl.assert_not_called()
         assert calc is not None
 
@@ -324,9 +304,5 @@ class TestComputeWithBundle:
         mock_repo.load_ccnl.return_value = ccnl
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
-        with patch(
-            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-            new=mock_repo,
-        ):
-            estimate_period_effects(_SCENARIO, _PERIOD, None)
+        estimate_period_effects(_SCENARIO, _PERIOD, None, repo=mock_repo)
         mock_repo.load_ccnl.assert_called_once()

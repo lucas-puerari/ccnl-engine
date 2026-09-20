@@ -21,11 +21,11 @@ from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, com
 from ccnl_engine.engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
     from ccnl_engine.engine.payroll.domain.scenario import AnnualEstimateInput
 
-_default_repo: BundledKnowledgeRepository = BundledKnowledgeRepository()
 _ZERO = Decimal(0)
 
 
@@ -52,6 +52,8 @@ def compute_period(
     scenario: AnnualEstimateInput,
     period: PayrollPeriod,
     bundle: PayrollBundle | None = None,
+    *,
+    repo: KnowledgeRepository | None = None,
 ) -> Calculation:
     """Compute payroll for a single month of competence.
 
@@ -69,6 +71,9 @@ def compute_period(
         period: The month descriptor including YTD state and period events.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``,
             rulesets are loaded on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
@@ -82,7 +87,10 @@ def compute_period(
         }
     )
     return compute(
-        _annual_to_scenario(updated, period.events), bundle, _period=period.events
+        _annual_to_scenario(updated, period.events),
+        bundle,
+        _period=period.events,
+        repo=repo,
     )
 
 
@@ -92,6 +100,7 @@ def compute_year(
     *,
     bundle: PayrollBundle | None = None,
     month_events: list[PeriodPayrollInput] | None = None,
+    repo: KnowledgeRepository | None = None,
 ) -> list[Calculation]:
     """Compute payroll for all twelve months of *year*.
 
@@ -109,6 +118,9 @@ def compute_year(
             instances, one per month January-December.  When ``None``, every
             month uses a default :class:`~ccnl_engine.PeriodPayrollInput` (no special
             events).
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A list of twelve
@@ -134,7 +146,7 @@ def compute_year(
     for i, ev in enumerate(events):
         month = i + 1
         period = PayrollPeriod(year=year, month=month, events=ev, ytd=ytd)
-        calc = compute_period(scenario, period, bundle)
+        calc = compute_period(scenario, period, bundle, repo=repo)
         ytd = _accrue_ytd(ytd, calc)
         results.append(calc)
     return results
@@ -143,6 +155,8 @@ def compute_year(
 def compute_period_payroll(
     request: PeriodPayrollRequest,
     bundle: PayrollBundle | None = None,
+    *,
+    repo: KnowledgeRepository | None = None,
 ) -> PeriodPayrollResult:
     """Compute a single payroll period with YTD-based conguaglio IRPEF.
 
@@ -159,6 +173,9 @@ def compute_period_payroll(
             and the YTD opening state accumulated from all prior periods.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``,
             rulesets are loaded on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A :class:`~PeriodPayrollResult` with the opening and closing YTD
@@ -169,7 +186,8 @@ def compute_period_payroll(
     if bundle is not None:
         ccnl = bundle.ccnl
     else:
-        ccnl = _default_repo.load_ccnl(request.structural.employment.ccnl)
+        effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+        ccnl = effective_repo.load_ccnl(request.structural.employment.ccnl)
     additional_months = ccnl.parameters.additional_months.value_at(as_of)
     multiplier = Decimal(1 + request.period.extra_monthly_payments)
     twelve = Decimal(12)
@@ -179,7 +197,7 @@ def compute_period_payroll(
         scenario = scenario.model_copy(
             update={"prior_period_irpef_withheld": opening.irpef_withheld_ytd}
         )
-    calc = compute(scenario, bundle)
+    calc = compute(scenario, bundle, repo=repo)
     r = calc.result
     base_gross = money(r.earnings.gross_annual / additional_months)
     period_gross = money(base_gross * multiplier)

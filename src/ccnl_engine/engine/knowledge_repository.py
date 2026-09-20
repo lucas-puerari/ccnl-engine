@@ -29,6 +29,6 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
         """Load and return the tax year rules for *year*, *sector*, *num_employees*."""
         ...
 
-    def load_surtax_rules(self, year: int) -> SurtaxRules:
-        """Load and return the surtax rules for *year*."""
+    def load_surtax_rules(self, year: int) -> SurtaxRules | None:
+        """Load and return the surtax rules for *year*, or None when unavailable."""
         ...

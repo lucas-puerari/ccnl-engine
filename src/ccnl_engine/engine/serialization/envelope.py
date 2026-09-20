@@ -8,6 +8,7 @@ from ccnl_engine.engine.payroll.service.pipeline import compute
 from ccnl_engine.version import __version__ as _current_engine_version
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
 
 
@@ -15,6 +16,7 @@ def reproduce(
     calculation: Calculation,
     *,
     allow_version_drift: bool = False,
+    repo: KnowledgeRepository | None = None,
 ) -> Calculation:
     """Replay *calculation* using the scenario stored in its input snapshot.
 
@@ -33,6 +35,9 @@ def reproduce(
             the divergence is recorded in the returned
             :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
             but no error is raised. Defaults to ``False``.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A new :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
@@ -44,7 +49,7 @@ def reproduce(
             the values recorded in *calculation*.
     """
     scenario = calculation.input_snapshot.materialise()
-    new_calc = compute(scenario)
+    new_calc = compute(scenario, repo=repo)
 
     drift: list[str] = []
     if calculation.engine_version != _current_engine_version:

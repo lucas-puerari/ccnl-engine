@@ -8,6 +8,7 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.service.pipeline import _annual_to_scenario, compute
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
     from ccnl_engine.engine.payroll.domain.scenario import (
@@ -19,6 +20,8 @@ if TYPE_CHECKING:
 def estimate_annual(
     scenario: AnnualEstimateInput,
     bundle: PayrollBundle | None = None,
+    *,
+    repo: KnowledgeRepository | None = None,
 ) -> Calculation:
     """Estimate annual gross-to-net salary and employer cost.
 
@@ -31,18 +34,23 @@ def estimate_annual(
             employment relationship.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         with all gross, net and cost figures.
     """
-    return compute(_annual_to_scenario(scenario), bundle)
+    return compute(_annual_to_scenario(scenario), bundle, repo=repo)
 
 
 def estimate_period_effects(
     scenario: AnnualEstimateInput,
     period: PeriodPayrollInput,
     bundle: PayrollBundle | None = None,
+    *,
+    repo: KnowledgeRepository | None = None,
 ) -> Calculation:
     """Estimate the informational effect of period events on the annual figures.
 
@@ -65,6 +73,9 @@ def estimate_period_effects(
             :exc:`~ccnl_engine.engine.errors.InvalidInputError` when absent.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
@@ -85,4 +96,6 @@ def estimate_period_effects(
                 "silently apply 365/365 for period computations."
             ),
         )
-    return compute(_annual_to_scenario(scenario, period), bundle, _period=period)
+    return compute(
+        _annual_to_scenario(scenario, period), bundle, _period=period, repo=repo
+    )

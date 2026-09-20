@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 from typing import TYPE_CHECKING
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 from hypothesis import assume, given
 from hypothesis import strategies as st
@@ -36,11 +36,7 @@ def _compute(scenario: object) -> Calculation:
     Returns:
         Calculation result with all gross, net, and cost figures.
     """
-    with patch(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        new=_MOCK_REPO,
-    ):
-        return compute(scenario)  # type: ignore[arg-type]
+    return compute(scenario, repo=_MOCK_REPO)  # type: ignore[arg-type]
 
 
 class TestNonNegativity:

@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.payroll.service.orchestrator import (
     estimate_annual,
 )
@@ -24,6 +24,7 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.rules import YearRules
 
 # ---------------------------------------------------------------------------
 # Module-level mutable mock state (reset per-test by the autouse fixture)
@@ -32,7 +33,7 @@ if TYPE_CHECKING:
 _DEFAULT_CCNL = _build_ccnl()
 
 _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
-_mock_rules: list[object] = [_RULES]
+_mock_rules: list[YearRules] = [_RULES]
 _mock_surtax: list[SurtaxRules | None] = [None]
 
 
@@ -42,23 +43,24 @@ class _MockRepo:
     def load_ccnl(self, filename: str) -> CCNL:
         return _mock_ccnl[0]
 
-    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
         return _mock_rules[0]
 
     def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         return _mock_surtax[0]
 
 
+_REPO = _MockRepo()
+
+
 @pytest.fixture(autouse=True)
-def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the repository in orchestrator and reset mock state."""
+def _reset_mock_state() -> None:
+    """Reset mutable mock state before each test."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_RULES]
     _mock_surtax[:] = [None]
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        _MockRepo(),
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -114,7 +116,8 @@ class TestTieredSeniority:
                 level_code=level_code,
                 seniority_months=seniority_months,
                 seniority_count=seniority_count,
-            )
+            ),
+            repo=_REPO,
         ).result
 
     def test_no_seniority(self) -> None:
@@ -186,7 +189,7 @@ class TestExcludedCategories:
             "levels.2.category": "operaio",
             "parameters.seniority_increments.excluded_categories": ["operaio"],
         })
-        r = estimate_annual(_req(seniority_months=120)).result
+        r = estimate_annual(_req(seniority_months=120), repo=_REPO).result
         assert r.earnings.seniority_count == 0
         assert r.earnings.seniority_monthly == _D("0.00")
 
@@ -223,7 +226,7 @@ class TestExcludedCategories:
                 "provenance": TEST_PROV,
             },
         })
-        r = estimate_annual(_req(seniority_months=48)).result
+        r = estimate_annual(_req(seniority_months=48), repo=_REPO).result
         assert r.earnings.seniority_count == 0
         assert r.earnings.seniority_monthly == _D("0.00")
 
@@ -285,7 +288,8 @@ class TestServiceGatedAllowances:
             _req(
                 seniority_months=seniority_months,
                 seniority_count=seniority_count,
-            )
+            ),
+            repo=_REPO,
         ).result
 
     def test_below_threshold_no_allowance(self) -> None:

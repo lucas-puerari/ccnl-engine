@@ -13,9 +13,15 @@ Covers:
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, SupplementaryAllowance
+from ccnl_engine.engine.contract.domain.ccnl import (
+    CCNL,
+    SupplementaryAllowance,
+    TaxSector,
+)
 from ccnl_engine.engine.payroll.domain.employment import Apprentice
 from ccnl_engine.engine.payroll.service.gross import _scale_second_level
 from ccnl_engine.engine.payroll.service.orchestrator import (
@@ -28,6 +34,10 @@ from tests.unit.ccnl_engine.engine.payroll.service.builders import (
     _build_ccnl,
     _req,
 )
+
+if TYPE_CHECKING:
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _SL_100 = SupplementaryAllowance(
     code="ERT",
@@ -42,31 +52,32 @@ _DEFAULT_CCNL = _build_ccnl()
 # ---------------------------------------------------------------------------
 
 _mock_ccnl: list[CCNL] = [_DEFAULT_CCNL]
-_mock_rules: list[object] = [_RULES]
+_mock_rules: list[YearRules] = [_RULES]
 
 
 class _MockRepo:
-    """Minimal KnowledgeRepository stub used by the autouse _patch_loaders fixture."""
+    """KnowledgeRepository stub for the autouse _reset_mock_state fixture."""
 
     def load_ccnl(self, filename: str) -> CCNL:
         return _mock_ccnl[0]
 
-    def load_year_rules(self, year: int, sector: object, num_employees: int) -> object:
+    def load_year_rules(
+        self, year: int, sector: TaxSector, num_employees: int
+    ) -> YearRules:
         return _mock_rules[0]
 
-    def load_surtax_rules(self, year: int) -> None:
-        return
+    def load_surtax_rules(self, year: int) -> SurtaxRules | None:
+        return None
+
+
+_REPO = _MockRepo()
 
 
 @pytest.fixture(autouse=True)
-def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Patch the repository in orchestrator and reset mock state."""
+def _reset_mock_state() -> None:
+    """Reset mutable mock state before each test."""
     _mock_ccnl[:] = [_DEFAULT_CCNL]
     _mock_rules[:] = [_RULES]
-    monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
-        _MockRepo(),
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -84,7 +95,8 @@ class TestSecondLevelGuard:
                 _req(
                     negotiated_ral=_D("20000"),
                     second_level_allowances=(_SL_100,),
-                )
+                ),
+                repo=_REPO,
             )
 
     def test_destination_ral_raises(self) -> None:
@@ -95,7 +107,8 @@ class TestSecondLevelGuard:
                     contract=Apprentice(months_elapsed=12),
                     negotiated_destination_ral=_D("20000"),
                     second_level_allowances=(_SL_100,),
-                )
+                ),
+                repo=_REPO,
             )
 
 
@@ -109,30 +122,38 @@ class TestSecondLevelBasic:
 
     def test_second_level_monthly_on_payroll(self) -> None:
         """earnings.second_level_monthly equals the scaled allowance total."""
-        result = estimate_annual(_req(second_level_allowances=(_SL_100,))).result
+        result = estimate_annual(
+            _req(second_level_allowances=(_SL_100,)), repo=_REPO
+        ).result
         assert result.earnings.second_level_monthly == _D("100.00")
 
     def test_zero_when_no_allowances(self) -> None:
         """second_level_monthly is zero when no allowances are supplied."""
-        result = estimate_annual(_req()).result
+        result = estimate_annual(_req(), repo=_REPO).result
         assert result.earnings.second_level_monthly == _D("0.00")
 
     def test_gross_monthly_includes_supplement(self) -> None:
         """gross_monthly = base + second_level when no other components."""
-        result = estimate_annual(_req(second_level_allowances=(_SL_100,))).result
+        result = estimate_annual(
+            _req(second_level_allowances=(_SL_100,)), repo=_REPO
+        ).result
         expected = money(_D("1000.00") + _D("100.00"))
         assert result.earnings.gross_monthly == expected
 
     def test_gross_annual_includes_supplement(self) -> None:
         """gross_annual adds second_level * additional_months."""
-        result = estimate_annual(_req(second_level_allowances=(_SL_100,))).result
+        result = estimate_annual(
+            _req(second_level_allowances=(_SL_100,)), repo=_REPO
+        ).result
         # base 1000 * 12 + supplement 100 * 12 = 13200
         assert result.earnings.gross_annual == _D("13200.00")
 
     def test_inps_base_includes_supplement(self) -> None:
         """INPS employee contribution is computed on gross including second-level."""
-        base_result = estimate_annual(_req()).result
-        sl_result = estimate_annual(_req(second_level_allowances=(_SL_100,))).result
+        base_result = estimate_annual(_req(), repo=_REPO).result
+        sl_result = estimate_annual(
+            _req(second_level_allowances=(_SL_100,)), repo=_REPO
+        ).result
         # Supplement adds 1200/year to the INPS base; employee rate = 9.19%
         delta = (
             sl_result.contributions.inps_employee_annual
@@ -142,8 +163,10 @@ class TestSecondLevelBasic:
 
     def test_tfr_includes_supplement(self) -> None:
         """TFR accrual base includes the second-level supplement."""
-        base_result = estimate_annual(_req()).result
-        sl_result = estimate_annual(_req(second_level_allowances=(_SL_100,))).result
+        base_result = estimate_annual(_req(), repo=_REPO).result
+        sl_result = estimate_annual(
+            _req(second_level_allowances=(_SL_100,)), repo=_REPO
+        ).result
         delta = (
             sl_result.contributions.tfr_annual - base_result.contributions.tfr_annual
         )
@@ -161,7 +184,8 @@ class TestSecondLevelPartTime:
     def test_part_time_scales_supplement(self) -> None:
         """At 50% PT the supplement is halved."""
         result = estimate_annual(
-            _req(part_time_ratio=_D("0.5"), second_level_allowances=(_SL_100,))
+            _req(part_time_ratio=_D("0.5"), second_level_allowances=(_SL_100,)),
+            repo=_REPO,
         ).result
         assert result.earnings.second_level_monthly == _D("50.00")
 
@@ -182,7 +206,9 @@ class TestSecondLevelMonthsPerYear:
             monthly=_D("300.00"),
             months_per_year=1,
         )
-        result = estimate_annual(_req(second_level_allowances=(once_a_year,))).result
+        result = estimate_annual(
+            _req(second_level_allowances=(once_a_year,)), repo=_REPO
+        ).result
         # base 12000 + prize 300 (1 month only)
         assert result.earnings.gross_annual == _D("12300.00")
         # second_level_monthly still shows the full scaled monthly amount
@@ -205,8 +231,10 @@ class TestSecondLevelContributionRelevance:
             monthly=_D("100.00"),
             contribution_relevant=False,
         )
-        base_result = estimate_annual(_req()).result
-        sl_result = estimate_annual(_req(second_level_allowances=(exempt,))).result
+        base_result = estimate_annual(_req(), repo=_REPO).result
+        sl_result = estimate_annual(
+            _req(second_level_allowances=(exempt,)), repo=_REPO
+        ).result
         # Supplement in gross but not in INPS base → INPS unchanged
         assert (
             sl_result.contributions.inps_employee_annual
@@ -231,8 +259,10 @@ class TestSecondLevelTfrRelevance:
             monthly=_D("100.00"),
             tfr_relevant=False,
         )
-        base_result = estimate_annual(_req()).result
-        sl_result = estimate_annual(_req(second_level_allowances=(no_tfr,))).result
+        base_result = estimate_annual(_req(), repo=_REPO).result
+        sl_result = estimate_annual(
+            _req(second_level_allowances=(no_tfr,)), repo=_REPO
+        ).result
         assert (
             sl_result.contributions.tfr_annual == base_result.contributions.tfr_annual
         )
@@ -252,7 +282,8 @@ class TestSecondLevelApprenticeshipPct:
     def test_pct_relevant_true_applies_apprenticeship_factor(self) -> None:
         """By default the apprenticeship percentage (80%) also scales the supplement."""
         result = estimate_annual(
-            _req(contract=self._APPRENTICE, second_level_allowances=(_SL_100,))
+            _req(contract=self._APPRENTICE, second_level_allowances=(_SL_100,)),
+            repo=_REPO,
         ).result
         # 100 * 1 (PT) * 0.80 (apprenticeship_pct) = 80
         assert result.earnings.second_level_monthly == _D("80.00")
@@ -266,7 +297,8 @@ class TestSecondLevelApprenticeshipPct:
             apprenticeship_pct_relevant=False,
         )
         result = estimate_annual(
-            _req(contract=self._APPRENTICE, second_level_allowances=(full_value,))
+            _req(contract=self._APPRENTICE, second_level_allowances=(full_value,)),
+            repo=_REPO,
         ).result
         # 100 * 1 (PT) — apprenticeship_pct NOT applied
         assert result.earnings.second_level_monthly == _D("100.00")

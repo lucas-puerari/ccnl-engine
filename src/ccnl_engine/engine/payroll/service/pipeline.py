@@ -50,13 +50,15 @@ from ccnl_engine.engine.payroll.service.scope import (
 from ccnl_engine.engine.payroll.service.work_rules import compute_work_rules
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.calculation import Calculation
     from ccnl_engine.engine.payroll.domain.employment import Employment
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.rules import YearRules
 
-
-_default_repo: BundledKnowledgeRepository = BundledKnowledgeRepository()
 
 _ZERO = Decimal(0)
 
@@ -164,11 +166,30 @@ def _annual_to_scenario(
     )
 
 
+def _load_from_repo(
+    scenario: _InternalScenario,
+    year: int,
+    repo: KnowledgeRepository | None,
+) -> tuple[CCNL, YearRules, SurtaxRules | None]:
+    effective = repo if repo is not None else BundledKnowledgeRepository()
+    ccnl = effective.load_ccnl(scenario.employment.ccnl)
+    rules = effective.load_year_rules(
+        year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
+    )
+    j = scenario.employee.jurisdiction
+    needs_surtax = j is not None and (
+        j.regione is not None or j.comune_belfiore is not None
+    )
+    surtax = effective.load_surtax_rules(year) if needs_surtax else None
+    return ccnl, rules, surtax
+
+
 def compute(
     scenario: _InternalScenario,
     bundle: PayrollBundle | None = None,
     *,
     _period: PeriodPayrollInput | None = None,
+    repo: KnowledgeRepository | None = None,
 ) -> Calculation:
     """Compute gross-to-net salary and employer cost for an internal scenario.
 
@@ -185,6 +206,10 @@ def compute(
         scenario: The internal payroll scenario built by :func:`_annual_to_scenario`.
         bundle: Optional pre-loaded knowledge bundle.  When ``None``, rulesets
             are loaded (and cached) on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.  Pass a custom implementation to
+            inject test stubs or alternative data sources.
 
     Returns:
         :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
@@ -199,15 +224,7 @@ def compute(
         rules = bundle.rules
         surtax = bundle.surtax
     else:
-        ccnl = _default_repo.load_ccnl(scenario.employment.ccnl)
-        rules = _default_repo.load_year_rules(
-            year, ccnl.meta.tax_sector, scenario.employment.employer.num_employees
-        )
-        j = scenario.employee.jurisdiction
-        needs_surtax = j is not None and (
-            j.regione is not None or j.comune_belfiore is not None
-        )
-        surtax = _default_repo.load_surtax_rules(year) if needs_surtax else None
+        ccnl, rules, surtax = _load_from_repo(scenario, year, repo)
 
     gross = compute_gross(scenario, ccnl)
     ledger = Ledger()

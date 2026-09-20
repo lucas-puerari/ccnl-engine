@@ -16,6 +16,7 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
 from ccnl_engine.engine.payroll.service.period_service import compute_period_payroll
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
 
 _ZERO = Decimal(0)
@@ -24,6 +25,8 @@ _ZERO = Decimal(0)
 def compute_payroll_year(
     request: PayrollYearRequest,
     bundle: PayrollBundle | None = None,
+    *,
+    repo: KnowledgeRepository | None = None,
 ) -> PayrollYearResult:
     """Compute a full payroll year by chaining twelve period computations.
 
@@ -38,6 +41,9 @@ def compute_payroll_year(
             state for January.
         bundle: Optional pre-loaded knowledge bundle shared across all twelve
             calls.  When ``None``, rulesets are loaded on demand.
+        repo: Optional knowledge repository.  When ``None``,
+            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+.BundledKnowledgeRepository` is used.
 
     Returns:
         A :class:`~PayrollYearResult` containing twelve period results and
@@ -58,7 +64,7 @@ def compute_payroll_year(
             period=ev,
             opening_state=state,
         )
-        r = compute_period_payroll(period_req, bundle)
+        r = compute_period_payroll(period_req, bundle, repo=repo)
         results.append(r)
         state = r.closing_state
     return PayrollYearResult(periods=tuple(results), closing_state=state)
