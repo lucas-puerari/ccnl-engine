@@ -150,6 +150,27 @@ jobs:
           'uv run python scripts/ci/update_reference_cases.py' locally
           and commit the result." && exit 1)
 
+  check-provenance:
+    name: Check reference case provenance
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - name: Reject new reference cases without source
+        run: |
+          ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD \
+            -- tests/reference/cases/ 2>/dev/null || true)
+          if [ -z "$ADDED" ]; then
+            echo "No new reference cases added."
+            exit 0
+          fi
+          echo "New reference cases found:"
+          echo "$ADDED"
+          python scripts/ci/check_provenance.py $ADDED
+
   wheel-smoke:
     name: Wheel smoke test
     runs-on: ubuntu-latest
