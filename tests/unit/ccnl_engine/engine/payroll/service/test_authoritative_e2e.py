@@ -446,3 +446,63 @@ class TestFringeBenefitAboveThreshold:
         """net_annual reduced by full IRPEF on 1 400 fringe."""
         result = _run(self._scenario())
         assert result.net_annual == Decimal("21571.79")  # type: ignore[attr-defined]
+
+
+# ---------------------------------------------------------------------------
+# 9. Conguaglio IRPEF — R3 regression
+# ---------------------------------------------------------------------------
+
+
+class TestConguaglioNetAnnualR3:
+    """Regression for R3: prior_period_irpef_withheld must not reduce net_annual.
+
+    The settlement delta (conguaglio_annual) is informational: it shows how
+    much IRPEF remains to withhold for the period, but annual net must always
+    reflect the full-year tax liability (irpef_net), regardless of prior
+    withholdings.  Bug: net_annual was incorrectly reduced by conguaglio_annual
+    a second time on top of the already-subtracted irpef_net.
+    """
+
+    def _scenario(self, prior: Decimal | None = None) -> PayrollScenario:
+        return PayrollScenario(
+            employee=Employee(level_code="3"),
+            employment=Employment(
+                ccnl="alimentari-federalimentare.json",
+                contract=Permanent(),
+                employer=Employer(num_employees=50),
+                as_of=date(2026, 1, 1),
+            ),
+            prior_period_irpef_withheld=prior,
+        )
+
+    def test_no_prior_withholding_conguaglio_zero(self) -> None:
+        """With no prior withholding, conguaglio_annual is zero."""
+        result = _run(self._scenario())
+        assert result.taxes.conguaglio_annual == Decimal(0)  # type: ignore[attr-defined]
+
+    def test_net_annual_unchanged_under_withholding(self) -> None:
+        """net_annual must not change when prior_period_irpef_withheld < irpef_net."""
+        base = _run(self._scenario())
+        under = _run(self._scenario(prior=Decimal("1000.00")))
+        assert under.net_annual == base.net_annual  # type: ignore[attr-defined]
+
+    def test_net_annual_unchanged_over_withholding(self) -> None:
+        """net_annual must not change when prior_period_irpef_withheld > irpef_net."""
+        base = _run(self._scenario())
+        irpef_net = base.taxes.irpef_net  # type: ignore[attr-defined]
+        over = _run(self._scenario(prior=irpef_net + Decimal("500.00")))
+        assert over.net_annual == base.net_annual  # type: ignore[attr-defined]
+
+    def test_conguaglio_under_withheld_is_positive(self) -> None:
+        """conguaglio_annual > 0 when more tax is owed than was pre-withheld."""
+        prior = Decimal("1000.00")
+        base_irpef = _run(self._scenario()).taxes.irpef_net  # type: ignore[attr-defined]
+        result = _run(self._scenario(prior=prior))
+        assert result.taxes.conguaglio_annual == base_irpef - prior  # type: ignore[attr-defined]
+
+    def test_conguaglio_over_withheld_is_negative(self) -> None:
+        """conguaglio_annual < 0 when more was pre-withheld than total liability."""
+        base_irpef = _run(self._scenario()).taxes.irpef_net  # type: ignore[attr-defined]
+        prior = base_irpef + Decimal("500.00")
+        result = _run(self._scenario(prior=prior))
+        assert result.taxes.conguaglio_annual == Decimal("-500.00")  # type: ignore[attr-defined]
