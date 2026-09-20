@@ -139,6 +139,78 @@ def post_contributions_and_taxes(
         )
 
 
+def post_arrears_termination_tfr(
+    fiscal: FiscalPay, as_of: date, ledger: Ledger
+) -> None:
+    """Post contract-renewal arrears, termination payouts and TFR accrual.
+
+    - ``contract_renewal_arrears_annual`` → GROSS_EARNINGS, kind
+      ``contract_renewal_arrears``
+    - ``termination_residual_leave_payout_annual`` → GROSS_EARNINGS, kind
+      ``termination_leave_payout``
+    - ``termination_tfr_liquidation_annual`` → TFR_ACCRUAL, kind
+      ``tfr_liquidation``
+    - ``tfr_annual`` → TFR_ACCRUAL, kind ``tfr_accrual``
+
+    Zero-amount entries are silently skipped.
+
+    Args:
+        fiscal: The resolved fiscal-pay components.
+        as_of: The competence date used to derive the year/month for entries.
+        ledger: The ledger to append to.
+    """
+    period = CompetencePeriod(year=as_of.year, month=as_of.month)
+    yymm = f"{period.year}_{period.month:02d}"
+
+    if fiscal.contract_renewal_arrears_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"contract_renewal_arrears_{yymm}",
+                competence_period=period,
+                pay_item_id=f"contract_renewal_arrears_{yymm}",
+                pay_item_kind="contract_renewal_arrears",
+                account=AccountKind.GROSS_EARNINGS,
+                amount=fiscal.contract_renewal_arrears_annual,
+            )
+        )
+
+    if fiscal.termination_residual_leave_payout_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"termination_leave_payout_{yymm}",
+                competence_period=period,
+                pay_item_id=f"termination_leave_payout_{yymm}",
+                pay_item_kind="termination_leave_payout",
+                account=AccountKind.GROSS_EARNINGS,
+                amount=fiscal.termination_residual_leave_payout_annual,
+            )
+        )
+
+    if fiscal.termination_tfr_liquidation_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"tfr_liquidation_{yymm}",
+                competence_period=period,
+                pay_item_id=f"tfr_liquidation_{yymm}",
+                pay_item_kind="tfr_liquidation",
+                account=AccountKind.TFR_ACCRUAL,
+                amount=fiscal.termination_tfr_liquidation_annual,
+            )
+        )
+
+    if fiscal.tfr_annual != _ZERO:
+        ledger.append(
+            LedgerEntry(
+                entry_id=f"tfr_accrual_{yymm}",
+                competence_period=period,
+                pay_item_id=f"tfr_accrual_{yymm}",
+                pay_item_kind="tfr_accrual",
+                account=AccountKind.TFR_ACCRUAL,
+                amount=fiscal.tfr_annual,
+            )
+        )
+
+
 def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
     """Post overtime, absences, bonuses and fringe benefits as ledger entries.
 
