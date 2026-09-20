@@ -213,16 +213,22 @@ class TestLedgerEntriesOnCalculation:
         calc = _calc()
         assert isinstance(calc.ledger_entries, tuple)
 
-    def test_all_entries_have_gross_earnings_account(self) -> None:
-        """All earnings entries are posted to GROSS_EARNINGS."""
+    def test_all_earnings_entries_have_gross_earnings_account(self) -> None:
+        """All GROSS_EARNINGS entries are posted to the GROSS_EARNINGS account."""
         calc = _calc(ccnl=_CCNL_WITH_ALLOWANCE, seniority_count=1)
-        for entry in calc.ledger_entries:
-            assert entry.account == AccountKind.GROSS_EARNINGS
+        earnings = [
+            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
+        ]
+        assert all(e.account == AccountKind.GROSS_EARNINGS for e in earnings)
+        assert len(earnings) >= 1
 
-    def test_base_only_produces_one_entry(self) -> None:
-        """Level 3 with no seniority and no allowances yields exactly 1 entry."""
+    def test_base_only_produces_one_gross_earnings_entry(self) -> None:
+        """Level 3 with no seniority and no allowances: 1 GROSS_EARNINGS entry."""
         calc = _calc(level_code="3", seniority_count=0)
-        assert len(calc.ledger_entries) == 1
+        earnings = [
+            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
+        ]
+        assert len(earnings) == 1
 
     @pytest.mark.parametrize(
         ("level", "seniority_count", "has_allowance", "expected_count"),
@@ -233,17 +239,20 @@ class TestLedgerEntriesOnCalculation:
             ("4", 1, True, 3),
         ],
     )
-    def test_entry_count(
+    def test_gross_earnings_entry_count(
         self,
         level: str,
         seniority_count: int,
         has_allowance: bool,
         expected_count: int,
     ) -> None:
-        """Number of ledger entries matches base + seniority + allowances."""
+        """GROSS_EARNINGS entry count matches base + seniority + allowances."""
         ccnl = _CCNL_WITH_ALLOWANCE if has_allowance else _DEFAULT_CCNL
         calc = _calc(level_code=level, seniority_count=seniority_count, ccnl=ccnl)
-        assert len(calc.ledger_entries) == expected_count
+        earnings = [
+            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
+        ]
+        assert len(earnings) == expected_count
 
     def test_from_dict_round_trip_has_empty_ledger(self) -> None:
         """Calculation.from_dict round-trip produces an empty ledger_entries tuple."""
