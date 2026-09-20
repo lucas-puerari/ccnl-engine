@@ -28,6 +28,8 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PayrollYearRequest,
+    PayrollYearResult,
     PeriodPayrollRequest,
     PeriodPayrollResult,
 )
@@ -875,3 +877,46 @@ def compute_period_payroll(
         period_employer_cost=period_employer_cost,
         ledger_entries=calc.ledger_entries,
     )
+
+
+def compute_payroll_year(
+    request: PayrollYearRequest,
+    bundle: PayrollBundle | None = None,
+) -> PayrollYearResult:
+    """Compute a full payroll year by chaining twelve period computations.
+
+    Calls :func:`compute_period_payroll` once per month, threading the
+    closing :class:`~PayrollState` of each period into the next as its
+    opening state.  The structural scenario's ``as_of`` date is overridden
+    to the first day of each month; all other structural fields are reused.
+
+    Args:
+        request: Year payroll request: structural scenario, year, twelve
+            period descriptors (one per calendar month), and the YTD opening
+            state for January.
+        bundle: Optional pre-loaded knowledge bundle shared across all twelve
+            calls.  When ``None``, rulesets are loaded on demand.
+
+    Returns:
+        A :class:`~PayrollYearResult` containing twelve period results and
+        the final YTD closing state after December.
+    """
+    state = request.opening_state
+    results: list[PeriodPayrollResult] = []
+    for i, ev in enumerate(request.month_periods):
+        month = i + 1
+        updated_employment = request.structural.employment.model_copy(
+            update={"as_of": date(request.year, month, 1)}
+        )
+        updated_structural = request.structural.model_copy(
+            update={"employment": updated_employment}
+        )
+        period_req = PeriodPayrollRequest(
+            structural=updated_structural,
+            period=ev,
+            opening_state=state,
+        )
+        r = compute_period_payroll(period_req, bundle)
+        results.append(r)
+        state = r.closing_state
+    return PayrollYearResult(periods=tuple(results), closing_state=state)
