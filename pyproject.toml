@@ -39,6 +39,7 @@ dev = [
     "complexipy>=8.0",
     "hatchling>=1.32.0",
     "hypothesis>=6.0",
+    "mutmut>=3.8.0",
     "mypy>=2.3.1",
     "pip-audit>=2.10.1",
     "pytest>=9.1.1",
@@ -185,6 +186,35 @@ include = [
 
 [tool.hatch.build.hooks.custom]
 path = "scripts/packaging/build_hook.py"
+
+# ---------------------------------------------------------------------------
+# mutmut — Mutation Testing
+# ---------------------------------------------------------------------------
+[tool.mutmut]
+source_paths = [
+    "src/ccnl_engine/engine/payroll/service/contributions.py",
+    "src/ccnl_engine/engine/payroll/service/irpef.py",
+    "src/ccnl_engine/engine/payroll/service/ledger_builder.py",
+    "src/ccnl_engine/engine/payroll/domain/ledger.py",
+    "src/ccnl_engine/engine/payroll/service/rounding.py",
+    "src/ccnl_engine/engine/payroll/service/fiscal_helpers.py",
+    "src/ccnl_engine/engine/payroll/service/fiscal_contributions.py",
+    "src/ccnl_engine/engine/payroll/service/fiscal_deductions.py",
+]
+# Exclude docs tests that load scripts at their original filesystem path.
+# Limit collection to payroll unit tests; copy full src so imports resolve.
+pytest_add_cli_args_test_selection = ["tests/unit/ccnl_engine/engine/payroll"]
+pytest_add_cli_args = [
+    "--no-cov",
+    # Hypothesis tests use multiple executors and are incompatible with fork mode.
+    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_invariants.py",
+    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_metamorphic_invariants.py",
+]
+mutate_only_covered_lines = true
+# Copy the full source tree so all test imports resolve inside mutants/.
+also_copy = ["src"]
+# Run in fork mode for speed (Python is imported once; workers are forked).
+process_isolation = "fork"
 
 # ---------------------------------------------------------------------------
 # complexipy — Cognitive Complexity (SonarSource whitepaper v1.7)
