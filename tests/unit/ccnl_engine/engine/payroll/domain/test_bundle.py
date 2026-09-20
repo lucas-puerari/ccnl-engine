@@ -248,7 +248,7 @@ class TestComputeWithBundle:
         req = _req()
         mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             calc = compute(req, bundle)
@@ -267,7 +267,7 @@ class TestComputeWithBundle:
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             compute(req, None)
@@ -280,7 +280,7 @@ class TestComputeWithBundle:
         bundle = make_bundle(ccnl, rules, None)
         mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             calc = estimate_annual(_SCENARIO, bundle)
@@ -296,7 +296,7 @@ class TestComputeWithBundle:
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             estimate_annual(_SCENARIO)
@@ -309,7 +309,7 @@ class TestComputeWithBundle:
         bundle = make_bundle(ccnl, rules, None)
         mock_repo = MagicMock()
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             calc = estimate_period_effects(_SCENARIO, _PERIOD, bundle)
@@ -325,7 +325,7 @@ class TestComputeWithBundle:
         mock_repo.load_year_rules.return_value = rules
         mock_repo.load_surtax_rules.return_value = None
         with patch(
-            "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+            "ccnl_engine.engine.payroll.service.pipeline._default_repo",
             new=mock_repo,
         ):
             estimate_period_effects(_SCENARIO, _PERIOD, None)

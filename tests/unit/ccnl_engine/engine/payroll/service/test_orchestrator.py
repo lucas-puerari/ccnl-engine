@@ -179,7 +179,7 @@ def _patch_loaders(monkeypatch: pytest.MonkeyPatch) -> None:
     _mock_rules[:] = [_RULES]
     _mock_surtax[:] = [None]
     monkeypatch.setattr(
-        "ccnl_engine.engine.payroll.service.orchestrator._default_repo",
+        "ccnl_engine.engine.payroll.service.pipeline._default_repo",
         _MockRepo(),
     )
 
