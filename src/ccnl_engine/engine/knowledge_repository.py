@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.capability_catalog import CapabilityCatalog
     from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
@@ -31,4 +32,8 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         """Load and return the surtax rules for *year*, or None when unavailable."""
+        ...
+
+    def load_capability_catalog(self, year: int) -> CapabilityCatalog:
+        """Load and return the capability catalog for *year*."""
         ...

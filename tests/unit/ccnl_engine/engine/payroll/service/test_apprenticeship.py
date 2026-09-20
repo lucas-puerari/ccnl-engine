@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.engine.capability_catalog import CapabilityCatalog
 from ccnl_engine.engine.contract.domain.apprenticeship import ApprenticeshipPeriod
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.errors import OutOfScopeError
@@ -53,6 +54,9 @@ class _MockRepo:
 
     def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         return None
+
+    def load_capability_catalog(self, year: int) -> CapabilityCatalog:
+        return CapabilityCatalog(year=year, capabilities=())
 
 
 _REPO = _MockRepo()

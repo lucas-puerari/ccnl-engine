@@ -18,6 +18,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.engine.capability_catalog import CapabilityCatalog
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
     SupplementaryAllowance,
@@ -95,6 +96,9 @@ class _MockRepo:
 
     def load_surtax_rules(self, year: int) -> SurtaxRules | None:
         return _mock_surtax[0]
+
+    def load_capability_catalog(self, year: int) -> CapabilityCatalog:
+        return CapabilityCatalog(year=year, capabilities=())
 
 
 _REPO = _MockRepo()
