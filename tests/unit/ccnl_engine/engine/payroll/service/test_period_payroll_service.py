@@ -21,6 +21,7 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute_period_payroll
+from ccnl_engine.engine.payroll.service.rounding import money
 
 _ZERO = Decimal(0)
 
@@ -231,6 +232,15 @@ class TestComputePeriodPayrollPublicApi:
         result = compute_period_payroll(_zero_request(), bundle=None)
         assert isinstance(result, PeriodPayrollResult)
 
+    def test_accepts_pre_loaded_bundle(self) -> None:
+        """A pre-loaded bundle is used without reloading rulesets."""
+        from ccnl_engine import load_payroll_bundle  # noqa: PLC0415
+
+        bundle = load_payroll_bundle(_CCNL, _AS_OF.year, num_employees=50)
+        result = compute_period_payroll(_zero_request(), bundle=bundle)
+        assert isinstance(result, PeriodPayrollResult)
+        assert result.period_gross > _ZERO
+
     @pytest.mark.parametrize("n_periods", [1, 3, 12])
     def test_chained_n_periods(self, n_periods: int) -> None:
         """Chain n periods; final gross_ytd is n times first period gross."""
@@ -247,3 +257,103 @@ class TestComputePeriodPayrollPublicApi:
                 first_gross = result.period_gross
             state = result.closing_state
         assert state.gross_annual_ytd > _ZERO
+
+
+class TestComputePeriodPayrollExtraMonthlyPayments:
+    """extra_monthly_payments on PeriodPayrollInput scales period amounts."""
+
+    def test_extra_zero_default(self) -> None:
+        """Default extra_monthly_payments=0 gives standard period amount."""
+        result = compute_period_payroll(_zero_request())
+        assert result.period_gross > _ZERO
+
+    def test_extra_one_doubles_gross(self) -> None:
+        """extra_monthly_payments=1 doubles the period gross vs standard."""
+        req_normal = _zero_request()
+        req_bonus = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(extra_monthly_payments=1),
+            opening_state=PayrollState.zero(),
+        )
+        r_normal = compute_period_payroll(req_normal)
+        r_bonus = compute_period_payroll(req_bonus)
+        expected = money(r_normal.period_gross * Decimal(2))
+        assert r_bonus.period_gross == expected
+
+    def test_extra_one_doubles_net(self) -> None:
+        """extra_monthly_payments=1 doubles the period net vs standard."""
+        req_normal = _zero_request()
+        req_bonus = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(extra_monthly_payments=1),
+            opening_state=PayrollState.zero(),
+        )
+        r_normal = compute_period_payroll(req_normal)
+        r_bonus = compute_period_payroll(req_bonus)
+        expected = money(r_normal.period_net * Decimal(2))
+        assert r_bonus.period_net == expected
+
+    def test_extra_one_doubles_employer_cost(self) -> None:
+        """extra_monthly_payments=1 approximately doubles the period employer cost."""
+        req_normal = _zero_request()
+        req_bonus = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(extra_monthly_payments=1),
+            opening_state=PayrollState.zero(),
+        )
+        r_normal = compute_period_payroll(req_normal)
+        r_bonus = compute_period_payroll(req_bonus)
+        # Rounding order differs; allow 1-cent tolerance.
+        diff = abs(
+            r_bonus.period_employer_cost - r_normal.period_employer_cost * Decimal(2)
+        )
+        assert diff <= Decimal("0.01")
+
+    def test_extra_two_triples_gross(self) -> None:
+        """extra_monthly_payments=2 triples the period gross."""
+        req_normal = _zero_request()
+        req_double = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(extra_monthly_payments=2),
+            opening_state=PayrollState.zero(),
+        )
+        r_normal = compute_period_payroll(req_normal)
+        r_double = compute_period_payroll(req_double)
+        expected = money(r_normal.period_gross * Decimal(3))
+        assert r_double.period_gross == expected
+
+    def test_annual_gross_reconciles_across_13_periods(self) -> None:
+        """11 standard + 1 bonus period totals to annual gross for 13-month CCNL."""
+        state = PayrollState.zero()
+        total_gross = _ZERO
+        for i in range(12):
+            extra = 1 if i == 11 else 0
+            req = PeriodPayrollRequest(
+                structural=_structural(),
+                period=PeriodPayrollInput(extra_monthly_payments=extra),
+                opening_state=state,
+            )
+            result = compute_period_payroll(req)
+            total_gross += result.period_gross
+            state = result.closing_state
+        annual_gross = compute_period_payroll(_zero_request()).period_gross * Decimal(
+            13
+        )
+        from decimal import ROUND_HALF_UP  # noqa: PLC0415
+
+        assert total_gross == annual_gross.quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP
+        )
+
+    def test_gross_ytd_includes_bonus_month(self) -> None:
+        """After a bonus month, gross_ytd reflects the extra payment."""
+        req_normal = _zero_request()
+        r_normal = compute_period_payroll(req_normal)
+        req_bonus = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(extra_monthly_payments=1),
+            opening_state=r_normal.closing_state,
+        )
+        r_bonus = compute_period_payroll(req_bonus)
+        expected_ytd = r_normal.closing_state.gross_annual_ytd + r_bonus.period_gross
+        assert r_bonus.closing_state.gross_annual_ytd == expected_ytd

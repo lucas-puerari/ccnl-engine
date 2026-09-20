@@ -569,6 +569,12 @@ class PeriodPayrollInput(BaseModel):
         welfare_input: Annual welfare amount (Art. 51 c. 2 TUIR). ``None``
             means no welfare.
         bonus_input: Annual bonus / PdR data. ``None`` means no bonus.
+        extra_monthly_payments: Number of additional monthly payments
+            (mensilità aggiuntive) falling in this period.  Use ``1`` for a
+            period that includes the tredicesima or the quattordicesima, and
+            ``2`` when both fall in the same period.  Defaults to ``0`` for a
+            standard month.  The caller is responsible for distributing the
+            bonus months correctly across the twelve periods of the year.
     """
 
     model_config = ConfigDict(frozen=True, extra="forbid")
@@ -581,6 +587,7 @@ class PeriodPayrollInput(BaseModel):
     fringe_benefit_input: FringeBenefitInput | None = None
     welfare_input: WelfareInput | None = None
     bonus_input: BonusInput | None = None
+    extra_monthly_payments: int = Field(default=0, ge=0, le=2)
 
 
 class AnnualEstimateInput(BaseModel):
