@@ -22,6 +22,12 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
+from ccnl_engine.engine.payroll.domain.quality import (
+    Limitation,
+    LimitationIntegrationStatus,
+    LimitationSeverity,
+)
+
 _ZERO = Decimal(0)
 
 
@@ -535,6 +541,49 @@ def _work_time_scope(
         if len(scenario.bilateral_funds) > 0
         else _excluded("bilateral_funds"),
     ]
+
+
+def ccnl_notes_to_limitations(
+    ccnl_coverage: CCNLCoverage | None,
+) -> tuple[Limitation, ...]:
+    """Convert CCNL coverage notes to structured :class:`Limitation` objects.
+
+    Only ``simplification`` and ``missing`` notes are converted; ``info`` and
+    ``source`` notes are informational and do not represent limitations.
+
+    Args:
+        ccnl_coverage: The CCNL coverage block, or ``None``.
+
+    Returns:
+        A tuple of :class:`Limitation` instances, one per applicable note.
+        Empty when *ccnl_coverage* is ``None`` or has no applicable notes.
+    """
+    from ccnl_engine.engine.contract.domain.identity import NoteKind  # noqa: PLC0415
+
+    if ccnl_coverage is None:
+        return ()
+    severity_map = {
+        NoteKind.MISSING: LimitationSeverity.HIGH,
+        NoteKind.SIMPLIFICATION: LimitationSeverity.MEDIUM,
+    }
+    applicable_kinds = set(severity_map)
+    result: list[Limitation] = []
+    for i, note in enumerate(ccnl_coverage.notes):
+        if note.kind not in applicable_kinds:
+            continue
+        result.append(
+            Limitation(
+                code=f"{note.kind}_{i}",
+                affected_component="general",
+                applicability_predicate="always",
+                severity=severity_map[note.kind],
+                impact_axis=(),
+                integration_status=LimitationIntegrationStatus.NOT_INTEGRATED,
+                remediation=note.text,
+                source="CCNL coverage note",
+            )
+        )
+    return tuple(result)
 
 
 def _limitations_scope(ccnl_coverage: CCNLCoverage | None) -> list[ScopeItem]:

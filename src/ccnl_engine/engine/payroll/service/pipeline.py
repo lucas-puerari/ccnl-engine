@@ -44,6 +44,7 @@ from ccnl_engine.engine.payroll.service.result_assembler import (
 )
 from ccnl_engine.engine.payroll.service.scope import (
     build_scope,
+    ccnl_notes_to_limitations,
     compute_confidence,
     compute_result_status,
 )
@@ -272,6 +273,7 @@ def compute(
         calculation_scope=calculation_scope,
         warnings=result_warnings,
         consumed_rulesets=consumed_rulesets,
+        limitations=ccnl_notes_to_limitations(ccnl.coverage),
     )
     base: dict[str, object] = {
         "ccnl_id": ccnl.meta.ccnl_id,
