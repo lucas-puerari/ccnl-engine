@@ -26,6 +26,9 @@ from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
 from ccnl_engine.engine.surtax.service.loaders import _load_surtax_rules_cached
 from ccnl_engine.engine.tax.service import loaders as tax_loaders
+from ccnl_engine.engine.tax.service import (
+    tax_resource_reader as tax_resource_reader_mod,
+)
 from ccnl_engine.engine.tax.service.loaders import _load_year_rules_cached
 from tests.helpers import make_ccnl_dict
 
@@ -172,7 +175,7 @@ class TestTaxLoaderIntegrity:
         tampered = json.loads(json.dumps(raw))
         tampered["irpef_brackets"][0]["rate"] = "0.90"
         monkeypatch.setattr(
-            tax_loaders, "read_bundled", lambda pkg, f: json.dumps(tampered)
+            tax_resource_reader_mod, "read_bundled", lambda pkg, f: json.dumps(tampered)
         )
 
         with pytest.raises(DataIntegrityError, match="source_hash mismatch in 2026"):
@@ -192,7 +195,7 @@ class TestTaxLoaderIntegrity:
                 return json.dumps(raw)
             return json.dumps(inps_raw)
 
-        monkeypatch.setattr(tax_loaders, "read_bundled", fake_read)
+        monkeypatch.setattr(tax_resource_reader_mod, "read_bundled", fake_read)
 
         rules = tax_loaders.load_year_rules(2026, TaxSector.TERZIARIO, 50)
         assert rules.ruleset is None

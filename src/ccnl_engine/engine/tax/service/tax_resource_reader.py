@@ -1,0 +1,86 @@
+"""Tax knowledge-base resource reader: raw JSON loaders and ruleset helpers."""
+
+from __future__ import annotations
+
+import importlib.resources
+import json
+from typing import TYPE_CHECKING, Any
+
+from ccnl_engine.engine.io.service.bundled import read_bundled
+from ccnl_engine.engine.io.service.loader_utils import (
+    as_ruleset,
+    try_ruleset,
+    verify_ruleset_hash,
+)
+
+if TYPE_CHECKING:
+    from importlib.abc import Traversable
+
+    from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+    from ccnl_engine.engine.metadata import RulesetIdentity
+
+
+def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.as_ruleset`.
+
+    Returns:
+        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        or ``None`` when the dict carries no ``ruleset`` block.
+    """
+    return as_ruleset(raw)
+
+
+def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
+    """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.try_ruleset`.
+
+    Returns:
+        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        or ``None`` when absent or invalid.
+    """
+    return try_ruleset(raw)
+
+
+def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
+    """Verify the payload's ``ruleset.source_hash``.
+
+    Args:
+        payload: The full JSON payload dict.
+        filename: Source file name, included in any error message.
+    """
+    verify_ruleset_hash(payload, filename)
+
+
+def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
+    data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
+    _verify_ruleset_hash(data, filename)
+    return data
+
+
+def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
+    """Read the IRPEF/TFR block of a tax year file as a raw dict.
+
+    Args:
+        year: Tax year.
+        sector: INPS sector classification.
+
+    Returns:
+        The ``knowledge/tax/data/<year>-<sector>.json`` payload.
+    """
+    filename = f"{year}-{sector.value}.json"
+    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
+    return _read_json(pkg, filename)
+
+
+def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
+    """Read the INPS contribution block of a year/sector file as a raw dict.
+
+    Args:
+        year: Tax year.
+        sector: INPS sector classification.
+
+    Returns:
+        The ``knowledge/inps/data/<year>-<sector>.json`` payload.
+    """
+    filename = f"{year}-{sector.value}.json"
+    pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
+    return _read_json(pkg, filename)

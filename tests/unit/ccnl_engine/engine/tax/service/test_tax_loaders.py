@@ -72,7 +72,7 @@ class TestLoadFamilyDeductionRules:
         }
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders._read_json",
+                "ccnl_engine.engine.tax.service.tax_optional_loaders._read_json",
                 return_value=tampered_raw,
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -115,7 +115,7 @@ class TestLoadArt15DeductionRules:
         }
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders._read_json",
+                "ccnl_engine.engine.tax.service.tax_optional_loaders._read_json",
                 return_value=tampered_raw,
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -168,11 +168,11 @@ class TestResolveInpsAdditionalValidation:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
                 return_value=_BAD_TAX_RAW,
             ),
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_inps_rules_raw",
                 return_value=bad_inps_raw,
             ),
             pytest.raises(
@@ -191,7 +191,7 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -204,7 +204,7 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
@@ -217,11 +217,11 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "terziario"},
             ),
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_inps_rules_raw",
                 return_value={"year": 9999, "sector": "terziario"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -234,11 +234,11 @@ class TestLoadYearRulesIdentity:
         _load_year_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_tax_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
                 return_value={"year": 2026, "sector": "terziario"},
             ),
             patch(
-                "ccnl_engine.engine.tax.service.loaders.read_inps_rules_raw",
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_inps_rules_raw",
                 return_value={"year": 2026, "sector": "invalid"},
             ),
             pytest.raises(DataIntegrityError, match="does not match requested sector"),
