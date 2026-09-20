@@ -48,8 +48,7 @@ def _load_cached(year: int) -> CapabilityCatalog:
 
     if not isinstance(data, dict):
         msg = (
-            f"Capability catalog for {year}: expected object, "
-            f"got {type(data).__name__}"
+            f"Capability catalog for {year}: expected object, got {type(data).__name__}"
         )
         raise DataIntegrityError(msg)
 

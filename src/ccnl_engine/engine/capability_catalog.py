@@ -56,9 +56,7 @@ class CapabilityCatalog:
                 return cap
         return None
 
-    def gaps(
-        self, observed: Mapping[str, str]
-    ) -> tuple[CapabilityGap, ...]:
+    def gaps(self, observed: Mapping[str, str]) -> tuple[CapabilityGap, ...]:
         """Return entries where the observed status is worse than declared.
 
         Only entries where the catalog declares at minimum ``computed`` or

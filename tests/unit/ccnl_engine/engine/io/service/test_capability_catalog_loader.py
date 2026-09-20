@@ -203,13 +203,28 @@ class TestLoadCapabilityCatalog:
         """The 2026 catalog covers every feature emitted by scope.py."""
         cat = load_capability_catalog(2026)
         expected = {
-            "base_salary", "seniority", "inps_employee", "inps_employer",
-            "tfr", "irpef", "trattamento_integrativo", "ulteriore_detrazione_lavoro",
-            "addizionale_regionale", "addizionale_comunale",
-            "family_deductions", "art15_deductions",
-            "overtime", "night_work", "holiday_work",
-            "absence", "leave", "sickness",
-            "fringe_benefit", "welfare", "bonus_pdr", "bilateral_funds",
+            "base_salary",
+            "seniority",
+            "inps_employee",
+            "inps_employer",
+            "tfr",
+            "irpef",
+            "trattamento_integrativo",
+            "ulteriore_detrazione_lavoro",
+            "addizionale_regionale",
+            "addizionale_comunale",
+            "family_deductions",
+            "art15_deductions",
+            "overtime",
+            "night_work",
+            "holiday_work",
+            "absence",
+            "leave",
+            "sickness",
+            "fringe_benefit",
+            "welfare",
+            "bonus_pdr",
+            "bilateral_funds",
         }
         found = {e.feature for e in cat.capabilities}
         assert expected <= found
@@ -228,16 +243,18 @@ class TestLoadCapabilityCatalog:
 
 
 def _call_uncached(raw: str, year: int = 9999) -> CapabilityCatalog:
-    with patch.object(_catalog_mod, "importlib") as mock_importlib, patch.object(
-        _catalog_mod, "read_bundled", return_value=raw
+    with (
+        patch.object(_catalog_mod, "importlib") as mock_importlib,
+        patch.object(_catalog_mod, "read_bundled", return_value=raw),
     ):
         mock_importlib.resources.files.return_value = MagicMock()
         return _catalog_mod._load_cached.__wrapped__(year)
 
 
 def _call_uncached_file_not_found(year: int = 8888) -> None:
-    with patch.object(_catalog_mod, "importlib") as mock_importlib, patch.object(
-        _catalog_mod, "read_bundled", side_effect=FileNotFoundError
+    with (
+        patch.object(_catalog_mod, "importlib") as mock_importlib,
+        patch.object(_catalog_mod, "read_bundled", side_effect=FileNotFoundError),
     ):
         mock_importlib.resources.files.return_value = MagicMock()
         _catalog_mod._load_cached.__wrapped__(year)
