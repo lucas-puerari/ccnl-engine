@@ -37,6 +37,10 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     ScopeItem,
     SourceQuality,
 )
+from ccnl_engine.engine.payroll.domain.quality import (
+    LimitationIntegrationStatus,
+    LimitationSeverity,
+)
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
     PeriodPayrollInput,
@@ -52,6 +56,7 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
 )
 from ccnl_engine.engine.payroll.service.scope import (
     _limitations_scope,
+    ccnl_notes_to_limitations,
     compute_confidence,
     compute_result_status,
 )
@@ -370,6 +375,67 @@ class TestLimitationsScope:
             *_limitations_scope(cov),
         )
         assert compute_result_status(scope) == "partial"
+
+
+class TestCcnlNotesToLimitations:
+    """Unit tests for ccnl_notes_to_limitations."""
+
+    def test_none_returns_empty(self) -> None:
+        """None coverage returns an empty tuple."""
+        assert ccnl_notes_to_limitations(None) == ()
+
+    def test_no_applicable_notes_returns_empty(self) -> None:
+        """Coverage with only info/source notes returns no limitations."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.INFO, text="info text"),
+            CoverageNote(kind=NoteKind.SOURCE, text="source text"),
+        )
+        assert ccnl_notes_to_limitations(cov) == ()
+
+    def test_simplification_note_yields_medium_severity(self) -> None:
+        """A simplification note produces a MEDIUM severity limitation."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.SIMPLIFICATION, text="hourly rate approx")
+        )
+        lims = ccnl_notes_to_limitations(cov)
+        assert len(lims) == 1
+        assert lims[0].severity == LimitationSeverity.MEDIUM
+        assert lims[0].integration_status == LimitationIntegrationStatus.NOT_INTEGRATED
+        assert lims[0].remediation == "hourly rate approx"
+
+    def test_missing_note_yields_high_severity(self) -> None:
+        """A missing note produces a HIGH severity limitation."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.MISSING, text="overtime data absent"),
+            gross=CoverageStatus.PARTIAL,
+        )
+        lims = ccnl_notes_to_limitations(cov)
+        assert len(lims) == 1
+        assert lims[0].severity == LimitationSeverity.HIGH
+
+    def test_multiple_notes_produces_one_limitation_per_applicable_note(self) -> None:
+        """Mixed notes: only simplification/missing produce limitations."""
+        cov = _coverage(
+            CoverageNote(kind=NoteKind.INFO, text="info"),
+            CoverageNote(kind=NoteKind.SIMPLIFICATION, text="simp1"),
+            CoverageNote(kind=NoteKind.MISSING, text="miss1"),
+            CoverageNote(kind=NoteKind.SOURCE, text="src"),
+            gross=CoverageStatus.PARTIAL,
+        )
+        lims = ccnl_notes_to_limitations(cov)
+        assert len(lims) == 2
+        codes = {lim.code for lim in lims}
+        assert "simplification_1" in codes
+        assert "missing_2" in codes
+
+    def test_limitation_fields(self) -> None:
+        """Produced limitations have expected default fields."""
+        cov = _coverage(CoverageNote(kind=NoteKind.SIMPLIFICATION, text="desc"))
+        lim = ccnl_notes_to_limitations(cov)[0]
+        assert lim.affected_component == "general"
+        assert lim.applicability_predicate == "always"
+        assert lim.impact_axis == ()
+        assert lim.source == "CCNL coverage note"
 
 
 def _verified_provenance() -> RuleProvenance:
