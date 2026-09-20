@@ -5,6 +5,9 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+from pydantic import ValidationError
+
 from ccnl_engine.engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -107,37 +110,83 @@ class TestDeductionFromBreakpoints:
         assert _deduction_from_breakpoints(_D("50000"), pts_no_null) == _D("0.00")
 
 
+_INCOME_THRESHOLD = _D("2840.51")
+_YOUNG_THRESHOLD = _D("4000.00")
+_YOUNG_CUTOFF = 24
+
+
+def _eligible(dep: Dependent) -> bool:
+    """Call _child_is_eligible with standard 2026 thresholds.
+
+    Returns:
+        Eligibility flag from _child_is_eligible.
+    """
+    return _child_is_eligible(
+        dep, 21, 2026, _INCOME_THRESHOLD, _YOUNG_THRESHOLD, _YOUNG_CUTOFF
+    )
+
+
 class TestChildIsEligible:
-    """_child_is_eligible — age-based eligibility check."""
+    """_child_is_eligible — age, income, and residency checks."""
 
     def test_no_birth_date_eligible(self) -> None:
-        """No birth_date: caller_declared eligible."""
-        assert _child_is_eligible(_dep(_CHILD), 21, 2026) is True
+        """No birth_date: age-eligible (caller_declared); income still checked."""
+        assert _eligible(_dep(_CHILD)) is True
 
     def test_age_below_cutoff_ineligible(self) -> None:
         """Child under 21 (AUU covers them): not eligible."""
         dep = _dep(_CHILD, birth_date=date(2010, 1, 1))  # age 16
-        assert _child_is_eligible(dep, 21, 2026) is False
+        assert _eligible(dep) is False
 
     def test_age_exactly_cutoff_eligible(self) -> None:
         """Child aged exactly 21 in ref_year: eligible."""
         dep = _dep(_CHILD, birth_date=date(2005, 6, 1))  # age 21
-        assert _child_is_eligible(dep, 21, 2026) is True
+        assert _eligible(dep) is True
 
     def test_age_21_to_29_eligible(self) -> None:
         """Child aged 25: eligible."""
         dep = _dep(_CHILD, birth_date=date(2001, 3, 15))
-        assert _child_is_eligible(dep, 21, 2026) is True
+        assert _eligible(dep) is True
 
     def test_age_30_non_disabled_ineligible(self) -> None:
         """Non-disabled child aged 30+: not eligible."""
         dep = _dep(_CHILD, birth_date=date(1995, 1, 1), disabled=False)
-        assert _child_is_eligible(dep, 21, 2026) is False
+        assert _eligible(dep) is False
 
     def test_age_30_disabled_eligible(self) -> None:
         """Disabled child aged 30+: eligible."""
         dep = _dep(_CHILD, birth_date=date(1995, 1, 1), disabled=True)
-        assert _child_is_eligible(dep, 21, 2026) is True
+        assert _eligible(dep) is True
+
+    def test_residency_false_excluded(self) -> None:
+        """Child with residency_eligibility=False is not eligible."""
+        dep = _dep(_CHILD, birth_date=date(2001, 1, 1), residency_eligibility=False)
+        assert _eligible(dep) is False
+
+    def test_own_income_above_general_threshold_excluded(self) -> None:
+        """Child aged 25 with own_income > 2840.51: not eligible."""
+        dep = _dep(_CHILD, birth_date=date(2001, 1, 1), own_income=_D("5000"))
+        assert _eligible(dep) is False
+
+    def test_own_income_at_general_threshold_eligible(self) -> None:
+        """Child aged 25 with own_income == 2840.51: eligible (inclusive)."""
+        dep = _dep(_CHILD, birth_date=date(2001, 1, 1), own_income=_D("2840.51"))
+        assert _eligible(dep) is True
+
+    def test_young_child_income_below_young_threshold_eligible(self) -> None:
+        """Age 22, income 3500 (> general threshold, < young threshold): eligible."""
+        dep = _dep(_CHILD, birth_date=date(2004, 1, 1), own_income=_D("3500"))  # age 22
+        assert _eligible(dep) is True
+
+    def test_young_child_income_above_young_threshold_excluded(self) -> None:
+        """Child under 24 with own_income > 4000: not eligible."""
+        dep = _dep(_CHILD, birth_date=date(2004, 1, 1), own_income=_D("4001"))  # age 22
+        assert _eligible(dep) is False
+
+    def test_no_birth_date_high_income_excluded(self) -> None:
+        """No birth_date but own_income > general threshold: not eligible."""
+        dep = _dep(_CHILD, own_income=_D("5000"))
+        assert _eligible(dep) is False
 
 
 class TestSpouseDeduction:
@@ -174,6 +223,19 @@ class TestSpouseDeduction:
         """Income above EUR 80k → zero deduction."""
         sp = _dep(_SPOUSE)
         assert _spouse_deduction(_D("90000"), _RULES.spouse, sp) == _D("0.00")
+
+    def test_residency_false_returns_zero(self) -> None:
+        """Spouse with residency_eligibility=False: zero deduction."""
+        sp = _dep(_SPOUSE, residency_eligibility=False)
+        assert _spouse_deduction(_D("26843.44"), _RULES.spouse, sp) == _D("0.00")
+
+    def test_allocation_50_pct_halves_deduction(self) -> None:
+        """50% allocation: deduction halved compared to 100%."""
+        sp_full = _dep(_SPOUSE)
+        sp_half = _dep(_SPOUSE, allocation_pct=_D("50"))
+        full = _spouse_deduction(_D("26843.44"), _RULES.spouse, sp_full)
+        half = _spouse_deduction(_D("26843.44"), _RULES.spouse, sp_half)
+        assert half == money(full / _D("2"))
 
 
 class TestChildrenDeduction:
@@ -352,3 +414,35 @@ class TestComputeFamilyDeductions:
         expected = money(_D("950") * taper)
         assert ch == expected
         assert ch < money((_D("950") + _D("400")) * taper)
+
+    def test_child_high_income_yields_zero(self) -> None:
+        """Child with own_income > 2840.51: excluded, deduction is zero."""
+        ch_dep = _dep(_CHILD, birth_date=date(2001, 1, 1), own_income=_D("100000"))
+        _sp, ch, _ot, total = compute_family_deductions(
+            _fam(ch_dep), _D("26843.44"), _RULES
+        )
+        assert ch == _D("0.00")
+        assert total == _D("0.00")
+
+    def test_child_residency_false_yields_zero(self) -> None:
+        """Child with residency_eligibility=False: excluded, deduction is zero."""
+        ch_dep = _dep(_CHILD, birth_date=date(2001, 1, 1), residency_eligibility=False)
+        _sp, ch, _ot, total = compute_family_deductions(
+            _fam(ch_dep), _D("26843.44"), _RULES
+        )
+        assert ch == _D("0.00")
+        assert total == _D("0.00")
+
+    def test_two_spouses_raises(self) -> None:
+        """FamilyComposition with two spouses raises ValidationError."""
+        with pytest.raises(ValidationError, match="spouse"):
+            _fam(_dep(_SPOUSE), _dep(_SPOUSE))
+
+    def test_spouse_residency_false_yields_zero(self) -> None:
+        """Spouse with residency_eligibility=False: deduction is zero."""
+        sp = _dep(_SPOUSE, residency_eligibility=False)
+        sp_val, _ch, _ot, total = compute_family_deductions(
+            _fam(sp), _D("26843.44"), _RULES
+        )
+        assert sp_val == _D("0.00")
+        assert total == _D("0.00")

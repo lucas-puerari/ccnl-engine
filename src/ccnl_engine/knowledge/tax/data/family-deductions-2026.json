@@ -32,7 +32,10 @@
     "base_amount": "950.00",
     "income_ceiling": "95000.00",
     "income_ceiling_increment_per_child": "15000.00",
-    "notes": "Figli under 21 not eligible (AUU, D.Lgs. 230/2021). Figli 21-29 eligible; figli 30+ only with certified disability (L. 104/92)."
+    "dependent_income_threshold": "2840.51",
+    "young_child_income_threshold": "4000.00",
+    "young_age_cutoff": 24,
+    "notes": "Figli under 21 not eligible (AUU, D.Lgs. 230/2021). Figli 21-29 eligible; figli 30+ only with certified disability (L. 104/92). Income threshold: 2840.51 general, 4000 for under-24 (Art. 12 c. 2 TUIR)."
   },
   "other_dependents": {
     "dependent_income_threshold": "2840.51",
@@ -49,6 +52,6 @@
     "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "16073be13104067ea7ad2454659bc70834433e016dfcce1a452da4597c04fb39"
+    "source_hash": "2662c6185053e76de5991b29c62692ec6b19ca221ff95893538216ff9746d1b2"
   }
 }

@@ -93,21 +93,47 @@ def _deduction_from_breakpoints(
     return money(points[-1].deduction)
 
 
-def _child_is_eligible(dep: Dependent, auu_age_cutoff: int, ref_year: int) -> bool:
+def _child_is_eligible(
+    dep: Dependent,
+    auu_age_cutoff: int,
+    ref_year: int,
+    income_threshold: Decimal,
+    young_income_threshold: Decimal | None,
+    young_age_cutoff: int,
+) -> bool:
     """Return whether a child dependent is eligible for Art. 12 lett. c.
 
-    When ``birth_date`` is absent the caller has not supplied age; the child is
-    treated as eligible (status stays ``"caller_declared"``).
+    Checks age-based AUU cutoff, own-income threshold, and residency.
+    When ``birth_date`` is absent the child is treated as age-eligible
+    (status stays ``"caller_declared"``), but income and residency checks
+    still apply.
+
+    The income threshold for children under ``young_age_cutoff`` is
+    ``young_income_threshold`` when set; otherwise ``income_threshold``.
 
     Returns:
         ``True`` when the child qualifies for the deduction.
     """
-    if dep.birth_date is None:
-        return True
-    age = ref_year - dep.birth_date.year
-    if age < auu_age_cutoff:
+    if not dep.residency_eligibility:
         return False
-    return not (age >= 30 and not dep.disabled)
+    age: int | None = None
+    if dep.birth_date is not None:
+        age = ref_year - dep.birth_date.year
+        if age < auu_age_cutoff:
+            return False
+        if age >= 30 and not dep.disabled:
+            return False
+    use_young = (
+        young_income_threshold is not None
+        and age is not None
+        and age < young_age_cutoff
+    )
+    effective_threshold: Decimal
+    if use_young and young_income_threshold is not None:
+        effective_threshold = young_income_threshold
+    else:
+        effective_threshold = income_threshold
+    return dep.own_income <= effective_threshold
 
 
 def _spouse_deduction(
@@ -117,18 +143,22 @@ def _spouse_deduction(
 ) -> Decimal:
     """Return the Art. 12 c. 1 lett. a spouse deduction.
 
-    Returns zero when ``spouse`` is ``None`` or when the spouse's own income
-    exceeds the dependent income threshold.
+    Returns zero when ``spouse`` is ``None``, when residency eligibility is
+    not declared, or when the spouse's own income exceeds the threshold.
+    Pro-rated by ``months_dependent`` and ``allocation_pct``.
 
     Returns:
         Annual deduction amount, rounded to two decimal places.
     """
     if spouse is None:
         return _ZERO
+    if not spouse.residency_eligibility:
+        return _ZERO
     if spouse.own_income > rules.dependent_income_threshold:
         return _ZERO
     base = _deduction_from_breakpoints(gross_annual, rules.breakpoints)
-    return money(base * Decimal(spouse.months_dependent) / _TWELVE)
+    months_ratio = Decimal(spouse.months_dependent) / _TWELVE
+    return money(base * months_ratio * spouse.allocation_pct / _HUNDRED)
 
 
 def _children_deduction(
@@ -139,8 +169,8 @@ def _children_deduction(
 ) -> Decimal:
     """Return the Art. 12 c. 1 lett. c children deduction.
 
-    Eligible children are those aged 21-29 and disabled children aged 30+.
-    When ``birth_date`` is absent the child is treated as eligible.
+    Eligible children are those aged 21-29 and disabled children aged 30+,
+    with own income within the applicable threshold and residency eligibility.
 
     Each child's deduction is pro-rated by ``months_dependent`` and
     ``allocation_pct``.
@@ -149,7 +179,16 @@ def _children_deduction(
         Total annual deduction for all eligible children, rounded.
     """
     eligible = [
-        c for c in children if _child_is_eligible(c, rules.auu_age_cutoff, ref_year)
+        c
+        for c in children
+        if _child_is_eligible(
+            c,
+            rules.auu_age_cutoff,
+            ref_year,
+            rules.dependent_income_threshold,
+            rules.young_child_income_threshold,
+            rules.young_age_cutoff,
+        )
     ]
     total = len(eligible)
     if total == 0:
