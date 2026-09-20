@@ -15,6 +15,7 @@ from ccnl_engine.engine.payroll.domain.employee import (
     SeniorityByDate,
     SeniorityByMonths,
 )
+from ccnl_engine.engine.payroll.domain.ledger import Ledger
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     Contributions,
@@ -37,6 +38,7 @@ from ccnl_engine.engine.payroll.service.assembly import (
 )
 from ccnl_engine.engine.payroll.service.fiscal import compute_fiscal
 from ccnl_engine.engine.payroll.service.gross import compute_gross
+from ccnl_engine.engine.payroll.service.ledger_builder import post_earnings
 from ccnl_engine.engine.payroll.service.scope import (
     build_scope,
     compute_confidence,
@@ -369,6 +371,8 @@ def compute(
         surtax = _default_repo.load_surtax_rules(year) if needs_surtax else None
 
     gross = compute_gross(scenario, ccnl)
+    ledger = Ledger()
+    post_earnings(gross, as_of, ledger)
     work = compute_work_rules(scenario, ccnl, gross, year)
     fiscal = compute_fiscal(scenario, ccnl, rules, surtax, gross, year, work)
     calculation_scope = build_scope(scenario, fiscal, work, ccnl.coverage)
@@ -467,7 +471,9 @@ def compute(
         )
     else:
         result = AnnualEstimate(**base)  # type: ignore[arg-type]
-    return build_calculation(scenario, ccnl, rules, surtax, gross, work, result, fiscal)
+    return build_calculation(
+        scenario, ccnl, rules, surtax, gross, work, result, fiscal, ledger
+    )
 
 
 def _annual_to_scenario(

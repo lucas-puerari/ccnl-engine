@@ -27,6 +27,7 @@ if TYPE_CHECKING:
         SeniorityIncrements,
         SupplementaryAllowance,
     )
+    from ccnl_engine.engine.payroll.domain.ledger import Ledger
     from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
@@ -313,6 +314,7 @@ def build_calculation(
     work: WorkRulesPay,
     result: AnnualEstimate,
     fiscal: FiscalPay,
+    ledger: Ledger | None = None,
 ) -> Calculation:
     """Attach the input snapshot, ruleset identities and traces to a result.
 
@@ -412,4 +414,5 @@ def build_calculation(
             supplement_steps=work.supplement_trace,
             fiscal_steps=fiscal_steps,
         ),
+        ledger_entries=tuple(ledger.entries()) if ledger is not None else (),
     )
