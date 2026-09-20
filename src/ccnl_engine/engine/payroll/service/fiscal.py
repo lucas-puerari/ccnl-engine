@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.scenario import TaxPeriod
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service import irpef as _irpef
@@ -20,6 +18,16 @@ from ccnl_engine.engine.payroll.service.fiscal_deductions import (
     _run_wr_art15_deductions,
     _run_wr_family_deductions,
 )
+from ccnl_engine.engine.payroll.service.fiscal_helpers import (
+    _conguaglio,
+    _injury_indemnity,
+    _inps_exemption,
+    _maternity_indemnity,
+    _termination_amount,
+    _update_simplification_flags,
+)
+from ccnl_engine.engine.payroll.service.fiscal_result import FiscalPay
+from ccnl_engine.engine.payroll.service.fiscal_rulesets import _fiscal_consumed
 from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.engine.payroll.service.rounding import money
 
@@ -27,7 +35,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import (
         CCNL,
     )
-    from ccnl_engine.engine.metadata import RulesetIdentity
     from ccnl_engine.engine.payroll.domain.scenario import PayrollScenario
     from ccnl_engine.engine.payroll.service.gross import GrossPay
     from ccnl_engine.engine.payroll.service.work_rules import WorkRulesPay
@@ -35,245 +42,8 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
-_UNVERIFIED = "unverified"
 
-
-def _vs(identity: RulesetIdentity | None) -> str:
-    """Return verification status string, or ``"unverified"`` when absent.
-
-    Returns:
-        Verification status value, or ``"unverified"`` for absent identities.
-    """
-    return identity.verification_status.value if identity is not None else _UNVERIFIED
-
-
-@dataclass(frozen=True)
-class FiscalPay:
-    """Annual contributions, tax, deductions and net pay."""
-
-    consumed_ruleset_ids: tuple[RulesetIdentity | None, ...]
-    consumed_verifications: dict[str, str]
-    inps_employee_annual: Decimal
-    inps_employer_annual: Decimal
-    inps_employee_additional_annual: Decimal
-    inail_employer_annual: Decimal
-    inps_employer_exemption_annual: Decimal
-    maternity_inps_indemnity_annual: Decimal
-    workplace_injury_inail_indemnity_annual: Decimal
-    termination_tfr_liquidation_annual: Decimal
-    employer_funds_annual: Decimal
-    tfr_annual: Decimal
-    bilateral_employee_annual: Decimal
-    bilateral_employer_annual: Decimal
-    taxable_income: Decimal
-    irpef_gross: Decimal
-    work_income_deduction: Decimal
-    fam_spouse: Decimal
-    fam_children: Decimal
-    fam_other: Decimal
-    fam_total: Decimal
-    fam_unused: Decimal
-    art15_total: Decimal
-    art15_unused: Decimal
-    sterilizzazione_clawback: Decimal
-    ulteriore_detrazione_lavoro: Decimal
-    somma_esente: Decimal
-    irpef_net: Decimal
-    conguaglio_annual: Decimal
-    termination_residual_leave_payout_annual: Decimal
-    contract_renewal_arrears_annual: Decimal
-    una_tantum_annual: Decimal
-    personal_withholdings_annual: Decimal
-    additional_irpef_base_annual: Decimal
-    health_fund_employee_annual: Decimal
-    health_fund_employer_annual: Decimal
-    territorial_supplement_annual: Decimal
-    company_supplement_annual: Decimal
-    trattamento_integrativo: Decimal
-    addizionale_regionale: Decimal
-    addizionale_comunale: Decimal
-    net_annual: Decimal
-    net_monthly: Decimal
-    employer_cost_annual: Decimal
-    employer_withholds_irpef: bool
-    fiscal_simplifications: frozenset[FiscalSimplification]
-
-
-def _injury_indemnity(raw: Decimal | None) -> Decimal:
-    """Return the caller-declared workplace injury INAIL indemnity, or zero.
-
-    Returns:
-        The indemnity amount, or zero when absent.
-    """
-    return money(raw) if raw is not None else _ZERO
-
-
-def _termination_amount(raw: Decimal | None) -> Decimal:
-    """Return the caller-declared termination amount, or zero when absent.
-
-    Returns:
-        The termination amount, or zero when absent.
-    """
-    return money(raw) if raw is not None else _ZERO
-
-
-def _maternity_indemnity(raw: Decimal | None) -> Decimal:
-    """Return the caller-declared maternity/parental INPS indemnity, or zero.
-
-    Returns:
-        The indemnity amount, or zero when absent.
-    """
-    return money(raw) if raw is not None else _ZERO
-
-
-def _conguaglio(irpef_net: Decimal, prior_withheld: Decimal | None) -> Decimal:
-    """Compute fiscal adjustment (conguaglio) against prior-period withholding.
-
-    Returns:
-        Difference (positive = under-withheld, negative = over-withheld),
-        or zero when no prior figure is supplied.
-    """
-    return money(irpef_net - prior_withheld) if prior_withheld is not None else _ZERO
-
-
-def _inps_exemption(inps_employer_annual: Decimal, raw: Decimal | None) -> Decimal:
-    """Apply the caller-declared INPS employer exemption, capped at the contribution.
-
-    Returns:
-        Exemption amount to subtract from employer cost, or zero when absent.
-    """
-    return money(min(inps_employer_annual, raw)) if raw is not None else _ZERO
-
-
-def _update_simplification_flags(
-    sfs: frozenset[FiscalSimplification],
-    *,
-    has_any_dependent: bool,
-    art15_total: Decimal,
-    ud_rules_present: bool,
-    se_rules_present: bool,
-    has_bilateral_funds: bool,
-) -> frozenset[FiscalSimplification]:
-    """Return updated simplification flags after applying optional-feature presence.
-
-    Returns:
-        Updated frozenset of active fiscal simplifications.
-    """
-    sfs_mut: set[FiscalSimplification] = set(sfs)
-    if has_any_dependent:
-        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_FAMILIARI)
-    if art15_total > _ZERO:
-        sfs_mut.discard(FiscalSimplification.NO_DETRAZIONI_ART15_MORTGAGE)
-    if not ud_rules_present:
-        sfs_mut.add(FiscalSimplification.NO_ULTERIORE_DETRAZIONE_LAVORO)
-    if se_rules_present:
-        sfs_mut.discard(FiscalSimplification.NO_SOMMA_ESENTE)
-    else:
-        sfs_mut.add(FiscalSimplification.NO_SOMMA_ESENTE)
-    if has_bilateral_funds:
-        sfs_mut.discard(FiscalSimplification.NO_BILATERAL_FUNDS)
-    return frozenset(sfs_mut)
-
-
-def _collect_fiscal_rulesets(
-    fam_ruleset: RulesetIdentity | None,
-    art15_ruleset: RulesetIdentity | None,
-    surtax_regional_ruleset: RulesetIdentity | None,
-    surtax_municipal_ruleset: RulesetIdentity | None,
-    *,
-    family_consumed: bool,
-    art15_consumed: bool,
-    surtax_reg_consumed: bool,
-    surtax_com_consumed: bool,
-) -> tuple[RulesetIdentity | None, ...]:
-    """Return the ordered tuple of optional-feature ruleset identities.
-
-    Returns:
-        A tuple with at most four entries: family deductions, Art. 15,
-        surtax regional and surtax municipal.
-    """
-    ids: list[RulesetIdentity | None] = []
-    if fam_ruleset is not None or family_consumed:
-        ids.append(fam_ruleset)
-    if art15_ruleset is not None or art15_consumed:
-        ids.append(art15_ruleset)
-    if surtax_reg_consumed:
-        ids.append(surtax_regional_ruleset)
-    if surtax_com_consumed:
-        ids.append(surtax_municipal_ruleset)
-    return tuple(ids)
-
-
-def _collect_fiscal_verifications(
-    fam_ruleset: RulesetIdentity | None,
-    art15_ruleset: RulesetIdentity | None,
-    surtax_reg_id: RulesetIdentity | None,
-    surtax_com_id: RulesetIdentity | None,
-    *,
-    family_consumed: bool,
-    art15_consumed: bool,
-    surtax_reg_consumed: bool,
-    surtax_com_consumed: bool,
-) -> dict[str, str]:
-    """Return ``{kind: verification_status}`` for optional fiscal rulesets.
-
-    Returns:
-        Mapping of ruleset kind to verification status string.
-    """
-    ver: dict[str, str] = {}
-    if family_consumed:
-        ver["family_deductions"] = _vs(fam_ruleset)
-    if art15_consumed:
-        ver["art15_deductions"] = _vs(art15_ruleset)
-    if surtax_reg_consumed:
-        ver["surtax_regional"] = _vs(surtax_reg_id)
-    if surtax_com_consumed:
-        ver["surtax_municipal"] = _vs(surtax_com_id)
-    return ver
-
-
-def _fiscal_consumed(
-    scenario: PayrollScenario,
-    surtax: SurtaxRules | None,
-    fam_ruleset: RulesetIdentity | None,
-    art15_ruleset: RulesetIdentity | None,
-    *,
-    has_any_dependent: bool,
-    surtax_reg_consumed: bool,
-    surtax_com_consumed: bool,
-) -> tuple[tuple[RulesetIdentity | None, ...], dict[str, str]]:
-    """Return ``(consumed_ids, consumed_verifications)`` for optional fiscal rulesets.
-
-    Returns:
-        2-tuple of consumed ruleset identity tuple and verification mapping.
-    """
-    art15_used = (
-        scenario.art15_deductions is not None
-        and scenario.art15_deductions.has_any_onere
-    )
-    surtax_reg_id = surtax.regional_ruleset if surtax is not None else None
-    surtax_com_id = surtax.municipal_ruleset if surtax is not None else None
-    ids = _collect_fiscal_rulesets(
-        fam_ruleset,
-        art15_ruleset,
-        surtax_reg_id,
-        surtax_com_id,
-        family_consumed=has_any_dependent,
-        art15_consumed=art15_used,
-        surtax_reg_consumed=surtax_reg_consumed,
-        surtax_com_consumed=surtax_com_consumed,
-    )
-    ver = _collect_fiscal_verifications(
-        fam_ruleset,
-        art15_ruleset,
-        surtax_reg_id,
-        surtax_com_id,
-        family_consumed=has_any_dependent,
-        art15_consumed=art15_used,
-        surtax_reg_consumed=surtax_reg_consumed,
-        surtax_com_consumed=surtax_com_consumed,
-    )
-    return ids, ver
+__all__ = ["FiscalPay", "compute_fiscal"]
 
 
 def compute_fiscal(
