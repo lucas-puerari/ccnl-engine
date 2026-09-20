@@ -40,6 +40,9 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
     PeriodPayrollResult as PeriodPayrollResult,
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute as compute
+from ccnl_engine.engine.payroll.service.orchestrator import (
+    compute_period_payroll as compute_period_payroll,
+)
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown as AnnualBreakdown,
 )
@@ -63,5 +66,6 @@ __all__ = [
     "TraceCategory",
     "TraceStep",
     "compute",
+    "compute_period_payroll",
     "render_breakdown",
 ]
