@@ -1,0 +1,63 @@
+"""PeriodPayrollRequest and PeriodPayrollResult for true period computation."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from decimal import Decimal
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
+    from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
+    from ccnl_engine.engine.payroll.domain.scenario import (
+        AnnualEstimateInput,
+        PeriodPayrollInput,
+    )
+
+_ZERO = Decimal(0)
+
+
+@dataclass(frozen=True)
+class PeriodPayrollRequest:
+    """Input for a single payroll period with YTD opening state.
+
+    Combines the structural annual scenario with period-specific events and
+    the year-to-date progressive state accumulated from prior closed periods.
+    Pass :meth:`~PayrollState.zero` as ``opening_state`` for January.
+
+    Attributes:
+        structural: Structural annual scenario (worker, employment, contract).
+        period: Period-specific events (overtime, absences, sick leave, etc.).
+        opening_state: YTD progressive state entering this period. Pass
+            :meth:`~PayrollState.zero` for the first period of the year.
+    """
+
+    structural: AnnualEstimateInput
+    period: PeriodPayrollInput
+    opening_state: PayrollState
+
+
+@dataclass(frozen=True)
+class PeriodPayrollResult:
+    """Result of a single payroll period computation.
+
+    Captures the opening and closing YTD states alongside the key period
+    figures (gross, net, employer cost) and the full ledger for the period.
+    The closing state may be passed as the opening state of the next period.
+
+    Attributes:
+        opening_state: YTD state at the start of this period (passed in).
+        closing_state: YTD state after closing this period. Feed this into
+            the next :class:`PeriodPayrollRequest` as ``opening_state``.
+        period_gross: Gross earnings for this period only.
+        period_net: Net pay for this period only.
+        period_employer_cost: Total employer cost for this period only.
+        ledger_entries: All ledger entries posted for this period.
+    """
+
+    opening_state: PayrollState
+    closing_state: PayrollState
+    period_gross: Decimal
+    period_net: Decimal
+    period_employer_cost: Decimal
+    ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
