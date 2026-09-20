@@ -1,4 +1,4 @@
-"""PeriodPayrollRequest and PeriodPayrollResult for true period computation."""
+"""Domain types for period and year payroll computation."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     )
 
 _ZERO = Decimal(0)
+_MONTHS_PER_YEAR = 12
 
 
 @dataclass(frozen=True)
@@ -61,3 +62,61 @@ class PeriodPayrollResult:
     period_net: Decimal
     period_employer_cost: Decimal
     ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class PayrollYearRequest:
+    """Input for a full-year payroll computation orchestrated by period.
+
+    Chains twelve :class:`PeriodPayrollRequest` calls using
+    :func:`~ccnl_engine.engine.payroll.service.orchestrator\
+.compute_period_payroll`, threading the closing YTD state of each period
+    into the next.  The structural scenario's ``as_of`` date is overridden
+    per month.
+
+    Attributes:
+        structural: Structural annual scenario (worker, employment, contract).
+        year: Calendar year to compute (e.g. ``2026``).
+        month_periods: Exactly twelve :class:`PeriodPayrollInput` instances,
+            one per month in calendar order (index 0 = January).  When
+            omitted, every month uses a default :class:`PeriodPayrollInput`.
+        opening_state: YTD state at the start of January. Pass
+            :meth:`~PayrollState.zero` (or omit) to start a fresh year.
+    """
+
+    structural: AnnualEstimateInput
+    year: int
+    month_periods: tuple[PeriodPayrollInput, ...]
+    opening_state: PayrollState
+
+    def __post_init__(self) -> None:
+        """Validate that month_periods contains exactly 12 entries.
+
+        Raises:
+            ValueError: When ``month_periods`` does not have exactly 12 items.
+        """
+        if len(self.month_periods) != _MONTHS_PER_YEAR:
+            msg = (
+                f"month_periods must have exactly {_MONTHS_PER_YEAR} entries, "
+                f"got {len(self.month_periods)}"
+            )
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class PayrollYearResult:
+    """Result of a full-year payroll computation.
+
+    Contains one :class:`PeriodPayrollResult` per month in calendar order.
+    The :attr:`closing_state` is the YTD state after December and can be
+    passed as the ``opening_state`` of the next year's
+    :class:`PayrollYearRequest`.
+
+    Attributes:
+        periods: Twelve period results, one per month (index 0 = January).
+        closing_state: Final YTD state after December; equals
+            ``periods[-1].closing_state``.
+    """
+
+    periods: tuple[PeriodPayrollResult, ...]
+    closing_state: PayrollState

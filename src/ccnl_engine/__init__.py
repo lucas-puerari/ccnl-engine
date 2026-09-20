@@ -102,6 +102,8 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
+    PayrollYearRequest,
+    PayrollYearResult,
     PeriodPayrollRequest,
     PeriodPayrollResult,
 )
@@ -128,6 +130,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.orchestrator import (
     compute,
+    compute_payroll_year,
     compute_period_payroll,
     estimate_annual,
     estimate_period_effects,
@@ -177,6 +180,8 @@ __all__ = [
     "PayrollBundle",
     "PayrollPeriod",
     "PayrollState",
+    "PayrollYearRequest",
+    "PayrollYearResult",
     "PeriodPayroll",
     "PeriodPayrollInput",
     "PeriodPayrollRequest",
@@ -199,6 +204,7 @@ __all__ = [
     "WelfareInput",
     "YTDState",
     "compute",
+    "compute_payroll_year",
     "compute_period_payroll",
     "engine_version",
     "estimate_annual",
