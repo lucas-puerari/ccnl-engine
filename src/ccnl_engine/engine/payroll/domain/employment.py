@@ -1,8 +1,13 @@
-"""Employment contract type models."""
+"""Employment contract types and Employment relationship."""
 
+from __future__ import annotations
+
+from datetime import date
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
+
+from ccnl_engine.engine.payroll.domain.employer import Employer
 
 
 class Permanent(BaseModel):
@@ -46,3 +51,39 @@ Contract = Annotated[
     Permanent | FixedTerm | Apprentice,
     Field(discriminator="type"),
 ]
+
+
+class Employment(BaseModel):
+    """The employment relationship.
+
+    Ties together which CCNL applies, the contract type, the employer
+    (with headcount), and the reference date for all time-series lookups.
+
+    Attributes:
+        ccnl: Bundled CCNL filename (e.g.
+            ``"metalmeccanico-federmeccanica.json"``).
+        contract: Contract type — :class:`Permanent`, :class:`FixedTerm`,
+            or :class:`Apprentice`.
+        employer: Employer-side inputs including headcount.
+        as_of: Reference date for all time-series lookups (base pay,
+            seniority amounts, allowances, additional months). Also the
+            upper bound for deriving months of service when seniority is
+            expressed as a :class:`~ccnl_engine.engine.payroll.domain\
+.employee.SeniorityByDate`.
+        tax_year: Override the fiscal year used for tax/INPS rule loading.
+            When ``None`` (default), ``as_of.year`` is used.
+            Set explicitly when applying a specific year's tax rules to a
+            date in a different calendar year (e.g. computing a late-2025
+            payslip with 2026 tax rules already in force).
+    """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    ccnl: str
+    contract: Annotated[
+        Permanent | FixedTerm | Apprentice,
+        Field(discriminator="type"),
+    ]
+    employer: Employer
+    as_of: date
+    tax_year: int | None = None
