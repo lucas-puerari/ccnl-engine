@@ -524,7 +524,6 @@ def compute_fiscal(
             gross.gross_annual
             - inps_employee_annual
             - irpef_net
-            - conguaglio_annual
             - addizionale_regionale
             - addizionale_comunale
             + trattamento_integrativo
