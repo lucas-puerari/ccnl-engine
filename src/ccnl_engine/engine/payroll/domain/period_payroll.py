@@ -65,9 +65,9 @@ class PeriodPayrollRequest:
         period: Period-specific events (overtime, absences, sick leave, etc.).
         opening_state: YTD progressive state entering this period. Pass
             :meth:`~PayrollState.zero` for the first period of the year.
-        idempotency_key: Optional caller-supplied key to prevent duplicate
-            period closures.  The engine records but does not enforce
-            uniqueness; enforcement is the caller's responsibility.
+        idempotency_key: Optional caller-supplied key for request correlation.
+            The engine propagates this value to :class:`PeriodPayrollResult`
+            unchanged.  Uniqueness enforcement is the caller's responsibility.
     """
 
     structural: AnnualEstimateInput
@@ -96,6 +96,10 @@ class PeriodPayrollResult:
             periods or at year-end.  Defaults to :meth:`FiscalYTD.zero` when
             not explicitly set (e.g. when constructing results in tests).
         ledger_entries: All ledger entries posted for this period.
+        idempotency_key: Propagated unchanged from the corresponding
+            :class:`PeriodPayrollRequest`.  Use this to correlate results
+            with the request that produced them.  ``None`` when the request
+            did not include a key.
     """
 
     opening_state: PayrollState
@@ -105,6 +109,7 @@ class PeriodPayrollResult:
     period_employer_cost: Decimal
     fiscal_ytd: FiscalYTD = field(default_factory=FiscalYTD.zero)
     ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
+    idempotency_key: str | None = None
 
 
 @dataclass(frozen=True)

@@ -328,3 +328,29 @@ class TestPeriodPayrollRequestFields:
         key = "worker-42-2026-06"
         req = self._make_request(idempotency_key=key)
         assert req.idempotency_key == key
+
+
+class TestPeriodPayrollResultIdempotencyKey:
+    """PeriodPayrollResult carries idempotency_key propagated from request."""
+
+    def _make_result(self, **kwargs: object) -> PeriodPayrollResult:
+        defaults: dict[str, object] = {
+            "opening_state": PayrollState.zero(),
+            "closing_state": PayrollState.zero(),
+            "period_gross": Decimal("1000.00"),
+            "period_net": Decimal("750.00"),
+            "period_employer_cost": Decimal("1280.00"),
+        }
+        defaults.update(kwargs)
+        return PeriodPayrollResult(**defaults)  # type: ignore[arg-type]
+
+    def test_idempotency_key_defaults_none(self) -> None:
+        """idempotency_key is None when not supplied."""
+        result = self._make_result()
+        assert result.idempotency_key is None
+
+    def test_idempotency_key_stored(self) -> None:
+        """idempotency_key is stored when supplied."""
+        key = "worker-42-2026-06"
+        result = self._make_result(idempotency_key=key)
+        assert result.idempotency_key == key
