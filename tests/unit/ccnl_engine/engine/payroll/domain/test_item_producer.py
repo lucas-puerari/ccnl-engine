@@ -27,15 +27,18 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     EmployerContributionItem,
     ExtraMonthEarning,
     FringeBenefitItem,
+    MaternityItem,
     NightHolidayShiftEarning,
     OvertimeEarning,
     PayItemPolicy,
     PolicyDecision,
     SeniorityEarning,
+    SicknessItem,
     TaxTreatment,
     TfrAccrualItem,
     TfrTreatment,
     WelfareItem,
+    WorkInjuryItem,
 )
 
 if TYPE_CHECKING:
@@ -594,6 +597,101 @@ class TestOvertimeNightHolidayItems:
         assert dec.contribution_treatment == ContributionTreatment.INCLUDED
         assert dec.tfr_treatment == TfrTreatment.EXCLUDED
         assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
+
+
+# ---------------------------------------------------------------------------
+# Illness / maternity / work-injury items
+# ---------------------------------------------------------------------------
+
+
+class TestIllnessMaternityInjuryItems:
+    """SicknessItem, MaternityItem, WorkInjuryItem are produced from pay data."""
+
+    def test_sickness_item_produced_from_inps_indemnity(self) -> None:
+        """Non-zero sick_inps_indemnity_monthly produces a SicknessItem."""
+        work = _zero_work(
+            sick_inps_indemnity_monthly=Decimal("200.00"),
+            sick_days_monthly=Decimal(5),
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        sick = next((i for i in items if isinstance(i, SicknessItem)), None)
+        assert sick is not None
+        assert sick.amount == Decimal("200.00")
+        assert sick.sick_days == Decimal(5)
+
+    def test_sickness_item_includes_company_integration(self) -> None:
+        """SicknessItem.amount is INPS indemnity plus company integration."""
+        work = _zero_work(
+            sick_inps_indemnity_monthly=Decimal("200.00"),
+            sick_company_integration_monthly=Decimal("100.00"),
+            sick_days_monthly=Decimal(5),
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        sick = next(i for i in items if isinstance(i, SicknessItem))
+        assert sick.amount == Decimal("300.00")
+
+    def test_sickness_zero_produces_no_item(self) -> None:
+        """Zero sick pay produces no SicknessItem."""
+        work = _zero_work()
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, SicknessItem) for i in items)
+
+    def test_sickness_treatment_axes(self) -> None:
+        """SicknessItem: ORDINARY/EXCLUDED/EXCLUDED/EMPLOYEE_CASH."""
+        work = _zero_work(
+            sick_inps_indemnity_monthly=Decimal("200.00"),
+            sick_days_monthly=Decimal(5),
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        sick = next(i for i in items if isinstance(i, SicknessItem))
+        dec = sick.policy_decision
+        assert dec is not None
+        assert dec.tax_treatment == TaxTreatment.ORDINARY
+        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
+        assert dec.tfr_treatment == TfrTreatment.EXCLUDED
+        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
+
+    def test_maternity_item_produced_from_fiscal(self) -> None:
+        """Non-zero maternity_inps_indemnity_annual produces a MaternityItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_maternity = dataclasses.replace(
+            fiscal, maternity_inps_indemnity_annual=Decimal("3000.00")
+        )
+        items = _build_fiscal_items(
+            fiscal_with_maternity, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        mat = next((i for i in items if isinstance(i, MaternityItem)), None)
+        assert mat is not None
+        assert mat.amount == Decimal("3000.00")
+
+    def test_maternity_zero_produces_no_item(self) -> None:
+        """Zero maternity indemnity produces no MaternityItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(fiscal, maternity_inps_indemnity_annual=_ZERO)
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, MaternityItem) for i in items)
+
+    def test_work_injury_item_produced_from_fiscal(self) -> None:
+        """Non-zero workplace_injury_inail_indemnity_annual yields a WorkInjuryItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_injury = dataclasses.replace(
+            fiscal, workplace_injury_inail_indemnity_annual=Decimal("1500.00")
+        )
+        items = _build_fiscal_items(
+            fiscal_with_injury, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        inj = next((i for i in items if isinstance(i, WorkInjuryItem)), None)
+        assert inj is not None
+        assert inj.amount == Decimal("1500.00")
+
+    def test_work_injury_zero_produces_no_item(self) -> None:
+        """Zero work-injury indemnity produces no WorkInjuryItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(
+            fiscal, workplace_injury_inail_indemnity_annual=_ZERO
+        )
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, WorkInjuryItem) for i in items)
 
 
 # ---------------------------------------------------------------------------

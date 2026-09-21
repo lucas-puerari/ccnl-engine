@@ -26,15 +26,18 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     ExtraMonthEarning,
     FixedAllowanceEarning,
     FringeBenefitItem,
+    MaternityItem,
     NightHolidayShiftEarning,
     OvertimeEarning,
     PayItemPolicy,
     PolicyDecision,
     SeniorityEarning,
+    SicknessItem,
     TaxTreatment,
     TfrAccrualItem,
     TfrTreatment,
     WelfareItem,
+    WorkInjuryItem,
 )
 
 if TYPE_CHECKING:
@@ -198,6 +201,36 @@ EXTRA_MONTH_EARNING_POLICY = _policy(
     _ART51,
 )
 
+SICKNESS_POLICY = _policy(
+    "it/indemnity/sickness",
+    ("sickness_item",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.EXCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART51,
+)
+
+MATERNITY_POLICY = _policy(
+    "it/indemnity/maternity",
+    ("maternity_item",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.EXCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART51,
+)
+
+WORK_INJURY_POLICY = _policy(
+    "it/indemnity/work_injury",
+    ("work_injury_item",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.EXCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART51,
+)
+
 # Flat registry: kind -> policy for quick lookup.
 POLICY_REGISTRY: dict[str, PayItemPolicy] = {
     k: p
@@ -212,6 +245,9 @@ POLICY_REGISTRY: dict[str, PayItemPolicy] = {
         EMPLOYEE_CONTRIBUTION_POLICY,
         EMPLOYER_CONTRIBUTION_POLICY,
         EXTRA_MONTH_EARNING_POLICY,
+        SICKNESS_POLICY,
+        MATERNITY_POLICY,
+        WORK_INJURY_POLICY,
     )
     for k in p.applies_to_kinds
 }
@@ -382,6 +418,21 @@ def _build_work_items(
                 policy_decision=_resolve("welfare_item", as_of),
             )
         )
+    sickness_total = (
+        work.sick_inps_indemnity_monthly + work.sick_company_integration_monthly
+    )
+    if sickness_total != _ZERO:
+        items.append(
+            SicknessItem(
+                item_id=f"sickness_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=sickness_total,
+                sick_days=work.sick_days_monthly,
+                policy_decision=_resolve("sickness_item", as_of),
+            )
+        )
     return items
 
 
@@ -451,6 +502,28 @@ def _build_fiscal_items(
                 quantity=Decimal(1),
                 amount=fiscal.inail_employer_annual,
                 policy_decision=_resolve("employer_contribution_item", as_of),
+            )
+        )
+    if fiscal.maternity_inps_indemnity_annual != _ZERO:
+        items.append(
+            MaternityItem(
+                item_id=f"maternity_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.maternity_inps_indemnity_annual,
+                policy_decision=_resolve("maternity_item", as_of),
+            )
+        )
+    if fiscal.workplace_injury_inail_indemnity_annual != _ZERO:
+        items.append(
+            WorkInjuryItem(
+                item_id=f"work_injury_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.workplace_injury_inail_indemnity_annual,
+                policy_decision=_resolve("work_injury_item", as_of),
             )
         )
     return items
