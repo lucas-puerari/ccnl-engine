@@ -1,15 +1,17 @@
-"""Enforce source provenance on new reference case fixtures.
+"""Enforce source provenance on reference case fixtures.
 
-Accepts one or more paths to reference case JSON files and exits with code 1
-if any file lacks a non-empty ``source`` field at the top level.
+New fixtures (``--new`` mode, default) must have a ``source`` dict with
+``verification_status``.  Modified fixtures (``--modified`` mode) must
+retain a non-empty ``source`` dict.
 
 Usage::
 
-    python scripts/ci/check_provenance.py tests/reference/cases/foo.json ...
+    python scripts/ci/check_provenance.py new.json ...
+    python scripts/ci/check_provenance.py --modified changed.json ...
 
 Exit codes:
-    0   All supplied files have a non-empty ``source`` field.
-    1   One or more files are missing ``source``.
+    0   All supplied files pass the applicable checks.
+    1   One or more files fail.
 """
 
 from __future__ import annotations
@@ -19,33 +21,74 @@ import json
 import sys
 from pathlib import Path
 
+_NEW_REQUIRED_FIELDS = ("verification_status",)
 
-def check_files(paths: list[Path]) -> list[Path]:
-    """Return the subset of *paths* that lack a non-empty ``source`` field.
+
+def _load(path: Path) -> dict[str, object] | None:
+    try:
+        data: dict[str, object] = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"ERROR: cannot read {path}: {exc}", file=sys.stderr)
+        return None
+    else:
+        return data
+
+
+def check_new(paths: list[Path]) -> list[tuple[Path, str]]:
+    """Return (path, reason) pairs that fail the new-fixture checks.
+
+    New fixtures must have a ``source`` dict that includes
+    ``verification_status``.
 
     Returns:
-        Paths whose JSON top-level object has no ``source`` key or an empty
-        ``source`` value.
+        List of ``(path, reason)`` for each failing file.
     """
-    missing: list[Path] = []
+    failures: list[tuple[Path, str]] = []
     for path in paths:
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
-            print(f"ERROR: cannot read {path}: {exc}", file=sys.stderr)
-            missing.append(path)
+        data = _load(path)
+        if data is None:
+            failures.append((path, "unreadable"))
+            continue
+        src = data.get("source")
+        if not src:
+            failures.append((path, "missing 'source' field"))
+            continue
+        if not isinstance(src, dict):
+            failures.append((path, "'source' must be a JSON object"))
+            continue
+        missing = [f for f in _NEW_REQUIRED_FIELDS if not src.get(f)]
+        if missing:
+            failures.append((path, f"'source' missing required fields: {missing}"))
+    return failures
+
+
+def check_modified(paths: list[Path]) -> list[tuple[Path, str]]:
+    """Return (path, reason) pairs that lost their ``source`` field.
+
+    Modified fixtures that previously had a source must not remove it.
+
+    Returns:
+        List of ``(path, reason)`` for each failing file.
+    """
+    failures: list[tuple[Path, str]] = []
+    for path in paths:
+        data = _load(path)
+        if data is None:
+            failures.append((path, "unreadable"))
             continue
         if not data.get("source"):
-            missing.append(path)
-    return missing
+            failures.append((path, "lost 'source' field on modification"))
+    return failures
 
 
 def main() -> None:
-    """Entry point.
-
-    Exits with code 1 when any supplied file lacks ``source``.
-    """
+    """Entry point."""
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--modified",
+        action="store_true",
+        help="Check modified fixtures (looser rules — only requires source present).",
+    )
     parser.add_argument(
         "files",
         nargs="+",
@@ -55,26 +98,36 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    missing = check_files(args.files)
-    if missing:
+    if args.modified:
+        failures = check_modified(args.files)
+        mode = "modified"
+    else:
+        failures = check_new(args.files)
+        mode = "new"
+
+    if failures:
         print(
-            f"\n{len(missing)} reference case(s) lack a 'source' field:\n"
-            + "\n".join(f"  {p}" for p in missing),
+            f"\n{len(failures)} {mode} reference case(s) failed provenance check:\n"
+            + "\n".join(f"  {p}: {reason}" for p, reason in failures),
             file=sys.stderr,
         )
-        print(
-            "\nAdd a 'source' block documenting where the expected values "
-            "were verified:\n"
-            '  "source": {\n'
-            '    "url": "https://...",\n'
-            '    "description": "CCNL ... — Art. N salary table",\n'
-            '    "verified_at": "YYYY-MM-DD"\n'
-            "  }",
-            file=sys.stderr,
-        )
+        if not args.modified:
+            print(
+                "\nNew fixtures must include a 'source' dict with "
+                "'verification_status'. Example:\n"
+                '  "source": {\n'
+                '    "type": "official_ccnl",\n'
+                '    "document_id": "CCNL ...",\n'
+                '    "effective_date": "YYYY-MM-DD",\n'
+                '    "reviewed_by": "name@example.com",\n'
+                '    "verified_at": "YYYY-MM-DD",\n'
+                '    "verification_status": "unverified"\n'
+                "  }",
+                file=sys.stderr,
+            )
         sys.exit(1)
 
-    print(f"OK: {len(args.files)} file(s) checked, all have source.")
+    print(f"OK: {len(args.files)} {mode} file(s) checked.")
 
 
 if __name__ == "__main__":
