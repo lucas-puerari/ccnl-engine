@@ -352,6 +352,147 @@ class TestStubInvariants:
         assert svc._check_i13_single_rounding_point(_ledger(_entry())) == []
 
 
+class TestI15NonCashBenefitsNonNegative:
+    """I15: NON_CASH_BENEFITS entries must be non-negative."""
+
+    def test_positive_non_cash_passes(self) -> None:
+        """Positive NON_CASH_BENEFITS entry passes I15."""
+        _check(
+            _ledger(
+                _entry(),
+                _entry(
+                    entry_id="fringe1",
+                    pay_item_kind="fringe_benefit_item",
+                    account=AccountKind.NON_CASH_BENEFITS,
+                    amount=_V,
+                ),
+            )
+        )
+
+    def test_negative_non_cash_raises(self) -> None:
+        """Negative NON_CASH_BENEFITS entry raises I15."""
+        with pytest.raises(ReconciliationError) as exc_info:
+            _check(
+                _ledger(
+                    _entry(),
+                    _entry(
+                        entry_id="fringe1",
+                        pay_item_kind="fringe_benefit_item",
+                        account=AccountKind.NON_CASH_BENEFITS,
+                        amount=Decimal("-10.00"),
+                    ),
+                )
+            )
+        assert any(v.code == "I15" for v in exc_info.value.violations)
+
+    def test_zero_non_cash_passes_invariant(self) -> None:
+        """Zero NON_CASH_BENEFITS does not violate I15 in isolation."""
+        svc = ReconciliationService()
+        ledger = _ledger(
+            _entry(
+                entry_id="fringe1",
+                pay_item_kind="fringe_benefit_item",
+                account=AccountKind.NON_CASH_BENEFITS,
+                amount=_ZERO,
+            ),
+        )
+        assert svc._check_i15_non_cash_benefits_non_negative(ledger) == []
+
+
+class TestI16OrdinaryTaxNonNegative:
+    """I16: ORDINARY_TAX entries must be non-negative."""
+
+    def test_positive_ordinary_tax_passes(self) -> None:
+        """Positive ORDINARY_TAX entry passes I16."""
+        _check(
+            _ledger(
+                _entry(),
+                _entry(
+                    entry_id="irpef1",
+                    pay_item_kind="irpef",
+                    account=AccountKind.ORDINARY_TAX,
+                    amount=_V,
+                ),
+            )
+        )
+
+    def test_negative_ordinary_tax_raises(self) -> None:
+        """Negative ORDINARY_TAX entry raises I16."""
+        with pytest.raises(ReconciliationError) as exc_info:
+            _check(
+                _ledger(
+                    _entry(),
+                    _entry(
+                        entry_id="irpef1",
+                        pay_item_kind="irpef",
+                        account=AccountKind.ORDINARY_TAX,
+                        amount=Decimal("-50.00"),
+                    ),
+                )
+            )
+        assert any(v.code == "I16" for v in exc_info.value.violations)
+
+    def test_zero_ordinary_tax_passes_invariant(self) -> None:
+        """Zero ORDINARY_TAX does not violate I16 in isolation."""
+        svc = ReconciliationService()
+        ledger = _ledger(
+            _entry(
+                entry_id="irpef1",
+                pay_item_kind="irpef",
+                account=AccountKind.ORDINARY_TAX,
+                amount=_ZERO,
+            ),
+        )
+        assert svc._check_i16_ordinary_tax_non_negative(ledger) == []
+
+
+class TestI17TfrSettlementNonNegative:
+    """I17: TFR_SETTLEMENT entries must be non-negative."""
+
+    def test_positive_tfr_settlement_passes(self) -> None:
+        """Positive TFR_SETTLEMENT entry passes I17."""
+        _check(
+            _ledger(
+                _entry(),
+                _entry(
+                    entry_id="tfr_liq1",
+                    pay_item_kind="tfr_settlement_item",
+                    account=AccountKind.TFR_SETTLEMENT,
+                    amount=_V,
+                ),
+            )
+        )
+
+    def test_negative_tfr_settlement_raises(self) -> None:
+        """Negative TFR_SETTLEMENT entry raises I17."""
+        with pytest.raises(ReconciliationError) as exc_info:
+            _check(
+                _ledger(
+                    _entry(),
+                    _entry(
+                        entry_id="tfr_liq1",
+                        pay_item_kind="tfr_settlement_item",
+                        account=AccountKind.TFR_SETTLEMENT,
+                        amount=Decimal("-100.00"),
+                    ),
+                )
+            )
+        assert any(v.code == "I17" for v in exc_info.value.violations)
+
+    def test_zero_tfr_settlement_passes_invariant(self) -> None:
+        """Zero TFR_SETTLEMENT does not violate I17 in isolation."""
+        svc = ReconciliationService()
+        ledger = _ledger(
+            _entry(
+                entry_id="tfr_liq1",
+                pay_item_kind="tfr_settlement_item",
+                account=AccountKind.TFR_SETTLEMENT,
+                amount=_ZERO,
+            ),
+        )
+        assert svc._check_i17_tfr_settlement_non_negative(ledger) == []
+
+
 class TestCleanLedger:
     """A well-formed ledger with all standard entries passes all checks."""
 
