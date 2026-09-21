@@ -62,28 +62,3 @@ The package is split in two namespaces:
 
 JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
 behaviour. End-to-end scenarios live in `tests/integration/cases/`.
-
----
-
-## Available commands
-
-| Command | When to use |
-|---------|-------------|
-| `/new-contract` | Full 10-step workflow to add one CCNL (research → merged PR) |
-| `/batch N <command>` | Repeat `<command>` N times without stopping; tracks progress via `.claude/GOAL.md` |
-| `/new-branch <type> <slug>` | Create a CI-valid branch from up-to-date main |
-
-`/batch` has built-in defaults for known commands (e.g. `/new-contract`).
-For custom commands, supply a `progress_cmd` — a bash one-liner returning the current completion count.
-
----
-
-## Common pitfalls
-
-- **Apprenticeship type**: verify against the actual CCNL renewal year. Pre-renewal and post-renewal may use different models.
-- **Conglobated vs split**: run the back-calculation on at least 3 seniority levels before writing JSON.
-- **`hourly_divisor`**: derive from the contract source, never copy from another contract.
-- **Docstrings and comments**: ruff E501 applies — keep under 88 characters.
-- **Imports in tests**: ruff PLC0415 rejects imports inside test functions. All imports at module top level.
-- **Multi-line commits**: the git hook rejects them with no override. One line only.
-- **PR body AI mention**: the CI workflow fails the PR silently if the body mentions Claude or Anthropic. Write PR bodies in first person as the author.
