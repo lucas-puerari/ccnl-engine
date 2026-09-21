@@ -7,6 +7,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from datetime import date
+
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
     from ccnl_engine.engine.payroll.domain.scenario import (
@@ -16,6 +18,37 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 _MONTHS_PER_YEAR = 12
+
+
+@dataclass(frozen=True)
+class PeriodId:
+    """Identifies a single payroll period by calendar year and month.
+
+    Use this instead of relying on ``structural.employment.as_of`` to
+    identify the competence period.  Both :class:`PeriodPayrollRequest`
+    and :class:`PeriodPayrollResult` carry a ``period_id`` so consumers can
+    match requests to results without parsing dates.
+
+    Attributes:
+        year: Calendar year (e.g. ``2026``).
+        month: Month of competence, 1-12.
+    """
+
+    year: int
+    month: int
+
+    def __post_init__(self) -> None:
+        """Validate year and month ranges.
+
+        Raises:
+            ValueError: When ``month`` is outside 1-12 or ``year`` is zero.
+        """
+        if not (1 <= self.month <= 12):
+            msg = f"month must be 1-12, got {self.month}"
+            raise ValueError(msg)
+        if self.year <= 0:
+            msg = f"year must be positive, got {self.year}"
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True)
@@ -31,11 +64,24 @@ class PeriodPayrollRequest:
         period: Period-specific events (overtime, absences, sick leave, etc.).
         opening_state: YTD progressive state entering this period. Pass
             :meth:`~PayrollState.zero` for the first period of the year.
+        period_id: Explicit competence period.  When ``None``, the period is
+            inferred from ``structural.employment.as_of``; a
+            :class:`DeprecationWarning` is emitted by the service at call
+            time.  Set this field to silence the warning.
+        payment_date: Intended payment date.  When ``None`` and
+            ``period_id`` is set, defaults to the last day of the competence
+            month.  No default is derived when both are ``None``.
+        idempotency_key: Optional caller-supplied key to prevent duplicate
+            period closures.  The engine records but does not enforce
+            uniqueness; enforcement is the caller's responsibility.
     """
 
     structural: AnnualEstimateInput
     period: PeriodPayrollInput
     opening_state: PayrollState
+    period_id: PeriodId | None = None
+    payment_date: date | None = None
+    idempotency_key: str | None = None
 
 
 @dataclass(frozen=True)
@@ -54,6 +100,9 @@ class PeriodPayrollResult:
         period_net: Net pay for this period only.
         period_employer_cost: Total employer cost for this period only.
         ledger_entries: All ledger entries posted for this period.
+        period_id: The competence period that was closed.  ``None`` when the
+            result was produced from a request without an explicit
+            ``period_id``.
     """
 
     opening_state: PayrollState
@@ -62,6 +111,7 @@ class PeriodPayrollResult:
     period_net: Decimal
     period_employer_cost: Decimal
     ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
+    period_id: PeriodId | None = None
 
 
 @dataclass(frozen=True)
