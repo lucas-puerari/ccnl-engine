@@ -883,9 +883,8 @@ class TestCalculationPayItems:
         calc = estimate_annual(_req(), bundle=bundle)
         assert any(isinstance(i, BaseSalaryEarning) for i in calc.pay_items)
 
-    def test_pay_items_default_empty_tuple(self) -> None:
-        """Calculation.pay_items defaults to an empty tuple when not set."""
-        # Use Calculation.from_dict to create a calculation without pay_items
+    def test_pay_items_round_trip_preserved(self) -> None:
+        """Calculation.from_dict round-trip preserves all pay_items."""
         from ccnl_engine.engine.payroll.domain.bundle import (  # noqa: PLC0415
             make_bundle,
         )
@@ -903,9 +902,9 @@ class TestCalculationPayItems:
 
         bundle = make_bundle(_build_ccnl(), _RULES, None)
         calc = estimate_annual(_req(), bundle=bundle)
-        # Reconstruct from dict (serialisation omits pay_items → defaults to ())
         reconstructed = Calculation.from_dict(calc.to_dict())
-        assert reconstructed.pay_items == ()
+        assert len(reconstructed.pay_items) == len(calc.pay_items)
+        assert reconstructed.pay_items == calc.pay_items
 
 
 # ---------------------------------------------------------------------------

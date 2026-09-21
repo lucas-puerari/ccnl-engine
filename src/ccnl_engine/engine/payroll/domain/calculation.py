@@ -17,6 +17,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, cast
 
+from pydantic import TypeAdapter
+
 if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityCatalog, CapabilityGap
 
@@ -33,6 +35,8 @@ from ccnl_engine.engine.payroll.domain.trace import (
     TraceStep,
 )
 from ccnl_engine.engine.primitives import FrozenDict
+
+_PAY_ITEM_ADAPTER: TypeAdapter[PayItem] = TypeAdapter(PayItem)
 
 __all__ = [
     "Calculation",
@@ -86,12 +90,8 @@ class Calculation:
     ruleset_verification: Mapping[str, str] = dataclasses.field(
         default_factory=FrozenDict
     )
-    ledger_entries: tuple[LedgerEntry, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
-    pay_items: tuple[PayItem, ...] = dataclasses.field(
-        default_factory=tuple, compare=False
-    )
+    ledger_entries: tuple[LedgerEntry, ...] = dataclasses.field(default_factory=tuple)
+    pay_items: tuple[PayItem, ...] = dataclasses.field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         """Freeze ruleset_version and ruleset_verification after construction."""
@@ -124,6 +124,12 @@ class Calculation:
             out["ruleset_verification"] = dict(
                 sorted(self.ruleset_verification.items())
             )
+        if self.ledger_entries:
+            out["ledger_entries"] = [
+                e.model_dump(mode="json") for e in self.ledger_entries
+            ]
+        if self.pay_items:
+            out["pay_items"] = [item.model_dump(mode="json") for item in self.pay_items]
         return out
 
     @classmethod
@@ -165,6 +171,10 @@ class Calculation:
                 )
                 raise TypeError(msg)
         ruleset_verification = cast(dict[str, str], rv_raw_ver)
+        ledger_raw = cast(list[dict[str, object]], data.get("ledger_entries", []))
+        ledger_entries = tuple(LedgerEntry.model_validate(e) for e in ledger_raw)
+        pay_items_raw = cast(list[dict[str, object]], data.get("pay_items", []))
+        pay_items = tuple(_PAY_ITEM_ADAPTER.validate_python(p) for p in pay_items_raw)
         return cls(
             engine_version=engine_version,
             ruleset_version=ruleset_version,
@@ -178,6 +188,8 @@ class Calculation:
                 if "trace" in data
                 else CalculationTrace(steps=())
             ),
+            ledger_entries=ledger_entries,
+            pay_items=pay_items,
         )
 
     def to_json(self) -> str:

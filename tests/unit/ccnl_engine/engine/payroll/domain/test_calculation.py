@@ -36,6 +36,11 @@ from ccnl_engine.engine.payroll.domain.components import (
 )
 from ccnl_engine.engine.payroll.domain.employee import RalOverride, SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.engine.payroll.domain.pay_items import (
+    BaseSalaryEarning,
+    CompetencePeriod,
+)
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
@@ -1105,6 +1110,155 @@ class TestCheckCapabilityGaps:
             ),
         )
         assert calc.check_capability_gaps(catalog) == ()
+
+
+class TestCalculationAuditRoundTrip:
+    """ledger_entries and pay_items survive a to_dict/from_dict round-trip."""
+
+    def _base_calc(self) -> Calculation:
+        return estimate_annual(_req(), repo=_REPO)
+
+    def _ledger_entry(self) -> LedgerEntry:
+        return LedgerEntry(
+            entry_id="e1",
+            competence_period=CompetencePeriod(year=2026, month=1),
+            payment_date=date(2026, 1, 31),
+            pay_item_id="pi1",
+            pay_item_kind="base_salary_earning",
+            account=AccountKind.CASH_EARNINGS,
+            amount=Decimal("1500.00"),
+            source_item_id="pi1",
+            policy_decision_id="pd1",
+        )
+
+    def _pay_item(self) -> BaseSalaryEarning:
+        return BaseSalaryEarning(
+            item_id="pi1",
+            competence_period=CompetencePeriod(year=2026, month=1),
+            payment_date=date(2026, 1, 31),
+            quantity=Decimal(1),
+            amount=Decimal("1500.00"),
+        )
+
+    def test_ledger_entries_survive_round_trip(self) -> None:
+        """ledger_entries are preserved through to_dict/from_dict."""
+        base = self._base_calc()
+        entry = self._ledger_entry()
+        calc = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            ledger_entries=(entry,),
+        )
+        restored = Calculation.from_dict(calc.to_dict())
+        assert len(restored.ledger_entries) == 1
+        assert restored.ledger_entries[0] == entry
+
+    def test_pay_items_survive_round_trip(self) -> None:
+        """pay_items are preserved through to_dict/from_dict."""
+        base = self._base_calc()
+        item = self._pay_item()
+        calc = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            pay_items=(item,),
+        )
+        restored = Calculation.from_dict(calc.to_dict())
+        assert len(restored.pay_items) == 1
+        assert restored.pay_items[0] == item
+
+    def test_source_item_id_and_policy_decision_id_preserved(self) -> None:
+        """source_item_id and policy_decision_id on LedgerEntry survive round-trip."""
+        base = self._base_calc()
+        entry = self._ledger_entry()
+        calc = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            ledger_entries=(entry,),
+        )
+        restored = Calculation.from_dict(calc.to_dict())
+        r = restored.ledger_entries[0]
+        assert r.source_item_id == "pi1"
+        assert r.policy_decision_id == "pd1"
+
+    def test_equality_includes_ledger_entries(self) -> None:
+        """Two Calculations differing only in ledger_entries are not equal."""
+        base = self._base_calc()
+        entry = self._ledger_entry()
+        with_entry = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            ledger_entries=(entry,),
+        )
+        without_entry = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+        )
+        assert with_entry != without_entry
+
+    def test_equality_includes_pay_items(self) -> None:
+        """Two Calculations differing only in pay_items are not equal."""
+        base = self._base_calc()
+        item = self._pay_item()
+        with_item = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            pay_items=(item,),
+        )
+        without_item = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+        )
+        assert with_item != without_item
+
+    def test_empty_ledger_and_pay_items_omitted_from_dict(self) -> None:
+        """to_dict omits ledger_entries/pay_items when both are empty."""
+        base = self._base_calc()
+        calc = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+        )
+        d = calc.to_dict()
+        assert "ledger_entries" not in d
+        assert "pay_items" not in d
+
+    def test_round_trip_json_preserves_audit_artifacts(self) -> None:
+        """to_json/from_json preserves ledger_entries and pay_items."""
+        base = self._base_calc()
+        calc = Calculation(
+            engine_version=base.engine_version,
+            ruleset_version=base.ruleset_version,
+            input_snapshot=base.input_snapshot,
+            result=base.result,
+            trace=base.trace,
+            ledger_entries=(self._ledger_entry(),),
+            pay_items=(self._pay_item(),),
+        )
+        restored = Calculation.from_json(calc.to_json())
+        assert restored == calc
 
 
 class TestInternalScenarioValidation:

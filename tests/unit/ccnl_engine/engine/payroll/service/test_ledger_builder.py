@@ -247,11 +247,12 @@ class TestLedgerEntriesOnCalculation:
         ]
         assert len(earnings) == 1
 
-    def test_from_dict_round_trip_has_empty_ledger(self) -> None:
-        """Calculation.from_dict round-trip produces an empty ledger_entries tuple."""
+    def test_from_dict_round_trip_preserves_ledger(self) -> None:
+        """Calculation.from_dict round-trip preserves all ledger entries."""
         calc = _calc()
         restored = Calculation.from_dict(calc.to_dict())
-        assert restored.ledger_entries == ()
+        assert len(restored.ledger_entries) == len(calc.ledger_entries)
+        assert restored.ledger_entries == calc.ledger_entries
 
     def test_all_entries_have_payment_date(self) -> None:
         """Every ledger entry has a payment_date in the competence month."""
