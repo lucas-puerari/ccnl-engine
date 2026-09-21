@@ -127,6 +127,7 @@ def _load_year_rules_cached(
         ulteriore_detrazione=rules.ulteriore_detrazione,
         somma_esente=rules.somma_esente,
         sterilizzazione_detrazioni=rules.sterilizzazione_detrazioni,
+        work_deduction=rules.work_deduction,
         notes=rules.notes,
         sources=rules.sources,
         extraction=rules.extraction,

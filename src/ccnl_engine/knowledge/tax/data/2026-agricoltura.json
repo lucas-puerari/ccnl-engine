@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "a5db4148a7aa4db954b0e9c7d12dba26c96de823d0cf1133c0309154a55738d8",
+    "source_hash": "9dbeb5104f542c29546aa3ad080f9df4bdd261ff5c43812ae272caa7f076f982",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -44,6 +44,20 @@
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
     "reduction": "440.00"
+  },
+  "work_deduction": {
+    "detr_flat": "1955",
+    "detr_a": "1910",
+    "detr_b_coeff": "1190",
+    "detr_b_span": "13000",
+    "detr_c_span": "22000",
+    "detr_lo": "15000",
+    "detr_mid": "28000",
+    "detr_high": "50000",
+    "detr_increment": "65",
+    "increment_lo": "25000",
+    "increment_hi": "35000",
+    "seventy_five": "75"
   },
   "notes": [
     "INPS rates: Gestione Previdenziale Speciale per i Lavoratori Agricoli (OTI, standard agriculture). Employee 8.84%; employer 21.66%; total 30.50%. Source: ciatreviso.it citing INPS 2026 rates (https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/); consistent with INPS Circular 46/2025 2025 rates (21.46% employer) adjusted +0.20pp for 2026.",
