@@ -47,6 +47,12 @@ Usage::
 
 from __future__ import annotations
 
+from ccnl_engine.engine.capability_catalog import (
+    CapabilityCatalog,
+    CapabilityEntry,
+    CapabilityGap,
+    CapabilityStatus,
+)
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.contract.service.discovery import (
     CcnlId,
@@ -157,6 +163,10 @@ __all__ = [
     "BonusInput",
     "Calculation",
     "CalculationTrace",
+    "CapabilityCatalog",
+    "CapabilityEntry",
+    "CapabilityGap",
+    "CapabilityStatus",
     "CcnlEngineError",
     "CcnlId",
     "CcnlInfo",
