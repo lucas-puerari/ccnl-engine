@@ -26,16 +26,9 @@ if TYPE_CHECKING:
 from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.calculation import (
-    _NO_MATCH,
     Calculation,
     CalculationTrace,
     InputSnapshot,
-    _deep_freeze,
-    _dump,
-    _load_by_hint,
-    _load_dataclass,
-    _load_union,
-    _try_union_member,
 )
 from ccnl_engine.engine.payroll.domain.components import (
     CalculationStatus,
@@ -62,6 +55,15 @@ from ccnl_engine.engine.payroll.service.orchestrator import (
     estimate_period_effects,
 )
 from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.serialization.dataclass_codec import (
+    _NO_MATCH,
+    _deep_freeze,
+    _dump,
+    _load_by_hint,
+    _load_dataclass,
+    _load_union,
+    _try_union_member,
+)
 from ccnl_engine.engine.serialization.envelope import reproduce
 from tests.helpers import make_minimal_ccnl, make_year_rules
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
