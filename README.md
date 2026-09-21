@@ -21,38 +21,40 @@ I never really understood employment contracts or pay slips. The whole system st
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-compute(PayrollScenario) → Calculation
+estimate_annual(AnnualEstimateInput) → Calculation
 ```
 
-The returned `Calculation` is self-describing: along with the `PayrollResult` (`.result`) it records the engine version, the exact CCNL / tax / INPS / surtax ruleset revisions used (`.ruleset_version`), and a snapshot of the inputs (`.input_snapshot`) — so any figure can be traced back to the engine and data that produced it.
+The returned `Calculation` is self-describing: along with the `AnnualEstimate` (`.result`) it records the engine version, the exact CCNL / tax / INPS / surtax ruleset revisions used (`.ruleset_version`), and a snapshot of the inputs (`.input_snapshot`) — so any figure can be traced back to the engine and data that produced it.
 
 ## Quickstart
 
 ```python
 from datetime import date
 from ccnl_engine import (
-    Employee, Employer, Employment,
-    PayrollScenario, Permanent, compute,
+    AnnualEstimateInput, Employee, Employer, Employment,
+    Permanent, estimate_annual,
 )
 
-calculation = compute(PayrollScenario(
-    employee=Employee(level_code="4"),
-    employment=Employment(
-        ccnl="commercio-confcommercio.json",
-        contract=Permanent(),
-        employer=Employer(num_employees=50),
-        calculation_date=date(2026, 9, 1),
-    ),
-))
+calculation = estimate_annual(
+    AnnualEstimateInput(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=date(2026, 1, 1),
+        ),
+    )
+)
 
-payroll = calculation.result  # attributes are also forwarded onto the calculation
-print(payroll.net_annual)              # → Decimal('...')
-print(payroll.trattamento_integrativo) # → Decimal('...') — Art. 1 D.L. 3/2020 bonus
-print(payroll.fiscal_simplifications)  # → frozenset of items not computed by the engine
-print(payroll.employer_cost_annual)    # → Decimal('...')
+payroll = calculation.result
+print(payroll.net_annual)                          # → Decimal('...')
+print(payroll.taxes.trattamento_integrativo)       # → Decimal('...') — Art. 1 D.L. 3/2020
+print(payroll.coverage.status)                     # → 'complete' | 'partial'
+print(payroll.employer_cost.employer_cost_annual)  # → Decimal('...')
 
-print(calculation.engine_version)      # → '0.5.1'
-print(calculation.ruleset_version)     # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
+print(calculation.engine_version)   # → '0.5.1'
+print(calculation.ruleset_version)  # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
 ```
 
 ## CCNL coverage

@@ -221,6 +221,9 @@ __marimo__/
 demo/_build/
 demo/wheels/
 
+# mutmut mutation testing output
+mutants/
+
 # Root-level
 .claude/GOAL.md
 .vscode/
