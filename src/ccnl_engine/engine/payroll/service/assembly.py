@@ -12,6 +12,7 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     TraceCategory,
     TraceStep,
 )
+from ccnl_engine.engine.payroll.domain.item_producer import build_pay_items
 from ccnl_engine.engine.payroll.service import contributions as _contrib
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.trace import build_fiscal_trace
@@ -396,6 +397,7 @@ def build_calculation(
         scenario.art15_deductions is not None
         and scenario.art15_deductions.has_any_onere
     )
+    as_of = scenario.employment.as_of
     return Calculation(
         engine_version=engine_version,
         ruleset_version=_ruleset_versions(
@@ -415,4 +417,5 @@ def build_calculation(
             fiscal_steps=fiscal_steps,
         ),
         ledger_entries=tuple(ledger.entries()) if ledger is not None else (),
+        pay_items=build_pay_items(gross, work, fiscal, as_of),
     )
