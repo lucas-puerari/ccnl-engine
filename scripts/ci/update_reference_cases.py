@@ -551,16 +551,16 @@ def _classify_results(
 
 
 def _report_oracle_regressions(regressions: list[Path]) -> None:
-    """Print a structured error for independently-verified cases that diverged."""
+    """Print a structured error for source-linked cases that diverged."""
     names = "\n".join(f"  {p.name}" for p in regressions)
     print(
-        f"\n{len(regressions)} independently-verified case(s) diverged "
+        f"\n{len(regressions)} source-linked case(s) diverged "
         f"from the engine output:\n{names}\n\n"
-        "These cases have a 'source' field — their expected values were "
-        "verified against an external document.\n"
+        "These cases have a 'source' field — their expected values reference "
+        "an external document.\n"
         "Do NOT run the update script to fix this: investigate why the engine "
         "output changed, then either correct the engine or re-verify the case "
-        "against the source and update the 'source.verified_at' date.",
+        "against the source and update 'source.verified_at'.",
         file=sys.stderr,
     )
 
@@ -585,9 +585,9 @@ def main() -> None:
     In dry-run mode, exits with code 1 when any case would change and
     distinguishes two categories:
 
-    * **Oracle regression** — a case with a ``source`` field would change.
-      This indicates the engine diverged from a value verified against an
-      external document.  Do NOT auto-update; investigate the cause.
+    * **Source-linked regression** — a case with a ``source`` field would
+      change.  This indicates the engine diverged from a referenced value.
+      Do NOT auto-update; investigate the cause.
     * **Auto-promotion** — a case without a ``source`` field would change.
       Running the script would silently crystallise engine output as the new
       expected value.  Acceptable only after manual review of the diff.

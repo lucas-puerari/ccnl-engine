@@ -161,11 +161,23 @@ jobs:
             -- tests/reference/cases/ 2>/dev/null || true)
           if [ -z "$ADDED" ]; then
             echo "No new reference cases added."
+          else
+            echo "New reference cases found:"
+            echo "$ADDED"
+            python scripts/ci/check_provenance.py $ADDED
+          fi
+
+      - name: Reject modified reference cases that lost their source
+        run: |
+          MODIFIED=$(git diff --name-only --diff-filter=M HEAD~1 HEAD \
+            -- tests/reference/cases/ 2>/dev/null || true)
+          if [ -z "$MODIFIED" ]; then
+            echo "No reference cases modified."
             exit 0
           fi
-          echo "New reference cases found:"
-          echo "$ADDED"
-          python scripts/ci/check_provenance.py $ADDED
+          echo "Modified reference cases found:"
+          echo "$MODIFIED"
+          python scripts/ci/check_provenance.py --modified $MODIFIED
 
   wheel-smoke:
     name: Wheel smoke test
