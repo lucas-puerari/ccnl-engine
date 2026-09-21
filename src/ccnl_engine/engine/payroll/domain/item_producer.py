@@ -33,6 +33,8 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     PolicyDecision,
     SeniorityEarning,
     SicknessItem,
+    TaxCreditItem,
+    TaxRefundItem,
     TaxTreatment,
     TfrAccrualItem,
     TfrSettlementItem,
@@ -53,6 +55,7 @@ _EPOCH = date(2000, 1, 1)
 _ART51 = "Art. 51 TUIR"
 _ART2120 = "Art. 2120 c.c."
 _DPR22_5 = "DPR 917/1986 art. 22"
+_ART12_13 = "Art. 12-13 TUIR"
 
 
 def _decision(
@@ -242,6 +245,26 @@ WORK_INJURY_POLICY = _policy(
     _ART51,
 )
 
+TAX_CREDIT_POLICY = _policy(
+    "it/tax/credit",
+    ("tax_credit_item",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.EXCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART12_13,
+)
+
+TAX_REFUND_POLICY = _policy(
+    "it/tax/refund",
+    ("tax_refund_item",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.EXCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART12_13,
+)
+
 # Flat registry: kind -> policy for quick lookup.
 POLICY_REGISTRY: dict[str, PayItemPolicy] = {
     k: p
@@ -260,6 +283,8 @@ POLICY_REGISTRY: dict[str, PayItemPolicy] = {
         SICKNESS_POLICY,
         MATERNITY_POLICY,
         WORK_INJURY_POLICY,
+        TAX_CREDIT_POLICY,
+        TAX_REFUND_POLICY,
     )
     for k in p.applies_to_kinds
 }
@@ -547,6 +572,56 @@ def _build_fiscal_items(
                 quantity=Decimal(1),
                 amount=fiscal.workplace_injury_inail_indemnity_annual,
                 policy_decision=_resolve("work_injury_item", as_of),
+            )
+        )
+    items.extend(_build_tax_credit_items(fiscal, period, payment, yymm, as_of))
+    return items
+
+
+def _build_tax_credit_items(
+    fiscal: FiscalPay,
+    period: CompetencePeriod,
+    payment: date,
+    yymm: str,
+    as_of: date,
+) -> list[PayItem]:
+    """Produce TaxCreditItem and TaxRefundItem from deduction and conguaglio fields.
+
+    Returns:
+        List of tax credit and refund items for the period.
+    """
+    items: list[PayItem] = []
+    if fiscal.work_income_deduction != _ZERO:
+        items.append(
+            TaxCreditItem(
+                item_id=f"work_deduction_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.work_income_deduction,
+                policy_decision=_resolve("tax_credit_item", as_of),
+            )
+        )
+    if fiscal.fam_total != _ZERO:
+        items.append(
+            TaxCreditItem(
+                item_id=f"family_deduction_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.fam_total,
+                policy_decision=_resolve("tax_credit_item", as_of),
+            )
+        )
+    if fiscal.conguaglio_annual > _ZERO:
+        items.append(
+            TaxRefundItem(
+                item_id=f"conguaglio_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.conguaglio_annual,
+                policy_decision=_resolve("tax_refund_item", as_of),
             )
         )
     return items
