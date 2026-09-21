@@ -65,16 +65,14 @@ class TestCapabilityReportGaps:
         assert len(absent_gaps) > 0
 
     def test_known_unimplemented_features_in_gaps(self) -> None:
-        """overtime, night_work, and holiday_work are absent from the pipeline."""
+        """bilateral_funds is declared computed but absent from the pipeline."""
         result = calculate_period(_req())
         absent_features = {
             g.feature
             for g in result.capability_report.gaps
             if g.kind == CapabilityGapKind.FEATURE_ABSENT
         }
-        assert "overtime" in absent_features
-        assert "night_work" in absent_features
-        assert "holiday_work" in absent_features
+        assert "bilateral_funds" in absent_features
 
     def test_implemented_features_not_in_gaps(self) -> None:
         """Features present in _OBSERVED do not produce FEATURE_ABSENT gaps."""
@@ -86,7 +84,9 @@ class TestCapabilityReportGaps:
         }
         assert "base_salary" not in absent_features
         assert "irpef" not in absent_features
-        assert "inps_employee" not in absent_features
+        assert "overtime" not in absent_features
+        assert "night_work" not in absent_features
+        assert "holiday_work" not in absent_features
 
 
 class TestCapabilityReportStatus:

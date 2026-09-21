@@ -1,14 +1,12 @@
 """Period-first payroll calculation: single competence month.
 
 The computation order is:
-  1. Resolve gross from the CCNL salary table for the period date.
-  2. Compute INPS contributions and TFR accrual on the period gross.
-  3. Project annual taxable income and compute IRPEF via conguaglio YTD.
-  4. Build pay items and ledger entries from the resolved amounts.
-  5. Advance the YTD state.
-
-This is a vertical slice: permanent employee, ordinary month, no overtime
-or absences, no seniority increments beyond what _level_chain resolves.
+  1. Process variable work events into aggregated totals.
+  2. Resolve gross from the CCNL salary table for the period date.
+  3. Compute INPS contributions and TFR accrual on the augmented bases.
+  4. Project annual taxable income and compute IRPEF via conguaglio YTD.
+  5. Build pay items and ledger entries from the resolved amounts.
+  6. Advance the YTD state.
 """
 
 from __future__ import annotations
@@ -25,18 +23,35 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import (
+    AbsenceDeduction,
     BaseSalaryEarning,
+    BonusEarning,
     CompetencePeriod,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    FringeBenefitItem,
+    NightHolidayShiftEarning,
+    OvertimeEarning,
     PayItem,
+    SicknessItem,
     TaxCreditItem,
     TfrAccrualItem,
+    WelfareItem,
 )
 from ccnl_engine.engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.contributions import resolve_rates
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.events import (
+    AbsenceEvent,
+    BonusEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    SickLeaveEvent,
+    WorkEvent,
+)
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
@@ -65,7 +80,35 @@ _OBSERVED: dict[str, str] = {
     "addizionale_regionale": "computed",
     "addizionale_comunale": "computed",
     "family_deductions": "computed",
+    "overtime": "computed",
+    "night_work": "computed",
+    "holiday_work": "computed",
+    "absence": "computed",
+    "leave": "computed",
+    "sickness": "computed",
+    "fringe_benefit": "computed",
+    "welfare": "computed",
+    "bonus_pdr": "computed",
 }
+
+
+@dataclass(frozen=True)
+class _EventTotals:
+    """Aggregated event amounts for the period."""
+
+    gross: Decimal
+    inps_base: Decimal
+    tfr_base: Decimal
+    irpef_base: Decimal
+
+    @classmethod
+    def zero(cls) -> _EventTotals:
+        """Return a zero-valued totals object.
+
+        Returns:
+            An :class:`_EventTotals` with all fields at zero.
+        """
+        return cls(gross=_ZERO, inps_base=_ZERO, tfr_base=_ZERO, irpef_base=_ZERO)
 
 
 @dataclass(frozen=True)
@@ -73,6 +116,7 @@ class _PeriodAmounts:
     """All resolved monetary amounts for one pay period."""
 
     monthly_gross: Decimal
+    period_gross: Decimal
     inps_employee: Decimal
     inps_employer: Decimal
     tfr: Decimal
@@ -124,22 +168,35 @@ def _trattamento_period(
 
 def _compute_amounts(
     monthly_gross: Decimal,
+    event_totals: _EventTotals,
     opening: PeriodState,
     additional_months: int,
     rules: YearRules,
 ) -> _PeriodAmounts:
-    """Resolve all monetary amounts for the period from gross and YTD state.
+    """Resolve all monetary amounts for the period from gross, events and YTD state.
 
     Returns:
         A :class:`_PeriodAmounts` with all rounded monetary quantities.
     """
     rates = resolve_rates(rules, _PERMANENT, None)
-    inps_employee = money(monthly_gross * rates.employee_rate)
-    inps_employer = money(monthly_gross * rates.employer_rate)
-    tfr = money(monthly_gross / rules.tfr.accrual_divisor)
 
-    annual_gross = monthly_gross * additional_months
-    taxable = annual_gross - money(annual_gross * rates.employee_rate)
+    # INPS: base salary + event INPS-liable amounts
+    period_inps_base = monthly_gross + event_totals.inps_base
+    inps_employee = money(period_inps_base * rates.employee_rate)
+    inps_employer = money(period_inps_base * rates.employer_rate)
+
+    # TFR: base salary + event TFR-liable amounts
+    period_tfr_base = monthly_gross + event_totals.tfr_base
+    tfr = money(period_tfr_base / rules.tfr.accrual_divisor)
+
+    # IRPEF: recurring base projected annually + event IRPEF-liable amounts (one-off)
+    recurring_annual = monthly_gross * additional_months
+    recurring_inps_annual = money(recurring_annual * rates.employee_rate)
+    recurring_taxable = recurring_annual - recurring_inps_annual
+    event_inps_on_irpef = money(event_totals.inps_base * rates.employee_rate)
+    event_taxable = event_totals.irpef_base - event_inps_on_irpef
+    taxable = recurring_taxable + event_taxable
+
     ig = irpef_svc.irpef_gross(taxable, rules)
     wd = irpef_svc.work_income_deduction(taxable, constants=rules.work_deduction)
     irpef_net_annual = ig - wd
@@ -152,11 +209,13 @@ def _compute_amounts(
         taxable, ig, wd, rules.trattamento_integrativo, additional_months
     )
 
-    period_net = money(monthly_gross - inps_employee - period_irpef + period_tratt)
-    period_employer_cost = money(monthly_gross + inps_employer + tfr)
+    period_gross = monthly_gross + event_totals.gross
+    period_net = money(period_gross - inps_employee - period_irpef + period_tratt)
+    period_employer_cost = money(period_gross + inps_employer + tfr)
 
     return _PeriodAmounts(
         monthly_gross=monthly_gross,
+        period_gross=period_gross,
         inps_employee=inps_employee,
         inps_employer=inps_employer,
         tfr=tfr,
@@ -188,12 +247,183 @@ def _make_entry(
     )
 
 
+def _process_events(
+    events: tuple[WorkEvent, ...],
+    cp: CompetencePeriod,
+    payment_date: date,
+    tag: str,
+) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
+    """Translate variable work events into accounting entries and aggregated totals.
+
+    Each event produces exactly one pay item and one CASH_EARNINGS ledger entry.
+    The returned :class:`_EventTotals` carries the aggregated gross, INPS base,
+    TFR base and IRPEF base used by :func:`_compute_amounts`.
+
+    Returns:
+        Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
+    """
+    total_gross = _ZERO
+    total_inps = _ZERO
+    total_tfr = _ZERO
+    total_irpef = _ZERO
+    items: list[PayItem] = []
+    entries: list[LedgerEntry] = []
+
+    for i, event in enumerate(events):
+        evt_id = f"{tag}_evt{i}"
+        gross: Decimal
+        inps: Decimal
+        evt_tfr: Decimal
+        irpef: Decimal
+        item: PayItem
+        kind: str
+
+        if isinstance(event, OvertimeEvent):
+            gross = money(event.hours * event.hourly_rate * event.multiplier)
+            inps = gross
+            evt_tfr = gross
+            irpef = gross
+            item = OvertimeEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=event.hours,
+                amount=gross,
+            )
+            kind = "overtime_earning"
+        elif isinstance(event, NightShiftEvent):
+            gross = event.supplement_amount
+            inps = gross
+            evt_tfr = gross
+            irpef = gross
+            item = NightHolidayShiftEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            kind = "night_holiday_shift_earning"
+        elif isinstance(event, HolidayWorkEvent):
+            gross = event.supplement_amount
+            inps = gross
+            evt_tfr = _ZERO
+            irpef = gross
+            item = NightHolidayShiftEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            kind = "night_holiday_shift_earning"
+        elif isinstance(event, AbsenceEvent):
+            gross = -money(event.hours * event.hourly_rate)
+            inps = gross
+            evt_tfr = gross
+            irpef = gross
+            item = AbsenceDeduction(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=event.hours,
+                amount=gross,
+                absence_days=event.hours / Decimal(8),
+            )
+            kind = "absence_deduction"
+        elif isinstance(event, SickLeaveEvent):
+            gross = event.amount
+            inps = gross
+            evt_tfr = _ZERO
+            irpef = gross
+            item = SicknessItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+                sick_days=Decimal(1),
+            )
+            kind = "sickness_item"
+        elif isinstance(event, BonusEvent):
+            gross = event.amount
+            inps = gross
+            evt_tfr = gross
+            irpef = gross
+            item = BonusEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            kind = "bonus_earning"
+        elif isinstance(event, FringeEvent):
+            gross = event.amount
+            if gross > event.exempt_threshold:
+                inps = gross
+                irpef = gross
+            else:
+                inps = _ZERO
+                irpef = _ZERO
+            evt_tfr = _ZERO
+            item = FringeBenefitItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            kind = "fringe_benefit_item"
+        else:
+            gross = event.amount  # WelfareEvent
+            inps = _ZERO
+            evt_tfr = _ZERO
+            irpef = _ZERO
+            item = WelfareItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            kind = "welfare_item"
+
+        total_gross += gross
+        total_inps += inps
+        total_tfr += evt_tfr
+        total_irpef += irpef
+        items.append(item)
+        entries.append(
+            _make_entry(
+                f"cash_{evt_id}",
+                evt_id,
+                kind,
+                cp,
+                payment_date,
+                AccountKind.CASH_EARNINGS,
+                gross,
+            )
+        )
+
+    return (
+        _EventTotals(
+            gross=total_gross,
+            inps_base=total_inps,
+            tfr_base=total_tfr,
+            irpef_base=total_irpef,
+        ),
+        tuple(items),
+        tuple(entries),
+    )
+
+
 def _build_pay_items(
     amounts: _PeriodAmounts,
     period_id: PeriodId,
     payment_date: date,
 ) -> tuple[PayItem, ...]:
-    """Build the pay-item tuple from resolved period amounts.
+    """Build the base pay-item tuple from resolved period amounts.
 
     Returns:
         Tuple of :class:`~ccnl_engine.engine.payroll.domain.pay_items.PayItem`
@@ -257,7 +487,7 @@ def _project_ledger(
     period_id: PeriodId,
     payment_date: date,
 ) -> tuple[LedgerEntry, ...]:
-    """Project pay items to ledger entries.
+    """Project base pay items to ledger entries.
 
     Returns:
         Tuple of :class:`~ccnl_engine.engine.payroll.domain.ledger.LedgerEntry`
@@ -334,13 +564,14 @@ def calculate_period(
 ) -> PeriodCalculationResult:
     """Compute payroll for one competence period using the period-first model.
 
-    The period net is derived from pay items and a real IRPEF conguaglio:
-    changing the YTD IRPEF withheld in ``opening_state`` changes the period
-    net.  This is the key property that distinguishes this engine from the
-    legacy annual-divide approach.
+    Variable work events (overtime, absences, bonuses, etc.) supplied on the
+    request are processed first: their gross, INPS, TFR and IRPEF bases are
+    aggregated and feed into the full period computation.  Each event produces
+    its own pay item and CASH_EARNINGS ledger entry.
 
     Args:
-        request: Period calculation input: CCNL, level, period, and YTD state.
+        request: Period calculation input: CCNL, level, period, YTD state and
+            optional variable events.
         repo: Optional knowledge repository. Uses
             :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
 .BundledKnowledgeRepository` when ``None``.
@@ -361,8 +592,19 @@ def calculate_period(
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     monthly_gross = _resolve_monthly_gross(ccnl, request.level_code, as_of)
+
+    cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
+    tag = f"{period_year}_{request.period_id.month:02d}"
+    event_totals, event_items, event_entries = _process_events(
+        request.events, cp, request.payment_date, tag
+    )
+
     amounts = _compute_amounts(
-        monthly_gross, request.opening_state, additional_months, year_rules
+        monthly_gross,
+        event_totals,
+        request.opening_state,
+        additional_months,
+        year_rules,
     )
     pay_items = _build_pay_items(amounts, request.period_id, request.payment_date)
     ledger_entries = _project_ledger(amounts, request.period_id, request.payment_date)
@@ -374,16 +616,16 @@ def calculate_period(
         inps_employee_ytd=(
             request.opening_state.inps_employee_ytd + amounts.inps_employee
         ),
-        gross_ytd=request.opening_state.gross_ytd + monthly_gross,
+        gross_ytd=request.opening_state.gross_ytd + amounts.period_gross,
     )
     return PeriodCalculationResult(
         period_id=request.period_id,
         payment_date=request.payment_date,
-        period_gross=amounts.monthly_gross,
+        period_gross=amounts.period_gross,
         period_net=amounts.period_net,
         period_employer_cost=amounts.period_employer_cost,
         closing_state=closing,
-        pay_items=pay_items,
-        ledger_entries=ledger_entries,
+        pay_items=pay_items + event_items,
+        ledger_entries=ledger_entries + event_entries,
         capability_report=capability_report,
     )
