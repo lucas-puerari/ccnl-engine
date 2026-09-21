@@ -8,6 +8,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
     PeriodPayrollRequest,
@@ -489,3 +490,56 @@ class TestComputePeriodPayrollPeriodId:
         )
         result = compute_period_payroll(req)
         assert result.period_id is None
+
+
+class TestComputePeriodPayrollFiscalYTD:
+    """compute_period_payroll populates fiscal_ytd in the result."""
+
+    def test_fiscal_ytd_is_fiscal_ytd_instance(self) -> None:
+        """Result.fiscal_ytd is a FiscalYTD instance."""
+        result = compute_period_payroll(_zero_request())
+        assert isinstance(result.fiscal_ytd, FiscalYTD)
+
+    def test_fiscal_ytd_irpef_withheld_positive(self) -> None:
+        """fiscal_ytd.irpef_withheld_ytd is positive for a taxable worker."""
+        result = compute_period_payroll(_zero_request())
+        assert result.fiscal_ytd.irpef_withheld_ytd > _ZERO
+
+    def test_fiscal_ytd_taxable_income_positive(self) -> None:
+        """fiscal_ytd.taxable_income_ytd is positive for a standard worker."""
+        result = compute_period_payroll(_zero_request())
+        assert result.fiscal_ytd.taxable_income_ytd > _ZERO
+
+    def test_fiscal_ytd_matches_closing_state(self) -> None:
+        """fiscal_ytd fields match the corresponding closing_state fields."""
+        result = compute_period_payroll(_zero_request())
+        closing = result.closing_state
+        ytd = result.fiscal_ytd
+        assert ytd.taxable_income_ytd == closing.taxable_income_ytd
+        assert ytd.irpef_gross_ytd == closing.irpef_gross_ytd
+        assert ytd.irpef_withheld_ytd == closing.irpef_withheld_ytd
+        assert ytd.work_income_deduction_ytd == closing.work_income_deduction_ytd
+        assert ytd.fam_deductions_ytd == closing.fam_deductions_ytd
+        assert ytd.art15_deductions_ytd == closing.art15_deductions_ytd
+        assert ytd.trattamento_integrativo_ytd == closing.trattamento_integrativo_ytd
+        assert ytd.addizionale_regionale_ytd == closing.addizionale_regionale_ytd
+        assert ytd.addizionale_comunale_ytd == closing.addizionale_comunale_ytd
+
+    def test_fiscal_ytd_accumulates_across_periods(self) -> None:
+        """fiscal_ytd grows monotonically from one period to the next."""
+        req1 = _zero_request()
+        r1 = compute_period_payroll(req1)
+        req2 = PeriodPayrollRequest(
+            structural=_structural(),
+            period=PeriodPayrollInput(),
+            opening_state=r1.closing_state,
+        )
+        r2 = compute_period_payroll(req2)
+        assert r2.fiscal_ytd.irpef_withheld_ytd > r1.fiscal_ytd.irpef_withheld_ytd
+        assert r2.fiscal_ytd.taxable_income_ytd > r1.fiscal_ytd.taxable_income_ytd
+
+    def test_fiscal_ytd_exportable_from_package(self) -> None:
+        """FiscalYTD is importable from the top-level ccnl_engine package."""
+        from ccnl_engine import FiscalYTD as F  # noqa: PLC0415
+
+        assert F is FiscalYTD
