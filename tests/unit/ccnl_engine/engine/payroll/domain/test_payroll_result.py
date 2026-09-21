@@ -411,38 +411,39 @@ class TestSubObjectToDict:
         assert "confidence" in d
 
 
+@pytest.fixture(scope="module")
+def period_payroll() -> PeriodPayroll:
+    """Return a PeriodPayroll via estimate_period_effects.
+
+    Returns:
+        A :class:`PeriodPayroll` for CCNL Commercio level 4 with overtime.
+    """
+    scenario = AnnualEstimateInput(
+        employee=Employee(level_code="4"),
+        employment=Employment(
+            ccnl="commercio-confcommercio.json",
+            contract=Permanent(),
+            employer=Employer(num_employees=50),
+            as_of=date(2026, 1, 1),
+        ),
+    )
+    calc = estimate_period_effects(
+        scenario,
+        PeriodPayrollInput(
+            tax_period=TaxPeriod(
+                start=date(2026, 1, 1),
+                end=date(2026, 12, 31),
+                eligible_work_days=365,
+            ),
+            time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
+        ),
+    )
+    assert isinstance(calc.result, PeriodPayroll)
+    return calc.result
+
+
 class TestPeriodPayrollSerde:
     """PeriodPayroll round-trips through from_dict / from_json."""
-
-    @pytest.fixture(scope="class")
-    def period_payroll(self) -> PeriodPayroll:
-        """Return a PeriodPayroll via estimate_period_effects.
-
-        Returns:
-            A :class:`PeriodPayroll` for CCNL Commercio level 4 with overtime.
-        """
-        scenario = AnnualEstimateInput(
-            employee=Employee(level_code="4"),
-            employment=Employment(
-                ccnl="commercio-confcommercio.json",
-                contract=Permanent(),
-                employer=Employer(num_employees=50),
-                as_of=date(2026, 1, 1),
-            ),
-        )
-        calc = estimate_period_effects(
-            scenario,
-            PeriodPayrollInput(
-                tax_period=TaxPeriod(
-                    start=date(2026, 1, 1),
-                    end=date(2026, 12, 31),
-                    eligible_work_days=365,
-                ),
-                time_supplements=OvertimeHours(weekday_hours=Decimal(8)),
-            ),
-        )
-        assert isinstance(calc.result, PeriodPayroll)
-        return calc.result
 
     def test_from_dict_round_trip(self, period_payroll: PeriodPayroll) -> None:
         """PeriodPayroll.from_dict(to_dict(p)) == p."""
