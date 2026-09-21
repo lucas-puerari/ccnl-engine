@@ -36,6 +36,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     SicknessItem,
     TaxTreatment,
     TfrAccrualItem,
+    TfrSettlementItem,
     TfrTreatment,
     WelfareItem,
     WorkInjuryItem,
@@ -367,6 +368,45 @@ class TestBuildFiscalItems:
         assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
         assert dec.tfr_treatment == TfrTreatment.SPECIAL
         assert dec.cost_treatment == CostTreatment.ACCRUAL_ONLY
+
+    def test_tfr_settlement_item_produced_from_termination(self) -> None:
+        """Non-zero termination_tfr_liquidation_annual produces a TfrSettlementItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_settlement = dataclasses.replace(
+            fiscal, termination_tfr_liquidation_annual=Decimal("5000.00")
+        )
+        items = _build_fiscal_items(
+            fiscal_with_settlement, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        settlement = next((i for i in items if isinstance(i, TfrSettlementItem)), None)
+        assert settlement is not None
+        assert settlement.amount == Decimal("5000.00")
+
+    def test_tfr_settlement_zero_produces_no_item(self) -> None:
+        """Zero termination_tfr_liquidation_annual produces no TfrSettlementItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(
+            fiscal, termination_tfr_liquidation_annual=_ZERO
+        )
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, TfrSettlementItem) for i in items)
+
+    def test_tfr_settlement_treatment_axes(self) -> None:
+        """TfrSettlementItem has SEPARATE/EXCLUDED/SPECIAL/EMPLOYEE_CASH treatment."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_settlement = dataclasses.replace(
+            fiscal, termination_tfr_liquidation_annual=Decimal("5000.00")
+        )
+        items = _build_fiscal_items(
+            fiscal_with_settlement, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        settlement = next(i for i in items if isinstance(i, TfrSettlementItem))
+        dec = settlement.policy_decision
+        assert dec is not None
+        assert dec.tax_treatment == TaxTreatment.SEPARATE
+        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
+        assert dec.tfr_treatment == TfrTreatment.SPECIAL
+        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
 
     def test_employee_withholding_is_negative(self) -> None:
         """EmployeeWithholdingItem has a negative amount (deduction from net)."""

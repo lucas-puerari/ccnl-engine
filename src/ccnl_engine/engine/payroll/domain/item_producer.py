@@ -35,6 +35,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     SicknessItem,
     TaxTreatment,
     TfrAccrualItem,
+    TfrSettlementItem,
     TfrTreatment,
     WelfareItem,
     WorkInjuryItem,
@@ -171,6 +172,16 @@ TFR_ACCRUAL_POLICY = _policy(
     _ART2120,
 )
 
+TFR_SETTLEMENT_POLICY = _policy(
+    "it/tfr/settlement",
+    ("tfr_settlement_item",),
+    TaxTreatment.SEPARATE,
+    ContributionTreatment.EXCLUDED,
+    TfrTreatment.SPECIAL,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART2120,
+)
+
 EMPLOYEE_CONTRIBUTION_POLICY = _policy(
     "it/contribution/employee",
     ("employee_withholding_item",),
@@ -242,6 +253,7 @@ POLICY_REGISTRY: dict[str, PayItemPolicy] = {
         FRINGE_BENEFIT_POLICY,
         WELFARE_POLICY,
         TFR_ACCRUAL_POLICY,
+        TFR_SETTLEMENT_POLICY,
         EMPLOYEE_CONTRIBUTION_POLICY,
         EMPLOYER_CONTRIBUTION_POLICY,
         EXTRA_MONTH_EARNING_POLICY,
@@ -469,6 +481,17 @@ def _build_fiscal_items(
                 quantity=Decimal(1),
                 amount=fiscal.tfr_annual,
                 policy_decision=_resolve("tfr_accrual_item", as_of),
+            )
+        )
+    if fiscal.termination_tfr_liquidation_annual != _ZERO:
+        items.append(
+            TfrSettlementItem(
+                item_id=f"tfr_settlement_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=fiscal.termination_tfr_liquidation_annual,
+                policy_decision=_resolve("tfr_settlement_item", as_of),
             )
         )
     if fiscal.inps_employee_annual != _ZERO:
