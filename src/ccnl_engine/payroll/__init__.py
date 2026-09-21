@@ -1,0 +1,1 @@
+"""Period-first payroll engine."""
