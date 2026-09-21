@@ -9,8 +9,9 @@ returns a list of :class:`ReconciliationViolation` instances.
 Invariants:
     I1  — every PayItem has at least one matching LedgerEntry.
     I2  — no pay_item_id posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
-    I9  — net identity: CASH_EARNINGS + CREDITS - EMPLOYEE_CONTRIBUTIONS
-          - ORDINARY_TAX = period_net.
+    I9  — net identity: CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
+          - EMPLOYEE_CONTRIBUTIONS - ORDINARY_TAX - SURTAX - SEPARATE_TAX
+          = period_net.
     I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
           = ORDINARY_TAX total.
     I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
@@ -149,16 +150,25 @@ def _check_i2(
 def _check_i9(
     result: PeriodCalculationResult,
 ) -> list[ReconciliationViolation]:
-    """I9: net identity — cash + credits - contributions - taxes = period_net.
+    """I9: net identity.
+
+    CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
+    - EMPLOYEE_CONTRIBUTIONS - ORDINARY_TAX - SURTAX - SEPARATE_TAX
+    = period_net.
 
     Returns:
         A single violation when the derived net diverges from ``period_net``.
     """
     cash = _sum_account(result, AccountKind.CASH_EARNINGS)
     period_credits = _sum_account(result, AccountKind.CREDITS)
+    tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
     contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
     taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
-    derived = cash + period_credits - contributions - taxes
+    surtax = _sum_account(result, AccountKind.SURTAX)
+    sep_tax = _sum_account(result, AccountKind.SEPARATE_TAX)
+    derived = (
+        cash + period_credits + tfr_settle - contributions - taxes - surtax - sep_tax
+    )
     if derived != result.period_net:
         return [
             ReconciliationViolation(

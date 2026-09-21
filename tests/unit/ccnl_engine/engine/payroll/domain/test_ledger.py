@@ -39,7 +39,7 @@ def _entry(
 
 
 class TestAccountKind:
-    """AccountKind covers all eleven logical payroll accounts."""
+    """AccountKind covers all twelve logical payroll accounts."""
 
     def test_cash_earnings(self) -> None:
         """CASH_EARNINGS maps to 'cash_earnings'."""
@@ -81,13 +81,17 @@ class TestAccountKind:
         """TFR_ACCRUAL maps to 'tfr_accrual'."""
         assert AccountKind.TFR_ACCRUAL.value == "tfr_accrual"
 
+    def test_surtax(self) -> None:
+        """SURTAX maps to 'surtax'."""
+        assert AccountKind.SURTAX.value == "surtax"
+
     def test_tfr_settlement(self) -> None:
         """TFR_SETTLEMENT maps to 'tfr_settlement'."""
         assert AccountKind.TFR_SETTLEMENT.value == "tfr_settlement"
 
-    def test_eleven_members(self) -> None:
-        """AccountKind has exactly eleven members."""
-        assert len(AccountKind) == 11
+    def test_twelve_members(self) -> None:
+        """AccountKind has exactly twelve members."""
+        assert len(AccountKind) == 12
 
     def test_is_str(self) -> None:
         """AccountKind members are strings (StrEnum)."""
@@ -336,7 +340,7 @@ class TestLedgerTotal:
         assert ledger.by_account(AccountKind.ORDINARY_TAX) == (e_tax,)
 
     def test_totals_all_accounts(self) -> None:
-        """totals() returns all eleven accounts, zeros for empty ones."""
+        """totals() returns all twelve accounts, zeros for empty ones."""
         ledger = Ledger()
         ledger.append(_entry(account=AccountKind.CASH_EARNINGS, amount="1000.00"))
         result = ledger.totals()

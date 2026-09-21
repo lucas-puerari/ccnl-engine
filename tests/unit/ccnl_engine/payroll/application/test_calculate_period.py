@@ -65,6 +65,8 @@ def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
         tfr=Decimal("159.87"),
         period_irpef=Decimal("279.02"),
         period_tratt=period_tratt,
+        period_surtax=_ZERO,
+        period_separate_tax=_ZERO,
         period_net=Decimal("1674.42"),
         period_employer_cost=Decimal("2969.92"),
     )

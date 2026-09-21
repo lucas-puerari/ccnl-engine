@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.capability_catalog import CapabilityReport
+    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
@@ -74,6 +75,9 @@ class PeriodCalculationRequest:
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     num_employees: int = 50
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
+    regione: str | None = None
+    comune_belfiore: str | None = None
+    family_composition: FamilyComposition | None = None
 
 
 @dataclass(frozen=True)

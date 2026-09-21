@@ -65,14 +65,15 @@ class TestCapabilityReportGaps:
         assert len(absent_gaps) > 0
 
     def test_known_unimplemented_features_in_gaps(self) -> None:
-        """bilateral_funds is declared computed but absent from the pipeline."""
+        """Inail is partially_computed in catalog but absent from the pipeline."""
         result = calculate_period(_req())
         absent_features = {
             g.feature
             for g in result.capability_report.gaps
             if g.kind == CapabilityGapKind.FEATURE_ABSENT
         }
-        assert "bilateral_funds" in absent_features
+        assert "inail" in absent_features
+        assert "bilateral_funds" not in absent_features
 
     def test_implemented_features_not_in_gaps(self) -> None:
         """Features present in _OBSERVED do not produce FEATURE_ABSENT gaps."""

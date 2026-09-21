@@ -69,10 +69,12 @@ ignore = [
     "D203",    # incorrect-blank-line-before-class (incompatible with D211)
     "D213",    # multi-line-summary-second-line (incompatible with D212)
     "D413",    # missing-blank-line-after-last-section
+    "PLR0912", # too-many-branches (event dispatcher handles all 11 event types)
     "PLR0913", # too-many-arguments
     "PLR0915", # too-many-statements (compute() orchestrates many steps)
     "PLR0917", # too-many-positional-arguments
     "PLR0914", # too-many-locals
+    "C901",    # complex-structure (event dispatcher, inherently branchy)
     "PLC2701", # import-private-name
     "RUF105",  # noqa-comments — project uses # noqa style
 ]
