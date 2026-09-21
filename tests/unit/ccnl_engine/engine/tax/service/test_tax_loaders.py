@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from unittest.mock import patch
 
 import pytest
@@ -245,3 +246,86 @@ class TestLoadYearRulesIdentity:
         ):
             load_year_rules(2026, TaxSector.TERZIARIO, 50)
         _load_year_rules_cached.cache_clear()
+
+
+class TestWorkDeductionPassthrough:
+    """load_year_rules passes work_deduction from JSON through to YearRules."""
+
+    def test_default_work_deduction_detr_flat(self) -> None:
+        """The loaded 2026 terziario rules carry detr_flat = 1955 from JSON."""
+        _load_year_rules_cached.cache_clear()
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        _load_year_rules_cached.cache_clear()
+        assert rules.work_deduction.detr_flat == Decimal(1955)
+
+    def test_custom_work_deduction_is_respected(self) -> None:
+        """A custom work_deduction block in the tax JSON overrides the model default."""
+        custom_tax_raw = dict(_BAD_TAX_RAW)
+        custom_tax_raw["work_deduction"] = {
+            "detr_flat": "9999",
+            "detr_a": "1910",
+            "detr_b_coeff": "1190",
+            "detr_b_span": "13000",
+            "detr_c_span": "22000",
+            "detr_lo": "15000",
+            "detr_mid": "28000",
+            "detr_high": "50000",
+            "detr_increment": "65",
+            "increment_lo": "25000",
+            "increment_hi": "35000",
+            "seventy_five": "75",
+        }
+        inps_raw = {
+            "year": 2026,
+            "sector": "industria",
+            "inps": {
+                "employee_tiers": [
+                    {"max_employees": None, "rate": "0.0919", "ivs_rate": "0.0919"}
+                ],
+                "employer_tiers": [
+                    {"max_employees": None, "rate": "0.3050", "ivs_rate": "0.2381"}
+                ],
+                "ceiling": "122295.00",
+            },
+            "apprentice": _BAD_APPRENTICE,
+        }
+        _load_year_rules_cached.cache_clear()
+        with (
+            patch(
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_tax_rules_raw",
+                return_value=custom_tax_raw,
+            ),
+            patch(
+                "ccnl_engine.engine.tax.service.tax_annual_assembler.read_inps_rules_raw",
+                return_value=inps_raw,
+            ),
+        ):
+            rules = load_year_rules(2026, TaxSector.INDUSTRIA, 100)
+        _load_year_rules_cached.cache_clear()
+        assert rules.work_deduction.detr_flat == Decimal(9999)
+
+    def test_all_2026_sectors_have_explicit_work_deduction(self) -> None:
+        """All 8 standard sectors load detr_flat = 1955 from their JSON files."""
+        standard_sectors = [
+            TaxSector.INDUSTRIA,
+            TaxSector.TERZIARIO,
+            TaxSector.CREDITO,
+            TaxSector.ARTIGIANATO,
+            TaxSector.AGRICOLTURA,
+            TaxSector.EDILIZIA,
+            TaxSector.PUBBLICA_AMMINISTRAZIONE,
+        ]
+        for sector in standard_sectors:
+            _load_year_rules_cached.cache_clear()
+            rules = load_year_rules(2026, sector, 50)
+            assert rules.work_deduction.detr_flat == Decimal(1955), (
+                f"sector {sector.value}: detr_flat mismatch"
+            )
+        _load_year_rules_cached.cache_clear()
+
+    def test_lavoro_domestico_has_explicit_work_deduction(self) -> None:
+        """Lavoro domestico sector loads detr_flat = 1955 from its JSON file."""
+        _load_year_rules_cached.cache_clear()
+        rules = load_year_rules(2026, TaxSector.LAVORO_DOMESTICO, 1)
+        _load_year_rules_cached.cache_clear()
+        assert rules.work_deduction.detr_flat == Decimal(1955)

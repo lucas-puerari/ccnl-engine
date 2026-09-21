@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "f56d97d835b063a40a80bbcc6bf5be38f00f9b52e01b9e04ff4a36accfc5e35d",
+    "source_hash": "da71c7b1c5d8f806f76c7bd27bb770e8e0fd0df10ca356dac889e04941922e68",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -44,6 +44,20 @@
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
     "reduction": "440.00"
+  },
+  "work_deduction": {
+    "detr_flat": "1955",
+    "detr_a": "1910",
+    "detr_b_coeff": "1190",
+    "detr_b_span": "13000",
+    "detr_c_span": "22000",
+    "detr_lo": "15000",
+    "detr_mid": "28000",
+    "detr_high": "50000",
+    "detr_increment": "65",
+    "increment_lo": "25000",
+    "increment_hi": "35000",
+    "seventy_five": "75"
   },
   "notes": [
     "IRPEF brackets: three-bracket structure per L. 199/2025 (Legge di Bilancio 2026); second bracket reduced from 35% to 33% effective 2026-01-01.",

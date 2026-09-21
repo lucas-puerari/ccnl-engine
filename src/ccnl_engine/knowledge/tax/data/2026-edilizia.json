@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "516386aafd9057027bdad4b00b886f7834638e4d255a92d3976ff0d824694863",
+    "source_hash": "41b4ff3030f72f74e179ab7df87afe1c52399d3f49ab40e6902cb274b0b006d8",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -44,6 +44,20 @@
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
     "reduction": "440.00"
+  },
+  "work_deduction": {
+    "detr_flat": "1955",
+    "detr_a": "1910",
+    "detr_b_coeff": "1190",
+    "detr_b_span": "13000",
+    "detr_c_span": "22000",
+    "detr_lo": "15000",
+    "detr_mid": "28000",
+    "detr_high": "50000",
+    "detr_increment": "65",
+    "increment_lo": "25000",
+    "increment_hi": "35000",
+    "seventy_five": "75"
   },
   "notes": [
     "IRPEF brackets: statutory, identical to other sectors. Art. 13 constants versioned in YearRules.work_deduction.",
