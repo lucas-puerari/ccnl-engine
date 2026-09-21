@@ -8,6 +8,8 @@ holds.  :meth:`check` collects all violations and raises
 Invariants I1-I2 and I10-I13 require information not yet present in the
 ledger (PayItem provenance, YTD state, period aggregation).  They are kept
 as explicit stubs so future contributors can fill them in incrementally.
+
+Active invariants: I3, I4, I5, I6, I7, I8, I9 (stub), I14, I15, I16, I17.
 """
 
 from __future__ import annotations
@@ -48,6 +50,9 @@ class ReconciliationService:
         violations.extend(self._check_i8_no_duplicate_entry_ids(ledger))
         violations.extend(self._check_i9_net_pay_non_negative(ledger))
         violations.extend(self._check_i14_tfr_non_negative(ledger))
+        violations.extend(self._check_i15_non_cash_benefits_non_negative(ledger))
+        violations.extend(self._check_i16_ordinary_tax_non_negative(ledger))
+        violations.extend(self._check_i17_tfr_settlement_non_negative(ledger))
         if violations:
             raise ReconciliationError(violations)
 
@@ -232,6 +237,69 @@ class ReconciliationService:
             )
             for e in ledger
             if e.account == AccountKind.TFR_ACCRUAL and e.amount < _ZERO
+        ]
+
+    @staticmethod
+    def _check_i15_non_cash_benefits_non_negative(
+        ledger: Ledger,
+    ) -> list[ReconciliationViolation]:
+        """I15: NON_CASH_BENEFITS entries are non-negative.
+
+        Returns:
+            List of violations; empty when the invariant holds.
+        """
+        return [
+            ReconciliationViolation(
+                code="I15",
+                message=(
+                    f"NON_CASH_BENEFITS entry {e.entry_id!r} ({e.pay_item_kind}) "
+                    f"has negative amount {e.amount}"
+                ),
+            )
+            for e in ledger
+            if e.account == AccountKind.NON_CASH_BENEFITS and e.amount < _ZERO
+        ]
+
+    @staticmethod
+    def _check_i16_ordinary_tax_non_negative(
+        ledger: Ledger,
+    ) -> list[ReconciliationViolation]:
+        """I16: ORDINARY_TAX entries are non-negative.
+
+        Returns:
+            List of violations; empty when the invariant holds.
+        """
+        return [
+            ReconciliationViolation(
+                code="I16",
+                message=(
+                    f"ORDINARY_TAX entry {e.entry_id!r} ({e.pay_item_kind}) "
+                    f"has negative amount {e.amount}"
+                ),
+            )
+            for e in ledger
+            if e.account == AccountKind.ORDINARY_TAX and e.amount < _ZERO
+        ]
+
+    @staticmethod
+    def _check_i17_tfr_settlement_non_negative(
+        ledger: Ledger,
+    ) -> list[ReconciliationViolation]:
+        """I17: TFR_SETTLEMENT entries are non-negative.
+
+        Returns:
+            List of violations; empty when the invariant holds.
+        """
+        return [
+            ReconciliationViolation(
+                code="I17",
+                message=(
+                    f"TFR_SETTLEMENT entry {e.entry_id!r} ({e.pay_item_kind}) "
+                    f"has negative amount {e.amount}"
+                ),
+            )
+            for e in ledger
+            if e.account == AccountKind.TFR_SETTLEMENT and e.amount < _ZERO
         ]
 
     # ------------------------------------------------------------------
