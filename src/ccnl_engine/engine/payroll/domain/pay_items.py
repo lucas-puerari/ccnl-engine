@@ -101,6 +101,22 @@ class PayItemPolicy(BaseModel):
     effective_until: date | None
     default_decision: PolicyDecision
 
+    def resolve(self, kind: str, as_of: date) -> PolicyDecision | None:
+        """Return the PolicyDecision when *kind* and *as_of* are in scope.
+
+        Returns:
+            The :attr:`default_decision` when *kind* is in
+            :attr:`applies_to_kinds` and *as_of* falls within the effective
+            period; ``None`` otherwise.
+        """
+        if kind not in self.applies_to_kinds:
+            return None
+        if as_of < self.effective_from:
+            return None
+        if self.effective_until is not None and as_of > self.effective_until:
+            return None
+        return self.default_decision
+
 
 # ---------------------------------------------------------------------------
 # Shared base fields (not a Pydantic base — each variant is standalone)
@@ -119,6 +135,7 @@ class _PayItemBase(BaseModel):
     amount: Decimal
     source: str = ""
     attributes: tuple[tuple[str, str], ...] = ()
+    policy_decision: PolicyDecision | None = None
 
 
 # ---------------------------------------------------------------------------

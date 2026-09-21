@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from typing import cast
 
 from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
+from ccnl_engine.engine.payroll.domain.pay_items import PayItem
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     PeriodPayroll,
@@ -123,6 +124,9 @@ class Calculation:
         default_factory=FrozenDict
     )
     ledger_entries: tuple[LedgerEntry, ...] = dataclasses.field(
+        default_factory=tuple, compare=False
+    )
+    pay_items: tuple[PayItem, ...] = dataclasses.field(
         default_factory=tuple, compare=False
     )
 
