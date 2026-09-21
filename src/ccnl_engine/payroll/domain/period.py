@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.payroll.domain.events import WorkEvent
 
 _ZERO = Decimal(0)
 
@@ -62,6 +63,8 @@ class PeriodCalculationRequest:
             :meth:`PeriodState.zero` for January.
         num_employees: Employer headcount used to resolve INPS rates
             (some rates differ by firm size). Defaults to 50.
+        events: Variable work events (overtime, absences, bonuses, etc.)
+            that occurred in this period. Defaults to no events.
     """
 
     period_id: PeriodId
@@ -70,6 +73,7 @@ class PeriodCalculationRequest:
     level_code: str
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     num_employees: int = 50
+    events: tuple[WorkEvent, ...] = field(default_factory=tuple)
 
 
 @dataclass(frozen=True)
