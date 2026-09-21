@@ -34,6 +34,8 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     PolicyDecision,
     SeniorityEarning,
     SicknessItem,
+    TaxCreditItem,
+    TaxRefundItem,
     TaxTreatment,
     TfrAccrualItem,
     TfrSettlementItem,
@@ -732,6 +734,107 @@ class TestIllnessMaternityInjuryItems:
         )
         items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
         assert not any(isinstance(i, WorkInjuryItem) for i in items)
+
+
+# ---------------------------------------------------------------------------
+# Family deductions and tax refund items
+# ---------------------------------------------------------------------------
+
+
+class TestFamilyDeductionsAndTaxRefund:
+    """TaxCreditItem and TaxRefundItem are produced from fiscal deduction fields."""
+
+    def test_work_deduction_produces_tax_credit_item(self) -> None:
+        """Non-zero work_income_deduction produces a TaxCreditItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_wd = dataclasses.replace(
+            fiscal, work_income_deduction=Decimal("1200.00")
+        )
+        items = _build_fiscal_items(fiscal_with_wd, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        wd = next(
+            (i for i in items if isinstance(i, TaxCreditItem) and "work" in i.item_id),
+            None,
+        )
+        assert wd is not None
+        assert wd.amount == Decimal("1200.00")
+
+    def test_work_deduction_zero_produces_no_item(self) -> None:
+        """Zero work_income_deduction produces no TaxCreditItem with work_ prefix."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(fiscal, work_income_deduction=_ZERO)
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(
+            isinstance(i, TaxCreditItem) and "work" in i.item_id for i in items
+        )
+
+    def test_family_deduction_produces_tax_credit_item(self) -> None:
+        """Non-zero fam_total produces a TaxCreditItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_fam = dataclasses.replace(fiscal, fam_total=Decimal("800.00"))
+        items = _build_fiscal_items(fiscal_with_fam, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        fam = next(
+            (
+                i
+                for i in items
+                if isinstance(i, TaxCreditItem) and "family" in i.item_id
+            ),
+            None,
+        )
+        assert fam is not None
+        assert fam.amount == Decimal("800.00")
+
+    def test_family_deduction_zero_produces_no_item(self) -> None:
+        """Zero fam_total produces no family_deduction TaxCreditItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(fiscal, fam_total=_ZERO)
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(
+            isinstance(i, TaxCreditItem) and "family" in i.item_id for i in items
+        )
+
+    def test_positive_conguaglio_produces_tax_refund_item(self) -> None:
+        """Positive conguaglio_annual produces a TaxRefundItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_refund = dataclasses.replace(
+            fiscal, conguaglio_annual=Decimal("150.00")
+        )
+        items = _build_fiscal_items(
+            fiscal_with_refund, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        refund = next((i for i in items if isinstance(i, TaxRefundItem)), None)
+        assert refund is not None
+        assert refund.amount == Decimal("150.00")
+
+    def test_zero_conguaglio_produces_no_tax_refund_item(self) -> None:
+        """Zero or negative conguaglio_annual produces no TaxRefundItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_zero = dataclasses.replace(fiscal, conguaglio_annual=_ZERO)
+        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, TaxRefundItem) for i in items)
+
+    def test_negative_conguaglio_produces_no_tax_refund_item(self) -> None:
+        """Negative conguaglio (additional withholding) produces no TaxRefundItem."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_neg = dataclasses.replace(fiscal, conguaglio_annual=Decimal("-200.00"))
+        items = _build_fiscal_items(fiscal_neg, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert not any(isinstance(i, TaxRefundItem) for i in items)
+
+    def test_tax_credit_treatment_axes(self) -> None:
+        """TaxCreditItem has ORDINARY/EXCLUDED/EXCLUDED/EMPLOYEE_CASH treatment."""
+        _, _, fiscal = _make_pipeline_objects()
+        fiscal_with_wd = dataclasses.replace(
+            fiscal, work_income_deduction=Decimal("1200.00")
+        )
+        items = _build_fiscal_items(fiscal_with_wd, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        wd = next(
+            i for i in items if isinstance(i, TaxCreditItem) and "work" in i.item_id
+        )
+        dec = wd.policy_decision
+        assert dec is not None
+        assert dec.tax_treatment == TaxTreatment.ORDINARY
+        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
+        assert dec.tfr_treatment == TfrTreatment.EXCLUDED
+        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
 
 
 # ---------------------------------------------------------------------------
