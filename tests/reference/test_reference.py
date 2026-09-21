@@ -509,3 +509,29 @@ class TestUpdateScript:
         )
         with pytest.raises(RuntimeError, match=r"bad_case\.json"):
             mod._update_case(bad_case, dry_run=False)
+
+    def test_update_case_refuses_source_case_without_flag(self, tmp_path: Path) -> None:
+        """_update_case raises RuntimeError for sourced case without flag."""
+        mod = _load_update_script()
+        case = tmp_path / "sourced.json"
+        case.write_text(
+            '{"inputs": {}, "source": {"url": "http://x.com"}, "expected": {}}',
+            encoding="utf-8",
+        )
+        with pytest.raises(RuntimeError, match="source block"):
+            mod._update_case(case, dry_run=False)
+
+    def test_update_case_refuses_verified_case_even_with_flag(
+        self, tmp_path: Path
+    ) -> None:
+        """_update_case raises RuntimeError for verified case even with flag."""
+        mod = _load_update_script()
+        case = tmp_path / "verified.json"
+        payload = (
+            '{"inputs": {}, '
+            '"source": {"verification_status": "verified"}, '
+            '"expected": {}}'
+        )
+        case.write_text(payload, encoding="utf-8")
+        with pytest.raises(RuntimeError, match="verified"):
+            mod._update_case(case, dry_run=False, allow_source_overwrite=True)
