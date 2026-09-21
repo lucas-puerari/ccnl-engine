@@ -1,123 +1,90 @@
-"""Hypothesis property tests for the estimate_period_effects computation path."""
+"""Hypothesis property tests for the period-first compute path.
+
+These tests verify structural properties of the period-first engine
+(calculate_period) that must hold for any structurally valid input.
+"""
 
 from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
-from unittest.mock import MagicMock
 
-from hypothesis import given
+from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine.engine.payroll.domain.scenario import PeriodPayrollInput, TaxPeriod
-from ccnl_engine.engine.payroll.service.orchestrator import (
-    estimate_annual,
-    estimate_period_effects,
-)
-from tests.unit.ccnl_engine.engine.payroll.service.builders import (
-    _RULES,
-    _build_ccnl,
-    _req,
+from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.period import (
+    PeriodCalculationRequest,
+    PeriodState,
 )
 
-_LEVEL_CODES = ["2", "3", "4"]
-_DATE = date(2026, 6, 1)
-_TAX_PERIOD = TaxPeriod(
-    start=_DATE,
-    end=date(2026, 12, 31),
-    eligible_work_days=(date(2026, 12, 31) - _DATE).days + 1,
-)
+_CCNL = "metalmeccanico-federmeccanica.json"
+_LEVEL_CODES = ["C1", "C3", "D1"]
+_YEAR = 2026
 
-_DEFAULT_CCNL = _build_ccnl()
-_MOCK_REPO = MagicMock()
-_MOCK_REPO.load_ccnl.return_value = _DEFAULT_CCNL
-_MOCK_REPO.load_year_rules.return_value = _RULES
-_MOCK_REPO.load_surtax_rules.return_value = None
-_MOCK_REPO.load_capability_catalog.return_value = None
+_MONTHS = st.integers(min_value=1, max_value=12)
+_LEVELS = st.sampled_from(_LEVEL_CODES)
 
-_EMPTY_PERIOD = PeriodPayrollInput(tax_period=_TAX_PERIOD)
+
+def _req(
+    level_code: str,
+    month: int = 1,
+    irpef_ytd: Decimal = Decimal(0),
+) -> PeriodCalculationRequest:
+    """Build a :class:`PeriodCalculationRequest` for ``level_code``.
+
+    Returns:
+        A request for ``month`` of 2026 with the given YTD state.
+    """
+    return PeriodCalculationRequest(
+        period_id=PeriodId(year=_YEAR, month=month),
+        payment_date=date(_YEAR, month, 28),
+        ccnl_slug=_CCNL,
+        level_code=level_code,
+        opening_state=PeriodState(irpef_withheld_ytd=irpef_ytd),
+    )
 
 
 class TestPeriodNonNegativity:
-    """Net and gross are non-negative with any structural inputs on the period path."""
+    """Gross and net are non-negative for any valid level and month."""
 
-    @given(
-        level_code=st.sampled_from(_LEVEL_CODES),
-        seniority_count=st.integers(min_value=0, max_value=10),
-    )
-    def test_gross_and_net_non_negative(
-        self, level_code: str, seniority_count: int
-    ) -> None:
-        """gross_annual and net_annual are >= 0 via estimate_period_effects."""
-        calc = estimate_period_effects(
-            _req(level_code=level_code, seniority_count=seniority_count),
-            _EMPTY_PERIOD,
-            repo=_MOCK_REPO,
-        )
-        assert calc.result.earnings.gross_annual >= Decimal(0)
-        assert calc.result.net_annual >= Decimal(0)
+    @given(level_code=_LEVELS, month=_MONTHS)
+    @settings(max_examples=36)
+    def test_gross_non_negative(self, level_code: str, month: int) -> None:
+        """period_gross is >= 0 for every level and month combination."""
+        result = calculate_period(_req(level_code=level_code, month=month))
+        assert result.period_gross >= Decimal(0)
 
-
-class TestPeriodEffectsEquivalence:
-    """Empty period input yields the same structural figures as estimate_annual."""
-
-    @given(level_code=st.sampled_from(_LEVEL_CODES))
-    def test_empty_period_gross_matches_annual(self, level_code: str) -> None:
-        """estimate_period_effects with no events equals estimate_annual gross."""
-        annual = estimate_annual(_req(level_code=level_code), repo=_MOCK_REPO)
-        period = estimate_period_effects(
-            _req(level_code=level_code),
-            _EMPTY_PERIOD,
-            repo=_MOCK_REPO,
-        )
-        assert (
-            period.result.earnings.gross_annual == annual.result.earnings.gross_annual
-        )
-
-    @given(level_code=st.sampled_from(_LEVEL_CODES))
-    def test_empty_period_employer_cost_matches_annual(self, level_code: str) -> None:
-        """estimate_period_effects with no events equals annual employer cost."""
-        annual = estimate_annual(_req(level_code=level_code), repo=_MOCK_REPO)
-        period = estimate_period_effects(
-            _req(level_code=level_code),
-            _EMPTY_PERIOD,
-            repo=_MOCK_REPO,
-        )
-        assert (
-            period.result.employer_cost.employer_cost_annual
-            == annual.result.employer_cost.employer_cost_annual
-        )
+    @given(level_code=_LEVELS, month=_MONTHS)
+    @settings(max_examples=36)
+    def test_net_non_negative(self, level_code: str, month: int) -> None:
+        """period_net is >= 0 for every level and month combination."""
+        result = calculate_period(_req(level_code=level_code, month=month))
+        assert result.period_net >= Decimal(0)
 
 
 class TestPeriodDeterminism:
-    """estimate_period_effects is deterministic for identical inputs."""
+    """calculate_period is deterministic for identical inputs."""
 
-    @given(
-        level_code=st.sampled_from(_LEVEL_CODES),
-        seniority_count=st.integers(min_value=0, max_value=10),
-    )
-    def test_period_effects_is_deterministic(
-        self, level_code: str, seniority_count: int
-    ) -> None:
+    @given(level_code=_LEVELS, month=_MONTHS)
+    @settings(max_examples=36)
+    def test_period_is_deterministic(self, level_code: str, month: int) -> None:
         """Two calls with identical inputs produce identical results."""
-        req = _req(level_code=level_code, seniority_count=seniority_count)
-        first = estimate_period_effects(req, _EMPTY_PERIOD, repo=_MOCK_REPO)
-        second = estimate_period_effects(req, _EMPTY_PERIOD, repo=_MOCK_REPO)
-        assert first.result == second.result
+        req = _req(level_code=level_code, month=month)
+        first = calculate_period(req)
+        second = calculate_period(req)
+        assert first.period_gross == second.period_gross
+        assert first.period_net == second.period_net
+        assert first.closing_state == second.closing_state
 
 
-class TestPeriodNetLeGross:
-    """net_annual <= gross_annual in the period path."""
+class TestNetLeGross:
+    """period_net <= period_gross for any valid level and month."""
 
-    @given(
-        level_code=st.sampled_from(_LEVEL_CODES),
-        seniority_count=st.integers(min_value=0, max_value=10),
-    )
-    def test_net_le_gross(self, level_code: str, seniority_count: int) -> None:
-        """net_annual <= gross_annual via estimate_period_effects."""
-        calc = estimate_period_effects(
-            _req(level_code=level_code, seniority_count=seniority_count),
-            _EMPTY_PERIOD,
-            repo=_MOCK_REPO,
-        )
-        assert calc.result.net_annual <= calc.result.earnings.gross_annual
+    @given(level_code=_LEVELS, month=_MONTHS)
+    @settings(max_examples=36)
+    def test_net_le_gross(self, level_code: str, month: int) -> None:
+        """Net pay is always <= gross pay (deductions and taxes reduce take-home)."""
+        result = calculate_period(_req(level_code=level_code, month=month))
+        assert result.period_net <= result.period_gross
