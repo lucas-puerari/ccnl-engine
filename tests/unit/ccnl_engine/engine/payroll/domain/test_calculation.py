@@ -13,7 +13,11 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.capability_catalog import CapabilityCatalog
+from ccnl_engine.engine.capability_catalog import (
+    CapabilityCatalog,
+    CapabilityEntry,
+    CapabilityStatus,
+)
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 
 if TYPE_CHECKING:
@@ -32,6 +36,10 @@ from ccnl_engine.engine.payroll.domain.calculation import (
     _load_dataclass,
     _load_union,
     _try_union_member,
+)
+from ccnl_engine.engine.payroll.domain.components import (
+    CalculationStatus,
+    ScopeItem,
 )
 from ccnl_engine.engine.payroll.domain.employee import RalOverride, SeniorityByCount
 from ccnl_engine.engine.payroll.domain.employment import Permanent
@@ -1028,6 +1036,73 @@ class TestResultFromDictPeriodPayroll:
         restored = Calculation.from_dict(raw)
         assert isinstance(restored.result, PeriodPayroll)
         assert restored.result.net_annual == calc.result.net_annual
+
+
+class TestCheckCapabilityGaps:
+    """Calculation.check_capability_gaps delegates to the catalog."""
+
+    def test_check_capability_gaps_returns_empty_for_empty_catalog(self) -> None:
+        """check_capability_gaps returns () when the catalog has no entries."""
+        calc = estimate_annual(_req(), repo=_REPO)
+        catalog = CapabilityCatalog(year=2026, capabilities=())
+        assert calc.check_capability_gaps(catalog) == ()
+
+    def test_check_capability_gaps_no_gap_when_feature_computed(self) -> None:
+        """check_capability_gaps returns () when a computed feature matches declared."""
+        calc = estimate_annual(_req(), repo=_REPO)
+        catalog = CapabilityCatalog(
+            year=2026,
+            capabilities=(
+                CapabilityEntry(
+                    feature="base_salary", status=CapabilityStatus.COMPUTED
+                ),
+            ),
+        )
+        gaps = calc.check_capability_gaps(catalog)
+        assert gaps == ()
+
+    def test_check_capability_gaps_reports_not_computed_feature(self) -> None:
+        """check_capability_gaps returns a gap for a not-computed declared feature."""
+        calc = estimate_annual(_req(), repo=_REPO)
+        # Inject a scope item with not_computed status to exercise the gap path.
+        extra = ScopeItem(
+            feature="some_feature", calculation_status=CalculationStatus.NOT_COMPUTED
+        )
+        existing_scope = calc.result.coverage.calculation_scope
+        patched_coverage = dataclasses.replace(
+            calc.result.coverage,
+            calculation_scope=(*existing_scope, extra),
+        )
+        patched_result = dataclasses.replace(calc.result, coverage=patched_coverage)
+        patched_calc = dataclasses.replace(calc, result=patched_result)
+        catalog = CapabilityCatalog(
+            year=2026,
+            capabilities=(
+                CapabilityEntry(
+                    feature="some_feature",
+                    status=CapabilityStatus.COMPUTED,
+                ),
+            ),
+        )
+        gaps = patched_calc.check_capability_gaps(catalog)
+        assert len(gaps) == 1
+        assert gaps[0].feature == "some_feature"
+        assert gaps[0].declared == CapabilityStatus.COMPUTED
+        assert gaps[0].observed == "not_computed"
+
+    def test_check_capability_gaps_ignores_not_applicable_entries(self) -> None:
+        """check_capability_gaps ignores entries with NOT_APPLICABLE status."""
+        calc = estimate_annual(_req(), repo=_REPO)
+        catalog = CapabilityCatalog(
+            year=2026,
+            capabilities=(
+                CapabilityEntry(
+                    feature="nonexistent_feature",
+                    status=CapabilityStatus.NOT_APPLICABLE,
+                ),
+            ),
+        )
+        assert calc.check_capability_gaps(catalog) == ()
 
 
 class TestInternalScenarioValidation:

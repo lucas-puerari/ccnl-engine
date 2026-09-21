@@ -15,7 +15,10 @@ import dataclasses
 import json
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import cast
+from typing import TYPE_CHECKING, cast
+
+if TYPE_CHECKING:
+    from ccnl_engine.engine.capability_catalog import CapabilityCatalog, CapabilityGap
 
 from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import PayItem
@@ -236,3 +239,26 @@ class Calculation:
             A new :class:`Calculation` equal to the original.
         """
         return cls.from_dict(json.loads(raw))
+
+    def check_capability_gaps(
+        self, catalog: CapabilityCatalog
+    ) -> tuple[CapabilityGap, ...]:
+        """Return features declared in *catalog* that this calculation did not compute.
+
+        Builds the observed status map from the calculation scope and delegates
+        to :meth:`~ccnl_engine.engine.capability_catalog.CapabilityCatalog.gaps`.
+
+        Args:
+            catalog: The capability catalog for the same fiscal year as this
+                calculation.
+
+        Returns:
+            Gaps in declaration order, one per feature declared at least
+            ``computed`` or ``partially_computed`` in the catalog but observed
+            as ``not_computed`` in this calculation.
+        """
+        observed = {
+            item.feature: item.calculation_status
+            for item in self.result.coverage.calculation_scope
+        }
+        return catalog.gaps(observed)
