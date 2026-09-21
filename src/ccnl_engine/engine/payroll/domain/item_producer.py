@@ -307,6 +307,7 @@ def _build_work_items(
                 payment_date=payment,
                 quantity=Decimal(1),
                 amount=work.overtime_supp,
+                hours=work.overtime_hours,
                 policy_decision=_resolve("overtime_earning", as_of),
             )
         )
@@ -318,6 +319,7 @@ def _build_work_items(
                 payment_date=payment,
                 quantity=Decimal(1),
                 amount=work.night_supp,
+                hours=work.night_hours,
                 policy_decision=_resolve("night_holiday_shift_earning", as_of),
             )
         )
@@ -329,6 +331,7 @@ def _build_work_items(
                 payment_date=payment,
                 quantity=Decimal(1),
                 amount=work.holiday_supp,
+                hours=work.holiday_hours,
                 policy_decision=_resolve("night_holiday_shift_earning", as_of),
             )
         )

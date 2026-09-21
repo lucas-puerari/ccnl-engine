@@ -38,6 +38,9 @@ class WorkRulesPay:
     overtime_supp: Decimal
     night_supp: Decimal
     holiday_supp: Decimal
+    overtime_hours: Decimal
+    night_hours: Decimal
+    holiday_hours: Decimal
     time_supplements_monthly: Decimal
     time_supplements_annual_projection: Decimal
     hourly_rate: Decimal
@@ -166,6 +169,9 @@ def compute_work_rules(
         overtime_supp=supps.overtime,
         night_supp=supps.night,
         holiday_supp=supps.holiday,
+        overtime_hours=supps.overtime_hours,
+        night_hours=supps.night_hours,
+        holiday_hours=supps.holiday_hours,
         time_supplements_monthly=time_supplements_monthly,
         time_supplements_annual_projection=time_supplements_annual_projection,
         hourly_rate=hourly_rate,

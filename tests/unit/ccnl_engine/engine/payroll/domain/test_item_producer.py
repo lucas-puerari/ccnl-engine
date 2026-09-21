@@ -27,6 +27,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     EmployerContributionItem,
     ExtraMonthEarning,
     FringeBenefitItem,
+    NightHolidayShiftEarning,
     OvertimeEarning,
     PayItemPolicy,
     PolicyDecision,
@@ -65,6 +66,9 @@ def _zero_work(**overrides: object) -> WorkRulesPay:
         "overtime_supp": _ZERO,
         "night_supp": _ZERO,
         "holiday_supp": _ZERO,
+        "overtime_hours": _ZERO,
+        "night_hours": _ZERO,
+        "holiday_hours": _ZERO,
         "time_supplements_monthly": _ZERO,
         "time_supplements_annual_projection": _ZERO,
         "hourly_rate": _ZERO,
@@ -538,6 +542,58 @@ class TestBuildPayItems:
         gross, work, fiscal = _make_pipeline_objects()
         items = build_pay_items(gross, work, fiscal, _AS_OF)
         assert isinstance(items, tuple)
+
+
+# ---------------------------------------------------------------------------
+# Overtime / night / holiday supplement items
+# ---------------------------------------------------------------------------
+
+
+class TestOvertimeNightHolidayItems:
+    """OvertimeEarning and NightHolidayShiftEarning carry hours."""
+
+    def test_overtime_hours_carried(self) -> None:
+        """OvertimeEarning.hours reflects the hours that generated the supplement."""
+        work = _zero_work(
+            overtime_supp=Decimal("150.00"), overtime_hours=Decimal("8.00")
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        ot = next(i for i in items if isinstance(i, OvertimeEarning))
+        assert ot.hours == Decimal("8.00")
+
+    def test_night_supp_yields_item_with_hours(self) -> None:
+        """Night supplement produces a NightHolidayShiftEarning with hours."""
+        work = _zero_work(night_supp=Decimal("80.00"), night_hours=Decimal("5.00"))
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        night = next(
+            (i for i in items if isinstance(i, NightHolidayShiftEarning)), None
+        )
+        assert night is not None
+        assert night.item_id == f"night_{_YYMM}"
+        assert night.hours == Decimal("5.00")
+
+    def test_holiday_supp_yields_item_with_hours(self) -> None:
+        """Holiday supplement produces a NightHolidayShiftEarning with hours."""
+        work = _zero_work(holiday_supp=Decimal("60.00"), holiday_hours=Decimal("3.00"))
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        holiday = next(
+            (i for i in items if isinstance(i, NightHolidayShiftEarning)), None
+        )
+        assert holiday is not None
+        assert holiday.item_id == f"holiday_{_YYMM}"
+        assert holiday.hours == Decimal("3.00")
+
+    def test_night_treatment_axes(self) -> None:
+        """NightHolidayShiftEarning: ORDINARY/INCLUDED/EXCLUDED/EMPLOYEE_CASH."""
+        work = _zero_work(night_supp=Decimal("80.00"), night_hours=Decimal("5.00"))
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        night = next(i for i in items if isinstance(i, NightHolidayShiftEarning))
+        dec = night.policy_decision
+        assert dec is not None
+        assert dec.tax_treatment == TaxTreatment.ORDINARY
+        assert dec.contribution_treatment == ContributionTreatment.INCLUDED
+        assert dec.tfr_treatment == TfrTreatment.EXCLUDED
+        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
 
 
 # ---------------------------------------------------------------------------
