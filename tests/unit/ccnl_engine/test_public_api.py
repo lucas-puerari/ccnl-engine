@@ -49,7 +49,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
-    "PeriodId",
     "PeriodPayroll",
     "PeriodPayrollRequest",
     "PeriodPayrollResult",

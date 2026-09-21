@@ -9,8 +9,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
     from ccnl_engine.engine.payroll.domain.scenario import (
@@ -18,7 +16,6 @@ if TYPE_CHECKING:
         PeriodPayrollInput,
     )
 
-_ZERO = Decimal(0)
 _MONTHS_PER_YEAR = 12
 
 
@@ -63,16 +60,11 @@ class PeriodPayrollRequest:
 
     Attributes:
         structural: Structural annual scenario (worker, employment, contract).
+            ``employment.as_of`` is the sole temporal anchor for this legacy
+            service; use the period-first engine for real period governance.
         period: Period-specific events (overtime, absences, sick leave, etc.).
         opening_state: YTD progressive state entering this period. Pass
             :meth:`~PayrollState.zero` for the first period of the year.
-        period_id: Explicit competence period.  When ``None``, the period is
-            inferred from ``structural.employment.as_of``; a
-            :class:`DeprecationWarning` is emitted by the service at call
-            time.  Set this field to silence the warning.
-        payment_date: Intended payment date.  When ``None`` and
-            ``period_id`` is set, defaults to the last day of the competence
-            month.  No default is derived when both are ``None``.
         idempotency_key: Optional caller-supplied key to prevent duplicate
             period closures.  The engine records but does not enforce
             uniqueness; enforcement is the caller's responsibility.
@@ -81,8 +73,6 @@ class PeriodPayrollRequest:
     structural: AnnualEstimateInput
     period: PeriodPayrollInput
     opening_state: PayrollState
-    period_id: PeriodId | None = None
-    payment_date: date | None = None
     idempotency_key: str | None = None
 
 
@@ -106,9 +96,6 @@ class PeriodPayrollResult:
             periods or at year-end.  Defaults to :meth:`FiscalYTD.zero` when
             not explicitly set (e.g. when constructing results in tests).
         ledger_entries: All ledger entries posted for this period.
-        period_id: The competence period that was closed.  ``None`` when the
-            result was produced from a request without an explicit
-            ``period_id``.
     """
 
     opening_state: PayrollState
@@ -118,7 +105,6 @@ class PeriodPayrollResult:
     period_employer_cost: Decimal
     fiscal_ytd: FiscalYTD = field(default_factory=FiscalYTD.zero)
     ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
-    period_id: PeriodId | None = None
 
 
 @dataclass(frozen=True)

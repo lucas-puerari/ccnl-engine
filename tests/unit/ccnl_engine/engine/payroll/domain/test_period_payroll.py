@@ -305,15 +305,9 @@ class TestPeriodId:
         with pytest.raises(AttributeError):
             pid.month = 2  # type: ignore[misc]
 
-    def test_importable_from_package(self) -> None:
-        """PeriodId can be imported from ccnl_engine directly."""
-        from ccnl_engine import PeriodId as Pid  # noqa: PLC0415
 
-        assert Pid is PeriodId
-
-
-class TestPeriodPayrollRequestNewFields:
-    """period_id, payment_date, and idempotency_key are optional on the request."""
+class TestPeriodPayrollRequestFields:
+    """PeriodPayrollRequest stores its required fields and idempotency_key."""
 
     def _make_request(self, **kwargs: object) -> PeriodPayrollRequest:
         defaults: dict[str, object] = {
@@ -323,30 +317,6 @@ class TestPeriodPayrollRequestNewFields:
         }
         defaults.update(kwargs)
         return PeriodPayrollRequest(**defaults)  # type: ignore[arg-type]
-
-    def test_period_id_defaults_none(self) -> None:
-        """period_id is None when not supplied."""
-        req = self._make_request()
-        assert req.period_id is None
-
-    def test_period_id_stored(self) -> None:
-        """period_id is stored when supplied."""
-        pid = PeriodId(year=2026, month=6)
-        req = self._make_request(period_id=pid)
-        assert req.period_id == pid
-
-    def test_payment_date_defaults_none(self) -> None:
-        """payment_date is None when not supplied."""
-        req = self._make_request()
-        assert req.payment_date is None
-
-    def test_payment_date_stored(self) -> None:
-        """payment_date is stored when supplied."""
-        from datetime import date  # noqa: PLC0415
-
-        d = date(2026, 6, 27)
-        req = self._make_request(payment_date=d)
-        assert req.payment_date == d
 
     def test_idempotency_key_defaults_none(self) -> None:
         """idempotency_key is None when not supplied."""
@@ -358,29 +328,3 @@ class TestPeriodPayrollRequestNewFields:
         key = "worker-42-2026-06"
         req = self._make_request(idempotency_key=key)
         assert req.idempotency_key == key
-
-
-class TestPeriodPayrollResultPeriodId:
-    """PeriodPayrollResult exposes period_id from the request."""
-
-    def _make_result(self, **kwargs: object) -> PeriodPayrollResult:
-        defaults: dict[str, object] = {
-            "opening_state": PayrollState.zero(),
-            "closing_state": PayrollState.zero(),
-            "period_gross": Decimal("1000.00"),
-            "period_net": Decimal("750.00"),
-            "period_employer_cost": Decimal("1280.00"),
-        }
-        defaults.update(kwargs)
-        return PeriodPayrollResult(**defaults)  # type: ignore[arg-type]
-
-    def test_period_id_defaults_none(self) -> None:
-        """period_id is None when not set."""
-        result = self._make_result()
-        assert result.period_id is None
-
-    def test_period_id_stored(self) -> None:
-        """period_id is stored when supplied."""
-        pid = PeriodId(year=2026, month=3)
-        result = self._make_result(period_id=pid)
-        assert result.period_id == pid

@@ -15,7 +15,6 @@ from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
-    PeriodId,
     PeriodPayrollRequest,
     PeriodPayrollResult,
 )
@@ -201,18 +200,7 @@ def compute_period_payroll(
         stacklevel=2,
     )
     opening = request.opening_state
-    if request.period_id is not None:
-        period_id: PeriodId | None = request.period_id
-        as_of = date(request.period_id.year, request.period_id.month, 1)
-    else:
-        warnings.warn(
-            "PeriodPayrollRequest.period_id is None; period inferred from "
-            "structural.employment.as_of. Set period_id to silence this warning.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        period_id = None
-        as_of = request.structural.employment.as_of
+    as_of = request.structural.employment.as_of
     if bundle is not None:
         ccnl = bundle.ccnl
     else:
@@ -341,5 +329,4 @@ def compute_period_payroll(
         period_employer_cost=period_employer_cost,
         fiscal_ytd=fiscal_ytd,
         ledger_entries=calc.ledger_entries,
-        period_id=period_id,
     )
