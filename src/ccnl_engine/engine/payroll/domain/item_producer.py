@@ -355,14 +355,15 @@ def _build_work_items(
                 policy_decision=_resolve("bonus_earning", as_of),
             )
         )
-    if work.fringe_benefit_taxable_annual != _ZERO:
+    if work.fringe_benefit_annual != _ZERO:
         items.append(
             FringeBenefitItem(
-                item_id=f"fringe_benefit_taxable_{yymm}",
+                item_id=f"fringe_benefit_{yymm}",
                 competence_period=period,
                 payment_date=payment,
                 quantity=Decimal(1),
-                amount=work.fringe_benefit_taxable_annual,
+                amount=work.fringe_benefit_annual,
+                threshold_annual=work.fringe_benefit_threshold_annual,
                 taxable_amount=work.fringe_benefit_taxable_annual,
                 policy_decision=_resolve("fringe_benefit_item", as_of),
             )

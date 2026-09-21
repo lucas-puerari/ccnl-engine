@@ -451,13 +451,47 @@ class TestBuildPayItems:
 
     def test_fringe_benefit_yields_fringe_item(self) -> None:
         """A scenario with fringe benefit yields a FringeBenefitItem."""
-        work = _zero_work(fringe_benefit_taxable_annual=Decimal("600.00"))
+        work = _zero_work(
+            fringe_benefit_annual=Decimal("1400.00"),
+            fringe_benefit_taxable_annual=Decimal("1400.00"),
+            fringe_benefit_threshold_annual=Decimal("1000.00"),
+        )
         items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
         assert any(isinstance(i, FringeBenefitItem) for i in items)
 
+    def test_fringe_benefit_below_threshold_yields_item(self) -> None:
+        """A fringe benefit below threshold still produces a FringeBenefitItem."""
+        work = _zero_work(
+            fringe_benefit_annual=Decimal("600.00"),
+            fringe_benefit_taxable_annual=Decimal("0.00"),
+            fringe_benefit_threshold_annual=Decimal("1000.00"),
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        fb = next((i for i in items if isinstance(i, FringeBenefitItem)), None)
+        assert fb is not None
+        assert fb.taxable_amount == Decimal("0.00")
+        assert fb.amount == Decimal("600.00")
+
+    def test_fringe_benefit_amount_is_total(self) -> None:
+        """FringeBenefitItem.amount is the total fringe benefit (not just taxable)."""
+        work = _zero_work(
+            fringe_benefit_annual=Decimal("1400.00"),
+            fringe_benefit_taxable_annual=Decimal("1400.00"),
+            fringe_benefit_threshold_annual=Decimal("1000.00"),
+        )
+        items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        fb = next(i for i in items if isinstance(i, FringeBenefitItem))
+        assert fb.amount == Decimal("1400.00")
+        assert fb.threshold_annual == Decimal("1000.00")
+        assert fb.taxable_amount == Decimal("1400.00")
+
     def test_fringe_benefit_treatment_axes(self) -> None:
         """FringeBenefitItem has NON_CASH_TAXABLE/INCLUDED/EXCLUDED/EMPLOYER_COST."""
-        work = _zero_work(fringe_benefit_taxable_annual=Decimal("600.00"))
+        work = _zero_work(
+            fringe_benefit_annual=Decimal("600.00"),
+            fringe_benefit_taxable_annual=Decimal("600.00"),
+            fringe_benefit_threshold_annual=Decimal("1000.00"),
+        )
         items = _build_work_items(work, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
         fb = next(i for i in items if isinstance(i, FringeBenefitItem))
         dec = fb.policy_decision
