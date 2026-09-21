@@ -19,6 +19,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     CostTreatment,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    ExtraMonthEarning,
     FixedAllowanceEarning,
     FringeBenefitItem,
     LeaveSettlementItem,
@@ -84,7 +85,7 @@ def _base(kind: str = "x") -> Any:  # noqa: ANN401
     }
 
 
-# All 23 kind strings — used by parametrize tests below.
+# All 24 kind strings — used by parametrize tests below.
 _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("base_salary_earning", {}),
     ("fixed_allowance_earning", {}),
@@ -95,6 +96,7 @@ _ALL_KINDS: list[tuple[str, dict[str, object]]] = [
     ("productivity_bonus_earning", {}),
     ("contract_renewal_arrears", {}),
     ("one_off_earning", {}),
+    ("extra_month_earning", {"month_number": 13}),
     ("fringe_benefit_item", {}),
     ("welfare_item", {}),
     ("absence_deduction", {"absence_days": "0"}),
@@ -276,14 +278,14 @@ class TestPayItemDiscriminatedUnion:
             _PAY_ITEM_ADAPTER.validate_python(_item("unknown_kind"))
 
     @pytest.mark.parametrize(("kind_str", "extra"), _ALL_KINDS)
-    def test_all_23_kinds_parse(self, kind_str: str, extra: dict[str, object]) -> None:
-        """Every one of the 23 documented kinds can be parsed through the union."""
+    def test_all_24_kinds_parse(self, kind_str: str, extra: dict[str, object]) -> None:
+        """Every one of the 24 documented kinds can be parsed through the union."""
         parsed = _PAY_ITEM_ADAPTER.validate_python(_item(kind_str, **extra))
         assert parsed.kind == kind_str
 
-    def test_all_23_kinds_count(self) -> None:
-        """_ALL_KINDS contains exactly 23 entries."""
-        assert len(_ALL_KINDS) == 23
+    def test_all_24_kinds_count(self) -> None:
+        """_ALL_KINDS contains exactly 24 entries."""
+        assert len(_ALL_KINDS) == 24
 
 
 class TestPayItemSpecificConstruction:
@@ -301,6 +303,7 @@ class TestPayItemSpecificConstruction:
             (ProductivityBonusEarning(**_base()), "productivity_bonus_earning"),
             (ContractRenewalArrears(**_base()), "contract_renewal_arrears"),
             (OneOffEarning(**_base()), "one_off_earning"),
+            (ExtraMonthEarning(**_base(), month_number=13), "extra_month_earning"),
             (FringeBenefitItem(**_base()), "fringe_benefit_item"),
             (WelfareItem(**_base()), "welfare_item"),
             (AbsenceDeduction(**_base(), absence_days=_D(0)), "absence_deduction"),
@@ -320,3 +323,37 @@ class TestPayItemSpecificConstruction:
     def test_kind_field(self, variant: object, kind_str: str) -> None:
         """Each variant's kind field matches its expected string literal."""
         assert variant.kind == kind_str  # type: ignore[attr-defined]
+
+
+class TestExtraMonthEarning:
+    """ExtraMonthEarning stores month_number and validates its range."""
+
+    def test_tredicesima(self) -> None:
+        """month_number=13 is accepted (tredicesima)."""
+        item = ExtraMonthEarning(**_base(), month_number=13)
+        assert item.month_number == 13
+        assert item.kind == "extra_month_earning"
+
+    def test_quattordicesima(self) -> None:
+        """month_number=14 is accepted (quattordicesima)."""
+        item = ExtraMonthEarning(**_base(), month_number=14)
+        assert item.month_number == 14
+
+    def test_month_number_below_13_raises(self) -> None:
+        """month_number=12 is rejected."""
+        from pydantic import ValidationError  # noqa: PLC0415
+
+        with pytest.raises(ValidationError):
+            ExtraMonthEarning(**_base(), month_number=12)
+
+    def test_month_number_above_14_raises(self) -> None:
+        """month_number=15 is rejected."""
+        from pydantic import ValidationError  # noqa: PLC0415
+
+        with pytest.raises(ValidationError):
+            ExtraMonthEarning(**_base(), month_number=15)
+
+    def test_amount_stored(self) -> None:
+        """Amount is stored as provided."""
+        item = ExtraMonthEarning(**_base(), month_number=13)
+        assert item.amount == _D("1000.00")

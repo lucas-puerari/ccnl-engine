@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.payroll.domain.item_producer import (
     POLICY_REGISTRY,
+    _build_extra_month_items,
     _build_fiscal_items,
     _build_gross_items,
     _build_work_items,
@@ -24,6 +25,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     CostTreatment,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    ExtraMonthEarning,
     FringeBenefitItem,
     OvertimeEarning,
     PayItemPolicy,
@@ -571,3 +573,105 @@ class TestCalculationPayItems:
         # Reconstruct from dict (serialisation omits pay_items → defaults to ())
         reconstructed = Calculation.from_dict(calc.to_dict())
         assert reconstructed.pay_items == ()
+
+
+# ---------------------------------------------------------------------------
+# _build_extra_month_items() — tredicesima / quattordicesima
+# ---------------------------------------------------------------------------
+
+
+class TestBuildExtraMonthItems:
+    """_build_extra_month_items() produces ExtraMonthEarning items."""
+
+    def test_zero_extra_months_produces_no_items(self) -> None:
+        """extra_monthly_payments=0 returns an empty list."""
+        gross, _, _ = _make_pipeline_objects()
+        items = _build_extra_month_items(gross, 0, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert items == []
+
+    def test_one_extra_month_produces_tredicesima(self) -> None:
+        """extra_monthly_payments=1 produces one ExtraMonthEarning for month 13."""
+        gross, _, _ = _make_pipeline_objects()
+        items = _build_extra_month_items(gross, 1, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert len(items) == 1
+        assert isinstance(items[0], ExtraMonthEarning)
+        assert items[0].month_number == 13
+        assert items[0].kind == "extra_month_earning"
+
+    def test_two_extra_months_produces_tredicesima_and_quattordicesima(self) -> None:
+        """extra_monthly_payments=2 produces items for month 13 and 14."""
+        gross, _, _ = _make_pipeline_objects()
+        items = _build_extra_month_items(gross, 2, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert len(items) == 2
+        assert isinstance(items[0], ExtraMonthEarning)
+        assert isinstance(items[1], ExtraMonthEarning)
+        assert items[0].month_number == 13
+        assert items[1].month_number == 14
+
+    def test_extra_month_item_amount_equals_gross_monthly(self) -> None:
+        """Each ExtraMonthEarning has amount equal to gross.gross_monthly."""
+        gross, _, _ = _make_pipeline_objects()
+        items = _build_extra_month_items(gross, 1, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert len(items) == 1
+        assert isinstance(items[0], ExtraMonthEarning)
+        assert items[0].amount == gross.gross_monthly
+
+    def test_extra_month_item_id_contains_month_number(self) -> None:
+        """item_id encodes the month number."""
+        gross, _, _ = _make_pipeline_objects()
+        items = _build_extra_month_items(gross, 2, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
+        assert isinstance(items[0], ExtraMonthEarning)
+        assert isinstance(items[1], ExtraMonthEarning)
+        assert "13" in items[0].item_id
+        assert "14" in items[1].item_id
+
+    def test_extra_month_zero_gross_produces_no_items(self) -> None:
+        """When gross_monthly is zero, no items are produced."""
+        gross, _, _ = _make_pipeline_objects()
+        zero_gross = dataclasses.replace(gross, gross_monthly=_ZERO)
+        items = _build_extra_month_items(
+            zero_gross, 2, _PERIOD, _PAYMENT, _YYMM, _AS_OF
+        )
+        assert items == []
+
+    def test_extra_month_policy_in_registry(self) -> None:
+        """extra_month_earning kind is registered in POLICY_REGISTRY."""
+        assert "extra_month_earning" in POLICY_REGISTRY
+
+    def test_extra_month_policy_resolves(self) -> None:
+        """extra_month_earning resolves to a PolicyDecision."""
+        result = _resolve("extra_month_earning", date(2026, 6, 1))
+        assert result is not None
+        assert result.tax_treatment == TaxTreatment.ORDINARY
+
+
+# ---------------------------------------------------------------------------
+# build_pay_items() with extra_monthly_payments
+# ---------------------------------------------------------------------------
+
+
+class TestBuildPayItemsExtraMonths:
+    """build_pay_items() with extra_monthly_payments produces ExtraMonthEarning."""
+
+    def test_no_extra_months_no_extra_items(self) -> None:
+        """Default extra_monthly_payments=0 produces no ExtraMonthEarning items."""
+        gross, work, fiscal = _make_pipeline_objects()
+        items = build_pay_items(gross, work, fiscal, _AS_OF)
+        kinds = [i.kind for i in items]
+        assert "extra_month_earning" not in kinds
+
+    def test_one_extra_month_produces_one_extra_item(self) -> None:
+        """extra_monthly_payments=1 produces one ExtraMonthEarning item."""
+        gross, work, fiscal = _make_pipeline_objects()
+        items = build_pay_items(gross, work, fiscal, _AS_OF, extra_monthly_payments=1)
+        extra = [i for i in items if i.kind == "extra_month_earning"]
+        assert len(extra) == 1
+        assert isinstance(extra[0], ExtraMonthEarning)
+        assert extra[0].month_number == 13
+
+    def test_two_extra_months_produces_two_extra_items(self) -> None:
+        """extra_monthly_payments=2 produces two ExtraMonthEarning items."""
+        gross, work, fiscal = _make_pipeline_objects()
+        items = build_pay_items(gross, work, fiscal, _AS_OF, extra_monthly_payments=2)
+        extra = [i for i in items if i.kind == "extra_month_earning"]
+        assert len(extra) == 2
