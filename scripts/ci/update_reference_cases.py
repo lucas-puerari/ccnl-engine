@@ -420,7 +420,44 @@ def _serialise_result(result: object) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
-def _update_case(path: Path, *, dry_run: bool) -> tuple[bool, bool]:
+def _check_source_guard(
+    path: Path,
+    data: dict[str, Any],
+    *,
+    allow_source_overwrite: bool,
+) -> None:
+    """Raise RuntimeError if writing this case is not allowed.
+
+    Raises:
+        RuntimeError: when the case has a source block and writing is not
+            explicitly allowed, or when ``verification_status='verified'``.
+    """
+    source = data.get("source")
+    if not source:
+        return
+    verification_status: str | None = (
+        source.get("verification_status") if isinstance(source, dict) else None
+    )
+    if verification_status == "verified":
+        msg = (
+            f"{path.name}: case has verification_status='verified' — "
+            "the updater never overwrites externally verified oracles"
+        )
+        raise RuntimeError(msg)
+    if not allow_source_overwrite:
+        msg = (
+            f"{path.name}: case has a source block — "
+            "pass --overwrite-source to allow rewriting it"
+        )
+        raise RuntimeError(msg)
+
+
+def _update_case(
+    path: Path,
+    *,
+    dry_run: bool,
+    allow_source_overwrite: bool = False,
+) -> tuple[bool, bool]:
     """Re-run compute() for one case and update its expected block.
 
     Preserves the existing key order in ``expected``; new fields are appended
@@ -432,10 +469,15 @@ def _update_case(path: Path, *, dry_run: bool) -> tuple[bool, bool]:
         case carries a non-empty ``source`` field (independent oracle).
 
     Raises:
-        RuntimeError: when ``compute()`` or scenario construction fails.
+        RuntimeError: when writing is blocked by source-guard rules, or when
+            ``compute()`` or scenario construction fails.
     """
     data = json.loads(path.read_text(encoding="utf-8"))
     has_source: bool = bool(data.get("source"))
+
+    if has_source and not dry_run:
+        _check_source_guard(path, data, allow_source_overwrite=allow_source_overwrite)
+
     inputs = data["inputs"]
 
     try:
@@ -557,6 +599,15 @@ def main() -> None:
         help="Print diffs without writing files; exit 1 if any case would change.",
     )
     parser.add_argument(
+        "--overwrite-source",
+        action="store_true",
+        help=(
+            "Allow rewriting cases that carry a source block. "
+            "Has no effect on cases with verification_status='verified', "
+            "which the updater never overwrites."
+        ),
+    )
+    parser.add_argument(
         "cases",
         nargs="*",
         type=Path,
@@ -571,7 +622,14 @@ def main() -> None:
         else sorted(_CASES_DIR.glob("*.json"))
     )
 
-    results = [_update_case(p, dry_run=args.dry_run) for p in paths]
+    results = [
+        _update_case(
+            p,
+            dry_run=args.dry_run,
+            allow_source_overwrite=args.overwrite_source,
+        )
+        for p in paths
+    ]
     oracle_regressions, auto_promotions = _classify_results(paths, results)
 
     if args.dry_run:
