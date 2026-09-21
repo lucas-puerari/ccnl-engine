@@ -9,7 +9,7 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.engine.payroll.domain._internal_scenario import _InternalScenario
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger
+from ccnl_engine.engine.payroll.domain.ledger import Ledger
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     Coverage,
@@ -32,7 +32,6 @@ from ccnl_engine.engine.payroll.service.ledger_builder import (
     post_arrears_termination_tfr,
     post_contributions_and_taxes,
     post_earnings,
-    post_fiscal_summary,
     post_variable_pay,
 )
 from ccnl_engine.engine.payroll.service.reconciliation import ReconciliationService
@@ -235,7 +234,6 @@ def compute(
     post_contributions_and_taxes(fiscal, as_of, ledger)
     post_variable_pay(work, as_of, ledger)
     post_arrears_termination_tfr(fiscal, as_of, ledger)
-    post_fiscal_summary(fiscal, as_of, ledger)
     ReconciliationService().check(ledger)
     calculation_scope = build_scope(scenario, fiscal, work, ccnl.coverage)
     provenance = _collect_provenance(
@@ -291,13 +289,11 @@ def compute(
         "earnings": _build_earnings(gross, work),
         "contributions": _build_contributions(fiscal),
         "taxes": _build_taxes(fiscal),
-        "employer_cost": EmployerCost(
-            employer_cost_annual=ledger.total(AccountKind.EMPLOYER_COST)
-        ),
+        "employer_cost": EmployerCost(employer_cost_annual=fiscal.employer_cost_annual),
         "coverage": coverage,
         "provenance": provenance,
-        "net_annual": ledger.total(AccountKind.NET_PAY),
-        "net_monthly": _net_monthly(ledger, gross),
+        "net_annual": fiscal.net_annual,
+        "net_monthly": _net_monthly(fiscal, gross),
     }
     if _period is not None:
         result: AnnualEstimate = PeriodPayroll(

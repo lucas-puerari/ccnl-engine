@@ -102,10 +102,10 @@ class TestContractRenewalArrears:
         assert _KIND_ARREARS in kinds
 
     def test_arrears_account(self) -> None:
-        """contract_renewal_arrears is posted to GROSS_EARNINGS."""
+        """contract_renewal_arrears is posted to CASH_EARNINGS."""
         entries = _post(_zero_fiscal(contract_renewal_arrears_annual=_V))
         entry = next(e for e in entries if e.pay_item_kind == _KIND_ARREARS)
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_arrears_amount(self) -> None:
         """contract_renewal_arrears amount matches contract_renewal_arrears_annual."""
@@ -137,10 +137,10 @@ class TestTerminationLeavePayout:
         assert _KIND_LEAVE_PAYOUT in kinds
 
     def test_leave_payout_account(self) -> None:
-        """termination_leave_payout is posted to GROSS_EARNINGS."""
+        """termination_leave_payout is posted to CASH_EARNINGS."""
         entries = _post(_zero_fiscal(termination_residual_leave_payout_annual=_V))
         entry = next(e for e in entries if e.pay_item_kind == _KIND_LEAVE_PAYOUT)
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_leave_payout_amount(self) -> None:
         """termination_leave_payout amount matches residual leave payout."""
@@ -172,10 +172,10 @@ class TestTfrLiquidation:
         assert _KIND_TFR_LIQ in kinds
 
     def test_tfr_liquidation_account(self) -> None:
-        """tfr_liquidation is posted to TFR_ACCRUAL."""
+        """tfr_liquidation is posted to TFR_SETTLEMENT."""
         entries = _post(_zero_fiscal(termination_tfr_liquidation_annual=_V))
         entry = next(e for e in entries if e.pay_item_kind == _KIND_TFR_LIQ)
-        assert entry.account == AccountKind.TFR_ACCRUAL
+        assert entry.account == AccountKind.TFR_SETTLEMENT
 
     def test_tfr_liquidation_amount(self) -> None:
         """tfr_liquidation amount matches termination_tfr_liquidation_annual."""

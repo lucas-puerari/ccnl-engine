@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     Contributions,
     Earnings,
@@ -16,16 +15,18 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
 
-def _net_monthly(ledger: Ledger, gross: object) -> Decimal:
+def _net_monthly(fiscal: object, gross: object) -> Decimal:
     """Return net_annual divided by additional_months, rounded to EUR cents.
 
     Returns:
         Decimal net monthly.
     """
+    from ccnl_engine.engine.payroll.service.fiscal import FiscalPay  # noqa: PLC0415
     from ccnl_engine.engine.payroll.service.gross import GrossPay  # noqa: PLC0415
 
+    assert isinstance(fiscal, FiscalPay)
     assert isinstance(gross, GrossPay)
-    return money(ledger.total(AccountKind.NET_PAY) / gross.additional_months)
+    return money(fiscal.net_annual / gross.additional_months)
 
 
 def _build_earnings(gross: object, work: object) -> Earnings:

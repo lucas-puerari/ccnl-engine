@@ -83,10 +83,10 @@ class TestOvertimeSupplement:
         assert "overtime_supplement" in kinds
 
     def test_overtime_account(self) -> None:
-        """overtime_supplement is posted to GROSS_EARNINGS."""
+        """overtime_supplement is posted to CASH_EARNINGS."""
         entries = _post(_zero_work(overtime_supp=_V))
         entry = next(e for e in entries if e.pay_item_kind == "overtime_supplement")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_overtime_amount(self) -> None:
         """overtime_supplement entry amount matches overtime_supp."""
@@ -117,10 +117,10 @@ class TestNightSupplement:
         assert "night_supplement" in kinds
 
     def test_night_account(self) -> None:
-        """night_supplement is posted to GROSS_EARNINGS."""
+        """night_supplement is posted to CASH_EARNINGS."""
         entries = _post(_zero_work(night_supp=_V))
         entry = next(e for e in entries if e.pay_item_kind == "night_supplement")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_no_night_entry_when_zero(self) -> None:
         """No night_supplement when night_supp is zero."""
@@ -139,10 +139,10 @@ class TestHolidaySupplement:
         assert "holiday_supplement" in kinds
 
     def test_holiday_account(self) -> None:
-        """holiday_supplement is posted to GROSS_EARNINGS."""
+        """holiday_supplement is posted to CASH_EARNINGS."""
         entries = _post(_zero_work(holiday_supp=_V))
         entry = next(e for e in entries if e.pay_item_kind == "holiday_supplement")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_no_holiday_entry_when_zero(self) -> None:
         """No holiday_supplement when holiday_supp is zero."""
@@ -161,16 +161,16 @@ class TestAbsenceDeduction:
         assert "absence_deduction" in kinds
 
     def test_absence_account(self) -> None:
-        """absence_deduction is posted to GROSS_EARNINGS."""
+        """absence_deduction is posted to EMPLOYEE_DEDUCTIONS."""
         entries = _post(_zero_work(absence_deduction_monthly=_V))
         entry = next(e for e in entries if e.pay_item_kind == "absence_deduction")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.EMPLOYEE_DEDUCTIONS
 
-    def test_absence_amount_is_negative(self) -> None:
-        """absence_deduction amount is negative (reduces gross pay)."""
+    def test_absence_amount_is_positive(self) -> None:
+        """absence_deduction amount is positive in EMPLOYEE_DEDUCTIONS."""
         entries = _post(_zero_work(absence_deduction_monthly=_V))
         entry = next(e for e in entries if e.pay_item_kind == "absence_deduction")
-        assert entry.amount == -_V
+        assert entry.amount == _V
 
     def test_no_absence_entry_when_zero(self) -> None:
         """No absence_deduction when absence_deduction_monthly is zero."""
@@ -195,10 +195,10 @@ class TestBonus:
         assert "bonus" in kinds
 
     def test_bonus_account(self) -> None:
-        """Bonus is posted to GROSS_EARNINGS."""
+        """Bonus is posted to CASH_EARNINGS."""
         entries = _post(_zero_work(bonus_annual=_V))
         entry = next(e for e in entries if e.pay_item_kind == "bonus")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_bonus_amount(self) -> None:
         """Bonus entry amount matches bonus_annual."""
@@ -229,10 +229,10 @@ class TestFringeBenefitTaxable:
         assert "fringe_benefit_taxable" in kinds
 
     def test_fringe_account(self) -> None:
-        """fringe_benefit_taxable is posted to GROSS_EARNINGS."""
+        """fringe_benefit_taxable is posted to NON_CASH_BENEFITS."""
         entries = _post(_zero_work(fringe_benefit_taxable_annual=_V))
         entry = next(e for e in entries if e.pay_item_kind == "fringe_benefit_taxable")
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.NON_CASH_BENEFITS
 
     def test_fringe_amount(self) -> None:
         """fringe_benefit_taxable amount matches fringe_benefit_taxable_annual."""
@@ -248,11 +248,29 @@ class TestFringeBenefitTaxable:
 
 
 class TestWelfare:
-    """Welfare is captured in the fiscal summary, not posted by post_variable_pay."""
+    """post_variable_pay posts welfare_annual to NON_CASH_BENEFITS."""
 
-    def test_no_welfare_entry_in_variable_pay(self) -> None:
-        """welfare_annual does not produce a ledger entry in post_variable_pay."""
+    def test_welfare_entry_exists(self) -> None:
+        """Welfare entry is posted when welfare_annual is non-zero."""
         entries = _post(_zero_work(welfare_annual=_V))
+        kinds = [e.pay_item_kind for e in entries]
+        assert "welfare" in kinds
+
+    def test_welfare_account(self) -> None:
+        """Welfare is posted to NON_CASH_BENEFITS."""
+        entries = _post(_zero_work(welfare_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "welfare")
+        assert entry.account == AccountKind.NON_CASH_BENEFITS
+
+    def test_welfare_amount(self) -> None:
+        """Welfare entry amount matches welfare_annual."""
+        entries = _post(_zero_work(welfare_annual=_V))
+        entry = next(e for e in entries if e.pay_item_kind == "welfare")
+        assert entry.amount == _V
+
+    def test_no_welfare_entry_when_zero(self) -> None:
+        """No welfare entry when welfare_annual is zero."""
+        entries = _post(_zero_work())
         kinds = [e.pay_item_kind for e in entries]
         assert "welfare" not in kinds
 
@@ -277,6 +295,8 @@ class TestCompetencePeriod:
             "holiday_supp",
             "bonus_annual",
             "fringe_benefit_taxable_annual",
+            "welfare_annual",
+            "absence_deduction_monthly",
         ],
     )
     def test_competence_period_matches_as_of(self, field: str) -> None:
@@ -286,18 +306,12 @@ class TestCompetencePeriod:
         assert entries[0].competence_period.year == _DATE.year
         assert entries[0].competence_period.month == _DATE.month
 
-    def test_absence_competence_period(self) -> None:
-        """absence_deduction competence period matches the as_of date."""
-        entries = _post(_zero_work(absence_deduction_monthly=_V))
-        assert entries[0].competence_period.year == _DATE.year
-        assert entries[0].competence_period.month == _DATE.month
-
 
 class TestEntryCount:
     """Number of entries reflects non-zero variable pay components."""
 
-    def test_all_variable_components_produce_six_entries(self) -> None:
-        """All six posted components yield six ledger entries (welfare excluded)."""
+    def test_all_variable_components_produce_seven_entries(self) -> None:
+        """All seven posted components yield seven ledger entries."""
         work = _zero_work(
             overtime_supp=_V,
             night_supp=_V,
@@ -305,9 +319,10 @@ class TestEntryCount:
             absence_deduction_monthly=_V,
             bonus_annual=_V,
             fringe_benefit_taxable_annual=_V,
+            welfare_annual=_V,
         )
         entries = _post(work)
-        assert len(entries) == 6
+        assert len(entries) == 7
 
     @pytest.mark.parametrize(
         ("field", "count"),
@@ -318,6 +333,7 @@ class TestEntryCount:
             ("absence_deduction_monthly", 1),
             ("bonus_annual", 1),
             ("fringe_benefit_taxable_annual", 1),
+            ("welfare_annual", 1),
         ],
     )
     def test_single_component_yields_one_entry(self, field: str, count: int) -> None:

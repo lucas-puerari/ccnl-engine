@@ -95,7 +95,7 @@ class TestPostContributionsEmployee:
     def test_inps_employee_account(self) -> None:
         """INPS employee is posted to EMPLOYEE_CONTRIBUTIONS."""
         entry = _emp_entry(_calc())
-        assert entry.account == AccountKind.EMPLOYEE_CONTRIBUTIONS
+        assert entry.account == AccountKind.EMPLOYEE_CONTRIBUTIONS  # unchanged
 
     def test_inps_employee_amount_nonzero(self) -> None:
         """INPS employee amount is positive and non-zero."""
@@ -166,7 +166,7 @@ class TestPostContributionsInail:
     def test_inail_account(self) -> None:
         """INAIL is posted to EMPLOYER_CONTRIBUTIONS."""
         entry = _inail_entry(_calc(inail_rate=Decimal("0.005")))
-        assert entry.account == AccountKind.EMPLOYER_CONTRIBUTIONS
+        assert entry.account == AccountKind.EMPLOYER_CONTRIBUTIONS  # unchanged
 
     def test_inail_amount(self) -> None:
         """INAIL amount equals gross_annual * inail_rate."""
@@ -190,9 +190,9 @@ class TestPostIrpef:
         assert _KIND_IRPEF in kinds
 
     def test_irpef_account(self) -> None:
-        """IRPEF is posted to the IRPEF account."""
+        """IRPEF is posted to the ORDINARY_TAX account."""
         entry = _irpef_entry(_calc())
-        assert entry.account == AccountKind.IRPEF
+        assert entry.account == AccountKind.ORDINARY_TAX
 
     def test_irpef_amount_nonzero(self) -> None:
         """IRPEF amount is positive and non-zero for a taxable worker."""
@@ -224,12 +224,12 @@ class TestLedgerEntryCountWithContributions:
     @pytest.mark.parametrize(
         ("inail_rate", "expected_count"),
         [
-            (None, 7),
-            (Decimal("0.005"), 8),
+            (None, 5),
+            (Decimal("0.005"), 6),
         ],
     )
     def test_entry_count(self, inail_rate: Decimal | None, expected_count: int) -> None:
-        """Total entries: earnings + contributions + irpef + tfr + summary [+ inail]."""
+        """Total entries matches expected count (earnings + contributions + taxes)."""
         calc = _calc(inail_rate=inail_rate)
         assert len(calc.ledger_entries) == expected_count
 

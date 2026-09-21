@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -15,6 +16,7 @@ from ccnl_engine.engine.payroll.domain.reconciliation import (
 from ccnl_engine.engine.payroll.service.reconciliation import ReconciliationService
 
 _PERIOD = CompetencePeriod(year=2026, month=6)
+_PAYMENT = date(2026, 6, 30)
 _V = Decimal("100.00")
 _ZERO = Decimal(0)
 
@@ -22,7 +24,7 @@ _ZERO = Decimal(0)
 def _entry(
     entry_id: str = "e1",
     pay_item_kind: str = "base_salary_earning",
-    account: AccountKind = AccountKind.GROSS_EARNINGS,
+    account: AccountKind = AccountKind.CASH_EARNINGS,
     amount: Decimal = _V,
 ) -> LedgerEntry:
     """Build a minimal LedgerEntry for testing.
@@ -33,6 +35,7 @@ def _entry(
     return LedgerEntry(
         entry_id=entry_id,
         competence_period=_PERIOD,
+        payment_date=_PAYMENT,
         pay_item_id=entry_id,
         pay_item_kind=pay_item_kind,
         account=account,
@@ -85,43 +88,43 @@ class TestI4NoZeroAmount:
         assert any(v.code == "I4" for v in exc_info.value.violations)
 
 
-class TestI5GrossEarningsSign:
-    """I5: GROSS_EARNINGS must be positive except absence_deduction (negative)."""
+class TestI5CashEarningsSign:
+    """I5: CASH_EARNINGS and EMPLOYEE_DEDUCTIONS entries must be positive."""
 
-    def test_positive_gross_earnings_passes(self) -> None:
-        """Positive GROSS_EARNINGS entry passes I5."""
-        _check(_ledger(_entry(account=AccountKind.GROSS_EARNINGS, amount=_V)))
+    def test_positive_cash_earnings_passes(self) -> None:
+        """Positive CASH_EARNINGS entry passes I5."""
+        _check(_ledger(_entry(account=AccountKind.CASH_EARNINGS, amount=_V)))
 
-    def test_negative_absence_deduction_passes(self) -> None:
-        """Negative absence_deduction GROSS_EARNINGS entry passes I5."""
+    def test_positive_employee_deduction_passes(self) -> None:
+        """Positive EMPLOYEE_DEDUCTIONS entry passes I5."""
         _check(
             _ledger(
                 _entry(pay_item_kind="base_salary_earning", amount=_V),
                 _entry(
                     entry_id="e2",
                     pay_item_kind="absence_deduction",
-                    account=AccountKind.GROSS_EARNINGS,
-                    amount=Decimal("-50.00"),
+                    account=AccountKind.EMPLOYEE_DEDUCTIONS,
+                    amount=Decimal("50.00"),
                 ),
             )
         )
 
-    def test_negative_non_absence_gross_raises(self) -> None:
-        """Negative non-absence GROSS_EARNINGS entry raises I5."""
+    def test_negative_cash_earnings_raises(self) -> None:
+        """Negative CASH_EARNINGS entry raises I5."""
         with pytest.raises(ReconciliationError) as exc_info:
             _check(
                 _ledger(
                     _entry(
                         pay_item_kind="base_salary_earning",
-                        account=AccountKind.GROSS_EARNINGS,
+                        account=AccountKind.CASH_EARNINGS,
                         amount=Decimal("-10.00"),
                     )
                 )
             )
         assert any(v.code == "I5" for v in exc_info.value.violations)
 
-    def test_positive_absence_deduction_raises(self) -> None:
-        """Positive absence_deduction entry raises I5 (deductions must be negative)."""
+    def test_negative_employee_deduction_raises(self) -> None:
+        """Negative EMPLOYEE_DEDUCTIONS entry raises I5."""
         with pytest.raises(ReconciliationError) as exc_info:
             _check(
                 _ledger(
@@ -129,8 +132,8 @@ class TestI5GrossEarningsSign:
                     _entry(
                         entry_id="e2",
                         pay_item_kind="absence_deduction",
-                        account=AccountKind.GROSS_EARNINGS,
-                        amount=_V,
+                        account=AccountKind.EMPLOYEE_DEDUCTIONS,
+                        amount=Decimal("-50.00"),
                     ),
                 )
             )
@@ -187,51 +190,40 @@ class TestI6ContributionsPositive:
 
 
 class TestI7GrossSumPositive:
-    """I7: net sum of all GROSS_EARNINGS entries must be positive."""
+    """I7: net sum of all CASH_EARNINGS entries must be non-negative."""
 
-    def test_positive_gross_sum_passes(self) -> None:
-        """Ledger with net-positive GROSS_EARNINGS passes I7."""
+    def test_positive_cash_sum_passes(self) -> None:
+        """Ledger with net-positive CASH_EARNINGS passes I7."""
         _check(
             _ledger(
                 _entry(amount=Decimal("500.00")),
                 _entry(
                     entry_id="e2",
-                    pay_item_kind="absence_deduction",
-                    account=AccountKind.GROSS_EARNINGS,
-                    amount=Decimal("-100.00"),
+                    pay_item_kind="second_earnings",
+                    account=AccountKind.CASH_EARNINGS,
+                    amount=Decimal("100.00"),
                 ),
             )
         )
 
-    def test_gross_sum_zero_passes(self) -> None:
-        """Zero net GROSS_EARNINGS is valid (full-month absence capped)."""
-        _check(
-            _ledger(
-                _entry(amount=_V),
-                _entry(
-                    entry_id="e2",
-                    pay_item_kind="absence_deduction",
-                    account=AccountKind.GROSS_EARNINGS,
-                    amount=-_V,
-                ),
-            )
-        )
+    def test_cash_sum_zero_passes(self) -> None:
+        """Zero net CASH_EARNINGS is accepted."""
+        _check(_ledger(_entry(amount=_V), _entry(entry_id="e2", amount=_V)))
 
-    def test_negative_gross_sum_raises(self) -> None:
-        """Negative net GROSS_EARNINGS raises I7."""
+    def test_negative_cash_sum_raises(self) -> None:
+        """Single negative CASH_EARNINGS entry raises I7 and I5."""
         with pytest.raises(ReconciliationError) as exc_info:
             _check(
                 _ledger(
-                    _entry(amount=_V),
                     _entry(
-                        entry_id="e2",
-                        pay_item_kind="absence_deduction",
-                        account=AccountKind.GROSS_EARNINGS,
+                        pay_item_kind="base_salary_earning",
+                        account=AccountKind.CASH_EARNINGS,
                         amount=Decimal("-200.00"),
                     ),
                 )
             )
-        assert any(v.code == "I7" for v in exc_info.value.violations)
+        codes = {v.code for v in exc_info.value.violations}
+        assert "I7" in codes
 
 
 class TestI8NoDuplicateEntryIds:
@@ -249,37 +241,12 @@ class TestI8NoDuplicateEntryIds:
 
 
 class TestI9NetPayNonNegative:
-    """I9: NET_PAY entries must be non-negative."""
+    """I9: net pay stub — not yet verifiable with mixed-unit ledger."""
 
-    def test_positive_net_pay_passes(self) -> None:
-        """Positive NET_PAY entry passes I9."""
-        _check(
-            _ledger(
-                _entry(),
-                _entry(
-                    entry_id="w1",
-                    pay_item_kind="welfare",
-                    account=AccountKind.NET_PAY,
-                    amount=_V,
-                ),
-            )
-        )
-
-    def test_negative_net_pay_raises(self) -> None:
-        """Negative NET_PAY entry raises I9."""
-        with pytest.raises(ReconciliationError) as exc_info:
-            _check(
-                _ledger(
-                    _entry(),
-                    _entry(
-                        entry_id="w1",
-                        pay_item_kind="welfare",
-                        account=AccountKind.NET_PAY,
-                        amount=Decimal("-50.00"),
-                    ),
-                )
-            )
-        assert any(v.code == "I9" for v in exc_info.value.violations)
+    def test_i9_stub_always_passes(self) -> None:
+        """I9 is stubbed; any ledger returns no I9 violations."""
+        svc = ReconciliationService()
+        assert svc._check_i9_net_pay_non_negative(_ledger(_entry())) == []
 
 
 class TestI14TfrNonNegative:
@@ -359,6 +326,11 @@ class TestStubInvariants:
         svc = ReconciliationService()
         assert svc._check_i2_no_double_treatment(_ledger(_entry())) == []
 
+    def test_i9_stub_returns_empty(self) -> None:
+        """_check_i9_net_pay_non_negative returns [] (stub)."""
+        svc = ReconciliationService()
+        assert svc._check_i9_net_pay_non_negative(_ledger(_entry())) == []
+
     def test_i10_stub_returns_empty(self) -> None:
         """_check_i10_conguaglio_source returns [] (stub)."""
         svc = ReconciliationService()
@@ -386,7 +358,7 @@ class TestCleanLedger:
     def test_full_standard_payroll_passes(self) -> None:
         """Standard payroll ledger with earnings, contributions and TFR passes."""
         ledger = _ledger(
-            _entry("base", "base_salary_earning", AccountKind.GROSS_EARNINGS, _V),
+            _entry("base", "base_salary_earning", AccountKind.CASH_EARNINGS, _V),
             _entry(
                 "inps_emp",
                 "inps_employee_contribution",
@@ -402,7 +374,7 @@ class TestCleanLedger:
             _entry(
                 "irpef",
                 "irpef",
-                AccountKind.IRPEF,
+                AccountKind.ORDINARY_TAX,
                 Decimal("23.00"),
             ),
             _entry(

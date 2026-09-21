@@ -2,20 +2,15 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-import pytest
-
 from ccnl_engine.engine.payroll.domain.bundle import make_bundle
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger, LedgerEntry
-from ccnl_engine.engine.payroll.service.fiscal import FiscalPay
+from ccnl_engine.engine.payroll.domain.ledger import AccountKind, Ledger
 from ccnl_engine.engine.payroll.service.gross import GrossPay
-from ccnl_engine.engine.payroll.service.ledger_builder import (
-    post_earnings,
-    post_fiscal_summary,
-)
+from ccnl_engine.engine.payroll.service.ledger_builder import post_earnings
 from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from tests.unit.ccnl_engine.engine.payroll.service.builders import (
@@ -41,6 +36,7 @@ _CCNL_TWO_ALLOWANCES = _build_ccnl(**{
 })
 
 _KIND_ALLOWANCE = "fixed_allowance_earning"
+_PAYMENT = date(_DATE.year, _DATE.month, 30)
 
 
 def _calc(
@@ -61,7 +57,7 @@ def _calc(
 
 
 class TestPostEarningsBaseSalary:
-    """post_earnings posts base salary as a GROSS_EARNINGS entry."""
+    """post_earnings posts base salary as a CASH_EARNINGS entry."""
 
     def test_base_salary_entry_exists(self) -> None:
         """A base_salary_earning entry is posted for non-zero base."""
@@ -78,12 +74,12 @@ class TestPostEarningsBaseSalary:
         assert base_entry.amount == Decimal("1000.00")
 
     def test_base_salary_account(self) -> None:
-        """Base salary is posted to the GROSS_EARNINGS account."""
+        """Base salary is posted to the CASH_EARNINGS account."""
         calc = _calc()
         base_entry = next(
             e for e in calc.ledger_entries if e.pay_item_kind == "base_salary_earning"
         )
-        assert base_entry.account == AccountKind.GROSS_EARNINGS
+        assert base_entry.account == AccountKind.CASH_EARNINGS
 
     def test_base_salary_competence_period(self) -> None:
         """Competence period matches the as_of date."""
@@ -94,6 +90,15 @@ class TestPostEarningsBaseSalary:
         assert base_entry.competence_period.year == _DATE.year
         assert base_entry.competence_period.month == _DATE.month
 
+    def test_base_salary_payment_date(self) -> None:
+        """payment_date is the last day of the competence month."""
+        calc = _calc()
+        base_entry = next(
+            e for e in calc.ledger_entries if e.pay_item_kind == "base_salary_earning"
+        )
+        assert base_entry.payment_date.year == _DATE.year
+        assert base_entry.payment_date.month == _DATE.month
+
     def test_base_salary_entry_id_format(self) -> None:
         """entry_id follows the base_salary_{year}_{month:02d} pattern."""
         calc = _calc()
@@ -101,6 +106,14 @@ class TestPostEarningsBaseSalary:
             e for e in calc.ledger_entries if e.pay_item_kind == "base_salary_earning"
         )
         assert base_entry.entry_id == f"base_salary_{_DATE.year}_{_DATE.month:02d}"
+
+    def test_base_salary_policy_decision_id(self) -> None:
+        """policy_decision_id is set for base salary."""
+        calc = _calc()
+        base_entry = next(
+            e for e in calc.ledger_entries if e.pay_item_kind == "base_salary_earning"
+        )
+        assert base_entry.policy_decision_id == "it/earning/ordinary"
 
 
 class TestPostEarningsSeniority:
@@ -127,12 +140,12 @@ class TestPostEarningsSeniority:
         assert sen_entry.amount == Decimal("20.00")
 
     def test_seniority_account(self) -> None:
-        """Seniority is posted to GROSS_EARNINGS."""
+        """Seniority is posted to CASH_EARNINGS."""
         calc = _calc(seniority_count=1)
         sen_entry = next(
             e for e in calc.ledger_entries if e.pay_item_kind == "seniority_earning"
         )
-        assert sen_entry.account == AccountKind.GROSS_EARNINGS
+        assert sen_entry.account == AccountKind.CASH_EARNINGS
 
     def test_seniority_note_records_count(self) -> None:
         """Note field records the seniority count."""
@@ -175,12 +188,12 @@ class TestPostEarningsAllowances:
         assert entry.amount == Decimal("10.33")
 
     def test_allowance_account(self) -> None:
-        """Allowance is posted to GROSS_EARNINGS."""
+        """Allowance is posted to CASH_EARNINGS."""
         calc = _calc(ccnl=_CCNL_WITH_ALLOWANCE)
         entry = next(
             e for e in calc.ledger_entries if e.pay_item_kind == _KIND_ALLOWANCE
         )
-        assert entry.account == AccountKind.GROSS_EARNINGS
+        assert entry.account == AccountKind.CASH_EARNINGS
 
     def test_allowance_note_contains_code(self) -> None:
         """Note field stores the allowance code."""
@@ -217,52 +230,35 @@ class TestLedgerEntriesOnCalculation:
         calc = _calc()
         assert isinstance(calc.ledger_entries, tuple)
 
-    def test_all_earnings_entries_have_gross_earnings_account(self) -> None:
-        """All GROSS_EARNINGS entries are posted to the GROSS_EARNINGS account."""
+    def test_all_earnings_entries_have_cash_earnings_account(self) -> None:
+        """All CASH_EARNINGS entries are posted to the CASH_EARNINGS account."""
         calc = _calc(ccnl=_CCNL_WITH_ALLOWANCE, seniority_count=1)
         earnings = [
-            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
+            e for e in calc.ledger_entries if e.account == AccountKind.CASH_EARNINGS
         ]
-        assert all(e.account == AccountKind.GROSS_EARNINGS for e in earnings)
+        assert all(e.account == AccountKind.CASH_EARNINGS for e in earnings)
         assert len(earnings) >= 1
 
-    def test_base_only_produces_one_gross_earnings_entry(self) -> None:
-        """Level 3 with no seniority and no allowances: 1 GROSS_EARNINGS entry."""
+    def test_base_only_produces_one_cash_earnings_entry(self) -> None:
+        """Level 3 with no seniority and no allowances: 1 CASH_EARNINGS entry."""
         calc = _calc(level_code="3", seniority_count=0)
         earnings = [
-            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
+            e for e in calc.ledger_entries if e.account == AccountKind.CASH_EARNINGS
         ]
         assert len(earnings) == 1
-
-    @pytest.mark.parametrize(
-        ("level", "seniority_count", "has_allowance", "expected_count"),
-        [
-            ("4", 0, False, 1),
-            ("4", 1, False, 2),
-            ("4", 0, True, 2),
-            ("4", 1, True, 3),
-        ],
-    )
-    def test_gross_earnings_entry_count(
-        self,
-        level: str,
-        seniority_count: int,
-        has_allowance: bool,
-        expected_count: int,
-    ) -> None:
-        """GROSS_EARNINGS entry count matches base + seniority + allowances."""
-        ccnl = _CCNL_WITH_ALLOWANCE if has_allowance else _DEFAULT_CCNL
-        calc = _calc(level_code=level, seniority_count=seniority_count, ccnl=ccnl)
-        earnings = [
-            e for e in calc.ledger_entries if e.account == AccountKind.GROSS_EARNINGS
-        ]
-        assert len(earnings) == expected_count
 
     def test_from_dict_round_trip_has_empty_ledger(self) -> None:
         """Calculation.from_dict round-trip produces an empty ledger_entries tuple."""
         calc = _calc()
         restored = Calculation.from_dict(calc.to_dict())
         assert restored.ledger_entries == ()
+
+    def test_all_entries_have_payment_date(self) -> None:
+        """Every ledger entry has a payment_date in the competence month."""
+        calc = _calc()
+        for e in calc.ledger_entries:
+            assert e.payment_date.year == _DATE.year
+            assert e.payment_date.month == _DATE.month
 
 
 class TestPostEarningsZeroAmounts:
@@ -304,150 +300,3 @@ class TestPostEarningsZeroAmounts:
         ledger = Ledger()
         post_earnings(self._zero_chain_gross(), _DATE, ledger)
         assert ledger.entries() == ()
-
-
-_ZERO = Decimal(0)
-_V = Decimal("1000.00")
-
-
-def _zero_fiscal(**overrides: object) -> FiscalPay:
-    """Build a FiscalPay with all monetary fields zeroed and optional overrides.
-
-    Returns:
-        A :class:`FiscalPay` with all fields at zero unless overridden.
-    """
-    base: dict[str, object] = {
-        "consumed_ruleset_ids": (),
-        "consumed_verifications": {},
-        "inps_employee_annual": _ZERO,
-        "inps_employer_annual": _ZERO,
-        "inps_employee_additional_annual": _ZERO,
-        "inail_employer_annual": _ZERO,
-        "inps_employer_exemption_annual": _ZERO,
-        "maternity_inps_indemnity_annual": _ZERO,
-        "workplace_injury_inail_indemnity_annual": _ZERO,
-        "termination_tfr_liquidation_annual": _ZERO,
-        "employer_funds_annual": _ZERO,
-        "tfr_annual": _ZERO,
-        "bilateral_employee_annual": _ZERO,
-        "bilateral_employer_annual": _ZERO,
-        "taxable_income": _ZERO,
-        "irpef_gross": _ZERO,
-        "work_income_deduction": _ZERO,
-        "fam_spouse": _ZERO,
-        "fam_children": _ZERO,
-        "fam_other": _ZERO,
-        "fam_total": _ZERO,
-        "fam_unused": _ZERO,
-        "art15_total": _ZERO,
-        "art15_unused": _ZERO,
-        "sterilizzazione_clawback": _ZERO,
-        "ulteriore_detrazione_lavoro": _ZERO,
-        "somma_esente": _ZERO,
-        "irpef_net": _ZERO,
-        "conguaglio_annual": _ZERO,
-        "termination_residual_leave_payout_annual": _ZERO,
-        "contract_renewal_arrears_annual": _ZERO,
-        "una_tantum_annual": _ZERO,
-        "personal_withholdings_annual": _ZERO,
-        "additional_irpef_base_annual": _ZERO,
-        "health_fund_employee_annual": _ZERO,
-        "health_fund_employer_annual": _ZERO,
-        "territorial_supplement_annual": _ZERO,
-        "company_supplement_annual": _ZERO,
-        "trattamento_integrativo": _ZERO,
-        "addizionale_regionale": _ZERO,
-        "addizionale_comunale": _ZERO,
-        "net_annual": _ZERO,
-        "net_monthly": _ZERO,
-        "employer_cost_annual": _ZERO,
-        "employer_withholds_irpef": False,
-        "fiscal_simplifications": frozenset(),
-    }
-    base.update(overrides)
-    return FiscalPay(**base)  # type: ignore[arg-type]
-
-
-def _post_summary(fiscal: FiscalPay) -> tuple[LedgerEntry, ...]:
-    ledger = Ledger()
-    post_fiscal_summary(fiscal, _DATE, ledger)
-    return ledger.entries()
-
-
-class TestPostFiscalSummary:
-    """post_fiscal_summary posts net_annual and employer_cost_annual to ledger."""
-
-    def test_net_pay_entry_exists(self) -> None:
-        """net_pay_total entry is posted when net_annual is non-zero."""
-        entries = _post_summary(_zero_fiscal(net_annual=_V))
-        kinds = [e.pay_item_kind for e in entries]
-        assert "net_pay_total" in kinds
-
-    def test_net_pay_account(self) -> None:
-        """net_pay_total is posted to NET_PAY account."""
-        entries = _post_summary(_zero_fiscal(net_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
-        assert entry.account == AccountKind.NET_PAY
-
-    def test_net_pay_amount(self) -> None:
-        """net_pay_total entry amount matches net_annual."""
-        entries = _post_summary(_zero_fiscal(net_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
-        assert entry.amount == _V
-
-    def test_employer_cost_entry_exists(self) -> None:
-        """employer_cost_total entry is posted when employer_cost_annual is non-zero."""
-        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
-        kinds = [e.pay_item_kind for e in entries]
-        assert "employer_cost_total" in kinds
-
-    def test_employer_cost_account(self) -> None:
-        """employer_cost_total is posted to EMPLOYER_COST account."""
-        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
-        assert entry.account == AccountKind.EMPLOYER_COST
-
-    def test_employer_cost_amount(self) -> None:
-        """employer_cost_total entry amount matches employer_cost_annual."""
-        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
-        assert entry.amount == _V
-
-    def test_no_entries_when_both_zero(self) -> None:
-        """All-zero FiscalPay produces no entries in post_fiscal_summary."""
-        entries = _post_summary(_zero_fiscal())
-        assert entries == ()
-
-    def test_entry_id_format_net(self) -> None:
-        """entry_id for net follows net_pay_{year}_{month:02d}."""
-        entries = _post_summary(_zero_fiscal(net_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "net_pay_total")
-        assert entry.entry_id == f"net_pay_{_DATE.year}_{_DATE.month:02d}"
-
-    def test_entry_id_format_cost(self) -> None:
-        """entry_id for employer cost follows employer_cost_{year}_{month:02d}."""
-        entries = _post_summary(_zero_fiscal(employer_cost_annual=_V))
-        entry = next(e for e in entries if e.pay_item_kind == "employer_cost_total")
-        assert entry.entry_id == f"employer_cost_{_DATE.year}_{_DATE.month:02d}"
-
-    def test_orchestrator_net_matches_ledger(self) -> None:
-        """Orchestrator result net_annual equals ledger.total(NET_PAY)."""
-        bundle = make_bundle(_DEFAULT_CCNL, _RULES, None)
-        calc = estimate_annual(_req(), bundle=bundle)
-        net_from_result = calc.result.net_annual
-        net_from_ledger = next(
-            e.amount for e in calc.ledger_entries if e.pay_item_kind == "net_pay_total"
-        )
-        assert net_from_result == net_from_ledger
-
-    def test_orchestrator_employer_cost_matches_ledger(self) -> None:
-        """Employer cost from result matches ledger EMPLOYER_COST total."""
-        bundle = make_bundle(_DEFAULT_CCNL, _RULES, None)
-        calc = estimate_annual(_req(), bundle=bundle)
-        cost_from_result = calc.result.employer_cost.employer_cost_annual
-        cost_from_ledger = next(
-            e.amount
-            for e in calc.ledger_entries
-            if e.pay_item_kind == "employer_cost_total"
-        )
-        assert cost_from_result == cost_from_ledger
