@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import warnings
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -57,14 +58,10 @@ def compute_period(
 ) -> Calculation:
     """Compute payroll for a single month of competence.
 
-    Uses *period.year* and *period.month* as the reference date for all
-    time-series lookups, overriding the ``as_of`` field in
-    *scenario.employment*.  The period-specific events in *period.events*
-    are merged into the scenario exactly as in :func:`estimate_period_effects`.
-
-    The year-to-date state in *period.ytd* is stored in the period
-    descriptor and is available for chaining across months; it does not
-    alter the underlying annualized calculation in this version.
+    .. deprecated::
+        This function divides annual figures by 12 and does not compute a real
+        period payroll.  The YTD state does not alter the calculation.  It will
+        be replaced by a period-first engine in a future release.
 
     Args:
         scenario: The annual payroll scenario (structural fields only).
@@ -79,6 +76,12 @@ def compute_period(
         A :class:`~ccnl_engine.engine.payroll.domain.calculation.Calculation`
         for the specified month.
     """
+    warnings.warn(
+        "compute_period() produces annualized figures divided by 12, not a real "
+        "period payroll. It will be replaced in a future release.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     updated = scenario.model_copy(
         update={
             "employment": scenario.employment.model_copy(
@@ -104,10 +107,10 @@ def compute_year(
 ) -> list[Calculation]:
     """Compute payroll for all twelve months of *year*.
 
-    Calls :func:`compute_period` for each month 1-12, threading the
-    year-to-date progressive state forward from each period into the next.
-    The *scenario.employment.as_of* date is overridden per month; all other
-    structural fields are reused for every period.
+    .. deprecated::
+        Each month is computed by dividing annual figures — not by a real
+        period-first engine.  The year total does not equal the sum of
+        independent period results.  Will be replaced in a future release.
 
     Args:
         scenario: The annual payroll scenario (structural fields only).
@@ -131,6 +134,12 @@ def compute_year(
         InvalidInputError: When *month_events* is provided but does not
             contain exactly 12 entries.
     """
+    warnings.warn(
+        "compute_year() divides annual figures across months rather than "
+        "computing each period independently. It will be replaced in a future release.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     from ccnl_engine.engine.errors import InvalidInputError  # noqa: PLC0415
 
     events: list[PeriodPayrollInput] = (
@@ -160,13 +169,14 @@ def compute_period_payroll(
 ) -> PeriodPayrollResult:
     """Compute a single payroll period with YTD-based conguaglio IRPEF.
 
-    Injects the real cumulative IRPEF withheld from ``request.opening_state``
-    into the fiscal chain so the period conguaglio is computed against actual
-    YTD withholdings rather than zero.  Pass ``PayrollState.zero()`` as
-    ``opening_state`` for the first period of the year (January).
-
-    The closing YTD state can be passed directly as the ``opening_state`` of
-    the next :class:`~PeriodPayrollRequest`.
+    .. deprecated::
+        This function divides annual figures by the number of pay periods and
+        does not perform real period-based payroll computation.  The YTD
+        ``irpef_withheld_ytd`` is injected into the annual formula but does not
+        drive a genuine conguaglio: changing it does not alter the period net.
+        Variable events (overtime, bonus, fringe) may update the closing state
+        without entering the net or employer cost.  Do not rely on this function
+        for cedolino production.  It will be replaced in a future release.
 
     Args:
         request: Period payroll request: structural scenario, period events,
@@ -181,6 +191,13 @@ def compute_period_payroll(
         A :class:`~PeriodPayrollResult` with the opening and closing YTD
         states, the key period figures, and all ledger entries.
     """
+    warnings.warn(
+        "compute_period_payroll() divides annual figures and does not compute a real "
+        "cedolino. The YTD state does not drive conguaglio. "
+        "It will be replaced in a future release.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     opening = request.opening_state
     as_of = request.structural.employment.as_of
     if bundle is not None:
