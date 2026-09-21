@@ -74,6 +74,7 @@ class _InternalScenario(BaseModel):
     family: FamilyComposition | None = None
     art15_deductions: Art15Deductions | None = None
     bilateral_funds: tuple[BilateralFundInput, ...] = ()
+    extra_monthly_payments: int = Field(default=0, ge=0, le=2)
     prior_period_irpef_withheld: StrictDecimal | None = None
     maternity_inps_indemnity_annual: StrictDecimal | None = None
     workplace_injury_inail_indemnity_annual: StrictDecimal | None = None

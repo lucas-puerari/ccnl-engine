@@ -9,10 +9,10 @@ Variants:
     BaseSalaryEarning, FixedAllowanceEarning, SeniorityEarning,
     OvertimeEarning, NightHolidayShiftEarning, BonusEarning,
     ProductivityBonusEarning, ContractRenewalArrears, OneOffEarning,
-    FringeBenefitItem, WelfareItem, AbsenceDeduction, LeaveSettlementItem,
-    SicknessItem, MaternityItem, WorkInjuryItem, EmployeeWithholdingItem,
-    EmployerContributionItem, TerminationItem, TfrAccrualItem,
-    TfrSettlementItem, TaxCreditItem, TaxRefundItem.
+    ExtraMonthEarning, FringeBenefitItem, WelfareItem, AbsenceDeduction,
+    LeaveSettlementItem, SicknessItem, MaternityItem, WorkInjuryItem,
+    EmployeeWithholdingItem, EmployerContributionItem, TerminationItem,
+    TfrAccrualItem, TfrSettlementItem, TaxCreditItem, TaxRefundItem.
 """
 
 from __future__ import annotations
@@ -139,7 +139,7 @@ class _PayItemBase(BaseModel):
 
 
 # ---------------------------------------------------------------------------
-# 23 PayItem variants
+# 24 PayItem variants
 # ---------------------------------------------------------------------------
 
 
@@ -197,6 +197,13 @@ class OneOffEarning(_PayItemBase):
     """Any one-off payment not covered by a more specific variant."""
 
     kind: Literal["one_off_earning"] = "one_off_earning"
+
+
+class ExtraMonthEarning(_PayItemBase):
+    """Extra-month contractual payment: tredicesima (13) or quattordicesima (14)."""
+
+    kind: Literal["extra_month_earning"] = "extra_month_earning"
+    month_number: int = Field(ge=13, le=14)
 
 
 class FringeBenefitItem(_PayItemBase):
@@ -301,6 +308,7 @@ PayItem = Annotated[
     | ProductivityBonusEarning
     | ContractRenewalArrears
     | OneOffEarning
+    | ExtraMonthEarning
     | FringeBenefitItem
     | WelfareItem
     | AbsenceDeduction

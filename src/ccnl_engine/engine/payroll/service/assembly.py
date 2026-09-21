@@ -417,5 +417,7 @@ def build_calculation(
             fiscal_steps=fiscal_steps,
         ),
         ledger_entries=tuple(ledger.entries()) if ledger is not None else (),
-        pay_items=build_pay_items(gross, work, fiscal, as_of),
+        pay_items=build_pay_items(
+            gross, work, fiscal, as_of, scenario.extra_monthly_payments
+        ),
     )

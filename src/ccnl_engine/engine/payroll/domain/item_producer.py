@@ -23,6 +23,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     CostTreatment,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    ExtraMonthEarning,
     FixedAllowanceEarning,
     FringeBenefitItem,
     NightHolidayShiftEarning,
@@ -187,6 +188,16 @@ EMPLOYER_CONTRIBUTION_POLICY = _policy(
     _DPR22_5,
 )
 
+EXTRA_MONTH_EARNING_POLICY = _policy(
+    "it/earning/extra_month",
+    ("extra_month_earning",),
+    TaxTreatment.ORDINARY,
+    ContributionTreatment.INCLUDED,
+    TfrTreatment.INCLUDED,
+    CostTreatment.EMPLOYEE_CASH,
+    _ART51,
+)
+
 # Flat registry: kind -> policy for quick lookup.
 POLICY_REGISTRY: dict[str, PayItemPolicy] = {
     k: p
@@ -200,6 +211,7 @@ POLICY_REGISTRY: dict[str, PayItemPolicy] = {
         TFR_ACCRUAL_POLICY,
         EMPLOYEE_CONTRIBUTION_POLICY,
         EMPLOYER_CONTRIBUTION_POLICY,
+        EXTRA_MONTH_EARNING_POLICY,
     )
     for k in p.applies_to_kinds
 }
@@ -440,11 +452,45 @@ def _build_fiscal_items(
     return items
 
 
+def _build_extra_month_items(
+    gross: GrossPay,
+    extra_monthly_payments: int,
+    period: CompetencePeriod,
+    payment: date,
+    yymm: str,
+    as_of: date,
+) -> list[PayItem]:
+    """Produce ExtraMonthEarning items for tredicesima and quattordicesima.
+
+    Returns:
+        List of ExtraMonthEarning items (0, 1, or 2 entries).
+    """
+    items: list[PayItem] = []
+    amount = gross.gross_monthly
+    if amount == _ZERO:
+        return items
+    for i in range(extra_monthly_payments):
+        month_number = 13 + i
+        items.append(
+            ExtraMonthEarning(
+                item_id=f"extra_month_{month_number}_{yymm}",
+                competence_period=period,
+                payment_date=payment,
+                quantity=Decimal(1),
+                amount=amount,
+                month_number=month_number,
+                policy_decision=_resolve("extra_month_earning", as_of),
+            )
+        )
+    return items
+
+
 def build_pay_items(
     gross: GrossPay,
     work: WorkRulesPay,
     fiscal: FiscalPay,
     as_of: date,
+    extra_monthly_payments: int = 0,
 ) -> tuple[PayItem, ...]:
     """Produce typed PayItem objects from a completed payroll computation.
 
@@ -459,6 +505,7 @@ def build_pay_items(
         work: Work-rules pay components (supplements, absence, variable pay).
         fiscal: Annual contributions, taxes and net pay.
         as_of: Competence date (first day of the payroll month).
+        extra_monthly_payments: Number of extra monthly payments (0, 1, or 2).
 
     Returns:
         Tuple of typed PayItem objects, one per non-zero component.
@@ -468,6 +515,11 @@ def build_pay_items(
     yymm = f"{period.year}_{period.month:02d}"
     items: list[PayItem] = []
     items.extend(_build_gross_items(gross, period, payment, yymm, as_of))
+    items.extend(
+        _build_extra_month_items(
+            gross, extra_monthly_payments, period, payment, yymm, as_of
+        )
+    )
     items.extend(_build_work_items(work, period, payment, yymm, as_of))
     items.extend(_build_fiscal_items(fiscal, period, payment, yymm, as_of))
     return tuple(items)

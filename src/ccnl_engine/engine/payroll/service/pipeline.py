@@ -137,6 +137,7 @@ def _annual_to_scenario(
             fringe_benefit_input=period.fringe_benefit_input,
             welfare_input=period.welfare_input,
             bonus_input=period.bonus_input,
+            extra_monthly_payments=period.extra_monthly_payments,
             prior_period_irpef_withheld=period.prior_period_irpef_withheld,
             maternity_inps_indemnity_annual=period.maternity_inps_indemnity_annual,
             workplace_injury_inail_indemnity_annual=(
