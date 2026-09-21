@@ -8,6 +8,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -124,6 +125,7 @@ class _Builder:
             ),
             pay_items=self.pay_items,
             ledger_entries=self.ledger_entries,
+            capability_report=CapabilityReport.empty(_YEAR),
         )
 
 
