@@ -33,6 +33,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "FamilyComposition",
     "FiscalSimplification",
     "FixedTerm",
+    "FiscalYTD",
     "FlatMonthlyFund",
     "FringeBenefitInput",
     "InputSnapshot",

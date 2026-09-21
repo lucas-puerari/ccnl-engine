@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
+
 if TYPE_CHECKING:
     from datetime import date
 
@@ -99,6 +101,10 @@ class PeriodPayrollResult:
         period_gross: Gross earnings for this period only.
         period_net: Net pay for this period only.
         period_employer_cost: Total employer cost for this period only.
+        fiscal_ytd: Accumulated fiscal YTD after this period closes.  Use
+            this to drive conguaglio and addizionale settlement in subsequent
+            periods or at year-end.  Defaults to :meth:`FiscalYTD.zero` when
+            not explicitly set (e.g. when constructing results in tests).
         ledger_entries: All ledger entries posted for this period.
         period_id: The competence period that was closed.  ``None`` when the
             result was produced from a request without an explicit
@@ -110,6 +116,7 @@ class PeriodPayrollResult:
     period_gross: Decimal
     period_net: Decimal
     period_employer_cost: Decimal
+    fiscal_ytd: FiscalYTD = field(default_factory=FiscalYTD.zero)
     ledger_entries: tuple[LedgerEntry, ...] = field(default_factory=tuple)
     period_id: PeriodId | None = None
 

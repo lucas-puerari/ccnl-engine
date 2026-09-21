@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
 from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
@@ -225,6 +226,27 @@ class TestPeriodPayrollResultConstruction:
         closing = result.closing_state.gross_annual_ytd
         opening = result.opening_state.gross_annual_ytd
         assert closing > opening
+
+    def test_fiscal_ytd_defaults_to_zero(self) -> None:
+        """fiscal_ytd defaults to FiscalYTD.zero() when not provided."""
+        result = self._make_result()
+        assert result.fiscal_ytd == FiscalYTD.zero()
+
+    def test_fiscal_ytd_stored_when_provided(self) -> None:
+        """fiscal_ytd stores the instance passed at construction."""
+        ytd = FiscalYTD(
+            taxable_income_ytd=Decimal("12000.00"),
+            irpef_gross_ytd=Decimal("2400.00"),
+            irpef_withheld_ytd=Decimal("2000.00"),
+            work_income_deduction_ytd=Decimal("500.00"),
+            fam_deductions_ytd=Decimal("100.00"),
+            art15_deductions_ytd=Decimal("50.00"),
+            trattamento_integrativo_ytd=Decimal("100.00"),
+            addizionale_regionale_ytd=Decimal("80.00"),
+            addizionale_comunale_ytd=Decimal("20.00"),
+        )
+        result = self._make_result(fiscal_ytd=ytd)
+        assert result.fiscal_ytd is ytd
 
 
 class TestPeriodPayrollPublicApi:

@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
@@ -321,12 +322,24 @@ def compute_period_payroll(
         leave_balance_days=new_leave_accrued - new_leave_taken,
         sick_days_ytd=opening.sick_days_ytd + period_sick,
     )
+    fiscal_ytd = FiscalYTD(
+        taxable_income_ytd=closing.taxable_income_ytd,
+        irpef_gross_ytd=closing.irpef_gross_ytd,
+        irpef_withheld_ytd=closing.irpef_withheld_ytd,
+        work_income_deduction_ytd=closing.work_income_deduction_ytd,
+        fam_deductions_ytd=closing.fam_deductions_ytd,
+        art15_deductions_ytd=closing.art15_deductions_ytd,
+        trattamento_integrativo_ytd=closing.trattamento_integrativo_ytd,
+        addizionale_regionale_ytd=closing.addizionale_regionale_ytd,
+        addizionale_comunale_ytd=closing.addizionale_comunale_ytd,
+    )
     return PeriodPayrollResult(
         opening_state=opening,
         closing_state=closing,
         period_gross=period_gross,
         period_net=period_net,
         period_employer_cost=period_employer_cost,
+        fiscal_ytd=fiscal_ytd,
         ledger_entries=calc.ledger_entries,
         period_id=period_id,
     )

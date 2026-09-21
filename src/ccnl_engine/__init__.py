@@ -91,6 +91,7 @@ from ccnl_engine.engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     Contributions,
@@ -171,6 +172,7 @@ __all__ = [
     "Employment",
     "FamilyComposition",
     "FiscalSimplification",
+    "FiscalYTD",
     "FixedTerm",
     "FlatMonthlyFund",
     "FringeBenefitInput",
