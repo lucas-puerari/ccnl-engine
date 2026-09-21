@@ -18,6 +18,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -51,6 +52,20 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 _PERMANENT = Permanent()
+
+_OBSERVED: dict[str, str] = {
+    "base_salary": "computed",
+    "seniority": "computed",
+    "inps_employee": "computed",
+    "inps_employer": "computed",
+    "tfr": "computed",
+    "irpef": "computed",
+    "trattamento_integrativo": "computed",
+    "ulteriore_detrazione_lavoro": "computed",
+    "addizionale_regionale": "computed",
+    "addizionale_comunale": "computed",
+    "family_deductions": "computed",
+}
 
 
 @dataclass(frozen=True)
@@ -337,9 +352,13 @@ def calculate_period(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.ccnl_slug)
     as_of = _as_of(request.period_id)
+    period_year = request.period_id.year
     year_rules = effective_repo.load_year_rules(
-        request.period_id.year, ccnl.meta.tax_sector, request.num_employees
+        period_year, ccnl.meta.tax_sector, request.num_employees
     )
+    catalog = effective_repo.load_capability_catalog(period_year)
+    capability_gaps = catalog.gaps(_OBSERVED, detect_absent=True, year=period_year)
+    capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     monthly_gross = _resolve_monthly_gross(ccnl, request.level_code, as_of)
     amounts = _compute_amounts(
@@ -366,4 +385,5 @@ def calculate_period(
         closing_state=closing,
         pay_items=pay_items,
         ledger_entries=ledger_entries,
+        capability_report=capability_report,
     )

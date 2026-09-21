@@ -13,6 +13,8 @@ from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
     CapabilityGap,
+    CapabilityGapKind,
+    CapabilityReport,
     CapabilityStatus,
 )
 from ccnl_engine.engine.errors import DataIntegrityError
@@ -77,11 +79,28 @@ class TestCapabilityEntry:
 # ---------------------------------------------------------------------------
 
 
+class TestCapabilityGapKind:
+    """CapabilityGapKind StrEnum coverage."""
+
+    def test_values(self) -> None:
+        """All members expose their string value."""
+        assert CapabilityGapKind.NOT_COMPUTED.value == "not_computed"
+        assert CapabilityGapKind.FEATURE_ABSENT.value == "feature_absent"
+        assert CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL.value == (
+            "promised_computed_got_partial"
+        )
+        assert CapabilityGapKind.WRONG_YEAR.value == "wrong_year"
+
+    def test_from_string(self) -> None:
+        """Constructing from string returns the enum member."""
+        assert CapabilityGapKind("feature_absent") is CapabilityGapKind.FEATURE_ABSENT
+
+
 class TestCapabilityGap:
     """CapabilityGap frozen dataclass."""
 
     def test_fields(self) -> None:
-        """Gap stores feature, declared, and observed."""
+        """Gap stores feature, declared, observed, and defaults kind to NOT_COMPUTED."""
         gap = CapabilityGap(
             feature="irpef",
             declared=CapabilityStatus.COMPUTED,
@@ -90,6 +109,83 @@ class TestCapabilityGap:
         assert gap.feature == "irpef"
         assert gap.declared == CapabilityStatus.COMPUTED
         assert gap.observed == "not_computed"
+        assert gap.kind == CapabilityGapKind.NOT_COMPUTED
+
+    def test_explicit_kind(self) -> None:
+        """An explicit kind overrides the default."""
+        gap = CapabilityGap(
+            feature="overtime",
+            declared=CapabilityStatus.COMPUTED,
+            observed="absent",
+            kind=CapabilityGapKind.FEATURE_ABSENT,
+        )
+        assert gap.kind == CapabilityGapKind.FEATURE_ABSENT
+
+
+# ---------------------------------------------------------------------------
+# CapabilityReport
+# ---------------------------------------------------------------------------
+
+
+class TestCapabilityReport:
+    """CapabilityReport dataclass: empty factory, status, confidence."""
+
+    def test_empty_is_complete(self) -> None:
+        """An empty report has status 'complete' and confidence 'high'."""
+        report = CapabilityReport.empty(2026)
+        assert report.catalog_year == 2026
+        assert report.gaps == ()
+        assert report.status == "complete"
+        assert report.confidence == "high"
+
+    def test_only_partial_gaps_is_partial(self) -> None:
+        """A report with only PROMISED_COMPUTED_GOT_PARTIAL gaps is 'partial'."""
+        gap = CapabilityGap(
+            feature="irpef",
+            declared=CapabilityStatus.COMPUTED,
+            observed="partially_computed",
+            kind=CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL,
+        )
+        report = CapabilityReport(catalog_year=2026, gaps=(gap,))
+        assert report.status == "partial"
+        assert report.confidence == "medium"
+
+    def test_feature_absent_gap_is_incomplete(self) -> None:
+        """A report with FEATURE_ABSENT gaps is 'incomplete' / 'low' confidence."""
+        gap = CapabilityGap(
+            feature="overtime",
+            declared=CapabilityStatus.COMPUTED,
+            observed="absent",
+            kind=CapabilityGapKind.FEATURE_ABSENT,
+        )
+        report = CapabilityReport(catalog_year=2026, gaps=(gap,))
+        assert report.status == "incomplete"
+        assert report.confidence == "low"
+
+    def test_mixed_gaps_is_incomplete(self) -> None:
+        """Mixed gap kinds result in 'incomplete' status."""
+        gaps = (
+            CapabilityGap(
+                feature="irpef",
+                declared=CapabilityStatus.COMPUTED,
+                observed="partially_computed",
+                kind=CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL,
+            ),
+            CapabilityGap(
+                feature="overtime",
+                declared=CapabilityStatus.COMPUTED,
+                observed="absent",
+                kind=CapabilityGapKind.FEATURE_ABSENT,
+            ),
+        )
+        report = CapabilityReport(catalog_year=2026, gaps=gaps)
+        assert report.status == "incomplete"
+
+    def test_frozen(self) -> None:
+        """CapabilityReport is immutable."""
+        report = CapabilityReport.empty(2026)
+        with pytest.raises(FrozenInstanceError):
+            report.catalog_year = 2027  # type: ignore[misc]
 
 
 # ---------------------------------------------------------------------------
@@ -176,6 +272,60 @@ class TestCapabilityCatalog:
         gaps = cat.gaps(observed)
         assert len(gaps) == 2
         assert {g.feature for g in gaps} == {"base_salary", "irpef"}
+
+    def test_gaps_detect_absent_reports_missing_features(self) -> None:
+        """detect_absent=True reports absent features as FEATURE_ABSENT."""
+        cat = self._make()
+        gaps = cat.gaps({}, detect_absent=True)
+        features = {g.feature for g in gaps}
+        assert "base_salary" in features
+        assert "irpef" in features
+        assert "art15_deductions" in features
+        for gap in gaps:
+            assert gap.kind == CapabilityGapKind.FEATURE_ABSENT
+            assert gap.observed == "absent"
+
+    def test_gaps_detect_absent_false_skips_missing(self) -> None:
+        """detect_absent=False (default) does not report absent features."""
+        cat = self._make()
+        assert cat.gaps({}, detect_absent=False) == ()
+
+    def test_gaps_wrong_year_prepended(self) -> None:
+        """Passing a year differing from catalog.year prepends a WRONG_YEAR gap."""
+        cat = self._make()
+        gaps = cat.gaps({}, year=2025)
+        assert len(gaps) >= 1
+        first = gaps[0]
+        assert first.kind == CapabilityGapKind.WRONG_YEAR
+        assert first.feature == "__catalog__"
+        assert first.observed == "2025"
+
+    def test_gaps_matching_year_no_wrong_year_gap(self) -> None:
+        """Passing the correct year does not produce a WRONG_YEAR gap."""
+        cat = self._make()
+        gaps = cat.gaps({"base_salary": "computed", "irpef": "computed"}, year=2026)
+        assert not any(g.kind == CapabilityGapKind.WRONG_YEAR for g in gaps)
+
+    def test_gaps_promised_computed_got_partial(self) -> None:
+        """A computed entry observed as partially_computed gets that gap kind."""
+        cat = self._make()
+        gaps = cat.gaps({"irpef": "partially_computed"})
+        assert len(gaps) == 1
+        assert gaps[0].kind == CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
+        assert gaps[0].observed == "partially_computed"
+
+    def test_gaps_partially_computed_entry_observed_partial_no_gap(self) -> None:
+        """A partially_computed entry observed as partially_computed is not a gap."""
+        cat = self._make()
+        gaps = cat.gaps({"art15_deductions": "partially_computed"})
+        assert gaps == ()
+
+    def test_gaps_not_computed_kind_on_not_computed_observed(self) -> None:
+        """A computed entry observed as not_computed has kind NOT_COMPUTED."""
+        cat = self._make()
+        gaps = cat.gaps({"base_salary": "not_computed"})
+        assert len(gaps) == 1
+        assert gaps[0].kind == CapabilityGapKind.NOT_COMPUTED
 
 
 # ---------------------------------------------------------------------------

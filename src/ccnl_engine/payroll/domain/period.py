@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.engine.capability_catalog import CapabilityReport
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
@@ -95,3 +96,4 @@ class PeriodCalculationResult:
     closing_state: PeriodState
     pay_items: tuple[PayItem, ...]
     ledger_entries: tuple[LedgerEntry, ...]
+    capability_report: CapabilityReport

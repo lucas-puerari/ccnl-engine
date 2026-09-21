@@ -7,6 +7,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -36,6 +37,7 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
         "closing_state": PeriodState(months_closed=1),
         "pay_items": (),
         "ledger_entries": (),
+        "capability_report": CapabilityReport.empty(2026),
     }
     defaults.update(kwargs)
     return PeriodCalculationResult(**defaults)  # type: ignore[arg-type]
