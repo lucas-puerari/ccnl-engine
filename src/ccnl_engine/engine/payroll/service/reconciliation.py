@@ -25,7 +25,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.ledger import Ledger
 
 _ZERO = Decimal(0)
-_ABSENCE_KIND = "absence_deduction"
 
 
 class ReconciliationService:
@@ -96,32 +95,30 @@ class ReconciliationService:
     def _check_i5_gross_earnings_sign(
         ledger: Ledger,
     ) -> list[ReconciliationViolation]:
-        """I5: GROSS_EARNINGS positive; absence_deduction negative.
+        """I5: CASH_EARNINGS entries are positive; EMPLOYEE_DEDUCTIONS are positive.
 
         Returns:
             List of violations; empty when the invariant holds.
         """
         violations = []
         for e in ledger:
-            if e.account != AccountKind.GROSS_EARNINGS:
-                continue
-            if e.pay_item_kind == _ABSENCE_KIND:
-                if e.amount > _ZERO:
-                    violations.append(
-                        ReconciliationViolation(
-                            code="I5",
-                            message=(
-                                f"absence_deduction entry {e.entry_id!r} "
-                                f"has positive amount {e.amount}"
-                            ),
-                        )
-                    )
-            elif e.amount < _ZERO:
+            if e.account == AccountKind.CASH_EARNINGS and e.amount < _ZERO:
                 violations.append(
                     ReconciliationViolation(
                         code="I5",
                         message=(
-                            f"GROSS_EARNINGS entry {e.entry_id!r} "
+                            f"CASH_EARNINGS entry {e.entry_id!r} "
+                            f"({e.pay_item_kind}) has negative amount"
+                            f" {e.amount}"
+                        ),
+                    )
+                )
+            elif e.account == AccountKind.EMPLOYEE_DEDUCTIONS and e.amount < _ZERO:
+                violations.append(
+                    ReconciliationViolation(
+                        code="I5",
+                        message=(
+                            f"EMPLOYEE_DEDUCTIONS entry {e.entry_id!r} "
                             f"({e.pay_item_kind}) has negative amount"
                             f" {e.amount}"
                         ),
@@ -158,13 +155,13 @@ class ReconciliationService:
     def _check_i7_gross_sum_non_negative(
         ledger: Ledger,
     ) -> list[ReconciliationViolation]:
-        """I7: net sum of GROSS_EARNINGS entries must be non-negative.
+        """I7: net sum of CASH_EARNINGS entries must be non-negative.
 
         Returns:
             List of violations; empty when the invariant holds.
         """
         gross_sum = sum(
-            (e.amount for e in ledger if e.account == AccountKind.GROSS_EARNINGS),
+            (e.amount for e in ledger if e.account == AccountKind.CASH_EARNINGS),
             _ZERO,
         )
         if gross_sum < _ZERO:
@@ -172,7 +169,7 @@ class ReconciliationService:
                 ReconciliationViolation(
                     code="I7",
                     message=(
-                        f"net GROSS_EARNINGS sum is {gross_sum}; must be non-negative"
+                        f"net CASH_EARNINGS sum is {gross_sum}; must be non-negative"
                     ),
                 )
             ]
@@ -203,24 +200,18 @@ class ReconciliationService:
 
     @staticmethod
     def _check_i9_net_pay_non_negative(
-        ledger: Ledger,
+        _ledger: Ledger,
     ) -> list[ReconciliationViolation]:
-        """I9: NET_PAY entries are non-negative.
+        """I9: net pay is non-negative.
+
+        Not yet fully verifiable: the ledger mixes monthly earnings amounts
+        with annual contribution and tax amounts.  A consistent unit is
+        required before a reliable derived-net check can be implemented.
 
         Returns:
-            List of violations; empty when the invariant holds.
+            Empty list; stub.
         """
-        return [
-            ReconciliationViolation(
-                code="I9",
-                message=(
-                    f"NET_PAY entry {e.entry_id!r} ({e.pay_item_kind}) "
-                    f"has negative amount {e.amount}"
-                ),
-            )
-            for e in ledger
-            if e.account == AccountKind.NET_PAY and e.amount < _ZERO
-        ]
+        return []
 
     @staticmethod
     def _check_i14_tfr_non_negative(

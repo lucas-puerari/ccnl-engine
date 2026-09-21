@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -82,12 +83,13 @@ def _ledger_entry() -> LedgerEntry:
     return LedgerEntry(
         entry_id="base_salary_2026_01",
         competence_period=CompetencePeriod(year=2026, month=1),
+        payment_date=date(2026, 1, 31),
         pay_item_id="base_salary_2026_01",
         pay_item_kind="base_salary_earning",
         account=__import__(
             "ccnl_engine.engine.payroll.domain.ledger",
             fromlist=["AccountKind"],
-        ).AccountKind.GROSS_EARNINGS,
+        ).AccountKind.CASH_EARNINGS,
         amount=Decimal("1000.00"),
     )
 

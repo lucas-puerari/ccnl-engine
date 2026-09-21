@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import calendar
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -18,11 +19,23 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
+def _last_day(as_of: date) -> date:
+    """Return the last calendar day of the month containing *as_of*.
+
+    Returns:
+        A :class:`~datetime.date` for the final day of that month.
+    """
+    import datetime  # noqa: PLC0415
+
+    last = calendar.monthrange(as_of.year, as_of.month)[1]
+    return datetime.date(as_of.year, as_of.month, last)
+
+
 def post_earnings(gross: GrossPay, as_of: date, ledger: Ledger) -> None:
-    """Post base salary, seniority and fixed allowances as GROSS_EARNINGS entries.
+    """Post base salary, seniority and fixed allowances as CASH_EARNINGS entries.
 
     Entries with a zero amount are silently skipped.  All entries are posted to
-    :attr:`~ccnl_engine.engine.payroll.domain.ledger.AccountKind.GROSS_EARNINGS`.
+    :attr:`~ccnl_engine.engine.payroll.domain.ledger.AccountKind.CASH_EARNINGS`.
 
     Args:
         gross: The resolved gross-pay components.
@@ -31,16 +44,20 @@ def post_earnings(gross: GrossPay, as_of: date, ledger: Ledger) -> None:
     """
     period = CompetencePeriod(year=as_of.year, month=as_of.month)
     yymm = f"{period.year}_{period.month:02d}"
+    payment = _last_day(as_of)
 
     if gross.chain.base != _ZERO:
         ledger.append(
             LedgerEntry(
                 entry_id=f"base_salary_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"base_salary_{yymm}",
                 pay_item_kind="base_salary_earning",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=gross.chain.base,
+                source_item_id=f"base_salary_{yymm}",
+                policy_decision_id="it/earning/ordinary",
             )
         )
 
@@ -49,10 +66,13 @@ def post_earnings(gross: GrossPay, as_of: date, ledger: Ledger) -> None:
             LedgerEntry(
                 entry_id=f"seniority_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"seniority_{yymm}",
                 pay_item_kind="seniority_earning",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=gross.chain.seniority,
+                source_item_id=f"seniority_{yymm}",
+                policy_decision_id="it/earning/ordinary",
                 note=f"count={gross.count}",
             )
         )
@@ -64,10 +84,13 @@ def post_earnings(gross: GrossPay, as_of: date, ledger: Ledger) -> None:
             LedgerEntry(
                 entry_id=f"allowance_{allowance.code}_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"allowance_{allowance.code}_{yymm}",
                 pay_item_kind="fixed_allowance_earning",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=amount,
+                source_item_id=f"allowance_{allowance.code}_{yymm}",
+                policy_decision_id="it/earning/ordinary",
                 note=allowance.code,
             )
         )
@@ -79,8 +102,8 @@ def post_contributions_and_taxes(
     """Post INPS contributions and IRPEF as ledger entries.
 
     Posts employee INPS to EMPLOYEE_CONTRIBUTIONS, employer INPS and INAIL to
-    EMPLOYER_CONTRIBUTIONS, and net IRPEF to IRPEF.  Zero-amount entries are
-    silently skipped.  All amounts are annual.
+    EMPLOYER_CONTRIBUTIONS, and net IRPEF to ORDINARY_TAX.  Zero-amount entries
+    are silently skipped.
 
     Args:
         fiscal: The resolved fiscal-pay components.
@@ -89,16 +112,20 @@ def post_contributions_and_taxes(
     """
     period = CompetencePeriod(year=as_of.year, month=as_of.month)
     yymm = f"{period.year}_{period.month:02d}"
+    payment = _last_day(as_of)
 
     if fiscal.inps_employee_annual != _ZERO:
         ledger.append(
             LedgerEntry(
                 entry_id=f"inps_employee_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"inps_employee_{yymm}",
                 pay_item_kind="inps_employee_contribution",
                 account=AccountKind.EMPLOYEE_CONTRIBUTIONS,
                 amount=fiscal.inps_employee_annual,
+                source_item_id=f"inps_employee_{yymm}",
+                policy_decision_id="it/contribution/employee",
             )
         )
 
@@ -107,10 +134,13 @@ def post_contributions_and_taxes(
             LedgerEntry(
                 entry_id=f"inps_employer_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"inps_employer_{yymm}",
                 pay_item_kind="inps_employer_contribution",
                 account=AccountKind.EMPLOYER_CONTRIBUTIONS,
                 amount=fiscal.inps_employer_annual,
+                source_item_id=f"inps_employer_{yymm}",
+                policy_decision_id="it/contribution/employer",
             )
         )
 
@@ -119,10 +149,13 @@ def post_contributions_and_taxes(
             LedgerEntry(
                 entry_id=f"inail_employer_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"inail_employer_{yymm}",
                 pay_item_kind="inail_employer_contribution",
                 account=AccountKind.EMPLOYER_CONTRIBUTIONS,
                 amount=fiscal.inail_employer_annual,
+                source_item_id=f"inail_employer_{yymm}",
+                policy_decision_id="it/contribution/employer",
             )
         )
 
@@ -131,10 +164,12 @@ def post_contributions_and_taxes(
             LedgerEntry(
                 entry_id=f"irpef_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"irpef_{yymm}",
                 pay_item_kind="irpef",
-                account=AccountKind.IRPEF,
+                account=AccountKind.ORDINARY_TAX,
                 amount=fiscal.irpef_net,
+                source_item_id=f"irpef_{yymm}",
             )
         )
 
@@ -144,13 +179,10 @@ def post_arrears_termination_tfr(
 ) -> None:
     """Post contract-renewal arrears, termination payouts and TFR accrual.
 
-    - ``contract_renewal_arrears_annual`` → GROSS_EARNINGS, kind
-      ``contract_renewal_arrears``
-    - ``termination_residual_leave_payout_annual`` → GROSS_EARNINGS, kind
-      ``termination_leave_payout``
-    - ``termination_tfr_liquidation_annual`` → TFR_ACCRUAL, kind
-      ``tfr_liquidation``
-    - ``tfr_annual`` → TFR_ACCRUAL, kind ``tfr_accrual``
+    - ``contract_renewal_arrears_annual`` → CASH_EARNINGS
+    - ``termination_residual_leave_payout_annual`` → CASH_EARNINGS
+    - ``termination_tfr_liquidation_annual`` → TFR_SETTLEMENT
+    - ``tfr_annual`` → TFR_ACCRUAL
 
     Zero-amount entries are silently skipped.
 
@@ -161,16 +193,20 @@ def post_arrears_termination_tfr(
     """
     period = CompetencePeriod(year=as_of.year, month=as_of.month)
     yymm = f"{period.year}_{period.month:02d}"
+    payment = _last_day(as_of)
 
     if fiscal.contract_renewal_arrears_annual != _ZERO:
         ledger.append(
             LedgerEntry(
                 entry_id=f"contract_renewal_arrears_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"contract_renewal_arrears_{yymm}",
                 pay_item_kind="contract_renewal_arrears",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=fiscal.contract_renewal_arrears_annual,
+                source_item_id=f"contract_renewal_arrears_{yymm}",
+                policy_decision_id="it/earning/variable",
             )
         )
 
@@ -179,10 +215,12 @@ def post_arrears_termination_tfr(
             LedgerEntry(
                 entry_id=f"termination_leave_payout_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"termination_leave_payout_{yymm}",
                 pay_item_kind="termination_leave_payout",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=fiscal.termination_residual_leave_payout_annual,
+                source_item_id=f"termination_leave_payout_{yymm}",
             )
         )
 
@@ -191,10 +229,12 @@ def post_arrears_termination_tfr(
             LedgerEntry(
                 entry_id=f"tfr_liquidation_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"tfr_liquidation_{yymm}",
                 pay_item_kind="tfr_liquidation",
-                account=AccountKind.TFR_ACCRUAL,
+                account=AccountKind.TFR_SETTLEMENT,
                 amount=fiscal.termination_tfr_liquidation_annual,
+                source_item_id=f"tfr_liquidation_{yymm}",
             )
         )
 
@@ -203,10 +243,13 @@ def post_arrears_termination_tfr(
             LedgerEntry(
                 entry_id=f"tfr_accrual_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"tfr_accrual_{yymm}",
                 pay_item_kind="tfr_accrual",
                 account=AccountKind.TFR_ACCRUAL,
                 amount=fiscal.tfr_annual,
+                source_item_id=f"tfr_accrual_{yymm}",
+                policy_decision_id="it/tfr/accrual",
             )
         )
 
@@ -214,10 +257,9 @@ def post_arrears_termination_tfr(
 def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
     """Post overtime, absences, bonuses and fringe benefits as ledger entries.
 
-    Supplements (overtime, night, holiday) post to GROSS_EARNINGS as positive
-    amounts.  Absence deductions post to GROSS_EARNINGS as negative amounts.
-    Bonus and taxable fringe benefits post to GROSS_EARNINGS.  Welfare is
-    captured in the fiscal summary (see :func:`post_fiscal_summary`).
+    Supplements (overtime, night, holiday) and bonuses post to CASH_EARNINGS.
+    Absence deductions post to EMPLOYEE_DEDUCTIONS as positive amounts.
+    Taxable fringe benefits and welfare post to NON_CASH_BENEFITS.
     Zero-amount entries are silently skipped.
 
     Args:
@@ -227,6 +269,7 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
     """
     period = CompetencePeriod(year=as_of.year, month=as_of.month)
     yymm = f"{period.year}_{period.month:02d}"
+    payment = _last_day(as_of)
 
     supplement_pairs = (
         (work.overtime_supp, "overtime_supplement"),
@@ -239,10 +282,13 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
                 LedgerEntry(
                     entry_id=f"{kind}_{yymm}",
                     competence_period=period,
+                    payment_date=payment,
                     pay_item_id=f"{kind}_{yymm}",
                     pay_item_kind=kind,
-                    account=AccountKind.GROSS_EARNINGS,
+                    account=AccountKind.CASH_EARNINGS,
                     amount=amount,
+                    source_item_id=f"{kind}_{yymm}",
+                    policy_decision_id="it/earning/supplement",
                 )
             )
 
@@ -251,10 +297,13 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
             LedgerEntry(
                 entry_id=f"absence_deduction_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"absence_deduction_{yymm}",
                 pay_item_kind="absence_deduction",
-                account=AccountKind.GROSS_EARNINGS,
-                amount=-work.absence_deduction_monthly,
+                account=AccountKind.EMPLOYEE_DEDUCTIONS,
+                amount=work.absence_deduction_monthly,
+                source_item_id=f"absence_deduction_{yymm}",
+                policy_decision_id="it/deduction/absence",
             )
         )
 
@@ -263,10 +312,13 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
             LedgerEntry(
                 entry_id=f"bonus_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"bonus_{yymm}",
                 pay_item_kind="bonus",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.CASH_EARNINGS,
                 amount=work.bonus_annual,
+                source_item_id=f"bonus_{yymm}",
+                policy_decision_id="it/earning/variable",
             )
         )
 
@@ -275,51 +327,27 @@ def post_variable_pay(work: WorkRulesPay, as_of: date, ledger: Ledger) -> None:
             LedgerEntry(
                 entry_id=f"fringe_benefit_taxable_{yymm}",
                 competence_period=period,
+                payment_date=payment,
                 pay_item_id=f"fringe_benefit_taxable_{yymm}",
                 pay_item_kind="fringe_benefit_taxable",
-                account=AccountKind.GROSS_EARNINGS,
+                account=AccountKind.NON_CASH_BENEFITS,
                 amount=work.fringe_benefit_taxable_annual,
+                source_item_id=f"fringe_benefit_taxable_{yymm}",
+                policy_decision_id="it/benefit/fringe",
             )
         )
 
-
-def post_fiscal_summary(fiscal: FiscalPay, as_of: date, ledger: Ledger) -> None:
-    """Post the computed net and employer cost totals to the ledger.
-
-    Posts ``fiscal.net_annual`` to :attr:`~AccountKind.NET_PAY` and
-    ``fiscal.employer_cost_annual`` to :attr:`~AccountKind.EMPLOYER_COST`.
-    These are the canonical sources for the result totals; the orchestrator
-    reads them via :meth:`~Ledger.total` rather than from the fiscal object
-    directly.  Zero-amount entries are silently skipped.
-
-    Args:
-        fiscal: The resolved fiscal-pay components.
-        as_of: The competence date used to derive the year/month for entries.
-        ledger: The ledger to append to.
-    """
-    period = CompetencePeriod(year=as_of.year, month=as_of.month)
-    yymm = f"{period.year}_{period.month:02d}"
-
-    if fiscal.net_annual != _ZERO:
+    if work.welfare_annual != _ZERO:
         ledger.append(
             LedgerEntry(
-                entry_id=f"net_pay_{yymm}",
+                entry_id=f"welfare_{yymm}",
                 competence_period=period,
-                pay_item_id=f"net_pay_{yymm}",
-                pay_item_kind="net_pay_total",
-                account=AccountKind.NET_PAY,
-                amount=fiscal.net_annual,
-            )
-        )
-
-    if fiscal.employer_cost_annual != _ZERO:
-        ledger.append(
-            LedgerEntry(
-                entry_id=f"employer_cost_{yymm}",
-                competence_period=period,
-                pay_item_id=f"employer_cost_{yymm}",
-                pay_item_kind="employer_cost_total",
-                account=AccountKind.EMPLOYER_COST,
-                amount=fiscal.employer_cost_annual,
+                payment_date=payment,
+                pay_item_id=f"welfare_{yymm}",
+                pay_item_kind="welfare",
+                account=AccountKind.NON_CASH_BENEFITS,
+                amount=work.welfare_annual,
+                source_item_id=f"welfare_{yymm}",
+                policy_decision_id="it/benefit/welfare",
             )
         )
