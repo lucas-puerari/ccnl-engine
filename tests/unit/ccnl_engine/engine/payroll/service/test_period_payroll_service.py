@@ -462,36 +462,6 @@ class TestComputePeriodPayrollAddizionali:
         assert result.closing_state.addizionale_comunale_ytd == _ZERO
 
 
-class TestComputePeriodPayrollPeriodId:
-    """compute_period_payroll uses period_id when set."""
-
-    def test_result_carries_period_id(self) -> None:
-        """Result.period_id matches the one in the request."""
-        from ccnl_engine.engine.payroll.domain.period_payroll import (  # noqa: PLC0415
-            PeriodId,
-        )
-
-        pid = PeriodId(year=2026, month=3)
-        req = PeriodPayrollRequest(
-            structural=_structural(),
-            period=PeriodPayrollInput(),
-            opening_state=PayrollState.zero(),
-            period_id=pid,
-        )
-        result = compute_period_payroll(req)
-        assert result.period_id == pid
-
-    def test_result_period_id_none_when_not_set(self) -> None:
-        """Result.period_id is None when request has no period_id."""
-        req = PeriodPayrollRequest(
-            structural=_structural(),
-            period=PeriodPayrollInput(),
-            opening_state=PayrollState.zero(),
-        )
-        result = compute_period_payroll(req)
-        assert result.period_id is None
-
-
 class TestComputePeriodPayrollFiscalYTD:
     """compute_period_payroll populates fiscal_ytd in the result."""
 

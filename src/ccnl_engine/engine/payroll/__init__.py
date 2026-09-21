@@ -43,9 +43,6 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
     PayrollYearResult as PayrollYearResult,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import (
-    PeriodId as PeriodId,
-)
-from ccnl_engine.engine.payroll.domain.period_payroll import (
     PeriodPayrollRequest as PeriodPayrollRequest,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import (
@@ -79,7 +76,6 @@ __all__ = [
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
-    "PeriodId",
     "PeriodPayroll",
     "PeriodPayrollRequest",
     "PeriodPayrollResult",

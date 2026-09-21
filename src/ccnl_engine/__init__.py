@@ -112,7 +112,6 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
     AnnualPayrollSummary,
     PayrollYearRequest,
     PayrollYearResult,
-    PeriodId,
     PeriodPayrollRequest,
     PeriodPayrollResult,
 )
@@ -197,7 +196,6 @@ __all__ = [
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
-    "PeriodId",
     "PeriodPayroll",
     "PeriodPayrollInput",
     "PeriodPayrollRequest",
