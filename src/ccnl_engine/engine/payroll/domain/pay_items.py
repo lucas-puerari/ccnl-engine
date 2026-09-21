@@ -167,12 +167,14 @@ class OvertimeEarning(_PayItemBase):
     """Overtime supplement (straordinario / supplementare)."""
 
     kind: Literal["overtime_earning"] = "overtime_earning"
+    hours: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
 class NightHolidayShiftEarning(_PayItemBase):
     """Night, holiday or shift supplement."""
 
     kind: Literal["night_holiday_shift_earning"] = "night_holiday_shift_earning"
+    hours: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 
 class BonusEarning(_PayItemBase):

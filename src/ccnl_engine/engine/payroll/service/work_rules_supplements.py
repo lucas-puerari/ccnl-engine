@@ -31,6 +31,9 @@ class _SupplementsResult:
     overtime_supported: bool
     night_supported: bool
     holiday_supported: bool
+    overtime_hours: Decimal
+    night_hours: Decimal
+    holiday_hours: Decimal
 
 
 def _kind_supported(bands: Sequence[OvertimeBand], *kinds: WorkKind) -> bool:
@@ -121,6 +124,9 @@ def _run_wr_supplements(
         overtime_supported=False,
         night_supported=False,
         holiday_supported=False,
+        overtime_hours=_ZERO,
+        night_hours=_ZERO,
+        holiday_hours=_ZERO,
     )
     if ts_input is None:
         return zero_result
@@ -155,6 +161,9 @@ def _run_wr_supplements(
             overtime_supported=False,
             night_supported=False,
             holiday_supported=False,
+            overtime_hours=_ZERO,
+            night_hours=_ZERO,
+            holiday_hours=_ZERO,
         )
     bands = ts_schema.overtime_bands
     ts = ts_input
@@ -205,4 +214,7 @@ def _run_wr_supplements(
         overtime_supported=overtime_supported,
         night_supported=night_supported,
         holiday_supported=holiday_supported,
+        overtime_hours=ts.weekday_hours + ts.supplementare_hours,
+        night_hours=ts.night_hours,
+        holiday_hours=ts.holiday_hours + ts.night_holiday_hours,
     )
