@@ -513,3 +513,34 @@ class TestComputePeriodPayrollFiscalYTD:
         from ccnl_engine import FiscalYTD as F  # noqa: PLC0415
 
         assert F is FiscalYTD
+
+
+class TestComputePeriodPayrollIdempotencyKey:
+    """compute_period_payroll propagates idempotency_key from request to result."""
+
+    def _req(self, idempotency_key: str | None = None) -> PeriodPayrollRequest:
+        return PeriodPayrollRequest(
+            structural=AnnualEstimateInput(
+                employee=Employee(level_code=_LEVEL),
+                employment=Employment(
+                    ccnl=_CCNL,
+                    contract=Permanent(),
+                    employer=Employer(num_employees=50),
+                    as_of=_AS_OF,
+                ),
+            ),
+            period=PeriodPayrollInput(),
+            opening_state=PayrollState.zero(),
+            idempotency_key=idempotency_key,
+        )
+
+    def test_idempotency_key_propagated_to_result(self) -> None:
+        """Result carries the same idempotency_key as the request."""
+        key = "batch-2026-01-worker-42"
+        result = compute_period_payroll(self._req(idempotency_key=key))
+        assert result.idempotency_key == key
+
+    def test_idempotency_key_none_when_not_supplied(self) -> None:
+        """Result idempotency_key is None when the request omitted it."""
+        result = compute_period_payroll(self._req())
+        assert result.idempotency_key is None

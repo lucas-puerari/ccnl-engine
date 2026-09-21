@@ -329,4 +329,5 @@ def compute_period_payroll(
         period_employer_cost=period_employer_cost,
         fiscal_ytd=fiscal_ytd,
         ledger_entries=calc.ledger_entries,
+        idempotency_key=request.idempotency_key,
     )
