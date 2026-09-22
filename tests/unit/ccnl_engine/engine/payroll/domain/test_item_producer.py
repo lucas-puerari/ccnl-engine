@@ -1,4 +1,4 @@
-"""Unit tests for item_producer and PayItemPolicy.resolve()."""
+"""Unit tests for build_pay_items() and related item-builder functions."""
 
 from __future__ import annotations
 
@@ -11,7 +11,6 @@ from ccnl_engine.engine.payroll.domain.item_producer import build_pay_items
 from ccnl_engine.engine.payroll.domain.item_producer_fiscal import _build_fiscal_items
 from ccnl_engine.engine.payroll.domain.item_producer_gross import (
     _build_extra_month_items,
-    _build_gross_items,
     _build_work_items,
 )
 from ccnl_engine.engine.payroll.domain.item_producer_policy import (
@@ -32,15 +31,12 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     MaternityItem,
     NightHolidayShiftEarning,
     OvertimeEarning,
-    PayItemPolicy,
-    PolicyDecision,
     SeniorityEarning,
     SicknessItem,
     TaxCreditItem,
     TaxRefundItem,
     TaxTreatment,
     TfrAccrualItem,
-    TfrSettlementItem,
     TfrTreatment,
     WelfareItem,
     WorkInjuryItem,
@@ -154,280 +150,6 @@ def _make_pipeline_objects(
     work = compute_work_rules(scenario, ccnl, gross, 2026)
     fiscal = compute_fiscal(scenario, ccnl, _RULES, None, gross, 2026, work)
     return gross, work, fiscal
-
-
-# ---------------------------------------------------------------------------
-# PayItemPolicy.resolve() branches
-# ---------------------------------------------------------------------------
-
-
-class TestPayItemPolicyResolve:
-    """PayItemPolicy.resolve() returns a PolicyDecision or None."""
-
-    def _policy(
-        self, kinds: tuple[str, ...], until: date | None = None
-    ) -> PayItemPolicy:
-        decision = PolicyDecision(
-            policy_id="test",
-            policy_version="1.0",
-            effective_from=date(2020, 1, 1),
-            effective_until=until,
-            tax_treatment=TaxTreatment.ORDINARY,
-            contribution_treatment=ContributionTreatment.INCLUDED,
-            tfr_treatment=TfrTreatment.INCLUDED,
-            cost_treatment=CostTreatment.EMPLOYEE_CASH,
-            legal_basis="test",
-        )
-        return PayItemPolicy(
-            policy_id="test",
-            policy_version="1.0",
-            applies_to_kinds=kinds,
-            effective_from=date(2020, 1, 1),
-            effective_until=until,
-            default_decision=decision,
-        )
-
-    def test_kind_not_in_applies_to_returns_none(self) -> None:
-        """Returns None when kind is not in applies_to_kinds."""
-        policy = self._policy(("base_salary_earning",))
-        result = policy.resolve("seniority_earning", date(2026, 6, 1))
-        assert result is None
-
-    def test_as_of_before_effective_from_returns_none(self) -> None:
-        """Returns None when as_of is before effective_from."""
-        policy = self._policy(("base_salary_earning",))
-        result = policy.resolve("base_salary_earning", date(2019, 12, 31))
-        assert result is None
-
-    def test_as_of_after_effective_until_returns_none(self) -> None:
-        """Returns None when as_of is after effective_until."""
-        policy = self._policy(("base_salary_earning",), until=date(2025, 12, 31))
-        result = policy.resolve("base_salary_earning", date(2026, 1, 1))
-        assert result is None
-
-    def test_valid_with_no_until_returns_decision(self) -> None:
-        """Returns default_decision when effective_until is None and dates are valid."""
-        policy = self._policy(("base_salary_earning",))
-        result = policy.resolve("base_salary_earning", date(2026, 6, 1))
-        assert result is not None
-        assert result.tax_treatment == TaxTreatment.ORDINARY
-
-    def test_valid_within_period_returns_decision(self) -> None:
-        """Returns default_decision when as_of is within the effective period."""
-        policy = self._policy(("base_salary_earning",), until=date(2026, 12, 31))
-        result = policy.resolve("base_salary_earning", date(2026, 6, 1))
-        assert result is not None
-
-
-# ---------------------------------------------------------------------------
-# _resolve() — registry lookup
-# ---------------------------------------------------------------------------
-
-
-class TestResolveFunction:
-    """_resolve() returns None for unknown kinds, PolicyDecision for known."""
-
-    def test_unknown_kind_returns_none(self) -> None:
-        """Returns None when kind is not in POLICY_REGISTRY."""
-        result = _resolve("completely_unknown_kind", date(2026, 6, 1))
-        assert result is None
-
-    def test_known_kind_returns_decision(self) -> None:
-        """Returns a PolicyDecision for a registered kind."""
-        result = _resolve("base_salary_earning", date(2026, 6, 1))
-        assert result is not None
-        assert result.tax_treatment == TaxTreatment.ORDINARY
-
-    def test_all_registered_kinds_resolve(self) -> None:
-        """Every kind in POLICY_REGISTRY resolves to a decision."""
-        for kind in POLICY_REGISTRY:
-            assert _resolve(kind, date(2026, 6, 1)) is not None
-
-
-# ---------------------------------------------------------------------------
-# _build_gross_items() — per-component coverage
-# ---------------------------------------------------------------------------
-
-
-class TestBuildGrossItems:
-    """_build_gross_items() produces items only for non-zero components."""
-
-    def test_base_salary_zero_produces_no_item(self) -> None:
-        """When chain.base is zero, no BaseSalaryEarning is produced."""
-        from ccnl_engine.engine.payroll.service.types import (  # noqa: PLC0415
-            MonthlyPayChain,
-        )
-
-        gross, _, _ = _make_pipeline_objects()
-        zero_chain = MonthlyPayChain(base=_ZERO, seniority=_ZERO, allowances=())
-        zero_gross = dataclasses.replace(gross, chain=zero_chain)
-        items = _build_gross_items(zero_gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "base_salary_earning" not in kinds
-
-    def test_base_salary_nonzero_produces_item(self) -> None:
-        """When chain.base is non-zero, a BaseSalaryEarning is produced."""
-        gross, _, _ = _make_pipeline_objects()
-        items = _build_gross_items(gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "base_salary_earning" in kinds
-
-    def test_seniority_zero_produces_no_item(self) -> None:
-        """When chain.seniority is zero, no SeniorityEarning is produced."""
-        gross, _, _ = _make_pipeline_objects()
-        items = _build_gross_items(gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "seniority_earning" not in kinds
-
-    def test_seniority_nonzero_produces_item(self) -> None:
-        """When chain.seniority is non-zero, a SeniorityEarning is produced."""
-        gross, _, _ = _make_pipeline_objects(seniority_count=3)
-        items = _build_gross_items(gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "seniority_earning" in kinds
-
-    def test_base_salary_item_has_policy_decision(self) -> None:
-        """BaseSalaryEarning carries a PolicyDecision with ordinary tax treatment."""
-        gross, _, _ = _make_pipeline_objects()
-        items = _build_gross_items(gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        base_items = [i for i in items if isinstance(i, BaseSalaryEarning)]
-        assert len(base_items) == 1
-        assert base_items[0].policy_decision is not None
-        assert base_items[0].policy_decision.tax_treatment == TaxTreatment.ORDINARY
-        assert base_items[0].policy_decision.tfr_treatment == TfrTreatment.INCLUDED
-
-    def test_seniority_item_treatment_axes(self) -> None:
-        """SeniorityEarning has ORDINARY/INCLUDED/INCLUDED/EMPLOYEE_CASH treatment."""
-        gross, _, _ = _make_pipeline_objects(seniority_count=3)
-        items = _build_gross_items(gross, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        sen = next(i for i in items if isinstance(i, SeniorityEarning))
-        dec = sen.policy_decision
-        assert dec is not None
-        assert dec.tax_treatment == TaxTreatment.ORDINARY
-        assert dec.contribution_treatment == ContributionTreatment.INCLUDED
-        assert dec.tfr_treatment == TfrTreatment.INCLUDED
-        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
-
-
-# ---------------------------------------------------------------------------
-# _build_fiscal_items() — per-component coverage
-# ---------------------------------------------------------------------------
-
-
-class TestBuildFiscalItems:
-    """_build_fiscal_items() produces items only for non-zero fiscal components."""
-
-    def test_contract_renewal_arrears_nonzero_produces_item(self) -> None:
-        """Non-zero contract_renewal_arrears_annual produces a ContractRenewalArrears.
-
-        Ensures the fiscal branch for contract renewal arrears is covered.
-        """
-        _, _, fiscal = _make_pipeline_objects()
-        nonzero_fiscal = dataclasses.replace(
-            fiscal, contract_renewal_arrears_annual=Decimal("500.00")
-        )
-        items = _build_fiscal_items(nonzero_fiscal, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "contract_renewal_arrears" in kinds
-
-    def test_tfr_zero_produces_no_item(self) -> None:
-        """When tfr_annual is zero, no TfrAccrualItem is produced."""
-        _, _, fiscal = _make_pipeline_objects()
-        zero_tfr = dataclasses.replace(fiscal, tfr_annual=_ZERO)
-        items = _build_fiscal_items(zero_tfr, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "tfr_accrual_item" not in kinds
-
-    def test_inps_employee_zero_produces_no_item(self) -> None:
-        """When inps_employee_annual is zero, no EmployeeWithholdingItem is produced."""
-        _, _, fiscal = _make_pipeline_objects()
-        zero_inps = dataclasses.replace(fiscal, inps_employee_annual=_ZERO)
-        items = _build_fiscal_items(zero_inps, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        kinds = [i.kind for i in items]
-        assert "employee_withholding_item" not in kinds
-
-    def test_inps_employer_zero_produces_no_item(self) -> None:
-        """When inps_employer_annual is zero, no INPS EmployerContributionItem emitted.
-
-        Covers the zero-branch for INPS employer in _build_fiscal_items.
-        """
-        _, _, fiscal = _make_pipeline_objects()
-        zero_inps_emp = dataclasses.replace(fiscal, inps_employer_annual=_ZERO)
-        items = _build_fiscal_items(zero_inps_emp, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        inps_emp_items = [
-            i
-            for i in items
-            if isinstance(i, EmployerContributionItem) and "inps_employer" in i.item_id
-        ]
-        assert len(inps_emp_items) == 0
-
-    def test_tfr_item_treatment_axes(self) -> None:
-        """TfrAccrualItem has SEPARATE/EXCLUDED/SPECIAL/ACCRUAL_ONLY treatment."""
-        _, _, fiscal = _make_pipeline_objects()
-        items = _build_fiscal_items(fiscal, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        tfr = next(i for i in items if isinstance(i, TfrAccrualItem))
-        dec = tfr.policy_decision
-        assert dec is not None
-        assert dec.tax_treatment == TaxTreatment.SEPARATE
-        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
-        assert dec.tfr_treatment == TfrTreatment.SPECIAL
-        assert dec.cost_treatment == CostTreatment.ACCRUAL_ONLY
-
-    def test_tfr_settlement_item_produced_from_termination(self) -> None:
-        """Non-zero termination_tfr_liquidation_annual produces a TfrSettlementItem."""
-        _, _, fiscal = _make_pipeline_objects()
-        fiscal_with_settlement = dataclasses.replace(
-            fiscal, termination_tfr_liquidation_annual=Decimal("5000.00")
-        )
-        items = _build_fiscal_items(
-            fiscal_with_settlement, _PERIOD, _PAYMENT, _YYMM, _AS_OF
-        )
-        settlement = next((i for i in items if isinstance(i, TfrSettlementItem)), None)
-        assert settlement is not None
-        assert settlement.amount == Decimal("5000.00")
-
-    def test_tfr_settlement_zero_produces_no_item(self) -> None:
-        """Zero termination_tfr_liquidation_annual produces no TfrSettlementItem."""
-        _, _, fiscal = _make_pipeline_objects()
-        fiscal_zero = dataclasses.replace(
-            fiscal, termination_tfr_liquidation_annual=_ZERO
-        )
-        items = _build_fiscal_items(fiscal_zero, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        assert not any(isinstance(i, TfrSettlementItem) for i in items)
-
-    def test_tfr_settlement_treatment_axes(self) -> None:
-        """TfrSettlementItem has SEPARATE/EXCLUDED/SPECIAL/EMPLOYEE_CASH treatment."""
-        _, _, fiscal = _make_pipeline_objects()
-        fiscal_with_settlement = dataclasses.replace(
-            fiscal, termination_tfr_liquidation_annual=Decimal("5000.00")
-        )
-        items = _build_fiscal_items(
-            fiscal_with_settlement, _PERIOD, _PAYMENT, _YYMM, _AS_OF
-        )
-        settlement = next(i for i in items if isinstance(i, TfrSettlementItem))
-        dec = settlement.policy_decision
-        assert dec is not None
-        assert dec.tax_treatment == TaxTreatment.SEPARATE
-        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
-        assert dec.tfr_treatment == TfrTreatment.SPECIAL
-        assert dec.cost_treatment == CostTreatment.EMPLOYEE_CASH
-
-    def test_employee_withholding_is_negative(self) -> None:
-        """EmployeeWithholdingItem has a negative amount (deduction from net)."""
-        _, _, fiscal = _make_pipeline_objects()
-        items = _build_fiscal_items(fiscal, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        emp_wh = next(i for i in items if isinstance(i, EmployeeWithholdingItem))
-        assert emp_wh.amount < _ZERO
-
-    def test_employer_contribution_treatment_axes(self) -> None:
-        """EmployerContributionItem has ORDINARY/EXCLUDED/EXCLUDED/EMPLOYER_COST."""
-        _, _, fiscal = _make_pipeline_objects()
-        items = _build_fiscal_items(fiscal, _PERIOD, _PAYMENT, _YYMM, _AS_OF)
-        emp_c = next(i for i in items if isinstance(i, EmployerContributionItem))
-        dec = emp_c.policy_decision
-        assert dec is not None
-        assert dec.contribution_treatment == ContributionTreatment.EXCLUDED
-        assert dec.cost_treatment == CostTreatment.EMPLOYER_COST
 
 
 # ---------------------------------------------------------------------------
