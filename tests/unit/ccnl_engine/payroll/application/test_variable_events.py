@@ -15,6 +15,7 @@ from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
+    ArrearsEvent,
     BonusEvent,
     FringeEvent,
     HolidayWorkEvent,
@@ -342,17 +343,17 @@ class TestFringeEventAccounting:
     """FringeEvent is exempt below threshold and taxable above."""
 
     def _fringe_exempt(self) -> FringeEvent:
+        # 100 EUR is well below the 2026 standard threshold (1000 EUR)
         return FringeEvent(
             event_date=date(_YEAR, _MONTH, 1),
             amount=Decimal("100.00"),
-            exempt_threshold=Decimal("258.23"),
         )
 
     def _fringe_taxable(self) -> FringeEvent:
+        # 1100 EUR exceeds the 2026 standard threshold (1000 EUR)
         return FringeEvent(
             event_date=date(_YEAR, _MONTH, 1),
-            amount=Decimal("500.00"),
-            exempt_threshold=Decimal("258.23"),
+            amount=Decimal("1100.00"),
         )
 
     def test_exempt_fringe_does_not_increase_inps(self) -> None:
@@ -377,7 +378,7 @@ class TestFringeEventAccounting:
         """Fringe benefit above threshold appears on the payslip."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._fringe_taxable()))
-        assert result.period_gross == base.period_gross + Decimal("500.00")
+        assert result.period_gross == base.period_gross + Decimal("1100.00")
 
     def test_fringe_pay_item_present(self) -> None:
         """A fringe_benefit_item pay item is present."""
@@ -396,6 +397,144 @@ class TestFringeEventAccounting:
         result = calculate_period(_req(self._fringe_taxable()))
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
+
+
+class TestBenefitBreakdown:
+    """benefit_breakdown captures fringe axes per period."""
+
+    def test_no_fringe_zero_breakdown(self) -> None:
+        """With no fringe events, benefit_breakdown is all zeros."""
+        result = calculate_period(_base())
+        bb = result.benefit_breakdown
+        assert bb.value == Decimal(0)
+        assert bb.irpef_base == Decimal(0)
+        assert bb.inps_base == Decimal(0)
+        assert bb.employer_cost == Decimal(0)
+
+    def test_exempt_fringe_value_nonzero_bases_zero(self) -> None:
+        """Below-threshold fringe: value is set, irpef_base/inps_base are zero."""
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00"))
+        result = calculate_period(_req(evt))
+        bb = result.benefit_breakdown
+        assert bb.value == Decimal("100.00")
+        assert bb.irpef_base == Decimal(0)
+        assert bb.inps_base == Decimal(0)
+        assert bb.employer_cost == Decimal("100.00")
+
+    def test_taxable_fringe_all_axes_set(self) -> None:
+        """Above-threshold fringe: value, irpef_base, inps_base are all nonzero."""
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("1100.00"))
+        result = calculate_period(_req(evt))
+        bb = result.benefit_breakdown
+        assert bb.value == Decimal("1100.00")
+        assert bb.irpef_base == Decimal("1100.00")
+        assert bb.inps_base == Decimal("1100.00")
+        assert bb.employer_cost == Decimal("1100.00")
+
+
+class TestFringeYtdAccumulation:
+    """fringe_ytd in closing_state tracks cumulative fringe across periods."""
+
+    def test_fringe_ytd_zero_without_fringe(self) -> None:
+        """No fringe events leaves fringe_ytd unchanged."""
+        result = calculate_period(_base())
+        assert result.closing_state.fringe_ytd == Decimal(0)
+
+    def test_fringe_ytd_accumulates(self) -> None:
+        """fringe_ytd closing equals opening.fringe_ytd + period fringe value."""
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("300.00"))
+        opening = PeriodState(fringe_ytd=Decimal("500.00"))
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=_YEAR, month=_MONTH),
+            payment_date=date(_YEAR, _MONTH, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=opening,
+            events=(evt,),
+        )
+        result = calculate_period(req)
+        assert result.closing_state.fringe_ytd == Decimal("800.00")
+
+    def test_ytd_fringe_triggers_taxability(self) -> None:
+        """Opening fringe_ytd near threshold makes a small new event taxable."""
+        # threshold_standard=1000; after 900 YTD, 200 more = 1100 > 1000 → taxable
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("200.00"))
+        opening = PeriodState(fringe_ytd=Decimal("900.00"))
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=_YEAR, month=_MONTH),
+            payment_date=date(_YEAR, _MONTH, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=opening,
+            events=(evt,),
+        )
+        result = calculate_period(req)
+        base_result = calculate_period(_base())
+        assert _inps_employee(result) > _inps_employee(base_result)
+
+
+class TestHasDependentChildrenThreshold:
+    """has_dependent_children selects the higher fringe threshold."""
+
+    def test_children_threshold_higher(self) -> None:
+        """Worker with dependent children: 1500 EUR fringe is exempt."""
+        # threshold_with_children=2000 for 2026; 1500 < 2000 → exempt
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("1500.00"))
+        req_no_children = PeriodCalculationRequest(
+            period_id=PeriodId(year=_YEAR, month=_MONTH),
+            payment_date=date(_YEAR, _MONTH, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            events=(evt,),
+            has_dependent_children=False,
+        )
+        req_with_children = PeriodCalculationRequest(
+            period_id=PeriodId(year=_YEAR, month=_MONTH),
+            payment_date=date(_YEAR, _MONTH, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            events=(evt,),
+            has_dependent_children=True,
+        )
+        result_no_children = calculate_period(req_no_children)
+        result_with_children = calculate_period(req_with_children)
+        # Without children: 1500 > 1000 → taxable; with children: 1500 < 2000 → exempt
+        assert _inps_employee(result_no_children) > _inps_employee(result_with_children)
+
+
+class TestArrearsEventReferencePeriod:
+    """ArrearsEvent.reference_period stores the origin competence period."""
+
+    def test_reference_period_stored(self) -> None:
+        """reference_period is retrievable from the event."""
+        ref = PeriodId(year=2025, month=6)
+        evt = ArrearsEvent(
+            event_date=date(_YEAR, _MONTH, 1),
+            amount=Decimal("1000.00"),
+            separate_tax_rate=Decimal("0.23"),
+            reference_period=ref,
+        )
+        assert evt.reference_period == ref
+
+    def test_reference_period_defaults_none(self) -> None:
+        """reference_period defaults to None when omitted."""
+        evt = ArrearsEvent(
+            event_date=date(_YEAR, _MONTH, 1),
+            amount=Decimal("1000.00"),
+            separate_tax_rate=Decimal("0.23"),
+        )
+        assert evt.reference_period is None
+
+    def test_arrears_with_reference_period_runs(self) -> None:
+        """calculate_period succeeds when ArrearsEvent carries a reference_period."""
+        evt = ArrearsEvent(
+            event_date=date(_YEAR, _MONTH, 1),
+            amount=Decimal("500.00"),
+            separate_tax_rate=Decimal("0.20"),
+            reference_period=PeriodId(year=2025, month=3),
+        )
+        result = calculate_period(_req(evt))
+        assert result.period_gross > Decimal(0)
 
 
 class TestWelfareEventAccounting:

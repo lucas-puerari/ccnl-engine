@@ -15,6 +15,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+
 __all__ = [
     "AbsenceEvent",
     "ArrearsEvent",
@@ -29,8 +31,6 @@ __all__ = [
     "WelfareEvent",
     "WorkEvent",
 ]
-
-_FRINGE_THRESHOLD_DEFAULT = Decimal("258.23")
 
 
 @dataclass(frozen=True)
@@ -129,21 +129,18 @@ class BonusEvent:
 class FringeEvent:
     """Fringe benefit (art. 51 co. 3 TUIR).
 
-    If the total fringe amount exceeds ``exempt_threshold``, the full amount
-    is subject to INPS and IRPEF.  If it is at or below the threshold, it
-    is entirely exempt from both.
+    The annual exemption threshold is resolved by ``calculate_period`` from
+    the year-level ``VariablePayRules.fringe_benefit`` policy — it is not
+    carried on the event itself.  Taxability is determined cumulatively
+    across all fringe events in the year (YTD + current period).
 
     Attributes:
         event_date: Date the benefit is attributed to.
         amount: Value of the fringe benefit in EUR.
-        exempt_threshold: Exemption threshold.  Defaults to the standard
-            TUIR threshold (€258.23).  Callers should pass the applicable
-            threshold for the fiscal year and employee situation.
     """
 
     event_date: date
     amount: Decimal
-    exempt_threshold: Decimal = _FRINGE_THRESHOLD_DEFAULT
 
 
 @dataclass(frozen=True)
@@ -168,11 +165,15 @@ class ArrearsEvent:
         amount: Gross arrears amount in EUR.
         separate_tax_rate: Caller-supplied average IRPEF rate from the
             two prior tax years, applied as tassazione separata.
+        reference_period: The competence period from which the arrears
+            originate (e.g. the period of the back-dated contract renewal).
+            ``None`` when the reference period is not tracked.
     """
 
     event_date: date
     amount: Decimal
     separate_tax_rate: Decimal
+    reference_period: PeriodId | None = None
 
 
 @dataclass(frozen=True)

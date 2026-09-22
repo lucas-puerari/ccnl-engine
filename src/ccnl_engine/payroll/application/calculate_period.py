@@ -60,7 +60,11 @@ from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizional
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
-from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.engine.tax.service.loaders import (
+    load_family_deduction_rules,
+    load_variable_pay_rules,
+)
+from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,  # noqa: TC001
 )
@@ -145,14 +149,16 @@ _OBSERVED: dict[str, str] = {
 class _EventTotals:
     """Aggregated INPS/TFR/IRPEF bases from variable work events.
 
-    Only the three axes that feed into rate computations are tracked here.
-    All other axis-level amounts (gross, net, separate-tax, settlements) are
-    read directly from the ledger after the event entries are posted.
+    Only the axes that feed into rate computations and benefit reporting
+    are tracked here.  All other amounts are read directly from the ledger.
     """
 
     inps_base: Decimal
     tfr_base: Decimal
     irpef_base: Decimal
+    fringe_value: Decimal
+    fringe_inps: Decimal
+    fringe_irpef: Decimal
 
 
 @dataclass(frozen=True)
@@ -472,17 +478,24 @@ def _treatment_deltas(
     )
 
 
-def _fringe_bases(event: FringeEvent) -> tuple[Decimal, Decimal]:
-    """Return (inps_base, irpef_base) for a fringe benefit event.
+def _fringe_bases(
+    amount: Decimal, cumulative_fringe: Decimal, threshold: Decimal
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return (inps_base, irpef_base, new_cumulative) for a fringe event.
+
+    The annual threshold (Art. 51 c. 3 TUIR) applies cumulatively to all
+    fringe events in the year.  When adding ``amount`` to the running
+    ``cumulative_fringe`` crosses the threshold, the new ``amount`` is
+    fully taxable; otherwise it is exempt.
 
     Returns:
-        ``(gross, gross)`` when ``amount`` exceeds the exempt threshold;
-        ``(_ZERO, _ZERO)`` otherwise.
+        ``(inps_base, irpef_base, new_cumulative)`` where the first two
+        are either ``amount`` or zero depending on cumulative taxability.
     """
-    gross = event.amount
-    if gross <= event.exempt_threshold:
-        return _ZERO, _ZERO
-    return gross, gross
+    new_cumulative = cumulative_fringe + amount
+    if new_cumulative > threshold:
+        return amount, amount, new_cumulative
+    return _ZERO, _ZERO, new_cumulative
 
 
 def _process_events(
@@ -491,6 +504,8 @@ def _process_events(
     payment_date: date,
     tag: str,
     date_ctx: EffectiveDateContext,
+    fringe_threshold: Decimal = _ZERO,
+    opening_fringe_ytd: Decimal = _ZERO,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -507,6 +522,10 @@ def _process_events(
     total_inps = _ZERO
     total_tfr = _ZERO
     total_irpef = _ZERO
+    total_fringe_value = _ZERO
+    total_fringe_inps = _ZERO
+    total_fringe_irpef = _ZERO
+    cumulative_fringe = opening_fringe_ytd
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
 
@@ -547,7 +566,9 @@ def _process_events(
             )
         elif isinstance(event, FringeEvent):
             gross = event.amount
-            fringe_inps, fringe_irpef = _fringe_bases(event)
+            fringe_inps, fringe_irpef, cumulative_fringe = _fringe_bases(
+                gross, cumulative_fringe, fringe_threshold
+            )
             item = FringeBenefitItem(
                 item_id=evt_id,
                 competence_period=cp,
@@ -557,6 +578,9 @@ def _process_events(
             )
             total_inps += fringe_inps
             total_irpef += fringe_irpef
+            total_fringe_value += gross
+            total_fringe_inps += fringe_inps
+            total_fringe_irpef += fringe_irpef
             items.append(item)
             entries.append(
                 _make_entry(
@@ -677,6 +701,9 @@ def _process_events(
             inps_base=total_inps,
             tfr_base=total_tfr,
             irpef_base=total_irpef,
+            fringe_value=total_fringe_value,
+            fringe_inps=total_fringe_inps,
+            fringe_irpef=total_fringe_irpef,
         ),
         tuple(items),
         tuple(entries),
@@ -944,10 +971,22 @@ def calculate_period(
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
+    var_pay_rules = load_variable_pay_rules(period_year)
+    if request.has_dependent_children:
+        fringe_threshold = var_pay_rules.fringe_benefit.threshold_with_children
+    else:
+        fringe_threshold = var_pay_rules.fringe_benefit.threshold_standard
+
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     tag = f"{period_year}_{request.period_id.month:02d}"
     event_totals, event_items, event_entries = _process_events(
-        request.events, cp, request.payment_date, tag, date_ctx
+        request.events,
+        cp,
+        request.payment_date,
+        tag,
+        date_ctx,
+        fringe_threshold=fringe_threshold,
+        opening_fringe_ytd=request.opening_state.fringe_ytd,
     )
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
@@ -1010,6 +1049,14 @@ def calculate_period(
         gross_ytd=request.opening_state.gross_ytd + period_gross,
         inps_base_ytd=request.opening_state.inps_base_ytd + period_inps_base,
         taxable_ytd=request.opening_state.taxable_ytd + amounts.period_taxable,
+        fringe_ytd=(request.opening_state.fringe_ytd + event_totals.fringe_value),
+    )
+    benefit_breakdown = BenefitBreakdown(
+        value=event_totals.fringe_value,
+        cash=_ZERO,
+        irpef_base=event_totals.fringe_irpef,
+        inps_base=event_totals.fringe_inps,
+        employer_cost=event_totals.fringe_value,
     )
     return PeriodCalculationResult(
         period_id=request.period_id,
@@ -1023,4 +1070,5 @@ def calculate_period(
         capability_report=capability_report,
         contribution_breakdown=contribution_breakdown,
         tax_computation=tax_computation,
+        benefit_breakdown=benefit_breakdown,
     )
