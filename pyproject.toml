@@ -214,6 +214,7 @@ pytest_add_cli_args = [
     # Hypothesis tests use multiple executors and are incompatible with fork mode.
     "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_invariants.py",
     "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_metamorphic_invariants.py",
+    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_property_period_first.py",
 ]
 mutate_only_covered_lines = true
 # Copy the full source tree so all test imports resolve inside mutants/.
