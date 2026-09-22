@@ -50,7 +50,10 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
 from ccnl_engine.engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
-from ccnl_engine.engine.payroll.service.contributions import resolve_rates
+from ccnl_engine.engine.payroll.service.contributions import (
+    resolve_contributions,
+    resolve_rates,
+)
 from ccnl_engine.engine.payroll.service.family_deductions import (
     compute_family_deductions,
 )
@@ -58,6 +61,9 @@ from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizional
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
 from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.payroll.domain.contributions import (
+    ContributionBreakdown,  # noqa: TC001
+)
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -232,18 +238,28 @@ def _compute_amounts(
     comune_belfiore: str | None = None,
     family_composition: FamilyComposition | None = None,
     family_deduction_rules: FamilyDeductionRules | None = None,
-) -> _PeriodAmounts:
+) -> tuple[_PeriodAmounts, ContributionBreakdown]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
     Returns:
-        A :class:`_PeriodAmounts` with all rounded monetary quantities.
+        ``(_PeriodAmounts, ContributionBreakdown)`` with all rounded monetary
+        quantities and the per-component INPS breakdown.
     """
-    rates = resolve_rates(rules, contract_type, category)
-
-    # INPS: base salary + event INPS-liable amounts
+    # INPS: base salary + event INPS-liable amounts, with IVS ceiling enforcement
     period_inps_base = monthly_gross + event_totals.inps_base
-    inps_employee = money(period_inps_base * rates.employee_rate)
-    inps_employer = money(period_inps_base * rates.employer_rate)
+    breakdown = resolve_contributions(
+        period_inps_base,
+        rules,
+        contract_type,
+        category,
+        ytd_inps_base=opening.inps_base_ytd,
+    )
+    inps_employee = breakdown.employee
+    inps_employer = breakdown.employer
+
+    # For IRPEF projection we still need the raw employee rate (no ceiling split needed
+    # here: the annual projection uses the nominal rate on the recurring base).
+    rates = resolve_rates(rules, contract_type, category)
 
     # TFR: base salary + event TFR-liable amounts
     period_tfr_base = monthly_gross + event_totals.tfr_base
@@ -289,14 +305,17 @@ def _compute_amounts(
     period_surtax_annual = surtax_reg + surtax_com
     period_surtax = money(period_surtax_annual / additional_months)
 
-    return _PeriodAmounts(
-        monthly_gross=monthly_gross,
-        inps_employee=inps_employee,
-        inps_employer=inps_employer,
-        tfr=tfr,
-        period_irpef=period_irpef,
-        period_tratt=period_tratt,
-        period_surtax=period_surtax,
+    return (
+        _PeriodAmounts(
+            monthly_gross=monthly_gross,
+            inps_employee=inps_employee,
+            inps_employer=inps_employer,
+            tfr=tfr,
+            period_irpef=period_irpef,
+            period_tratt=period_tratt,
+            period_surtax=period_surtax,
+        ),
+        breakdown,
     )
 
 
@@ -955,7 +974,7 @@ def calculate_period(
         if request.family_composition is not None
         else None
     )
-    amounts = _compute_amounts(
+    amounts, contribution_breakdown = _compute_amounts(
         monthly_gross,
         event_totals,
         request.opening_state,
@@ -993,6 +1012,7 @@ def calculate_period(
         + _sum_ledger(all_entries, AccountKind.TFR_ACCRUAL)
     )
 
+    period_inps_base = monthly_gross + event_totals.inps_base
     closing = PeriodState(
         months_closed=request.opening_state.months_closed + 1,
         irpef_withheld_ytd=(
@@ -1003,6 +1023,7 @@ def calculate_period(
             + _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         ),
         gross_ytd=request.opening_state.gross_ytd + period_gross,
+        inps_base_ytd=request.opening_state.inps_base_ytd + period_inps_base,
     )
     return PeriodCalculationResult(
         period_id=request.period_id,
@@ -1014,4 +1035,5 @@ def calculate_period(
         pay_items=pay_items + event_items,
         ledger_entries=all_entries,
         capability_report=capability_report,
+        contribution_breakdown=contribution_breakdown,
     )

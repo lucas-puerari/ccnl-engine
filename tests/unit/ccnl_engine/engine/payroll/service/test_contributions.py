@@ -12,6 +12,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
 from ccnl_engine.engine.payroll.service.contributions import (
     inps_contribution,
     inps_employee_additional,
+    resolve_contributions,
     resolve_rates,
     tfr,
 )
@@ -250,3 +251,83 @@ class TestInpsEmployeeAdditional:
         rates = _rates_with_additional(ceiling=None)
         result = inps_employee_additional(_D("70000"), rates, ivs_ceiling_applies=True)
         assert result == _D("137.76")
+
+
+class TestResolveContributions:
+    """resolve_contributions: breakdown, IVS ceiling, and zero-rate branches."""
+
+    def test_no_ceiling_uses_full_base_as_ivs_base(self) -> None:
+        """When rules carry no ceiling, ivs_base equals the full period base."""
+        rules = _rules(ceiling=None)
+        base = _D("3000.00")
+        bd = resolve_contributions(base, rules, Permanent(), None)
+        # emp_ivs_rate == emp_rate, so employee total = base * ivs_rate
+        expected_emp = money(base * rules.inps.employee_ivs_rate)  # type: ignore[union-attr]
+        assert bd.employee == expected_emp
+        # ivs_base == base because ceiling is None
+        ivs_comp = next(c for c in bd.components if c.name == "ivs_employee")
+        assert ivs_comp.base == base
+
+    def test_ceiling_caps_ivs_base(self) -> None:
+        """When ytd already consumed the ceiling, ivs_base is zero."""
+        rules = _rules(ceiling="120000")
+        ceiling = _D("120000")
+        # Simulate ytd already at ceiling
+        bd = resolve_contributions(
+            _D("3000.00"), rules, Permanent(), None, ytd_inps_base=ceiling
+        )
+        # IVS components should have base=0
+        ivs_emp = next((c for c in bd.components if c.name == "ivs_employee"), None)
+        if ivs_emp is not None:
+            assert ivs_emp.base == _D(0)
+
+    def test_emp_ivs_rate_zero_skips_ivs_employee_component(self) -> None:
+        """When employee_ivs_rate == 0 no ivs_employee component is emitted."""
+        rules = make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0000",
+                "employer_rate": "0.2381",
+                "employer_ivs_rate": "0.2381",
+                "ceiling": None,
+                "employer_rate_by_category": {},
+            }
+        )
+        bd = resolve_contributions(_D("3000.00"), rules, Permanent(), None)
+        names = [c.name for c in bd.components]
+        assert "ivs_employee" not in names
+        assert "non_ivs_employee" in names
+
+    def test_er_ivs_rate_zero_skips_ivs_employer_component(self) -> None:
+        """When employer_ivs_rate == 0 no ivs_employer component is emitted."""
+        rules = make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
+                "employer_rate": "0.2898",
+                "employer_ivs_rate": "0.0000",
+                "ceiling": None,
+                "employer_rate_by_category": {},
+            }
+        )
+        bd = resolve_contributions(_D("3000.00"), rules, Permanent(), None)
+        names = [c.name for c in bd.components]
+        assert "ivs_employer" not in names
+        assert "non_ivs_employer" in names
+
+    def test_er_non_ivs_rate_zero_skips_non_ivs_employer_component(self) -> None:
+        """When employer_rate == employer_ivs_rate no non_ivs_employer component."""
+        rules = make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
+                "employer_rate": "0.2381",
+                "employer_ivs_rate": "0.2381",
+                "ceiling": None,
+                "employer_rate_by_category": {},
+            }
+        )
+        bd = resolve_contributions(_D("3000.00"), rules, Permanent(), None)
+        names = [c.name for c in bd.components]
+        assert "non_ivs_employer" not in names
+        assert "ivs_employer" in names

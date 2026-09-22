@@ -21,6 +21,7 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationViolation,
     reconcile,
 )
+from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
@@ -126,6 +127,9 @@ class _Builder:
             pay_items=self.pay_items,
             ledger_entries=self.ledger_entries,
             capability_report=CapabilityReport.empty(_YEAR),
+            contribution_breakdown=ContributionBreakdown(
+                employee=Decimal(0), employer=Decimal(0), components=()
+            ),
         )
 
 
