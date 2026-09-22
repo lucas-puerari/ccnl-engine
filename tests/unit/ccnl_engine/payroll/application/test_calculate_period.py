@@ -5,9 +5,13 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -25,6 +29,7 @@ from ccnl_engine.payroll.application.calculate_period import (
     _trattamento_period,
     calculate_period,
 )
+from ccnl_engine.payroll.domain.events import ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
@@ -407,3 +412,92 @@ class TestProjectLedgerWithTrattamento:
         assert AccountKind.ORDINARY_TAX in accounts
         assert AccountKind.EMPLOYER_CONTRIBUTIONS in accounts
         assert AccountKind.TFR_ACCRUAL in accounts
+
+
+class TestContractTypeRouting:
+    """contract_type on PeriodCalculationRequest routes gross and INPS correctly."""
+
+    def test_apprentice_gross_below_permanent(self) -> None:
+        """Apprentice (85% track) produces a lower period_gross than Permanent."""
+        permanent_req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+        )
+        # metalmeccanico track professionalizzante_36: months 0-12 → 85%
+        # C3 is covered by two tracks; explicit track= is required.
+        apprentice_req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            contract_type=Apprentice(months_elapsed=6, track="professionalizzante_36"),
+        )
+        perm_result = calculate_period(permanent_req)
+        appr_result = calculate_period(apprentice_req)
+        assert appr_result.period_gross < perm_result.period_gross
+
+    def test_fixed_term_same_gross_as_permanent(self) -> None:
+        """FixedTerm gross equals Permanent gross (only INPS employer rate differs)."""
+        permanent_req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+        )
+        fixed_req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            contract_type=FixedTerm(),
+        )
+        perm_result = calculate_period(permanent_req)
+        fixed_result = calculate_period(fixed_req)
+        assert fixed_result.period_gross == perm_result.period_gross
+
+
+class TestEventDateValidation:
+    """Events outside the competence period raise InvalidInputError."""
+
+    def test_overtime_outside_period_raises(self) -> None:
+        """OvertimeEvent with event_date outside period raises InvalidInputError."""
+        out_of_period = OvertimeEvent(
+            event_date=date(2026, 2, 10),  # February, not January
+            hours=Decimal(8),
+            hourly_rate=Decimal(20),
+            multiplier=Decimal("1.25"),
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            events=(out_of_period,),
+        )
+        with pytest.raises(InvalidInputError, match="outside period"):
+            calculate_period(req)
+
+    def test_arrears_event_outside_period_allowed(self) -> None:
+        """ArrearsEvent may reference past periods without raising."""
+        past_arrears = ArrearsEvent(
+            event_date=date(2025, 12, 1),  # prior year
+            amount=Decimal("500.00"),
+            separate_tax_rate=Decimal("0.23"),
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            events=(past_arrears,),
+        )
+        result = calculate_period(req)
+        assert result.period_gross > _ZERO

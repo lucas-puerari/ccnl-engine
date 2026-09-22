@@ -17,10 +17,15 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.capability_catalog import CapabilityReport
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.engine.payroll.domain.employment import (
+    Apprentice,
+    FixedTerm,
+    Permanent,
+)
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.engine.payroll.domain.pay_items import (
     AbsenceDeduction,
@@ -41,6 +46,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     WelfareItem,
 )
 from ccnl_engine.engine.payroll.service import irpef as irpef_svc
+from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.contributions import resolve_rates
 from ccnl_engine.engine.payroll.service.family_deductions import (
@@ -49,6 +55,7 @@ from ccnl_engine.engine.payroll.service.family_deductions import (
 from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -70,6 +77,8 @@ from ccnl_engine.payroll.domain.period import (
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.engine.contract.domain.compensation import Level
+    from ccnl_engine.engine.contract.domain.seniority import LevelCategory
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
@@ -79,7 +88,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
-_PERMANENT = Permanent()
 
 _OBSERVED: dict[str, str] = {
     "base_salary": "computed",
@@ -166,13 +174,27 @@ def _as_of(period_id: PeriodId) -> date:
     return date(period_id.year, period_id.month, 1)
 
 
-def _resolve_monthly_gross(ccnl: CCNL, level_code: str, as_of: date) -> Decimal:
+def _resolve_monthly_gross(
+    ccnl: CCNL,
+    level: Level,
+    contract_type: Permanent | FixedTerm | Apprentice,
+    as_of: date,
+) -> Decimal:
     """Look up the full-time monthly gross from the CCNL salary table.
+
+    For apprentices, derives gross from the applicable apprenticeship track
+    (percentage or underclass).  For all other contract types the standard
+    level chain is used.
 
     Returns:
         Rounded monthly gross (base + seniority + allowances) in EUR.
     """
-    level = ccnl.level_by_code(level_code)
+    if isinstance(contract_type, Apprentice):
+        chain, pct, _ = _apprentice_chain(
+            ccnl, level, contract_type, 0, frozenset(), as_of
+        )
+        raw = chain.base + chain.seniority + chain.allowances_total
+        return money(raw * pct) if pct is not None else money(raw)
     chain = _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
     return money(chain.base + chain.seniority + chain.allowances_total)
 
@@ -203,6 +225,8 @@ def _compute_amounts(
     opening: PeriodState,
     additional_months: int,
     rules: YearRules,
+    contract_type: Permanent | FixedTerm | Apprentice,
+    category: LevelCategory | None,
     surtax_rules: SurtaxRules | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
@@ -214,7 +238,7 @@ def _compute_amounts(
     Returns:
         A :class:`_PeriodAmounts` with all rounded monetary quantities.
     """
-    rates = resolve_rates(rules, _PERMANENT, None)
+    rates = resolve_rates(rules, contract_type, category)
 
     # INPS: base salary + event INPS-liable amounts
     period_inps_base = monthly_gross + event_totals.inps_base
@@ -317,6 +341,27 @@ def _make_entry(
     )
 
 
+def _check_event_date(
+    event: WorkEvent, date_ctx: EffectiveDateContext, idx: int
+) -> None:
+    """Raise InvalidInputError if event falls outside the competence period.
+
+    ArrearsEvent is exempt: back-paid contract renewals legitimately reference
+    past periods.
+
+    Raises:
+        InvalidInputError: When event_date is outside [period_start, period_end].
+    """
+    if isinstance(event, ArrearsEvent):
+        return
+    if not date_ctx.contains(event.event_date):
+        msg = (
+            f"event {idx} ({type(event).__name__}) event_date {event.event_date} "
+            f"is outside period [{date_ctx.period_start}, {date_ctx.period_end}]"
+        )
+        raise InvalidInputError(msg)
+
+
 def _fringe_bases(event: FringeEvent) -> tuple[Decimal, Decimal]:
     """Return (inps_base, irpef_base) for a fringe benefit event.
 
@@ -335,12 +380,16 @@ def _process_events(
     cp: CompetencePeriod,
     payment_date: date,
     tag: str,
+    date_ctx: EffectiveDateContext,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
     Most events produce one pay item and one CASH_EARNINGS entry.
     BilateralFundEvent produces two items (employee + employer) and two entries.
     ArrearsEvent and TerminationTFREvent each produce an additional SEPARATE_TAX entry.
+
+    ArrearsEvent is exempt from the period-coherence check because it legitimately
+    references past periods (back-paid contract renewals); see ``_check_event_date``.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -358,6 +407,7 @@ def _process_events(
 
     for i, event in enumerate(events):
         evt_id = f"{tag}_evt{i}"
+        _check_event_date(event, date_ctx, i)
 
         if isinstance(event, OvertimeEvent):
             gross = money(event.hours * event.hourly_rate * event.multiplier)
@@ -866,6 +916,10 @@ def calculate_period(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.ccnl_slug)
     as_of = _as_of(request.period_id)
+    level = ccnl.level_by_code(request.level_code)
+    date_ctx = EffectiveDateContext.from_period(
+        request.period_id.year, request.period_id.month, request.payment_date
+    )
     period_year = request.period_id.year
     year_rules = effective_repo.load_year_rules(
         period_year, ccnl.meta.tax_sector, request.num_employees
@@ -874,12 +928,12 @@ def calculate_period(
     capability_gaps = catalog.gaps(_OBSERVED, detect_absent=True, year=period_year)
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
-    monthly_gross = _resolve_monthly_gross(ccnl, request.level_code, as_of)
+    monthly_gross = _resolve_monthly_gross(ccnl, level, request.contract_type, as_of)
 
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     tag = f"{period_year}_{request.period_id.month:02d}"
     event_totals, event_items, event_entries = _process_events(
-        request.events, cp, request.payment_date, tag
+        request.events, cp, request.payment_date, tag, date_ctx
     )
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
@@ -897,6 +951,8 @@ def calculate_period(
         request.opening_state,
         additional_months,
         year_rules,
+        request.contract_type,
+        level.category,
         surtax_rules=surtax_rules,
         regione=request.regione,
         comune_belfiore=request.comune_belfiore,
