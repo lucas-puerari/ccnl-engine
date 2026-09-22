@@ -44,7 +44,10 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
             employee=_ZERO, employer=_ZERO, components=()
         ),
         "tax_computation": TaxComputation(
-            ordinary_tax=_ZERO, trattamento_integrativo=_ZERO, components=()
+            ordinary_tax=_ZERO,
+            trattamento_integrativo=_ZERO,
+            withholding_due=_ZERO,
+            components=(),
         ),
     }
     defaults.update(kwargs)

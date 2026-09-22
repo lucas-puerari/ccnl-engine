@@ -170,6 +170,7 @@ class _PeriodAmounts:
     period_irpef: Decimal
     period_tratt: Decimal
     period_surtax: Decimal
+    period_taxable: Decimal
 
 
 def _as_of(period_id: PeriodId) -> date:
@@ -286,6 +287,7 @@ def _compute_amounts(
     period_surtax_annual = surtax_reg + surtax_com
     period_surtax = money(period_surtax_annual / additional_months)
 
+    period_taxable = money(taxable / additional_months)
     return (
         _PeriodAmounts(
             monthly_gross=monthly_gross,
@@ -295,6 +297,7 @@ def _compute_amounts(
             period_irpef=period_irpef,
             period_tratt=period_tratt,
             period_surtax=period_surtax,
+            period_taxable=period_taxable,
         ),
         breakdown,
         tax_comp,
@@ -1006,6 +1009,7 @@ def calculate_period(
         ),
         gross_ytd=request.opening_state.gross_ytd + period_gross,
         inps_base_ytd=request.opening_state.inps_base_ytd + period_inps_base,
+        taxable_ytd=request.opening_state.taxable_ytd + amounts.period_taxable,
     )
     return PeriodCalculationResult(
         period_id=request.period_id,

@@ -134,6 +134,7 @@ class _Builder:
             tax_computation=TaxComputation(
                 ordinary_tax=Decimal(0),
                 trattamento_integrativo=Decimal(0),
+                withholding_due=Decimal(0),
                 components=(),
             ),
         )
