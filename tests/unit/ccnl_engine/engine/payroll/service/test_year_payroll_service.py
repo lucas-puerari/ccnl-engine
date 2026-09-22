@@ -23,6 +23,8 @@ from ccnl_engine.engine.payroll.domain.scenario import (
 )
 from ccnl_engine.engine.payroll.service.orchestrator import compute_payroll_year
 
+pytestmark = pytest.mark.filterwarnings("default::DeprecationWarning")
+
 _ZERO = Decimal(0)
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

@@ -25,8 +25,8 @@ from ccnl_engine import (
     PeriodPayrollInput,
     Permanent,
     TaxPeriod,
-    estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_period_effects
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 
 # --- 1. Compute ---

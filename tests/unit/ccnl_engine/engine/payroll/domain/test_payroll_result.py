@@ -18,7 +18,6 @@ from ccnl_engine import (
     Permanent,
     TaxPeriod,
     estimate_annual,
-    estimate_period_effects,
 )
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
 from ccnl_engine.engine.payroll.domain.payroll_result import (
@@ -28,6 +27,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     _decode_field,
 )
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_period_effects
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.engine.provenance.domain.extraction import (
     ExtractionMethod,

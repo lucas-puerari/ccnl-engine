@@ -25,8 +25,8 @@ from ccnl_engine import (
     SickInput,
     TaxPeriod,
     WelfareInput,
-    estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_period_effects
 from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 
 scenario = AnnualEstimateInput(

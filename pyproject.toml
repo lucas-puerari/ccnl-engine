@@ -117,6 +117,10 @@ indent-style = "space"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=src/ccnl_engine --cov-report=term-missing --cov-report=xml --cov-fail-under=100 -q"
+filterwarnings = [
+    "error::DeprecationWarning",
+    "default::DeprecationWarning:tests.unit.ccnl_engine.engine.*",
+]
 
 # ---------------------------------------------------------------------------
 # Coverage
