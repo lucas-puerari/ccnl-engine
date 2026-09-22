@@ -173,13 +173,13 @@ class TestPayrollYearAsOfOverride:
 
 
 class TestPayrollYearPublicApi:
-    """compute_payroll_year and year types are accessible from top-level package."""
+    """PayrollEngine.project_year and year types are in the top-level package."""
 
-    def test_importable_from_ccnl_engine(self) -> None:
-        """compute_payroll_year can be imported from ccnl_engine directly."""
-        from ccnl_engine import compute_payroll_year as fn  # noqa: PLC0415
+    def test_payroll_engine_in_dunder_all(self) -> None:
+        """PayrollEngine is listed in ccnl_engine.__all__."""
+        import ccnl_engine  # noqa: PLC0415
 
-        assert fn is compute_payroll_year
+        assert "PayrollEngine" in ccnl_engine.__all__
 
     def test_year_request_in_dunder_all(self) -> None:
         """PayrollYearRequest is listed in ccnl_engine.__all__."""
@@ -193,8 +193,8 @@ class TestPayrollYearPublicApi:
 
         assert "PayrollYearResult" in ccnl_engine.__all__
 
-    def test_compute_payroll_year_in_dunder_all(self) -> None:
-        """compute_payroll_year is listed in ccnl_engine.__all__."""
+    def test_year_request_alias_in_dunder_all(self) -> None:
+        """YearRequest alias is listed in ccnl_engine.__all__."""
         import ccnl_engine  # noqa: PLC0415
 
-        assert "compute_payroll_year" in ccnl_engine.__all__
+        assert "YearRequest" in ccnl_engine.__all__

@@ -24,10 +24,10 @@ from ccnl_engine import (
     OvertimeHours,
     PeriodPayrollInput,
     Permanent,
-    PeriodPayroll,
     TaxPeriod,
     estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 
 # --- 1. Compute ---
 scenario = AnnualEstimateInput(

@@ -11,7 +11,6 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    PeriodPayroll,
     AbsenceDays,
     AnnualEstimateInput,
     BonusInput,
@@ -28,6 +27,7 @@ from ccnl_engine import (
     WelfareInput,
     estimate_period_effects,
 )
+from ccnl_engine.engine.payroll.domain.payroll_result import PeriodPayroll
 
 scenario = AnnualEstimateInput(
     employee=Employee(level_code="C3"),
