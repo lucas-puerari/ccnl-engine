@@ -64,16 +64,12 @@ def _req(
 def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
     return _PeriodAmounts(
         monthly_gross=Decimal("2158.26"),
-        period_gross=Decimal("2158.26"),
         inps_employee=Decimal("204.82"),
         inps_employer=Decimal("651.79"),
         tfr=Decimal("159.87"),
         period_irpef=Decimal("279.02"),
         period_tratt=period_tratt,
         period_surtax=_ZERO,
-        period_separate_tax=_ZERO,
-        period_net=Decimal("1674.42"),
-        period_employer_cost=Decimal("2969.92"),
     )
 
 

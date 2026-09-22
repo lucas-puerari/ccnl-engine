@@ -12,6 +12,7 @@ Counterexamples (REVIEW §2.2):
   CE-5  WelfareEvent increases cash earnings and gross (non-cash benefit
         should not appear as monetary pay)
   CE-6  an event amount with sub-cent precision produces reconcile ok=False
+        (fixed in PR-05: period_net derived from ledger)
 
 Note: CE-1 and CE-2 tested the old PayrollEngine API delegating to the
 annual-first path. PR-02 wired PayrollEngine.calculate_period() to the
@@ -203,24 +204,11 @@ def test_ce5_welfare_does_not_increase_cash_earnings() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-6 P0.8: event amounts are not normalised through money() before "
-        "being posted to the ledger.  A sub-cent event amount (e.g. 100.001) "
-        "propagates into the ledger entries, making the I9 derived net a "
-        "3-decimal-place value that does not match the money()-rounded "
-        "period_net stored in the result."
-    ),
-)
 def test_ce6_sub_cent_event_amount_reconciles() -> None:
-    """CE-6: event amounts with sub-cent precision must reconcile cleanly.
+    """CE-6: event amounts with sub-cent precision reconcile cleanly.
 
-    After the fix calculate_period must either normalise all event amounts
-    through money() before posting them, or reject sub-cent inputs with a
-    validation error.  Currently a WelfareEvent(100.001) results in a
-    CASH_EARNINGS ledger entry of 100.001, which causes the I9 net identity
-    to fail (derived = 3-decimal-place value, period_net = rounded value).
+    period_net is derived from the same ledger entries, so sub-cent amounts
+    on both sides of the I9 identity cancel out and reconcile passes.
     """
     welfare_subcent = WelfareEvent(
         event_date=date(_YEAR, 1, 15), amount=Decimal("100.001")

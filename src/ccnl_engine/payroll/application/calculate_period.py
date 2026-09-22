@@ -134,33 +134,33 @@ _OBSERVED: dict[str, str] = {
 
 @dataclass(frozen=True)
 class _EventTotals:
-    """Aggregated event amounts for the period."""
+    """Aggregated INPS/TFR/IRPEF bases from variable work events.
 
-    gross: Decimal
+    Only the three axes that feed into rate computations are tracked here.
+    All other axis-level amounts (gross, net, separate-tax, settlements) are
+    read directly from the ledger after the event entries are posted.
+    """
+
     inps_base: Decimal
     tfr_base: Decimal
     irpef_base: Decimal
-    separate_tax: Decimal
-    employee_deductions: Decimal
-    employer_additional: Decimal
-    tfr_settlement: Decimal
 
 
 @dataclass(frozen=True)
 class _PeriodAmounts:
-    """All resolved monetary amounts for one pay period."""
+    """Computed monetary amounts passed to pay-item and ledger builders.
+
+    Does not include period_gross, period_net or period_employer_cost — those
+    are derived from the ledger after all entries are posted.
+    """
 
     monthly_gross: Decimal
-    period_gross: Decimal
     inps_employee: Decimal
     inps_employer: Decimal
     tfr: Decimal
     period_irpef: Decimal
     period_tratt: Decimal
     period_surtax: Decimal
-    period_separate_tax: Decimal
-    period_net: Decimal
-    period_employer_cost: Decimal
 
 
 def _as_of(period_id: PeriodId) -> date:
@@ -287,34 +287,14 @@ def _compute_amounts(
     period_surtax_annual = surtax_reg + surtax_com
     period_surtax = money(period_surtax_annual / additional_months)
 
-    period_gross = monthly_gross + event_totals.gross
-    period_separate_tax = event_totals.separate_tax
-    period_net = money(
-        period_gross
-        + event_totals.tfr_settlement
-        - inps_employee
-        - event_totals.employee_deductions
-        - period_irpef
-        + period_tratt
-        - period_surtax
-        - period_separate_tax
-    )
-    period_employer_cost = money(
-        period_gross + inps_employer + event_totals.employer_additional + tfr
-    )
-
     return _PeriodAmounts(
         monthly_gross=monthly_gross,
-        period_gross=period_gross,
         inps_employee=inps_employee,
         inps_employer=inps_employer,
         tfr=tfr,
         period_irpef=period_irpef,
         period_tratt=period_tratt,
         period_surtax=period_surtax,
-        period_separate_tax=period_separate_tax,
-        period_net=period_net,
-        period_employer_cost=period_employer_cost,
     )
 
 
@@ -337,6 +317,15 @@ def _make_entry(
         amount=amount,
         source_item_id=pay_item_id,
     )
+
+
+def _sum_ledger(entries: tuple[LedgerEntry, ...], account: AccountKind) -> Decimal:
+    """Sum all ledger entry amounts for a given account kind.
+
+    Returns:
+        Total for ``account`` in ``entries``, or zero when no entry is present.
+    """
+    return sum((e.amount for e in entries if e.account == account), _ZERO)
 
 
 def _check_event_date(
@@ -509,14 +498,9 @@ def _process_events(
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
     """
-    total_gross = _ZERO
     total_inps = _ZERO
     total_tfr = _ZERO
     total_irpef = _ZERO
-    total_separate_tax = _ZERO
-    total_employee_ded = _ZERO
-    total_employer_add = _ZERO
-    total_tfr_settlement = _ZERO
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
 
@@ -540,7 +524,6 @@ def _process_events(
             gross = _standard_event_gross(event)
             item, kind = _standard_event_item(event, gross, evt_id, cp, payment_date)
             di, dt, dirpef = _treatment_deltas(treatment, gross)
-            total_gross += gross
             total_inps += di
             total_tfr += dt
             total_irpef += dirpef
@@ -566,7 +549,6 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            total_gross += gross
             total_inps += fringe_inps
             total_irpef += fringe_irpef
             items.append(item)
@@ -591,8 +573,6 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            total_gross += gross
-            total_separate_tax += sep_tax
             items.append(item)
             entries.extend([
                 _make_entry(
@@ -631,8 +611,6 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=event.employer_amount,
             )
-            total_employee_ded += event.employee_amount
-            total_employer_add += event.employer_amount
             items.extend((emp_item, er_item))
             entries.extend([
                 _make_entry(
@@ -664,8 +642,6 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            total_tfr_settlement += gross
-            total_separate_tax += sep_tax
             items.append(item)
             entries.extend([
                 _make_entry(
@@ -692,14 +668,9 @@ def _process_events(
 
     return (
         _EventTotals(
-            gross=total_gross,
             inps_base=total_inps,
             tfr_base=total_tfr,
             irpef_base=total_irpef,
-            separate_tax=total_separate_tax,
-            employee_deductions=total_employee_ded,
-            employer_additional=total_employer_add,
-            tfr_settlement=total_tfr_settlement,
         ),
         tuple(items),
         tuple(entries),
@@ -938,6 +909,24 @@ def calculate_period(
     )
     pay_items = _build_pay_items(amounts, request.period_id, request.payment_date)
     ledger_entries = _project_ledger(amounts, request.period_id, request.payment_date)
+    all_entries = ledger_entries + event_entries
+
+    period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)
+    period_net = (
+        period_gross
+        + _sum_ledger(all_entries, AccountKind.TFR_SETTLEMENT)
+        + _sum_ledger(all_entries, AccountKind.CREDITS)
+        - _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
+        - _sum_ledger(all_entries, AccountKind.ORDINARY_TAX)
+        - _sum_ledger(all_entries, AccountKind.SURTAX)
+        - _sum_ledger(all_entries, AccountKind.SEPARATE_TAX)
+    )
+    period_employer_cost = (
+        period_gross
+        + _sum_ledger(all_entries, AccountKind.EMPLOYER_CONTRIBUTIONS)
+        + _sum_ledger(all_entries, AccountKind.TFR_ACCRUAL)
+    )
+
     closing = PeriodState(
         months_closed=request.opening_state.months_closed + 1,
         irpef_withheld_ytd=(
@@ -945,19 +934,18 @@ def calculate_period(
         ),
         inps_employee_ytd=(
             request.opening_state.inps_employee_ytd
-            + amounts.inps_employee
-            + event_totals.employee_deductions
+            + _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         ),
-        gross_ytd=request.opening_state.gross_ytd + amounts.period_gross,
+        gross_ytd=request.opening_state.gross_ytd + period_gross,
     )
     return PeriodCalculationResult(
         period_id=request.period_id,
         payment_date=request.payment_date,
-        period_gross=amounts.period_gross,
-        period_net=amounts.period_net,
-        period_employer_cost=amounts.period_employer_cost,
+        period_gross=period_gross,
+        period_net=period_net,
+        period_employer_cost=period_employer_cost,
         closing_state=closing,
         pay_items=pay_items + event_items,
-        ledger_entries=ledger_entries + event_entries,
+        ledger_entries=all_entries,
         capability_report=capability_report,
     )
