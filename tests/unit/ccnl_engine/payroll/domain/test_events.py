@@ -134,23 +134,13 @@ class TestBonusEvent:
 
 
 class TestFringeEvent:
-    """FringeEvent stores amount and exempt threshold, and is frozen."""
+    """FringeEvent stores event_date and amount; threshold comes from year policy."""
 
     def test_fields(self) -> None:
-        """All fields are stored and retrievable."""
-        evt = FringeEvent(
-            event_date=_DATE,
-            amount=Decimal("500.00"),
-            exempt_threshold=Decimal("258.23"),
-        )
+        """event_date and amount are stored and retrievable."""
+        evt = FringeEvent(event_date=_DATE, amount=Decimal("500.00"))
         assert evt.event_date == _DATE
         assert evt.amount == Decimal("500.00")
-        assert evt.exempt_threshold == Decimal("258.23")
-
-    def test_default_threshold(self) -> None:
-        """Exempt threshold defaults to 258.23 (standard TUIR threshold)."""
-        evt = FringeEvent(event_date=_DATE, amount=Decimal(100))
-        assert evt.exempt_threshold == Decimal("258.23")
 
     def test_frozen(self) -> None:
         """FringeEvent is immutable."""

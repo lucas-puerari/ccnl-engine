@@ -14,6 +14,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     CompetencePeriod,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
@@ -48,6 +49,13 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
             trattamento_integrativo=_ZERO,
             withholding_due=_ZERO,
             components=(),
+        ),
+        "benefit_breakdown": BenefitBreakdown(
+            value=_ZERO,
+            cash=_ZERO,
+            irpef_base=_ZERO,
+            inps_base=_ZERO,
+            employer_cost=_ZERO,
         ),
     }
     defaults.update(kwargs)

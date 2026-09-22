@@ -21,6 +21,7 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationViolation,
     reconcile,
 )
+from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
@@ -136,6 +137,13 @@ class _Builder:
                 trattamento_integrativo=Decimal(0),
                 withholding_due=Decimal(0),
                 components=(),
+            ),
+            benefit_breakdown=BenefitBreakdown(
+                value=Decimal(0),
+                cash=Decimal(0),
+                irpef_base=Decimal(0),
+                inps_base=Decimal(0),
+                employer_cost=Decimal(0),
             ),
         )
 

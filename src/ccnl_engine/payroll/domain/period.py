@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.tax import TaxComputation
@@ -39,6 +40,8 @@ class PeriodState:
         inps_base_ytd: Total INPS contribution base accumulated YTD.
             Used to enforce the IVS massimale ceiling across periods.
         taxable_ytd: Total IRPEF taxable income accumulated YTD.
+        fringe_ytd: Total fringe benefit value accumulated YTD.
+            Used to enforce the annual Art. 51 c. 3 TUIR threshold.
     """
 
     months_closed: int = 0
@@ -47,6 +50,7 @@ class PeriodState:
     gross_ytd: Decimal = _ZERO
     inps_base_ytd: Decimal = _ZERO
     taxable_ytd: Decimal = _ZERO
+    fringe_ytd: Decimal = _ZERO
 
     @classmethod
     def zero(cls) -> PeriodState:
@@ -76,6 +80,10 @@ class PeriodCalculationRequest:
             (some rates differ by firm size). Defaults to 50.
         events: Variable work events (overtime, absences, bonuses, etc.)
             that occurred in this period. Defaults to no events.
+        has_dependent_children: Whether the worker has at least one
+            fiscally dependent child (figlio a carico).  Selects the
+            higher fringe-benefit exemption threshold under Art. 51 c. 3
+            TUIR.  Defaults to ``False``.
     """
 
     period_id: PeriodId
@@ -89,6 +97,7 @@ class PeriodCalculationRequest:
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
+    has_dependent_children: bool = False
 
 
 @dataclass(frozen=True)
@@ -107,6 +116,8 @@ class PeriodCalculationResult:
         ledger_entries: All ledger entries posted for this period.
         contribution_breakdown: Per-component INPS breakdown for audit
             and compliance tracing.
+        benefit_breakdown: Per-axis fringe/welfare benefit breakdown for
+            audit and cost-centre reporting.
     """
 
     period_id: PeriodId
@@ -120,3 +131,4 @@ class PeriodCalculationResult:
     capability_report: CapabilityReport
     contribution_breakdown: ContributionBreakdown
     tax_computation: TaxComputation
+    benefit_breakdown: BenefitBreakdown

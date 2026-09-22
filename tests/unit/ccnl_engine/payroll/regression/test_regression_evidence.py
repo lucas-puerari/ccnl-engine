@@ -45,7 +45,6 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _YEAR = 2026
 
-_FRINGE_THRESHOLD = Decimal("258.23")
 _ZERO = Decimal(0)
 
 
@@ -108,47 +107,26 @@ def test_ce3_excess_ytd_produces_refund() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-4 P0.7: _fringe_bases() compares each FringeEvent independently "
-        "against the exempt threshold (calculate_period.py:320-329).  Two events "
-        "of 200 are individually below 258.23 and both return (0, 0).  The "
-        "cumulative total (400) exceeds the annual threshold so the full 400 "
-        "must become taxable, but the engine reports an IRPEF fringe base of 0."
-    ),
-)
 def test_ce4_cumulative_fringe_threshold() -> None:
-    """CE-4: two fringe events whose sum exceeds the threshold must be fully taxable.
+    """CE-4: two fringe events whose cumulative sum exceeds the threshold are taxable.
 
-    After the fix two FringeEvent(200) with exempt_threshold=258.23 in the
-    same period must add 400.00 to the IRPEF base (both amounts become
-    taxable once the cumulative total exceeds the threshold).
-    Currently the engine evaluates the threshold per-event and returns 0.
+    Two FringeEvent(600) in the same period: cumulative = 1200, which exceeds
+    the 2026 standard threshold (1000 EUR under L. 207/2024). Both amounts must
+    become taxable, increasing ORDINARY_TAX relative to a no-fringe baseline.
     """
     event_date = date(_YEAR, 1, 15)
-    fringe_a = FringeEvent(
-        event_date=event_date,
-        amount=Decimal("200.00"),
-        exempt_threshold=_FRINGE_THRESHOLD,
-    )
-    fringe_b = FringeEvent(
-        event_date=event_date,
-        amount=Decimal("200.00"),
-        exempt_threshold=_FRINGE_THRESHOLD,
-    )
+    fringe_a = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
+    fringe_b = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
     result_with_fringe = calculate_period(_req(events=(fringe_a, fringe_b)))
     result_without = calculate_period(_req())
 
-    # The two fringes must increase the IRPEF-liable base by their combined 400.
-    # We observe this as an increase in ORDINARY_TAX relative to the base case.
     tax_with = _sum_account(result_with_fringe, AccountKind.ORDINARY_TAX)
     tax_without = _sum_account(result_without, AccountKind.ORDINARY_TAX)
 
     assert tax_with > tax_without, (
         f"ORDINARY_TAX with cumulative fringe ({tax_with}) must exceed "
-        f"base case ({tax_without}): two fringe events at 200 with threshold "
-        f"258.23 must be fully taxable (400 total)."
+        f"base case ({tax_without}): two fringe events at 600 (total 1200) "
+        "exceed the 2026 threshold (1000) and must be fully taxable."
     )
 
 
