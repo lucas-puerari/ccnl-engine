@@ -85,14 +85,17 @@ class AbsenceEvent:
     """Unpaid absence: reduces gross, INPS base, TFR base, and taxable income.
 
     Attributes:
-        event_date: Calendar date of the absence.
+        event_date: Start date (or sole date) of the absence.
         hours: Number of absent hours.
         hourly_rate: Rate at which the pay is deducted in EUR.
+        end_date: Last day of the absence range.  ``None`` for single-day
+            absences where ``event_date`` is both start and end.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
+    end_date: date | None = None
 
 
 @dataclass(frozen=True)
@@ -106,10 +109,13 @@ class SickLeaveEvent:
     Attributes:
         event_date: First day of the sick-leave period.
         amount: Gross amount paid by the employer in EUR.
+        waiting_period_days: Number of carenza days (waiting period) at the
+            start of the sick-leave period.  Defaults to 0.
     """
 
     event_date: date
     amount: Decimal
+    waiting_period_days: int = 0
 
 
 @dataclass(frozen=True)
