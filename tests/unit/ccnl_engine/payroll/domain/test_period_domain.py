@@ -14,6 +14,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     CompetencePeriod,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
@@ -38,6 +39,9 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
         "pay_items": (),
         "ledger_entries": (),
         "capability_report": CapabilityReport.empty(2026),
+        "contribution_breakdown": ContributionBreakdown(
+            employee=_ZERO, employer=_ZERO, components=()
+        ),
     }
     defaults.update(kwargs)
     return PeriodCalculationResult(**defaults)  # type: ignore[arg-type]

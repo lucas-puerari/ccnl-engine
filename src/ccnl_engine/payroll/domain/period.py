@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.events import WorkEvent
 
 _ZERO = Decimal(0)
@@ -34,12 +35,15 @@ class PeriodState:
         irpef_withheld_ytd: IRPEF already withheld this tax year.
         inps_employee_ytd: Employee INPS contributions withheld YTD.
         gross_ytd: Gross earnings accumulated YTD.
+        inps_base_ytd: Total INPS contribution base accumulated YTD.
+            Used to enforce the IVS massimale ceiling across periods.
     """
 
     months_closed: int = 0
     irpef_withheld_ytd: Decimal = _ZERO
     inps_employee_ytd: Decimal = _ZERO
     gross_ytd: Decimal = _ZERO
+    inps_base_ytd: Decimal = _ZERO
 
     @classmethod
     def zero(cls) -> PeriodState:
@@ -98,6 +102,8 @@ class PeriodCalculationResult:
             ``opening_state`` to the next period's request.
         pay_items: All pay items produced for this period.
         ledger_entries: All ledger entries posted for this period.
+        contribution_breakdown: Per-component INPS breakdown for audit
+            and compliance tracing.
     """
 
     period_id: PeriodId
@@ -109,3 +115,4 @@ class PeriodCalculationResult:
     pay_items: tuple[PayItem, ...]
     ledger_entries: tuple[LedgerEntry, ...]
     capability_report: CapabilityReport
+    contribution_breakdown: ContributionBreakdown

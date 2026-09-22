@@ -18,10 +18,15 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.contributions import (
+    ContributionBreakdown,
+    ContributionComponent,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, LevelCategory
     from ccnl_engine.engine.payroll.domain.employment import Contract as Employment
+    from ccnl_engine.engine.payroll.domain.employment import Permanent
     from ccnl_engine.engine.tax.domain.rules import (
         ApprenticeRates,
         DomesticInpsRates,
@@ -254,3 +259,101 @@ def fund_applies_to(fund: EmployerFund, category: LevelCategory | None) -> bool:
     if fund.applies_to_categories is None:
         return True
     return category is not None and category in fund.applies_to_categories
+
+
+def resolve_contributions(
+    period_inps_base: Decimal,
+    rules: YearRules,
+    contract_type: Permanent | FixedTerm | Apprentice,
+    category: LevelCategory | None,
+    *,
+    ytd_inps_base: Decimal = _ZERO,
+) -> ContributionBreakdown:
+    """Compute INPS contributions with per-component breakdown and IVS ceiling.
+
+    The IVS portion of both employee and employer contributions is capped at
+    the massimale retributivo (Art. 1 c. 18 L. 335/1995) when a ceiling is
+    configured.  The ceiling is enforced across the year via ``ytd_inps_base``:
+    only the portion of ``period_inps_base`` that fits within the remaining
+    headroom (``ceiling - ytd_inps_base``) attracts IVS contributions; the
+    non-IVS components (NASpI, CUAF, CIG) are applied to the full base.
+
+    Args:
+        period_inps_base: Gross INPS-liable base for this period.
+        rules: Year-specific tax and contribution rules.
+        contract_type: Employment type (Permanent, FixedTerm, Apprentice).
+        category: Level category for employer rate lookup, or None.
+        ytd_inps_base: Total INPS base already accumulated this tax year
+            (from ``PeriodState.inps_base_ytd``). Used to enforce the
+            annual IVS ceiling across periods.
+
+    Returns:
+        :class:`~ccnl_engine.payroll.domain.contributions.ContributionBreakdown`
+        with employee/employer totals and per-component trace.
+    """
+    rates = resolve_rates(rules, contract_type, category)
+    ceiling = rules.inps.ceiling if rules.inps is not None else None
+
+    # IVS-eligible base for this period: capped at remaining ceiling headroom.
+    if ceiling is not None:
+        ivs_base = max(_ZERO, min(period_inps_base, ceiling - ytd_inps_base))
+    else:
+        ivs_base = period_inps_base
+
+    # Employee side
+    emp_ivs_rate = rates.employee_ivs_rate
+    emp_non_ivs_rate = rates.employee_rate - emp_ivs_rate
+    emp_ivs = money(ivs_base * emp_ivs_rate)
+    emp_non_ivs = money(period_inps_base * emp_non_ivs_rate)
+    employee_total = emp_ivs + emp_non_ivs
+
+    # Employer side
+    er_ivs_rate = rates.employer_ivs_rate
+    er_non_ivs_rate = rates.employer_rate - er_ivs_rate
+    er_ivs = money(ivs_base * er_ivs_rate)
+    er_non_ivs = money(period_inps_base * er_non_ivs_rate)
+    employer_total = er_ivs + er_non_ivs
+
+    components: list[ContributionComponent] = []
+    if emp_ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name="ivs_employee",
+                base=ivs_base,
+                rate=emp_ivs_rate,
+                amount=emp_ivs,
+            )
+        )
+    if emp_non_ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name="non_ivs_employee",
+                base=period_inps_base,
+                rate=emp_non_ivs_rate,
+                amount=emp_non_ivs,
+            )
+        )
+    if er_ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name="ivs_employer",
+                base=ivs_base,
+                rate=er_ivs_rate,
+                amount=er_ivs,
+            )
+        )
+    if er_non_ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name="non_ivs_employer",
+                base=period_inps_base,
+                rate=er_non_ivs_rate,
+                amount=er_non_ivs,
+            )
+        )
+
+    return ContributionBreakdown(
+        employee=employee_total,
+        employer=employer_total,
+        components=tuple(components),
+    )
