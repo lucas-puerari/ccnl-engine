@@ -83,7 +83,7 @@ class TestHolidayWorkEvent:
 
 
 class TestAbsenceEvent:
-    """AbsenceEvent stores hours and hourly rate and is frozen."""
+    """AbsenceEvent stores hours, hourly rate, optional end_date and is frozen."""
 
     def test_fields(self) -> None:
         """All fields are stored and retrievable."""
@@ -94,6 +94,22 @@ class TestAbsenceEvent:
         assert evt.hours == Decimal(4)
         assert evt.hourly_rate == Decimal("13.00")
 
+    def test_default_end_date_none(self) -> None:
+        """end_date defaults to None for single-day absences."""
+        evt = AbsenceEvent(event_date=_DATE, hours=Decimal(4), hourly_rate=Decimal(13))
+        assert evt.end_date is None
+
+    def test_end_date_stored(self) -> None:
+        """end_date is stored when supplied for a date-range absence."""
+        end = date(2026, 1, 17)
+        evt = AbsenceEvent(
+            event_date=_DATE,
+            hours=Decimal(16),
+            hourly_rate=Decimal(13),
+            end_date=end,
+        )
+        assert evt.end_date == end
+
     def test_frozen(self) -> None:
         """AbsenceEvent is immutable."""
         evt = AbsenceEvent(event_date=_DATE, hours=Decimal(4), hourly_rate=Decimal(13))
@@ -102,13 +118,25 @@ class TestAbsenceEvent:
 
 
 class TestSickLeaveEvent:
-    """SickLeaveEvent stores employer-paid gross amount and is frozen."""
+    """SickLeaveEvent stores employer-paid gross, waiting period and is frozen."""
 
     def test_fields(self) -> None:
         """All fields are stored and retrievable."""
         evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
         assert evt.event_date == _DATE
         assert evt.amount == Decimal("200.00")
+
+    def test_default_waiting_period_days_zero(self) -> None:
+        """waiting_period_days defaults to 0 (no carenza)."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
+        assert evt.waiting_period_days == 0
+
+    def test_waiting_period_days_stored(self) -> None:
+        """waiting_period_days is stored when supplied."""
+        evt = SickLeaveEvent(
+            event_date=_DATE, amount=Decimal("200.00"), waiting_period_days=3
+        )
+        assert evt.waiting_period_days == 3
 
     def test_frozen(self) -> None:
         """SickLeaveEvent is immutable."""
