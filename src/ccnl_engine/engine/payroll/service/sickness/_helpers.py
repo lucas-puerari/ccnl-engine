@@ -1,45 +1,12 @@
-"""Sick-leave (malattia ordinaria) computation service.
-
-Computes the INPS statutory indemnity and the CCNL company integration
-top-up for a single pay period.  All outputs are *informational*:
-``gross_annual``, ``taxable_income``, and ``net_annual`` are never mutated.
-
-The daily reference base is ``gross_monthly / 30`` (conventional calendar
-month, consistent with Italian payroll practice for sick-leave deductions).
-
-INPS rate structure (statutory -- D.Lgs. 151/2001, artt. 68-71):
-- Days 1-*carenza_days*: no INPS indemnity; CCNL determines coverage.
-- Days *carenza_days+1* onward: INPS rate bands defined in the bundled
-  ``sick-pay-rates.json`` file (50 % for days 4-20, 66.67 % for days 21-180).
-
-Cumulative offset:
-When ``SickInput.cumulative_sick_days`` is provided it represents the number
-of sick days already elapsed in the same illness episode BEFORE this period.
-The carenza and INPS band positions are computed relative to the episode
-start, so splitting one episode across multiple periods gives the same totals
-as computing it as a single period.  The offset is kept as ``Decimal`` to
-avoid truncating fractional cumulative values.
-
-Company integration:
-- During carenza: company pays ``carenza_integration_rate * daily_rate``.
-- During INPS-covered days: company pays the gap between the effective
-  integration rate and the INPS indemnity for that band (floored at zero).
-- When ``SicknessRules.tiers`` is populated and ``cumulative_sick_days`` is
-  provided, the integration rate is selected per 30-day tier month.  Periods
-  that cross a CCNL tier boundary or an INPS band boundary are split so each
-  segment uses the correct rates.
-"""
+"""Internal helpers for sick-leave computation."""
 
 from __future__ import annotations
 
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service.rounding import money
-
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import SicknessRules, SicknessTier
-    from ccnl_engine.engine.payroll.domain.supplements import SickInput
     from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 
 _ZERO = Decimal(0)
@@ -293,91 +260,3 @@ def _post_carenza_tier(
         total += seg_days * gap * daily_rate
         offset = seg_end
     return total
-
-
-def compute_sickness(
-    sick_input: SickInput,
-    sickness_rules: SicknessRules,
-    sick_pay_rates: InpsSickPayRates,
-    gross_monthly: Decimal,
-) -> tuple[Decimal, Decimal, Decimal, Decimal]:
-    """Compute sick-leave indemnity and CCNL integration for one pay period.
-
-    Args:
-        sick_input: Caller-declared sick days.
-        sickness_rules: CCNL-specific integration parameters.
-        sick_pay_rates: Statutory INPS rate bands loaded from the bundle.
-        gross_monthly: Full-time gross pay for the month (``chain.gross``).
-
-    Returns:
-        A 4-tuple of:
-        - ``sick_days``: total sick days (echo of input).
-        - ``carenza_days``: days in the waiting period (this period only).
-        - ``inps_indemnity``: total INPS indemnity for the period.
-        - ``company_integration``: company supplement above INPS.
-    """
-    sick_days = sick_input.sick_days
-    if sick_days <= _ZERO:
-        return _ZERO, _ZERO, _ZERO, _ZERO
-
-    # Normalise once: None means "first episode, zero elapsed days"
-    # and is documented as equivalent to Decimal(0) in SickInput.
-    cumulative: Decimal = sick_input.cumulative_sick_days or _ZERO
-    offset: Decimal = cumulative
-
-    daily_rate = money(gross_monthly / _CALENDAR_DAYS)
-    carenza_limit = sick_pay_rates.carenza_days
-    bands = [(b.day_from, b.day_to) for b in sick_pay_rates.bands]
-    carenza, band_buckets = _bucket_days(
-        sick_days, carenza_limit, bands, cumulative_offset=offset
-    )
-
-    # INPS indemnity (only post-carenza bands; INPS has its own band ceiling)
-    inps_indemnity = _ZERO
-    for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets, strict=True):
-        inps_indemnity += bucket * band_obj.rate * daily_rate
-
-    # Company integration is limited to the comporto period (max_duration_days).
-    # Days beyond the comporto are not covered by the CCNL.
-    comporto_limit = Decimal(sickness_rules.max_duration_days)
-    eligible = max(_ZERO, comporto_limit - offset)
-    integration_days = min(sick_days, eligible)
-
-    carenza_i, band_buckets_i = _bucket_days(
-        integration_days, carenza_limit, bands, cumulative_offset=offset
-    )
-
-    # Company integration -- split at CCNL tier boundaries when available
-    carenza_pay = carenza_i * sickness_rules.carenza_integration_rate * daily_rate
-    post_carenza_days = max(_ZERO, integration_days - carenza_i)
-
-    if sickness_rules.tiers and post_carenza_days > _ZERO:
-        post_carenza_offset = max(offset, Decimal(carenza_limit))
-        post_carenza_company = _post_carenza_tier(
-            post_carenza_days,
-            post_carenza_offset,
-            sickness_rules,
-            sick_pay_rates,
-            daily_rate,
-        )
-    else:
-        # Simple single-rate integration (no tiers, or only carenza days)
-        eff_rate = _effective_integration_rate(sickness_rules, cumulative)
-        post_carenza_company = _ZERO
-        for band_obj, bucket in zip(sick_pay_rates.bands, band_buckets_i, strict=True):
-            gap = max(_ZERO, eff_rate - band_obj.rate)
-            post_carenza_company += bucket * gap * daily_rate
-        # Days within comporto but beyond the last INPS band have INPS rate = 0.
-        days_in_bands = sum(band_buckets_i)
-        beyond_band_days = post_carenza_days - days_in_bands
-        if beyond_band_days > _ZERO:
-            post_carenza_company += beyond_band_days * eff_rate * daily_rate
-
-    company_integration = money(carenza_pay + post_carenza_company)
-
-    return (
-        sick_days,
-        money(carenza),
-        money(inps_indemnity),
-        company_integration,
-    )

@@ -1,19 +1,4 @@
-"""Discriminated-union PayItem model and associated policy types.
-
-Every pay item has a ``kind`` discriminator that identifies its variant.
-Treatments (tax, contribution, TFR, cost) are described separately via
-``PayItemPolicy`` and ``PolicyDecision`` so the nature of an item is
-always decoupled from the rules that govern it.
-
-Variants:
-    BaseSalaryEarning, FixedAllowanceEarning, SeniorityEarning,
-    OvertimeEarning, NightHolidayShiftEarning, BonusEarning,
-    ProductivityBonusEarning, ContractRenewalArrears, OneOffEarning,
-    ExtraMonthEarning, FringeBenefitItem, WelfareItem, AbsenceDeduction,
-    LeaveSettlementItem, SicknessItem, MaternityItem, WorkInjuryItem,
-    EmployeeWithholdingItem, EmployerContributionItem, TerminationItem,
-    TfrAccrualItem, TfrSettlementItem, TaxCreditItem, TaxRefundItem.
-"""
+"""All 24 PayItem variants and the discriminated-union PayItem type."""
 
 from __future__ import annotations
 
@@ -23,104 +8,38 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.payroll.domain.treatments import (
-    ContributionTreatment,
-    CostTreatment,
-    TaxTreatment,
-    TfrTreatment,
+from ccnl_engine.engine.payroll.domain.pay_items._policy import (
+    CompetencePeriod,
+    PolicyDecision,
 )
 
 __all__ = [
-    "CompetencePeriod",
-    "ContributionTreatment",
-    "CostTreatment",
+    "AbsenceDeduction",
+    "BaseSalaryEarning",
+    "BonusEarning",
+    "ContractRenewalArrears",
+    "EmployeeWithholdingItem",
+    "EmployerContributionItem",
+    "ExtraMonthEarning",
+    "FixedAllowanceEarning",
+    "FringeBenefitItem",
+    "LeaveSettlementItem",
+    "MaternityItem",
+    "NightHolidayShiftEarning",
+    "OneOffEarning",
+    "OvertimeEarning",
     "PayItem",
-    "PayItemPolicy",
-    "PolicyDecision",
-    "TaxTreatment",
-    "TfrTreatment",
+    "ProductivityBonusEarning",
+    "SeniorityEarning",
+    "SicknessItem",
+    "TaxCreditItem",
+    "TaxRefundItem",
+    "TerminationItem",
+    "TfrAccrualItem",
+    "TfrSettlementItem",
+    "WelfareItem",
+    "WorkInjuryItem",
 ]
-
-
-class CompetencePeriod(BaseModel):
-    """The calendar month and year to which a pay item belongs."""
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    year: int
-    month: int = Field(ge=1, le=12)
-
-
-# ---------------------------------------------------------------------------
-# PolicyDecision — explainable selection outcome
-# ---------------------------------------------------------------------------
-
-
-class PolicyDecision(BaseModel):
-    """The outcome of applying a PayItemPolicy to one pay item.
-
-    Captures which rules were selected, the legal basis, and the effective
-    period so the result is auditable after the fact.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    policy_id: str
-    policy_version: str
-    effective_from: date
-    effective_until: date | None
-    tax_treatment: TaxTreatment
-    contribution_treatment: ContributionTreatment
-    tfr_treatment: TfrTreatment
-    cost_treatment: CostTreatment
-    legal_basis: str
-    input_facts: tuple[str, ...] = ()
-    eligibility: Literal["eligible", "not_eligible", "unknown"] = "eligible"
-
-
-# ---------------------------------------------------------------------------
-# PayItemPolicy — selects treatments for an item
-# ---------------------------------------------------------------------------
-
-
-class PayItemPolicy(BaseModel):
-    """Binding from pay-item kind and context to a PolicyDecision.
-
-    A policy is a static rule: given item kind, reference date, worker
-    attributes and CCNL slug it returns the applicable PolicyDecision.
-    The policy itself is immutable; different scenarios may resolve the
-    same policy_id to different decisions (e.g. when thresholds change).
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    policy_id: str
-    policy_version: str
-    applies_to_kinds: tuple[str, ...]
-    effective_from: date
-    effective_until: date | None
-    default_decision: PolicyDecision
-
-    def resolve(self, kind: str, as_of: date) -> PolicyDecision | None:
-        """Return the PolicyDecision when *kind* and *as_of* are in scope.
-
-        Returns:
-            The :attr:`default_decision` when *kind* is in
-            :attr:`applies_to_kinds` and *as_of* falls within the effective
-            period; ``None`` otherwise.
-        """
-        if kind not in self.applies_to_kinds:
-            return None
-        if as_of < self.effective_from:
-            return None
-        if self.effective_until is not None and as_of > self.effective_until:
-            return None
-        return self.default_decision
-
-
-# ---------------------------------------------------------------------------
-# Shared base fields (not a Pydantic base — each variant is standalone)
-# ---------------------------------------------------------------------------
 
 
 class _PayItemBase(BaseModel):
@@ -136,11 +55,6 @@ class _PayItemBase(BaseModel):
     source: str = ""
     attributes: tuple[tuple[str, str], ...] = ()
     policy_decision: PolicyDecision | None = None
-
-
-# ---------------------------------------------------------------------------
-# 24 PayItem variants
-# ---------------------------------------------------------------------------
 
 
 class BaseSalaryEarning(_PayItemBase):
@@ -296,10 +210,6 @@ class TaxRefundItem(_PayItemBase):
     kind: Literal["tax_refund_item"] = "tax_refund_item"
 
 
-# ---------------------------------------------------------------------------
-# Discriminated union
-# ---------------------------------------------------------------------------
-
 PayItem = Annotated[
     BaseSalaryEarning
     | FixedAllowanceEarning
@@ -327,9 +237,4 @@ PayItem = Annotated[
     | TaxRefundItem,
     Field(discriminator="kind"),
 ]
-"""Discriminated union of all supported pay-item variants.
-
-Use this type annotation when a field or parameter accepts any pay item:
-
-    items: tuple[PayItem, ...]
-"""
+"""Discriminated union of all supported pay-item variants."""
