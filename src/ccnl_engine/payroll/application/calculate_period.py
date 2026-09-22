@@ -47,7 +47,6 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     TfrSettlementItem,
     WelfareItem,
 )
-from ccnl_engine.engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.contributions import (
@@ -59,6 +58,7 @@ from ccnl_engine.engine.payroll.service.family_deductions import (
 )
 from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
 from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
 from ccnl_engine.payroll.domain.contributions import (
@@ -84,6 +84,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.tax import TaxComputation  # noqa: TC001
 from ccnl_engine.payroll.domain.treatment import EventTreatment
 
 if TYPE_CHECKING:
@@ -94,7 +95,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
-    from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
@@ -205,26 +205,6 @@ def _resolve_chain(
     return _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
 
 
-def _trattamento_period(
-    taxable: Decimal,
-    irpef_gross: Decimal,
-    work_ded: Decimal,
-    ti_rules: TrattamentoIntegrativoRules | None,
-    additional_months: int,
-) -> Decimal:
-    """Compute the period share of trattamento integrativo (Art. 1 D.L. 3/2020).
-
-    Returns:
-        Monthly trattamento amount, or zero if ``ti_rules`` is ``None``.
-    """
-    if ti_rules is None:
-        return _ZERO
-    annual = irpef_svc.trattamento_integrativo(
-        taxable, irpef_gross, work_ded, work_ded, ti_rules
-    )
-    return money(annual / additional_months)
-
-
 def _compute_amounts(
     monthly_gross: Decimal,
     event_totals: _EventTotals,
@@ -238,12 +218,13 @@ def _compute_amounts(
     comune_belfiore: str | None = None,
     family_composition: FamilyComposition | None = None,
     family_deduction_rules: FamilyDeductionRules | None = None,
-) -> tuple[_PeriodAmounts, ContributionBreakdown]:
+) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
     Returns:
-        ``(_PeriodAmounts, ContributionBreakdown)`` with all rounded monetary
-        quantities and the per-component INPS breakdown.
+        ``(_PeriodAmounts, ContributionBreakdown, TaxComputation)`` with all
+        rounded monetary quantities, the per-component INPS breakdown, and the
+        per-rule IRPEF computation.
     """
     # INPS: base salary + event INPS-liable amounts, with IVS ceiling enforcement
     period_inps_base = monthly_gross + event_totals.inps_base
@@ -273,9 +254,6 @@ def _compute_amounts(
     event_taxable = event_totals.irpef_base - event_inps_on_irpef
     taxable = recurring_taxable + event_taxable
 
-    ig = irpef_svc.irpef_gross(taxable, rules)
-    wd = irpef_svc.work_income_deduction(taxable, constants=rules.work_deduction)
-
     # Family deductions reduce annual IRPEF
     if family_composition is not None and family_deduction_rules is not None:
         _, _, _, fam_ded = compute_family_deductions(
@@ -283,17 +261,20 @@ def _compute_amounts(
         )
     else:
         fam_ded = _ZERO
-    irpef_net_annual = max(_ZERO, ig - wd - fam_ded)
 
-    remaining = max(1, additional_months - opening.months_closed)
-    period_irpef = money(
-        max(_ZERO, (irpef_net_annual - opening.irpef_withheld_ytd) / remaining)
+    tax_comp = resolve_tax_computation(
+        taxable,
+        rules,
+        opening_irpef_withheld=opening.irpef_withheld_ytd,
+        months_closed=opening.months_closed,
+        additional_months=additional_months,
+        family_deductions=fam_ded,
     )
-    period_tratt = _trattamento_period(
-        taxable, ig, wd, rules.trattamento_integrativo, additional_months
-    )
+    period_irpef = tax_comp.ordinary_tax
+    period_tratt = tax_comp.trattamento_integrativo
 
     # Addizionali regionale e comunale (SURTAX account, not ORDINARY_TAX)
+    ig = next((c.amount for c in tax_comp.components if c.name == "irpef_gross"), _ZERO)
     surtax_reg, surtax_com, _, _, _ = _compute_addizionali(
         taxable,
         surtax_rules,
@@ -316,6 +297,7 @@ def _compute_amounts(
             period_surtax=period_surtax,
         ),
         breakdown,
+        tax_comp,
     )
 
 
@@ -974,7 +956,7 @@ def calculate_period(
         if request.family_composition is not None
         else None
     )
-    amounts, contribution_breakdown = _compute_amounts(
+    amounts, contribution_breakdown, tax_computation = _compute_amounts(
         monthly_gross,
         event_totals,
         request.opening_state,
@@ -1036,4 +1018,5 @@ def calculate_period(
         ledger_entries=all_entries,
         capability_report=capability_report,
         contribution_breakdown=contribution_breakdown,
+        tax_computation=tax_computation,
     )

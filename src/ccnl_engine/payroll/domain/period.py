@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _ZERO = Decimal(0)
 
@@ -116,3 +117,4 @@ class PeriodCalculationResult:
     ledger_entries: tuple[LedgerEntry, ...]
     capability_report: CapabilityReport
     contribution_breakdown: ContributionBreakdown
+    tax_computation: TaxComputation
