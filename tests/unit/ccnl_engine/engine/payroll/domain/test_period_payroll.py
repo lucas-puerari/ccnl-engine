@@ -250,13 +250,7 @@ class TestPeriodPayrollResultConstruction:
 
 
 class TestPeriodPayrollPublicApi:
-    """Both types are accessible from the top-level ccnl_engine package."""
-
-    def test_request_importable_from_package(self) -> None:
-        """PeriodPayrollRequest can be imported from ccnl_engine directly."""
-        from ccnl_engine import PeriodPayrollRequest as Req  # noqa: PLC0415
-
-        assert Req is PeriodPayrollRequest
+    """PeriodPayrollResult is accessible from the top-level ccnl_engine package."""
 
     def test_result_importable_from_package(self) -> None:
         """PeriodPayrollResult can be imported from ccnl_engine directly."""

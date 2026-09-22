@@ -30,24 +30,19 @@ Usage::
     from datetime import date
 
     from ccnl_engine import (
-        PayrollEngine, PeriodRequest,
-        AnnualEstimateInput, Employee, Employment, Employer,
-        Permanent, PeriodPayrollInput, PayrollState,
+        PayrollEngine,
+        PeriodCalculationRequest,
+        PeriodId,
+        PeriodState,
     )
 
     engine = PayrollEngine()
-    result = engine.calculate_period(PeriodRequest(
-        structural=AnnualEstimateInput(
-            employee=Employee(level_code="C3"),
-            employment=Employment(
-                ccnl="metalmeccanico-federmeccanica.json",
-                contract=Permanent(),
-                employer=Employer(num_employees=50),
-                as_of=date(2026, 1, 1),
-            ),
-        ),
-        period=PeriodPayrollInput(),
-        opening_state=PayrollState.zero(),
+    result = engine.calculate_period(PeriodCalculationRequest(
+        period_id=PeriodId(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        opening_state=PeriodState.zero(),
     ))
     print(result.period_net)
 """
@@ -98,13 +93,7 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.engine_types import (
-    PayrollError,
-    PeriodRequest,
-    PeriodResult,
-    YearRequest,
-    YearResult,
-)
+from ccnl_engine.engine.payroll.domain.engine_types import PayrollError
 from ccnl_engine.engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -124,7 +113,7 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
     AnnualPayrollSummary,
     PayrollYearRequest,
     PayrollYearResult,
-    PeriodPayrollRequest,
+    PeriodId,
     PeriodPayrollResult,
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
@@ -158,6 +147,11 @@ from ccnl_engine.engine.payroll.service.render import (
     render_breakdown,
 )
 from ccnl_engine.engine.payroll.service.schemas import result_schema, scenario_schema
+from ccnl_engine.payroll.domain.period import (
+    PeriodCalculationRequest,
+    PeriodCalculationResult,
+    PeriodState,
+)
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
@@ -207,11 +201,12 @@ __all__ = [
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
+    "PeriodCalculationRequest",
+    "PeriodCalculationResult",
+    "PeriodId",
     "PeriodPayrollInput",
-    "PeriodPayrollRequest",
     "PeriodPayrollResult",
-    "PeriodRequest",
-    "PeriodResult",
+    "PeriodState",
     "Permanent",
     "RalOverride",
     "RateFund",
@@ -228,8 +223,6 @@ __all__ = [
     "UnknownLevelError",
     "WeeklyOvertimeHours",
     "WelfareInput",
-    "YearRequest",
-    "YearResult",
     "engine_version",
     "estimate_annual",
     "estimate_period_effects",

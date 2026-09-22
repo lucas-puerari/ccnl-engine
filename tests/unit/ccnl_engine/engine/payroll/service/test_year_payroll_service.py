@@ -193,8 +193,8 @@ class TestPayrollYearPublicApi:
 
         assert "PayrollYearResult" in ccnl_engine.__all__
 
-    def test_year_request_alias_in_dunder_all(self) -> None:
-        """YearRequest alias is listed in ccnl_engine.__all__."""
+    def test_payroll_year_request_in_dunder_all(self) -> None:
+        """PayrollYearRequest is listed in ccnl_engine.__all__."""
         import ccnl_engine  # noqa: PLC0415
 
-        assert "YearRequest" in ccnl_engine.__all__
+        assert "PayrollYearRequest" in ccnl_engine.__all__

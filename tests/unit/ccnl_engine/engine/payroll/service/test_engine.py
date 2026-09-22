@@ -12,8 +12,7 @@ from ccnl_engine.engine.payroll.domain.period_payroll import (
     AnnualPayrollSummary,
     PayrollYearRequest,
     PayrollYearResult,
-    PeriodPayrollRequest,
-    PeriodPayrollResult,
+    PeriodId,
 )
 from ccnl_engine.engine.payroll.domain.scenario import (
     AnnualEstimateInput,
@@ -23,6 +22,11 @@ from ccnl_engine.engine.payroll.domain.scenario import (
     PeriodPayrollInput,
 )
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
+from ccnl_engine.payroll.domain.period import (
+    PeriodCalculationRequest,
+    PeriodCalculationResult,
+    PeriodState,
+)
 
 _ZERO = Decimal(0)
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -30,8 +34,23 @@ _LEVEL = "C3"
 _AS_OF = date(2026, 1, 1)
 
 
+def _period_request() -> PeriodCalculationRequest:
+    """Build a minimal period-first request for January 2026.
+
+    Returns:
+        A :class:`PeriodCalculationRequest` for January 2026 with zero YTD.
+    """
+    return PeriodCalculationRequest(
+        period_id=PeriodId(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug=_CCNL,
+        level_code=_LEVEL,
+        opening_state=PeriodState.zero(),
+    )
+
+
 def _structural() -> AnnualEstimateInput:
-    """Build a minimal structural scenario for tests.
+    """Build a minimal structural scenario for year tests.
 
     Returns:
         A minimal :class:`AnnualEstimateInput` using the Federmeccanica CCNL.
@@ -44,19 +63,6 @@ def _structural() -> AnnualEstimateInput:
             employer=Employer(num_employees=50),
             as_of=_AS_OF,
         ),
-    )
-
-
-def _period_request() -> PeriodPayrollRequest:
-    """Build a minimal period request with zero opening state.
-
-    Returns:
-        A :class:`PeriodPayrollRequest` for January with zero YTD.
-    """
-    return PeriodPayrollRequest(
-        structural=_structural(),
-        period=PeriodPayrollInput(),
-        opening_state=PayrollState.zero(),
     )
 
 
@@ -89,39 +95,31 @@ class TestPayrollEngineConstruction:
 
 
 class TestCalculatePeriod:
-    """PayrollEngine.calculate_period delegates to compute_period_payroll."""
+    """PayrollEngine.calculate_period delegates to the period-first core."""
 
-    def test_returns_period_payroll_result(self) -> None:
-        """calculate_period returns a PeriodPayrollResult."""
+    def test_returns_period_calculation_result(self) -> None:
+        """calculate_period returns a PeriodCalculationResult."""
         engine = PayrollEngine()
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-            result = engine.calculate_period(_period_request())
-        assert isinstance(result, PeriodPayrollResult)
+        result = engine.calculate_period(_period_request())
+        assert isinstance(result, PeriodCalculationResult)
 
     def test_period_gross_positive(self) -> None:
         """calculate_period produces a positive period_gross."""
         engine = PayrollEngine()
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-            result = engine.calculate_period(_period_request())
+        result = engine.calculate_period(_period_request())
         assert result.period_gross > _ZERO
 
     def test_period_net_positive(self) -> None:
         """calculate_period produces a positive period_net."""
         engine = PayrollEngine()
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-            result = engine.calculate_period(_period_request())
+        result = engine.calculate_period(_period_request())
         assert result.period_net > _ZERO
 
-    def test_closing_state_is_payroll_state(self) -> None:
-        """calculate_period closing_state is a PayrollState."""
+    def test_closing_state_is_period_state(self) -> None:
+        """calculate_period closing_state is a PeriodState."""
         engine = PayrollEngine()
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-            result = engine.calculate_period(_period_request())
-        assert isinstance(result.closing_state, PayrollState)
+        result = engine.calculate_period(_period_request())
+        assert isinstance(result.closing_state, PeriodState)
 
 
 class TestProjectYear:

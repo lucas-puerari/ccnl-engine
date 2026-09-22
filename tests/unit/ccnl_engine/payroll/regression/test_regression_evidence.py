@@ -1,4 +1,4 @@
-"""Regression evidence: six counterexamples from §2.2 of REVIEW.md.
+"""Regression evidence: counterexamples from §2.2 of REVIEW.md.
 
 Each test asserts the CORRECT behaviour and is marked xfail(strict=True)
 because the bug is present on main.  When a later PR fixes the underlying
@@ -6,19 +6,21 @@ issue the xfail turns into an XPASS, causing CI to fail and prompting the
 developer to remove the marker.
 
 Counterexamples (REVIEW §2.2):
-  CE-1  annual projection via old API is not a sum of valid period slips
-  CE-2  changing irpef_withheld_ytd does not change net in old API
   CE-3  excess YTD withheld produces a refund of 0.00 instead of a credit
   CE-4  two fringe events below the per-event threshold yield taxable = 0.00
         instead of taxable = 400.00 (cumulative threshold not applied)
   CE-5  WelfareEvent increases cash earnings and gross (non-cash benefit
         should not appear as monetary pay)
   CE-6  an event amount with sub-cent precision produces reconcile ok=False
+
+Note: CE-1 and CE-2 tested the old PayrollEngine API delegating to the
+annual-first path. PR-02 wired PayrollEngine.calculate_period() to the
+period-first core, eliminating that path. Those counterexamples no longer
+apply and the tests have been removed.
 """
 
 from __future__ import annotations
 
-import dataclasses
 from datetime import date
 from decimal import Decimal
 
@@ -67,121 +69,6 @@ def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decim
     return sum(
         (e.amount for e in result.ledger_entries if e.account == account),
         _ZERO,
-    )
-
-
-# ---------------------------------------------------------------------------
-# CE-1: proiezione annuale via API pubblica — non è una somma di cedolini
-# ---------------------------------------------------------------------------
-
-
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-1 P0.1: PayrollEngine.calculate_period delegates to the annual-first "
-        "path which divides annual amounts across months instead of computing a "
-        "real period slip.  The new core (payroll.application.calculate_period) "
-        "must be the sole implementation behind PayrollEngine."
-    ),
-)
-def test_ce1_annual_api_delegates_to_new_core() -> None:
-    """CE-1: PayrollEngine.calculate_period must use the period-first core.
-
-    After the fix PayrollEngine.calculate_period(request) and
-    calculate_period(equivalent_request) must produce the same gross and net.
-    Currently PayrollEngine delegates to the annual-first path.
-    """
-    from ccnl_engine import (  # noqa: PLC0415
-        AnnualEstimateInput,
-        Employee,
-        Employer,
-        Employment,
-        PayrollEngine,
-        PayrollState,
-        PeriodPayrollInput,
-        PeriodRequest,
-        Permanent,
-    )
-
-    old_engine = PayrollEngine()
-    old_request = PeriodRequest(
-        structural=AnnualEstimateInput(
-            employee=Employee(level_code=_LEVEL),
-            employment=Employment(
-                ccnl=_CCNL,
-                contract=Permanent(),
-                employer=Employer(num_employees=50),
-                as_of=date(_YEAR, 1, 1),
-            ),
-        ),
-        period=PeriodPayrollInput(),
-        opening_state=PayrollState.zero(),
-    )
-    old_result = old_engine.calculate_period(old_request)
-
-    new_result = calculate_period(_req(month=1))
-
-    # Both paths must produce the same net; currently they diverge.
-    assert old_result.period_net == new_result.period_net, (
-        f"Old API net={old_result.period_net}, new core net={new_result.period_net}"
-    )
-
-
-# ---------------------------------------------------------------------------
-# CE-2: modifica del pregresso IRPEF YTD — il netto non cambia (old API)
-# ---------------------------------------------------------------------------
-
-
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-2 P0.2: PayrollEngine.calculate_period ignores irpef_withheld_ytd "
-        "in the opening state: the net is identical for YTD=0 and YTD=2000. "
-        "The period-first core correctly uses YTD; the old API does not."
-    ),
-)
-def test_ce2_ytd_alters_net_in_old_api() -> None:
-    """CE-2: changing irpef_withheld_ytd must change the December net (old API).
-
-    After the fix two different YTD opening states in December must produce
-    different nets via PayrollEngine (currently they produce the same net).
-    """
-    from ccnl_engine import (  # noqa: PLC0415
-        AnnualEstimateInput,
-        Employee,
-        Employer,
-        Employment,
-        PayrollEngine,
-        PayrollState,
-        PeriodPayrollInput,
-        PeriodRequest,
-        Permanent,
-    )
-
-    def _old_net(irpef_ytd: Decimal) -> Decimal:
-        engine = PayrollEngine()
-        req = PeriodRequest(
-            structural=AnnualEstimateInput(
-                employee=Employee(level_code=_LEVEL),
-                employment=Employment(
-                    ccnl=_CCNL,
-                    contract=Permanent(),
-                    employer=Employer(num_employees=50),
-                    as_of=date(_YEAR, 12, 1),
-                ),
-            ),
-            period=PeriodPayrollInput(),
-            opening_state=dataclasses.replace(
-                PayrollState.zero(), irpef_withheld_ytd=irpef_ytd
-            ),
-        )
-        return engine.calculate_period(req).period_net
-
-    net_zero_ytd = _old_net(Decimal(0))
-    net_high_ytd = _old_net(Decimal("2000.00"))
-
-    assert net_zero_ytd != net_high_ytd, (
-        f"Old API net is identical ({net_zero_ytd}) regardless of irpef_withheld_ytd"
     )
 
 
