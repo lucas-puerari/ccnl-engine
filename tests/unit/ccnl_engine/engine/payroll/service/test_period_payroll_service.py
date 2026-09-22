@@ -226,11 +226,11 @@ class TestComputePeriodPayrollPublicApi:
 
         assert "PayrollEngine" in ccnl_engine.__all__
 
-    def test_period_request_in_dunder_all(self) -> None:
-        """PeriodRequest is listed in ccnl_engine.__all__."""
+    def test_period_calculation_request_in_dunder_all(self) -> None:
+        """PeriodCalculationRequest is listed in ccnl_engine.__all__."""
         import ccnl_engine  # noqa: PLC0415
 
-        assert "PeriodRequest" in ccnl_engine.__all__
+        assert "PeriodCalculationRequest" in ccnl_engine.__all__
 
     def test_accepts_optional_bundle_none(self) -> None:
         """bundle=None is accepted (loads on demand)."""

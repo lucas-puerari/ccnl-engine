@@ -4,22 +4,26 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service.period_service import compute_period_payroll
 from ccnl_engine.engine.payroll.service.year_service import (
     compute_payroll_year,
     summarize_payroll_year,
+)
+from ccnl_engine.payroll.application.calculate_period import (
+    calculate_period as _calculate_period,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
     from ccnl_engine.engine.payroll.domain.engine_types import (
-        PeriodRequest,
-        PeriodResult,
         YearRequest,
         YearResult,
     )
     from ccnl_engine.engine.payroll.domain.period_payroll import AnnualPayrollSummary
+    from ccnl_engine.payroll.domain.period import (
+        PeriodCalculationRequest,
+        PeriodCalculationResult,
+    )
 
 __all__ = ["PayrollEngine"]
 
@@ -32,37 +36,27 @@ class PayrollEngine:
     - :meth:`calculate_period` — single payroll period with YTD state.
     - :meth:`project_year` — full twelve-period year chain.
 
-    Both methods delegate to the underlying period service and propagate
-    deprecation warnings; they will be backed by the period-first engine
-    in a future release.
-
     Args:
-        bundle: Optional pre-loaded knowledge bundle. When ``None``,
-            rulesets are loaded on demand for each computation.
+        bundle: Optional pre-loaded knowledge bundle (used by
+            :meth:`project_year`). When ``None``, rulesets are loaded on
+            demand for each computation.
         repo: Optional knowledge repository override. When ``None``,
             :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
 .BundledKnowledgeRepository` is used.
 
     Example::
 
-        from ccnl_engine import PayrollEngine, PeriodRequest, PayrollState
-        from ccnl_engine import AnnualEstimateInput, Employee, Employment, Employer
-        from ccnl_engine import Permanent, PeriodPayrollInput
         from datetime import date
+        from ccnl_engine import PayrollEngine, PeriodCalculationRequest, PeriodState
+        from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 
         engine = PayrollEngine()
-        result = engine.calculate_period(PeriodRequest(
-            structural=AnnualEstimateInput(
-                employee=Employee(level_code="C3"),
-                employment=Employment(
-                    ccnl="metalmeccanico-federmeccanica.json",
-                    contract=Permanent(),
-                    employer=Employer(num_employees=50),
-                    as_of=date(2026, 1, 1),
-                ),
-            ),
-            period=PeriodPayrollInput(),
-            opening_state=PayrollState.zero(),
+        result = engine.calculate_period(PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            opening_state=PeriodState.zero(),
         ))
         print(result.period_net)
     """
@@ -84,19 +78,21 @@ class PayrollEngine:
         self._bundle = bundle
         self._repo = repo
 
-    def calculate_period(self, request: PeriodRequest) -> PeriodResult:
+    def calculate_period(  # noqa: PLR6301
+        self, request: PeriodCalculationRequest
+    ) -> PeriodCalculationResult:
         """Compute a single payroll period.
 
         Args:
-            request: Period request including structural scenario, period events,
-                and YTD opening state. Pass :meth:`~PayrollState.zero` as
-                ``opening_state`` for January.
+            request: Period request specifying the competence period, CCNL slug,
+                level code, and YTD opening state. Pass
+                :meth:`~PeriodState.zero` as ``opening_state`` for January.
 
         Returns:
-            A :class:`PeriodResult` with gross, net, employer cost, closing
-            YTD state, and all ledger entries for this period.
+            A :class:`PeriodCalculationResult` with gross, net, employer cost,
+            closing YTD state, pay items, and all ledger entries for the period.
         """
-        return compute_period_payroll(request, self._bundle, repo=self._repo)
+        return _calculate_period(request)
 
     def project_year(self, request: YearRequest) -> YearResult:
         """Compute all twelve periods of a payroll year.
