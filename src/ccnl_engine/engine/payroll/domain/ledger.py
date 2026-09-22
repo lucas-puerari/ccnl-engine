@@ -30,7 +30,7 @@ _ZERO = Decimal(0)
 
 
 class AccountKind(StrEnum):
-    """The eleven logical accounts that partition a payroll pay period."""
+    """The twelve logical accounts that partition a payroll pay period."""
 
     CASH_EARNINGS = "cash_earnings"
     NON_CASH_BENEFITS = "non_cash_benefits"
@@ -40,6 +40,7 @@ class AccountKind(StrEnum):
     ORDINARY_TAX = "ordinary_tax"
     SUBSTITUTE_TAX = "substitute_tax"
     SEPARATE_TAX = "separate_tax"
+    SURTAX = "surtax"
     CREDITS = "credits"
     TFR_ACCRUAL = "tfr_accrual"
     TFR_SETTLEMENT = "tfr_settlement"

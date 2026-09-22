@@ -17,12 +17,15 @@ if TYPE_CHECKING:
 
 __all__ = [
     "AbsenceEvent",
+    "ArrearsEvent",
+    "BilateralFundEvent",
     "BonusEvent",
     "FringeEvent",
     "HolidayWorkEvent",
     "NightShiftEvent",
     "OvertimeEvent",
     "SickLeaveEvent",
+    "TerminationTFREvent",
     "WelfareEvent",
     "WorkEvent",
 ]
@@ -156,6 +159,59 @@ class WelfareEvent:
     amount: Decimal
 
 
+@dataclass(frozen=True)
+class ArrearsEvent:
+    """Contract renewal arrears subject to tassazione separata (art. 17 TUIR).
+
+    Attributes:
+        event_date: Date the arrears are attributed to.
+        amount: Gross arrears amount in EUR.
+        separate_tax_rate: Caller-supplied average IRPEF rate from the
+            two prior tax years, applied as tassazione separata.
+    """
+
+    event_date: date
+    amount: Decimal
+    separate_tax_rate: Decimal
+
+
+@dataclass(frozen=True)
+class BilateralFundEvent:
+    """Bilateral or health fund contribution (fondi bilaterali/sanitari).
+
+    Both employee and employer portions are expressed as gross amounts.
+    The employee portion reduces net pay; the employer portion increases
+    employer cost.
+
+    Attributes:
+        event_date: Date the contribution is attributed to.
+        employee_amount: Employee-side contribution in EUR.
+        employer_amount: Employer-side contribution in EUR.
+    """
+
+    event_date: date
+    employee_amount: Decimal
+    employer_amount: Decimal
+
+
+@dataclass(frozen=True)
+class TerminationTFREvent:
+    """TFR settlement at cessazione (art. 19 TUIR, tassazione separata).
+
+    The caller supplies the applicable tax rate (determined via art. 19
+    TUIR using the employee's prior-year average IRPEF rate).
+
+    Attributes:
+        event_date: Date of cessazione.
+        amount: Total TFR payout in EUR.
+        separate_tax_rate: Applicable tassazione separata rate.
+    """
+
+    event_date: date
+    amount: Decimal
+    separate_tax_rate: Decimal
+
+
 WorkEvent = (
     OvertimeEvent
     | NightShiftEvent
@@ -165,4 +221,7 @@ WorkEvent = (
     | BonusEvent
     | FringeEvent
     | WelfareEvent
+    | ArrearsEvent
+    | BilateralFundEvent
+    | TerminationTFREvent
 )

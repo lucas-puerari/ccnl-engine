@@ -27,6 +27,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
     BonusEarning,
     CompetencePeriod,
+    ContractRenewalArrears,
     EmployeeWithholdingItem,
     EmployerContributionItem,
     FringeBenefitItem,
@@ -36,20 +37,29 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     SicknessItem,
     TaxCreditItem,
     TfrAccrualItem,
+    TfrSettlementItem,
     WelfareItem,
 )
 from ccnl_engine.engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.engine.payroll.service.chain import _level_chain
 from ccnl_engine.engine.payroll.service.contributions import resolve_rates
+from ccnl_engine.engine.payroll.service.family_deductions import (
+    compute_family_deductions,
+)
+from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
     BonusEvent,
     FringeEvent,
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
     SickLeaveEvent,
+    WelfareEvent,
     WorkEvent,
 )
 from ccnl_engine.payroll.domain.period import (
@@ -61,8 +71,11 @@ from ccnl_engine.payroll.domain.period import (
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
+    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
@@ -89,6 +102,9 @@ _OBSERVED: dict[str, str] = {
     "fringe_benefit": "computed",
     "welfare": "computed",
     "bonus_pdr": "computed",
+    "contract_renewal_arrears": "computed",
+    "bilateral_funds": "computed",
+    "termination_tfr": "computed",
 }
 
 
@@ -100,6 +116,10 @@ class _EventTotals:
     inps_base: Decimal
     tfr_base: Decimal
     irpef_base: Decimal
+    separate_tax: Decimal
+    employee_deductions: Decimal
+    employer_additional: Decimal
+    tfr_settlement: Decimal
 
     @classmethod
     def zero(cls) -> _EventTotals:
@@ -108,7 +128,16 @@ class _EventTotals:
         Returns:
             An :class:`_EventTotals` with all fields at zero.
         """
-        return cls(gross=_ZERO, inps_base=_ZERO, tfr_base=_ZERO, irpef_base=_ZERO)
+        return cls(
+            gross=_ZERO,
+            inps_base=_ZERO,
+            tfr_base=_ZERO,
+            irpef_base=_ZERO,
+            separate_tax=_ZERO,
+            employee_deductions=_ZERO,
+            employer_additional=_ZERO,
+            tfr_settlement=_ZERO,
+        )
 
 
 @dataclass(frozen=True)
@@ -122,6 +151,8 @@ class _PeriodAmounts:
     tfr: Decimal
     period_irpef: Decimal
     period_tratt: Decimal
+    period_surtax: Decimal
+    period_separate_tax: Decimal
     period_net: Decimal
     period_employer_cost: Decimal
 
@@ -172,6 +203,11 @@ def _compute_amounts(
     opening: PeriodState,
     additional_months: int,
     rules: YearRules,
+    surtax_rules: SurtaxRules | None = None,
+    regione: str | None = None,
+    comune_belfiore: str | None = None,
+    family_composition: FamilyComposition | None = None,
+    family_deduction_rules: FamilyDeductionRules | None = None,
 ) -> _PeriodAmounts:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
@@ -199,7 +235,15 @@ def _compute_amounts(
 
     ig = irpef_svc.irpef_gross(taxable, rules)
     wd = irpef_svc.work_income_deduction(taxable, constants=rules.work_deduction)
-    irpef_net_annual = ig - wd
+
+    # Family deductions reduce annual IRPEF
+    if family_composition is not None and family_deduction_rules is not None:
+        _, _, _, fam_ded = compute_family_deductions(
+            family_composition, taxable, family_deduction_rules
+        )
+    else:
+        fam_ded = _ZERO
+    irpef_net_annual = max(_ZERO, ig - wd - fam_ded)
 
     remaining = max(1, additional_months - opening.months_closed)
     period_irpef = money(
@@ -209,9 +253,33 @@ def _compute_amounts(
         taxable, ig, wd, rules.trattamento_integrativo, additional_months
     )
 
+    # Addizionali regionale e comunale (SURTAX account, not ORDINARY_TAX)
+    surtax_reg, surtax_com, _, _, _ = _compute_addizionali(
+        taxable,
+        surtax_rules,
+        frozenset(),
+        regione=regione,
+        comune_belfiore=comune_belfiore,
+        irpef_due=ig,
+    )
+    period_surtax_annual = surtax_reg + surtax_com
+    period_surtax = money(period_surtax_annual / additional_months)
+
     period_gross = monthly_gross + event_totals.gross
-    period_net = money(period_gross - inps_employee - period_irpef + period_tratt)
-    period_employer_cost = money(period_gross + inps_employer + tfr)
+    period_separate_tax = event_totals.separate_tax
+    period_net = money(
+        period_gross
+        + event_totals.tfr_settlement
+        - inps_employee
+        - event_totals.employee_deductions
+        - period_irpef
+        + period_tratt
+        - period_surtax
+        - period_separate_tax
+    )
+    period_employer_cost = money(
+        period_gross + inps_employer + event_totals.employer_additional + tfr
+    )
 
     return _PeriodAmounts(
         monthly_gross=monthly_gross,
@@ -221,6 +289,8 @@ def _compute_amounts(
         tfr=tfr,
         period_irpef=period_irpef,
         period_tratt=period_tratt,
+        period_surtax=period_surtax,
+        period_separate_tax=period_separate_tax,
         period_net=period_net,
         period_employer_cost=period_employer_cost,
     )
@@ -247,6 +317,19 @@ def _make_entry(
     )
 
 
+def _fringe_bases(event: FringeEvent) -> tuple[Decimal, Decimal]:
+    """Return (inps_base, irpef_base) for a fringe benefit event.
+
+    Returns:
+        ``(gross, gross)`` when ``amount`` exceeds the exempt threshold;
+        ``(_ZERO, _ZERO)`` otherwise.
+    """
+    gross = event.amount
+    if gross <= event.exempt_threshold:
+        return _ZERO, _ZERO
+    return gross, gross
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -255,9 +338,9 @@ def _process_events(
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
-    Each event produces exactly one pay item and one CASH_EARNINGS ledger entry.
-    The returned :class:`_EventTotals` carries the aggregated gross, INPS base,
-    TFR base and IRPEF base used by :func:`_compute_amounts`.
+    Most events produce one pay item and one CASH_EARNINGS entry.
+    BilateralFundEvent produces two items (employee + employer) and two entries.
+    ArrearsEvent and TerminationTFREvent each produce an additional SEPARATE_TAX entry.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -266,36 +349,43 @@ def _process_events(
     total_inps = _ZERO
     total_tfr = _ZERO
     total_irpef = _ZERO
+    total_separate_tax = _ZERO
+    total_employee_ded = _ZERO
+    total_employer_add = _ZERO
+    total_tfr_settlement = _ZERO
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
 
     for i, event in enumerate(events):
         evt_id = f"{tag}_evt{i}"
-        gross: Decimal
-        inps: Decimal
-        evt_tfr: Decimal
-        irpef: Decimal
-        item: PayItem
-        kind: str
 
         if isinstance(event, OvertimeEvent):
             gross = money(event.hours * event.hourly_rate * event.multiplier)
-            inps = gross
-            evt_tfr = gross
-            irpef = gross
-            item = OvertimeEarning(
+            item: PayItem = OvertimeEarning(
                 item_id=evt_id,
                 competence_period=cp,
                 payment_date=payment_date,
                 quantity=event.hours,
                 amount=gross,
             )
-            kind = "overtime_earning"
+            total_gross += gross
+            total_inps += gross
+            total_tfr += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "overtime_earning",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, NightShiftEvent):
             gross = event.supplement_amount
-            inps = gross
-            evt_tfr = gross
-            irpef = gross
             item = NightHolidayShiftEarning(
                 item_id=evt_id,
                 competence_period=cp,
@@ -303,12 +393,24 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            kind = "night_holiday_shift_earning"
+            total_gross += gross
+            total_inps += gross
+            total_tfr += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "night_holiday_shift_earning",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, HolidayWorkEvent):
             gross = event.supplement_amount
-            inps = gross
-            evt_tfr = _ZERO
-            irpef = gross
             item = NightHolidayShiftEarning(
                 item_id=evt_id,
                 competence_period=cp,
@@ -316,12 +418,23 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            kind = "night_holiday_shift_earning"
+            total_gross += gross
+            total_inps += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "night_holiday_shift_earning",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, AbsenceEvent):
             gross = -money(event.hours * event.hourly_rate)
-            inps = gross
-            evt_tfr = gross
-            irpef = gross
             item = AbsenceDeduction(
                 item_id=evt_id,
                 competence_period=cp,
@@ -330,12 +443,24 @@ def _process_events(
                 amount=gross,
                 absence_days=event.hours / Decimal(8),
             )
-            kind = "absence_deduction"
+            total_gross += gross
+            total_inps += gross
+            total_tfr += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "absence_deduction",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, SickLeaveEvent):
             gross = event.amount
-            inps = gross
-            evt_tfr = _ZERO
-            irpef = gross
             item = SicknessItem(
                 item_id=evt_id,
                 competence_period=cp,
@@ -344,12 +469,23 @@ def _process_events(
                 amount=gross,
                 sick_days=Decimal(1),
             )
-            kind = "sickness_item"
+            total_gross += gross
+            total_inps += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "sickness_item",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, BonusEvent):
             gross = event.amount
-            inps = gross
-            evt_tfr = gross
-            irpef = gross
             item = BonusEarning(
                 item_id=evt_id,
                 competence_period=cp,
@@ -357,16 +493,25 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            kind = "bonus_earning"
+            total_gross += gross
+            total_inps += gross
+            total_tfr += gross
+            total_irpef += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "bonus_earning",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
         elif isinstance(event, FringeEvent):
             gross = event.amount
-            if gross > event.exempt_threshold:
-                inps = gross
-                irpef = gross
-            else:
-                inps = _ZERO
-                irpef = _ZERO
-            evt_tfr = _ZERO
+            fringe_inps, fringe_irpef = _fringe_bases(event)
             item = FringeBenefitItem(
                 item_id=evt_id,
                 competence_period=cp,
@@ -374,12 +519,23 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            kind = "fringe_benefit_item"
-        else:
-            gross = event.amount  # WelfareEvent
-            inps = _ZERO
-            evt_tfr = _ZERO
-            irpef = _ZERO
+            total_gross += gross
+            total_inps += fringe_inps
+            total_irpef += fringe_irpef
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "fringe_benefit_item",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
+            )
+        elif isinstance(event, WelfareEvent):
+            gross = event.amount
             item = WelfareItem(
                 item_id=evt_id,
                 competence_period=cp,
@@ -387,24 +543,125 @@ def _process_events(
                 quantity=Decimal(1),
                 amount=gross,
             )
-            kind = "welfare_item"
-
-        total_gross += gross
-        total_inps += inps
-        total_tfr += evt_tfr
-        total_irpef += irpef
-        items.append(item)
-        entries.append(
-            _make_entry(
-                f"cash_{evt_id}",
-                evt_id,
-                kind,
-                cp,
-                payment_date,
-                AccountKind.CASH_EARNINGS,
-                gross,
+            total_gross += gross
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "welfare_item",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                )
             )
-        )
+        elif isinstance(event, ArrearsEvent):
+            gross = event.amount
+            sep_tax = money(gross * event.separate_tax_rate)
+            item = ContractRenewalArrears(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            total_gross += gross
+            total_separate_tax += sep_tax
+            items.append(item)
+            entries.extend([
+                _make_entry(
+                    f"cash_{evt_id}",
+                    evt_id,
+                    "contract_renewal_arrears",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    gross,
+                ),
+                _make_entry(
+                    f"sep_tax_{evt_id}",
+                    evt_id,
+                    "contract_renewal_arrears",
+                    cp,
+                    payment_date,
+                    AccountKind.SEPARATE_TAX,
+                    sep_tax,
+                ),
+            ])
+        elif isinstance(event, BilateralFundEvent):
+            emp_id = f"{evt_id}_emp"
+            er_id = f"{evt_id}_er"
+            emp_item = EmployeeWithholdingItem(
+                item_id=emp_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=event.employee_amount,
+            )
+            er_item = EmployerContributionItem(
+                item_id=er_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=event.employer_amount,
+            )
+            total_employee_ded += event.employee_amount
+            total_employer_add += event.employer_amount
+            items.extend((emp_item, er_item))
+            entries.extend([
+                _make_entry(
+                    f"bilat_emp_{evt_id}",
+                    emp_id,
+                    "employee_withholding_item",
+                    cp,
+                    payment_date,
+                    AccountKind.EMPLOYEE_CONTRIBUTIONS,
+                    event.employee_amount,
+                ),
+                _make_entry(
+                    f"bilat_er_{evt_id}",
+                    er_id,
+                    "employer_contribution_item",
+                    cp,
+                    payment_date,
+                    AccountKind.EMPLOYER_CONTRIBUTIONS,
+                    event.employer_amount,
+                ),
+            ])
+        else:
+            gross = event.amount  # TerminationTFREvent
+            sep_tax = money(gross * event.separate_tax_rate)
+            item = TfrSettlementItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            total_tfr_settlement += gross
+            total_separate_tax += sep_tax
+            items.append(item)
+            entries.extend([
+                _make_entry(
+                    f"tfr_settle_{evt_id}",
+                    evt_id,
+                    "tfr_settlement_item",
+                    cp,
+                    payment_date,
+                    AccountKind.TFR_SETTLEMENT,
+                    gross,
+                ),
+                _make_entry(
+                    f"sep_tax_{evt_id}",
+                    evt_id,
+                    "tfr_settlement_item",
+                    cp,
+                    payment_date,
+                    AccountKind.SEPARATE_TAX,
+                    sep_tax,
+                ),
+            ])
 
     return (
         _EventTotals(
@@ -412,6 +669,10 @@ def _process_events(
             inps_base=total_inps,
             tfr_base=total_tfr,
             irpef_base=total_irpef,
+            separate_tax=total_separate_tax,
+            employee_deductions=total_employee_ded,
+            employer_additional=total_employer_add,
+            tfr_settlement=total_tfr_settlement,
         ),
         tuple(items),
         tuple(entries),
@@ -477,6 +738,16 @@ def _build_pay_items(
                 payment_date=payment_date,
                 quantity=Decimal(1),
                 amount=amounts.period_tratt,
+            )
+        )
+    if amounts.period_surtax > _ZERO:
+        items.append(
+            EmployeeWithholdingItem(
+                item_id=f"surtax_{tag}",
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=amounts.period_surtax,
             )
         )
     return tuple(items)
@@ -554,6 +825,18 @@ def _project_ledger(
                 amounts.period_tratt,
             )
         )
+    if amounts.period_surtax > _ZERO:
+        entries.append(
+            _make_entry(
+                f"surtax_{tag}",
+                f"surtax_{tag}",
+                "employee_withholding_item",
+                cp,
+                payment_date,
+                AccountKind.SURTAX,
+                amounts.period_surtax,
+            )
+        )
     return tuple(entries)
 
 
@@ -599,12 +882,26 @@ def calculate_period(
         request.events, cp, request.payment_date, tag
     )
 
+    needs_surtax = request.regione is not None or request.comune_belfiore is not None
+    surtax_rules = (
+        effective_repo.load_surtax_rules(period_year) if needs_surtax else None
+    )
+    fam_ded_rules = (
+        load_family_deduction_rules(period_year)
+        if request.family_composition is not None
+        else None
+    )
     amounts = _compute_amounts(
         monthly_gross,
         event_totals,
         request.opening_state,
         additional_months,
         year_rules,
+        surtax_rules=surtax_rules,
+        regione=request.regione,
+        comune_belfiore=request.comune_belfiore,
+        family_composition=request.family_composition,
+        family_deduction_rules=fam_ded_rules,
     )
     pay_items = _build_pay_items(amounts, request.period_id, request.payment_date)
     ledger_entries = _project_ledger(amounts, request.period_id, request.payment_date)
@@ -614,7 +911,9 @@ def calculate_period(
             request.opening_state.irpef_withheld_ytd + amounts.period_irpef
         ),
         inps_employee_ytd=(
-            request.opening_state.inps_employee_ytd + amounts.inps_employee
+            request.opening_state.inps_employee_ytd
+            + amounts.inps_employee
+            + event_totals.employee_deductions
         ),
         gross_ytd=request.opening_state.gross_ytd + amounts.period_gross,
     )
