@@ -6,10 +6,13 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.payroll.domain.employment import Permanent
+
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.capability_catalog import CapabilityReport
+    from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.engine.payroll.domain.pay_items import PayItem
@@ -73,6 +76,7 @@ class PeriodCalculationRequest:
     ccnl_slug: str
     level_code: str
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
+    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     num_employees: int = 50
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
