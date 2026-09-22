@@ -1,4 +1,4 @@
-"""Annual contributions, tax and deduction coordination."""
+"""Annual fiscal chain coordinator."""
 
 from __future__ import annotations
 
@@ -42,8 +42,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
-
-__all__ = ["FiscalPay", "compute_fiscal"]
 
 
 def compute_fiscal(
