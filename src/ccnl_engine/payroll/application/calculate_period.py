@@ -35,10 +35,12 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     ContractRenewalArrears,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    FixedAllowanceEarning,
     FringeBenefitItem,
     NightHolidayShiftEarning,
     OvertimeEarning,
     PayItem,
+    SeniorityEarning,
     SicknessItem,
     TaxCreditItem,
     TfrAccrualItem,
@@ -54,6 +56,7 @@ from ccnl_engine.engine.payroll.service.family_deductions import (
 )
 from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.engine.payroll.service.rounding import money
+from ccnl_engine.engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
 from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import (
@@ -172,29 +175,28 @@ def _as_of(period_id: PeriodId) -> date:
     return date(period_id.year, period_id.month, 1)
 
 
-def _resolve_monthly_gross(
+def _resolve_chain(
     ccnl: CCNL,
     level: Level,
     contract_type: Permanent | FixedTerm | Apprentice,
     as_of: date,
-) -> Decimal:
-    """Look up the full-time monthly gross from the CCNL salary table.
+) -> MonthlyPayChain:
+    """Resolve the elementary pay chain for the period.
 
-    For apprentices, derives gross from the applicable apprenticeship track
-    (percentage or underclass).  For all other contract types the standard
-    level chain is used.
+    For apprentices, scales by the applicable percentage or maps to the
+    underclass.  For standard and fixed-term contracts the level chain is
+    used unchanged.
 
     Returns:
-        Rounded monthly gross (base + seniority + allowances) in EUR.
+        :class:`~ccnl_engine.engine.payroll.service.types.MonthlyPayChain`
+        with each component rounded and ready for pay-item emission.
     """
     if isinstance(contract_type, Apprentice):
         chain, pct, _ = _apprentice_chain(
             ccnl, level, contract_type, 0, frozenset(), as_of
         )
-        raw = chain.base + chain.seniority + chain.allowances_total
-        return money(raw * pct) if pct is not None else money(raw)
-    chain = _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
-    return money(chain.base + chain.seniority + chain.allowances_total)
+        return chain.scaled(pct) if pct is not None else chain
+    return _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
 
 
 def _trattamento_period(
@@ -679,15 +681,19 @@ def _process_events(
 
 def _build_pay_items(
     amounts: _PeriodAmounts,
+    chain: MonthlyPayChain,
     period_id: PeriodId,
     payment_date: date,
 ) -> tuple[PayItem, ...]:
-    """Build the base pay-item tuple from resolved period amounts.
+    """Build the base pay-item tuple from resolved period amounts and chain.
+
+    The salary chain is emitted as elementary items (base, seniority, each
+    allowance) rather than a single aggregated gross, making each component
+    individually visible in the period result.
 
     Returns:
         Tuple of :class:`~ccnl_engine.engine.payroll.domain.pay_items.PayItem`
-        instances for this period (5 base items, plus TaxCreditItem when
-        trattamento integrativo is positive).
+        instances for this period.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
     tag = f"{period_id.year}_{period_id.month:02d}"
@@ -697,8 +703,32 @@ def _build_pay_items(
             competence_period=cp,
             payment_date=payment_date,
             quantity=Decimal(1),
-            amount=amounts.monthly_gross,
+            amount=chain.base,
         ),
+    ]
+    if chain.seniority > _ZERO:
+        items.append(
+            SeniorityEarning(
+                item_id=f"seniority_{tag}",
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=chain.seniority,
+            )
+        )
+    for allowance, amount in chain.allowances:
+        if amount > _ZERO:
+            items.append(
+                FixedAllowanceEarning(
+                    item_id=f"allowance_{allowance.code}_{tag}",
+                    competence_period=cp,
+                    payment_date=payment_date,
+                    quantity=Decimal(1),
+                    amount=amount,
+                    allowance_code=allowance.code,
+                )
+            )
+    items.extend([
         EmployeeWithholdingItem(
             item_id=f"inps_employee_{tag}",
             competence_period=cp,
@@ -727,7 +757,7 @@ def _build_pay_items(
             quantity=Decimal(1),
             amount=amounts.tfr,
         ),
-    ]
+    ])
     if amounts.period_tratt > _ZERO:
         items.append(
             TaxCreditItem(
@@ -753,14 +783,18 @@ def _build_pay_items(
 
 def _project_ledger(
     amounts: _PeriodAmounts,
+    chain: MonthlyPayChain,
     period_id: PeriodId,
     payment_date: date,
 ) -> tuple[LedgerEntry, ...]:
     """Project base pay items to ledger entries.
 
+    Salary chain components (base, seniority, each allowance) post as
+    separate CASH_EARNINGS entries to mirror the elementary pay items.
+
     Returns:
         Tuple of :class:`~ccnl_engine.engine.payroll.domain.ledger.LedgerEntry`
-        instances (5 base accounts, plus CREDITS when trattamento is positive).
+        instances.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
     tag = f"{period_id.year}_{period_id.month:02d}"
@@ -772,8 +806,35 @@ def _project_ledger(
             cp,
             payment_date,
             AccountKind.CASH_EARNINGS,
-            amounts.monthly_gross,
+            chain.base,
         ),
+    ]
+    if chain.seniority > _ZERO:
+        entries.append(
+            _make_entry(
+                f"seniority_{tag}",
+                f"seniority_{tag}",
+                "seniority_earning",
+                cp,
+                payment_date,
+                AccountKind.CASH_EARNINGS,
+                chain.seniority,
+            )
+        )
+    for allowance, amount in chain.allowances:
+        if amount > _ZERO:
+            entries.append(
+                _make_entry(
+                    f"allowance_{allowance.code}_{tag}",
+                    f"allowance_{allowance.code}_{tag}",
+                    "fixed_allowance_earning",
+                    cp,
+                    payment_date,
+                    AccountKind.CASH_EARNINGS,
+                    amount,
+                )
+            )
+    entries.extend([
         _make_entry(
             f"inps_employee_{tag}",
             f"inps_employee_{tag}",
@@ -810,7 +871,7 @@ def _project_ledger(
             AccountKind.TFR_ACCRUAL,
             amounts.tfr,
         ),
-    ]
+    ])
     if amounts.period_tratt > _ZERO:
         entries.append(
             _make_entry(
@@ -876,7 +937,8 @@ def calculate_period(
     capability_gaps = catalog.gaps(_OBSERVED, detect_absent=True, year=period_year)
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
-    monthly_gross = _resolve_monthly_gross(ccnl, level, request.contract_type, as_of)
+    chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
+    monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     tag = f"{period_year}_{request.period_id.month:02d}"
@@ -907,8 +969,12 @@ def calculate_period(
         family_composition=request.family_composition,
         family_deduction_rules=fam_ded_rules,
     )
-    pay_items = _build_pay_items(amounts, request.period_id, request.payment_date)
-    ledger_entries = _project_ledger(amounts, request.period_id, request.payment_date)
+    pay_items = _build_pay_items(
+        amounts, chain, request.period_id, request.payment_date
+    )
+    ledger_entries = _project_ledger(
+        amounts, chain, request.period_id, request.payment_date
+    )
     all_entries = ledger_entries + event_entries
 
     period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)

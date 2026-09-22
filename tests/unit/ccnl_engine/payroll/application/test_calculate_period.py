@@ -7,6 +7,8 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.contract.domain.compensation import Allowance
+from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -17,10 +19,13 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
     EmployeeWithholdingItem,
     EmployerContributionItem,
+    FixedAllowanceEarning,
+    SeniorityEarning,
     TaxCreditItem,
     TfrAccrualItem,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
 from ccnl_engine.payroll.application.calculate_period import (
     _build_pay_items,
@@ -70,6 +75,34 @@ def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
         period_irpef=Decimal("279.02"),
         period_tratt=period_tratt,
         period_surtax=_ZERO,
+    )
+
+
+def _chain() -> MonthlyPayChain:
+    return MonthlyPayChain(base=Decimal("2158.26"), seniority=_ZERO, allowances=())
+
+
+def _chain_with_seniority() -> MonthlyPayChain:
+    return MonthlyPayChain(
+        base=Decimal("2069.34"), seniority=Decimal("88.92"), allowances=()
+    )
+
+
+def _allowance(code: str = "EDR", amount: Decimal = Decimal("10.33")) -> Allowance:
+    ts = TimeSeries(
+        periods=(
+            ValidityPeriod(value=amount, valid_from=date(2024, 1, 1), valid_until=None),
+        )
+    )
+    return Allowance(code=code, description=code, monthly=ts)
+
+
+def _chain_with_allowance() -> MonthlyPayChain:
+    a = _allowance()
+    return MonthlyPayChain(
+        base=Decimal("2147.93"),
+        seniority=_ZERO,
+        allowances=((a, Decimal("10.33")),),
     )
 
 
@@ -337,6 +370,7 @@ class TestBuildPayItemsWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         items = _build_pay_items(
             _amounts(period_tratt=_ZERO),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
@@ -347,6 +381,7 @@ class TestBuildPayItemsWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         items = _build_pay_items(
             _amounts(period_tratt=Decimal("92.31")),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
@@ -359,6 +394,7 @@ class TestBuildPayItemsWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         items = _build_pay_items(
             _amounts(period_tratt=_ZERO),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
@@ -366,6 +402,78 @@ class TestBuildPayItemsWithTrattamento:
         assert any(isinstance(i, EmployeeWithholdingItem) for i in items)
         assert any(isinstance(i, EmployerContributionItem) for i in items)
         assert any(isinstance(i, TfrAccrualItem) for i in items)
+
+
+class TestElementaryChainItems:
+    """Elementary pay items and ledger entries from chain components."""
+
+    def test_seniority_item_emitted_when_positive(self) -> None:
+        """A SeniorityEarning is emitted when chain.seniority > 0."""
+        period_id = PeriodId(year=2026, month=1)
+        items = _build_pay_items(
+            _amounts(),
+            _chain_with_seniority(),
+            period_id,
+            date(2026, 1, 31),
+        )
+        seniority_items = [i for i in items if isinstance(i, SeniorityEarning)]
+        assert len(seniority_items) == 1
+        assert seniority_items[0].amount == Decimal("88.92")
+
+    def test_allowance_item_emitted_when_positive(self) -> None:
+        """A FixedAllowanceEarning is emitted for each positive allowance."""
+        period_id = PeriodId(year=2026, month=1)
+        items = _build_pay_items(
+            _amounts(),
+            _chain_with_allowance(),
+            period_id,
+            date(2026, 1, 31),
+        )
+        allowance_items = [i for i in items if isinstance(i, FixedAllowanceEarning)]
+        assert len(allowance_items) == 1
+        assert allowance_items[0].amount == Decimal("10.33")
+        assert allowance_items[0].allowance_code == "EDR"
+
+    def test_seniority_ledger_entry_emitted_when_positive(self) -> None:
+        """A CASH_EARNINGS entry for seniority is posted when chain.seniority > 0."""
+        period_id = PeriodId(year=2026, month=1)
+        entries = _project_ledger(
+            _amounts(),
+            _chain_with_seniority(),
+            period_id,
+            date(2026, 1, 31),
+        )
+        cash_entries = [e for e in entries if e.account == AccountKind.CASH_EARNINGS]
+        amounts = [e.amount for e in cash_entries]
+        assert Decimal("88.92") in amounts
+
+    def test_allowance_ledger_entry_emitted_when_positive(self) -> None:
+        """A CASH_EARNINGS entry for each allowance is posted."""
+        period_id = PeriodId(year=2026, month=1)
+        entries = _project_ledger(
+            _amounts(),
+            _chain_with_allowance(),
+            period_id,
+            date(2026, 1, 31),
+        )
+        cash_entries = [e for e in entries if e.account == AccountKind.CASH_EARNINGS]
+        amounts = [e.amount for e in cash_entries]
+        assert Decimal("10.33") in amounts
+
+    def test_zero_allowance_not_emitted(self) -> None:
+        """An allowance with amount == 0 produces no pay item or ledger entry."""
+        a = _allowance(amount=_ZERO)
+        chain = MonthlyPayChain(
+            base=Decimal("2158.26"), seniority=_ZERO, allowances=((a, _ZERO),)
+        )
+        period_id = PeriodId(year=2026, month=1)
+        items = _build_pay_items(_amounts(), chain, period_id, date(2026, 1, 31))
+        entries = _project_ledger(_amounts(), chain, period_id, date(2026, 1, 31))
+        assert not any(isinstance(i, FixedAllowanceEarning) for i in items)
+        cash_amounts = [
+            e.amount for e in entries if e.account == AccountKind.CASH_EARNINGS
+        ]
+        assert _ZERO not in cash_amounts
 
 
 class TestProjectLedgerWithTrattamento:
@@ -376,6 +484,7 @@ class TestProjectLedgerWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         entries = _project_ledger(
             _amounts(period_tratt=_ZERO),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
@@ -387,6 +496,7 @@ class TestProjectLedgerWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         entries = _project_ledger(
             _amounts(period_tratt=Decimal("92.31")),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
@@ -399,6 +509,7 @@ class TestProjectLedgerWithTrattamento:
         period_id = PeriodId(year=2026, month=1)
         entries = _project_ledger(
             _amounts(period_tratt=_ZERO),
+            _chain(),
             period_id,
             date(2026, 1, 31),
         )
