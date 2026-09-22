@@ -2,8 +2,12 @@
 
 Public API
 ----------
-Two entry points are available:
+Three entry points are available:
 
+- :class:`PayrollEngine` — unified period/year entry point (preferred).
+  Call :meth:`~PayrollEngine.calculate_period` for a single cedolino with
+  YTD state, or :meth:`~PayrollEngine.project_year` to chain all twelve
+  periods of a year.
 - :func:`estimate_annual` — annual gross-to-net estimate (no period events).
 - :func:`estimate_period_effects` — annual estimate with informational
   period-event fields (overtime, absences, fringe, bonuses).  Net and cost
@@ -26,23 +30,26 @@ Usage::
     from datetime import date
 
     from ccnl_engine import (
-        estimate_annual,
+        PayrollEngine, PeriodRequest,
         AnnualEstimateInput, Employee, Employment, Employer,
-        Permanent,
+        Permanent, PeriodPayrollInput, PayrollState,
     )
 
-    result = estimate_annual(AnnualEstimateInput(
-        employee=Employee(level_code="C2"),
-        employment=Employment(
-            ccnl="metalmeccanico-federmeccanica.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 1, 1),
+    engine = PayrollEngine()
+    result = engine.calculate_period(PeriodRequest(
+        structural=AnnualEstimateInput(
+            employee=Employee(level_code="C3"),
+            employment=Employment(
+                ccnl="metalmeccanico-federmeccanica.json",
+                contract=Permanent(),
+                employer=Employer(num_employees=50),
+                as_of=date(2026, 1, 1),
+            ),
         ),
+        period=PeriodPayrollInput(),
+        opening_state=PayrollState.zero(),
     ))
-    print(result.result.net_annual)
-    print(result.engine_version)
-    print(result.ruleset_version)
+    print(result.period_net)
 """
 
 from __future__ import annotations
@@ -91,6 +98,13 @@ from ccnl_engine.engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.engine.payroll.domain.engine_types import (
+    PayrollError,
+    PeriodRequest,
+    PeriodResult,
+    YearRequest,
+    YearResult,
+)
 from ccnl_engine.engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -103,11 +117,9 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     Contributions,
     Earnings,
     EmployerCost,
-    PeriodPayroll,
     Taxes,
 )
 from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
-from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period_payroll import (
     AnnualPayrollSummary,
     PayrollYearRequest,
@@ -136,12 +148,10 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
+from ccnl_engine.engine.payroll.service.engine import PayrollEngine
 from ccnl_engine.engine.payroll.service.orchestrator import (
-    compute_payroll_year,
-    compute_period_payroll,
     estimate_annual,
     estimate_period_effects,
-    summarize_payroll_year,
 )
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
@@ -192,14 +202,16 @@ __all__ = [
     "OutOfScopeError",
     "OvertimeHours",
     "PayrollBundle",
-    "PayrollPeriod",
+    "PayrollEngine",
+    "PayrollError",
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
-    "PeriodPayroll",
     "PeriodPayrollInput",
     "PeriodPayrollRequest",
     "PeriodPayrollResult",
+    "PeriodRequest",
+    "PeriodResult",
     "Permanent",
     "RalOverride",
     "RateFund",
@@ -216,9 +228,8 @@ __all__ = [
     "UnknownLevelError",
     "WeeklyOvertimeHours",
     "WelfareInput",
-    "YTDState",
-    "compute_payroll_year",
-    "compute_period_payroll",
+    "YearRequest",
+    "YearResult",
     "engine_version",
     "estimate_annual",
     "estimate_period_effects",
@@ -229,5 +240,4 @@ __all__ = [
     "result_schema",
     "scenario_schema",
     "search_ccnls",
-    "summarize_payroll_year",
 ]

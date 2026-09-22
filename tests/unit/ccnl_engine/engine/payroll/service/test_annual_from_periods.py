@@ -182,25 +182,19 @@ class TestSummarizePayrollYearLedger:
 
 
 class TestSummarizePayrollYearPublicApi:
-    """summarize_payroll_year and AnnualPayrollSummary are in the public API."""
+    """AnnualPayrollSummary and PayrollEngine.summarize are in the public API."""
 
-    def test_importable_from_ccnl_engine(self) -> None:
-        """summarize_payroll_year can be imported from ccnl_engine."""
-        from ccnl_engine import summarize_payroll_year as fn  # noqa: PLC0415
+    def test_payroll_engine_in_dunder_all(self) -> None:
+        """PayrollEngine is listed in ccnl_engine.__all__."""
+        import ccnl_engine  # noqa: PLC0415
 
-        assert fn is summarize_payroll_year
+        assert "PayrollEngine" in ccnl_engine.__all__
 
     def test_annual_summary_importable_from_ccnl_engine(self) -> None:
         """AnnualPayrollSummary can be imported from ccnl_engine."""
         import ccnl_engine  # noqa: PLC0415
 
         assert ccnl_engine.AnnualPayrollSummary is AnnualPayrollSummary
-
-    def test_summarize_in_dunder_all(self) -> None:
-        """summarize_payroll_year is listed in ccnl_engine.__all__."""
-        import ccnl_engine  # noqa: PLC0415
-
-        assert "summarize_payroll_year" in ccnl_engine.__all__
 
     def test_annual_summary_in_dunder_all(self) -> None:
         """AnnualPayrollSummary is listed in ccnl_engine.__all__."""

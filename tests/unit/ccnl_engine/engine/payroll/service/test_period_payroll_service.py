@@ -218,19 +218,19 @@ class TestComputePeriodPayrollConguaglio:
 
 
 class TestComputePeriodPayrollPublicApi:
-    """compute_period_payroll is accessible from the top-level package."""
+    """PayrollEngine replaces compute_period_payroll as the public entry point."""
 
-    def test_importable_from_ccnl_engine(self) -> None:
-        """compute_period_payroll can be imported from ccnl_engine directly."""
-        from ccnl_engine import compute_period_payroll as fn  # noqa: PLC0415
-
-        assert fn is compute_period_payroll
-
-    def test_in_dunder_all(self) -> None:
-        """compute_period_payroll is listed in ccnl_engine.__all__."""
+    def test_payroll_engine_in_dunder_all(self) -> None:
+        """PayrollEngine is listed in ccnl_engine.__all__."""
         import ccnl_engine  # noqa: PLC0415
 
-        assert "compute_period_payroll" in ccnl_engine.__all__
+        assert "PayrollEngine" in ccnl_engine.__all__
+
+    def test_period_request_in_dunder_all(self) -> None:
+        """PeriodRequest is listed in ccnl_engine.__all__."""
+        import ccnl_engine  # noqa: PLC0415
+
+        assert "PeriodRequest" in ccnl_engine.__all__
 
     def test_accepts_optional_bundle_none(self) -> None:
         """bundle=None is accepted (loads on demand)."""

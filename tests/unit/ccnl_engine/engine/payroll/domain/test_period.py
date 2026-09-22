@@ -16,13 +16,12 @@ from ccnl_engine import (
     Employment,
     InvalidInputError,
     PayrollBundle,
-    PayrollPeriod,
     PeriodPayrollInput,
     Permanent,
-    YTDState,
 )
 from ccnl_engine.engine.payroll.domain.bundle import make_bundle
 from ccnl_engine.engine.payroll.domain.calculation import Calculation
+from ccnl_engine.engine.payroll.domain.period import PayrollPeriod, YTDState
 from ccnl_engine.engine.payroll.domain.period import PayrollPeriod as _DomainPeriod
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
 from ccnl_engine.engine.payroll.service.orchestrator import compute_period, compute_year
