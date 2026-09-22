@@ -62,6 +62,31 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
     return PeriodCalculationResult(**defaults)  # type: ignore[arg-type]
 
 
+class TestPeriodId:
+    """PeriodId validates year and month ranges and is immutable."""
+
+    def test_stores_year_and_month(self) -> None:
+        """Year and month are stored as provided."""
+        pid = PeriodId(year=2026, month=3)
+        assert pid.year == 2026
+        assert pid.month == 3
+
+    def test_month_zero_raises(self) -> None:
+        """month=0 raises ValueError."""
+        with pytest.raises(ValueError, match="month"):
+            PeriodId(year=2026, month=0)
+
+    def test_month_thirteen_raises(self) -> None:
+        """month=13 raises ValueError."""
+        with pytest.raises(ValueError, match="month"):
+            PeriodId(year=2026, month=13)
+
+    def test_year_zero_raises(self) -> None:
+        """year=0 raises ValueError."""
+        with pytest.raises(ValueError, match="year"):
+            PeriodId(year=0, month=1)
+
+
 class TestPeriodState:
     """PeriodState stores YTD progressives and provides a zero factory."""
 
