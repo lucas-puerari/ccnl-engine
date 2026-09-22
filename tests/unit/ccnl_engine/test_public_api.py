@@ -77,7 +77,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "WelfareInput",
     "engine_version",
     "estimate_annual",
-    "estimate_period_effects",
     "get_ccnl",
     "list_ccnls",
     "load_payroll_bundle",

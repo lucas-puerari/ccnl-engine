@@ -2,17 +2,12 @@
 
 Public API
 ----------
-Three entry points are available:
+Two entry points are available:
 
 - :class:`PayrollEngine` — unified period/year entry point (preferred).
   Call :meth:`~PayrollEngine.calculate_period` for a single cedolino with
-  YTD state, or :meth:`~PayrollEngine.project_year` to chain all twelve
-  periods of a year.
+  YTD state.
 - :func:`estimate_annual` — annual gross-to-net estimate (no period events).
-- :func:`estimate_period_effects` — annual estimate with informational
-  period-event fields (overtime, absences, fringe, bonuses).  Net and cost
-  totals remain annualised; use this when you need the per-period breakdown
-  fields alongside the structural figures.
 
 All types needed to call them and inspect their results are re-exported from
 this module.
@@ -138,10 +133,7 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
-from ccnl_engine.engine.payroll.service.orchestrator import (
-    estimate_annual,
-    estimate_period_effects,
-)
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
     render_breakdown,
@@ -225,7 +217,6 @@ __all__ = [
     "WelfareInput",
     "engine_version",
     "estimate_annual",
-    "estimate_period_effects",
     "get_ccnl",
     "list_ccnls",
     "load_payroll_bundle",

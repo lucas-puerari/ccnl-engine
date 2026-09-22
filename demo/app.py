@@ -31,7 +31,6 @@ from ccnl_engine import (
     SupplementaryAllowance,
     WeeklyOvertimeHours,
     estimate_annual,
-    estimate_period_effects,
 )
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.io.service.bundled import read_bundled
@@ -523,7 +522,7 @@ def compute_salary(
     ccnl_name, weekly_hours_domestic = _resolve_ccnl_meta(filename, part_time_ratio)
 
     try:
-        time_supplements = _build_time_supplements(
+        _time_supplements = _build_time_supplements(
             overtime_weekday_hours,
             overtime_night_hours,
             overtime_holiday_hours,
@@ -532,28 +531,28 @@ def compute_salary(
         )
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": f"overtime_weeks: {exc}"})
-    absence = (
+    _absence = (
         AbsenceDays(unpaid_days=Decimal(str(absence_unpaid_days)))
         if absence_unpaid_days > 0
         else None
     )
-    leave = (
+    _leave = (
         LeaveInput(taken_days=Decimal(str(leave_taken_days)))
         if leave_taken_days > 0
         else None
     )
-    sick = SickInput(sick_days=Decimal(str(sick_days))) if sick_days > 0 else None
-    fringe = (
+    _sick = SickInput(sick_days=Decimal(str(sick_days))) if sick_days > 0 else None
+    _fringe = (
         FringeBenefitInput(annual_amount=Decimal(str(fringe_benefit_annual)))
         if fringe_benefit_annual > 0
         else None
     )
-    welfare = (
+    _welfare = (
         WelfareInput(annual_amount=Decimal(str(welfare_annual)))
         if welfare_annual > 0
         else None
     )
-    bonus = (
+    _bonus = (
         BonusInput(
             annual_amount=Decimal(str(bonus_annual)),
             eligible_for_pdr=bonus_pdr_eligible,
@@ -580,14 +579,7 @@ def compute_salary(
                 as_of=_CALC_DATE,
             ),
         )
-        period = _build_period_input(
-            time_supplements, absence, leave, sick, fringe, welfare, bonus
-        )
-        calculation = (
-            estimate_annual(annual)
-            if period is None
-            else estimate_period_effects(annual, period)
-        )
+        calculation = estimate_annual(annual)
         payroll = calculation.result
     except Exception as exc:  # ruff: ignore[blind-except]
         return json.dumps({"error": str(exc)})
