@@ -27,6 +27,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -129,6 +130,11 @@ class _Builder:
             capability_report=CapabilityReport.empty(_YEAR),
             contribution_breakdown=ContributionBreakdown(
                 employee=Decimal(0), employer=Decimal(0), components=()
+            ),
+            tax_computation=TaxComputation(
+                ordinary_tax=Decimal(0),
+                trattamento_integrativo=Decimal(0),
+                components=(),
             ),
         )
 

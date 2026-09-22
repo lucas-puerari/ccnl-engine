@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)
@@ -41,6 +42,9 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
         "capability_report": CapabilityReport.empty(2026),
         "contribution_breakdown": ContributionBreakdown(
             employee=_ZERO, employer=_ZERO, components=()
+        ),
+        "tax_computation": TaxComputation(
+            ordinary_tax=_ZERO, trattamento_integrativo=_ZERO, components=()
         ),
     }
     defaults.update(kwargs)

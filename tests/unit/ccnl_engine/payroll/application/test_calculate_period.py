@@ -25,13 +25,19 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     TfrAccrualItem,
 )
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
-from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
+from ccnl_engine.engine.tax.domain.credit_rules import (
+    SommaEsenteBand,
+    SommaEsenteRules,
+    TrattamentoIntegrativoRules,
+    UlterioreDetrazioneRules,
+)
+from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 from ccnl_engine.payroll.application.calculate_period import (
     _build_pay_items,
     _PeriodAmounts,
     _project_ledger,
-    _trattamento_period,
     calculate_period,
 )
 from ccnl_engine.payroll.domain.events import ArrearsEvent, OvertimeEvent
@@ -39,6 +45,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
 )
+from tests.helpers import make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -331,35 +338,109 @@ class TestLedgerStructure:
             assert entry.competence_period.month == 6
 
 
-class TestTrattamentoPeriod:
-    """_trattamento_period: None rules returns zero; eligible income returns >0."""
+class TestResolveTaxComputation:
+    """resolve_tax_computation: IRPEF breakdown with rule_id and fonte annotation."""
 
-    def test_none_rules_returns_zero(self) -> None:
-        """When ti_rules is None, _trattamento_period must return zero."""
-        result = _trattamento_period(
-            taxable=Decimal(10000),
-            irpef_gross=Decimal(2300),
-            work_ded=Decimal(1955),
-            ti_rules=None,
-            additional_months=13,
+    def test_ordinary_tax_positive_for_typical_income(self) -> None:
+        """Typical income produces positive ordinary_tax and irpef_gross component."""
+        rules = make_year_rules()
+        tc = resolve_tax_computation(
+            Decimal(25000),
+            rules,
+            opening_irpef_withheld=_ZERO,
+            months_closed=0,
+            additional_months=12,
         )
-        assert result == _ZERO
+        assert tc.ordinary_tax > _ZERO
+        names = [c.name for c in tc.components]
+        assert "irpef_gross" in names
+        assert "work_deduction" in names
 
-    def test_eligible_income_returns_positive(self) -> None:
-        """Low-income + positive irpef_net → trattamento > 0."""
-        ti_rules = TrattamentoIntegrativoRules(
+    def test_trattamento_integrativo_emitted_when_eligible(self) -> None:
+        """Low-income worker with positive irpef: trattamento component emitted."""
+        rules = make_year_rules()
+        ti = TrattamentoIntegrativoRules(
             threshold_mid=Decimal(15000),
             threshold_upper=Decimal(28000),
             max_amount=Decimal(1200),
         )
-        result = _trattamento_period(
-            taxable=Decimal(10000),  # ≤ threshold_mid (15000)
-            irpef_gross=Decimal(2300),  # > work_ded - 75 = 1880
-            work_ded=Decimal(1955),
-            ti_rules=ti_rules,
-            additional_months=13,
+        rules_with_ti = rules.model_copy(update={"trattamento_integrativo": ti})
+        tc = resolve_tax_computation(
+            Decimal(10000),
+            rules_with_ti,
+            opening_irpef_withheld=_ZERO,
+            months_closed=0,
+            additional_months=12,
         )
-        assert result > _ZERO
+        names = [c.name for c in tc.components]
+        assert "trattamento_integrativo" in names
+        assert tc.trattamento_integrativo > _ZERO
+
+    def test_no_trattamento_when_rules_absent(self) -> None:
+        """When trattamento_integrativo rules are absent the period credit is zero."""
+        rules = make_year_rules()
+        # Default make_year_rules() has trattamento_integrativo=None
+        tc = resolve_tax_computation(
+            Decimal(10000),
+            rules,
+            opening_irpef_withheld=_ZERO,
+            months_closed=0,
+            additional_months=12,
+        )
+        names = [c.name for c in tc.components]
+        assert "trattamento_integrativo" not in names
+        assert tc.trattamento_integrativo == _ZERO
+
+    def test_ulteriore_detrazione_zero_not_emitted(self) -> None:
+        """ulteriore_detrazione configured but income outside range: not emitted."""
+        rules = make_year_rules()
+        ud_rules = UlterioreDetrazioneRules(
+            threshold_low=Decimal(20000),
+            threshold_mid=Decimal(32000),
+            threshold_high=Decimal(40000),
+            max_amount=Decimal(720),
+        )
+        rules_with_ud = rules.model_copy(update={"ulteriore_detrazione": ud_rules})
+        # taxable=10000 <= threshold_low → zero
+        tc = resolve_tax_computation(
+            Decimal(10000),
+            rules_with_ud,
+            additional_months=12,
+        )
+        names = [c.name for c in tc.components]
+        assert "ulteriore_detrazione" not in names
+
+    def test_sterilizzazione_reduces_deductions_for_high_earner(self) -> None:
+        """sterilizzazione_detrazioni: high-income worker gets reduced deductions."""
+        rules = make_year_rules()
+        steriliz = SterilizzazioneDetrazioniRules(
+            threshold=Decimal(200000), reduction=Decimal(440)
+        )
+        rules_with_s = rules.model_copy(update={"sterilizzazione_detrazioni": steriliz})
+        # taxable > 200000 + non-zero deductions so reduction is applied
+        tc = resolve_tax_computation(
+            Decimal(250000),
+            rules_with_s,
+            family_deductions=Decimal(1000),
+            additional_months=12,
+        )
+        names = [c.name for c in tc.components]
+        assert "sterilizzazione_detrazioni" in names
+
+    def test_somma_esente_emitted_for_low_income(self) -> None:
+        """somma_esente: low-income worker receives positive bonus component."""
+        rules = make_year_rules()
+        se_rules = SommaEsenteRules(
+            bands=[SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.07"))]
+        )
+        rules_with_se = rules.model_copy(update={"somma_esente": se_rules})
+        tc = resolve_tax_computation(
+            Decimal(10000),
+            rules_with_se,
+            additional_months=12,
+        )
+        names = [c.name for c in tc.components]
+        assert "somma_esente" in names
 
 
 class TestBuildPayItemsWithTrattamento:
