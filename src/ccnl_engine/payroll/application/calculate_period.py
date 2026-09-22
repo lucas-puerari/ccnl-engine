@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, assert_never
 
 from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.engine.errors import InvalidInputError
@@ -66,6 +66,7 @@ from ccnl_engine.payroll.domain.events import (
     NightShiftEvent,
     OvertimeEvent,
     SickLeaveEvent,
+    TerminationTFREvent,
     WelfareEvent,
     WorkEvent,
 )
@@ -74,6 +75,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.treatment import EventTreatment
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
@@ -88,6 +90,20 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
+
+# Treatment policy: maps each standard event type to the axes its gross contributes to.
+# Fringe, Arrears, BilateralFund and TerminationTFR are not listed here because their
+# axis amounts are computed differently from the event gross (threshold logic, separate-
+# tax entries, or non-cash side-effects). Those are handled in their own branches.
+_STANDARD_TREATMENTS: dict[type, EventTreatment] = {
+    OvertimeEvent: EventTreatment(inps=True, tfr=False, irpef=True),
+    NightShiftEvent: EventTreatment(inps=True, tfr=False, irpef=True),
+    HolidayWorkEvent: EventTreatment(inps=True, tfr=False, irpef=True),
+    AbsenceEvent: EventTreatment(inps=True, tfr=True, irpef=True),
+    SickLeaveEvent: EventTreatment(inps=True, tfr=False, irpef=True),
+    BonusEvent: EventTreatment(inps=True, tfr=False, irpef=True),
+    WelfareEvent: EventTreatment(inps=False, tfr=False, irpef=False),
+}
 
 _OBSERVED: dict[str, str] = {
     "base_salary": "computed",
@@ -128,24 +144,6 @@ class _EventTotals:
     employee_deductions: Decimal
     employer_additional: Decimal
     tfr_settlement: Decimal
-
-    @classmethod
-    def zero(cls) -> _EventTotals:
-        """Return a zero-valued totals object.
-
-        Returns:
-            An :class:`_EventTotals` with all fields at zero.
-        """
-        return cls(
-            gross=_ZERO,
-            inps_base=_ZERO,
-            tfr_base=_ZERO,
-            irpef_base=_ZERO,
-            separate_tax=_ZERO,
-            employee_deductions=_ZERO,
-            employer_additional=_ZERO,
-            tfr_settlement=_ZERO,
-        )
 
 
 @dataclass(frozen=True)
@@ -362,6 +360,123 @@ def _check_event_date(
         raise InvalidInputError(msg)
 
 
+def _standard_event_gross(event: WorkEvent) -> Decimal:
+    """Compute the gross (payslip) amount for a standard work event.
+
+    Returns:
+        Rounded gross amount in EUR (negative for absence deductions).
+    """
+    if isinstance(event, OvertimeEvent):
+        return money(event.hours * event.hourly_rate * event.multiplier)
+    if isinstance(event, (NightShiftEvent, HolidayWorkEvent)):
+        return event.supplement_amount
+    if isinstance(event, AbsenceEvent):
+        return -money(event.hours * event.hourly_rate)
+    if isinstance(event, SickLeaveEvent):
+        return event.amount
+    if isinstance(event, BonusEvent):
+        return event.amount
+    return event.amount  # type: ignore[union-attr]  # WelfareEvent
+
+
+def _standard_event_item(
+    event: WorkEvent,
+    gross: Decimal,
+    evt_id: str,
+    cp: CompetencePeriod,
+    payment_date: date,
+) -> tuple[PayItem, str]:
+    """Create the pay item and kind string for a standard work event.
+
+    Returns:
+        ``(item, pay_item_kind)`` where *pay_item_kind* is the string used in
+        the corresponding
+        :class:`~ccnl_engine.engine.payroll.domain.ledger.LedgerEntry`.
+    """
+    if isinstance(event, OvertimeEvent):
+        return (
+            OvertimeEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=event.hours,
+                amount=gross,
+            ),
+            "overtime_earning",
+        )
+    if isinstance(event, (NightShiftEvent, HolidayWorkEvent)):
+        return (
+            NightHolidayShiftEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            ),
+            "night_holiday_shift_earning",
+        )
+    if isinstance(event, AbsenceEvent):
+        return (
+            AbsenceDeduction(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=event.hours,
+                amount=gross,
+                absence_days=event.hours / Decimal(8),
+            ),
+            "absence_deduction",
+        )
+    if isinstance(event, SickLeaveEvent):
+        return (
+            SicknessItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+                sick_days=Decimal(1),
+            ),
+            "sickness_item",
+        )
+    if isinstance(event, BonusEvent):
+        return (
+            BonusEarning(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            ),
+            "bonus_earning",
+        )
+    return (
+        WelfareItem(
+            item_id=evt_id,
+            competence_period=cp,
+            payment_date=payment_date,
+            quantity=Decimal(1),
+            amount=gross,
+        ),
+        "welfare_item",
+    )
+
+
+def _treatment_deltas(
+    treatment: EventTreatment, gross: Decimal
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return (inps_delta, tfr_delta, irpef_delta) for a standard event.
+
+    Returns:
+        A triple of gross or zero for each axis per the treatment policy.
+    """
+    return (
+        gross if treatment.inps else _ZERO,
+        gross if treatment.tfr else _ZERO,
+        gross if treatment.irpef else _ZERO,
+    )
+
+
 def _fringe_bases(event: FringeEvent) -> tuple[Decimal, Decimal]:
     """Return (inps_base, irpef_base) for a fringe benefit event.
 
@@ -409,150 +524,32 @@ def _process_events(
         evt_id = f"{tag}_evt{i}"
         _check_event_date(event, date_ctx, i)
 
-        if isinstance(event, OvertimeEvent):
-            gross = money(event.hours * event.hourly_rate * event.multiplier)
-            item: PayItem = OvertimeEarning(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=event.hours,
-                amount=gross,
-            )
+        if isinstance(
+            event,
+            (
+                OvertimeEvent,
+                NightShiftEvent,
+                HolidayWorkEvent,
+                AbsenceEvent,
+                SickLeaveEvent,
+                BonusEvent,
+                WelfareEvent,
+            ),
+        ):
+            treatment = _STANDARD_TREATMENTS[type(event)]
+            gross = _standard_event_gross(event)
+            item, kind = _standard_event_item(event, gross, evt_id, cp, payment_date)
+            di, dt, dirpef = _treatment_deltas(treatment, gross)
             total_gross += gross
-            total_inps += gross
-            total_tfr += gross
-            total_irpef += gross
+            total_inps += di
+            total_tfr += dt
+            total_irpef += dirpef
             items.append(item)
             entries.append(
                 _make_entry(
                     f"cash_{evt_id}",
                     evt_id,
-                    "overtime_earning",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, NightShiftEvent):
-            gross = event.supplement_amount
-            item = NightHolidayShiftEarning(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-            )
-            total_gross += gross
-            total_inps += gross
-            total_tfr += gross
-            total_irpef += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "night_holiday_shift_earning",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, HolidayWorkEvent):
-            gross = event.supplement_amount
-            item = NightHolidayShiftEarning(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-            )
-            total_gross += gross
-            total_inps += gross
-            total_irpef += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "night_holiday_shift_earning",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, AbsenceEvent):
-            gross = -money(event.hours * event.hourly_rate)
-            item = AbsenceDeduction(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=event.hours,
-                amount=gross,
-                absence_days=event.hours / Decimal(8),
-            )
-            total_gross += gross
-            total_inps += gross
-            total_tfr += gross
-            total_irpef += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "absence_deduction",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, SickLeaveEvent):
-            gross = event.amount
-            item = SicknessItem(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-                sick_days=Decimal(1),
-            )
-            total_gross += gross
-            total_inps += gross
-            total_irpef += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "sickness_item",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, BonusEvent):
-            gross = event.amount
-            item = BonusEarning(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-            )
-            total_gross += gross
-            total_inps += gross
-            total_tfr += gross
-            total_irpef += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "bonus_earning",
+                    kind,
                     cp,
                     payment_date,
                     AccountKind.CASH_EARNINGS,
@@ -578,28 +575,6 @@ def _process_events(
                     f"cash_{evt_id}",
                     evt_id,
                     "fringe_benefit_item",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                )
-            )
-        elif isinstance(event, WelfareEvent):
-            gross = event.amount
-            item = WelfareItem(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-            )
-            total_gross += gross
-            items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    "welfare_item",
                     cp,
                     payment_date,
                     AccountKind.CASH_EARNINGS,
@@ -679,8 +654,8 @@ def _process_events(
                     event.employer_amount,
                 ),
             ])
-        else:
-            gross = event.amount  # TerminationTFREvent
+        elif isinstance(event, TerminationTFREvent):
+            gross = event.amount
             sep_tax = money(gross * event.separate_tax_rate)
             item = TfrSettlementItem(
                 item_id=evt_id,
@@ -712,6 +687,8 @@ def _process_events(
                     sep_tax,
                 ),
             ])
+        else:
+            assert_never(event)
 
     return (
         _EventTotals(

@@ -11,10 +11,7 @@ from decimal import Decimal
 
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.application.calculate_period import (
-    _EventTotals,
-    calculate_period,
-)
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -92,22 +89,6 @@ def _employer_contrib(result: object) -> Decimal:
     )
 
 
-class TestEventTotalsZero:
-    """_EventTotals.zero() returns a zero-valued instance."""
-
-    def test_all_fields_zero(self) -> None:
-        """All aggregated amounts are zero for the empty totals."""
-        totals = _EventTotals.zero()
-        assert totals.gross == Decimal(0)
-        assert totals.inps_base == Decimal(0)
-        assert totals.tfr_base == Decimal(0)
-        assert totals.irpef_base == Decimal(0)
-        assert totals.separate_tax == Decimal(0)
-        assert totals.employee_deductions == Decimal(0)
-        assert totals.employer_additional == Decimal(0)
-        assert totals.tfr_settlement == Decimal(0)
-
-
 class TestNoEvents:
     """Without events the result is identical to the base calculation."""
 
@@ -120,7 +101,7 @@ class TestNoEvents:
 
 
 class TestOvertimeEventAccounting:
-    """OvertimeEvent increases gross, INPS, TFR and IRPEF axes."""
+    """OvertimeEvent increases gross, INPS and IRPEF axes but not TFR."""
 
     def _overtime(self) -> OvertimeEvent:
         return OvertimeEvent(
@@ -181,7 +162,7 @@ class TestOvertimeEventAccounting:
 
 
 class TestNightShiftEventAccounting:
-    """NightShiftEvent adds to gross, INPS, TFR and IRPEF."""
+    """NightShiftEvent adds to gross, INPS and IRPEF but not TFR."""
 
     def _night(self) -> NightShiftEvent:
         return NightShiftEvent(
@@ -321,7 +302,7 @@ class TestSickLeaveEventAccounting:
 
 
 class TestBonusEventAccounting:
-    """BonusEvent adds to gross with INPS, TFR and IRPEF."""
+    """BonusEvent adds to gross with INPS and IRPEF but not TFR."""
 
     def _bonus(self) -> BonusEvent:
         return BonusEvent(event_date=date(_YEAR, _MONTH, 28), amount=Decimal("1200.00"))
@@ -458,6 +439,76 @@ class TestWelfareEventAccounting:
         result = calculate_period(_req(self._welfare()))
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
+
+
+def _tfr(result: object) -> Decimal:
+    assert isinstance(result, PeriodCalculationResult)
+    return sum(
+        (
+            e.amount
+            for e in result.ledger_entries
+            if e.account == AccountKind.TFR_ACCRUAL
+        ),
+        Decimal(0),
+    )
+
+
+class TestEventTreatmentPolicy:
+    """Treatment table governs TFR axis: absence=True, overtime/night/bonus=False."""
+
+    def test_overtime_does_not_increase_tfr(self) -> None:
+        """OvertimeEvent gross does not enter the TFR accrual base."""
+        base = calculate_period(_base())
+        result = calculate_period(
+            _req(
+                OvertimeEvent(
+                    event_date=date(_YEAR, _MONTH, 5),
+                    hours=Decimal(8),
+                    hourly_rate=Decimal("12.50"),
+                    multiplier=Decimal("1.25"),
+                )
+            )
+        )
+        assert _tfr(result) == _tfr(base)
+
+    def test_night_shift_does_not_increase_tfr(self) -> None:
+        """NightShiftEvent supplement does not enter the TFR accrual base."""
+        base = calculate_period(_base())
+        result = calculate_period(
+            _req(
+                NightShiftEvent(
+                    event_date=date(_YEAR, _MONTH, 10),
+                    supplement_amount=Decimal("80.00"),
+                )
+            )
+        )
+        assert _tfr(result) == _tfr(base)
+
+    def test_bonus_does_not_increase_tfr(self) -> None:
+        """BonusEvent amount does not enter the TFR accrual base."""
+        base = calculate_period(_base())
+        result = calculate_period(
+            _req(
+                BonusEvent(
+                    event_date=date(_YEAR, _MONTH, 28), amount=Decimal("1000.00")
+                )
+            )
+        )
+        assert _tfr(result) == _tfr(base)
+
+    def test_absence_decreases_tfr(self) -> None:
+        """AbsenceEvent deduction reduces the TFR accrual base."""
+        base = calculate_period(_base())
+        result = calculate_period(
+            _req(
+                AbsenceEvent(
+                    event_date=date(_YEAR, _MONTH, 20),
+                    hours=Decimal(8),
+                    hourly_rate=Decimal("12.00"),
+                )
+            )
+        )
+        assert _tfr(result) < _tfr(base)
 
 
 class TestMultipleEvents:
