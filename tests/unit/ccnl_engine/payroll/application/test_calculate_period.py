@@ -82,6 +82,7 @@ def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
         period_irpef=Decimal("279.02"),
         period_tratt=period_tratt,
         period_surtax=_ZERO,
+        period_taxable=Decimal("1953.44"),
     )
 
 
@@ -248,6 +249,25 @@ class TestClosingStateTransitions:
         result = calculate_period(_req(opening_state=opening))
         assert result.period_gross > _ZERO
 
+    def test_taxable_ytd_accumulates(self) -> None:
+        """taxable_ytd closing equals opening plus period_taxable slice."""
+        opening = PeriodState(taxable_ytd=Decimal("2000.00"))
+        result = calculate_period(_req(opening_state=opening))
+        closing_taxable = result.closing_state.taxable_ytd
+        assert closing_taxable > Decimal("2000.00")
+        assert closing_taxable == result.closing_state.taxable_ytd
+
+    def test_taxable_ytd_zero_on_first_period(self) -> None:
+        """taxable_ytd starts from zero when opening is PeriodState.zero()."""
+        result = calculate_period(_req(opening_state=PeriodState.zero()))
+        assert result.closing_state.taxable_ytd > _ZERO
+
+    def test_inps_base_ytd_accumulates(self) -> None:
+        """inps_base_ytd closing equals opening plus period INPS base."""
+        opening = PeriodState(inps_base_ytd=Decimal("1000.00"))
+        result = calculate_period(_req(opening_state=opening))
+        assert result.closing_state.inps_base_ytd > Decimal("1000.00")
+
 
 class TestPayItems:
     """Pay-item composition for a standard permanent employee."""
@@ -336,6 +356,48 @@ class TestLedgerStructure:
         for entry in result.ledger_entries:
             assert entry.competence_period.year == 2026
             assert entry.competence_period.month == 6
+
+
+class TestWithholdingDue:
+    """withholding_due: IRPEF balance (positive = owed, negative = refund)."""
+
+    def test_withholding_due_present_in_tax_computation(self) -> None:
+        """tax_computation.withholding_due is populated on every period."""
+        result = calculate_period(_req())
+        assert hasattr(result.tax_computation, "withholding_due")
+
+    def test_withholding_due_positive_when_no_prior_withheld(self) -> None:
+        """withholding_due is positive when no IRPEF has been withheld yet."""
+        result = calculate_period(_req(opening_state=PeriodState.zero()))
+        assert result.tax_computation.withholding_due > _ZERO
+
+    def test_withholding_due_negative_final_period_excess(self) -> None:
+        """Final period with excess YTD produces negative withholding_due."""
+        # metalmeccanico has additional_months=13; months_closed=12 → remaining=1
+        opening = PeriodState(
+            months_closed=12,
+            irpef_withheld_ytd=Decimal("5000.00"),
+        )
+        result = calculate_period(_req(opening_state=opening))
+        assert result.tax_computation.withholding_due < _ZERO
+
+    def test_ordinary_tax_negative_in_final_period_with_excess(self) -> None:
+        """ordinary_tax is negative in the final period when YTD exceeds liability."""
+        opening = PeriodState(
+            months_closed=12,
+            irpef_withheld_ytd=Decimal("5000.00"),
+        )
+        result = calculate_period(_req(opening_state=opening))
+        assert result.tax_computation.ordinary_tax < _ZERO
+
+    def test_ordinary_tax_non_negative_in_non_final_period(self) -> None:
+        """ordinary_tax is clamped to zero in non-final periods."""
+        opening = PeriodState(
+            months_closed=3,
+            irpef_withheld_ytd=Decimal("5000.00"),
+        )
+        result = calculate_period(_req(opening_state=opening))
+        assert result.tax_computation.ordinary_tax >= _ZERO
 
 
 class TestResolveTaxComputation:

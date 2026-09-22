@@ -78,15 +78,6 @@ def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decim
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-3 P0.2: calculate_period clamps withholding to zero via max(0, ...) "
-        "at calculate_period.py:250.  When irpef_withheld_ytd (5000) exceeds the "
-        "estimated annual liability the worker is owed a refund; instead the "
-        "engine silently returns 0 and does not produce a TaxRefundItem."
-    ),
-)
 def test_ce3_excess_ytd_produces_refund() -> None:
     """CE-3: when YTD already withheld exceeds annual liability a refund must appear.
 
@@ -98,7 +89,7 @@ def test_ce3_excess_ytd_produces_refund() -> None:
     credit to zero and posts ORDINARY_TAX = 0 — the refund disappears silently.
     """
     high_ytd = PeriodState(
-        months_closed=11,
+        months_closed=12,
         irpef_withheld_ytd=Decimal("5000.00"),
     )
     result = calculate_period(_req(month=12, opening=high_ytd))

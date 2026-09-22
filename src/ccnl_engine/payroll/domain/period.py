@@ -38,6 +38,7 @@ class PeriodState:
         gross_ytd: Gross earnings accumulated YTD.
         inps_base_ytd: Total INPS contribution base accumulated YTD.
             Used to enforce the IVS massimale ceiling across periods.
+        taxable_ytd: Total IRPEF taxable income accumulated YTD.
     """
 
     months_closed: int = 0
@@ -45,6 +46,7 @@ class PeriodState:
     inps_employee_ytd: Decimal = _ZERO
     gross_ytd: Decimal = _ZERO
     inps_base_ytd: Decimal = _ZERO
+    taxable_ytd: Decimal = _ZERO
 
     @classmethod
     def zero(cls) -> PeriodState:

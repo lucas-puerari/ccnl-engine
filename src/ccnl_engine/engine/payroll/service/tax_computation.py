@@ -121,10 +121,16 @@ def resolve_tax_computation(
 
     irpef_net_annual = max(_ZERO, ig - effective_deductions)
 
+    # withholding_due: positive = still owed; negative = refund due to worker.
+    # The last period settles the full balance; earlier periods clamp at zero to
+    # avoid spreading a mid-year refund across months.
+    withholding_due = irpef_net_annual - opening_irpef_withheld
     remaining = max(1, additional_months - months_closed)
-    ordinary_tax = money(
-        max(_ZERO, (irpef_net_annual - opening_irpef_withheld) / remaining)
-    )
+    if remaining == 1:
+        # Final period: settle the full balance (can be negative = refund).
+        ordinary_tax = money(withholding_due)
+    else:
+        ordinary_tax = money(max(_ZERO, withholding_due / remaining))
 
     # Trattamento integrativo: Art. 1 D.L. 3/2020 as updated by L. 207/2024
     period_tratt = _ZERO
@@ -159,5 +165,6 @@ def resolve_tax_computation(
     return TaxComputation(
         ordinary_tax=ordinary_tax,
         trattamento_integrativo=period_tratt,
+        withholding_due=withholding_due,
         components=tuple(components),
     )
