@@ -8,8 +8,23 @@ paid and in which calendar month.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 
-__all__ = ["ExtraMonthSchedule", "WorkCalendar"]
+__all__ = ["ExtraMonthKind", "ExtraMonthSchedule", "WorkCalendar"]
+
+_MAX_ADDITIONAL_MONTHS = 14
+
+
+class ExtraMonthKind(Enum):
+    """Typed kind for an extra contractual month.
+
+    Used by :class:`ExtraMonthSchedule` and :class:`PayrollSchedule` to
+    determine which :class:`~ccnl_engine.payroll.domain.run.PayrollRun`
+    factory to call.  Do not infer the kind from the human-readable name.
+    """
+
+    THIRTEENTH = "thirteenth"
+    FOURTEENTH = "fourteenth"
 
 
 @dataclass(frozen=True)
@@ -17,10 +32,13 @@ class ExtraMonthSchedule:
     """Schedule for one extra contractual month.
 
     Attributes:
+        kind: Typed kind identifying the extra month.  Used by the schedule
+            builder to select the correct run kind without substring inference.
         name: Human-readable name (e.g. ``"tredicesima"``).
         payment_month: Calendar month (1-12) in which the extra month is paid.
     """
 
+    kind: ExtraMonthKind
     name: str
     payment_month: int
 
@@ -52,9 +70,9 @@ class WorkCalendar:
         if self.year < 1970:
             msg = f"WorkCalendar.year must be >= 1970; got {self.year}"
             raise ValueError(msg)
-        seen: set[tuple[str, int]] = set()
+        seen: set[tuple[ExtraMonthKind, int]] = set()
         for sched in self.extra_months:
-            key = (sched.name.lower(), sched.payment_month)
+            key = (sched.kind, sched.payment_month)
             if key in seen:
                 msg = (
                     f"duplicate extra-month schedule "
@@ -81,7 +99,8 @@ class WorkCalendar:
 
         Args:
             year: Tax year.
-            additional_months: Value from CCNL parameters (typically 13 or 14).
+            additional_months: Value from CCNL parameters (13 or 14).
+                Values outside the range 12-14 raise :class:`ValueError`.
             extra_month_name: Name for the first extra month (tredicesima).
                 Ignored for the second extra month, which is always named
                 ``"quattordicesima"``.
@@ -90,13 +109,27 @@ class WorkCalendar:
 
         Returns:
             :class:`WorkCalendar` with ``max(0, additional_months - 12)``
-            extra schedules, each with a distinct name.
+            extra schedules.
+
+        Raises:
+            ValueError: When ``additional_months`` exceeds
+                :data:`_MAX_ADDITIONAL_MONTHS` (currently 14).
         """
+        if additional_months > _MAX_ADDITIONAL_MONTHS:
+            msg = (
+                f"additional_months={additional_months} exceeds the maximum "
+                f"supported value of {_MAX_ADDITIONAL_MONTHS}; "
+                f"only CCNL contracts with up to {_MAX_ADDITIONAL_MONTHS} "
+                f"months are supported"
+            )
+            raise ValueError(msg)
         extra_count = max(0, additional_months - 12)
-        canonical_names = [extra_month_name, "quattordicesima", "quindicesima"]
+        kind_map = [ExtraMonthKind.THIRTEENTH, ExtraMonthKind.FOURTEENTH]
+        name_map = [extra_month_name, "quattordicesima"]
         schedules = tuple(
             ExtraMonthSchedule(
-                name=canonical_names[min(i, len(canonical_names) - 1)],
+                kind=kind_map[i],
+                name=name_map[i],
                 payment_month=extra_payment_month,
             )
             for i in range(extra_count)

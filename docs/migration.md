@@ -41,25 +41,29 @@ from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
 engine = PayrollEngine.from_builtin_data()
 
 # Single period
-result = engine.calculate(PayrollRequest(
-    run=PayrollRun.regular(year=2026, month=1),
-    payment_date=date(2026, 1, 28),
-    ccnl_slug="metalmeccanico-federmeccanica.json",
-    level_code="C3",
-))
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+    )
+)
 print(result.period_gross)
 print(result.period_net)
 
 # Full year (13-month calendar)
-year = engine.calculate_year(PayrollYearRequest(
-    year=2026,
-    ccnl_slug="metalmeccanico-federmeccanica.json",
-    level_code="C3",
-    calendar=WorkCalendar(
+year = engine.calculate_year(
+    PayrollYearRequest(
         year=2026,
-        extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
-    ),
-))
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        calendar=WorkCalendar(
+            year=2026,
+            extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+        ),
+    )
+)
 print(year.annual_gross)
 ```
 

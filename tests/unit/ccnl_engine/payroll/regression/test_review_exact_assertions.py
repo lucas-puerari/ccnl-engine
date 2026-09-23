@@ -30,7 +30,11 @@ import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.events import (
     BilateralFundEvent,
     FringeEvent,
@@ -49,7 +53,13 @@ _YEAR = 2026
 def _calendar_13() -> WorkCalendar:
     return WorkCalendar(
         year=_YEAR,
-        extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+        extra_months=(
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=12,
+            ),
+        ),
     )
 
 
@@ -258,20 +268,7 @@ def test_bilateral_fund_negative_employer_amount_raises() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §4: WorkCalendar.from_additional_months(2026, 16) fails "
-        "indirectly (ValueError: duplicate name 'quindicesima') instead of "
-        "raising an explicit error for an unsupported additional_months value.  "
-        "Fix: validate additional_months <= 14 before building schedules."
-    ),
-)
 def test_from_additional_months_unsupported_count_raises_explicitly() -> None:
-    """from_additional_months(2026, 16) must raise ValueError explicitly.
-
-    Source: REVIEW.md §4.  Currently fails with a duplicate-name ValueError
-    deep inside WorkCalendar.__post_init__ rather than a clear domain error.
-    """
+    """from_additional_months(2026, 16) must raise ValueError explicitly."""
     with pytest.raises(ValueError, match="additional_months"):
         WorkCalendar.from_additional_months(2026, 16)
