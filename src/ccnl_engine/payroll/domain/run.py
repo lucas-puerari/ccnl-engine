@@ -9,7 +9,7 @@ run sequence from the CCNL calendar.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 __all__ = ["PayrollRun", "RunKind"]
@@ -22,8 +22,6 @@ class PayrollRun:
     """Identity and classification of one payroll computation.
 
     Attributes:
-        run_id: Unique, deterministic identifier for this run within the year,
-            e.g. ``"2026-01-regular"`` or ``"2026-12-thirteenth"``.
         run_kind: Classification of the run type:
 
             - ``"regular"`` — ordinary monthly salary period.
@@ -34,12 +32,15 @@ class PayrollRun:
 
         month: Calendar month (1-12) in which the run is paid.
         year: Tax year this run belongs to.
+        run_id: Unique, deterministic identifier derived from year, month and
+            kind, e.g. ``"2026-01-regular"`` or ``"2026-12-thirteenth"``.
+            Computed automatically; do not pass to the constructor.
     """
 
-    run_id: str
     run_kind: RunKind
     month: int
     year: int
+    run_id: str = field(init=False, default="")
 
     def __post_init__(self) -> None:  # noqa: D105
         if not 1 <= self.month <= 12:
@@ -48,9 +49,9 @@ class PayrollRun:
         if self.year < 1970:
             msg = f"year must be >= 1970; got {self.year}"
             raise ValueError(msg)
-        if not self.run_id:
-            msg = "run_id must not be empty"
-            raise ValueError(msg)
+        object.__setattr__(
+            self, "run_id", f"{self.year}-{self.month:02d}-{self.run_kind}"
+        )
 
     @classmethod
     def regular(cls, year: int, month: int) -> PayrollRun:
@@ -64,12 +65,7 @@ class PayrollRun:
             A :class:`PayrollRun` with ``run_kind="regular"`` and a
             deterministic ``run_id``.
         """
-        return cls(
-            run_id=f"{year}-{month:02d}-regular",
-            run_kind="regular",
-            month=month,
-            year=year,
-        )
+        return cls(run_kind="regular", month=month, year=year)
 
     @classmethod
     def thirteenth(cls, year: int, payment_month: int) -> PayrollRun:
@@ -82,12 +78,7 @@ class PayrollRun:
         Returns:
             A :class:`PayrollRun` with ``run_kind="thirteenth"``.
         """
-        return cls(
-            run_id=f"{year}-{payment_month:02d}-thirteenth",
-            run_kind="thirteenth",
-            month=payment_month,
-            year=year,
-        )
+        return cls(run_kind="thirteenth", month=payment_month, year=year)
 
     @classmethod
     def fourteenth(cls, year: int, payment_month: int) -> PayrollRun:
@@ -100,9 +91,4 @@ class PayrollRun:
         Returns:
             A :class:`PayrollRun` with ``run_kind="fourteenth"``.
         """
-        return cls(
-            run_id=f"{year}-{payment_month:02d}-fourteenth",
-            run_kind="fourteenth",
-            month=payment_month,
-            year=year,
-        )
+        return cls(run_kind="fourteenth", month=payment_month, year=year)

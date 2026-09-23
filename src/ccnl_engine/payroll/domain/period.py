@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _ZERO = Decimal(0)
@@ -101,6 +102,7 @@ class PeriodCalculationRequest:
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
+    run: PayrollRun | None = None
 
 
 @dataclass(frozen=True)
@@ -135,3 +137,4 @@ class PeriodCalculationResult:
     contribution_breakdown: ContributionBreakdown
     tax_computation: TaxComputation
     benefit_breakdown: BenefitBreakdown
+    run: PayrollRun | None = None

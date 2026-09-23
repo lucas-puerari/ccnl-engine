@@ -142,6 +142,7 @@ def calculate_year(
             comune_belfiore=comune_belfiore,
             family_composition=family_composition,
             has_dependent_children=has_dependent_children,
+            run=run,
         )
         result = calculate_period(req, repo=repo)
         results.append(result)

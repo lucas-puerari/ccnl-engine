@@ -17,7 +17,6 @@ if TYPE_CHECKING:
     from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
     from ccnl_engine.api.results import PayrollResult
     from ccnl_engine.payroll.application.calculate_year import YearCalculationResult
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult
 
 __all__ = ["PayrollEngine"]
 
@@ -88,6 +87,7 @@ class PayrollEngine:
             comune_belfiore=request.comune_belfiore,
             family_composition=request.family_composition,
             has_dependent_children=request.has_dependent_children,
+            run=request.run,
         )
         return _calculate_period(period_req)
 
@@ -117,21 +117,3 @@ YearCalculationResult` with one result per run and aggregated annual totals.
             family_composition=request.family_composition,
             has_dependent_children=request.has_dependent_children,
         )
-
-    def calculate_period(  # noqa: PLR6301
-        self, request: PeriodCalculationRequest
-    ) -> PeriodCalculationResult:
-        """Compute a single payroll period.
-
-        Prefer :meth:`calculate` with a
-        :class:`~ccnl_engine.api.requests.PayrollRequest` for new code;
-        this method is retained for backward compatibility.
-
-        Args:
-            request: Period request specifying the competence period, CCNL slug,
-                level code, and YTD opening state.
-
-        Returns:
-            A :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`.
-        """
-        return _calculate_period(request)

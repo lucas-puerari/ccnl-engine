@@ -88,14 +88,6 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §4: regular December and tredicesima share the same PeriodId "
-        "so entry IDs are generated from the same namespace and collide.  "
-        "Fix: include run_id in every entry_id."
-    ),
-)
 def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     """Ledger entry IDs must be unique across all runs in a year.
 
