@@ -309,15 +309,6 @@ def test_p0_06_inps_addizionale_1pct_on_threshold_crossing() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-07: calculate_period with lavoro-domestico-convivente.json raises "
-        "TypeError('resolve_rates requires standard INPS rates; domestic "
-        "sectors must use the flat-hour path in compute()').  Domestic CCNLs "
-        "must be handled by a separate ContributionScheme without crashing."
-    ),
-)
 def test_p0_07_domestic_work_no_type_error() -> None:
     """P0-07: calculate_period with a domestic CCNL must not raise TypeError.
 
