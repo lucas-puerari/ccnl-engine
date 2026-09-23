@@ -163,16 +163,6 @@ def test_p0_02_calculate_year_extra_months() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-03: taxable_ytd is stored in PeriodState but never read back "
-        "into the IRPEF projection (_compute_amounts uses monthly_gross * "
-        "additional_months, not the accumulated YTD).  Two December requests "
-        "with identical inputs but different taxable_ytd produce the same "
-        "ordinary_tax — the conguaglio is blind to actual YTD income."
-    ),
-)
 def test_p0_03_taxable_ytd_affects_conguaglio() -> None:
     """P0-03: different taxable_ytd must produce different IRPEF in the conguaglio.
 
