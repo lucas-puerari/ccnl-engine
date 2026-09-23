@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "6edf82d9f6daac1726a976a56afce7ff9d1b1d79fbf8924d09dc08a08d9cfcfe",
+    "source_hash": "4173bef7a295fbbbb95ce2ecd7083d02c1c5b9edf4b9ae84493f51fea020af70",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -60,7 +60,7 @@
     "seventy_five": "75"
   },
   "notes": [
-    "IRPEF brackets: statutory and sector-agnostic. Art. 13 constants versioned in YearRules.work_deduction.",
+    "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 2). Art. 13 constants versioned in YearRules.work_deduction.",
     "INPS employer — components verified for manufacturing/metalworking industry 2026: IVS 23.81% (Circ. INPS 6/2026) + DS/NASpI 1.61% + CUAF 2.48% + CIGO 1.70% (≤50 employees) or 2.00% (>50 employees, D.Lgs. 148/2015 art. 5, Circ. INPS 1/2026) + FIS 0.533% employer (6-15 employees, 2/3 of 0.80%, Circ. INPS 5/2025) or CIGS 0.60% employer (>15 employees, 2/3 of 0.90%). Total by tier: ≤15 employees = 30.13%; 16-50 employees = 30.20%; >50 employees = 30.50%. Does not include INAIL (sector-variable, not modelled).",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012. Identical to terziario.",
     "INPS dipendente — employee_tiers: 9.19% (IVS) up to 15 employees; 9.49% above 15 (adds the 0.30% CIGS employee share, D.Lgs. 148/2015 art. 23).",

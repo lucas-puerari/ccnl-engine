@@ -2,7 +2,7 @@
 
 Implements Art. 11 TUIR brackets and the Art. 13 co. 1 TUIR work-income
 deduction (piecewise-linear schedule as modified by D.Lgs. 216/2023 and
-confirmed by L. 207/2024), the trattamento integrativo (Art. 1 D.L.
+confirmed by L. 199/2025, Art. 1 c. 2), the trattamento integrativo (Art. 1 D.L.
 3/2020 as updated by L. 207/2024), the addizionale regionale e comunale
 IRPEF (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998), and the sterilizzazione
 detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).

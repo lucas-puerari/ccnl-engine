@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "c5127dabec1230143c05cc1dbbdbf964a647a824ff0611b6821072cf89c86232",
+    "source_hash": "bf116386f8a8b9a98e793be1ab0c964e14757d326a9e0348206f517cee1b1ecf",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -60,7 +60,7 @@
     "seventy_five": "75"
   },
   "notes": [
-    "IRPEF brackets: statutory, sector-agnostic. Art. 13 constants versioned in YearRules.work_deduction.",
+    "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 2). Art. 13 constants versioned in YearRules.work_deduction.",
     "INPS employer — SIMPLIFICATION: rate 26.93% from kitech.it (non-construction crafts sector 2026, source https://www.kitech.it/Contributi-previdenziali.aspx?p=1_1; specific INPS circular not retrieved). Component breakdown is part of the KNOWN GAP noted below: the operai-vs-impiegati difference (26.93% vs 24.71% = 2.22pp) does not reconcile with a malattia-only explanation (~0.83pp), suggesting the sector IVS rate may differ from the generic private-sector 23.81%. No CIGO/CIGS for the crafts sector (art. 3 D.Lgs. 148/2015). FSBA (0.45% employer + 0.15% employee) excluded: bilateral fund contribution, not INPS. No size tier.",
     "INPS employee — employee_tiers: 9.19% (IVS + NASpI) flat. No additional CIGS for employees (crafts sector has no CIGS).",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only) per Art. 2 co. 28 L. 92/2012.",

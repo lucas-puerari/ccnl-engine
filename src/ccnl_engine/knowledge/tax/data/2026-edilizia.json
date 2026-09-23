@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "41b4ff3030f72f74e179ab7df87afe1c52399d3f49ab40e6902cb274b0b006d8",
+    "source_hash": "0d1632c04ffb15f9c7624a587d897d6eeca26afb25548a0e4c39f298fe774fba",
     "source_type": "official_primary"
   },
   "irpef_brackets": [
@@ -60,7 +60,7 @@
     "seventy_five": "75"
   },
   "notes": [
-    "IRPEF brackets: statutory, identical to other sectors. Art. 13 constants versioned in YearRules.work_deduction.",
+    "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 2). Art. 13 constants versioned in YearRules.work_deduction.",
     "SIMPLIFICATION: Cassa Edile contributions (~18.5% of gross for operai — ferie 8.5%, gratifica natalizia 10%) are NOT included in employer_tiers. The employer_cost_annual computed by the engine understates the real cost for operai. Impiegati are less affected as Cassa Edile covers mainly operai items.",
     "INPS employer — rates from kitech.it (p=5_152, p=5_154, data 1998 structure). Proxy values: ≤15 employees 28.46%; 16-50 employees 29.06%; >50 employees 29.50% (estimated). Verify against INPS annual circular for 2026 exact values.",
     "fixed_term_additional_rate: NASpI additional rate 1.4% (employer-only, Art. 2 co. 28 L. 92/2012). Identical to other sectors.",
