@@ -17,7 +17,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, assert_never
 
 from ccnl_engine.engine.capability_catalog import CapabilityReport
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -64,6 +64,7 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_family_deduction_rules,
     load_variable_pay_rules,
 )
+from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,  # noqa: TC001
@@ -88,6 +89,14 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.policy import (
+    ContributionAxis,
+    PolicyContext,
+    PolicyResolution,
+    PolicyResolver,
+    TaxAxis,
+    TfrAxis,
+)
 from ccnl_engine.payroll.domain.tax import TaxComputation  # noqa: TC001
 from ccnl_engine.payroll.domain.treatment import EventTreatment
 
@@ -104,19 +113,38 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 
-# Treatment policy: maps each standard event type to the axes its gross contributes to.
-# Fringe, Arrears, BilateralFund and TerminationTFR are not listed here because their
-# axis amounts are computed differently from the event gross (threshold logic, separate-
-# tax entries, or non-cash side-effects). Those are handled in their own branches.
-_STANDARD_TREATMENTS: dict[type, EventTreatment] = {
-    OvertimeEvent: EventTreatment(inps=True, tfr=False, irpef=True),
-    NightShiftEvent: EventTreatment(inps=True, tfr=False, irpef=True),
-    HolidayWorkEvent: EventTreatment(inps=True, tfr=False, irpef=True),
-    AbsenceEvent: EventTreatment(inps=True, tfr=True, irpef=True),
-    SickLeaveEvent: EventTreatment(inps=True, tfr=False, irpef=True),
-    BonusEvent: EventTreatment(inps=True, tfr=False, irpef=True),
-    WelfareEvent: EventTreatment(inps=False, tfr=False, irpef=False),
-}
+_POLICY_RESOLVER: PolicyResolver | None = None
+
+
+def _get_resolver() -> PolicyResolver:
+    global _POLICY_RESOLVER  # noqa: PLW0603
+    if _POLICY_RESOLVER is None:
+        _POLICY_RESOLVER = PolicyResolver.load()
+    return _POLICY_RESOLVER
+
+
+def _treatment_from_resolution(resolution: PolicyResolution) -> EventTreatment:
+    inps = resolution.contribution in {
+        ContributionAxis.INCLUDED,
+        ContributionAxis.CAPPED,
+        ContributionAxis.SPECIAL_BASE,
+    }
+    tfr = resolution.tfr == TfrAxis.INCLUDED
+    irpef = resolution.tax not in {TaxAxis.NOT_APPLICABLE, TaxAxis.EXEMPT}
+    return EventTreatment(inps=inps, tfr=tfr, irpef=irpef)
+
+
+def _require_resolution(
+    resolver: PolicyResolver,
+    kind: str,
+    context: PolicyContext,
+) -> PolicyResolution:
+    resolution = resolver.resolve(kind, context)
+    if resolution is None:
+        msg = f"No policy rule found for pay-item kind '{kind}' on {context.as_of}"
+        raise DataIntegrityError(msg)
+    return resolution
+
 
 _OBSERVED: dict[str, str] = {
     "base_salary": "computed",
@@ -318,6 +346,7 @@ def _make_entry(
     payment_date: date,
     account: AccountKind,
     amount: Decimal,
+    policy_id: str | None = None,
 ) -> LedgerEntry:
     return LedgerEntry(
         entry_id=entry_id,
@@ -328,6 +357,7 @@ def _make_entry(
         account=account,
         amount=amount,
         source_item_id=pay_item_id,
+        policy_decision_id=policy_id,
     )
 
 
@@ -517,6 +547,8 @@ def _process_events(
     payment_date: date,
     tag: str,
     date_ctx: EffectiveDateContext,
+    resolver: PolicyResolver,
+    context: PolicyContext,
     fringe_threshold: Decimal = _ZERO,
     opening_fringe_ytd: Decimal = _ZERO,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
@@ -558,9 +590,10 @@ def _process_events(
                 WelfareEvent,
             ),
         ):
-            treatment = _STANDARD_TREATMENTS[type(event)]
             gross = _standard_event_gross(event)
             item, kind = _standard_event_item(event, gross, evt_id, cp, payment_date)
+            resolution = _require_resolution(resolver, kind, context)
+            treatment = _treatment_from_resolution(resolution)
             di, dt, dirpef = _treatment_deltas(treatment, gross)
             total_inps += di
             total_tfr += dt
@@ -575,12 +608,16 @@ def _process_events(
                     payment_date,
                     AccountKind.CASH_EARNINGS,
                     gross,
+                    policy_id=resolution.policy_id,
                 )
             )
         elif isinstance(event, FringeEvent):
             gross = event.amount
             fringe_inps, fringe_irpef, cumulative_fringe = _fringe_bases(
                 gross, cumulative_fringe, fringe_threshold
+            )
+            fringe_resolution = _require_resolution(
+                resolver, "fringe_benefit_item", context
             )
             item = FringeBenefitItem(
                 item_id=evt_id,
@@ -604,11 +641,15 @@ def _process_events(
                     payment_date,
                     AccountKind.CASH_EARNINGS,
                     gross,
+                    policy_id=fringe_resolution.policy_id,
                 )
             )
         elif isinstance(event, ArrearsEvent):
             gross = event.amount
             sep_tax = money(gross * event.separate_tax_rate)
+            arrears_resolution = _require_resolution(
+                resolver, "contract_renewal_arrears", context
+            )
             item = ContractRenewalArrears(
                 item_id=evt_id,
                 competence_period=cp,
@@ -626,6 +667,7 @@ def _process_events(
                     payment_date,
                     AccountKind.CASH_EARNINGS,
                     gross,
+                    policy_id=arrears_resolution.policy_id,
                 ),
                 _make_entry(
                     f"sep_tax_{evt_id}",
@@ -635,11 +677,18 @@ def _process_events(
                     payment_date,
                     AccountKind.SEPARATE_TAX,
                     sep_tax,
+                    policy_id=arrears_resolution.policy_id,
                 ),
             ])
         elif isinstance(event, BilateralFundEvent):
             emp_id = f"{evt_id}_emp"
             er_id = f"{evt_id}_er"
+            emp_resolution = _require_resolution(
+                resolver, "employee_withholding_item", context
+            )
+            er_resolution = _require_resolution(
+                resolver, "employer_contribution_item", context
+            )
             emp_item = EmployeeWithholdingItem(
                 item_id=emp_id,
                 competence_period=cp,
@@ -664,6 +713,7 @@ def _process_events(
                     payment_date,
                     AccountKind.EMPLOYEE_CONTRIBUTIONS,
                     event.employee_amount,
+                    policy_id=emp_resolution.policy_id,
                 ),
                 _make_entry(
                     f"bilat_er_{evt_id}",
@@ -673,11 +723,15 @@ def _process_events(
                     payment_date,
                     AccountKind.EMPLOYER_CONTRIBUTIONS,
                     event.employer_amount,
+                    policy_id=er_resolution.policy_id,
                 ),
             ])
         elif isinstance(event, TerminationTFREvent):
             gross = event.amount
             sep_tax = money(gross * event.separate_tax_rate)
+            tfr_settle_resolution = _require_resolution(
+                resolver, "tfr_settlement_item", context
+            )
             item = TfrSettlementItem(
                 item_id=evt_id,
                 competence_period=cp,
@@ -695,6 +749,7 @@ def _process_events(
                     payment_date,
                     AccountKind.TFR_SETTLEMENT,
                     gross,
+                    policy_id=tfr_settle_resolution.policy_id,
                 ),
                 _make_entry(
                     f"sep_tax_{evt_id}",
@@ -704,6 +759,7 @@ def _process_events(
                     payment_date,
                     AccountKind.SEPARATE_TAX,
                     sep_tax,
+                    policy_id=tfr_settle_resolution.policy_id,
                 ),
             ])
         else:
@@ -830,6 +886,8 @@ def _project_ledger(
     chain: MonthlyPayChain,
     period_id: PeriodId,
     payment_date: date,
+    resolver: PolicyResolver,
+    context: PolicyContext,
 ) -> tuple[LedgerEntry, ...]:
     """Project base pay items to ledger entries.
 
@@ -842,6 +900,16 @@ def _project_ledger(
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
     tag = f"{period_id.year}_{period_id.month:02d}"
+    ordinary_pid = _require_resolution(
+        resolver, "base_salary_earning", context
+    ).policy_id
+    emp_pid = _require_resolution(
+        resolver, "employee_withholding_item", context
+    ).policy_id
+    er_pid = _require_resolution(
+        resolver, "employer_contribution_item", context
+    ).policy_id
+    tfr_pid = _require_resolution(resolver, "tfr_accrual_item", context).policy_id
     entries: list[LedgerEntry] = [
         _make_entry(
             f"cash_earnings_{tag}",
@@ -851,9 +919,13 @@ def _project_ledger(
             payment_date,
             AccountKind.CASH_EARNINGS,
             chain.base,
+            policy_id=ordinary_pid,
         ),
     ]
     if chain.seniority > _ZERO:
+        seniority_pid = _require_resolution(
+            resolver, "seniority_earning", context
+        ).policy_id
         entries.append(
             _make_entry(
                 f"seniority_{tag}",
@@ -863,10 +935,14 @@ def _project_ledger(
                 payment_date,
                 AccountKind.CASH_EARNINGS,
                 chain.seniority,
+                policy_id=seniority_pid,
             )
         )
     for allowance, amount in chain.allowances:
         if amount > _ZERO:
+            allowance_pid = _require_resolution(
+                resolver, "fixed_allowance_earning", context
+            ).policy_id
             entries.append(
                 _make_entry(
                     f"allowance_{allowance.code}_{tag}",
@@ -876,6 +952,7 @@ def _project_ledger(
                     payment_date,
                     AccountKind.CASH_EARNINGS,
                     amount,
+                    policy_id=allowance_pid,
                 )
             )
     entries.extend([
@@ -887,6 +964,7 @@ def _project_ledger(
             payment_date,
             AccountKind.EMPLOYEE_CONTRIBUTIONS,
             amounts.inps_employee,
+            policy_id=emp_pid,
         ),
         _make_entry(
             f"irpef_{tag}",
@@ -896,6 +974,7 @@ def _project_ledger(
             payment_date,
             AccountKind.ORDINARY_TAX,
             amounts.period_irpef,
+            policy_id=emp_pid,
         ),
         _make_entry(
             f"inps_employer_{tag}",
@@ -905,6 +984,7 @@ def _project_ledger(
             payment_date,
             AccountKind.EMPLOYER_CONTRIBUTIONS,
             amounts.inps_employer,
+            policy_id=er_pid,
         ),
         _make_entry(
             f"tfr_{tag}",
@@ -914,9 +994,11 @@ def _project_ledger(
             payment_date,
             AccountKind.TFR_ACCRUAL,
             amounts.tfr,
+            policy_id=tfr_pid,
         ),
     ])
     if amounts.period_tratt > _ZERO:
+        credit_pid = _require_resolution(resolver, "tax_credit_item", context).policy_id
         entries.append(
             _make_entry(
                 f"tratt_integ_{tag}",
@@ -926,6 +1008,7 @@ def _project_ledger(
                 payment_date,
                 AccountKind.CREDITS,
                 amounts.period_tratt,
+                policy_id=credit_pid,
             )
         )
     if amounts.period_surtax > _ZERO:
@@ -938,6 +1021,7 @@ def _project_ledger(
                 payment_date,
                 AccountKind.SURTAX,
                 amounts.period_surtax,
+                policy_id=emp_pid,
             )
         )
     return tuple(entries)
@@ -965,6 +1049,10 @@ def calculate_period(
     Returns:
         A :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
         with gross, net, employer cost, closing YTD state, pay items and ledger.
+
+    Raises:
+        DataIntegrityError: When the ledger reconciliation invariants fail after
+            computation, indicating an internal accounting consistency error.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.ccnl_slug)
@@ -990,6 +1078,8 @@ def calculate_period(
     else:
         fringe_threshold = var_pay_rules.fringe_benefit.threshold_standard
 
+    resolver = _get_resolver()
+    policy_context = PolicyContext(year=period_year, as_of=as_of)
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     tag = f"{period_year}_{request.period_id.month:02d}"
     event_totals, event_items, event_entries = _process_events(
@@ -998,6 +1088,8 @@ def calculate_period(
         request.payment_date,
         tag,
         date_ctx,
+        resolver,
+        policy_context,
         fringe_threshold=fringe_threshold,
         opening_fringe_ytd=request.opening_state.fringe_ytd,
     )
@@ -1029,7 +1121,12 @@ def calculate_period(
         amounts, chain, request.period_id, request.payment_date
     )
     ledger_entries = _project_ledger(
-        amounts, chain, request.period_id, request.payment_date
+        amounts,
+        chain,
+        request.period_id,
+        request.payment_date,
+        resolver,
+        policy_context,
     )
     all_entries = ledger_entries + event_entries
 
@@ -1071,7 +1168,7 @@ def calculate_period(
         inps_base=event_totals.fringe_inps,
         employer_cost=event_totals.fringe_value,
     )
-    return PeriodCalculationResult(
+    result = PeriodCalculationResult(
         period_id=request.period_id,
         payment_date=request.payment_date,
         period_gross=period_gross,
@@ -1085,3 +1182,9 @@ def calculate_period(
         tax_computation=tax_computation,
         benefit_breakdown=benefit_breakdown,
     )
+    rec = _reconcile(result, request.opening_state)
+    if not rec.ok:
+        msgs = "; ".join(f"[{v.invariant_id}] {v.message}" for v in rec.violations)
+        msg = f"Period reconciliation failed: {msgs}"
+        raise DataIntegrityError(msg)
+    return result

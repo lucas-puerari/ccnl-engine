@@ -167,7 +167,7 @@
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
-    "contribution": "excluded",
+    "contribution": "included",
     "tfr": "excluded",
     "cost": "employee_cash",
     "legal_basis": "Art. 51 TUIR"
