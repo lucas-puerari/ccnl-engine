@@ -357,11 +357,12 @@ def _compute_amounts(
     period_surtax = money(period_surtax_annual / additional_months)
 
     # actual_period_taxable: the incremental taxable income for THIS period only.
-    # Derived from actual gross minus actual INPS employee deduction (with IVS
-    # ceiling) plus event taxable — never prorated across additional_months.
-    # This is what accumulates into taxable_ytd; the full `taxable` (the annual
-    # projection) is used only for IRPEF conguaglio via resolve_tax_computation.
-    period_taxable = money(monthly_gross - inps_employee + event_taxable)
+    # Uses inps_employee (actual, with IVS ceiling) and irpef_base (gross event
+    # amount subject to IRPEF) directly — avoids re-deriving the event INPS via
+    # the nominal rate, which would subtract it twice (once in inps_employee,
+    # once in event_taxable). event_taxable uses the nominal rate and is only
+    # valid for the forward-looking forecast (taxable above).
+    period_taxable = money(monthly_gross - inps_employee + event_totals.irpef_base)
     return (
         _PeriodAmounts(
             monthly_gross=monthly_gross,
