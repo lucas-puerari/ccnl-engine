@@ -20,11 +20,48 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
+def _resolve_trattamento(
+    taxable: Decimal,
+    irpef_gross: Decimal,
+    work_deduction: Decimal,
+    rules: YearRules,
+    opening_tratt_ytd: Decimal,
+    remaining: int,
+) -> tuple[Decimal, TaxLineItem | None]:
+    """Compute the per-period trattamento integrativo via conguaglio.
+
+    Returns:
+        ``(period_tratt, component)`` where ``component`` is a
+        :class:`TaxLineItem` for the audit trace when the annual entitlement
+        is positive, or ``None`` otherwise.
+    """
+    if rules.trattamento_integrativo is None:
+        return _ZERO, None
+    tratt_rules = rules.trattamento_integrativo
+    annual_tratt = irpef_svc.trattamento_integrativo(
+        taxable, irpef_gross, work_deduction, work_deduction, tratt_rules
+    )
+    tratt_due = annual_tratt - opening_tratt_ytd
+    period_tratt = money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
+    component = (
+        TaxLineItem(
+            name="trattamento_integrativo",
+            amount=annual_tratt,
+            rule_id="dl3-2020-art1",
+            fonte="Art. 1 D.L. 3/2020 (L. 207/2024)",
+        )
+        if annual_tratt > _ZERO
+        else None
+    )
+    return period_tratt, component
+
+
 def resolve_tax_computation(
     taxable: Decimal,
     rules: YearRules,
     *,
     opening_irpef_withheld: Decimal = _ZERO,
+    opening_tratt_ytd: Decimal = _ZERO,
     months_closed: int = 0,
     additional_months: int = 12,
     family_deductions: Decimal = _ZERO,
@@ -48,6 +85,9 @@ def resolve_tax_computation(
         taxable: Annual IRPEF taxable base (gross - employee INPS).
         rules: Year-specific tax rules.
         opening_irpef_withheld: IRPEF already withheld this year (YTD).
+        opening_tratt_ytd: Trattamento integrativo already given this year
+            (YTD).  Used for the conguaglio so over-payments are recovered
+            and the annual entitlement is never exceeded.
         months_closed: Periods already closed this year (for conguaglio).
         additional_months: Total periods in the year (usually 12).
         family_deductions: Annual Art. 12 family deductions (computed
@@ -132,22 +172,11 @@ def resolve_tax_computation(
     else:
         ordinary_tax = money(max(_ZERO, withholding_due / remaining))
 
-    # Trattamento integrativo: Art. 1 D.L. 3/2020 as updated by L. 207/2024
-    period_tratt = _ZERO
-    if rules.trattamento_integrativo is not None:
-        annual_tratt = irpef_svc.trattamento_integrativo(
-            taxable, ig, wd, wd, rules.trattamento_integrativo
-        )
-        period_tratt = money(annual_tratt / additional_months)
-        if annual_tratt > _ZERO:
-            components.append(
-                TaxLineItem(
-                    name="trattamento_integrativo",
-                    amount=annual_tratt,
-                    rule_id="dl3-2020-art1",
-                    fonte="Art. 1 D.L. 3/2020 (L. 207/2024)",
-                )
-            )
+    period_tratt, tratt_component = _resolve_trattamento(
+        taxable, ig, wd, rules, opening_tratt_ytd, remaining
+    )
+    if tratt_component is not None:
+        components.append(tratt_component)
 
     # Somma esente: L. 207/2024 low-income bonus
     if rules.somma_esente is not None:

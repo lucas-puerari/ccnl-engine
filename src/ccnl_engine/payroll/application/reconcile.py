@@ -15,7 +15,7 @@ Invariants:
           - ORDINARY_TAX - SURTAX - SEPARATE_TAX
           = period_net.
     I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
-          = ORDINARY_TAX total.
+          = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
     I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
           advance correctly from opening.
     I12 — employer cost identity: CASH_EARNINGS + NON_CASH_BENEFITS
@@ -204,20 +204,29 @@ def _check_i10(
     result: PeriodCalculationResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
-    """I10: IRPEF delta equals ORDINARY_TAX ledger total.
+    """I10: IRPEF delta equals net IRPEF movement in the ledger.
+
+    Net IRPEF = ORDINARY_TAX (positive withholding) minus IRPEF refunds
+    (tax_refund_item entries in CREDITS, posted when ordinary_tax < 0).
 
     Returns:
         A violation when the closing-minus-opening IRPEF delta diverges from
-        the posted ORDINARY_TAX amount.
+        the net IRPEF ledger movement.
     """
     delta = result.closing_state.irpef_withheld_ytd - opening.irpef_withheld_ytd
     ordinary_tax = _sum_account(result, AccountKind.ORDINARY_TAX)
-    if delta != ordinary_tax:
+    irpef_refund = sum(
+        e.amount
+        for e in result.ledger_entries
+        if e.account == AccountKind.CREDITS and e.pay_item_kind == "tax_refund_item"
+    )
+    net_withholding = ordinary_tax - irpef_refund
+    if delta != net_withholding:
         return [
             ReconciliationViolation(
                 invariant_id="I10",
-                message="IRPEF delta != ORDINARY_TAX: conguaglio source unverifiable",
-                expected=ordinary_tax,
+                message="IRPEF delta != net ORDINARY_TAX",
+                expected=net_withholding,
                 actual=delta,
             )
         ]

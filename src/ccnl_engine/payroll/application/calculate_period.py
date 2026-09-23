@@ -43,6 +43,7 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     SeniorityEarning,
     SicknessItem,
     TaxCreditItem,
+    TaxRefundItem,
     TfrAccrualItem,
     TfrSettlementItem,
     WelfareItem,
@@ -344,6 +345,7 @@ def _compute_amounts(
         taxable,
         rules,
         opening_irpef_withheld=opening.irpef_withheld_ytd,
+        opening_tratt_ytd=opening.credit_recognized_ytd,
         months_closed=opening.months_closed,
         additional_months=additional_months,
         family_deductions=fam_ded,
@@ -937,13 +939,6 @@ def _build_pay_items(
             quantity=Decimal(1),
             amount=amounts.inps_employee,
         ),
-        EmployeeWithholdingItem(
-            item_id=f"irpef_{tag}",
-            competence_period=cp,
-            payment_date=payment_date,
-            quantity=Decimal(1),
-            amount=amounts.period_irpef,
-        ),
         EmployerContributionItem(
             item_id=f"inps_employer_{tag}",
             competence_period=cp,
@@ -959,7 +954,29 @@ def _build_pay_items(
             amount=amounts.tfr,
         ),
     ])
-    if amounts.period_tratt > _ZERO:
+    if amounts.period_irpef > _ZERO:
+        items.append(
+            EmployeeWithholdingItem(
+                item_id=f"irpef_{tag}",
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=amounts.period_irpef,
+            )
+        )
+    elif amounts.period_irpef < _ZERO:
+        # Year-end conguaglio refund: post as TaxRefundItem (positive amount)
+        # rather than a negative withholding item.
+        items.append(
+            TaxRefundItem(
+                item_id=f"irpef_refund_{tag}",
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=-amounts.period_irpef,
+            )
+        )
+    if amounts.period_tratt != _ZERO:
         items.append(
             TaxCreditItem(
                 item_id=f"tratt_integ_{tag}",
@@ -1069,16 +1086,6 @@ def _project_ledger(
             policy_id=emp_pid,
         ),
         _make_entry(
-            f"irpef_{tag}",
-            f"irpef_{tag}",
-            "employee_withholding_item",
-            cp,
-            payment_date,
-            AccountKind.ORDINARY_TAX,
-            amounts.period_irpef,
-            policy_id=emp_pid,
-        ),
-        _make_entry(
             f"inps_employer_{tag}",
             f"inps_employer_{tag}",
             "employer_contribution_item",
@@ -1099,7 +1106,36 @@ def _project_ledger(
             policy_id=tfr_pid,
         ),
     ])
-    if amounts.period_tratt > _ZERO:
+    if amounts.period_irpef > _ZERO:
+        entries.append(
+            _make_entry(
+                f"irpef_{tag}",
+                f"irpef_{tag}",
+                "employee_withholding_item",
+                cp,
+                payment_date,
+                AccountKind.ORDINARY_TAX,
+                amounts.period_irpef,
+                policy_id=emp_pid,
+            )
+        )
+    elif amounts.period_irpef < _ZERO:
+        # Year-end conguaglio refund: post as CREDITS (positive) so the net
+        # formula adds it rather than subtracting a negative ORDINARY_TAX.
+        refund_pid = _require_resolution(resolver, "tax_refund_item", context).policy_id
+        entries.append(
+            _make_entry(
+                f"irpef_refund_{tag}",
+                f"irpef_refund_{tag}",
+                "tax_refund_item",
+                cp,
+                payment_date,
+                AccountKind.CREDITS,
+                -amounts.period_irpef,
+                policy_id=refund_pid,
+            )
+        )
+    if amounts.period_tratt != _ZERO:
         credit_pid = _require_resolution(resolver, "tax_credit_item", context).policy_id
         entries.append(
             _make_entry(
@@ -1339,6 +1375,15 @@ def calculate_period(
             request.opening_state.fringe_taxed_ytd + event_totals.fringe_irpef
         ),
         pdr_ytd=request.opening_state.pdr_ytd + event_totals.substitute_base,
+        credit_recognized_ytd=(
+            request.opening_state.credit_recognized_ytd
+            + max(_ZERO, amounts.period_tratt)
+        ),
+        credit_recovered_ytd=(
+            request.opening_state.credit_recovered_ytd
+            + max(_ZERO, -amounts.period_tratt)
+        ),
+        surtax_ytd=(request.opening_state.surtax_ytd + amounts.period_surtax),
     )
     benefit_breakdown = BenefitBreakdown(
         value=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),
