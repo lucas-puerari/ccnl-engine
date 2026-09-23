@@ -13,8 +13,8 @@ from ccnl_engine import (
     Employment,
     AnnualEstimateInput,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 full_time = estimate_annual(
     AnnualEstimateInput(

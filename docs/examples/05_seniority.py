@@ -16,8 +16,8 @@ from ccnl_engine import (
     Permanent,
     SeniorityByCount,
     SeniorityByMonths,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # --- Via explicit count ---
 p_count = estimate_annual(

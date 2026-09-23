@@ -20,10 +20,10 @@ from ccnl_engine import (
     Employer,
     Employment,
     Permanent,
-    estimate_annual,
     result_schema,
     scenario_schema,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate

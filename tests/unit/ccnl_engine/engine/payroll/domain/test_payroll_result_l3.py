@@ -14,7 +14,6 @@ from ccnl_engine import (
     Employer,
     Employment,
     Permanent,
-    estimate_annual,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
@@ -24,6 +23,7 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     SourceQuality,
     _coerce_scalar,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 
 @pytest.fixture(scope="module")

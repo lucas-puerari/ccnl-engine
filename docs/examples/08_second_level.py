@@ -21,8 +21,8 @@ from ccnl_engine import (
     Employment,
     AnnualEstimateInput,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 
 # A monthly productivity bonus of 150 EUR + an annual prize of 800 EUR.

@@ -16,8 +16,8 @@ from ccnl_engine import (
     Employment,
     AnnualEstimateInput,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # Convivente (live-in) domestic worker, super-minimum level, 40h/week.
 p = estimate_annual(
