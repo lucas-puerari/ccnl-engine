@@ -8,15 +8,9 @@ The single entry point is :class:`PayrollEngine`.  Construct it with
 :meth:`~PayrollEngine.calculate_year` for a full-year run.
 
 All types needed to call it and inspect its results are re-exported from
-this module.
-
-Tooling types (CCNL inspection, diff, loaders) are not part of the
-stable API. Use the dedicated sub-namespaces instead:
-
-- CCNL inspection: :mod:`ccnl_engine.engine.contract`
-- Diff operations: :mod:`ccnl_engine.engine.diff`
-- Tax/surtax loaders: :mod:`ccnl_engine.engine.tax`,
-  :mod:`ccnl_engine.engine.surtax`
+this module.  Internal types (legacy scenario domain, rendering utilities,
+JSON schema helpers, bundle loaders) are available from their respective
+sub-namespaces and are not part of the stable public API.
 
 Usage::
 
@@ -24,7 +18,8 @@ Usage::
 
     engine = PayrollEngine.from_builtin_data()
     result = engine.calculate(PayrollRequest(
-        run=PayrollRun(year=2026, month=1),
+        run=PayrollRun.regular(2026, 1),
+        payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
     ))
@@ -57,25 +52,23 @@ from ccnl_engine.engine.errors import (
     UnknownCcnlError,
     UnknownLevelError,
 )
+from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
 from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
 from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund, RateFund
-from ccnl_engine.engine.payroll.domain.bundle import PayrollBundle
-from ccnl_engine.engine.payroll.domain.calculation import (
-    Calculation,
-    CalculationTrace,
-    InputSnapshot,
-    TraceCategory,
-    TraceStep,
-)
 from ccnl_engine.engine.payroll.domain.employee import (
+    Agreement,
     DestinationRalOverride,
+    Employee,
+    Jurisdiction,
     RalOverride,
     SeniorityByCount,
     SeniorityByDate,
     SeniorityByMonths,
 )
+from ccnl_engine.engine.payroll.domain.employer import Employer
 from ccnl_engine.engine.payroll.domain.employment import (
     Apprentice,
+    Employment,
     FixedTerm,
     Permanent,
 )
@@ -85,25 +78,7 @@ from ccnl_engine.engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.fiscal_ytd import FiscalYTD
-from ccnl_engine.engine.payroll.domain.payroll_result import (
-    AnnualEstimate,
-    Contributions,
-    Earnings,
-    EmployerCost,
-    Taxes,
-)
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.engine.payroll.domain.scenario import (
-    Agreement,
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Jurisdiction,
-    PeriodPayrollInput,
-    TaxPeriod,
-)
+from ccnl_engine.engine.payroll.domain.period_input import PeriodPayrollInput
 from ccnl_engine.engine.payroll.domain.supplements import (
     AbsenceDays,
     BonusInput,
@@ -114,17 +89,8 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WeeklyOvertimeHours,
     WelfareInput,
 )
-from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
+from ccnl_engine.engine.payroll.domain.tax_basis import TaxPeriod
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
-from ccnl_engine.engine.payroll.service.render import (
-    AnnualBreakdown,
-    render_breakdown,
-)
-from ccnl_engine.engine.payroll.service.schemas import result_schema, scenario_schema
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodCalculationResult,
-)
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
@@ -132,14 +98,10 @@ from ccnl_engine.version import __version__ as engine_version
 __all__ = [
     "AbsenceDays",
     "Agreement",
-    "AnnualBreakdown",
-    "AnnualEstimate",
     "AnnualEstimateInput",
     "Apprentice",
     "Art15Deductions",
     "BonusInput",
-    "Calculation",
-    "CalculationTrace",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",
@@ -147,38 +109,29 @@ __all__ = [
     "CcnlEngineError",
     "CcnlId",
     "CcnlInfo",
-    "Contributions",
     "DataIntegrityError",
     "Dependent",
     "DependentRelationship",
     "DestinationRalOverride",
-    "Earnings",
     "Employee",
     "Employer",
-    "EmployerCost",
     "Employment",
     "FamilyComposition",
     "FiscalSimplification",
-    "FiscalYTD",
     "FixedTerm",
     "FlatMonthlyFund",
     "FringeBenefitInput",
-    "InputSnapshot",
     "InvalidInputError",
     "Jurisdiction",
     "LeaveInput",
     "OutOfScopeError",
     "OvertimeHours",
-    "PayrollBundle",
     "PayrollEngine",
     "PayrollRequest",
     "PayrollResult",
     "PayrollRun",
     "PayrollState",
     "PayrollYearRequest",
-    "PeriodCalculationRequest",
-    "PeriodCalculationResult",
-    "PeriodId",
     "PeriodPayrollInput",
     "Permanent",
     "RalOverride",
@@ -189,9 +142,6 @@ __all__ = [
     "SickInput",
     "SupplementaryAllowance",
     "TaxPeriod",
-    "Taxes",
-    "TraceCategory",
-    "TraceStep",
     "UnknownCcnlError",
     "UnknownLevelError",
     "WeeklyOvertimeHours",
@@ -199,9 +149,5 @@ __all__ = [
     "engine_version",
     "get_ccnl",
     "list_ccnls",
-    "load_payroll_bundle",
-    "render_breakdown",
-    "result_schema",
-    "scenario_schema",
     "search_ccnls",
 ]

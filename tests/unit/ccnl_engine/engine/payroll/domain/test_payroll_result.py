@@ -8,24 +8,22 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    FiscalSimplification,
-    PeriodPayrollInput,
-    Permanent,
-    TaxPeriod,
-)
+from ccnl_engine import Permanent
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
+from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
+from ccnl_engine.engine.payroll.domain.employee import Employee
+from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employment import Employment
+from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     Coverage,
     PeriodPayroll,
     _decode_field,
 )
+from ccnl_engine.engine.payroll.domain.period_input import PeriodPayrollInput
 from ccnl_engine.engine.payroll.domain.supplements import OvertimeHours
+from ccnl_engine.engine.payroll.domain.tax_basis import TaxPeriod
 from ccnl_engine.engine.payroll.service.orchestrator import (
     estimate_annual,
     estimate_period_effects,
