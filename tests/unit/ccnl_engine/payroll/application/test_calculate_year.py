@@ -77,6 +77,41 @@ class TestWorkCalendar:
         with pytest.raises(AttributeError):
             cal.year = 2025  # type: ignore[misc]
 
+    def test_year_below_1970_raises(self) -> None:
+        """Year < 1970 raises ValueError."""
+        with pytest.raises(ValueError, match="1970"):
+            WorkCalendar(year=1969)
+
+    def test_duplicate_extra_month_raises(self) -> None:
+        """Two identical name+payment_month schedules raise ValueError."""
+        sched = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        with pytest.raises(ValueError, match="duplicate"):
+            WorkCalendar(year=_YEAR, extra_months=(sched, sched))
+
+
+class TestExtraMonthScheduleValidation:
+    """ExtraMonthSchedule rejects invalid payment months."""
+
+    def test_payment_month_zero_raises(self) -> None:
+        """payment_month=0 raises ValueError."""
+        with pytest.raises(ValueError, match="1-12"):
+            ExtraMonthSchedule(name="tredicesima", payment_month=0)
+
+    def test_payment_month_13_raises(self) -> None:
+        """payment_month=13 raises ValueError."""
+        with pytest.raises(ValueError, match="1-12"):
+            ExtraMonthSchedule(name="tredicesima", payment_month=13)
+
+    def test_payment_month_12_valid(self) -> None:
+        """payment_month=12 is accepted."""
+        s = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        assert s.payment_month == 12
+
+    def test_empty_name_raises(self) -> None:
+        """Empty name raises ValueError."""
+        with pytest.raises(ValueError, match="empty"):
+            ExtraMonthSchedule(name="", payment_month=12)
+
 
 class TestYearCalculationResult:
     """YearCalculationResult stores period results and aggregated totals."""

@@ -90,8 +90,9 @@ def calculate_year(
         num_employees: Employer headcount for INPS rate resolution.
             Defaults to 50.
         period_events: Optional mapping from month number (1-12) to the
-            variable work events for that period.  Extra runs in a month also
-            receive the events mapped to that month.
+            variable work events for that regular period.  Extra-month runs
+            (thirteenth, fourteenth) receive no events from this mapping;
+            they must be addressed via dedicated per-run event allocation.
         regione: ISO region code for regional surtax.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
@@ -122,6 +123,12 @@ def calculate_year(
     for run in schedule.runs:
         pid = PeriodId(year=run.year, month=run.month)
         payment_date = date(run.year, run.month, 28)
+        # Events are allocated only to regular runs; extra-month runs (thirteenth,
+        # fourteenth, adjustment, termination) must have events mapped explicitly
+        # by run_id to avoid unintended duplication across runs sharing a month.
+        run_events: tuple[WorkEvent, ...] = (
+            effective_events.get(run.month, ()) if run.run_kind == "regular" else ()
+        )
         req = PeriodCalculationRequest(
             period_id=pid,
             payment_date=payment_date,
@@ -130,7 +137,7 @@ def calculate_year(
             opening_state=state,
             contract_type=effective_contract,
             num_employees=num_employees,
-            events=effective_events.get(run.month, ()),
+            events=run_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
             family_composition=family_composition,
