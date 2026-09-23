@@ -10,6 +10,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.engine.payroll.domain.pay_items import SicknessItem
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
@@ -312,6 +313,48 @@ class TestSickLeaveEventAccounting:
         result = calculate_period(_req(self._sick()))
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
+
+    def test_waiting_period_zero_uses_full_amount(self) -> None:
+        """No carenza: gross equals the full event amount."""
+        sick = SickLeaveEvent(
+            event_date=date(_YEAR, _MONTH, 12),
+            amount=Decimal("300.00"),
+            sick_days=5,
+            waiting_period_days=0,
+        )
+        base = calculate_period(_base())
+        result = calculate_period(_req(sick))
+        assert result.period_gross == base.period_gross + Decimal("300.00")
+
+    def test_waiting_period_reduces_gross(self) -> None:
+        """Carenza days reduce the employer-paid sick-leave gross."""
+        sick_no_carenza = SickLeaveEvent(
+            event_date=date(_YEAR, _MONTH, 12),
+            amount=Decimal("500.00"),
+            sick_days=5,
+            waiting_period_days=0,
+        )
+        sick_with_carenza = SickLeaveEvent(
+            event_date=date(_YEAR, _MONTH, 12),
+            amount=Decimal("500.00"),
+            sick_days=5,
+            waiting_period_days=3,
+        )
+        result_no = calculate_period(_req(sick_no_carenza))
+        result_with = calculate_period(_req(sick_with_carenza))
+        assert result_with.period_gross < result_no.period_gross
+
+    def test_sick_days_stored_in_pay_item(self) -> None:
+        """sick_days from event is stored in the SicknessItem pay item."""
+        sick = SickLeaveEvent(
+            event_date=date(_YEAR, _MONTH, 12),
+            amount=Decimal("300.00"),
+            sick_days=7,
+        )
+        result = calculate_period(_req(sick))
+        sickness_items = [pi for pi in result.pay_items if isinstance(pi, SicknessItem)]
+        assert sickness_items
+        assert sickness_items[0].sick_days == Decimal(7)
 
 
 class TestBonusEventAccounting:
