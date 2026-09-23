@@ -53,7 +53,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "PeriodCalculationResult",
     "PeriodId",
     "PeriodPayrollInput",
-    "PeriodState",
     "Permanent",
     "RalOverride",
     "RateFund",

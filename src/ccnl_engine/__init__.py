@@ -37,7 +37,6 @@ Usage::
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        opening_state=PeriodState.zero(),
     ))
     print(result.period_net)
 """
@@ -135,7 +134,6 @@ from ccnl_engine.engine.payroll.service.schemas import result_schema, scenario_s
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
-    PeriodState,
 )
 from ccnl_engine.version import __version__ as engine_version
 
@@ -186,7 +184,6 @@ __all__ = [
     "PeriodCalculationResult",
     "PeriodId",
     "PeriodPayrollInput",
-    "PeriodState",
     "Permanent",
     "RalOverride",
     "RateFund",
