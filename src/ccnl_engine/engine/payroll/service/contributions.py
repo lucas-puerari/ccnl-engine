@@ -353,16 +353,25 @@ def resolve_contributions(
         )
 
     # 1% addizionale INPS employee (INPS circ. 4/2026): charged on the portion
-    # of the annual INPS base that exceeds the statutory threshold.
+    # of the annual INPS base exceeding the statutory threshold, but only up to
+    # the IVS massimale — income above the ceiling attracts no INPS at all.
     if (
         rules.inps is not None
         and rules.inps.employee_additional_rate is not None
         and rules.inps.employee_additional_threshold is not None
     ):
         add_threshold = rules.inps.employee_additional_threshold
-        ytd_after = ytd_inps_base + period_inps_base
-        excess_after = max(_ZERO, ytd_after - add_threshold)
-        excess_before = max(_ZERO, ytd_inps_base - add_threshold)
+        # Cap both YTD and current total at the massimale before computing excess.
+        ytd_capped = (
+            min(ytd_inps_base, ceiling) if ceiling is not None else ytd_inps_base
+        )
+        ytd_after_capped = (
+            min(ytd_inps_base + period_inps_base, ceiling)
+            if ceiling is not None
+            else ytd_inps_base + period_inps_base
+        )
+        excess_after = max(_ZERO, ytd_after_capped - add_threshold)
+        excess_before = max(_ZERO, ytd_capped - add_threshold)
         period_excess = excess_after - excess_before
         add_1pct = money(period_excess * rules.inps.employee_additional_rate)
         if add_1pct > _ZERO:
