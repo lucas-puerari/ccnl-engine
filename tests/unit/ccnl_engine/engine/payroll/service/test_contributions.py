@@ -331,3 +331,81 @@ class TestResolveContributions:
         names = [c.name for c in bd.components]
         assert "non_ivs_employer" not in names
         assert "ivs_employer" in names
+
+
+class TestAddizionale1Pct:
+    """resolve_contributions: 1% addizionale INPS (INPS circ. 4/2026)."""
+
+    def _rules_with_additional(self) -> YearRules:
+        return make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
+                "employer_rate": "0.2898",
+                "employer_ivs_rate": "0.2381",
+                "ceiling": None,
+                "employee_additional_rate": "0.01",
+                "employee_additional_threshold": "56224.00",
+            }
+        )
+
+    def test_addizionale_emitted_on_threshold_crossing(self) -> None:
+        """Component appears when period base crosses the threshold."""
+        rules = self._rules_with_additional()
+        # ytd=56000, period=1000 → ytd_after=57000 → excess_after=776, excess_before=0
+        bd = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("56000.00")
+        )
+        names = {c.name for c in bd.components}
+        assert "addizionale_1pct" in names
+        comp = next(c for c in bd.components if c.name == "addizionale_1pct")
+        assert comp.base == _D("776.00")
+        assert comp.amount == money(_D("776.00") * _D("0.01"))
+
+    def test_addizionale_emitted_when_ytd_already_over_threshold(self) -> None:
+        """Entire period is excess when ytd already past threshold."""
+        rules = self._rules_with_additional()
+        # ytd=60000 > 56224 → excess_before=3776, excess_after=4776 → period_excess=1000
+        bd = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
+        )
+        comp = next((c for c in bd.components if c.name == "addizionale_1pct"), None)
+        assert comp is not None
+        assert comp.base == _D("1000.00")
+
+    def test_addizionale_not_emitted_below_threshold(self) -> None:
+        """No component when cumulative stays below threshold."""
+        rules = self._rules_with_additional()
+        bd = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("1000.00")
+        )
+        names = {c.name for c in bd.components}
+        assert "addizionale_1pct" not in names
+
+    def test_addizionale_not_emitted_without_rate_configured(self) -> None:
+        """No component when employee_additional_rate is absent from rules."""
+        rules = make_year_rules(
+            inps={
+                "employee_rate": "0.0919",
+                "employee_ivs_rate": "0.0919",
+                "employer_rate": "0.2898",
+                "employer_ivs_rate": "0.2381",
+                "ceiling": None,
+            }
+        )
+        bd = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
+        )
+        names = {c.name for c in bd.components}
+        assert "addizionale_1pct" not in names
+
+    def test_addizionale_added_to_employee_total(self) -> None:
+        """Employee total includes the addizionale amount."""
+        rules = self._rules_with_additional()
+        bd_without = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("1000.00")
+        )
+        bd_with = resolve_contributions(
+            _D("1000.00"), rules, Permanent(), None, ytd_inps_base=_D("60000.00")
+        )
+        assert bd_with.employee > bd_without.employee

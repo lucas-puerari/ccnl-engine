@@ -270,15 +270,6 @@ def test_p0_05_somma_esente_posted_to_credits() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-06: resolve_contributions does not compute the 1% addizionale "
-        "required on income exceeding 56,224 EUR (INPS circ. 4/2026).  "
-        "ContributionBreakdown has no 'addizionale_1pct' component; the extra "
-        "contribution is silently missing for high-income workers."
-    ),
-)
 def test_p0_06_inps_addizionale_1pct_on_threshold_crossing() -> None:
     """P0-06: 1% addizionale must appear when INPS base crosses 56,224 EUR.
 
