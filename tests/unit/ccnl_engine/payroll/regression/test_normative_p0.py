@@ -378,19 +378,11 @@ def test_p0_07_domestic_work_no_type_error() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-08: AbsenceEvent has no validation on hours.  "
-        "AbsenceEvent(hours=1000) in a single month is impossible (max ~184 h) "
-        "and produces period_gross < 0 silently.  calculate_period must raise "
-        "InvalidInputError for impossible hour values."
-    ),
-)
 def test_p0_08_absence_event_impossible_hours_raises() -> None:
     """P0-08: AbsenceEvent with 1,000 hours must raise InvalidInputError.
 
     Source: physical constraint — a month has at most ~184 working hours.
+    Fixed in refactor/canonical-domain: _check_event_date validates hours <= 240.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),

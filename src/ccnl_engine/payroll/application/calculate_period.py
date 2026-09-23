@@ -340,16 +340,21 @@ def _sum_ledger(entries: tuple[LedgerEntry, ...], account: AccountKind) -> Decim
     return sum((e.amount for e in entries if e.account == account), _ZERO)
 
 
+_MAX_MONTHLY_HOURS = Decimal(240)
+
+
 def _check_event_date(
     event: WorkEvent, date_ctx: EffectiveDateContext, idx: int
 ) -> None:
-    """Raise InvalidInputError if event falls outside the competence period.
+    """Raise InvalidInputError if event is invalid for the competence period.
 
-    ArrearsEvent is exempt: back-paid contract renewals legitimately reference
-    past periods.
+    Checks performed:
+    - Event date must fall inside the period (ArrearsEvent is exempt).
+    - AbsenceEvent hours must be positive and at most 240 per period; a month
+      cannot contain more than ~184 working hours so 240 is the hard ceiling.
 
     Raises:
-        InvalidInputError: When event_date is outside [period_start, period_end].
+        InvalidInputError: When any validation fails.
     """
     if isinstance(event, ArrearsEvent):
         return
@@ -357,6 +362,14 @@ def _check_event_date(
         msg = (
             f"event {idx} ({type(event).__name__}) event_date {event.event_date} "
             f"is outside period [{date_ctx.period_start}, {date_ctx.period_end}]"
+        )
+        raise InvalidInputError(msg)
+    if isinstance(event, AbsenceEvent) and (
+        event.hours <= _ZERO or event.hours > _MAX_MONTHLY_HOURS
+    ):
+        msg = (
+            f"event {idx} (AbsenceEvent) hours={event.hours} is invalid: "
+            f"must be > 0 and <= {_MAX_MONTHLY_HOURS} per period"
         )
         raise InvalidInputError(msg)
 

@@ -40,7 +40,7 @@ from ccnl_engine.payroll.application.calculate_period import (
     _project_ledger,
     calculate_period,
 )
-from ccnl_engine.payroll.domain.events import ArrearsEvent, OvertimeEvent
+from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
@@ -751,3 +751,39 @@ class TestEventDateValidation:
         )
         result = calculate_period(req)
         assert result.period_gross > _ZERO
+
+    def test_absence_event_hours_above_max_raises(self) -> None:
+        """AbsenceEvent with hours > 240 raises InvalidInputError."""
+        absence = AbsenceEvent(
+            event_date=date(2026, 1, 15),
+            hours=Decimal(241),
+            hourly_rate=Decimal("12.50"),
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            events=(absence,),
+        )
+        with pytest.raises(InvalidInputError, match="hours"):
+            calculate_period(req)
+
+    def test_absence_event_hours_zero_raises(self) -> None:
+        """AbsenceEvent with hours=0 raises InvalidInputError."""
+        absence = AbsenceEvent(
+            event_date=date(2026, 1, 15),
+            hours=Decimal(0),
+            hourly_rate=Decimal("12.50"),
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+            events=(absence,),
+        )
+        with pytest.raises(InvalidInputError, match="hours"):
+            calculate_period(req)
