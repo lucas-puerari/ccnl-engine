@@ -128,19 +128,12 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-02: calculate_year always iterates range(1,13) — 12 periods "
-        "regardless of WorkCalendar.extra_months.  When the calendar carries "
-        "one extra month (tredicesima), len(period_results) must be 13.  "
-        "Currently it is always 12 (calculate_year.py:118)."
-    ),
-)
 def test_p0_02_calculate_year_extra_months() -> None:
     """P0-02: calculate_year with one extra month must produce 13 period results.
 
     Source: CCNL calendar (additional_months=13).  Expected: 13 periods.
+    Fixed in feature/payroll-schedule: PayrollSchedule.from_calendar generates
+    extra runs; calculate_year iterates schedule.runs instead of range(1, 13).
     """
     calendar = WorkCalendar(
         year=_YEAR,
