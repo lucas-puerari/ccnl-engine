@@ -7,7 +7,11 @@ from decimal import Decimal
 
 from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
 
@@ -98,7 +102,11 @@ class TestCalculateYear:
             calendar=WorkCalendar(
                 year=2026,
                 extra_months=(
-                    ExtraMonthSchedule(name="tredicesima", payment_month=12),
+                    ExtraMonthSchedule(
+                        kind=ExtraMonthKind.THIRTEENTH,
+                        name="tredicesima",
+                        payment_month=12,
+                    ),
                 ),
             ),
         )

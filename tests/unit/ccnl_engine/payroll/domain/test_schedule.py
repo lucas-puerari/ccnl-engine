@@ -4,7 +4,11 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 
@@ -29,7 +33,13 @@ class TestPayrollScheduleFromCalendar:
         """A tredicesima in December produces 13 runs with a thirteenth in December."""
         cal = WorkCalendar(
             year=2026,
-            extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+            extra_months=(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=12,
+                ),
+            ),
         )
         schedule = PayrollSchedule.from_calendar(cal)
         assert len(schedule.runs) == 13
@@ -42,8 +52,16 @@ class TestPayrollScheduleFromCalendar:
         cal = WorkCalendar(
             year=2026,
             extra_months=(
-                ExtraMonthSchedule(name="tredicesima", payment_month=12),
-                ExtraMonthSchedule(name="quattordicesima", payment_month=7),
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=12,
+                ),
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.FOURTEENTH,
+                    name="quattordicesima",
+                    payment_month=7,
+                ),
             ),
         )
         schedule = PayrollSchedule.from_calendar(cal)
@@ -56,7 +74,13 @@ class TestPayrollScheduleFromCalendar:
         """The thirteenth run appears directly after the regular December run."""
         cal = WorkCalendar(
             year=2026,
-            extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+            extra_months=(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=12,
+                ),
+            ),
         )
         schedule = PayrollSchedule.from_calendar(cal)
         dec_regular_idx = next(

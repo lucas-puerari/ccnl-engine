@@ -9,7 +9,11 @@ import pytest
 
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -22,13 +26,21 @@ class TestExtraMonthSchedule:
 
     def test_stored_fields(self) -> None:
         """Name and payment_month are stored and retrievable."""
-        s = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        s = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
         assert s.name == "tredicesima"
         assert s.payment_month == 12
 
     def test_frozen(self) -> None:
         """ExtraMonthSchedule is immutable."""
-        s = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        s = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
         with pytest.raises(AttributeError):
             s.payment_month = 6  # type: ignore[misc]
 
@@ -44,7 +56,11 @@ class TestWorkCalendar:
 
     def test_explicit_extra_months(self) -> None:
         """Explicitly supplied extra months are stored."""
-        sched = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        sched = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
         cal = WorkCalendar(year=_YEAR, extra_months=(sched,))
         assert len(cal.extra_months) == 1
         assert cal.extra_months[0] is sched
@@ -84,7 +100,11 @@ class TestWorkCalendar:
 
     def test_duplicate_extra_month_raises(self) -> None:
         """Two identical name+payment_month schedules raise ValueError."""
-        sched = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        sched = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
         with pytest.raises(ValueError, match="duplicate"):
             WorkCalendar(year=_YEAR, extra_months=(sched, sched))
 
@@ -95,22 +115,36 @@ class TestExtraMonthScheduleValidation:
     def test_payment_month_zero_raises(self) -> None:
         """payment_month=0 raises ValueError."""
         with pytest.raises(ValueError, match="1-12"):
-            ExtraMonthSchedule(name="tredicesima", payment_month=0)
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=0,
+            )
 
     def test_payment_month_13_raises(self) -> None:
         """payment_month=13 raises ValueError."""
         with pytest.raises(ValueError, match="1-12"):
-            ExtraMonthSchedule(name="tredicesima", payment_month=13)
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=13,
+            )
 
     def test_payment_month_12_valid(self) -> None:
         """payment_month=12 is accepted."""
-        s = ExtraMonthSchedule(name="tredicesima", payment_month=12)
+        s = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
         assert s.payment_month == 12
 
     def test_empty_name_raises(self) -> None:
         """Empty name raises ValueError."""
         with pytest.raises(ValueError, match="empty"):
-            ExtraMonthSchedule(name="", payment_month=12)
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH, name="", payment_month=12
+            )
 
 
 class TestYearCalculationResult:

@@ -34,6 +34,7 @@ print(f"Employer cost:  {result.period_employer_cost} EUR")
 
 from ccnl_engine import PayrollYearRequest  # noqa: E402
 from ccnl_engine.payroll.domain.calendar import (  # noqa: E402
+    ExtraMonthKind,
     ExtraMonthSchedule,
     WorkCalendar,
 )
@@ -45,7 +46,13 @@ year_result = engine.calculate_year(
         level_code="4",
         calendar=WorkCalendar(
             year=2026,
-            extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+            extra_months=(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=12,
+                ),
+            ),
         ),
     )
 )

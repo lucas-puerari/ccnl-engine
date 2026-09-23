@@ -38,7 +38,11 @@ from ccnl_engine.engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BonusEvent,
@@ -137,7 +141,13 @@ def test_p0_02_calculate_year_extra_months() -> None:
     """
     calendar = WorkCalendar(
         year=_YEAR,
-        extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+        extra_months=(
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=12,
+            ),
+        ),
     )
     result = calculate_year(
         _YEAR,

@@ -31,7 +31,11 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+    WorkCalendar,
+)
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BilateralFundEvent,
@@ -71,7 +75,13 @@ def _req(
 def _calendar_13() -> WorkCalendar:
     return WorkCalendar(
         year=_YEAR,
-        extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
+        extra_months=(
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=12,
+            ),
+        ),
     )
 
 

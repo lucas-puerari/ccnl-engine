@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
 from ccnl_engine.payroll.domain.run import PayrollRun
 
 if TYPE_CHECKING:
@@ -72,8 +73,7 @@ class PayrollSchedule:
             runs.append(PayrollRun.regular(year, month))
             for extra in calendar.extra_months:
                 if extra.payment_month == month:
-                    name = extra.name.lower()
-                    if "quattordices" in name:
+                    if extra.kind == ExtraMonthKind.FOURTEENTH:
                         runs.append(PayrollRun.fourteenth(year, month))
                     else:
                         runs.append(PayrollRun.thirteenth(year, month))
