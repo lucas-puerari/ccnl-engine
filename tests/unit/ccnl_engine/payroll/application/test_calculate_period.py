@@ -795,22 +795,13 @@ class TestEventDateValidation:
             calculate_period(req)
 
     def test_absence_event_hours_zero_raises(self) -> None:
-        """AbsenceEvent with hours=0 raises InvalidInputError."""
-        absence = AbsenceEvent(
-            event_date=date(2026, 1, 15),
-            hours=Decimal(0),
-            hourly_rate=Decimal("12.50"),
-        )
-        req = PeriodCalculationRequest(
-            period_id=PeriodId(year=2026, month=1),
-            payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
-            level_code=_LEVEL,
-            opening_state=PeriodState.zero(),
-            events=(absence,),
-        )
+        """AbsenceEvent with hours=0 raises InvalidInputError at construction."""
         with pytest.raises(InvalidInputError, match="hours"):
-            calculate_period(req)
+            AbsenceEvent(
+                event_date=date(2026, 1, 15),
+                hours=Decimal(0),
+                hourly_rate=Decimal("12.50"),
+            )
 
 
 class TestRequireResolution:

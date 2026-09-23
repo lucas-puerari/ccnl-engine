@@ -38,12 +38,15 @@ from ccnl_engine.payroll.domain.calendar import (
     WorkCalendar,
 )
 from ccnl_engine.payroll.domain.events import (
+    AbsenceEvent,
+    ArrearsEvent,
     BilateralFundEvent,
     FringeEvent,
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
     SickLeaveEvent,
+    TerminationTFREvent,
     WelfareEvent,
 )
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
@@ -142,10 +145,6 @@ def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: OvertimeEvent does not validate hours or hourly_rate.",
-)
 def test_overtime_negative_hours_raises() -> None:
     """OvertimeEvent with negative hours must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -156,10 +155,6 @@ def test_overtime_negative_hours_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: OvertimeEvent does not validate hourly_rate.",
-)
 def test_overtime_negative_rate_raises() -> None:
     """OvertimeEvent with negative hourly_rate must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -170,10 +165,6 @@ def test_overtime_negative_rate_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: SickLeaveEvent does not validate amount sign.",
-)
 def test_sick_leave_negative_amount_raises() -> None:
     """SickLeaveEvent with negative amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -184,12 +175,6 @@ def test_sick_leave_negative_amount_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §5 P0-7: SickLeaveEvent does not validate waiting_period_days < 0."
-    ),
-)
 def test_sick_leave_negative_waiting_period_raises() -> None:
     """SickLeaveEvent with negative waiting_period_days must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -201,10 +186,6 @@ def test_sick_leave_negative_waiting_period_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: NightShiftEvent does not validate supplement_amount.",
-)
 def test_night_shift_negative_supplement_raises() -> None:
     """NightShiftEvent with negative supplement_amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -214,10 +195,6 @@ def test_night_shift_negative_supplement_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: HolidayWorkEvent does not validate supplement_amount.",
-)
 def test_holiday_work_negative_supplement_raises() -> None:
     """HolidayWorkEvent with negative supplement_amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -227,10 +204,6 @@ def test_holiday_work_negative_supplement_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: WelfareEvent does not validate amount sign.",
-)
 def test_welfare_negative_amount_raises() -> None:
     """WelfareEvent with negative amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -240,10 +213,6 @@ def test_welfare_negative_amount_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="REVIEW.md §5 P0-7: FringeEvent does not validate amount sign.",
-)
 def test_fringe_negative_amount_raises() -> None:
     """FringeEvent with negative amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -253,12 +222,6 @@ def test_fringe_negative_amount_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §5 P0-7: BilateralFundEvent does not validate employee_amount sign."
-    ),
-)
 def test_bilateral_fund_negative_employee_amount_raises() -> None:
     """BilateralFundEvent with negative employee_amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -269,12 +232,6 @@ def test_bilateral_fund_negative_employee_amount_raises() -> None:
         )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §5 P0-7: BilateralFundEvent does not validate employer_amount sign."
-    ),
-)
 def test_bilateral_fund_negative_employer_amount_raises() -> None:
     """BilateralFundEvent with negative employer_amount must raise InvalidInputError."""
     with pytest.raises(InvalidInputError):
@@ -282,6 +239,78 @@ def test_bilateral_fund_negative_employer_amount_raises() -> None:
             event_date=date(_YEAR, 1, 15),
             employee_amount=Decimal("100.00"),
             employer_amount=Decimal("-100.00"),
+        )
+
+
+def test_overtime_zero_multiplier_raises() -> None:
+    """OvertimeEvent with multiplier=0 must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        OvertimeEvent(
+            event_date=date(_YEAR, 1, 15),
+            hours=Decimal(2),
+            hourly_rate=Decimal("15.00"),
+            multiplier=Decimal(0),
+        )
+
+
+def test_absence_negative_hourly_rate_raises() -> None:
+    """AbsenceEvent with negative hourly_rate must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        AbsenceEvent(
+            event_date=date(_YEAR, 1, 15),
+            hours=Decimal(8),
+            hourly_rate=Decimal("-12.00"),
+        )
+
+
+def test_absence_end_date_before_event_date_raises() -> None:
+    """AbsenceEvent with end_date < event_date must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        AbsenceEvent(
+            event_date=date(_YEAR, 1, 20),
+            hours=Decimal(8),
+            hourly_rate=Decimal("12.00"),
+            end_date=date(_YEAR, 1, 15),
+        )
+
+
+def test_arrears_negative_amount_raises() -> None:
+    """ArrearsEvent with negative amount must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        ArrearsEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("-500.00"),
+            separate_tax_rate=Decimal("0.23"),
+        )
+
+
+def test_arrears_tax_rate_above_one_raises() -> None:
+    """ArrearsEvent with separate_tax_rate > 1 must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        ArrearsEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("500.00"),
+            separate_tax_rate=Decimal("1.5"),
+        )
+
+
+def test_termination_tfr_negative_amount_raises() -> None:
+    """TerminationTFREvent with negative amount must raise InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        TerminationTFREvent(
+            event_date=date(_YEAR, 12, 31),
+            amount=Decimal("-1000.00"),
+            separate_tax_rate=Decimal("0.23"),
+        )
+
+
+def test_termination_tfr_negative_tax_rate_raises() -> None:
+    """TerminationTFREvent with negative separate_tax_rate raises InvalidInputError."""
+    with pytest.raises(InvalidInputError):
+        TerminationTFREvent(
+            event_date=date(_YEAR, 12, 31),
+            amount=Decimal("1000.00"),
+            separate_tax_rate=Decimal("-0.5"),
         )
 
 

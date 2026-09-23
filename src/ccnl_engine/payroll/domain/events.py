@@ -41,16 +41,27 @@ class OvertimeEvent:
 
     Attributes:
         event_date: Calendar date the overtime was worked.
-        hours: Number of overtime hours.
-        hourly_rate: Base hourly rate in EUR.
+        hours: Number of overtime hours.  Must be > 0.
+        hourly_rate: Base hourly rate in EUR.  Must be > 0.
         multiplier: Overtime multiplier applied to the hourly rate (e.g.
-            ``1.25`` for 25% supplement).
+            ``1.25`` for 25% supplement).  Must be > 0.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
     multiplier: Decimal = Decimal("1.25")
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.hours <= 0:
+            msg = f"OvertimeEvent.hours must be > 0; got {self.hours}"
+            raise InvalidInputError(msg, feature="overtime")
+        if self.hourly_rate <= 0:
+            msg = f"OvertimeEvent.hourly_rate must be > 0; got {self.hourly_rate}"
+            raise InvalidInputError(msg, feature="overtime")
+        if self.multiplier <= 0:
+            msg = f"OvertimeEvent.multiplier must be > 0; got {self.multiplier}"
+            raise InvalidInputError(msg, feature="overtime")
 
 
 @dataclass(frozen=True)
@@ -59,11 +70,19 @@ class NightShiftEvent:
 
     Attributes:
         event_date: Calendar date the shift was worked.
-        supplement_amount: Flat supplement for the night period in EUR.
+        supplement_amount: Flat supplement for the night period in EUR.  Must be >= 0.
     """
 
     event_date: date
     supplement_amount: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.supplement_amount < 0:
+            msg = (
+                "NightShiftEvent.supplement_amount must be >= 0; "
+                f"got {self.supplement_amount}"
+            )
+            raise InvalidInputError(msg, feature="night_shift")
 
 
 @dataclass(frozen=True)
@@ -75,29 +94,52 @@ class HolidayWorkEvent:
 
     Attributes:
         event_date: Calendar date the holiday was worked.
-        supplement_amount: Flat supplement for the holiday in EUR.
+        supplement_amount: Flat supplement for the holiday in EUR.  Must be >= 0.
     """
 
     event_date: date
     supplement_amount: Decimal
 
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.supplement_amount < 0:
+            msg = (
+                "HolidayWorkEvent.supplement_amount must be >= 0; "
+                f"got {self.supplement_amount}"
+            )
+            raise InvalidInputError(msg, feature="holiday_work")
+
 
 @dataclass(frozen=True)
 class AbsenceEvent:
-    """Unpaid absence: reduces gross, INPS base, TFR base, and taxable income.
+    """Unpaid absence: deducted via EMPLOYEE_DEDUCTIONS; reduces INPS and TFR base.
 
     Attributes:
         event_date: Start date (or sole date) of the absence.
-        hours: Number of absent hours.
-        hourly_rate: Rate at which the pay is deducted in EUR.
+        hours: Number of absent hours.  Must be > 0.
+        hourly_rate: Rate at which the pay is deducted in EUR.  Must be > 0.
         end_date: Last day of the absence range.  ``None`` for single-day
             absences where ``event_date`` is both start and end.
+            When set must be >= ``event_date``.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
     end_date: date | None = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.hours <= 0:
+            msg = f"AbsenceEvent.hours must be > 0; got {self.hours}"
+            raise InvalidInputError(msg, feature="absence")
+        if self.hourly_rate <= 0:
+            msg = f"AbsenceEvent.hourly_rate must be > 0; got {self.hourly_rate}"
+            raise InvalidInputError(msg, feature="absence")
+        if self.end_date is not None and self.end_date < self.event_date:
+            msg = (
+                f"AbsenceEvent.end_date ({self.end_date}) must be "
+                f">= event_date ({self.event_date})"
+            )
+            raise InvalidInputError(msg, feature="absence")
 
 
 @dataclass(frozen=True)
@@ -129,8 +171,17 @@ class SickLeaveEvent:
     waiting_period_days: int = 0
 
     def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"SickLeaveEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="sick_leave")
         if self.sick_days < 1:
             msg = f"SickLeaveEvent.sick_days must be >= 1; got {self.sick_days}"
+            raise InvalidInputError(msg, feature="sick_leave")
+        if self.waiting_period_days < 0:
+            msg = (
+                f"SickLeaveEvent.waiting_period_days must be >= 0; "
+                f"got {self.waiting_period_days}"
+            )
             raise InvalidInputError(msg, feature="sick_leave")
         if self.waiting_period_days > self.sick_days:
             msg = (
@@ -174,11 +225,16 @@ class FringeEvent:
 
     Attributes:
         event_date: Date the benefit is attributed to.
-        amount: Value of the fringe benefit in EUR.
+        amount: Value of the fringe benefit in EUR.  Must be >= 0.
     """
 
     event_date: date
     amount: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"FringeEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="fringe")
 
 
 @dataclass(frozen=True)
@@ -187,11 +243,16 @@ class WelfareEvent:
 
     Attributes:
         event_date: Date the benefit is attributed to.
-        amount: Value of the welfare benefit in EUR.
+        amount: Value of the welfare benefit in EUR.  Must be >= 0.
     """
 
     event_date: date
     amount: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"WelfareEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="welfare")
 
 
 @dataclass(frozen=True)
@@ -200,9 +261,10 @@ class ArrearsEvent:
 
     Attributes:
         event_date: Date the arrears are attributed to.
-        amount: Gross arrears amount in EUR.
+        amount: Gross arrears amount in EUR.  Must be >= 0.
         separate_tax_rate: Caller-supplied average IRPEF rate from the
             two prior tax years, applied as tassazione separata.
+            Must be in [0, 1].
         reference_period: The competence period from which the arrears
             originate (e.g. the period of the back-dated contract renewal).
             ``None`` when the reference period is not tracked.
@@ -212,6 +274,17 @@ class ArrearsEvent:
     amount: Decimal
     separate_tax_rate: Decimal
     reference_period: PeriodId | None = None
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"ArrearsEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="arrears")
+        if not (0 <= self.separate_tax_rate <= 1):
+            msg = (
+                "ArrearsEvent.separate_tax_rate must be in [0, 1]; "
+                f"got {self.separate_tax_rate}"
+            )
+            raise InvalidInputError(msg, feature="arrears")
 
 
 @dataclass(frozen=True)
@@ -224,13 +297,27 @@ class BilateralFundEvent:
 
     Attributes:
         event_date: Date the contribution is attributed to.
-        employee_amount: Employee-side contribution in EUR.
-        employer_amount: Employer-side contribution in EUR.
+        employee_amount: Employee-side contribution in EUR.  Must be >= 0.
+        employer_amount: Employer-side contribution in EUR.  Must be >= 0.
     """
 
     event_date: date
     employee_amount: Decimal
     employer_amount: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.employee_amount < 0:
+            msg = (
+                "BilateralFundEvent.employee_amount must be >= 0; "
+                f"got {self.employee_amount}"
+            )
+            raise InvalidInputError(msg, feature="bilateral_fund")
+        if self.employer_amount < 0:
+            msg = (
+                "BilateralFundEvent.employer_amount must be >= 0; "
+                f"got {self.employer_amount}"
+            )
+            raise InvalidInputError(msg, feature="bilateral_fund")
 
 
 @dataclass(frozen=True)
@@ -242,13 +329,24 @@ class TerminationTFREvent:
 
     Attributes:
         event_date: Date of cessazione.
-        amount: Total TFR payout in EUR.
-        separate_tax_rate: Applicable tassazione separata rate.
+        amount: Total TFR payout in EUR.  Must be >= 0.
+        separate_tax_rate: Applicable tassazione separata rate.  Must be in [0, 1].
     """
 
     event_date: date
     amount: Decimal
     separate_tax_rate: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"TerminationTFREvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="termination_tfr")
+        if not (0 <= self.separate_tax_rate <= 1):
+            msg = (
+                "TerminationTFREvent.separate_tax_rate must be in [0, 1]; "
+                f"got {self.separate_tax_rate}"
+            )
+            raise InvalidInputError(msg, feature="termination_tfr")
 
 
 WorkEvent = (

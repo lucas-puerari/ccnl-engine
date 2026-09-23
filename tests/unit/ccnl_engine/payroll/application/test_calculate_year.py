@@ -254,10 +254,10 @@ class TestCalculateYear:
             calendar=cal,
             period_events={3: (absence,)},
         )
-        # March gross must be lower than January gross (same base minus absence)
-        jan_gross = result.period_results[0].period_gross
-        mar_gross = result.period_results[2].period_gross
-        assert mar_gross < jan_gross
+        # March net must be lower than January net (absence in EMPLOYEE_DEDUCTIONS)
+        jan_net = result.period_results[0].period_net
+        mar_net = result.period_results[2].period_net
+        assert mar_net < jan_net
 
     def test_all_period_gross_values_positive(self) -> None:
         """With no events all 12 period_gross values are positive."""
@@ -306,8 +306,8 @@ class TestPerRunEventAllocation:
             calendar=cal,
             per_run_events={run_id: (absence,)},
         )
-        may_no = result_no_event.period_results[4].period_gross
-        may_with = result_with_event.period_results[4].period_gross
+        may_no = result_no_event.period_results[4].period_net
+        may_with = result_with_event.period_results[4].period_net
         assert may_with < may_no
 
     def test_per_run_events_do_not_leak_to_other_runs(self) -> None:
@@ -358,7 +358,7 @@ class TestPerRunEventAllocation:
             and r.run is not None
             and r.run.run_kind == "thirteenth"
         )
-        assert thirteenth_with.period_gross < thirteenth_no.period_gross
+        assert thirteenth_with.period_net < thirteenth_no.period_net
 
     def test_extra_month_run_events_do_not_appear_in_regular_run(self) -> None:
         """Events allocated to thirteenth run are not applied to regular December."""
@@ -421,6 +421,6 @@ class TestPerRunEventAllocation:
         result = calculate_year(
             _YEAR, _CCNL, _LEVEL, calendar=cal, period_events={6: (absence,)}
         )
-        jun_gross = result.period_results[5].period_gross
-        jan_gross = result.period_results[0].period_gross
-        assert jun_gross < jan_gross
+        jun_net = result.period_results[5].period_net
+        jan_net = result.period_results[0].period_net
+        assert jun_net < jan_net
