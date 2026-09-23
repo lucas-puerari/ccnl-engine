@@ -613,6 +613,45 @@ def _fringe_bases(
     return _ZERO, _ZERO, new_cumulative
 
 
+def _make_standard_event_entry(
+    event: _CashEvent,
+    gross: Decimal,
+    evt_id: str,
+    kind: str,
+    cp: CompetencePeriod,
+    payment_date: date,
+    resolution: PolicyResolution,
+) -> LedgerEntry:
+    """Build the ledger entry for a standard cash or absence event.
+
+    Returns:
+        A :class:`~ccnl_engine.engine.payroll.domain.ledger.LedgerEntry` posted
+        to ``EMPLOYEE_DEDUCTIONS`` for absences and ``CASH_EARNINGS`` for all
+        other standard events.
+    """
+    if isinstance(event, AbsenceEvent):
+        return _make_entry(
+            f"deduction_{evt_id}",
+            evt_id,
+            kind,
+            cp,
+            payment_date,
+            AccountKind.EMPLOYEE_DEDUCTIONS,
+            -gross,
+            policy_id=resolution.policy_id,
+        )
+    return _make_entry(
+        f"cash_{evt_id}",
+        evt_id,
+        kind,
+        cp,
+        payment_date,
+        AccountKind.CASH_EARNINGS,
+        gross,
+        policy_id=resolution.policy_id,
+    )
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -676,32 +715,11 @@ def _process_events(
             if treatment.substitute:
                 total_substitute += gross
             items.append(item)
-            if isinstance(event, AbsenceEvent):
-                entries.append(
-                    _make_entry(
-                        f"deduction_{evt_id}",
-                        evt_id,
-                        kind,
-                        cp,
-                        payment_date,
-                        AccountKind.EMPLOYEE_DEDUCTIONS,
-                        -gross,  # positive; gross is negative for absences
-                        policy_id=resolution.policy_id,
-                    )
+            entries.append(
+                _make_standard_event_entry(
+                    event, gross, evt_id, kind, cp, payment_date, resolution
                 )
-            else:
-                entries.append(
-                    _make_entry(
-                        f"cash_{evt_id}",
-                        evt_id,
-                        kind,
-                        cp,
-                        payment_date,
-                        AccountKind.CASH_EARNINGS,
-                        gross,
-                        policy_id=resolution.policy_id,
-                    )
-                )
+            )
         elif isinstance(event, WelfareEvent):
             gross = event.amount
             welfare_resolution = _require_resolution(resolver, "welfare_item", context)
