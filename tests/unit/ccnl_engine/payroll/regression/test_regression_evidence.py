@@ -25,8 +25,6 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-import pytest
-
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -135,15 +133,6 @@ def test_ce4_cumulative_fringe_threshold() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "CE-5 P0.7: WelfareEvent increments total_gross and posts to "
-        "CASH_EARNINGS (calculate_period.py:546-557).  Welfare benefits are "
-        "non-cash/exempt; they must not appear as monetary earnings in the "
-        "period_gross or in CASH_EARNINGS."
-    ),
-)
 def test_ce5_welfare_does_not_increase_cash_earnings() -> None:
     """CE-5: a WelfareEvent must not increase period_gross or CASH_EARNINGS.
 

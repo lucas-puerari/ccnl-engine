@@ -404,7 +404,17 @@ def _check_event_date(
         raise InvalidInputError(msg)
 
 
-def _standard_event_gross(event: WorkEvent) -> Decimal:
+_CashEvent = (
+    OvertimeEvent
+    | NightShiftEvent
+    | HolidayWorkEvent
+    | AbsenceEvent
+    | SickLeaveEvent
+    | BonusEvent
+)
+
+
+def _standard_event_gross(event: _CashEvent) -> Decimal:
     """Compute the gross (payslip) amount for a standard work event.
 
     Returns:
@@ -418,13 +428,11 @@ def _standard_event_gross(event: WorkEvent) -> Decimal:
         return -money(event.hours * event.hourly_rate)
     if isinstance(event, SickLeaveEvent):
         return event.amount
-    if isinstance(event, BonusEvent):
-        return event.amount
-    return event.amount  # type: ignore[union-attr]  # WelfareEvent
+    return event.amount  # BonusEvent
 
 
 def _standard_event_item(
-    event: WorkEvent,
+    event: _CashEvent,
     gross: Decimal,
     evt_id: str,
     cp: CompetencePeriod,
@@ -483,27 +491,16 @@ def _standard_event_item(
             ),
             "sickness_item",
         )
-    if isinstance(event, BonusEvent):
-        return (
-            BonusEarning(
-                item_id=evt_id,
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=gross,
-            ),
-            "bonus_earning",
-        )
     return (
-        WelfareItem(
+        BonusEarning(
             item_id=evt_id,
             competence_period=cp,
             payment_date=payment_date,
             quantity=Decimal(1),
             amount=gross,
         ),
-        "welfare_item",
-    )
+        "bonus_earning",
+    )  # BonusEvent
 
 
 def _treatment_deltas(
@@ -522,22 +519,34 @@ def _treatment_deltas(
 
 
 def _fringe_bases(
-    amount: Decimal, cumulative_fringe: Decimal, threshold: Decimal
+    amount: Decimal,
+    cumulative_fringe: Decimal,
+    threshold: Decimal,
+    cumulative_taxed: Decimal = _ZERO,
 ) -> tuple[Decimal, Decimal, Decimal]:
     """Return (inps_base, irpef_base, new_cumulative) for a fringe event.
 
     The annual threshold (Art. 51 c. 3 TUIR) applies cumulatively to all
-    fringe events in the year.  When adding ``amount`` to the running
-    ``cumulative_fringe`` crosses the threshold, the new ``amount`` is
-    fully taxable; otherwise it is exempt.
+    fringe events in the year.  When crossing the threshold the ENTIRE
+    cumulative fringe (less whatever was already taxed) becomes retroactively
+    taxable (Art. 51 c. 3-bis TUIR).
+
+    Args:
+        amount: Fringe amount in this event.
+        cumulative_fringe: Running total of fringe value before this event.
+        threshold: Annual exemption threshold (Art. 51 c. 3 TUIR).
+        cumulative_taxed: Amount of fringe already subject to IRPEF/INPS
+            before this event (zero until the threshold is first crossed).
 
     Returns:
         ``(inps_base, irpef_base, new_cumulative)`` where the first two
-        are either ``amount`` or zero depending on cumulative taxability.
+        are the retroactive taxable base or zero depending on cumulative
+        taxability.
     """
     new_cumulative = cumulative_fringe + amount
     if new_cumulative > threshold:
-        return amount, amount, new_cumulative
+        retroactive = new_cumulative - cumulative_taxed
+        return retroactive, retroactive, new_cumulative
     return _ZERO, _ZERO, new_cumulative
 
 
@@ -551,10 +560,12 @@ def _process_events(
     context: PolicyContext,
     fringe_threshold: Decimal = _ZERO,
     opening_fringe_ytd: Decimal = _ZERO,
+    opening_fringe_taxed: Decimal = _ZERO,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
-    Most events produce one pay item and one CASH_EARNINGS entry.
+    Standard events (overtime, absence, sickness, bonus) post to CASH_EARNINGS.
+    FringeEvent and WelfareEvent post to NON_CASH_BENEFITS (non-cash employer cost).
     BilateralFundEvent produces two items (employee + employer) and two entries.
     ArrearsEvent and TerminationTFREvent each produce an additional SEPARATE_TAX entry.
 
@@ -571,6 +582,7 @@ def _process_events(
     total_fringe_inps = _ZERO
     total_fringe_irpef = _ZERO
     cumulative_fringe = opening_fringe_ytd
+    cumulative_taxed = opening_fringe_taxed
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
 
@@ -587,7 +599,6 @@ def _process_events(
                 AbsenceEvent,
                 SickLeaveEvent,
                 BonusEvent,
-                WelfareEvent,
             ),
         ):
             gross = _standard_event_gross(event)
@@ -611,11 +622,35 @@ def _process_events(
                     policy_id=resolution.policy_id,
                 )
             )
+        elif isinstance(event, WelfareEvent):
+            gross = event.amount
+            welfare_resolution = _require_resolution(resolver, "welfare_item", context)
+            item = WelfareItem(
+                item_id=evt_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=gross,
+            )
+            items.append(item)
+            entries.append(
+                _make_entry(
+                    f"ncb_{evt_id}",
+                    evt_id,
+                    "welfare_item",
+                    cp,
+                    payment_date,
+                    AccountKind.NON_CASH_BENEFITS,
+                    gross,
+                    policy_id=welfare_resolution.policy_id,
+                )
+            )
         elif isinstance(event, FringeEvent):
             gross = event.amount
             fringe_inps, fringe_irpef, cumulative_fringe = _fringe_bases(
-                gross, cumulative_fringe, fringe_threshold
+                gross, cumulative_fringe, fringe_threshold, cumulative_taxed
             )
+            cumulative_taxed += fringe_inps
             fringe_resolution = _require_resolution(
                 resolver, "fringe_benefit_item", context
             )
@@ -634,12 +669,12 @@ def _process_events(
             items.append(item)
             entries.append(
                 _make_entry(
-                    f"cash_{evt_id}",
+                    f"ncb_{evt_id}",
                     evt_id,
                     "fringe_benefit_item",
                     cp,
                     payment_date,
-                    AccountKind.CASH_EARNINGS,
+                    AccountKind.NON_CASH_BENEFITS,
                     gross,
                     policy_id=fringe_resolution.policy_id,
                 )
@@ -1092,6 +1127,7 @@ def calculate_period(
         policy_context,
         fringe_threshold=fringe_threshold,
         opening_fringe_ytd=request.opening_state.fringe_ytd,
+        opening_fringe_taxed=request.opening_state.fringe_taxed_ytd,
     )
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
@@ -1128,7 +1164,47 @@ def calculate_period(
         resolver,
         policy_context,
     )
-    all_entries = ledger_entries + event_entries
+
+    # Somma esente (L. 207/2024): extract annual amount, prorate to period
+    annual_somma_esente = next(
+        (c.amount for c in tax_computation.components if c.name == "somma_esente"),
+        _ZERO,
+    )
+    period_somma_esente = (
+        money(annual_somma_esente / additional_months)
+        if annual_somma_esente > _ZERO
+        else _ZERO
+    )
+    se_items: tuple[PayItem, ...] = ()
+    se_entries: tuple[LedgerEntry, ...] = ()
+    if period_somma_esente > _ZERO:
+        credit_pid = _require_resolution(
+            resolver, "tax_credit_item", policy_context
+        ).policy_id
+        se_item_id = f"somma_esente_{tag}"
+        se_items = (
+            TaxCreditItem(
+                item_id=se_item_id,
+                competence_period=cp,
+                payment_date=request.payment_date,
+                quantity=Decimal(1),
+                amount=period_somma_esente,
+            ),
+        )
+        se_entries = (
+            _make_entry(
+                se_item_id,
+                se_item_id,
+                "tax_credit_item",
+                cp,
+                request.payment_date,
+                AccountKind.CREDITS,
+                period_somma_esente,
+                policy_id=credit_pid,
+            ),
+        )
+
+    all_entries = ledger_entries + event_entries + se_entries
 
     period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)
     period_net = (
@@ -1142,6 +1218,7 @@ def calculate_period(
     )
     period_employer_cost = (
         period_gross
+        + _sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS)
         + _sum_ledger(all_entries, AccountKind.EMPLOYER_CONTRIBUTIONS)
         + _sum_ledger(all_entries, AccountKind.TFR_ACCRUAL)
     )
@@ -1160,13 +1237,16 @@ def calculate_period(
         inps_base_ytd=request.opening_state.inps_base_ytd + period_inps_base,
         taxable_ytd=request.opening_state.taxable_ytd + amounts.period_taxable,
         fringe_ytd=(request.opening_state.fringe_ytd + event_totals.fringe_value),
+        fringe_taxed_ytd=(
+            request.opening_state.fringe_taxed_ytd + event_totals.fringe_irpef
+        ),
     )
     benefit_breakdown = BenefitBreakdown(
-        value=event_totals.fringe_value,
+        value=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),
         cash=_ZERO,
         irpef_base=event_totals.fringe_irpef,
         inps_base=event_totals.fringe_inps,
-        employer_cost=event_totals.fringe_value,
+        employer_cost=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),
     )
     result = PeriodCalculationResult(
         period_id=request.period_id,
@@ -1175,7 +1255,7 @@ def calculate_period(
         period_net=period_net,
         period_employer_cost=period_employer_cost,
         closing_state=closing,
-        pay_items=pay_items + event_items,
+        pay_items=pay_items + event_items + se_items,
         ledger_entries=all_entries,
         capability_report=capability_report,
         contribution_breakdown=contribution_breakdown,

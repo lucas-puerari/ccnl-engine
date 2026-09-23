@@ -210,16 +210,6 @@ def test_p0_03_taxable_ytd_affects_conguaglio() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-04: _fringe_bases() taxes only the current period's amount when "
-        "cumulative crosses the threshold.  The prior-period exempt amount "
-        "(600 EUR, fringe_ytd) is never retroactively corrected.  "
-        "benefit_breakdown.irpef_base must be 1,200 (full cumulative) but "
-        "is currently 600 (_process_events → _fringe_bases)."
-    ),
-)
 def test_p0_04_fringe_retroactive_on_threshold_crossing() -> None:
     """P0-04: irpef_base must cover the full cumulative fringe when crossing.
 
@@ -251,16 +241,6 @@ def test_p0_04_fringe_retroactive_on_threshold_crossing() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-05: resolve_tax_computation produces a 'somma_esente' component "
-        "(L. 160/2019) but calculate_period only posts period_tratt "
-        "(trattamento_integrativo) to CREDITS and ignores somma_esente.  "
-        "For acconciatura-estetica level 3 (annual reddito ≈ 19,136 EUR < "
-        "28,000 EUR threshold) CREDITS must be > 0; currently it is 0."
-    ),
-)
 def test_p0_05_somma_esente_posted_to_credits() -> None:
     """P0-05: low-income worker must have CREDITS > 0 from somma_esente.
 

@@ -16,8 +16,8 @@ Invariants:
           = ORDINARY_TAX total.
     I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
           advance correctly from opening.
-    I12 — employer cost identity: CASH_EARNINGS + EMPLOYER_CONTRIBUTIONS
-          + TFR_ACCRUAL = period_employer_cost.
+    I12 — employer cost identity: CASH_EARNINGS + NON_CASH_BENEFITS
+          + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL = period_employer_cost.
     I13 — gross identity: CASH_EARNINGS total = period_gross.
 """
 
@@ -252,16 +252,20 @@ def _check_i11(
 def _check_i12(
     result: PeriodCalculationResult,
 ) -> list[ReconciliationViolation]:
-    """I12: employer cost — CASH_EARNINGS + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL.
+    """I12: employer cost identity.
+
+    CASH_EARNINGS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL
+    = period_employer_cost.
 
     Returns:
         A violation when the derived employer cost diverges from
         ``period_employer_cost``.
     """
     cash = _sum_account(result, AccountKind.CASH_EARNINGS)
+    ncb = _sum_account(result, AccountKind.NON_CASH_BENEFITS)
     employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
     tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
-    derived = cash + employer + tfr
+    derived = cash + ncb + employer + tfr
     if derived != result.period_employer_cost:
         return [
             ReconciliationViolation(

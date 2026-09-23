@@ -332,7 +332,7 @@ class TestI11StateTransition:
 
 
 class TestI12EmployerCostIdentity:
-    """I12: CASH_EARNINGS + employer contributions + TFR = period_employer_cost."""
+    """I12: CASH_EARNINGS + NON_CASH_BENEFITS + employer contributions + TFR."""
 
     def test_no_violation_on_real_result(self) -> None:
         """No I12 violation on a real calculate_period result."""
@@ -353,6 +353,19 @@ class TestI12EmployerCostIdentity:
         i12 = [v for v in r.violations if v.invariant_id == "I12"]
         assert len(i12) == 1
         assert i12[0].actual == Decimal("3400.00")
+
+    def test_non_cash_benefits_included_in_employer_cost(self) -> None:
+        """NON_CASH_BENEFITS entries count toward employer cost identity."""
+        e_cash = _entry("s", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
+        e_ncb = _entry("n", AccountKind.NON_CASH_BENEFITS, Decimal("200.00"))
+        e_empl = _entry("e", AccountKind.EMPLOYER_CONTRIBUTIONS, Decimal("300.00"))
+        e_tfr = _entry("t", AccountKind.TFR_ACCRUAL, Decimal("100.00"))
+        b = _Builder(
+            period_employer_cost=Decimal("3600.00"),
+            ledger_entries=(e_cash, e_ncb, e_empl, e_tfr),
+        )
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == "I12"] == []
 
 
 class TestI13GrossIdentity:

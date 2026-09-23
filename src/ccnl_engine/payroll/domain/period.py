@@ -42,6 +42,8 @@ class PeriodState:
         taxable_ytd: Total IRPEF taxable income accumulated YTD.
         fringe_ytd: Total fringe benefit value accumulated YTD.
             Used to enforce the annual Art. 51 c. 3 TUIR threshold.
+        fringe_taxed_ytd: Cumulative fringe base already subject to IRPEF/INPS
+            this tax year.  Updated retroactively when the threshold is crossed.
     """
 
     months_closed: int = 0
@@ -51,6 +53,7 @@ class PeriodState:
     inps_base_ytd: Decimal = _ZERO
     taxable_ytd: Decimal = _ZERO
     fringe_ytd: Decimal = _ZERO
+    fringe_taxed_ytd: Decimal = _ZERO
 
     @classmethod
     def zero(cls) -> PeriodState:
