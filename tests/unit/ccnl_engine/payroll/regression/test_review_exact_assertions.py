@@ -29,6 +29,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
@@ -44,10 +46,16 @@ from ccnl_engine.payroll.domain.events import (
     SickLeaveEvent,
     WelfareEvent,
 )
+from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
+from ccnl_engine.payroll.domain.run import PayrollRun
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _YEAR = 2026
+# igiene-ambientale D1 has EDR and INDEMN_INT allowances with months_per_year=12,
+# so they are included in regular monthly runs but excluded from the tredicesima.
+_CCNL_WITH_ALLOWANCES = "igiene-ambientale-utilitalia.json"
+_LEVEL_WITH_ALLOWANCES = "D1"
 
 
 def _calendar_13() -> WorkCalendar:
@@ -68,33 +76,47 @@ def _calendar_13() -> WorkCalendar:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "REVIEW.md §4: regular December and tredicesima produce identical gross "
-        "(2,211.43) because calculate_year passes the same PeriodId(2026, 12) to "
-        "both runs and the compensation model ignores run_kind.  "
-        "Fix: RunCompensationPolicy must select components by kind."
-    ),
-)
 def test_regular_december_and_tredicesima_have_different_gross() -> None:
     """Regular December run and tredicesima must produce different period_gross.
 
-    Source: REVIEW.md §4.  Both currently produce 2,211.43.
-    The tredicesima gross must reflect accrued ratei, not a copy of the
-    regular monthly compensation.
-    """
-    result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=_calendar_13())
-    dec_results = [r for r in result.period_results if r.period_id.month == 12]
+    Uses igiene-ambientale D1 which carries EDR and INDEMN_INT allowances
+    with months_per_year=12.  Those allowances are included in the regular
+    December run but excluded from the tredicesima (months_per_year < 13).
 
-    assert len(dec_results) == 2, (
-        f"Expected 2 December runs (regular + tredicesima); got {len(dec_results)}"
+    Uses calculate_period directly (not calculate_year) because the D1 salary
+    table starts 2026-02-01, so January would raise a gap error in calculate_year.
+    """
+    pid = PeriodId(year=2026, month=12)
+    state = PeriodState(months_closed=11)
+    regular = calculate_period(
+        PeriodCalculationRequest(
+            period_id=pid,
+            payment_date=date(2026, 12, 28),
+            ccnl_slug=_CCNL_WITH_ALLOWANCES,
+            level_code=_LEVEL_WITH_ALLOWANCES,
+            opening_state=state,
+        )
     )
-    regular_gross = dec_results[0].period_gross
-    extra_gross = dec_results[1].period_gross
+    thirteenth = calculate_period(
+        PeriodCalculationRequest(
+            period_id=pid,
+            payment_date=date(2026, 12, 28),
+            ccnl_slug=_CCNL_WITH_ALLOWANCES,
+            level_code=_LEVEL_WITH_ALLOWANCES,
+            opening_state=state,
+            run=PayrollRun.thirteenth(2026, 12),
+        )
+    )
+    regular_gross = regular.period_gross
+    extra_gross = thirteenth.period_gross
     assert regular_gross != extra_gross, (
         f"Regular December gross ({regular_gross}) must differ from tredicesima "
-        f"gross ({extra_gross}); both are identical."
+        f"gross ({extra_gross}); they are identical, allowance filtering not applied."
+    )
+    # Tredicesima must be smaller than regular December (no EDR or INDEMN_INT).
+    assert extra_gross < regular_gross, (
+        f"Tredicesima ({extra_gross}) must be less than "
+        f"regular December ({regular_gross})"
     )
 
 
