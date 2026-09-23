@@ -93,7 +93,6 @@ from ccnl_engine.engine.payroll.domain.payroll_result import (
     EmployerCost,
     Taxes,
 )
-from ccnl_engine.engine.payroll.domain.payroll_state import PayrollState
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.engine.payroll.domain.scenario import (
     Agreement,
@@ -126,6 +125,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
 )
+from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
 
