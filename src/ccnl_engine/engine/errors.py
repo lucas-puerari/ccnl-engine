@@ -176,6 +176,33 @@ class InvalidInputError(ValueError, CcnlEngineError):
         )
 
 
+class MissingRequiredFactError(CcnlEngineError):
+    """Raised when a computation path requires caller-supplied facts that are absent.
+
+    Some computation paths (e.g. domestic contribution brackets) require facts
+    that cannot be derived from the CCNL or tax tables alone.  The engine
+    refuses to silently produce zero or approximate results; callers must
+    supply the missing facts explicitly.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        feature: str | None = None,
+        ruleset: str | None = None,
+        remediation: str | None = None,
+    ) -> None:
+        """Initialise with a human-readable message and optional context fields."""
+        super().__init__(
+            message,
+            code="missing_required_fact",
+            feature=feature,
+            ruleset=ruleset,
+            remediation=remediation,
+        )
+
+
 #: Public error codes. Each code is a permanent commitment: its name and
 #: semantics cannot change without a major version bump.
 PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
@@ -184,4 +211,5 @@ PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
     "out_of_scope",
     "data_integrity",
     "invalid_input",
+    "missing_required_fact",
 })

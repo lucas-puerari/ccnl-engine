@@ -27,7 +27,11 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.errors import (
+    InvalidInputError,
+    MissingRequiredFactError,
+)
+from ccnl_engine.engine.payroll.domain.employment import FixedTerm, Permanent
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -59,9 +63,13 @@ def _req(
     events: tuple[object, ...] = (),
     ccnl: str = _CCNL,
     level: str = _LEVEL,
+    weekly_hours: int | None = None,
+    contributable_hours: Decimal | None = None,
+    contract_type: object | None = None,
 ) -> PeriodCalculationRequest:
     if opening is None:
         opening = PeriodState.zero()
+    ct = contract_type if contract_type is not None else Permanent()
     return PeriodCalculationRequest(
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
@@ -69,6 +77,9 @@ def _req(
         level_code=level,
         opening_state=opening,
         events=events,  # type: ignore[arg-type]
+        weekly_hours=weekly_hours,
+        contributable_hours=contributable_hours,
+        contract_type=ct,  # type: ignore[arg-type]
     )
 
 
@@ -167,28 +178,26 @@ def test_taxable_ytd_not_diluted_by_extra_months() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "Domestic CCNL is routed through the zero-contribution path; "
-        "contribution_breakdown.employee and .employer are both 0 instead of "
-        "the correct per-hour flat contributions."
-    ),
-)
 def test_domestic_contributions_nonzero() -> None:
     """Lavoro domestico must produce employee and employer INPS contributions > 0.
 
-    Source: REVIEW.md §5, P0-4.  Expected: contribution_breakdown.employee > 0
-    and contribution_breakdown.employer > 0.
+    Source: REVIEW.md §5, P0-4.  Uses the hours bracket (weekly_hours=30 > 24
+    threshold): employee 0.31/h, employer 0.93/h on 130 contributable hours.
+    Expected: contribution_breakdown.employee > 0 and employer > 0.
     """
     result = calculate_period(
-        _req(month=6, ccnl="lavoro-domestico-convivente.json", level="BS")
+        _req(
+            month=6,
+            ccnl="lavoro-domestico-convivente.json",
+            level="BS",
+            weekly_hours=30,
+            contributable_hours=Decimal(130),
+        )
     )
 
     assert result.contribution_breakdown.employee > _ZERO, (
         f"Domestic worker employee contributions must be > 0; "
-        f"got {result.contribution_breakdown.employee}.  "
-        "Engine routes domestic CCNL through zero-contribution path."
+        f"got {result.contribution_breakdown.employee}."
     )
     assert result.contribution_breakdown.employer > _ZERO, (
         f"Domestic worker employer contributions must be > 0; "
@@ -367,3 +376,99 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
         f"exceeds the IVS massimale (122,295 EUR, INPS circ. 4/2026); "
         f"got {addizionale}.  The +1% is currently not gated on the massimale."
     )
+
+
+# ---------------------------------------------------------------------------
+# Domestic contribution: MissingRequiredFactError on absent mandatory facts
+# ---------------------------------------------------------------------------
+
+
+def test_domestic_missing_weekly_hours_raises() -> None:
+    """calculate_period raises MissingRequiredFactError when weekly_hours is absent."""
+    with pytest.raises(MissingRequiredFactError, match="weekly_hours"):
+        calculate_period(
+            _req(
+                month=6,
+                ccnl="lavoro-domestico-convivente.json",
+                level="BS",
+                contributable_hours=Decimal(130),
+            )
+        )
+
+
+def test_domestic_missing_contributable_hours_raises() -> None:
+    """calculate_period raises MissingRequiredFactError when contributable_hours absent.
+
+    Source: domestic contribution path requires both weekly_hours and
+    contributable_hours; absent contributable_hours raises the error.
+    """
+    with pytest.raises(MissingRequiredFactError, match="contributable_hours"):
+        calculate_period(
+            _req(
+                month=6,
+                ccnl="lavoro-domestico-convivente.json",
+                level="BS",
+                weekly_hours=30,
+            )
+        )
+
+
+def test_domestic_contributions_wage_bracket() -> None:
+    """Domestic contributions use wage brackets when weekly_hours <= threshold.
+
+    weekly_hours=20 <= 24 threshold; BS monthly gross ~1053 EUR, hourly_divisor
+    234 gives ~4.50 EUR/h → first wage bracket (up to 9.61 EUR/h):
+    employee 0.43/h, employer 1.27/h.
+    """
+    result = calculate_period(
+        _req(
+            month=6,
+            ccnl="lavoro-domestico-convivente.json",
+            level="BS",
+            weekly_hours=20,
+            contributable_hours=Decimal(86),
+        )
+    )
+    assert result.contribution_breakdown.employee > _ZERO
+    assert result.contribution_breakdown.employer > _ZERO
+    names = {c.name for c in result.contribution_breakdown.components}
+    assert "domestic_employee_per_hour" in names
+    assert "domestic_employer_per_hour" in names
+
+
+def test_domestic_contributions_fixed_term_hours_bracket() -> None:
+    """Fixed-term domestic contract uses employer_per_hour_fixed_term for hours bracket.
+
+    weekly_hours=30 > 24 threshold uses hours_bracket; FixedTerm selects
+    the higher fixed-term employer rate (1.01/h vs 0.93/h for permanent).
+    """
+    result = calculate_period(
+        _req(
+            month=6,
+            ccnl="lavoro-domestico-convivente.json",
+            level="BS",
+            weekly_hours=30,
+            contributable_hours=Decimal(130),
+            contract_type=FixedTerm(),
+        )
+    )
+    assert result.contribution_breakdown.employer > _ZERO
+
+
+def test_domestic_contributions_fixed_term_wage_bracket() -> None:
+    """Fixed-term domestic contract uses employer_per_hour_fixed_term for wage bracket.
+
+    weekly_hours=20 <= 24 threshold uses wage_bracket; FixedTerm selects
+    the higher fixed-term employer rate (1.39/h vs 1.27/h for permanent).
+    """
+    result = calculate_period(
+        _req(
+            month=6,
+            ccnl="lavoro-domestico-convivente.json",
+            level="BS",
+            weekly_hours=20,
+            contributable_hours=Decimal(86),
+            contract_type=FixedTerm(),
+        )
+    )
+    assert result.contribution_breakdown.employer > _ZERO

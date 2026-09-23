@@ -259,6 +259,7 @@ class TestPublicErrorCodes:
         "out_of_scope",
         "data_integrity",
         "invalid_input",
+        "missing_required_fact",
     })
 
     def test_exact_set(self) -> None:
