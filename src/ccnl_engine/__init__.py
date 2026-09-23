@@ -14,7 +14,7 @@ sub-namespaces and are not part of the stable public API.
 
 Usage::
 
-    from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun
+    from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
 
     engine = PayrollEngine.from_builtin_data()
     result = engine.calculate(PayrollRequest(
@@ -22,13 +22,14 @@ Usage::
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
+        employment_facts=EmploymentFacts(),
     ))
     print(result.period_net)
 """
 
 from __future__ import annotations
 
-from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
+from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
 from ccnl_engine.api.results import PayrollResult
 from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
@@ -116,6 +117,7 @@ __all__ = [
     "Employee",
     "Employer",
     "Employment",
+    "EmploymentFacts",
     "FamilyComposition",
     "FiscalSimplification",
     "FixedTerm",

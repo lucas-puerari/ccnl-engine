@@ -25,6 +25,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "DependentRelationship",
     "DestinationRalOverride",
     "Employee",
+    "EmploymentFacts",
     "Employer",
     "Employment",
     "FamilyComposition",

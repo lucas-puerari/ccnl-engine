@@ -10,7 +10,7 @@ a PeriodId where a run is expected.
 
 from datetime import date
 
-from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
 
 # ── Single-period calculation ────────────────────────────────────────────────
 
@@ -22,6 +22,7 @@ result = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="commercio-confcommercio.json",
         level_code="4",
+        employment_facts=EmploymentFacts(),
     )
 )
 

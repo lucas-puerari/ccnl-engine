@@ -29,10 +29,9 @@ class PayrollEngine:
     Example::
 
         from datetime import date
-        from ccnl_engine import PayrollEngine
-        from ccnl_engine.api import PayrollRequest
-        from ccnl_engine.payroll.domain.run import PayrollRun
-        from ccnl_engine.payroll.domain.period import PeriodState
+        from ccnl_engine import (
+            EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun,
+        )
 
         engine = PayrollEngine.from_builtin_data()
         result = engine.calculate(PayrollRequest(
@@ -40,7 +39,7 @@ class PayrollEngine:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            opening_state=PeriodState.zero(),
+            employment_facts=EmploymentFacts(),
         ))
         print(result.period_net)
     """
@@ -74,14 +73,16 @@ class PayrollEngine:
             with gross, net, employer cost, closing state, pay items and
             ledger entries.
         """
+        ef = request.employment_facts
         period_req = PeriodCalculationRequest(
             period_id=PeriodId(year=request.run.year, month=request.run.month),
             payment_date=request.payment_date,
             ccnl_slug=request.ccnl_slug,
             level_code=request.level_code,
             opening_state=request.opening_state,
-            contract_type=request.contract_type,
-            num_employees=request.num_employees,
+            contract_type=ef.contract_type,
+            num_employees=ef.num_employees,
+            ivs_ceiling_applies=ef.ivs_ceiling_applies,
             events=request.events,
             regione=request.regione,
             comune_belfiore=request.comune_belfiore,
@@ -104,13 +105,15 @@ class PayrollEngine:
             A :class:`~ccnl_engine.payroll.application.calculate_year.\
 YearCalculationResult` with one result per run and aggregated annual totals.
         """
+        ef = request.employment_facts
         return _calculate_year(
             request.year,
             request.ccnl_slug,
             request.level_code,
             calendar=request.calendar,
-            contract_type=request.contract_type,
-            num_employees=request.num_employees,
+            contract_type=ef.contract_type,
+            num_employees=ef.num_employees,
+            ivs_ceiling_applies=ef.ivs_ceiling_applies,
             period_events=request.period_events or None,
             regione=request.regione,
             comune_belfiore=request.comune_belfiore,

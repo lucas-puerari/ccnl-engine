@@ -17,7 +17,23 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.run import PayrollRun
 
-__all__ = ["PayrollRequest", "PayrollYearRequest"]
+__all__ = ["EmploymentFacts", "PayrollRequest", "PayrollYearRequest"]
+
+
+@dataclass(frozen=True)
+class EmploymentFacts:
+    """Employment-side facts used to resolve contribution rates and ceilings.
+
+    Attributes:
+        contract_type: Employment contract type (permanent, fixed-term, apprentice).
+        num_employees: Employer headcount for INPS rate resolution.
+        ivs_ceiling_applies: When False the IVS massimale ceiling is bypassed;
+            use for domestic-work sectors and non-IVS regimes.
+    """
+
+    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
+    num_employees: int = 50
+    ivs_ceiling_applies: bool = True
 
 
 @dataclass(frozen=True)
@@ -35,12 +51,12 @@ class PayrollRequest:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``"metalmeccanico-federmeccanica.json"``.
         level_code: Worker's contractual level code, e.g. ``"C3"``.
+        employment_facts: Employment-side facts (contract type, headcount,
+            IVS ceiling eligibility).
         opening_state: YTD state entering this run.  Use
             :meth:`~ccnl_engine.payroll.domain.period.PeriodState.zero`
             for January.
         events: Variable work events for this run.
-        contract_type: Employment contract type.
-        num_employees: Employer headcount for INPS rate resolution.
         regione: ISO region code for regional surtax.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
@@ -51,10 +67,9 @@ class PayrollRequest:
     payment_date: date
     ccnl_slug: str
     level_code: str
+    employment_facts: EmploymentFacts
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
-    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    num_employees: int = 50
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
@@ -70,9 +85,9 @@ class PayrollYearRequest:
         ccnl_slug: Knowledge-bundle CCNL filename.
         level_code: Worker's contractual level code.
         calendar: Year-level payroll calendar; governs the run sequence.
+        employment_facts: Employment-side facts (contract type, headcount,
+            IVS ceiling eligibility).
         period_events: Optional mapping from month number (1-12) to events.
-        contract_type: Employment contract type.
-        num_employees: Employer headcount for INPS rate resolution.
         regione: ISO region code for regional surtax.
         comune_belfiore: Belfiore code for municipal surtax.
         family_composition: Dependent family composition.
@@ -83,9 +98,8 @@ class PayrollYearRequest:
     ccnl_slug: str
     level_code: str
     calendar: WorkCalendar
+    employment_facts: EmploymentFacts = field(default_factory=EmploymentFacts)
     period_events: dict[int, tuple[WorkEvent, ...]] = field(default_factory=dict)
-    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    num_employees: int = 50
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None

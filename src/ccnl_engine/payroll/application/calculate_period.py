@@ -253,6 +253,7 @@ def _compute_amounts(
     comune_belfiore: str | None = None,
     family_composition: FamilyComposition | None = None,
     family_deduction_rules: FamilyDeductionRules | None = None,
+    ivs_ceiling_applies: bool = True,
 ) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
@@ -272,6 +273,7 @@ def _compute_amounts(
             contract_type,
             category,
             ytd_inps_base=opening.inps_base_ytd,
+            ivs_ceiling_applies=ivs_ceiling_applies,
         )
         rates = resolve_rates(rules, contract_type, category)
         employee_rate_for_irpef = rates.employee_rate
@@ -1175,6 +1177,7 @@ def calculate_period(
         comune_belfiore=request.comune_belfiore,
         family_composition=request.family_composition,
         family_deduction_rules=fam_ded_rules,
+        ivs_ceiling_applies=request.ivs_ceiling_applies,
     )
     pay_items = _build_pay_items(
         amounts, chain, request.period_id, request.payment_date, run_tag=tag

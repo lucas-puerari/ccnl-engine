@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
+from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
 from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
 from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
@@ -22,6 +22,7 @@ def _payroll_request() -> PayrollRequest:
         payment_date=date(2026, 1, 28),
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
+        employment_facts=EmploymentFacts(),
         opening_state=PeriodState.zero(),
     )
 
@@ -69,6 +70,19 @@ class TestCalculate:
         assert result.run is req.run
         assert result.run is not None
         assert result.run.run_id == "2026-01-regular"
+
+    def test_ivs_ceiling_not_applies_accepted(self) -> None:
+        """employment_facts with ivs_ceiling_applies=False is accepted by engine."""
+        engine = PayrollEngine.from_builtin_data()
+        req = PayrollRequest(
+            run=PayrollRun.regular(2026, 1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            employment_facts=EmploymentFacts(ivs_ceiling_applies=False),
+        )
+        result = engine.calculate(req)
+        assert result.period_gross > _ZERO
 
 
 class TestCalculateYear:
