@@ -1,4 +1,4 @@
-"""Full-year payroll orchestration: chains calculate_period across all 12 periods."""
+"""Full-year payroll orchestration: chains calculate_period across all runs."""
 
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
@@ -37,12 +38,11 @@ class YearCalculationResult:
 
     Attributes:
         year: The tax year.
-        period_results: One :class:`PeriodCalculationResult` per computed
-            period, in chronological order (January to December).
-        annual_gross: Sum of ``period_gross`` across all periods.
-        annual_net: Sum of ``period_net`` across all periods.
-        annual_employer_cost: Sum of ``period_employer_cost`` across all
-            periods.
+        period_results: One :class:`PeriodCalculationResult` per computed run,
+            in payment order (regular runs and extra-month runs interleaved).
+        annual_gross: Sum of ``period_gross`` across all runs.
+        annual_net: Sum of ``period_net`` across all runs.
+        annual_employer_cost: Sum of ``period_employer_cost`` across all runs.
     """
 
     year: int
@@ -67,28 +67,31 @@ def calculate_year(
     has_dependent_children: bool = False,
     repo: KnowledgeRepository | None = None,
 ) -> YearCalculationResult:
-    """Compute payroll for all 12 periods of a year.
+    """Compute payroll for all runs in a year.
 
-    Calls :func:`calculate_period` for months 1-12, threading the closing
-    :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each period
-    as the opening state of the next.  The ``calendar`` parameter governs
-    the extra-month schedule but does not alter the 12 regular period calls.
+    Derives the run sequence from the ``calendar`` via
+    :class:`~ccnl_engine.payroll.domain.schedule.PayrollSchedule`.  Regular
+    months (1-12) plus any extra months (tredicesima, quattordicesima) are each
+    computed as separate :func:`calculate_period` calls, with the closing
+    :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each run passed
+    as the opening state of the next.
 
     Args:
         year: The tax year.
         ccnl_slug: Knowledge-bundle CCNL filename (e.g.
             ``"metalmeccanico-federmeccanica.json"``).
         level_code: Worker's contractual level code (e.g. ``"C3"``).
-        calendar: Year-level payroll calendar.  Currently used to carry
-            the extra-month schedule; period payment dates default to the
-            28th of each month.
+        calendar: Year-level payroll calendar.  Governs the run sequence:
+            extra months in ``calendar.extra_months`` produce additional runs
+            in the month configured by
+            :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthSchedule`.
         contract_type: Employment contract type.  Defaults to
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
         num_employees: Employer headcount for INPS rate resolution.
             Defaults to 50.
         period_events: Optional mapping from month number (1-12) to the
-            variable work events for that period.  Months not present
-            receive no events.
+            variable work events for that period.  Extra runs in a month also
+            receive the events mapped to that month.
         regione: ISO region code for regional surtax.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
@@ -100,7 +103,7 @@ def calculate_year(
     Returns:
         :class:`YearCalculationResult` with one
         :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
-        per month and aggregated annual totals.
+        per run (12, 13, or 14 depending on the CCNL) and aggregated totals.
 
     Raises:
         ValueError: If ``calendar.year`` does not match ``year``.
@@ -109,15 +112,16 @@ def calculate_year(
         msg = f"calendar.year={calendar.year} does not match year={year}"
         raise ValueError(msg)
 
+    schedule = PayrollSchedule.from_calendar(calendar)
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
 
     state = PeriodState.zero()
     results: list[PeriodCalculationResult] = []
 
-    for month in range(1, 13):
-        pid = PeriodId(year=year, month=month)
-        payment_date = date(year, month, 28)
+    for run in schedule.runs:
+        pid = PeriodId(year=run.year, month=run.month)
+        payment_date = date(run.year, run.month, 28)
         req = PeriodCalculationRequest(
             period_id=pid,
             payment_date=payment_date,
@@ -126,7 +130,7 @@ def calculate_year(
             opening_state=state,
             contract_type=effective_contract,
             num_employees=num_employees,
-            events=effective_events.get(month, ()),
+            events=effective_events.get(run.month, ()),
             regione=regione,
             comune_belfiore=comune_belfiore,
             family_composition=family_composition,
