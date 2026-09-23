@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["YearCalculationResult", "calculate_year"]
 
@@ -52,6 +53,47 @@ class YearCalculationResult:
     annual_employer_cost: Decimal
 
 
+def _allocate_events(
+    run: PayrollRun,
+    period_events: dict[int, tuple[WorkEvent, ...]],
+    per_run_events: dict[str, tuple[WorkEvent, ...]],
+) -> tuple[WorkEvent, ...]:
+    """Return the events allocated to ``run`` under the two-layer policy.
+
+    Priority: explicit ``run_id`` allocation in ``per_run_events`` takes
+    precedence.  Regular runs fall back to ``period_events`` keyed by month.
+    Extra-month runs (thirteenth, fourteenth, etc.) that have no explicit
+    allocation receive no events.
+
+    Args:
+        run: The payroll run being processed.
+        period_events: Month-keyed events (applies only to regular runs).
+        per_run_events: ``run_id``-keyed events (any run kind).
+
+    Returns:
+        Tuple of :class:`~ccnl_engine.payroll.domain.events.WorkEvent` for
+        this run, possibly empty.
+
+    Raises:
+        ValueError: When the same run is allocated events from both
+            ``period_events`` and ``per_run_events`` (duplicate allocation).
+    """
+    in_per_run = run.run_id in per_run_events
+    in_period = run.run_kind == "regular" and run.month in period_events
+    if in_per_run and in_period:
+        msg = (
+            f"Duplicate event allocation for run '{run.run_id}': "
+            f"events are present in both period_events[{run.month}] and "
+            f"per_run_events['{run.run_id}']; supply events in one source only."
+        )
+        raise ValueError(msg)
+    if in_per_run:
+        return per_run_events[run.run_id]
+    if in_period:
+        return period_events[run.month]
+    return ()
+
+
 def calculate_year(
     year: int,
     ccnl_slug: str,
@@ -62,6 +104,7 @@ def calculate_year(
     num_employees: int = 50,
     ivs_ceiling_applies: bool = True,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
+    per_run_events: dict[str, tuple[WorkEvent, ...]] | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
     family_composition: FamilyComposition | None = None,
@@ -95,7 +138,11 @@ def calculate_year(
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
             (thirteenth, fourteenth) receive no events from this mapping;
-            they must be addressed via dedicated per-run event allocation.
+            use ``per_run_events`` for explicit run-level allocation.
+        per_run_events: Optional mapping from ``run_id`` to events for that
+            specific run.  Supports any run kind (regular, thirteenth, etc.).
+            A run that appears in both ``period_events`` (by month) and
+            ``per_run_events`` (by run_id) raises :class:`ValueError`.
         regione: ISO region code for regional surtax.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
@@ -110,7 +157,9 @@ def calculate_year(
         per run (12, 13, or 14 depending on the CCNL) and aggregated totals.
 
     Raises:
-        ValueError: If ``calendar.year`` does not match ``year``.
+        ValueError: If ``calendar.year`` does not match ``year``, or if the
+            same run is allocated events in both ``period_events`` and
+            ``per_run_events``.
     """
     if calendar.year != year:
         msg = f"calendar.year={calendar.year} does not match year={year}"
@@ -118,7 +167,8 @@ def calculate_year(
 
     schedule = PayrollSchedule.from_calendar(calendar)
     effective_contract = contract_type if contract_type is not None else Permanent()
-    effective_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
+    effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
+    effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
 
     state = PeriodState.zero()
     results: list[PeriodCalculationResult] = []
@@ -126,11 +176,8 @@ def calculate_year(
     for run in schedule.runs:
         pid = PeriodId(year=run.year, month=run.month)
         payment_date = date(run.year, run.month, 28)
-        # Events are allocated only to regular runs; extra-month runs (thirteenth,
-        # fourteenth, adjustment, termination) must have events mapped explicitly
-        # by run_id to avoid unintended duplication across runs sharing a month.
-        run_events: tuple[WorkEvent, ...] = (
-            effective_events.get(run.month, ()) if run.run_kind == "regular" else ()
+        allocated_events = _allocate_events(
+            run, effective_period_events, effective_per_run_events
         )
         req = PeriodCalculationRequest(
             period_id=pid,
@@ -141,7 +188,7 @@ def calculate_year(
             contract_type=effective_contract,
             num_employees=num_employees,
             ivs_ceiling_applies=ivs_ceiling_applies,
-            events=run_events,
+            events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
             family_composition=family_composition,
