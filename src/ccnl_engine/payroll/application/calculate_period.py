@@ -67,7 +67,7 @@ from ccnl_engine.engine.tax.service.loaders import (
 from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import (
-    ContributionBreakdown,  # noqa: TC001
+    ContributionBreakdown,
 )
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import (
@@ -261,21 +261,25 @@ def _compute_amounts(
         rounded monetary quantities, the per-component INPS breakdown, and the
         per-rule IRPEF computation.
     """
-    # INPS: base salary + event INPS-liable amounts, with IVS ceiling enforcement
+    # INPS: base salary + event INPS-liable amounts, with IVS ceiling enforcement.
+    # Domestic sectors (inps=None) use flat per-hour contributions; the period-first
+    # engine defers to zero contributions when weekly_hours are not supplied.
     period_inps_base = monthly_gross + event_totals.inps_base
-    breakdown = resolve_contributions(
-        period_inps_base,
-        rules,
-        contract_type,
-        category,
-        ytd_inps_base=opening.inps_base_ytd,
-    )
+    if rules.inps is not None:
+        breakdown = resolve_contributions(
+            period_inps_base,
+            rules,
+            contract_type,
+            category,
+            ytd_inps_base=opening.inps_base_ytd,
+        )
+        rates = resolve_rates(rules, contract_type, category)
+        employee_rate_for_irpef = rates.employee_rate
+    else:
+        breakdown = ContributionBreakdown(employee=_ZERO, employer=_ZERO, components=())
+        employee_rate_for_irpef = _ZERO
     inps_employee = breakdown.employee
     inps_employer = breakdown.employer
-
-    # For IRPEF projection we still need the raw employee rate (no ceiling split needed
-    # here: the annual projection uses the nominal rate on the recurring base).
-    rates = resolve_rates(rules, contract_type, category)
 
     # TFR: base salary + event TFR-liable amounts
     period_tfr_base = monthly_gross + event_totals.tfr_base
@@ -283,9 +287,9 @@ def _compute_amounts(
 
     # IRPEF: recurring base projected annually + event IRPEF-liable amounts (one-off)
     recurring_annual = monthly_gross * additional_months
-    recurring_inps_annual = money(recurring_annual * rates.employee_rate)
+    recurring_inps_annual = money(recurring_annual * employee_rate_for_irpef)
     recurring_taxable = recurring_annual - recurring_inps_annual
-    event_inps_on_irpef = money(event_totals.inps_base * rates.employee_rate)
+    event_inps_on_irpef = money(event_totals.inps_base * employee_rate_for_irpef)
     event_taxable = event_totals.irpef_base - event_inps_on_irpef
     taxable = recurring_taxable + event_taxable
 
