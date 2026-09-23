@@ -5,16 +5,16 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.period import PeriodState
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
-    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
+    from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["EmploymentFacts", "PayrollRequest", "PayrollYearRequest"]

@@ -32,7 +32,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import (

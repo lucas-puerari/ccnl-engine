@@ -7,7 +7,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.payroll.domain.treatments import (
+from ccnl_engine.payroll.domain.treatments import (
     ContributionTreatment,
     CostTreatment,
     TaxTreatment,

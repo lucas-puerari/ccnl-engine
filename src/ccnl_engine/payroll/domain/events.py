@@ -17,7 +17,7 @@ from ccnl_engine.engine.errors import InvalidInputError
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.sickness import SicknessCase
 
 __all__ = [

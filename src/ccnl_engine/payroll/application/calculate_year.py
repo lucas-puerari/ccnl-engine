@@ -7,25 +7,25 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.employment import (
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["YearCalculationResult", "calculate_year"]

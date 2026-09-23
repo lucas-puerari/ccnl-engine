@@ -25,13 +25,39 @@ from ccnl_engine.engine.errors import (
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.payroll.domain.employment import (
+from ccnl_engine.engine.tax.service.loaders import (
+    load_family_deduction_rules,
+    load_variable_pay_rules,
+)
+from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
+from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+from ccnl_engine.payroll.domain.contributions import (
+    ContributionBreakdown,
+    ContributionComponent,
+)
+from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.engine.payroll.domain.pay_items import (
+from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
+from ccnl_engine.payroll.domain.events import (
+    AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
+    BonusEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    SickLeaveEvent,
+    SicknessCaseEvent,
+    TerminationTFREvent,
+    WelfareEvent,
+    WorkEvent,
+)
+from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.pay_items import (
     AbsenceDeduction,
     BaseSalaryEarning,
     BonusEarning,
@@ -52,45 +78,6 @@ from ccnl_engine.engine.payroll.domain.pay_items import (
     TfrSettlementItem,
     WelfareItem,
 )
-from ccnl_engine.engine.payroll.service.apprenticeship import _apprentice_chain
-from ccnl_engine.engine.payroll.service.chain import _level_chain
-from ccnl_engine.engine.payroll.service.contributions import (
-    resolve_contributions,
-    resolve_rates,
-)
-from ccnl_engine.engine.payroll.service.family_deductions import (
-    compute_family_deductions,
-)
-from ccnl_engine.engine.payroll.service.fiscal_surtax import _compute_addizionali
-from ccnl_engine.engine.payroll.service.rounding import money
-from ccnl_engine.engine.payroll.service.tax_computation import resolve_tax_computation
-from ccnl_engine.engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
-from ccnl_engine.engine.tax.service.loaders import (
-    load_family_deduction_rules,
-    load_variable_pay_rules,
-)
-from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
-from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
-from ccnl_engine.payroll.domain.contributions import (
-    ContributionBreakdown,
-    ContributionComponent,
-)
-from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
-from ccnl_engine.payroll.domain.events import (
-    AbsenceEvent,
-    ArrearsEvent,
-    BilateralFundEvent,
-    BonusEvent,
-    FringeEvent,
-    HolidayWorkEvent,
-    NightShiftEvent,
-    OvertimeEvent,
-    SickLeaveEvent,
-    SicknessCaseEvent,
-    TerminationTFREvent,
-    WelfareEvent,
-    WorkEvent,
-)
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
@@ -106,19 +93,32 @@ from ccnl_engine.payroll.domain.policy import (
 )
 from ccnl_engine.payroll.domain.tax import TaxComputation  # noqa: TC001
 from ccnl_engine.payroll.domain.treatment import EventTreatment
+from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
+from ccnl_engine.payroll.service.chain import _level_chain
+from ccnl_engine.payroll.service.contributions import (
+    resolve_contributions,
+    resolve_rates,
+)
+from ccnl_engine.payroll.service.family_deductions import (
+    compute_family_deductions,
+)
+from ccnl_engine.payroll.service.fiscal_surtax import _compute_addizionali
+from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
+from ccnl_engine.payroll.service.types import MonthlyPayChain  # noqa: TC001
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
     from ccnl_engine.engine.contract.domain.compensation import Level
     from ccnl_engine.engine.contract.domain.seniority import LevelCategory
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
-    from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.contribution_rules import DomesticInpsRates
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
     from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
+    from ccnl_engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _ZERO = Decimal(0)
 

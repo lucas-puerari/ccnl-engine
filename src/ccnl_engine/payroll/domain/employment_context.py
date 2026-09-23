@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.seniority import LevelCategory
-    from ccnl_engine.engine.payroll.domain.employment import (
+    from ccnl_engine.payroll.domain.employment import (
         Apprentice,
         FixedTerm,
         Permanent,
