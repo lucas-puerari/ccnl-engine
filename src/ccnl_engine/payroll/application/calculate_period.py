@@ -836,6 +836,7 @@ def _build_pay_items(
     chain: MonthlyPayChain,
     period_id: PeriodId,
     payment_date: date,
+    run_tag: str | None = None,
 ) -> tuple[PayItem, ...]:
     """Build the base pay-item tuple from resolved period amounts and chain.
 
@@ -848,7 +849,7 @@ def _build_pay_items(
         instances for this period.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
-    tag = f"{period_id.year}_{period_id.month:02d}"
+    tag = run_tag if run_tag is not None else f"{period_id.year}_{period_id.month:02d}"
     items: list[PayItem] = [
         BaseSalaryEarning(
             item_id=f"base_salary_{tag}",
@@ -940,6 +941,7 @@ def _project_ledger(
     payment_date: date,
     resolver: PolicyResolver,
     context: PolicyContext,
+    run_tag: str | None = None,
 ) -> tuple[LedgerEntry, ...]:
     """Project base pay items to ledger entries.
 
@@ -951,7 +953,7 @@ def _project_ledger(
         instances.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
-    tag = f"{period_id.year}_{period_id.month:02d}"
+    tag = run_tag if run_tag is not None else f"{period_id.year}_{period_id.month:02d}"
     ordinary_pid = _require_resolution(
         resolver, "base_salary_earning", context
     ).policy_id
@@ -1133,7 +1135,11 @@ def calculate_period(
     resolver = _get_resolver()
     policy_context = PolicyContext(year=period_year, as_of=as_of)
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
-    tag = f"{period_year}_{request.period_id.month:02d}"
+    tag = (
+        request.run.run_id
+        if request.run is not None
+        else f"{period_year}_{request.period_id.month:02d}"
+    )
     event_totals, event_items, event_entries = _process_events(
         request.events,
         cp,
@@ -1171,7 +1177,7 @@ def calculate_period(
         family_deduction_rules=fam_ded_rules,
     )
     pay_items = _build_pay_items(
-        amounts, chain, request.period_id, request.payment_date
+        amounts, chain, request.period_id, request.payment_date, run_tag=tag
     )
     ledger_entries = _project_ledger(
         amounts,
@@ -1180,6 +1186,7 @@ def calculate_period(
         request.payment_date,
         resolver,
         policy_context,
+        run_tag=tag,
     )
 
     # Somma esente (L. 207/2024): extract annual amount, prorate to period
@@ -1278,6 +1285,7 @@ def calculate_period(
         contribution_breakdown=contribution_breakdown,
         tax_computation=tax_computation,
         benefit_breakdown=benefit_breakdown,
+        run=request.run,
     )
     rec = _reconcile(result, request.opening_state)
     if not rec.ok:
