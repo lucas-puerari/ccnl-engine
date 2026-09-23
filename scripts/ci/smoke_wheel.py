@@ -20,10 +20,10 @@ from ccnl_engine import (
     Permanent,
     RalOverride,
     SeniorityByDate,
-    estimate_annual,
     get_ccnl,
     list_ccnls,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 
 def main() -> int:
