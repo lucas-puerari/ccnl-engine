@@ -277,26 +277,17 @@ def test_absence_240h_does_not_produce_negative_gross() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "BonusEvent(amount=-100) is accepted silently; no InvalidInputError "
-        "is raised.  Negative bonus amounts must be rejected at event construction "
-        "or at calculate_period input validation."
-    ),
-)
 def test_negative_bonus_raises_invalid_input() -> None:
     """BonusEvent with a negative amount must raise InvalidInputError.
 
     Source: REVIEW.md §5, P0-6.  A -100 EUR bonus reduces gross and taxable
     income without any explicit deduction record.  Expected: InvalidInputError.
     """
-    bonus = BonusEvent(
-        event_date=date(_YEAR, 1, 15),
-        amount=Decimal("-100.00"),
-    )
     with pytest.raises(InvalidInputError):
-        calculate_period(_req(events=(bonus,)))
+        BonusEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("-100.00"),
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -309,30 +300,19 @@ def test_negative_bonus_raises_invalid_input() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "SickLeaveEvent(sick_days=0, waiting_period_days=1) causes a raw "
-        "ZeroDivisionError in the carenza formula instead of a structured "
-        "InvalidInputError from input validation."
-    ),
-)
 def test_sick_leave_zero_days_raises_invalid_input() -> None:
     """SickLeaveEvent with sick_days=0 must raise InvalidInputError.
-
-    Currently raises ZeroDivisionError instead of a structured domain error.
 
     Source: REVIEW.md §5, P0-6/P0-7.  sick_days=0 is semantically invalid;
     the engine must reject it with a structured error before the formula runs.
     """
-    sick = SickLeaveEvent(
-        event_date=date(_YEAR, 1, 15),
-        amount=Decimal("500.00"),
-        sick_days=0,
-        waiting_period_days=1,
-    )
     with pytest.raises(InvalidInputError):
-        calculate_period(_req(events=(sick,)))
+        SickLeaveEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("500.00"),
+            sick_days=0,
+            waiting_period_days=1,
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -345,28 +325,19 @@ def test_sick_leave_zero_days_raises_invalid_input() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "SickLeaveEvent(sick_days=2, waiting_period_days=3) is accepted "
-        "silently; the constraint 'waiting_period_days <= sick_days' documented "
-        "in the docstring is not enforced at runtime."
-    ),
-)
 def test_waiting_period_exceeds_sick_days_raises_invalid_input() -> None:
     """SickLeaveEvent with waiting_period_days > sick_days must raise InvalidInputError.
 
     Source: REVIEW.md §5, P0-7.  The docstring states this is invalid; the
     engine must enforce it with a structured domain error.
     """
-    sick = SickLeaveEvent(
-        event_date=date(_YEAR, 1, 15),
-        amount=Decimal("500.00"),
-        sick_days=2,
-        waiting_period_days=3,
-    )
     with pytest.raises(InvalidInputError):
-        calculate_period(_req(events=(sick,)))
+        SickLeaveEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("500.00"),
+            sick_days=2,
+            waiting_period_days=3,
+        )
 
 
 # ---------------------------------------------------------------------------

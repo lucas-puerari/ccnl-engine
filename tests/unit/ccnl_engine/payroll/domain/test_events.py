@@ -144,7 +144,10 @@ class TestSickLeaveEvent:
     def test_waiting_period_days_stored(self) -> None:
         """waiting_period_days is stored when supplied."""
         evt = SickLeaveEvent(
-            event_date=_DATE, amount=Decimal("200.00"), waiting_period_days=3
+            event_date=_DATE,
+            amount=Decimal("200.00"),
+            sick_days=5,
+            waiting_period_days=3,
         )
         assert evt.waiting_period_days == 3
 

@@ -12,6 +12,8 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
+
 if TYPE_CHECKING:
     from datetime import date
 
@@ -113,8 +115,9 @@ class SickLeaveEvent:
         event_date: First day of the sick-leave period.
         amount: Total employer-liable sick-leave gross in EUR, before carenza
             deduction.
-        sick_days: Total working days of the sick-leave spell.  Used to
-            compute the daily rate for the carenza deduction.  Defaults to 1.
+        sick_days: Total working days of the sick-leave spell.  Must be >= 1.
+            Used to compute the daily rate for the carenza deduction.
+            Defaults to 1.
         waiting_period_days: Number of carenza days (waiting period) at the
             start of the sick-leave period.  Must not exceed sick_days.
             Defaults to 0 (no carenza).
@@ -125,6 +128,17 @@ class SickLeaveEvent:
     sick_days: int = 1
     waiting_period_days: int = 0
 
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.sick_days < 1:
+            msg = f"SickLeaveEvent.sick_days must be >= 1; got {self.sick_days}"
+            raise InvalidInputError(msg, feature="sick_leave")
+        if self.waiting_period_days > self.sick_days:
+            msg = (
+                f"SickLeaveEvent.waiting_period_days ({self.waiting_period_days}) "
+                f"must not exceed sick_days ({self.sick_days})"
+            )
+            raise InvalidInputError(msg, feature="sick_leave")
+
 
 @dataclass(frozen=True)
 class BonusEvent:
@@ -132,11 +146,16 @@ class BonusEvent:
 
     Attributes:
         event_date: Date the bonus is attributed to.
-        amount: Gross bonus amount in EUR.
+        amount: Gross bonus amount in EUR.  Must be >= 0.
     """
 
     event_date: date
     amount: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.amount < 0:
+            msg = f"BonusEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="bonus")
 
 
 @dataclass(frozen=True)
