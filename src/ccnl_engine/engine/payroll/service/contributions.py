@@ -352,6 +352,30 @@ def resolve_contributions(
             )
         )
 
+    # 1% addizionale INPS employee (INPS circ. 4/2026): charged on the portion
+    # of the annual INPS base that exceeds the statutory threshold.
+    if (
+        rules.inps is not None
+        and rules.inps.employee_additional_rate is not None
+        and rules.inps.employee_additional_threshold is not None
+    ):
+        add_threshold = rules.inps.employee_additional_threshold
+        ytd_after = ytd_inps_base + period_inps_base
+        excess_after = max(_ZERO, ytd_after - add_threshold)
+        excess_before = max(_ZERO, ytd_inps_base - add_threshold)
+        period_excess = excess_after - excess_before
+        add_1pct = money(period_excess * rules.inps.employee_additional_rate)
+        if add_1pct > _ZERO:
+            employee_total += add_1pct
+            components.append(
+                ContributionComponent(
+                    name="addizionale_1pct",
+                    base=period_excess,
+                    rate=rules.inps.employee_additional_rate,
+                    amount=add_1pct,
+                )
+            )
+
     return ContributionBreakdown(
         employee=employee_total,
         employer=employer_total,
