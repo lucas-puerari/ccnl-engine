@@ -381,14 +381,6 @@ def test_waiting_period_exceeds_sick_days_raises_invalid_input() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "addizionale_1pct is computed on the current period income even when "
-        "inps_base_ytd already exceeds the IVS massimale (122,295 EUR, INPS circ. "
-        "4/2026).  Above the massimale, both IVS and the addizionale must be zero."
-    ),
-)
 def test_addizionale_zero_above_ivs_massimale() -> None:
     """addizionale_1pct must be 0 when inps_base_ytd exceeds the IVS massimale.
 
