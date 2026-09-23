@@ -85,14 +85,6 @@ def _calendar_13() -> WorkCalendar:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "calculate_year uses effective_events.get(run.month, ()) for every run "
-        "in the same month, so a December bonus is applied to both the regular run "
-        "and the tredicesima run, doubling the annual gross contribution."
-    ),
-)
 def test_bonus_not_duplicated_in_extra_run() -> None:
     """A December BonusEvent must increase annual_gross by exactly 100, not 200.
 

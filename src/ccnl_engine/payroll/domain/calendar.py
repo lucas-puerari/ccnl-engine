@@ -24,6 +24,17 @@ class ExtraMonthSchedule:
     name: str
     payment_month: int
 
+    def __post_init__(self) -> None:  # noqa: D105
+        if not self.name:
+            msg = "ExtraMonthSchedule.name must not be empty"
+            raise ValueError(msg)
+        if not 1 <= self.payment_month <= 12:
+            msg = (
+                f"ExtraMonthSchedule.payment_month must be 1-12; "
+                f"got {self.payment_month}"
+            )
+            raise ValueError(msg)
+
 
 @dataclass(frozen=True)
 class WorkCalendar:
@@ -36,6 +47,21 @@ class WorkCalendar:
 
     year: int
     extra_months: tuple[ExtraMonthSchedule, ...] = field(default_factory=tuple)
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.year < 1970:
+            msg = f"WorkCalendar.year must be >= 1970; got {self.year}"
+            raise ValueError(msg)
+        seen: set[tuple[str, int]] = set()
+        for sched in self.extra_months:
+            key = (sched.name.lower(), sched.payment_month)
+            if key in seen:
+                msg = (
+                    f"duplicate extra-month schedule "
+                    f"'{sched.name}' in month {sched.payment_month}"
+                )
+                raise ValueError(msg)
+            seen.add(key)
 
     @classmethod
     def from_additional_months(
@@ -50,20 +76,29 @@ class WorkCalendar:
 
         For ``additional_months=13`` (12 regular + 1 tredicesima) this
         produces one :class:`ExtraMonthSchedule` paid in December.
+        For ``additional_months=14`` it produces tredicesima (December) and
+        quattordicesima (``extra_payment_month``).
 
         Args:
             year: Tax year.
             additional_months: Value from CCNL parameters (typically 13 or 14).
-            extra_month_name: Name applied to each extra month schedule.
-            extra_payment_month: Calendar month in which extra months are paid.
+            extra_month_name: Name for the first extra month (tredicesima).
+                Ignored for the second extra month, which is always named
+                ``"quattordicesima"``.
+            extra_payment_month: Calendar month for the first extra month.
+                The quattordicesima (if any) also uses this month.
 
         Returns:
             :class:`WorkCalendar` with ``max(0, additional_months - 12)``
-            extra schedules.
+            extra schedules, each with a distinct name.
         """
         extra_count = max(0, additional_months - 12)
+        canonical_names = [extra_month_name, "quattordicesima", "quindicesima"]
         schedules = tuple(
-            ExtraMonthSchedule(name=extra_month_name, payment_month=extra_payment_month)
-            for _ in range(extra_count)
+            ExtraMonthSchedule(
+                name=canonical_names[min(i, len(canonical_names) - 1)],
+                payment_month=extra_payment_month,
+            )
+            for i in range(extra_count)
         )
         return cls(year=year, extra_months=schedules)
