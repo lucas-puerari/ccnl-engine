@@ -245,11 +245,13 @@ from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
 from ccnl_engine.engine.payroll.service.orchestrator import compute
 from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition, Employee, WorkArrangement,
+    ContractPosition,
+    Employee,
+    WorkArrangement,
 )
 from ccnl_engine.engine.payroll.domain.employment import Permanent
 
-ccnl  = load_ccnl("{id}.json")
+ccnl = load_ccnl("{id}.json")
 rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
 employee = Employee(
     position=ContractPosition(
@@ -344,6 +346,7 @@ Standard template (non-domestic):
 
 ```python
 """Usage example: {meta.name}."""
+
 from datetime import date
 from ccnl_engine import (
     ContractPosition,
@@ -356,9 +359,7 @@ from ccnl_engine import (
 )
 
 ccnl = load_ccnl("{id}.json")
-rules = load_year_rules(
-    {year}, ccnl.meta.tax_sector, num_employees=50
-)
+rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
 employee = Employee(
     position=ContractPosition(
         level_code="{middle_level_code}",

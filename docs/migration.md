@@ -35,6 +35,8 @@ print(result.earnings.gross_monthly)
 ## After (preferred)
 
 ```python
+from datetime import date
+
 from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun, PayrollYearRequest
 from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
 

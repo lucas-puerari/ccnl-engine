@@ -26,7 +26,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Get started](getting-started/index.md) | Install, quickstart, and first payroll in 10 lines |
 | [Domain](domain/index.md) | What CCNLs are, Italian labor law, employment types |
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
-| [Engine](engine/index.md) | How to use `estimate_annual()` / `estimate_period_effects()` — pay components, fiscal, domestic work |
+| [Engine](engine/index.md) | How to use `PayrollEngine` — pay components, fiscal, domestic work |
 | [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
 | [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
 | [Correctness layers](trust/correctness.md) | Software, source, and case correctness — what each layer means and how to read them |
