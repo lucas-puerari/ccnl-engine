@@ -285,13 +285,18 @@ def _compute_amounts(
     period_tfr_base = monthly_gross + event_totals.tfr_base
     tfr = money(period_tfr_base / rules.tfr.accrual_divisor)
 
-    # IRPEF: recurring base projected annually + event IRPEF-liable amounts (one-off)
-    recurring_annual = monthly_gross * additional_months
-    recurring_inps_annual = money(recurring_annual * employee_rate_for_irpef)
-    recurring_taxable = recurring_annual - recurring_inps_annual
+    # IRPEF: actual YTD + projection for remaining periods (conguaglio, TUIR art. 23).
+    # months_remaining = number of periods from this one to the end of the year
+    # (inclusive). For January months_remaining == additional_months — equivalent to
+    # the previous full-year projection. For December months_remaining == 1, so
+    # taxable = opening.taxable_ytd + this month's taxable = actual annual total.
+    months_remaining = additional_months - opening.months_closed
+    recurring_remaining = monthly_gross * months_remaining
+    recurring_inps_remaining = money(recurring_remaining * employee_rate_for_irpef)
+    recurring_taxable = recurring_remaining - recurring_inps_remaining
     event_inps_on_irpef = money(event_totals.inps_base * employee_rate_for_irpef)
     event_taxable = event_totals.irpef_base - event_inps_on_irpef
-    taxable = recurring_taxable + event_taxable
+    taxable = opening.taxable_ytd + recurring_taxable + event_taxable
 
     # Family deductions reduce annual IRPEF
     if family_composition is not None and family_deduction_rules is not None:
