@@ -240,6 +240,30 @@ def _resolve_chain(
     return _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
 
 
+def _apply_extra_month_policy(
+    chain: MonthlyPayChain,
+    run_kind: str,
+    months_closed: int,
+) -> MonthlyPayChain:
+    """Adjust a pay chain for the run kind.
+
+    For regular runs returns ``chain`` unchanged.  For tredicesima and
+    quattordicesima runs removes allowances that do not qualify and scales
+    the chain by the accrual fraction when fewer than 12 periods are closed.
+
+    Returns:
+        Adjusted :class:`~ccnl_engine.engine.payroll.service.types.MonthlyPayChain`.
+    """
+    if run_kind not in {"thirteenth", "fourteenth"}:
+        return chain
+    months_threshold = 14 if run_kind == "fourteenth" else 13
+    chain = chain.for_extra_month(months_threshold)
+    if months_closed < 12:
+        rateo = Decimal(months_closed) / Decimal(12)
+        chain = chain.scaled(rateo)
+    return chain
+
+
 def _compute_amounts(
     monthly_gross: Decimal,
     event_totals: _EventTotals,
@@ -1127,14 +1151,9 @@ def calculate_period(
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
     run_kind = request.run.run_kind if request.run is not None else "regular"
-    if run_kind in {"thirteenth", "fourteenth"}:
-        months_threshold = 14 if run_kind == "fourteenth" else 13
-        chain = chain.for_extra_month(months_threshold)
-        months_closed = request.opening_state.months_closed
-        if months_closed < 12:
-            # Scale the entire chain so ledger entries already carry the rateo.
-            rateo = Decimal(months_closed) / Decimal(12)
-            chain = chain.scaled(rateo)
+    chain = _apply_extra_month_policy(
+        chain, run_kind, request.opening_state.months_closed
+    )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     var_pay_rules = load_variable_pay_rules(period_year)
