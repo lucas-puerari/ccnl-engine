@@ -8,7 +8,7 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.payroll.domain.pay_items._policy import (
+from ccnl_engine.payroll.domain.pay_items._policy import (
     CompetencePeriod,
     PolicyDecision,
 )

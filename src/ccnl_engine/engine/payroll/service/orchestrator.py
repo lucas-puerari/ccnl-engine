@@ -10,7 +10,7 @@ from ccnl_engine.engine.payroll.service.annual_service import (
     estimate_period_effects,
 )
 from ccnl_engine.engine.payroll.service.coverage_evaluator import (
-    _ivs_ceiling_warning as _ivs_ceiling_warning,  # noqa: PLC0414
+    _ivs_ceiling_warning as _ivs_ceiling_warning,
 )
 
 __all__ = [

@@ -6,20 +6,20 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.employment import Permanent
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.capability_catalog import CapabilityReport
-    from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
-    from ccnl_engine.engine.payroll.domain.family import FamilyComposition
-    from ccnl_engine.engine.payroll.domain.ledger import LedgerEntry
-    from ccnl_engine.engine.payroll.domain.pay_items import PayItem
-    from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+    from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.payroll.domain.ledger import LedgerEntry
+    from ccnl_engine.payroll.domain.pay_items import PayItem
+    from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
