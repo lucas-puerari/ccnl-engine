@@ -87,32 +87,23 @@ def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decim
 
 
 # ---------------------------------------------------------------------------
-# P0-01: BonusEvent posted as PdR bonus → no substitute-tax
+# P0-01: BonusEvent posted as PdR bonus → substitute-tax applies
 #
 # L. 199/2025 art. 1 co. 9: PdR bonuses up to 5,000 EUR are subject to a
 # 1% flat substitute tax in place of ordinary IRPEF.  A 1,000 EUR PdR bonus
 # must produce SUBSTITUTE_TAX = 10.00 and MUST NOT increase ORDINARY_TAX.
-# Currently BonusEvent has no PdR flag and always goes through ordinary IRPEF.
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "P0-01: BonusEvent has no PdR flag; all bonuses go through ordinary "
-        "IRPEF.  A PdR-eligible bonus of 1,000 EUR must produce "
-        "SUBSTITUTE_TAX = 10.00 (1% flat, L. 199/2025 art. 1 co. 9) and must "
-        "not increase ORDINARY_TAX relative to the no-bonus baseline.  "
-        "Currently SUBSTITUTE_TAX is always zero for BonusEvent."
-    ),
-)
 def test_p0_01_pdr_bonus_substitute_tax() -> None:
     """P0-01: a 1,000 EUR PdR bonus must post SUBSTITUTE_TAX = 10.00.
 
     Source: L. 199/2025 art. 1 co. 9 — tassazione sostitutiva 1% on PdR up
     to 5,000 EUR.  Expected: SUBSTITUTE_TAX = Decimal("10.00").
     """
-    bonus = BonusEvent(event_date=date(_YEAR, 1, 15), amount=Decimal("1000.00"))
+    bonus = BonusEvent(
+        event_date=date(_YEAR, 1, 15), amount=Decimal("1000.00"), is_pdr=True
+    )
     result = calculate_period(_req(events=(bonus,)))
 
     sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)

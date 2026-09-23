@@ -110,6 +110,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
 
 _ZERO = Decimal(0)
 
@@ -130,8 +131,12 @@ def _treatment_from_resolution(resolution: PolicyResolution) -> EventTreatment:
         ContributionAxis.SPECIAL_BASE,
     }
     tfr = resolution.tfr == TfrAxis.INCLUDED
-    irpef = resolution.tax not in {TaxAxis.NOT_APPLICABLE, TaxAxis.EXEMPT}
-    return EventTreatment(inps=inps, tfr=tfr, irpef=irpef)
+    substitute = resolution.tax == TaxAxis.SUBSTITUTE
+    irpef = not substitute and resolution.tax not in {
+        TaxAxis.NOT_APPLICABLE,
+        TaxAxis.EXEMPT,
+    }
+    return EventTreatment(inps=inps, tfr=tfr, irpef=irpef, substitute=substitute)
 
 
 def _require_resolution(
@@ -187,6 +192,7 @@ class _EventTotals:
     fringe_value: Decimal
     fringe_inps: Decimal
     fringe_irpef: Decimal
+    substitute_base: Decimal
 
 
 @dataclass(frozen=True)
@@ -205,6 +211,7 @@ class _PeriodAmounts:
     period_tratt: Decimal
     period_surtax: Decimal
     period_taxable: Decimal
+    period_substitute_tax: Decimal
 
 
 def _as_of(period_id: PeriodId) -> date:
@@ -272,6 +279,7 @@ def _compute_amounts(
     rules: YearRules,
     contract_type: Permanent | FixedTerm | Apprentice,
     category: LevelCategory | None,
+    pdr_rules: PdRRules,
     surtax_rules: SurtaxRules | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
@@ -363,6 +371,13 @@ def _compute_amounts(
     # once in event_taxable). event_taxable uses the nominal rate and is only
     # valid for the forward-looking forecast (taxable above).
     period_taxable = money(monthly_gross - inps_employee + event_totals.irpef_base)
+
+    # Substitute tax (imposta sostitutiva): PdR bonus up to the annual cap.
+    # Only the headroom within the 5,000 EUR annual cap attracts the flat rate.
+    pdr_headroom = max(_ZERO, pdr_rules.max_amount - opening.pdr_ytd)
+    pdr_eligible = min(event_totals.substitute_base, pdr_headroom)
+    period_substitute_tax = money(pdr_eligible * pdr_rules.flat_tax_rate)
+
     return (
         _PeriodAmounts(
             monthly_gross=monthly_gross,
@@ -373,6 +388,7 @@ def _compute_amounts(
             period_tratt=period_tratt,
             period_surtax=period_surtax,
             period_taxable=period_taxable,
+            period_substitute_tax=period_substitute_tax,
         ),
         breakdown,
         tax_comp,
@@ -535,6 +551,7 @@ def _standard_event_item(
             ),
             "sickness_item",
         )
+    kind = "productivity_bonus_earning" if event.is_pdr else "bonus_earning"
     return (
         BonusEarning(
             item_id=evt_id,
@@ -543,7 +560,7 @@ def _standard_event_item(
             quantity=Decimal(1),
             amount=gross,
         ),
-        "bonus_earning",
+        kind,
     )  # BonusEvent
 
 
@@ -622,6 +639,7 @@ def _process_events(
     total_inps = _ZERO
     total_tfr = _ZERO
     total_irpef = _ZERO
+    total_substitute = _ZERO
     total_fringe_value = _ZERO
     total_fringe_inps = _ZERO
     total_fringe_irpef = _ZERO
@@ -653,6 +671,8 @@ def _process_events(
             total_inps += di
             total_tfr += dt
             total_irpef += dirpef
+            if treatment.substitute:
+                total_substitute += gross
             items.append(item)
             entries.append(
                 _make_entry(
@@ -852,6 +872,7 @@ def _process_events(
             fringe_value=total_fringe_value,
             fringe_inps=total_fringe_inps,
             fringe_irpef=total_fringe_irpef,
+            substitute_base=total_substitute,
         ),
         tuple(items),
         tuple(entries),
@@ -1105,6 +1126,22 @@ def _project_ledger(
                 policy_id=emp_pid,
             )
         )
+    if amounts.period_substitute_tax > _ZERO:
+        prod_pid = _require_resolution(
+            resolver, "productivity_bonus_earning", context
+        ).policy_id
+        entries.append(
+            _make_entry(
+                f"substitute_tax_{tag}",
+                f"substitute_tax_{tag}",
+                "productivity_bonus_earning",
+                cp,
+                payment_date,
+                AccountKind.SUBSTITUTE_TAX,
+                amounts.period_substitute_tax,
+                policy_id=prod_pid,
+            )
+        )
     return tuple(entries)
 
 
@@ -1207,6 +1244,7 @@ def calculate_period(
         family_composition=request.family_composition,
         family_deduction_rules=fam_ded_rules,
         ivs_ceiling_applies=request.ivs_ceiling_applies,
+        pdr_rules=var_pay_rules.pdr,
     )
     pay_items = _build_pay_items(
         amounts, chain, request.period_id, request.payment_date, run_tag=tag
@@ -1300,6 +1338,7 @@ def calculate_period(
         fringe_taxed_ytd=(
             request.opening_state.fringe_taxed_ytd + event_totals.fringe_irpef
         ),
+        pdr_ytd=request.opening_state.pdr_ytd + event_totals.substitute_base,
     )
     benefit_breakdown = BenefitBreakdown(
         value=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),
