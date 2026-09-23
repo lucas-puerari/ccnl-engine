@@ -789,7 +789,7 @@ def _process_events(
                     "employee_withholding_item",
                     cp,
                     payment_date,
-                    AccountKind.EMPLOYEE_CONTRIBUTIONS,
+                    AccountKind.BILATERAL_FUND_EMPLOYEE,
                     event.employee_amount,
                     policy_id=emp_resolution.policy_id,
                 ),
@@ -799,7 +799,7 @@ def _process_events(
                     "employer_contribution_item",
                     cp,
                     payment_date,
-                    AccountKind.EMPLOYER_CONTRIBUTIONS,
+                    AccountKind.BILATERAL_FUND_EMPLOYER,
                     event.employer_amount,
                     policy_id=er_resolution.policy_id,
                 ),
@@ -1267,6 +1267,7 @@ def calculate_period(
         + _sum_ledger(all_entries, AccountKind.TFR_SETTLEMENT)
         + _sum_ledger(all_entries, AccountKind.CREDITS)
         - _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
+        - _sum_ledger(all_entries, AccountKind.BILATERAL_FUND_EMPLOYEE)
         - _sum_ledger(all_entries, AccountKind.ORDINARY_TAX)
         - _sum_ledger(all_entries, AccountKind.SURTAX)
         - _sum_ledger(all_entries, AccountKind.SEPARATE_TAX)
@@ -1275,6 +1276,7 @@ def calculate_period(
         period_gross
         + _sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS)
         + _sum_ledger(all_entries, AccountKind.EMPLOYER_CONTRIBUTIONS)
+        + _sum_ledger(all_entries, AccountKind.BILATERAL_FUND_EMPLOYER)
         + _sum_ledger(all_entries, AccountKind.TFR_ACCRUAL)
     )
 

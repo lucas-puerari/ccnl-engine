@@ -61,6 +61,14 @@ class TestAccountKind:
         """EMPLOYER_CONTRIBUTIONS maps to 'employer_contributions'."""
         assert AccountKind.EMPLOYER_CONTRIBUTIONS.value == "employer_contributions"
 
+    def test_bilateral_fund_employee(self) -> None:
+        """BILATERAL_FUND_EMPLOYEE maps to 'bilateral_fund_employee'."""
+        assert AccountKind.BILATERAL_FUND_EMPLOYEE.value == "bilateral_fund_employee"
+
+    def test_bilateral_fund_employer(self) -> None:
+        """BILATERAL_FUND_EMPLOYER maps to 'bilateral_fund_employer'."""
+        assert AccountKind.BILATERAL_FUND_EMPLOYER.value == "bilateral_fund_employer"
+
     def test_ordinary_tax(self) -> None:
         """ORDINARY_TAX maps to 'ordinary_tax'."""
         assert AccountKind.ORDINARY_TAX.value == "ordinary_tax"
@@ -89,9 +97,9 @@ class TestAccountKind:
         """TFR_SETTLEMENT maps to 'tfr_settlement'."""
         assert AccountKind.TFR_SETTLEMENT.value == "tfr_settlement"
 
-    def test_twelve_members(self) -> None:
-        """AccountKind has exactly twelve members."""
-        assert len(AccountKind) == 12
+    def test_fourteen_members(self) -> None:
+        """AccountKind has exactly fourteen members."""
+        assert len(AccountKind) == 14
 
     def test_is_str(self) -> None:
         """AccountKind members are strings (StrEnum)."""
