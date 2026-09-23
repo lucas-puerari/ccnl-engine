@@ -2,14 +2,12 @@
 
 Public API
 ----------
-Two entry points are available:
+The single entry point is :class:`PayrollEngine`.  Construct it with
+:meth:`~PayrollEngine.from_builtin_data` and call
+:meth:`~PayrollEngine.calculate` for a single cedolino or
+:meth:`~PayrollEngine.calculate_year` for a full-year run.
 
-- :class:`PayrollEngine` — unified period/year entry point (preferred).
-  Call :meth:`~PayrollEngine.calculate_period` for a single cedolino with
-  YTD state.
-- :func:`estimate_annual` — annual gross-to-net estimate (no period events).
-
-All types needed to call them and inspect their results are re-exported from
+All types needed to call it and inspect its results are re-exported from
 this module.
 
 Tooling types (CCNL inspection, diff, loaders) are not part of the
@@ -22,19 +20,11 @@ stable API. Use the dedicated sub-namespaces instead:
 
 Usage::
 
-    from datetime import date
+    from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun
 
-    from ccnl_engine import (
-        PayrollEngine,
-        PeriodCalculationRequest,
-        PeriodId,
-        PeriodState,
-    )
-
-    engine = PayrollEngine()
-    result = engine.calculate_period(PeriodCalculationRequest(
-        period_id=PeriodId(year=2026, month=1),
-        payment_date=date(2026, 1, 28),
+    engine = PayrollEngine.from_builtin_data()
+    result = engine.calculate(PayrollRequest(
+        run=PayrollRun(year=2026, month=1),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
     ))
@@ -127,7 +117,6 @@ from ccnl_engine.engine.payroll.domain.supplements import (
 )
 from ccnl_engine.engine.payroll.service.bundle_loader import load_payroll_bundle
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
-from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.render import (
     AnnualBreakdown,
     render_breakdown,
@@ -208,7 +197,6 @@ __all__ = [
     "WeeklyOvertimeHours",
     "WelfareInput",
     "engine_version",
-    "estimate_annual",
     "get_ccnl",
     "list_ccnls",
     "load_payroll_bundle",

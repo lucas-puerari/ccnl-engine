@@ -19,8 +19,8 @@ from ccnl_engine import (
     AnnualEstimateInput,
     Permanent,
     RalOverride,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # CCNL minimum for the level.
 ccnl_min = estimate_annual(

@@ -17,8 +17,8 @@ from ccnl_engine import (
     Employment,
     AnnualEstimateInput,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # Metalmeccanico artigianato has an apprenticeship percentage track.
 # Destination level: level 3. Apprentice at month 12 → 75% of destination pay.

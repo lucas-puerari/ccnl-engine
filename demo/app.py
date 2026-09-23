@@ -30,8 +30,8 @@ from ccnl_engine import (
     SeniorityByMonths,
     SupplementaryAllowance,
     WeeklyOvertimeHours,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.payroll.domain.supplements import (
