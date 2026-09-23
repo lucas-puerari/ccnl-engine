@@ -60,6 +60,7 @@ def calculate_year(
     calendar: WorkCalendar,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
     num_employees: int = 50,
+    ivs_ceiling_applies: bool = True,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
@@ -89,6 +90,8 @@ def calculate_year(
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
         num_employees: Employer headcount for INPS rate resolution.
             Defaults to 50.
+        ivs_ceiling_applies: When False the IVS massimale ceiling is bypassed
+            across all runs.  Defaults to True.
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
             (thirteenth, fourteenth) receive no events from this mapping;
@@ -137,6 +140,7 @@ def calculate_year(
             opening_state=state,
             contract_type=effective_contract,
             num_employees=num_employees,
+            ivs_ceiling_applies=ivs_ceiling_applies,
             events=run_events,
             regione=regione,
             comune_belfiore=comune_belfiore,

@@ -97,6 +97,7 @@ class PeriodCalculationRequest:
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     num_employees: int = 50
+    ivs_ceiling_applies: bool = True
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
     comune_belfiore: str | None = None

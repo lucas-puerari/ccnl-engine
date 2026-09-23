@@ -261,6 +261,49 @@ def fund_applies_to(fund: EmployerFund, category: LevelCategory | None) -> bool:
     return category is not None and category in fund.applies_to_categories
 
 
+def _addizionale_1pct(
+    period_inps_base: Decimal,
+    rules: YearRules,
+    *,
+    ytd_inps_base: Decimal,
+    ceiling: Decimal | None,
+) -> ContributionComponent | None:
+    """Return the 1% addizionale INPS component, or None when not applicable.
+
+    INPS circ. 4/2026: charged on the portion of the annual INPS base
+    exceeding the statutory threshold but capped at the IVS massimale.
+
+    Returns:
+        A :class:`ContributionComponent` or ``None`` if not applicable.
+    """
+    inps = rules.inps
+    if (
+        inps is None
+        or inps.employee_additional_rate is None
+        or inps.employee_additional_threshold is None
+    ):
+        return None
+    add_threshold = inps.employee_additional_threshold
+    ytd_capped = min(ytd_inps_base, ceiling) if ceiling is not None else ytd_inps_base
+    ytd_after_capped = (
+        min(ytd_inps_base + period_inps_base, ceiling)
+        if ceiling is not None
+        else ytd_inps_base + period_inps_base
+    )
+    period_excess = max(_ZERO, ytd_after_capped - add_threshold) - max(
+        _ZERO, ytd_capped - add_threshold
+    )
+    add_amount = money(period_excess * inps.employee_additional_rate)
+    if add_amount <= _ZERO:
+        return None
+    return ContributionComponent(
+        name="addizionale_1pct",
+        base=period_excess,
+        rate=inps.employee_additional_rate,
+        amount=add_amount,
+    )
+
+
 def resolve_contributions(
     period_inps_base: Decimal,
     rules: YearRules,
@@ -268,6 +311,7 @@ def resolve_contributions(
     category: LevelCategory | None,
     *,
     ytd_inps_base: Decimal = _ZERO,
+    ivs_ceiling_applies: bool = True,
 ) -> ContributionBreakdown:
     """Compute INPS contributions with per-component breakdown and IVS ceiling.
 
@@ -286,13 +330,17 @@ def resolve_contributions(
         ytd_inps_base: Total INPS base already accumulated this tax year
             (from ``PeriodState.inps_base_ytd``). Used to enforce the
             annual IVS ceiling across periods.
+        ivs_ceiling_applies: When False the massimale ceiling is bypassed
+            and all contributions are applied to the full base.
 
     Returns:
         :class:`~ccnl_engine.payroll.domain.contributions.ContributionBreakdown`
         with employee/employer totals and per-component trace.
     """
     rates = resolve_rates(rules, contract_type, category)
-    ceiling = rules.inps.ceiling if rules.inps is not None else None
+    ceiling = (
+        rules.inps.ceiling if (rules.inps is not None and ivs_ceiling_applies) else None
+    )
 
     # IVS-eligible base for this period: capped at remaining ceiling headroom.
     if ceiling is not None:
@@ -352,38 +400,12 @@ def resolve_contributions(
             )
         )
 
-    # 1% addizionale INPS employee (INPS circ. 4/2026): charged on the portion
-    # of the annual INPS base exceeding the statutory threshold, but only up to
-    # the IVS massimale — income above the ceiling attracts no INPS at all.
-    if (
-        rules.inps is not None
-        and rules.inps.employee_additional_rate is not None
-        and rules.inps.employee_additional_threshold is not None
-    ):
-        add_threshold = rules.inps.employee_additional_threshold
-        # Cap both YTD and current total at the massimale before computing excess.
-        ytd_capped = (
-            min(ytd_inps_base, ceiling) if ceiling is not None else ytd_inps_base
-        )
-        ytd_after_capped = (
-            min(ytd_inps_base + period_inps_base, ceiling)
-            if ceiling is not None
-            else ytd_inps_base + period_inps_base
-        )
-        excess_after = max(_ZERO, ytd_after_capped - add_threshold)
-        excess_before = max(_ZERO, ytd_capped - add_threshold)
-        period_excess = excess_after - excess_before
-        add_1pct = money(period_excess * rules.inps.employee_additional_rate)
-        if add_1pct > _ZERO:
-            employee_total += add_1pct
-            components.append(
-                ContributionComponent(
-                    name="addizionale_1pct",
-                    base=period_excess,
-                    rate=rules.inps.employee_additional_rate,
-                    amount=add_1pct,
-                )
-            )
+    add_comp = _addizionale_1pct(
+        period_inps_base, rules, ytd_inps_base=ytd_inps_base, ceiling=ceiling
+    )
+    if add_comp is not None:
+        employee_total += add_comp.amount
+        components.append(add_comp)
 
     return ContributionBreakdown(
         employee=employee_total,

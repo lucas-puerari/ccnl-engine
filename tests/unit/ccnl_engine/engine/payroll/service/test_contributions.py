@@ -332,6 +332,18 @@ class TestResolveContributions:
         assert "non_ivs_employer" not in names
         assert "ivs_employer" in names
 
+    def test_ivs_ceiling_not_applies_bypasses_ceiling(self) -> None:
+        """ivs_ceiling_applies=False: full base used even when ceiling is set."""
+        rules = _rules(ceiling="120000")
+        base = _D("150000.00")
+        bd_capped = resolve_contributions(
+            base, rules, Permanent(), None, ivs_ceiling_applies=True
+        )
+        bd_uncapped = resolve_contributions(
+            base, rules, Permanent(), None, ivs_ceiling_applies=False
+        )
+        assert bd_uncapped.employee > bd_capped.employee
+
 
 class TestAddizionale1Pct:
     """resolve_contributions: 1% addizionale INPS (INPS circ. 4/2026)."""
