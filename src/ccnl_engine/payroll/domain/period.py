@@ -107,6 +107,13 @@ class PeriodCalculationRequest:
             fiscally dependent child (figlio a carico).  Selects the
             higher fringe-benefit exemption threshold under Art. 51 c. 3
             TUIR.  Defaults to ``False``.
+        weekly_hours: Contracted weekly hours.  Required for domestic
+            CCNLs (``lavoro-domestico`` tax sector) to select the INPS
+            contribution bracket (above or below the hours threshold).
+            Ignored for standard sectors.
+        contributable_hours: Actual hours worked and paid in the period
+            that are subject to INPS contributions.  Required for domestic
+            CCNLs.  Ignored for standard sectors.
     """
 
     period_id: PeriodId
@@ -123,6 +130,8 @@ class PeriodCalculationRequest:
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
     run: PayrollRun | None = None
+    weekly_hours: int | None = None
+    contributable_hours: Decimal | None = None
 
 
 @dataclass(frozen=True)
