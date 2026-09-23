@@ -64,18 +64,6 @@ def _inps_employee(result: object) -> Decimal:
     )
 
 
-def _employer_contrib(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
-    return sum(
-        (
-            e.amount
-            for e in result.ledger_entries
-            if e.account == AccountKind.EMPLOYER_CONTRIBUTIONS
-        ),
-        Decimal(0),
-    )
-
-
 def _sep_tax(result: PeriodCalculationResult) -> Decimal:
     return sum(
         (
@@ -204,17 +192,25 @@ class TestBilateralFundEventAccounting:
         result = calculate_period(_req(self._bilateral()))
         assert result.period_gross == base.period_gross
 
-    def test_employee_contributions_increase(self) -> None:
-        """EMPLOYEE_CONTRIBUTIONS includes the employee bilateral amount."""
-        base = calculate_period(_base())
+    def test_bilateral_fund_employee_account_posted(self) -> None:
+        """BILATERAL_FUND_EMPLOYEE carries the employee bilateral amount."""
         result = calculate_period(_req(self._bilateral()))
-        assert _inps_employee(result) == _inps_employee(base) + Decimal("30.00")
+        total = sum(
+            e.amount
+            for e in result.ledger_entries
+            if e.account == AccountKind.BILATERAL_FUND_EMPLOYEE
+        )
+        assert total == Decimal("30.00")
 
-    def test_employer_contributions_increase(self) -> None:
-        """EMPLOYER_CONTRIBUTIONS includes the employer bilateral amount."""
-        base = calculate_period(_base())
+    def test_bilateral_fund_employer_account_posted(self) -> None:
+        """BILATERAL_FUND_EMPLOYER carries the employer bilateral amount."""
         result = calculate_period(_req(self._bilateral()))
-        assert _employer_contrib(result) == _employer_contrib(base) + Decimal("50.00")
+        total = sum(
+            e.amount
+            for e in result.ledger_entries
+            if e.account == AccountKind.BILATERAL_FUND_EMPLOYER
+        )
+        assert total == Decimal("50.00")
 
     def test_net_reduced_by_employee_amount(self) -> None:
         """period_net decreases by the employee bilateral amount."""

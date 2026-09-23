@@ -214,14 +214,6 @@ def test_domestic_contributions_nonzero() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "BilateralFundEvent.employee_amount is posted to EMPLOYEE_CONTRIBUTIONS "
-        "and inflates closing_state.inps_employee_ytd; it must be excluded from "
-        "that counter and tracked in a separate ledger account."
-    ),
-)
 def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
     """BilateralFundEvent must not change inps_employee_ytd.
 

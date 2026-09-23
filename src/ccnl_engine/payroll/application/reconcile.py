@@ -10,14 +10,16 @@ Invariants:
     I1  — every PayItem has at least one matching LedgerEntry.
     I2  — no pay_item_id posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
     I9  — net identity: CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-          - EMPLOYEE_CONTRIBUTIONS - ORDINARY_TAX - SURTAX - SEPARATE_TAX
+          - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+          - ORDINARY_TAX - SURTAX - SEPARATE_TAX
           = period_net.
     I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
           = ORDINARY_TAX total.
     I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
           advance correctly from opening.
     I12 — employer cost identity: CASH_EARNINGS + NON_CASH_BENEFITS
-          + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL = period_employer_cost.
+          + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
+          + TFR_ACCRUAL = period_employer_cost.
     I13 — gross identity: CASH_EARNINGS total = period_gross.
 """
 
@@ -153,7 +155,8 @@ def _check_i9(
     """I9: net identity.
 
     CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-    - EMPLOYEE_CONTRIBUTIONS - ORDINARY_TAX - SURTAX - SEPARATE_TAX
+    - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+    - ORDINARY_TAX - SURTAX - SEPARATE_TAX
     = period_net.
 
     Returns:
@@ -163,11 +166,19 @@ def _check_i9(
     period_credits = _sum_account(result, AccountKind.CREDITS)
     tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
     contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
+    bilateral_emp = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYEE)
     taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
     surtax = _sum_account(result, AccountKind.SURTAX)
     sep_tax = _sum_account(result, AccountKind.SEPARATE_TAX)
     derived = (
-        cash + period_credits + tfr_settle - contributions - taxes - surtax - sep_tax
+        cash
+        + period_credits
+        + tfr_settle
+        - contributions
+        - bilateral_emp
+        - taxes
+        - surtax
+        - sep_tax
     )
     if derived != result.period_net:
         return [
@@ -254,8 +265,8 @@ def _check_i12(
 ) -> list[ReconciliationViolation]:
     """I12: employer cost identity.
 
-    CASH_EARNINGS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL
-    = period_employer_cost.
+    CASH_EARNINGS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
+    + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
 
     Returns:
         A violation when the derived employer cost diverges from
@@ -264,8 +275,9 @@ def _check_i12(
     cash = _sum_account(result, AccountKind.CASH_EARNINGS)
     ncb = _sum_account(result, AccountKind.NON_CASH_BENEFITS)
     employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
+    bilateral_er = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYER)
     tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
-    derived = cash + ncb + employer + tfr
+    derived = cash + ncb + employer + bilateral_er + tfr
     if derived != result.period_employer_cost:
         return [
             ReconciliationViolation(
