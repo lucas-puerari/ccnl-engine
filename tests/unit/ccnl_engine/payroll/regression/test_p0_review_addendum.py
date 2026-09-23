@@ -124,12 +124,22 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.xfail(
+    strict=True,
+    reason=(
+        "taxable_ytd inflated by double-INPS-deduction (REVIEW.md §4 P0-3): "
+        "the event INPS is subtracted twice, giving 810.20 instead of 905.10.  "
+        "Fix: deduct INPS once when building event_taxable."
+    ),
+)
 def test_taxable_ytd_not_diluted_by_extra_months() -> None:
-    """closing_state.taxable_ytd must increase by the full net-of-INPS bonus amount.
+    """closing_state.taxable_ytd must increase by exactly 905.10 for a 1,000 EUR bonus.
 
-    Source: REVIEW.md §5, P0-2.  A 1,000 EUR bonus with employee INPS ~94.90 EUR
-    produces event_taxable ~905.10.  The difference in closing taxable_ytd between
-    a period with and without the bonus must be > 800 (close to 905, not 69).
+    Source: REVIEW.md §4 (riproduzione numerica verificata).
+    1,000 EUR bonus, employee INPS contribution 94.90 EUR (9.49%):
+    event_taxable = 1,000.00 - 94.90 = 905.10.
+    The current engine produces 810.20 due to a double-deduction of INPS
+    inside event_taxable + actual_total_inps.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 1, 15), amount=Decimal("1000.00"))
 
@@ -139,12 +149,9 @@ def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     ytd_diff = (
         result_with.closing_state.taxable_ytd - result_base.closing_state.taxable_ytd
     )
-    # Accept anything in (800, 1000): exact value depends on INPS rates but
-    # must be close to the full taxable amount, not taxable/13.
-    assert ytd_diff > Decimal("800.00"), (
-        f"taxable_ytd increase from a 1,000 EUR bonus must be > 800 EUR (full "
-        f"net-of-INPS taxable); got {ytd_diff}.  Currently increased by "
-        "~69.62 = 905.10 / 13 due to the additional_months divisor."
+    assert ytd_diff == Decimal("905.10"), (
+        f"taxable_ytd increase from a 1,000 EUR bonus must be exactly 905.10 "
+        f"(gross 1000 minus INPS 94.90); got {ytd_diff}."
     )
 
 
