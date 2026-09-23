@@ -27,7 +27,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -240,33 +240,21 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "AbsenceEvent(hours=240) passes the 0 < hours <= 240 guard but a "
-        "full-time worker has only ~168-184 working hours per month; the deduction "
-        "exceeds the monthly gross and period_gross becomes negative."
-    ),
-)
 def test_absence_240h_does_not_produce_negative_gross() -> None:
-    """AbsenceEvent(hours=240) must not result in a negative period_gross.
+    """AbsenceEvent(hours=240) produces negative gross, intercepted by the reconciler.
 
     Source: REVIEW.md §5, P0-6.  240 hours at 12.50 EUR/h = 3,000 EUR deduction
     against a monthly gross of ~1,500-2,500 EUR produces a negative result.
-    Expected: period_gross >= 0.
+    The reconciler invariant I15 catches period_gross < 0 and raises
+    DataIntegrityError before the result is returned.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(240),
         hourly_rate=Decimal("12.50"),
     )
-    result = calculate_period(_req(events=(absence,)))
-
-    assert result.period_gross >= _ZERO, (
-        f"period_gross with 240h absence must not be negative; "
-        f"got {result.period_gross}.  The engine accepts 240h (= upper guard "
-        "limit) even when that exceeds the period's working hours."
-    )
+    with pytest.raises(DataIntegrityError, match="I15"):
+        calculate_period(_req(events=(absence,)))
 
 
 # ---------------------------------------------------------------------------
