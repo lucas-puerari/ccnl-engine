@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+    from ccnl_engine.payroll.domain.sickness import SicknessCase
 
 __all__ = [
     "AbsenceEvent",
@@ -29,6 +30,7 @@ __all__ = [
     "NightShiftEvent",
     "OvertimeEvent",
     "SickLeaveEvent",
+    "SicknessCaseEvent",
     "TerminationTFREvent",
     "WelfareEvent",
     "WorkEvent",
@@ -349,12 +351,41 @@ class TerminationTFREvent:
             raise InvalidInputError(msg, feature="termination_tfr")
 
 
+@dataclass(frozen=True)
+class SicknessCaseEvent:
+    """Structured sick-leave episode with INPS indemnity and employer integration.
+
+    Wraps a :class:`~ccnl_engine.payroll.domain.sickness.SicknessCase` to
+    participate in the event pipeline.  Unlike :class:`SickLeaveEvent`, which
+    requires the caller to pre-compute amounts, this event lets the engine
+    derive the absence deduction, INPS indemnity, and employer integration
+    from the episode details.
+
+    Attributes:
+        event_date: First day of the sick-leave episode (= ``case.episode_start``).
+            Must equal ``case.episode_start``.
+        case: The full sickness episode model.
+    """
+
+    event_date: date
+    case: SicknessCase
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if self.event_date != self.case.episode_start:
+            msg = (
+                f"SicknessCaseEvent.event_date ({self.event_date}) must equal "
+                f"case.episode_start ({self.case.episode_start})"
+            )
+            raise InvalidInputError(msg, feature="sickness")
+
+
 WorkEvent = (
     OvertimeEvent
     | NightShiftEvent
     | HolidayWorkEvent
     | AbsenceEvent
     | SickLeaveEvent
+    | SicknessCaseEvent
     | BonusEvent
     | FringeEvent
     | WelfareEvent

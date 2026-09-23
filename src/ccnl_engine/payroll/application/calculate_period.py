@@ -81,6 +81,7 @@ from ccnl_engine.payroll.domain.events import (
     NightShiftEvent,
     OvertimeEvent,
     SickLeaveEvent,
+    SicknessCaseEvent,
     TerminationTFREvent,
     WelfareEvent,
     WorkEvent,
@@ -652,6 +653,112 @@ def _make_standard_event_entry(
     )
 
 
+def _process_sickness_case_event(
+    event: SicknessCaseEvent,
+    evt_id: str,
+    cp: CompetencePeriod,
+    payment_date: date,
+    resolver: PolicyResolver,
+    context: PolicyContext,
+) -> tuple[list[PayItem], list[LedgerEntry], Decimal, Decimal, Decimal]:
+    """Decompose a SicknessCaseEvent into absence + sickness integration components.
+
+    Returns:
+        ``(items, entries, delta_inps, delta_tfr, delta_irpef)`` where the deltas
+        are the net contribution to the INPS/TFR/IRPEF bases for the period.
+    """
+    case = event.case
+    resolution = _require_resolution(resolver, "sickness_item", context)
+    treatment = _treatment_from_resolution(resolution)
+
+    absence = money(case.gross_daily * case.working_days)
+    inps_indemnity = money(
+        case.gross_daily * case.inps_daily_rate * case.indemnifiable_days
+    )
+    top_up_factor = (
+        case.integration_rate - case.inps_daily_rate
+    ) * case.indemnifiable_days
+    employer_integration = (
+        money(case.gross_daily * top_up_factor) if top_up_factor > _ZERO else _ZERO
+    )
+    carenza = money(
+        case.gross_daily * case.carenza_integration_rate * case.waiting_period_days
+    )
+
+    items: list[PayItem] = []
+    entries: list[LedgerEntry] = []
+    di_total = dt_total = dirpef_total = _ZERO
+
+    abs_id = f"{evt_id}_abs"
+    items.append(
+        AbsenceDeduction(
+            item_id=abs_id,
+            competence_period=cp,
+            payment_date=payment_date,
+            quantity=Decimal(case.working_days),
+            amount=absence,
+            absence_days=Decimal(case.working_days),
+        )
+    )
+    entries.append(
+        _make_entry(
+            f"deduction_{abs_id}",
+            abs_id,
+            "absence_deduction",
+            cp,
+            payment_date,
+            AccountKind.EMPLOYEE_DEDUCTIONS,
+            -absence,
+            policy_id=resolution.policy_id,
+        )
+    )
+    di, dt, dirpef = _treatment_deltas(treatment, -absence)
+    di_total += di
+    dt_total += dt
+    dirpef_total += dirpef
+
+    for component_id, amount in (
+        (f"{evt_id}_inps", inps_indemnity),
+        (f"{evt_id}_intg", employer_integration),
+        (f"{evt_id}_crnz", carenza),
+    ):
+        if amount <= _ZERO:
+            continue
+        sick_days = (
+            Decimal(case.indemnifiable_days)
+            if "inps" in component_id or "intg" in component_id
+            else Decimal(case.waiting_period_days)
+        )
+        items.append(
+            SicknessItem(
+                item_id=component_id,
+                competence_period=cp,
+                payment_date=payment_date,
+                quantity=Decimal(1),
+                amount=amount,
+                sick_days=sick_days,
+            )
+        )
+        entries.append(
+            _make_entry(
+                f"cash_{component_id}",
+                component_id,
+                "sickness_item",
+                cp,
+                payment_date,
+                AccountKind.CASH_EARNINGS,
+                amount,
+                policy_id=resolution.policy_id,
+            )
+        )
+        di, dt, dirpef = _treatment_deltas(treatment, amount)
+        di_total += di
+        dt_total += dt
+        dirpef_total += dirpef
+
+    return items, entries, di_total, dt_total, dirpef_total
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -895,6 +1002,15 @@ def _process_events(
                     policy_id=tfr_settle_resolution.policy_id,
                 ),
             ])
+        elif isinstance(event, SicknessCaseEvent):
+            sc_items, sc_entries, di, dt, dirpef = _process_sickness_case_event(
+                event, evt_id, cp, payment_date, resolver, context
+            )
+            items.extend(sc_items)
+            entries.extend(sc_entries)
+            total_inps += di
+            total_tfr += dt
+            total_irpef += dirpef
         else:
             assert_never(event)
 
