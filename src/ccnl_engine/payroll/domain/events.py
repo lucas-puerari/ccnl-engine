@@ -106,15 +106,23 @@ class SickLeaveEvent:
     not included here.  The employer portion is subject to INPS and IRPEF
     but not TFR accrual.
 
+    The engine deducts the carenza (waiting-period) portion from *amount*:
+    ``net = amount - (amount / sick_days * waiting_period_days)``.
+
     Attributes:
         event_date: First day of the sick-leave period.
-        amount: Gross amount paid by the employer in EUR.
+        amount: Total employer-liable sick-leave gross in EUR, before carenza
+            deduction.
+        sick_days: Total working days of the sick-leave spell.  Used to
+            compute the daily rate for the carenza deduction.  Defaults to 1.
         waiting_period_days: Number of carenza days (waiting period) at the
-            start of the sick-leave period.  Defaults to 0.
+            start of the sick-leave period.  Must not exceed sick_days.
+            Defaults to 0 (no carenza).
     """
 
     event_date: date
     amount: Decimal
+    sick_days: int = 1
     waiting_period_days: int = 0
 
 

@@ -436,6 +436,9 @@ def _standard_event_gross(event: _CashEvent) -> Decimal:
     if isinstance(event, AbsenceEvent):
         return -money(event.hours * event.hourly_rate)
     if isinstance(event, SickLeaveEvent):
+        if event.waiting_period_days > 0:
+            daily = money(event.amount / Decimal(event.sick_days))
+            return event.amount - money(daily * event.waiting_period_days)
         return event.amount
     return event.amount  # BonusEvent
 
@@ -496,7 +499,7 @@ def _standard_event_item(
                 payment_date=payment_date,
                 quantity=Decimal(1),
                 amount=gross,
-                sick_days=Decimal(1),
+                sick_days=Decimal(event.sick_days),
             ),
             "sickness_item",
         )

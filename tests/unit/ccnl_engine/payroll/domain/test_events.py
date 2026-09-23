@@ -126,6 +126,16 @@ class TestSickLeaveEvent:
         assert evt.event_date == _DATE
         assert evt.amount == Decimal("200.00")
 
+    def test_default_sick_days_one(self) -> None:
+        """sick_days defaults to 1."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
+        assert evt.sick_days == 1
+
+    def test_sick_days_stored(self) -> None:
+        """sick_days is stored when supplied."""
+        evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"), sick_days=5)
+        assert evt.sick_days == 5
+
     def test_default_waiting_period_days_zero(self) -> None:
         """waiting_period_days defaults to 0 (no carenza)."""
         evt = SickLeaveEvent(event_date=_DATE, amount=Decimal("200.00"))
