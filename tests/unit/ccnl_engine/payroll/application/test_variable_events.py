@@ -251,12 +251,11 @@ class TestAbsenceEventAccounting:
             hourly_rate=Decimal("12.00"),
         )
 
-    def test_gross_decreases(self) -> None:
-        """period_gross decreases by the absence deduction."""
+    def test_gross_unchanged(self) -> None:
+        """period_gross is not reduced by absence (posted to EMPLOYEE_DEDUCTIONS)."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._absence()))
-        deduction = Decimal(8) * Decimal("12.00")
-        assert result.period_gross == base.period_gross - deduction
+        assert result.period_gross == base.period_gross
 
     def test_inps_decreases(self) -> None:
         """INPS employee contributions decrease when gross decreases."""
@@ -271,7 +270,7 @@ class TestAbsenceEventAccounting:
         assert "absence_deduction" in kinds
 
     def test_cash_earnings_equals_period_gross(self) -> None:
-        """CASH_EARNINGS sum equals period_gross even with negative absence entry."""
+        """CASH_EARNINGS sum equals period_gross; absence is in EMPLOYEE_DEDUCTIONS."""
         result = calculate_period(_req(self._absence()))
         assert _cash(result) == result.period_gross
 

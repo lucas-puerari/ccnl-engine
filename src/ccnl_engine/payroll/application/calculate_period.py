@@ -536,7 +536,7 @@ def _standard_event_item(
                 competence_period=cp,
                 payment_date=payment_date,
                 quantity=event.hours,
-                amount=gross,
+                amount=-gross,  # positive: gross is negative for absences
                 absence_days=event.hours / Decimal(8),
             ),
             "absence_deduction",
@@ -676,18 +676,32 @@ def _process_events(
             if treatment.substitute:
                 total_substitute += gross
             items.append(item)
-            entries.append(
-                _make_entry(
-                    f"cash_{evt_id}",
-                    evt_id,
-                    kind,
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    gross,
-                    policy_id=resolution.policy_id,
+            if isinstance(event, AbsenceEvent):
+                entries.append(
+                    _make_entry(
+                        f"deduction_{evt_id}",
+                        evt_id,
+                        kind,
+                        cp,
+                        payment_date,
+                        AccountKind.EMPLOYEE_DEDUCTIONS,
+                        -gross,  # positive; gross is negative for absences
+                        policy_id=resolution.policy_id,
+                    )
                 )
-            )
+            else:
+                entries.append(
+                    _make_entry(
+                        f"cash_{evt_id}",
+                        evt_id,
+                        kind,
+                        cp,
+                        payment_date,
+                        AccountKind.CASH_EARNINGS,
+                        gross,
+                        policy_id=resolution.policy_id,
+                    )
+                )
         elif isinstance(event, WelfareEvent):
             gross = event.amount
             welfare_resolution = _require_resolution(resolver, "welfare_item", context)

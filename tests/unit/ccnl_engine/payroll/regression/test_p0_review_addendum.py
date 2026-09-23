@@ -27,7 +27,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -231,30 +231,29 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
 
 
 # ---------------------------------------------------------------------------
-# AbsenceEvent(hours=240) accepted and produces negative gross
+# AbsenceEvent(hours=240) accepted and period_gross stays positive
 #
 # _check_event_date validates 0 < hours <= 240, so 240 passes the guard.
-# A monthly period has at most ~184 working hours; 240 absent hours at a
-# realistic rate exceeds the monthly gross and makes period_gross negative.
+# Since absences post to EMPLOYEE_DEDUCTIONS (not CASH_EARNINGS), period_gross
+# equals the base salary and is always non-negative regardless of absence size.
 # Source: REVIEW.md §5, P0-6.
 # ---------------------------------------------------------------------------
 
 
 def test_absence_240h_does_not_produce_negative_gross() -> None:
-    """AbsenceEvent(hours=240) produces negative gross, intercepted by the reconciler.
+    """AbsenceEvent(hours=240) is accepted and period_gross stays positive.
 
-    Source: REVIEW.md §5, P0-6.  240 hours at 12.50 EUR/h = 3,000 EUR deduction
-    against a monthly gross of ~1,500-2,500 EUR produces a negative result.
-    The reconciler invariant I15 catches period_gross < 0 and raises
-    DataIntegrityError before the result is returned.
+    Source: REVIEW.md §5, P0-6.  Absences post to EMPLOYEE_DEDUCTIONS so
+    period_gross reflects base salary only.  240 hours is the period ceiling;
+    the calculation succeeds and I15 is satisfied.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(240),
         hourly_rate=Decimal("12.50"),
     )
-    with pytest.raises(DataIntegrityError, match="I15"):
-        calculate_period(_req(events=(absence,)))
+    result = calculate_period(_req(events=(absence,)))
+    assert result.period_gross > Decimal(0)
 
 
 # ---------------------------------------------------------------------------
