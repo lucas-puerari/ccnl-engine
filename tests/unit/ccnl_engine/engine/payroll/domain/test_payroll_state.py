@@ -129,10 +129,11 @@ class TestPayrollStateConstruction:
 
 
 class TestPayrollStatePublicApi:
-    """PayrollState is accessible from the top-level ccnl_engine package."""
+    """PayrollState from the public API is PeriodState."""
 
-    def test_importable_from_package(self) -> None:
-        """PayrollState can be imported from ccnl_engine directly."""
-        from ccnl_engine import PayrollState as State  # noqa: PLC0415
+    def test_public_payroll_state_is_period_state(self) -> None:
+        """ccnl_engine.PayrollState is PeriodState, not the legacy type."""
+        from ccnl_engine import PayrollState as PublicState  # noqa: PLC0415
+        from ccnl_engine.payroll.domain.period import PeriodState  # noqa: PLC0415
 
-        assert State is PayrollState
+        assert PublicState is PeriodState
