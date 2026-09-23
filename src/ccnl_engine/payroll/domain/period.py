@@ -45,6 +45,9 @@ class PeriodState:
             Used to enforce the annual Art. 51 c. 3 TUIR threshold.
         fringe_taxed_ytd: Cumulative fringe base already subject to IRPEF/INPS
             this tax year.  Updated retroactively when the threshold is crossed.
+        pdr_ytd: Cumulative Premio di Risultato (PdR) bonus amount eligible for
+            the substitute-tax regime this tax year.  Used to enforce the
+            annual cap (5,000 EUR under L. 208/2015 / L. 199/2025).
     """
 
     months_closed: int = 0
@@ -55,6 +58,7 @@ class PeriodState:
     taxable_ytd: Decimal = _ZERO
     fringe_ytd: Decimal = _ZERO
     fringe_taxed_ytd: Decimal = _ZERO
+    pdr_ytd: Decimal = _ZERO
 
     @classmethod
     def zero(cls) -> PeriodState:

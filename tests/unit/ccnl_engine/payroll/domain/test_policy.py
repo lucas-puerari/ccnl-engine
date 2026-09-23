@@ -481,12 +481,12 @@ class TestMisclassificationFixes:
         assert result is not None
         assert result.tax == TaxAxis.UNKNOWN
 
-    def test_productivity_bonus_tax_unknown(self) -> None:
-        """productivity_bonus_earning tax axis is UNKNOWN (regime unknown)."""
+    def test_productivity_bonus_tax_substitute(self) -> None:
+        """productivity_bonus_earning tax axis is SUBSTITUTE (L. 199/2025)."""
         resolver = PolicyResolver.load()
         result = resolver.resolve("productivity_bonus_earning", _ctx())
         assert result is not None
-        assert result.tax == TaxAxis.UNKNOWN
+        assert result.tax == TaxAxis.SUBSTITUTE
 
     def test_arrears_tax_require_raises(self) -> None:
         """require('tax') on arrears resolution raises UnresolvablePolicyError."""

@@ -142,15 +142,20 @@ class SickLeaveEvent:
 
 @dataclass(frozen=True)
 class BonusEvent:
-    """One-off bonus (mensilità aggiuntiva, PDR, etc.): INPS + IRPEF + TFR.
+    """One-off bonus: INPS + IRPEF (ordinary or substitute) + TFR excluded.
 
     Attributes:
         event_date: Date the bonus is attributed to.
         amount: Gross bonus amount in EUR.  Must be >= 0.
+        is_pdr: When True, the bonus is a Premio di Risultato (PdR) eligible
+            for the 1% substitute tax regime under L. 208/2015 art. 1 cc.
+            182-190 and L. 199/2025 art. 1 cc. 7-12.  When False (default),
+            ordinary IRPEF applies.
     """
 
     event_date: date
     amount: Decimal
+    is_pdr: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.amount < 0:

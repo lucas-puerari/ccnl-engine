@@ -20,13 +20,18 @@ class EventTreatment:
     ``tfr`` controls whether the amount enters the TFR accrual base
     (*retribuzione utile TFR* per art. 2120 c.c.).
     ``irpef`` controls whether the amount enters the IRPEF taxable base.
+    ``substitute`` controls whether the amount enters the substitute tax
+    (imposta sostitutiva) base instead of ordinary IRPEF.
 
     Attributes:
         inps: Amount enters the INPS (employee + employer) contribution base.
         tfr: Amount enters the TFR accrual base.
         irpef: Amount enters the IRPEF taxable base.
+        substitute: Amount enters the substitute-tax base (mutually exclusive
+            with ``irpef``; when True, ordinary IRPEF does not apply).
     """
 
     inps: bool
     tfr: bool
     irpef: bool
+    substitute: bool = False
