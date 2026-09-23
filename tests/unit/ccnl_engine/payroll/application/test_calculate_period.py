@@ -9,7 +9,7 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.compensation import Allowance
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -34,22 +34,32 @@ from ccnl_engine.engine.tax.domain.credit_rules import (
     UlterioreDetrazioneRules,
 )
 from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
+from ccnl_engine.payroll.application import calculate_period as _cp_mod
 from ccnl_engine.payroll.application.calculate_period import (
     _build_pay_items,
     _PeriodAmounts,
     _project_ledger,
+    _require_resolution,
     calculate_period,
+)
+from ccnl_engine.payroll.application.reconcile import (
+    ReconciliationResult,
+    ReconciliationViolation,
 )
 from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from tests.helpers import make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _ZERO = Decimal(0)
+
+_RESOLVER = PolicyResolver.load()
+_POLICY_CTX = PolicyContext(year=2026, as_of=date(2026, 1, 1))
 
 # C3 salary: 2158.26 until 2026-06-01, 2211.43 from 2026-06-01
 _C3_GROSS_JAN = Decimal("2158.26")
@@ -585,6 +595,8 @@ class TestElementaryChainItems:
             _chain_with_seniority(),
             period_id,
             date(2026, 1, 31),
+            _RESOLVER,
+            _POLICY_CTX,
         )
         cash_entries = [e for e in entries if e.account == AccountKind.CASH_EARNINGS]
         amounts = [e.amount for e in cash_entries]
@@ -598,6 +610,8 @@ class TestElementaryChainItems:
             _chain_with_allowance(),
             period_id,
             date(2026, 1, 31),
+            _RESOLVER,
+            _POLICY_CTX,
         )
         cash_entries = [e for e in entries if e.account == AccountKind.CASH_EARNINGS]
         amounts = [e.amount for e in cash_entries]
@@ -611,7 +625,9 @@ class TestElementaryChainItems:
         )
         period_id = PeriodId(year=2026, month=1)
         items = _build_pay_items(_amounts(), chain, period_id, date(2026, 1, 31))
-        entries = _project_ledger(_amounts(), chain, period_id, date(2026, 1, 31))
+        entries = _project_ledger(
+            _amounts(), chain, period_id, date(2026, 1, 31), _RESOLVER, _POLICY_CTX
+        )
         assert not any(isinstance(i, FixedAllowanceEarning) for i in items)
         cash_amounts = [
             e.amount for e in entries if e.account == AccountKind.CASH_EARNINGS
@@ -630,6 +646,8 @@ class TestProjectLedgerWithTrattamento:
             _chain(),
             period_id,
             date(2026, 1, 31),
+            _RESOLVER,
+            _POLICY_CTX,
         )
         accounts = [e.account for e in entries]
         assert AccountKind.CREDITS not in accounts
@@ -642,6 +660,8 @@ class TestProjectLedgerWithTrattamento:
             _chain(),
             period_id,
             date(2026, 1, 31),
+            _RESOLVER,
+            _POLICY_CTX,
         )
         credit_entries = [e for e in entries if e.account == AccountKind.CREDITS]
         assert len(credit_entries) == 1
@@ -655,6 +675,8 @@ class TestProjectLedgerWithTrattamento:
             _chain(),
             period_id,
             date(2026, 1, 31),
+            _RESOLVER,
+            _POLICY_CTX,
         )
         accounts = {e.account for e in entries}
         assert AccountKind.CASH_EARNINGS in accounts
@@ -786,4 +808,38 @@ class TestEventDateValidation:
             events=(absence,),
         )
         with pytest.raises(InvalidInputError, match="hours"):
+            calculate_period(req)
+
+
+class TestRequireResolution:
+    """_require_resolution raises DataIntegrityError for unknown pay-item kinds."""
+
+    def test_unknown_kind_raises_data_integrity_error(self) -> None:
+        """Resolving an unknown kind raises DataIntegrityError."""
+        with pytest.raises(DataIntegrityError, match="No policy rule found"):
+            _require_resolution(_RESOLVER, "nonexistent_kind_xyz", _POLICY_CTX)
+
+
+class TestReconciliationFailureGuard:
+    """calculate_period raises DataIntegrityError when reconciliation fails."""
+
+    def test_reconciliation_failure_raises(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """When _reconcile returns violations, DataIntegrityError is raised."""
+        fake_result = ReconciliationResult(
+            violations=(
+                ReconciliationViolation(invariant_id="I9", message="test violation"),
+            )
+        )
+        monkeypatch.setattr(_cp_mod, "_reconcile", lambda *_: fake_result)
+
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=1),
+            payment_date=date(2026, 1, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+        )
+        with pytest.raises(DataIntegrityError, match="Period reconciliation failed"):
             calculate_period(req)
