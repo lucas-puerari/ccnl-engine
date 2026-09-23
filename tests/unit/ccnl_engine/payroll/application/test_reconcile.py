@@ -387,11 +387,79 @@ class TestI13GrossIdentity:
         assert i13[0].actual == Decimal("3000.00")
 
 
+class TestI14EntryIdUniqueness:
+    """I14: all ledger entry IDs within a period must be unique."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No I14 violation on a real calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id == "I14"] == []
+
+    def test_violation_on_duplicate_entry_id(self) -> None:
+        """I14 violation when the same entry_id appears twice in the ledger."""
+        e1 = _entry("item_a", AccountKind.CASH_EARNINGS, Decimal("1000.00"))
+        e2 = LedgerEntry(
+            entry_id="e_item_a",
+            competence_period=_CP,
+            payment_date=_PAYMENT,
+            pay_item_id="item_b",
+            pay_item_kind="base_salary_earning",
+            account=AccountKind.ORDINARY_TAX,
+            amount=Decimal("200.00"),
+        )
+        b = _Builder(
+            period_gross=Decimal("1000.00"),
+            period_net=Decimal("800.00"),
+            ledger_entries=(e1, e2),
+        )
+        r = reconcile(b.build(), _OPENING)
+        i14 = [v for v in r.violations if v.invariant_id == "I14"]
+        assert len(i14) == 1
+        assert "e_item_a" in i14[0].message
+
+    def test_no_violation_when_ids_unique(self) -> None:
+        """No I14 violation when entry IDs are all distinct."""
+        e1 = _entry("item_x", AccountKind.CASH_EARNINGS, Decimal("1000.00"))
+        e2 = _entry("item_y", AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal("100.00"))
+        b = _Builder(
+            period_gross=Decimal("1000.00"),
+            period_net=Decimal("900.00"),
+            ledger_entries=(e1, e2),
+        )
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == "I14"] == []
+
+
+class TestI15NonNegativeGross:
+    """I15: period_gross must be non-negative."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No I15 violation on a real calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id == "I15"] == []
+
+    def test_violation_when_gross_is_negative(self) -> None:
+        """I15 violation when period_gross is negative."""
+        b = _Builder(period_gross=Decimal("-100.00"))
+        r = reconcile(b.build(), _OPENING)
+        i15 = [v for v in r.violations if v.invariant_id == "I15"]
+        assert len(i15) == 1
+        assert i15[0].actual == Decimal("-100.00")
+
+    def test_no_violation_when_gross_is_zero(self) -> None:
+        """No I15 violation when period_gross is exactly zero."""
+        b = _Builder(period_gross=Decimal(0))
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == "I15"] == []
+
+
 class TestReconcileIntegration:
     """reconcile() aggregates all invariant checks into one result."""
 
     def test_real_result_passes_all_invariants(self) -> None:
-        """A genuine calculate_period result satisfies all 7 invariants."""
+        """A genuine calculate_period result satisfies all 9 invariants."""
         result, opening = _real_result()
         r = reconcile(result, opening)
         assert r.ok, f"Unexpected violations: {r.violations}"

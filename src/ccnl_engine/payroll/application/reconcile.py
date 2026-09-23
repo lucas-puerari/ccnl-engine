@@ -11,6 +11,7 @@ Invariants:
     I2  — no pay_item_id posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
     I9  — net identity: CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
           - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+          - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
           - ORDINARY_TAX - SURTAX - SEPARATE_TAX
           = period_net.
     I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
@@ -21,6 +22,8 @@ Invariants:
           + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
           + TFR_ACCRUAL = period_employer_cost.
     I13 — gross identity: CASH_EARNINGS total = period_gross.
+    I14 — all ledger entry IDs in a period are unique.
+    I15 — period_gross is non-negative.
 """
 
 from __future__ import annotations
@@ -156,6 +159,7 @@ def _check_i9(
 
     CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
     - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+    - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
     - ORDINARY_TAX - SURTAX - SEPARATE_TAX
     = period_net.
 
@@ -167,6 +171,8 @@ def _check_i9(
     tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
     contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
     bilateral_emp = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYEE)
+    emp_deductions = _sum_account(result, AccountKind.EMPLOYEE_DEDUCTIONS)
+    sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
     taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
     surtax = _sum_account(result, AccountKind.SURTAX)
     sep_tax = _sum_account(result, AccountKind.SEPARATE_TAX)
@@ -176,6 +182,8 @@ def _check_i9(
         + tfr_settle
         - contributions
         - bilateral_emp
+        - emp_deductions
+        - sub_tax
         - taxes
         - surtax
         - sep_tax
@@ -312,6 +320,54 @@ def _check_i13(
     return []
 
 
+def _check_i14(
+    result: PeriodCalculationResult,
+) -> list[ReconciliationViolation]:
+    """I14: all ledger entry IDs within a period are unique.
+
+    Returns:
+        One violation per duplicate entry ID detected.
+    """
+    seen: set[str] = set()
+    duplicates: list[str] = []
+    for entry in result.ledger_entries:
+        if entry.entry_id in seen:
+            duplicates.append(entry.entry_id)
+        else:
+            seen.add(entry.entry_id)
+    return [
+        ReconciliationViolation(
+            invariant_id="I14",
+            message=f"Duplicate ledger entry ID: {eid!r}",
+        )
+        for eid in duplicates
+    ]
+
+
+def _check_i15(
+    result: PeriodCalculationResult,
+) -> list[ReconciliationViolation]:
+    """I15: period_gross is non-negative.
+
+    A negative gross indicates that event deductions exceed the period salary,
+    which is never valid in isolation (net-zero or refund runs must use
+    explicit adjustment events).
+
+    Returns:
+        A violation when ``period_gross < 0``.
+    """
+    if result.period_gross < _ZERO:
+        return [
+            ReconciliationViolation(
+                invariant_id="I15",
+                message="period_gross is negative",
+                expected=_ZERO,
+                actual=result.period_gross,
+            )
+        ]
+    return []
+
+
 def reconcile(
     result: PeriodCalculationResult,
     opening: PeriodState,
@@ -335,4 +391,6 @@ def reconcile(
     violations.extend(_check_i11(result, opening))
     violations.extend(_check_i12(result))
     violations.extend(_check_i13(result))
+    violations.extend(_check_i14(result))
+    violations.extend(_check_i15(result))
     return ReconciliationResult(violations=tuple(violations))

@@ -1269,6 +1269,8 @@ def calculate_period(
         + _sum_ledger(all_entries, AccountKind.CREDITS)
         - _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         - _sum_ledger(all_entries, AccountKind.BILATERAL_FUND_EMPLOYEE)
+        - _sum_ledger(all_entries, AccountKind.EMPLOYEE_DEDUCTIONS)
+        - _sum_ledger(all_entries, AccountKind.SUBSTITUTE_TAX)
         - _sum_ledger(all_entries, AccountKind.ORDINARY_TAX)
         - _sum_ledger(all_entries, AccountKind.SURTAX)
         - _sum_ledger(all_entries, AccountKind.SEPARATE_TAX)
