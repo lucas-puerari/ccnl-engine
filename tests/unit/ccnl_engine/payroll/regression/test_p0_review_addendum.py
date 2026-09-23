@@ -134,14 +134,6 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "taxable_ytd inflated by double-INPS-deduction (REVIEW.md §4 P0-3): "
-        "the event INPS is subtracted twice, giving 810.20 instead of 905.10.  "
-        "Fix: deduct INPS once when building event_taxable."
-    ),
-)
 def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     """closing_state.taxable_ytd must increase by exactly 905.10 for a 1,000 EUR bonus.
 
