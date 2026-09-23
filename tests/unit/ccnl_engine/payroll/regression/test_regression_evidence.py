@@ -30,6 +30,7 @@ from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.events import (
+    BonusEvent,
     FringeEvent,
     WelfareEvent,
 )
@@ -78,12 +79,10 @@ def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decim
 def test_ce3_excess_ytd_produces_refund() -> None:
     """CE-3: when YTD already withheld exceeds annual liability a refund must appear.
 
-    After the fix a December calculation with irpef_withheld_ytd=5000 and an
-    annual IRPEF liability well below 5000 must post a negative ORDINARY_TAX
-    entry (i.e. the engine owes the worker a conguaglio credit) or produce an
-    explicit TaxRefundItem.
-    Currently calculate_period.py:250 applies ``max(0, ...)`` which clamps the
-    credit to zero and posts ORDINARY_TAX = 0 — the refund disappears silently.
+    A December calculation with irpef_withheld_ytd=5000 and annual IRPEF
+    liability well below 5000 must post a TaxRefundItem in CREDITS rather than
+    a negative ORDINARY_TAX entry (refunds now use the explicit TaxRefundItem
+    representation instead of a signed withholding entry).
     """
     high_ytd = PeriodState(
         months_closed=12,
@@ -91,12 +90,16 @@ def test_ce3_excess_ytd_produces_refund() -> None:
     )
     result = calculate_period(_req(month=12, opening=high_ytd))
 
-    # The ORDINARY_TAX ledger amount must be negative (a credit) when YTD
-    # withheld exceeds the remaining annual liability.
-    tax = _sum_account(result, AccountKind.ORDINARY_TAX)
-    assert tax < _ZERO, (
-        f"ORDINARY_TAX with 5000 YTD already withheld is {tax} (should be negative "
-        "to represent the refund owed); max(0,...) suppresses the credit."
+    # Refund appears as a positive CREDITS entry (tax_refund_item), not as
+    # negative ORDINARY_TAX.
+    refund = sum(
+        e.amount
+        for e in result.ledger_entries
+        if e.account == AccountKind.CREDITS and e.pay_item_kind == "tax_refund_item"
+    )
+    assert refund > _ZERO, (
+        f"No TaxRefundItem in CREDITS when 5000 YTD withheld exceeds liability; "
+        f"ORDINARY_TAX = {_sum_account(result, AccountKind.ORDINARY_TAX)}"
     )
 
 
@@ -176,3 +179,60 @@ def test_ce6_sub_cent_event_amount_reconciles() -> None:
 
     r = reconcile(result, opening)
     assert r.ok, f"reconcile must pass even with sub-cent event amount: {r.violations}"
+
+
+# ---------------------------------------------------------------------------
+# Gate PR-14: credito riconosciuto e recuperato aggiorna i progressivi YTD
+# ---------------------------------------------------------------------------
+
+_CCNL_TRATT = "portieri-fabbricati-confedilizia.json"
+_LEVEL_TRATT = "B5"  # 1,264.51 EUR/month (terziario sector, trattamento integrativo)
+
+
+def _req_tratt(
+    month: int,
+    opening: PeriodState | None = None,
+    events: tuple[object, ...] = (),
+) -> PeriodCalculationRequest:
+    if opening is None:
+        opening = PeriodState.zero()
+    return PeriodCalculationRequest(
+        period_id=PeriodId(year=_YEAR, month=month),
+        payment_date=date(_YEAR, month, 28),
+        ccnl_slug=_CCNL_TRATT,
+        level_code=_LEVEL_TRATT,
+        opening_state=opening,
+        events=events,  # type: ignore[arg-type]
+    )
+
+
+def test_credit_recognized_in_january_recovered_in_february() -> None:
+    """Gate: credit_recognized_ytd and credit_recovered_ytd both advance correctly.
+
+    Period 1 (January): B5 portieri salary (~15k EUR annual, terziario sector)
+    → trattamento integrativo given → credit_recognized_ytd > 0.
+    Period 2 (February): same salary + 25,000 EUR bonus → annual projection
+    far above 28k EUR → annual trattamento = 0 → period_tratt < 0 (recovery)
+    → credit_recovered_ytd > 0, credit_recognized_ytd unchanged.
+    """
+    # Period 1: January — B5 portieri baseline, no events
+    result1 = calculate_period(_req_tratt(month=1))
+    state1 = result1.closing_state
+    assert state1.credit_recognized_ytd > _ZERO, (
+        "Trattamento integrativo must be recognized in January for B5 portieri "
+        "income level (~15k EUR annual, terziario sector)"
+    )
+    assert state1.credit_recovered_ytd == _ZERO
+
+    # Period 2: February — large bonus pushes projected annual income above 28k EUR
+    bonus = BonusEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("25000.00"))
+    result2 = calculate_period(_req_tratt(month=2, opening=state1, events=(bonus,)))
+    state2 = result2.closing_state
+
+    assert state2.credit_recognized_ytd == state1.credit_recognized_ytd, (
+        "credit_recognized_ytd must not grow when period_tratt <= 0"
+    )
+    assert state2.credit_recovered_ytd > _ZERO, (
+        "Trattamento integrativo must be partially recovered in February "
+        "when a 25,000 EUR bonus projects annual income far above 28k EUR"
+    )

@@ -48,6 +48,15 @@ class PeriodState:
         pdr_ytd: Cumulative Premio di Risultato (PdR) bonus amount eligible for
             the substitute-tax regime this tax year.  Used to enforce the
             annual cap (5,000 EUR under L. 208/2015 / L. 199/2025).
+        credit_recognized_ytd: Cumulative trattamento integrativo (Art. 1 D.L.
+            3/2020) given to the worker this tax year.  Used to compute the
+            per-period conguaglio credit and detect over-payment for recovery.
+        credit_recovered_ytd: Cumulative trattamento integrativo recovered
+            (clawed back) from the worker this tax year when prior-period
+            credits exceed the annual entitlement due to a mid-year income
+            increase.
+        surtax_ytd: Cumulative regional and municipal surtax (addizionale
+            regionale/comunale) withheld this tax year.
     """
 
     months_closed: int = 0
@@ -59,6 +68,12 @@ class PeriodState:
     fringe_ytd: Decimal = _ZERO
     fringe_taxed_ytd: Decimal = _ZERO
     pdr_ytd: Decimal = _ZERO
+    credit_recognized_ytd: Decimal = _ZERO
+    """Cumulative trattamento integrativo recognized (given) this tax year."""
+    credit_recovered_ytd: Decimal = _ZERO
+    """Cumulative trattamento integrativo recovered (clawed back) this tax year."""
+    surtax_ytd: Decimal = _ZERO
+    """Cumulative regional and municipal surtax withheld this tax year."""
 
     @classmethod
     def zero(cls) -> PeriodState:
