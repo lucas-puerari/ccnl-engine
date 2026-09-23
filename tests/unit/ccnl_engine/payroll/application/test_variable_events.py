@@ -66,6 +66,18 @@ def _cash(result: object) -> Decimal:
     )
 
 
+def _ncb(result: object) -> Decimal:
+    assert isinstance(result, PeriodCalculationResult)
+    return sum(
+        (
+            e.amount
+            for e in result.ledger_entries
+            if e.account == AccountKind.NON_CASH_BENEFITS
+        ),
+        Decimal(0),
+    )
+
+
 def _inps_employee(result: object) -> Decimal:
     assert isinstance(result, PeriodCalculationResult)
     return sum(
@@ -340,7 +352,7 @@ class TestBonusEventAccounting:
 
 
 class TestFringeEventAccounting:
-    """FringeEvent is exempt below threshold and taxable above."""
+    """FringeEvent posts to NON_CASH_BENEFITS; taxable above threshold."""
 
     def _fringe_exempt(self) -> FringeEvent:
         # 100 EUR is well below the 2026 standard threshold (1000 EUR)
@@ -362,11 +374,12 @@ class TestFringeEventAccounting:
         result = calculate_period(_req(self._fringe_exempt()))
         assert _inps_employee(result) == _inps_employee(base)
 
-    def test_exempt_fringe_adds_to_gross(self) -> None:
-        """Fringe benefit below threshold still appears on the payslip (gross)."""
+    def test_exempt_fringe_in_non_cash_benefits(self) -> None:
+        """Fringe benefit is posted to NON_CASH_BENEFITS, not CASH_EARNINGS."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._fringe_exempt()))
-        assert result.period_gross == base.period_gross + Decimal("100.00")
+        assert _ncb(result) == Decimal("100.00")
+        assert result.period_gross == base.period_gross
 
     def test_taxable_fringe_increases_inps(self) -> None:
         """Fringe benefit above threshold is subject to INPS."""
@@ -374,11 +387,12 @@ class TestFringeEventAccounting:
         result = calculate_period(_req(self._fringe_taxable()))
         assert _inps_employee(result) > _inps_employee(base)
 
-    def test_taxable_fringe_adds_to_gross(self) -> None:
-        """Fringe benefit above threshold appears on the payslip."""
+    def test_taxable_fringe_in_non_cash_benefits(self) -> None:
+        """Fringe benefit above threshold still posts to NON_CASH_BENEFITS."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._fringe_taxable()))
-        assert result.period_gross == base.period_gross + Decimal("1100.00")
+        assert _ncb(result) == Decimal("1100.00")
+        assert result.period_gross == base.period_gross
 
     def test_fringe_pay_item_present(self) -> None:
         """A fringe_benefit_item pay item is present."""
@@ -454,6 +468,28 @@ class TestFringeYtdAccumulation:
         )
         result = calculate_period(req)
         assert result.closing_state.fringe_ytd == Decimal("800.00")
+
+    def test_fringe_taxed_ytd_zero_without_crossing(self) -> None:
+        """No threshold crossing: fringe_taxed_ytd stays zero."""
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00"))
+        result = calculate_period(_req(evt))
+        assert result.closing_state.fringe_taxed_ytd == Decimal(0)
+
+    def test_fringe_taxed_ytd_set_on_crossing(self) -> None:
+        """Threshold crossing: fringe_taxed_ytd equals full retroactive base."""
+        # opening fringe_ytd=600 (untaxed) + 600 new = 1200 > 1000 → retroactive 1200
+        evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("600.00"))
+        opening = PeriodState(fringe_ytd=Decimal("600.00"), fringe_taxed_ytd=Decimal(0))
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=_YEAR, month=_MONTH),
+            payment_date=date(_YEAR, _MONTH, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=opening,
+            events=(evt,),
+        )
+        result = calculate_period(req)
+        assert result.closing_state.fringe_taxed_ytd == Decimal("1200.00")
 
     def test_ytd_fringe_triggers_taxability(self) -> None:
         """Opening fringe_ytd near threshold makes a small new event taxable."""
@@ -538,16 +574,17 @@ class TestArrearsEventReferencePeriod:
 
 
 class TestWelfareEventAccounting:
-    """WelfareEvent adds to gross but is exempt from INPS and IRPEF."""
+    """WelfareEvent posts to NON_CASH_BENEFITS; exempt from INPS, IRPEF and net."""
 
     def _welfare(self) -> WelfareEvent:
         return WelfareEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("200.00"))
 
-    def test_gross_increases(self) -> None:
-        """period_gross increases by the welfare amount."""
+    def test_welfare_in_non_cash_benefits(self) -> None:
+        """Welfare benefit is posted to NON_CASH_BENEFITS, not CASH_EARNINGS."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._welfare()))
-        assert result.period_gross == base.period_gross + Decimal("200.00")
+        assert _ncb(result) == Decimal("200.00")
+        assert result.period_gross == base.period_gross
 
     def test_inps_unchanged(self) -> None:
         """Welfare benefit does not increase INPS contributions."""
@@ -567,11 +604,11 @@ class TestWelfareEventAccounting:
         kinds = {pi.kind for pi in result.pay_items}
         assert "welfare_item" in kinds
 
-    def test_welfare_net_increases_by_full_amount(self) -> None:
-        """Welfare benefit increases net by its full amount (no deductions)."""
+    def test_welfare_does_not_change_net(self) -> None:
+        """Welfare (non-cash) does not affect cash net pay."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._welfare()))
-        assert result.period_net == base.period_net + Decimal("200.00")
+        assert result.period_net == base.period_net
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold for a welfare period."""
