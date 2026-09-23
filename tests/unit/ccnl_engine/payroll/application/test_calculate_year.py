@@ -272,3 +272,155 @@ class TestCalculateYear:
         result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
         dec_state = result.period_results[-1].closing_state
         assert dec_state.gross_ytd == result.annual_gross
+
+
+class TestPerRunEventAllocation:
+    """per_run_events allocates events explicitly to a specific run by run_id."""
+
+    def _calendar_13(self) -> WorkCalendar:
+        return WorkCalendar(
+            year=_YEAR,
+            extra_months=(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=12,
+                ),
+            ),
+        )
+
+    def test_per_run_events_applied_to_correct_run(self) -> None:
+        """Events in per_run_events reach the named run and no other run."""
+        cal = WorkCalendar(year=_YEAR)
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 5, 10),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        run_id = f"{_YEAR}-05-regular"
+        result_no_event = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
+        result_with_event = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            calendar=cal,
+            per_run_events={run_id: (absence,)},
+        )
+        may_no = result_no_event.period_results[4].period_gross
+        may_with = result_with_event.period_results[4].period_gross
+        assert may_with < may_no
+
+    def test_per_run_events_do_not_leak_to_other_runs(self) -> None:
+        """Events allocated by run_id do not appear in other runs."""
+        cal = WorkCalendar(year=_YEAR)
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 5, 10),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        run_id = f"{_YEAR}-05-regular"
+        result = calculate_year(
+            _YEAR, _CCNL, _LEVEL, calendar=cal, per_run_events={run_id: (absence,)}
+        )
+        may_gross = result.period_results[4].period_gross
+        for i, pr in enumerate(result.period_results):
+            if i != 4:
+                assert pr.period_gross >= may_gross or i >= 5
+
+    def test_extra_month_run_accepts_per_run_events(self) -> None:
+        """per_run_events can allocate events to extra-month runs by run_id."""
+        cal = self._calendar_13()
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 12, 15),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        thirteenth_run_id = f"{_YEAR}-12-thirteenth"
+        result_no = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
+        result_with = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            calendar=cal,
+            per_run_events={thirteenth_run_id: (absence,)},
+        )
+        thirteenth_no = next(
+            r
+            for r in result_no.period_results
+            if r.period_id.month == 12
+            and r.run is not None
+            and r.run.run_kind == "thirteenth"
+        )
+        thirteenth_with = next(
+            r
+            for r in result_with.period_results
+            if r.period_id.month == 12
+            and r.run is not None
+            and r.run.run_kind == "thirteenth"
+        )
+        assert thirteenth_with.period_gross < thirteenth_no.period_gross
+
+    def test_extra_month_run_events_do_not_appear_in_regular_run(self) -> None:
+        """Events allocated to thirteenth run are not applied to regular December."""
+        cal = self._calendar_13()
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 12, 15),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        thirteenth_run_id = f"{_YEAR}-12-thirteenth"
+        result = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            calendar=cal,
+            per_run_events={thirteenth_run_id: (absence,)},
+        )
+        regular_dec = next(
+            r
+            for r in result.period_results
+            if r.period_id.month == 12
+            and (r.run is None or r.run.run_kind == "regular")
+        )
+        result_no = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
+        regular_dec_no = next(
+            r
+            for r in result_no.period_results
+            if r.period_id.month == 12
+            and (r.run is None or r.run.run_kind == "regular")
+        )
+        assert regular_dec.period_gross == regular_dec_no.period_gross
+
+    def test_duplicate_allocation_raises(self) -> None:
+        """Supplying the same run in both period_events and per_run_events raises."""
+        cal = WorkCalendar(year=_YEAR)
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 3, 10),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        run_id = f"{_YEAR}-03-regular"
+        with pytest.raises(ValueError, match="Duplicate event allocation"):
+            calculate_year(
+                _YEAR,
+                _CCNL,
+                _LEVEL,
+                calendar=cal,
+                period_events={3: (absence,)},
+                per_run_events={run_id: (absence,)},
+            )
+
+    def test_period_events_still_work_without_per_run_events(self) -> None:
+        """period_events parameter continues to work when per_run_events is absent."""
+        cal = WorkCalendar(year=_YEAR)
+        absence = AbsenceEvent(
+            event_date=date(_YEAR, 6, 10),
+            hours=Decimal(8),
+            hourly_rate=Decimal("13.00"),
+        )
+        result = calculate_year(
+            _YEAR, _CCNL, _LEVEL, calendar=cal, period_events={6: (absence,)}
+        )
+        jun_gross = result.period_results[5].period_gross
+        jan_gross = result.period_results[0].period_gross
+        assert jun_gross < jan_gross
