@@ -43,6 +43,8 @@ Usage::
 
 from __future__ import annotations
 
+from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
+from ccnl_engine.api.results import PayrollResult
 from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
@@ -135,6 +137,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
 )
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
@@ -179,7 +182,11 @@ __all__ = [
     "OvertimeHours",
     "PayrollBundle",
     "PayrollEngine",
+    "PayrollRequest",
+    "PayrollResult",
+    "PayrollRun",
     "PayrollState",
+    "PayrollYearRequest",
     "PeriodCalculationRequest",
     "PeriodCalculationResult",
     "PeriodId",
