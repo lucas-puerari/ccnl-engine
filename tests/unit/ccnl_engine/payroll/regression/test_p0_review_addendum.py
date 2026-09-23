@@ -124,14 +124,6 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "closing_state.taxable_ytd is incremented by "
-        "period_taxable/additional_months rather than the actual event taxable "
-        "amount, causing ~13x under-accumulation for one-off events like bonuses."
-    ),
-)
 def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     """closing_state.taxable_ytd must increase by the full net-of-INPS bonus amount.
 
