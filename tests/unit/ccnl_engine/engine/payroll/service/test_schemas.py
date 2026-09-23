@@ -8,18 +8,18 @@ from typing import Literal, cast
 
 import pytest
 
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Permanent,
+from ccnl_engine import Permanent
+from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
+from ccnl_engine.engine.payroll.domain.employee import Employee
+from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employment import Employment
+from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
+from ccnl_engine.engine.payroll.service.schemas import (
+    _hint_to_schema,
     result_schema,
     scenario_schema,
 )
-from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
-from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
-from ccnl_engine.engine.payroll.service.schemas import _hint_to_schema
 
 
 @pytest.fixture(scope="module")

@@ -7,13 +7,11 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Permanent,
-)
+from ccnl_engine import Permanent
+from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
+from ccnl_engine.engine.payroll.domain.employee import Employee
+from ccnl_engine.engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.payroll.domain.employment import Employment
 from ccnl_engine.engine.payroll.domain.payroll_result import (
     AnnualEstimate,
     Contributions,
