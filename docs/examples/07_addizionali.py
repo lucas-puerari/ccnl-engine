@@ -16,8 +16,8 @@ from ccnl_engine import (
     Jurisdiction,
     AnnualEstimateInput,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 # Baseline: no jurisdiction → addizionali are zero.
 baseline = estimate_annual(

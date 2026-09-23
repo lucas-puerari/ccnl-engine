@@ -13,8 +13,8 @@ from ccnl_engine import (
     Employer,
     Employment,
     Permanent,
-    estimate_annual,
 )
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 calculation = estimate_annual(
     AnnualEstimateInput(

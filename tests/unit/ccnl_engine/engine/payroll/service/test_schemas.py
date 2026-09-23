@@ -14,11 +14,11 @@ from ccnl_engine import (
     Employer,
     Employment,
     Permanent,
-    estimate_annual,
     result_schema,
     scenario_schema,
 )
 from ccnl_engine.engine.payroll.domain.payroll_result import AnnualEstimate
+from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 from ccnl_engine.engine.payroll.service.schemas import _hint_to_schema
 
 
