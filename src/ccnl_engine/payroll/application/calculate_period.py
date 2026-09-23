@@ -1126,6 +1126,15 @@ def calculate_period(
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
+    run_kind = request.run.run_kind if request.run is not None else "regular"
+    if run_kind in {"thirteenth", "fourteenth"}:
+        months_threshold = 14 if run_kind == "fourteenth" else 13
+        chain = chain.for_extra_month(months_threshold)
+        months_closed = request.opening_state.months_closed
+        if months_closed < 12:
+            # Scale the entire chain so ledger entries already carry the rateo.
+            rateo = Decimal(months_closed) / Decimal(12)
+            chain = chain.scaled(rateo)
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     var_pay_rules = load_variable_pay_rules(period_year)

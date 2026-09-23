@@ -52,6 +52,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.run import PayrollRun
 from tests.helpers import make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -843,3 +844,147 @@ class TestReconciliationFailureGuard:
         )
         with pytest.raises(DataIntegrityError, match="Period reconciliation failed"):
             calculate_period(req)
+
+
+class TestForExtraMonth:
+    """MonthlyPayChain.for_extra_month filters allowances by months_per_year."""
+
+    def _make_allowance(self, code: str, months_per_year: int | None) -> Allowance:
+        ts = TimeSeries(
+            periods=(
+                ValidityPeriod(
+                    value=Decimal("10.00"),
+                    valid_from=date(2024, 1, 1),
+                    valid_until=None,
+                ),
+            )
+        )
+        return Allowance(
+            code=code,
+            description=code,
+            monthly=ts,
+            months_per_year=months_per_year,
+        )
+
+    def test_no_allowances_unchanged(self) -> None:
+        """Chain with no allowances passes through unchanged."""
+        chain = MonthlyPayChain(
+            base=Decimal(1000), seniority=Decimal(50), allowances=()
+        )
+        result = chain.for_extra_month(13)
+        assert result.base == chain.base
+        assert result.seniority == chain.seniority
+        assert result.allowances == ()
+
+    def test_allowance_with_none_mpy_always_included(self) -> None:
+        """Allowance with months_per_year=None is included in any extra-month run."""
+        a = self._make_allowance("ALL", months_per_year=None)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(13)
+        assert len(result.allowances) == 1
+
+    def test_allowance_with_12_mpy_excluded_for_thirteenth(self) -> None:
+        """Allowance with months_per_year=12 is excluded from thirteenth run."""
+        a = self._make_allowance("EDR", months_per_year=12)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(13)
+        assert result.allowances == ()
+
+    def test_allowance_with_13_mpy_included_for_thirteenth(self) -> None:
+        """Allowance with months_per_year=13 is included in thirteenth run."""
+        a = self._make_allowance("BONUS13", months_per_year=13)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(13)
+        assert len(result.allowances) == 1
+
+    def test_allowance_with_12_mpy_excluded_for_fourteenth(self) -> None:
+        """Allowance with months_per_year=12 is excluded from fourteenth run."""
+        a = self._make_allowance("EDR", months_per_year=12)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(14)
+        assert result.allowances == ()
+
+    def test_allowance_with_13_mpy_excluded_for_fourteenth(self) -> None:
+        """Allowance with months_per_year=13 is excluded from fourteenth run."""
+        a = self._make_allowance("BONUS13", months_per_year=13)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(14)
+        assert result.allowances == ()
+
+    def test_allowance_with_14_mpy_included_for_fourteenth(self) -> None:
+        """Allowance with months_per_year=14 is included in fourteenth run."""
+        a = self._make_allowance("BONUS14", months_per_year=14)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a, Decimal(10)),),
+        )
+        result = chain.for_extra_month(14)
+        assert len(result.allowances) == 1
+
+    def test_mixed_allowances_filtered_correctly(self) -> None:
+        """Only eligible allowances remain after filtering."""
+        a12 = self._make_allowance("EDR", months_per_year=12)
+        a13 = self._make_allowance("BONUS13", months_per_year=13)
+        chain = MonthlyPayChain(
+            base=Decimal(1000),
+            seniority=Decimal(0),
+            allowances=((a12, Decimal(10)), (a13, Decimal(20))),
+        )
+        result = chain.for_extra_month(13)
+        assert len(result.allowances) == 1
+        assert result.allowances[0][0].code == "BONUS13"
+
+
+class TestExtraMonthRateo:
+    """Tredicesima gross is prorated when months_closed < 12."""
+
+    _CCNL_IGIENE = "igiene-ambientale-utilitalia.json"
+    _LEVEL_IGIENE = "D1"
+
+    def _run_thirteenth(self, months_closed: int) -> Decimal:
+        """Run a thirteenth period calculation and return period_gross.
+
+        Returns:
+            The ``period_gross`` of the tredicesima run.
+        """
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=12),
+            payment_date=date(2026, 12, 28),
+            ccnl_slug=self._CCNL_IGIENE,
+            level_code=self._LEVEL_IGIENE,
+            opening_state=PeriodState(months_closed=months_closed),
+            run=PayrollRun.thirteenth(2026, 12),
+        )
+        return calculate_period(req).period_gross
+
+    def test_full_year_rateo_equals_one_month(self) -> None:
+        """With months_closed=12 the tredicesima equals one month's base salary."""
+        gross = self._run_thirteenth(months_closed=12)
+        assert gross > Decimal(0)
+
+    def test_half_year_rateo_is_half_of_full(self) -> None:
+        """With months_closed=6 the tredicesima is half of the full-year amount."""
+        full = self._run_thirteenth(months_closed=12)
+        half = self._run_thirteenth(months_closed=6)
+        assert half == (full / 2).quantize(Decimal("0.01"))
