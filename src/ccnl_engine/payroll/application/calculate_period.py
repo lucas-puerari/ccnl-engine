@@ -268,8 +268,10 @@ def calculate_period(
         - _sum_ledger(all_entries, AccountKind.SURTAX)
         - _sum_ledger(all_entries, AccountKind.SEPARATE_TAX)
     )
+    unpaid_absence_deduction = _sum_ledger(all_entries, AccountKind.EMPLOYEE_DEDUCTIONS)
     period_employer_cost = (
         period_gross
+        - unpaid_absence_deduction
         + _sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS)
         + _sum_ledger(all_entries, AccountKind.EMPLOYER_CONTRIBUTIONS)
         + _sum_ledger(all_entries, AccountKind.BILATERAL_FUND_EMPLOYER)
@@ -317,6 +319,7 @@ def calculate_period(
         period_gross=period_gross,
         period_net=period_net,
         period_employer_cost=period_employer_cost,
+        unpaid_absence_deduction=unpaid_absence_deduction,
         closing_state=closing,
         pay_items=pay_items + event_items + se_items,
         ledger_entries=all_entries,
