@@ -10,8 +10,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
+from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:

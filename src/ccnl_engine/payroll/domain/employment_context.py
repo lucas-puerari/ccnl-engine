@@ -5,17 +5,8 @@ from __future__ import annotations
 import calendar
 from dataclasses import dataclass
 from datetime import date
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.seniority import LevelCategory
-    from ccnl_engine.payroll.domain.employment import (
-        Apprentice,
-        FixedTerm,
-        Permanent,
-    )
-
-__all__ = ["EffectiveDateContext", "EmploymentFacts"]
+__all__ = ["EffectiveDateContext"]
 
 
 @dataclass(frozen=True)
@@ -55,24 +46,3 @@ class EffectiveDateContext:
             True if period_start <= event_date <= period_end.
         """
         return self.period_start <= event_date <= self.period_end
-
-
-@dataclass(frozen=True)
-class EmploymentFacts:
-    """Employment facts consumed by the period-first payroll computation.
-
-    Holds only the fields needed for the current calculation pipeline.
-    Additional fields (part-time ratio, TFR choices, individual agreements)
-    are added in later PRs as their computation chains are wired.
-
-    Attributes:
-        contract_type: Employment contract discriminant.  Drives INPS rate
-            selection (Apprentice → reduced rates; FixedTerm → NASpI
-            addizionale; Permanent → standard rates).
-        category: Worker's CCNL category (operaio / impiegato / quadro /
-            dirigente) as declared on the CCNL level.  None when the level
-            carries no category annotation.
-    """
-
-    contract_type: Permanent | FixedTerm | Apprentice
-    category: LevelCategory | None = None

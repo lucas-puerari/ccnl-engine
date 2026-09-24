@@ -5,8 +5,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.payroll.service import irpef as _irpef
 from ccnl_engine.payroll.domain.fiscal import FiscalSimplification
+from ccnl_engine.payroll.service import irpef as _irpef
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:

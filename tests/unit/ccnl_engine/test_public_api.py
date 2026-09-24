@@ -8,6 +8,8 @@ import ccnl_engine
 
 EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "AbsenceDays",
+    "PayrollCalendar",
+    "PayrollYearResult",
     "Agreement",
     "AnnualEstimateInput",
     "Apprentice",
