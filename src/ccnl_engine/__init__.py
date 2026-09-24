@@ -29,6 +29,7 @@ Usage::
 
 from __future__ import annotations
 
+from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
 from ccnl_engine.api.results import PayrollResult
 from ccnl_engine.engine.capability_catalog import (
@@ -91,7 +92,10 @@ from ccnl_engine.engine.payroll.domain.supplements import (
     WelfareInput,
 )
 from ccnl_engine.engine.payroll.domain.tax_basis import TaxPeriod
-from ccnl_engine.engine.payroll.service.engine import PayrollEngine
+from ccnl_engine.payroll.application.calculate_year import (
+    YearCalculationResult as PayrollYearResult,
+)
+from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
@@ -128,12 +132,14 @@ __all__ = [
     "LeaveInput",
     "OutOfScopeError",
     "OvertimeHours",
+    "PayrollCalendar",
     "PayrollEngine",
     "PayrollRequest",
     "PayrollResult",
     "PayrollRun",
     "PayrollState",
     "PayrollYearRequest",
+    "PayrollYearResult",
     "PeriodPayrollInput",
     "Permanent",
     "RalOverride",

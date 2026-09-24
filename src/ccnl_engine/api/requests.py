@@ -90,6 +90,11 @@ class PayrollYearRequest:
         employment_facts: Employment-side facts (contract type, headcount,
             IVS ceiling eligibility).
         period_events: Optional mapping from month number (1-12) to events.
+            Extra-month runs (thirteenth, fourteenth) are not addressable here;
+            use ``per_run_events`` for explicit run-level allocation.
+        per_run_events: Optional mapping from ``run_id`` to events for that
+            specific run.  Supports any run kind (regular, thirteenth, etc.).
+            A run present in both sources raises :class:`ValueError`.
         regione: ISO region code for regional surtax.
         comune_belfiore: Belfiore code for municipal surtax.
         family_composition: Dependent family composition.
@@ -102,6 +107,7 @@ class PayrollYearRequest:
     calendar: WorkCalendar
     employment_facts: EmploymentFacts = field(default_factory=EmploymentFacts)
     period_events: dict[int, tuple[WorkEvent, ...]] = field(default_factory=dict)
+    per_run_events: dict[str, tuple[WorkEvent, ...]] = field(default_factory=dict)
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
