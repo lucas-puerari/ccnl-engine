@@ -21,40 +21,31 @@ I never really understood employment contracts or pay slips. The whole system st
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-estimate_annual(AnnualEstimateInput) → Calculation
+PayrollEngine.calculate(PayrollRequest) → PeriodCalculationResult
 ```
 
-The returned `Calculation` is self-describing: along with the `AnnualEstimate` (`.result`) it records the engine version, the exact CCNL / tax / INPS / surtax ruleset revisions used (`.ruleset_version`), and a snapshot of the inputs (`.input_snapshot`) — so any figure can be traced back to the engine and data that produced it.
+Each result is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF computation, pay items, and a ledger of every accounting entry — so any figure can be traced back to the engine and data that produced it.
 
 ## Quickstart
 
 ```python
 from datetime import date
-from ccnl_engine import (
-    AnnualEstimateInput, Employee, Employer, Employment,
-    Permanent, estimate_annual,
-)
+from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
 
-calculation = estimate_annual(
-    AnnualEstimateInput(
-        employee=Employee(level_code="4"),
-        employment=Employment(
-            ccnl="commercio-confcommercio",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 1, 1),
-        ),
+engine = PayrollEngine.from_builtin_data()
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="4",
+        employment_facts=EmploymentFacts(num_employees=50),
     )
 )
 
-payroll = calculation.result
-print(payroll.net_annual)                          # → Decimal('...')
-print(payroll.taxes.trattamento_integrativo)       # → Decimal('...') — Art. 1 D.L. 3/2020
-print(payroll.coverage.status)                     # → 'complete' | 'partial'
-print(payroll.employer_cost.employer_cost_annual)  # → Decimal('...')
-
-print(calculation.engine_version)   # → '0.5.1'
-print(calculation.ruleset_version)  # → {'ccnl': '…', 'tax': '…', 'inps': '…', 'surtax': '…'}
+print(result.period_gross)  # → Decimal('...')
+print(result.period_net)  # → Decimal('...')
+print(result.period_id)  # → PeriodId(year=2026, month=1)
 ```
 
 ## CCNL coverage

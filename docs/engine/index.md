@@ -5,50 +5,57 @@ applicable rules — and returns a fully itemised `PayrollResult`. It is a pure
 function: given the same inputs and the same knowledge base version, it always
 produces the same output.
 
-## Entry points: `estimate_annual()` and `estimate_period_effects()`
+## Entry point: `PayrollEngine`
 
-For annual gross-to-net figures, pass an `AnnualEstimateInput` to
-`estimate_annual()`:
+Construct the engine with `PayrollEngine.from_builtin_data()` and call
+`calculate()` for a single pay run or `calculate_year()` for a full year:
 
 ```python
 from datetime import date
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Permanent,
-    estimate_annual,
-)
 
-calculation = estimate_annual(
-    AnnualEstimateInput(
-        employee=Employee(level_code="C3"),
-        employment=Employment(
-            ccnl="metalmeccanico-federmeccanica.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 1, 1),
+from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+
+engine = PayrollEngine.from_builtin_data()
+
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        employment_facts=EmploymentFacts(num_employees=50),
+    )
+)
+print(result.period_gross)
+print(result.period_net)
+```
+
+To add period-specific events (overtime, absences, benefits), pass them on
+`PayrollRequest`:
+
+```python
+from ccnl_engine.payroll.domain.events import OvertimeEvent
+
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        events=(
+            OvertimeEvent(
+                event_date=date(2026, 1, 10),
+                hours=8,
+                hourly_rate=...,
+                multiplier=...,
+            ),
         ),
     )
 )
-result = calculation.result
 ```
 
-To add period-specific events (overtime, absences, benefits), use
-`estimate_period_effects()` with a `PeriodPayrollInput`:
-
-```python
-from ccnl_engine import OvertimeHours, PeriodPayrollInput, estimate_period_effects
-
-period = PeriodPayrollInput(time_supplements=OvertimeHours(weekday_hours=8))
-calculation = estimate_period_effects(scenario, period)
-```
-
-Both entry points return a `Calculation`, not a `PayrollResult` directly. The
-`Calculation` wraps the result with the engine version, ruleset identities,
-and a serialisable input snapshot — everything needed to reproduce or audit
-the figure later. See [Trust: Versioning](../trust/index.md#versioning).
+`calculate()` returns a `PeriodCalculationResult` with gross, net, pay items,
+and a full ledger of every accounting entry. See [API: Engine](../api/engine.md).
 
 ## Computation chain
 
