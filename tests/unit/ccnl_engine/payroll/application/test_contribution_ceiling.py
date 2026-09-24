@@ -15,6 +15,7 @@ from decimal import Decimal
 
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
@@ -27,13 +28,15 @@ _YEAR = 2026
 _ZERO = Decimal(0)
 
 _MASSIMALE = Decimal("122295.00")
+_POST_1995 = ContributionCeilingStatus.POST_1995
+_NOT_APPLICABLE = ContributionCeilingStatus.NOT_APPLICABLE
 
 
 def _req(
     month: int = 1,
     opening: PeriodState | None = None,
     *,
-    ivs_ceiling_applies: bool = True,
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.POST_1995,
 ) -> PeriodCalculationRequest:
     if opening is None:
         opening = PeriodState.zero()
@@ -43,7 +46,7 @@ def _req(
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
         opening_state=opening,
-        ivs_ceiling_applies=ivs_ceiling_applies,
+        ceiling_status=ceiling_status,
     )
 
 
@@ -70,7 +73,7 @@ def _addizionale(result: PeriodCalculationResult) -> Decimal:
 
 
 class TestIvsCeilingApplies:
-    """ivs_ceiling_applies=False bypasses the massimale cap entirely."""
+    """ceiling_status=_NOT_APPLICABLE bypasses the massimale cap entirely."""
 
     def test_false_gives_higher_ivs_than_true_when_ytd_near_ceiling(self) -> None:
         """With YTD near the massimale, uncapped IVS > capped IVS."""
@@ -80,10 +83,10 @@ class TestIvsCeilingApplies:
             inps_base_ytd=Decimal("121000.00"),
         )
         r_capped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=True)
+            _req(month=11, opening=opening, ceiling_status=_POST_1995)
         )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=False)
+            _req(month=11, opening=opening, ceiling_status=_NOT_APPLICABLE)
         )
         assert _ivs_employee(r_uncapped) > _ivs_employee(r_capped)
         assert (
@@ -99,18 +102,18 @@ class TestIvsCeilingApplies:
             inps_base_ytd=Decimal("130000.00"),
         )
         r_capped = calculate_period(
-            _req(month=12, opening=opening, ivs_ceiling_applies=True)
+            _req(month=12, opening=opening, ceiling_status=_POST_1995)
         )
         r_uncapped = calculate_period(
-            _req(month=12, opening=opening, ivs_ceiling_applies=False)
+            _req(month=12, opening=opening, ceiling_status=_NOT_APPLICABLE)
         )
         assert _ivs_employee(r_capped) == _ZERO
         assert _ivs_employee(r_uncapped) > _ZERO
 
     def test_true_and_false_identical_when_ytd_is_zero(self) -> None:
         """With no prior YTD, both modes give identical contributions."""
-        r_capped = calculate_period(_req(month=1, ivs_ceiling_applies=True))
-        r_uncapped = calculate_period(_req(month=1, ivs_ceiling_applies=False))
+        r_capped = calculate_period(_req(month=1, ceiling_status=_POST_1995))
+        r_uncapped = calculate_period(_req(month=1, ceiling_status=_NOT_APPLICABLE))
         assert _ivs_employee(r_capped) == _ivs_employee(r_uncapped)
         assert (
             r_capped.contribution_breakdown.employee
@@ -129,7 +132,7 @@ class TestMassimaleThreshold:
             inps_base_ytd=_MASSIMALE + Decimal("1000.00"),
         )
         result = calculate_period(
-            _req(month=12, opening=opening, ivs_ceiling_applies=True)
+            _req(month=12, opening=opening, ceiling_status=_POST_1995)
         )
         assert _ivs_employee(result) == _ZERO
 
@@ -142,10 +145,10 @@ class TestMassimaleThreshold:
             inps_base_ytd=Decimal("121000.00"),
         )
         r_capped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=True)
+            _req(month=11, opening=opening, ceiling_status=_POST_1995)
         )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=False)
+            _req(month=11, opening=opening, ceiling_status=_NOT_APPLICABLE)
         )
         ivs_capped = _ivs_employee(r_capped)
         ivs_uncapped = _ivs_employee(r_uncapped)
@@ -153,7 +156,7 @@ class TestMassimaleThreshold:
 
     def test_ivs_positive_below_massimale(self) -> None:
         """IVS is positive when YTD is safely below the massimale."""
-        result = calculate_period(_req(month=1, ivs_ceiling_applies=True))
+        result = calculate_period(_req(month=1, ceiling_status=_POST_1995))
         assert _ivs_employee(result) > _ZERO
 
     def test_ivs_capped_at_headroom_when_period_overshoots(self) -> None:
@@ -165,10 +168,10 @@ class TestMassimaleThreshold:
             inps_base_ytd=_MASSIMALE - headroom,
         )
         r_capped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=True)
+            _req(month=11, opening=opening, ceiling_status=_POST_1995)
         )
         r_uncapped = calculate_period(
-            _req(month=11, opening=opening, ivs_ceiling_applies=False)
+            _req(month=11, opening=opening, ceiling_status=_NOT_APPLICABLE)
         )
         ivs_comp = next(
             (
@@ -193,7 +196,7 @@ class TestAddizionale1Pct:
 
     def test_no_addizionale_in_january_with_zero_ytd(self) -> None:
         """Normal C3 January (YTD=0) produces no addizionale: base << 56,224 EUR."""
-        result = calculate_period(_req(month=1, ivs_ceiling_applies=True))
+        result = calculate_period(_req(month=1, ceiling_status=_POST_1995))
         assert _addizionale(result) == _ZERO
 
     def test_addizionale_when_ytd_crosses_threshold(self) -> None:
@@ -205,7 +208,7 @@ class TestAddizionale1Pct:
             inps_base_ytd=Decimal("55000.00"),
         )
         result = calculate_period(
-            _req(month=6, opening=opening, ivs_ceiling_applies=True)
+            _req(month=6, opening=opening, ceiling_status=_POST_1995)
         )
         assert _addizionale(result) > _ZERO
 
@@ -218,7 +221,7 @@ class TestAddizionale1Pct:
             inps_base_ytd=Decimal("70000.00"),
         )
         result = calculate_period(
-            _req(month=7, opening=opening, ivs_ceiling_applies=True)
+            _req(month=7, opening=opening, ceiling_status=_POST_1995)
         )
         assert _addizionale(result) > _ZERO
 
@@ -234,12 +237,12 @@ class TestAddizionale1Pct:
             inps_base_ytd=Decimal("130000.00"),
         )
         result = calculate_period(
-            _req(month=12, opening=opening, ivs_ceiling_applies=True)
+            _req(month=12, opening=opening, ceiling_status=_POST_1995)
         )
         assert _addizionale(result) == _ZERO
 
     def test_addizionale_false_ceiling_allows_above_massimale(self) -> None:
-        """With ivs_ceiling_applies=False, addizionale can apply above the massimale."""
+        """With _NOT_APPLICABLE ceiling, addizionale can apply above the massimale."""
         # ytd=125000 > massimale; with ceiling bypassed, addizionale still runs
         opening = PeriodState(
             regular_periods_closed=11,
@@ -247,7 +250,7 @@ class TestAddizionale1Pct:
             inps_base_ytd=Decimal("125000.00"),
         )
         r_uncapped = calculate_period(
-            _req(month=12, opening=opening, ivs_ceiling_applies=False)
+            _req(month=12, opening=opening, ceiling_status=_NOT_APPLICABLE)
         )
         assert _addizionale(r_uncapped) > _ZERO
 
@@ -260,7 +263,7 @@ class TestAddizionale1Pct:
             inps_base_ytd=Decimal("55900.00"),
         )
         result = calculate_period(
-            _req(month=6, opening=opening, ivs_ceiling_applies=True)
+            _req(month=6, opening=opening, ceiling_status=_POST_1995)
         )
         comp = next(
             (

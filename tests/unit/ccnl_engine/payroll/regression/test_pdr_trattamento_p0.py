@@ -84,7 +84,9 @@ class TestT01PdRExcessReturnsToIrpef:
     def test_substitute_tax_capped_at_5000(self) -> None:
         """SUBSTITUTE_TAX must be 50.00 (5,000 EUR * 1%), not 60.00."""
         bonus = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("6000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("6000.00"),
+            kind="productivity_bonus",
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -96,7 +98,9 @@ class TestT01PdRExcessReturnsToIrpef:
     def test_pdr_ytd_capped_at_5000(self) -> None:
         """pdr_ytd must record 5,000 EUR eligible, not 6,000 EUR gross."""
         bonus = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("6000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("6000.00"),
+            kind="productivity_bonus",
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         assert result.closing_state.pdr_ytd == Decimal("5000.00"), (
@@ -106,10 +110,14 @@ class TestT01PdRExcessReturnsToIrpef:
     def test_excess_increases_ordinary_irpef_base(self) -> None:
         """Ordinary IRPEF must be higher for a 6,000 EUR PdR than for 5,000 EUR."""
         bonus_5k = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("5000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("5000.00"),
+            kind="productivity_bonus",
         )
         bonus_6k = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("6000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("6000.00"),
+            kind="productivity_bonus",
         )
         result_5k = calculate_period(_req_metal(1, events=(bonus_5k,)))
         result_6k = calculate_period(_req_metal(1, events=(bonus_6k,)))
@@ -124,7 +132,9 @@ class TestT01PdRExcessReturnsToIrpef:
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants including I16 must pass."""
         bonus = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("6000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("6000.00"),
+            kind="productivity_bonus",
         )
         opening = PeriodState.zero()
         result = calculate_period(_req_metal(1, opening=opening, events=(bonus,)))
@@ -138,7 +148,9 @@ class TestT03SecondPdRPartialPlafond:
     def test_first_pdr_fully_eligible(self) -> None:
         """First 3,000 EUR PdR is fully eligible: sub_tax = 30.00."""
         bonus = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("3000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("3000.00"),
+            kind="productivity_bonus",
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -148,12 +160,16 @@ class TestT03SecondPdRPartialPlafond:
     def test_second_pdr_only_headroom_eligible(self) -> None:
         """Second 3,000 EUR PdR: only 2,000 EUR headroom left, sub_tax = 20.00."""
         bonus1 = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("3000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("3000.00"),
+            kind="productivity_bonus",
         )
         r1 = calculate_period(_req_metal(1, events=(bonus1,)))
 
         bonus2 = BonusEvent(
-            event_date=date(_YEAR, 2, 15), amount=Decimal("3000.00"), is_pdr=True
+            event_date=date(_YEAR, 2, 15),
+            amount=Decimal("3000.00"),
+            kind="productivity_bonus",
         )
         r2 = calculate_period(_req_metal(2, opening=r1.closing_state, events=(bonus2,)))
         sub_tax = _sum_account(r2, AccountKind.SUBSTITUTE_TAX)
@@ -166,12 +182,16 @@ class TestT03SecondPdRPartialPlafond:
     def test_second_pdr_excess_in_ordinary_base(self) -> None:
         """The 1,000 EUR excess in period 2 must raise ordinary IRPEF vs zero-bonus."""
         bonus1 = BonusEvent(
-            event_date=date(_YEAR, 1, 15), amount=Decimal("3000.00"), is_pdr=True
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("3000.00"),
+            kind="productivity_bonus",
         )
         r1 = calculate_period(_req_metal(1, events=(bonus1,)))
 
         bonus2 = BonusEvent(
-            event_date=date(_YEAR, 2, 15), amount=Decimal("3000.00"), is_pdr=True
+            event_date=date(_YEAR, 2, 15),
+            amount=Decimal("3000.00"),
+            kind="productivity_bonus",
         )
         r2_with_bonus = calculate_period(
             _req_metal(2, opening=r1.closing_state, events=(bonus2,))
@@ -201,7 +221,7 @@ class TestT04TrattamentoNoOverRecovery:
                     BonusEvent(
                         event_date=date(_YEAR, 2, 15),
                         amount=Decimal("25000.00"),
-                        is_pdr=False,
+                        kind="bonus",
                     ),
                 )
             req = _req_portieri(month, opening=opening, events=events)

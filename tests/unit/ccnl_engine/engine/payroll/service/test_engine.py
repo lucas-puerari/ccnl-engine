@@ -12,6 +12,7 @@ from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthSchedule,
     WorkCalendar,
 )
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
 
@@ -76,14 +77,16 @@ class TestCalculate:
         assert result.run.run_id == "2026-01-regular"
 
     def test_ivs_ceiling_not_applies_accepted(self) -> None:
-        """employment_facts with ivs_ceiling_applies=False is accepted by engine."""
+        """employment_facts with ceiling_status=NOT_APPLICABLE is accepted by engine."""
         engine = PayrollEngine.from_builtin_data()
         req = PayrollRequest(
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
-            employment_facts=EmploymentFacts(ivs_ceiling_applies=False),
+            employment_facts=EmploymentFacts(
+                ceiling_status=ContributionCeilingStatus.NOT_APPLICABLE
+            ),
         )
         result = engine.calculate(req)
         assert result.period_gross > _ZERO

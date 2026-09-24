@@ -12,6 +12,9 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.eligibility import (
+    ContributionCeilingStatus,
+)
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
@@ -105,7 +108,7 @@ def calculate_year(
     calendar: WorkCalendar | None = None,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
     num_employees: int = 50,
-    ivs_ceiling_applies: bool = True,
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
     per_run_events: dict[str, tuple[WorkEvent, ...]] | None = None,
     regione: str | None = None,
@@ -139,8 +142,10 @@ def calculate_year(
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
         num_employees: Employer headcount for INPS rate resolution.
             Defaults to 50.
-        ivs_ceiling_applies: When False the IVS massimale ceiling is bypassed
-            across all runs.  Defaults to True.
+        ceiling_status: Whether the IVS massimale contribution ceiling applies.
+            Defaults to
+            :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`
+            (ceiling not applied; caller should supply the worker's enrollment status).
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
             (thirteenth, fourteenth) receive no events from this mapping;
@@ -199,7 +204,7 @@ def calculate_year(
             opening_state=state,
             contract_type=effective_contract,
             num_employees=num_employees,
-            ivs_ceiling_applies=ivs_ceiling_applies,
+            ceiling_status=ceiling_status,
             events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
