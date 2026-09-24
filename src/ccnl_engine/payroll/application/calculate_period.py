@@ -91,6 +91,26 @@ _OBSERVED: dict[str, str] = {
 }
 
 
+def _resolve_run_id(request: PeriodCalculationRequest, period_year: int) -> str:
+    """Return the run identifier and raise if the run was already processed.
+
+    Returns:
+        The run identifier string for this period.
+
+    Raises:
+        ValueError: When the run was already closed in the opening state.
+    """
+    run_id = (
+        request.run.run_id
+        if request.run is not None
+        else f"{period_year}_{request.period_id.month:02d}"
+    )
+    if run_id in request.opening_state.closed_run_ids:
+        msg = f"Run '{run_id}' was already processed in this payroll year"
+        raise ValueError(msg)
+    return run_id
+
+
 def _get_resolver() -> PolicyResolver:
     global _POLICY_RESOLVER  # noqa: PLW0603
     if _POLICY_RESOLVER is None:
@@ -137,30 +157,27 @@ def calculate_period(
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
     run_kind = request.run.run_kind if request.run is not None else "regular"
+    run_id = _resolve_run_id(request, period_year)
     chain = _apply_extra_month_policy(
-        chain, run_kind, request.opening_state.months_closed
+        chain, run_kind, request.opening_state.regular_periods_closed
     )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     var_pay_rules = load_variable_pay_rules(period_year)
-    if request.has_dependent_children:
-        fringe_threshold = var_pay_rules.fringe_benefit.threshold_with_children
-    else:
-        fringe_threshold = var_pay_rules.fringe_benefit.threshold_standard
+    fringe_threshold = (
+        var_pay_rules.fringe_benefit.threshold_with_children
+        if request.has_dependent_children
+        else var_pay_rules.fringe_benefit.threshold_standard
+    )
 
     resolver = _get_resolver()
     policy_context = PolicyContext(year=period_year, as_of=as_of)
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
-    tag = (
-        request.run.run_id
-        if request.run is not None
-        else f"{period_year}_{request.period_id.month:02d}"
-    )
     event_totals, event_items, event_entries = _process_events(
         request.events,
         cp,
         request.payment_date,
-        tag,
+        run_id,
         date_ctx,
         resolver,
         policy_context,
@@ -202,7 +219,7 @@ def calculate_period(
         domestic_hourly_rate=domestic_hr,
     )
     pay_items = _build_pay_items(
-        amounts, chain, request.period_id, request.payment_date, run_tag=tag
+        amounts, chain, request.period_id, request.payment_date, run_tag=run_id
     )
     ledger_entries = _project_ledger(
         amounts,
@@ -211,7 +228,7 @@ def calculate_period(
         request.payment_date,
         resolver,
         policy_context,
-        run_tag=tag,
+        run_tag=run_id,
     )
 
     # Somma esente (L. 207/2024): extract annual amount, prorate to period
@@ -230,7 +247,7 @@ def calculate_period(
         credit_pid = _require_resolution(
             resolver, "tax_credit_item", policy_context
         ).policy_id
-        se_item_id = f"somma_esente_{tag}"
+        se_item_id = f"somma_esente_{run_id}"
         se_items = (
             TaxCreditItem(
                 item_id=se_item_id,
@@ -279,8 +296,16 @@ def calculate_period(
     )
 
     period_inps_base = monthly_gross + event_totals.inps_base
+    regular_delta = 1 if run_kind == "regular" else 0
+    tax_delta = 0 if run_kind == "adjustment" else 1
     closing = PeriodState(
-        months_closed=request.opening_state.months_closed + 1,
+        regular_periods_closed=(
+            request.opening_state.regular_periods_closed + regular_delta
+        ),
+        tax_withholding_periods_closed=(
+            request.opening_state.tax_withholding_periods_closed + tax_delta
+        ),
+        closed_run_ids=request.opening_state.closed_run_ids | {run_id},
         irpef_withheld_ytd=(
             request.opening_state.irpef_withheld_ytd + amounts.period_irpef
         ),

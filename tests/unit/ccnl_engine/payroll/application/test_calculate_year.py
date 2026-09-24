@@ -209,15 +209,15 @@ class TestCalculateYear:
         for i in range(1, 12):
             prev = result.period_results[i - 1]
             curr = result.period_results[i]
-            assert curr.closing_state.months_closed == (
-                prev.closing_state.months_closed + 1
+            assert curr.closing_state.regular_periods_closed == (
+                prev.closing_state.regular_periods_closed + 1
             )
 
-    def test_months_closed_reaches_12(self) -> None:
-        """After 12 periods months_closed equals 12."""
+    def test_regular_periods_closed_reaches_12(self) -> None:
+        """After 12 regular periods regular_periods_closed equals 12."""
         cal = WorkCalendar(year=_YEAR)
         result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
-        assert result.period_results[-1].closing_state.months_closed == 12
+        assert result.period_results[-1].closing_state.regular_periods_closed == 12
 
     def test_period_ids_are_in_order(self) -> None:
         """Period results are ordered January to December."""

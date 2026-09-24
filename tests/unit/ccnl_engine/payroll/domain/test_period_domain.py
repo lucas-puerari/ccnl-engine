@@ -37,7 +37,9 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
         "period_gross": Decimal("2158.26"),
         "period_net": Decimal("1674.42"),
         "period_employer_cost": Decimal("2969.92"),
-        "closing_state": PeriodState(months_closed=1),
+        "closing_state": PeriodState(
+            regular_periods_closed=1, tax_withholding_periods_closed=1
+        ),
         "pay_items": (),
         "ledger_entries": (),
         "capability_report": CapabilityReport.empty(2026),
@@ -91,9 +93,11 @@ class TestPeriodState:
     """PeriodState stores YTD progressives and provides a zero factory."""
 
     def test_zero_factory(self) -> None:
-        """PeriodState.zero() returns a state with all fields at zero."""
+        """PeriodState.zero() returns a state with all counters at zero."""
         s = PeriodState.zero()
-        assert s.months_closed == 0
+        assert s.regular_periods_closed == 0
+        assert s.tax_withholding_periods_closed == 0
+        assert s.closed_run_ids == frozenset()
         assert s.irpef_withheld_ytd == _ZERO
         assert s.inps_employee_ytd == _ZERO
         assert s.gross_ytd == _ZERO
@@ -101,12 +105,14 @@ class TestPeriodState:
     def test_stored_values(self) -> None:
         """All fields are stored and retrievable after construction."""
         s = PeriodState(
-            months_closed=3,
+            regular_periods_closed=3,
+            tax_withholding_periods_closed=3,
             irpef_withheld_ytd=Decimal("837.06"),
             inps_employee_ytd=Decimal("614.46"),
             gross_ytd=Decimal("6474.78"),
         )
-        assert s.months_closed == 3
+        assert s.regular_periods_closed == 3
+        assert s.tax_withholding_periods_closed == 3
         assert s.irpef_withheld_ytd == Decimal("837.06")
         assert s.inps_employee_ytd == Decimal("614.46")
         assert s.gross_ytd == Decimal("6474.78")
@@ -115,7 +121,17 @@ class TestPeriodState:
         """PeriodState is immutable: attribute assignment raises AttributeError."""
         s = PeriodState.zero()
         with pytest.raises(AttributeError):
-            s.months_closed = 1  # type: ignore[misc]
+            s.regular_periods_closed = 1  # type: ignore[misc]
+
+    def test_negative_regular_periods_raises(self) -> None:
+        """regular_periods_closed < 0 raises ValueError."""
+        with pytest.raises(ValueError, match="regular_periods_closed"):
+            PeriodState(regular_periods_closed=-1)
+
+    def test_tax_withholding_less_than_regular_raises(self) -> None:
+        """tax_withholding_periods_closed < regular_periods_closed raises ValueError."""
+        with pytest.raises(ValueError, match="tax_withholding_periods_closed"):
+            PeriodState(regular_periods_closed=5, tax_withholding_periods_closed=3)
 
 
 class TestPeriodCalculationRequest:
@@ -123,7 +139,11 @@ class TestPeriodCalculationRequest:
 
     def test_stored_fields(self) -> None:
         """All explicitly supplied fields are stored and retrievable."""
-        state = PeriodState(months_closed=5, irpef_withheld_ytd=Decimal("1000.00"))
+        state = PeriodState(
+            regular_periods_closed=5,
+            tax_withholding_periods_closed=5,
+            irpef_withheld_ytd=Decimal("1000.00"),
+        )
         req = PeriodCalculationRequest(
             period_id=_PERIOD,
             payment_date=_DATE,
@@ -183,7 +203,11 @@ class TestPeriodCalculationResult:
 
     def test_stored_closing_state(self) -> None:
         """closing_state is stored by identity."""
-        cs = PeriodState(months_closed=1, gross_ytd=Decimal("2158.26"))
+        cs = PeriodState(
+            regular_periods_closed=1,
+            tax_withholding_periods_closed=1,
+            gross_ytd=Decimal("2158.26"),
+        )
         result = _make_result(closing_state=cs)
         assert result.closing_state is cs
 

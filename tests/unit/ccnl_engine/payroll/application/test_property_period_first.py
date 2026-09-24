@@ -36,7 +36,7 @@ _MONTHS_CLOSED = st.integers(min_value=0, max_value=11)
 def _req(
     month: int,
     irpef_ytd: Decimal = Decimal(0),
-    months_closed: int = 0,
+    regular_periods_closed: int = 0,
 ) -> PeriodCalculationRequest:
     """Build a request for ``month`` of 2026 with the given YTD values.
 
@@ -49,7 +49,8 @@ def _req(
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState(
-            months_closed=months_closed,
+            regular_periods_closed=regular_periods_closed,
+            tax_withholding_periods_closed=regular_periods_closed,
             irpef_withheld_ytd=irpef_ytd,
         ),
     )
@@ -149,7 +150,8 @@ class TestOpeningPlusMovementsEqualsClosing:
         """gross_ytd closing = opening.gross_ytd + CASH_EARNINGS for any month."""
         opening_gross = Decimal("1000.00") * months_closed
         opening = PeriodState(
-            months_closed=months_closed,
+            regular_periods_closed=months_closed,
+            tax_withholding_periods_closed=months_closed,
             gross_ytd=opening_gross,
         )
         req = PeriodCalculationRequest(

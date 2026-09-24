@@ -16,8 +16,9 @@ Invariants:
           = period_net.
     I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
           = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
-    I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
-          advance correctly from opening.
+    I11 — YTD state transition: regular_periods_closed, tax_withholding_periods_closed,
+          closed_run_ids, gross_ytd, and inps_employee_ytd advance correctly from
+          opening.
     I12 — employer cost identity: CASH_EARNINGS - EMPLOYEE_DEDUCTIONS
           + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
           + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
@@ -247,15 +248,47 @@ def _check_i11(
         Violations for any YTD field that does not advance as expected.
     """
     violations: list[ReconciliationViolation] = []
-    if result.closing_state.months_closed != opening.months_closed + 1:
+    run_kind = result.run.run_kind if result.run is not None else "regular"
+    run_id = (
+        result.run.run_id
+        if result.run is not None
+        else f"{result.period_id.year}_{result.period_id.month:02d}"
+    )
+
+    expected_regular = opening.regular_periods_closed + (
+        1 if run_kind == "regular" else 0
+    )
+    if result.closing_state.regular_periods_closed != expected_regular:
         violations.append(
             ReconciliationViolation(
                 invariant_id="I11",
-                message="months_closed not incremented by 1",
-                expected=Decimal(opening.months_closed + 1),
-                actual=Decimal(result.closing_state.months_closed),
+                message="regular_periods_closed not correctly incremented",
+                expected=Decimal(expected_regular),
+                actual=Decimal(result.closing_state.regular_periods_closed),
             )
         )
+
+    expected_tax = opening.tax_withholding_periods_closed + (
+        0 if run_kind == "adjustment" else 1
+    )
+    if result.closing_state.tax_withholding_periods_closed != expected_tax:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id="I11",
+                message="tax_withholding_periods_closed not correctly incremented",
+                expected=Decimal(expected_tax),
+                actual=Decimal(result.closing_state.tax_withholding_periods_closed),
+            )
+        )
+
+    if run_id not in result.closing_state.closed_run_ids:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id="I11",
+                message=f"run_id {run_id!r} not added to closed_run_ids",
+            )
+        )
+
     expected_gross = opening.gross_ytd + _sum_account(result, AccountKind.CASH_EARNINGS)
     if result.closing_state.gross_ytd != expected_gross:
         violations.append(

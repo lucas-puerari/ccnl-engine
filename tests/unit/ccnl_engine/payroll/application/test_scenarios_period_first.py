@@ -106,13 +106,13 @@ class TestMultiPeriodChain:
         )
         assert r2.closing_state.irpef_withheld_ytd == jan_irpef + feb_irpef
 
-    def test_months_closed_increments_through_chain(self) -> None:
-        """months_closed advances by 1 per period through a 3-month chain."""
+    def test_regular_periods_closed_increments_through_chain(self) -> None:
+        """regular_periods_closed advances by 1 per regular period through a chain."""
         opening = PeriodState.zero()
         for expected_months in range(1, 4):
             month = expected_months
             result = calculate_period(_req(month=month, opening=opening))
-            assert result.closing_state.months_closed == expected_months
+            assert result.closing_state.regular_periods_closed == expected_months
             opening = result.closing_state
 
 

@@ -85,7 +85,8 @@ def test_ce3_excess_ytd_produces_refund() -> None:
     representation instead of a signed withholding entry).
     """
     high_ytd = PeriodState(
-        months_closed=12,
+        regular_periods_closed=12,
+        tax_withholding_periods_closed=12,
         irpef_withheld_ytd=Decimal("5000.00"),
     )
     result = calculate_period(_req(month=12, opening=high_ytd))

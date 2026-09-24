@@ -358,7 +358,8 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
     Expected: addizionale_1pct == 0.
     """
     opening = PeriodState(
-        months_closed=11,
+        regular_periods_closed=11,
+        tax_withholding_periods_closed=11,
         inps_base_ytd=Decimal("130000.00"),  # > 122,295 IVS massimale 2026
     )
     result = calculate_period(_req(month=12, opening=opening))

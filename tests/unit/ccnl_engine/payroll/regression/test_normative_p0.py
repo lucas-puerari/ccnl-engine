@@ -174,9 +174,14 @@ def test_p0_03_taxable_ytd_affects_conguaglio() -> None:
     Source: TUIR art. 23.  Two December calculations, one with taxable_ytd=0
     and one with taxable_ytd=5,000, must produce different ordinary_tax.
     """
-    opening_zero = PeriodState(months_closed=11, irpef_withheld_ytd=_ZERO)
+    opening_zero = PeriodState(
+        regular_periods_closed=11,
+        tax_withholding_periods_closed=11,
+        irpef_withheld_ytd=_ZERO,
+    )
     opening_high = PeriodState(
-        months_closed=11,
+        regular_periods_closed=11,
+        tax_withholding_periods_closed=11,
         irpef_withheld_ytd=_ZERO,
         taxable_ytd=Decimal("5000.00"),
     )
@@ -211,7 +216,11 @@ def test_p0_04_fringe_retroactive_on_threshold_crossing() -> None:
     Source: TUIR art. 51 co. 3-bis.  fringe_ytd=600 + FringeEvent(600) =
     1,200 > 1,000 threshold → irpef_base must equal 1,200 (full retroactive).
     """
-    state_after_m1 = PeriodState(months_closed=1, fringe_ytd=Decimal("600.00"))
+    state_after_m1 = PeriodState(
+        regular_periods_closed=1,
+        tax_withholding_periods_closed=1,
+        fringe_ytd=Decimal("600.00"),
+    )
     fringe = FringeEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("600.00"))
     result = calculate_period(_req(month=2, opening=state_after_m1, events=(fringe,)))
 
@@ -272,7 +281,11 @@ def test_p0_06_inps_addizionale_1pct_on_threshold_crossing() -> None:
     monthly base the cumulative crosses 56,224 EUR; an 'addizionale_1pct'
     component with amount > 0 must appear in contribution_breakdown.
     """
-    opening = PeriodState(months_closed=5, inps_base_ytd=Decimal("56000.00"))
+    opening = PeriodState(
+        regular_periods_closed=5,
+        tax_withholding_periods_closed=5,
+        inps_base_ytd=Decimal("56000.00"),
+    )
     result = calculate_period(_req(month=6, opening=opening))
 
     component_names = {c.name for c in result.contribution_breakdown.components}

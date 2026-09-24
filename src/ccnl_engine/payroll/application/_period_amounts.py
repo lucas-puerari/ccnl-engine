@@ -93,7 +93,7 @@ def _resolve_chain(
 def _apply_extra_month_policy(
     chain: MonthlyPayChain,
     run_kind: str,
-    months_closed: int,
+    regular_periods_closed: int,
 ) -> MonthlyPayChain:
     """Adjust a pay chain for the run kind (tredicesima / quattordicesima).
 
@@ -104,8 +104,8 @@ def _apply_extra_month_policy(
         return chain
     months_threshold = 14 if run_kind == "fourteenth" else 13
     chain = chain.for_extra_month(months_threshold)
-    if months_closed < 12:
-        rateo = Decimal(months_closed) / Decimal(12)
+    if regular_periods_closed < 12:
+        rateo = Decimal(regular_periods_closed) / Decimal(12)
         chain = chain.scaled(rateo)
     return chain
 
@@ -289,7 +289,7 @@ def _compute_amounts(
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     effective_irpef_base = event_irpef_base + pdr_excess
 
-    months_remaining = additional_months - opening.months_closed
+    months_remaining = additional_months - opening.tax_withholding_periods_closed
     recurring_remaining = monthly_gross * months_remaining
     recurring_inps_remaining = money(recurring_remaining * employee_rate_for_irpef)
     recurring_taxable = recurring_remaining - recurring_inps_remaining
@@ -312,7 +312,7 @@ def _compute_amounts(
         rules,
         opening_irpef_withheld=opening.irpef_withheld_ytd,
         opening_tratt_ytd=net_credit_ytd,
-        months_closed=opening.months_closed,
+        months_closed=opening.tax_withholding_periods_closed,
         additional_months=additional_months,
         family_deductions=fam_ded,
     )

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.employment import Permanent
 
@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
+@final
 @dataclass(frozen=True)
 class PeriodState:
     """Minimal YTD state entering a period-first payroll calculation.
@@ -33,8 +34,15 @@ class PeriodState:
     Pass :meth:`zero` for January (no prior periods closed this tax year).
 
     Attributes:
-        months_closed: Number of payroll periods already closed this tax
-            year before this calculation runs.
+        regular_periods_closed: Number of regular (``run_kind="regular"``)
+            payroll periods already closed this tax year.  Used to compute
+            extra-month accrual ratios (tredicesima, quattordicesima).
+        tax_withholding_periods_closed: Number of periods that have consumed
+            an IRPEF withholding slot (regular + thirteenth + fourteenth;
+            not adjustment).  Used for the conguaglio divisor.
+        closed_run_ids: Frozen set of ``run_id`` strings for every run
+            already closed this tax year.  Prevents reprocessing the same
+            run and enforces monotonic ordering.
         irpef_withheld_ytd: IRPEF already withheld this tax year.
         inps_employee_ytd: Employee INPS contributions withheld YTD.
         gross_ytd: Gross earnings accumulated YTD.
@@ -59,7 +67,9 @@ class PeriodState:
             regionale/comunale) withheld this tax year.
     """
 
-    months_closed: int = 0
+    regular_periods_closed: int = 0
+    tax_withholding_periods_closed: int = 0
+    closed_run_ids: frozenset[str] = field(default_factory=frozenset)
     irpef_withheld_ytd: Decimal = _ZERO
     inps_employee_ytd: Decimal = _ZERO
     gross_ytd: Decimal = _ZERO
@@ -74,6 +84,27 @@ class PeriodState:
     """Cumulative trattamento integrativo recovered (clawed back) this tax year."""
     surtax_ytd: Decimal = _ZERO
     """Cumulative regional and municipal surtax withheld this tax year."""
+
+    def __post_init__(self) -> None:
+        """Validate counter invariants on construction.
+
+        Raises:
+            ValueError: When counters violate ordering constraints.
+        """
+        if self.regular_periods_closed < 0:
+            msg = (
+                f"regular_periods_closed must be >= 0; "
+                f"got {self.regular_periods_closed}"
+            )
+            raise ValueError(msg)
+        if self.tax_withholding_periods_closed < self.regular_periods_closed:
+            msg = (
+                f"tax_withholding_periods_closed "
+                f"({self.tax_withholding_periods_closed}) "
+                f"must be >= regular_periods_closed "
+                f"({self.regular_periods_closed})"
+            )
+            raise ValueError(msg)
 
     @classmethod
     def zero(cls) -> PeriodState:

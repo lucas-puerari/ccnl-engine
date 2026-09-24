@@ -232,11 +232,20 @@ class TestConguaglioDiscriminator:
 class TestClosingStateTransitions:
     """calculate_period advances the YTD state correctly."""
 
-    def test_months_closed_increments(self) -> None:
-        """months_closed increases by exactly 1 per period."""
-        opening = PeriodState(months_closed=5)
+    def test_regular_periods_closed_increments(self) -> None:
+        """regular_periods_closed increases by exactly 1 per regular period."""
+        opening = PeriodState(
+            regular_periods_closed=5, tax_withholding_periods_closed=5
+        )
         result = calculate_period(_req(opening_state=opening))
-        assert result.closing_state.months_closed == 6
+        assert result.closing_state.regular_periods_closed == 6
+
+    def test_duplicate_run_id_raises(self) -> None:
+        """Re-submitting an already-closed run_id raises ValueError."""
+        opening = PeriodState.zero()
+        result = calculate_period(_req(opening_state=opening))
+        with pytest.raises(ValueError, match="already processed"):
+            calculate_period(_req(opening_state=result.closing_state))
 
     def test_gross_ytd_accumulates(self) -> None:
         """gross_ytd closing equals opening plus period gross."""
@@ -257,8 +266,10 @@ class TestClosingStateTransitions:
         assert result.closing_state.inps_employee_ytd == Decimal("500.00") + inps_period
 
     def test_remaining_months_guard_no_error(self) -> None:
-        """months_closed == additional_months (13 for metalmeccanico) → remaining=1."""
-        opening = PeriodState(months_closed=13)
+        """tax_withholding_periods_closed == additional_months (13) → remaining=1."""
+        opening = PeriodState(
+            regular_periods_closed=13, tax_withholding_periods_closed=13
+        )
         result = calculate_period(_req(opening_state=opening))
         assert result.period_gross > _ZERO
 
@@ -386,9 +397,10 @@ class TestWithholdingDue:
 
     def test_withholding_due_negative_final_period_excess(self) -> None:
         """Final period with excess YTD produces negative withholding_due."""
-        # metalmeccanico has additional_months=13; months_closed=12 → remaining=1
+        # metalmeccanico additional_months=13; twpc=12 → remaining=1
         opening = PeriodState(
-            months_closed=12,
+            regular_periods_closed=12,
+            tax_withholding_periods_closed=12,
             irpef_withheld_ytd=Decimal("5000.00"),
         )
         result = calculate_period(_req(opening_state=opening))
@@ -397,7 +409,8 @@ class TestWithholdingDue:
     def test_ordinary_tax_negative_in_final_period_with_excess(self) -> None:
         """ordinary_tax is negative in the final period when YTD exceeds liability."""
         opening = PeriodState(
-            months_closed=12,
+            regular_periods_closed=12,
+            tax_withholding_periods_closed=12,
             irpef_withheld_ytd=Decimal("5000.00"),
         )
         result = calculate_period(_req(opening_state=opening))
@@ -406,7 +419,8 @@ class TestWithholdingDue:
     def test_ordinary_tax_non_negative_in_non_final_period(self) -> None:
         """ordinary_tax is clamped to zero in non-final periods."""
         opening = PeriodState(
-            months_closed=3,
+            regular_periods_closed=3,
+            tax_withholding_periods_closed=3,
             irpef_withheld_ytd=Decimal("5000.00"),
         )
         result = calculate_period(_req(opening_state=opening))
@@ -950,12 +964,12 @@ class TestForExtraMonth:
 
 
 class TestExtraMonthRateo:
-    """Tredicesima gross is prorated when months_closed < 12."""
+    """Tredicesima gross is prorated when regular_periods_closed < 12."""
 
     _CCNL_IGIENE = "igiene-ambientale-utilitalia.json"
     _LEVEL_IGIENE = "D1"
 
-    def _run_thirteenth(self, months_closed: int) -> Decimal:
+    def _run_thirteenth(self, regular_periods_closed: int) -> Decimal:
         """Run a thirteenth period calculation and return period_gross.
 
         Returns:
@@ -966,18 +980,21 @@ class TestExtraMonthRateo:
             payment_date=date(2026, 12, 28),
             ccnl_slug=self._CCNL_IGIENE,
             level_code=self._LEVEL_IGIENE,
-            opening_state=PeriodState(months_closed=months_closed),
+            opening_state=PeriodState(
+                regular_periods_closed=regular_periods_closed,
+                tax_withholding_periods_closed=regular_periods_closed,
+            ),
             run=PayrollRun.thirteenth(2026, 12),
         )
         return calculate_period(req).period_gross
 
     def test_full_year_rateo_equals_one_month(self) -> None:
-        """With months_closed=12 the tredicesima equals one month's base salary."""
-        gross = self._run_thirteenth(months_closed=12)
+        """With regular_periods_closed=12 the tredicesima equals one month's salary."""
+        gross = self._run_thirteenth(regular_periods_closed=12)
         assert gross > Decimal(0)
 
     def test_half_year_rateo_is_half_of_full(self) -> None:
-        """With months_closed=6 the tredicesima is half of the full-year amount."""
-        full = self._run_thirteenth(months_closed=12)
-        half = self._run_thirteenth(months_closed=6)
+        """With regular_periods_closed=6 the tredicesima is half of the full amount."""
+        full = self._run_thirteenth(regular_periods_closed=12)
+        half = self._run_thirteenth(regular_periods_closed=6)
         assert half == (full / 2).quantize(Decimal("0.01"))
