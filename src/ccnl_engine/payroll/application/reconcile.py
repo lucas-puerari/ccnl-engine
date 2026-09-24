@@ -18,9 +18,9 @@ Invariants:
           = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
     I11 — YTD state transition: months_closed, gross_ytd, and inps_employee_ytd
           advance correctly from opening.
-    I12 — employer cost identity: CASH_EARNINGS + NON_CASH_BENEFITS
-          + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
-          + TFR_ACCRUAL = period_employer_cost.
+    I12 — employer cost identity: CASH_EARNINGS - EMPLOYEE_DEDUCTIONS
+          + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
+          + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
     I13 — gross identity: CASH_EARNINGS total = period_gross.
     I14 — all ledger entry IDs in a period are unique.
     I15 — period_gross is non-negative.
@@ -283,19 +283,24 @@ def _check_i12(
 ) -> list[ReconciliationViolation]:
     """I12: employer cost identity.
 
-    CASH_EARNINGS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
-    + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
+    CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS
+    + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
+    + TFR_ACCRUAL = period_employer_cost.
+
+    EMPLOYEE_DEDUCTIONS (unpaid absences) are subtracted because the employer
+    does not bear wages for time not worked.
 
     Returns:
         A violation when the derived employer cost diverges from
         ``period_employer_cost``.
     """
     cash = _sum_account(result, AccountKind.CASH_EARNINGS)
+    deductions = _sum_account(result, AccountKind.EMPLOYEE_DEDUCTIONS)
     ncb = _sum_account(result, AccountKind.NON_CASH_BENEFITS)
     employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
     bilateral_er = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYER)
     tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
-    derived = cash + ncb + employer + bilateral_er + tfr
+    derived = cash - deductions + ncb + employer + bilateral_er + tfr
     if derived != result.period_employer_cost:
         return [
             ReconciliationViolation(
