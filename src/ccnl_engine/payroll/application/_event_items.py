@@ -302,7 +302,7 @@ def _process_sickness_case_event(
             cp,
             payment_date,
             AccountKind.EMPLOYEE_DEDUCTIONS,
-            -absence,
+            absence,
             policy_id=resolution.policy_id,
         )
     )
