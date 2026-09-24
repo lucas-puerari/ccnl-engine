@@ -141,9 +141,16 @@ class PeriodCalculationResult:
     Attributes:
         period_id: The competence period, identical to the request.
         payment_date: Payment date, identical to the request.
-        period_gross: Gross earnings for this period only.
+        period_gross: Contractual gross entitlement for this period
+            (sum of CASH_EARNINGS ledger entries). This is the theoretical
+            wage the worker is entitled to before absence deductions.
         period_net: Net pay for this period only.
-        period_employer_cost: Total employer cost for this period only.
+        period_employer_cost: Total employer cost net of unpaid absences:
+            ``period_gross - unpaid_absence_deduction + employer_contributions
+            + bilateral_fund_employer + tfr_accrual + non_cash_benefits``.
+        unpaid_absence_deduction: Sum of EMPLOYEE_DEDUCTIONS ledger entries.
+            Represents wages not paid due to unpaid absences or sickness.
+            Zero when no absences are present.
         closing_state: YTD state after closing this period. Pass as
             ``opening_state`` to the next period's request.
         pay_items: All pay items produced for this period.
@@ -167,3 +174,4 @@ class PeriodCalculationResult:
     tax_computation: TaxComputation
     benefit_breakdown: BenefitBreakdown
     run: PayrollRun | None = None
+    unpaid_absence_deduction: Decimal = Decimal(0)

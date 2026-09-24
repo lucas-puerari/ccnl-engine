@@ -252,10 +252,27 @@ class TestAbsenceEventAccounting:
         )
 
     def test_gross_unchanged(self) -> None:
-        """period_gross is not reduced by absence (posted to EMPLOYEE_DEDUCTIONS)."""
+        """period_gross (contractual entitlement) is not reduced by absence."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._absence()))
         assert result.period_gross == base.period_gross
+
+    def test_unpaid_absence_deduction_equals_deducted_amount(self) -> None:
+        """unpaid_absence_deduction equals hours * hourly_rate."""
+        result = calculate_period(_req(self._absence()))
+        assert result.unpaid_absence_deduction == Decimal("96.00")  # 8h * 12.00
+
+    def test_employer_cost_reduced_by_absence(self) -> None:
+        """period_employer_cost decreases by at least the absence wage."""
+        base = calculate_period(_base())
+        result = calculate_period(_req(self._absence()))
+        assert result.period_employer_cost < base.period_employer_cost
+        absence_wage = Decimal("96.00")
+        cost_delta = base.period_employer_cost - result.period_employer_cost
+        assert cost_delta >= absence_wage, (
+            f"Employer cost reduction {cost_delta} < absence wage {absence_wage}. "
+            "The absence wage is not being subtracted from employer cost."
+        )
 
     def test_inps_decreases(self) -> None:
         """INPS employee contributions decrease when gross decreases."""
