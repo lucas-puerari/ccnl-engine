@@ -222,6 +222,7 @@ def _process_events(
                     policy_id=arrears_resolution.policy_id,
                 ),
             ])
+            total_inps += gross
         elif isinstance(event, BilateralFundEvent):
             emp_id = f"{evt_id}_emp"
             er_id = f"{evt_id}_er"
