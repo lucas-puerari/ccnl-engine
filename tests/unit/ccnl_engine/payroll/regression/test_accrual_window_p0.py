@@ -1,22 +1,21 @@
-"""Regression tests for P0-1 — extra-month rateo uses payment month, not accrual.
+"""Regression tests for extra-month rateo using payment month instead of accrual window.
 
 All tests are marked xfail(strict=True): they document the normatively correct
-behaviour.  When PR fix/accrual-window-extra-month fixes the underlying algorithm
-the tests turn XPASS, causing CI to fail and prompting removal of these markers.
+behaviour.  When the fix lands these turn XPASS, causing CI to fail and prompting
+removal of the markers.
 
-Bug (REVIEW.md §3, P0-1):
-  _apply_extra_month_policy() computes:
+Bug: _apply_extra_month_policy() computes
 
-      rateo = Decimal(period_month) / Decimal(12)
+    rateo = Decimal(period_month) / Decimal(12)
 
-  period_month is the calendar month in which the run is paid.  WorkCalendar
-  schedules the quattordicesima in June by default, so a full-year employee
-  automatically receives 6/12 of the entitlement instead of 12/12.
+where period_month is the calendar month of payment.  WorkCalendar schedules the
+quattordicesima in June by default, so a full-year employee automatically receives
+6/12 of the entitlement instead of 12/12.
 
-  The correct model: the rateo must derive from the accrual window (months of
-  service during the reference period), not from the payment calendar date.
+Correct model: the rateo must derive from the accrual window (months of service
+during the reference period), not from the payment calendar date.
 
-Acceptance criteria (REVIEW.md §3, P0-1):
+Acceptance criteria:
   1. Changing only the payment month must not change the already-accrued gross.
   2. A full-year employee must receive 12/12 regardless of payment month.
   3. A six-month employee must receive 6/12 regardless of payment month.
@@ -74,7 +73,7 @@ def _extra_month_req(
 @pytest.mark.xfail(
     strict=True,
     reason=(
-        "P0-1: _apply_extra_month_policy uses period_month/12 so June "
+        "_apply_extra_month_policy uses period_month/12 so June "
         "tredicesima is half of December tredicesima for a full-year employee."
     ),
 )
@@ -116,7 +115,7 @@ def test_full_year_tredicesima_same_gross_june_vs_december() -> None:
 @pytest.mark.xfail(
     strict=True,
     reason=(
-        "P0-1: June tredicesima is computed as 6/12 of monthly gross, "
+        "June tredicesima is computed as 6/12 of monthly gross, "
         "not 12/12 as required for a full-year employee."
     ),
 )
@@ -147,7 +146,7 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
     ).period_gross
 
     assert thirteenth_gross >= regular_gross * Decimal("0.99"), (
-        f"Full-year tredicesima (≥ 12/12) must be ≈ one month's gross "
+        f"Full-year tredicesima (12/12) must be approximately one month's gross "
         f"({regular_gross}); got {thirteenth_gross}."
     )
 
@@ -161,7 +160,7 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
 @pytest.mark.xfail(
     strict=True,
     reason=(
-        "P0-1: rateo from payment month means June payment always gives 6/12 "
+        "Rateo from payment month means June payment always gives 6/12 "
         "and December always gives 12/12, even for the same 6-month employee."
     ),
 )
@@ -204,16 +203,16 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
 @pytest.mark.xfail(
     strict=True,
     reason=(
-        "P0-1: Commercio level-4 quattordicesima paid in June produces 891.88 "
+        "Commercio level-4 quattordicesima paid in June produces 891.88 "
         "(6/12 of full entitlement) instead of the full accrued amount."
     ),
 )
-def test_commercio_level4_quatordicesima_full_year_not_half() -> None:
+def test_commercio_level4_quattordicesima_full_year_not_half() -> None:
     """Commercio level-4 full-year quattordicesima in June must not be 891.88.
 
-    Counterexample from REVIEW.md §2: the June run produces 891.88 against
-    ~1818 for December, because period_month=6 triggers rateo 6/12.
-    A full-year employee must receive the full entitlement.
+    The June run produces 891.88 against ~1818 for December because
+    period_month=6 triggers rateo 6/12.  A full-year employee must receive
+    the full entitlement regardless of when the quattordicesima is paid.
     """
     gross_june = calculate_period(
         _extra_month_req(
@@ -233,5 +232,5 @@ def test_commercio_level4_quatordicesima_full_year_not_half() -> None:
     ).period_gross
     assert gross_june == gross_december, (
         f"Full-year quattordicesima must be equal for June and December payment; "
-        f"got June={gross_june} (≈891.88 buggy), December={gross_december}."
+        f"got June={gross_june}, December={gross_december}."
     )
