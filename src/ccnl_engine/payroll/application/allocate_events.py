@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._event_handlers import (
     _HANDLER_REGISTRY,
+    EventEffect,
     _EventHandlerCtx,
 )
 from ccnl_engine.payroll.application._event_items import _check_event_date
@@ -78,7 +79,7 @@ def _process_events(
             msg = f"No handler registered for event type {type(event).__name__}"
             raise TypeError(msg)
 
-        ctx = _EventHandlerCtx(
+        ctx: _EventHandlerCtx = _EventHandlerCtx(
             evt_id=evt_id,
             cp=cp,
             payment_date=payment_date,
@@ -88,7 +89,7 @@ def _process_events(
             cumulative_fringe=cumulative_fringe,
             cumulative_taxed=cumulative_taxed,
         )
-        result = handler(event, ctx)
+        result: EventEffect = handler(event, ctx)
 
         items.extend(result.items)
         entries.extend(result.entries)

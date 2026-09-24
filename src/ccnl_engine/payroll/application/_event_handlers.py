@@ -1,7 +1,7 @@
 """Typed event handlers and dispatch registry for variable work events.
 
 Each handler is a pure function: it takes an event and a context object, and
-returns a :class:`_HandlerResult` that carries accounting items, ledger entries,
+returns an :class:`EventEffect` that carries accounting items, ledger entries,
 and contribution-base deltas.  The fringe handler additionally returns updated
 accumulator values.
 
@@ -83,7 +83,7 @@ class _EventHandlerCtx:
 
 
 @dataclass
-class _HandlerResult:
+class EventEffect:
     """Accounting outputs and contribution-base deltas from one event.
 
     Attributes:
@@ -121,7 +121,7 @@ def _handle_standard(
     | SickLeaveEvent
     | BonusEvent,
     ctx: _EventHandlerCtx,
-) -> _HandlerResult:
+) -> EventEffect:
     """Handle standard work-time and bonus events.
 
     Returns:
@@ -134,7 +134,7 @@ def _handle_standard(
     resolution = _require_resolution(ctx.resolver, kind, ctx.context)
     treatment = _treatment_from_resolution(resolution)
     di, dt, dirpef = _treatment_deltas(treatment, gross)
-    result = _HandlerResult(
+    result = EventEffect(
         items=[item],
         entries=[
             _make_standard_event_entry(
@@ -156,7 +156,7 @@ def _handle_standard(
     return result
 
 
-def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> _HandlerResult:
+def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> EventEffect:
     """Handle welfare benefit events.
 
     Returns:
@@ -171,7 +171,7 @@ def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> _HandlerResul
         quantity=Decimal(1),
         amount=gross,
     )
-    return _HandlerResult(
+    return EventEffect(
         items=[item],
         entries=[
             _make_entry(
@@ -188,7 +188,7 @@ def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> _HandlerResul
     )
 
 
-def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> _HandlerResult:
+def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> EventEffect:
     """Handle fringe benefit events (with running accumulator update).
 
     Returns:
@@ -210,7 +210,7 @@ def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> _HandlerResult:
         quantity=Decimal(1),
         amount=gross,
     )
-    return _HandlerResult(
+    return EventEffect(
         items=[item],
         entries=[
             _make_entry(
@@ -234,7 +234,7 @@ def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> _HandlerResult:
     )
 
 
-def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> _HandlerResult:
+def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
     """Handle contract-renewal arrears (tassazione separata).
 
     Returns:
@@ -252,7 +252,7 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> _HandlerResul
         quantity=Decimal(1),
         amount=gross,
     )
-    return _HandlerResult(
+    return EventEffect(
         items=[item],
         entries=[
             _make_entry(
@@ -282,7 +282,7 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> _HandlerResul
 
 def _handle_bilateral_fund(
     event: BilateralFundEvent, ctx: _EventHandlerCtx
-) -> _HandlerResult:
+) -> EventEffect:
     """Handle bilateral or health fund contribution events.
 
     Returns:
@@ -311,7 +311,7 @@ def _handle_bilateral_fund(
         quantity=Decimal(1),
         amount=event.employer_amount,
     )
-    return _HandlerResult(
+    return EventEffect(
         items=[emp_item, er_item],
         entries=[
             _make_entry(
@@ -340,7 +340,7 @@ def _handle_bilateral_fund(
 
 def _handle_termination_tfr(
     event: TerminationTFREvent, ctx: _EventHandlerCtx
-) -> _HandlerResult:
+) -> EventEffect:
     """Handle TFR settlement at cessazione.
 
     Returns:
@@ -358,7 +358,7 @@ def _handle_termination_tfr(
         quantity=Decimal(1),
         amount=gross,
     )
-    return _HandlerResult(
+    return EventEffect(
         items=[item],
         entries=[
             _make_entry(
@@ -387,7 +387,7 @@ def _handle_termination_tfr(
 
 def _handle_sickness_case(
     event: SicknessCaseEvent, ctx: _EventHandlerCtx
-) -> _HandlerResult:
+) -> EventEffect:
     """Handle structured sick-leave episodes.
 
     Returns:
@@ -396,7 +396,7 @@ def _handle_sickness_case(
     sc_items, sc_entries, di, dt, dirpef = _process_sickness_case_event(
         event, ctx.evt_id, ctx.cp, ctx.payment_date, ctx.resolver, ctx.context
     )
-    return _HandlerResult(
+    return EventEffect(
         items=list(sc_items),
         entries=list(sc_entries),
         inps_delta=di,
@@ -411,7 +411,7 @@ def _handle_sickness_case(
 # providing the same exhaustiveness guarantee as the isinstance chain.
 # ---------------------------------------------------------------------------
 
-_EventHandlerFn = Callable[[Any, _EventHandlerCtx], _HandlerResult]
+_EventHandlerFn = Callable[[Any, _EventHandlerCtx], EventEffect]
 
 _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     OvertimeEvent: _handle_standard,
