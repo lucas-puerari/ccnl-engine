@@ -73,9 +73,13 @@ class TestWorkCalendar:
         assert cal.extra_months[0].name == "tredicesima"
 
     def test_from_additional_months_14(self) -> None:
-        """from_additional_months(14) produces two extra schedules."""
+        """from_additional_months(14) yields tredicesima in Dec, fourteenth in Jun."""
         cal = WorkCalendar.from_additional_months(_YEAR, 14)
         assert len(cal.extra_months) == 2
+        thirteenth = cal.extra_months[0]
+        fourteenth = cal.extra_months[1]
+        assert thirteenth.payment_month == 12
+        assert fourteenth.payment_month == 6
 
     def test_from_additional_months_12(self) -> None:
         """from_additional_months(12) produces no extra schedules."""
@@ -272,6 +276,19 @@ class TestCalculateYear:
         result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
         dec_state = result.period_results[-1].closing_state
         assert dec_state.gross_ytd == result.annual_gross
+
+    def test_calendar_none_auto_derives_from_ccnl(self) -> None:
+        """calendar=None derives the run sequence from the CCNL additional_months.
+
+        metalmeccanico-federmeccanica has additional_months=13, so auto-derive
+        produces a 13-run calendar identical to explicitly supplying one.
+        """
+        result_auto = calculate_year(_YEAR, _CCNL, _LEVEL)
+        explicit_cal = WorkCalendar.from_additional_months(_YEAR, 13)
+        result_explicit = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=explicit_cal)
+        assert result_auto.annual_gross == result_explicit.annual_gross
+        assert len(result_auto.period_results) == len(result_explicit.period_results)
+        assert len(result_auto.period_results) == 13
 
 
 class TestPerRunEventAllocation:

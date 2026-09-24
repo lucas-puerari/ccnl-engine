@@ -87,25 +87,24 @@ class WorkCalendar:
         year: int,
         additional_months: int,
         *,
-        extra_month_name: str = "tredicesima",
-        extra_payment_month: int = 12,
+        thirteenth_payment_month: int = 12,
+        fourteenth_payment_month: int = 6,
     ) -> WorkCalendar:
         """Build a calendar from a CCNL ``additional_months`` parameter.
 
         For ``additional_months=13`` (12 regular + 1 tredicesima) this
         produces one :class:`ExtraMonthSchedule` paid in December.
         For ``additional_months=14`` it produces tredicesima (December) and
-        quattordicesima (``extra_payment_month``).
+        quattordicesima in ``fourteenth_payment_month`` (default June).
 
         Args:
             year: Tax year.
             additional_months: Value from CCNL parameters (13 or 14).
                 Values outside the range 12-14 raise :class:`ValueError`.
-            extra_month_name: Name for the first extra month (tredicesima).
-                Ignored for the second extra month, which is always named
-                ``"quattordicesima"``.
-            extra_payment_month: Calendar month for the first extra month.
-                The quattordicesima (if any) also uses this month.
+            thirteenth_payment_month: Calendar month for the tredicesima.
+                Defaults to December (12).
+            fourteenth_payment_month: Calendar month for the quattordicesima.
+                Defaults to June (6).
 
         Returns:
             :class:`WorkCalendar` with ``max(0, additional_months - 12)``
@@ -123,15 +122,21 @@ class WorkCalendar:
                 f"months are supported"
             )
             raise ValueError(msg)
-        extra_count = max(0, additional_months - 12)
-        kind_map = [ExtraMonthKind.THIRTEENTH, ExtraMonthKind.FOURTEENTH]
-        name_map = [extra_month_name, "quattordicesima"]
-        schedules = tuple(
-            ExtraMonthSchedule(
-                kind=kind_map[i],
-                name=name_map[i],
-                payment_month=extra_payment_month,
+        schedules: list[ExtraMonthSchedule] = []
+        if additional_months >= 13:
+            schedules.append(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.THIRTEENTH,
+                    name="tredicesima",
+                    payment_month=thirteenth_payment_month,
+                )
             )
-            for i in range(extra_count)
-        )
-        return cls(year=year, extra_months=schedules)
+        if additional_months >= 14:
+            schedules.append(
+                ExtraMonthSchedule(
+                    kind=ExtraMonthKind.FOURTEENTH,
+                    name="quattordicesima",
+                    payment_month=fourteenth_payment_month,
+                )
+            )
+        return cls(year=year, extra_months=tuple(schedules))

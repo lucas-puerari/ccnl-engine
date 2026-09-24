@@ -213,11 +213,17 @@ class TestSicknessCaseEvent:
         assert evt.event_date == date(2026, 1, 10)
         assert evt.case is case
 
-    def test_event_date_mismatch_raises(self) -> None:
-        """event_date != case.episode_start raises InvalidInputError."""
+    def test_event_date_before_episode_start_raises(self) -> None:
+        """event_date < case.episode_start raises InvalidInputError."""
         case = self._sickness_case()
         with pytest.raises(InvalidInputError):
-            SicknessCaseEvent(event_date=date(2026, 1, 11), case=case)
+            SicknessCaseEvent(event_date=date(2026, 1, 9), case=case)
+
+    def test_event_date_after_episode_start_accepted(self) -> None:
+        """event_date > case.episode_start is accepted (multi-period episode)."""
+        case = self._sickness_case()
+        evt = SicknessCaseEvent(event_date=date(2026, 1, 11), case=case)
+        assert evt.event_date == date(2026, 1, 11)
 
     def test_frozen(self) -> None:
         """SicknessCaseEvent is immutable."""
