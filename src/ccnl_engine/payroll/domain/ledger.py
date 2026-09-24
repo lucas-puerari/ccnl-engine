@@ -18,6 +18,7 @@ responsible for deciding which account each item belongs to.
 from __future__ import annotations
 
 from collections.abc import Iterator
+from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
@@ -27,6 +28,13 @@ from pydantic import BaseModel, ConfigDict, Field
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 
 _ZERO = Decimal(0)
+
+# ---------------------------------------------------------------------------
+# Domain primitives
+# ---------------------------------------------------------------------------
+
+#: All monetary amounts in this package are EUR, represented as Decimal.
+type Money = Decimal
 
 
 class AccountKind(StrEnum):
@@ -185,3 +193,32 @@ class Ledger:
         for entry in self._entries:
             result[entry.account] += entry.amount
         return result
+
+
+# ---------------------------------------------------------------------------
+# Accounting domain types
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class Posting:
+    """A single accounting line produced by one event.
+
+    Amount carries no sign constraint: sign rules are per-account and
+    enforced by reconciliation invariants (e.g. I17 for EMPLOYEE_DEDUCTIONS),
+    not at the Posting level.
+
+    Attributes:
+        account: The ledger account this posting targets.
+        amount: Monetary amount in EUR.
+        note: Optional free-text annotation.
+    """
+
+    account: AccountKind
+    amount: Money
+    note: str = ""
+
+
+#: Maps a pay-item kind to the account it normally posts to.
+#: Used by handlers to express routing decisions declaratively.
+type AccountPolicy = dict[str, AccountKind]
