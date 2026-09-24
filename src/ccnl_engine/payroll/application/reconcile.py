@@ -34,10 +34,22 @@ Invariants:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.application._reconcile_types import ReconciliationViolation
+from ccnl_engine.payroll.application.ledger_invariants import (
+    check_i1,
+    check_i2,
+    check_i9,
+    check_i10,
+    check_i12,
+    check_i13,
+    check_i14,
+    check_i15,
+    check_i17,
+)
+from ccnl_engine.payroll.application.legal_invariants import check_legal
+from ccnl_engine.payroll.application.state_invariants import check_i11, check_i16
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import (
@@ -50,25 +62,6 @@ __all__ = [
     "ReconciliationViolation",
     "reconcile",
 ]
-
-_ZERO = Decimal(0)
-
-
-@dataclass(frozen=True)
-class ReconciliationViolation:
-    """One failed invariant check.
-
-    Attributes:
-        invariant_id: Short label identifying which invariant failed (e.g. ``"I9"``).
-        message: Human-readable description of the failure.
-        expected: The value the invariant expected, when applicable.
-        actual: The value that was observed, when applicable.
-    """
-
-    invariant_id: str
-    message: str
-    expected: Decimal | None = None
-    actual: Decimal | None = None
 
 
 @dataclass(frozen=True)
@@ -92,389 +85,6 @@ class ReconciliationResult:
         return len(self.violations) == 0
 
 
-def _sum_account(
-    result: PeriodCalculationResult,
-    account: AccountKind,
-) -> Decimal:
-    """Sum all ledger entry amounts for a given account kind.
-
-    Returns:
-        Total amount for ``account`` in ``result.ledger_entries``, or zero
-        when no entries for that account are present.
-    """
-    return sum(
-        (e.amount for e in result.ledger_entries if e.account == account),
-        _ZERO,
-    )
-
-
-def _check_i1(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I1: every PayItem has at least one matching LedgerEntry.
-
-    Returns:
-        Violations for any PayItem whose ``item_id`` has no ledger entry.
-    """
-    item_ids = {item.item_id for item in result.pay_items}
-    posted_ids = {e.pay_item_id for e in result.ledger_entries}
-    return [
-        ReconciliationViolation(
-            invariant_id="I1",
-            message=f"PayItem '{item_id}' has no ledger entry",
-        )
-        for item_id in sorted(item_ids - posted_ids)
-    ]
-
-
-def _check_i2(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I2: no pay_item_id posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
-
-    Returns:
-        Violations for any item_id appearing in both conflicting accounts.
-    """
-    gross_ids = {
-        e.pay_item_id
-        for e in result.ledger_entries
-        if e.account == AccountKind.CASH_EARNINGS
-    }
-    deduction_ids = {
-        e.pay_item_id
-        for e in result.ledger_entries
-        if e.account == AccountKind.EMPLOYEE_CONTRIBUTIONS
-    }
-    return [
-        ReconciliationViolation(
-            invariant_id="I2",
-            message=(
-                f"Item '{item_id}' posts to both CASH_EARNINGS "
-                "and EMPLOYEE_CONTRIBUTIONS"
-            ),
-        )
-        for item_id in sorted(gross_ids & deduction_ids)
-    ]
-
-
-def _check_i9(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I9: net identity.
-
-    CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-    - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
-    - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
-    - ORDINARY_TAX - SURTAX - SEPARATE_TAX
-    = period_net.
-
-    Returns:
-        A single violation when the derived net diverges from ``period_net``.
-    """
-    cash = _sum_account(result, AccountKind.CASH_EARNINGS)
-    period_credits = _sum_account(result, AccountKind.CREDITS)
-    tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
-    contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
-    bilateral_emp = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYEE)
-    emp_deductions = _sum_account(result, AccountKind.EMPLOYEE_DEDUCTIONS)
-    sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
-    taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
-    surtax = _sum_account(result, AccountKind.SURTAX)
-    sep_tax = _sum_account(result, AccountKind.SEPARATE_TAX)
-    derived = (
-        cash
-        + period_credits
-        + tfr_settle
-        - contributions
-        - bilateral_emp
-        - emp_deductions
-        - sub_tax
-        - taxes
-        - surtax
-        - sep_tax
-    )
-    if derived != result.period_net:
-        return [
-            ReconciliationViolation(
-                invariant_id="I9",
-                message="Net identity violated: ledger-derived net != period_net",
-                expected=result.period_net,
-                actual=derived,
-            )
-        ]
-    return []
-
-
-def _check_i10(
-    result: PeriodCalculationResult,
-    opening: PeriodState,
-) -> list[ReconciliationViolation]:
-    """I10: IRPEF delta equals net IRPEF movement in the ledger.
-
-    Net IRPEF = ORDINARY_TAX (positive withholding) minus IRPEF refunds
-    (tax_refund_item entries in CREDITS, posted when ordinary_tax < 0).
-
-    Returns:
-        A violation when the closing-minus-opening IRPEF delta diverges from
-        the net IRPEF ledger movement.
-    """
-    delta = result.closing_state.irpef_withheld_ytd - opening.irpef_withheld_ytd
-    ordinary_tax = _sum_account(result, AccountKind.ORDINARY_TAX)
-    irpef_refund = sum(
-        e.amount
-        for e in result.ledger_entries
-        if e.account == AccountKind.CREDITS and e.pay_item_kind == "tax_refund_item"
-    )
-    net_withholding = ordinary_tax - irpef_refund
-    if delta != net_withholding:
-        return [
-            ReconciliationViolation(
-                invariant_id="I10",
-                message="IRPEF delta != net ORDINARY_TAX",
-                expected=net_withholding,
-                actual=delta,
-            )
-        ]
-    return []
-
-
-def _check_i11(
-    result: PeriodCalculationResult,
-    opening: PeriodState,
-) -> list[ReconciliationViolation]:
-    """I11: closing state correctly advances from opening.
-
-    Returns:
-        Violations for any YTD field that does not advance as expected.
-    """
-    violations: list[ReconciliationViolation] = []
-    run_kind = result.run.run_kind if result.run is not None else "regular"
-    run_id = (
-        result.run.run_id
-        if result.run is not None
-        else f"{result.period_id.year}_{result.period_id.month:02d}"
-    )
-
-    expected_regular = opening.regular_periods_closed + (
-        1 if run_kind == "regular" else 0
-    )
-    if result.closing_state.regular_periods_closed != expected_regular:
-        violations.append(
-            ReconciliationViolation(
-                invariant_id="I11",
-                message="regular_periods_closed not correctly incremented",
-                expected=Decimal(expected_regular),
-                actual=Decimal(result.closing_state.regular_periods_closed),
-            )
-        )
-
-    expected_tax = opening.tax_withholding_periods_closed + (
-        0 if run_kind == "adjustment" else 1
-    )
-    if result.closing_state.tax_withholding_periods_closed != expected_tax:
-        violations.append(
-            ReconciliationViolation(
-                invariant_id="I11",
-                message="tax_withholding_periods_closed not correctly incremented",
-                expected=Decimal(expected_tax),
-                actual=Decimal(result.closing_state.tax_withholding_periods_closed),
-            )
-        )
-
-    if run_id not in result.closing_state.closed_run_ids:
-        violations.append(
-            ReconciliationViolation(
-                invariant_id="I11",
-                message=f"run_id {run_id!r} not added to closed_run_ids",
-            )
-        )
-
-    expected_gross = opening.gross_ytd + _sum_account(result, AccountKind.CASH_EARNINGS)
-    if result.closing_state.gross_ytd != expected_gross:
-        violations.append(
-            ReconciliationViolation(
-                invariant_id="I11",
-                message="gross_ytd not correctly accumulated from ledger",
-                expected=expected_gross,
-                actual=result.closing_state.gross_ytd,
-            )
-        )
-    expected_inps = opening.inps_employee_ytd + _sum_account(
-        result, AccountKind.EMPLOYEE_CONTRIBUTIONS
-    )
-    if result.closing_state.inps_employee_ytd != expected_inps:
-        violations.append(
-            ReconciliationViolation(
-                invariant_id="I11",
-                message="inps_employee_ytd not correctly accumulated from ledger",
-                expected=expected_inps,
-                actual=result.closing_state.inps_employee_ytd,
-            )
-        )
-    return violations
-
-
-def _check_i12(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I12: employer cost identity.
-
-    CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS
-    + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
-    + TFR_ACCRUAL = period_employer_cost.
-
-    EMPLOYEE_DEDUCTIONS (unpaid absences) are subtracted because the employer
-    does not bear wages for time not worked.
-
-    Returns:
-        A violation when the derived employer cost diverges from
-        ``period_employer_cost``.
-    """
-    cash = _sum_account(result, AccountKind.CASH_EARNINGS)
-    deductions = _sum_account(result, AccountKind.EMPLOYEE_DEDUCTIONS)
-    ncb = _sum_account(result, AccountKind.NON_CASH_BENEFITS)
-    employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
-    bilateral_er = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYER)
-    tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
-    derived = cash - deductions + ncb + employer + bilateral_er + tfr
-    if derived != result.period_employer_cost:
-        return [
-            ReconciliationViolation(
-                invariant_id="I12",
-                message="Employer cost identity violated",
-                expected=result.period_employer_cost,
-                actual=derived,
-            )
-        ]
-    return []
-
-
-def _check_i13(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I13: period_gross equals the CASH_EARNINGS ledger total.
-
-    Returns:
-        A violation when the CASH_EARNINGS total diverges from
-        ``period_gross``.
-    """
-    cash = _sum_account(result, AccountKind.CASH_EARNINGS)
-    if cash != result.period_gross:
-        return [
-            ReconciliationViolation(
-                invariant_id="I13",
-                message="period_gross != CASH_EARNINGS ledger total",
-                expected=result.period_gross,
-                actual=cash,
-            )
-        ]
-    return []
-
-
-def _check_i14(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I14: all ledger entry IDs within a period are unique.
-
-    Returns:
-        One violation per duplicate entry ID detected.
-    """
-    seen: set[str] = set()
-    duplicates: list[str] = []
-    for entry in result.ledger_entries:
-        if entry.entry_id in seen:
-            duplicates.append(entry.entry_id)
-        else:
-            seen.add(entry.entry_id)
-    return [
-        ReconciliationViolation(
-            invariant_id="I14",
-            message=f"Duplicate ledger entry ID: {eid!r}",
-        )
-        for eid in duplicates
-    ]
-
-
-def _check_i15(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I15: period_gross is non-negative.
-
-    A negative gross indicates that event deductions exceed the period salary,
-    which is never valid in isolation (net-zero or refund runs must use
-    explicit adjustment events).
-
-    Returns:
-        A violation when ``period_gross < 0``.
-    """
-    if result.period_gross < _ZERO:
-        return [
-            ReconciliationViolation(
-                invariant_id="I15",
-                message="period_gross is negative",
-                expected=_ZERO,
-                actual=result.period_gross,
-            )
-        ]
-    return []
-
-
-def _check_i16(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I16: credit_recovered_ytd is between zero and credit_recognized_ytd.
-
-    The cumulative trattamento integrativo recovered from the worker can never
-    exceed the cumulative amount that was recognized. Violating this invariant
-    means the worker has been charged back more than they ever received.
-
-    Returns:
-        A violation when the constraint is breached.
-    """
-    recovered = result.closing_state.credit_recovered_ytd
-    recognized = result.closing_state.credit_recognized_ytd
-    if recovered < _ZERO or recovered > recognized:
-        return [
-            ReconciliationViolation(
-                invariant_id="I16",
-                message=(
-                    "credit_recovered_ytd outside [0, credit_recognized_ytd]: "
-                    f"recovered={recovered}, recognized={recognized}"
-                ),
-                expected=recognized,
-                actual=recovered,
-            )
-        ]
-    return []
-
-
-def _check_i17(
-    result: PeriodCalculationResult,
-) -> list[ReconciliationViolation]:
-    """I17: every EMPLOYEE_DEDUCTIONS entry has a non-negative amount.
-
-    Refunds and reversals must use an explicit account (e.g. CREDITS).
-    A negative deduction would be *added* to the net instead of subtracted,
-    silently inflating the worker's pay.
-
-    Returns:
-        One violation per offending ledger entry.
-    """
-    return [
-        ReconciliationViolation(
-            invariant_id="I17",
-            message=(
-                f"EMPLOYEE_DEDUCTIONS entry {e.entry_id!r} "
-                f"has negative amount {e.amount}"
-            ),
-            expected=_ZERO,
-            actual=e.amount,
-        )
-        for e in result.ledger_entries
-        if e.account == AccountKind.EMPLOYEE_DEDUCTIONS and e.amount < _ZERO
-    ]
-
-
 def reconcile(
     result: PeriodCalculationResult,
     opening: PeriodState,
@@ -491,15 +101,16 @@ def reconcile(
         property is ``True`` when every invariant passes.
     """
     violations: list[ReconciliationViolation] = []
-    violations.extend(_check_i1(result))
-    violations.extend(_check_i2(result))
-    violations.extend(_check_i9(result))
-    violations.extend(_check_i10(result, opening))
-    violations.extend(_check_i11(result, opening))
-    violations.extend(_check_i12(result))
-    violations.extend(_check_i13(result))
-    violations.extend(_check_i14(result))
-    violations.extend(_check_i15(result))
-    violations.extend(_check_i16(result))
-    violations.extend(_check_i17(result))
+    violations.extend(check_i1(result))
+    violations.extend(check_i2(result))
+    violations.extend(check_i9(result))
+    violations.extend(check_i10(result, opening))
+    violations.extend(check_i11(result, opening))
+    violations.extend(check_i12(result))
+    violations.extend(check_i13(result))
+    violations.extend(check_i14(result))
+    violations.extend(check_i15(result))
+    violations.extend(check_i16(result))
+    violations.extend(check_i17(result))
+    violations.extend(check_legal(result, opening))
     return ReconciliationResult(violations=tuple(violations))
