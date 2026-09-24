@@ -293,7 +293,7 @@ def calculate_period(
         fringe_taxed_ytd=(
             request.opening_state.fringe_taxed_ytd + event_totals.fringe_irpef
         ),
-        pdr_ytd=request.opening_state.pdr_ytd + event_totals.substitute_base,
+        pdr_ytd=request.opening_state.pdr_ytd + amounts.pdr_eligible,
         credit_recognized_ytd=(
             request.opening_state.credit_recognized_ytd
             + max(_ZERO, amounts.period_tratt)

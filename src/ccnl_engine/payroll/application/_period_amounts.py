@@ -58,6 +58,7 @@ class _PeriodAmounts:
     period_surtax: Decimal
     period_taxable: Decimal
     period_substitute_tax: Decimal
+    pdr_eligible: Decimal
 
 
 def _as_of(period_id: PeriodId) -> date:
@@ -278,12 +279,22 @@ def _compute_amounts(
     period_tfr_base = monthly_gross + event_tfr_base
     tfr = money(period_tfr_base / rules.tfr.accrual_divisor)
 
+    # PdR eligibility must be resolved before taxable, because any excess beyond the
+    # annual cap (L. 199/2025, comma 9) returns to the ordinary IRPEF base.
+    pdr_headroom = max(_ZERO, pdr_rules.max_amount - opening.pdr_ytd)
+    pdr_eligible = min(event_substitute_base, pdr_headroom)
+    pdr_excess = event_substitute_base - pdr_eligible
+    period_substitute_tax = money(pdr_eligible * pdr_rules.flat_tax_rate)
+
+    # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
+    effective_irpef_base = event_irpef_base + pdr_excess
+
     months_remaining = additional_months - opening.months_closed
     recurring_remaining = monthly_gross * months_remaining
     recurring_inps_remaining = money(recurring_remaining * employee_rate_for_irpef)
     recurring_taxable = recurring_remaining - recurring_inps_remaining
     event_inps_on_irpef = money(event_inps_base * employee_rate_for_irpef)
-    event_taxable = event_irpef_base - event_inps_on_irpef
+    event_taxable = effective_irpef_base - event_inps_on_irpef
     taxable = opening.taxable_ytd + recurring_taxable + event_taxable
 
     if family_composition is not None and family_deduction_rules is not None:
@@ -293,11 +304,14 @@ def _compute_amounts(
     else:
         fam_ded = _ZERO
 
+    # Net credit = recognized minus already recovered; prevents re-recovering credits
+    # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
+    net_credit_ytd = opening.credit_recognized_ytd - opening.credit_recovered_ytd
     tax_comp = resolve_tax_computation(
         taxable,
         rules,
         opening_irpef_withheld=opening.irpef_withheld_ytd,
-        opening_tratt_ytd=opening.credit_recognized_ytd,
+        opening_tratt_ytd=net_credit_ytd,
         months_closed=opening.months_closed,
         additional_months=additional_months,
         family_deductions=fam_ded,
@@ -317,11 +331,7 @@ def _compute_amounts(
     period_surtax_annual = surtax_reg + surtax_com
     period_surtax = money(period_surtax_annual / additional_months)
 
-    period_taxable = money(monthly_gross - inps_employee + event_irpef_base)
-
-    pdr_headroom = max(_ZERO, pdr_rules.max_amount - opening.pdr_ytd)
-    pdr_eligible = min(event_substitute_base, pdr_headroom)
-    period_substitute_tax = money(pdr_eligible * pdr_rules.flat_tax_rate)
+    period_taxable = money(monthly_gross - inps_employee + effective_irpef_base)
 
     return (
         _PeriodAmounts(
@@ -334,6 +344,7 @@ def _compute_amounts(
             period_surtax=period_surtax,
             period_taxable=period_taxable,
             period_substitute_tax=period_substitute_tax,
+            pdr_eligible=pdr_eligible,
         ),
         breakdown,
         tax_comp,
