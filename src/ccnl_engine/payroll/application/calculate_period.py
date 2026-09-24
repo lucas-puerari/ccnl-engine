@@ -65,31 +65,51 @@ _ZERO = Decimal(0)
 
 _POLICY_RESOLVER: PolicyResolver | None = None
 
-_OBSERVED: dict[str, str] = {
-    "base_salary": "computed",
-    "seniority": "computed",
-    "inps_employee": "computed",
-    "inps_employer": "computed",
-    "tfr": "computed",
-    "irpef": "computed",
-    "trattamento_integrativo": "computed",
-    "ulteriore_detrazione_lavoro": "computed",
-    "addizionale_regionale": "computed",
-    "addizionale_comunale": "computed",
-    "family_deductions": "computed",
-    "overtime": "computed",
-    "night_work": "computed",
-    "holiday_work": "computed",
-    "absence": "computed",
-    "leave": "computed",
-    "sickness": "computed",
-    "fringe_benefit": "computed",
-    "welfare": "computed",
-    "bonus_pdr": "computed",
-    "contract_renewal_arrears": "computed",
-    "bilateral_funds": "computed",
-    "termination_tfr": "computed",
-}
+_ALWAYS_COMPUTED: frozenset[str] = frozenset({
+    "base_salary",
+    "seniority",
+    "inps_employee",
+    "inps_employer",
+    "tfr",
+    "irpef",
+    "trattamento_integrativo",
+    "ulteriore_detrazione_lavoro",
+    "overtime",
+    "night_work",
+    "holiday_work",
+    "absence",
+    "leave",
+    "sickness",
+    "fringe_benefit",
+    "welfare",
+    "bonus_pdr",
+    "contract_renewal_arrears",
+    "bilateral_funds",
+    "termination_tfr",
+})
+
+
+def _build_observed(request: PeriodCalculationRequest) -> dict[str, str]:
+    """Return the capability observation map for this request.
+
+    Axes whose resolution depends on caller-supplied data are reported as
+    ``"not_computed"`` when the required input is absent, so the capability
+    catalog can distinguish genuinely skipped features from missing coverage.
+
+    Returns:
+        Mapping of feature name to its observed computation status.
+    """
+    obs: dict[str, str] = dict.fromkeys(_ALWAYS_COMPUTED, "computed")
+    obs["addizionale_regionale"] = (
+        "computed" if request.regione is not None else "not_computed"
+    )
+    obs["addizionale_comunale"] = (
+        "computed" if request.comune_belfiore is not None else "not_computed"
+    )
+    obs["family_deductions"] = (
+        "computed" if request.family_composition is not None else "not_computed"
+    )
+    return obs
 
 
 def _resolve_run_id(request: PeriodCalculationRequest, period_year: int) -> str:
@@ -153,7 +173,9 @@ def calculate_period(
         period_year, ccnl.meta.tax_sector, request.num_employees
     )
     catalog = effective_repo.load_capability_catalog(period_year)
-    capability_gaps = catalog.gaps(_OBSERVED, detect_absent=True, year=period_year)
+    capability_gaps = catalog.gaps(
+        _build_observed(request), detect_absent=True, year=period_year
+    )
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
