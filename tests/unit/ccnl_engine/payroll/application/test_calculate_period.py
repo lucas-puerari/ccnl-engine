@@ -35,12 +35,12 @@ from ccnl_engine.engine.tax.domain.credit_rules import (
 )
 from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 from ccnl_engine.payroll.application import calculate_period as _cp_mod
-from ccnl_engine.payroll.application.calculate_period import (
+from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+from ccnl_engine.payroll.application._period_utils import _require_resolution
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,
-    _PeriodAmounts,
     _project_ledger,
-    _require_resolution,
-    calculate_period,
 )
 from ccnl_engine.payroll.application.reconcile import (
     ReconciliationResult,
