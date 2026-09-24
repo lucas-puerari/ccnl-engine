@@ -121,7 +121,8 @@ class _Builder:
             period_net=self.period_net,
             period_employer_cost=self.period_employer_cost,
             closing_state=PeriodState(
-                months_closed=self.closing_months,
+                regular_periods_closed=self.closing_months,
+                tax_withholding_periods_closed=self.closing_months,
                 irpef_withheld_ytd=self.closing_irpef,
                 inps_employee_ytd=self.closing_inps,
                 gross_ytd=self.closing_gross,
@@ -298,13 +299,13 @@ class TestI11StateTransition:
         r = reconcile(result, opening)
         assert [v for v in r.violations if v.invariant_id == "I11"] == []
 
-    def test_violation_when_months_closed_wrong(self) -> None:
-        """I11 violation when months_closed is not incremented by 1."""
+    def test_violation_when_regular_periods_closed_wrong(self) -> None:
+        """I11 violation when regular_periods_closed is not correctly incremented."""
         b = _Builder(closing_months=99)
         r = reconcile(b.build(), _OPENING)
         i11 = [v for v in r.violations if v.invariant_id == "I11"]
         msgs = [v.message for v in i11]
-        assert any("months_closed" in m for m in msgs)
+        assert any("regular_periods_closed" in m for m in msgs)
 
     def test_violation_when_gross_ytd_wrong(self) -> None:
         """I11 violation when gross_ytd is not correctly accumulated."""

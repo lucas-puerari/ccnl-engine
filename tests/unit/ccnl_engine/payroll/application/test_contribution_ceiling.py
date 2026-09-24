@@ -74,7 +74,11 @@ class TestIvsCeilingApplies:
 
     def test_false_gives_higher_ivs_than_true_when_ytd_near_ceiling(self) -> None:
         """With YTD near the massimale, uncapped IVS > capped IVS."""
-        opening = PeriodState(months_closed=10, inps_base_ytd=Decimal("121000.00"))
+        opening = PeriodState(
+            regular_periods_closed=10,
+            tax_withholding_periods_closed=10,
+            inps_base_ytd=Decimal("121000.00"),
+        )
         r_capped = calculate_period(
             _req(month=11, opening=opening, ivs_ceiling_applies=True)
         )
@@ -89,7 +93,11 @@ class TestIvsCeilingApplies:
 
     def test_false_gives_ivs_when_ytd_exceeds_ceiling(self) -> None:
         """ceiling=True gives IVS=0 above massimale; False does not."""
-        opening = PeriodState(months_closed=11, inps_base_ytd=Decimal("130000.00"))
+        opening = PeriodState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            inps_base_ytd=Decimal("130000.00"),
+        )
         r_capped = calculate_period(
             _req(month=12, opening=opening, ivs_ceiling_applies=True)
         )
@@ -116,7 +124,9 @@ class TestMassimaleThreshold:
     def test_ivs_zero_above_massimale(self) -> None:
         """IVS employee component is 0 when YTD already exceeds the massimale."""
         opening = PeriodState(
-            months_closed=11, inps_base_ytd=_MASSIMALE + Decimal("1000.00")
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            inps_base_ytd=_MASSIMALE + Decimal("1000.00"),
         )
         result = calculate_period(
             _req(month=12, opening=opening, ivs_ceiling_applies=True)
@@ -126,7 +136,11 @@ class TestMassimaleThreshold:
     def test_ivs_partial_when_crossing_massimale(self) -> None:
         """IVS applies only to the headroom when a period crosses the massimale."""
         # ytd=121000, headroom=1295 < typical period base ~2158
-        opening = PeriodState(months_closed=10, inps_base_ytd=Decimal("121000.00"))
+        opening = PeriodState(
+            regular_periods_closed=10,
+            tax_withholding_periods_closed=10,
+            inps_base_ytd=Decimal("121000.00"),
+        )
         r_capped = calculate_period(
             _req(month=11, opening=opening, ivs_ceiling_applies=True)
         )
@@ -146,7 +160,8 @@ class TestMassimaleThreshold:
         """IVS base equals the ceiling headroom when period overshoots the massimale."""
         headroom = Decimal("500.00")
         opening = PeriodState(
-            months_closed=10,
+            regular_periods_closed=10,
+            tax_withholding_periods_closed=10,
             inps_base_ytd=_MASSIMALE - headroom,
         )
         r_capped = calculate_period(
@@ -184,7 +199,11 @@ class TestAddizionale1Pct:
     def test_addizionale_when_ytd_crosses_threshold(self) -> None:
         """Addizionale is emitted when cumulative INPS base exceeds 56,224 EUR."""
         # ytd=55000, period will push total past 56,224
-        opening = PeriodState(months_closed=5, inps_base_ytd=Decimal("55000.00"))
+        opening = PeriodState(
+            regular_periods_closed=5,
+            tax_withholding_periods_closed=5,
+            inps_base_ytd=Decimal("55000.00"),
+        )
         result = calculate_period(
             _req(month=6, opening=opening, ivs_ceiling_applies=True)
         )
@@ -193,7 +212,11 @@ class TestAddizionale1Pct:
     def test_addizionale_positive_when_ytd_already_above_threshold(self) -> None:
         """Addizionale is charged on full period base when threshold exceeded."""
         # ytd=70000 > 56224: addizionale applies to the full period base
-        opening = PeriodState(months_closed=6, inps_base_ytd=Decimal("70000.00"))
+        opening = PeriodState(
+            regular_periods_closed=6,
+            tax_withholding_periods_closed=6,
+            inps_base_ytd=Decimal("70000.00"),
+        )
         result = calculate_period(
             _req(month=7, opening=opening, ivs_ceiling_applies=True)
         )
@@ -205,7 +228,11 @@ class TestAddizionale1Pct:
         Source: INPS circ. 4/2026.  The +1% addizionale is an IVS component
         and is subject to the same massimale cap as the base IVS rate.
         """
-        opening = PeriodState(months_closed=11, inps_base_ytd=Decimal("130000.00"))
+        opening = PeriodState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            inps_base_ytd=Decimal("130000.00"),
+        )
         result = calculate_period(
             _req(month=12, opening=opening, ivs_ceiling_applies=True)
         )
@@ -214,7 +241,11 @@ class TestAddizionale1Pct:
     def test_addizionale_false_ceiling_allows_above_massimale(self) -> None:
         """With ivs_ceiling_applies=False, addizionale can apply above the massimale."""
         # ytd=125000 > massimale; with ceiling bypassed, addizionale still runs
-        opening = PeriodState(months_closed=11, inps_base_ytd=Decimal("125000.00"))
+        opening = PeriodState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            inps_base_ytd=Decimal("125000.00"),
+        )
         r_uncapped = calculate_period(
             _req(month=12, opening=opening, ivs_ceiling_applies=False)
         )
@@ -223,7 +254,11 @@ class TestAddizionale1Pct:
     def test_addizionale_only_on_excess_above_threshold(self) -> None:
         """Addizionale base equals only the portion crossing the 56,224 EUR soglia."""
         # ytd=55900, threshold=56224, excess = (55900 + period_base) - 56224
-        opening = PeriodState(months_closed=5, inps_base_ytd=Decimal("55900.00"))
+        opening = PeriodState(
+            regular_periods_closed=5,
+            tax_withholding_periods_closed=5,
+            inps_base_ytd=Decimal("55900.00"),
+        )
         result = calculate_period(
             _req(month=6, opening=opening, ivs_ceiling_applies=True)
         )

@@ -90,7 +90,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     table starts 2026-02-01, so January would raise a gap error in calculate_year.
     """
     pid = PeriodId(year=2026, month=12)
-    state = PeriodState(months_closed=11)
+    state = PeriodState(regular_periods_closed=11, tax_withholding_periods_closed=11)
     regular = calculate_period(
         PeriodCalculationRequest(
             period_id=pid,

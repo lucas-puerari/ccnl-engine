@@ -230,27 +230,31 @@ class TestI16ReconciliationInvariant:
     def test_i16_fires_on_over_recovery(self) -> None:
         """A closing state with recovered > recognized must trigger I16."""
         opening = PeriodState(
-            months_closed=1,
+            regular_periods_closed=1,
+            tax_withholding_periods_closed=1,
             credit_recognized_ytd=Decimal("92.31"),
             credit_recovered_ytd=Decimal("0.00"),
         )
         # Build a minimal result whose closing state violates the invariant.
         req = _req_portieri(2, opening=opening)
         result = calculate_period(req)
+        cs = result.closing_state
         # Manually inject an invalid closing state.
         bad_closing = PeriodState(
-            months_closed=result.closing_state.months_closed,
-            irpef_withheld_ytd=result.closing_state.irpef_withheld_ytd,
-            inps_employee_ytd=result.closing_state.inps_employee_ytd,
-            gross_ytd=result.closing_state.gross_ytd,
-            inps_base_ytd=result.closing_state.inps_base_ytd,
-            taxable_ytd=result.closing_state.taxable_ytd,
-            fringe_ytd=result.closing_state.fringe_ytd,
-            fringe_taxed_ytd=result.closing_state.fringe_taxed_ytd,
-            pdr_ytd=result.closing_state.pdr_ytd,
+            regular_periods_closed=cs.regular_periods_closed,
+            tax_withholding_periods_closed=cs.tax_withholding_periods_closed,
+            closed_run_ids=cs.closed_run_ids,
+            irpef_withheld_ytd=cs.irpef_withheld_ytd,
+            inps_employee_ytd=cs.inps_employee_ytd,
+            gross_ytd=cs.gross_ytd,
+            inps_base_ytd=cs.inps_base_ytd,
+            taxable_ytd=cs.taxable_ytd,
+            fringe_ytd=cs.fringe_ytd,
+            fringe_taxed_ytd=cs.fringe_taxed_ytd,
+            pdr_ytd=cs.pdr_ytd,
             credit_recognized_ytd=Decimal("50.00"),
             credit_recovered_ytd=Decimal("100.00"),  # violates I16
-            surtax_ytd=result.closing_state.surtax_ytd,
+            surtax_ytd=cs.surtax_ytd,
         )
         bad_result = type(result)(
             period_id=result.period_id,
