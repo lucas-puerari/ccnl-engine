@@ -25,6 +25,9 @@ Invariants:
     I14 — all ledger entry IDs in a period are unique.
     I15 — period_gross is non-negative.
     I16 — 0 <= closing.credit_recovered_ytd <= closing.credit_recognized_ytd.
+    I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
+          Refunds and adjustments must use an explicit account, not a negative
+          deduction.
 """
 
 from __future__ import annotations
@@ -407,6 +410,33 @@ def _check_i16(
     return []
 
 
+def _check_i17(
+    result: PeriodCalculationResult,
+) -> list[ReconciliationViolation]:
+    """I17: every EMPLOYEE_DEDUCTIONS entry has a non-negative amount.
+
+    Refunds and reversals must use an explicit account (e.g. CREDITS).
+    A negative deduction would be *added* to the net instead of subtracted,
+    silently inflating the worker's pay.
+
+    Returns:
+        One violation per offending ledger entry.
+    """
+    return [
+        ReconciliationViolation(
+            invariant_id="I17",
+            message=(
+                f"EMPLOYEE_DEDUCTIONS entry {e.entry_id!r} "
+                f"has negative amount {e.amount}"
+            ),
+            expected=_ZERO,
+            actual=e.amount,
+        )
+        for e in result.ledger_entries
+        if e.account == AccountKind.EMPLOYEE_DEDUCTIONS and e.amount < _ZERO
+    ]
+
+
 def reconcile(
     result: PeriodCalculationResult,
     opening: PeriodState,
@@ -433,4 +463,5 @@ def reconcile(
     violations.extend(_check_i14(result))
     violations.extend(_check_i15(result))
     violations.extend(_check_i16(result))
+    violations.extend(_check_i17(result))
     return ReconciliationResult(violations=tuple(violations))
