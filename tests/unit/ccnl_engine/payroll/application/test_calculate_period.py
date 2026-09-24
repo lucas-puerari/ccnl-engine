@@ -95,6 +95,7 @@ def _amounts(*, period_tratt: Decimal = _ZERO) -> _PeriodAmounts:
         period_surtax=_ZERO,
         period_taxable=Decimal("1953.44"),
         period_substitute_tax=_ZERO,
+        pdr_eligible=_ZERO,
     )
 
 

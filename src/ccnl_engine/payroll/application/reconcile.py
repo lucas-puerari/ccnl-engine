@@ -24,6 +24,7 @@ Invariants:
     I13 — gross identity: CASH_EARNINGS total = period_gross.
     I14 — all ledger entry IDs in a period are unique.
     I15 — period_gross is non-negative.
+    I16 — 0 <= closing.credit_recovered_ytd <= closing.credit_recognized_ytd.
 """
 
 from __future__ import annotations
@@ -377,6 +378,35 @@ def _check_i15(
     return []
 
 
+def _check_i16(
+    result: PeriodCalculationResult,
+) -> list[ReconciliationViolation]:
+    """I16: credit_recovered_ytd is between zero and credit_recognized_ytd.
+
+    The cumulative trattamento integrativo recovered from the worker can never
+    exceed the cumulative amount that was recognized. Violating this invariant
+    means the worker has been charged back more than they ever received.
+
+    Returns:
+        A violation when the constraint is breached.
+    """
+    recovered = result.closing_state.credit_recovered_ytd
+    recognized = result.closing_state.credit_recognized_ytd
+    if recovered < _ZERO or recovered > recognized:
+        return [
+            ReconciliationViolation(
+                invariant_id="I16",
+                message=(
+                    "credit_recovered_ytd outside [0, credit_recognized_ytd]: "
+                    f"recovered={recovered}, recognized={recognized}"
+                ),
+                expected=recognized,
+                actual=recovered,
+            )
+        ]
+    return []
+
+
 def reconcile(
     result: PeriodCalculationResult,
     opening: PeriodState,
@@ -402,4 +432,5 @@ def reconcile(
     violations.extend(_check_i13(result))
     violations.extend(_check_i14(result))
     violations.extend(_check_i15(result))
+    violations.extend(_check_i16(result))
     return ReconciliationResult(violations=tuple(violations))
