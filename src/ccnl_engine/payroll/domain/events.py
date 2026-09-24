@@ -371,9 +371,9 @@ class SicknessCaseEvent:
     case: SicknessCase
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.event_date != self.case.episode_start:
+        if self.event_date < self.case.episode_start:
             msg = (
-                f"SicknessCaseEvent.event_date ({self.event_date}) must equal "
+                f"SicknessCaseEvent.event_date ({self.event_date}) must be >= "
                 f"case.episode_start ({self.case.episode_start})"
             )
             raise InvalidInputError(msg, feature="sickness")

@@ -7,7 +7,11 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
@@ -23,7 +27,6 @@ from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.run import PayrollRun
@@ -99,7 +102,7 @@ def calculate_year(
     ccnl_slug: str,
     level_code: str,
     *,
-    calendar: WorkCalendar,
+    calendar: WorkCalendar | None = None,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
     num_employees: int = 50,
     ivs_ceiling_applies: bool = True,
@@ -129,6 +132,9 @@ def calculate_year(
             extra months in ``calendar.extra_months`` produce additional runs
             in the month configured by
             :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthSchedule`.
+            When ``None``, the calendar is derived from the CCNL
+            ``additional_months`` parameter via
+            :meth:`~ccnl_engine.payroll.domain.calendar.WorkCalendar.from_additional_months`.
         contract_type: Employment contract type.  Defaults to
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
         num_employees: Employer headcount for INPS rate resolution.
@@ -161,7 +167,13 @@ def calculate_year(
             same run is allocated events in both ``period_events`` and
             ``per_run_events``.
     """
-    if calendar.year != year:
+    if calendar is None:
+        effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+        ccnl = effective_repo.load_ccnl(ccnl_slug)
+        as_of = date(year, 1, 1)
+        additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
+        calendar = WorkCalendar.from_additional_months(year, additional_months)
+    elif calendar.year != year:
         msg = f"calendar.year={calendar.year} does not match year={year}"
         raise ValueError(msg)
 

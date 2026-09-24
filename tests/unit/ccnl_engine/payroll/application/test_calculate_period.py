@@ -964,37 +964,73 @@ class TestForExtraMonth:
 
 
 class TestExtraMonthRateo:
-    """Tredicesima gross is prorated when regular_periods_closed < 12."""
+    """Tredicesima gross is prorated by payment month, not by regular_periods_closed."""
 
-    _CCNL_IGIENE = "igiene-ambientale-utilitalia.json"
-    _LEVEL_IGIENE = "D1"
-
-    def _run_thirteenth(self, regular_periods_closed: int) -> Decimal:
-        """Run a thirteenth period calculation and return period_gross.
+    def _run_extra_month(
+        self,
+        regular_periods_closed: int,
+        run: PayrollRun,
+        period_month: int,
+    ) -> Decimal:
+        """Run an extra-month period calculation and return period_gross.
 
         Returns:
-            The ``period_gross`` of the tredicesima run.
+            The ``period_gross`` of the extra-month run.
         """
         req = PeriodCalculationRequest(
-            period_id=PeriodId(year=2026, month=12),
-            payment_date=date(2026, 12, 28),
-            ccnl_slug=self._CCNL_IGIENE,
-            level_code=self._LEVEL_IGIENE,
+            period_id=PeriodId(year=2026, month=period_month),
+            payment_date=date(2026, period_month, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
             opening_state=PeriodState(
                 regular_periods_closed=regular_periods_closed,
                 tax_withholding_periods_closed=regular_periods_closed,
             ),
-            run=PayrollRun.thirteenth(2026, 12),
+            run=run,
         )
         return calculate_period(req).period_gross
 
-    def test_full_year_rateo_equals_one_month(self) -> None:
-        """With regular_periods_closed=12 the tredicesima equals one month's salary."""
-        gross = self._run_thirteenth(regular_periods_closed=12)
+    def test_december_tredicesima_is_positive(self) -> None:
+        """Tredicesima paid in December produces a positive gross."""
+        gross = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
         assert gross > Decimal(0)
 
-    def test_half_year_rateo_is_half_of_full(self) -> None:
-        """With regular_periods_closed=6 the tredicesima is half of the full amount."""
-        full = self._run_thirteenth(regular_periods_closed=12)
-        half = self._run_thirteenth(regular_periods_closed=6)
-        assert half == (full / 2).quantize(Decimal("0.01"))
+    def test_rateo_independent_of_regular_periods_closed(self) -> None:
+        """Tredicesima in December gives the same gross regardless of periods closed.
+
+        Rateo is derived from the payment month (12/12=1.0), not from
+        regular_periods_closed, so 6 or 12 prior regular periods yield identical output.
+        """
+        after_6 = self._run_extra_month(
+            regular_periods_closed=6,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
+        after_12 = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
+        assert after_6 == after_12
+
+    def test_june_tredicesima_is_half_of_december_tredicesima(self) -> None:
+        """Tredicesima with period_month=6 has rateo 6/12, December has 12/12.
+
+        Both June and December use the same C3 salary (increase effective 2026-06-01),
+        so the only difference is the rateo factor.
+        """
+        dec_thirteenth = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
+        jun_thirteenth = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 6),
+            period_month=6,
+        )
+        assert jun_thirteenth == (dec_thirteenth / 2).quantize(Decimal("0.01"))

@@ -93,7 +93,7 @@ def _resolve_chain(
 def _apply_extra_month_policy(
     chain: MonthlyPayChain,
     run_kind: str,
-    regular_periods_closed: int,
+    period_month: int,
 ) -> MonthlyPayChain:
     """Adjust a pay chain for the run kind (tredicesima / quattordicesima).
 
@@ -104,8 +104,8 @@ def _apply_extra_month_policy(
         return chain
     months_threshold = 14 if run_kind == "fourteenth" else 13
     chain = chain.for_extra_month(months_threshold)
-    if regular_periods_closed < 12:
-        rateo = Decimal(regular_periods_closed) / Decimal(12)
+    rateo = Decimal(period_month) / Decimal(12)
+    if rateo < 1:
         chain = chain.scaled(rateo)
     return chain
 
