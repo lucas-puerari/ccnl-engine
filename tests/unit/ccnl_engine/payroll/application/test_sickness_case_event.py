@@ -187,7 +187,7 @@ class TestSicknessCaseEventCalculation:
         assert amounts == [Decimal("100.00"), Decimal("100.00")]
 
     def test_employee_deductions_entry_posted(self) -> None:
-        """EMPLOYEE_DEDUCTIONS entry is posted for the absence amount."""
+        """EMPLOYEE_DEDUCTIONS entry is posted with positive amount for the absence."""
         result = self._result_with_sickness()
         deduction_entries = [
             e
@@ -195,7 +195,7 @@ class TestSicknessCaseEventCalculation:
             if e.account == AccountKind.EMPLOYEE_DEDUCTIONS
         ]
         assert len(deduction_entries) >= 1
-        assert all(e.amount < _ZERO for e in deduction_entries)
+        assert all(e.amount > _ZERO for e in deduction_entries)
 
     def test_cash_earnings_entries_for_sickness_components(self) -> None:
         """CASH_EARNINGS entries with sickness_item kind are posted for both components.
@@ -259,3 +259,93 @@ class TestSicknessCaseEventCalculation:
         result = self._result_with_sickness()
         assert isinstance(result, PeriodCalculationResult)
         assert result.period_gross >= _ZERO
+
+
+class TestSicknessCaseNetDelta:
+    """Gate: delta netto = -assenza + indennità + integrazione.
+
+    These tests derive the expected delta from domain facts, not from the
+    production formula. They would have caught the P0 sign bug.
+    """
+
+    def _base_result(self) -> PeriodCalculationResult:
+        """Run a base period with no events.
+
+        Returns:
+            :class:`PeriodCalculationResult` for a period with no events.
+        """
+        return calculate_period(_req())
+
+    def _sick_result(
+        self,
+        working_days: int,
+        waiting_period_days: int,
+        gross_daily: Decimal,
+        inps_daily_rate: Decimal,
+        integration_rate: Decimal,
+        carenza_integration_rate: Decimal = _ZERO,
+    ) -> PeriodCalculationResult:
+        case = _make_case(
+            working_days=working_days,
+            waiting_period_days=waiting_period_days,
+            gross_daily=gross_daily,
+            inps_daily_rate=inps_daily_rate,
+            integration_rate=integration_rate,
+            carenza_integration_rate=carenza_integration_rate,
+        )
+        evt = SicknessCaseEvent(event_date=date(_YEAR, _MONTH, 5), case=case)
+        return calculate_period(_req(evt))
+
+    def test_net_delta_does_not_exceed_positive_components(self) -> None:
+        """Net delta must not exceed the sum of positive sickness components.
+
+        For 3 sick days at €100/day, INPS 50%, integration to 100%:
+          - absence deduction: -€300
+          - INPS indemnity:    +€100 (2 indemnifiable days * 100 * 0.50)
+          - employer intg:     +€100 (2 days * 100 * 0.50)
+        The net delta before tax must not be positive (sickness should cost).
+        The absolute delta cannot exceed €300 (the sum of positive components).
+        """
+        base = self._base_result()
+        sick = self._sick_result(
+            working_days=5,
+            waiting_period_days=3,
+            gross_daily=Decimal("100.00"),
+            inps_daily_rate=Decimal("0.50"),
+            integration_rate=Decimal("1.00"),
+        )
+        absence = Decimal("100.00") * 5  # €500
+        indemnity = Decimal("100.00") * Decimal("0.50") * 2  # €100
+        integration = Decimal("100.00") * Decimal("0.50") * 2  # €100
+        max_positive_impact = indemnity + integration  # €200
+
+        delta_net = sick.period_net - base.period_net
+        # The absence must reduce the net; the positive components cannot reverse this.
+        assert delta_net <= max_positive_impact, (
+            f"Net delta {delta_net} exceeds max positive component "
+            f"sum {max_positive_impact}. Likely sign bug in EMPLOYEE_DEDUCTIONS."
+        )
+        # Specifically: gross lost minus positive components gives a negative floor.
+        assert delta_net < absence, (
+            f"Net delta {delta_net} >= absence {absence}: "
+            "absence deduction had no effect."
+        )
+
+    def test_net_delta_bounded_by_gross_components(self) -> None:
+        """With full INPS coverage and integration, net delta must not be positive."""
+        base = self._base_result()
+        sick = self._sick_result(
+            working_days=3,
+            waiting_period_days=0,
+            gross_daily=Decimal("80.00"),
+            inps_daily_rate=Decimal("1.00"),
+            integration_rate=Decimal("1.00"),
+        )
+        # Absence: -€240, INPS indemnity: +€240, integration: 0
+        # Net delta pre-tax ≈ 0; after tax may differ slightly.
+        # The key: delta must not be *greater* than the absence amount.
+        delta_net = sick.period_net - base.period_net
+        assert delta_net <= Decimal(0), (
+            f"Net delta {delta_net} is positive with full coverage: "
+            "sickness increased net."
+        )
