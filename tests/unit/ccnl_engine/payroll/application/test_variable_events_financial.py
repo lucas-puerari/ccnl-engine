@@ -157,11 +157,11 @@ class TestArrearsEventAccounting:
         expected = (Decimal("2000.00") * Decimal("0.23")).quantize(Decimal("0.01"))
         assert _sep_tax(result) == expected
 
-    def test_inps_not_affected(self) -> None:
-        """Arrears do not flow through INPS (tassazione separata bypasses INPS)."""
+    def test_inps_increases_with_arrears(self) -> None:
+        """Arrears increment the INPS base when policy contribution is 'included'."""
         base = calculate_period(_base())
         result = calculate_period(_req(self._arrears()))
-        assert _inps_employee(result) == _inps_employee(base)
+        assert _inps_employee(result) > _inps_employee(base)
 
     def test_pay_item_present(self) -> None:
         """A contract_renewal_arrears pay item is present."""
