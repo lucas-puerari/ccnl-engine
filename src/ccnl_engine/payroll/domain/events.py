@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from ccnl_engine.engine.errors import InvalidInputError
 
@@ -200,15 +200,14 @@ class BonusEvent:
     Attributes:
         event_date: Date the bonus is attributed to.
         amount: Gross bonus amount in EUR.  Must be >= 0.
-        is_pdr: When True, the bonus is a Premio di Risultato (PdR) eligible
-            for the 1% substitute tax regime under L. 208/2015 art. 1 cc.
-            182-190 and L. 199/2025 art. 1 cc. 7-12.  When False (default),
-            ordinary IRPEF applies.
+        kind: ``"productivity_bonus"`` routes the amount through the PdR
+            substitute-tax regime (L. 208/2015 art. 1 cc. 182-190).
+            ``"bonus"`` (the default) applies ordinary IRPEF.
     """
 
     event_date: date
     amount: Decimal
-    is_pdr: bool = False
+    kind: Literal["bonus", "productivity_bonus"] = "bonus"
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.amount < 0:

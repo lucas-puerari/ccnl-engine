@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.period import PeriodState
 
@@ -27,13 +28,14 @@ class EmploymentFacts:
     Attributes:
         contract_type: Employment contract type (permanent, fixed-term, apprentice).
         num_employees: Employer headcount for INPS rate resolution.
-        ivs_ceiling_applies: When False the IVS massimale ceiling is bypassed;
-            use for domestic-work sectors and non-IVS regimes.
+        ceiling_status: Whether the IVS massimale contribution ceiling applies.
+            Defaults to
+            :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`.
     """
 
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     num_employees: int = 50
-    ivs_ceiling_applies: bool = True
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
 
 
 @dataclass(frozen=True)

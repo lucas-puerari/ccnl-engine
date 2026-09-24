@@ -40,6 +40,7 @@ from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthSchedule,
     WorkCalendar,
 )
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BilateralFundEvent,
@@ -66,6 +67,7 @@ def _req(
     weekly_hours: int | None = None,
     contributable_hours: Decimal | None = None,
     contract_type: object | None = None,
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
 ) -> PeriodCalculationRequest:
     if opening is None:
         opening = PeriodState.zero()
@@ -80,6 +82,7 @@ def _req(
         weekly_hours=weekly_hours,
         contributable_hours=contributable_hours,
         contract_type=ct,  # type: ignore[arg-type]
+        ceiling_status=ceiling_status,
     )
 
 
@@ -362,7 +365,13 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
         tax_withholding_periods_closed=11,
         inps_base_ytd=Decimal("130000.00"),  # > 122,295 IVS massimale 2026
     )
-    result = calculate_period(_req(month=12, opening=opening))
+    result = calculate_period(
+        _req(
+            month=12,
+            opening=opening,
+            ceiling_status=ContributionCeilingStatus.POST_1995,
+        )
+    )
 
     addizionale = next(
         (

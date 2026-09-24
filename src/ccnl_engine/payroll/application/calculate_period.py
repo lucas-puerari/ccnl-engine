@@ -42,6 +42,7 @@ from ccnl_engine.payroll.application.post_ledger import (
 )
 from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
@@ -168,8 +169,19 @@ def calculate_period(
         else var_pay_rules.fringe_benefit.threshold_standard
     )
 
+    ivs_ceiling_applies = request.ceiling_status in {
+        ContributionCeilingStatus.POST_1995,
+        ContributionCeilingStatus.OPTED_IN,
+    }
     resolver = _get_resolver()
-    policy_context = PolicyContext(year=period_year, as_of=as_of)
+    policy_context = PolicyContext(
+        year=period_year,
+        as_of=as_of,
+        ccnl_slug=request.ccnl_slug,
+        sector=ccnl.meta.tax_sector,
+        gross_ytd=request.opening_state.gross_ytd,
+        num_employees=request.num_employees,
+    )
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(
         request.events,
@@ -210,7 +222,7 @@ def calculate_period(
         comune_belfiore=request.comune_belfiore,
         family_composition=request.family_composition,
         family_deduction_rules=fam_ded_rules,
-        ivs_ceiling_applies=request.ivs_ceiling_applies,
+        ivs_ceiling_applies=ivs_ceiling_applies,
         pdr_rules=var_pay_rules.pdr,
         weekly_hours=request.weekly_hours,
         contributable_hours=request.contributable_hours,

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING, final
 
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import Permanent
 
 if TYPE_CHECKING:
@@ -132,6 +133,11 @@ class PeriodCalculationRequest:
             :meth:`PeriodState.zero` for January.
         num_employees: Employer headcount used to resolve INPS rates
             (some rates differ by firm size). Defaults to 50.
+        ceiling_status: Whether the IVS massimale contribution ceiling
+            applies to this worker.  Use :attr:`ContributionCeilingStatus.POST_1995`
+            for post-1995 workers and :attr:`ContributionCeilingStatus.NOT_APPLICABLE`
+            for pre-1996 enrollment.  ``UNKNOWN`` (the default) does not apply
+            the ceiling to avoid over-deducting contributions.
         events: Variable work events (overtime, absences, bonuses, etc.)
             that occurred in this period. Defaults to no events.
         has_dependent_children: Whether the worker has at least one
@@ -154,7 +160,7 @@ class PeriodCalculationRequest:
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     num_employees: int = 50
-    ivs_ceiling_applies: bool = True
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
     comune_belfiore: str | None = None
