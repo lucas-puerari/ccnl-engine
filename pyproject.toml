@@ -104,6 +104,7 @@ ignore = [
 "src/ccnl_engine/engine/contract/domain/**" = ["TCH"]
 "src/ccnl_engine/engine/payroll/domain/**" = ["TCH"]
 "src/ccnl_engine/payroll/domain/**" = ["TCH"]
+"src/ccnl_engine/payroll/application/**" = ["TCH"]
 # Backward-compat shims use `foo as foo` aliases so mypy treats them as explicit re-exports.
 "src/ccnl_engine/engine/payroll/**" = ["PLC0414"]
 "src/ccnl_engine/engine/surtax/domain/**" = ["TCH"]
