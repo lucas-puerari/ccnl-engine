@@ -1,12 +1,8 @@
 """Period-first payroll calculation: single competence month.
 
-The computation order is:
-  1. Process variable work events into aggregated totals.
-  2. Resolve gross from the CCNL salary table for the period date.
-  3. Compute INPS contributions and TFR accrual on the augmented bases.
-  4. Project annual taxable income and compute IRPEF via conguaglio YTD.
-  5. Build pay items and ledger entries from the resolved amounts.
-  6. Advance the YTD state.
+Computation order: (1) variable events → aggregated totals, (2) gross from
+CCNL salary table, (3) INPS contributions and TFR accrual, (4) IRPEF via
+conguaglio YTD, (5) pay items and ledger entries, (6) advance YTD state.
 """
 
 from __future__ import annotations
@@ -221,6 +217,7 @@ def calculate_period(
         fringe_threshold=fringe_threshold,
         opening_fringe_ytd=request.opening_state.fringe_ytd,
         opening_fringe_taxed=request.opening_state.fringe_taxed_ytd,
+        pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
     )
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
