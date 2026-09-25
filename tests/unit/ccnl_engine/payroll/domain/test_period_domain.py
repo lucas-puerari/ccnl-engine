@@ -133,6 +133,14 @@ class TestPeriodState:
         with pytest.raises(ValueError, match="tax_withholding_periods_closed"):
             PeriodState(regular_periods_closed=5, tax_withholding_periods_closed=3)
 
+    def test_fringe_taxed_above_fringe_raises(self) -> None:
+        """fringe_taxed_ytd > fringe_ytd raises ValueError."""
+        with pytest.raises(ValueError, match="fringe_taxed_ytd"):
+            PeriodState(
+                fringe_ytd=Decimal("100.00"),
+                fringe_taxed_ytd=Decimal("200.00"),
+            )
+
 
 class TestPeriodCalculationRequest:
     """PeriodCalculationRequest stores period, CCNL reference, and YTD state."""

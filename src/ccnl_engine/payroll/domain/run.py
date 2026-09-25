@@ -10,11 +10,23 @@ run sequence from the CCNL calendar.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Literal
+from enum import StrEnum
 
 __all__ = ["PayrollRun", "RunKind"]
 
-RunKind = Literal["regular", "thirteenth", "fourteenth", "adjustment", "termination"]
+
+class RunKind(StrEnum):
+    """Classification of a payroll run.
+
+    Members compare equal to their string values, so ``RunKind.REGULAR == "regular"``
+    is ``True`` and existing comparisons with plain strings continue to work.
+    """
+
+    REGULAR = "regular"
+    THIRTEENTH = "thirteenth"
+    FOURTEENTH = "fourteenth"
+    ADJUSTMENT = "adjustment"
+    TERMINATION = "termination"
 
 
 @dataclass(frozen=True)
@@ -24,11 +36,11 @@ class PayrollRun:
     Attributes:
         run_kind: Classification of the run type:
 
-            - ``"regular"`` — ordinary monthly salary period.
-            - ``"thirteenth"`` — tredicesima mensilità.
-            - ``"fourteenth"`` — quattordicesima mensilità.
-            - ``"adjustment"`` — conguaglio correction run.
-            - ``"termination"`` — cessazione run including TFR settlement.
+            - ``RunKind.REGULAR`` — ordinary monthly salary period.
+            - ``RunKind.THIRTEENTH`` — tredicesima mensilità.
+            - ``RunKind.FOURTEENTH`` — quattordicesima mensilità.
+            - ``RunKind.ADJUSTMENT`` — conguaglio correction run.
+            - ``RunKind.TERMINATION`` — cessazione run including TFR settlement.
 
         month: Calendar month (1-12) in which the run is paid.
         year: Tax year this run belongs to.
@@ -43,6 +55,12 @@ class PayrollRun:
     run_id: str = field(init=False, default="")
 
     def __post_init__(self) -> None:  # noqa: D105
+        try:
+            object.__setattr__(self, "run_kind", RunKind(self.run_kind))
+        except ValueError:
+            valid = [k.value for k in RunKind]
+            msg = f"run_kind must be one of {valid}; got {self.run_kind!r}"
+            raise ValueError(msg) from None
         if not 1 <= self.month <= 12:
             msg = f"month must be 1-12; got {self.month}"
             raise ValueError(msg)
@@ -62,10 +80,10 @@ class PayrollRun:
             month: Calendar month (1-12).
 
         Returns:
-            A :class:`PayrollRun` with ``run_kind="regular"`` and a
+            A :class:`PayrollRun` with ``run_kind=RunKind.REGULAR`` and a
             deterministic ``run_id``.
         """
-        return cls(run_kind="regular", month=month, year=year)
+        return cls(run_kind=RunKind.REGULAR, month=month, year=year)
 
     @classmethod
     def thirteenth(cls, year: int, payment_month: int) -> PayrollRun:
@@ -76,9 +94,9 @@ class PayrollRun:
             payment_month: Calendar month in which the tredicesima is paid.
 
         Returns:
-            A :class:`PayrollRun` with ``run_kind="thirteenth"``.
+            A :class:`PayrollRun` with ``run_kind=RunKind.THIRTEENTH``.
         """
-        return cls(run_kind="thirteenth", month=payment_month, year=year)
+        return cls(run_kind=RunKind.THIRTEENTH, month=payment_month, year=year)
 
     @classmethod
     def fourteenth(cls, year: int, payment_month: int) -> PayrollRun:
@@ -89,6 +107,6 @@ class PayrollRun:
             payment_month: Calendar month in which the quattordicesima is paid.
 
         Returns:
-            A :class:`PayrollRun` with ``run_kind="fourteenth"``.
+            A :class:`PayrollRun` with ``run_kind=RunKind.FOURTEENTH``.
         """
-        return cls(run_kind="fourteenth", month=payment_month, year=year)
+        return cls(run_kind=RunKind.FOURTEENTH, month=payment_month, year=year)
