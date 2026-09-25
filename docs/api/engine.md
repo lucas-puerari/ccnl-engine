@@ -5,53 +5,18 @@ Core computation functions and types.
 See [Guide: Employment types](../domain/employment-types.md) and
 [Guide: Pay components](../engine/pay-components.md) for worked examples.
 
-## Entry points
+## Entry point
 
-::: ccnl_engine.engine.payroll.service.orchestrator
+::: ccnl_engine.api.facade
     options:
       members:
-        - estimate_annual
-        - estimate_period_effects
-        - compute
+        - PayrollEngine
 
-## Calculation
+## Request and run
 
-Both `estimate_annual()` and `estimate_period_effects()` return a `Calculation` that
-bundles the engine version, the ruleset revisions used, a snapshot of the
-inputs, and the resulting `AnnualEstimate` (`.result`).
-
-::: ccnl_engine.engine.payroll.domain.calculation
+::: ccnl_engine.api.requests
     options:
       members:
-        - Calculation
-        - InputSnapshot
-
-## Input models
-
-::: ccnl_engine.engine.payroll.domain.scenario
-    options:
-      members:
-        - AnnualEstimateInput
-        - PeriodPayrollInput
-        - PayrollScenario
-        - Employee
-        - Employment
-        - Employer
-        - Jurisdiction
-        - Agreement
-
-::: ccnl_engine.engine.payroll.domain.employee
-    options:
-      members:
-        - SeniorityByCount
-        - SeniorityByDate
-        - SeniorityByMonths
-        - RalOverride
-        - DestinationRalOverride
-
-## AnnualEstimate
-
-::: ccnl_engine.engine.payroll.domain.payroll_result
-    options:
-      members:
-        - AnnualEstimate
+        - PayrollRequest
+        - PayrollRun
+        - EmploymentFacts
