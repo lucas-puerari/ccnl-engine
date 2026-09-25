@@ -218,6 +218,7 @@ def calculate_period(
         fringe_threshold=fringe_threshold,
         opening_fringe_ytd=request.opening_state.fringe_ytd,
         opening_fringe_taxed=request.opening_state.fringe_taxed_ytd,
+        pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
     )
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None

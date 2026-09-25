@@ -27,8 +27,6 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-import pytest
-
 from ccnl_engine.engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -53,30 +51,19 @@ def _sum_account(result: object, account: AccountKind) -> Decimal:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "BonusEvent has no prior_income field; substitute tax at 1% is applied "
-        "unconditionally to every productivity_bonus. Workers above the 80,000 EUR "
-        "income ceiling must not receive the agevolazione."
-    ),
-)
 def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
     """Productivity bonus above the income ceiling must be taxed at ordinary rates.
 
     Source: L. 199/2025 art. 1 co. 9 — tassazione sostitutiva 1% applies only
-    for workers with prior-year reddito ≤ income_ceiling (variable-pay-rules.json
+    for workers with prior-year reddito <= income_ceiling (variable-pay-rules.json
     income_ceiling=80000).  A worker with prior_income=90000 must have
     SUBSTITUTE_TAX = 0.00 and the bonus taxed at ordinary IRPEF rates.
-
-    Current behaviour: SUBSTITUTE_TAX = 50.00 for a 5,000 EUR bonus regardless
-    of prior income (BonusEvent carries no prior_income; eligibility is never
-    checked).
     """
     bonus = BonusEvent(
         event_date=date(_YEAR, 1, 15),
         amount=Decimal("5000.00"),
         kind="productivity_bonus",
+        prior_income=Decimal("90000.00"),
     )
     req = PeriodCalculationRequest(
         period_id=PeriodId(year=_YEAR, month=1),
@@ -85,16 +72,13 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=(bonus,),
-        # prior_year_income not representable in current API — no such field exists
     )
     result = calculate_period(req)
 
     sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
     assert sub_tax == _ZERO, (
         f"A productivity_bonus for an ineligible worker must produce "
-        f"SUBSTITUTE_TAX = 0.00; got {sub_tax}.  "
-        "Fix: BonusEvent must carry prior_income and eligibility must be checked "
-        "before applying the substitute rate."
+        f"SUBSTITUTE_TAX = 0.00; got {sub_tax}."
     )
 
 
