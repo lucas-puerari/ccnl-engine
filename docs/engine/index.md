@@ -7,7 +7,7 @@ produces the same output.
 
 ## Entry point: `PayrollEngine`
 
-Construct the engine with `PayrollEngine.from_builtin_data()` and call
+Construct the engine with `PayrollEngine.bundled()` and call
 `calculate()` for a single pay run or `calculate_year()` for a full year:
 
 ```python
@@ -15,7 +15,7 @@ from datetime import date
 
 from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
 
-engine = PayrollEngine.from_builtin_data()
+engine = PayrollEngine.bundled()
 
 result = engine.calculate(
     PayrollRequest(
