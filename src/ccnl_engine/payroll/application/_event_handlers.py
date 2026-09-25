@@ -56,6 +56,7 @@ from ccnl_engine.payroll.domain.pay_items import (
     TfrSettlementItem,
     WelfareItem,
 )
+from ccnl_engine.payroll.domain.treatment import EventTreatment
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -80,6 +81,7 @@ class _EventHandlerCtx:
     fringe_threshold: Decimal
     cumulative_fringe: Decimal
     cumulative_taxed: Decimal
+    pdr_income_ceiling: Decimal | None = None
 
 
 @dataclass
@@ -113,6 +115,24 @@ class EventEffect:
     new_cumulative_taxed: Decimal | None = None
 
 
+def _pdr_ceiling_exceeded(
+    event: object, treatment: EventTreatment, ctx: _EventHandlerCtx
+) -> bool:
+    """Return True when a productivity_bonus exceeds the PdR income ceiling.
+
+    Returns:
+        ``True`` when the event's prior_income exceeds ``ctx.pdr_income_ceiling``.
+    """
+    return (
+        isinstance(event, BonusEvent)
+        and event.kind == "productivity_bonus"
+        and treatment.substitute
+        and event.prior_income is not None
+        and ctx.pdr_income_ceiling is not None
+        and event.prior_income > ctx.pdr_income_ceiling
+    )
+
+
 def _handle_standard(
     event: OvertimeEvent
     | NightShiftEvent
@@ -133,6 +153,10 @@ def _handle_standard(
     )
     resolution = _require_resolution(ctx.resolver, kind, ctx.context)
     treatment = _treatment_from_resolution(resolution)
+    if _pdr_ceiling_exceeded(event, treatment, ctx):
+        treatment = EventTreatment(
+            inps=treatment.inps, tfr=treatment.tfr, irpef=True, substitute=False
+        )
     di, dt, dirpef = _treatment_deltas(treatment, gross)
     result = EventEffect(
         items=[item],
