@@ -32,11 +32,16 @@ class BonusEvent:
         kind: ``"productivity_bonus"`` routes the amount through the PdR
             substitute-tax regime (L. 208/2015 art. 1 cc. 182-190).
             ``"bonus"`` (the default) applies ordinary IRPEF.
+        prior_income: Worker's prior-year reddito complessivo in EUR.  Required
+            to enforce the income ceiling on PdR substitute-tax eligibility
+            (L. 199/2025 art. 1 c. 9: ceiling is 80,000 EUR).  When ``None``
+            the ceiling is not enforced (caller asserts eligibility).
     """
 
     event_date: date
     amount: Decimal
     kind: Literal["bonus", "productivity_bonus"] = "bonus"
+    prior_income: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.amount < 0:
