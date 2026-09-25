@@ -111,6 +111,8 @@ def calculate_year(
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
     num_employees: int = 50,
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
+    weekly_hours: int | None = None,
+    contributable_hours: Decimal | None = None,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
     per_run_events: dict[str, tuple[WorkEvent, ...]] | None = None,
     regione: str | None = None,
@@ -150,6 +152,10 @@ def calculate_year(
             Defaults to
             :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`
             (ceiling not applied; caller should supply the worker's enrollment status).
+        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to
+            select the INPS contribution bracket.  ``None`` for non-domestic CCNLs.
+        contributable_hours: Actual hours worked per period.  Required for domestic
+            CCNLs to compute flat-rate INPS contributions.  ``None`` otherwise.
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
             (thirteenth, fourteenth) receive no events from this mapping;
@@ -214,6 +220,8 @@ def calculate_year(
             contract_type=effective_contract,
             num_employees=num_employees,
             ceiling_status=ceiling_status,
+            weekly_hours=weekly_hours,
+            contributable_hours=contributable_hours,
             events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
