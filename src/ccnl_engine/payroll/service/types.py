@@ -41,6 +41,26 @@ class MonthlyPayChain:
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
         )
 
+    def scaled_for_part_time(self, factor: Decimal) -> MonthlyPayChain:
+        """Scale only proportionable components by ``factor``.
+
+        Base salary and seniority are always proportionable.  Allowances are
+        scaled only when :attr:`~ccnl_engine.engine.contract.domain.compensation\
+.Allowance.part_time_proportionable` is ``True``; allowances with
+        ``part_time_proportionable=False`` retain their full contractual value.
+
+        Returns:
+            A new chain with selectively scaled components.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * factor),
+            seniority=money(self.seniority * factor),
+            allowances=tuple(
+                (a, money(v * factor) if a.part_time_proportionable else v)
+                for a, v in self.allowances
+            ),
+        )
+
     def scaled_selective(
         self, base_factor: Decimal, apprenticeship_pct: Decimal
     ) -> MonthlyPayChain:

@@ -32,6 +32,12 @@ class Allowance(BaseModel):
     least this many months. When ``Scenario.seniority_count`` is used instead
     of ``seniority_months``, threshold-gated allowances are excluded (the
     engine cannot gate on service time without knowing service time).
+
+    ``part_time_proportionable=False`` marks allowances that must be paid at
+    their full contractual value regardless of the worker's part-time fraction
+    (e.g. fixed-amount welfare contributions or presence-based indennità that
+    Italian CCNL explicitly exclude from proportional reduction). Defaults to
+    ``True`` so all existing allowances remain proportionable.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -44,6 +50,7 @@ class Allowance(BaseModel):
     tfr_relevant: bool = True
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
+    part_time_proportionable: bool = True
     service_months_threshold: int | None = Field(default=None, ge=0)
     provenance: RuleProvenance | None = None
 

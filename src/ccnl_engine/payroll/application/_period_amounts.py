@@ -131,7 +131,9 @@ def _resolve_chain(
         and full_time_weekly_hours > 0
         and weekly_hours < full_time_weekly_hours
     ):
-        chain = chain.scaled(Decimal(weekly_hours) / Decimal(full_time_weekly_hours))
+        chain = chain.scaled_for_part_time(
+            Decimal(weekly_hours) / Decimal(full_time_weekly_hours)
+        )
     return chain
 
 
