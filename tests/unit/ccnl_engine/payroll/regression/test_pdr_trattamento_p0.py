@@ -305,3 +305,26 @@ class TestPdREligibilityFailClosed:
             f"productivity_bonus with unknown prior_income must not receive "
             f"the substitute rate; got SUBSTITUTE_TAX={sub_tax}."
         )
+
+
+class TestPdREligibilityFailClosed:
+    """Fail-closed: unknown prior income must not grant the PdR substitute rate."""
+
+    def test_unknown_prior_income_no_substitute_tax(self) -> None:
+        """A productivity_bonus with prior_income=None must yield SUBSTITUTE_TAX=0.
+
+        Fail-closed: when the worker's prior-year reddito is unknown the engine
+        must apply ordinary IRPEF rather than the 1% substitute rate.
+        """
+        bonus = BonusEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("1000.00"),
+            kind="productivity_bonus",
+            prior_income=None,
+        )
+        result = calculate_period(_req_metal(1, events=(bonus,)))
+        sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
+        assert sub_tax == _ZERO, (
+            f"productivity_bonus with unknown prior_income must not receive "
+            f"the substitute rate; got SUBSTITUTE_TAX={sub_tax}."
+        )
