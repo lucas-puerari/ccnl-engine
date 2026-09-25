@@ -318,9 +318,7 @@ def calculate_period(
     op = request.opening_state
     closing = PeriodState(
         regular_periods_closed=op.regular_periods_closed + regular_delta,
-        tax_withholding_periods_closed=(
-            op.tax_withholding_periods_closed + tax_delta
-        ),
+        tax_withholding_periods_closed=(op.tax_withholding_periods_closed + tax_delta),
         closed_run_ids=op.closed_run_ids | {run_id},
         earnings=EarningsYtd(
             gross=op.earnings.gross + period_gross,

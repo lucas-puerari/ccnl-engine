@@ -213,6 +213,10 @@ class TestOpeningStateSensitivity:
         """inps_employee_ytd in opening state does not change period gross."""
         r_zero = calculate_period(_req())
         r_high_inps = calculate_period(
-            _req(opening=PeriodState(earnings=EarningsYtd(inps_employee=Decimal("5000.00"))))
+            _req(
+                opening=PeriodState(
+                    earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
+                )
+            )
         )
         assert r_zero.period_gross == r_high_inps.period_gross

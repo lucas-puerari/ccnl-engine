@@ -72,8 +72,8 @@ def check_i11(
             )
         )
 
-    expected_gross = (
-        opening.earnings.gross + _sum_account(result, AccountKind.CASH_EARNINGS)
+    expected_gross = opening.earnings.gross + _sum_account(
+        result, AccountKind.CASH_EARNINGS
     )
     if result.closing_state.earnings.gross != expected_gross:
         violations.append(
