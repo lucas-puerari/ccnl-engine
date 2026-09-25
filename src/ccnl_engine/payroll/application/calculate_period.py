@@ -205,7 +205,7 @@ def calculate_period(
         else None
     )
     domestic_hr = _domestic_hourly_rate(ccnl, year_rules, monthly_gross, as_of)
-    amounts, contribution_breakdown, tax_computation = _compute_amounts(
+    computed = _compute_amounts(
         monthly_gross,
         event_totals.inps_base,
         event_totals.tfr_base,
@@ -227,6 +227,7 @@ def calculate_period(
         contributable_hours=request.contributable_hours,
         domestic_hourly_rate=domestic_hr,
     )
+    amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
     pay_items = _build_pay_items(
         amounts, chain, request.period_id, request.payment_date, run_tag=run_id
     )
@@ -339,6 +340,7 @@ def calculate_period(
             + max(_ZERO, -amounts.period_tratt)
         ),
         surtax_ytd=(request.opening_state.surtax_ytd + amounts.period_surtax),
+        recovery_plan=next_recovery_plan,
     )
     benefit_breakdown = BenefitBreakdown(
         value=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),

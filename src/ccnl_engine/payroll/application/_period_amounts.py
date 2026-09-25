@@ -14,6 +14,7 @@ from ccnl_engine.payroll.domain.contributions import (
     ContributionComponent,
 )
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
@@ -271,13 +272,13 @@ def _compute_amounts(
     weekly_hours: int | None = None,
     contributable_hours: Decimal | None = None,
     domestic_hourly_rate: Decimal | None = None,
-) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation]:
+) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
     Returns:
-        ``(_PeriodAmounts, ContributionBreakdown, TaxComputation)`` with all
-        rounded monetary quantities, the per-component INPS breakdown, and the
-        per-rule IRPEF computation.
+        ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
+        with all rounded monetary quantities, the per-component INPS breakdown,
+        the per-rule IRPEF computation, and the updated recovery plan (if any).
     """
     period_inps_base = monthly_gross + event_inps_base
     if rules.inps is not None:
@@ -334,7 +335,7 @@ def _compute_amounts(
     # Net credit = recognized minus already recovered; prevents re-recovering credits
     # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
     net_credit_ytd = opening.credit_recognized_ytd - opening.credit_recovered_ytd
-    tax_comp = resolve_tax_computation(
+    tax_comp, next_recovery_plan = resolve_tax_computation(
         taxable,
         rules,
         opening_irpef_withheld=opening.irpef_withheld_ytd,
@@ -342,6 +343,7 @@ def _compute_amounts(
         months_closed=opening.tax_withholding_periods_closed,
         additional_months=additional_months,
         family_deductions=fam_ded,
+        recovery_plan=opening.recovery_plan,
     )
     period_irpef = tax_comp.ordinary_tax
     period_tratt = tax_comp.trattamento_integrativo
@@ -375,4 +377,5 @@ def _compute_amounts(
         ),
         breakdown,
         tax_comp,
+        next_recovery_plan,
     )

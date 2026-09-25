@@ -433,7 +433,7 @@ class TestResolveTaxComputation:
     def test_ordinary_tax_positive_for_typical_income(self) -> None:
         """Typical income produces positive ordinary_tax and irpef_gross component."""
         rules = make_year_rules()
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(25000),
             rules,
             opening_irpef_withheld=_ZERO,
@@ -454,7 +454,7 @@ class TestResolveTaxComputation:
             max_amount=Decimal(1200),
         )
         rules_with_ti = rules.model_copy(update={"trattamento_integrativo": ti})
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules_with_ti,
             opening_irpef_withheld=_ZERO,
@@ -469,7 +469,7 @@ class TestResolveTaxComputation:
         """When trattamento_integrativo rules are absent the period credit is zero."""
         rules = make_year_rules()
         # Default make_year_rules() has trattamento_integrativo=None
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules,
             opening_irpef_withheld=_ZERO,
@@ -491,7 +491,7 @@ class TestResolveTaxComputation:
         )
         rules_with_ud = rules.model_copy(update={"ulteriore_detrazione": ud_rules})
         # taxable=10000 <= threshold_low → zero
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules_with_ud,
             additional_months=12,
@@ -507,7 +507,7 @@ class TestResolveTaxComputation:
         )
         rules_with_s = rules.model_copy(update={"sterilizzazione_detrazioni": steriliz})
         # taxable > 200000 + non-zero deductions so reduction is applied
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(250000),
             rules_with_s,
             family_deductions=Decimal(1000),
@@ -523,7 +523,7 @@ class TestResolveTaxComputation:
             bands=[SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.07"))]
         )
         rules_with_se = rules.model_copy(update={"somma_esente": se_rules})
-        tc = resolve_tax_computation(
+        tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules_with_se,
             additional_months=12,
