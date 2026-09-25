@@ -114,6 +114,12 @@ class WorkCalendar:
             ValueError: When ``additional_months`` exceeds
                 :data:`_MAX_ADDITIONAL_MONTHS` (currently 14).
         """
+        if additional_months < 12:
+            msg = (
+                f"additional_months={additional_months} is below the minimum "
+                f"of 12; a CCNL must have at least 12 regular months"
+            )
+            raise ValueError(msg)
         if additional_months > _MAX_ADDITIONAL_MONTHS:
             msg = (
                 f"additional_months={additional_months} exceeds the maximum "

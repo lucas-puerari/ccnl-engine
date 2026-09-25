@@ -266,9 +266,9 @@ class TestClosingStateTransitions:
         assert result.closing_state.inps_employee_ytd == Decimal("500.00") + inps_period
 
     def test_remaining_months_guard_no_error(self) -> None:
-        """tax_withholding_periods_closed == additional_months (13) → remaining=1."""
+        """tax_withholding_periods_closed == 12 in a 13-period CCNL → remaining=1."""
         opening = PeriodState(
-            regular_periods_closed=13, tax_withholding_periods_closed=13
+            regular_periods_closed=11, tax_withholding_periods_closed=12
         )
         result = calculate_period(_req(opening_state=opening))
         assert result.period_gross > _ZERO

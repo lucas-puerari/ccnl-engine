@@ -90,7 +90,7 @@ class PeriodState:
         """Validate counter invariants on construction.
 
         Raises:
-            ValueError: When counters violate ordering constraints.
+            ValueError: When counters violate ordering or range constraints.
         """
         if self.regular_periods_closed < 0:
             msg = (
@@ -104,6 +104,12 @@ class PeriodState:
                 f"({self.tax_withholding_periods_closed}) "
                 f"must be >= regular_periods_closed "
                 f"({self.regular_periods_closed})"
+            )
+            raise ValueError(msg)
+        if self.fringe_taxed_ytd > self.fringe_ytd:
+            msg = (
+                f"fringe_taxed_ytd ({self.fringe_taxed_ytd}) "
+                f"must be <= fringe_ytd ({self.fringe_ytd})"
             )
             raise ValueError(msg)
 
