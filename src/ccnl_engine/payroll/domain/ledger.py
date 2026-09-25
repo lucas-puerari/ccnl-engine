@@ -222,3 +222,30 @@ class Posting:
 #: Maps a pay-item kind to the account it normally posts to.
 #: Used by handlers to express routing decisions declaratively.
 type AccountPolicy = dict[str, AccountKind]
+
+
+@dataclass(frozen=True)
+class PostingIntent:
+    """Handler-produced posting decision before period fields are applied.
+
+    Handlers supply identity, account routing, amount, and policy reference.
+    :func:`~ccnl_engine.payroll.application._posting_service.post` adds
+    ``competence_period`` and ``payment_date`` to produce a :class:`LedgerEntry`.
+
+    Attributes:
+        entry_id: Unique ledger entry identifier for this posting.
+        source_item_id: The ``item_id`` of the originating :class:`PayItem`.
+        pay_item_kind: Pay-item kind string, used for policy resolution lookups.
+        account: Logical account this posting targets.
+        amount: Monetary amount in EUR (positive increases the account balance).
+        policy_decision_id: Stable policy rule identifier from the resolver.
+        note: Optional free-text annotation.
+    """
+
+    entry_id: str
+    source_item_id: str
+    pay_item_kind: str
+    account: AccountKind
+    amount: Money
+    policy_decision_id: str | None = None
+    note: str = ""

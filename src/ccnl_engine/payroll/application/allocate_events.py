@@ -13,9 +13,10 @@ from ccnl_engine.payroll.application._event_handlers import (
 )
 from ccnl_engine.payroll.application._event_items import _check_event_date
 from ccnl_engine.payroll.application._period_utils import _ZERO
+from ccnl_engine.payroll.application._posting_service import post as _post
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import WorkEvent
-from ccnl_engine.payroll.domain.ledger import LedgerEntry
+from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 
 if TYPE_CHECKING:
@@ -69,7 +70,7 @@ def _process_events(
     cumulative_fringe = opening_fringe_ytd
     cumulative_taxed = opening_fringe_taxed
     items: list[PayItem] = []
-    entries: list[LedgerEntry] = []
+    intents: list[PostingIntent] = []
 
     for i, event in enumerate(events):
         evt_id = f"{tag}_evt{i}"
@@ -94,7 +95,7 @@ def _process_events(
         result: EventEffect = handler(event, ctx)
 
         items.extend(result.items)
-        entries.extend(result.entries)
+        intents.extend(result.intents)
         total_inps += result.inps_delta
         total_tfr += result.tfr_delta
         total_irpef += result.irpef_delta
@@ -118,5 +119,5 @@ def _process_events(
             substitute_base=total_substitute,
         ),
         tuple(items),
-        tuple(entries),
+        _post(tuple(intents), cp, payment_date),
     )
