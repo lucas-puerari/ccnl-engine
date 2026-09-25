@@ -48,6 +48,7 @@ def _process_events(
     fringe_threshold: Decimal = _ZERO,
     opening_fringe_ytd: Decimal = _ZERO,
     opening_fringe_taxed: Decimal = _ZERO,
+    pdr_income_ceiling: Decimal | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -88,6 +89,7 @@ def _process_events(
             fringe_threshold=fringe_threshold,
             cumulative_fringe=cumulative_fringe,
             cumulative_taxed=cumulative_taxed,
+            pdr_income_ceiling=pdr_income_ceiling,
         )
         result: EventEffect = handler(event, ctx)
 
