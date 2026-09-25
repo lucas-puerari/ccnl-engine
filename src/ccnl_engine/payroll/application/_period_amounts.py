@@ -135,30 +135,6 @@ def _resolve_chain(
     return chain
 
 
-def _apply_extra_month_policy(
-    chain: MonthlyPayChain,
-    run_kind: str,
-    accrued_months: int,
-) -> MonthlyPayChain:
-    """Adjust a pay chain for the run kind (tredicesima / quattordicesima).
-
-    The rateo is computed from ``accrued_months`` (regular periods closed before
-    this run), not from the calendar month of payment.  Moving the payment date
-    must not change the already-accrued entitlement.
-
-    Returns:
-        Adjusted :class:`~ccnl_engine.payroll.service.types.MonthlyPayChain`.
-    """
-    if run_kind not in {"thirteenth", "fourteenth"}:
-        return chain
-    months_threshold = 14 if run_kind == "fourteenth" else 13
-    chain = chain.for_extra_month(months_threshold)
-    rateo = min(Decimal(accrued_months) / Decimal(12), Decimal(1))
-    if rateo < 1:
-        chain = chain.scaled(rateo)
-    return chain
-
-
 def _domestic_hourly_rate(
     ccnl: CCNL,
     year_rules: YearRules,

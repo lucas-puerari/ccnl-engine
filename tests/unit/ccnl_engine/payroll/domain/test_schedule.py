@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
+
 import pytest
 
 from ccnl_engine.payroll.domain.calendar import (
@@ -111,3 +113,50 @@ class TestPayrollScheduleValidation:
         run = PayrollRun.regular(2025, 1)
         with pytest.raises(ValueError, match="year"):
             PayrollSchedule(year=2026, runs=(run,))
+
+
+class TestExtraMonthScheduleValidation:
+    """ExtraMonthSchedule rejects invalid field values."""
+
+    def test_invalid_accrual_window_start_raises(self) -> None:
+        """accrual_window_start_month outside 1-12 raises ValueError."""
+        with pytest.raises(ValueError, match="accrual_window_start_month"):
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=12,
+                accrual_window_start_month=0,
+            )
+
+    def test_invalid_max_fraction_raises(self) -> None:
+        """max_fraction <= 0 raises ValueError."""
+        with pytest.raises(ValueError, match="max_fraction"):
+            ExtraMonthSchedule(
+                kind=ExtraMonthKind.THIRTEENTH,
+                name="tredicesima",
+                payment_month=12,
+                max_fraction=Decimal(0),
+            )
+
+
+class TestWorkCalendarFromAdditionalMonths:
+    """WorkCalendar.from_additional_months handles all supported cases."""
+
+    def test_fractional_quattordicesima_sets_max_fraction(self) -> None:
+        """additional_months=13.5 produces a quattordicesima with max_fraction=0.5."""
+        cal = WorkCalendar.from_additional_months(2026, Decimal("13.5"))
+        assert len(cal.extra_months) == 2
+        fourteenth = next(
+            s for s in cal.extra_months if s.kind == ExtraMonthKind.FOURTEENTH
+        )
+        assert fourteenth.max_fraction == Decimal("0.5")
+
+    def test_duplicate_extra_month_raises(self) -> None:
+        """Two schedules with the same kind and payment_month raise ValueError."""
+        sched = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima",
+            payment_month=12,
+        )
+        with pytest.raises(ValueError, match="duplicate"):
+            WorkCalendar(year=2026, extra_months=(sched, sched))

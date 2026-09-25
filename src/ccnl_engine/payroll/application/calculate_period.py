@@ -26,13 +26,13 @@ from ccnl_engine.payroll.application._capability_traces import (
     traces_to_observed as _traces_to_observed,
 )
 from ccnl_engine.payroll.application._period_amounts import (
-    _apply_extra_month_policy,
     _as_of,
     _compute_amounts,
     _domestic_hourly_rate,
     _resolve_chain,
 )
 from ccnl_engine.payroll.application._period_utils import (
+    _apply_extra_month_policy,
     _make_entry,
     _require_resolution,
     _sum_ledger,
@@ -153,7 +153,11 @@ def calculate_period(
     run_kind = request.run.run_kind if request.run is not None else "regular"
     run_id = _resolve_run_id(request, period_year)
     chain = _apply_extra_month_policy(
-        chain, run_kind, request.opening_state.regular_periods_closed
+        chain,
+        run_kind,
+        request.opening_state.regular_periods_closed,
+        accrual_window_start=request.extra_month_accrual_start,
+        max_fraction=request.extra_month_max_fraction,
     )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 

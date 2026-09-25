@@ -181,6 +181,8 @@ class PeriodCalculationRequest:
     seniority_months: int | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
     category: str | None = None
+    extra_month_accrual_start: int = 1
+    extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
 
 
 @dataclass(frozen=True)

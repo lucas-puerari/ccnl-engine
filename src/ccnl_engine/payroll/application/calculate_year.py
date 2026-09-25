@@ -205,8 +205,10 @@ def calculate_year(
         effective_repo = repo if repo is not None else BundledKnowledgeRepository()
         ccnl = effective_repo.load_ccnl(ccnl_slug)
         as_of = date(year, 1, 1)
-        additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
-        calendar = WorkCalendar.from_additional_months(year, additional_months)
+        additional_months_decimal = Decimal(
+            str(ccnl.parameters.additional_months.value_at(as_of))
+        )
+        calendar = WorkCalendar.from_additional_months(year, additional_months_decimal)
     elif calendar.year != year:
         msg = f"calendar.year={calendar.year} does not match year={year}"
         raise ValueError(msg)
@@ -215,6 +217,10 @@ def calculate_year(
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
+    # Build a lookup from (run_kind, payment_month) to ExtraMonthSchedule.
+    extra_month_index = {
+        (s.kind.value, s.payment_month): s for s in calendar.extra_months
+    }
 
     state = PeriodState.zero()
     results: list[PeriodCalculationResult] = []
@@ -225,6 +231,7 @@ def calculate_year(
         allocated_events = _allocate_events(
             run, effective_period_events, effective_per_run_events
         )
+        extra_sched = extra_month_index.get((run.run_kind, run.month))
         req = PeriodCalculationRequest(
             period_id=pid,
             payment_date=payment_date,
@@ -242,6 +249,12 @@ def calculate_year(
             seniority_months=seniority_months,
             roles=roles,
             category=category,
+            extra_month_accrual_start=(
+                extra_sched.accrual_window_start_month if extra_sched is not None else 1
+            ),
+            extra_month_max_fraction=(
+                extra_sched.max_fraction if extra_sched is not None else Decimal(1)
+            ),
             events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
