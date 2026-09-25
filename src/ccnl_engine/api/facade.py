@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.knowledge import __version__
 from ccnl_engine.payroll.application.calculate_period import (
     calculate_period as _calculate_period,
 )
@@ -12,10 +16,12 @@ from ccnl_engine.payroll.application.calculate_year import (
     calculate_year as _calculate_year,
 )
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.policy import PolicyResolver
 
 if TYPE_CHECKING:
     from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
     from ccnl_engine.api.results import PayrollResult
+    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.calculate_year import YearCalculationResult
 
 __all__ = ["PayrollEngine"]
@@ -24,7 +30,10 @@ __all__ = ["PayrollEngine"]
 class PayrollEngine:
     """Unified entry point for Italian CCNL payroll computation.
 
-    Preferred usage via :meth:`from_builtin_data` and :meth:`calculate`:
+    Pass explicit ``repository`` and ``policies`` arguments to inject custom
+    knowledge and policy data — useful for testing or air-gapped deployments.
+    Call :meth:`bundled` (or its alias :meth:`from_builtin_data`) to create
+    an engine backed by the package-bundled data.
 
     Example::
 
@@ -33,7 +42,7 @@ class PayrollEngine:
             EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun,
         )
 
-        engine = PayrollEngine.from_builtin_data()
+        engine = PayrollEngine.bundled()
         result = engine.calculate(PayrollRequest(
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
@@ -44,19 +53,49 @@ class PayrollEngine:
         print(result.period_net)
     """
 
+    def __init__(
+        self,
+        *,
+        repository: KnowledgeRepository | None = None,
+        policies: PolicyResolver | None = None,
+    ) -> None:
+        """Initialise the engine with explicit or bundled knowledge sources.
+
+        Args:
+            repository: Knowledge repository to use for CCNL, tax rules, and
+                surtax tables.  Defaults to the package-bundled data.
+            policies: Pre-loaded policy resolver for pay-item treatment rules.
+                Defaults to the bundled Italian ruleset.  Pass an instance to
+                avoid repeated JSON parsing across many :meth:`calculate` calls.
+        """
+        self._repo: KnowledgeRepository = (
+            repository if repository is not None else BundledKnowledgeRepository()
+        )
+        self._resolver: PolicyResolver = (
+            policies if policies is not None else PolicyResolver.load()
+        )
+
     @classmethod
-    def from_builtin_data(cls) -> PayrollEngine:
-        """Create an engine backed by the bundled knowledge data.
+    def bundled(cls) -> PayrollEngine:
+        """Create an engine backed by the package-bundled knowledge data.
 
         Returns:
-            A :class:`PayrollEngine` instance ready to compute payroll
-            using the knowledge bundle shipped with ccnl-engine.
+            A :class:`PayrollEngine` instance using the shipped CCNL and
+            policy JSON files.  The resolver is loaded once and cached on
+            the instance.
         """
         return cls()
 
-    def calculate(  # noqa: PLR6301
-        self, request: PayrollRequest
-    ) -> PayrollResult:
+    @classmethod
+    def from_builtin_data(cls) -> PayrollEngine:
+        """Alias for :meth:`bundled` kept for backward compatibility.
+
+        Returns:
+            A :class:`PayrollEngine` instance using the bundled data.
+        """
+        return cls()
+
+    def calculate(self, request: PayrollRequest) -> PayrollResult:
         """Compute a single payroll run.
 
         Args:
@@ -86,11 +125,14 @@ class PayrollEngine:
             has_dependent_children=request.has_dependent_children,
             run=request.run,
         )
-        return _calculate_period(period_req)
+        return _calculate_period(
+            period_req,
+            repo=self._repo,
+            resolver=self._resolver,
+            bundle_version=__version__,
+        )
 
-    def calculate_year(  # noqa: PLR6301
-        self, request: PayrollYearRequest
-    ) -> YearCalculationResult:
+    def calculate_year(self, request: PayrollYearRequest) -> YearCalculationResult:
         """Compute payroll for all runs in a year.
 
         Args:
@@ -118,4 +160,7 @@ YearCalculationResult` with one result per run and aggregated annual totals.
             comune_belfiore=request.comune_belfiore,
             family_composition=request.family_composition,
             has_dependent_children=request.has_dependent_children,
+            repo=self._repo,
+            resolver=self._resolver,
+            bundle_version=__version__,
         )

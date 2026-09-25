@@ -7,6 +7,7 @@ from decimal import Decimal
 
 from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
 from ccnl_engine.engine.payroll.service.engine import PayrollEngine
+from ccnl_engine.knowledge import __version__
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
     ExtraMonthSchedule,
@@ -14,6 +15,7 @@ from ccnl_engine.payroll.domain.calendar import (
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+from ccnl_engine.payroll.domain.policy import PolicyResolver
 from ccnl_engine.payroll.domain.run import PayrollRun
 
 _ZERO = Decimal(0)
@@ -33,17 +35,29 @@ def _payroll_request() -> PayrollRequest:
 
 
 class TestPayrollEngineConstruction:
-    """PayrollEngine can be constructed with default args or from_builtin_data."""
+    """PayrollEngine can be constructed with default args or factory classmethods."""
 
     def test_default_construction(self) -> None:
         """PayrollEngine() with no args succeeds."""
         engine = PayrollEngine()
         assert isinstance(engine, PayrollEngine)
 
+    def test_bundled_factory(self) -> None:
+        """bundled() returns a PayrollEngine instance backed by package data."""
+        engine = PayrollEngine.bundled()
+        assert isinstance(engine, PayrollEngine)
+
     def test_from_builtin_data(self) -> None:
-        """from_builtin_data() returns a PayrollEngine instance."""
+        """from_builtin_data() is a backward-compatible alias for bundled()."""
         engine = PayrollEngine.from_builtin_data()
         assert isinstance(engine, PayrollEngine)
+
+    def test_custom_policies_injected(self) -> None:
+        """PayrollEngine(policies=...) accepts a pre-loaded PolicyResolver."""
+        resolver = PolicyResolver.load()
+        engine = PayrollEngine(policies=resolver)
+        result = engine.calculate(_payroll_request())
+        assert result.period_gross > _ZERO
 
 
 class TestCalculate:
@@ -75,6 +89,12 @@ class TestCalculate:
         assert result.run is req.run
         assert result.run is not None
         assert result.run.run_id == "2026-01-regular"
+
+    def test_bundle_version_propagated_to_result(self) -> None:
+        """PayrollEngine.calculate sets bundle_version on the result."""
+        engine = PayrollEngine.bundled()
+        result = engine.calculate(_payroll_request())
+        assert result.bundle_version == __version__
 
     def test_ivs_ceiling_not_applies_accepted(self) -> None:
         """employment_facts with ceiling_status=NOT_APPLICABLE is accepted by engine."""

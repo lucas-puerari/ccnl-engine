@@ -218,3 +218,4 @@ class PeriodCalculationResult:
     benefit_breakdown: BenefitBreakdown
     run: PayrollRun | None = None
     unpaid_absence_deduction: Decimal = Decimal(0)
+    bundle_version: str | None = None
