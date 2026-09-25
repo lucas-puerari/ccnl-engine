@@ -6,14 +6,14 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._event_handlers import (
+from ccnl_engine.payroll.application._event_items import _check_event_date
+from ccnl_engine.payroll.application._period_utils import _ZERO
+from ccnl_engine.payroll.application._posting_service import post as _post
+from ccnl_engine.payroll.application.handlers.registry import (
     _HANDLER_REGISTRY,
     EventEffect,
     _EventHandlerCtx,
 )
-from ccnl_engine.payroll.application._event_items import _check_event_date
-from ccnl_engine.payroll.application._period_utils import _ZERO
-from ccnl_engine.payroll.application._posting_service import post as _post
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import WorkEvent
 from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
