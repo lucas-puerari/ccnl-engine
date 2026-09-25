@@ -103,14 +103,6 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "_resolve_trattamento divides by remaining periods, not by 8. "
-        "D.L. 3/2020 art. 1 co. 3 requires eight equal installments when "
-        "recovery exceeds 60 EUR."
-    ),
-)
 def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     """Recovery of trattamento integrativo > 60 EUR must use eight equal installments.
 
@@ -119,11 +111,7 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     Scenario: nine months of credit recognized at ~100/month = 900 EUR total.
     In October a large bonus (20,000 EUR) pushes annual taxable above the 28,000
     threshold, so the annual entitlement drops to 0 and the full 900 EUR must be
-    recovered.  Three regular periods plus the tredicesima remain (remaining=4).
-
-    Current behaviour: recovery = 900 / 4 = 225 EUR in month 10.
-    Correct behaviour: recovery = 900 / 8 = 112.50 EUR in month 10 (first of 8
-    installments; remaining balance carries forward).
+    recovered in 8 equal installments of 112.50 EUR.
     """
     opening = PeriodState(
         regular_periods_closed=9,
@@ -153,27 +141,18 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     recovery = _sum_account(result, AccountKind.CREDITS)
     installment = Decimal("900.00") / 8
     assert recovery == -installment, (
-        f"First recovery installment must be -900/8 = -{installment}; "
-        f"got {recovery}.  Current engine uses remaining={4} → -900/4 = -225."
+        f"First recovery installment must be -900/8 = -{installment}; got {recovery}."
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "Recovery < 60 EUR is split over remaining periods rather than taken "
-        "in a single deduction as required by D.L. 3/2020 art. 1 co. 3."
-    ),
-)
 def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
-    """Recovery of trattamento integrativo ≤ 60 EUR must be taken in a single period.
+    """Recovery of trattamento integrativo <= 60 EUR must be taken in a single period.
 
     Source: D.L. 3/2020, art. 1 comma 3 — only amounts > 60 EUR trigger the
     eight-installment plan; smaller amounts must be recovered in one shot.
 
     Scenario: 50 EUR of credit recognized across 9 months, income rises above
-    threshold in October.  Recovery = 50 EUR (≤ 60): must be deducted fully in
-    month 10, not split over remaining periods.
+    threshold in October.  Recovery = 50 EUR (<= 60): deducted fully in month 10.
     """
     opening = PeriodState(
         regular_periods_closed=9,

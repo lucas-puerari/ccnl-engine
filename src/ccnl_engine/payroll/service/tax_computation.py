@@ -18,6 +18,9 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
 _ZERO = Decimal(0)
+# D.L. 3/2020 art. 1 co. 3: recovery exceeding 60 EUR uses 8 equal installments.
+_RECOVERY_INSTALLMENT_THRESHOLD = Decimal(60)
+_RECOVERY_INSTALLMENTS = Decimal(8)
 
 
 def _resolve_trattamento(
@@ -29,6 +32,10 @@ def _resolve_trattamento(
     remaining: int,
 ) -> tuple[Decimal, TaxLineItem | None]:
     """Compute the per-period trattamento integrativo via conguaglio.
+
+    When the worker owes back a credit (tratt_due < 0) the recovery is split
+    into eight equal installments if the amount exceeds 60 EUR, or taken in
+    one period otherwise (D.L. 3/2020 art. 1 co. 3).
 
     Returns:
         ``(period_tratt, component)`` where ``component`` is a
@@ -42,7 +49,16 @@ def _resolve_trattamento(
         taxable, irpef_gross, work_deduction, work_deduction, tratt_rules
     )
     tratt_due = annual_tratt - opening_tratt_ytd
-    period_tratt = money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
+    if tratt_due >= _ZERO:
+        period_tratt = (
+            money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
+        )
+    else:
+        recovery = -tratt_due
+        if recovery <= _RECOVERY_INSTALLMENT_THRESHOLD:
+            period_tratt = -money(recovery)
+        else:
+            period_tratt = -money(recovery / _RECOVERY_INSTALLMENTS)
     component = (
         TaxLineItem(
             name="trattamento_integrativo",
