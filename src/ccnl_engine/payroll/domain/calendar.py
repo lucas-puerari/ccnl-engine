@@ -95,16 +95,24 @@ class WorkCalendar:
         if self.year < 1970:
             msg = f"WorkCalendar.year must be >= 1970; got {self.year}"
             raise ValueError(msg)
-        seen: set[tuple[ExtraMonthKind, int]] = set()
+        seen_kinds: set[ExtraMonthKind] = set()
         for sched in self.extra_months:
-            key = (sched.kind, sched.payment_month)
-            if key in seen:
+            if sched.kind in seen_kinds:
                 msg = (
-                    f"duplicate extra-month schedule "
-                    f"'{sched.name}' in month {sched.payment_month}"
+                    f"duplicate extra-month kind {sched.kind.value!r}: "
+                    f"each ExtraMonthKind may appear at most once"
                 )
                 raise ValueError(msg)
-            seen.add(key)
+            seen_kinds.add(sched.kind)
+        if (
+            ExtraMonthKind.FOURTEENTH in seen_kinds
+            and ExtraMonthKind.THIRTEENTH not in seen_kinds
+        ):
+            msg = (
+                "a fourteenth month requires a thirteenth month: "
+                "add ExtraMonthKind.THIRTEENTH to the calendar first"
+            )
+            raise ValueError(msg)
 
     @classmethod
     def from_additional_months(
