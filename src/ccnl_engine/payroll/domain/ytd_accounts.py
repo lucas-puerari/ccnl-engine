@@ -106,6 +106,19 @@ class TrattamentoAccount:
     recovered: Decimal = _ZERO
     plan: RecoveryPlan | None = field(default=None)
 
+    def __post_init__(self) -> None:
+        """Validate that recovered credit does not exceed recognized credit.
+
+        Raises:
+            ValueError: When ``recovered > recognized``.
+        """
+        if self.recovered > self.recognized:
+            msg = (
+                f"TrattamentoAccount.recovered ({self.recovered}) "
+                f"must be <= recognized ({self.recognized})"
+            )
+            raise ValueError(msg)
+
 
 @dataclass(frozen=True)
 class SommaEsenteAccount:

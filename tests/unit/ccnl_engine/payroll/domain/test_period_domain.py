@@ -145,6 +145,34 @@ class TestPeriodState:
         with pytest.raises(ValueError, match="taxed"):
             FringeYtd(value=Decimal("100.00"), taxed=Decimal("200.00"))
 
+    def test_regular_periods_exceeds_twelve_raises(self) -> None:
+        """regular_periods_closed > 12 raises ValueError."""
+        with pytest.raises(ValueError, match="regular_periods_closed"):
+            PeriodState(regular_periods_closed=13, tax_withholding_periods_closed=13)
+
+    def test_tax_withholding_exceeds_fourteen_raises(self) -> None:
+        """tax_withholding_periods_closed > 14 raises ValueError."""
+        with pytest.raises(ValueError, match="tax_withholding_periods_closed"):
+            PeriodState(regular_periods_closed=12, tax_withholding_periods_closed=15)
+
+    def test_schema_version_is_one(self) -> None:
+        """PeriodState.SCHEMA_VERSION is 1."""
+        assert PeriodState.SCHEMA_VERSION == 1
+
+    def test_tax_year_defaults_to_none(self) -> None:
+        """tax_year defaults to None on manual construction."""
+        assert PeriodState.zero().tax_year is None
+
+    def test_tax_year_stored(self) -> None:
+        """tax_year is stored when explicitly set."""
+        s = PeriodState(tax_year=2026)
+        assert s.tax_year == 2026
+
+    def test_tax_year_below_2020_raises(self) -> None:
+        """tax_year < 2020 raises ValueError."""
+        with pytest.raises(ValueError, match="tax_year"):
+            PeriodState(tax_year=2019)
+
 
 class TestPeriodCalculationRequest:
     """PeriodCalculationRequest stores period, CCNL reference, and YTD state."""
@@ -157,14 +185,14 @@ class TestPeriodCalculationRequest:
             tax=TaxYtd(irpef=Decimal("1000.00")),
         )
         req = PeriodCalculationRequest(
-            period_id=_PERIOD,
-            payment_date=_DATE,
+            period_id=PeriodId(year=2026, month=6),
+            payment_date=date(2026, 6, 28),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
             opening_state=state,
         )
-        assert req.period_id is _PERIOD
-        assert req.payment_date == _DATE
+        assert req.period_id == PeriodId(year=2026, month=6)
+        assert req.payment_date == date(2026, 6, 28)
         assert req.ccnl_slug == _CCNL
         assert req.level_code == _LEVEL
         assert req.opening_state is state
@@ -199,6 +227,49 @@ class TestPeriodCalculationRequest:
         )
         with pytest.raises(AttributeError):
             req.level_code = "B2"  # type: ignore[misc]
+
+    def test_year_guard_raises_when_tax_year_mismatch(self) -> None:
+        """opening_state.tax_year != period_id.year raises ValueError."""
+        prior_year_state = PeriodState(
+            tax_year=2025,
+            regular_periods_closed=12,
+            tax_withholding_periods_closed=12,
+        )
+        with pytest.raises(ValueError, match=r"opening_state\.tax_year"):
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=1),
+                payment_date=date(2026, 1, 31),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+                opening_state=prior_year_state,
+            )
+
+    def test_year_guard_passes_when_tax_year_none(self) -> None:
+        """Manually constructed state with tax_year=None bypasses the year guard."""
+        req = PeriodCalculationRequest(
+            period_id=_PERIOD,
+            payment_date=_DATE,
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=PeriodState.zero(),
+        )
+        assert req.opening_state.tax_year is None
+
+    def test_year_guard_passes_when_tax_year_matches(self) -> None:
+        """opening_state.tax_year == period_id.year is accepted."""
+        current_state = PeriodState(
+            tax_year=2026,
+            regular_periods_closed=5,
+            tax_withholding_periods_closed=5,
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=6),
+            payment_date=date(2026, 6, 28),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=current_state,
+        )
+        assert req.opening_state.tax_year == 2026
 
 
 class TestPeriodCalculationResult:

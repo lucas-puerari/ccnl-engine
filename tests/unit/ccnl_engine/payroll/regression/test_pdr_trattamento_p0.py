@@ -13,8 +13,8 @@ T04 — Trattamento integrativo: no over-recovery across a full year.
     credit_recovered_ytd must never exceed credit_recognized_ytd.
     Source: D.L. 3/2020 art. 1 co. 3.
 
-T-I16 — I16 invariant: reconcile detects a closing state where
-    credit_recovered_ytd > credit_recognized_ytd.
+T-I16 — TrattamentoAccount invariant: recovered > recognized raises ValueError
+    at construction, preventing the invalid state from being representable.
 """
 
 from __future__ import annotations
@@ -22,11 +22,10 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.reconcile import (
-    ReconciliationResult,
-    reconcile,
-)
+from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
@@ -248,54 +247,28 @@ class TestT04TrattamentoNoOverRecovery:
 
 
 class TestI16ReconciliationInvariant:
-    """I16: reconcile must detect credit_recovered_ytd > credit_recognized_ytd."""
+    """TrattamentoAccount.recovered must never exceed recognized."""
 
-    def test_i16_fires_on_over_recovery(self) -> None:
-        """A closing state with recovered > recognized must trigger I16."""
-        opening = PeriodState(
-            regular_periods_closed=1,
-            tax_withholding_periods_closed=1,
-            trattamento=TrattamentoAccount(
-                recognized=Decimal("92.31"),
-                recovered=Decimal("0.00"),
-            ),
-        )
-        # Build a minimal result whose closing state violates the invariant.
-        req = _req_portieri(2, opening=opening)
-        result = calculate_period(req)
-        cs = result.closing_state
-        # Manually inject an invalid closing state.
-        bad_closing = PeriodState(
-            regular_periods_closed=cs.regular_periods_closed,
-            tax_withholding_periods_closed=cs.tax_withholding_periods_closed,
-            closed_run_ids=cs.closed_run_ids,
-            earnings=cs.earnings,
-            fringe=cs.fringe,
-            tax=cs.tax,
-            trattamento=TrattamentoAccount(
+    def test_over_recovery_raises_at_construction(self) -> None:
+        """TrattamentoAccount raises when recovered > recognized."""
+        with pytest.raises(ValueError, match="recovered"):
+            TrattamentoAccount(
                 recognized=Decimal("50.00"),
-                recovered=Decimal("100.00"),  # violates I16
-            ),
-            somma_esente=cs.somma_esente,
+                recovered=Decimal("100.00"),
+            )
+
+    def test_equal_recovered_and_recognized_accepted(self) -> None:
+        """TrattamentoAccount accepts recovered == recognized (full recovery)."""
+        acc = TrattamentoAccount(
+            recognized=Decimal("92.31"),
+            recovered=Decimal("92.31"),
         )
-        bad_result = type(result)(
-            period_id=result.period_id,
-            payment_date=result.payment_date,
-            period_gross=result.period_gross,
-            period_net=result.period_net,
-            period_employer_cost=result.period_employer_cost,
-            closing_state=bad_closing,
-            pay_items=result.pay_items,
-            ledger_entries=result.ledger_entries,
-            capability_report=result.capability_report,
-            contribution_breakdown=result.contribution_breakdown,
-            tax_computation=result.tax_computation,
-            benefit_breakdown=result.benefit_breakdown,
-            run=result.run,
+        assert acc.recovered == acc.recognized
+
+    def test_zero_recovered_accepted(self) -> None:
+        """TrattamentoAccount accepts recovered == 0 (no recovery yet)."""
+        acc = TrattamentoAccount(
+            recognized=Decimal("92.31"),
+            recovered=Decimal("0.00"),
         )
-        rec: ReconciliationResult = reconcile(bad_result, opening)
-        i16_ids = [v.invariant_id for v in rec.violations]
-        assert "I16" in i16_ids, (
-            f"Expected I16 violation for recovered=100 > recognized=50; "
-            f"got violations: {rec.violations}"
-        )
+        assert acc.recovered == Decimal("0.00")
