@@ -139,7 +139,17 @@ def calculate_period(
     )
     capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
     additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
-    chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
+    chain = _resolve_chain(
+        ccnl,
+        level,
+        request.contract_type,
+        as_of,
+        seniority_months=request.seniority_months,
+        roles=request.roles,
+        worker_category=None,
+        weekly_hours=request.weekly_hours,
+        full_time_weekly_hours=request.full_time_weekly_hours,
+    )
     run_kind = request.run.run_kind if request.run is not None else "regular"
     run_id = _resolve_run_id(request, period_year)
     chain = _apply_extra_month_policy(
