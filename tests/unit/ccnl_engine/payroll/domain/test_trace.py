@@ -8,7 +8,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application._capability_traces import build_traces
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -27,6 +26,7 @@ from ccnl_engine.payroll.domain.events import (
 )
 from ccnl_engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 

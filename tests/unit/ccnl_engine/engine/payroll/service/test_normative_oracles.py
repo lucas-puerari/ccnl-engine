@@ -26,30 +26,30 @@ import pytest
 if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
 
-from ccnl_engine.engine.payroll.domain.family import (
-    Dependent,
-    DependentRelationship,
-    FamilyComposition,
-)
-from ccnl_engine.engine.payroll.service.family_deductions import (
-    _children_deduction,
-    _spouse_deduction,
-    compute_family_deductions,
-)
-from ccnl_engine.engine.payroll.service.irpef import (
-    irpef_gross,
-    surtax_from_brackets,
-    trattamento_integrativo,
-    ulteriore_detrazione_lavoro,
-    work_income_deduction,
-)
-from ccnl_engine.engine.payroll.service.rounding import money
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
 from ccnl_engine.engine.tax.domain.rules import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
 from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
+from ccnl_engine.payroll.service.family_deductions import (
+    _children_deduction,
+    _spouse_deduction,
+    compute_family_deductions,
+)
+from ccnl_engine.payroll.service.irpef import (
+    irpef_gross,
+    surtax_from_brackets,
+    trattamento_integrativo,
+    ulteriore_detrazione_lavoro,
+    work_income_deduction,
+)
+from ccnl_engine.payroll.service.rounding import money
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------

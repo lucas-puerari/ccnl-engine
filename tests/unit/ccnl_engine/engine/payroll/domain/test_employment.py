@@ -3,7 +3,7 @@
 import pytest
 from pydantic import TypeAdapter, ValidationError
 
-from ccnl_engine.engine.payroll.domain.employment import (
+from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     Contract,
     FixedTerm,

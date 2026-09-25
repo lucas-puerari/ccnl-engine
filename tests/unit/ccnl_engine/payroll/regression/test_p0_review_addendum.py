@@ -31,8 +31,6 @@ from ccnl_engine.engine.errors import (
     InvalidInputError,
     MissingRequiredFactError,
 )
-from ccnl_engine.engine.payroll.domain.employment import FixedTerm, Permanent
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import (
@@ -41,6 +39,7 @@ from ccnl_engine.payroll.domain.calendar import (
     WorkCalendar,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BilateralFundEvent,
@@ -51,6 +50,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

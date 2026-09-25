@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.knowledge import __version__
 from ccnl_engine.payroll.application.calculate_period import (
     calculate_period as _calculate_period,
@@ -16,6 +15,7 @@ from ccnl_engine.payroll.application.calculate_year import (
     calculate_year as _calculate_year,
 )
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyResolver
 
 if TYPE_CHECKING:

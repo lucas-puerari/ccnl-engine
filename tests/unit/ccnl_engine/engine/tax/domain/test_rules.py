@@ -12,11 +12,6 @@ from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.payroll.service.contributions import (
-    apprentice_employer_rate,
-    inps_employer_rate,
-    resolve_domestic_inps_rate,
-)
 from ccnl_engine.engine.primitives import Bracket
 from ccnl_engine.engine.tax.domain.rules import (
     ApprenticeRates,
@@ -41,6 +36,11 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_year_rules,
     read_inps_rules_raw,
     read_tax_rules_raw,
+)
+from ccnl_engine.payroll.service.contributions import (
+    apprentice_employer_rate,
+    inps_employer_rate,
+    resolve_domestic_inps_rate,
 )
 from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,

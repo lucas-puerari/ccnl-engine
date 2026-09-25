@@ -5,7 +5,7 @@ from decimal import Decimal
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.payroll.service.seniority import seniority_maximum
+from ccnl_engine.payroll.service.seniority import seniority_maximum
 
 
 class TestLoadEnergiaPetrolioConfindustria:

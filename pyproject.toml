@@ -85,8 +85,8 @@ ignore = [
 # C901: __post_init__ validates multiple sick-leave constraints in sequence.
 "src/ccnl_engine/payroll/domain/sickness.py" = ["C901"]
 # Examples and demo: print is intentional, late imports are illustrative, line length is secondary.
-"docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010"]
-"demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001"]
+"docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "D100"]
+"demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001", "ARG", "F841", "C901", "TRY301", "SIM102", "PLR6201", "DOC501", "DOC502", "PLW0717"]
 # Doc tooling: not a package (INP001); scripts print progress (T201).
 "docs/*.py" = ["INP001"]
 "scripts/**/*.py" = ["INP001", "T201"]
@@ -239,5 +239,5 @@ process_isolation = "fork"
 # ---------------------------------------------------------------------------
 [tool.complexipy]
 max-complexity-allowed = 15
-exclude = [".venv", "venv", "build", "dist"]
+exclude = [".venv", "venv", "build", "dist", "demo"]
 failed = true

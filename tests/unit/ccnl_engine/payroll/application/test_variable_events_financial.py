@@ -8,13 +8,6 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.engine.payroll.domain.family import (
-    Dependent,
-    DependentRelationship,
-    FamilyComposition,
-)
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.events import (
@@ -22,11 +15,18 @@ from ccnl_engine.payroll.domain.events import (
     BilateralFundEvent,
     TerminationTFREvent,
 )
+from ccnl_engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
+from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

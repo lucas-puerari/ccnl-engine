@@ -9,12 +9,6 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.capability_catalog import CapabilityReport
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.engine.payroll.domain.pay_items import (
-    BaseSalaryEarning,
-    CompetencePeriod,
-)
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import (
     ReconciliationResult,
@@ -23,11 +17,17 @@ from ccnl_engine.payroll.application.reconcile import (
 )
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.pay_items import (
+    BaseSalaryEarning,
+    CompetencePeriod,
+)
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _CCNL = "metalmeccanico-federmeccanica.json"

@@ -96,21 +96,16 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 
 | Type | What it describes |
 |---|---|
-| `AnnualEstimateInput` | Structural scenario: employee + employment (no period events) |
-| `PeriodPayrollInput` | Period-specific events: overtime, absences, benefits (passed to `estimate_period_effects`) |
-| `Employee` | The worker: level code, seniority, part-time, jurisdiction, agreement |
-| `Employment` | CCNL file, contract type, employer, reference date (`as_of`) |
-| `Employer` | Headcount tier, second-level allowances |
-| `OvertimeHours` | Weekday/night/holiday overtime hours (L3, informational); attach `WeeklyOvertimeHours` entries for CCNLs with per-week band thresholds |
-| `WeeklyOvertimeHours` | Per-calendar-week hours used to partition tiered overtime bands accurately |
-| `AbsenceDays` | Unpaid absence days in the period (L3, informational) |
-| `LeaveInput` | Leave days consumed (L3, informational) |
-| `SickInput` | Sick-leave calendar days (L3, informational) |
-| `FringeBenefitInput` | Fringe-benefit annual amount and threshold flag (L3, informational) |
-| `WelfareInput` | Welfare annual amount (L3, informational) |
-| `BonusInput` | Annual bonus and PdR eligibility (L3, informational) |
-| `FamilyComposition` | Dependent spouse/children (Art. 12 TUIR; mutates net_annual) |
-| `Art15Deductions` | Mortgage-interest deduction (Art. 15 TUIR; mutates net_annual) |
+| `PayrollRequest` | Full period request: run, payment date, CCNL slug, level, employment facts, events |
+| `EmploymentFacts` | Contract shape: type, headcount, hours, seniority, ceiling status |
+| `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
+| `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
+| `OvertimeEvent` | Overtime hours for a specific date |
+| `AbsenceEvent` | Unpaid absence days in the period |
+| `SickLeaveEvent` | Sick-leave calendar days |
+| `FringeEvent` | Fringe-benefit value and threshold flag |
+| `WelfareEvent` | Welfare benefit annual amount |
+| `BonusEvent` | PdR bonus amount and eligibility |
 
 Full type reference: [API: Engine](../api/engine.md).
 
@@ -119,12 +114,14 @@ Full type reference: [API: Engine](../api/engine.md).
 The result contains every gross, net, and cost component. Key fields:
 
 ```python
-result.gross_monthly  # total monthly gross (base + seniority + allowances)
-result.net_annual  # annual net after INPS, IRPEF, surtax
-result.employer_cost_annual  # total annual employer cost
-result.confidence  # "low" | "medium" | "high"
-result.calculation_scope  # list of ScopeItem(feature, status)
-result.warnings  # active gaps the caller must know
+result.period_gross         # gross entitlement for the period (before absence deductions)
+result.period_net           # net pay for this period
+result.period_employer_cost # total employer cost (gross + contributions + TFR accrual)
+result.unpaid_absence_deduction  # wages withheld for unpaid absences
+result.closing_state        # YTD state — pass as opening_state for the next period
+result.pay_items            # all pay items produced
+result.ledger_entries       # full accounting ledger
+result.capability_report    # feature support and confidence for this CCNL
 ```
 
 See [Trust: Confidence](../trust/confidence.md) for how the three-tier

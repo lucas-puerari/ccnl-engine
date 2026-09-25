@@ -4,20 +4,20 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.payroll.domain.employment import (
+from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
+from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
     Permanent,
 )
-from ccnl_engine.engine.payroll.service.contributions import (
+from ccnl_engine.payroll.service.contributions import (
     inps_contribution,
     inps_employee_additional,
     resolve_contributions,
     resolve_rates,
     tfr,
 )
-from ccnl_engine.engine.payroll.service.rounding import money
-from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
+from ccnl_engine.payroll.service.rounding import money
 from tests.helpers import make_domestic_year_rules, make_year_rules
 
 _D = Decimal

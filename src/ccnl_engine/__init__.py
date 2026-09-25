@@ -3,20 +3,18 @@
 Public API
 ----------
 The single entry point is :class:`PayrollEngine`.  Construct it with
-:meth:`~PayrollEngine.from_builtin_data` and call
+:meth:`~PayrollEngine.bundled` and call
 :meth:`~PayrollEngine.calculate` for a single cedolino or
 :meth:`~PayrollEngine.calculate_year` for a full-year run.
 
 All types needed to call it and inspect its results are re-exported from
-this module.  Internal types (legacy scenario domain, rendering utilities,
-JSON schema helpers, bundle loaders) are available from their respective
-sub-namespaces and are not part of the stable public API.
+this module.
 
 Usage::
 
     from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
 
-    engine = PayrollEngine.from_builtin_data()
+    engine = PayrollEngine.bundled()
     result = engine.calculate(PayrollRequest(
         run=PayrollRun.regular(2026, 1),
         payment_date=date(2026, 1, 28),
@@ -54,59 +52,22 @@ from ccnl_engine.engine.errors import (
     UnknownCcnlError,
     UnknownLevelError,
 )
-from ccnl_engine.engine.payroll.domain.annual_input import AnnualEstimateInput
-from ccnl_engine.engine.payroll.domain.art15 import Art15Deductions
-from ccnl_engine.engine.payroll.domain.bilateral_funds import FlatMonthlyFund, RateFund
-from ccnl_engine.engine.payroll.domain.employee import (
-    Agreement,
-    DestinationRalOverride,
-    Employee,
-    Jurisdiction,
-    RalOverride,
-    SeniorityByCount,
-    SeniorityByDate,
-    SeniorityByMonths,
-)
-from ccnl_engine.engine.payroll.domain.employer import Employer
-from ccnl_engine.engine.payroll.domain.employment import (
-    Apprentice,
-    Employment,
-    FixedTerm,
-    Permanent,
-)
-from ccnl_engine.engine.payroll.domain.family import (
-    Dependent,
-    DependentRelationship,
-    FamilyComposition,
-)
-from ccnl_engine.engine.payroll.domain.fiscal import FiscalSimplification
-from ccnl_engine.engine.payroll.domain.period_input import PeriodPayrollInput
-from ccnl_engine.engine.payroll.domain.supplements import (
-    AbsenceDays,
-    BonusInput,
-    FringeBenefitInput,
-    LeaveInput,
-    OvertimeHours,
-    SickInput,
-    WeeklyOvertimeHours,
-    WelfareInput,
-)
-from ccnl_engine.engine.payroll.domain.tax_basis import TaxPeriod
 from ccnl_engine.payroll.application.calculate_year import (
     YearCalculationResult as PayrollYearResult,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
+from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
-    "AbsenceDays",
-    "Agreement",
-    "AnnualEstimateInput",
     "Apprentice",
-    "Art15Deductions",
-    "BonusInput",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",
@@ -117,21 +78,11 @@ __all__ = [
     "DataIntegrityError",
     "Dependent",
     "DependentRelationship",
-    "DestinationRalOverride",
-    "Employee",
-    "Employer",
-    "Employment",
     "EmploymentFacts",
     "FamilyComposition",
-    "FiscalSimplification",
     "FixedTerm",
-    "FlatMonthlyFund",
-    "FringeBenefitInput",
     "InvalidInputError",
-    "Jurisdiction",
-    "LeaveInput",
     "OutOfScopeError",
-    "OvertimeHours",
     "PayrollCalendar",
     "PayrollEngine",
     "PayrollRequest",
@@ -140,20 +91,10 @@ __all__ = [
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",
-    "PeriodPayrollInput",
     "Permanent",
-    "RalOverride",
-    "RateFund",
-    "SeniorityByCount",
-    "SeniorityByDate",
-    "SeniorityByMonths",
-    "SickInput",
     "SupplementaryAllowance",
-    "TaxPeriod",
     "UnknownCcnlError",
     "UnknownLevelError",
-    "WeeklyOvertimeHours",
-    "WelfareInput",
     "engine_version",
     "get_ccnl",
     "list_ccnls",

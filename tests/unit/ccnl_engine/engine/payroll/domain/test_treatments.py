@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import ccnl_engine.engine.payroll.domain.pay_items as _pay_items
-from ccnl_engine.engine.payroll.domain.treatments import (
+import ccnl_engine.payroll.domain.pay_items as _pay_items
+from ccnl_engine.payroll.domain.treatments import (
     ContributionTreatment,
     CostTreatment,
     TaxTreatment,

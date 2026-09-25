@@ -10,15 +10,6 @@ Every branch is tested: zero/negative income, each statutory band boundary,
 from decimal import Decimal
 from typing import Any
 
-from ccnl_engine.engine.payroll.service.irpef import (
-    apply_sterilizzazione_detrazioni,
-    irpef_gross,
-    somma_esente,
-    surtax_from_brackets,
-    trattamento_integrativo,
-    ulteriore_detrazione_lavoro,
-    work_income_deduction,
-)
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
 from ccnl_engine.engine.tax.domain.rules import (
     SommaEsenteBand,
@@ -27,6 +18,15 @@ from ccnl_engine.engine.tax.domain.rules import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
     YearRules,
+)
+from ccnl_engine.payroll.service.irpef import (
+    apply_sterilizzazione_detrazioni,
+    irpef_gross,
+    somma_esente,
+    surtax_from_brackets,
+    trattamento_integrativo,
+    ulteriore_detrazione_lavoro,
+    work_income_deduction,
 )
 from tests.helpers import make_year_rules
 

@@ -8,12 +8,14 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.payroll.domain.family import (
+from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
+from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.engine.payroll.service.family_deductions import (
+from ccnl_engine.payroll.service.family_deductions import (
     _child_is_eligible,
     _children_deduction,
     _deduction_from_breakpoints,
@@ -22,9 +24,7 @@ from ccnl_engine.engine.payroll.service.family_deductions import (
     _spouse_deduction,
     compute_family_deductions,
 )
-from ccnl_engine.engine.payroll.service.rounding import money
-from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
-from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.payroll.service.rounding import money
 
 _RULES = load_family_deduction_rules(2026)
 _D = Decimal
