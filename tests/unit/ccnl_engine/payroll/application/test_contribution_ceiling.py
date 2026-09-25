@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -80,7 +81,7 @@ class TestIvsCeilingApplies:
         opening = PeriodState(
             regular_periods_closed=10,
             tax_withholding_periods_closed=10,
-            inps_base_ytd=Decimal("121000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("121000.00")),
         )
         r_capped = calculate_period(
             _req(month=11, opening=opening, ceiling_status=_POST_1995)
@@ -99,7 +100,7 @@ class TestIvsCeilingApplies:
         opening = PeriodState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=11,
-            inps_base_ytd=Decimal("130000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("130000.00")),
         )
         r_capped = calculate_period(
             _req(month=12, opening=opening, ceiling_status=_POST_1995)
@@ -129,7 +130,7 @@ class TestMassimaleThreshold:
         opening = PeriodState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=11,
-            inps_base_ytd=_MASSIMALE + Decimal("1000.00"),
+            earnings=EarningsYtd(inps_base=_MASSIMALE + Decimal("1000.00")),
         )
         result = calculate_period(
             _req(month=12, opening=opening, ceiling_status=_POST_1995)
@@ -142,7 +143,7 @@ class TestMassimaleThreshold:
         opening = PeriodState(
             regular_periods_closed=10,
             tax_withholding_periods_closed=10,
-            inps_base_ytd=Decimal("121000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("121000.00")),
         )
         r_capped = calculate_period(
             _req(month=11, opening=opening, ceiling_status=_POST_1995)
@@ -165,7 +166,7 @@ class TestMassimaleThreshold:
         opening = PeriodState(
             regular_periods_closed=10,
             tax_withholding_periods_closed=10,
-            inps_base_ytd=_MASSIMALE - headroom,
+            earnings=EarningsYtd(inps_base=_MASSIMALE - headroom),
         )
         r_capped = calculate_period(
             _req(month=11, opening=opening, ceiling_status=_POST_1995)
@@ -205,7 +206,7 @@ class TestAddizionale1Pct:
         opening = PeriodState(
             regular_periods_closed=5,
             tax_withholding_periods_closed=5,
-            inps_base_ytd=Decimal("55000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("55000.00")),
         )
         result = calculate_period(
             _req(month=6, opening=opening, ceiling_status=_POST_1995)
@@ -218,7 +219,7 @@ class TestAddizionale1Pct:
         opening = PeriodState(
             regular_periods_closed=6,
             tax_withholding_periods_closed=6,
-            inps_base_ytd=Decimal("70000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("70000.00")),
         )
         result = calculate_period(
             _req(month=7, opening=opening, ceiling_status=_POST_1995)
@@ -234,7 +235,7 @@ class TestAddizionale1Pct:
         opening = PeriodState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=11,
-            inps_base_ytd=Decimal("130000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("130000.00")),
         )
         result = calculate_period(
             _req(month=12, opening=opening, ceiling_status=_POST_1995)
@@ -247,7 +248,7 @@ class TestAddizionale1Pct:
         opening = PeriodState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=11,
-            inps_base_ytd=Decimal("125000.00"),
+            earnings=EarningsYtd(inps_base=Decimal("125000.00")),
         )
         r_uncapped = calculate_period(
             _req(month=12, opening=opening, ceiling_status=_NOT_APPLICABLE)
@@ -260,7 +261,7 @@ class TestAddizionale1Pct:
         opening = PeriodState(
             regular_periods_closed=5,
             tax_withholding_periods_closed=5,
-            inps_base_ytd=Decimal("55900.00"),
+            earnings=EarningsYtd(inps_base=Decimal("55900.00")),
         )
         result = calculate_period(
             _req(month=6, opening=opening, ceiling_status=_POST_1995)

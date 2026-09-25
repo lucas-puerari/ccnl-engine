@@ -72,26 +72,28 @@ def check_i11(
             )
         )
 
-    expected_gross = opening.gross_ytd + _sum_account(result, AccountKind.CASH_EARNINGS)
-    if result.closing_state.gross_ytd != expected_gross:
+    expected_gross = (
+        opening.earnings.gross + _sum_account(result, AccountKind.CASH_EARNINGS)
+    )
+    if result.closing_state.earnings.gross != expected_gross:
         violations.append(
             ReconciliationViolation(
                 invariant_id="I11",
                 message="gross_ytd not correctly accumulated from ledger",
                 expected=expected_gross,
-                actual=result.closing_state.gross_ytd,
+                actual=result.closing_state.earnings.gross,
             )
         )
-    expected_inps = opening.inps_employee_ytd + _sum_account(
+    expected_inps = opening.earnings.inps_employee + _sum_account(
         result, AccountKind.EMPLOYEE_CONTRIBUTIONS
     )
-    if result.closing_state.inps_employee_ytd != expected_inps:
+    if result.closing_state.earnings.inps_employee != expected_inps:
         violations.append(
             ReconciliationViolation(
                 invariant_id="I11",
                 message="inps_employee_ytd not correctly accumulated from ledger",
                 expected=expected_inps,
-                actual=result.closing_state.inps_employee_ytd,
+                actual=result.closing_state.earnings.inps_employee,
             )
         )
     return violations
@@ -105,8 +107,8 @@ def check_i16(
     Returns:
         A violation when the constraint is breached.
     """
-    recovered = result.closing_state.credit_recovered_ytd
-    recognized = result.closing_state.credit_recognized_ytd
+    recovered = result.closing_state.trattamento.recovered
+    recognized = result.closing_state.trattamento.recognized
     if recovered < _ZERO or recovered > recognized:
         return [
             ReconciliationViolation(

@@ -397,6 +397,6 @@ def test_ytd_state_carries_irpef_forward() -> None:
             opening_state=jan.closing_state,
         )
     )
-    assert jan.closing_state.irpef_withheld_ytd > Decimal(0)
-    assert feb.closing_state.irpef_withheld_ytd > jan.closing_state.irpef_withheld_ytd
+    assert jan.closing_state.tax.irpef > Decimal(0)
+    assert feb.closing_state.tax.irpef > jan.closing_state.tax.irpef
     assert feb.closing_state.regular_periods_closed == 2

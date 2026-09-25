@@ -287,7 +287,7 @@ def _compute_amounts(
             rules,
             contract_type,
             category,
-            ytd_inps_base=opening.inps_base_ytd,
+            ytd_inps_base=opening.earnings.inps_base,
             ivs_ceiling_applies=ivs_ceiling_applies,
         )
         rates = resolve_rates(rules, contract_type, category)
@@ -309,7 +309,7 @@ def _compute_amounts(
 
     # PdR eligibility must be resolved before taxable, because any excess beyond the
     # annual cap (L. 199/2025, comma 9) returns to the ordinary IRPEF base.
-    pdr_headroom = max(_ZERO, pdr_rules.max_amount - opening.pdr_ytd)
+    pdr_headroom = max(_ZERO, pdr_rules.max_amount - opening.fringe.pdr)
     pdr_eligible = min(event_substitute_base, pdr_headroom)
     pdr_excess = event_substitute_base - pdr_eligible
     period_substitute_tax = money(pdr_eligible * pdr_rules.flat_tax_rate)
@@ -323,7 +323,7 @@ def _compute_amounts(
     recurring_taxable = recurring_remaining - recurring_inps_remaining
     event_inps_on_irpef = money(event_inps_base * employee_rate_for_irpef)
     event_taxable = effective_irpef_base - event_inps_on_irpef
-    taxable = opening.taxable_ytd + recurring_taxable + event_taxable
+    taxable = opening.earnings.taxable + recurring_taxable + event_taxable
 
     if family_composition is not None and family_deduction_rules is not None:
         _, _, _, fam_ded = compute_family_deductions(
@@ -334,16 +334,16 @@ def _compute_amounts(
 
     # Net credit = recognized minus already recovered; prevents re-recovering credits
     # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
-    net_credit_ytd = opening.credit_recognized_ytd - opening.credit_recovered_ytd
+    net_credit_ytd = opening.trattamento.recognized - opening.trattamento.recovered
     tax_comp, next_recovery_plan = resolve_tax_computation(
         taxable,
         rules,
-        opening_irpef_withheld=opening.irpef_withheld_ytd,
+        opening_irpef_withheld=opening.tax.irpef,
         opening_tratt_ytd=net_credit_ytd,
         months_closed=opening.tax_withholding_periods_closed,
         additional_months=additional_months,
         family_deductions=fam_ded,
-        recovery_plan=opening.recovery_plan,
+        recovery_plan=opening.trattamento.plan,
     )
     period_irpef = tax_comp.ordinary_tax
     period_tratt = tax_comp.trattamento_integrativo

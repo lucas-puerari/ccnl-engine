@@ -32,6 +32,11 @@ from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    TaxYtd,
+    TrattamentoAccount,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -100,12 +105,13 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     opening = PeriodState(
         regular_periods_closed=9,
         tax_withholding_periods_closed=9,
-        credit_recognized_ytd=Decimal("900.00"),
-        credit_recovered_ytd=Decimal(0),
-        gross_ytd=Decimal("20000.00"),
-        taxable_ytd=Decimal("18000.00"),
-        inps_base_ytd=Decimal("20000.00"),
-        irpef_withheld_ytd=Decimal("2000.00"),
+        trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
+        earnings=EarningsYtd(
+            gross=Decimal("20000.00"),
+            taxable=Decimal("18000.00"),
+            inps_base=Decimal("20000.00"),
+        ),
+        tax=TaxYtd(irpef=Decimal("2000.00")),
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),
@@ -141,12 +147,13 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
     opening = PeriodState(
         regular_periods_closed=9,
         tax_withholding_periods_closed=9,
-        credit_recognized_ytd=Decimal("50.00"),
-        credit_recovered_ytd=Decimal(0),
-        gross_ytd=Decimal("20000.00"),
-        taxable_ytd=Decimal("18000.00"),
-        inps_base_ytd=Decimal("20000.00"),
-        irpef_withheld_ytd=Decimal("2000.00"),
+        trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
+        earnings=EarningsYtd(
+            gross=Decimal("20000.00"),
+            taxable=Decimal("18000.00"),
+            inps_base=Decimal("20000.00"),
+        ),
+        tax=TaxYtd(irpef=Decimal("2000.00")),
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),

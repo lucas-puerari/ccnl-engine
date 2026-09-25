@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -51,7 +52,7 @@ def _req(
         opening_state=PeriodState(
             regular_periods_closed=regular_periods_closed,
             tax_withholding_periods_closed=regular_periods_closed,
-            irpef_withheld_ytd=irpef_ytd,
+            tax=TaxYtd(irpef=irpef_ytd),
         ),
     )
 
@@ -74,7 +75,7 @@ class TestReconcilePassesUnderHypothesis:
         self, month: int, irpef_ytd: Decimal
     ) -> None:
         """Any non-negative irpef_withheld_ytd opening value passes reconcile."""
-        opening = PeriodState(irpef_withheld_ytd=irpef_ytd)
+        opening = PeriodState(tax=TaxYtd(irpef=irpef_ytd))
         result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
         r = reconcile(result, opening)
         assert r.ok, f"Month {month}, ytd={irpef_ytd}: {r.violations}"
@@ -136,7 +137,7 @@ class TestSerializationLossless:
             for e in result.ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
-        assert result.closing_state.irpef_withheld_ytd == irpef_from_ledger
+        assert result.closing_state.tax.irpef == irpef_from_ledger
 
 
 class TestOpeningPlusMovementsEqualsClosing:
@@ -152,7 +153,7 @@ class TestOpeningPlusMovementsEqualsClosing:
         opening = PeriodState(
             regular_periods_closed=months_closed,
             tax_withholding_periods_closed=months_closed,
-            gross_ytd=opening_gross,
+            earnings=EarningsYtd(gross=opening_gross),
         )
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=month),
@@ -167,4 +168,4 @@ class TestOpeningPlusMovementsEqualsClosing:
             for e in result.ledger_entries
             if e.account == AccountKind.CASH_EARNINGS
         )
-        assert result.closing_state.gross_ytd == opening_gross + cash
+        assert result.closing_state.earnings.gross == opening_gross + cash

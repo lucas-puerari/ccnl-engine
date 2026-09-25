@@ -39,6 +39,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -87,7 +88,7 @@ def test_ce3_excess_ytd_produces_refund() -> None:
     high_ytd = PeriodState(
         regular_periods_closed=12,
         tax_withholding_periods_closed=12,
-        irpef_withheld_ytd=Decimal("5000.00"),
+        tax=TaxYtd(irpef=Decimal("5000.00")),
     )
     result = calculate_period(_req(month=12, opening=high_ytd))
 
@@ -219,21 +220,21 @@ def test_credit_recognized_in_january_recovered_in_february() -> None:
     # Period 1: January — B5 portieri baseline, no events
     result1 = calculate_period(_req_tratt(month=1))
     state1 = result1.closing_state
-    assert state1.credit_recognized_ytd > _ZERO, (
+    assert state1.trattamento.recognized > _ZERO, (
         "Trattamento integrativo must be recognized in January for B5 portieri "
         "income level (~15k EUR annual, terziario sector)"
     )
-    assert state1.credit_recovered_ytd == _ZERO
+    assert state1.trattamento.recovered == _ZERO
 
     # Period 2: February — large bonus pushes projected annual income above 28k EUR
     bonus = BonusEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("25000.00"))
     result2 = calculate_period(_req_tratt(month=2, opening=state1, events=(bonus,)))
     state2 = result2.closing_state
 
-    assert state2.credit_recognized_ytd == state1.credit_recognized_ytd, (
+    assert state2.trattamento.recognized == state1.trattamento.recognized, (
         "credit_recognized_ytd must not grow when period_tratt <= 0"
     )
-    assert state2.credit_recovered_ytd > _ZERO, (
+    assert state2.trattamento.recovered > _ZERO, (
         "Trattamento integrativo must be partially recovered in February "
         "when a 25,000 EUR bonus projects annual income far above 28k EUR"
     )

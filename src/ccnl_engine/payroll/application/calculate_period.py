@@ -58,6 +58,13 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    FringeYtd,
+    SommaEsenteAccount,
+    TaxYtd,
+    TrattamentoAccount,
+)
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -177,7 +184,7 @@ def calculate_period(
         as_of=as_of,
         ccnl_slug=request.ccnl_slug,
         sector=ccnl.meta.tax_sector,
-        gross_ytd=request.opening_state.gross_ytd,
+        gross_ytd=request.opening_state.earnings.gross,
         num_employees=request.num_employees,
     )
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
@@ -190,8 +197,8 @@ def calculate_period(
         effective_resolver,
         policy_context,
         fringe_threshold=fringe_threshold,
-        opening_fringe_ytd=request.opening_state.fringe_ytd,
-        opening_fringe_taxed=request.opening_state.fringe_taxed_ytd,
+        opening_fringe_ytd=request.opening_state.fringe.value,
+        opening_fringe_taxed=request.opening_state.fringe.taxed,
         pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
     )
 
@@ -308,39 +315,39 @@ def calculate_period(
     period_inps_base = monthly_gross + event_totals.inps_base
     regular_delta = 1 if run_kind == "regular" else 0
     tax_delta = 0 if run_kind == "adjustment" else 1
+    op = request.opening_state
     closing = PeriodState(
-        regular_periods_closed=(
-            request.opening_state.regular_periods_closed + regular_delta
-        ),
+        regular_periods_closed=op.regular_periods_closed + regular_delta,
         tax_withholding_periods_closed=(
-            request.opening_state.tax_withholding_periods_closed + tax_delta
+            op.tax_withholding_periods_closed + tax_delta
         ),
-        closed_run_ids=request.opening_state.closed_run_ids | {run_id},
-        irpef_withheld_ytd=(
-            request.opening_state.irpef_withheld_ytd + amounts.period_irpef
+        closed_run_ids=op.closed_run_ids | {run_id},
+        earnings=EarningsYtd(
+            gross=op.earnings.gross + period_gross,
+            inps_base=op.earnings.inps_base + period_inps_base,
+            taxable=op.earnings.taxable + amounts.period_taxable,
+            inps_employee=(
+                op.earnings.inps_employee
+                + _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
+            ),
         ),
-        inps_employee_ytd=(
-            request.opening_state.inps_employee_ytd
-            + _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
+        fringe=FringeYtd(
+            value=op.fringe.value + event_totals.fringe_value,
+            taxed=op.fringe.taxed + event_totals.fringe_irpef,
+            pdr=op.fringe.pdr + amounts.pdr_eligible,
         ),
-        gross_ytd=request.opening_state.gross_ytd + period_gross,
-        inps_base_ytd=request.opening_state.inps_base_ytd + period_inps_base,
-        taxable_ytd=request.opening_state.taxable_ytd + amounts.period_taxable,
-        fringe_ytd=(request.opening_state.fringe_ytd + event_totals.fringe_value),
-        fringe_taxed_ytd=(
-            request.opening_state.fringe_taxed_ytd + event_totals.fringe_irpef
+        tax=TaxYtd(
+            irpef=op.tax.irpef + amounts.period_irpef,
+            surtax=op.tax.surtax + amounts.period_surtax,
         ),
-        pdr_ytd=request.opening_state.pdr_ytd + amounts.pdr_eligible,
-        credit_recognized_ytd=(
-            request.opening_state.credit_recognized_ytd
-            + max(_ZERO, amounts.period_tratt)
+        trattamento=TrattamentoAccount(
+            recognized=op.trattamento.recognized + max(_ZERO, amounts.period_tratt),
+            recovered=op.trattamento.recovered + max(_ZERO, -amounts.period_tratt),
+            plan=next_recovery_plan,
         ),
-        credit_recovered_ytd=(
-            request.opening_state.credit_recovered_ytd
-            + max(_ZERO, -amounts.period_tratt)
+        somma_esente=SommaEsenteAccount(
+            recognized=op.somma_esente.recognized + period_somma_esente,
         ),
-        surtax_ytd=(request.opening_state.surtax_ytd + amounts.period_surtax),
-        recovery_plan=next_recovery_plan,
     )
     benefit_breakdown = BenefitBreakdown(
         value=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),

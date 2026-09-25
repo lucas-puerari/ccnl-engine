@@ -35,6 +35,9 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    TrattamentoAccount,
+)
 
 _CCNL_METAL = "metalmeccanico-federmeccanica.json"
 _LEVEL_C3 = "C3"
@@ -103,8 +106,8 @@ class TestT01PdRExcessReturnsToIrpef:
             kind="productivity_bonus",
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
-        assert result.closing_state.pdr_ytd == Decimal("5000.00"), (
-            f"pdr_ytd must be 5,000 (cap); got {result.closing_state.pdr_ytd}."
+        assert result.closing_state.fringe.pdr == Decimal("5000.00"), (
+            f"pdr_ytd must be 5,000 (cap); got {result.closing_state.fringe.pdr}."
         )
 
     def test_excess_increases_ordinary_irpef_base(self) -> None:
@@ -155,7 +158,7 @@ class TestT03SecondPdRPartialPlafond:
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("30.00")
-        assert result.closing_state.pdr_ytd == Decimal("3000.00")
+        assert result.closing_state.fringe.pdr == Decimal("3000.00")
 
     def test_second_pdr_only_headroom_eligible(self) -> None:
         """Second 3,000 EUR PdR: only 2,000 EUR headroom left, sub_tax = 20.00."""
@@ -177,7 +180,7 @@ class TestT03SecondPdRPartialPlafond:
             f"Expected 20.00 (2,000 EUR * 1%); got {sub_tax}. "
             "Only 2,000 EUR headroom remains after first period."
         )
-        assert r2.closing_state.pdr_ytd == Decimal("5000.00")
+        assert r2.closing_state.fringe.pdr == Decimal("5000.00")
 
     def test_second_pdr_excess_in_ordinary_base(self) -> None:
         """The 1,000 EUR excess in period 2 must raise ordinary IRPEF vs zero-bonus."""
@@ -227,9 +230,9 @@ class TestT04TrattamentoNoOverRecovery:
             req = _req_portieri(month, opening=opening, events=events)
             result = calculate_period(req)
             cs = result.closing_state
-            assert cs.credit_recovered_ytd <= cs.credit_recognized_ytd, (
-                f"Month {month}: recovered {cs.credit_recovered_ytd} > "
-                f"recognized {cs.credit_recognized_ytd}"
+            assert cs.trattamento.recovered <= cs.trattamento.recognized, (
+                f"Month {month}: recovered {cs.trattamento.recovered} > "
+                f"recognized {cs.trattamento.recognized}"
             )
             rec = reconcile(result, opening)
             assert rec.ok, f"Month {month} reconcile failed: {rec.violations}"
@@ -252,8 +255,10 @@ class TestI16ReconciliationInvariant:
         opening = PeriodState(
             regular_periods_closed=1,
             tax_withholding_periods_closed=1,
-            credit_recognized_ytd=Decimal("92.31"),
-            credit_recovered_ytd=Decimal("0.00"),
+            trattamento=TrattamentoAccount(
+                recognized=Decimal("92.31"),
+                recovered=Decimal("0.00"),
+            ),
         )
         # Build a minimal result whose closing state violates the invariant.
         req = _req_portieri(2, opening=opening)
@@ -264,17 +269,14 @@ class TestI16ReconciliationInvariant:
             regular_periods_closed=cs.regular_periods_closed,
             tax_withholding_periods_closed=cs.tax_withholding_periods_closed,
             closed_run_ids=cs.closed_run_ids,
-            irpef_withheld_ytd=cs.irpef_withheld_ytd,
-            inps_employee_ytd=cs.inps_employee_ytd,
-            gross_ytd=cs.gross_ytd,
-            inps_base_ytd=cs.inps_base_ytd,
-            taxable_ytd=cs.taxable_ytd,
-            fringe_ytd=cs.fringe_ytd,
-            fringe_taxed_ytd=cs.fringe_taxed_ytd,
-            pdr_ytd=cs.pdr_ytd,
-            credit_recognized_ytd=Decimal("50.00"),
-            credit_recovered_ytd=Decimal("100.00"),  # violates I16
-            surtax_ytd=cs.surtax_ytd,
+            earnings=cs.earnings,
+            fringe=cs.fringe,
+            tax=cs.tax,
+            trattamento=TrattamentoAccount(
+                recognized=Decimal("50.00"),
+                recovered=Decimal("100.00"),  # violates I16
+            ),
+            somma_esente=cs.somma_esente,
         )
         bad_result = type(result)(
             period_id=result.period_id,

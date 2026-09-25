@@ -38,5 +38,5 @@ print(f"Feb gross: {feb.period_gross}  net: {feb.period_net}")
 
 # Inspect YTD accumulators after February
 state = feb.closing_state
-print(f"YTD taxable income: {state.taxable_ytd}")
-print(f"YTD IRPEF withheld: {state.irpef_withheld_ytd}")
+print(f"YTD taxable income: {state.earnings.taxable}")
+print(f"YTD IRPEF withheld: {state.tax.irpef}")

@@ -22,6 +22,11 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    FringeYtd,
+    TaxYtd,
+)
 
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)
@@ -98,24 +103,26 @@ class TestPeriodState:
         assert s.regular_periods_closed == 0
         assert s.tax_withholding_periods_closed == 0
         assert s.closed_run_ids == frozenset()
-        assert s.irpef_withheld_ytd == _ZERO
-        assert s.inps_employee_ytd == _ZERO
-        assert s.gross_ytd == _ZERO
+        assert s.tax.irpef == _ZERO
+        assert s.earnings.inps_employee == _ZERO
+        assert s.earnings.gross == _ZERO
 
     def test_stored_values(self) -> None:
         """All fields are stored and retrievable after construction."""
         s = PeriodState(
             regular_periods_closed=3,
             tax_withholding_periods_closed=3,
-            irpef_withheld_ytd=Decimal("837.06"),
-            inps_employee_ytd=Decimal("614.46"),
-            gross_ytd=Decimal("6474.78"),
+            tax=TaxYtd(irpef=Decimal("837.06")),
+            earnings=EarningsYtd(
+                inps_employee=Decimal("614.46"),
+                gross=Decimal("6474.78"),
+            ),
         )
         assert s.regular_periods_closed == 3
         assert s.tax_withholding_periods_closed == 3
-        assert s.irpef_withheld_ytd == Decimal("837.06")
-        assert s.inps_employee_ytd == Decimal("614.46")
-        assert s.gross_ytd == Decimal("6474.78")
+        assert s.tax.irpef == Decimal("837.06")
+        assert s.earnings.inps_employee == Decimal("614.46")
+        assert s.earnings.gross == Decimal("6474.78")
 
     def test_frozen(self) -> None:
         """PeriodState is immutable: attribute assignment raises AttributeError."""
@@ -134,12 +141,9 @@ class TestPeriodState:
             PeriodState(regular_periods_closed=5, tax_withholding_periods_closed=3)
 
     def test_fringe_taxed_above_fringe_raises(self) -> None:
-        """fringe_taxed_ytd > fringe_ytd raises ValueError."""
-        with pytest.raises(ValueError, match="fringe_taxed_ytd"):
-            PeriodState(
-                fringe_ytd=Decimal("100.00"),
-                fringe_taxed_ytd=Decimal("200.00"),
-            )
+        """FringeYtd.taxed > FringeYtd.value raises ValueError."""
+        with pytest.raises(ValueError, match="taxed"):
+            FringeYtd(value=Decimal("100.00"), taxed=Decimal("200.00"))
 
 
 class TestPeriodCalculationRequest:
@@ -150,7 +154,7 @@ class TestPeriodCalculationRequest:
         state = PeriodState(
             regular_periods_closed=5,
             tax_withholding_periods_closed=5,
-            irpef_withheld_ytd=Decimal("1000.00"),
+            tax=TaxYtd(irpef=Decimal("1000.00")),
         )
         req = PeriodCalculationRequest(
             period_id=_PERIOD,
@@ -214,7 +218,7 @@ class TestPeriodCalculationResult:
         cs = PeriodState(
             regular_periods_closed=1,
             tax_withholding_periods_closed=1,
-            gross_ytd=Decimal("2158.26"),
+            earnings=EarningsYtd(gross=Decimal("2158.26")),
         )
         result = _make_result(closing_state=cs)
         assert result.closing_state is cs
