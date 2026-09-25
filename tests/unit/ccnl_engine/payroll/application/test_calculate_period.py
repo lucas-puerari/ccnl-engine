@@ -964,7 +964,7 @@ class TestForExtraMonth:
 
 
 class TestExtraMonthRateo:
-    """Tredicesima gross is prorated by payment month, not by regular_periods_closed."""
+    """Tredicesima gross is prorated by accrued months, not by payment month."""
 
     def _run_extra_month(
         self,
@@ -999,38 +999,68 @@ class TestExtraMonthRateo:
         )
         assert gross > Decimal(0)
 
-    def test_rateo_independent_of_regular_periods_closed(self) -> None:
-        """Tredicesima in December gives the same gross regardless of periods closed.
+    def test_accrued_months_determine_rateo(self) -> None:
+        """Six accrued months give half the gross of twelve.
 
-        Rateo is derived from the payment month (12/12=1.0), not from
-        regular_periods_closed, so 6 or 12 prior regular periods yield identical output.
+        Rateo derives from regular_periods_closed, not from the payment month.
+        Both runs use the same December salary, so the rateo is the only factor.
         """
-        after_6 = self._run_extra_month(
+        full_year = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
+        half_year = self._run_extra_month(
             regular_periods_closed=6,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
         )
-        after_12 = self._run_extra_month(
-            regular_periods_closed=12,
-            run=PayrollRun.thirteenth(2026, 12),
-            period_month=12,
-        )
-        assert after_6 == after_12
+        assert half_year == (full_year / 2).quantize(Decimal("0.01"))
 
-    def test_june_tredicesima_is_half_of_december_tredicesima(self) -> None:
-        """Tredicesima with period_month=6 has rateo 6/12, December has 12/12.
+    def test_payment_month_does_not_change_accrued_gross(self) -> None:
+        """A full-year employee receives the same tredicesima in June and December.
 
-        Both June and December use the same C3 salary (increase effective 2026-06-01),
-        so the only difference is the rateo factor.
+        Moving the payment date must not change the already-accrued entitlement.
+        Both runs use regular_periods_closed=12, so rateo=12/12=1.0 in both.
+        The salary rate at the payment date may differ if there was an increase
+        between June and December; the invariant is the accrual fraction, not
+        the absolute amount.
         """
-        dec_thirteenth = self._run_extra_month(
-            regular_periods_closed=12,
-            run=PayrollRun.thirteenth(2026, 12),
-            period_month=12,
-        )
         jun_thirteenth = self._run_extra_month(
             regular_periods_closed=12,
             run=PayrollRun.thirteenth(2026, 6),
             period_month=6,
         )
-        assert jun_thirteenth == (dec_thirteenth / 2).quantize(Decimal("0.01"))
+        dec_thirteenth = self._run_extra_month(
+            regular_periods_closed=12,
+            run=PayrollRun.thirteenth(2026, 12),
+            period_month=12,
+        )
+        # Both use 12/12 rateo; amounts may differ only due to salary increases.
+        # Verify by checking that each equals its own month's regular gross.
+        regular_june = calculate_period(
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=6),
+                payment_date=date(2026, 6, 28),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+                opening_state=PeriodState(
+                    regular_periods_closed=5,
+                    tax_withholding_periods_closed=5,
+                ),
+            )
+        ).period_gross
+        regular_dec = calculate_period(
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=12),
+                payment_date=date(2026, 12, 28),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+                opening_state=PeriodState(
+                    regular_periods_closed=11,
+                    tax_withholding_periods_closed=11,
+                ),
+            )
+        ).period_gross
+        assert jun_thirteenth == regular_june
+        assert dec_thirteenth == regular_dec

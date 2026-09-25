@@ -181,7 +181,9 @@ def calculate_period(
     chain = _resolve_chain(ccnl, level, request.contract_type, as_of)
     run_kind = request.run.run_kind if request.run is not None else "regular"
     run_id = _resolve_run_id(request, period_year)
-    chain = _apply_extra_month_policy(chain, run_kind, request.period_id.month)
+    chain = _apply_extra_month_policy(
+        chain, run_kind, request.opening_state.regular_periods_closed
+    )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     var_pay_rules = load_variable_pay_rules(period_year)
