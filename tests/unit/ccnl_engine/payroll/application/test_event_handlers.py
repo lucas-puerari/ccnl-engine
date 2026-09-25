@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import get_args
 
-from ccnl_engine.payroll.application._event_handlers import _HANDLER_REGISTRY
+from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
 from ccnl_engine.payroll.domain.events import WorkEvent
 
 

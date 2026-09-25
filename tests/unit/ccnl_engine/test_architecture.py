@@ -153,8 +153,6 @@ _PROD_LINE_LIMIT = 400
 _ALLOWED_LARGE_PROD: dict[str, int] = {
     # Scope logic: grouped for readability; split tracked separately.
     "ccnl_engine/engine/payroll/service/scope/_scope.py": 500,
-    # Event handlers: one handler per event type; split tracked separately.
-    "ccnl_engine/payroll/application/_event_handlers.py": 430,
 }
 
 
