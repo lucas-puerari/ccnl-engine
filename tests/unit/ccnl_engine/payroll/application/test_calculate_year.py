@@ -86,10 +86,10 @@ class TestWorkCalendar:
         cal = WorkCalendar.from_additional_months(_YEAR, 12)
         assert cal.extra_months == ()
 
-    def test_from_additional_months_below_12(self) -> None:
-        """from_additional_months(11) also produces no extra schedules."""
-        cal = WorkCalendar.from_additional_months(_YEAR, 11)
-        assert cal.extra_months == ()
+    def test_from_additional_months_below_12_raises(self) -> None:
+        """from_additional_months(11) raises ValueError — minimum is 12."""
+        with pytest.raises(ValueError, match="additional_months"):
+            WorkCalendar.from_additional_months(_YEAR, 11)
 
     def test_frozen(self) -> None:
         """WorkCalendar is immutable."""
