@@ -29,7 +29,6 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import (
@@ -50,6 +49,7 @@ from ccnl_engine.payroll.domain.events import (
     WelfareEvent,
 )
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
 
 _CCNL = "metalmeccanico-federmeccanica.json"

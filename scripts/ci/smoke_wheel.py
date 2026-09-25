@@ -12,53 +12,42 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    Agreement,
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Permanent,
-    RalOverride,
-    SeniorityByDate,
+    EmploymentFacts,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
     get_ccnl,
     list_ccnls,
 )
-from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
 
 
 def main() -> int:
     """Run the smoke test; return 0 on success, 1 on failure.
 
     Returns:
-        0 when the end-to-end scenario produces a positive net_annual;
+        0 when the end-to-end scenario produces a positive period_net;
         1 on any exception or unexpected result.
     """
-    scenario = AnnualEstimateInput(
-        employee=Employee(
-            level_code="II",
-            seniority=SeniorityByDate(value=date(2020, 1, 1)),
-            weekly_hours=Decimal(40),
-            agreement=Agreement(ral_override=RalOverride(value=Decimal(30000))),
-        ),
-        employment=Employment(
-            ccnl="agenti-immobiliari-fiaip.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 1, 1),
-        ),
+    engine = PayrollEngine.bundled()
+    request = PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="agenti-immobiliari-fiaip.json",
+        level_code="II",
+        employment_facts=EmploymentFacts(num_employees=50),
     )
     try:
-        result = estimate_annual(scenario)
+        result = engine.calculate(request)
     except Exception as exc:  # noqa: BLE001
-        print(f"FAIL: estimate_annual() raised {type(exc).__name__}: {exc}")
+        print(f"FAIL: engine.calculate() raised {type(exc).__name__}: {exc}")
         return 1
 
-    net = result.result.net_annual
+    net = result.period_net
     if net <= Decimal(0):
-        print(f"FAIL: net_annual is {net!r}, expected > 0")
+        print(f"FAIL: period_net is {net!r}, expected > 0")
         return 1
 
-    print(f"OK: net_annual={net}")
+    print(f"OK: period_net={net}")
 
     ccnls = list_ccnls()
     if len(ccnls) != 125:

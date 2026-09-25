@@ -17,16 +17,16 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.engine.payroll.domain.pay_items import AbsenceDeduction, SicknessItem
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.events import SicknessCaseEvent
+from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.pay_items import AbsenceDeduction, SicknessItem
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.sickness import SicknessCase
 
 _CCNL = "metalmeccanico-federmeccanica.json"

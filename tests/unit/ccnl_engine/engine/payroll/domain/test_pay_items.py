@@ -9,7 +9,7 @@ from typing import Any
 import pytest
 from pydantic import TypeAdapter, ValidationError
 
-from ccnl_engine.engine.payroll.domain.pay_items import (
+from ccnl_engine.payroll.domain.pay_items import (
     AbsenceDeduction,
     BaseSalaryEarning,
     BonusEarning,

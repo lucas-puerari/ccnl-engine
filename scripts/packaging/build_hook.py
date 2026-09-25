@@ -27,6 +27,10 @@ _DATA_DIRS: list[tuple[str, str]] = [
         "ccnl_engine/knowledge/capabilities/data",
         "src/ccnl_engine/knowledge/capabilities/data",
     ),
+    (
+        "ccnl_engine/knowledge/policies/data",
+        "src/ccnl_engine/knowledge/policies/data",
+    ),
 ]
 
 

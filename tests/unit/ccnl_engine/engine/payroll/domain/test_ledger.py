@@ -8,12 +8,12 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.payroll.domain.ledger import (
+from ccnl_engine.payroll.domain.ledger import (
     AccountKind,
     Ledger,
     LedgerEntry,
 )
-from ccnl_engine.engine.payroll.domain.pay_items import CompetencePeriod
+from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 
 _PERIOD = CompetencePeriod(year=2026, month=6)
 _PAYMENT = date(2026, 6, 30)

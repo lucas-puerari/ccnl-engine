@@ -7,13 +7,13 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
     ExtraMonthSchedule,
     WorkCalendar,
 )
+from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 
 _CCNL = "metalmeccanico-federmeccanica.json"

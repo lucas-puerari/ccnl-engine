@@ -22,5 +22,8 @@ uv run pytest
 echo "Tests passed."
 
 echo "cognitive complexity..."
-uv run complexipy $STAGED
+SRC_STAGED=$(echo "$STAGED" | grep -v '^demo/' || true)
+if [ -n "$SRC_STAGED" ]; then
+  uv run complexipy $SRC_STAGED
+fi
 echo "Cognitive Complexity check passed."

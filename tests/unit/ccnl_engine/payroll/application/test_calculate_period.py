@@ -13,20 +13,6 @@ from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.payroll.domain.employment import Apprentice, FixedTerm
-from ccnl_engine.engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.engine.payroll.domain.pay_items import (
-    BaseSalaryEarning,
-    EmployeeWithholdingItem,
-    EmployerContributionItem,
-    FixedAllowanceEarning,
-    SeniorityEarning,
-    TaxCreditItem,
-    TfrAccrualItem,
-)
-from ccnl_engine.engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.engine.payroll.service.tax_computation import resolve_tax_computation
-from ccnl_engine.engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.engine.tax.domain.credit_rules import (
     SommaEsenteBand,
     SommaEsenteRules,
@@ -46,13 +32,27 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationResult,
     ReconciliationViolation,
 )
+from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
+from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.pay_items import (
+    BaseSalaryEarning,
+    EmployeeWithholdingItem,
+    EmployerContributionItem,
+    FixedAllowanceEarning,
+    SeniorityEarning,
+    TaxCreditItem,
+    TfrAccrualItem,
+)
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodState,
 )
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
+from ccnl_engine.payroll.service.types import MonthlyPayChain
 from tests.helpers import make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"

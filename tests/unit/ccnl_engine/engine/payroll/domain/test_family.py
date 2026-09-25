@@ -8,7 +8,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.payroll.domain.family import (
+from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
     FamilyComposition,

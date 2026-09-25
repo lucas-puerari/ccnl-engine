@@ -2,37 +2,22 @@
 
 ## What changed
 
-The preferred entry point changed from `estimate_annual()` to `PayrollEngine`.
+The entry point changed from `estimate_annual()` to `PayrollEngine`.
 
 `estimate_annual()` computed an annual gross-to-net projection in a single call.
 `PayrollEngine.calculate()` computes one payroll run at a time, threading
 YTD state (`PeriodState`) between runs. `PayrollEngine.calculate_year()` does
 the full sequence in one call.
 
-## Before (legacy)
+## Before (legacy — removed)
 
 ```python
 from datetime import date
-from ccnl_engine.engine.payroll.service.orchestrator import estimate_annual
-from ccnl_engine import AnnualEstimateInput, Employee, Employer, Employment, Permanent
-
-result = estimate_annual(
-    AnnualEstimateInput(
-        employee=Employee(level_code="C3"),
-        employment=Employment(
-            ccnl="metalmeccanico-federmeccanica.json",
-            contract=Permanent(),
-            employer=Employer(num_employees=50),
-            as_of=date(2026, 1, 1),
-        ),
-    )
-).result
-
-print(result.net_annual)
-print(result.earnings.gross_monthly)
+# estimate_annual was removed in v0.5; use PayrollEngine instead.
+result = ...  # AnnualEstimateInput / estimate_annual no longer available
 ```
 
-## After (preferred)
+## After (current API)
 
 ```python
 from datetime import date
@@ -40,7 +25,7 @@ from datetime import date
 from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun, PayrollYearRequest
 from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
 
-engine = PayrollEngine.from_builtin_data()
+engine = PayrollEngine.bundled()
 
 # Single period
 result = engine.calculate(
@@ -71,7 +56,7 @@ print(year.annual_gross)
 
 ## Key differences
 
-| | `estimate_annual` | `PayrollEngine.calculate_year` |
+| | Legacy (`estimate_annual`) | `PayrollEngine.calculate_year` |
 |---|---|---|
 | Input model | `AnnualEstimateInput` | `PayrollYearRequest` |
 | Output model | `AnnualEstimate` | `YearCalculationResult` |
@@ -79,10 +64,7 @@ print(year.annual_gross)
 | Run sequence | implicit (annual) | explicit via `WorkCalendar` |
 | Events | via `PeriodPayrollInput` | via `period_events` dict |
 
-## `estimate_annual` is still available
+## `estimate_annual` is removed
 
-`estimate_annual` is no longer in the `ccnl_engine` root namespace but
-remains at `ccnl_engine.engine.payroll.service.orchestrator.estimate_annual`.
-Import it directly if you need it during a migration.
-
-No compatibility shim is planned. Migrate to `PayrollEngine` for new code.
+`estimate_annual` and the `ccnl_engine.engine.payroll` namespace were removed
+in v0.5. Migrate to `PayrollEngine` for all new code.

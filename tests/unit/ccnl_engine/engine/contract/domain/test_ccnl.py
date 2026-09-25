@@ -20,13 +20,13 @@ from ccnl_engine.engine.contract.domain.ccnl import (
     SeniorityIncrements,
 )
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.payroll.service.contributions import fund_applies_to
-from ccnl_engine.engine.payroll.service.seniority import (
+from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.engine.provenance.domain.source import SourceKind
+from ccnl_engine.payroll.service.contributions import fund_applies_to
+from ccnl_engine.payroll.service.seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
-from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
-from ccnl_engine.engine.provenance.domain.source import SourceKind
 from tests.helpers import TEST_PROV, _series_with_prov, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}

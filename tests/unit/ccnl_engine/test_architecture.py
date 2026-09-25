@@ -150,10 +150,7 @@ def test_employment_facts_defined_in_allowed_modules_only() -> None:
 # ---------------------------------------------------------------------------
 
 _PROD_LINE_LIMIT = 400
-_ALLOWED_LARGE_PROD: dict[str, int] = {
-    # Scope logic: grouped for readability; split tracked separately.
-    "ccnl_engine/engine/payroll/service/scope/_scope.py": 500,
-}
+_ALLOWED_LARGE_PROD: dict[str, int] = {}
 
 
 def test_production_modules_below_line_limit() -> None:
@@ -215,3 +212,44 @@ def test_integration_cases_are_valid_json() -> None:
     for path in case_files:
         data = json.loads(path.read_text(encoding="utf-8"))
         assert data, f"{path.name} is empty"
+
+
+# ---------------------------------------------------------------------------
+# Test: zero engine.payroll imports anywhere in the repository
+#
+# engine.payroll was the legacy payroll namespace.  After its removal, no
+# source or test file may import from it.
+# ---------------------------------------------------------------------------
+
+_REPO_ROOT = Path(__file__).parent.parent.parent.parent
+
+
+def _engine_payroll_imports(path: Path) -> list[str]:
+    """Return any runtime import referencing ccnl_engine.engine.payroll.*.
+
+    Returns:
+        List of module paths starting with ``ccnl_engine.engine.payroll``.
+    """
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    tc_ids = _type_checking_node_ids(tree)
+    return [
+        node.module or ""
+        for node in ast.walk(tree)
+        if id(node) not in tc_ids
+        and isinstance(node, ast.ImportFrom)
+        and (node.module or "").startswith("ccnl_engine.engine.payroll")
+    ]
+
+
+def test_no_engine_payroll_imports() -> None:
+    """No file in src/ or tests/ may import from ccnl_engine.engine.payroll.*."""
+    violations: list[str] = []
+    for root in (_REPO_ROOT / "src", _REPO_ROOT / "tests"):
+        for path in _python_files(root):
+            found = _engine_payroll_imports(path)
+            if found:
+                rel = str(path.relative_to(_REPO_ROOT))
+                violations.append(f"{rel}: {sorted(set(found))}")
+    assert not violations, (
+        "Forbidden ccnl_engine.engine.payroll imports found:\n" + "\n".join(violations)
+    )

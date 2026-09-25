@@ -23,17 +23,17 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.payroll.service import irpef as _irpef
-from ccnl_engine.engine.payroll.service.contributions import (
+from ccnl_engine.engine.tax.domain.rules import TrattamentoIntegrativoRules
+from ccnl_engine.payroll.service import irpef as _irpef
+from ccnl_engine.payroll.service.contributions import (
     inps_contribution,
     inps_employee_additional,
 )
-from ccnl_engine.engine.payroll.service.irpef import (
+from ccnl_engine.payroll.service.irpef import (
     trattamento_integrativo,
     work_income_deduction,
 )
-from ccnl_engine.engine.payroll.service.rounding import money
-from ccnl_engine.engine.tax.domain.rules import TrattamentoIntegrativoRules
+from ccnl_engine.payroll.service.rounding import money
 from tests.helpers import make_year_rules
 
 _ZERO = Decimal(0)
