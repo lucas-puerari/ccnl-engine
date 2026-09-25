@@ -11,6 +11,7 @@ from ccnl_engine.payroll.domain.period import PeriodState
 
 if TYPE_CHECKING:
     from datetime import date
+    from decimal import Decimal
 
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
@@ -31,11 +32,36 @@ class EmploymentFacts:
         ceiling_status: Whether the IVS massimale contribution ceiling applies.
             Defaults to
             :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`.
+        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs
+            (CCNL lavoro domestico) to select the INPS contribution bracket.
+            ``None`` for non-domestic CCNLs.
+        contributable_hours: Actual hours worked in the period.  Required for
+            domestic CCNLs to compute flat-rate INPS contributions.  ``None``
+            for non-domestic CCNLs.
+        full_time_weekly_hours: Standard full-time weekly hours for the CCNL,
+            used to compute the part-time fraction.  ``None`` when not applicable.
+        started_on: Employment start date.  Used to compute the accrual window
+            for the first year of service.  ``None`` when not tracked.
+        ended_on: Employment end date.  ``None`` for open-ended contracts.
+        seniority_months: Months of continuous service, used to activate
+            seniority-based allowances.  ``None`` when not tracked.
+        roles: Set of role codes that unlock role-specific contractual
+            allowances (e.g. ``{"caposquadra"}``).  Empty set by default.
+        category: Worker category code (e.g. ``"operaio"``, ``"impiegato"``).
+            ``None`` when not applicable or unknown.
     """
 
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
     num_employees: int = 50
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
+    weekly_hours: int | None = None
+    contributable_hours: Decimal | None = None
+    full_time_weekly_hours: int | None = None
+    started_on: date | None = None
+    ended_on: date | None = None
+    seniority_months: int | None = None
+    roles: frozenset[str] = field(default_factory=frozenset)
+    category: str | None = None
 
 
 @dataclass(frozen=True)
