@@ -24,6 +24,7 @@ from ccnl_engine.payroll.service.contributions import (
 from ccnl_engine.payroll.service.family_deductions import compute_family_deductions
 from ccnl_engine.payroll.service.fiscal_surtax import _compute_addizionali
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
@@ -75,19 +76,63 @@ def _resolve_chain(
     level: Level,
     contract_type: Permanent | FixedTerm | Apprentice,
     as_of: date,
+    *,
+    seniority_months: int | None = None,
+    roles: frozenset[str] = frozenset(),
+    worker_category: LevelCategory | None = None,
+    weekly_hours: int | None = None,
+    full_time_weekly_hours: int | None = None,
 ) -> MonthlyPayChain:
     """Resolve the elementary pay chain for the period.
+
+    Applies part-time scaling when ``weekly_hours < full_time_weekly_hours``.
 
     Returns:
         :class:`~ccnl_engine.payroll.service.types.MonthlyPayChain` with each
         component rounded and ready for pay-item emission.
     """
+    count = (
+        _resolve_seniority_count(
+            ccnl.parameters.seniority_increments,
+            level.code,
+            None,
+            seniority_months,
+            worker_category=worker_category,
+        )
+        if seniority_months is not None
+        else 0
+    )
     if isinstance(contract_type, Apprentice):
         chain, pct, _ = _apprentice_chain(
-            ccnl, level, contract_type, 0, frozenset(), as_of
+            ccnl,
+            level,
+            contract_type,
+            count,
+            roles,
+            as_of,
+            worker_category=worker_category,
+            seniority_months=seniority_months,
         )
-        return chain.scaled(pct) if pct is not None else chain
-    return _level_chain(ccnl, level, 0, frozenset(), as_of, is_apprentice=False)
+        chain = chain.scaled(pct) if pct is not None else chain
+    else:
+        chain = _level_chain(
+            ccnl,
+            level,
+            count,
+            roles,
+            as_of,
+            is_apprentice=False,
+            worker_category=worker_category,
+            seniority_months=seniority_months,
+        )
+    if (
+        full_time_weekly_hours
+        and weekly_hours
+        and full_time_weekly_hours > 0
+        and weekly_hours < full_time_weekly_hours
+    ):
+        chain = chain.scaled(Decimal(weekly_hours) / Decimal(full_time_weekly_hours))
+    return chain
 
 
 def _apply_extra_month_policy(

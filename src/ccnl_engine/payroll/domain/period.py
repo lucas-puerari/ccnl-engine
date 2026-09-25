@@ -175,6 +175,12 @@ class PeriodCalculationRequest:
     run: PayrollRun | None = None
     weekly_hours: int | None = None
     contributable_hours: Decimal | None = None
+    full_time_weekly_hours: int | None = None
+    started_on: date | None = None
+    ended_on: date | None = None
+    seniority_months: int | None = None
+    roles: frozenset[str] = field(default_factory=frozenset)
+    category: str | None = None
 
 
 @dataclass(frozen=True)
