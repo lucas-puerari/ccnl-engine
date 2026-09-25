@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 
 if TYPE_CHECKING:
     from datetime import date
@@ -85,6 +86,8 @@ class PeriodState:
     """Cumulative trattamento integrativo recovered (clawed back) this tax year."""
     surtax_ytd: Decimal = _ZERO
     """Cumulative regional and municipal surtax withheld this tax year."""
+    recovery_plan: RecoveryPlan | None = None
+    """Active installment recovery plan, or ``None`` when no recovery is in progress."""
 
     def __post_init__(self) -> None:
         """Validate counter invariants on construction.
