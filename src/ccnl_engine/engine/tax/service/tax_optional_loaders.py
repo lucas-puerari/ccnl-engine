@@ -20,7 +20,9 @@ from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.engine.tax.domain.variable_pay import (
     FringeBenefitRules,
+    NotteTurnoRules,
     PdRRules,
+    RinnovoRules,
     VariablePayRules,
 )
 from ccnl_engine.engine.tax.service.tax_resource_reader import (
@@ -81,6 +83,8 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
         raise DataIntegrityError(msg)
     fb_raw = raw["fringe_benefit"]
     pdr_raw = raw["pdr"]
+    rinnovo_raw = raw["rinnovo"]
+    notte_raw = raw["notte_turno"]
     return VariablePayRules(
         year=int(raw["year"]),
         description=raw.get("description", ""),
@@ -92,6 +96,13 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             max_amount=Decimal(str(pdr_raw["max_amount"])),
             flat_tax_rate=Decimal(str(pdr_raw["flat_tax_rate"])),
             income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
+        ),
+        rinnovo=RinnovoRules(
+            flat_tax_rate=Decimal(str(rinnovo_raw["flat_tax_rate"])),
+        ),
+        notte_turno=NotteTurnoRules(
+            flat_tax_rate=Decimal(str(notte_raw["flat_tax_rate"])),
+            income_ceiling=Decimal(str(notte_raw["income_ceiling"])),
         ),
         ruleset=_as_ruleset(raw),
     )

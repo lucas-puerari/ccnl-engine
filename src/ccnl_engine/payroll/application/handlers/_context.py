@@ -33,6 +33,9 @@ class _EventHandlerCtx:
     cumulative_fringe: Decimal
     cumulative_taxed: Decimal
     pdr_income_ceiling: Decimal | None = None
+    rinnovo_flat_rate: Decimal | None = None
+    notte_flat_rate: Decimal | None = None
+    notte_income_ceiling: Decimal | None = None
 
 
 @dataclass

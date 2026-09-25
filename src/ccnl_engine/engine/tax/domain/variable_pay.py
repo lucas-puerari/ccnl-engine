@@ -1,4 +1,4 @@
-"""Statutory variable-pay rule models (fringe benefits and PdR)."""
+"""Statutory variable-pay rule models (fringe benefits, PdR, rinnovo, notte)."""
 
 from __future__ import annotations
 
@@ -53,6 +53,42 @@ class PdRRules(BaseModel):
     ruleset: RulesetIdentity | None = None
 
 
+class RinnovoRules(BaseModel):
+    """Rinnovo contrattuale substitute-tax rules (L.199/2025 art. 1 co. 7).
+
+    Salary increments from CCNL contract renewals are taxed at
+    ``flat_tax_rate`` with no income ceiling.
+
+    Attributes:
+        flat_tax_rate: Substitutive rate applied to renewal increments.
+        ruleset: Provenance of the statutory source.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    flat_tax_rate: Decimal = Field(gt=Decimal(0), lt=Decimal(1))
+    ruleset: RulesetIdentity | None = None
+
+
+class NotteTurnoRules(BaseModel):
+    """Night and shift supplement substitute-tax rules (L.199/2025 art. 1 co. 10).
+
+    Night/shift supplements are taxed at ``flat_tax_rate`` when the
+    worker's prior-year income does not exceed ``income_ceiling``.
+
+    Attributes:
+        flat_tax_rate: Substitutive rate applied to eligible supplements.
+        income_ceiling: Maximum prior-year income for eligibility.
+        ruleset: Provenance of the statutory source.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    flat_tax_rate: Decimal = Field(gt=Decimal(0), lt=Decimal(1))
+    income_ceiling: Decimal = Field(gt=Decimal(0))
+    ruleset: RulesetIdentity | None = None
+
+
 class VariablePayRules(BaseModel):
     """Container for all statutory variable-pay rules for a fiscal year.
 
@@ -60,6 +96,8 @@ class VariablePayRules(BaseModel):
         year: Fiscal year these rules apply to.
         fringe_benefit: Fringe-benefit exemption thresholds.
         pdr: Premio di risultato flat-tax parameters.
+        rinnovo: Contract-renewal salary increment substitute-tax parameters.
+        notte_turno: Night/shift supplement substitute-tax parameters.
         ruleset: Provenance of the statutory source.
     """
 
@@ -69,4 +107,6 @@ class VariablePayRules(BaseModel):
     description: str = ""
     fringe_benefit: FringeBenefitRules
     pdr: PdRRules
+    rinnovo: RinnovoRules
+    notte_turno: NotteTurnoRules
     ruleset: RulesetIdentity | None = None

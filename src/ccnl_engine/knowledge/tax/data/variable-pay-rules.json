@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "description": "Statutory rules for fringe benefits (Art. 51 c. 3 TUIR) and PdR (Art. 1 cc. 182-190 L. 208/2015)",
+  "description": "Statutory rules for fringe benefits (Art. 51 c. 3 TUIR), PdR, rinnovo and notte/turno (L. 199/2025)",
   "fringe_benefit": {
     "threshold_standard": "1000.00",
     "threshold_with_children": "2000.00",
@@ -12,6 +12,15 @@
     "income_ceiling": "80000.00",
     "description": "Art. 1 cc. 182-190 L. 208/2015 — premio di risultato, imposta sostitutiva 1% (L. 207/2024 art. 1 c. 385)"
   },
+  "rinnovo": {
+    "flat_tax_rate": "0.05",
+    "description": "L. 199/2025 art. 1 co. 7 — incrementi salariali da rinnovo contrattuale, imposta sostitutiva 5%"
+  },
+  "notte_turno": {
+    "flat_tax_rate": "0.15",
+    "income_ceiling": "40000.00",
+    "description": "L. 199/2025 art. 1 co. 10 — lavoro notturno e a turni, imposta sostitutiva 15%, soglia reddito 40.000 EUR"
+  },
   "ruleset": {
     "id": "tax/variable-pay-rules/2026",
     "version": "2026.1",
@@ -20,7 +29,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190",
     "verification_status": "unverified",
-    "source_hash": "135ddd30ac2b20ee9976911a8c4f741bae4d4118b4da75da036a13ff955030e1",
+    "source_hash": "85bda90b92d725979155f0cd2090b6aad3f8d01db90be402a92e5e9ea1666346",
     "source_type": "official_primary"
   }
 }
