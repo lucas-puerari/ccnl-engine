@@ -63,8 +63,6 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 
-_POLICY_RESOLVER: PolicyResolver | None = None
-
 _ALWAYS_COMPUTED: frozenset[str] = frozenset({
     "base_salary",
     "seniority",
@@ -132,17 +130,16 @@ def _resolve_run_id(request: PeriodCalculationRequest, period_year: int) -> str:
     return run_id
 
 
-def _get_resolver() -> PolicyResolver:
-    global _POLICY_RESOLVER  # noqa: PLW0603
-    if _POLICY_RESOLVER is None:
-        _POLICY_RESOLVER = PolicyResolver.load()
-    return _POLICY_RESOLVER
+def _effective_resolver(resolver: PolicyResolver | None) -> PolicyResolver:
+    return resolver if resolver is not None else PolicyResolver.load()
 
 
 def calculate_period(
     request: PeriodCalculationRequest,
     *,
     repo: KnowledgeRepository | None = None,
+    resolver: PolicyResolver | None = None,
+    bundle_version: str | None = None,
 ) -> PeriodCalculationResult:
     """Compute payroll for one competence period using the period-first model.
 
@@ -152,6 +149,12 @@ def calculate_period(
         repo: Optional knowledge repository. Uses
             :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
 .BundledKnowledgeRepository` when ``None``.
+        resolver: Optional pre-loaded :class:`~ccnl_engine.payroll.domain.policy\
+.PolicyResolver`.  When ``None``, the bundled Italian ruleset is loaded on every
+            call.  Pass a cached instance (e.g. from :attr:`PayrollEngine._resolver`)
+            to avoid repeated JSON parsing.
+        bundle_version: Knowledge-bundle version string to embed in the result.
+            ``None`` when called outside a :class:`PayrollEngine` context.
 
     Returns:
         A :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
@@ -162,6 +165,7 @@ def calculate_period(
             computation, indicating an internal accounting consistency error.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+    effective_resolver = _effective_resolver(resolver)
     ccnl = effective_repo.load_ccnl(request.ccnl_slug)
     as_of = _as_of(request.period_id)
     level = ccnl.level_by_code(request.level_code)
@@ -197,7 +201,6 @@ def calculate_period(
         ContributionCeilingStatus.POST_1995,
         ContributionCeilingStatus.OPTED_IN,
     }
-    resolver = _get_resolver()
     policy_context = PolicyContext(
         year=period_year,
         as_of=as_of,
@@ -213,7 +216,7 @@ def calculate_period(
         request.payment_date,
         run_id,
         date_ctx,
-        resolver,
+        effective_resolver,
         policy_context,
         fringe_threshold=fringe_threshold,
         opening_fringe_ytd=request.opening_state.fringe_ytd,
@@ -260,7 +263,7 @@ def calculate_period(
         chain,
         request.period_id,
         request.payment_date,
-        resolver,
+        effective_resolver,
         policy_context,
         run_tag=run_id,
     )
@@ -279,7 +282,7 @@ def calculate_period(
     se_entries: tuple[LedgerEntry, ...] = ()
     if period_somma_esente > _ZERO:
         credit_pid = _require_resolution(
-            resolver, "tax_credit_item", policy_context
+            effective_resolver, "tax_credit_item", policy_context
         ).policy_id
         se_item_id = f"somma_esente_{run_id}"
         se_items = (
@@ -387,6 +390,7 @@ def calculate_period(
         tax_computation=tax_computation,
         benefit_breakdown=benefit_breakdown,
         run=request.run,
+        bundle_version=bundle_version,
     )
     rec = _reconcile(result, request.opening_state)
     if not rec.ok:

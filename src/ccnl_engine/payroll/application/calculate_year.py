@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["YearCalculationResult", "calculate_year"]
@@ -57,6 +58,7 @@ class YearCalculationResult:
     annual_gross: Decimal
     annual_net: Decimal
     annual_employer_cost: Decimal
+    bundle_version: str | None = None
 
 
 def _allocate_events(
@@ -116,6 +118,8 @@ def calculate_year(
     family_composition: FamilyComposition | None = None,
     has_dependent_children: bool = False,
     repo: KnowledgeRepository | None = None,
+    resolver: PolicyResolver | None = None,
+    bundle_version: str | None = None,
 ) -> YearCalculationResult:
     """Compute payroll for all runs in a year.
 
@@ -161,6 +165,11 @@ def calculate_year(
             children; selects the higher fringe-benefit threshold.
         repo: Optional knowledge repository.  Uses the bundled repository
             when ``None``.
+        resolver: Optional pre-loaded policy resolver.  When ``None``,
+            the bundled ruleset is loaded on each :func:`calculate_period` call.
+        bundle_version: Knowledge-bundle version string propagated to each
+            :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
+            and to :class:`YearCalculationResult`.
 
     Returns:
         :class:`YearCalculationResult` with one
@@ -212,7 +221,9 @@ def calculate_year(
             has_dependent_children=has_dependent_children,
             run=run,
         )
-        result = calculate_period(req, repo=repo)
+        result = calculate_period(
+            req, repo=repo, resolver=resolver, bundle_version=bundle_version
+        )
         results.append(result)
         state = result.closing_state
 
@@ -225,4 +236,5 @@ def calculate_year(
         annual_employer_cost=sum(
             (r.period_employer_cost for r in period_results), _ZERO
         ),
+        bundle_version=bundle_version,
     )
