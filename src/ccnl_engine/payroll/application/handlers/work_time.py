@@ -30,19 +30,26 @@ from ccnl_engine.payroll.domain.treatment import EventTreatment
 def _pdr_ceiling_exceeded(
     event: object, treatment: EventTreatment, ctx: _EventHandlerCtx
 ) -> bool:
-    """Return True when a productivity_bonus exceeds the PdR income ceiling.
+    """Return True when a productivity_bonus is ineligible for the PdR substitute rate.
+
+    Fail-closed: unknown prior income (``None``) is treated as exceeding the
+    ceiling, so the conservative treatment (ordinary IRPEF) is applied.
 
     Returns:
-        ``True`` when the event's prior_income exceeds ``ctx.pdr_income_ceiling``.
+        ``True`` when the event is ineligible — either because prior income is
+        unknown or because it exceeds ``ctx.pdr_income_ceiling``.
     """
-    return (
+    if not (
         isinstance(event, BonusEvent)
         and event.kind == "productivity_bonus"
         and treatment.substitute
-        and event.prior_income is not None
         and ctx.pdr_income_ceiling is not None
-        and event.prior_income > ctx.pdr_income_ceiling
-    )
+    ):
+        return False
+    # Fail-closed: None means income status unknown → treat as ineligible.
+    if event.prior_income is None:
+        return True
+    return event.prior_income > ctx.pdr_income_ceiling
 
 
 def _handle_standard(
