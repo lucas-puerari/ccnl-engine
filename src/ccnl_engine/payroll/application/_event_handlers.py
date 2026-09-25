@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.payroll.application._event_items import (
     _fringe_bases,
-    _make_standard_event_entry,
+    _make_standard_event_intent,
     _process_sickness_case_event,
     _standard_event_gross,
     _standard_event_item,
@@ -27,7 +27,6 @@ from ccnl_engine.payroll.application._event_items import (
 )
 from ccnl_engine.payroll.application._period_utils import (
     _ZERO,
-    _make_entry,
     _require_resolution,
     _treatment_from_resolution,
 )
@@ -45,7 +44,7 @@ from ccnl_engine.payroll.domain.events import (
     TerminationTFREvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import (
     CompetencePeriod,
     ContractRenewalArrears,
@@ -90,7 +89,8 @@ class EventEffect:
 
     Attributes:
         items: Pay items created by the handler.
-        entries: Ledger entries posted by the handler.
+        intents: Posting intents for ledger projection (converted to entries by
+            :func:`~ccnl_engine.payroll.application._posting_service.post`).
         inps_delta: Increase in the INPS contribution base.
         tfr_delta: Increase in the TFR accrual base.
         irpef_delta: Increase in the IRPEF taxable base.
@@ -103,7 +103,7 @@ class EventEffect:
     """
 
     items: list[PayItem] = field(default_factory=list)
-    entries: list[LedgerEntry] = field(default_factory=list)
+    intents: list[PostingIntent] = field(default_factory=list)
     inps_delta: Decimal = _ZERO
     tfr_delta: Decimal = _ZERO
     irpef_delta: Decimal = _ZERO
@@ -160,16 +160,8 @@ def _handle_standard(
     di, dt, dirpef = _treatment_deltas(treatment, gross)
     result = EventEffect(
         items=[item],
-        entries=[
-            _make_standard_event_entry(
-                event,
-                gross,
-                ctx.evt_id,
-                kind,
-                ctx.cp,
-                ctx.payment_date,
-                resolution,
-            )
+        intents=[
+            _make_standard_event_intent(event, gross, ctx.evt_id, kind, resolution)
         ],
         inps_delta=di,
         tfr_delta=dt,
@@ -197,16 +189,14 @@ def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> EventEffect:
     )
     return EventEffect(
         items=[item],
-        entries=[
-            _make_entry(
-                f"ncb_{ctx.evt_id}",
-                ctx.evt_id,
-                "welfare_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.NON_CASH_BENEFITS,
-                gross,
-                policy_id=welfare_resolution.policy_id,
+        intents=[
+            PostingIntent(
+                entry_id=f"ncb_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="welfare_item",
+                account=AccountKind.NON_CASH_BENEFITS,
+                amount=gross,
+                policy_decision_id=welfare_resolution.policy_id,
             )
         ],
     )
@@ -236,16 +226,14 @@ def _handle_fringe(event: FringeEvent, ctx: _EventHandlerCtx) -> EventEffect:
     )
     return EventEffect(
         items=[item],
-        entries=[
-            _make_entry(
-                f"ncb_{ctx.evt_id}",
-                ctx.evt_id,
-                "fringe_benefit_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.NON_CASH_BENEFITS,
-                gross,
-                policy_id=fringe_resolution.policy_id,
+        intents=[
+            PostingIntent(
+                entry_id=f"ncb_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="fringe_benefit_item",
+                account=AccountKind.NON_CASH_BENEFITS,
+                amount=gross,
+                policy_decision_id=fringe_resolution.policy_id,
             )
         ],
         inps_delta=fringe_inps,
@@ -278,26 +266,22 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
     )
     return EventEffect(
         items=[item],
-        entries=[
-            _make_entry(
-                f"cash_{ctx.evt_id}",
-                ctx.evt_id,
-                "contract_renewal_arrears",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.CASH_EARNINGS,
-                gross,
-                policy_id=arrears_resolution.policy_id,
+        intents=[
+            PostingIntent(
+                entry_id=f"cash_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="contract_renewal_arrears",
+                account=AccountKind.CASH_EARNINGS,
+                amount=gross,
+                policy_decision_id=arrears_resolution.policy_id,
             ),
-            _make_entry(
-                f"sep_tax_{ctx.evt_id}",
-                ctx.evt_id,
-                "contract_renewal_arrears",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.SEPARATE_TAX,
-                sep_tax,
-                policy_id=arrears_resolution.policy_id,
+            PostingIntent(
+                entry_id=f"sep_tax_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="contract_renewal_arrears",
+                account=AccountKind.SEPARATE_TAX,
+                amount=sep_tax,
+                policy_decision_id=arrears_resolution.policy_id,
             ),
         ],
         inps_delta=gross,
@@ -337,26 +321,22 @@ def _handle_bilateral_fund(
     )
     return EventEffect(
         items=[emp_item, er_item],
-        entries=[
-            _make_entry(
-                f"bilat_emp_{ctx.evt_id}",
-                emp_id,
-                "employee_withholding_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.BILATERAL_FUND_EMPLOYEE,
-                event.employee_amount,
-                policy_id=emp_resolution.policy_id,
+        intents=[
+            PostingIntent(
+                entry_id=f"bilat_emp_{ctx.evt_id}",
+                source_item_id=emp_id,
+                pay_item_kind="employee_withholding_item",
+                account=AccountKind.BILATERAL_FUND_EMPLOYEE,
+                amount=event.employee_amount,
+                policy_decision_id=emp_resolution.policy_id,
             ),
-            _make_entry(
-                f"bilat_er_{ctx.evt_id}",
-                er_id,
-                "employer_contribution_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.BILATERAL_FUND_EMPLOYER,
-                event.employer_amount,
-                policy_id=er_resolution.policy_id,
+            PostingIntent(
+                entry_id=f"bilat_er_{ctx.evt_id}",
+                source_item_id=er_id,
+                pay_item_kind="employer_contribution_item",
+                account=AccountKind.BILATERAL_FUND_EMPLOYER,
+                amount=event.employer_amount,
+                policy_decision_id=er_resolution.policy_id,
             ),
         ],
     )
@@ -384,26 +364,22 @@ def _handle_termination_tfr(
     )
     return EventEffect(
         items=[item],
-        entries=[
-            _make_entry(
-                f"tfr_settle_{ctx.evt_id}",
-                ctx.evt_id,
-                "tfr_settlement_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.TFR_SETTLEMENT,
-                gross,
-                policy_id=tfr_settle_resolution.policy_id,
+        intents=[
+            PostingIntent(
+                entry_id=f"tfr_settle_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="tfr_settlement_item",
+                account=AccountKind.TFR_SETTLEMENT,
+                amount=gross,
+                policy_decision_id=tfr_settle_resolution.policy_id,
             ),
-            _make_entry(
-                f"sep_tax_{ctx.evt_id}",
-                ctx.evt_id,
-                "tfr_settlement_item",
-                ctx.cp,
-                ctx.payment_date,
-                AccountKind.SEPARATE_TAX,
-                sep_tax,
-                policy_id=tfr_settle_resolution.policy_id,
+            PostingIntent(
+                entry_id=f"sep_tax_{ctx.evt_id}",
+                source_item_id=ctx.evt_id,
+                pay_item_kind="tfr_settlement_item",
+                account=AccountKind.SEPARATE_TAX,
+                amount=sep_tax,
+                policy_decision_id=tfr_settle_resolution.policy_id,
             ),
         ],
     )
@@ -417,12 +393,12 @@ def _handle_sickness_case(
     Returns:
         Handler result with sickness items, ledger entries, and INPS/TFR/IRPEF deltas.
     """
-    sc_items, sc_entries, di, dt, dirpef = _process_sickness_case_event(
+    sc_items, sc_intents, di, dt, dirpef = _process_sickness_case_event(
         event, ctx.evt_id, ctx.cp, ctx.payment_date, ctx.resolver, ctx.context
     )
     return EventEffect(
         items=list(sc_items),
-        entries=list(sc_entries),
+        intents=list(sc_intents),
         inps_delta=di,
         tfr_delta=dt,
         irpef_delta=dirpef,

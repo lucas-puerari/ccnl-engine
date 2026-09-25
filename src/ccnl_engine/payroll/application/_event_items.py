@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application._period_utils import (
     _ZERO,
-    _make_entry,
     _require_resolution,
     _treatment_from_resolution,
 )
@@ -24,7 +23,7 @@ from ccnl_engine.payroll.domain.events import (
     SicknessCaseEvent,
     WorkEvent,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import (
     AbsenceDeduction,
     BonusEarning,
@@ -210,41 +209,35 @@ def _fringe_bases(
     return _ZERO, _ZERO, new_cumulative
 
 
-def _make_standard_event_entry(
+def _make_standard_event_intent(
     event: _CashEvent,
     gross: Decimal,
     evt_id: str,
     kind: str,
-    cp: CompetencePeriod,
-    payment_date: date,
     resolution: PolicyResolution,
-) -> LedgerEntry:
-    """Build the ledger entry for a standard cash or absence event.
+) -> PostingIntent:
+    """Build the posting intent for a standard cash or absence event.
 
     Returns:
-        A :class:`~ccnl_engine.payroll.domain.ledger.LedgerEntry` posted
-        to ``EMPLOYEE_DEDUCTIONS`` for absences and ``CASH_EARNINGS`` otherwise.
+        A :class:`~ccnl_engine.payroll.domain.ledger.PostingIntent` targeting
+        ``EMPLOYEE_DEDUCTIONS`` for absences and ``CASH_EARNINGS`` otherwise.
     """
     if isinstance(event, AbsenceEvent):
-        return _make_entry(
-            f"deduction_{evt_id}",
-            evt_id,
-            kind,
-            cp,
-            payment_date,
-            AccountKind.EMPLOYEE_DEDUCTIONS,
-            -gross,
-            policy_id=resolution.policy_id,
+        return PostingIntent(
+            entry_id=f"deduction_{evt_id}",
+            source_item_id=evt_id,
+            pay_item_kind=kind,
+            account=AccountKind.EMPLOYEE_DEDUCTIONS,
+            amount=-gross,
+            policy_decision_id=resolution.policy_id,
         )
-    return _make_entry(
-        f"cash_{evt_id}",
-        evt_id,
-        kind,
-        cp,
-        payment_date,
-        AccountKind.CASH_EARNINGS,
-        gross,
-        policy_id=resolution.policy_id,
+    return PostingIntent(
+        entry_id=f"cash_{evt_id}",
+        source_item_id=evt_id,
+        pay_item_kind=kind,
+        account=AccountKind.CASH_EARNINGS,
+        amount=gross,
+        policy_decision_id=resolution.policy_id,
     )
 
 
@@ -255,11 +248,11 @@ def _process_sickness_case_event(
     payment_date: date,
     resolver: PolicyResolver,
     context: PolicyContext,
-) -> tuple[list[PayItem], list[LedgerEntry], Decimal, Decimal, Decimal]:
+) -> tuple[list[PayItem], list[PostingIntent], Decimal, Decimal, Decimal]:
     """Decompose a SicknessCaseEvent into absence + sickness integration components.
 
     Returns:
-        ``(items, entries, delta_inps, delta_tfr, delta_irpef)`` where the deltas
+        ``(items, intents, delta_inps, delta_tfr, delta_irpef)`` where the deltas
         are the net contribution to the INPS/TFR/IRPEF bases for the period.
     """
     case = event.case
@@ -281,7 +274,7 @@ def _process_sickness_case_event(
     )
 
     items: list[PayItem] = []
-    entries: list[LedgerEntry] = []
+    intents: list[PostingIntent] = []
     di_total = dt_total = dirpef_total = _ZERO
 
     abs_id = f"{evt_id}_abs"
@@ -295,16 +288,14 @@ def _process_sickness_case_event(
             absence_days=Decimal(case.working_days),
         )
     )
-    entries.append(
-        _make_entry(
-            f"deduction_{abs_id}",
-            abs_id,
-            "absence_deduction",
-            cp,
-            payment_date,
-            AccountKind.EMPLOYEE_DEDUCTIONS,
-            absence,
-            policy_id=resolution.policy_id,
+    intents.append(
+        PostingIntent(
+            entry_id=f"deduction_{abs_id}",
+            source_item_id=abs_id,
+            pay_item_kind="absence_deduction",
+            account=AccountKind.EMPLOYEE_DEDUCTIONS,
+            amount=absence,
+            policy_decision_id=resolution.policy_id,
         )
     )
     di, dt, dirpef = _treatment_deltas(treatment, -absence)
@@ -334,16 +325,14 @@ def _process_sickness_case_event(
                 sick_days=sick_days,
             )
         )
-        entries.append(
-            _make_entry(
-                f"cash_{component_id}",
-                component_id,
-                "sickness_item",
-                cp,
-                payment_date,
-                AccountKind.CASH_EARNINGS,
-                amount,
-                policy_id=resolution.policy_id,
+        intents.append(
+            PostingIntent(
+                entry_id=f"cash_{component_id}",
+                source_item_id=component_id,
+                pay_item_kind="sickness_item",
+                account=AccountKind.CASH_EARNINGS,
+                amount=amount,
+                policy_decision_id=resolution.policy_id,
             )
         )
         di, dt, dirpef = _treatment_deltas(treatment, amount)
@@ -351,4 +340,4 @@ def _process_sickness_case_event(
         dt_total += dt
         dirpef_total += dirpef
 
-    return items, entries, di_total, dt_total, dirpef_total
+    return items, intents, di_total, dt_total, dirpef_total
