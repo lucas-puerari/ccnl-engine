@@ -29,6 +29,7 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -123,9 +124,11 @@ class _Builder:
             closing_state=PeriodState(
                 regular_periods_closed=self.closing_months,
                 tax_withholding_periods_closed=self.closing_months,
-                irpef_withheld_ytd=self.closing_irpef,
-                inps_employee_ytd=self.closing_inps,
-                gross_ytd=self.closing_gross,
+                tax=TaxYtd(irpef=self.closing_irpef),
+                earnings=EarningsYtd(
+                    inps_employee=self.closing_inps,
+                    gross=self.closing_gross,
+                ),
             ),
             pay_items=self.pay_items,
             ledger_entries=self.ledger_entries,

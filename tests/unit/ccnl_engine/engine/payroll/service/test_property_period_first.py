@@ -18,6 +18,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL_CODES = ["C1", "C3", "D1"]
@@ -42,7 +43,7 @@ def _req(
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
         level_code=level_code,
-        opening_state=PeriodState(irpef_withheld_ytd=irpef_ytd),
+        opening_state=PeriodState(tax=TaxYtd(irpef=irpef_ytd)),
     )
 
 

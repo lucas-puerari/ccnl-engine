@@ -275,7 +275,7 @@ class TestCalculateYear:
         cal = WorkCalendar(year=_YEAR)
         result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=cal)
         dec_state = result.period_results[-1].closing_state
-        assert dec_state.gross_ytd == result.annual_gross
+        assert dec_state.earnings.gross == result.annual_gross
 
     def test_calendar_none_auto_derives_from_ccnl(self) -> None:
         """calendar=None derives the run sequence from the CCNL additional_months.

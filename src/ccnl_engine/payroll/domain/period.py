@@ -8,7 +8,13 @@ from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import Permanent
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    FringeYtd,
+    SommaEsenteAccount,
+    TaxYtd,
+    TrattamentoAccount,
+)
 
 if TYPE_CHECKING:
     from datetime import date
@@ -31,7 +37,7 @@ _ZERO = Decimal(0)
 @final
 @dataclass(frozen=True)
 class PeriodState:
-    """Minimal YTD state entering a period-first payroll calculation.
+    """YTD state entering a period-first payroll calculation.
 
     Pass :meth:`zero` for January (no prior periods closed this tax year).
 
@@ -45,49 +51,25 @@ class PeriodState:
         closed_run_ids: Frozen set of ``run_id`` strings for every run
             already closed this tax year.  Prevents reprocessing the same
             run and enforces monotonic ordering.
-        irpef_withheld_ytd: IRPEF already withheld this tax year.
-        inps_employee_ytd: Employee INPS contributions withheld YTD.
-        gross_ytd: Gross earnings accumulated YTD.
-        inps_base_ytd: Total INPS contribution base accumulated YTD.
-            Used to enforce the IVS massimale ceiling across periods.
-        taxable_ytd: Total IRPEF taxable income accumulated YTD.
-        fringe_ytd: Total fringe benefit value accumulated YTD.
-            Used to enforce the annual Art. 51 c. 3 TUIR threshold.
-        fringe_taxed_ytd: Cumulative fringe base already subject to IRPEF/INPS
-            this tax year.  Updated retroactively when the threshold is crossed.
-        pdr_ytd: Cumulative Premio di Risultato (PdR) bonus amount eligible for
-            the substitute-tax regime this tax year.  Used to enforce the
-            annual cap (5,000 EUR under L. 208/2015 / L. 199/2025).
-        credit_recognized_ytd: Cumulative trattamento integrativo (Art. 1 D.L.
-            3/2020) given to the worker this tax year.  Used to compute the
-            per-period conguaglio credit and detect over-payment for recovery.
-        credit_recovered_ytd: Cumulative trattamento integrativo recovered
-            (clawed back) from the worker this tax year when prior-period
-            credits exceed the annual entitlement due to a mid-year income
-            increase.
-        surtax_ytd: Cumulative regional and municipal surtax (addizionale
-            regionale/comunale) withheld this tax year.
+        earnings: Running totals for earned income and INPS contribution
+            bases (gross, taxable, INPS base, employee INPS).
+        fringe: Running totals for fringe benefits and PdR (value, taxed
+            base, PdR eligible amount).
+        tax: Running totals for tax withheld this year (IRPEF, surtax).
+        trattamento: YTD credit account for trattamento integrativo,
+            including any active installment recovery plan.
+        somma_esente: YTD credit account for the somma esente bonus
+            (L. 207/2024).
     """
 
     regular_periods_closed: int = 0
     tax_withholding_periods_closed: int = 0
     closed_run_ids: frozenset[str] = field(default_factory=frozenset)
-    irpef_withheld_ytd: Decimal = _ZERO
-    inps_employee_ytd: Decimal = _ZERO
-    gross_ytd: Decimal = _ZERO
-    inps_base_ytd: Decimal = _ZERO
-    taxable_ytd: Decimal = _ZERO
-    fringe_ytd: Decimal = _ZERO
-    fringe_taxed_ytd: Decimal = _ZERO
-    pdr_ytd: Decimal = _ZERO
-    credit_recognized_ytd: Decimal = _ZERO
-    """Cumulative trattamento integrativo recognized (given) this tax year."""
-    credit_recovered_ytd: Decimal = _ZERO
-    """Cumulative trattamento integrativo recovered (clawed back) this tax year."""
-    surtax_ytd: Decimal = _ZERO
-    """Cumulative regional and municipal surtax withheld this tax year."""
-    recovery_plan: RecoveryPlan | None = None
-    """Active installment recovery plan, or ``None`` when no recovery is in progress."""
+    earnings: EarningsYtd = field(default_factory=EarningsYtd)
+    fringe: FringeYtd = field(default_factory=FringeYtd)
+    tax: TaxYtd = field(default_factory=TaxYtd)
+    trattamento: TrattamentoAccount = field(default_factory=TrattamentoAccount)
+    somma_esente: SommaEsenteAccount = field(default_factory=SommaEsenteAccount)
 
     def __post_init__(self) -> None:
         """Validate counter invariants on construction.
@@ -107,12 +89,6 @@ class PeriodState:
                 f"({self.tax_withholding_periods_closed}) "
                 f"must be >= regular_periods_closed "
                 f"({self.regular_periods_closed})"
-            )
-            raise ValueError(msg)
-        if self.fringe_taxed_ytd > self.fringe_ytd:
-            msg = (
-                f"fringe_taxed_ytd ({self.fringe_taxed_ytd}) "
-                f"must be <= fringe_ytd ({self.fringe_ytd})"
             )
             raise ValueError(msg)
 

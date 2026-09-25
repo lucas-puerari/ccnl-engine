@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -104,7 +105,7 @@ class TestMultiPeriodChain:
         feb_irpef = sum(
             e.amount for e in r2.ledger_entries if e.account == AccountKind.ORDINARY_TAX
         )
-        assert r2.closing_state.irpef_withheld_ytd == jan_irpef + feb_irpef
+        assert r2.closing_state.tax.irpef == jan_irpef + feb_irpef
 
     def test_regular_periods_closed_increments_through_chain(self) -> None:
         """regular_periods_closed advances by 1 per regular period through a chain."""
@@ -204,7 +205,7 @@ class TestOpeningStateSensitivity:
         """gross_ytd alone does not affect net (IRPEF computation uses irpef_ytd)."""
         r_zero = calculate_period(_req())
         r_high_gross = calculate_period(
-            _req(opening=PeriodState(gross_ytd=Decimal("50000.00")))
+            _req(opening=PeriodState(earnings=EarningsYtd(gross=Decimal("50000.00"))))
         )
         assert r_zero.period_gross == r_high_gross.period_gross
 
@@ -212,6 +213,10 @@ class TestOpeningStateSensitivity:
         """inps_employee_ytd in opening state does not change period gross."""
         r_zero = calculate_period(_req())
         r_high_inps = calculate_period(
-            _req(opening=PeriodState(inps_employee_ytd=Decimal("5000.00")))
+            _req(
+                opening=PeriodState(
+                    earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
+                )
+            )
         )
         assert r_zero.period_gross == r_high_inps.period_gross

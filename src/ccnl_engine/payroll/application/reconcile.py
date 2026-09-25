@@ -14,18 +14,18 @@ Invariants:
           - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
           - ORDINARY_TAX - SURTAX - SEPARATE_TAX
           = period_net.
-    I10 — IRPEF delta: closing.irpef_withheld_ytd - opening.irpef_withheld_ytd
+    I10 — IRPEF delta: closing.tax.irpef - opening.tax.irpef
           = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
     I11 — YTD state transition: regular_periods_closed, tax_withholding_periods_closed,
-          closed_run_ids, gross_ytd, and inps_employee_ytd advance correctly from
-          opening.
+          closed_run_ids, earnings.gross, and earnings.inps_employee advance correctly
+          from opening.
     I12 — employer cost identity: CASH_EARNINGS - EMPLOYEE_DEDUCTIONS
           + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
           + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
     I13 — gross identity: CASH_EARNINGS total = period_gross.
     I14 — all ledger entry IDs in a period are unique.
     I15 — period_gross is non-negative.
-    I16 — 0 <= closing.credit_recovered_ytd <= closing.credit_recognized_ytd.
+    I16 — 0 <= closing.trattamento.recovered <= closing.trattamento.recognized.
     I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
           Refunds and adjustments must use an explicit account, not a negative
           deduction.
