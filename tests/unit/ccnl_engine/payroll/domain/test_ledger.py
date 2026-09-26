@@ -96,6 +96,10 @@ class TestAccountKind:
         """TFR_SETTLEMENT maps to 'tfr_settlement'."""
         assert AccountKind.TFR_SETTLEMENT.value == "tfr_settlement"
 
+
+class TestAccountKindShape:
+    """AccountKind is a closed string enumeration."""
+
     def test_fourteen_members(self) -> None:
         """AccountKind has exactly fourteen members."""
         assert len(AccountKind) == 14

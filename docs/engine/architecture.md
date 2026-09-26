@@ -50,7 +50,43 @@ Domain modules perform no I/O: no `importlib.resources`, no `pathlib`, no
 - Every directory holding Python sources has an `__init__.py`.
 - No layer directory exists without at least one module besides
   `__init__.py`.
-- No production module exceeds 400 lines.
+- File length and source depth follow the structural limits below.
+
+## Structural limits
+
+`scripts/ci/check_structure.py` measures the tree with `ast` and `tokenize`
+and runs in CI and in `tests/architecture/test_structure_limits.py`. Ruff
+enforces statement count and public methods with the same ceilings.
+
+| Rule | Measured on | Target | Hard limit |
+|---|---|---:|---:|
+| `production_file_lines` | modules under `src/ccnl_engine` | 250 | 300 |
+| `test_file_lines` | modules under `tests` | 350 | 500 |
+| `function_lines` | functions in `src`, `tests`, `scripts` | 40 | 60 |
+| `class_lines` | classes in `src`, `tests`, `scripts` | 100 | 150 |
+| `public_methods` | classes, also Ruff `PLR0904` | 10 | 15 |
+| `source_depth` | directories under `src/ccnl_engine` | | 3 |
+| statements per function | Ruff `PLR0915` | 30 | 40 |
+| cognitive complexity | complexipy | 10 | 15 |
+
+File lengths are physical lines. Function and class lengths are effective
+lines: from the `def` or `class` line to the end of the body, without
+blank lines, comment-only lines and docstrings. A class whose only methods
+are pydantic validators or serializers is declarative and exempt from
+`class_lines`; `data/` directories are exempt from `source_depth`.
+
+Current offenders are listed in `scripts/ci/structure_baseline.json` with
+their measured value. The check fails when:
+
+- a file, function or class above a hard limit is not in the baseline;
+- an offender grows past its baseline value;
+- a baseline entry is back within the limit and still listed.
+
+The baseline only shrinks. To remove an entry, bring the offender under the
+hard limit and delete its line; an offender that shrinks but still offends
+passes with a note, and its value should be lowered in the same change.
+`python scripts/ci/check_structure.py --write-baseline` rewrites the file
+from the tree: review the diff and reject any added entry.
 
 ## Payroll application layout
 

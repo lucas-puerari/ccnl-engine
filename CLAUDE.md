@@ -42,9 +42,16 @@ Note: commit type `feat` and branch prefix `feature/` are different namespaces.
 
 ```bash
 uv run pytest                    # 100% branch coverage — hard requirement
-uv run ruff check src/ tests/    # zero errors; line limit 88 characters
+uv run ruff check src/ tests/ scripts/    # zero errors; line limit 88 characters
+uv run ruff format --check src/ tests/ scripts/
 uv run mypy src/ tests/          # zero errors, strict mode
+uv run mypy scripts/ --explicit-package-bases
+uv run python scripts/ci/check_structure.py   # size limits, shrink-only baseline
 ```
+
+`check_structure.py` enforces file, function and class size limits and
+source depth against `scripts/ci/structure_baseline.json`; see
+`docs/engine/architecture.md` for the limits and how to shrink the baseline.
 
 Run them in this order. Fix coverage first, then lint, then types.
 

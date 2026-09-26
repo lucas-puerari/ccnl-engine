@@ -194,34 +194,40 @@ class TestCapabilityReport:
 # ---------------------------------------------------------------------------
 
 
-class TestCapabilityCatalog:
-    """CapabilityCatalog frozen dataclass with by_feature and gaps."""
+def _sample_catalog() -> CapabilityCatalog:
+    return CapabilityCatalog(
+        year=2026,
+        capabilities=(
+            CapabilityEntry("base_salary", CapabilityStatus.COMPUTED),
+            CapabilityEntry("irpef", CapabilityStatus.COMPUTED),
+            CapabilityEntry("art15_deductions", CapabilityStatus.PARTIALLY_COMPUTED),
+            CapabilityEntry("bonus_pdr", CapabilityStatus.NOT_APPLICABLE),
+            CapabilityEntry("blocked_feat", CapabilityStatus.BLOCKED),
+        ),
+    )
 
-    def _make(self) -> CapabilityCatalog:
-        return CapabilityCatalog(
-            year=2026,
-            capabilities=(
-                CapabilityEntry("base_salary", CapabilityStatus.COMPUTED),
-                CapabilityEntry("irpef", CapabilityStatus.COMPUTED),
-                CapabilityEntry(
-                    "art15_deductions", CapabilityStatus.PARTIALLY_COMPUTED
-                ),
-                CapabilityEntry("bonus_pdr", CapabilityStatus.NOT_APPLICABLE),
-                CapabilityEntry("blocked_feat", CapabilityStatus.BLOCKED),
-            ),
-        )
+
+class TestCapabilityCatalogLookup:
+    """CapabilityCatalog.by_feature finds entries by feature name."""
 
     def test_by_feature_found(self) -> None:
         """by_feature returns the entry when the feature is present."""
-        cat = self._make()
+        cat = _sample_catalog()
         entry = cat.by_feature("irpef")
         assert entry is not None
         assert entry.feature == "irpef"
 
     def test_by_feature_not_found(self) -> None:
         """by_feature returns None when the feature is absent."""
-        cat = self._make()
+        cat = _sample_catalog()
         assert cat.by_feature("unknown_feature") is None
+
+
+class TestCapabilityCatalog:
+    """CapabilityCatalog.gaps compares declared and observed statuses."""
+
+    def _make(self) -> CapabilityCatalog:
+        return _sample_catalog()
 
     def test_gaps_empty_when_all_computed(self) -> None:
         """No gaps when observed status matches or exceeds declared."""
