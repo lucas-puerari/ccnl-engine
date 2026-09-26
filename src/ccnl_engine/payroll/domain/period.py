@@ -16,8 +16,10 @@ from ccnl_engine.payroll.domain.decisions import (
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
+    Apprentice,
     ContributableHours,
     EmploymentPeriod,
+    FixedTerm,
     Permanent,
     SeniorityMonths,
     WeeklyHours,
@@ -25,6 +27,12 @@ from ccnl_engine.payroll.domain.employment import (
 )
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.request_checks import (
+    FieldSpec,
+    employment_gap,
+    type_error,
+)
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
@@ -34,12 +42,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-    from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
-    from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxComputation
@@ -151,8 +157,8 @@ class PeriodCalculationRequest:
         employment_period: Start and optional end of the employment.
             ``None`` when not tracked.
             :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
-            uses it to select the runs of the year; a single period
-            calculation carries it without checking the run month.
+            uses it to select the runs of the year.  A regular run must fall
+            in a month with at least one day of employment.
         seniority_months: Months of continuous service, non-negative.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
@@ -214,12 +220,21 @@ class PeriodCalculationRequest:
         :class:`ValueError`.
 
         Raises:
-            InvalidInputError: When ``payment_date`` is before the start of
+            InvalidInputError: When a field is not of its declared type (for
+                example a raw ``int`` for ``weekly_hours``), when a regular
+                run falls in a month without a day of employment, when
+                ``payment_date`` is before the start of
                 the competence period, when ``opening_state.tax_year`` is not
                 ``None`` and differs from the attributed tax year, or when
                 ``withholding_schedule`` belongs to another tax year, or
                 when ``regione`` or ``comune_belfiore`` is malformed.
         """
+        problem = type_error(self._field_specs())
+        if problem is not None:
+            raise InvalidInputError(problem, feature="period_request")
+        gap = employment_gap(self.period_id, self.run, self.employment_period)
+        if gap is not None:
+            raise InvalidInputError(gap, feature="employment_facts")
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         check_surtax_codes(self.regione, self.comune_belfiore)
         competence = date(self.period_id.year, self.period_id.month, 1)
@@ -248,6 +263,34 @@ class PeriodCalculationRequest:
                 f"does not match tax year ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
+
+    def _field_specs(self) -> tuple[FieldSpec, ...]:
+        """Return the fields an untyped caller may supply with a wrong type.
+
+        Returns:
+            One spec per checked field: name, value, types, ``None`` allowed.
+        """
+        return (
+            ("period_id", self.period_id, PeriodId, False),
+            ("payment_date", self.payment_date, date, False),
+            ("ccnl_slug", self.ccnl_slug, str, False),
+            ("level_code", self.level_code, str, False),
+            ("opening_state", self.opening_state, PeriodState, False),
+            (
+                "contract_type",
+                self.contract_type,
+                (Permanent, Apprentice, FixedTerm),
+                False,
+            ),
+            ("employer", self.employer, Employer, False),
+            ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
+            ("events", self.events, (tuple, list), False),
+            ("weekly_hours", self.weekly_hours, WeeklyHours, True),
+            ("contributable_hours", self.contributable_hours, ContributableHours, True),
+            ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
+            ("employment_period", self.employment_period, EmploymentPeriod, True),
+            ("seniority_months", self.seniority_months, SeniorityMonths, True),
+        )
 
 
 @dataclass(frozen=True)

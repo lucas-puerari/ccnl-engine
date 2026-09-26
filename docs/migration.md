@@ -148,3 +148,30 @@ the obligations that survive the year change.
 - `trattamento_integrativo` and `ulteriore_detrazione_lavoro` moved from
   `ccnl_engine.payroll.service.irpef` to
   `ccnl_engine.payroll.service.irpef_credits`.
+
+## Invariants and input checks
+
+- The reconciliation invariants have descriptive codes instead of `I1` to
+  `I19` and `L1` to `L4` (for example `net_identity` for `I9`,
+  `employee_contribution_non_negative` for `L3`); see the
+  [glossary](domain/glossary.md#reconciliation-invariants). The code is the
+  `invariant_id` of a `ReconciliationViolation` and appears as `[code]` in
+  the `DataIntegrityError` message.
+- `legal_invariants` is renamed `sign_invariants`; `reconcile()` takes an
+  optional `RunFacts` for the checks that need facts the result does not
+  carry.
+- `PeriodCalculationRequest` rejects a field of the wrong type (a raw `int`
+  for `weekly_hours`, a string for `payment_date`) with `InvalidInputError`
+  instead of an `AttributeError` later, and a regular run for a month
+  without a day of employment with `InvalidInputError`.
+- The IRPEF projection enters the current run with its actual employee
+  INPS (IVS ceiling and 1% addizionale included) instead of the total rate
+  times the gross; only the slots still to come are projected at the rate.
+  Above the 1% addizionale threshold the conguaglio now settles on the final
+  taxable income: for bancari-abi QD4 in 2026 the IRPEF withheld over the
+  year falls by 22.19 EUR (18,333.08 to 18,310.89 EUR). Below the threshold
+  the annual IRPEF is unchanged and single runs can move by a cent.
+- Unpaid absences above the monthly pay of the run raise `InvalidInputError`
+  instead of `DataIntegrityError`. Absences that leave less pay than the
+  withholdings due raise `OutOfScopeError` (reason `withholding_shortfall`)
+  instead of returning a negative net pay.

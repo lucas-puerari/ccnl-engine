@@ -46,6 +46,17 @@ the CCNL: `OvertimeEvent.hourly_rate` and `multiplier`, and the
 `supplement_amount` of night, holiday and shift events, come from the caller.
 The same holds for the `separate_tax_rate` of arrears and TFR settlements.
 
+### Absences are bounded by the pay of the run
+
+Unpaid absences (`AbsenceEvent`, and the absence part of a
+`SicknessCaseEvent`) that deduct more than the monthly pay of the run raise
+`InvalidInputError` before any amount is computed: check the hours and the
+hourly rate. Absences below the pay can still leave less than the IRPEF and
+INPS due on the run (the withholding follows the projected annual income).
+The engine does not carry that shortfall to a later payslip, so such a run
+raises `OutOfScopeError` with reason `withholding_shortfall` instead of
+returning a negative net pay.
+
 ### Substitute-tax regimes
 
 `prior_income` on `BonusEvent`, `NightShiftEvent`, `HolidayWorkEvent` and

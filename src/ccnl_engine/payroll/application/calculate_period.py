@@ -10,7 +10,6 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -20,6 +19,7 @@ from ccnl_engine.payroll.application._carried_recovery import (
 )
 from ccnl_engine.payroll.application._closing_state import RunOutcome, closing_state
 from ccnl_engine.payroll.application._extra_month_accrual import (
+    run_accrual,
     run_fraction,
     settle_extra_months,
 )
@@ -27,6 +27,12 @@ from ccnl_engine.payroll.application._period_amounts import (
     _compute_amounts,
     _domestic_hourly_rate,
     _resolve_chain,
+)
+from ccnl_engine.payroll.application._period_checks import (
+    check_absences_within_pay,
+    check_net_covered,
+    resolve_run_id,
+    run_facts,
 )
 from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
@@ -48,7 +54,7 @@ from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,
     _project_ledger,
 )
-from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
+from ccnl_engine.payroll.application.reconcile import check_period
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment_context import (
@@ -63,7 +69,6 @@ from ccnl_engine.payroll.domain.period import (
     PeriodCalculationResult,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-from ccnl_engine.payroll.domain.run import PayrollRunId, run_identifier
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
@@ -72,26 +77,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
 
 _ZERO = Decimal(0)
-
-
-def _resolve_run_id(request: PeriodCalculationRequest) -> PayrollRunId:
-    """Return the run identifier and raise if the run cannot close next.
-
-    Returns:
-        The identifier of the run of this period.
-
-    Raises:
-        InvalidInputError: When the run was already closed in the opening
-            state, is of a later year, or comes before a closed run.
-    """
-    run_id = run_identifier(
-        request.run, request.period_id.year, request.period_id.month
-    )
-    try:
-        request.opening_state.ytd.check_next_run(run_id)
-    except ValueError as exc:
-        raise InvalidInputError(str(exc), feature="payroll_run") from exc
-    return run_id
 
 
 def calculate_period(
@@ -120,10 +105,11 @@ def calculate_period(
         A :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
         with gross, net, employer cost, closing YTD state, pay items and ledger.
 
-    Raises:
-        DataIntegrityError: When the closing state or the ledger reconciliation
-            invariants fail, indicating an internal consistency error.  A run
-            that cannot close next in the tax year raises ``InvalidInputError``.
+    A run that cannot close next in the tax year, or whose unpaid absences
+    deduct more than its pay, raises ``InvalidInputError``.  Unpaid absences
+    that leave less pay than the withholdings due raise ``OutOfScopeError``.
+    A closing state or a reconciliation invariant that fails raises
+    ``DataIntegrityError``: it indicates an internal consistency error.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     effective_resolver = _effective_resolver(resolver)
@@ -156,14 +142,13 @@ def calculate_period(
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
-    closed_run_id = _resolve_run_id(request)
+    closed_run_id = resolve_run_id(request)
     run_kind, run_id = closed_run_id.kind, str(closed_run_id)
     opening = request.opening_state
     slots_closed = opening.ytd.tax_withholding_periods_closed
     upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
-    chain = _apply_extra_month_policy(
-        chain, run_kind, run_fraction(request, ccnl, tctx.competence)
-    )
+    accrual = run_accrual(request, ccnl, tctx.competence)
+    chain = _apply_extra_month_policy(chain, run_kind, run_fraction(accrual))
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
     var_pay_rules = effective_repo.load_variable_pay_rules(tctx.fiscal_year)
@@ -210,6 +195,7 @@ def calculate_period(
         effective_resolver,
         policy_context,
     )
+    check_absences_within_pay(event_entries, monthly_gross)
     event_totals = settlement.added_to(event_totals)
     event_items += settlement.items
     event_entries += settlement.entries
@@ -380,9 +366,14 @@ def calculate_period(
         issues=event_totals.issues + amounts.surtax.issues,
         decisions=decisions + somma.decisions + carried.decisions,
     )
-    rec = _reconcile(result, opening)
-    if not rec.ok:
-        msgs = "; ".join(f"[{v.invariant_id}] {v.message}" for v in rec.violations)
-        msg = f"Period reconciliation failed: {msgs}"
-        raise DataIntegrityError(msg)
+    check_net_covered(result)
+    facts = run_facts(
+        request,
+        year_rules,
+        ivs_ceiling_applies=ivs_ceiling_applies,
+        pdr_cap=var_pay_rules.pdr.max_amount,
+        accrual=accrual,
+        projected_taxable=amounts.projected_taxable,
+    )
+    check_period(result, opening, facts)
     return result

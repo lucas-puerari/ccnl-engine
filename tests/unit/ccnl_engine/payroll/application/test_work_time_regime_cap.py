@@ -1,4 +1,4 @@
-"""Work-time regime cap account: validation, availability and invariant I18."""
+"""Work-time regime cap account: validation, availability and the plafond invariant."""
 
 from __future__ import annotations
 
@@ -8,9 +8,12 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.application.decision_invariants import (
+    check_substitute_tax_plafond,
+)
 from ccnl_engine.payroll.application.reconcile import reconcile
-from ccnl_engine.payroll.application.state_invariants import check_i18
 from ccnl_engine.payroll.domain.events import NightShiftEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
@@ -81,8 +84,8 @@ class TestRegimeCapAccount:
         assert RegimeCapAccount(used).available(_CAP) == available
 
 
-class TestInvariantI18:
-    """I18: the account advances by the eligible amounts, within the cap."""
+class TestPlafondInvariant:
+    """substitute_tax_plafond: the account advances by the eligible amounts."""
 
     def test_real_run_passes(self) -> None:
         """An engine run above the cap consumes exactly the cap."""
@@ -90,18 +93,20 @@ class TestInvariantI18:
         result = _night_run(Decimal(2_000), opening)
 
         assert result.closing_state.ytd.work_time_regime.used == _CAP
-        assert check_i18(result, opening) == []
+        assert check_substitute_tax_plafond(result, opening, RunFacts()) == []
 
     def test_wrong_advance_is_reported(self) -> None:
         """A closing account that ignores the eligible amount is a violation."""
         opening = PeriodState.zero()
         bad = _with_used(_night_run(Decimal(500), opening), Decimal(0))
 
-        (violation,) = check_i18(bad, opening)
-        assert violation.invariant_id == "I18"
+        (violation,) = check_substitute_tax_plafond(bad, opening, RunFacts())
+        assert violation.invariant_id == "substitute_tax_plafond"
         assert violation.expected == Decimal(500)
         assert violation.actual == Decimal(0)
-        assert "I18" in {v.invariant_id for v in reconcile(bad, opening).violations}
+        assert "substitute_tax_plafond" in {
+            v.invariant_id for v in reconcile(bad, opening).violations
+        }
 
     def test_used_above_cap_is_reported(self) -> None:
         """An account above the annual cap is a violation even if it adds up."""
@@ -111,6 +116,6 @@ class TestInvariantI18:
         )
         bad = _with_used(result, Decimal(1_600))
 
-        (violation,) = check_i18(bad, opening)
-        assert violation.expected == _CAP
-        assert violation.actual == Decimal(1_600)
+        violations = check_substitute_tax_plafond(bad, opening, RunFacts())
+        above = [v for v in violations if "exceeds the annual cap" in v.message]
+        assert [(v.expected, v.actual) for v in above] == [(_CAP, Decimal(1_600))]

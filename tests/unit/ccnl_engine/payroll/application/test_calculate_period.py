@@ -20,7 +20,7 @@ from ccnl_engine.engine.tax.domain.credit_rules import (
     UlterioreDetrazioneRules,
 )
 from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
-from ccnl_engine.payroll.application import calculate_period as _cp_mod
+from ccnl_engine.payroll.application import reconcile as _reconcile_mod
 from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._period_utils import _require_resolution
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -847,10 +847,12 @@ class TestReconciliationFailureGuard:
         """When _reconcile returns violations, DataIntegrityError is raised."""
         fake_result = ReconciliationResult(
             violations=(
-                ReconciliationViolation(invariant_id="I9", message="test violation"),
+                ReconciliationViolation(
+                    invariant_id="net_identity", message="test violation"
+                ),
             )
         )
-        monkeypatch.setattr(_cp_mod, "_reconcile", lambda *_: fake_result)
+        monkeypatch.setattr(_reconcile_mod, "reconcile", lambda *_: fake_result)
 
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=2026, month=1),
