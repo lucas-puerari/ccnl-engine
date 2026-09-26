@@ -19,6 +19,7 @@ nav = [
     { "Pay components"    = "engine/pay-components.md" },
     { "Second level"      = "engine/second-level.md" },
     { "Fiscal"            = "engine/fiscal.md" },
+    { "Substitute-tax regimes" = "engine/substitute-tax-regimes.md" },
     { "Domestic work"     = "engine/domestic-work.md" },
   ]},
   { "Trust" = [

@@ -204,7 +204,7 @@ def calculate_period(
         opening_fringe_ytd=request.opening_state.fringe.value,
         opening_fringe_taxed=request.opening_state.fringe.taxed,
         pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
-        rinnovo_flat_rate=var_pay_rules.rinnovo.flat_tax_rate,
+        rinnovo_regime=var_pay_rules.rinnovo,
         notte_flat_rate=var_pay_rules.notte_turno.flat_tax_rate,
         notte_income_ceiling=var_pay_rules.notte_turno.income_ceiling,
     )
@@ -381,6 +381,8 @@ def calculate_period(
         benefit_breakdown=benefit_breakdown,
         run=request.run,
         bundle_version=bundle_version,
+        issues=event_totals.issues,
+        decisions=event_totals.decisions,
     )
     rec = _reconcile(result, request.opening_state)
     if not rec.ok:

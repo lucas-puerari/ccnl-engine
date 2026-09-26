@@ -13,8 +13,29 @@
     "description": "Art. 1 cc. 182-190 L. 208/2015 — premio di risultato, imposta sostitutiva 1% (L. 207/2024 art. 1 c. 385)"
   },
   "rinnovo": {
+    "regime_id": "rinnovo",
+    "eligible_kinds": ["contract_renewal_earning"],
+    "valid_from_year": 2026,
+    "valid_until_year": 2026,
     "flat_tax_rate": "0.05",
-    "description": "L. 199/2025 art. 1 co. 7 — incrementi salariali da rinnovo contrattuale, imposta sostitutiva 5%"
+    "annual_cap": null,
+    "income_ceiling": "33000.00",
+    "income_reference_year": 2025,
+    "required_sector": "private",
+    "waivable": true,
+    "agreements_signed_from": "2024-01-01",
+    "agreements_signed_until": "2026-12-31",
+    "source": {
+      "source_document": {
+        "document_id": "l-199-2025",
+        "title": "L. 199/2025, legge di bilancio 2026",
+        "kind": "legge",
+        "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+      },
+      "section": "art. 1 c. 7",
+      "quote": "gli incrementi retributivi corrisposti ai lavoratori dipendenti nell'anno 2026, in attuazione di rinnovi contrattuali sottoscritti dal 1° gennaio 2024 al 31 dicembre 2026, sono assoggettati, salva espressa rinuncia scritta del prestatore di lavoro, a un'imposta sostitutiva dell'imposta sul reddito delle persone fisiche e delle addizionali regionali e comunali pari al 5 per cento. L'imposta sostitutiva di cui al primo periodo si applica soltanto ai lavoratori del settore privato con un reddito di lavoro dipendente, nell'anno 2025, non superiore a 33.000 euro."
+    },
+    "description": "Incrementi retributivi 2026 da rinnovi contrattuali sottoscritti dal 2024-01-01 al 2026-12-31: imposta sostitutiva 5%, settore privato, reddito di lavoro dipendente 2025 non superiore a 33.000 EUR, salvo rinuncia scritta"
   },
   "notte_turno": {
     "flat_tax_rate": "0.15",
@@ -27,9 +48,9 @@
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-09-08",
-    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190",
+    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10",
     "verification_status": "unverified",
-    "source_hash": "85bda90b92d725979155f0cd2090b6aad3f8d01db90be402a92e5e9ea1666346",
+    "source_hash": "099d2c2403f2e19e23fb3330f711e1d19a2d0e01c89fdd61fe4bb63076230fae",
     "source_type": "official_primary"
   }
 }

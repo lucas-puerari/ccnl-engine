@@ -1,7 +1,8 @@
 """Regression tests for the L.199/2025 substitute-tax regimes.
 
 Rinnovo contrattuale (art. 1 co. 7): 5% flat tax on contract-renewal
-salary increments — BonusEvent(kind="contract_renewal").
+salary increments, BonusEvent(kind="contract_renewal"), for private-sector
+workers whose 2025 employment income does not exceed 33,000 EUR.
 
 Notte/turno (art. 1 co. 10): 15% flat tax on night/shift supplements when
 the worker's prior-year reddito does not exceed 40,000 EUR — NightShiftEvent
@@ -27,6 +28,7 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _YEAR = 2026
 _ZERO = Decimal(0)
+_RENEWAL_ELIGIBLE_INCOME = Decimal("20000.00")
 
 
 def _req(
@@ -57,6 +59,7 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
+            prior_income=_RENEWAL_ELIGIBLE_INCOME,
         )
         result = calculate_period(_req(events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -72,6 +75,7 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
+            prior_income=_RENEWAL_ELIGIBLE_INCOME,
         )
         with_bonus = calculate_period(_req(events=(bonus,)))
         inps_no = _sum_account(no_bonus, AccountKind.EMPLOYEE_CONTRIBUTIONS)
@@ -87,11 +91,35 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
+            prior_income=_RENEWAL_ELIGIBLE_INCOME,
         )
         result = calculate_period(_req(events=(bonus,)))
         assert result.closing_state.fringe.pdr == _ZERO, (
             f"contract_renewal must not consume PdR plafond; "
             f"got fringe.pdr={result.closing_state.fringe.pdr}."
+        )
+
+    def test_ineligible_renewal_is_ordinary_income_not_pdr(self) -> None:
+        """Above the ceiling the increment is ordinary IRPEF, never the PdR base."""
+        eligible, ineligible = (
+            calculate_period(
+                _req(
+                    events=(
+                        BonusEvent(
+                            event_date=date(_YEAR, 1, 15),
+                            amount=Decimal("2000.00"),
+                            kind="contract_renewal",
+                            prior_income=income,
+                        ),
+                    )
+                )
+            )
+            for income in (_RENEWAL_ELIGIBLE_INCOME, Decimal("100000.00"))
+        )
+        assert _sum_account(ineligible, AccountKind.SUBSTITUTE_TAX) == _ZERO
+        assert ineligible.closing_state.fringe.pdr == _ZERO
+        assert _sum_account(ineligible, AccountKind.ORDINARY_TAX) > _sum_account(
+            eligible, AccountKind.ORDINARY_TAX
         )
 
 

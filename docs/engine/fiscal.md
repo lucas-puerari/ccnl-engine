@@ -10,6 +10,10 @@ The tax year of a run follows its payment date, with the 12 January
 extension of TUIR art. 51 c. 1: see
 [Tax year and payment date](index.md#tax-year-and-payment-date).
 
+Some pay items take a flat substitute tax instead of IRPEF when the worker
+meets the statutory requirements: see
+[Substitute-tax regimes](substitute-tax-regimes.md).
+
 ## IRPEF flow
 
 1. **Taxable income** = gross − INPS employee contributions
