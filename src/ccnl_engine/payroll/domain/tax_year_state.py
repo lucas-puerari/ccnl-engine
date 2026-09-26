@@ -20,6 +20,8 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     SommaEsenteAccount,
     TaxYtd,
     TrattamentoAccount,
+    UlterioreDetrazioneAccount,
+    WithholdingShortfall,
 )
 
 __all__ = ["TaxYearState"]
@@ -68,9 +70,13 @@ class TaxYearState:
             year do not enter it.
         somma_esente: YTD credit account for the somma esente bonus
             (L. 207/2024).
+        ulteriore_detrazione: YTD account of the ulteriore detrazione
+            (L. 207/2024 art. 1 c. 6) recognized by the withholding.
         work_time_regime: YTD usage of the annual cap of the night, holiday
             and shift supplement substitute tax (L. 199/2025 art. 1
             cc. 10-11).
+        shortfall: IRPEF and surtax due on earlier runs and not yet
+            withheld because the pay left did not cover them.
     """
 
     tax_year: int | None = None
@@ -83,7 +89,11 @@ class TaxYearState:
     tax: TaxYtd = field(default_factory=TaxYtd)
     trattamento: TrattamentoAccount = field(default_factory=TrattamentoAccount)
     somma_esente: SommaEsenteAccount = field(default_factory=SommaEsenteAccount)
+    ulteriore_detrazione: UlterioreDetrazioneAccount = field(
+        default_factory=UlterioreDetrazioneAccount
+    )
     work_time_regime: RegimeCapAccount = field(default_factory=RegimeCapAccount)
+    shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
 
     def __post_init__(self) -> None:
         """Validate structural invariants on construction.

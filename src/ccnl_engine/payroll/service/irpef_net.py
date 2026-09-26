@@ -47,6 +47,9 @@ class NetIrpef:
             year does not configure it.
         effective_deductions: Sum of the deductions after the
             sterilizzazione.
+        ulteriore_effect: IRPEF the ulteriore detrazione actually removes:
+            the net without it less the net with it.  Below the deduction
+            when the net is floored at zero.
     """
 
     gross: Decimal
@@ -54,6 +57,7 @@ class NetIrpef:
     family_deductions: Decimal
     ulteriore: CreditOutcome | None
     effective_deductions: Decimal
+    ulteriore_effect: Decimal = _ZERO
 
     @property
     def total_deductions(self) -> Decimal:
@@ -102,7 +106,13 @@ def net_irpef(
     effective = irpef_svc.apply_sterilizzazione_detrazioni(
         total, taxable, rules.sterilizzazione_detrazioni
     )
-    return NetIrpef(gross, work, family_deductions, ulteriore, effective)
+    effect = _ZERO
+    if ulteriore is not None:
+        without = irpef_svc.apply_sterilizzazione_detrazioni(
+            total - ulteriore.amount, taxable, rules.sterilizzazione_detrazioni
+        )
+        effect = max(_ZERO, gross - without) - max(_ZERO, gross - effective)
+    return NetIrpef(gross, work, family_deductions, ulteriore, effective, effect)
 
 
 def run_withholding(
@@ -110,6 +120,7 @@ def run_withholding(
     net_without_one_off: Decimal | None,
     withheld: Decimal,
     remaining: int,
+    carried: Decimal = _ZERO,
 ) -> Decimal:
     """Return the IRPEF the run withholds.
 
@@ -119,11 +130,15 @@ def run_withholding(
             one-off income of the run, ``None`` when the run pays none.
         withheld: IRPEF withheld in the tax year before the run.
         remaining: Withholding slots not yet closed, the run included.
+        carried: IRPEF due on earlier runs that their pay did not cover.
+            It is part of the balance and is withheld in full on this run,
+            like the tax of the one-off income, not spread again.
 
     Returns:
         On the last slot the whole balance, which is negative for a refund.
-        Before it, the tax the one-off income adds (at least zero) plus the
-        share of the remaining balance, the share floored at zero.
+        Before it, the carried IRPEF and the tax the one-off income adds (at
+        least zero) plus the share of the rest of the balance, the share
+        floored at zero.
     """
     balance = net_annual - withheld
     if remaining == 1:
@@ -133,5 +148,5 @@ def run_withholding(
         if net_without_one_off is None
         else max(_ZERO, net_annual - net_without_one_off)
     )
-    share = max(_ZERO, (balance - one_off_tax) / remaining)
-    return money(share) + money(one_off_tax)
+    share = max(_ZERO, (balance - carried - one_off_tax) / remaining)
+    return money(share) + money(one_off_tax) + carried

@@ -48,7 +48,9 @@ omitted. A different calendar is accepted only as a validated
 ## Results and calculation status
 
 Every period result carries `issues` and a derived `status`; the year result
-exposes the worst status of its periods and their issues in payment order.
+exposes the worst status of its periods and their issues in payment order,
+each issue once: one repeated on every run (same `code` and `message`) is
+listed at its first run.
 A result is `final` only when no capability raised an issue.
 
 | Status | Meaning |

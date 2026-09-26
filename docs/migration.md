@@ -173,11 +173,29 @@ the obligations that survive the year change.
   the annual IRPEF is unchanged and single runs can move by a cent.
 - Unpaid absences above the monthly pay of the run raise `InvalidInputError`
   instead of `DataIntegrityError`. Absences that leave less pay than the
-  withholdings due raise `OutOfScopeError` (reason `withholding_shortfall`)
-  instead of returning a negative net pay.
+  IRPEF and surtax due no longer raise `OutOfScopeError`: the taxes are
+  withheld up to the pay left and the rest is carried in
+  `state.ytd.shortfall` to the next runs (see
+  [Fiscal: shortfall](engine/fiscal.md#pay-that-does-not-cover-the-tax)).
+  Metalmeccanico C3 with 160 absence hours in January 2026 now nets
+  0.00 EUR, withholding 143.25 of the 162.33 EUR of IRPEF due, and February
+  withholds the 19.08 EUR carried. `OutOfScopeError` (reason
+  `withholding_shortfall`) remains only when the other deductions exceed
+  the pay left.
 
 ## Fiscal rule corrections
 
+- The ulteriore detrazione (L. 207/2024 art. 1 c. 6) recognized by the
+  withholding is tracked in `state.ytd.ulteriore_detrazione`. An excess
+  found at the conguaglio above 60 EUR is recovered in ten installments
+  (c. 7): the first on the conguaglio, nine from the first run of the next
+  year. Before, the conguaglio took it back in full. No bundled scenario
+  changes: none reaches the conguaglio with the deduction no longer due.
+- `OpeningBalances` accepts `*_due` and `*_reason` for each credit, the
+  ulteriore detrazione totals and the IRPEF and surtax shortfall.
+- The capability catalog declares `somma_esente`, `withholding_shortfall`
+  and the two substitute tax regimes (`partially_computed`: their
+  eligibility rests on the declared prior income).
 - One-off income of a run (bonus, overtime, ordinary arrears, excess PdR,
   ratei settled at termination) has its IRPEF withheld on that run: the net
   annual IRPEF with the income less the net annual IRPEF without it. Before,
@@ -200,7 +218,9 @@ the obligations that survive the year change.
 - A run with a somma esente due carries the `provisional` issue
   `somma_esente_income_assumed`: the reddito complessivo is taken as the
   employment income. Low-income results that were `final` are now
-  `provisional`; `YearCalculationResult.issues` lists the issue once per run.
+  `provisional`. `YearCalculationResult.issues` lists an issue repeated on
+  every run once, at its first run (same `code` and `message`); the issues
+  of each run stay on `period_results`.
 - The projection of a future tredicesima or quattordicesima uses the rateo
   accrued on the employment period instead of a full month: a worker hired
   on 1 July withholds evenly over the seven slots of the year instead of

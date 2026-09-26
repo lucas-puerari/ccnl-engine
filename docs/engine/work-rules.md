@@ -52,10 +52,12 @@ Unpaid absences (`AbsenceEvent`, and the absence part of a
 `SicknessCaseEvent`) that deduct more than the monthly pay of the run raise
 `InvalidInputError` before any amount is computed: check the hours and the
 hourly rate. Absences below the pay can still leave less than the IRPEF and
-INPS due on the run (the withholding follows the projected annual income).
-The engine does not carry that shortfall to a later payslip, so such a run
-raises `OutOfScopeError` with reason `withholding_shortfall` instead of
-returning a negative net pay.
+surtax due on the run (the withholding follows the projected annual income).
+The taxes are then withheld up to the pay left and the rest is carried to
+the next runs of the tax year
+([Fiscal](fiscal.md#pay-that-does-not-cover-the-tax)). A run whose other
+deductions (INPS, substitute tax, recovery installments) exceed the pay
+left still raises `OutOfScopeError` with reason `withholding_shortfall`.
 
 ### Substitute-tax regimes
 

@@ -6,11 +6,17 @@ Each jurisdiction the caller supplies yields one
 - ``no_irpef_due`` (final, amount 0): the IRPEF net of its deductions is
   zero, so no surtax is due (D.Lgs. 446/1997 art. 50 c. 2 for the regional,
   D.Lgs. 360/1998 art. 1 c. 4 for the municipal; the foreign tax credit
-  they also net is not modelled);
+  they also net, art. 165 TUIR, is not modelled);
 - ``below_exemption_threshold`` (final, amount 0): the municipal exemption
   threshold covers the taxable income;
 - ``table_applied`` or ``advance_applied`` (final): the bundled table was
-  applied, the second one when the municipal rates only give the advance;
+  applied, the second one when the municipal rates only give the advance.
+  The acconto is 30% of the surtax at the rate and exemption threshold
+  "nella misura vigente nell'anno precedente" (D.Lgs. 360/1998 art. 1
+  c. 4), which is what the bundled table holds, so the
+  decision is final for the advance; its input ``balance`` is
+  ``not_modelled``: the saldo, withheld in up to eleven installments of
+  the next year, is outside the calculation;
 - ``table_unknown`` (incomplete, amount ``None``): the code is well formed
   but the tax year table has no row for it.  The amount withheld is zero
   and a :class:`~ccnl_engine.payroll.domain.decisions.CalculationIssue`
@@ -171,7 +177,10 @@ def _municipal(
         return table.decide("table_applied", amount)
     fraction = surtax.comunale_advance_fraction
     return table.decide(
-        "advance_applied", money(amount * fraction), advance_fraction=fraction
+        "advance_applied",
+        money(amount * fraction),
+        advance_fraction=fraction,
+        balance="not_modelled",
     )
 
 

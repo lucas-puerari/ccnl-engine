@@ -1,10 +1,11 @@
 """Checks of a period calculation that reject what no payslip can carry.
 
 The run must be able to close next in its tax year.  Unpaid absences are
-validated against the pay of the run before the run is computed, and a run
-whose withholdings exceed the pay left by the absences is rejected after
-it: the engine does not carry a withholding shortfall to
-a later payslip.  Both are caller-facing errors, raised before the
+validated against the pay of the run before the run is computed.  IRPEF
+and surtax are withheld only up to the pay left, the rest carried to the
+next runs; a run whose other deductions (contributions, substitute tax,
+recovery installments) still exceed the pay left by the absences is
+rejected after it.  Both are caller-facing errors, raised before the
 reconciliation invariants, whose violations are engine errors.
 """
 
@@ -84,21 +85,25 @@ def check_absences_within_pay(
 
 
 def check_net_covered(result: PeriodCalculationResult) -> None:
-    """Reject a run whose absences leave less pay than the withholdings.
+    """Reject a run whose absences leave less pay than the deductions.
+
+    IRPEF and surtax are already capped at the pay left, so a negative net
+    here comes from the other deductions of the run.
 
     Raises:
         OutOfScopeError: When the net pay is negative and the run deducts
-            unpaid absences: the IRPEF and contributions due exceed the pay
-            left, and carrying the shortfall forward is not modelled.  A
-            negative net without absences is left to the
+            unpaid absences: the contributions and other deductions due
+            exceed the pay left, and carrying them forward is not
+            modelled.  A negative net without absences is left to the
             ``net_pay_non_negative`` invariant.
     """
     if result.period_net >= _ZERO or result.unpaid_absence_deduction <= _ZERO:
         return
     msg = (
         f"unpaid absences of {result.unpaid_absence_deduction} leave a net "
-        f"pay of {result.period_net}: the withholdings due exceed the pay "
-        "left, and carrying the shortfall to a later payslip is not modelled"
+        f"pay of {result.period_net}: the deductions other than IRPEF and "
+        "surtax exceed the pay left, and carrying them to a later payslip "
+        "is not modelled"
     )
     raise OutOfScopeError(
         msg,

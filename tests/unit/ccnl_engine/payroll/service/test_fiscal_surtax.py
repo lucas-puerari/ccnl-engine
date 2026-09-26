@@ -118,6 +118,8 @@ def test_advance_rates_apply_the_advance_fraction() -> None:
     assert municipal.reason_code == "advance_applied"
     assert municipal.amount == _D("72.00")
     assert municipal.inputs["advance_fraction"] == _D("0.30")
+    assert municipal.inputs["balance"] == "not_modelled"
+    assert municipal.status is CalculationStatus.FINAL
     assert outcome.regional == _D(0)
     assert outcome.municipal == _D("72.00")
 

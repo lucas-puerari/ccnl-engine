@@ -49,6 +49,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+    from ccnl_engine.payroll.service.ulteriore_recovery import UlterioreSettlement
 
 
 @dataclass(frozen=True)
@@ -60,7 +61,8 @@ class _PeriodAmounts:
     carries the annual surtax decisions and issues behind ``period_surtax``;
     ``decisions`` holds every tax decision of the run, the surtax ones last.
     ``projected_taxable`` is the annual taxable income the IRPEF of the run
-    was computed on; ``None`` when not recorded.
+    was computed on; ``None`` when not recorded.  ``ulteriore`` is what
+    the run recognized or recovered of the ulteriore detrazione.
     """
 
     monthly_gross: Decimal
@@ -76,6 +78,7 @@ class _PeriodAmounts:
     surtax: SurtaxOutcome = field(default_factory=SurtaxOutcome)
     decisions: tuple[CalculationDecision, ...] = ()
     projected_taxable: Decimal | None = None
+    ulteriore: UlterioreSettlement | None = None
 
 
 def _resolve_chain(
@@ -201,6 +204,7 @@ def _compute_amounts(
     domestic_hourly_rate: Decimal | None = None,
     eligible_work_days: int = DAYS_IN_YEAR,
     recovery_plan: RecoveryPlan | None = None,
+    later_payslips: bool = True,
 ) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
@@ -211,7 +215,8 @@ def _compute_amounts(
     income and the conguaglio settles on it.  ``eligible_work_days`` are
     the days of employment in the tax year the deductions are proportioned
     to.  ``recovery_plan`` is the installment recovery opened in this tax
-    year, if one is running.
+    year, if one is running.  ``later_payslips`` is false when the
+    employment ends in the tax year: the conguaglio then defers nothing.
 
     Returns:
         ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
@@ -282,7 +287,7 @@ def _compute_amounts(
         )
         recurring_taxable = money(monthly_gross - recurring_inps)
         one_off_taxable = max(_ZERO, period_taxable - recurring_taxable)
-    net_without_one_off = (
+    without_one_off = (
         net_irpef(
             taxable - one_off_taxable,
             rules,
@@ -290,7 +295,7 @@ def _compute_amounts(
                 taxable - one_off_taxable, family_composition, family_rules
             ),
             eligible_work_days=min(eligible_work_days, DAYS_IN_YEAR),
-        ).net
+        )
         if one_off_taxable > _ZERO
         else None
     )
@@ -308,7 +313,13 @@ def _compute_amounts(
         family_deductions=fam_ded,
         recovery_plan=recovery_plan,
         eligible_work_days=eligible_work_days,
-        net_without_one_off=net_without_one_off,
+        net_without_one_off=None if without_one_off is None else without_one_off.net,
+        carried_shortfall=opening.shortfall.irpef,
+        ulteriore_account=opening.ulteriore_detrazione,
+        ulteriore_without_one_off=(
+            _ZERO if without_one_off is None else without_one_off.ulteriore_effect
+        ),
+        later_payslips=later_payslips,
     )
     tax_comp, next_recovery_plan = tax.computation, tax.recovery_plan
     period_irpef = tax_comp.ordinary_tax
@@ -327,7 +338,9 @@ def _compute_amounts(
         if surtax_rules is not None
         else SurtaxOutcome()
     )
-    period_surtax = slot_share(surtax.total, withholding_schedule)
+    period_surtax = (
+        slot_share(surtax.total, withholding_schedule) + opening.shortfall.surtax
+    )
 
     return (
         _PeriodAmounts(
@@ -343,6 +356,7 @@ def _compute_amounts(
             pdr_eligible=pdr_eligible,
             projected_taxable=taxable,
             surtax=surtax,
+            ulteriore=tax.ulteriore,
             decisions=tuple(
                 d
                 for d in (

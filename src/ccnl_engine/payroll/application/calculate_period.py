@@ -45,6 +45,11 @@ from ccnl_engine.payroll.application._somma_esente import (
     SommaEsentePosting,
     resolve_somma_esente,
 )
+from ccnl_engine.payroll.application._withholding_cap import (
+    cap_withholding,
+    ends_in_year,
+    run_net,
+)
 from ccnl_engine.payroll.application._withholding_plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
@@ -75,6 +80,8 @@ from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+    from ccnl_engine.payroll.domain.ledger import LedgerEntry
 
 _ZERO = Decimal(0)
 
@@ -106,8 +113,11 @@ def calculate_period(
         with gross, net, employer cost, closing YTD state, pay items and ledger.
 
     A run that cannot close next in the tax year, or whose unpaid absences
-    deduct more than its pay, raises ``InvalidInputError``.  Unpaid absences
-    that leave less pay than the withholdings due raise ``OutOfScopeError``.
+    deduct more than its pay, raises ``InvalidInputError``.  IRPEF and surtax
+    are withheld up to the pay left and the rest is carried to the next runs
+    of the tax year (:func:`~ccnl_engine.payroll.application._withholding_cap\
+.cap_withholding`); unpaid absences that leave less pay than the other
+    deductions raise ``OutOfScopeError``.
     A closing state or a reconciliation invariant that fails raises
     ``DataIntegrityError``: it indicates an internal consistency error.
     """
@@ -248,6 +258,7 @@ def calculate_period(
         recovery_plan=opening.obligations.recovery_of(
             tctx.fiscal_year, TRATTAMENTO_RECOVERY
         ),
+        later_payslips=not ends_in_year(request.employment_period, tctx.fiscal_year),
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
     decisions = (
@@ -263,19 +274,6 @@ def calculate_period(
         + event_totals.decisions
         + amounts.decisions
     )
-    pay_items = _build_pay_items(
-        amounts, chain, request.period_id, request.payment_date, run_tag=run_id
-    )
-    ledger_entries = _project_ledger(
-        amounts,
-        chain,
-        request.period_id,
-        request.payment_date,
-        effective_resolver,
-        policy_context,
-        run_tag=run_id,
-    )
-
     somma = resolve_somma_esente(
         tax_computation,
         year_rules,
@@ -286,7 +284,6 @@ def calculate_period(
             effective_resolver, policy_context, cp, request.payment_date, run_id
         ),
     )
-
     carried = post_carried_recoveries(
         opening.obligations,
         tctx.fiscal_year,
@@ -296,21 +293,38 @@ def calculate_period(
         request.payment_date,
         run_id,
     )
-    all_entries = ledger_entries + event_entries + somma.entries + carried.entries
+    other_entries = event_entries + somma.entries + carried.entries
+
+    def ledger_of(run_amounts: _PeriodAmounts) -> tuple[LedgerEntry, ...]:
+        return _project_ledger(
+            run_amounts,
+            chain,
+            request.period_id,
+            request.payment_date,
+            effective_resolver,
+            policy_context,
+            run_tag=run_id,
+        )
+
+    ledger_entries = ledger_of(amounts)
+    capped = cap_withholding(
+        amounts,
+        ledger_entries + other_entries,
+        opening.ytd.shortfall,
+        last_slot=run_kind.consumes_withholding_slot
+        and withholding_schedule.remaining(slots_closed) == 1,
+        rules=year_rules,
+    )
+    if capped.amounts is not amounts:
+        amounts = capped.amounts
+        ledger_entries = ledger_of(amounts)
+    pay_items = _build_pay_items(
+        amounts, chain, request.period_id, request.payment_date, run_tag=run_id
+    )
+    all_entries = ledger_entries + other_entries
 
     period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)
-    period_net = (
-        period_gross
-        + _sum_ledger(all_entries, AccountKind.TFR_SETTLEMENT)
-        + _sum_ledger(all_entries, AccountKind.CREDITS)
-        - _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
-        - _sum_ledger(all_entries, AccountKind.BILATERAL_FUND_EMPLOYEE)
-        - _sum_ledger(all_entries, AccountKind.EMPLOYEE_DEDUCTIONS)
-        - _sum_ledger(all_entries, AccountKind.SUBSTITUTE_TAX)
-        - _sum_ledger(all_entries, AccountKind.ORDINARY_TAX)
-        - _sum_ledger(all_entries, AccountKind.SURTAX)
-        - _sum_ledger(all_entries, AccountKind.SEPARATE_TAX)
-    )
+    period_net = run_net(all_entries)
     unpaid_absence_deduction = _sum_ledger(all_entries, AccountKind.EMPLOYEE_DEDUCTIONS)
     period_employer_cost = (
         period_gross
@@ -335,6 +349,7 @@ def calculate_period(
             somma_esente=somma,
             recovery_plan=next_recovery_plan,
             carried=carried.remaining,
+            shortfall=capped.shortfall,
         ),
     )
     benefit_breakdown = BenefitBreakdown(
@@ -356,7 +371,7 @@ def calculate_period(
         ledger_entries=all_entries,
         capability_report=capability_report(
             catalog,
-            decisions + somma.decisions + carried.decisions,
+            decisions + somma.decisions + carried.decisions + capped.decisions,
             event_totals.executed_features,
             tctx.fiscal_year,
         ),
@@ -365,8 +380,11 @@ def calculate_period(
         benefit_breakdown=benefit_breakdown,
         run=request.run,
         bundle_version=bundle_version,
-        issues=event_totals.issues + amounts.surtax.issues + somma.issues,
-        decisions=decisions + somma.decisions + carried.decisions,
+        issues=event_totals.issues
+        + amounts.surtax.issues
+        + somma.issues
+        + capped.issues,
+        decisions=decisions + somma.decisions + carried.decisions + capped.decisions,
     )
     check_net_covered(result)
     facts = run_facts(
