@@ -69,6 +69,7 @@ from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
+    RegimeCapAccount,
     SommaEsenteAccount,
     TaxYtd,
     TrattamentoAccount,
@@ -205,8 +206,8 @@ def calculate_period(
         opening_fringe_taxed=request.opening_state.fringe.taxed,
         pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
         rinnovo_regime=var_pay_rules.rinnovo,
-        notte_flat_rate=var_pay_rules.notte_turno.flat_tax_rate,
-        notte_income_ceiling=var_pay_rules.notte_turno.income_ceiling,
+        work_time_regime=var_pay_rules.notte_festivi_turni,
+        opening_work_time_cap=request.opening_state.work_time_regime,
     )
     settlement = settle_extra_months(
         request.extra_month_settlements,
@@ -356,6 +357,9 @@ def calculate_period(
         ),
         somma_esente=SommaEsenteAccount(
             recognized=op.somma_esente.recognized + period_somma_esente,
+        ),
+        work_time_regime=RegimeCapAccount(
+            used=op.work_time_regime.used + event_totals.work_time_cap_used
         ),
     )
     benefit_breakdown = BenefitBreakdown(

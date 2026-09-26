@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.ledger import PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
+from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 
 if TYPE_CHECKING:
     from datetime import date
@@ -28,7 +29,9 @@ class _EventHandlerCtx:
     """Immutable context passed to every event handler.
 
     Carries all inputs that are invariant across loop iterations, plus the
-    current fringe accumulators which may change after each FringeEvent.
+    current fringe accumulators which may change after each FringeEvent and
+    the work-time regime cap account, which grows after each eligible
+    night, holiday or shift supplement.
     """
 
     evt_id: str
@@ -41,8 +44,8 @@ class _EventHandlerCtx:
     cumulative_taxed: Decimal
     pdr_income_ceiling: Decimal | None = None
     rinnovo_regime: PreferentialTaxRegime | None = None
-    notte_flat_rate: Decimal | None = None
-    notte_income_ceiling: Decimal | None = None
+    work_time_regime: PreferentialTaxRegime | None = None
+    work_time_cap: RegimeCapAccount = field(default_factory=RegimeCapAccount)
 
 
 @dataclass
@@ -62,6 +65,8 @@ class EventEffect:
         fringe_irpef: Fringe IRPEF-taxable portion (FringeEvent only).
         new_cumulative_fringe: Updated cumulative fringe YTD (FringeEvent only).
         new_cumulative_taxed: Updated cumulative taxed fringe (FringeEvent only).
+        regime_cap_used: Part of the annual cap of the work-time regime
+            consumed by the event.
         decisions: Decisions taken on the event, e.g. a regime eligibility.
         issues: Conditions raised by the event that lower the result status.
     """
@@ -77,5 +82,6 @@ class EventEffect:
     fringe_irpef: Decimal = _ZERO
     new_cumulative_fringe: Decimal | None = None
     new_cumulative_taxed: Decimal | None = None
+    regime_cap_used: Decimal = _ZERO
     decisions: list[CalculationDecision] = field(default_factory=list)
     issues: list[CalculationIssue] = field(default_factory=list)

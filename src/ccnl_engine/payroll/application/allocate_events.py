@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import WorkEvent
 from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
+from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 
 if TYPE_CHECKING:
     from datetime import date
@@ -43,6 +44,7 @@ class _EventTotals:
     fringe_inps: Decimal
     fringe_irpef: Decimal
     substitute_base: Decimal
+    work_time_cap_used: Decimal = _ZERO
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
 
@@ -60,10 +62,14 @@ def _process_events(
     opening_fringe_taxed: Decimal = _ZERO,
     pdr_income_ceiling: Decimal | None = None,
     rinnovo_regime: PreferentialTaxRegime | None = None,
-    notte_flat_rate: Decimal | None = None,
-    notte_income_ceiling: Decimal | None = None,
+    work_time_regime: PreferentialTaxRegime | None = None,
+    opening_work_time_cap: RegimeCapAccount | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
+
+    The work-time regime cap starts from ``opening_work_time_cap`` and grows
+    after each eligible supplement, so later events of the run only get the
+    substitute rate on what is left of the annual cap.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -81,6 +87,8 @@ def _process_events(
     total_fringe_irpef = _ZERO
     cumulative_fringe = opening_fringe_ytd
     cumulative_taxed = opening_fringe_taxed
+    opening_cap = opening_work_time_cap or RegimeCapAccount()
+    work_time_cap = opening_cap
     items: list[PayItem] = []
     intents: list[PostingIntent] = []
     decisions: list[CalculationDecision] = []
@@ -106,8 +114,8 @@ def _process_events(
             cumulative_taxed=cumulative_taxed,
             pdr_income_ceiling=pdr_income_ceiling,
             rinnovo_regime=rinnovo_regime,
-            notte_flat_rate=notte_flat_rate,
-            notte_income_ceiling=notte_income_ceiling,
+            work_time_regime=work_time_regime,
+            work_time_cap=work_time_cap,
         )
         result: EventEffect = handler(event, ctx)
 
@@ -122,6 +130,7 @@ def _process_events(
         total_fringe_value += result.fringe_value
         total_fringe_inps += result.fringe_inps
         total_fringe_irpef += result.fringe_irpef
+        work_time_cap = RegimeCapAccount(work_time_cap.used + result.regime_cap_used)
         if result.new_cumulative_fringe is not None:
             cumulative_fringe = result.new_cumulative_fringe
         if result.new_cumulative_taxed is not None:
@@ -136,6 +145,7 @@ def _process_events(
             fringe_inps=total_fringe_inps,
             fringe_irpef=total_fringe_irpef,
             substitute_base=total_substitute,
+            work_time_cap_used=work_time_cap.used - opening_cap.used,
             decisions=tuple(decisions),
             issues=tuple(issues),
         ),

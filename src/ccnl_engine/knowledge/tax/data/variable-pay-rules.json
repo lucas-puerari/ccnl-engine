@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "description": "Statutory rules for fringe benefits (Art. 51 c. 3 TUIR), PdR, rinnovo and notte/turno (L. 199/2025)",
+  "description": "Statutory rules for fringe benefits (Art. 51 c. 3 TUIR), PdR, rinnovo and notte, festivi e turni (L. 199/2025)",
   "fringe_benefit": {
     "threshold_standard": "1000.00",
     "threshold_with_children": "2000.00",
@@ -37,10 +37,28 @@
     },
     "description": "Incrementi retributivi 2026 da rinnovi contrattuali sottoscritti dal 2024-01-01 al 2026-12-31: imposta sostitutiva 5%, settore privato, reddito di lavoro dipendente 2025 non superiore a 33.000 EUR, salvo rinuncia scritta"
   },
-  "notte_turno": {
+  "notte_festivi_turni": {
+    "regime_id": "notte_festivi_turni",
+    "eligible_kinds": ["night_holiday_shift_earning"],
+    "valid_from_year": 2026,
+    "valid_until_year": 2026,
     "flat_tax_rate": "0.15",
+    "annual_cap": "1500.00",
     "income_ceiling": "40000.00",
-    "description": "L. 199/2025 art. 1 co. 10 — lavoro notturno e a turni, imposta sostitutiva 15%, soglia reddito 40.000 EUR"
+    "income_reference_year": 2025,
+    "required_sector": "private",
+    "waivable": true,
+    "source": {
+      "source_document": {
+        "document_id": "l-199-2025",
+        "title": "L. 199/2025, legge di bilancio 2026",
+        "kind": "legge",
+        "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+      },
+      "section": "art. 1 cc. 10-11",
+      "quote": "Per il periodo d'imposta 2026, salva espressa rinuncia scritta del prestatore di lavoro, sono assoggettate a un'imposta sostitutiva dell'imposta sul reddito delle persone fisiche e delle addizionali regionali e comunali pari al 15 per cento le somme corrisposte, entro il limite annuo di 1.500 euro, ai lavoratori dipendenti a titolo di: a) maggiorazioni e indennita' per lavoro notturno ai sensi dell'articolo 1, comma 2, del decreto legislativo 8 aprile 2003, n. 66, e dei contratti collettivi nazionali di lavoro (CCNL); b) maggiorazioni e indennita' per lavoro prestato nei giorni festivi e nei giorni di riposo settimanale, come individuati dai CCNL; c) indennita' di turno e ulteriori emolumenti connessi al lavoro a turni, previsti dai CCNL. Le disposizioni di cui al comma 10 sono applicate dai sostituti d'imposta del settore privato, escluse le attivita' di cui al comma 18, nei confronti dei titolari di reddito di lavoro dipendente di importo non superiore, nell'anno 2025, a 40.000 euro."
+    },
+    "description": "Maggiorazioni e indennita' 2026 per lavoro notturno, festivo o di riposo settimanale e a turni: imposta sostitutiva 15% entro 1.500 EUR annui, settore privato, reddito di lavoro dipendente 2025 non superiore a 40.000 EUR, salvo rinuncia scritta"
   },
   "ruleset": {
     "id": "tax/variable-pay-rules/2026",
@@ -48,9 +66,9 @@
     "effective_from": "2026-01-01",
     "effective_until": "2026-12-31",
     "published_at": "2026-09-08",
-    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10",
+    "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10-11",
     "verification_status": "unverified",
-    "source_hash": "099d2c2403f2e19e23fb3330f711e1d19a2d0e01c89fdd61fe4bb63076230fae",
+    "source_hash": "834dfd83fdc422447213f9a9ace8441be619f4f1a3bb71c520554257405c0afa",
     "source_type": "official_primary"
   }
 }

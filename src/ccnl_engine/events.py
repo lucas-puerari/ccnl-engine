@@ -33,6 +33,9 @@ from ccnl_engine.payroll.domain.events import (
     OvertimeEvent as OvertimeEvent,
 )
 from ccnl_engine.payroll.domain.events import (
+    ShiftWorkEvent as ShiftWorkEvent,
+)
+from ccnl_engine.payroll.domain.events import (
     SickLeaveEvent as SickLeaveEvent,
 )
 from ccnl_engine.payroll.domain.events import (
@@ -57,6 +60,7 @@ __all__ = [
     "HolidayWorkEvent",
     "NightShiftEvent",
     "OvertimeEvent",
+    "ShiftWorkEvent",
     "SickLeaveEvent",
     "SicknessCaseEvent",
     "TerminationTFREvent",

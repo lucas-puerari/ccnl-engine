@@ -16,6 +16,7 @@ def test_events_module_exports_all_event_types() -> None:
         "HolidayWorkEvent",
         "NightShiftEvent",
         "OvertimeEvent",
+        "ShiftWorkEvent",
         "SickLeaveEvent",
         "SicknessCaseEvent",
         "TerminationTFREvent",

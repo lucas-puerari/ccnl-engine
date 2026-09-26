@@ -4,9 +4,10 @@ Rinnovo contrattuale (art. 1 co. 7): 5% flat tax on contract-renewal
 salary increments, BonusEvent(kind="contract_renewal"), for private-sector
 workers whose 2025 employment income does not exceed 33,000 EUR.
 
-Notte/turno (art. 1 co. 10): 15% flat tax on night/shift supplements when
-the worker's prior-year reddito does not exceed 40,000 EUR — NightShiftEvent
-with prior_income set.  Fail-closed: None → ordinary IRPEF.
+Night, holiday and shift supplements (art. 1 cc. 10-11): 15% flat tax
+within 1,500 EUR a year when the worker's 2025 employment income does not
+exceed 40,000 EUR, NightShiftEvent with prior_income set.  Fail-closed: None
+means ordinary IRPEF.
 """
 
 from __future__ import annotations

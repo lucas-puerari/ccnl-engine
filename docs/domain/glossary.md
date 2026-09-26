@@ -146,6 +146,16 @@ normative source are data in the tax bundle.
 
 `PreferentialTaxRegime`, `RinnovoRules`
 
+### regime cap account (plafond annuo del regime agevolato)
+
+The year-to-date part of a regime's annual cap already taxed at the
+substitute rate.  For the night, holiday and shift supplement regime
+(L. 199/2025 art. 1 cc. 10-11, cap 1,500 EUR) it lives in the period state and
+carries over between runs of the tax year; each supplement only gets the
+substitute rate on what is left, the excess is ordinary income.
+
+`RegimeCapAccount`, `PayrollState.work_time_regime`
+
 ### regime eligibility (spettanza del regime agevolato)
 
 The outcome of checking a pay item against a preferential regime:

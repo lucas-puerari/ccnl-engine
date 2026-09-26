@@ -27,6 +27,7 @@ from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
+    RegimeCapAccount,
     SommaEsenteAccount,
     TaxYtd,
     TrattamentoAccount,
@@ -78,6 +79,9 @@ class PeriodState:
             including any active installment recovery plan.
         somma_esente: YTD credit account for the somma esente bonus
             (L. 207/2024).
+        work_time_regime: YTD usage of the annual cap of the night, holiday
+            and shift supplement substitute tax (L. 199/2025 art. 1
+            cc. 10-11).
     """
 
     SCHEMA_VERSION: ClassVar[int] = 1
@@ -91,6 +95,7 @@ class PeriodState:
     tax: TaxYtd = field(default_factory=TaxYtd)
     trattamento: TrattamentoAccount = field(default_factory=TrattamentoAccount)
     somma_esente: SommaEsenteAccount = field(default_factory=SommaEsenteAccount)
+    work_time_regime: RegimeCapAccount = field(default_factory=RegimeCapAccount)
 
     def __post_init__(self) -> None:
         """Validate structural invariants on construction.
