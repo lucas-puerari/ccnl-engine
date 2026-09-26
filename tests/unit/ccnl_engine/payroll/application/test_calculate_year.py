@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.payroll.application import calculate_year as calculate_year_module
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
@@ -18,8 +21,16 @@ from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
 )
-from ccnl_engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.decisions import CalculationStatus
+from ccnl_engine.payroll.domain.employment import EmploymentPeriod, Permanent
 from ccnl_engine.payroll.domain.events import AbsenceEvent
+from ccnl_engine.payroll.domain.run import RunKind
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import (
+        PeriodCalculationRequest,
+        PeriodCalculationResult,
+    )
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -285,6 +296,99 @@ class TestCalculateYear:
         result = calculate_year(_YEAR, _CCNL, _LEVEL)
         assert result.calendar == WorkCalendar.from_additional_months(_YEAR, 13)
         assert result.calendar_override is None
+
+
+class TestEmploymentPeriodRuns:
+    """The employment period selects the runs of the year."""
+
+    def test_mid_month_hire_starts_in_the_hire_month(self) -> None:
+        """Hired 15 March, open-ended: March to December plus the tredicesima."""
+        result = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
+        )
+        runs = [
+            (r.period_id.month, r.run.run_kind) for r in result.period_results if r.run
+        ]
+        assert runs == [(m, RunKind.REGULAR) for m in range(3, 13)] + [
+            (12, RunKind.THIRTEENTH)
+        ]
+
+    def test_partial_month_is_provisional_and_whole_months_final(self) -> None:
+        """Only the partly employed month carries the provisional issue."""
+        result = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
+        )
+        march, april = result.period_results[0], result.period_results[1]
+        assert [i.code for i in march.issues] == ["partial_month_not_prorated"]
+        assert march.status is CalculationStatus.PROVISIONAL
+        assert april.status is CalculationStatus.FINAL
+        assert result.period_results[-1].status is CalculationStatus.FINAL
+        assert result.status is CalculationStatus.PROVISIONAL
+
+    def test_termination_in_may_has_no_december_tredicesima(self) -> None:
+        """Ended 31 May: five regular runs, no extra-month run."""
+        result = calculate_year(
+            _YEAR,
+            _CCNL,
+            _LEVEL,
+            employment_period=EmploymentPeriod(date(2020, 1, 1), date(_YEAR, 5, 31)),
+        )
+        assert [r.run.run_kind for r in result.period_results if r.run] == [
+            RunKind.REGULAR
+        ] * 5
+        assert result.status is CalculationStatus.FINAL
+
+    def test_employment_outside_the_year_is_rejected(self) -> None:
+        """An employment ended in 2025 has nothing to compute in 2026."""
+        with pytest.raises(InvalidInputError, match="no day in 2026"):
+            calculate_year(
+                _YEAR,
+                _CCNL,
+                _LEVEL,
+                employment_period=EmploymentPeriod(
+                    date(2025, 1, 1), date(2025, 12, 31)
+                ),
+            )
+
+    def test_requests_carry_selected_slots_and_clipped_window(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Slots match the selected runs; the fourteenth window starts at hire."""
+        requests: list[PeriodCalculationRequest] = []
+
+        def _spy(
+            req: PeriodCalculationRequest, **kwargs: object
+        ) -> PeriodCalculationResult:
+            requests.append(req)
+            return calculate_period(req, **kwargs)  # type: ignore[arg-type]
+
+        monkeypatch.setattr(calculate_year_module, "calculate_period", _spy)
+        calculate_year(
+            _YEAR,
+            "commercio-confcommercio.json",
+            "4",
+            employment_period=EmploymentPeriod(date(_YEAR, 3, 10)),
+        )
+        schedule = requests[0].withholding_schedule
+        assert schedule is not None
+        assert tuple(s.run for s in schedule.slots) == tuple(
+            r.run for r in requests if r.run is not None
+        )
+        windows = {
+            r.run.run_kind: r.extra_month_accrual_window
+            for r in requests
+            if r.run is not None and r.extra_month_accrual_window is not None
+        }
+        assert windows[RunKind.FOURTEENTH].start == date(_YEAR, 3, 10)
+        assert windows[RunKind.FOURTEENTH].nominal_start == date(_YEAR - 1, 7, 1)
+        assert windows[RunKind.THIRTEENTH].start == date(_YEAR, 3, 10)
+        assert requests[0].extra_month_accrual_window is None
 
 
 class TestCalendarOverride:

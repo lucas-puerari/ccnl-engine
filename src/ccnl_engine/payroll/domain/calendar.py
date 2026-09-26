@@ -16,11 +16,14 @@ only through a
 
 from __future__ import annotations
 
+import calendar
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from enum import Enum
 
 __all__ = [
+    "AccrualWindow",
     "ExtraMonthEntitlement",
     "ExtraMonthKind",
     "ExtraMonthSchedule",
@@ -84,6 +87,36 @@ class ExtraMonthEntitlement:
         return cls(Decimal(str(value)))
 
 
+@dataclass(frozen=True)
+class AccrualWindow:
+    """Dates over which one extra-month run accrues.
+
+    Attributes:
+        nominal_start: First day of the contractual 12-month window, in the
+            previous year when the window crosses the year boundary.
+        start: First day counted for this employment: ``nominal_start``,
+            or the hire date when the worker was hired later.  Months
+            before the hire date are never part of the window.
+        end: Last day of the payment month.
+
+    Raises:
+        ValueError: When the dates are not ordered
+            ``nominal_start <= start <= end``.
+    """
+
+    nominal_start: date
+    start: date
+    end: date
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if not self.nominal_start <= self.start <= self.end:
+            msg = (
+                f"accrual window dates must satisfy nominal_start <= start <= "
+                f"end; got {self.nominal_start}, {self.start}, {self.end}"
+            )
+            raise ValueError(msg)
+
+
 class ExtraMonthKind(Enum):
     """Typed kind for an extra contractual month.
 
@@ -144,6 +177,32 @@ class ExtraMonthSchedule:
                 f"got {self.max_fraction}"
             )
             raise ValueError(msg)
+
+    def accrual_window(
+        self, year: int, started_on: date | None = None
+    ) -> AccrualWindow:
+        """Return the accrual window of this extra month paid in ``year``.
+
+        Args:
+            year: Tax year of the payment.
+            started_on: Hire date, or ``None`` when not tracked.  A window
+                opening before it is clipped to it.
+
+        Returns:
+            The window from ``accrual_window_start_month`` (of the previous
+            year when it follows ``payment_month``) to the end of
+            ``payment_month``.
+        """
+        crosses_year = self.accrual_window_start_month > self.payment_month
+        start_year = year - 1 if crosses_year else year
+        nominal_start = date(start_year, self.accrual_window_start_month, 1)
+        last_day = calendar.monthrange(year, self.payment_month)[1]
+        start = nominal_start if started_on is None else max(nominal_start, started_on)
+        return AccrualWindow(
+            nominal_start=nominal_start,
+            start=start,
+            end=date(year, self.payment_month, last_day),
+        )
 
 
 @dataclass(frozen=True)

@@ -7,7 +7,13 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    EmploymentFacts,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+    PayrollYearRequest,
+)
 
 
 @pytest.fixture(scope="module")
@@ -54,11 +60,20 @@ def test_roles_forwarded(engine: PayrollEngine) -> None:
     assert gross > Decimal(0)
 
 
-def test_started_on_ended_on_forwarded(engine: PayrollEngine) -> None:
-    """started_on and ended_on are accepted without error."""
-    gross = _run(
-        engine,
-        started_on=date(2020, 1, 1),
-        ended_on=date(2027, 12, 31),
+def test_employment_dates_select_the_year_runs(engine: PayrollEngine) -> None:
+    """Employed 1 March to 31 May: three regular runs and no tredicesima."""
+    year = engine.calculate_year(
+        PayrollYearRequest(
+            year=2026,
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            employment_facts=EmploymentFacts(
+                started_on=date(2026, 3, 1), ended_on=date(2026, 5, 31)
+            ),
+        )
     )
-    assert gross > Decimal(0)
+    assert [r.run.run_id for r in year.period_results if r.run] == [
+        "2026-03-regular",
+        "2026-04-regular",
+        "2026-05-regular",
+    ]

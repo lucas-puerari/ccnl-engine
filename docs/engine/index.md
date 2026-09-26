@@ -103,6 +103,51 @@ the ratei monthly (mensilizzazione) is not supported: the engine does not
 pay ratei inside regular runs. The effective calendar and the override are
 returned on the year result as `calendar` and `calendar_override`.
 
+### Employment period
+
+`EmploymentFacts.started_on` and `ended_on` select the runs of the year:
+
+- a regular run for every month with at least one employed day;
+- an extra-month run only when its payment month is such a month, so a
+  worker employed from July to September has no tredicesima or
+  quattordicesima run;
+- one IRPEF withholding slot per selected run, so the conguaglio settles on
+  the last run of the employment;
+- an employment with no day in the year raises `InvalidInputError`.
+
+A month the employment covers only in part (hire on the 15th, end before the
+last day) keeps its run and the full monthly pay: the bundled CCNL data
+define no daily divisor, so the engine does not choose between calendar-day
+and 26ths proration. The run carries a `partial_month_not_prorated` issue and
+its status is `PROVISIONAL`.
+
+Each extra-month run carries its accrual window on the period request, with
+the start clipped to the hire date. The rateo amount does not use it yet:
+it still counts the regular runs closed, plus the months before 1 January
+of a cross-year window. Liquidating the ratei accrued before a termination
+that falls before the payment month is not supported yet.
+
+CCNL and level validity does not drop runs: a month the salary table does not
+cover fails in the salary lookup.
+
+```python
+from datetime import date
+
+from ccnl_engine import EmploymentFacts
+
+short = engine.calculate_year(
+    PayrollYearRequest(
+        year=2026,
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="4",
+        employment_facts=EmploymentFacts(
+            started_on=date(2026, 7, 1), ended_on=date(2026, 9, 30)
+        ),
+    )
+)
+print(len(short.period_results))  # 3: July, August, September
+```
+
 ```python
 from ccnl_engine import CalendarOverride, CalendarOverrideReason, PayrollCalendar
 

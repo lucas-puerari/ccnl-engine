@@ -13,6 +13,12 @@ is fractional (13.5 equivalent months, 14 payslips):
 - :class:`PayrollRunCount`: how many payslips the year issues;
 - :class:`WithholdingSchedule`: the ordered IRPEF withholding slots that the
   annual projection and the year-end conguaglio run on.
+
+When the employment period is known, the schedule keeps only the runs paid in
+a month the employment overlaps: a regular run for each month with at least
+one employed day, an extra-month run only when its payment month is such a
+month.  The withholding schedule is built from those runs, so a short
+employment has fewer slots.
 """
 
 from __future__ import annotations
@@ -26,6 +32,7 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
+    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 
 __all__ = [
     "PayrollRunCount",
@@ -93,36 +100,55 @@ class PayrollSchedule:
                 raise ValueError(msg)
 
     @classmethod
-    def from_calendar(cls, calendar: WorkCalendar) -> PayrollSchedule:
+    def from_calendar(
+        cls, calendar: WorkCalendar, employment: EmploymentPeriod | None = None
+    ) -> PayrollSchedule:
         """Build a :class:`PayrollSchedule` from a :class:`WorkCalendar`.
 
         Generates twelve regular runs (one per calendar month) plus one extra
         run per :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthSchedule`
         in the calendar.  The extra run is inserted directly after the regular
-        run for its ``payment_month``.
+        run for its ``payment_month``.  With ``employment``, only the runs of
+        months the employment overlaps are kept.
 
         Args:
             calendar: Year-level payroll calendar.
+            employment: Employment period, or ``None`` for a worker employed
+                all year.
 
         Returns:
-            A :class:`PayrollSchedule` with all runs in payment order.
+            A :class:`PayrollSchedule` with the selected runs in payment
+            order, empty when the employment does not overlap the year.
         """
         year = calendar.year
         runs: list[PayrollRun] = []
         for month in range(1, 13):
+            if employment is not None and not employment.overlaps_month(year, month):
+                continue
             runs.append(PayrollRun.regular(year, month))
-            for extra in calendar.extra_months:
-                if extra.payment_month == month:
-                    if extra.kind == ExtraMonthKind.FOURTEENTH:
-                        runs.append(PayrollRun.fourteenth(year, month))
-                    else:
-                        runs.append(PayrollRun.thirteenth(year, month))
+            runs.extend(
+                _extra_run(extra.kind, year, month)
+                for extra in calendar.extra_months
+                if extra.payment_month == month
+            )
         return cls(year=year, runs=tuple(runs))
 
     @property
     def run_count(self) -> PayrollRunCount:
         """Number of payslips in this schedule."""
         return PayrollRunCount(len(self.runs))
+
+
+def _extra_run(kind: ExtraMonthKind, year: int, month: int) -> PayrollRun:
+    """Return the extra-month run of ``kind`` paid in ``month``.
+
+    Returns:
+        A fourteenth run for :attr:`ExtraMonthKind.FOURTEENTH`, a thirteenth
+        run otherwise.
+    """
+    if kind == ExtraMonthKind.FOURTEENTH:
+        return PayrollRun.fourteenth(year, month)
+    return PayrollRun.thirteenth(year, month)
 
 
 @dataclass(frozen=True)
@@ -176,21 +202,40 @@ class WithholdingSchedule:
 
     @classmethod
     def from_calendar(cls, calendar: WorkCalendar) -> WithholdingSchedule:
-        """Build the withholding schedule of the runs a calendar generates.
+        """Build the withholding schedule of a full-year calendar.
 
         Args:
             calendar: Year-level payroll calendar.
 
         Returns:
-            One slot per run of :meth:`PayrollSchedule.from_calendar`, with
-            the extra months carrying their ``max_fraction``.
+            :meth:`for_runs` of every run of
+            :meth:`PayrollSchedule.from_calendar`.
+        """
+        return cls.for_runs(PayrollSchedule.from_calendar(calendar), calendar)
+
+    @classmethod
+    def for_runs(
+        cls, schedule: PayrollSchedule, calendar: WorkCalendar
+    ) -> WithholdingSchedule:
+        """Build the withholding schedule of the runs actually selected.
+
+        Args:
+            schedule: The runs of the year, possibly fewer than the calendar
+                generates when the employment covers part of the year.
+            calendar: Calendar of ``schedule``, which sets the extra-month
+                fractions.
+
+        Returns:
+            One slot per run of ``schedule``, with the extra months carrying
+            their ``max_fraction``.  An empty ``schedule`` is rejected by
+            the constructor, which needs at least one slot.
         """
         fractions = {e.kind.value: e.max_fraction for e in calendar.extra_months}
-        runs = PayrollSchedule.from_calendar(calendar).runs
         return cls(
-            year=calendar.year,
+            year=schedule.year,
             slots=tuple(
-                WithholdingSlot(run, fractions.get(run.run_kind, _ONE)) for run in runs
+                WithholdingSlot(run, fractions.get(run.run_kind, _ONE))
+                for run in schedule.runs
             ),
         )
 

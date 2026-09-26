@@ -108,6 +108,45 @@ class TestEmploymentPeriod:
             EmploymentPeriod.from_dates(None, date(2026, 9, 30))
 
 
+class TestEmploymentPeriodMonths:
+    """Month overlap and coverage decide which runs a year computes."""
+
+    _PERIOD = EmploymentPeriod(started_on=date(2026, 3, 15), ended_on=date(2026, 9, 30))
+
+    @pytest.mark.parametrize(
+        ("month", "overlaps", "covers"),
+        [
+            pytest.param(2, False, False, id="before-hire"),
+            pytest.param(3, True, False, id="hire-month"),
+            pytest.param(6, True, True, id="whole-month"),
+            pytest.param(9, True, True, id="ends-on-last-day"),
+            pytest.param(10, False, False, id="after-end"),
+        ],
+    )
+    def test_month_overlap_and_coverage(
+        self, month: int, *, overlaps: bool, covers: bool
+    ) -> None:
+        """A month overlaps with one employed day and is covered with all."""
+        assert self._PERIOD.overlaps_month(2026, month) is overlaps
+        assert self._PERIOD.covers_month(2026, month) is covers
+
+    def test_end_inside_month_is_partial(self) -> None:
+        """An employment ending on 15 May overlaps May without covering it."""
+        period = EmploymentPeriod(started_on=_START, ended_on=date(2026, 5, 15))
+        assert period.overlaps_month(2026, 5)
+        assert not period.covers_month(2026, 5)
+
+    def test_open_ended_covers_later_years(self) -> None:
+        """Without an end date every later month is covered."""
+        period = EmploymentPeriod(started_on=_START)
+        assert period.covers_month(2030, 12)
+
+    def test_clip_start_moves_to_hire_date(self) -> None:
+        """A date before the hire date is clipped to it; a later one is kept."""
+        assert self._PERIOD.clip_start(date(2025, 7, 1)) == date(2026, 3, 15)
+        assert self._PERIOD.clip_start(date(2026, 4, 1)) == date(2026, 4, 1)
+
+
 class TestWithinFullTime:
     """Contracted weekly hours never exceed full-time weekly hours."""
 

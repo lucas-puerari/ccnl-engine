@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import calendar
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
@@ -128,6 +129,59 @@ class EmploymentPeriod:
                 raise InvalidInputError(msg, feature=_FEATURE)
             return None
         return cls(started_on=started_on, ended_on=ended_on)
+
+    def overlaps_month(self, year: int, month: int) -> bool:
+        """Return whether the employment covers at least one day of a month.
+
+        Args:
+            year: Calendar year of the month.
+            month: Calendar month, 1-12.
+
+        Returns:
+            ``True`` when the month has at least one employed day.
+        """
+        first, last = _month_bounds(year, month)
+        return self.started_on <= last and (
+            self.ended_on is None or self.ended_on >= first
+        )
+
+    def covers_month(self, year: int, month: int) -> bool:
+        """Return whether the employment covers every day of a month.
+
+        Args:
+            year: Calendar year of the month.
+            month: Calendar month, 1-12.
+
+        Returns:
+            ``True`` when the employment starts on or before the first day
+            and does not end before the last day of the month.
+        """
+        first, last = _month_bounds(year, month)
+        return self.started_on <= first and (
+            self.ended_on is None or self.ended_on >= last
+        )
+
+    def clip_start(self, day: date) -> date:
+        """Return ``day``, or the hire date when ``day`` precedes it.
+
+        Args:
+            day: A date, typically the first day of an accrual window.
+
+        Returns:
+            ``max(day, started_on)``.
+        """
+        return max(day, self.started_on)
+
+
+def _month_bounds(year: int, month: int) -> tuple[date, date]:
+    """Return the first and last day of a calendar month.
+
+    Returns:
+        ``(first, last)`` dates of ``month`` in ``year``.
+    """
+    first = date(year, month, 1)
+    last = date(year, month, calendar.monthrange(year, month)[1])
+    return first, last
 
 
 def check_within_full_time(
