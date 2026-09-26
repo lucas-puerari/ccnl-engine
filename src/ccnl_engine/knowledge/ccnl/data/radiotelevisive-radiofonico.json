@@ -80,6 +80,7 @@
           "valid_until": null,
           "value": "173",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -106,6 +107,7 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -136,6 +138,7 @@
               "valid_until": null,
               "value": "12.39",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -162,6 +165,7 @@
               "valid_until": null,
               "value": "12.91",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -188,6 +192,7 @@
               "valid_until": null,
               "value": "15.49",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -214,6 +219,7 @@
               "valid_until": null,
               "value": "16.01",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -240,6 +246,7 @@
               "valid_until": null,
               "value": "18.08",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -266,6 +273,7 @@
               "valid_until": null,
               "value": "19.63",
               "provenance": {
+                "status": "derived",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -287,6 +295,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -317,6 +326,7 @@
             "valid_until": "2027-06-01",
             "value": "725.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -339,6 +349,7 @@
             "valid_until": null,
             "value": "778.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -370,6 +381,7 @@
                 "valid_until": null,
                 "value": "506.96",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -391,6 +403,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -410,6 +423,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -438,6 +452,7 @@
             "valid_until": "2027-06-01",
             "value": "868.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -460,6 +475,7 @@
             "valid_until": null,
             "value": "931.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -491,6 +507,7 @@
                 "valid_until": null,
                 "value": "509.71",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -512,6 +529,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -531,6 +549,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -559,6 +578,7 @@
             "valid_until": "2027-06-01",
             "value": "1028.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -581,6 +601,7 @@
             "valid_until": null,
             "value": "1103.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -612,6 +633,7 @@
                 "valid_until": null,
                 "value": "513.11",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -633,6 +655,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -652,6 +675,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -680,6 +704,7 @@
             "valid_until": "2027-06-01",
             "value": "1204.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -702,6 +727,7 @@
             "valid_until": null,
             "value": "1292.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -733,6 +759,7 @@
                 "valid_until": null,
                 "value": "515.45",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -754,6 +781,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -773,6 +801,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -801,6 +830,7 @@
             "valid_until": "2027-06-01",
             "value": "1464.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -823,6 +853,7 @@
             "valid_until": null,
             "value": "1571.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -854,6 +885,7 @@
                 "valid_until": null,
                 "value": "520.49",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -875,6 +907,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -894,6 +927,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -922,6 +956,7 @@
             "valid_until": "2027-06-01",
             "value": "1632.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -944,6 +979,7 @@
             "valid_until": null,
             "value": "1751.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -975,6 +1011,7 @@
                 "valid_until": null,
                 "value": "524.37",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -996,6 +1033,7 @@
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1015,6 +1053,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1120,6 +1159,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "abbfea1ae2c5a084fb084bc28eef966f9308d5d8fcd047e82366bc0e28ead79c"
+    "source_hash": "b8bf71766857b9b581c751589d92e90095cf8e9083862b075a98f641fed86e28"
   }
 }

@@ -104,7 +104,12 @@
         {
           "valid_from": "2023-01-01",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -186,6 +191,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -277,6 +283,7 @@
             "valid_until": "2024-01-01",
             "value": "2563.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -299,6 +306,7 @@
             "valid_until": "2025-01-01",
             "value": "2597.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -321,6 +329,7 @@
             "valid_until": "2026-01-01",
             "value": "2649.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -343,6 +352,7 @@
             "valid_until": null,
             "value": "2700.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -364,6 +374,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -392,6 +403,7 @@
             "valid_until": "2024-01-01",
             "value": "2339.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -414,6 +426,7 @@
             "valid_until": "2025-01-01",
             "value": "2369.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -436,6 +449,7 @@
             "valid_until": "2026-01-01",
             "value": "2414.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -458,6 +472,7 @@
             "valid_until": null,
             "value": "2460.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -479,6 +494,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -507,6 +523,7 @@
             "valid_until": "2024-01-01",
             "value": "2081.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -529,6 +546,7 @@
             "valid_until": "2025-01-01",
             "value": "2107.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -551,6 +569,7 @@
             "valid_until": "2026-01-01",
             "value": "2146.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -573,6 +592,7 @@
             "valid_until": null,
             "value": "2185.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -594,6 +614,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -622,6 +643,7 @@
             "valid_until": "2024-01-01",
             "value": "1832.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -644,6 +666,7 @@
             "valid_until": "2025-01-01",
             "value": "1854.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -666,6 +689,7 @@
             "valid_until": "2026-01-01",
             "value": "1887.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -688,6 +712,7 @@
             "valid_until": null,
             "value": "1920.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -709,6 +734,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -737,6 +763,7 @@
             "valid_until": "2024-01-01",
             "value": "1712.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -759,6 +786,7 @@
             "valid_until": "2025-01-01",
             "value": "1732.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -781,6 +809,7 @@
             "valid_until": "2026-01-01",
             "value": "1762.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -803,6 +832,7 @@
             "valid_until": null,
             "value": "1792.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -824,6 +854,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -852,6 +883,7 @@
             "valid_until": "2024-01-01",
             "value": "1583.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -874,6 +906,7 @@
             "valid_until": "2025-01-01",
             "value": "1601.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -896,6 +929,7 @@
             "valid_until": "2026-01-01",
             "value": "1628.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -918,6 +952,7 @@
             "valid_until": null,
             "value": "1655.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -939,6 +974,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -967,6 +1003,7 @@
             "valid_until": "2024-01-01",
             "value": "1510.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -989,6 +1026,7 @@
             "valid_until": "2025-01-01",
             "value": "1526.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1011,6 +1049,7 @@
             "valid_until": "2026-01-01",
             "value": "1551.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1033,6 +1072,7 @@
             "valid_until": null,
             "value": "1576.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1054,6 +1094,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -1082,6 +1123,7 @@
             "valid_until": "2024-01-01",
             "value": "1418.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1104,6 +1146,7 @@
             "valid_until": "2025-01-01",
             "value": "1433.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1126,6 +1169,7 @@
             "valid_until": "2026-01-01",
             "value": "1455.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1148,6 +1192,7 @@
             "valid_until": null,
             "value": "1478.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiori-recisi-ancef",
@@ -1169,6 +1214,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "fiori-recisi-ancef",
@@ -1194,7 +1240,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "544bea5ce9a7d05ee801eb40ad048c166ddfa8e56611682194595960c7a885e2",
+    "source_hash": "08d4fc879c6cb37992f9b1b80b2cc9265dd8974ba796196e3bd5cb7f57829948",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1220,6 +1266,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1255,6 +1302,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1291,6 +1339,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1326,6 +1375,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1349,6 +1399,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1375,6 +1426,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-fiori-recisi-ancef-2023",
@@ -1397,6 +1449,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-fiori-recisi-ancef-2023",

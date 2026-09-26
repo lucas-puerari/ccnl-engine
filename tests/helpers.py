@@ -120,6 +120,7 @@ TEST_RULESET_VERIFIED: dict[str, Any] = {
 
 #: Minimal provenance dict for test fixtures — method "manual", unverified.
 TEST_PROV: dict[str, Any] = {
+    "status": "derived",
     "location": {
         "source_document": {
             "document_id": "test-doc",
@@ -280,7 +281,7 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
         },
         "parameters": {
             "hourly_divisor": _series("168"),
-            "additional_months": _series("12"),
+            "additional_months": _series_with_prov("12"),
             "seniority_increments": {
                 "cadence_months": 36,
                 "maximum_count": 10,

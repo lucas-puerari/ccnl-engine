@@ -94,7 +94,12 @@
         {
           "valid_from": "2025-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -102,6 +107,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -426,6 +432,7 @@
             "valid_until": "2027-03-01",
             "value": "1087.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -448,6 +455,7 @@
             "valid_until": null,
             "value": "1162.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -481,6 +489,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -511,6 +520,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -530,6 +540,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -558,6 +569,7 @@
             "valid_until": "2027-03-01",
             "value": "1272.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -580,6 +592,7 @@
             "valid_until": null,
             "value": "1360.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -613,6 +626,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -643,6 +657,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -662,6 +677,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -690,6 +706,7 @@
             "valid_until": "2027-03-01",
             "value": "1414.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -712,6 +729,7 @@
             "valid_until": null,
             "value": "1551.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -745,6 +763,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -775,6 +794,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -794,6 +814,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -822,6 +843,7 @@
             "valid_until": "2027-03-01",
             "value": "1523.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -844,6 +866,7 @@
             "valid_until": null,
             "value": "1628.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -877,6 +900,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -907,6 +931,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -926,6 +951,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -954,6 +980,7 @@
             "valid_until": "2027-03-01",
             "value": "1631.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -976,6 +1003,7 @@
             "valid_until": null,
             "value": "1744.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1009,6 +1037,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1039,6 +1068,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1058,6 +1088,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1086,6 +1117,7 @@
             "valid_until": "2027-03-01",
             "value": "1958.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1108,6 +1140,7 @@
             "valid_until": null,
             "value": "2093.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1141,6 +1174,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1171,6 +1205,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1190,6 +1225,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1218,6 +1254,7 @@
             "valid_until": "2027-03-01",
             "value": "2175.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1240,6 +1277,7 @@
             "valid_until": null,
             "value": "2325.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1273,6 +1311,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1303,6 +1342,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1322,6 +1362,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1347,7 +1388,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "fde71aa2d3497b73710e71dfbb32af172fa778a85cfdc61988dced6f6fc91beb",
+    "source_hash": "16e666f895b1607fea5d2979a808da271fd532f4853b1298cdfa7f8f0a675a08",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1373,6 +1414,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1408,6 +1450,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1443,6 +1486,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1478,6 +1522,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1514,6 +1559,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1552,6 +1598,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1587,6 +1634,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1611,6 +1659,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1637,6 +1686,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",
@@ -1659,6 +1709,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aniem-armonizzato-15042025",

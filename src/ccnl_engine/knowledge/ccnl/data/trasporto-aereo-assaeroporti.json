@@ -86,7 +86,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -195,6 +200,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -226,6 +232,7 @@
             "valid_until": "2025-07-01",
             "value": "686.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -248,6 +255,7 @@
             "valid_until": "2026-07-01",
             "value": "742.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -270,6 +278,7 @@
             "valid_until": "2027-07-01",
             "value": "776.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -292,6 +301,7 @@
             "valid_until": null,
             "value": "805.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -325,6 +335,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -356,6 +367,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -375,6 +387,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -404,6 +417,7 @@
             "valid_until": "2025-07-01",
             "value": "864.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -426,6 +440,7 @@
             "valid_until": "2026-07-01",
             "value": "936.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -448,6 +463,7 @@
             "valid_until": "2027-07-01",
             "value": "978.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -470,6 +486,7 @@
             "valid_until": null,
             "value": "1014.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -503,6 +520,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -534,6 +552,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -553,6 +572,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -582,6 +602,7 @@
             "valid_until": "2025-07-01",
             "value": "960.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -604,6 +625,7 @@
             "valid_until": "2026-07-01",
             "value": "1040.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -626,6 +648,7 @@
             "valid_until": "2027-07-01",
             "value": "1087.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -648,6 +671,7 @@
             "valid_until": null,
             "value": "1127.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -681,6 +705,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -712,6 +737,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -731,6 +757,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -760,6 +787,7 @@
             "valid_until": "2025-07-01",
             "value": "1070.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -782,6 +810,7 @@
             "valid_until": "2026-07-01",
             "value": "1158.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -804,6 +833,7 @@
             "valid_until": "2027-07-01",
             "value": "1212.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -826,6 +856,7 @@
             "valid_until": null,
             "value": "1256.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -859,6 +890,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -890,6 +922,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -909,6 +942,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -938,6 +972,7 @@
             "valid_until": "2025-07-01",
             "value": "1138.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -960,6 +995,7 @@
             "valid_until": "2026-07-01",
             "value": "1233.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -982,6 +1018,7 @@
             "valid_until": "2027-07-01",
             "value": "1289.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1004,6 +1041,7 @@
             "valid_until": null,
             "value": "1336.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1037,6 +1075,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1068,6 +1107,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1087,6 +1127,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1116,6 +1157,7 @@
             "valid_until": "2025-07-01",
             "value": "1207.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1138,6 +1180,7 @@
             "valid_until": "2026-07-01",
             "value": "1307.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1160,6 +1203,7 @@
             "valid_until": "2027-07-01",
             "value": "1367.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1182,6 +1226,7 @@
             "valid_until": null,
             "value": "1417.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1215,6 +1260,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1246,6 +1292,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1265,6 +1312,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1294,6 +1342,7 @@
             "valid_until": "2025-07-01",
             "value": "1337.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1316,6 +1365,7 @@
             "valid_until": "2026-07-01",
             "value": "1448.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1338,6 +1388,7 @@
             "valid_until": "2027-07-01",
             "value": "1515.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1360,6 +1411,7 @@
             "valid_until": null,
             "value": "1570.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1393,6 +1445,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1424,6 +1477,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1443,6 +1497,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1472,6 +1527,7 @@
             "valid_until": "2025-07-01",
             "value": "1440.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1494,6 +1550,7 @@
             "valid_until": "2026-07-01",
             "value": "1560.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1516,6 +1573,7 @@
             "valid_until": "2027-07-01",
             "value": "1631.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1538,6 +1596,7 @@
             "valid_until": null,
             "value": "1691.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1571,6 +1630,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1602,6 +1662,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1621,6 +1682,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1650,6 +1712,7 @@
             "valid_until": "2025-07-01",
             "value": "1536.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1672,6 +1735,7 @@
             "valid_until": "2026-07-01",
             "value": "1664.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1694,6 +1758,7 @@
             "valid_until": "2027-07-01",
             "value": "1740.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1716,6 +1781,7 @@
             "valid_until": null,
             "value": "1804.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1749,6 +1815,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1780,6 +1847,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1799,6 +1867,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1828,6 +1897,7 @@
             "valid_until": "2025-07-01",
             "value": "1680.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1850,6 +1920,7 @@
             "valid_until": "2026-07-01",
             "value": "1820.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1872,6 +1943,7 @@
             "valid_until": "2027-07-01",
             "value": "1903.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1894,6 +1966,7 @@
             "valid_until": null,
             "value": "1973.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1927,6 +2000,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1958,6 +2032,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -1977,6 +2052,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2006,6 +2082,7 @@
             "valid_until": "2025-07-01",
             "value": "1852.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2028,6 +2105,7 @@
             "valid_until": "2026-07-01",
             "value": "2005.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2050,6 +2128,7 @@
             "valid_until": "2027-07-01",
             "value": "2097.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2072,6 +2151,7 @@
             "valid_until": null,
             "value": "2174.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2105,6 +2185,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2136,6 +2217,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2155,6 +2237,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-parte-specifica-versione-accessibile-pdf",
@@ -2296,7 +2379,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "0af4086fc11d03cf7644e4b8951185ebf66243531dcf0bb543d3427451c60e47",
+    "source_hash": "2dfd6c85ca1793cc1bae0a64d396e9e7731a57f5af7c0d806225cffb1ce7e7cf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2322,6 +2405,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
@@ -2357,6 +2441,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
@@ -2392,6 +2477,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
@@ -2415,6 +2501,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
@@ -2441,6 +2528,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",
@@ -2463,6 +2551,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-trasporto-aereo-assaeroporti-2020",

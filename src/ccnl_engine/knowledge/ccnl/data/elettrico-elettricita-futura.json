@@ -91,7 +91,12 @@
         {
           "valid_from": "2025-04-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -227,6 +232,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -257,6 +263,7 @@
             "valid_until": "2026-04-01",
             "value": "4115.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -279,6 +286,7 @@
             "valid_until": "2027-04-01",
             "value": "4207.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -301,6 +309,7 @@
             "valid_until": "2027-10-01",
             "value": "4299.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -323,6 +332,7 @@
             "valid_until": null,
             "value": "4399.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -356,6 +366,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -376,6 +387,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -404,6 +416,7 @@
             "valid_until": "2026-04-01",
             "value": "3692.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -426,6 +439,7 @@
             "valid_until": "2027-04-01",
             "value": "3775.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -448,6 +462,7 @@
             "valid_until": "2027-10-01",
             "value": "3858.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -470,6 +485,7 @@
             "valid_until": null,
             "value": "3947.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -503,6 +519,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -523,6 +540,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -551,6 +569,7 @@
             "valid_until": "2026-04-01",
             "value": "3259.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -573,6 +592,7 @@
             "valid_until": "2027-04-01",
             "value": "3332.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -595,6 +615,7 @@
             "valid_until": "2027-10-01",
             "value": "3405.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -617,6 +638,7 @@
             "valid_until": null,
             "value": "3484.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -650,6 +672,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -669,6 +692,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -697,6 +721,7 @@
             "valid_until": "2026-04-01",
             "value": "3050.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -719,6 +744,7 @@
             "valid_until": "2027-04-01",
             "value": "3119.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -741,6 +767,7 @@
             "valid_until": "2027-10-01",
             "value": "3187.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -763,6 +790,7 @@
             "valid_until": null,
             "value": "3261.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -796,6 +824,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -815,6 +844,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -843,6 +873,7 @@
             "valid_until": "2026-04-01",
             "value": "2922.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -865,6 +896,7 @@
             "valid_until": "2027-04-01",
             "value": "2988.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -887,6 +919,7 @@
             "valid_until": "2027-10-01",
             "value": "3053.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -909,6 +942,7 @@
             "valid_until": null,
             "value": "3124.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -942,6 +976,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -961,6 +996,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -989,6 +1025,7 @@
             "valid_until": "2026-04-01",
             "value": "2788.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1011,6 +1048,7 @@
             "valid_until": "2027-04-01",
             "value": "2851.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1033,6 +1071,7 @@
             "valid_until": "2027-10-01",
             "value": "2913.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1055,6 +1094,7 @@
             "valid_until": null,
             "value": "2980.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1088,6 +1128,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1107,6 +1148,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1135,6 +1177,7 @@
             "valid_until": "2026-04-01",
             "value": "2655.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1157,6 +1200,7 @@
             "valid_until": "2027-04-01",
             "value": "2715.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1179,6 +1223,7 @@
             "valid_until": "2027-10-01",
             "value": "2774.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1201,6 +1246,7 @@
             "valid_until": null,
             "value": "2838.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1234,6 +1280,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1253,6 +1300,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1281,6 +1329,7 @@
             "valid_until": "2026-04-01",
             "value": "2542.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1303,6 +1352,7 @@
             "valid_until": "2027-04-01",
             "value": "2599.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1325,6 +1375,7 @@
             "valid_until": "2027-10-01",
             "value": "2656.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1347,6 +1398,7 @@
             "valid_until": null,
             "value": "2717.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1380,6 +1432,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1399,6 +1452,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1427,6 +1481,7 @@
             "valid_until": "2026-04-01",
             "value": "2422.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1449,6 +1504,7 @@
             "valid_until": "2027-04-01",
             "value": "2476.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1471,6 +1527,7 @@
             "valid_until": "2027-10-01",
             "value": "2531.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1493,6 +1550,7 @@
             "valid_until": null,
             "value": "2589.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1526,6 +1584,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1545,6 +1604,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1573,6 +1633,7 @@
             "valid_until": "2026-04-01",
             "value": "2313.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1595,6 +1656,7 @@
             "valid_until": "2027-04-01",
             "value": "2365.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1617,6 +1679,7 @@
             "valid_until": "2027-10-01",
             "value": "2417.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1639,6 +1702,7 @@
             "valid_until": null,
             "value": "2473.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1672,6 +1736,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1691,6 +1756,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1719,6 +1785,7 @@
             "valid_until": "2026-04-01",
             "value": "2160.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1741,6 +1808,7 @@
             "valid_until": "2027-04-01",
             "value": "2209.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1763,6 +1831,7 @@
             "valid_until": "2027-10-01",
             "value": "2257.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1785,6 +1854,7 @@
             "valid_until": null,
             "value": "2309.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1818,6 +1888,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1837,6 +1908,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -1865,6 +1937,7 @@
             "valid_until": "2026-04-01",
             "value": "2010.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1887,6 +1960,7 @@
             "valid_until": "2027-04-01",
             "value": "2055.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1909,6 +1983,7 @@
             "valid_until": "2027-10-01",
             "value": "2100.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1931,6 +2006,7 @@
             "valid_until": null,
             "value": "2149.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -1964,6 +2040,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -1983,6 +2060,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -2011,6 +2089,7 @@
             "valid_until": "2026-04-01",
             "value": "1782.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2033,6 +2112,7 @@
             "valid_until": "2027-04-01",
             "value": "1822.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2055,6 +2135,7 @@
             "valid_until": "2027-10-01",
             "value": "1862.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2077,6 +2158,7 @@
             "valid_until": null,
             "value": "1905.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2110,6 +2192,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -2129,6 +2212,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -2157,6 +2241,7 @@
             "valid_until": "2026-04-01",
             "value": "1613.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2179,6 +2264,7 @@
             "valid_until": "2027-04-01",
             "value": "1649.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2201,6 +2287,7 @@
             "valid_until": "2027-10-01",
             "value": "1685.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2223,6 +2310,7 @@
             "valid_until": null,
             "value": "1724.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "elettrico-elettricita-futura",
@@ -2256,6 +2344,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "elettrico-elettricita-futura",
@@ -2275,6 +2364,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "elettrico-elettricita-futura",
@@ -2385,7 +2475,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "2f50870462d430053f169c58fe46051b52232096caf860a144a28128cb5a448e",
+    "source_hash": "210ab2ccc89d806a78ace36d95e1dac9cf47394a6999ed55696ad064ec6532d5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2411,6 +2501,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-elettrici",
@@ -2446,6 +2537,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-elettrici",
@@ -2481,6 +2573,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-elettrici",
@@ -2516,6 +2609,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-elettrici",
@@ -2539,6 +2633,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-elettrici",
@@ -2565,6 +2660,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-elettrici",
@@ -2587,6 +2683,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 365,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-elettrici",

@@ -102,7 +102,12 @@
         {
           "valid_from": "2024-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -193,6 +198,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -223,6 +229,7 @@
             "valid_until": "2024-06-01",
             "value": "1556.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -245,6 +252,7 @@
             "valid_until": "2025-09-01",
             "value": "1604.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -267,6 +275,7 @@
             "valid_until": null,
             "value": "1635.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -288,6 +297,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -316,6 +326,7 @@
             "valid_until": "2024-06-01",
             "value": "1646.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -338,6 +349,7 @@
             "valid_until": "2025-09-01",
             "value": "1697.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -360,6 +372,7 @@
             "valid_until": null,
             "value": "1730.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -381,6 +394,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -409,6 +423,7 @@
             "valid_until": "2024-06-01",
             "value": "1745.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -431,6 +446,7 @@
             "valid_until": "2025-09-01",
             "value": "1798.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -453,6 +469,7 @@
             "valid_until": null,
             "value": "1834.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -474,6 +491,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -502,6 +520,7 @@
             "valid_until": "2024-06-01",
             "value": "1879.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -524,6 +543,7 @@
             "valid_until": "2025-09-01",
             "value": "1936.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -546,6 +566,7 @@
             "valid_until": null,
             "value": "1975.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -567,6 +588,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -595,6 +617,7 @@
             "valid_until": "2024-06-01",
             "value": "1957.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -617,6 +640,7 @@
             "valid_until": "2025-09-01",
             "value": "2017.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -639,6 +663,7 @@
             "valid_until": null,
             "value": "2057.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -660,6 +685,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -688,6 +714,7 @@
             "valid_until": "2024-06-01",
             "value": "2218.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -710,6 +737,7 @@
             "valid_until": "2025-09-01",
             "value": "2286.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -732,6 +760,7 @@
             "valid_until": null,
             "value": "2331.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -753,6 +782,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -781,6 +811,7 @@
             "valid_until": "2024-06-01",
             "value": "2321.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -803,6 +834,7 @@
             "valid_until": "2025-09-01",
             "value": "2393.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -825,6 +857,7 @@
             "valid_until": null,
             "value": "2440.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -846,6 +879,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -874,6 +908,7 @@
             "valid_until": "2024-06-01",
             "value": "2500.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -896,6 +931,7 @@
             "valid_until": "2025-09-01",
             "value": "2576.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -918,6 +954,7 @@
             "valid_until": null,
             "value": "2627.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -939,6 +976,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -967,6 +1005,7 @@
             "valid_until": "2024-06-01",
             "value": "3066.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -989,6 +1028,7 @@
             "valid_until": "2025-09-01",
             "value": "3160.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -1011,6 +1051,7 @@
             "valid_until": null,
             "value": "3222.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -1032,6 +1073,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-formazione-professionale-2024-2027-pdf",
@@ -1058,7 +1100,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "dd192a6cc42d924ea1a00c29f3bed1b0d8b2aa67b19f884420ca65115a023630",
+    "source_hash": "929cd6c7c83da26170dcc9a7ba7d3958866561e0945fa6ac628bffce18b309f3",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1084,6 +1126,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "formazione-professionale",
@@ -1119,6 +1162,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "formazione-professionale",
@@ -1154,6 +1198,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "formazione-professionale",
@@ -1177,6 +1222,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "formazione-professionale",
@@ -1203,6 +1249,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "formazione-professionale",
@@ -1225,6 +1272,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 365,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "formazione-professionale",

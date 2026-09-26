@@ -89,7 +89,12 @@
         {
           "valid_from": "2024-12-31",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -207,6 +212,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -237,6 +243,7 @@
             "valid_until": "2025-10-01",
             "value": "1174.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -259,6 +266,7 @@
             "valid_until": "2026-10-01",
             "value": "1217.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -281,6 +289,7 @@
             "valid_until": "2027-10-01",
             "value": "1260.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -303,6 +312,7 @@
             "valid_until": null,
             "value": "1299.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -337,6 +347,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -368,6 +379,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -387,6 +399,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -415,6 +428,7 @@
             "valid_until": "2025-10-01",
             "value": "1352.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -437,6 +451,7 @@
             "valid_until": "2026-10-01",
             "value": "1401.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -459,6 +474,7 @@
             "valid_until": "2027-10-01",
             "value": "1451.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -481,6 +497,7 @@
             "valid_until": null,
             "value": "1497.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -515,6 +532,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -546,6 +564,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -565,6 +584,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -593,6 +613,7 @@
             "valid_until": "2025-10-01",
             "value": "1410.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -615,6 +636,7 @@
             "valid_until": "2026-10-01",
             "value": "1462.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -637,6 +659,7 @@
             "valid_until": "2027-10-01",
             "value": "1514.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -659,6 +682,7 @@
             "valid_until": null,
             "value": "1561.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -693,6 +717,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -724,6 +749,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -743,6 +769,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -771,6 +798,7 @@
             "valid_until": "2025-10-01",
             "value": "1503.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -793,6 +821,7 @@
             "valid_until": "2026-10-01",
             "value": "1558.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -815,6 +844,7 @@
             "valid_until": "2027-10-01",
             "value": "1614.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -837,6 +867,7 @@
             "valid_until": null,
             "value": "1664.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -871,6 +902,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -902,6 +934,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -921,6 +954,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -949,6 +983,7 @@
             "valid_until": "2025-10-01",
             "value": "1561.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -971,6 +1006,7 @@
             "valid_until": "2026-10-01",
             "value": "1619.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -993,6 +1029,7 @@
             "valid_until": "2027-10-01",
             "value": "1676.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1015,6 +1052,7 @@
             "valid_until": null,
             "value": "1729.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1049,6 +1087,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1080,6 +1119,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1099,6 +1139,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1127,6 +1168,7 @@
             "valid_until": "2025-10-01",
             "value": "1631.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1149,6 +1191,7 @@
             "valid_until": "2026-10-01",
             "value": "1691.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1171,6 +1214,7 @@
             "valid_until": "2027-10-01",
             "value": "1751.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1193,6 +1237,7 @@
             "valid_until": null,
             "value": "1806.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1227,6 +1272,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1258,6 +1304,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1277,6 +1324,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1305,6 +1353,7 @@
             "valid_until": "2025-10-01",
             "value": "1736.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1327,6 +1376,7 @@
             "valid_until": "2026-10-01",
             "value": "1800.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1349,6 +1399,7 @@
             "valid_until": "2027-10-01",
             "value": "1864.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1371,6 +1422,7 @@
             "valid_until": null,
             "value": "1922.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1405,6 +1457,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1436,6 +1489,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1455,6 +1509,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1483,6 +1538,7 @@
             "valid_until": "2025-10-01",
             "value": "1830.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1505,6 +1561,7 @@
             "valid_until": "2026-10-01",
             "value": "1897.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1527,6 +1584,7 @@
             "valid_until": "2027-10-01",
             "value": "1964.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1549,6 +1607,7 @@
             "valid_until": null,
             "value": "2026.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1583,6 +1642,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1614,6 +1674,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1633,6 +1694,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1661,6 +1723,7 @@
             "valid_until": "2025-10-01",
             "value": "1899.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1683,6 +1746,7 @@
             "valid_until": "2026-10-01",
             "value": "1969.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1705,6 +1769,7 @@
             "valid_until": "2027-10-01",
             "value": "2039.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1727,6 +1792,7 @@
             "valid_until": null,
             "value": "2103.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1761,6 +1827,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1792,6 +1859,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1811,6 +1879,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1839,6 +1908,7 @@
             "valid_until": "2025-10-01",
             "value": "2004.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1861,6 +1931,7 @@
             "valid_until": "2026-10-01",
             "value": "2078.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1883,6 +1954,7 @@
             "valid_until": "2027-10-01",
             "value": "2152.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1905,6 +1977,7 @@
             "valid_until": null,
             "value": "2219.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1939,6 +2012,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1970,6 +2044,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -1989,6 +2064,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2017,6 +2093,7 @@
             "valid_until": "2025-10-01",
             "value": "2191.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2039,6 +2116,7 @@
             "valid_until": "2026-10-01",
             "value": "2271.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2061,6 +2139,7 @@
             "valid_until": "2027-10-01",
             "value": "2352.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2083,6 +2162,7 @@
             "valid_until": null,
             "value": "2426.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2117,6 +2197,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2148,6 +2229,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2167,6 +2249,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2195,6 +2278,7 @@
             "valid_until": "2025-10-01",
             "value": "2447.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2217,6 +2301,7 @@
             "valid_until": "2026-10-01",
             "value": "2537.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2239,6 +2324,7 @@
             "valid_until": "2027-10-01",
             "value": "2627.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2261,6 +2347,7 @@
             "valid_until": null,
             "value": "2710.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2295,6 +2382,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2326,6 +2414,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2357,6 +2446,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2376,6 +2466,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-stampa-ccnl-2025-no-ugl-pdf",
@@ -2425,7 +2516,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "6bb5fceab104313effb64980bb339baef88b93cd8d2e4a35579d0e1227126f45",
+    "source_hash": "76c7e46a69d008e8a6e5ca2a01be81fef787aa00c94deb0d29e9ced0e7173898",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2451,6 +2542,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-calce-gesso-industria",
@@ -2486,6 +2578,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-calce-gesso-industria",
@@ -2521,6 +2614,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-calce-gesso-industria",
@@ -2556,6 +2650,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cemento-calce-gesso-industria",
@@ -2579,6 +2674,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-calce-gesso-industria",
@@ -2605,6 +2701,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-calce-gesso-industria",
@@ -2627,6 +2724,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 420,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cemento-calce-gesso-industria",

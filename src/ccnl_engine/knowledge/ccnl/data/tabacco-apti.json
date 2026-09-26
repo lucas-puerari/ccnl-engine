@@ -86,7 +86,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -177,6 +182,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -271,6 +277,7 @@
       "category": "impiegato",
       "description": "Categoria Super — funzioni direttive di particolare rilievo",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -294,6 +301,7 @@
             "valid_until": "2026-01-01",
             "value": "2078.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -316,6 +324,7 @@
             "valid_until": "2027-01-01",
             "value": "2147.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -338,6 +347,7 @@
             "valid_until": "2028-01-01",
             "value": "2216.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -360,6 +370,7 @@
             "valid_until": null,
             "value": "2271.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -393,6 +404,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -423,6 +435,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -448,6 +461,7 @@
       "category": "impiegato",
       "description": "1a Categoria — funzioni direttive amministrative o tecniche",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -471,6 +485,7 @@
             "valid_until": "2026-01-01",
             "value": "1922.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -493,6 +508,7 @@
             "valid_until": "2027-01-01",
             "value": "1988.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -515,6 +531,7 @@
             "valid_until": "2028-01-01",
             "value": "2054.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -537,6 +554,7 @@
             "valid_until": null,
             "value": "2106.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -570,6 +588,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -600,6 +619,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -625,6 +645,7 @@
       "category": "impiegato",
       "description": "2a Categoria — funzioni di concetto con coordinamento",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -648,6 +669,7 @@
             "valid_until": "2026-01-01",
             "value": "1678.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -670,6 +692,7 @@
             "valid_until": "2027-01-01",
             "value": "1738.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -692,6 +715,7 @@
             "valid_until": "2028-01-01",
             "value": "1798.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -714,6 +738,7 @@
             "valid_until": null,
             "value": "1847.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -747,6 +772,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -777,6 +803,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -802,6 +829,7 @@
       "category": "impiegato",
       "description": "3a Categoria A — compiti esecutivi tecnici o amministrativi con iniziativa",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -825,6 +853,7 @@
             "valid_until": "2026-01-01",
             "value": "1469.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -847,6 +876,7 @@
             "valid_until": "2027-01-01",
             "value": "1524.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -869,6 +899,7 @@
             "valid_until": "2028-01-01",
             "value": "1580.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -891,6 +922,7 @@
             "valid_until": null,
             "value": "1625.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -924,6 +956,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -954,6 +987,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -979,6 +1013,7 @@
       "category": "impiegato",
       "description": "3a Categoria B — compiti esecutivi tecnici o amministrativi",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1002,6 +1037,7 @@
             "valid_until": "2026-01-01",
             "value": "1314.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1024,6 +1060,7 @@
             "valid_until": "2027-01-01",
             "value": "1367.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1046,6 +1083,7 @@
             "valid_until": "2028-01-01",
             "value": "1420.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1068,6 +1106,7 @@
             "valid_until": null,
             "value": "1462.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1101,6 +1140,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1131,6 +1171,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1156,6 +1197,7 @@
       "category": "operaio",
       "description": "4a Categoria A — qualificazione per il processo di lavorazione del tabacco",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1179,6 +1221,7 @@
             "valid_until": "2026-01-01",
             "value": "1194.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1201,6 +1244,7 @@
             "valid_until": "2027-01-01",
             "value": "1244.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1223,6 +1267,7 @@
             "valid_until": "2028-01-01",
             "value": "1294.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1245,6 +1290,7 @@
             "valid_until": null,
             "value": "1334.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1278,6 +1324,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1308,6 +1355,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1333,6 +1381,7 @@
       "category": "operaio",
       "description": "4a Categoria B — conoscenze tecnico-pratiche di controllo o produzione",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1356,6 +1405,7 @@
             "valid_until": "2026-01-01",
             "value": "1142.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1378,6 +1428,7 @@
             "valid_until": "2027-01-01",
             "value": "1191.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1400,6 +1451,7 @@
             "valid_until": "2028-01-01",
             "value": "1240.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1422,6 +1474,7 @@
             "valid_until": null,
             "value": "1279.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1455,6 +1508,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1485,6 +1539,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1510,6 +1565,7 @@
       "category": "operaio",
       "description": "5a Categoria — mansioni operative standard",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1533,6 +1589,7 @@
             "valid_until": "2026-01-01",
             "value": "1107.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1555,6 +1612,7 @@
             "valid_until": "2027-01-01",
             "value": "1155.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1577,6 +1635,7 @@
             "valid_until": "2028-01-01",
             "value": "1203.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1599,6 +1658,7 @@
             "valid_until": null,
             "value": "1242.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1632,6 +1692,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1662,6 +1723,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1687,6 +1749,7 @@
       "category": "operaio",
       "description": "6a Categoria — mansioni semplici di prima assunzione",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1710,6 +1773,7 @@
             "valid_until": "2026-01-01",
             "value": "988.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1732,6 +1796,7 @@
             "valid_until": "2027-01-01",
             "value": "1033.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1754,6 +1819,7 @@
             "valid_until": "2028-01-01",
             "value": "1079.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1776,6 +1842,7 @@
             "valid_until": null,
             "value": "1115.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1809,6 +1876,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1839,6 +1907,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1868,6 +1937,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "ccac668e891260593755b1c51278ca539ebc45dfb74573dc5fd3c7024e7c4136"
+    "source_hash": "85f94b6cb6822c970fc95ec88b0bed89ce5a380819b24a6058cbe6c95d419146"
   }
 }

@@ -78,6 +78,7 @@
             "valid_until": "2024-09-01",
             "value": "1091.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -100,6 +101,7 @@
             "valid_until": "2025-01-01",
             "value": "1117.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -122,6 +124,7 @@
             "valid_until": "2026-01-01",
             "value": "1160.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -144,6 +147,7 @@
             "valid_until": "2027-01-01",
             "value": "1204.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -166,6 +170,7 @@
             "valid_until": null,
             "value": "1233.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -200,6 +205,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -231,6 +237,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -267,6 +274,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -286,6 +294,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -314,6 +323,7 @@
             "valid_until": "2024-09-01",
             "value": "1200.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -336,6 +346,7 @@
             "valid_until": "2025-01-01",
             "value": "1228.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -358,6 +369,7 @@
             "valid_until": "2026-01-01",
             "value": "1277.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -380,6 +392,7 @@
             "valid_until": "2027-01-01",
             "value": "1325.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -402,6 +415,7 @@
             "valid_until": null,
             "value": "1356.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -436,6 +450,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -467,6 +482,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -503,6 +519,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -522,6 +539,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -550,6 +568,7 @@
             "valid_until": "2024-09-01",
             "value": "1309.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -572,6 +591,7 @@
             "valid_until": "2025-01-01",
             "value": "1340.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -594,6 +614,7 @@
             "valid_until": "2026-01-01",
             "value": "1393.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -616,6 +637,7 @@
             "valid_until": "2027-01-01",
             "value": "1445.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -638,6 +660,7 @@
             "valid_until": null,
             "value": "1479.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -672,6 +695,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -703,6 +727,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -739,6 +764,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -758,6 +784,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -786,6 +813,7 @@
             "valid_until": "2024-09-01",
             "value": "1419.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -808,6 +836,7 @@
             "valid_until": "2025-01-01",
             "value": "1452.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -830,6 +859,7 @@
             "valid_until": "2026-01-01",
             "value": "1509.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -852,6 +882,7 @@
             "valid_until": "2027-01-01",
             "value": "1566.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -874,6 +905,7 @@
             "valid_until": null,
             "value": "1603.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -908,6 +940,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -939,6 +972,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -975,6 +1009,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -994,6 +1029,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -1022,6 +1058,7 @@
             "valid_until": "2024-09-01",
             "value": "1582.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1044,6 +1081,7 @@
             "valid_until": "2025-01-01",
             "value": "1619.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1066,6 +1104,7 @@
             "valid_until": "2026-01-01",
             "value": "1683.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1088,6 +1127,7 @@
             "valid_until": "2027-01-01",
             "value": "1746.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1110,6 +1150,7 @@
             "valid_until": null,
             "value": "1788.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1144,6 +1185,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1175,6 +1217,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1211,6 +1254,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1230,6 +1274,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -1258,6 +1303,7 @@
             "valid_until": "2024-09-01",
             "value": "1801.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1280,6 +1326,7 @@
             "valid_until": "2025-01-01",
             "value": "1843.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1302,6 +1349,7 @@
             "valid_until": "2026-01-01",
             "value": "1915.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1324,6 +1372,7 @@
             "valid_until": "2027-01-01",
             "value": "1987.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1346,6 +1395,7 @@
             "valid_until": null,
             "value": "2034.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1380,6 +1430,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1411,6 +1462,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1447,6 +1499,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1466,6 +1519,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -1494,6 +1548,7 @@
             "valid_until": "2024-09-01",
             "value": "2183.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1516,6 +1571,7 @@
             "valid_until": "2025-01-01",
             "value": "2234.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1538,6 +1594,7 @@
             "valid_until": "2026-01-01",
             "value": "2321.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1560,6 +1617,7 @@
             "valid_until": "2027-01-01",
             "value": "2409.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1582,6 +1640,7 @@
             "valid_until": null,
             "value": "2466.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1616,6 +1675,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1647,6 +1707,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1683,6 +1744,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1702,6 +1764,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -1730,6 +1793,7 @@
             "valid_until": "2024-09-01",
             "value": "2510.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1752,6 +1816,7 @@
             "valid_until": "2025-01-01",
             "value": "2569.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1774,6 +1839,7 @@
             "valid_until": "2026-01-01",
             "value": "2670.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1796,6 +1862,7 @@
             "valid_until": "2027-01-01",
             "value": "2770.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1818,6 +1885,7 @@
             "valid_until": null,
             "value": "2836.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-e016",
@@ -1852,6 +1920,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1883,6 +1952,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1919,6 +1989,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-e016",
@@ -1938,6 +2009,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -1962,7 +2034,12 @@
         {
           "valid_from": "2023-12-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -2053,6 +2130,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-e016",
@@ -2101,7 +2179,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "d114d9e7b2967fe4c8e471ea44c3f27616cfcbfd02fda415d25aa7a054d2383e",
+    "source_hash": "1a3ccae1639f5f20178e889a9be38b49349f3d28db5fbf4f23945fbcab10c0ee",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2127,6 +2205,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentaristi-cooperative-e016",
@@ -2162,6 +2241,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentaristi-cooperative-e016",
@@ -2197,6 +2277,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentaristi-cooperative-e016",
@@ -2220,6 +2301,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentaristi-cooperative-e016",
@@ -2246,6 +2328,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentaristi-cooperative-e016",
@@ -2268,6 +2351,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentaristi-cooperative-e016",

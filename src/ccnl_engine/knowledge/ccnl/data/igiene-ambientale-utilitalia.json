@@ -96,7 +96,12 @@
         {
           "valid_from": "2026-02-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -259,6 +264,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -364,6 +370,7 @@
             "valid_until": "2027-01-01",
             "value": "1439.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -386,6 +393,7 @@
             "valid_until": "2027-08-01",
             "value": "1475.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -408,6 +416,7 @@
             "valid_until": "2027-12-01",
             "value": "1515.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -430,6 +439,7 @@
             "valid_until": null,
             "value": "1555.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -465,6 +475,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -497,6 +508,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -516,6 +528,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -544,6 +557,7 @@
             "valid_until": "2026-10-01",
             "value": "1631.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -566,6 +580,7 @@
             "valid_until": "2027-01-01",
             "value": "1663.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -588,6 +603,7 @@
             "valid_until": "2027-08-01",
             "value": "1699.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -610,6 +626,7 @@
             "valid_until": "2027-12-01",
             "value": "1739.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -632,6 +649,7 @@
             "valid_until": null,
             "value": "1779.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -667,6 +685,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -699,6 +718,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -718,6 +738,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -746,6 +767,7 @@
             "valid_until": "2026-10-01",
             "value": "1807.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -768,6 +790,7 @@
             "valid_until": "2027-01-01",
             "value": "1839.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -790,6 +813,7 @@
             "valid_until": "2027-08-01",
             "value": "1875.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -812,6 +836,7 @@
             "valid_until": "2027-12-01",
             "value": "1915.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -834,6 +859,7 @@
             "valid_until": null,
             "value": "1955.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -869,6 +895,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -901,6 +928,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -920,6 +948,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -948,6 +977,7 @@
             "valid_until": "2026-10-01",
             "value": "1999.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -970,6 +1000,7 @@
             "valid_until": "2027-01-01",
             "value": "2027.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -992,6 +1023,7 @@
             "valid_until": "2027-08-01",
             "value": "2063.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1014,6 +1046,7 @@
             "valid_until": "2027-12-01",
             "value": "2103.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1036,6 +1069,7 @@
             "valid_until": null,
             "value": "2143.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1071,6 +1105,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1103,6 +1138,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1122,6 +1158,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -1150,6 +1187,7 @@
             "valid_until": "2026-10-01",
             "value": "2007.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1172,6 +1210,7 @@
             "valid_until": "2027-01-01",
             "value": "2031.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1194,6 +1233,7 @@
             "valid_until": "2027-08-01",
             "value": "2067.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1216,6 +1256,7 @@
             "valid_until": "2027-12-01",
             "value": "2107.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1238,6 +1279,7 @@
             "valid_until": null,
             "value": "2147.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1273,6 +1315,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1305,6 +1348,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1324,6 +1368,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -1352,6 +1397,7 @@
             "valid_until": "2027-01-01",
             "value": "2080.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1374,6 +1420,7 @@
             "valid_until": "2027-08-01",
             "value": "2116.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1396,6 +1443,7 @@
             "valid_until": "2027-12-01",
             "value": "2156.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1418,6 +1466,7 @@
             "valid_until": null,
             "value": "2196.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1453,6 +1502,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1485,6 +1535,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1504,6 +1555,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -1532,6 +1584,7 @@
             "valid_until": "2027-01-01",
             "value": "2148.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1554,6 +1607,7 @@
             "valid_until": "2027-08-01",
             "value": "2184.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1576,6 +1630,7 @@
             "valid_until": "2027-12-01",
             "value": "2224.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1598,6 +1653,7 @@
             "valid_until": null,
             "value": "2264.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1633,6 +1689,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1665,6 +1722,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1684,6 +1742,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -1712,6 +1771,7 @@
             "valid_until": "2027-01-01",
             "value": "2216.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1734,6 +1794,7 @@
             "valid_until": "2027-08-01",
             "value": "2252.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1756,6 +1817,7 @@
             "valid_until": "2027-12-01",
             "value": "2292.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1778,6 +1840,7 @@
             "valid_until": null,
             "value": "2332.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1813,6 +1876,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1845,6 +1909,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -1864,6 +1929,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -1892,6 +1958,7 @@
             "valid_until": "2027-01-01",
             "value": "2316.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1914,6 +1981,7 @@
             "valid_until": "2027-08-01",
             "value": "2352.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1936,6 +2004,7 @@
             "valid_until": "2027-12-01",
             "value": "2392.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1958,6 +2027,7 @@
             "valid_until": null,
             "value": "2432.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -1993,6 +2063,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2025,6 +2096,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2044,6 +2116,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2072,6 +2145,7 @@
             "valid_until": "2027-01-01",
             "value": "2419.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2094,6 +2168,7 @@
             "valid_until": "2027-08-01",
             "value": "2455.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2116,6 +2191,7 @@
             "valid_until": "2027-12-01",
             "value": "2495.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2138,6 +2214,7 @@
             "valid_until": null,
             "value": "2535.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2173,6 +2250,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2205,6 +2283,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2224,6 +2303,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2252,6 +2332,7 @@
             "valid_until": "2027-01-01",
             "value": "2545.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2274,6 +2355,7 @@
             "valid_until": "2027-08-01",
             "value": "2581.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2296,6 +2378,7 @@
             "valid_until": "2027-12-01",
             "value": "2621.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2318,6 +2401,7 @@
             "valid_until": null,
             "value": "2661.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2353,6 +2437,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2385,6 +2470,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2404,6 +2490,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2432,6 +2519,7 @@
             "valid_until": "2027-01-01",
             "value": "2668.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2454,6 +2542,7 @@
             "valid_until": "2027-08-01",
             "value": "2704.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2476,6 +2565,7 @@
             "valid_until": "2027-12-01",
             "value": "2744.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2498,6 +2588,7 @@
             "valid_until": null,
             "value": "2784.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2533,6 +2624,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2565,6 +2657,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2584,6 +2677,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2612,6 +2706,7 @@
             "valid_until": "2027-01-01",
             "value": "2804.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2634,6 +2729,7 @@
             "valid_until": "2027-08-01",
             "value": "2840.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2656,6 +2752,7 @@
             "valid_until": "2027-12-01",
             "value": "2880.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2678,6 +2775,7 @@
             "valid_until": null,
             "value": "2920.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2713,6 +2811,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2745,6 +2844,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2764,6 +2864,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2792,6 +2893,7 @@
             "valid_until": "2027-01-01",
             "value": "2949.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2814,6 +2916,7 @@
             "valid_until": "2027-08-01",
             "value": "2985.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2836,6 +2939,7 @@
             "valid_until": "2027-12-01",
             "value": "3025.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2858,6 +2962,7 @@
             "valid_until": null,
             "value": "3065.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2893,6 +2998,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2925,6 +3031,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -2944,6 +3051,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -2972,6 +3080,7 @@
             "valid_until": "2027-01-01",
             "value": "3198.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -2994,6 +3103,7 @@
             "valid_until": "2027-08-01",
             "value": "3234.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3016,6 +3126,7 @@
             "valid_until": "2027-12-01",
             "value": "3274.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3038,6 +3149,7 @@
             "valid_until": null,
             "value": "3314.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3073,6 +3185,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -3105,6 +3218,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -3124,6 +3238,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -3152,6 +3267,7 @@
             "valid_until": "2027-01-01",
             "value": "3518.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3174,6 +3290,7 @@
             "valid_until": "2027-08-01",
             "value": "3554.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3196,6 +3313,7 @@
             "valid_until": "2027-12-01",
             "value": "3594.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3218,6 +3336,7 @@
             "valid_until": null,
             "value": "3634.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-551",
@@ -3253,6 +3372,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -3285,6 +3405,7 @@
           "months_per_year": 12,
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-aspx-c-551",
@@ -3304,6 +3425,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-551",
@@ -3329,7 +3451,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "ad90d0a6cf5c220ef8176d644b34a1ec4b97f437c5467bb117f6a50edb57f620",
+    "source_hash": "dc222d3ddca48ffd1e5488955dfb586c20af904ece5eb3c92cb8306685b7f2de",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3355,6 +3477,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-igiene-ambientale-2023",
@@ -3390,6 +3513,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-igiene-ambientale-2023",
@@ -3426,6 +3550,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-igiene-ambientale-2023",
@@ -3462,6 +3587,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-igiene-ambientale-2023",
@@ -3497,6 +3623,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-igiene-ambientale-2023",
@@ -3520,6 +3647,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-igiene-ambientale-2023",
@@ -3546,6 +3674,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-igiene-ambientale-2023",
@@ -3568,6 +3697,7 @@
       "full_pay_integration_rate": "0.7",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-igiene-ambientale-2023",

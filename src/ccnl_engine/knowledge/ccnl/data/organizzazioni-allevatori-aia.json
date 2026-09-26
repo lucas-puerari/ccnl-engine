@@ -102,7 +102,12 @@
         {
           "valid_from": "2025-09-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -229,6 +234,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -260,6 +266,7 @@
             "valid_until": null,
             "value": "2392.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -281,6 +288,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -309,6 +317,7 @@
             "valid_until": null,
             "value": "2288.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -330,6 +339,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -358,6 +368,7 @@
             "valid_until": null,
             "value": "2183.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -379,6 +390,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -407,6 +419,7 @@
             "valid_until": null,
             "value": "2105.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -428,6 +441,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -456,6 +470,7 @@
             "valid_until": null,
             "value": "2028.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -477,6 +492,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -505,6 +521,7 @@
             "valid_until": null,
             "value": "1974.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -526,6 +543,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -554,6 +572,7 @@
             "valid_until": null,
             "value": "1895.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -575,6 +594,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -603,6 +623,7 @@
             "valid_until": null,
             "value": "1791.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -624,6 +645,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -652,6 +674,7 @@
             "valid_until": null,
             "value": "1757.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -673,6 +696,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -701,6 +725,7 @@
             "valid_until": null,
             "value": "1737.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -722,6 +747,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -750,6 +776,7 @@
             "valid_until": null,
             "value": "1659.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -771,6 +798,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -799,6 +827,7 @@
             "valid_until": null,
             "value": "1500.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -820,6 +849,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -848,6 +878,7 @@
             "valid_until": null,
             "value": "1372.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "organizzazioni-allevatori-aia",
@@ -869,6 +900,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "organizzazioni-allevatori-aia",
@@ -894,7 +926,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "22eaf4495785047096e2764e44932d294e006286b098c90708b90c1db75cac27",
+    "source_hash": "1d70527218ff3f438d2997aded957b14a8c1f3e62816083538ece9e4816330e8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -920,6 +952,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -955,6 +988,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -990,6 +1024,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -1025,6 +1060,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -1048,6 +1084,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -1074,6 +1111,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-allevatori-enti-zootecnici-2023",
@@ -1096,6 +1134,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-allevatori-enti-zootecnici-2023",

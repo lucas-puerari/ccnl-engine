@@ -6,6 +6,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
 
@@ -29,6 +30,7 @@ class SpouseDeductionRules(BaseModel):
     dependent_income_threshold: Decimal = Field(gt=Decimal(0))
     breakpoints: list[DeductionBreakpoint]
     notes: str = ""
+    provenance: RuleProvenance | None = None
 
 
 class ChildrenDeductionRules(BaseModel):
@@ -68,6 +70,7 @@ class ChildrenDeductionRules(BaseModel):
     young_child_income_threshold: Decimal | None = Field(default=None, gt=Decimal(0))
     young_age_cutoff: int = Field(default=24, ge=0)
     notes: str = ""
+    provenance: RuleProvenance | None = None
 
 
 class OtherDependentRules(BaseModel):
@@ -88,6 +91,7 @@ class OtherDependentRules(BaseModel):
     amount: Decimal = Field(gt=Decimal(0))
     income_ceiling: Decimal = Field(gt=Decimal(0))
     notes: str = ""
+    provenance: RuleProvenance | None = None
 
 
 class FamilyDeductionRules(BaseModel):

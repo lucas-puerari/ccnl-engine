@@ -20,7 +20,7 @@
     "tests/integration/ccnl_engine/payroll/application/test_calculate_year.py": 606,
     "tests/integration/ccnl_engine/payroll/application/test_reconcile.py": 688,
     "tests/integration/ccnl_engine/payroll/test_service_coverage_gaps.py": 765,
-    "tests/unit/ccnl_engine/contract/domain/identity/test_ccnl.py": 963,
+    "tests/unit/ccnl_engine/contract/domain/identity/test_ccnl.py": 947,
     "tests/unit/ccnl_engine/diff/service/test_compute.py": 558,
     "tests/unit/ccnl_engine/payroll/service/test_irpef.py": 700
   }

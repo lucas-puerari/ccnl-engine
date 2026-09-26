@@ -140,7 +140,12 @@
         {
           "valid_from": "2024-12-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -236,6 +241,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -266,6 +272,7 @@
             "valid_until": "2025-07-01",
             "value": "1415.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -288,6 +295,7 @@
             "valid_until": "2026-03-01",
             "value": "1452.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -310,6 +318,7 @@
             "valid_until": "2026-11-01",
             "value": "1489.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -332,6 +341,7 @@
             "valid_until": null,
             "value": "1522.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -354,6 +364,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -382,6 +393,7 @@
             "valid_until": "2025-07-01",
             "value": "1503.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -404,6 +416,7 @@
             "valid_until": "2026-03-01",
             "value": "1542.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -426,6 +439,7 @@
             "valid_until": "2026-11-01",
             "value": "1581.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -448,6 +462,7 @@
             "valid_until": null,
             "value": "1616.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -470,6 +485,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -498,6 +514,7 @@
             "valid_until": "2025-07-01",
             "value": "1572.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -520,6 +537,7 @@
             "valid_until": "2026-03-01",
             "value": "1613.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -542,6 +560,7 @@
             "valid_until": "2026-11-01",
             "value": "1654.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -564,6 +583,7 @@
             "valid_until": null,
             "value": "1690.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -586,6 +606,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -614,6 +635,7 @@
             "valid_until": "2025-07-01",
             "value": "1718.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -636,6 +658,7 @@
             "valid_until": "2026-03-01",
             "value": "1763.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -658,6 +681,7 @@
             "valid_until": "2026-11-01",
             "value": "1808.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -680,6 +704,7 @@
             "valid_until": null,
             "value": "1848.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -702,6 +727,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -730,6 +756,7 @@
             "valid_until": "2025-07-01",
             "value": "1852.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -752,6 +779,7 @@
             "valid_until": "2026-03-01",
             "value": "1900.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -774,6 +802,7 @@
             "valid_until": "2026-11-01",
             "value": "1949.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -796,6 +825,7 @@
             "valid_until": null,
             "value": "1992.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -818,6 +848,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -846,6 +877,7 @@
             "valid_until": "2025-07-01",
             "value": "1974.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -868,6 +900,7 @@
             "valid_until": "2026-03-01",
             "value": "2026.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -890,6 +923,7 @@
             "valid_until": "2026-11-01",
             "value": "2078.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -912,6 +946,7 @@
             "valid_until": null,
             "value": "2124.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -934,6 +969,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -962,6 +998,7 @@
             "valid_until": "2025-07-01",
             "value": "2105.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -984,6 +1021,7 @@
             "valid_until": "2026-03-01",
             "value": "2160.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1006,6 +1044,7 @@
             "valid_until": "2026-11-01",
             "value": "2215.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1028,6 +1067,7 @@
             "valid_until": null,
             "value": "2264.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1050,6 +1090,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -1078,6 +1119,7 @@
             "valid_until": "2025-07-01",
             "value": "2363.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1100,6 +1142,7 @@
             "valid_until": "2026-03-01",
             "value": "2426.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1122,6 +1165,7 @@
             "valid_until": "2026-11-01",
             "value": "2490.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1144,6 +1188,7 @@
             "valid_until": null,
             "value": "2546.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "comunicazione-artigianato",
@@ -1177,6 +1222,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "comunicazione-artigianato",
@@ -1197,6 +1243,7 @@
       ],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato",
@@ -1296,7 +1343,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "7a5a2003fcb9b0f0e1c3eaac0c954242285623f23c4ab6343022069cbbeb301f",
+    "source_hash": "2921e7c9ba9d20e7c4d9c09aadcf413f71aa5f82643300b468606829d8659543",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1322,6 +1369,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "comunicazione-artigianato-confartigianato",
@@ -1357,6 +1405,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "comunicazione-artigianato-confartigianato",
@@ -1392,6 +1441,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "comunicazione-artigianato-confartigianato",
@@ -1415,6 +1465,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato-confartigianato",
@@ -1445,6 +1496,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato-confartigianato",
@@ -1467,6 +1519,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "comunicazione-artigianato-confartigianato",

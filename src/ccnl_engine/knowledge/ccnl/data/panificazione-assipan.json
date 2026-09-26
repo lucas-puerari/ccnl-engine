@@ -97,7 +97,12 @@
         {
           "valid_from": "2023-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -170,6 +175,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -200,6 +206,7 @@
             "valid_until": "2024-02-01",
             "value": "1302.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -222,6 +229,7 @@
             "valid_until": "2024-07-01",
             "value": "1338.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -244,6 +252,7 @@
             "valid_until": "2025-11-01",
             "value": "1386.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -266,6 +275,7 @@
             "valid_until": "2026-09-01",
             "value": "1434.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -288,6 +298,7 @@
             "valid_until": null,
             "value": "1481.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -321,6 +332,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -341,6 +353,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -369,6 +382,7 @@
             "valid_until": "2024-02-01",
             "value": "1452.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -391,6 +405,7 @@
             "valid_until": "2024-07-01",
             "value": "1494.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -413,6 +428,7 @@
             "valid_until": "2025-11-01",
             "value": "1551.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -435,6 +451,7 @@
             "valid_until": "2026-09-01",
             "value": "1608.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -457,6 +474,7 @@
             "valid_until": null,
             "value": "1664.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -490,6 +508,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -510,6 +529,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -538,6 +558,7 @@
             "valid_until": "2024-02-01",
             "value": "1569.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -560,6 +581,7 @@
             "valid_until": "2024-07-01",
             "value": "1616.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -582,6 +604,7 @@
             "valid_until": "2025-11-01",
             "value": "1680.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -604,6 +627,7 @@
             "valid_until": "2026-09-01",
             "value": "1743.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -626,6 +650,7 @@
             "valid_until": null,
             "value": "1806.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -659,6 +684,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -679,6 +705,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -707,6 +734,7 @@
             "valid_until": "2024-02-01",
             "value": "1766.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -729,6 +757,7 @@
             "valid_until": "2024-07-01",
             "value": "1822.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -751,6 +780,7 @@
             "valid_until": "2025-11-01",
             "value": "1897.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -773,6 +803,7 @@
             "valid_until": "2026-09-01",
             "value": "1972.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -795,6 +826,7 @@
             "valid_until": null,
             "value": "2046.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -828,6 +860,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -848,6 +881,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -876,6 +910,7 @@
             "valid_until": "2024-02-01",
             "value": "1860.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -898,6 +933,7 @@
             "valid_until": "2024-07-01",
             "value": "1921.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -920,6 +956,7 @@
             "valid_until": "2025-11-01",
             "value": "2001.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -942,6 +979,7 @@
             "valid_until": "2026-09-01",
             "value": "2082.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -964,6 +1002,7 @@
             "valid_until": null,
             "value": "2162.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -997,6 +1036,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -1017,6 +1057,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -1045,6 +1086,7 @@
             "valid_until": "2024-02-01",
             "value": "1977.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -1067,6 +1109,7 @@
             "valid_until": "2024-07-01",
             "value": "2042.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1089,6 +1132,7 @@
             "valid_until": "2025-11-01",
             "value": "2130.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1111,6 +1155,7 @@
             "valid_until": "2026-09-01",
             "value": "2218.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1133,6 +1178,7 @@
             "valid_until": null,
             "value": "2305.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1166,6 +1212,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -1186,6 +1233,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -1214,6 +1262,7 @@
             "valid_until": "2024-02-01",
             "value": "2102.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-panificazione-testo-unico-2025",
@@ -1236,6 +1285,7 @@
             "valid_until": "2024-07-01",
             "value": "2173.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1258,6 +1308,7 @@
             "valid_until": "2025-11-01",
             "value": "2269.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1280,6 +1331,7 @@
             "valid_until": "2026-09-01",
             "value": "2364.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1302,6 +1354,7 @@
             "valid_until": null,
             "value": "2458.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "panificazione-assipan",
@@ -1335,6 +1388,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "panificazione-assipan",
@@ -1355,6 +1409,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "panificazione-assipan",
@@ -1429,7 +1484,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "6f79809e0d6238e760a012fcb4126c21af14e91885a0373b71de5b036d617173",
+    "source_hash": "19e1d9ffe925a688da3adfe2f89c6feae0465855f659a78f2449a5d44c002fad",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1455,6 +1510,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-panificazione-assipan-2025",
@@ -1490,6 +1546,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-panificazione-assipan-2025",
@@ -1526,6 +1583,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-panificazione-assipan-2025",
@@ -1561,6 +1619,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-panificazione-assipan-2025",
@@ -1584,6 +1643,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-panificazione-assipan-2025",
@@ -1610,6 +1670,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-panificazione-assipan-2025",
@@ -1632,6 +1693,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-panificazione-assipan-2025",

@@ -93,7 +93,12 @@
         {
           "valid_from": "2024-06-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -193,6 +198,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -223,6 +229,7 @@
             "valid_until": "2025-06-01",
             "value": "1330.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -245,6 +252,7 @@
             "valid_until": "2026-06-01",
             "value": "1360.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -267,6 +275,7 @@
             "valid_until": "2027-06-01",
             "value": "1390.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -289,6 +298,7 @@
             "valid_until": "2027-12-01",
             "value": "1412.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -311,6 +321,7 @@
             "valid_until": null,
             "value": "1442.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -332,6 +343,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -360,6 +372,7 @@
             "valid_until": "2025-06-01",
             "value": "1425.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -382,6 +395,7 @@
             "valid_until": "2026-06-01",
             "value": "1458.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -404,6 +418,7 @@
             "valid_until": "2027-06-01",
             "value": "1491.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -426,6 +441,7 @@
             "valid_until": "2027-12-01",
             "value": "1516.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -448,6 +464,7 @@
             "valid_until": null,
             "value": "1549.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -469,6 +486,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -497,6 +515,7 @@
             "valid_until": "2025-06-01",
             "value": "1446.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -519,6 +538,7 @@
             "valid_until": "2026-06-01",
             "value": "1480.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -541,6 +561,7 @@
             "valid_until": "2027-06-01",
             "value": "1514.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -563,6 +584,7 @@
             "valid_until": "2027-12-01",
             "value": "1540.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -585,6 +607,7 @@
             "valid_until": null,
             "value": "1574.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -606,6 +629,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -634,6 +658,7 @@
             "valid_until": "2025-06-01",
             "value": "1507.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -656,6 +681,7 @@
             "valid_until": "2026-06-01",
             "value": "1543.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -678,6 +704,7 @@
             "valid_until": "2027-06-01",
             "value": "1580.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -700,6 +727,7 @@
             "valid_until": "2027-12-01",
             "value": "1607.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -722,6 +750,7 @@
             "valid_until": null,
             "value": "1643.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -743,6 +772,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -771,6 +801,7 @@
             "valid_until": "2025-06-01",
             "value": "1612.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -793,6 +824,7 @@
             "valid_until": "2026-06-01",
             "value": "1652.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -815,6 +847,7 @@
             "valid_until": "2027-06-01",
             "value": "1692.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -837,6 +870,7 @@
             "valid_until": "2027-12-01",
             "value": "1722.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -859,6 +893,7 @@
             "valid_until": null,
             "value": "1762.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -880,6 +915,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -908,6 +944,7 @@
             "valid_until": "2025-06-01",
             "value": "1713.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -930,6 +967,7 @@
             "valid_until": "2026-06-01",
             "value": "1757.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -952,6 +990,7 @@
             "valid_until": "2027-06-01",
             "value": "1800.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -974,6 +1013,7 @@
             "valid_until": "2027-12-01",
             "value": "1833.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -996,6 +1036,7 @@
             "valid_until": null,
             "value": "1877.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1017,6 +1058,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -1045,6 +1087,7 @@
             "valid_until": "2025-06-01",
             "value": "1821.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1067,6 +1110,7 @@
             "valid_until": "2026-06-01",
             "value": "1868.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1089,6 +1133,7 @@
             "valid_until": "2027-06-01",
             "value": "1916.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1111,6 +1156,7 @@
             "valid_until": "2027-12-01",
             "value": "1951.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1133,6 +1179,7 @@
             "valid_until": null,
             "value": "1999.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1154,6 +1201,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -1182,6 +1230,7 @@
             "valid_until": "2025-06-01",
             "value": "2000.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1204,6 +1253,7 @@
             "valid_until": "2026-06-01",
             "value": "2053.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1226,6 +1276,7 @@
             "valid_until": "2027-06-01",
             "value": "2107.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1248,6 +1299,7 @@
             "valid_until": "2027-12-01",
             "value": "2148.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1270,6 +1322,7 @@
             "valid_until": null,
             "value": "2201.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1291,6 +1344,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -1319,6 +1373,7 @@
             "valid_until": "2025-06-01",
             "value": "2152.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1341,6 +1396,7 @@
             "valid_until": "2026-06-01",
             "value": "2212.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1363,6 +1419,7 @@
             "valid_until": "2027-06-01",
             "value": "2271.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1385,6 +1442,7 @@
             "valid_until": "2027-12-01",
             "value": "2316.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1407,6 +1465,7 @@
             "valid_until": null,
             "value": "2375.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1440,6 +1499,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabelle-retributive-2024-pdf",
@@ -1459,6 +1519,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -1487,6 +1548,7 @@
             "valid_until": "2025-06-01",
             "value": "2331.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1509,6 +1571,7 @@
             "valid_until": "2026-06-01",
             "value": "2397.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1531,6 +1594,7 @@
             "valid_until": "2027-06-01",
             "value": "2462.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1553,6 +1617,7 @@
             "valid_until": "2027-12-01",
             "value": "2512.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1575,6 +1640,7 @@
             "valid_until": null,
             "value": "2578.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-retributive-2024-pdf",
@@ -1608,6 +1674,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabelle-retributive-2024-pdf",
@@ -1627,6 +1694,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-retributive-2024-pdf",
@@ -1689,7 +1757,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef335a291f8453fc00b838943aaf587787e7c44efd40e76378d2cc358339cd93",
+    "source_hash": "7ca8308d643b9353500be21a9c7e5c681ddfb14f15a55d78778ad32c3481bc5f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1715,6 +1783,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1750,6 +1819,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1785,6 +1855,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1820,6 +1891,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1843,6 +1915,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1869,6 +1942,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pubblici-esercizi-fipe-2024",
@@ -1891,6 +1965,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pubblici-esercizi-fipe-2024",

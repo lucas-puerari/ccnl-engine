@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - "src/ccnl_engine/knowledge/ccnl/**"
+      - "src/ccnl_engine/knowledge/tax/**"
+      - "src/ccnl_engine/knowledge/inps/**"
+      - "src/ccnl_engine/knowledge/surtax/**"
+      - "src/ccnl_engine/knowledge/capabilities/**"
+      - "scripts/ci/payable_rules.py"
       - "scripts/docs/gen_capability_matrix.py"
       - "docs/contracts/capability-matrix.md"
 

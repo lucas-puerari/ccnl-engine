@@ -7,6 +7,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 from ccnl_engine.provenance.domain.source import SourceDocument
@@ -33,6 +34,11 @@ class YearRulesRaw(BaseModel):
     Either ``inps`` + ``apprentice`` (standard percentage model) or
     ``domestic_contributions`` (flat per-hour domestic model) must be present.
     Both combinations are validated by ``_check_contribution_model``.
+
+    Blocks that are objects carry their own ``provenance``.  The IRPEF
+    brackets (a list) and the fixed-term addizionale (a scalar) cannot hold
+    a field, so their provenance sits in the sibling
+    ``irpef_brackets_provenance`` and ``fixed_term_additional_rate_provenance``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -41,7 +47,9 @@ class YearRulesRaw(BaseModel):
     sector: TaxSector
     ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
+    irpef_brackets_provenance: RuleProvenance | None = None
     fixed_term_additional_rate: PercentageRate
+    fixed_term_additional_rate_provenance: RuleProvenance | None = None
     inps: InpsRawRates | None = None
     apprentice: ApprenticeRawRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
@@ -101,7 +109,9 @@ class YearRules(BaseModel):
     ruleset: RulesetIdentity | None = None
     inps_ruleset: RulesetIdentity | None = None
     irpef_brackets: list[IrpefBracket]
+    irpef_brackets_provenance: RuleProvenance | None = None
     fixed_term_additional_rate: PercentageRate
+    fixed_term_additional_rate_provenance: RuleProvenance | None = None
     inps: InpsRates | None = None
     apprentice: ApprenticeRates | None = None
     domestic_contributions: DomesticInpsRates | None = None

@@ -101,7 +101,12 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -183,6 +188,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -213,6 +219,7 @@
             "valid_until": null,
             "value": "1126.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -235,6 +242,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -263,6 +271,7 @@
             "valid_until": null,
             "value": "1169.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -285,6 +294,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -313,6 +323,7 @@
             "valid_until": null,
             "value": "1212.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -335,6 +346,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -363,6 +375,7 @@
             "valid_until": null,
             "value": "1288.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -385,6 +398,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -413,6 +427,7 @@
             "valid_until": null,
             "value": "1359.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -435,6 +450,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -463,6 +479,7 @@
             "valid_until": null,
             "value": "1435.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -485,6 +502,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -513,6 +531,7 @@
             "valid_until": null,
             "value": "1655.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -535,6 +554,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -563,6 +583,7 @@
             "valid_until": null,
             "value": "1724.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -585,6 +606,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-minimi-retributivi-2026-pdf",
@@ -611,7 +633,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "58065fbb345b3a4f6793ac268e9c024b0c566ecc1be067bd9dc457a1c26d6fca",
+    "source_hash": "33aa5d5f7c6cd3f1cebac69033c464cf30c35c9f425b3c3966189233ff2de5f0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -637,6 +659,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
@@ -672,6 +695,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavoro-domestico-2025",
@@ -695,6 +719,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
@@ -721,6 +746,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",
@@ -743,6 +769,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavoro-domestico-2025",

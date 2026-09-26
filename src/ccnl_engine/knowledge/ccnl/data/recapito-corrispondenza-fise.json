@@ -87,7 +87,12 @@
         {
           "valid_from": "2024-02-01",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -169,6 +174,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -200,6 +206,7 @@
             "valid_until": "2024-09-01",
             "value": "2050.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -222,6 +229,7 @@
             "valid_until": "2025-07-01",
             "value": "2111.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -244,6 +252,7 @@
             "valid_until": "2026-06-01",
             "value": "2172.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -266,6 +275,7 @@
             "valid_until": null,
             "value": "2224.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -299,6 +309,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -318,6 +329,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -346,6 +358,7 @@
             "valid_until": "2024-09-01",
             "value": "1854.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -368,6 +381,7 @@
             "valid_until": "2025-07-01",
             "value": "1907.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -390,6 +404,7 @@
             "valid_until": "2026-06-01",
             "value": "1961.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -412,6 +427,7 @@
             "valid_until": null,
             "value": "2006.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -445,6 +461,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -464,6 +481,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -492,6 +510,7 @@
             "valid_until": "2024-09-01",
             "value": "1660.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -514,6 +533,7 @@
             "valid_until": "2025-07-01",
             "value": "1706.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -536,6 +556,7 @@
             "valid_until": "2026-06-01",
             "value": "1752.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -558,6 +579,7 @@
             "valid_until": null,
             "value": "1791.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -591,6 +613,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -610,6 +633,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -638,6 +662,7 @@
             "valid_until": "2024-09-01",
             "value": "1567.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -660,6 +685,7 @@
             "valid_until": "2025-07-01",
             "value": "1609.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -682,6 +708,7 @@
             "valid_until": "2026-06-01",
             "value": "1651.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -704,6 +731,7 @@
             "valid_until": null,
             "value": "1687.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -737,6 +765,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -756,6 +785,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -784,6 +814,7 @@
             "valid_until": "2024-09-01",
             "value": "1489.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -806,6 +837,7 @@
             "valid_until": "2025-07-01",
             "value": "1528.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -828,6 +860,7 @@
             "valid_until": "2026-06-01",
             "value": "1567.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -850,6 +883,7 @@
             "valid_until": null,
             "value": "1600.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -883,6 +917,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -902,6 +937,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -930,6 +966,7 @@
             "valid_until": "2024-09-01",
             "value": "1389.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -952,6 +989,7 @@
             "valid_until": "2025-07-01",
             "value": "1424.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -974,6 +1012,7 @@
             "valid_until": "2026-06-01",
             "value": "1459.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -996,6 +1035,7 @@
             "valid_until": null,
             "value": "1489.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1029,6 +1069,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -1048,6 +1089,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -1076,6 +1118,7 @@
             "valid_until": "2024-09-01",
             "value": "1351.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1098,6 +1141,7 @@
             "valid_until": "2025-07-01",
             "value": "1384.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1120,6 +1164,7 @@
             "valid_until": "2026-06-01",
             "value": "1418.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1142,6 +1187,7 @@
             "valid_until": null,
             "value": "1446.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1175,6 +1221,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -1194,6 +1241,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -1222,6 +1270,7 @@
             "valid_until": "2024-09-01",
             "value": "1272.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1244,6 +1293,7 @@
             "valid_until": "2025-07-01",
             "value": "1303.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1266,6 +1316,7 @@
             "valid_until": "2026-06-01",
             "value": "1333.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1288,6 +1339,7 @@
             "valid_until": null,
             "value": "1359.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "recapito-corrispondenza-fise",
@@ -1321,6 +1373,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "recapito-corrispondenza-fise",
@@ -1340,6 +1393,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "recapito-corrispondenza-fise",
@@ -1365,7 +1419,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "74b8e34682c4bbc022a97aebb2eb27cd85fa8fdb1d7d430721d23f7d970217e5",
+    "source_hash": "19387c6c06a405ebaa84747dd49f9de5948165959acb51dbaf1497cb97a3b060",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1391,6 +1445,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1426,6 +1481,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1461,6 +1517,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1496,6 +1553,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1519,6 +1577,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1545,6 +1604,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-recapito-corrispondenza-fise-2023",
@@ -1567,6 +1627,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-recapito-corrispondenza-fise-2023",

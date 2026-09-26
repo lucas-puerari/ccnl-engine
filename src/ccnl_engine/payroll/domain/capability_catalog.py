@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
+from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
+
+    from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 
 
 class CapabilityStatus(StrEnum):
@@ -78,10 +81,22 @@ class CapabilityReport:
     Attributes:
         catalog_year: The year of the catalog used for verification.
         gaps: All detected gaps, in declaration order.
+        rule_sources: Weakest provenance status of the payable rules each
+            executed capability read.  It does not change :attr:`status`
+            or :attr:`confidence`, which describe engine coverage; a
+            ``missing`` source is reported as an incomplete result issue.
     """
 
     catalog_year: int
     gaps: tuple[CapabilityGap, ...]
+    rule_sources: Mapping[str, ProvenanceStatus] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:  # noqa: D105
+        object.__setattr__(
+            self, "rule_sources", MappingProxyType(dict(self.rule_sources))
+        )
 
     @classmethod
     def empty(cls, year: int) -> CapabilityReport:

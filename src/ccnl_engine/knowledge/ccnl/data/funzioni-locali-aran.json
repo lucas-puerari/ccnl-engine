@@ -54,7 +54,12 @@
         {
           "valid_from": "2022-11-16",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -63,6 +68,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -94,6 +100,7 @@
             "valid_until": "2024-01-01",
             "value": "1523.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -116,6 +123,7 @@
             "valid_until": "2026-01-01",
             "value": "1637.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -138,6 +146,7 @@
             "valid_until": null,
             "value": "1646.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -159,6 +168,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -188,6 +198,7 @@
             "valid_until": "2024-01-01",
             "value": "1586.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -210,6 +221,7 @@
             "valid_until": "2026-01-01",
             "value": "1704.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -232,6 +244,7 @@
             "valid_until": null,
             "value": "1715.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -253,6 +266,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -282,6 +296,7 @@
             "valid_until": "2024-01-01",
             "value": "1782.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -304,6 +319,7 @@
             "valid_until": "2026-01-01",
             "value": "1915.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -326,6 +342,7 @@
             "valid_until": null,
             "value": "1928.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -347,6 +364,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -376,6 +394,7 @@
             "valid_until": "2024-01-01",
             "value": "1934.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -398,6 +417,7 @@
             "valid_until": "2026-01-01",
             "value": "2078.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -420,6 +440,7 @@
             "valid_until": null,
             "value": "2092.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -441,6 +462,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-comparto-2022-2024-23-02-26-pdf",
@@ -518,7 +540,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "44d0cd5a01439cd546a106ab4a618abd51e3fca9700aec1d4054a33bd2920cef",
+    "source_hash": "c745778b22bf10335403bbaf49d2e9b457374619110a1b1cad7de9f42686bb57",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -544,6 +566,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -579,6 +602,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -614,6 +638,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -649,6 +674,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -672,6 +698,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -698,6 +725,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-locali-2022-2024",
@@ -720,6 +748,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-locali-2022-2024",

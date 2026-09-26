@@ -67,7 +67,12 @@
         {
           "valid_from": "2012-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -194,6 +199,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -249,6 +255,7 @@
             "valid_until": "2023-10-01",
             "value": "1105.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -271,6 +278,7 @@
             "valid_until": null,
             "value": "1223.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -292,6 +300,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -320,6 +329,7 @@
             "valid_until": "2023-10-01",
             "value": "1185.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -342,6 +352,7 @@
             "valid_until": null,
             "value": "1311.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -363,6 +374,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -391,6 +403,7 @@
             "valid_until": "2023-10-01",
             "value": "1285.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -413,6 +426,7 @@
             "valid_until": null,
             "value": "1419.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -434,6 +448,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -462,6 +477,7 @@
             "valid_until": "2023-10-01",
             "value": "1285.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -484,6 +500,7 @@
             "valid_until": null,
             "value": "1419.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -505,6 +522,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -533,6 +551,7 @@
             "valid_until": "2023-10-01",
             "value": "1325.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -555,6 +574,7 @@
             "valid_until": null,
             "value": "1463.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -576,6 +596,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -604,6 +625,7 @@
             "valid_until": "2023-10-01",
             "value": "1355.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -626,6 +648,7 @@
             "valid_until": null,
             "value": "1496.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -647,6 +670,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -675,6 +699,7 @@
             "valid_until": "2023-10-01",
             "value": "1405.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -697,6 +722,7 @@
             "valid_until": null,
             "value": "1550.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -718,6 +744,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -746,6 +773,7 @@
             "valid_until": "2023-10-01",
             "value": "1455.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -768,6 +796,7 @@
             "valid_until": null,
             "value": "1746.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -789,6 +818,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -817,6 +847,7 @@
             "valid_until": "2023-10-01",
             "value": "1505.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -839,6 +870,7 @@
             "valid_until": null,
             "value": "1806.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -860,6 +892,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -888,6 +921,7 @@
             "valid_until": "2023-10-01",
             "value": "1905.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -910,6 +944,7 @@
             "valid_until": null,
             "value": "2095.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -931,6 +966,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -959,6 +995,7 @@
             "valid_until": "2023-10-01",
             "value": "2505.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -981,6 +1018,7 @@
             "valid_until": null,
             "value": "2749.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -1002,6 +1040,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -1030,6 +1069,7 @@
             "valid_until": "2023-10-01",
             "value": "3005.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -1052,6 +1092,7 @@
             "valid_until": null,
             "value": "3294.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -1073,6 +1114,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012-pdf",
@@ -1098,7 +1140,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "613bb9ab5975226ff00fbefbbbd97e1f377e63bf420a7c24c68a4f624f03af2a",
+    "source_hash": "35ead51b850218744efc85ab07e12ab0578dcb4f10ef5221ade5a66aa0a5407e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1124,6 +1166,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-rsa-aiop-2012",
@@ -1159,6 +1202,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-rsa-aiop-2012",
@@ -1194,6 +1238,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-rsa-aiop-2012",
@@ -1229,6 +1274,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-rsa-aiop-2012",
@@ -1252,6 +1298,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012",
@@ -1278,6 +1325,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012",
@@ -1300,6 +1348,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-rsa-aiop-2012",

@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "ac172d8065f365434d7cad9a213c55228474c690da98fe471695237040f9fe2b",
+    "source_hash": "97d41020279d403e479e8ca1c941ece54279155b81ba3aa92dcac0848c0772ab",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -28,22 +28,70 @@
   ],
   "fixed_term_additional_rate": "0.014",
   "tfr": {
-    "accrual_divisor": "13.5"
+    "accrual_divisor": "13.5",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "codice-civile",
+          "title": "Codice civile",
+          "kind": "legge"
+        },
+        "section": "art. 2120"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+    }
   },
   "trattamento_integrativo": {
     "threshold_mid": "15000",
     "threshold_upper": "28000",
-    "max_amount": "1200"
+    "max_amount": "1200",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dl-3-2020",
+          "title": "D.L. 3/2020",
+          "kind": "dl"
+        },
+        "section": "art. 1 (as amended by L. 207/2024)"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+    }
   },
   "ulteriore_detrazione": {
     "threshold_low": "20000",
     "threshold_mid": "32000",
     "max_amount": "1000",
-    "threshold_high": "40000"
+    "threshold_high": "40000",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-207-2024",
+          "title": "L. 207/2024, legge di bilancio 2025",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 6"
+      },
+      "transformation": "Citation taken from the docstring of the rule model that consumes the block; the data file records none."
+    }
   },
   "sterilizzazione_detrazioni": {
     "threshold": "200000.00",
-    "reduction": "440.00"
+    "reduction": "440.00",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-199-2025",
+          "title": "L. 199/2025, legge di bilancio 2026",
+          "kind": "legge",
+          "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+        },
+        "section": "art. 1 cc. 3-4"
+      }
+    }
   },
   "work_deduction": {
     "detr_flat": "1955",
@@ -57,7 +105,18 @@
     "detr_increment": "65",
     "increment_lo": "25000",
     "increment_hi": "35000",
-    "seventy_five": "75"
+    "seventy_five": "75",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 13 c. 1"
+      }
+    }
   },
   "notes": [
     "IRPEF brackets: statutory 2026 (L. 199/2025, Art. 1 c. 2). Art. 13 constants versioned in YearRules.work_deduction.",
@@ -83,6 +142,41 @@
         "up_to": "20000",
         "rate": "0.048"
       }
-    ]
+    ],
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "l-207-2024",
+          "title": "L. 207/2024, legge di bilancio 2025",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 4"
+      },
+      "note": "Band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples, not verified against the primary source; rates 7.1%/5.3%/4.8% and the 20 000 EUR ceiling are from AdE guidance."
+    }
+  },
+  "irpef_brackets_provenance": {
+    "status": "derived",
+    "location": {
+      "source_document": {
+        "document_id": "l-199-2025",
+        "title": "L. 199/2025, legge di bilancio 2026",
+        "kind": "legge",
+        "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=1&art.versione=1"
+      },
+      "section": "art. 1 c. 2"
+    }
+  },
+  "fixed_term_additional_rate_provenance": {
+    "status": "derived",
+    "location": {
+      "source_document": {
+        "document_id": "l-92-2012",
+        "title": "L. 92/2012",
+        "kind": "legge"
+      },
+      "section": "art. 2 c. 28"
+    }
   }
 }

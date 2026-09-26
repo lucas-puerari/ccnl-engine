@@ -88,7 +88,12 @@
         {
           "valid_from": "2024-06-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -97,6 +102,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -129,6 +135,7 @@
             "valid_until": "2025-06-01",
             "value": "1409.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -151,6 +158,7 @@
             "valid_until": "2026-06-01",
             "value": "1443.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -173,6 +181,7 @@
             "valid_until": "2027-06-01",
             "value": "1466.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -195,6 +204,7 @@
             "valid_until": null,
             "value": "1489.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -230,6 +240,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -262,6 +273,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -294,6 +306,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -313,6 +326,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -342,6 +356,7 @@
             "valid_until": "2025-06-01",
             "value": "1642.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -364,6 +379,7 @@
             "valid_until": "2026-06-01",
             "value": "1689.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -386,6 +402,7 @@
             "valid_until": "2027-06-01",
             "value": "1720.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -408,6 +425,7 @@
             "valid_until": null,
             "value": "1750.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -443,6 +461,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -475,6 +494,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -507,6 +527,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -526,6 +547,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -555,6 +577,7 @@
             "valid_until": "2025-06-01",
             "value": "1742.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -577,6 +600,7 @@
             "valid_until": "2026-06-01",
             "value": "1793.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -599,6 +623,7 @@
             "valid_until": "2027-06-01",
             "value": "1827.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -621,6 +646,7 @@
             "valid_until": null,
             "value": "1862.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -656,6 +682,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -688,6 +715,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -720,6 +748,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -739,6 +768,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -768,6 +798,7 @@
             "valid_until": "2025-06-01",
             "value": "1914.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -790,6 +821,7 @@
             "valid_until": "2026-06-01",
             "value": "1974.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -812,6 +844,7 @@
             "valid_until": "2027-06-01",
             "value": "2014.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -834,6 +867,7 @@
             "valid_until": null,
             "value": "2054.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -869,6 +903,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -901,6 +936,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -933,6 +969,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -952,6 +989,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -981,6 +1019,7 @@
             "valid_until": "2025-06-01",
             "value": "2081.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1003,6 +1042,7 @@
             "valid_until": "2026-06-01",
             "value": "2150.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1025,6 +1065,7 @@
             "valid_until": "2027-06-01",
             "value": "2196.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1047,6 +1088,7 @@
             "valid_until": null,
             "value": "2241.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1082,6 +1124,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1114,6 +1157,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1146,6 +1190,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1165,6 +1210,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -1194,6 +1240,7 @@
             "valid_until": "2025-06-01",
             "value": "2216.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1216,6 +1263,7 @@
             "valid_until": "2026-06-01",
             "value": "2292.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1238,6 +1286,7 @@
             "valid_until": "2027-06-01",
             "value": "2342.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1260,6 +1309,7 @@
             "valid_until": null,
             "value": "2392.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contoterzismo-caiagromec",
@@ -1295,6 +1345,7 @@
           "months_per_year": 1,
           "service_months_threshold": 60,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1327,6 +1378,7 @@
           "months_per_year": 1,
           "service_months_threshold": 120,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1359,6 +1411,7 @@
           "months_per_year": 1,
           "service_months_threshold": 180,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1378,6 +1431,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -1403,7 +1457,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2024/07/02/ccnl-contoterzismo-in-agricoltura-rinnovato-il-quadriennio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "7543a6d4d9051d06cc8acba101f8d17e0fc2e595164e8bb0e68cf2d3f0d6bf36",
+    "source_hash": "75c45bf1e675b887b821c181974eee642795c270a980b974505c185082560db3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1429,6 +1483,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1464,6 +1519,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1499,6 +1555,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contoterzismo-caiagromec",
@@ -1522,6 +1579,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -1548,6 +1606,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",
@@ -1570,6 +1629,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contoterzismo-caiagromec",

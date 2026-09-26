@@ -6,11 +6,25 @@ by the caller.
 | Signal | Answers |
 |---|---|
 | `result.status` | Can this payslip be paid as computed? |
-| `result.capability_report` | Did every capability the fiscal-year catalog declares actually run? |
+| `result.capability_report` | Did every capability the fiscal-year catalog declares actually run, and how well are the rules it read backed by sources? |
 
-Neither signal reads the `verification_status` of the underlying sources:
-an unverified salary table does not lower either one. Source verification is
-described in [Provenance](provenance.md).
+Both read the provenance status of the payable rules a run executed (see
+[Provenance](provenance.md)), each in its own way:
+
+- a rule with status `missing` makes the result `incomplete` through a
+  `rule_source_missing` issue that names the rule;
+- the weakest status of each executed capability (`verified`, `derived`,
+  `assumed` or `missing`) is in `result.capability_report.rule_sources`.
+
+An `assumed` rule does not lower `result.status` or the report
+`confidence`. Across the 1 126 bundled levels, run for March 2026 with 20
+employees, every run reads at least one `assumed` rule (the somma esente cut
+points are reconstructions, and 121 of 125 CCNLs cite no clause for their
+number of monthly payments). Making `assumed` provisional, or lowering the
+confidence for it, would mark every result the same way and tell the caller
+nothing; the per-capability status tells which amounts rest on assumptions.
+No bundled rule is `missing`, so no bundled result is incomplete for lack of
+a source.
 
 ## Calculation status
 
@@ -27,6 +41,13 @@ worst status among the issues, or `final` when there are none.
 `result.decisions` records what each capability decided and on which rule, so
 a `final` result can still be explained line by line.
 
+Issues that lower the status include:
+
+| Code | Status | When |
+|---|---|---|
+| `rule_source_missing` | `incomplete` | An executed capability read a payable rule whose provenance status is `missing` |
+| `employer_rate_category_assumed` | `provisional` | The sector sets INPS employer rates by worker category (artigianato: impiegati and quadri 24.71%), the level fixes no category and none was declared, so the general rate (26.93%, the operai rate) applied |
+
 ## Capability report
 
 `result.capability_report` compares the capabilities the fiscal-year catalog
@@ -42,6 +63,10 @@ observed. Each mismatch is a `CapabilityGap`.
 The report describes engine coverage for the year, not the specific payslip:
 a result can be `final` while its capability report is `"low"`, because a
 declared capability (for example INAIL) is not wired into the period run.
+
+`rule_sources` maps each executed capability that reads bundled rules to the
+weakest provenance status among them. Capabilities computed only from
+caller-declared amounts do not appear.
 
 ## Using both signals
 
@@ -78,4 +103,6 @@ report = result.capability_report
 print(report.status, report.confidence)
 for gap in report.gaps:
     print(gap.feature, gap.kind.value)
+for capability, status in report.rule_sources.items():
+    print(capability, status.value)
 ```

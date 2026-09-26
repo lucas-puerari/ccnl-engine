@@ -52,7 +52,12 @@
         {
           "valid_from": "2023-11-16",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -61,6 +66,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -92,6 +98,7 @@
             "valid_until": "2024-01-01",
             "value": "3616.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -114,6 +121,7 @@
             "valid_until": null,
             "value": "3846.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -135,6 +143,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -164,6 +173,7 @@
             "valid_until": "2024-01-01",
             "value": "4623.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -186,6 +196,7 @@
             "valid_until": null,
             "value": "4908.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -207,6 +218,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "2025-10-28-ccnl-a-fc-2022-2024-pubblicazione-1-20vigente-pdf",
@@ -292,7 +304,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "d205fdc71a01d1a3fc4b4534cbb40b3d24a76417c98c2aa21e80fa9668091da7",
+    "source_hash": "399cc089368f6ca47f0deacea006b0fc4cebf4a0b541d151de632b23007762cb",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -318,6 +330,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-area-fc-2022-2024",
@@ -353,6 +366,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-area-fc-2022-2024",
@@ -388,6 +402,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-area-fc-2022-2024",
@@ -412,6 +427,7 @@
       "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fc-2022-2024",
@@ -442,6 +458,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fc-2022-2024",
@@ -464,6 +481,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 540,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fc-2022-2024",

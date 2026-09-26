@@ -97,7 +97,12 @@
         {
           "valid_from": "2024-07-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -179,6 +184,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -209,6 +215,7 @@
             "valid_until": "2025-07-01",
             "value": "1438.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -231,6 +238,7 @@
             "valid_until": "2026-07-01",
             "value": "1473.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -253,6 +261,7 @@
             "valid_until": null,
             "value": "1509.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -297,6 +306,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -316,6 +326,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -344,6 +355,7 @@
             "valid_until": "2025-07-01",
             "value": "1513.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -366,6 +378,7 @@
             "valid_until": "2026-07-01",
             "value": "1552.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -388,6 +401,7 @@
             "valid_until": null,
             "value": "1591.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -432,6 +446,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -451,6 +466,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -479,6 +495,7 @@
             "valid_until": "2025-07-01",
             "value": "1668.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -501,6 +518,7 @@
             "valid_until": "2026-07-01",
             "value": "1711.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -523,6 +541,7 @@
             "valid_until": null,
             "value": "1755.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -567,6 +586,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -586,6 +606,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -614,6 +635,7 @@
             "valid_until": "2025-07-01",
             "value": "1891.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -636,6 +658,7 @@
             "valid_until": "2026-07-01",
             "value": "1940.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -658,6 +681,7 @@
             "valid_until": null,
             "value": "1989.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -702,6 +726,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -721,6 +746,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -749,6 +775,7 @@
             "valid_until": "2025-07-01",
             "value": "2004.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -771,6 +798,7 @@
             "valid_until": "2026-07-01",
             "value": "2056.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -793,6 +821,7 @@
             "valid_until": null,
             "value": "2108.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -837,6 +866,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -856,6 +886,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -884,6 +915,7 @@
             "valid_until": "2025-07-01",
             "value": "2307.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -906,6 +938,7 @@
             "valid_until": "2026-07-01",
             "value": "2368.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -928,6 +961,7 @@
             "valid_until": null,
             "value": "2429.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -972,6 +1006,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -991,6 +1026,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1019,6 +1055,7 @@
             "valid_until": "2025-07-01",
             "value": "2646.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1041,6 +1078,7 @@
             "valid_until": "2026-07-01",
             "value": "2723.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1063,6 +1101,7 @@
             "valid_until": null,
             "value": "2800.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1107,6 +1146,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1126,6 +1166,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1154,6 +1195,7 @@
             "valid_until": "2025-07-01",
             "value": "2646.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1176,6 +1218,7 @@
             "valid_until": "2026-07-01",
             "value": "2723.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1198,6 +1241,7 @@
             "valid_until": null,
             "value": "2800.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1242,6 +1286,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1273,6 +1318,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1292,6 +1338,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "15-sezione-personale-di-terra-pdf",
@@ -1346,7 +1393,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "17f0f419fbc8edd52cf7a2f0ca2957d36d3052c223ecbc5ec415585b091fa7b2",
+    "source_hash": "06831a7b3ecc57fc3fec972ed01bfaddc86d1011dd40ebfa32f82dc4d3a0638c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1372,6 +1419,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1407,6 +1455,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1442,6 +1491,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1477,6 +1527,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1500,6 +1551,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1526,6 +1578,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-marittimi-industria-armatoriale-2024",
@@ -1548,6 +1601,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-marittimi-industria-armatoriale-2024",

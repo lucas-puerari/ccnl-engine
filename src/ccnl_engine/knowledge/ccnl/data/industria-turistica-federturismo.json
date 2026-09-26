@@ -72,6 +72,7 @@
             "valid_until": "2025-06-01",
             "value": "1368.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -94,6 +95,7 @@
             "valid_until": "2026-05-01",
             "value": "1393.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -116,6 +118,7 @@
             "valid_until": "2027-04-01",
             "value": "1422.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -138,6 +141,7 @@
             "valid_until": null,
             "value": "1464.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -159,6 +163,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -187,6 +192,7 @@
             "valid_until": "2025-06-01",
             "value": "1481.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -209,6 +215,7 @@
             "valid_until": "2026-05-01",
             "value": "1508.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -231,6 +238,7 @@
             "valid_until": "2027-04-01",
             "value": "1539.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -253,6 +261,7 @@
             "valid_until": null,
             "value": "1584.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -274,6 +283,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -302,6 +312,7 @@
             "valid_until": "2025-06-01",
             "value": "1540.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -324,6 +335,7 @@
             "valid_until": "2026-05-01",
             "value": "1568.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -346,6 +358,7 @@
             "valid_until": "2027-04-01",
             "value": "1601.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -368,6 +381,7 @@
             "valid_until": null,
             "value": "1647.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -389,6 +403,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -417,6 +432,7 @@
             "valid_until": "2025-06-01",
             "value": "1641.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -439,6 +455,7 @@
             "valid_until": "2026-05-01",
             "value": "1671.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -461,6 +478,7 @@
             "valid_until": "2027-04-01",
             "value": "1706.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -483,6 +501,7 @@
             "valid_until": null,
             "value": "1756.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -504,6 +523,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -532,6 +552,7 @@
             "valid_until": "2025-06-01",
             "value": "1739.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -554,6 +575,7 @@
             "valid_until": "2026-05-01",
             "value": "1771.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -576,6 +598,7 @@
             "valid_until": "2027-04-01",
             "value": "1808.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -598,6 +621,7 @@
             "valid_until": null,
             "value": "1861.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -619,6 +643,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -647,6 +672,7 @@
             "valid_until": "2025-06-01",
             "value": "1843.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -669,6 +695,7 @@
             "valid_until": "2026-05-01",
             "value": "1877.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -691,6 +718,7 @@
             "valid_until": "2027-04-01",
             "value": "1916.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -713,6 +741,7 @@
             "valid_until": null,
             "value": "1973.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -734,6 +763,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -762,6 +792,7 @@
             "valid_until": "2025-06-01",
             "value": "2016.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -784,6 +815,7 @@
             "valid_until": "2026-05-01",
             "value": "2053.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -806,6 +838,7 @@
             "valid_until": "2027-04-01",
             "value": "2096.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -828,6 +861,7 @@
             "valid_until": null,
             "value": "2158.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -849,6 +883,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -877,6 +912,7 @@
             "valid_until": "2025-06-01",
             "value": "2164.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -899,6 +935,7 @@
             "valid_until": "2026-05-01",
             "value": "2203.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -921,6 +958,7 @@
             "valid_until": "2027-04-01",
             "value": "2249.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -943,6 +981,7 @@
             "valid_until": null,
             "value": "2315.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -977,6 +1016,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -996,6 +1036,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1024,6 +1065,7 @@
             "valid_until": "2025-06-01",
             "value": "2337.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1046,6 +1088,7 @@
             "valid_until": "2026-05-01",
             "value": "2379.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1068,6 +1111,7 @@
             "valid_until": "2027-04-01",
             "value": "2429.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1090,6 +1134,7 @@
             "valid_until": null,
             "value": "2500.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1124,6 +1169,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1143,6 +1189,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1167,7 +1214,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -1267,6 +1319,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-h05b",
@@ -1316,7 +1369,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
     "verification_status": "unverified",
-    "source_hash": "1f342a27f98d2e8abb49db131b6fb82c0f98f8e804d00c61fd76d2b6c7f480c0",
+    "source_hash": "43b2bd5065a72fe55faea7bbb39c910789dddafdd697d5aca3eefdc7168a7f93",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1342,6 +1395,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-industria-turistica-federturismo",
@@ -1377,6 +1431,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-industria-turistica-federturismo",
@@ -1412,6 +1467,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-industria-turistica-federturismo",
@@ -1447,6 +1503,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-industria-turistica-federturismo",
@@ -1470,6 +1527,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-industria-turistica-federturismo",
@@ -1496,6 +1554,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-industria-turistica-federturismo",
@@ -1518,6 +1577,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-industria-turistica-federturismo",

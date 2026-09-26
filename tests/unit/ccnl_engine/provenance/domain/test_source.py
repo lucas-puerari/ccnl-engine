@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from ccnl_engine.provenance.domain.extraction import (
     BackCalculationStep,
     ExtractionMethod,
@@ -178,6 +178,7 @@ class TestRuleProvenance:
     def test_complete(self) -> None:
         """All fields are accessible on a fully-populated RuleProvenance."""
         prov = RuleProvenance(
+            status=ProvenanceStatus.DERIVED,
             location=SourceLocation(source_document=_DOC, page="12", section="Art. 3"),
             extraction=ExtractionTrace(
                 method=ExtractionMethod.MANUAL,
@@ -187,5 +188,7 @@ class TestRuleProvenance:
             note="simplification",
         )
         assert prov.note == "simplification"
+        assert prov.location is not None
         assert prov.location.page == "12"
+        assert prov.extraction is not None
         assert prov.extraction.method == ExtractionMethod.MANUAL

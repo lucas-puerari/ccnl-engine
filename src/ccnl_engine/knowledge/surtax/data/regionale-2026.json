@@ -351,7 +351,12 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "01440a477023f604bcaa2df0f4acd78bef0905ce04ff9c7a62a1822b0dea03b5",
+    "source_hash": "5c8b1412051c2af0cd7d565cddfbe48a761737e5fce7a18416920a8c3231f380",
     "source_type": "estimated"
+  },
+  "provenance": {
+    "status": "assumed",
+    "location": null,
+    "note": "The notes name the MEF Dipartimento delle Finanze as source; no document, date or table is recorded."
   }
 }

@@ -14,11 +14,17 @@ from ccnl_engine.payroll.application.period._closing_state import (
     RunOutcome,
     closing_state,
 )
+from ccnl_engine.payroll.application.period._rule_sources import (
+    missing_source_issues,
+    run_rule_sources,
+    weakest_by_capability,
+)
 from ccnl_engine.payroll.application.reconcile import check_period
 from ccnl_engine.payroll.application.withholding._cap import run_net
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import PeriodResult
+from ccnl_engine.payroll.service._contributions_rates import category_rate_issue
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
@@ -30,7 +36,10 @@ if TYPE_CHECKING:
         RunCredits,
         RunPostings,
     )
-    from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.decisions import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.period_state import PeriodState
 
@@ -90,6 +99,13 @@ def _benefits(events: RunEvents, entries: tuple[LedgerEntry, ...]) -> BenefitBre
     )
 
 
+def _rule_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
+    issue = category_rate_issue(
+        ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
+    )
+    return () if issue is None else (issue,)
+
+
 def _result(
     ctx: RunContext,
     events: RunEvents,
@@ -103,6 +119,8 @@ def _result(
     somma, carried, capped = recoveries.somma, recoveries.carried, posted.capped
     closing = _closing(ctx, events, amounts, recoveries, posted)
     all_decisions = decisions + somma.decisions + carried.decisions + capped.decisions
+    executed = events.totals.executed_features
+    sources = run_rule_sources(ctx, all_decisions, executed)
     return PeriodResult(
         period_id=ctx.request.period_id,
         payment_date=ctx.request.payment_date,
@@ -116,8 +134,9 @@ def _result(
         capability_report=capability_report(
             ctx.contract.catalog,
             all_decisions,
-            events.totals.executed_features,
+            executed,
             ctx.fiscal_year,
+            weakest_by_capability(sources),
         ),
         contribution_breakdown=amounts.contribution_breakdown,
         tax_computation=amounts.tax_computation,
@@ -127,7 +146,9 @@ def _result(
         issues=events.totals.issues
         + posted.amounts.surtax.issues
         + somma.issues
-        + capped.issues,
+        + capped.issues
+        + _rule_issues(ctx)
+        + missing_source_issues(sources),
         decisions=all_decisions,
     )
 

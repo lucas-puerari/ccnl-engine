@@ -83,10 +83,11 @@ array on `meta` lists all documents used during extraction:
 }
 ```
 
-Individual parameters (levels, seniority, hourly divisor) also carry a
-`provenance` block that pins the exact `source_document`, `section`, and
-extraction metadata for that specific fact. See
-[Trust: Provenance](../trust/provenance.md).
+Individual payable rules (levels, salary periods, allowances, seniority,
+additional months) also carry a `provenance` record with a `status`
+(`verified`, `derived`, `assumed` or `missing`) that pins the exact
+`source_document`, `section`, and extraction metadata for that specific
+fact. See [Trust: Provenance](../trust/provenance.md).
 
 ### `coverage.notes`
 

@@ -85,20 +85,26 @@ nothing due still records a decision with amount 0.
 `result.capability_report` compares what the run executed with the capability
 catalog of the tax year. Each gap names the feature and why it is missing
 (`feature_absent`, `not_computed`, `unresolved`,
-`promised_computed_got_partial`). Its `confidence` summarises the gaps; see
-[Confidence](confidence.md).
+`promised_computed_got_partial`). Its `confidence` summarises the gaps, and
+`rule_sources` gives the weakest provenance status of the rules each
+executed capability read; see [Confidence](confidence.md).
 
 ## Provenance {#provenance}
 
-Every rule in a CCNL JSON — every salary table entry, every seniority amount,
-every work-rule parameter — carries a `provenance` block that records:
+Every payable rule (salary tables, allowances, seniority and extra-month
+entitlements, INPS rates, IRPEF brackets, deductions and credits, the TFR
+divisor, surtax tables, substitute-tax regime parameters) carries a
+`provenance` record:
 
-- **source_document**: the primary document (URL, title, publication date)
-- **section**: the specific article, table, or page
-- **extraction**: method (`manual`, `ai`, `back_calculation`, or `import`), timestamp, verifier
-- **verification_status**: `"verified"` | `"unverified"` | `"needs_review"`
+- **status**: `verified`, `derived`, `assumed` or `missing`
+- **source_document** and **section**: the document and the article, table
+  or page
+- **extraction**: method, validity and reviewer, when recorded
+- **transformation**: how the source text became the stored value
 
-See [Provenance](provenance.md) for the full schema and how to read it.
+A rule read by a run with status `missing` makes the result `incomplete`.
+See [Provenance](provenance.md) for the schema, the granularity and the
+current counts.
 
 ## Versioning {#versioning}
 
@@ -162,7 +168,8 @@ top-level `verification` field:
 value, a case without a `source` object, and a case whose inputs or expected
 values differ from what the runner executes. In CI,
 `scripts/ci/check_provenance.py` validates every case, prints the count per
-status, and rejects a modified case that drops its `source`. Expected values
+status, and rejects a modified case that drops its `source`; the same script
+fails when a payable rule of the bundle has no provenance record. Expected values
 are never regenerated from the engine by a script: changing one is a reviewed
 edit to the JSON file.
 

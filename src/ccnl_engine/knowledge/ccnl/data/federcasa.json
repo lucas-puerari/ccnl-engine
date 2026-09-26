@@ -113,7 +113,12 @@
         {
           "valid_from": "2024-12-01",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -267,6 +272,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -298,6 +304,7 @@
             "valid_until": null,
             "value": "3483.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -319,6 +326,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -347,6 +355,7 @@
             "valid_until": null,
             "value": "3001.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -368,6 +377,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -396,6 +406,7 @@
             "valid_until": null,
             "value": "2773.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -417,6 +428,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -445,6 +457,7 @@
             "valid_until": null,
             "value": "2542.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -466,6 +479,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -494,6 +508,7 @@
             "valid_until": null,
             "value": "2358.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -515,6 +530,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -543,6 +559,7 @@
             "valid_until": null,
             "value": "2169.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -564,6 +581,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -592,6 +610,7 @@
             "valid_until": null,
             "value": "2143.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -613,6 +632,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -641,6 +661,7 @@
             "valid_until": null,
             "value": "2084.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -662,6 +683,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -690,6 +712,7 @@
             "valid_until": null,
             "value": "1979.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -711,6 +734,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -739,6 +763,7 @@
             "valid_until": null,
             "value": "1874.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -760,6 +785,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -788,6 +814,7 @@
             "valid_until": null,
             "value": "1829.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -809,6 +836,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -837,6 +865,7 @@
             "valid_until": null,
             "value": "1762.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -858,6 +887,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -886,6 +916,7 @@
             "valid_until": null,
             "value": "1706.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -907,6 +938,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -935,6 +967,7 @@
             "valid_until": null,
             "value": "1699.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -956,6 +989,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -984,6 +1018,7 @@
             "valid_until": null,
             "value": "1601.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -1005,6 +1040,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -1033,6 +1069,7 @@
             "valid_until": null,
             "value": "1548.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -1054,6 +1091,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024-pdf",
@@ -1079,7 +1117,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ecdb18b2594bc85377ca5755cc057a73e72680cde67b066a8a373dbf05f4c6d",
+    "source_hash": "8077009bc3cd6f61cae199c86cb829ea4f81b12fd37c342045b54caed08b41f2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1105,6 +1143,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-federcasa-2022-2024",
@@ -1140,6 +1179,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-federcasa-2022-2024",
@@ -1175,6 +1215,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-federcasa-2022-2024",
@@ -1210,6 +1251,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-federcasa-2022-2024",
@@ -1233,6 +1275,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024",
@@ -1259,6 +1302,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024",
@@ -1281,6 +1325,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-federcasa-2022-2024",

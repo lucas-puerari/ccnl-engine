@@ -104,7 +104,12 @@
         {
           "valid_from": "2025-09-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -113,6 +118,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -182,6 +188,7 @@
             "valid_until": "2026-06-01",
             "value": "1392.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -204,6 +211,7 @@
             "valid_until": "2027-03-01",
             "value": "1426.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -226,6 +234,7 @@
             "valid_until": "2028-01-01",
             "value": "1460.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -248,6 +257,7 @@
             "valid_until": null,
             "value": "1494.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -269,6 +279,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -298,6 +309,7 @@
             "valid_until": "2026-06-01",
             "value": "1649.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -320,6 +332,7 @@
             "valid_until": "2027-03-01",
             "value": "1689.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -342,6 +355,7 @@
             "valid_until": "2028-01-01",
             "value": "1729.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -364,6 +378,7 @@
             "valid_until": null,
             "value": "1769.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -385,6 +400,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -414,6 +430,7 @@
             "valid_until": "2026-06-01",
             "value": "1732.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -436,6 +453,7 @@
             "valid_until": "2027-03-01",
             "value": "1774.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -458,6 +476,7 @@
             "valid_until": "2028-01-01",
             "value": "1816.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -480,6 +499,7 @@
             "valid_until": null,
             "value": "1859.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -501,6 +521,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -530,6 +551,7 @@
             "valid_until": "2026-06-01",
             "value": "1861.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -552,6 +574,7 @@
             "valid_until": "2027-03-01",
             "value": "1907.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -574,6 +597,7 @@
             "valid_until": "2028-01-01",
             "value": "1952.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -596,6 +620,7 @@
             "valid_until": null,
             "value": "1997.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -617,6 +642,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -646,6 +672,7 @@
             "valid_until": "2026-06-01",
             "value": "1988.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -668,6 +695,7 @@
             "valid_until": "2027-03-01",
             "value": "2037.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -690,6 +718,7 @@
             "valid_until": "2028-01-01",
             "value": "2085.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -712,6 +741,7 @@
             "valid_until": null,
             "value": "2134.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -733,6 +763,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -762,6 +793,7 @@
             "valid_until": "2026-06-01",
             "value": "2074.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -784,6 +816,7 @@
             "valid_until": "2027-03-01",
             "value": "2124.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -806,6 +839,7 @@
             "valid_until": "2028-01-01",
             "value": "2175.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -828,6 +862,7 @@
             "valid_until": null,
             "value": "2225.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -849,6 +884,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -878,6 +914,7 @@
             "valid_until": "2026-06-01",
             "value": "2316.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -900,6 +937,7 @@
             "valid_until": "2027-03-01",
             "value": "2373.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -922,6 +960,7 @@
             "valid_until": "2028-01-01",
             "value": "2429.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -944,6 +983,7 @@
             "valid_until": null,
             "value": "2486.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -965,6 +1005,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -994,6 +1035,7 @@
             "valid_until": "2026-06-01",
             "value": "2698.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1016,6 +1058,7 @@
             "valid_until": "2027-03-01",
             "value": "2764.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1038,6 +1081,7 @@
             "valid_until": "2028-01-01",
             "value": "2830.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1060,6 +1104,7 @@
             "valid_until": null,
             "value": "2895.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1103,6 +1148,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1122,6 +1168,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1151,6 +1198,7 @@
             "valid_until": "2026-06-01",
             "value": "2969.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1173,6 +1221,7 @@
             "valid_until": "2027-03-01",
             "value": "3041.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1195,6 +1244,7 @@
             "valid_until": "2028-01-01",
             "value": "3114.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1217,6 +1267,7 @@
             "valid_until": null,
             "value": "3186.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1260,6 +1311,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1279,6 +1331,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
@@ -1304,7 +1357,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "11c40e0502c9ee7dd6d1aab17ada429b21e1248fcab46cf02fde14d27ab6a16c",
+    "source_hash": "a40627f61e59c49e9a2acbd54e1965d4f06f9af3026a8347c5644405fbd05a9c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1330,6 +1383,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ced-assoced",
@@ -1365,6 +1419,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ced-assoced",
@@ -1400,6 +1455,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ced-assoced",
@@ -1423,6 +1479,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ced-assoced",
@@ -1449,6 +1506,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ced-assoced",
@@ -1471,6 +1529,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ced-assoced",

@@ -95,7 +95,12 @@
         {
           "valid_from": "2025-06-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -186,6 +191,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -217,6 +223,7 @@
             "valid_until": "2026-01-01",
             "value": "2753.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -239,6 +246,7 @@
             "valid_until": null,
             "value": "2870.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -272,6 +280,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -302,6 +311,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -321,6 +331,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -349,6 +360,7 @@
             "valid_until": "2026-01-01",
             "value": "2653.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -371,6 +383,7 @@
             "valid_until": null,
             "value": "2770.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -404,6 +417,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -434,6 +448,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -453,6 +468,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -481,6 +497,7 @@
             "valid_until": "2026-01-01",
             "value": "2307.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -503,6 +520,7 @@
             "valid_until": null,
             "value": "2409.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -536,6 +554,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -566,6 +585,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -585,6 +605,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -613,6 +634,7 @@
             "valid_until": "2026-01-01",
             "value": "1903.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -635,6 +657,7 @@
             "valid_until": null,
             "value": "1987.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -668,6 +691,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -698,6 +722,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -717,6 +742,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -745,6 +771,7 @@
             "valid_until": "2026-01-01",
             "value": "1672.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -767,6 +794,7 @@
             "valid_until": null,
             "value": "1746.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -800,6 +828,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -830,6 +859,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -849,6 +879,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -877,6 +908,7 @@
             "valid_until": "2026-01-01",
             "value": "1499.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -899,6 +931,7 @@
             "valid_until": null,
             "value": "1566.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -932,6 +965,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -962,6 +996,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -981,6 +1016,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1009,6 +1045,7 @@
             "valid_until": "2026-01-01",
             "value": "1384.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1031,6 +1068,7 @@
             "valid_until": null,
             "value": "1445.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1064,6 +1102,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1094,6 +1133,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1113,6 +1153,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1141,6 +1182,7 @@
             "valid_until": "2026-01-01",
             "value": "1268.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1163,6 +1205,7 @@
             "valid_until": null,
             "value": "1325.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1196,6 +1239,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1226,6 +1270,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1245,6 +1290,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1273,6 +1319,7 @@
             "valid_until": "2026-01-01",
             "value": "1153.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1295,6 +1342,7 @@
             "valid_until": null,
             "value": "1204.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "alimentari-pmi-unionalimentari",
@@ -1328,6 +1376,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1358,6 +1407,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1377,6 +1427,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1402,7 +1453,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "6262f9adb462c9e5bad543c5199f30aadba0950f0295edf383d3a5fdec3eddc6",
+    "source_hash": "e575d777966dd0152148089980cf9b53ae1c521dc8fbfb24dc3a208898479bd9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1428,6 +1479,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1463,6 +1515,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1498,6 +1551,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "alimentari-pmi-unionalimentari",
@@ -1521,6 +1575,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1547,6 +1602,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",
@@ -1569,6 +1625,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "alimentari-pmi-unionalimentari",

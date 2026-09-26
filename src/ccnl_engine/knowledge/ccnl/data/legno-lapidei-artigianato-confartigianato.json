@@ -120,7 +120,12 @@
         {
           "valid_from": "2024-03-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -251,6 +256,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -281,6 +287,7 @@
             "valid_until": "2025-01-01",
             "value": "1378.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -303,6 +310,7 @@
             "valid_until": "2026-01-01",
             "value": "1423.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -325,6 +333,7 @@
             "valid_until": "2026-10-01",
             "value": "1458.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -347,6 +356,7 @@
             "valid_until": null,
             "value": "1490.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -369,6 +379,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -397,6 +408,7 @@
             "valid_until": "2025-01-01",
             "value": "1467.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -419,6 +431,7 @@
             "valid_until": "2026-01-01",
             "value": "1514.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -441,6 +454,7 @@
             "valid_until": "2026-10-01",
             "value": "1552.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -463,6 +477,7 @@
             "valid_until": null,
             "value": "1585.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -485,6 +500,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -513,6 +529,7 @@
             "valid_until": "2025-01-01",
             "value": "1549.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -535,6 +552,7 @@
             "valid_until": "2026-01-01",
             "value": "1599.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -557,6 +575,7 @@
             "valid_until": "2026-10-01",
             "value": "1639.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -579,6 +598,7 @@
             "valid_until": null,
             "value": "1674.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -601,6 +621,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -629,6 +650,7 @@
             "valid_until": "2025-01-01",
             "value": "1639.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -651,6 +673,7 @@
             "valid_until": "2026-01-01",
             "value": "1692.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -673,6 +696,7 @@
             "valid_until": "2026-10-01",
             "value": "1734.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -695,6 +719,7 @@
             "valid_until": null,
             "value": "1771.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -717,6 +742,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -745,6 +771,7 @@
             "valid_until": "2025-01-01",
             "value": "1718.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -767,6 +794,7 @@
             "valid_until": "2026-01-01",
             "value": "1773.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -789,6 +817,7 @@
             "valid_until": "2026-10-01",
             "value": "1818.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -811,6 +840,7 @@
             "valid_until": null,
             "value": "1856.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -833,6 +863,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -861,6 +892,7 @@
             "valid_until": "2025-01-01",
             "value": "1796.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -883,6 +915,7 @@
             "valid_until": "2026-01-01",
             "value": "1854.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -905,6 +938,7 @@
             "valid_until": "2026-10-01",
             "value": "1900.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -927,6 +961,7 @@
             "valid_until": null,
             "value": "1941.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -949,6 +984,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -977,6 +1013,7 @@
             "valid_until": "2025-01-01",
             "value": "1965.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -999,6 +1036,7 @@
             "valid_until": "2026-01-01",
             "value": "2028.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1021,6 +1059,7 @@
             "valid_until": "2026-10-01",
             "value": "2079.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1043,6 +1082,7 @@
             "valid_until": null,
             "value": "2123.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1065,6 +1105,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1093,6 +1134,7 @@
             "valid_until": "2025-01-01",
             "value": "2108.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1115,6 +1157,7 @@
             "valid_until": "2026-01-01",
             "value": "2176.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1137,6 +1180,7 @@
             "valid_until": "2026-10-01",
             "value": "2230.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1159,6 +1203,7 @@
             "valid_until": null,
             "value": "2278.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1181,6 +1226,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-2022-pdf",
@@ -1329,7 +1375,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "773de9ab78fe0f2178564e1b7203668b76f5b6d128c377d1061f2732a399c61d",
+    "source_hash": "0ab2bfaa10af6f34d36d208fd28ed22050d259f69781c2cec6433faf55a1f288",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1355,6 +1401,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
@@ -1390,6 +1437,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
@@ -1425,6 +1473,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
@@ -1448,6 +1497,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
@@ -1478,6 +1528,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",
@@ -1500,6 +1551,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-lapidei-artigianato-confartigianato",

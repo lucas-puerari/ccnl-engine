@@ -64,6 +64,8 @@ class WorkDeductionRules(BaseModel):
     """Upper bound of the EUR 65 increment range (inclusive, EUR)."""
     seventy_five: Decimal = Decimal(75)
     """Trattamento integrativo corrective (Art. 1 co. 3 L. 207/2024, EUR)."""
+    provenance: RuleProvenance | None = None
+    """Source and status of the constants."""
 
 
 class SterilizzazioneDetrazioniRules(BaseModel):

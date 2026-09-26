@@ -60,7 +60,12 @@
         {
           "valid_from": "2020-07-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -69,6 +74,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -99,6 +105,7 @@
             "valid_until": null,
             "value": "1467.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -120,6 +127,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -148,6 +156,7 @@
             "valid_until": null,
             "value": "1506.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -169,6 +178,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -197,6 +207,7 @@
             "valid_until": null,
             "value": "1544.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -218,6 +229,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -246,6 +258,7 @@
             "valid_until": null,
             "value": "1566.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -267,6 +280,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -295,6 +309,7 @@
             "valid_until": null,
             "value": "1579.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -316,6 +331,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -344,6 +360,7 @@
             "valid_until": null,
             "value": "1592.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -365,6 +382,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -393,6 +411,7 @@
             "valid_until": null,
             "value": "1624.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -414,6 +433,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -442,6 +462,7 @@
             "valid_until": null,
             "value": "1669.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -463,6 +484,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -491,6 +513,7 @@
             "valid_until": null,
             "value": "1697.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -512,6 +535,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -540,6 +564,7 @@
             "valid_until": null,
             "value": "1733.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -561,6 +586,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -589,6 +615,7 @@
             "valid_until": null,
             "value": "1803.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -610,6 +637,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -638,6 +666,7 @@
             "valid_until": null,
             "value": "1857.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -659,6 +688,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -687,6 +717,7 @@
             "valid_until": null,
             "value": "1921.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -708,6 +739,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -736,6 +768,7 @@
             "valid_until": null,
             "value": "1953.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -757,6 +790,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -785,6 +819,7 @@
             "valid_until": null,
             "value": "1984.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -806,6 +841,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -834,6 +870,7 @@
             "valid_until": null,
             "value": "2022.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -855,6 +892,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -883,6 +921,7 @@
             "valid_until": null,
             "value": "2076.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -904,6 +943,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -932,6 +972,7 @@
             "valid_until": null,
             "value": "2084.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -953,6 +994,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -981,6 +1023,7 @@
             "valid_until": null,
             "value": "2101.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1002,6 +1045,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1030,6 +1074,7 @@
             "valid_until": null,
             "value": "2147.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1051,6 +1096,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1079,6 +1125,7 @@
             "valid_until": null,
             "value": "2180.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1100,6 +1147,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1128,6 +1176,7 @@
             "valid_until": null,
             "value": "2209.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1149,6 +1198,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1177,6 +1227,7 @@
             "valid_until": null,
             "value": "2261.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1198,6 +1249,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1226,6 +1278,7 @@
             "valid_until": null,
             "value": "2345.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1247,6 +1300,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1275,6 +1329,7 @@
             "valid_until": null,
             "value": "2410.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1296,6 +1351,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1324,6 +1380,7 @@
             "valid_until": null,
             "value": "2418.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1345,6 +1402,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1373,6 +1431,7 @@
             "valid_until": null,
             "value": "2936.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1394,6 +1453,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1422,6 +1482,7 @@
             "valid_until": null,
             "value": "3554.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1443,6 +1504,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-case-di-cura-private-08-10-2020-pdf",
@@ -1539,7 +1601,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "b104ce2bf78ceb302aef3dfba4691d48af634edf2e3e64ce0af0fe3ae945106a",
+    "source_hash": "e098587f8cbe509fb5d448b6b6b040a255e8f405be42168eb16d50017966f78f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1565,6 +1627,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1600,6 +1663,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1635,6 +1699,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1670,6 +1735,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1693,6 +1759,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1719,6 +1786,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-privata-aiop-aris-2020",
@@ -1741,6 +1809,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-privata-aiop-aris-2020",

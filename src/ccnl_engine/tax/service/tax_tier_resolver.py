@@ -112,6 +112,7 @@ def _resolve_inps(raw: InpsRawRates | None, num_employees: int) -> InpsRates | N
         employer_rate_by_category=employer_tier.rate_by_category,
         employee_additional_rate=raw.employee_additional_rate,
         employee_additional_threshold=raw.employee_additional_threshold,
+        provenance=raw.provenance,
     )
 
 
@@ -147,4 +148,5 @@ def _resolve_apprentice(raw: ApprenticeRawRates, num_employees: int) -> Apprenti
         ),
         employer_rate_after=raw.employer_rate,
         employer_ivs_rate_after=raw.employer_ivs_rate,
+        provenance=raw.provenance,
     )

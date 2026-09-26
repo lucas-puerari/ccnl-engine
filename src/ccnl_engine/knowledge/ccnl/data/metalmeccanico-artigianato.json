@@ -107,7 +107,12 @@
         {
           "valid_from": "2022-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -189,6 +194,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -219,6 +225,7 @@
             "valid_until": "2022-05-01",
             "value": "1300.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -241,6 +248,7 @@
             "valid_until": "2022-12-01",
             "value": "1323.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -263,6 +271,7 @@
             "valid_until": "2023-12-01",
             "value": "1341.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -285,6 +294,7 @@
             "valid_until": "2024-04-01",
             "value": "1387.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -307,6 +317,7 @@
             "valid_until": "2024-12-01",
             "value": "1430.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -329,6 +340,7 @@
             "valid_until": "2025-07-01",
             "value": "1475.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -351,6 +363,7 @@
             "valid_until": "2026-03-01",
             "value": "1498.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -373,6 +386,7 @@
             "valid_until": "2026-11-01",
             "value": "1521.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -395,6 +409,7 @@
             "valid_until": null,
             "value": "1540.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -416,6 +431,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -444,6 +460,7 @@
             "valid_until": "2022-05-01",
             "value": "1364.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -466,6 +483,7 @@
             "valid_until": "2022-12-01",
             "value": "1388.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -488,6 +506,7 @@
             "valid_until": "2023-12-01",
             "value": "1407.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -510,6 +529,7 @@
             "valid_until": "2024-04-01",
             "value": "1455.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -532,6 +552,7 @@
             "valid_until": "2024-12-01",
             "value": "1499.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -554,6 +575,7 @@
             "valid_until": "2025-07-01",
             "value": "1547.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -576,6 +598,7 @@
             "valid_until": "2026-03-01",
             "value": "1571.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -598,6 +621,7 @@
             "valid_until": "2026-11-01",
             "value": "1595.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -620,6 +644,7 @@
             "valid_until": null,
             "value": "1615.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -641,6 +666,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -669,6 +695,7 @@
             "valid_until": "2022-05-01",
             "value": "1416.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -691,6 +718,7 @@
             "valid_until": "2022-12-01",
             "value": "1441.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -713,6 +741,7 @@
             "valid_until": "2023-12-01",
             "value": "1460.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -735,6 +764,7 @@
             "valid_until": "2024-04-01",
             "value": "1510.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -757,6 +787,7 @@
             "valid_until": "2024-12-01",
             "value": "1556.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -779,6 +810,7 @@
             "valid_until": "2025-07-01",
             "value": "1606.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -801,6 +833,7 @@
             "valid_until": "2026-03-01",
             "value": "1631.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -823,6 +856,7 @@
             "valid_until": "2026-11-01",
             "value": "1656.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -845,6 +879,7 @@
             "valid_until": null,
             "value": "1676.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -866,6 +901,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -894,6 +930,7 @@
             "valid_until": "2022-05-01",
             "value": "1502.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -916,6 +953,7 @@
             "valid_until": "2022-12-01",
             "value": "1529.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -938,6 +976,7 @@
             "valid_until": "2023-12-01",
             "value": "1550.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -960,6 +999,7 @@
             "valid_until": "2024-04-01",
             "value": "1603.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -982,6 +1022,7 @@
             "valid_until": "2024-12-01",
             "value": "1651.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1004,6 +1045,7 @@
             "valid_until": "2025-07-01",
             "value": "1704.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1026,6 +1068,7 @@
             "valid_until": "2026-03-01",
             "value": "1731.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1048,6 +1091,7 @@
             "valid_until": "2026-11-01",
             "value": "1758.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1070,6 +1114,7 @@
             "valid_until": null,
             "value": "1779.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1091,6 +1136,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1119,6 +1165,7 @@
             "valid_until": "2022-05-01",
             "value": "1562.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1141,6 +1188,7 @@
             "valid_until": "2022-12-01",
             "value": "1590.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1163,6 +1211,7 @@
             "valid_until": "2023-12-01",
             "value": "1611.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1185,6 +1234,7 @@
             "valid_until": "2024-04-01",
             "value": "1667.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1207,6 +1257,7 @@
             "valid_until": "2024-12-01",
             "value": "1717.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1229,6 +1280,7 @@
             "valid_until": "2025-07-01",
             "value": "1773.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1251,6 +1303,7 @@
             "valid_until": "2026-03-01",
             "value": "1800.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1273,6 +1326,7 @@
             "valid_until": "2026-11-01",
             "value": "1828.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1295,6 +1349,7 @@
             "valid_until": null,
             "value": "1850.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1316,6 +1371,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1344,6 +1400,7 @@
             "valid_until": "2022-05-01",
             "value": "1655.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1366,6 +1423,7 @@
             "valid_until": "2022-12-01",
             "value": "1684.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1388,6 +1446,7 @@
             "valid_until": "2023-12-01",
             "value": "1707.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1410,6 +1469,7 @@
             "valid_until": "2024-04-01",
             "value": "1765.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1432,6 +1492,7 @@
             "valid_until": "2024-12-01",
             "value": "1819.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1454,6 +1515,7 @@
             "valid_until": "2025-07-01",
             "value": "1877.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1476,6 +1538,7 @@
             "valid_until": "2026-03-01",
             "value": "1906.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1498,6 +1561,7 @@
             "valid_until": "2026-11-01",
             "value": "1936.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1520,6 +1584,7 @@
             "valid_until": null,
             "value": "1959.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1541,6 +1606,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1569,6 +1635,7 @@
             "valid_until": "2022-05-01",
             "value": "1778.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1591,6 +1658,7 @@
             "valid_until": "2022-12-01",
             "value": "1810.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1613,6 +1681,7 @@
             "valid_until": "2023-12-01",
             "value": "1834.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1635,6 +1704,7 @@
             "valid_until": "2024-04-01",
             "value": "1897.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1657,6 +1727,7 @@
             "valid_until": "2024-12-01",
             "value": "1955.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1679,6 +1750,7 @@
             "valid_until": "2025-07-01",
             "value": "2018.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1701,6 +1773,7 @@
             "valid_until": "2026-03-01",
             "value": "2049.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1723,6 +1796,7 @@
             "valid_until": "2026-11-01",
             "value": "2080.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1745,6 +1819,7 @@
             "valid_until": null,
             "value": "2106.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1767,6 +1842,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1795,6 +1871,7 @@
             "valid_until": "2022-05-01",
             "value": "1778.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1817,6 +1894,7 @@
             "valid_until": "2022-12-01",
             "value": "1810.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1839,6 +1917,7 @@
             "valid_until": "2023-12-01",
             "value": "1834.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1861,6 +1940,7 @@
             "valid_until": "2024-04-01",
             "value": "1897.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1883,6 +1963,7 @@
             "valid_until": "2024-12-01",
             "value": "1955.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1905,6 +1986,7 @@
             "valid_until": "2025-07-01",
             "value": "2018.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1927,6 +2009,7 @@
             "valid_until": "2026-03-01",
             "value": "2049.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1949,6 +2032,7 @@
             "valid_until": "2026-11-01",
             "value": "2080.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1971,6 +2055,7 @@
             "valid_until": null,
             "value": "2106.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -1993,6 +2078,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-artigianato-metalmeccanico-2021-pdf",
@@ -2102,7 +2188,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "6370d75d29fff129d344c432394792af066a1cd7c40402649ff7c2adcb429ca9",
+    "source_hash": "033491b2fd4fe7a362d25c1294c0ce7e0bc834fe48c6e7a3b6b034b51d9e747e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2128,6 +2214,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2163,6 +2250,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2198,6 +2286,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2233,6 +2322,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2256,6 +2346,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2282,6 +2373,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanico-artigianato-2021",
@@ -2304,6 +2396,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanico-artigianato-2021",

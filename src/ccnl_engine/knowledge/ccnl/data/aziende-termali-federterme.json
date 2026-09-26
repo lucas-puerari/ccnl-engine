@@ -106,7 +106,12 @@
         {
           "valid_from": "2024-10-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -197,6 +202,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -227,6 +233,7 @@
             "valid_until": "2025-06-01",
             "value": "770.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -249,6 +256,7 @@
             "valid_until": "2025-12-01",
             "value": "797.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -271,6 +279,7 @@
             "valid_until": "2026-06-01",
             "value": "825.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -293,6 +302,7 @@
             "valid_until": "2026-12-01",
             "value": "852.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -315,6 +325,7 @@
             "valid_until": null,
             "value": "879.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -348,6 +359,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -378,6 +390,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -398,6 +411,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -426,6 +440,7 @@
             "valid_until": "2025-06-01",
             "value": "878.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -448,6 +463,7 @@
             "valid_until": "2025-12-01",
             "value": "909.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -470,6 +486,7 @@
             "valid_until": "2026-06-01",
             "value": "940.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -492,6 +509,7 @@
             "valid_until": "2026-12-01",
             "value": "971.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -514,6 +532,7 @@
             "valid_until": null,
             "value": "1002.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -547,6 +566,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -577,6 +597,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -597,6 +618,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -625,6 +647,7 @@
             "valid_until": "2025-06-01",
             "value": "986.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -647,6 +670,7 @@
             "valid_until": "2025-12-01",
             "value": "1021.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -669,6 +693,7 @@
             "valid_until": "2026-06-01",
             "value": "1056.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -691,6 +716,7 @@
             "valid_until": "2026-12-01",
             "value": "1091.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -713,6 +739,7 @@
             "valid_until": null,
             "value": "1126.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -746,6 +773,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -776,6 +804,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -796,6 +825,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -824,6 +854,7 @@
             "valid_until": "2025-06-01",
             "value": "1017.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -846,6 +877,7 @@
             "valid_until": "2025-12-01",
             "value": "1053.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -868,6 +900,7 @@
             "valid_until": "2026-06-01",
             "value": "1089.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -890,6 +923,7 @@
             "valid_until": "2026-12-01",
             "value": "1125.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -912,6 +946,7 @@
             "valid_until": null,
             "value": "1161.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -945,6 +980,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -975,6 +1011,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -995,6 +1032,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1023,6 +1061,7 @@
             "valid_until": "2025-06-01",
             "value": "1078.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1045,6 +1084,7 @@
             "valid_until": "2025-12-01",
             "value": "1116.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1067,6 +1107,7 @@
             "valid_until": "2026-06-01",
             "value": "1155.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1089,6 +1130,7 @@
             "valid_until": "2026-12-01",
             "value": "1193.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1111,6 +1153,7 @@
             "valid_until": null,
             "value": "1231.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1144,6 +1187,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1174,6 +1218,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1194,6 +1239,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1222,6 +1268,7 @@
             "valid_until": "2025-06-01",
             "value": "1286.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1244,6 +1291,7 @@
             "valid_until": "2025-12-01",
             "value": "1332.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1266,6 +1314,7 @@
             "valid_until": "2026-06-01",
             "value": "1377.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1288,6 +1337,7 @@
             "valid_until": "2026-12-01",
             "value": "1423.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1310,6 +1360,7 @@
             "valid_until": null,
             "value": "1469.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1343,6 +1394,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1373,6 +1425,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1393,6 +1446,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1421,6 +1475,7 @@
             "valid_until": "2025-06-01",
             "value": "1571.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1443,6 +1498,7 @@
             "valid_until": "2025-12-01",
             "value": "1627.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1465,6 +1521,7 @@
             "valid_until": "2026-06-01",
             "value": "1683.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1487,6 +1544,7 @@
             "valid_until": "2026-12-01",
             "value": "1739.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1509,6 +1567,7 @@
             "valid_until": null,
             "value": "1794.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1542,6 +1601,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1572,6 +1632,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1592,6 +1653,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1620,6 +1682,7 @@
             "valid_until": "2025-06-01",
             "value": "1733.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1642,6 +1705,7 @@
             "valid_until": "2025-12-01",
             "value": "1795.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1664,6 +1728,7 @@
             "valid_until": "2026-06-01",
             "value": "1856.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1686,6 +1751,7 @@
             "valid_until": "2026-12-01",
             "value": "1918.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1708,6 +1774,7 @@
             "valid_until": null,
             "value": "1979.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1741,6 +1808,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1771,6 +1839,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1791,6 +1860,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1819,6 +1889,7 @@
             "valid_until": "2025-06-01",
             "value": "1849.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1841,6 +1912,7 @@
             "valid_until": "2025-12-01",
             "value": "1914.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1863,6 +1935,7 @@
             "valid_until": "2026-06-01",
             "value": "1980.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1885,6 +1958,7 @@
             "valid_until": "2026-12-01",
             "value": "2046.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1907,6 +1981,7 @@
             "valid_until": null,
             "value": "2111.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1940,6 +2015,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1970,6 +2046,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -1990,6 +2067,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "aziende-termali-ccnl-2024-pdf",
@@ -2077,7 +2155,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "2546b1c18fa7ab09e787f3b0eb95a254c09685a496475ef69b1795473235963a",
+    "source_hash": "5494b9c91857d6877bf7b4c11ec0653070d5acf5c968cb7a755f562534da0d21",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

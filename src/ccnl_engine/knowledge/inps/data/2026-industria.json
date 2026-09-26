@@ -33,7 +33,20 @@
     ],
     "ceiling": "122295.00",
     "employee_additional_rate": "0.01",
-    "employee_additional_threshold": "56224.00"
+    "employee_additional_threshold": "56224.00",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-6-2026",
+          "title": "INPS Circolare n. 6 del 30 gennaio 2026",
+          "kind": "inps_circolare"
+        },
+        "section": "IVS rate and contribution ceiling 2026"
+      },
+      "transformation": "Employer tiers are the sum of IVS, NASpI, CUAF, CIGO and FIS or CIGS listed in the file notes.",
+      "note": "CIGO, CIGS and the employee CIGS share per D.Lgs. 148/2015 artt. 5 and 23, Circ. INPS 1/2026 and 5/2025."
+    }
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -44,7 +57,19 @@
     "small_firm_employer_rate_months_0_11": "0.0311",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
-    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-296-2006",
+          "title": "L. 296/2006, legge finanziaria 2007",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+      },
+      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%."
+    }
   },
   "ruleset": {
     "id": "inps/2026/industria",
@@ -54,7 +79,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "55a50dc71fb6bb7853a838bea7ea5d4c75100f3c6b013893d75fb163b9903fcc",
+    "source_hash": "da7e2069fa1616c708bb4ae64c7b47562c1a773aac59e7c6b7430e9ad963b291",
     "source_type": "estimated"
   }
 }

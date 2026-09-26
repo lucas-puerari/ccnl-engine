@@ -227,6 +227,18 @@ Pydantic validators enforce these invariants at load time (violations = immediat
 `extraction.timestamp`: ISO 8601 date of today.
 `extraction.human_reviewed`: true.
 
+Provenance records: every level, non-gap salary period, fixed allowance,
+`seniority_increments` block and non-gap `additional_months` period carries a
+`provenance` object with a `status`:
+- `derived` when the record cites the document section (`location.section`);
+- `assumed` for an AI extraction without a named reviewer, or a value whose
+  clause was not located (`location` may then be `null`);
+- `verified` only with `extraction.verified_by` and `extraction.verified_at`;
+- `missing` when no source backs the value (`location` must be `null`).
+`uv run python scripts/data/assign_rule_provenance.py` assigns the status from
+the extraction trace and rehashes; `python scripts/ci/check_provenance.py
+--rules` fails on any payable rule without a record.
+
 Validate immediately after writing:
 ```bash
 uv run python -c "from ccnl_engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"

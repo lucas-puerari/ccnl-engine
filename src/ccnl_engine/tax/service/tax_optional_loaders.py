@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import importlib.resources
 from decimal import Decimal
+from typing import Any
 
+from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.tax.domain.art15 import (
     Art15DeductionRules,
@@ -54,6 +56,16 @@ def load_sick_pay_rates() -> InpsSickPayRates:
     )
 
 
+def _provenance_of(block: dict[str, Any]) -> RuleProvenance | None:
+    """Return the provenance record of a raw data block.
+
+    Returns:
+        The validated record, or ``None`` when the block carries none.
+    """
+    record = block.get("provenance")
+    return None if record is None else RuleProvenance.model_validate(record)
+
+
 def load_variable_pay_rules(year: int) -> VariablePayRules:
     """Load statutory variable-pay rules for *year*.
 
@@ -92,11 +104,13 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
         fringe_benefit=FringeBenefitRules(
             threshold_standard=Decimal(str(fb_raw["threshold_standard"])),
             threshold_with_children=Decimal(str(fb_raw["threshold_with_children"])),
+            provenance=_provenance_of(fb_raw),
         ),
         pdr=PdRRules(
             max_amount=Decimal(str(pdr_raw["max_amount"])),
             flat_tax_rate=Decimal(str(pdr_raw["flat_tax_rate"])),
             income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
+            provenance=_provenance_of(pdr_raw),
         ),
         rinnovo=PreferentialTaxRegime.model_validate({
             **{k: v for k, v in rinnovo_raw.items() if k != "description"},
@@ -163,6 +177,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
             ),
             breakpoints=bp_list,
             notes=sp_raw.get("notes", ""),
+            provenance=_provenance_of(sp_raw),
         ),
         children=ChildrenDeductionRules(
             auu_age_cutoff=int(ch_raw["auu_age_cutoff"]),
@@ -172,6 +187,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
                 str(ch_raw["income_ceiling_increment_per_child"])
             ),
             notes=ch_raw.get("notes", ""),
+            provenance=_provenance_of(ch_raw),
         ),
         other_dependents=OtherDependentRules(
             dependent_income_threshold=Decimal(
@@ -180,6 +196,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
             amount=Decimal(str(od_raw["amount"])),
             income_ceiling=Decimal(str(od_raw["income_ceiling"])),
             notes=od_raw.get("notes", ""),
+            provenance=_provenance_of(od_raw),
         ),
     )
 

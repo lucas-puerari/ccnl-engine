@@ -63,7 +63,12 @@
         {
           "valid_from": "2022-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -72,6 +77,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -103,6 +109,7 @@
             "valid_until": "2022-07-01",
             "value": "1611.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -125,6 +132,7 @@
             "valid_until": "2024-01-01",
             "value": "1614.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -147,6 +155,7 @@
             "valid_until": null,
             "value": "1714.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -168,6 +177,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -197,6 +207,7 @@
             "valid_until": "2022-07-01",
             "value": "1660.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -219,6 +230,7 @@
             "valid_until": "2024-01-01",
             "value": "1664.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -241,6 +253,7 @@
             "valid_until": null,
             "value": "1767.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -262,6 +275,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -291,6 +305,7 @@
             "valid_until": "2022-07-01",
             "value": "1714.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -313,6 +328,7 @@
             "valid_until": "2024-01-01",
             "value": "1717.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -335,6 +351,7 @@
             "valid_until": null,
             "value": "1824.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -356,6 +373,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -385,6 +403,7 @@
             "valid_until": "2022-07-01",
             "value": "1783.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -407,6 +426,7 @@
             "valid_until": "2024-01-01",
             "value": "1786.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -429,6 +449,7 @@
             "valid_until": null,
             "value": "1897.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -450,6 +471,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -479,6 +501,7 @@
             "valid_until": "2022-07-01",
             "value": "1787.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -501,6 +524,7 @@
             "valid_until": "2024-01-01",
             "value": "1790.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -523,6 +547,7 @@
             "valid_until": null,
             "value": "1902.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -544,6 +569,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -573,6 +599,7 @@
             "valid_until": "2022-07-01",
             "value": "1791.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -595,6 +622,7 @@
             "valid_until": "2024-01-01",
             "value": "1794.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -617,6 +645,7 @@
             "valid_until": null,
             "value": "1906.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -638,6 +667,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -667,6 +697,7 @@
             "valid_until": "2022-07-01",
             "value": "1859.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -689,6 +720,7 @@
             "valid_until": "2024-01-01",
             "value": "1863.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -711,6 +743,7 @@
             "valid_until": null,
             "value": "1979.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -732,6 +765,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -761,6 +795,7 @@
             "valid_until": "2022-07-01",
             "value": "1859.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -783,6 +818,7 @@
             "valid_until": "2024-01-01",
             "value": "1863.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -805,6 +841,7 @@
             "valid_until": null,
             "value": "1979.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -826,6 +863,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -855,6 +893,7 @@
             "valid_until": "2022-07-01",
             "value": "1902.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -877,6 +916,7 @@
             "valid_until": "2024-01-01",
             "value": "1905.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -899,6 +939,7 @@
             "valid_until": null,
             "value": "2024.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -920,6 +961,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -949,6 +991,7 @@
             "valid_until": "2022-07-01",
             "value": "1909.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -971,6 +1014,7 @@
             "valid_until": "2024-01-01",
             "value": "1913.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -993,6 +1037,7 @@
             "valid_until": null,
             "value": "2032.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1014,6 +1059,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1043,6 +1089,7 @@
             "valid_until": "2022-07-01",
             "value": "1925.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1065,6 +1112,7 @@
             "valid_until": "2024-01-01",
             "value": "1928.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1087,6 +1135,7 @@
             "valid_until": null,
             "value": "2048.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1108,6 +1157,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1137,6 +1187,7 @@
             "valid_until": "2022-07-01",
             "value": "2005.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1159,6 +1210,7 @@
             "valid_until": "2024-01-01",
             "value": "2009.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1181,6 +1233,7 @@
             "valid_until": null,
             "value": "2134.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1202,6 +1255,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1231,6 +1285,7 @@
             "valid_until": "2022-07-01",
             "value": "2005.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1253,6 +1308,7 @@
             "valid_until": "2024-01-01",
             "value": "2009.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1275,6 +1331,7 @@
             "valid_until": null,
             "value": "2134.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1296,6 +1353,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1325,6 +1383,7 @@
             "valid_until": "2022-07-01",
             "value": "2043.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1347,6 +1406,7 @@
             "valid_until": "2024-01-01",
             "value": "2047.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1369,6 +1429,7 @@
             "valid_until": null,
             "value": "2174.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1390,6 +1451,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1419,6 +1481,7 @@
             "valid_until": "2022-07-01",
             "value": "2093.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1441,6 +1504,7 @@
             "valid_until": "2024-01-01",
             "value": "2097.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1463,6 +1527,7 @@
             "valid_until": null,
             "value": "2227.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1484,6 +1549,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1513,6 +1579,7 @@
             "valid_until": "2022-07-01",
             "value": "2104.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1535,6 +1602,7 @@
             "valid_until": "2024-01-01",
             "value": "2109.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1557,6 +1625,7 @@
             "valid_until": null,
             "value": "2240.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1578,6 +1647,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1607,6 +1677,7 @@
             "valid_until": "2022-07-01",
             "value": "2143.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1629,6 +1700,7 @@
             "valid_until": "2024-01-01",
             "value": "2147.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1651,6 +1723,7 @@
             "valid_until": null,
             "value": "2280.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1672,6 +1745,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1701,6 +1775,7 @@
             "valid_until": "2022-07-01",
             "value": "2196.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1723,6 +1798,7 @@
             "valid_until": "2024-01-01",
             "value": "2201.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1745,6 +1821,7 @@
             "valid_until": null,
             "value": "2337.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1766,6 +1843,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1795,6 +1873,7 @@
             "valid_until": "2022-07-01",
             "value": "2265.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1817,6 +1896,7 @@
             "valid_until": "2024-01-01",
             "value": "2270.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1839,6 +1919,7 @@
             "valid_until": null,
             "value": "2411.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1860,6 +1941,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1889,6 +1971,7 @@
             "valid_until": "2022-07-01",
             "value": "2265.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1911,6 +1994,7 @@
             "valid_until": "2024-01-01",
             "value": "2270.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1933,6 +2017,7 @@
             "valid_until": null,
             "value": "2411.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1954,6 +2039,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -1983,6 +2069,7 @@
             "valid_until": "2022-07-01",
             "value": "2303.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -2005,6 +2092,7 @@
             "valid_until": "2024-01-01",
             "value": "2308.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -2027,6 +2115,7 @@
             "valid_until": null,
             "value": "2451.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -2048,6 +2137,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "caricadettaglioatto-atto-datapubblicazionegazzetta-2025-04-18-atto-codiceredazionale-25g00046-atto-articolo-numero-0-atto-articolo-sottoarticolo-1-atto-articolo-sottoarticolo1-0-qid-1ede7c71-4666-4c74-b496-2391fce88e7f",
@@ -2141,7 +2231,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "6b9afdeddae702a12b0b4ed419081c980accee4a58b2c81b5c6a723eb7bb50c3",
+    "source_hash": "005367c4fb843ea67d785cf0a10332f0b22dce82e1494a52cb47d96e94885492",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -2167,6 +2257,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2202,6 +2293,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2237,6 +2329,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2272,6 +2365,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2295,6 +2389,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2321,6 +2416,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-forze-polizia-civile-2025",
@@ -2343,6 +2439,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-forze-polizia-civile-2025",

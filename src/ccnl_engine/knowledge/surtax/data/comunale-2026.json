@@ -76655,8 +76655,21 @@
         "effective_until": "2026-12-31",
         "published_at": "2026-09-13",
         "source": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addirpef_newDF/download/tabella.htm",
-        "source_hash": "35fd23134e7e16bc0121b65eeee12b82b7367be578b64ef3cef6570ae7a51452",
+        "source_hash": "cc0cb9440a4f5d1c3d04e25eef76c6c43b3d7bb6a84a9bd1b97b190d723278f1",
         "verification_status": "verified",
         "source_type": "official_primary"
+    },
+    "provenance": {
+        "status": "derived",
+        "location": {
+            "source_document": {
+                "document_id": "mef-addizionale-comunale-2026",
+                "title": "MEF, Dipartimento delle Finanze: addizionale comunale all'IRPEF, elenco aggiornato al 26 gennaio 2026",
+                "kind": "amministrazione",
+                "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addirpef_newDF/download/tabella.htm"
+            },
+            "section": "rates deliberated for 2025, basis of the 2026 advance"
+        },
+        "note": "L. 207/2024 art. 1 c. 751 for the advance on prior-year rates."
     }
 }

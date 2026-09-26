@@ -85,7 +85,12 @@
         {
           "valid_from": "2023-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -203,6 +208,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -233,6 +239,7 @@
             "valid_until": "2025-08-01",
             "value": "2014.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -255,6 +262,7 @@
             "valid_until": null,
             "value": "2130.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -288,6 +296,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "pdf6-pdf",
@@ -307,6 +316,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -335,6 +345,7 @@
             "valid_until": "2025-08-01",
             "value": "1864.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -357,6 +368,7 @@
             "valid_until": null,
             "value": "1972.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -378,6 +390,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -406,6 +419,7 @@
             "valid_until": "2025-08-01",
             "value": "1790.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -428,6 +442,7 @@
             "valid_until": null,
             "value": "1893.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -449,6 +464,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -477,6 +493,7 @@
             "valid_until": "2025-08-01",
             "value": "1673.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -499,6 +516,7 @@
             "valid_until": null,
             "value": "1769.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -520,6 +538,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -548,6 +567,7 @@
             "valid_until": "2025-08-01",
             "value": "1657.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -570,6 +590,7 @@
             "valid_until": null,
             "value": "1752.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -591,6 +612,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -619,6 +641,7 @@
             "valid_until": "2025-08-01",
             "value": "1604.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -641,6 +664,7 @@
             "valid_until": null,
             "value": "1696.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -662,6 +686,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -690,6 +715,7 @@
             "valid_until": "2025-08-01",
             "value": "1547.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -712,6 +738,7 @@
             "valid_until": null,
             "value": "1637.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -733,6 +760,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -761,6 +789,7 @@
             "valid_until": "2025-08-01",
             "value": "1477.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -783,6 +812,7 @@
             "valid_until": null,
             "value": "1562.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -804,6 +834,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -832,6 +863,7 @@
             "valid_until": "2025-08-01",
             "value": "1442.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -854,6 +886,7 @@
             "valid_until": null,
             "value": "1525.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -875,6 +908,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -903,6 +937,7 @@
             "valid_until": "2025-08-01",
             "value": "1406.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -925,6 +960,7 @@
             "valid_until": null,
             "value": "1487.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -946,6 +982,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -974,6 +1011,7 @@
             "valid_until": "2025-08-01",
             "value": "1314.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -996,6 +1034,7 @@
             "valid_until": null,
             "value": "1390.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -1017,6 +1056,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -1045,6 +1085,7 @@
             "valid_until": null,
             "value": "1295.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "pdf6-pdf",
@@ -1066,6 +1107,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "pdf6-pdf",
@@ -1123,7 +1165,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "1ab60ffb1f95b96a1b62e64a056e81742f6842da71cd2ffc1f3e5162ecb2a9cc",
+    "source_hash": "8f5fe5b1520814b34570e4112494ff9021c6dbc49ee539fd40aed5cf1d64ea8e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1149,6 +1191,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-anaste-2025",
@@ -1184,6 +1227,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-anaste-2025",
@@ -1219,6 +1263,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-anaste-2025",
@@ -1254,6 +1299,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-anaste-2025",
@@ -1277,6 +1323,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-anaste-2025",
@@ -1303,6 +1350,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-anaste-2025",
@@ -1325,6 +1373,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-anaste-2025",

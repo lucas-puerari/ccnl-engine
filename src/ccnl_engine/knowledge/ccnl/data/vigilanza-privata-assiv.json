@@ -110,7 +110,12 @@
         {
           "valid_from": "2023-06-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -183,6 +188,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -213,6 +219,7 @@
             "valid_until": "2024-06-01",
             "value": "1108.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -235,6 +242,7 @@
             "valid_until": "2025-06-01",
             "value": "1185.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -257,6 +265,7 @@
             "valid_until": "2025-12-01",
             "value": "1218.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -279,6 +288,7 @@
             "valid_until": "2026-04-01",
             "value": "1246.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -301,6 +311,7 @@
             "valid_until": "2026-12-01",
             "value": "1293.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -323,6 +334,7 @@
             "valid_until": null,
             "value": "1350.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -344,6 +356,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -372,6 +385,7 @@
             "valid_until": "2024-06-01",
             "value": "1261.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -394,6 +408,7 @@
             "valid_until": "2025-06-01",
             "value": "1285.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -416,6 +431,7 @@
             "valid_until": "2025-12-01",
             "value": "1318.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -438,6 +454,7 @@
             "valid_until": "2026-04-01",
             "value": "1346.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -460,6 +477,7 @@
             "valid_until": "2026-12-01",
             "value": "1393.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -482,6 +500,7 @@
             "valid_until": null,
             "value": "1450.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -503,6 +522,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -531,6 +551,7 @@
             "valid_until": "2024-06-01",
             "value": "1328.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -553,6 +574,7 @@
             "valid_until": "2025-06-01",
             "value": "1353.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -575,6 +597,7 @@
             "valid_until": "2025-12-01",
             "value": "1388.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -597,6 +620,7 @@
             "valid_until": "2026-04-01",
             "value": "1418.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -619,6 +643,7 @@
             "valid_until": "2026-12-01",
             "value": "1468.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -641,6 +666,7 @@
             "valid_until": null,
             "value": "1528.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -662,6 +688,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -690,6 +717,7 @@
             "valid_until": "2024-06-01",
             "value": "1483.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -712,6 +740,7 @@
             "valid_until": "2025-06-01",
             "value": "1513.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -734,6 +763,7 @@
             "valid_until": "2025-12-01",
             "value": "1555.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -756,6 +786,7 @@
             "valid_until": "2026-04-01",
             "value": "1591.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -778,6 +809,7 @@
             "valid_until": "2026-12-01",
             "value": "1651.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -800,6 +832,7 @@
             "valid_until": null,
             "value": "1723.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -821,6 +854,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -849,6 +883,7 @@
             "valid_until": "2024-06-01",
             "value": "1660.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -871,6 +906,7 @@
             "valid_until": "2025-06-01",
             "value": "1696.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -893,6 +929,7 @@
             "valid_until": "2025-12-01",
             "value": "1746.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -915,6 +952,7 @@
             "valid_until": "2026-04-01",
             "value": "1788.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -937,6 +975,7 @@
             "valid_until": "2026-12-01",
             "value": "1860.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -959,6 +998,7 @@
             "valid_until": null,
             "value": "1946.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -980,6 +1020,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1008,6 +1049,7 @@
             "valid_until": "2024-06-01",
             "value": "1772.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1030,6 +1072,7 @@
             "valid_until": "2025-06-01",
             "value": "1811.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1052,6 +1095,7 @@
             "valid_until": "2025-12-01",
             "value": "1866.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1074,6 +1118,7 @@
             "valid_until": "2026-04-01",
             "value": "1914.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1096,6 +1141,7 @@
             "valid_until": "2026-12-01",
             "value": "1992.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1118,6 +1164,7 @@
             "valid_until": null,
             "value": "2086.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1139,6 +1186,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1167,6 +1215,7 @@
             "valid_until": "2024-06-01",
             "value": "2049.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1189,6 +1238,7 @@
             "valid_until": "2025-06-01",
             "value": "2097.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1211,6 +1261,7 @@
             "valid_until": "2025-12-01",
             "value": "2164.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1233,6 +1284,7 @@
             "valid_until": "2026-04-01",
             "value": "2222.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1255,6 +1307,7 @@
             "valid_until": "2026-12-01",
             "value": "2319.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1277,6 +1330,7 @@
             "valid_until": null,
             "value": "2434.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1299,6 +1353,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "index-php-option-com-content-view-article-id-30121-vigilanza452023-catid-257-itemid-139",
@@ -1345,7 +1400,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "5615ba2d477824b63db6f68f9d29a7db30a6b3fd3ce3ea06b6de4aedf93cc352",
+    "source_hash": "8cfaf323715b7a6fbf87fb9fd38ccc3f13aa324b179c04a603a581fb1b64303f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1371,6 +1426,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-assiv-2023",
@@ -1406,6 +1462,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-assiv-2023",
@@ -1441,6 +1498,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-assiv-2023",
@@ -1464,6 +1522,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-assiv-2023",
@@ -1490,6 +1549,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-assiv-2023",
@@ -1512,6 +1572,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-assiv-2023",

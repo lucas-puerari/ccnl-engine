@@ -105,7 +105,12 @@
         {
           "valid_from": "2021-06-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -196,6 +201,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -226,6 +232,7 @@
             "valid_until": "2022-06-01",
             "value": "1488.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -248,6 +255,7 @@
             "valid_until": "2023-06-01",
             "value": "1509.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -270,6 +278,7 @@
             "valid_until": "2024-06-01",
             "value": "1608.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -292,6 +301,7 @@
             "valid_until": "2025-06-01",
             "value": "1719.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -314,6 +324,7 @@
             "valid_until": "2026-06-01",
             "value": "1742.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -336,6 +347,7 @@
             "valid_until": null,
             "value": "1784.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -357,6 +369,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -385,6 +398,7 @@
             "valid_until": "2022-06-01",
             "value": "1651.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -407,6 +421,7 @@
             "valid_until": "2023-06-01",
             "value": "1673.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -429,6 +444,7 @@
             "valid_until": "2024-06-01",
             "value": "1783.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -451,6 +467,7 @@
             "valid_until": "2025-06-01",
             "value": "1906.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -473,6 +490,7 @@
             "valid_until": "2026-06-01",
             "value": "1931.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -495,6 +513,7 @@
             "valid_until": null,
             "value": "1979.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -516,6 +535,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -544,6 +564,7 @@
             "valid_until": "2022-06-01",
             "value": "1686.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -566,6 +587,7 @@
             "valid_until": "2023-06-01",
             "value": "1709.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -588,6 +610,7 @@
             "valid_until": "2024-06-01",
             "value": "1822.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -610,6 +633,7 @@
             "valid_until": "2025-06-01",
             "value": "1948.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -632,6 +656,7 @@
             "valid_until": "2026-06-01",
             "value": "1973.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -654,6 +679,7 @@
             "valid_until": null,
             "value": "2022.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -675,6 +701,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -703,6 +730,7 @@
             "valid_until": "2022-06-01",
             "value": "1722.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -725,6 +753,7 @@
             "valid_until": "2023-06-01",
             "value": "1745.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -747,6 +776,7 @@
             "valid_until": "2024-06-01",
             "value": "1860.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -769,6 +799,7 @@
             "valid_until": "2025-06-01",
             "value": "1989.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -791,6 +822,7 @@
             "valid_until": "2026-06-01",
             "value": "2015.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -813,6 +845,7 @@
             "valid_until": null,
             "value": "2064.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -834,6 +867,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -862,6 +896,7 @@
             "valid_until": "2022-06-01",
             "value": "1844.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -884,6 +919,7 @@
             "valid_until": "2023-06-01",
             "value": "1869.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -906,6 +942,7 @@
             "valid_until": "2024-06-01",
             "value": "1993.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -928,6 +965,7 @@
             "valid_until": "2025-06-01",
             "value": "2130.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -950,6 +988,7 @@
             "valid_until": "2026-06-01",
             "value": "2158.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -972,6 +1011,7 @@
             "valid_until": null,
             "value": "2211.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -993,6 +1033,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1021,6 +1062,7 @@
             "valid_until": "2022-06-01",
             "value": "1977.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1043,6 +1085,7 @@
             "valid_until": "2023-06-01",
             "value": "2003.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1065,6 +1108,7 @@
             "valid_until": "2024-06-01",
             "value": "2136.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1087,6 +1131,7 @@
             "valid_until": "2025-06-01",
             "value": "2283.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1109,6 +1154,7 @@
             "valid_until": "2026-06-01",
             "value": "2313.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1131,6 +1177,7 @@
             "valid_until": null,
             "value": "2370.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1152,6 +1199,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1180,6 +1228,7 @@
             "valid_until": "2022-06-01",
             "value": "2121.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1202,6 +1251,7 @@
             "valid_until": "2023-06-01",
             "value": "2149.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1224,6 +1274,7 @@
             "valid_until": "2024-06-01",
             "value": "2291.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1246,6 +1297,7 @@
             "valid_until": "2025-06-01",
             "value": "2449.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1268,6 +1320,7 @@
             "valid_until": "2026-06-01",
             "value": "2481.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1290,6 +1343,7 @@
             "valid_until": null,
             "value": "2542.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1311,6 +1365,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1339,6 +1394,7 @@
             "valid_until": "2022-06-01",
             "value": "2368.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1361,6 +1417,7 @@
             "valid_until": "2023-06-01",
             "value": "2400.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1383,6 +1440,7 @@
             "valid_until": "2024-06-01",
             "value": "2558.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1405,6 +1463,7 @@
             "valid_until": "2025-06-01",
             "value": "2735.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1427,6 +1486,7 @@
             "valid_until": "2026-06-01",
             "value": "2770.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1449,6 +1509,7 @@
             "valid_until": null,
             "value": "2838.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1470,6 +1531,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1498,6 +1560,7 @@
             "valid_until": "2022-06-01",
             "value": "2424.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1520,6 +1583,7 @@
             "valid_until": "2023-06-01",
             "value": "2457.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1542,6 +1606,7 @@
             "valid_until": "2024-06-01",
             "value": "2619.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1564,6 +1629,7 @@
             "valid_until": "2025-06-01",
             "value": "2800.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1586,6 +1652,7 @@
             "valid_until": "2026-06-01",
             "value": "2837.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1608,6 +1675,7 @@
             "valid_until": null,
             "value": "2907.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanico-federmeccanica",
@@ -1629,6 +1697,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1755,7 +1824,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "2f5e6a430a0a1834bdaa0557e23ee4d5f07baeb2e6b4883d98a1200e87cb9ac9",
+    "source_hash": "88ae275fdcd3c7f5613471407868da3e4e6343c1c99a3a337ba2160c361e7433",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },
@@ -1781,6 +1850,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "metalmeccanico-federmeccanica",
@@ -1816,6 +1886,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "metalmeccanico-federmeccanica",
@@ -1851,6 +1922,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "metalmeccanico-federmeccanica",
@@ -1874,6 +1946,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1904,6 +1977,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",
@@ -1926,6 +2000,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanico-federmeccanica",

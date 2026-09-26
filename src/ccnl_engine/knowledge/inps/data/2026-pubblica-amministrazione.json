@@ -16,7 +16,20 @@
         "ivs_rate": "0.2420"
       }
     ],
-    "ceiling": null
+    "ceiling": null,
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "kitech-contributi-17_210",
+          "title": "kitech.it, contributi previdenziali dipendenti pubblici",
+          "kind": "rivista",
+          "url": "https://www.kitech.it/Contributi-previdenziali.aspx?p=17_210"
+        },
+        "section": "CTPS"
+      },
+      "note": "Employee 8.80%, employer 24.20%, corroborated by INPS sources."
+    }
   },
   "apprentice": {
     "employee_rate": "0.0880",
@@ -27,7 +40,12 @@
     "small_firm_employer_rate_months_0_11": "0.2420",
     "small_firm_employer_ivs_rate_months_0_11": "0.2420",
     "small_firm_employer_rate_months_12_23": "0.2420",
-    "small_firm_employer_ivs_rate_months_12_23": "0.2420"
+    "small_firm_employer_ivs_rate_months_12_23": "0.2420",
+    "provenance": {
+      "status": "assumed",
+      "location": null,
+      "note": "Schema-required placeholder: apprenticeship does not apply to PA contracts."
+    }
   },
   "ruleset": {
     "id": "inps/2026/pubblica-amministrazione",
@@ -37,7 +55,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "67e8cbf7d39ee1e04b874a9f893dea4e65bf98cc2db6bfd0d776c94e94208840",
+    "source_hash": "08cd835237eb4c170b4475623edd5738db3424565a9e12a98d70f6dc87347706",
     "source_type": "estimated"
   }
 }

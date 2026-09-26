@@ -100,7 +100,12 @@
         {
           "valid_from": "2022-06-13",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -109,6 +114,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -139,6 +145,7 @@
             "valid_until": "2025-07-01",
             "value": "1698.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -161,6 +168,7 @@
             "valid_until": "2025-12-01",
             "value": "1767.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -183,6 +191,7 @@
             "valid_until": "2026-07-01",
             "value": "1781.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -205,6 +214,7 @@
             "valid_until": "2027-07-01",
             "value": "1821.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -227,6 +237,7 @@
             "valid_until": "2028-06-01",
             "value": "1879.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -249,6 +260,7 @@
             "valid_until": null,
             "value": "1891.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -270,6 +282,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -298,6 +311,7 @@
             "valid_until": "2025-07-01",
             "value": "1777.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -320,6 +334,7 @@
             "valid_until": "2025-12-01",
             "value": "1849.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -342,6 +357,7 @@
             "valid_until": "2026-07-01",
             "value": "1863.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -364,6 +380,7 @@
             "valid_until": "2027-07-01",
             "value": "1905.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -386,6 +403,7 @@
             "valid_until": "2028-06-01",
             "value": "1966.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -408,6 +426,7 @@
             "valid_until": null,
             "value": "1978.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -429,6 +448,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -457,6 +477,7 @@
             "valid_until": "2025-07-01",
             "value": "1822.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -479,6 +500,7 @@
             "valid_until": "2025-12-01",
             "value": "1897.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -501,6 +523,7 @@
             "valid_until": "2026-07-01",
             "value": "1911.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -523,6 +546,7 @@
             "valid_until": "2027-07-01",
             "value": "1954.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -545,6 +569,7 @@
             "valid_until": "2028-06-01",
             "value": "2016.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -567,6 +592,7 @@
             "valid_until": null,
             "value": "2029.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -588,6 +614,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -616,6 +643,7 @@
             "valid_until": "2025-07-01",
             "value": "1887.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -638,6 +666,7 @@
             "valid_until": "2025-12-01",
             "value": "1966.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -660,6 +689,7 @@
             "valid_until": "2026-07-01",
             "value": "1981.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -682,6 +712,7 @@
             "valid_until": "2027-07-01",
             "value": "2026.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -704,6 +735,7 @@
             "valid_until": "2028-06-01",
             "value": "2091.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -726,6 +758,7 @@
             "valid_until": null,
             "value": "2105.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -747,6 +780,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -775,6 +809,7 @@
             "valid_until": "2025-07-01",
             "value": "1985.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -797,6 +832,7 @@
             "valid_until": "2025-12-01",
             "value": "2071.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -819,6 +855,7 @@
             "valid_until": "2026-07-01",
             "value": "2088.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -841,6 +878,7 @@
             "valid_until": "2027-07-01",
             "value": "2139.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -863,6 +901,7 @@
             "valid_until": "2028-06-01",
             "value": "2212.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -885,6 +924,7 @@
             "valid_until": null,
             "value": "2226.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -906,6 +946,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -934,6 +975,7 @@
             "valid_until": "2025-07-01",
             "value": "2086.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -956,6 +998,7 @@
             "valid_until": "2025-12-01",
             "value": "2178.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -978,6 +1021,7 @@
             "valid_until": "2026-07-01",
             "value": "2196.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1000,6 +1044,7 @@
             "valid_until": "2027-07-01",
             "value": "2250.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1022,6 +1067,7 @@
             "valid_until": "2028-06-01",
             "value": "2327.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1044,6 +1090,7 @@
             "valid_until": null,
             "value": "2342.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1065,6 +1112,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1093,6 +1141,7 @@
             "valid_until": "2025-07-01",
             "value": "2140.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1115,6 +1164,7 @@
             "valid_until": "2025-12-01",
             "value": "2235.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1137,6 +1187,7 @@
             "valid_until": "2026-07-01",
             "value": "2254.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1159,6 +1210,7 @@
             "valid_until": "2027-07-01",
             "value": "2311.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1181,6 +1233,7 @@
             "valid_until": "2028-06-01",
             "value": "2393.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1203,6 +1256,7 @@
             "valid_until": null,
             "value": "2409.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1224,6 +1278,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1252,6 +1307,7 @@
             "valid_until": "2025-07-01",
             "value": "2239.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1274,6 +1330,7 @@
             "valid_until": "2025-12-01",
             "value": "2340.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1296,6 +1353,7 @@
             "valid_until": "2026-07-01",
             "value": "2360.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1318,6 +1376,7 @@
             "valid_until": "2027-07-01",
             "value": "2420.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1340,6 +1399,7 @@
             "valid_until": "2028-06-01",
             "value": "2506.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1362,6 +1422,7 @@
             "valid_until": null,
             "value": "2522.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1383,6 +1444,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1411,6 +1473,7 @@
             "valid_until": "2025-07-01",
             "value": "2313.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1433,6 +1496,7 @@
             "valid_until": "2025-12-01",
             "value": "2416.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1455,6 +1519,7 @@
             "valid_until": "2026-07-01",
             "value": "2437.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1477,6 +1542,7 @@
             "valid_until": "2027-07-01",
             "value": "2498.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1499,6 +1565,7 @@
             "valid_until": "2028-06-01",
             "value": "2586.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1521,6 +1588,7 @@
             "valid_until": null,
             "value": "2603.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1542,6 +1610,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1570,6 +1639,7 @@
             "valid_until": "2025-07-01",
             "value": "2400.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1592,6 +1662,7 @@
             "valid_until": "2025-12-01",
             "value": "2510.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1614,6 +1685,7 @@
             "valid_until": "2026-07-01",
             "value": "2532.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1636,6 +1708,7 @@
             "valid_until": "2027-07-01",
             "value": "2597.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1658,6 +1731,7 @@
             "valid_until": "2028-06-01",
             "value": "2690.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1680,6 +1754,7 @@
             "valid_until": null,
             "value": "2708.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1701,6 +1776,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1729,6 +1805,7 @@
             "valid_until": "2025-07-01",
             "value": "2640.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1751,6 +1828,7 @@
             "valid_until": "2025-12-01",
             "value": "2757.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1773,6 +1851,7 @@
             "valid_until": "2026-07-01",
             "value": "2780.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1795,6 +1874,7 @@
             "valid_until": "2027-07-01",
             "value": "2849.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1817,6 +1897,7 @@
             "valid_until": "2028-06-01",
             "value": "2948.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1839,6 +1920,7 @@
             "valid_until": null,
             "value": "2968.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1860,6 +1942,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1888,6 +1971,7 @@
             "valid_until": "2025-07-01",
             "value": "2733.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1910,6 +1994,7 @@
             "valid_until": "2025-12-01",
             "value": "2857.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1932,6 +2017,7 @@
             "valid_until": "2026-07-01",
             "value": "2881.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1954,6 +2040,7 @@
             "valid_until": "2027-07-01",
             "value": "2954.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1976,6 +2063,7 @@
             "valid_until": "2028-06-01",
             "value": "3058.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -1998,6 +2086,7 @@
             "valid_until": null,
             "value": "3080.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2019,6 +2108,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2047,6 +2137,7 @@
             "valid_until": "2025-07-01",
             "value": "2961.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2069,6 +2160,7 @@
             "valid_until": "2025-12-01",
             "value": "3092.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2091,6 +2183,7 @@
             "valid_until": "2026-07-01",
             "value": "3117.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2113,6 +2206,7 @@
             "valid_until": "2027-07-01",
             "value": "3193.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2135,6 +2229,7 @@
             "valid_until": "2028-06-01",
             "value": "3302.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2157,6 +2252,7 @@
             "valid_until": null,
             "value": "3325.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2179,6 +2275,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2207,6 +2304,7 @@
             "valid_until": "2025-07-01",
             "value": "3023.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2229,6 +2327,7 @@
             "valid_until": "2025-12-01",
             "value": "3157.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2251,6 +2350,7 @@
             "valid_until": "2026-07-01",
             "value": "3183.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2273,6 +2373,7 @@
             "valid_until": "2027-07-01",
             "value": "3261.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2295,6 +2396,7 @@
             "valid_until": "2028-06-01",
             "value": "3373.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2317,6 +2419,7 @@
             "valid_until": null,
             "value": "3396.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2339,6 +2442,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2367,6 +2471,7 @@
             "valid_until": "2025-07-01",
             "value": "3258.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2389,6 +2494,7 @@
             "valid_until": "2025-12-01",
             "value": "3408.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2411,6 +2517,7 @@
             "valid_until": "2026-07-01",
             "value": "3438.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2433,6 +2540,7 @@
             "valid_until": "2027-07-01",
             "value": "3528.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2455,6 +2563,7 @@
             "valid_until": "2028-06-01",
             "value": "3657.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2477,6 +2586,7 @@
             "valid_until": null,
             "value": "3682.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2499,6 +2609,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-incrementi-tem-ccnl-2025-2028-pdf",
@@ -2554,7 +2665,7 @@
     "effective_until": null,
     "source": "https://informatori.it/wp-content/uploads/2025/04/Tabelle-Incrementi-TEM-CCNL-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "5ed8b8e2f01f987c6d60d407c4e11b9b6789baae9536ac506f45a6f088724ae4",
+    "source_hash": "2b5ff290505b9560889dd207e9e38718428bd854350801b9c81fdfd6b36ac3f0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2580,6 +2691,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-farmaceutica-federchimica",
@@ -2615,6 +2727,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-farmaceutica-federchimica",
@@ -2651,6 +2764,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-farmaceutica-federchimica",
@@ -2686,6 +2800,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-farmaceutica-federchimica",
@@ -2709,6 +2824,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-farmaceutica-federchimica",
@@ -2739,6 +2855,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-farmaceutica-federchimica",
@@ -2761,6 +2878,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 365,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-farmaceutica-federchimica",

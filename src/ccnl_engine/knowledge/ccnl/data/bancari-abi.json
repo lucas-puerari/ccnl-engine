@@ -81,7 +81,12 @@
         {
           "valid_from": "2023-11-23",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -177,6 +182,7 @@
         "QD4": 7
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -207,6 +213,7 @@
             "valid_until": "2024-09-01",
             "value": "4911.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -229,6 +236,7 @@
             "valid_until": "2025-06-01",
             "value": "5045.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -251,6 +259,7 @@
             "valid_until": "2026-03-01",
             "value": "5113.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -273,6 +282,7 @@
             "valid_until": null,
             "value": "5160.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -295,6 +305,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -323,6 +334,7 @@
             "valid_until": "2024-09-01",
             "value": "4180.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -345,6 +357,7 @@
             "valid_until": "2025-06-01",
             "value": "4297.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -367,6 +380,7 @@
             "valid_until": "2026-03-01",
             "value": "4356.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -389,6 +403,7 @@
             "valid_until": null,
             "value": "4396.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -411,6 +426,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -439,6 +455,7 @@
             "valid_until": "2024-09-01",
             "value": "3760.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -461,6 +478,7 @@
             "valid_until": "2025-06-01",
             "value": "3871.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -483,6 +501,7 @@
             "valid_until": "2026-03-01",
             "value": "3926.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -505,6 +524,7 @@
             "valid_until": null,
             "value": "3965.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -527,6 +547,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -555,6 +576,7 @@
             "valid_until": "2024-09-01",
             "value": "3547.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -577,6 +599,7 @@
             "valid_until": "2025-06-01",
             "value": "3653.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -599,6 +622,7 @@
             "valid_until": "2026-03-01",
             "value": "3706.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -621,6 +645,7 @@
             "valid_until": null,
             "value": "3743.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -643,6 +668,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -671,6 +697,7 @@
             "valid_until": "2024-09-01",
             "value": "3156.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -693,6 +720,7 @@
             "valid_until": "2025-06-01",
             "value": "3256.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -715,6 +743,7 @@
             "valid_until": "2026-03-01",
             "value": "3306.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -737,6 +766,7 @@
             "valid_until": null,
             "value": "3341.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -759,6 +789,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -787,6 +818,7 @@
             "valid_until": "2024-09-01",
             "value": "2899.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -809,6 +841,7 @@
             "valid_until": "2025-06-01",
             "value": "2986.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -831,6 +864,7 @@
             "valid_until": "2026-03-01",
             "value": "3029.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -853,6 +887,7 @@
             "valid_until": null,
             "value": "3059.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -875,6 +910,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -903,6 +939,7 @@
             "valid_until": "2024-09-01",
             "value": "2739.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -925,6 +962,7 @@
             "valid_until": "2025-06-01",
             "value": "2821.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -947,6 +985,7 @@
             "valid_until": "2026-03-01",
             "value": "2861.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -969,6 +1008,7 @@
             "valid_until": null,
             "value": "2890.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -991,6 +1031,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -1019,6 +1060,7 @@
             "valid_until": "2024-09-01",
             "value": "2599.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1041,6 +1083,7 @@
             "valid_until": "2025-06-01",
             "value": "2676.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1063,6 +1106,7 @@
             "valid_until": "2026-03-01",
             "value": "2715.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1085,6 +1129,7 @@
             "valid_until": null,
             "value": "2742.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1107,6 +1152,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -1135,6 +1181,7 @@
             "valid_until": "2024-09-01",
             "value": "2350.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1157,6 +1204,7 @@
             "valid_until": "2025-06-01",
             "value": "2420.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1179,6 +1227,7 @@
             "valid_until": "2026-03-01",
             "value": "2454.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1201,6 +1250,7 @@
             "valid_until": null,
             "value": "2479.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "bancari-abi",
@@ -1223,6 +1273,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -1271,7 +1322,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "0d4ebbed29ebaf781fb44e9aa7f55b9c6ee3b4c13bf52e401358d826826eb286",
+    "source_hash": "6ee5a99296a3d537035690329026ae9efe241343ef6647cad2f17a4b7d1d2469",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1297,6 +1348,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bancari-abi",
@@ -1332,6 +1384,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bancari-abi",
@@ -1367,6 +1420,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bancari-abi",
@@ -1390,6 +1444,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -1424,6 +1479,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",
@@ -1446,6 +1502,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bancari-abi",

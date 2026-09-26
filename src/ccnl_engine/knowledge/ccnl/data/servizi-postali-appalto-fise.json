@@ -91,7 +91,12 @@
         {
           "valid_from": "2023-12-21",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -212,6 +217,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -315,6 +321,7 @@
             "valid_until": "2024-01-01",
             "value": "1752.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -337,6 +344,7 @@
             "valid_until": "2025-01-01",
             "value": "1792.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -359,6 +367,7 @@
             "valid_until": "2025-12-01",
             "value": "1833.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -381,6 +390,7 @@
             "valid_until": null,
             "value": "1875.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -414,6 +424,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -444,6 +455,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -463,6 +475,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -491,6 +504,7 @@
             "valid_until": "2024-01-01",
             "value": "1547.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -513,6 +527,7 @@
             "valid_until": "2025-01-01",
             "value": "1581.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -535,6 +550,7 @@
             "valid_until": "2025-12-01",
             "value": "1615.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -557,6 +573,7 @@
             "valid_until": null,
             "value": "1650.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -590,6 +607,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -620,6 +638,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -639,6 +658,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -667,6 +687,7 @@
             "valid_until": "2024-01-01",
             "value": "1454.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -689,6 +710,7 @@
             "valid_until": "2025-01-01",
             "value": "1486.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -711,6 +733,7 @@
             "valid_until": "2025-12-01",
             "value": "1517.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -733,6 +756,7 @@
             "valid_until": null,
             "value": "1549.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -766,6 +790,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -796,6 +821,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -815,6 +841,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -843,6 +870,7 @@
             "valid_until": "2024-01-01",
             "value": "1418.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -865,6 +893,7 @@
             "valid_until": "2025-01-01",
             "value": "1448.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -887,6 +916,7 @@
             "valid_until": "2025-12-01",
             "value": "1478.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -909,6 +939,7 @@
             "valid_until": null,
             "value": "1509.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -942,6 +973,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -972,6 +1004,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -991,6 +1024,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1019,6 +1053,7 @@
             "valid_until": "2024-01-01",
             "value": "1371.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1041,6 +1076,7 @@
             "valid_until": "2025-01-01",
             "value": "1399.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1063,6 +1099,7 @@
             "valid_until": "2025-12-01",
             "value": "1428.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1085,6 +1122,7 @@
             "valid_until": null,
             "value": "1457.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1118,6 +1156,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1148,6 +1187,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1167,6 +1207,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1195,6 +1236,7 @@
             "valid_until": "2024-01-01",
             "value": "1327.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1217,6 +1259,7 @@
             "valid_until": "2025-01-01",
             "value": "1354.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1239,6 +1282,7 @@
             "valid_until": "2025-12-01",
             "value": "1381.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1261,6 +1305,7 @@
             "valid_until": null,
             "value": "1409.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1294,6 +1339,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1324,6 +1370,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1343,6 +1390,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1371,6 +1419,7 @@
             "valid_until": "2024-01-01",
             "value": "1251.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1393,6 +1442,7 @@
             "valid_until": "2025-01-01",
             "value": "1275.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1415,6 +1465,7 @@
             "valid_until": "2025-12-01",
             "value": "1300.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1437,6 +1488,7 @@
             "valid_until": null,
             "value": "1325.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1470,6 +1522,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1500,6 +1553,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1519,6 +1573,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-versione-stampa-250624-pdf",
@@ -1544,7 +1599,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "3924f3b9a3a4a590de6f97738515e977d3afb1232a8c677f2056c130f92f4cd3",
+    "source_hash": "f44ede663068a1091561d160c77b7de5d57e3b3f72e61bba1a067e9068022f1a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1570,6 +1625,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1605,6 +1661,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1640,6 +1697,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1675,6 +1733,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1698,6 +1757,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1724,6 +1784,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-appalto-fise-2024",
@@ -1746,6 +1807,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-servizi-postali-appalto-fise-2024",

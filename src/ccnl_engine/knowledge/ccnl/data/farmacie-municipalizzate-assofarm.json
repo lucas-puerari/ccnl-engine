@@ -98,7 +98,12 @@
         {
           "valid_from": "2022-07-01",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -207,6 +212,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -272,6 +278,7 @@
             "valid_until": "2023-07-01",
             "value": "2418.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -294,6 +301,7 @@
             "valid_until": "2024-07-01",
             "value": "2439.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -316,6 +324,7 @@
             "valid_until": null,
             "value": "2456.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -349,6 +358,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -368,6 +378,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -396,6 +407,7 @@
             "valid_until": "2023-07-01",
             "value": "2335.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -418,6 +430,7 @@
             "valid_until": "2024-07-01",
             "value": "2355.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -440,6 +453,7 @@
             "valid_until": null,
             "value": "2372.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -473,6 +487,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -492,6 +507,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -520,6 +536,7 @@
             "valid_until": "2023-07-01",
             "value": "2230.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -542,6 +559,7 @@
             "valid_until": "2024-07-01",
             "value": "2250.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -564,6 +582,7 @@
             "valid_until": null,
             "value": "2266.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -597,6 +616,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -616,6 +636,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -644,6 +665,7 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -666,6 +688,7 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -688,6 +711,7 @@
             "valid_until": null,
             "value": "2109.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -721,6 +745,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -740,6 +765,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -768,6 +794,7 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -790,6 +817,7 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -812,6 +840,7 @@
             "valid_until": null,
             "value": "2109.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -845,6 +874,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -864,6 +894,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -892,6 +923,7 @@
             "valid_until": "2023-07-01",
             "value": "2076.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -914,6 +946,7 @@
             "valid_until": "2024-07-01",
             "value": "2094.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -936,6 +969,7 @@
             "valid_until": null,
             "value": "2109.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -957,6 +991,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -985,6 +1020,7 @@
             "valid_until": "2023-07-01",
             "value": "1842.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1007,6 +1043,7 @@
             "valid_until": "2024-07-01",
             "value": "1858.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1029,6 +1066,7 @@
             "valid_until": null,
             "value": "1872.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1050,6 +1088,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1078,6 +1117,7 @@
             "valid_until": "2023-07-01",
             "value": "1749.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1100,6 +1140,7 @@
             "valid_until": "2024-07-01",
             "value": "1764.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1122,6 +1163,7 @@
             "valid_until": null,
             "value": "1777.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1143,6 +1185,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1171,6 +1214,7 @@
             "valid_until": "2023-07-01",
             "value": "1626.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1193,6 +1237,7 @@
             "valid_until": "2024-07-01",
             "value": "1640.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1215,6 +1260,7 @@
             "valid_until": null,
             "value": "1652.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1236,6 +1282,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1264,6 +1311,7 @@
             "valid_until": "2023-07-01",
             "value": "1498.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1286,6 +1334,7 @@
             "valid_until": "2024-07-01",
             "value": "1511.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1308,6 +1357,7 @@
             "valid_until": null,
             "value": "1522.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1329,6 +1379,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1357,6 +1408,7 @@
             "valid_until": "2023-07-01",
             "value": "1399.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1379,6 +1431,7 @@
             "valid_until": "2024-07-01",
             "value": "1411.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1401,6 +1454,7 @@
             "valid_until": null,
             "value": "1421.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1422,6 +1476,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl2022-2024-signedcorrect-pdf",
@@ -1447,7 +1502,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "24c4c0e0046fde8d11537954feb912842dea4699b4860b841d18972ebe3490dc",
+    "source_hash": "78c94872b944fba2ebf5cf5d57ce2d67c9482491d908f9dcdecf808f06b115d3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1473,6 +1528,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1508,6 +1564,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1543,6 +1600,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1578,6 +1636,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1601,6 +1660,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1627,6 +1687,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-farmacie-municipalizzate-2022",
@@ -1649,6 +1710,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-farmacie-municipalizzate-2022",

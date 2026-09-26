@@ -84,7 +84,12 @@
         {
           "valid_from": "2023-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -229,6 +234,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -301,6 +307,7 @@
             "valid_until": "2024-11-01",
             "value": "1097.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -323,6 +330,7 @@
             "valid_until": "2025-07-01",
             "value": "1135.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -345,6 +353,7 @@
             "valid_until": null,
             "value": "1170.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -366,6 +375,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -395,6 +405,7 @@
             "valid_until": "2024-11-01",
             "value": "1097.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -417,6 +428,7 @@
             "valid_until": "2025-07-01",
             "value": "1135.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -439,6 +451,7 @@
             "valid_until": null,
             "value": "1170.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -460,6 +473,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -489,6 +503,7 @@
             "valid_until": "2024-11-01",
             "value": "1168.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -511,6 +526,7 @@
             "valid_until": "2025-07-01",
             "value": "1211.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -533,6 +549,7 @@
             "valid_until": null,
             "value": "1249.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -554,6 +571,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -583,6 +601,7 @@
             "valid_until": "2024-11-01",
             "value": "1228.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -605,6 +624,7 @@
             "valid_until": "2025-07-01",
             "value": "1274.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -627,6 +647,7 @@
             "valid_until": null,
             "value": "1316.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -648,6 +669,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -677,6 +699,7 @@
             "valid_until": "2024-11-01",
             "value": "1288.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -699,6 +722,7 @@
             "valid_until": "2025-07-01",
             "value": "1337.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -721,6 +745,7 @@
             "valid_until": null,
             "value": "1383.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -742,6 +767,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -771,6 +797,7 @@
             "valid_until": "2024-11-01",
             "value": "1335.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -793,6 +820,7 @@
             "valid_until": "2025-07-01",
             "value": "1388.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -815,6 +843,7 @@
             "valid_until": null,
             "value": "1436.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -836,6 +865,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -865,6 +895,7 @@
             "valid_until": "2024-11-01",
             "value": "1395.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -887,6 +918,7 @@
             "valid_until": "2025-07-01",
             "value": "1451.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -909,6 +941,7 @@
             "valid_until": null,
             "value": "1503.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -930,6 +963,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -959,6 +993,7 @@
             "valid_until": "2024-11-01",
             "value": "1448.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -981,6 +1016,7 @@
             "valid_until": "2025-07-01",
             "value": "1508.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1003,6 +1039,7 @@
             "valid_until": null,
             "value": "1563.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1024,6 +1061,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1053,6 +1091,7 @@
             "valid_until": "2024-11-01",
             "value": "1483.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1075,6 +1114,7 @@
             "valid_until": "2025-07-01",
             "value": "1546.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1097,6 +1137,7 @@
             "valid_until": null,
             "value": "1603.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1118,6 +1159,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1147,6 +1189,7 @@
             "valid_until": "2024-11-01",
             "value": "1550.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1169,6 +1212,7 @@
             "valid_until": "2025-07-01",
             "value": "1616.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1191,6 +1235,7 @@
             "valid_until": null,
             "value": "1677.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1212,6 +1257,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1241,6 +1287,7 @@
             "valid_until": "2024-11-01",
             "value": "1602.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1263,6 +1310,7 @@
             "valid_until": "2025-07-01",
             "value": "1672.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1285,6 +1333,7 @@
             "valid_until": null,
             "value": "1736.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1306,6 +1355,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1335,6 +1385,7 @@
             "valid_until": "2024-11-01",
             "value": "1602.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1357,6 +1408,7 @@
             "valid_until": "2025-07-01",
             "value": "1672.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1379,6 +1431,7 @@
             "valid_until": null,
             "value": "1736.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1400,6 +1453,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1429,6 +1483,7 @@
             "valid_until": "2024-11-01",
             "value": "1811.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1451,6 +1506,7 @@
             "valid_until": "2025-07-01",
             "value": "1894.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1473,6 +1529,7 @@
             "valid_until": null,
             "value": "1970.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1494,6 +1551,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1523,6 +1581,7 @@
             "valid_until": "2024-11-01",
             "value": "1811.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1545,6 +1604,7 @@
             "valid_until": "2025-07-01",
             "value": "1894.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1567,6 +1627,7 @@
             "valid_until": null,
             "value": "1970.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1588,6 +1649,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1617,6 +1679,7 @@
             "valid_until": "2024-11-01",
             "value": "1929.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1639,6 +1702,7 @@
             "valid_until": "2025-07-01",
             "value": "2020.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1661,6 +1725,7 @@
             "valid_until": null,
             "value": "2103.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1682,6 +1747,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026-pdf",
@@ -1707,7 +1773,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "cac02b3fb779acdaa52537e54e00674f1bbb799383543bcc246cf0e258ef9894",
+    "source_hash": "c171c777a367fdd7450f7f03a51f91348ae2df147c88726f0aa710a01048dc24",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1733,6 +1799,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1768,6 +1835,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1803,6 +1871,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1838,6 +1907,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1861,6 +1931,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1887,6 +1958,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026",
@@ -1909,6 +1981,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-esercizi-cinematografici-2023-2026",

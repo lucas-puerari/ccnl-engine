@@ -114,7 +114,12 @@
         {
           "valid_from": "2025-05-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -196,6 +201,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -226,6 +232,7 @@
             "valid_until": "2026-01-01",
             "value": "1062.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -248,6 +255,7 @@
             "valid_until": "2027-01-01",
             "value": "1097.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -270,6 +278,7 @@
             "valid_until": "2028-01-01",
             "value": "1132.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -292,6 +301,7 @@
             "valid_until": null,
             "value": "1165.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -325,6 +335,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -355,6 +366,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -375,6 +387,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -403,6 +416,7 @@
             "valid_until": "2026-01-01",
             "value": "1239.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -425,6 +439,7 @@
             "valid_until": "2027-01-01",
             "value": "1280.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -447,6 +462,7 @@
             "valid_until": "2028-01-01",
             "value": "1320.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -469,6 +485,7 @@
             "valid_until": null,
             "value": "1358.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -502,6 +519,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -532,6 +550,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -552,6 +571,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -580,6 +600,7 @@
             "valid_until": "2026-01-01",
             "value": "1381.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -602,6 +623,7 @@
             "valid_until": "2027-01-01",
             "value": "1426.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -624,6 +646,7 @@
             "valid_until": "2028-01-01",
             "value": "1472.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -646,6 +669,7 @@
             "valid_until": null,
             "value": "1515.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -679,6 +703,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -709,6 +734,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -729,6 +755,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -757,6 +784,7 @@
             "valid_until": "2026-01-01",
             "value": "1485.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -779,6 +807,7 @@
             "valid_until": "2027-01-01",
             "value": "1533.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -801,6 +830,7 @@
             "valid_until": "2028-01-01",
             "value": "1582.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -823,6 +853,7 @@
             "valid_until": null,
             "value": "1628.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -856,6 +887,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -886,6 +918,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -906,6 +939,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -934,6 +968,7 @@
             "valid_until": "2026-01-01",
             "value": "1593.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -956,6 +991,7 @@
             "valid_until": "2027-01-01",
             "value": "1646.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -978,6 +1014,7 @@
             "valid_until": "2028-01-01",
             "value": "1698.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1000,6 +1037,7 @@
             "valid_until": null,
             "value": "1748.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1033,6 +1071,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1063,6 +1102,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1083,6 +1123,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -1111,6 +1152,7 @@
             "valid_until": "2026-01-01",
             "value": "1912.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1133,6 +1175,7 @@
             "valid_until": "2027-01-01",
             "value": "1975.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1155,6 +1198,7 @@
             "valid_until": "2028-01-01",
             "value": "2038.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1177,6 +1221,7 @@
             "valid_until": null,
             "value": "2097.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1210,6 +1255,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1240,6 +1286,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1259,6 +1306,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -1287,6 +1335,7 @@
             "valid_until": "2026-01-01",
             "value": "2147.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1309,6 +1358,7 @@
             "valid_until": "2027-01-01",
             "value": "2218.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1331,6 +1381,7 @@
             "valid_until": "2028-01-01",
             "value": "2290.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1353,6 +1404,7 @@
             "valid_until": null,
             "value": "2358.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1386,6 +1438,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1416,6 +1469,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1436,6 +1490,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -1464,6 +1519,7 @@
             "valid_until": "2026-01-01",
             "value": "2147.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1486,6 +1542,7 @@
             "valid_until": "2027-01-01",
             "value": "2218.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1508,6 +1565,7 @@
             "valid_until": "2028-01-01",
             "value": "2290.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1530,6 +1588,7 @@
             "valid_until": null,
             "value": "2358.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "edilizia-artigianato-cna",
@@ -1563,6 +1622,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1593,6 +1653,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1623,6 +1684,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "edilizia-artigianato-cna",
@@ -1643,6 +1705,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "edilizia-artigianato-cna",
@@ -1889,7 +1952,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "932589217ebe9131e22bcf8775b0e89e5bd10aa921acb61538da69a1aa6f6ea7",
+    "source_hash": "ce18ab24f5a2aab69b9e95d4ffdc4ab3c92bf23b3b98edf86f9c7a85d8eed154",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1915,6 +1978,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-artigianato",
@@ -1950,6 +2014,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-artigianato",
@@ -1985,6 +2050,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-artigianato",
@@ -2008,6 +2074,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-artigianato",
@@ -2038,6 +2105,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-artigianato",
@@ -2060,6 +2128,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-artigianato",

@@ -95,7 +95,12 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -204,6 +209,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -234,6 +240,7 @@
             "valid_until": "2027-01-01",
             "value": "1264.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -256,6 +263,7 @@
             "valid_until": "2028-01-01",
             "value": "1289.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -278,6 +286,7 @@
             "valid_until": null,
             "value": "1315.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -299,6 +308,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -327,6 +337,7 @@
             "valid_until": "2027-01-01",
             "value": "1342.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -349,6 +360,7 @@
             "valid_until": "2028-01-01",
             "value": "1369.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -371,6 +383,7 @@
             "valid_until": null,
             "value": "1396.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -392,6 +405,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -420,6 +434,7 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -442,6 +457,7 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -464,6 +480,7 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -485,6 +502,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -513,6 +531,7 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -535,6 +554,7 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -557,6 +577,7 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -578,6 +599,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -606,6 +628,7 @@
             "valid_until": "2027-01-01",
             "value": "1438.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -628,6 +651,7 @@
             "valid_until": "2028-01-01",
             "value": "1467.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -650,6 +674,7 @@
             "valid_until": null,
             "value": "1496.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -671,6 +696,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -699,6 +725,7 @@
             "valid_until": "2027-01-01",
             "value": "1439.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -721,6 +748,7 @@
             "valid_until": "2028-01-01",
             "value": "1468.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -743,6 +771,7 @@
             "valid_until": null,
             "value": "1498.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -764,6 +793,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -792,6 +822,7 @@
             "valid_until": "2027-01-01",
             "value": "1441.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -814,6 +845,7 @@
             "valid_until": "2028-01-01",
             "value": "1470.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -836,6 +868,7 @@
             "valid_until": null,
             "value": "1500.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -857,6 +890,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -885,6 +919,7 @@
             "valid_until": "2027-01-01",
             "value": "1444.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -907,6 +942,7 @@
             "valid_until": "2028-01-01",
             "value": "1473.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -929,6 +965,7 @@
             "valid_until": null,
             "value": "1502.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -950,6 +987,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -978,6 +1016,7 @@
             "valid_until": "2027-01-01",
             "value": "1512.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1000,6 +1039,7 @@
             "valid_until": "2028-01-01",
             "value": "1542.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1022,6 +1062,7 @@
             "valid_until": null,
             "value": "1573.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1043,6 +1084,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -1071,6 +1113,7 @@
             "valid_until": "2027-01-01",
             "value": "1519.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1093,6 +1136,7 @@
             "valid_until": "2028-01-01",
             "value": "1549.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1115,6 +1159,7 @@
             "valid_until": null,
             "value": "1580.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1136,6 +1181,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -1164,6 +1210,7 @@
             "valid_until": "2027-01-01",
             "value": "1795.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1186,6 +1233,7 @@
             "valid_until": "2028-01-01",
             "value": "1831.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1208,6 +1256,7 @@
             "valid_until": null,
             "value": "1868.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "portieri-fabbricati-confedilizia",
@@ -1229,6 +1278,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "portieri-fabbricati-confedilizia",
@@ -1291,7 +1341,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "2be2a610543ee3f5d7f683491c349fdc277b935916c9db2f3634491839dd9a2d",
+    "source_hash": "99ab1acaac16a658aedf8356699187af391155a2a44c20bd6d63efbd5ca13c71",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1317,6 +1367,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-portieri-custodi-2025",
@@ -1352,6 +1403,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-portieri-custodi-2025",
@@ -1376,6 +1428,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-portieri-custodi-2025",
@@ -1402,6 +1455,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-portieri-custodi-2025",
@@ -1424,6 +1478,7 @@
       "full_pay_integration_rate": "0.6",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-portieri-custodi-2025",

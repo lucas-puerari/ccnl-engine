@@ -112,7 +112,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -203,6 +208,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -233,6 +239,7 @@
             "valid_until": "2026-01-01",
             "value": "1703.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -255,6 +262,7 @@
             "valid_until": "2027-01-01",
             "value": "1776.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -277,6 +285,7 @@
             "valid_until": "2027-06-01",
             "value": "1810.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -299,6 +308,7 @@
             "valid_until": null,
             "value": "1841.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -320,6 +330,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -348,6 +359,7 @@
             "valid_until": "2026-01-01",
             "value": "1823.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -370,6 +382,7 @@
             "valid_until": "2027-01-01",
             "value": "1902.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -392,6 +405,7 @@
             "valid_until": "2027-06-01",
             "value": "1937.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -414,6 +428,7 @@
             "valid_until": null,
             "value": "1971.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -435,6 +450,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -463,6 +479,7 @@
             "valid_until": "2026-01-01",
             "value": "1865.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -485,6 +502,7 @@
             "valid_until": "2027-01-01",
             "value": "1946.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -507,6 +525,7 @@
             "valid_until": "2027-06-01",
             "value": "1982.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -529,6 +548,7 @@
             "valid_until": null,
             "value": "2018.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -550,6 +570,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -578,6 +599,7 @@
             "valid_until": "2026-01-01",
             "value": "1912.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -600,6 +622,7 @@
             "valid_until": "2027-01-01",
             "value": "1995.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -622,6 +645,7 @@
             "valid_until": "2027-06-01",
             "value": "2032.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -644,6 +668,7 @@
             "valid_until": null,
             "value": "2069.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -665,6 +690,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -693,6 +719,7 @@
             "valid_until": "2026-01-01",
             "value": "2016.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -715,6 +742,7 @@
             "valid_until": "2027-01-01",
             "value": "2104.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -737,6 +765,7 @@
             "valid_until": "2027-06-01",
             "value": "2143.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -759,6 +788,7 @@
             "valid_until": null,
             "value": "2182.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -780,6 +810,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -808,6 +839,7 @@
             "valid_until": "2026-01-01",
             "value": "2070.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -830,6 +862,7 @@
             "valid_until": "2027-01-01",
             "value": "2160.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -852,6 +885,7 @@
             "valid_until": "2027-06-01",
             "value": "2200.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -874,6 +908,7 @@
             "valid_until": null,
             "value": "2240.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -895,6 +930,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -923,6 +959,7 @@
             "valid_until": "2026-01-01",
             "value": "2202.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -945,6 +982,7 @@
             "valid_until": "2027-01-01",
             "value": "2302.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -967,6 +1005,7 @@
             "valid_until": "2027-06-01",
             "value": "2346.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -989,6 +1028,7 @@
             "valid_until": null,
             "value": "2382.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1010,6 +1050,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1038,6 +1079,7 @@
             "valid_until": "2026-01-01",
             "value": "2396.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1060,6 +1102,7 @@
             "valid_until": "2027-01-01",
             "value": "2505.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1082,6 +1125,7 @@
             "valid_until": "2027-06-01",
             "value": "2553.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1104,6 +1148,7 @@
             "valid_until": null,
             "value": "2589.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1125,6 +1170,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1153,6 +1199,7 @@
             "valid_until": "2026-01-01",
             "value": "2541.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1175,6 +1222,7 @@
             "valid_until": "2027-01-01",
             "value": "2656.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1197,6 +1245,7 @@
             "valid_until": "2027-06-01",
             "value": "2707.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1219,6 +1268,7 @@
             "valid_until": null,
             "value": "2754.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1240,6 +1290,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "testo-unico-ccnl-logistica-2025-pdf",
@@ -1298,7 +1349,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e02a4e50b917304c7ca6861ed3fe1c586f3dd8d69a601d6e0029cb3b8458990a",
+    "source_hash": "d697aeb08079952005eed99e2deb59f929332c16f81329a38003b2d8df9064ca",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1324,6 +1375,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1359,6 +1411,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1394,6 +1447,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1429,6 +1483,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1452,6 +1507,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1478,6 +1534,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-logistica-trasporto-confetra-2023",
@@ -1500,6 +1557,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-logistica-trasporto-confetra-2023",

@@ -75,7 +75,12 @@
         {
           "valid_from": "2024-07-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -184,6 +189,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -239,6 +245,7 @@
             "valid_until": "2025-06-01",
             "value": "1350.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -261,6 +268,7 @@
             "valid_until": "2026-05-01",
             "value": "1383.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -283,6 +291,7 @@
             "valid_until": "2027-04-01",
             "value": "1412.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -305,6 +314,7 @@
             "valid_until": "2027-11-01",
             "value": "1441.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -327,6 +337,7 @@
             "valid_until": null,
             "value": "1458.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -348,6 +359,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -376,6 +388,7 @@
             "valid_until": "2025-06-01",
             "value": "1440.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -398,6 +411,7 @@
             "valid_until": "2026-05-01",
             "value": "1476.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -420,6 +434,7 @@
             "valid_until": "2027-04-01",
             "value": "1507.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -442,6 +457,7 @@
             "valid_until": "2027-11-01",
             "value": "1538.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -464,6 +480,7 @@
             "valid_until": null,
             "value": "1556.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -485,6 +502,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -513,6 +531,7 @@
             "valid_until": "2025-06-01",
             "value": "1461.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -535,6 +554,7 @@
             "valid_until": "2026-05-01",
             "value": "1497.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -557,6 +577,7 @@
             "valid_until": "2027-04-01",
             "value": "1529.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -579,6 +600,7 @@
             "valid_until": "2027-11-01",
             "value": "1560.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -601,6 +623,7 @@
             "valid_until": null,
             "value": "1578.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -622,6 +645,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -650,6 +674,7 @@
             "valid_until": "2025-06-01",
             "value": "1519.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -672,6 +697,7 @@
             "valid_until": "2026-05-01",
             "value": "1557.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -694,6 +720,7 @@
             "valid_until": "2027-04-01",
             "value": "1590.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -716,6 +743,7 @@
             "valid_until": "2027-11-01",
             "value": "1623.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -738,6 +766,7 @@
             "valid_until": null,
             "value": "1641.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -759,6 +788,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -787,6 +817,7 @@
             "valid_until": "2025-06-01",
             "value": "1620.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -809,6 +840,7 @@
             "valid_until": "2026-05-01",
             "value": "1660.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -831,6 +863,7 @@
             "valid_until": "2027-04-01",
             "value": "1695.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -853,6 +886,7 @@
             "valid_until": "2027-11-01",
             "value": "1730.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -875,6 +909,7 @@
             "valid_until": null,
             "value": "1750.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -896,6 +931,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -924,6 +960,7 @@
             "valid_until": "2025-06-01",
             "value": "1717.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -946,6 +983,7 @@
             "valid_until": "2026-05-01",
             "value": "1759.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -968,6 +1006,7 @@
             "valid_until": "2027-04-01",
             "value": "1797.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -990,6 +1029,7 @@
             "valid_until": "2027-11-01",
             "value": "1834.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1012,6 +1052,7 @@
             "valid_until": null,
             "value": "1855.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1033,6 +1074,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -1061,6 +1103,7 @@
             "valid_until": "2025-06-01",
             "value": "1821.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1083,6 +1126,7 @@
             "valid_until": "2026-05-01",
             "value": "1866.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1105,6 +1149,7 @@
             "valid_until": "2027-04-01",
             "value": "1905.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1127,6 +1172,7 @@
             "valid_until": "2027-11-01",
             "value": "1944.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1149,6 +1195,7 @@
             "valid_until": null,
             "value": "1967.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1170,6 +1217,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -1198,6 +1246,7 @@
             "valid_until": "2025-06-01",
             "value": "1992.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1220,6 +1269,7 @@
             "valid_until": "2026-05-01",
             "value": "2041.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1242,6 +1292,7 @@
             "valid_until": "2027-04-01",
             "value": "2084.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1264,6 +1315,7 @@
             "valid_until": "2027-11-01",
             "value": "2127.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1286,6 +1338,7 @@
             "valid_until": null,
             "value": "2152.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1307,6 +1360,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -1335,6 +1389,7 @@
             "valid_until": "2025-06-01",
             "value": "2138.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1357,6 +1412,7 @@
             "valid_until": "2026-05-01",
             "value": "2191.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1379,6 +1435,7 @@
             "valid_until": "2027-04-01",
             "value": "2237.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1401,6 +1458,7 @@
             "valid_until": "2027-11-01",
             "value": "2283.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1423,6 +1481,7 @@
             "valid_until": null,
             "value": "2310.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1444,6 +1503,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -1472,6 +1532,7 @@
             "valid_until": "2025-06-01",
             "value": "2309.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1494,6 +1555,7 @@
             "valid_until": "2026-05-01",
             "value": "2366.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1516,6 +1578,7 @@
             "valid_until": "2027-04-01",
             "value": "2416.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1538,6 +1601,7 @@
             "valid_until": "2027-11-01",
             "value": "2466.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1560,6 +1624,7 @@
             "valid_until": null,
             "value": "2495.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-aspx-c-257",
@@ -1581,6 +1646,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-aspx-c-257",
@@ -1606,7 +1672,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "1c843b0a37674d145d53a00604c514719a905834cf498639efbd1cf0272f3814",
+    "source_hash": "66ca61a26dae3db3aca69491b0d6087a26ba0a2e68e6257e0acd056c08c96b28",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1632,6 +1698,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-confesercenti",
@@ -1667,6 +1734,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-confesercenti",
@@ -1703,6 +1771,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-confesercenti",
@@ -1738,6 +1807,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-confesercenti",
@@ -1761,6 +1831,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confesercenti",
@@ -1787,6 +1858,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confesercenti",
@@ -1809,6 +1881,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confesercenti",

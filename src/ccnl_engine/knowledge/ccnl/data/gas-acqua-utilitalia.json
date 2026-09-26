@@ -91,7 +91,12 @@
         {
           "valid_from": "2022-10-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -182,6 +187,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -212,6 +218,7 @@
             "valid_until": "2023-10-01",
             "value": "1564.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -234,6 +241,7 @@
             "valid_until": "2024-09-01",
             "value": "1614.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -256,6 +264,7 @@
             "valid_until": "2025-07-01",
             "value": "1677.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -278,6 +287,7 @@
             "valid_until": "2026-07-01",
             "value": "1740.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -300,6 +310,7 @@
             "valid_until": null,
             "value": "1782.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -333,6 +344,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -352,6 +364,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -380,6 +393,7 @@
             "valid_until": "2023-10-01",
             "value": "1739.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -402,6 +416,7 @@
             "valid_until": "2024-09-01",
             "value": "1794.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -424,6 +439,7 @@
             "valid_until": "2025-07-01",
             "value": "1864.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -446,6 +462,7 @@
             "valid_until": "2026-07-01",
             "value": "1934.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -468,6 +485,7 @@
             "valid_until": null,
             "value": "1980.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -501,6 +519,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -520,6 +539,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -548,6 +568,7 @@
             "valid_until": "2023-10-01",
             "value": "1923.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -570,6 +591,7 @@
             "valid_until": "2024-09-01",
             "value": "1984.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -592,6 +614,7 @@
             "valid_until": "2025-07-01",
             "value": "2062.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -614,6 +637,7 @@
             "valid_until": "2026-07-01",
             "value": "2139.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -636,6 +660,7 @@
             "valid_until": null,
             "value": "2191.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -669,6 +694,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -688,6 +714,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -716,6 +743,7 @@
             "valid_until": "2023-10-01",
             "value": "2056.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -738,6 +766,7 @@
             "valid_until": "2024-09-01",
             "value": "2121.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -760,6 +789,7 @@
             "valid_until": "2025-07-01",
             "value": "2204.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -782,6 +812,7 @@
             "valid_until": "2026-07-01",
             "value": "2287.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -804,6 +835,7 @@
             "valid_until": null,
             "value": "2342.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -837,6 +869,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -856,6 +889,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -884,6 +918,7 @@
             "valid_until": "2023-10-01",
             "value": "2189.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -906,6 +941,7 @@
             "valid_until": "2024-09-01",
             "value": "2259.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -928,6 +964,7 @@
             "valid_until": "2025-07-01",
             "value": "2347.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -950,6 +987,7 @@
             "valid_until": "2026-07-01",
             "value": "2435.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -972,6 +1010,7 @@
             "valid_until": null,
             "value": "2494.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1005,6 +1044,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1024,6 +1064,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -1052,6 +1093,7 @@
             "valid_until": "2023-10-01",
             "value": "2404.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1074,6 +1116,7 @@
             "valid_until": "2024-09-01",
             "value": "2480.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1096,6 +1139,7 @@
             "valid_until": "2025-07-01",
             "value": "2578.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1118,6 +1162,7 @@
             "valid_until": "2026-07-01",
             "value": "2674.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1140,6 +1185,7 @@
             "valid_until": null,
             "value": "2738.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1173,6 +1219,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1192,6 +1239,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -1220,6 +1268,7 @@
             "valid_until": "2023-10-01",
             "value": "2620.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1242,6 +1291,7 @@
             "valid_until": "2024-09-01",
             "value": "2703.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1264,6 +1314,7 @@
             "valid_until": "2025-07-01",
             "value": "2809.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1286,6 +1337,7 @@
             "valid_until": "2026-07-01",
             "value": "2915.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1308,6 +1360,7 @@
             "valid_until": null,
             "value": "2985.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1341,6 +1394,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1360,6 +1414,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -1388,6 +1443,7 @@
             "valid_until": "2023-10-01",
             "value": "2836.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1410,6 +1466,7 @@
             "valid_until": "2024-09-01",
             "value": "2926.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1432,6 +1489,7 @@
             "valid_until": "2025-07-01",
             "value": "3041.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1454,6 +1512,7 @@
             "valid_until": "2026-07-01",
             "value": "3155.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1476,6 +1535,7 @@
             "valid_until": null,
             "value": "3230.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1509,6 +1569,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1528,6 +1589,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -1556,6 +1618,7 @@
             "valid_until": "2023-10-01",
             "value": "3141.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1578,6 +1641,7 @@
             "valid_until": "2024-09-01",
             "value": "3240.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1600,6 +1664,7 @@
             "valid_until": "2025-07-01",
             "value": "3367.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1622,6 +1687,7 @@
             "valid_until": "2026-07-01",
             "value": "3493.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1644,6 +1710,7 @@
             "valid_until": null,
             "value": "3577.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-pdf",
@@ -1677,6 +1744,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1708,6 +1776,7 @@
           },
           "months_per_year": 12,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-pdf",
@@ -1727,6 +1796,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-pdf",
@@ -1845,7 +1915,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "c0a9d34d7aa906d661c3a078f0780cd591deedb5e7ebb00f567ab6ccf7f4116b",
+    "source_hash": "f2555f778fd50e703c6fafb798020db95674b30722b47bed3811867bc5538d96",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1871,6 +1941,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-gas-acqua-2024",
@@ -1906,6 +1977,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-gas-acqua-2024",
@@ -1941,6 +2013,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-gas-acqua-2024",
@@ -1976,6 +2049,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-gas-acqua-2024",
@@ -1999,6 +2073,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-gas-acqua-2024",
@@ -2025,6 +2100,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-gas-acqua-2024",
@@ -2047,6 +2123,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-gas-acqua-2024",

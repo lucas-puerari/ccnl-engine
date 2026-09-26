@@ -91,7 +91,12 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -182,6 +187,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -212,6 +218,7 @@
             "valid_until": "2026-12-01",
             "value": "1399.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -234,6 +241,7 @@
             "valid_until": "2027-07-01",
             "value": "1429.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -256,6 +264,7 @@
             "valid_until": "2028-12-01",
             "value": "1459.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -278,6 +287,7 @@
             "valid_until": null,
             "value": "1518.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -299,6 +309,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -327,6 +338,7 @@
             "valid_until": "2026-12-01",
             "value": "1560.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -349,6 +361,7 @@
             "valid_until": "2027-07-01",
             "value": "1596.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -371,6 +384,7 @@
             "valid_until": "2028-12-01",
             "value": "1631.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -393,6 +407,7 @@
             "valid_until": null,
             "value": "1701.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -414,6 +429,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -442,6 +458,7 @@
             "valid_until": "2026-12-01",
             "value": "1702.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -464,6 +481,7 @@
             "valid_until": "2027-07-01",
             "value": "1743.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -486,6 +504,7 @@
             "valid_until": "2028-12-01",
             "value": "1783.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -508,6 +527,7 @@
             "valid_until": null,
             "value": "1862.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -529,6 +549,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -557,6 +578,7 @@
             "valid_until": "2026-12-01",
             "value": "1841.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -579,6 +601,7 @@
             "valid_until": "2027-07-01",
             "value": "1887.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -601,6 +624,7 @@
             "valid_until": "2028-12-01",
             "value": "1932.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -623,6 +647,7 @@
             "valid_until": null,
             "value": "2020.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -644,6 +669,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -672,6 +698,7 @@
             "valid_until": "2026-12-01",
             "value": "1988.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -694,6 +721,7 @@
             "valid_until": "2027-07-01",
             "value": "2038.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -716,6 +744,7 @@
             "valid_until": "2028-12-01",
             "value": "2088.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -738,6 +767,7 @@
             "valid_until": null,
             "value": "2186.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -759,6 +789,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -787,6 +818,7 @@
             "valid_until": "2026-12-01",
             "value": "2056.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -809,6 +841,7 @@
             "valid_until": "2027-07-01",
             "value": "2108.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -831,6 +864,7 @@
             "valid_until": "2028-12-01",
             "value": "2161.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -853,6 +887,7 @@
             "valid_until": null,
             "value": "2263.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -874,6 +909,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -902,6 +938,7 @@
             "valid_until": "2026-12-01",
             "value": "2317.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -924,6 +961,7 @@
             "valid_until": "2027-07-01",
             "value": "2378.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -946,6 +984,7 @@
             "valid_until": "2028-12-01",
             "value": "2439.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -968,6 +1007,7 @@
             "valid_until": null,
             "value": "2559.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -989,6 +1029,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -1017,6 +1058,7 @@
             "valid_until": "2026-12-01",
             "value": "2542.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1039,6 +1081,7 @@
             "valid_until": "2027-07-01",
             "value": "2611.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1061,6 +1104,7 @@
             "valid_until": "2028-12-01",
             "value": "2680.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1083,6 +1127,7 @@
             "valid_until": null,
             "value": "2814.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1116,6 +1161,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "telecomunicazioni-asstel",
@@ -1135,6 +1181,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -1163,6 +1210,7 @@
             "valid_until": "2026-12-01",
             "value": "2542.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1185,6 +1233,7 @@
             "valid_until": "2027-07-01",
             "value": "2611.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1207,6 +1256,7 @@
             "valid_until": "2028-12-01",
             "value": "2680.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1229,6 +1279,7 @@
             "valid_until": null,
             "value": "2814.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "telecomunicazioni-asstel",
@@ -1262,6 +1313,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "telecomunicazioni-asstel",
@@ -1282,6 +1334,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "telecomunicazioni-asstel",
@@ -1337,7 +1390,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "890abb0292d2b1da2d89bd7fce2e4929adae6209ea8800fdbcbe12f6dc03ced1",
+    "source_hash": "c114e263f19465a2cdf7b2f222d97bef76e30c99c13207cfe860dbf6cd66e294",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1363,6 +1416,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1398,6 +1452,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1433,6 +1488,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1468,6 +1524,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1491,6 +1548,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1521,6 +1579,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-telecomunicazioni-asstel-2017",
@@ -1543,6 +1602,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-telecomunicazioni-asstel-2017",

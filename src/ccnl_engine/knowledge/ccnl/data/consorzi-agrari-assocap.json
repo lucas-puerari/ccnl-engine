@@ -101,7 +101,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -192,6 +197,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -223,6 +229,7 @@
             "valid_until": "2026-01-01",
             "value": "2149.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -245,6 +252,7 @@
             "valid_until": null,
             "value": "2212.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -278,6 +286,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -308,6 +317,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -327,6 +337,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -355,6 +366,7 @@
             "valid_until": "2026-01-01",
             "value": "2149.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -377,6 +389,7 @@
             "valid_until": null,
             "value": "2212.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -410,6 +423,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -440,6 +454,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -459,6 +474,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -487,6 +503,7 @@
             "valid_until": "2026-01-01",
             "value": "1945.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -509,6 +526,7 @@
             "valid_until": null,
             "value": "2002.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -542,6 +560,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -572,6 +591,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -591,6 +611,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -619,6 +640,7 @@
             "valid_until": "2026-01-01",
             "value": "1661.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -641,6 +663,7 @@
             "valid_until": null,
             "value": "1710.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -674,6 +697,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -693,6 +717,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -721,6 +746,7 @@
             "valid_until": "2026-01-01",
             "value": "1529.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -743,6 +769,7 @@
             "valid_until": null,
             "value": "1574.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -776,6 +803,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -795,6 +823,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -823,6 +852,7 @@
             "valid_until": "2026-01-01",
             "value": "1426.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -845,6 +875,7 @@
             "valid_until": null,
             "value": "1468.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -878,6 +909,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -897,6 +929,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -925,6 +958,7 @@
             "valid_until": "2026-01-01",
             "value": "1336.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -947,6 +981,7 @@
             "valid_until": null,
             "value": "1375.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -980,6 +1015,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -999,6 +1035,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -1027,6 +1064,7 @@
             "valid_until": "2026-01-01",
             "value": "1197.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -1049,6 +1087,7 @@
             "valid_until": null,
             "value": "1233.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -1082,6 +1121,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -1101,6 +1141,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -1129,6 +1170,7 @@
             "valid_until": "2026-01-01",
             "value": "1040.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -1151,6 +1193,7 @@
             "valid_until": null,
             "value": "1070.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-agrari-assocap",
@@ -1184,6 +1227,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -1203,6 +1247,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -1228,7 +1273,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "c1e177f78004f2b37ecc418c233a99f66deffca28985fee601f65172f549a080",
+    "source_hash": "7554a66daeabef04821f576b6c86487d208552c656ffbdf100c0681cb149626d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1254,6 +1299,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -1289,6 +1335,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -1324,6 +1371,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-agrari-assocap",
@@ -1347,6 +1395,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -1377,6 +1426,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
@@ -1399,6 +1449,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-agrari-assocap",
