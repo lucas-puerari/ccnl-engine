@@ -47,6 +47,7 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -73,7 +74,9 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     table starts 2026-02-01, so January would raise a gap error in calculate_year.
     """
     pid = PeriodId(year=2026, month=12)
-    state = PeriodState(regular_periods_closed=11, tax_withholding_periods_closed=11)
+    state = PeriodState(
+        ytd=TaxYearState(regular_periods_closed=11, tax_withholding_periods_closed=11)
+    )
     regular = calculate_period(
         PeriodCalculationRequest(
             period_id=pid,

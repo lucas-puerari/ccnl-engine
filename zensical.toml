@@ -16,6 +16,7 @@ nav = [
   ]},
   { "Engine" = [
     { "Computing payroll" = "engine/index.md" },
+    { "Payroll state"     = "engine/payroll-state.md" },
     { "Pay components"    = "engine/pay-components.md" },
     { "Second level"      = "engine/second-level.md" },
     { "Fiscal"            = "engine/fiscal.md" },

@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -14,6 +13,12 @@ from ccnl_engine.payroll.application._calendar import effective_calendar
 from ccnl_engine.payroll.application._extra_month_accrual import (
     non_accruing_days,
     termination_settlements,
+)
+from ccnl_engine.payroll.application._year_runs import (
+    allocate_run_events,
+    flag_partial_month,
+    opening_of_year,
+    select_runs,
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
@@ -37,8 +42,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
+from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year import (
     DEFAULT_PAYMENT_DAY,
     monthly_payment_date,
@@ -52,7 +56,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["YearCalculationResult", "calculate_year"]
 
@@ -99,100 +102,6 @@ class YearCalculationResult:
         return tuple(issue for r in self.period_results for issue in r.issues)
 
 
-def _allocate_events(
-    run: PayrollRun,
-    period_events: dict[int, tuple[WorkEvent, ...]],
-    per_run_events: dict[str, tuple[WorkEvent, ...]],
-) -> tuple[WorkEvent, ...]:
-    """Return the events allocated to ``run`` under the two-layer policy.
-
-    Priority: explicit ``run_id`` allocation in ``per_run_events`` takes
-    precedence.  Regular runs fall back to ``period_events`` keyed by month.
-    Extra-month runs (thirteenth, fourteenth, etc.) that have no explicit
-    allocation receive no events.
-
-    Args:
-        run: The payroll run being processed.
-        period_events: Month-keyed events (applies only to regular runs).
-        per_run_events: ``run_id``-keyed events (any run kind).
-
-    Returns:
-        Tuple of :class:`~ccnl_engine.payroll.domain.events.WorkEvent` for
-        this run, possibly empty.
-
-    Raises:
-        ValueError: When the same run is allocated events from both
-            ``period_events`` and ``per_run_events`` (duplicate allocation).
-    """
-    in_per_run = run.run_id in per_run_events
-    in_period = run.run_kind == "regular" and run.month in period_events
-    if in_per_run and in_period:
-        msg = (
-            f"Duplicate event allocation for run '{run.run_id}': "
-            f"events are present in both period_events[{run.month}] and "
-            f"per_run_events['{run.run_id}']; supply events in one source only."
-        )
-        raise ValueError(msg)
-    if in_per_run:
-        return per_run_events[run.run_id]
-    if in_period:
-        return period_events[run.month]
-    return ()
-
-
-def _select_runs(
-    calendar: WorkCalendar, employment_period: EmploymentPeriod | None
-) -> PayrollSchedule:
-    """Return the runs of the year the employment overlaps.
-
-    Returns:
-        :meth:`PayrollSchedule.from_calendar` restricted to the employment.
-
-    Raises:
-        InvalidInputError: When the employment has no day in the year.
-    """
-    schedule = PayrollSchedule.from_calendar(calendar, employment_period)
-    if not schedule.runs:
-        msg = (
-            f"employment period {employment_period} has no day in "
-            f"{calendar.year}: there is no payroll run to compute"
-        )
-        raise InvalidInputError(msg, feature="employment_facts")
-    return schedule
-
-
-def _flag_partial_month(
-    result: PeriodCalculationResult,
-    run: PayrollRun,
-    employment_period: EmploymentPeriod | None,
-) -> PeriodCalculationResult:
-    """Mark a regular run of a partly employed month as provisional.
-
-    The bundled CCNL data define no daily divisor for a partial month, so
-    the run carries the full monthly pay and a provisional issue.
-
-    Returns:
-        ``result``, with one more issue when the employment covers only part
-        of the run month.
-    """
-    if (
-        employment_period is None
-        or run.run_kind is not RunKind.REGULAR
-        or employment_period.covers_month(run.year, run.month)
-    ):
-        return result
-    issue = CalculationIssue(
-        code=_PARTIAL_MONTH,
-        message=(
-            f"employment covers only part of {run.year}-{run.month:02d}; the "
-            "full monthly pay is computed because the CCNL data define no "
-            "daily divisor for a partial month"
-        ),
-        status=CalculationStatus.PROVISIONAL,
-    )
-    return replace(result, issues=(*result.issues, issue))
-
-
 def calculate_year(
     year: int,
     ccnl_slug: str,
@@ -216,6 +125,7 @@ def calculate_year(
     family_composition: FamilyComposition | None = None,
     has_dependent_children: bool = False,
     payment_day: int = DEFAULT_PAYMENT_DAY,
+    opening_state: PeriodState | None = None,
     repo: KnowledgeRepository | None = None,
     resolver: PolicyResolver | None = None,
     bundle_version: str | None = None,
@@ -295,6 +205,11 @@ def calculate_year(
             children; selects the higher fringe-benefit threshold.
         payment_day: Day of the run month on which every run is paid, 1-28.
             Every payment falls in ``year``, the tax year of every run.
+        opening_state: State the first run opens with.  ``None`` starts a
+            new employment; pass the result of
+            :func:`~ccnl_engine.payroll.application.close_tax_year\
+.close_tax_year` to carry the obligations of the previous year, such as
+            an installment recovery.  It must close no run of ``year``.
         repo: Optional knowledge repository.  Uses the bundled repository
             when ``None``.
         resolver: Optional pre-loaded policy resolver.  When ``None``,
@@ -312,15 +227,16 @@ def calculate_year(
     Errors: :class:`~ccnl_engine.engine.errors.InvalidInputError` for an
     override rejected by
     :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`,
-    an ``employment_period`` with no day in ``year`` or a ``payment_day``
-    outside 1-28; :class:`ValueError` for a run allocated events in both
+    an ``employment_period`` with no day in ``year``, a ``payment_day``
+    outside 1-28 or an ``opening_state`` with a run of the year closed;
+    :class:`ValueError` for a run allocated events in both
     ``period_events`` and ``per_run_events``, or ``weekly_hours`` above
     ``full_time_weekly_hours``.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, calendar)
-    schedule = _select_runs(year_calendar, employment_period)
+    schedule = select_runs(year_calendar, employment_period)
     withholding_schedule = WithholdingSchedule.for_runs(schedule, year_calendar)
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
@@ -333,13 +249,13 @@ def calculate_year(
         year_calendar, employment_period, non_accruing
     )
 
-    state = PeriodState.zero()
+    state = opening_of_year(year, opening_state)
     results: list[PeriodCalculationResult] = []
 
     for run in schedule.runs:
         pid = PeriodId(year=run.year, month=run.month)
         payment_date = monthly_payment_date(run.year, run.month, payment_day)
-        allocated_events = _allocate_events(
+        allocated_events = allocate_run_events(
             run, effective_period_events, effective_per_run_events
         )
         extra_sched = extra_month_index.get((run.run_kind, run.month))
@@ -375,7 +291,7 @@ def calculate_year(
             run=run,
             withholding_schedule=withholding_schedule,
         )
-        result = _flag_partial_month(
+        result = flag_partial_month(
             calculate_period(
                 req, repo=repo, resolver=resolver, bundle_version=bundle_version
             ),

@@ -30,6 +30,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -512,12 +513,14 @@ class TestFringeYtdAccumulation:
     def test_fringe_ytd_zero_without_fringe(self) -> None:
         """No fringe events leaves fringe_ytd unchanged."""
         result = calculate_period(_base())
-        assert result.closing_state.fringe.value == Decimal(0)
+        assert result.closing_state.ytd.fringe.value == Decimal(0)
 
     def test_fringe_ytd_accumulates(self) -> None:
         """fringe_ytd closing equals opening.fringe_ytd + period fringe value."""
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("300.00"))
-        opening = PeriodState(fringe=FringeYtd(value=Decimal("500.00")))
+        opening = PeriodState(
+            ytd=TaxYearState(fringe=FringeYtd(value=Decimal("500.00")))
+        )
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
@@ -527,19 +530,21 @@ class TestFringeYtdAccumulation:
             events=(evt,),
         )
         result = calculate_period(req)
-        assert result.closing_state.fringe.value == Decimal("800.00")
+        assert result.closing_state.ytd.fringe.value == Decimal("800.00")
 
     def test_fringe_taxed_ytd_zero_without_crossing(self) -> None:
         """No threshold crossing: fringe_taxed_ytd stays zero."""
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("100.00"))
         result = calculate_period(_req(evt))
-        assert result.closing_state.fringe.taxed == Decimal(0)
+        assert result.closing_state.ytd.fringe.taxed == Decimal(0)
 
     def test_fringe_taxed_ytd_set_on_crossing(self) -> None:
         """Threshold crossing: fringe_taxed_ytd equals full retroactive base."""
         # opening fringe_ytd=600 (untaxed) + 600 new = 1200 > 1000 → retroactive 1200
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("600.00"))
-        opening = PeriodState(fringe=FringeYtd(value=Decimal("600.00")))
+        opening = PeriodState(
+            ytd=TaxYearState(fringe=FringeYtd(value=Decimal("600.00")))
+        )
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
@@ -549,13 +554,15 @@ class TestFringeYtdAccumulation:
             events=(evt,),
         )
         result = calculate_period(req)
-        assert result.closing_state.fringe.taxed == Decimal("1200.00")
+        assert result.closing_state.ytd.fringe.taxed == Decimal("1200.00")
 
     def test_ytd_fringe_triggers_taxability(self) -> None:
         """Opening fringe_ytd near threshold makes a small new event taxable."""
         # threshold_standard=1000; after 900 YTD, 200 more = 1100 > 1000 → taxable
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("200.00"))
-        opening = PeriodState(fringe=FringeYtd(value=Decimal("900.00")))
+        opening = PeriodState(
+            ytd=TaxYearState(fringe=FringeYtd(value=Decimal("900.00")))
+        )
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),

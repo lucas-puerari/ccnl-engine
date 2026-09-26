@@ -32,6 +32,7 @@ from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     TaxYtd,
@@ -103,15 +104,17 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     recovered in 8 equal installments of 112.50 EUR.
     """
     opening = PeriodState(
-        regular_periods_closed=9,
-        tax_withholding_periods_closed=9,
-        trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
-        earnings=EarningsYtd(
-            gross=Decimal("20000.00"),
-            taxable=Decimal("18000.00"),
-            inps_base=Decimal("20000.00"),
-        ),
-        tax=TaxYtd(irpef=Decimal("2000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=9,
+            tax_withholding_periods_closed=9,
+            trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
+            earnings=EarningsYtd(
+                gross=Decimal("20000.00"),
+                taxable=Decimal("18000.00"),
+                inps_base=Decimal("20000.00"),
+            ),
+            tax=TaxYtd(irpef=Decimal("2000.00")),
+        )
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),
@@ -145,15 +148,17 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
     threshold in October.  Recovery = 50 EUR (<= 60): deducted fully in month 10.
     """
     opening = PeriodState(
-        regular_periods_closed=9,
-        tax_withholding_periods_closed=9,
-        trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
-        earnings=EarningsYtd(
-            gross=Decimal("20000.00"),
-            taxable=Decimal("18000.00"),
-            inps_base=Decimal("20000.00"),
-        ),
-        tax=TaxYtd(irpef=Decimal("2000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=9,
+            tax_withholding_periods_closed=9,
+            trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
+            earnings=EarningsYtd(
+                gross=Decimal("20000.00"),
+                taxable=Decimal("18000.00"),
+                inps_base=Decimal("20000.00"),
+            ),
+            tax=TaxYtd(irpef=Decimal("2000.00")),
+        )
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),

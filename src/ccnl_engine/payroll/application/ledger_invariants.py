@@ -129,7 +129,7 @@ def check_i10(
         A violation when the closing-minus-opening IRPEF delta diverges from
         the net IRPEF ledger movement.
     """
-    delta = result.closing_state.tax.irpef - opening.tax.irpef
+    delta = result.closing_state.ytd.tax.irpef - opening.ytd.tax.irpef
     ordinary_tax = _sum_account(result, AccountKind.ORDINARY_TAX)
     irpef_refund = sum(
         e.amount

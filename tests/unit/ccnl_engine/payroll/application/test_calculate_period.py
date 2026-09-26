@@ -57,6 +57,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -79,10 +80,12 @@ def _req(
     year: int = 2026,
     month: int = 1,
     payment_date: date | None = None,
-    opening_state: PeriodState | None = None,
+    opening_state: PeriodState | TaxYearState | None = None,
 ) -> PeriodCalculationRequest:
     if payment_date is None:
         payment_date = date(year, month, 28)
+    if isinstance(opening_state, TaxYearState):
+        opening_state = PeriodState(ytd=opening_state)
     return PeriodCalculationRequest(
         period_id=PeriodId(year=year, month=month),
         payment_date=payment_date,
@@ -214,7 +217,7 @@ class TestConguaglioDiscriminator:
         """The key discriminator: this fails with the legacy annual-divide engine."""
         result_zero = calculate_period(_req())
         result_with_ytd = calculate_period(
-            _req(opening_state=PeriodState(tax=TaxYtd(irpef=Decimal("1000.00"))))
+            _req(opening_state=TaxYearState(tax=TaxYtd(irpef=Decimal("1000.00"))))
         )
         assert result_zero.period_net != result_with_ytd.period_net
 
@@ -222,19 +225,19 @@ class TestConguaglioDiscriminator:
         """More IRPEF already withheld → less to withhold now → higher net."""
         result_zero = calculate_period(_req())
         result_with_ytd = calculate_period(
-            _req(opening_state=PeriodState(tax=TaxYtd(irpef=Decimal("1000.00"))))
+            _req(opening_state=TaxYearState(tax=TaxYtd(irpef=Decimal("1000.00"))))
         )
         assert result_with_ytd.period_net > result_zero.period_net
 
     def test_irpef_ytd_accumulates_in_closing(self) -> None:
-        """closing_state.tax.irpef equals the period IRPEF withheld."""
+        """closing_state.ytd.tax.irpef equals the period IRPEF withheld."""
         result = calculate_period(_req())
         irpef_period = sum(
             e.amount
             for e in result.ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
-        assert result.closing_state.tax.irpef == irpef_period
+        assert result.closing_state.ytd.tax.irpef == irpef_period
 
 
 class TestClosingStateTransitions:
@@ -242,11 +245,11 @@ class TestClosingStateTransitions:
 
     def test_regular_periods_closed_increments(self) -> None:
         """regular_periods_closed increases by exactly 1 per regular period."""
-        opening = PeriodState(
+        opening = TaxYearState(
             regular_periods_closed=5, tax_withholding_periods_closed=5
         )
         result = calculate_period(_req(opening_state=opening))
-        assert result.closing_state.regular_periods_closed == 6
+        assert result.closing_state.ytd.regular_periods_closed == 6
 
     def test_duplicate_run_id_raises(self) -> None:
         """Re-submitting an already-closed run_id raises ValueError."""
@@ -257,14 +260,14 @@ class TestClosingStateTransitions:
 
     def test_gross_ytd_accumulates(self) -> None:
         """gross_ytd closing equals opening plus period gross."""
-        opening = PeriodState(earnings=EarningsYtd(gross=Decimal("10000.00")))
+        opening = TaxYearState(earnings=EarningsYtd(gross=Decimal("10000.00")))
         result = calculate_period(_req(opening_state=opening))
         expected = Decimal("10000.00") + result.period_gross
-        assert result.closing_state.earnings.gross == expected
+        assert result.closing_state.ytd.earnings.gross == expected
 
     def test_inps_employee_ytd_accumulates(self) -> None:
         """inps_employee_ytd closing equals opening plus period employee INPS."""
-        opening = PeriodState(earnings=EarningsYtd(inps_employee=Decimal("500.00")))
+        opening = TaxYearState(earnings=EarningsYtd(inps_employee=Decimal("500.00")))
         result = calculate_period(_req(opening_state=opening))
         inps_period = sum(
             e.amount
@@ -272,11 +275,11 @@ class TestClosingStateTransitions:
             if e.account == AccountKind.EMPLOYEE_CONTRIBUTIONS
         )
         expected = Decimal("500.00") + inps_period
-        assert result.closing_state.earnings.inps_employee == expected
+        assert result.closing_state.ytd.earnings.inps_employee == expected
 
     def test_remaining_months_guard_no_error(self) -> None:
         """tax_withholding_periods_closed == 12 in a 13-period CCNL → remaining=1."""
-        opening = PeriodState(
+        opening = TaxYearState(
             regular_periods_closed=11, tax_withholding_periods_closed=12
         )
         result = calculate_period(_req(opening_state=opening))
@@ -284,22 +287,22 @@ class TestClosingStateTransitions:
 
     def test_taxable_ytd_accumulates(self) -> None:
         """taxable_ytd closing equals opening plus period_taxable slice."""
-        opening = PeriodState(earnings=EarningsYtd(taxable=Decimal("2000.00")))
+        opening = TaxYearState(earnings=EarningsYtd(taxable=Decimal("2000.00")))
         result = calculate_period(_req(opening_state=opening))
-        closing_taxable = result.closing_state.earnings.taxable
+        closing_taxable = result.closing_state.ytd.earnings.taxable
         assert closing_taxable > Decimal("2000.00")
-        assert closing_taxable == result.closing_state.earnings.taxable
+        assert closing_taxable == result.closing_state.ytd.earnings.taxable
 
     def test_taxable_ytd_zero_on_first_period(self) -> None:
         """taxable_ytd starts from zero when opening is PeriodState.zero()."""
         result = calculate_period(_req(opening_state=PeriodState.zero()))
-        assert result.closing_state.earnings.taxable > _ZERO
+        assert result.closing_state.ytd.earnings.taxable > _ZERO
 
     def test_inps_base_ytd_accumulates(self) -> None:
         """inps_base_ytd closing equals opening plus period INPS base."""
-        opening = PeriodState(earnings=EarningsYtd(inps_base=Decimal("1000.00")))
+        opening = TaxYearState(earnings=EarningsYtd(inps_base=Decimal("1000.00")))
         result = calculate_period(_req(opening_state=opening))
-        assert result.closing_state.earnings.inps_base > Decimal("1000.00")
+        assert result.closing_state.ytd.earnings.inps_base > Decimal("1000.00")
 
 
 class TestPayItems:
@@ -408,7 +411,7 @@ class TestWithholdingDue:
         """Final period with excess YTD produces negative withholding_due."""
         # metalmeccanico has 13 withholding slots; twpc=12 → remaining=1
         # regular_periods_closed=11 so the closing from this run reaches 12.
-        opening = PeriodState(
+        opening = TaxYearState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=12,
             tax=TaxYtd(irpef=Decimal("5000.00")),
@@ -418,7 +421,7 @@ class TestWithholdingDue:
 
     def test_ordinary_tax_negative_in_final_period_with_excess(self) -> None:
         """ordinary_tax is negative in the final period when YTD exceeds liability."""
-        opening = PeriodState(
+        opening = TaxYearState(
             regular_periods_closed=11,
             tax_withholding_periods_closed=12,
             tax=TaxYtd(irpef=Decimal("5000.00")),
@@ -428,7 +431,7 @@ class TestWithholdingDue:
 
     def test_ordinary_tax_non_negative_in_non_final_period(self) -> None:
         """ordinary_tax is clamped to zero in non-final periods."""
-        opening = PeriodState(
+        opening = TaxYearState(
             regular_periods_closed=3,
             tax_withholding_periods_closed=3,
             tax=TaxYtd(irpef=Decimal("5000.00")),
@@ -991,8 +994,10 @@ class TestExtraMonthRateo:
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState(
-                regular_periods_closed=regular_periods_closed,
-                tax_withholding_periods_closed=regular_periods_closed,
+                ytd=TaxYearState(
+                    regular_periods_closed=regular_periods_closed,
+                    tax_withholding_periods_closed=regular_periods_closed,
+                )
             ),
             run=run,
             employment_period=employment_period,
@@ -1058,8 +1063,10 @@ class TestExtraMonthRateo:
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(
-                    regular_periods_closed=5,
-                    tax_withholding_periods_closed=5,
+                    ytd=TaxYearState(
+                        regular_periods_closed=5,
+                        tax_withholding_periods_closed=5,
+                    )
                 ),
             )
         ).period_gross
@@ -1070,8 +1077,10 @@ class TestExtraMonthRateo:
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
                 opening_state=PeriodState(
-                    regular_periods_closed=11,
-                    tax_withholding_periods_closed=11,
+                    ytd=TaxYearState(
+                        regular_periods_closed=11,
+                        tax_withholding_periods_closed=11,
+                    )
                 ),
             )
         ).period_gross

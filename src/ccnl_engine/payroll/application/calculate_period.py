@@ -15,16 +15,16 @@ from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.tax.service.loaders import (
-    load_family_deduction_rules,
-    load_variable_pay_rules,
-)
 from ccnl_engine.payroll.application._capability_traces import (
     build_traces as _build_traces,
 )
 from ccnl_engine.payroll.application._capability_traces import (
     traces_to_observed as _traces_to_observed,
 )
+from ccnl_engine.payroll.application._carried_recovery import (
+    post_carried_recoveries,
+)
+from ccnl_engine.payroll.application._closing_state import RunOutcome, closing_state
 from ccnl_engine.payroll.application._extra_month_accrual import (
     run_fraction,
     settle_extra_months,
@@ -62,18 +62,9 @@ from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
-    PeriodState,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    FringeYtd,
-    RegimeCapAccount,
-    SommaEsenteAccount,
-    TaxYtd,
-    TrattamentoAccount,
-)
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
@@ -98,7 +89,7 @@ def _resolve_run_id(request: PeriodCalculationRequest) -> str:
         if request.run is not None
         else f"{request.period_id.year}_{request.period_id.month:02d}"
     )
-    if run_id in request.opening_state.closed_run_ids:
+    if run_id in request.opening_state.ytd.closed_run_ids:
         msg = f"Run '{run_id}' was already processed in this payroll year"
         raise ValueError(msg)
     return run_id
@@ -167,14 +158,15 @@ def calculate_period(
     )
     run_kind = request.run.run_kind if request.run is not None else RunKind.REGULAR
     run_id = _resolve_run_id(request)
-    slots_closed = request.opening_state.tax_withholding_periods_closed
+    opening = request.opening_state
+    slots_closed = opening.ytd.tax_withholding_periods_closed
     upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
     chain = _apply_extra_month_policy(
         chain, run_kind, run_fraction(request, ccnl, tctx.competence)
     )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
-    var_pay_rules = load_variable_pay_rules(tctx.fiscal_year)
+    var_pay_rules = effective_repo.load_variable_pay_rules(tctx.fiscal_year)
     fringe_threshold = (
         var_pay_rules.fringe_benefit.threshold_with_children
         if request.has_dependent_children
@@ -190,7 +182,7 @@ def calculate_period(
         as_of=tctx.competence,
         ccnl_slug=request.ccnl_slug,
         sector=ccnl.meta.tax_sector,
-        gross_ytd=request.opening_state.earnings.gross,
+        gross_ytd=opening.ytd.earnings.gross,
     )
     cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(
@@ -202,12 +194,12 @@ def calculate_period(
         effective_resolver,
         policy_context,
         fringe_threshold=fringe_threshold,
-        opening_fringe_ytd=request.opening_state.fringe.value,
-        opening_fringe_taxed=request.opening_state.fringe.taxed,
+        opening_fringe_ytd=opening.ytd.fringe.value,
+        opening_fringe_taxed=opening.ytd.fringe.taxed,
         pdr_income_ceiling=var_pay_rules.pdr.income_ceiling,
         rinnovo_regime=var_pay_rules.rinnovo,
         work_time_regime=var_pay_rules.notte_festivi_turni,
-        opening_work_time_cap=request.opening_state.work_time_regime,
+        opening_work_time_cap=opening.ytd.work_time_regime,
     )
     settlement = settle_extra_months(
         request.extra_month_settlements,
@@ -227,7 +219,7 @@ def calculate_period(
         effective_repo.load_surtax_rules(tctx.fiscal_year) if needs_surtax else None
     )
     fam_ded_rules = (
-        load_family_deduction_rules(tctx.fiscal_year)
+        effective_repo.load_family_deduction_rules(tctx.fiscal_year)
         if request.family_composition is not None
         else None
     )
@@ -240,7 +232,7 @@ def calculate_period(
         event_totals.tfr_base,
         event_totals.irpef_base,
         event_totals.substitute_base,
-        request.opening_state,
+        opening.ytd,
         withholding_schedule,
         upcoming_gross,
         year_rules,
@@ -265,6 +257,7 @@ def calculate_period(
             if request.employment_period is not None
             else DAYS_IN_YEAR
         ),
+        recovery_plan=opening.obligations.recovery_of(tctx.fiscal_year),
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
     traces = _build_traces(request, amounts)
@@ -298,7 +291,16 @@ def calculate_period(
         run_id,
     )
 
-    all_entries = ledger_entries + event_entries + se_entries
+    carried = post_carried_recoveries(
+        opening.obligations,
+        tctx.fiscal_year,
+        effective_resolver,
+        policy_context,
+        cp,
+        request.payment_date,
+        run_id,
+    )
+    all_entries = ledger_entries + event_entries + se_entries + carried.entries
 
     period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)
     period_net = (
@@ -323,43 +325,20 @@ def calculate_period(
         + _sum_ledger(all_entries, AccountKind.TFR_ACCRUAL)
     )
 
-    period_inps_base = monthly_gross + event_totals.inps_base
-    regular_delta = 1 if run_kind == "regular" else 0
-    tax_delta = 1 if run_kind.consumes_withholding_slot else 0
-    op = request.opening_state
-    closing = PeriodState(
-        tax_year=tctx.fiscal_year,
-        regular_periods_closed=op.regular_periods_closed + regular_delta,
-        tax_withholding_periods_closed=(op.tax_withholding_periods_closed + tax_delta),
-        closed_run_ids=op.closed_run_ids | {run_id},
-        earnings=EarningsYtd(
-            gross=op.earnings.gross + period_gross,
-            inps_base=op.earnings.inps_base + period_inps_base,
-            taxable=op.earnings.taxable + amounts.period_taxable,
-            inps_employee=(
-                op.earnings.inps_employee
-                + _sum_ledger(all_entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
-            ),
-        ),
-        fringe=FringeYtd(
-            value=op.fringe.value + event_totals.fringe_value,
-            taxed=op.fringe.taxed + event_totals.fringe_irpef,
-            pdr=op.fringe.pdr + amounts.pdr_eligible,
-        ),
-        tax=TaxYtd(
-            irpef=op.tax.irpef + amounts.period_irpef,
-            surtax=op.tax.surtax + amounts.period_surtax,
-        ),
-        trattamento=TrattamentoAccount(
-            recognized=op.trattamento.recognized + max(_ZERO, amounts.period_tratt),
-            recovered=op.trattamento.recovered + max(_ZERO, -amounts.period_tratt),
-            plan=next_recovery_plan,
-        ),
-        somma_esente=SommaEsenteAccount(
-            recognized=op.somma_esente.recognized + period_somma_esente,
-        ),
-        work_time_regime=RegimeCapAccount(
-            used=op.work_time_regime.used + event_totals.work_time_cap_used
+    closing = closing_state(
+        opening,
+        RunOutcome(
+            tax_year=tctx.fiscal_year,
+            withholding_slots=withholding_schedule.run_count.value,
+            run_id=run_id,
+            run_kind=run_kind,
+            entries=all_entries,
+            period_inps_base=monthly_gross + event_totals.inps_base,
+            amounts=amounts,
+            events=event_totals,
+            somma_esente=period_somma_esente,
+            recovery_plan=next_recovery_plan,
+            carried=carried.remaining,
         ),
     )
     benefit_breakdown = BenefitBreakdown(
@@ -377,7 +356,7 @@ def calculate_period(
         period_employer_cost=period_employer_cost,
         unpaid_absence_deduction=unpaid_absence_deduction,
         closing_state=closing,
-        pay_items=pay_items + event_items + se_items,
+        pay_items=pay_items + event_items + se_items + carried.items,
         ledger_entries=all_entries,
         capability_report=capability_report,
         contribution_breakdown=contribution_breakdown,
@@ -388,7 +367,7 @@ def calculate_period(
         issues=event_totals.issues + amounts.surtax.issues,
         decisions=event_totals.decisions + amounts.surtax.decisions,
     )
-    rec = _reconcile(result, request.opening_state)
+    rec = _reconcile(result, opening)
     if not rec.ok:
         msgs = "; ".join(f"[{v.invariant_id}] {v.message}" for v in rec.violations)
         msg = f"Period reconciliation failed: {msgs}"

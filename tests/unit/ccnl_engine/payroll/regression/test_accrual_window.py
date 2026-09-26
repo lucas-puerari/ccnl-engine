@@ -18,6 +18,7 @@ from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 _CCNL_METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _LEVEL_C3 = "C3"
@@ -40,8 +41,10 @@ def _extra_month_req(
         ccnl_slug=ccnl,
         level_code=level,
         opening_state=PeriodState(
-            regular_periods_closed=regular_periods_closed,
-            tax_withholding_periods_closed=regular_periods_closed,
+            ytd=TaxYearState(
+                regular_periods_closed=regular_periods_closed,
+                tax_withholding_periods_closed=regular_periods_closed,
+            )
         ),
         run=run,
         employment_period=employment_period,
@@ -96,8 +99,10 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             ccnl_slug=_CCNL_METALMECCANICO,
             level_code=_LEVEL_C3,
             opening_state=PeriodState(
-                regular_periods_closed=5,
-                tax_withholding_periods_closed=5,
+                ytd=TaxYearState(
+                    regular_periods_closed=5,
+                    tax_withholding_periods_closed=5,
+                )
             ),
         )
     ).period_gross
@@ -158,8 +163,10 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             ccnl_slug=_CCNL_COMMERCIO,
             level_code=_LEVEL_4,
             opening_state=PeriodState(
-                regular_periods_closed=5,
-                tax_withholding_periods_closed=5,
+                ytd=TaxYearState(
+                    regular_periods_closed=5,
+                    tax_withholding_periods_closed=5,
+                )
             ),
         )
     ).period_gross

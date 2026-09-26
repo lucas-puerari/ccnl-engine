@@ -14,7 +14,7 @@ Invariants:
           - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
           - ORDINARY_TAX - SURTAX - SEPARATE_TAX
           = period_net.
-    I10 — IRPEF delta: closing.tax.irpef - opening.tax.irpef
+    I10: IRPEF delta: closing.ytd.tax.irpef - opening.ytd.tax.irpef
           = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
     I11 — YTD state transition: regular_periods_closed, tax_withholding_periods_closed,
           closed_run_ids, earnings.gross, and earnings.inps_employee advance correctly
@@ -25,12 +25,15 @@ Invariants:
     I13 — gross identity: CASH_EARNINGS total = period_gross.
     I14 — all ledger entry IDs in a period are unique.
     I15 — period_gross is non-negative.
-    I16 — 0 <= closing.trattamento.recovered <= closing.trattamento.recognized.
+    I16: 0 <= closing.ytd.trattamento.recovered <= closing.ytd.trattamento.recognized.
     I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
           Refunds and adjustments must use an explicit account, not a negative
           deduction.
     I18: closing.work_time_regime.used = opening used + eligible amounts of
          the capped regime decisions, and does not exceed the annual cap.
+    I19: every recovery carried from an earlier tax year posts its next
+         installment as a negative CREDITS entry and closes one installment
+         further along, or is dropped after its last one.
 
 Legal invariants (L1 to L4, see ``legal_invariants``) reject negative
 substitute tax, ordinary tax, employee contributions and employer
@@ -59,6 +62,7 @@ from ccnl_engine.payroll.application.state_invariants import (
     check_i11,
     check_i16,
     check_i18,
+    check_i19,
 )
 
 if TYPE_CHECKING:
@@ -123,5 +127,6 @@ def reconcile(
     violations.extend(check_i16(result))
     violations.extend(check_i17(result))
     violations.extend(check_i18(result, opening))
+    violations.extend(check_i19(result, opening))
     violations.extend(check_legal(result, opening))
     return ReconciliationResult(violations=tuple(violations))

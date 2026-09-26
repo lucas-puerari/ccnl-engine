@@ -14,7 +14,10 @@ from ccnl_engine.payroll.application.calculate_period import (
 from ccnl_engine.payroll.application.calculate_year import (
     calculate_year as _calculate_year,
 )
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+from ccnl_engine.payroll.application.close_tax_year import (
+    close_tax_year as _close_tax_year,
+)
+from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyResolver
 
@@ -176,7 +179,24 @@ YearCalculationResult` with one result per run and aggregated annual totals.
             family_composition=request.family_composition,
             has_dependent_children=request.has_dependent_children,
             payment_day=request.payment_day,
+            opening_state=request.opening_state,
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
         )
+
+    @staticmethod
+    def close_tax_year(closing_state: PeriodState) -> PeriodState:
+        """Open the next tax year from the closing state of the last run.
+
+        See :func:`~ccnl_engine.payroll.application.close_tax_year\
+.close_tax_year`.
+
+        Args:
+            closing_state: ``closing_state`` of the last run of the year.
+
+        Returns:
+            The opening state of the next tax year: a fresh tax year state
+            and the obligations still running.
+        """
+        return _close_tax_year(closing_state)

@@ -55,7 +55,7 @@ def test_known_surtax_tables_are_withheld() -> None:
     """Control: Emilia-Romagna and Modena (F257) tables exist for 2026."""
     result = regular_period(regione="IT-45", comune_belfiore="F257")
 
-    assert result.closing_state.tax.surtax > Decimal(0)
+    assert result.closing_state.ytd.tax.surtax > Decimal(0)
     assert result.status is CalculationStatus.FINAL
     reasons = {d.capability: d.reason_code for d in result.decisions}
     assert reasons == {
@@ -75,7 +75,7 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     result = regular_period(regione="IT-99", comune_belfiore="Z999")
 
     assert result.status is CalculationStatus.INCOMPLETE
-    assert result.closing_state.tax.surtax == Decimal(0)
+    assert result.closing_state.ytd.tax.surtax == Decimal(0)
     assert {issue.code for issue in result.issues} == {
         "regional_surtax_unknown",
         "municipal_surtax_unknown",

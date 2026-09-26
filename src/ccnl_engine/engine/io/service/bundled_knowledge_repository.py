@@ -9,13 +9,19 @@ from ccnl_engine.engine.io.service.capability_catalog_loader import (
     load_capability_catalog,
 )
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.tax.service.loaders import (
+    load_family_deduction_rules,
+    load_variable_pay_rules,
+    load_year_rules,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityCatalog
     from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
 
 
 class BundledKnowledgeRepository:
@@ -62,3 +68,20 @@ class BundledKnowledgeRepository:
             with all declared capabilities for the requested year.
         """
         return load_capability_catalog(year)
+
+    def load_variable_pay_rules(self, year: int) -> VariablePayRules:  # noqa: PLR6301
+        """Return the statutory variable-pay rules for *year*.
+
+        Returns:
+            A :class:`~ccnl_engine.engine.tax.domain.variable_pay.VariablePayRules`
+            with fringe thresholds, PdR and L. 199/2025 regimes.
+        """
+        return load_variable_pay_rules(year)
+
+    def load_family_deduction_rules(self, year: int) -> FamilyDeductionRules:  # noqa: PLR6301
+        """Return the Art. 12 TUIR family deduction rules for *year*.
+
+        Returns:
+            A :class:`~ccnl_engine.engine.tax.domain.family.FamilyDeductionRules`.
+        """
+        return load_family_deduction_rules(year)

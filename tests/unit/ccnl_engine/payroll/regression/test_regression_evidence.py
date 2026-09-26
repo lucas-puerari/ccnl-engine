@@ -39,6 +39,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -86,9 +87,11 @@ def test_ce3_excess_ytd_produces_refund() -> None:
     representation instead of a signed withholding entry).
     """
     high_ytd = PeriodState(
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=12,
-        tax=TaxYtd(irpef=Decimal("5000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=12,
+            tax=TaxYtd(irpef=Decimal("5000.00")),
+        )
     )
     result = calculate_period(_req(month=12, opening=high_ytd))
 
@@ -220,21 +223,21 @@ def test_credit_recognized_in_january_recovered_in_february() -> None:
     # Period 1: January — B5 portieri baseline, no events
     result1 = calculate_period(_req_tratt(month=1))
     state1 = result1.closing_state
-    assert state1.trattamento.recognized > _ZERO, (
+    assert state1.ytd.trattamento.recognized > _ZERO, (
         "Trattamento integrativo must be recognized in January for B5 portieri "
         "income level (~15k EUR annual, terziario sector)"
     )
-    assert state1.trattamento.recovered == _ZERO
+    assert state1.ytd.trattamento.recovered == _ZERO
 
     # Period 2: February — large bonus pushes projected annual income above 28k EUR
     bonus = BonusEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("25000.00"))
     result2 = calculate_period(_req_tratt(month=2, opening=state1, events=(bonus,)))
     state2 = result2.closing_state
 
-    assert state2.trattamento.recognized == state1.trattamento.recognized, (
+    assert state2.ytd.trattamento.recognized == state1.ytd.trattamento.recognized, (
         "credit_recognized_ytd must not grow when period_tratt <= 0"
     )
-    assert state2.trattamento.recovered > _ZERO, (
+    assert state2.ytd.trattamento.recovered > _ZERO, (
         "Trattamento integrativo must be partially recovered in February "
         "when a 25,000 EUR bonus projects annual income far above 28k EUR"
     )

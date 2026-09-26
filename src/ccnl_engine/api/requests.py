@@ -154,9 +154,14 @@ class PayrollRequest:
             hours, seniority, IVS ceiling eligibility).
         employer: The employer; its headcount selects the INPS rate tier.
             Defaults to an employer with 50 employees.
-        opening_state: YTD state entering this run.  Use
-            :meth:`~ccnl_engine.payroll.domain.period.PeriodState.zero`
-            for January.
+        opening_state: State entering this run: the tax year state and the
+            obligations.  Use
+            :meth:`~ccnl_engine.payroll.domain.period.PeriodState.zero` for
+            the first run of an employment,
+            :meth:`PayrollEngine.close_tax_year` for the first run of a later
+            tax year, or
+            :meth:`~ccnl_engine.payroll.application.opening_balances.OpeningBalances.to_state`
+            for balances of a previous provider.
         events: Variable work events for this run.
         regione: Region code for regional surtax, e.g. ``"IT-45"``.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
@@ -210,6 +215,9 @@ class PayrollYearRequest:
         has_dependent_children: Higher fringe-benefit threshold when True.
         payment_day: Day of the run month on which every run is paid, 1-28.
             Defaults to 28.
+        opening_state: State the first run opens with.  ``None`` starts a
+            new employment; pass :meth:`PayrollEngine.close_tax_year` of the
+            last run of the previous year to carry its obligations.
 
     Raises:
         InvalidInputError: When ``calendar`` is neither ``None`` nor a
@@ -230,6 +238,7 @@ class PayrollYearRequest:
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
     payment_day: int = DEFAULT_PAYMENT_DAY
+    opening_state: PeriodState | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_calendar_override(self.calendar)
