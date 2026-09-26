@@ -62,6 +62,7 @@ from ccnl_engine.payroll.application.calculate_year import (
     YearCalculationResult as PayrollYearResult,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
+from ccnl_engine.payroll.domain.employer import Employer, Headcount
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.domain.family import (
     Dependent,
@@ -87,9 +88,11 @@ __all__ = [
     "DataIntegrityError",
     "Dependent",
     "DependentRelationship",
+    "Employer",
     "EmploymentFacts",
     "FamilyComposition",
     "FixedTerm",
+    "Headcount",
     "InvalidInputError",
     "OutOfScopeError",
     "PayrollCalendar",

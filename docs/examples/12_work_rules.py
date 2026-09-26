@@ -3,7 +3,14 @@
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 from ccnl_engine.events import (
     AbsenceEvent,
     BonusEvent,
@@ -21,7 +28,8 @@ result = engine.calculate(
         payment_date=date(2026, 3, 27),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        employment_facts=EmploymentFacts(num_employees=100),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(100)),
         events=(
             OvertimeEvent(
                 event_date=date(2026, 3, 5),

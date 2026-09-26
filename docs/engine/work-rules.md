@@ -179,6 +179,7 @@ from ccnl_engine import (
     Employee,
     Employer,
     Employment,
+    Headcount,
     FringeBenefitInput,
     LeaveInput,
     OvertimeHours,
@@ -194,7 +195,7 @@ scenario = AnnualEstimateInput(
     employment=Employment(
         ccnl="metalmeccanico-federmeccanica.json",
         contract=Permanent(),
-        employer=Employer(num_employees=50),
+        employer=Employer(headcount=Headcount(50)),
         as_of=date(2026, 9, 1),
     ),
 )

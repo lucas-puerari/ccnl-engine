@@ -3,8 +3,10 @@
 from datetime import date
 
 from ccnl_engine import (
+    Employer,
     EmploymentFacts,
     FixedTerm,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -20,8 +22,8 @@ result = engine.calculate(
         level_code="4",
         employment_facts=EmploymentFacts(
             contract_type=FixedTerm(),
-            num_employees=50,
         ),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 

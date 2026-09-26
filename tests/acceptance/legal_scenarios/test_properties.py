@@ -9,7 +9,7 @@ import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine import EmploymentFacts
+from ccnl_engine import Employer, EmploymentFacts, Headcount
 from ccnl_engine.events import OvertimeEvent
 from tests.acceptance.legal_scenarios._support import DOMESTIC, regular_period
 
@@ -44,9 +44,12 @@ def test_part_time_contributions_are_never_negative(weekly_hours: int) -> None:
 @settings(max_examples=20)
 def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
     """Domestic INPS is an hourly flat rate times non-negative paid hours."""
-    facts = EmploymentFacts(num_employees=1, weekly_hours=25, contributable_hours=hours)
+    facts = EmploymentFacts(weekly_hours=25, contributable_hours=hours)
     breakdown = regular_period(
-        ccnl_slug=DOMESTIC, level_code="B", facts=facts
+        ccnl_slug=DOMESTIC,
+        level_code="B",
+        facts=facts,
+        employer=Employer(headcount=Headcount(1)),
     ).contribution_breakdown
 
     assert breakdown.employee >= 0

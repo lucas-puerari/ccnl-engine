@@ -15,8 +15,10 @@ from decimal import Decimal
 
 from ccnl_engine import (
     Apprentice,
+    Employer,
     EmploymentFacts,
     FixedTerm,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -281,7 +283,6 @@ def _validate_time_supplements(
 
 def _build_employment_facts(
     contract: Permanent | FixedTerm | Apprentice,
-    num_employees: int,
     seniority_mode: str,
     seniority_value: int,
     ivs_ceiling_applies: bool,
@@ -306,7 +307,6 @@ def _build_employment_facts(
     )
     return EmploymentFacts(
         contract_type=contract,
-        num_employees=num_employees,
         seniority_months=seniority_months,
         ceiling_status=ceiling,
         weekly_hours=weekly_hours_int,
@@ -413,7 +413,6 @@ def compute_salary(
 
         employment_facts = _build_employment_facts(
             contract=contract,
-            num_employees=num_employees,
             seniority_mode=seniority_mode,
             seniority_value=seniority_value,
             ivs_ceiling_applies=ivs_ceiling_applies,
@@ -436,6 +435,7 @@ def compute_salary(
             ccnl_slug=filename,
             level_code=level_code,
             employment_facts=employment_facts,
+            employer=Employer(headcount=Headcount(num_employees)),
             regione=regione or None,
             comune_belfiore=comune_belfiore or None,
         )

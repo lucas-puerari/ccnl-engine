@@ -10,10 +10,10 @@ from ccnl_engine.engine.contract.domain.category import (
     parse_worker_category,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
     EmploymentPeriod,
-    Headcount,
     Permanent,
     SeniorityMonths,
     WeeklyHours,
@@ -36,7 +36,11 @@ __all__ = ["EmploymentFacts", "PayrollRequest", "PayrollYearRequest"]
 
 @dataclass(frozen=True)
 class EmploymentFacts:
-    """Employment-side facts used to resolve contribution rates and ceilings.
+    """Worker-side employment facts used to resolve pay, contributions and ceilings.
+
+    Employer-side facts such as the headcount are not employment facts: pass
+    them as :class:`~ccnl_engine.payroll.domain.employer.Employer` on the
+    request.
 
     Facts are validated on construction: impossible values raise
     :class:`~ccnl_engine.engine.errors.InvalidInputError` (a ``ValueError``)
@@ -45,7 +49,6 @@ class EmploymentFacts:
 
     Attributes:
         contract_type: Employment contract type (permanent, fixed-term, apprentice).
-        num_employees: Employer headcount for INPS rate resolution.  At least 1.
         ceiling_status: Whether the IVS massimale contribution ceiling applies.
             Defaults to
             :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`.
@@ -75,7 +78,6 @@ class EmploymentFacts:
     """
 
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    num_employees: int = 50
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     weekly_hours: int | None = None
     contributable_hours: Decimal | None = None
@@ -90,19 +92,14 @@ class EmploymentFacts:
         """Validate every fact by building its value object.
 
         The value objects raise ``InvalidInputError`` for impossible facts:
-        a headcount below 1, negative seniority or contributable hours,
+        negative seniority or contributable hours,
         non-positive weekly hours, weekly hours above full time, an end
         date before the start date, or an unknown worker category.  A
         category given as its string value is normalized to the enum.
         """
-        _ = (self.headcount, self.seniority, self.contributable, self.period)
+        _ = (self.seniority, self.contributable, self.period)
         object.__setattr__(self, "category", parse_worker_category(self.category))
         check_within_full_time(self.contracted_hours, self.full_time_hours)
-
-    @property
-    def headcount(self) -> Headcount:
-        """Validated employer headcount."""
-        return Headcount(self.num_employees)
 
     @property
     def contracted_hours(self) -> WeeklyHours | None:
@@ -151,8 +148,10 @@ class PayrollRequest:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``"metalmeccanico-federmeccanica.json"``.
         level_code: Worker's contractual level code, e.g. ``"C3"``.
-        employment_facts: Employment-side facts (contract type, headcount,
-            IVS ceiling eligibility).
+        employment_facts: Worker-side employment facts (contract type,
+            hours, seniority, IVS ceiling eligibility).
+        employer: The employer; its headcount selects the INPS rate tier.
+            Defaults to an employer with 50 employees.
         opening_state: YTD state entering this run.  Use
             :meth:`~ccnl_engine.payroll.domain.period.PeriodState.zero`
             for January.
@@ -168,6 +167,7 @@ class PayrollRequest:
     ccnl_slug: str
     level_code: str
     employment_facts: EmploymentFacts
+    employer: Employer = field(default_factory=Employer)
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
@@ -185,8 +185,10 @@ class PayrollYearRequest:
         ccnl_slug: Knowledge-bundle CCNL filename.
         level_code: Worker's contractual level code.
         calendar: Year-level payroll calendar; governs the run sequence.
-        employment_facts: Employment-side facts (contract type, headcount,
-            IVS ceiling eligibility).
+        employment_facts: Worker-side employment facts (contract type,
+            hours, seniority, IVS ceiling eligibility).
+        employer: The employer; its headcount selects the INPS rate tier.
+            Defaults to an employer with 50 employees.
         period_events: Optional mapping from month number (1-12) to events.
             Extra-month runs (thirteenth, fourteenth) are not addressable here;
             use ``per_run_events`` for explicit run-level allocation.
@@ -204,6 +206,7 @@ class PayrollYearRequest:
     level_code: str
     calendar: WorkCalendar
     employment_facts: EmploymentFacts = field(default_factory=EmploymentFacts)
+    employer: Employer = field(default_factory=Employer)
     period_events: dict[int, tuple[WorkEvent, ...]] = field(default_factory=dict)
     per_run_events: dict[str, tuple[WorkEvent, ...]] = field(default_factory=dict)
     regione: str | None = None

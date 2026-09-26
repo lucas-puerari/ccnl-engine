@@ -3,7 +3,9 @@
 from datetime import date
 
 from ccnl_engine import (
+    Employer,
     EmploymentFacts,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -19,7 +21,8 @@ result_0 = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        employment_facts=EmploymentFacts(num_employees=100),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(100)),
     )
 )
 
@@ -31,9 +34,9 @@ result_60 = engine.calculate(
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         employment_facts=EmploymentFacts(
-            num_employees=100,
             seniority_months=60,
         ),
+        employer=Employer(headcount=Headcount(100)),
     )
 )
 

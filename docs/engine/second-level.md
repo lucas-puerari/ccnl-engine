@@ -1,7 +1,8 @@
 # Second-level bargaining
 
 Company or territorial agreements may add allowances on top of the national CCNL
-minimum. These are modelled by passing an `Employer` object to `estimate_annual()` or `estimate_period_effects()`.
+minimum. The `SupplementaryAllowance` type describes such an allowance; it is not
+yet an input of the payroll pipeline, and `Employer` carries only the headcount.
 
 See [Domain: Second-level bargaining](../domain/components.md#12-second-level-bargaining-contrattazione-di-secondo-livello)
 for the legal background.

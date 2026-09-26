@@ -1,64 +1,65 @@
-"""Employer domain type."""
+"""Employer domain types: headcount value object and employer model."""
 
 from __future__ import annotations
 
-from decimal import Decimal
+from dataclasses import dataclass, field
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from ccnl_engine.engine.errors import InvalidInputError
 
-from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
-from ccnl_engine.engine.primitives.domain.primitives import StrictDecimal
+__all__ = ["Employer", "Headcount"]
 
-_ZERO: Decimal = Decimal(0)
+_FEATURE = "employer"
+_DEFAULT_HEADCOUNT_VALUE = 50
 
 
-class Employer(BaseModel):
-    """Employer-side inputs for payroll computation.
+@dataclass(frozen=True, slots=True)
+class Headcount:
+    """Employer headcount used to select INPS contribution tiers.
+
+    At least one: the worker being paid is an employee of the employer.
 
     Attributes:
-        num_employees: Employer headcount. Required — used to select the
-            INPS contribution tier. Must be ``>= 1``.
-        second_level_allowances: Allowances from a territorial or company
-            second-level agreement (*contrattazione di secondo livello*).
-            Each item is scaled by ``part_time_ratio``; whether the
-            apprenticeship percentage also applies is controlled per-item
-            by ``apprenticeship_pct_relevant``. Mutually exclusive with
-            :attr:`~ccnl_engine.payroll.domain.employee.Agreement\
-.ral_override`.
-        inail_rate: Caller-supplied INAIL tariff rate (e.g. ``Decimal("0.015")``
-            for 1.5%). When set, the engine computes the INAIL employer
-            contribution as ``gross_annual * inail_rate`` and adds it to
-            ``employer_cost_annual``. Must be ``>= 0``. ``None`` means INAIL
-            is not modelled (reported as ``not_computed`` in the scope).
-            The INAIL massimale and minimale retributivi are not applied;
-            the caller is responsible for providing the correct net rate.
-        inps_employer_exemption_annual: Caller-declared annual INPS employer
-            contribution exemption (e.g. Esonero contributivo, Decontribuzione
-            Sud). When set, the engine subtracts this amount from
-            ``employer_cost_annual``, capped at ``inps_employer_annual``
-            (cannot exceed the contribution itself). Must be ``>= 0``.
-            ``None`` means no exemption is applied.
+        value: Number of employees, ``>= 1``.
+
+    Raises:
+        InvalidInputError: When ``value`` is not an int or is below 1.
     """
 
-    model_config = ConfigDict(frozen=True, extra="forbid")
+    value: int
 
-    num_employees: int = Field(ge=1)
-    second_level_allowances: tuple[SupplementaryAllowance, ...] = ()
-    inail_rate: StrictDecimal | None = None
-    inps_employer_exemption_annual: StrictDecimal | None = None
+    def __post_init__(self) -> None:  # noqa: D105
+        if isinstance(self.value, bool) or not isinstance(self.value, int):
+            msg = f"headcount must be an int; got {self.value!r}"
+            raise InvalidInputError(msg, feature=_FEATURE)
+        if self.value < 1:
+            msg = f"headcount must be >= 1; got {self.value}"
+            raise InvalidInputError(msg, feature=_FEATURE)
 
-    @model_validator(mode="after")
-    def _check_rates(self) -> Employer:
-        if self.inail_rate is not None and self.inail_rate < _ZERO:
-            msg = f"inail_rate must be >= 0, got {self.inail_rate}"
-            raise ValueError(msg)
-        if (
-            self.inps_employer_exemption_annual is not None
-            and self.inps_employer_exemption_annual < _ZERO
-        ):
-            msg = (
-                "inps_employer_exemption_annual must be >= 0, "
-                f"got {self.inps_employer_exemption_annual}"
-            )
-            raise ValueError(msg)
-        return self
+
+@dataclass(frozen=True, slots=True)
+class Employer:
+    """The employer of the worker being paid.
+
+    The only employer model the payroll pipeline consumes.
+
+    Attributes:
+        headcount: Employer headcount, used to select the INPS contribution
+            tier.  Defaults to 50 employees when the employer does not
+            declare it.
+
+    Raises:
+        InvalidInputError: When ``headcount`` is not a :class:`Headcount`.
+    """
+
+    headcount: Headcount = field(
+        default_factory=lambda: Headcount(_DEFAULT_HEADCOUNT_VALUE)
+    )
+
+    def __post_init__(self) -> None:  # noqa: D105
+        _require_headcount(self.headcount)
+
+
+def _require_headcount(value: object) -> None:
+    if not isinstance(value, Headcount):
+        msg = f"headcount must be a Headcount; got {value!r}"
+        raise InvalidInputError(msg, feature=_FEATURE)

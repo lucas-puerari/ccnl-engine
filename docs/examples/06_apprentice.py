@@ -4,7 +4,9 @@ from datetime import date
 
 from ccnl_engine import (
     Apprentice,
+    Employer,
     EmploymentFacts,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -21,8 +23,8 @@ result_start = engine.calculate(
         level_code="4",
         employment_facts=EmploymentFacts(
             contract_type=Apprentice(months_elapsed=0),
-            num_employees=50,
         ),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 
@@ -35,8 +37,8 @@ result_24 = engine.calculate(
         level_code="4",
         employment_facts=EmploymentFacts(
             contract_type=Apprentice(months_elapsed=24),
-            num_employees=50,
         ),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 

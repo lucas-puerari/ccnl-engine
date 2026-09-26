@@ -22,28 +22,6 @@ def _require_int(value: object, name: str) -> None:
 
 
 @dataclass(frozen=True, slots=True)
-class Headcount:
-    """Employer headcount used to select INPS contribution tiers.
-
-    At least one: the worker being paid is an employee of the employer.
-
-    Attributes:
-        value: Number of employees, ``>= 1``.
-
-    Raises:
-        InvalidInputError: When ``value`` is not an int or is below 1.
-    """
-
-    value: int
-
-    def __post_init__(self) -> None:  # noqa: D105
-        _require_int(self.value, "num_employees")
-        if self.value < 1:
-            msg = f"num_employees must be >= 1; got {self.value}"
-            raise InvalidInputError(msg, feature=_FEATURE)
-
-
-@dataclass(frozen=True, slots=True)
 class WeeklyHours:
     """Weekly working hours, contracted or full-time.
 
@@ -219,15 +197,15 @@ Contract = Annotated[
 class Employment(BaseModel):
     """The employment relationship.
 
-    Ties together which CCNL applies, the contract type, the employer
-    (with headcount), and the reference date for all time-series lookups.
+    Ties together which CCNL applies, the contract type, the employer,
+    and the reference date for all time-series lookups.
 
     Attributes:
         ccnl: Bundled CCNL filename (e.g.
             ``"metalmeccanico-federmeccanica.json"``).
         contract: Contract type — :class:`Permanent`, :class:`FixedTerm`,
             or :class:`Apprentice`.
-        employer: Employer-side inputs including headcount.
+        employer: The employer, with its headcount.
         as_of: Reference date for all time-series lookups (base pay,
             seniority amounts, allowances, additional months). Also the
             upper bound for deriving months of service when seniority is

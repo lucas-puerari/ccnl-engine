@@ -16,9 +16,11 @@ from decimal import Decimal
 from ccnl_engine import (
     Dependent,
     DependentRelationship,
+    Employer,
     EmploymentFacts,
     FamilyComposition,
     FixedTerm,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -47,7 +49,8 @@ def test_inps_contributions_metalmeccanico_c3() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     assert result.period_gross == Decimal("2158.26")
@@ -68,7 +71,8 @@ def test_irpef_ordinary_tax_metalmeccanico_c3() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     tc = result.tax_computation
@@ -89,7 +93,8 @@ def test_tfr_accrual_metalmeccanico_c3() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     tfr = next(i for i in result.pay_items if i.kind == "tfr_accrual_item")
@@ -118,7 +123,8 @@ def test_tredicesima_commercio_level4() -> None:
                     ),
                 ),
             ),
-            employment_facts=EmploymentFacts(num_employees=50),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(50)),
         )
     )
     tredicesima = next(
@@ -143,7 +149,8 @@ def test_addizionali_emilia_romagna_modena() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     result_surtax = engine.calculate(
@@ -152,7 +159,8 @@ def test_addizionali_emilia_romagna_modena() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
             regione="ER",
             comune_belfiore="F257",
         )
@@ -176,10 +184,10 @@ def test_domestic_inps_non_convivente() -> None:
             ccnl_slug="lavoro-domestico-non-convivente.json",
             level_code="B",
             employment_facts=EmploymentFacts(
-                num_employees=1,
                 weekly_hours=25,
                 contributable_hours=Decimal(108),
             ),
+            employer=Employer(headcount=Headcount(1)),
         )
     )
     assert result.period_gross == Decimal("1212.73")
@@ -200,7 +208,8 @@ def test_fringe_below_threshold_no_tax() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     result_fringe = engine.calculate(
@@ -209,7 +218,8 @@ def test_fringe_below_threshold_no_tax() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
             events=(FringeEvent(event_date=date(2026, 3, 1), amount=Decimal(100)),),
         )
     )
@@ -229,7 +239,8 @@ def test_sickness_full_integration_metalmeccanico() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
         )
     )
     result_sick = engine.calculate(
@@ -238,7 +249,8 @@ def test_sickness_full_integration_metalmeccanico() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
             events=(
                 SickLeaveEvent(
                     event_date=date(2026, 3, 10),
@@ -266,7 +278,8 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
             events=(
                 BonusEvent(
                     event_date=date(2026, 3, 1),
@@ -283,7 +296,8 @@ def test_pdr_productivity_bonus_separate_from_ordinary_irpef() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            employment_facts=EmploymentFacts(num_employees=100),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(100)),
             events=(
                 BonusEvent(
                     event_date=date(2026, 3, 1),
@@ -312,7 +326,8 @@ def test_naspi_addizionale_fixed_term() -> None:
             payment_date=date(2026, 3, 27),
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
-            employment_facts=EmploymentFacts(num_employees=50),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(50)),
         )
     )
     result_fixed = engine.calculate(
@@ -323,8 +338,8 @@ def test_naspi_addizionale_fixed_term() -> None:
             level_code="4",
             employment_facts=EmploymentFacts(
                 contract_type=FixedTerm(),
-                num_employees=50,
             ),
+            employer=Employer(headcount=Headcount(50)),
         )
     )
     assert result_fixed.period_employer_cost > result_permanent.period_employer_cost
@@ -343,7 +358,8 @@ def test_family_deductions_increase_net() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
-            employment_facts=EmploymentFacts(num_employees=50),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(50)),
             regione="ER",
         )
     )
@@ -353,7 +369,8 @@ def test_family_deductions_increase_net() -> None:
             payment_date=date(2026, 1, 28),
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
-            employment_facts=EmploymentFacts(num_employees=50),
+            employment_facts=EmploymentFacts(),
+            employer=Employer(headcount=Headcount(50)),
             regione="ER",
             family_composition=FamilyComposition(
                 dependents=(
@@ -377,7 +394,8 @@ def test_family_deductions_increase_net() -> None:
 
 def test_ytd_state_carries_irpef_forward() -> None:
     """Closing state from January carries YTD IRPEF withheld into February."""
-    facts = EmploymentFacts(num_employees=100)
+    facts = EmploymentFacts()
+    employer = Employer(headcount=Headcount(100))
     jan = engine.calculate(
         PayrollRequest(
             run=PayrollRun.regular(year=2026, month=1),
@@ -385,6 +403,7 @@ def test_ytd_state_carries_irpef_forward() -> None:
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
             employment_facts=facts,
+            employer=employer,
         )
     )
     feb = engine.calculate(
@@ -394,6 +413,7 @@ def test_ytd_state_carries_irpef_forward() -> None:
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
             employment_facts=facts,
+            employer=employer,
             opening_state=jan.closing_state,
         )
     )

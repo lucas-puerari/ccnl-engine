@@ -8,7 +8,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import EmploymentFacts, PayrollYearRequest, WorkerCategory
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollYearRequest,
+    WorkerCategory,
+)
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.run import RunKind
 from tests.acceptance.legal_scenarios._support import (
@@ -100,43 +106,43 @@ def test_missing_required_worker_category_is_rejected() -> None:
         )
 
 
-def _negative_headcount() -> EmploymentFacts:
-    return EmploymentFacts(num_employees=-1)
+def _negative_headcount() -> None:
+    regular_period(employer=Employer(headcount=Headcount(-1)))
 
 
-def _negative_seniority() -> EmploymentFacts:
-    return EmploymentFacts(seniority_months=-12)
+def _negative_seniority() -> None:
+    regular_period(facts=EmploymentFacts(seniority_months=-12))
 
 
-def _end_before_start() -> EmploymentFacts:
-    return EmploymentFacts(started_on=date(2026, 9, 30), ended_on=date(2026, 7, 1))
+def _end_before_start() -> None:
+    facts = EmploymentFacts(started_on=date(2026, 9, 30), ended_on=date(2026, 7, 1))
+    regular_period(facts=facts)
 
 
-def _hours_above_full_time() -> EmploymentFacts:
-    return EmploymentFacts(weekly_hours=60, full_time_weekly_hours=40)
+def _hours_above_full_time() -> None:
+    regular_period(facts=EmploymentFacts(weekly_hours=60, full_time_weekly_hours=40))
 
 
-def _negative_contributable_hours() -> EmploymentFacts:
-    return EmploymentFacts(
-        num_employees=1, weekly_hours=25, contributable_hours=Decimal(-160)
+def _negative_contributable_hours() -> None:
+    regular_period(
+        ccnl_slug=DOMESTIC,
+        level_code="B",
+        facts=EmploymentFacts(weekly_hours=25, contributable_hours=Decimal(-160)),
+        employer=Employer(headcount=Headcount(1)),
     )
 
 
 @pytest.mark.parametrize(
-    ("facts", "ccnl_slug", "level_code"),
+    "compute",
     [
-        pytest.param(_negative_headcount, COMMERCIO, "4", id="negative-headcount"),
-        pytest.param(_negative_seniority, COMMERCIO, "4", id="negative-seniority"),
-        pytest.param(_end_before_start, COMMERCIO, "4", id="end-before-start"),
-        pytest.param(_hours_above_full_time, COMMERCIO, "4", id="hours-over-full"),
-        pytest.param(
-            _negative_contributable_hours, DOMESTIC, "B", id="negative-contrib-hours"
-        ),
+        pytest.param(_negative_headcount, id="negative-headcount"),
+        pytest.param(_negative_seniority, id="negative-seniority"),
+        pytest.param(_end_before_start, id="end-before-start"),
+        pytest.param(_hours_above_full_time, id="hours-over-full"),
+        pytest.param(_negative_contributable_hours, id="negative-contrib-hours"),
     ],
 )
-def test_impossible_employment_facts_are_rejected(
-    facts: Callable[[], EmploymentFacts], ccnl_slug: str, level_code: str
-) -> None:
+def test_impossible_employment_facts_are_rejected(compute: Callable[[], None]) -> None:
     """Impossible facts raise instead of computing a payslip.
 
     Observed on 26 September 2026 (all accepted):
@@ -147,4 +153,4 @@ def test_impossible_employment_facts_are_rejected(
       1,274.68 above gross.
     """
     with pytest.raises(ValueError):  # noqa: PT011
-        regular_period(ccnl_slug=ccnl_slug, level_code=level_code, facts=facts())
+        compute()

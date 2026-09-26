@@ -49,8 +49,6 @@ When a worker's annual gross is negotiated above the CCNL minimum, pass a
 derives monthly and hourly rates from it, instead of building pay from the level
 table.
 
-This is mutually exclusive with `Employer.second_level_allowances`.
-
 ```python
 --8 < --"docs/examples/09_negotiated_ral.py"
 ```

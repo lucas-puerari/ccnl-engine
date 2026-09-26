@@ -12,7 +12,9 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    Employer,
     EmploymentFacts,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -34,7 +36,8 @@ def main() -> int:
         payment_date=date(2026, 1, 28),
         ccnl_slug="agenti-immobiliari-fiaip.json",
         level_code="II",
-        employment_facts=EmploymentFacts(num_employees=50),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(50)),
     )
     try:
         result = engine.calculate(request)

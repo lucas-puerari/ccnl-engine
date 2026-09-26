@@ -16,12 +16,12 @@ from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationSt
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
 )
+from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     ContributableHours,
     EmploymentPeriod,
     FixedTerm,
-    Headcount,
     Permanent,
     SeniorityMonths,
     WeeklyHours,
@@ -45,7 +45,7 @@ if TYPE_CHECKING:
 __all__ = ["YearCalculationResult", "calculate_year"]
 
 _ZERO = Decimal(0)
-_DEFAULT_HEADCOUNT = Headcount(50)
+_DEFAULT_EMPLOYER = Employer()
 
 
 @dataclass(frozen=True)
@@ -127,7 +127,7 @@ def calculate_year(
     *,
     calendar: WorkCalendar | None = None,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
-    num_employees: Headcount = _DEFAULT_HEADCOUNT,
+    employer: Employer = _DEFAULT_EMPLOYER,
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
     weekly_hours: WeeklyHours | None = None,
     contributable_hours: ContributableHours | None = None,
@@ -169,8 +169,8 @@ def calculate_year(
             :meth:`~ccnl_engine.payroll.domain.calendar.WorkCalendar.from_additional_months`.
         contract_type: Employment contract type.  Defaults to
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
-        num_employees: Employer headcount for INPS rate resolution.
-            Defaults to 50.
+        employer: The employer; its headcount resolves INPS rates.
+            Defaults to an employer with 50 employees.
         ceiling_status: Whether the IVS massimale contribution ceiling applies.
             Defaults to
             :attr:`~ccnl_engine.payroll.domain.eligibility.ContributionCeilingStatus.UNKNOWN`
@@ -260,7 +260,7 @@ def calculate_year(
             level_code=level_code,
             opening_state=state,
             contract_type=effective_contract,
-            num_employees=num_employees,
+            employer=employer,
             ceiling_status=ceiling_status,
             weekly_hours=weekly_hours,
             contributable_hours=contributable_hours,
