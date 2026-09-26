@@ -12,6 +12,7 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
 )
@@ -65,6 +66,16 @@ class YearCalculationResult:
     annual_net: Decimal
     annual_employer_cost: Decimal
     bundle_version: str | None = None
+
+    @property
+    def status(self) -> CalculationStatus:
+        """Worst status across :attr:`period_results`; final when empty."""
+        return CalculationStatus.worst(r.status for r in self.period_results)
+
+    @property
+    def issues(self) -> tuple[CalculationIssue, ...]:
+        """Issues of every period, concatenated in payment order."""
+        return tuple(issue for r in self.period_results for issue in r.issues)
 
 
 def _allocate_events(

@@ -29,7 +29,12 @@ from __future__ import annotations
 
 from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
-from ccnl_engine.api.results import PayrollResult
+from ccnl_engine.api.results import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+    PayrollResult,
+)
 from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
@@ -68,6 +73,9 @@ from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
     "Apprentice",
+    "CalculationDecision",
+    "CalculationIssue",
+    "CalculationStatus",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",

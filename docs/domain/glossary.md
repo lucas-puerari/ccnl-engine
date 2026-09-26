@@ -68,6 +68,34 @@ and withheld YTD.
 
 `TFR_SETTLEMENT ledger account`
 
+### calculation status (stato del calcolo)
+
+How far a result can be relied upon, from least to most severe:
+`final`, `provisional`, `incomplete`, `rejected`.  A period status is the
+worst status among its issues (`final` when there are none); a year status is
+the worst status among its periods.  An unknown normative input must never
+yield a `final` result.
+
+`CalculationStatus`, `PeriodCalculationResult.status`
+
+### calculation issue (anomalia di calcolo)
+
+A condition that lowers the status of a result, identified by a stable
+lower snake case `code` (for example `surtax_table_unknown`), with a message,
+the status it implies and, when one applies, its normative source.
+
+`CalculationIssue`, `PeriodCalculationResult.issues`
+
+### calculation decision (decisione di calcolo)
+
+What one capability actually decided in a run: its status, a stable
+`reason_code`, the normalized inputs it used, the rule and rule version
+applied, the normative source and the resulting amount (`None` when unknown).
+Distinct from the capability report, which records whether a capability ran,
+not what it decided.
+
+`CalculationDecision`
+
 ---
 
 ## Derived identities (invariants)

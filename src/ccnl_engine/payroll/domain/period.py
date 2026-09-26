@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
+from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
@@ -246,6 +247,9 @@ class PeriodCalculationResult:
             and compliance tracing.
         benefit_breakdown: Per-axis fringe/welfare benefit breakdown for
             audit and cost-centre reporting.
+        issues: Conditions that lower the reliability of this result, in
+            the order they were raised.  Empty when every capability
+            decided from known rules and facts.
     """
 
     period_id: PeriodId
@@ -263,3 +267,9 @@ class PeriodCalculationResult:
     run: PayrollRun | None = None
     unpaid_absence_deduction: Decimal = Decimal(0)
     bundle_version: str | None = None
+    issues: tuple[CalculationIssue, ...] = ()
+
+    @property
+    def status(self) -> CalculationStatus:
+        """Worst status implied by :attr:`issues`; final when there are none."""
+        return CalculationStatus.worst(issue.status for issue in self.issues)

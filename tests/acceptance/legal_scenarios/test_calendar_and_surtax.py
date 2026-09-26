@@ -66,7 +66,7 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     """Region and municipality without tables cannot yield a final payslip.
 
     Observed on 26 September 2026: surtax 0.00 and net 1,489.92, identical to
-    a run without region or municipality; the result has no status.
+    a run without region or municipality; the result status is final.
     """
     result = regular_period(regione="ZZ", comune_belfiore="Z999")
     status = getattr(result, "status", "final")

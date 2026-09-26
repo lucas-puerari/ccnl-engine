@@ -5,9 +5,17 @@ Re-exports the canonical request/result types used by
 """
 
 from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
-from ccnl_engine.api.results import PayrollResult
+from ccnl_engine.api.results import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+    PayrollResult,
+)
 
 __all__ = [
+    "CalculationDecision",
+    "CalculationIssue",
+    "CalculationStatus",
     "PayrollRequest",
     "PayrollResult",
     "PayrollYearRequest",
