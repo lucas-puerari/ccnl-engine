@@ -28,9 +28,9 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.errors import (
-    DataIntegrityError,
     InvalidInputError,
     MissingRequiredFactError,
+    OutOfScopeError,
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -246,36 +246,53 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
 
 
 def test_large_absence_does_not_produce_negative_gross() -> None:
-    """AbsenceEvent(hours=160) is accepted and period_gross stays positive.
+    """AbsenceEvent(hours=80) is accepted and period_gross stays positive.
 
-    Source: REVIEW.md §5, P0-6.  Absences post to EMPLOYEE_DEDUCTIONS so
-    period_gross reflects base salary only.  160 hours at 12.50 EUR deduct
-    2,000 EUR, below the monthly pay; the calculation succeeds and I15 is
-    satisfied.
+    Absences post to EMPLOYEE_DEDUCTIONS so period_gross reflects base
+    salary only.  80 hours at 12.50 EUR deduct 1,000 EUR, below the monthly
+    pay; the calculation succeeds with a positive gross and net.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(80),
+        hourly_rate=Decimal("12.50"),
+    )
+    result = calculate_period(_req(events=(absence,)))
+    assert result.period_gross > Decimal(0)
+    assert result.period_net >= Decimal(0)
+
+
+def test_absence_leaving_less_than_withholdings_is_out_of_scope() -> None:
+    """An absence that leaves less pay than the withholdings is not priced.
+
+    160 hours at 12.50 EUR deduct 2,000 EUR of 2,158.26 EUR of pay; the
+    IRPEF and INPS due on the projected annual income exceed the 158.26 EUR
+    left, which gave a net pay of -19.08 EUR.  Carrying the shortfall to a
+    later payslip is not modelled, so the run is rejected.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(160),
         hourly_rate=Decimal("12.50"),
     )
-    result = calculate_period(_req(events=(absence,)))
-    assert result.period_gross > Decimal(0)
+    with pytest.raises(OutOfScopeError, match=r"net pay of -19\.08") as exc:
+        calculate_period(_req(events=(absence,)))
+    assert exc.value.reason == "withholding_shortfall"
 
 
-def test_absence_above_monthly_pay_fails_closed() -> None:
-    """An absence deduction above the monthly pay is not priced.
+def test_absence_above_monthly_pay_is_invalid_input() -> None:
+    """An absence deduction above the monthly pay is rejected up front.
 
-    240 hours at 12.50 EUR deduct 3,000 EUR from 2,158.26 EUR of pay, so
-    the INPS base turns negative.  A YTD INPS base cannot be negative:
-    the closing state rejects the result instead of posting -79.89
-    employee and -254.21 employer contributions.
+    240 hours at 12.50 EUR deduct 3,000 EUR from 2,158.26 EUR of pay: the
+    INPS base would turn negative.  The deduction is checked against the
+    pay of the run before any amount is computed.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(240),
         hourly_rate=Decimal("12.50"),
     )
-    with pytest.raises(DataIntegrityError, match=r"inps_base must be a non-neg"):
+    with pytest.raises(InvalidInputError, match=r"more than the pay of the run"):
         calculate_period(_req(events=(absence,)))
 
 

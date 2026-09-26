@@ -45,6 +45,7 @@ if TYPE_CHECKING:
 __all__ = [
     "ExtraMonthSettlement",
     "non_accruing_days",
+    "run_accrual",
     "run_fraction",
     "settle_extra_months",
     "termination_settlements",
@@ -53,10 +54,10 @@ __all__ = [
 _EXTRA_KIND = "extra_month_earning"
 
 
-def run_fraction(
+def run_accrual(
     request: PeriodCalculationRequest, ccnl: CCNL, competence: date
-) -> Decimal:
-    """Return the share of a monthly pay the run pays as an extra month.
+) -> ExtraMonthAccrual | None:
+    """Return the rateo an extra-month run pays.
 
     Args:
         request: The period request.  Its ``extra_month_accrual`` is used
@@ -67,13 +68,13 @@ def run_fraction(
         competence: Date the CCNL entitlement is read at.
 
     Returns:
-        ``1`` for a regular run, the accrued fraction for an extra run.
+        The accrual of an extra-month run, ``None`` for any other run.
     """
     run = request.run
     if run is None or run.run_kind not in {k.value for k in ExtraMonthKind}:
-        return Decimal(1)
+        return None
     if request.extra_month_accrual is not None:
-        return request.extra_month_accrual.fraction
+        return request.extra_month_accrual
     kind = ExtraMonthKind(run.run_kind.value)
     standard = standard_calendar(ccnl, run.year, competence)
     max_fraction = next(
@@ -87,7 +88,20 @@ def run_fraction(
         accrual_window_start_month=run.month % 12 + 1,
         max_fraction=max_fraction,
     )
-    return ExtraMonthAccrual.of(schedule, run.year, request.employment_period).fraction
+    return ExtraMonthAccrual.of(schedule, run.year, request.employment_period)
+
+
+def run_fraction(accrual: ExtraMonthAccrual | None) -> Decimal:
+    """Return the share of a monthly pay the run pays.
+
+    Args:
+        accrual: The rateo of an extra-month run from :func:`run_accrual`,
+            ``None`` for any other run.
+
+    Returns:
+        ``1`` for a regular run, the accrued fraction for an extra run.
+    """
+    return Decimal(1) if accrual is None else accrual.fraction
 
 
 @dataclass(frozen=True)

@@ -58,6 +58,8 @@ class _PeriodAmounts:
     are derived from the ledger after all entries are posted.  ``surtax``
     carries the annual surtax decisions and issues behind ``period_surtax``;
     ``decisions`` holds every tax decision of the run, the surtax ones last.
+    ``projected_taxable`` is the annual taxable income the IRPEF of the run
+    was computed on; ``None`` when not recorded.
     """
 
     monthly_gross: Decimal
@@ -72,6 +74,7 @@ class _PeriodAmounts:
     pdr_eligible: Decimal
     surtax: SurtaxOutcome = field(default_factory=SurtaxOutcome)
     decisions: tuple[CalculationDecision, ...] = ()
+    projected_taxable: Decimal | None = None
 
 
 def _resolve_chain(
@@ -236,12 +239,12 @@ def _compute_amounts(
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     effective_irpef_base = event_irpef_base + pdr_excess
 
-    recurring_remaining = monthly_gross + upcoming_gross
-    recurring_inps_remaining = money(recurring_remaining * employee_rate_for_irpef)
-    recurring_taxable = recurring_remaining - recurring_inps_remaining
-    event_inps_on_irpef = money(event_inps_base * employee_rate_for_irpef)
-    event_taxable = effective_irpef_base - event_inps_on_irpef
-    taxable = opening.earnings.taxable + recurring_taxable + event_taxable
+    # The run enters with its actual employee INPS (IVS ceiling and 1%
+    # addizionale included); only the slots still to come are projected at
+    # the current rate, so the last slot settles on the final taxable income.
+    period_taxable = money(monthly_gross - inps_employee + effective_irpef_base)
+    upcoming_inps = money(upcoming_gross * employee_rate_for_irpef)
+    taxable = opening.earnings.taxable + period_taxable + upcoming_gross - upcoming_inps
 
     fam_ded = _ZERO
     family_rules = None if family_composition is None else family_deduction_rules
@@ -282,8 +285,6 @@ def _compute_amounts(
     )
     period_surtax = slot_share(surtax.total, withholding_schedule)
 
-    period_taxable = money(monthly_gross - inps_employee + effective_irpef_base)
-
     return (
         _PeriodAmounts(
             monthly_gross=monthly_gross,
@@ -296,6 +297,7 @@ def _compute_amounts(
             period_taxable=period_taxable,
             period_substitute_tax=period_substitute_tax,
             pdr_eligible=pdr_eligible,
+            projected_taxable=taxable,
             surtax=surtax,
             decisions=tuple(
                 d

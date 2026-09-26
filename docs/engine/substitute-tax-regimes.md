@@ -135,11 +135,17 @@ by all night, holiday and shift supplements of the tax year. Ineligible and
 unknown supplements do not consume the cap. Premi di risultato do not count
 toward it (c. 11), since they are a separate pay item kind.
 
-The account rejects a negative used amount. The reconciliation invariant I18
-checks that the closing account equals the opening one plus the eligible
-amounts of the run, and that it never exceeds the annual cap. Each decision of
-a capped regime records `annual_cap` and `cap_available` (the part of the cap
-left before that supplement) among its inputs.
+The account rejects a negative used amount. Each decision of a capped regime
+records `annual_cap` and `cap_available` (the part of the cap left before
+that supplement) among its inputs. The reconciliation invariant
+`substitute_tax_plafond` checks that the closing account equals the opening
+one plus the eligible amounts of the run and never exceeds the annual cap,
+that each decision sees the cap the earlier ones left and takes no more than
+it, and that the PdR eligible YTD advances by the `bonus_pdr` decision and
+stays within the PdR annual limit. The invariant `substitute_tax_eligibility`
+checks that the `SUBSTITUTE_TAX` posted equals the substitute tax of the
+decisions, and that a decision that is not `eligible` taxes nothing at the
+substitute rate.
 
 ### Not modelled
 

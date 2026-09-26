@@ -13,7 +13,9 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
-from ccnl_engine.payroll.application.state_invariants import check_i19
+from ccnl_engine.payroll.application.state_invariants import (
+    check_carried_recovery_advance,
+)
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
@@ -204,7 +206,7 @@ class TestCurrentYearRecovery:
 
 
 class TestCarriedRecoveryInvariant:
-    """I19 checks the installment posted and the advance of the plan."""
+    """carried_recovery_advance checks the installment and the plan advance."""
 
     def test_reports_a_missing_installment_and_a_plan_not_advanced(self) -> None:
         """Dropping the posting and the advance yields two violations."""
@@ -222,8 +224,8 @@ class TestCarriedRecoveryInvariant:
             ),
         )
 
-        assert check_i19(result, opening) == []
-        violations = check_i19(tampered, opening)
-        assert [v.invariant_id for v in violations] == ["I19", "I19"]
+        assert check_carried_recovery_advance(result, opening) == []
+        violations = check_carried_recovery_advance(tampered, opening)
+        assert [v.invariant_id for v in violations] == ["carried_recovery_advance"] * 2
         assert violations[0].expected == Decimal(-20)
         assert violations[0].actual is None

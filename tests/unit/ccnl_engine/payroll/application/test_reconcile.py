@@ -1,4 +1,4 @@
-"""Unit tests for reconcile(): all I1-I13 invariants and ReconciliationResult."""
+"""Unit tests for reconcile(): ledger, sign and state invariants."""
 
 from __future__ import annotations
 
@@ -167,14 +167,14 @@ class TestReconciliationViolation:
 
     def test_required_fields_stored(self) -> None:
         """invariant_id and message are stored at construction."""
-        v = ReconciliationViolation(invariant_id="I9", message="test failure")
-        assert v.invariant_id == "I9"
+        v = ReconciliationViolation(invariant_id="net_identity", message="test failure")
+        assert v.invariant_id == "net_identity"
         assert v.message == "test failure"
 
     def test_optional_amounts_stored(self) -> None:
         """Expected and actual are stored when supplied."""
         v = ReconciliationViolation(
-            invariant_id="I9",
+            invariant_id="net_identity",
             message="mismatch",
             expected=Decimal("100.00"),
             actual=Decimal("99.00"),
@@ -184,13 +184,13 @@ class TestReconciliationViolation:
 
     def test_optional_amounts_default_none(self) -> None:
         """Expected and actual default to None when omitted."""
-        v = ReconciliationViolation(invariant_id="I9", message="msg")
+        v = ReconciliationViolation(invariant_id="net_identity", message="msg")
         assert v.expected is None
         assert v.actual is None
 
     def test_frozen(self) -> None:
         """ReconciliationViolation is immutable."""
-        v = ReconciliationViolation(invariant_id="I9", message="msg")
+        v = ReconciliationViolation(invariant_id="net_identity", message="msg")
         with pytest.raises(AttributeError):
             v.invariant_id = "X"  # type: ignore[misc]
 
@@ -205,23 +205,23 @@ class TestReconciliationResult:
 
     def test_not_ok_when_violations_present(self) -> None:
         """Ok is False when at least one violation exists."""
-        v = ReconciliationViolation(invariant_id="I9", message="x")
+        v = ReconciliationViolation(invariant_id="net_identity", message="x")
         r = ReconciliationResult(violations=(v,))
         assert r.ok is False
 
 
-class TestI1Coverage:
-    """I1: every PayItem must have at least one matching LedgerEntry."""
+class TestPayItemPosted:
+    """pay_item_posted: every PayItem must have at least one matching LedgerEntry."""
 
     def test_no_violation_when_all_items_have_entries(self) -> None:
-        """No I1 violation when every pay_item_id is present in ledger_entries."""
+        """No pay_item_posted violation when every item has a ledger entry."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        i1 = [v for v in r.violations if v.invariant_id == "I1"]
-        assert i1 == []
+        found = [v for v in r.violations if v.invariant_id == "pay_item_posted"]
+        assert found == []
 
     def test_violation_when_item_has_no_entry(self) -> None:
-        """I1 violation is raised for a PayItem with no matching LedgerEntry."""
+        """pay_item_posted violation for a PayItem with no matching LedgerEntry."""
         orphan = _item("orphan_item", Decimal("100.00"))
         b = _Builder(
             pay_items=(orphan,),
@@ -229,41 +229,49 @@ class TestI1Coverage:
             closing_months=1,
         )
         r = reconcile(b.build(), _OPENING)
-        i1 = [v for v in r.violations if v.invariant_id == "I1"]
-        assert len(i1) == 1
-        assert "orphan_item" in i1[0].message
+        found = [v for v in r.violations if v.invariant_id == "pay_item_posted"]
+        assert len(found) == 1
+        assert "orphan_item" in found[0].message
 
 
-class TestI2NoDoubleTreatment:
-    """I2: no pay_item_id may post to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS."""
+class TestEarningContributionExclusive:
+    """earning_contribution_exclusive: no item posts to earnings and contributions."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I2 violation on a real calculate_period result."""
+        """No earning_contribution_exclusive violation on a real result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I2"] == []
+        assert [
+            v
+            for v in r.violations
+            if v.invariant_id == "earning_contribution_exclusive"
+        ] == []
 
     def test_violation_when_item_in_both_accounts(self) -> None:
-        """I2 violation when the same pay_item_id posts to conflicting accounts."""
+        """Violation when the same pay_item_id posts to conflicting accounts."""
         e1 = _entry("item_x", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
         e2 = _entry("item_x", AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal("300.00"))
         b = _Builder(ledger_entries=(e1, e2))
         r = reconcile(b.build(), _OPENING)
-        i2 = [v for v in r.violations if v.invariant_id == "I2"]
-        assert len(i2) == 1
-        assert "item_x" in i2[0].message
+        found = [
+            v
+            for v in r.violations
+            if v.invariant_id == "earning_contribution_exclusive"
+        ]
+        assert len(found) == 1
+        assert "item_x" in found[0].message
 
 
-class TestI9NetIdentity:
-    """I9: net identity — cash + credits - contributions - taxes = period_net."""
+class TestNetIdentity:
+    """net_identity: cash + credits - contributions - taxes = period_net."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I9 violation on a real calculate_period result."""
+        """No net_identity violation on a real calculate_period result."""
         result, opening = _real_result()
         assert reconcile(result, opening).ok
 
     def test_violation_when_net_does_not_match(self) -> None:
-        """I9 violation when period_net disagrees with the ledger identity."""
+        """net_identity violation when period_net disagrees with the ledger identity."""
         e_cash = _entry("s", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
         e_tax = _entry("t", AccountKind.ORDINARY_TAX, Decimal("500.00"))
         e_inps = _entry("i", AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal("300.00"))
@@ -272,87 +280,94 @@ class TestI9NetIdentity:
             ledger_entries=(e_cash, e_tax, e_inps),
         )
         r = reconcile(b.build(), _OPENING)
-        i9 = [v for v in r.violations if v.invariant_id == "I9"]
-        assert len(i9) == 1
-        assert i9[0].actual == Decimal("2200.00")
+        found = [v for v in r.violations if v.invariant_id == "net_identity"]
+        assert len(found) == 1
+        assert found[0].actual == Decimal("2200.00")
 
 
-class TestI10ConguaglioSource:
-    """I10: closing IRPEF delta must equal the ORDINARY_TAX ledger total."""
+class TestIrpefWithheldContinuity:
+    """irpef_withheld_continuity: closing IRPEF delta equals ORDINARY_TAX."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I10 violation on a real calculate_period result."""
+        """No irpef_withheld_continuity violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I10"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "irpef_withheld_continuity"
+        ] == []
 
     def test_violation_when_delta_does_not_match(self) -> None:
-        """I10 violation when IRPEF delta diverges from ORDINARY_TAX total."""
+        """Violation when the IRPEF delta diverges from the ORDINARY_TAX total."""
         e_tax = _entry("t", AccountKind.ORDINARY_TAX, Decimal("500.00"))
         b = _Builder(
             closing_irpef=Decimal("9999.00"),
             ledger_entries=(e_tax,),
         )
         r = reconcile(b.build(), _OPENING)
-        i10 = [v for v in r.violations if v.invariant_id == "I10"]
-        assert len(i10) == 1
-        assert i10[0].expected == Decimal("500.00")
-        assert i10[0].actual == Decimal("9999.00")
+        found = [
+            v for v in r.violations if v.invariant_id == "irpef_withheld_continuity"
+        ]
+        assert len(found) == 1
+        assert found[0].expected == Decimal("500.00")
+        assert found[0].actual == Decimal("9999.00")
 
 
-class TestI11StateTransition:
-    """I11: closing state must advance each YTD field correctly."""
+class TestStateTransition:
+    """Closing state must advance each counter and YTD field correctly."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I11 violation on a real calculate_period result."""
+        """No counter or YTD violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I11"] == []
+        codes = {"run_counters_advance", "ytd_continuity"}
+        assert [v for v in r.violations if v.invariant_id in codes] == []
 
     def test_violation_when_regular_periods_closed_wrong(self) -> None:
-        """I11 violation when regular_periods_closed is not correctly incremented."""
+        """run_counters_advance violation for a wrong regular_periods_closed."""
         b = _Builder(closing_months=2)  # expected 1 for the first period
         r = reconcile(b.build(), _OPENING)
-        i11 = [v for v in r.violations if v.invariant_id == "I11"]
-        msgs = [v.message for v in i11]
+        found = [v for v in r.violations if v.invariant_id == "run_counters_advance"]
+        msgs = [v.message for v in found]
         assert any("regular_periods_closed" in m for m in msgs)
 
     def test_violation_when_gross_ytd_wrong(self) -> None:
-        """I11 violation when gross_ytd is not correctly accumulated."""
+        """ytd_continuity violation when gross_ytd is not correctly accumulated."""
         e_cash = _entry("s", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
         b = _Builder(
             closing_gross=Decimal("9999.00"),
             ledger_entries=(e_cash,),
         )
         r = reconcile(b.build(), _OPENING)
-        i11 = [v for v in r.violations if v.invariant_id == "I11"]
-        msgs = [v.message for v in i11]
+        found = [v for v in r.violations if v.invariant_id == "ytd_continuity"]
+        msgs = [v.message for v in found]
         assert any("gross_ytd" in m for m in msgs)
 
     def test_violation_when_inps_ytd_wrong(self) -> None:
-        """I11 violation when inps_employee_ytd is not correctly accumulated."""
+        """ytd_continuity violation when inps_employee_ytd is wrongly accumulated."""
         e_inps = _entry("i", AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal("300.00"))
         b = _Builder(
             closing_inps=Decimal("9999.00"),
             ledger_entries=(e_inps,),
         )
         r = reconcile(b.build(), _OPENING)
-        i11 = [v for v in r.violations if v.invariant_id == "I11"]
-        msgs = [v.message for v in i11]
+        found = [v for v in r.violations if v.invariant_id == "ytd_continuity"]
+        msgs = [v.message for v in found]
         assert any("inps_employee_ytd" in m for m in msgs)
 
 
-class TestI12EmployerCostIdentity:
-    """I12: CASH_EARNINGS + NON_CASH_BENEFITS + employer contributions + TFR."""
+class TestEmployerCostIdentity:
+    """employer_cost_identity: earnings + benefits + employer contributions + TFR."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I12 violation on a real calculate_period result."""
+        """No employer_cost_identity violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I12"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "employer_cost_identity"
+        ] == []
 
     def test_violation_when_employer_cost_wrong(self) -> None:
-        """I12 violation when period_employer_cost diverges from the ledger identity."""
+        """Violation when period_employer_cost diverges from the ledger identity."""
         e_cash = _entry("s", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
         e_empl = _entry("e", AccountKind.EMPLOYER_CONTRIBUTIONS, Decimal("300.00"))
         e_tfr = _entry("t", AccountKind.TFR_ACCRUAL, Decimal("100.00"))
@@ -361,9 +376,9 @@ class TestI12EmployerCostIdentity:
             ledger_entries=(e_cash, e_empl, e_tfr),
         )
         r = reconcile(b.build(), _OPENING)
-        i12 = [v for v in r.violations if v.invariant_id == "I12"]
-        assert len(i12) == 1
-        assert i12[0].actual == Decimal("3400.00")
+        found = [v for v in r.violations if v.invariant_id == "employer_cost_identity"]
+        assert len(found) == 1
+        assert found[0].actual == Decimal("3400.00")
 
     def test_non_cash_benefits_included_in_employer_cost(self) -> None:
         """NON_CASH_BENEFITS entries count toward employer cost identity."""
@@ -376,39 +391,43 @@ class TestI12EmployerCostIdentity:
             ledger_entries=(e_cash, e_ncb, e_empl, e_tfr),
         )
         r = reconcile(b.build(), _OPENING)
-        assert [v for v in r.violations if v.invariant_id == "I12"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "employer_cost_identity"
+        ] == []
 
 
-class TestI13GrossIdentity:
-    """I13: period_gross must equal the CASH_EARNINGS ledger total."""
+class TestGrossIdentity:
+    """gross_identity: period_gross must equal the CASH_EARNINGS ledger total."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I13 violation on a real calculate_period result."""
+        """No gross_identity violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I13"] == []
+        assert [v for v in r.violations if v.invariant_id == "gross_identity"] == []
 
     def test_violation_when_gross_does_not_match(self) -> None:
-        """I13 violation when period_gross diverges from CASH_EARNINGS total."""
+        """gross_identity violation when period_gross diverges from CASH_EARNINGS."""
         e_cash = _entry("s", AccountKind.CASH_EARNINGS, Decimal("3000.00"))
         b = _Builder(period_gross=Decimal("9999.00"), ledger_entries=(e_cash,))
         r = reconcile(b.build(), _OPENING)
-        i13 = [v for v in r.violations if v.invariant_id == "I13"]
-        assert len(i13) == 1
-        assert i13[0].actual == Decimal("3000.00")
+        found = [v for v in r.violations if v.invariant_id == "gross_identity"]
+        assert len(found) == 1
+        assert found[0].actual == Decimal("3000.00")
 
 
-class TestI14EntryIdUniqueness:
-    """I14: all ledger entry IDs within a period must be unique."""
+class TestLedgerEntryUnique:
+    """ledger_entry_unique: all ledger entry IDs within a period must be unique."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I14 violation on a real calculate_period result."""
+        """No ledger_entry_unique violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I14"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "ledger_entry_unique"
+        ] == []
 
     def test_violation_on_duplicate_entry_id(self) -> None:
-        """I14 violation when the same entry_id appears twice in the ledger."""
+        """ledger_entry_unique violation when an entry_id appears twice."""
         e1 = _entry("item_a", AccountKind.CASH_EARNINGS, Decimal("1000.00"))
         e2 = LedgerEntry(
             entry_id="e_item_a",
@@ -425,12 +444,12 @@ class TestI14EntryIdUniqueness:
             ledger_entries=(e1, e2),
         )
         r = reconcile(b.build(), _OPENING)
-        i14 = [v for v in r.violations if v.invariant_id == "I14"]
-        assert len(i14) == 1
-        assert "e_item_a" in i14[0].message
+        found = [v for v in r.violations if v.invariant_id == "ledger_entry_unique"]
+        assert len(found) == 1
+        assert "e_item_a" in found[0].message
 
     def test_no_violation_when_ids_unique(self) -> None:
-        """No I14 violation when entry IDs are all distinct."""
+        """No ledger_entry_unique violation when entry IDs are all distinct."""
         e1 = _entry("item_x", AccountKind.CASH_EARNINGS, Decimal("1000.00"))
         e2 = _entry("item_y", AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal("100.00"))
         b = _Builder(
@@ -439,44 +458,48 @@ class TestI14EntryIdUniqueness:
             ledger_entries=(e1, e2),
         )
         r = reconcile(b.build(), _OPENING)
-        assert [v for v in r.violations if v.invariant_id == "I14"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "ledger_entry_unique"
+        ] == []
 
 
-class TestI15NonNegativeGross:
-    """I15: period_gross must be non-negative."""
+class TestGrossNonNegative:
+    """gross_non_negative: period_gross must be non-negative."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I15 violation on a real calculate_period result."""
+        """No gross_non_negative violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I15"] == []
+        assert [v for v in r.violations if v.invariant_id == "gross_non_negative"] == []
 
     def test_violation_when_gross_is_negative(self) -> None:
-        """I15 violation when period_gross is negative."""
+        """gross_non_negative violation when period_gross is negative."""
         b = _Builder(period_gross=Decimal("-100.00"))
         r = reconcile(b.build(), _OPENING)
-        i15 = [v for v in r.violations if v.invariant_id == "I15"]
-        assert len(i15) == 1
-        assert i15[0].actual == Decimal("-100.00")
+        found = [v for v in r.violations if v.invariant_id == "gross_non_negative"]
+        assert len(found) == 1
+        assert found[0].actual == Decimal("-100.00")
 
     def test_no_violation_when_gross_is_zero(self) -> None:
-        """No I15 violation when period_gross is exactly zero."""
+        """No gross_non_negative violation when period_gross is exactly zero."""
         b = _Builder(period_gross=Decimal(0))
         r = reconcile(b.build(), _OPENING)
-        assert [v for v in r.violations if v.invariant_id == "I15"] == []
+        assert [v for v in r.violations if v.invariant_id == "gross_non_negative"] == []
 
 
-class TestI16CreditBounds:
-    """I16: closing trattamento.recovered must be in [0, recognized]."""
+class TestCreditRecoveryBounds:
+    """credit_recovery_bounds: trattamento.recovered is in [0, recognized]."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No I16 violation on a genuine calculate_period result."""
+        """No credit_recovery_bounds violation on a genuine calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "I16"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "credit_recovery_bounds"
+        ] == []
 
     def test_violation_when_recovered_is_negative(self) -> None:
-        """I16 fires when closing.ytd.trattamento.recovered is negative.
+        """credit_recovery_bounds fires when trattamento.recovered is negative.
 
         A negative recovered value cannot be produced by the engine (which uses
         max(0, ...) when accumulating) but can appear in a synthetic or
@@ -516,76 +539,104 @@ class TestI16CreditBounds:
             run=result.run,
         )
         violations = reconcile(bad_result, _OPENING).violations
-        i16 = [v for v in violations if v.invariant_id == "I16"]
-        assert len(i16) == 1
+        found = [v for v in violations if v.invariant_id == "credit_recovery_bounds"]
+        assert len(found) == 1
 
 
-class TestL1SubstituteTaxNonNegative:
-    """L1: every SUBSTITUTE_TAX entry must have a non-negative amount."""
+class TestSubstituteTaxNonNegative:
+    """substitute_tax_non_negative: every SUBSTITUTE_TAX entry is >= 0."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No L1 violation on a real calculate_period result."""
+        """No substitute_tax_non_negative violation on a real result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "L1"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "substitute_tax_non_negative"
+        ] == []
 
     def test_violation_on_negative_substitute_tax(self) -> None:
-        """L1 violation when a SUBSTITUTE_TAX entry has a negative amount."""
+        """Violation when a SUBSTITUTE_TAX entry has a negative amount."""
         e = _entry("st", AccountKind.SUBSTITUTE_TAX, Decimal("-50.00"))
         b = _Builder(ledger_entries=(e,))
         r = reconcile(b.build(), _OPENING)
-        l1 = [v for v in r.violations if v.invariant_id == "L1"]
-        assert len(l1) == 1
-        assert "st" in l1[0].message
+        found = [
+            v for v in r.violations if v.invariant_id == "substitute_tax_non_negative"
+        ]
+        assert len(found) == 1
+        assert "st" in found[0].message
 
     def test_no_violation_for_zero_substitute_tax(self) -> None:
         """Zero SUBSTITUTE_TAX is not a violation."""
         e = _entry("st", AccountKind.SUBSTITUTE_TAX, Decimal("0.00"))
         b = _Builder(ledger_entries=(e,))
         r = reconcile(b.build(), _OPENING)
-        assert [v for v in r.violations if v.invariant_id == "L1"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "substitute_tax_non_negative"
+        ] == []
 
 
-class TestL2OrdinaryTaxNonNegative:
-    """L2: every ORDINARY_TAX entry must have a non-negative amount."""
+class TestOrdinaryTaxNonNegative:
+    """ordinary_tax_non_negative: every ORDINARY_TAX entry is >= 0."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No L2 violation on a real calculate_period result."""
+        """No ordinary_tax_non_negative violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id == "L2"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "ordinary_tax_non_negative"
+        ] == []
 
     def test_violation_on_negative_ordinary_tax(self) -> None:
-        """L2 violation when an ORDINARY_TAX entry has a negative amount."""
+        """Violation when an ORDINARY_TAX entry has a negative amount."""
         e = _entry("irpef", AccountKind.ORDINARY_TAX, Decimal("-100.00"))
         b = _Builder(ledger_entries=(e,))
         r = reconcile(b.build(), _OPENING)
-        l2 = [v for v in r.violations if v.invariant_id == "L2"]
-        assert len(l2) == 1
-        assert "irpef" in l2[0].message
+        found = [
+            v for v in r.violations if v.invariant_id == "ordinary_tax_non_negative"
+        ]
+        assert len(found) == 1
+        assert "irpef" in found[0].message
 
     def test_no_violation_for_zero_ordinary_tax(self) -> None:
         """Zero ORDINARY_TAX is not a violation."""
         e = _entry("irpef", AccountKind.ORDINARY_TAX, Decimal("0.00"))
         b = _Builder(ledger_entries=(e,))
         r = reconcile(b.build(), _OPENING)
-        assert [v for v in r.violations if v.invariant_id == "L2"] == []
+        assert [
+            v for v in r.violations if v.invariant_id == "ordinary_tax_non_negative"
+        ] == []
 
 
 _CONTRIBUTION_INVARIANTS = [
-    pytest.param(AccountKind.EMPLOYEE_CONTRIBUTIONS, "L3", id="employee"),
-    pytest.param(AccountKind.EMPLOYER_CONTRIBUTIONS, "L4", id="employer"),
+    pytest.param(
+        AccountKind.EMPLOYEE_CONTRIBUTIONS,
+        "employee_contribution_non_negative",
+        id="employee",
+    ),
+    pytest.param(
+        AccountKind.EMPLOYER_CONTRIBUTIONS,
+        "employer_contribution_non_negative",
+        id="employer",
+    ),
 ]
 
 
-class TestL3L4ContributionsNonNegative:
-    """L3/L4: ordinary employee and employer contributions are never negative."""
+class TestContributionsNonNegative:
+    """Ordinary employee and employer contributions are never negative."""
 
     def test_no_violation_on_real_result(self) -> None:
-        """No L3 or L4 violation on a real calculate_period result."""
+        """No contribution sign violation on a real calculate_period result."""
         result, opening = _real_result()
         r = reconcile(result, opening)
-        assert [v for v in r.violations if v.invariant_id in {"L3", "L4"}] == []
+        assert [
+            v
+            for v in r.violations
+            if v.invariant_id
+            in {
+                "employee_contribution_non_negative",
+                "employer_contribution_non_negative",
+            }
+        ] == []
 
     @pytest.mark.parametrize(("account", "invariant_id"), _CONTRIBUTION_INVARIANTS)
     def test_violation_on_negative_contribution(
@@ -635,6 +686,6 @@ class TestReconcileIntegration:
         )
         r = reconcile(b.build(), _OPENING)
         ids = {v.invariant_id for v in r.violations}
-        assert "I1" in ids
-        assert "I13" in ids
+        assert "pay_item_posted" in ids
+        assert "gross_identity" in ids
         assert not r.ok

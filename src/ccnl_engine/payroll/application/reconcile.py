@@ -1,43 +1,35 @@
 """Reconciliation invariants for PeriodCalculationResult.
 
 Each invariant is a pure function that accepts a result (and, where needed,
-the opening :class:`~ccnl_engine.payroll.domain.period.PeriodState`) and
-returns a list of :class:`ReconciliationViolation` instances.
+the opening :class:`~ccnl_engine.payroll.domain.period.PeriodState` and the
+:class:`RunFacts` of the run) and returns a list of
+:class:`ReconciliationViolation` instances coded with an
+:class:`InvariantCode`.
 
-:func:`reconcile` runs all invariants and returns a :class:`ReconciliationResult`.
+:func:`reconcile` runs all invariants and returns a
+:class:`ReconciliationResult`; :func:`check_period` raises
+``DataIntegrityError`` when one fails.  A violation is an engine error: a
+caller input that cannot produce a payslip is rejected with
+``InvalidInputError`` before reconciliation.
 
-Invariants:
-    I1  — every PayItem has at least one matching LedgerEntry.
-    I2  — no pay_item_id posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
-    I9  — net identity: CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-          - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
-          - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
-          - ORDINARY_TAX - SURTAX - SEPARATE_TAX
-          = period_net.
-    I10: IRPEF delta: closing.ytd.tax.irpef - opening.ytd.tax.irpef
-          = ORDINARY_TAX total - IRPEF_REFUND (tax_refund_item in CREDITS).
-    I11 — YTD state transition: regular_periods_closed, tax_withholding_periods_closed,
-          closed_run_ids, earnings.gross, and earnings.inps_employee advance correctly
-          from opening.
-    I12 — employer cost identity: CASH_EARNINGS - EMPLOYEE_DEDUCTIONS
-          + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS
-          + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL = period_employer_cost.
-    I13 — gross identity: CASH_EARNINGS total = period_gross.
-    I14 — all ledger entry IDs in a period are unique.
-    I15 — period_gross is non-negative.
-    I16: 0 <= closing.ytd.trattamento.recovered <= closing.ytd.trattamento.recognized.
-    I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
-          Refunds and adjustments must use an explicit account, not a negative
-          deduction.
-    I18: closing.work_time_regime.used = opening used + eligible amounts of
-         the capped regime decisions, and does not exceed the annual cap.
-    I19: every recovery carried from an earlier tax year posts its next
-         installment as a negative CREDITS entry and closes one installment
-         further along, or is dropped after its last one.
+Invariants, by module:
 
-Legal invariants (L1 to L4, see ``legal_invariants``) reject negative
-substitute tax, ordinary tax, employee contributions and employer
-contributions.
+- ``ledger_invariants``: ``pay_item_posted``,
+  ``earning_contribution_exclusive``, ``net_identity``,
+  ``irpef_withheld_continuity``, ``employer_cost_identity``,
+  ``gross_identity``, ``ledger_entry_unique``.
+- ``sign_invariants``: ``gross_non_negative``,
+  ``employee_deduction_non_negative``, ``substitute_tax_non_negative``,
+  ``ordinary_tax_non_negative``, ``employee_contribution_non_negative``,
+  ``employer_contribution_non_negative``, ``net_pay_non_negative``.
+- ``state_invariants``: ``run_counters_advance``, ``ytd_continuity``,
+  ``credit_recovery_bounds``, ``carried_recovery_advance``.
+- ``decision_invariants``: ``substitute_tax_plafond``,
+  ``substitute_tax_eligibility``, ``decision_provenance``.
+- ``lifecycle_invariants``: ``run_within_employment``,
+  ``extra_month_accrual_limit``.
+- ``withholding_invariants``: ``contribution_ceiling``,
+  ``irpef_annual_reconciliation``.
 """
 
 from __future__ import annotations
@@ -45,24 +37,40 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._reconcile_types import ReconciliationViolation
-from ccnl_engine.payroll.application.ledger_invariants import (
-    check_i1,
-    check_i2,
-    check_i9,
-    check_i10,
-    check_i12,
-    check_i13,
-    check_i14,
-    check_i15,
-    check_i17,
+from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.payroll.application._reconcile_types import (
+    InvariantCode,
+    ReconciliationViolation,
+    RunFacts,
 )
-from ccnl_engine.payroll.application.legal_invariants import check_legal
+from ccnl_engine.payroll.application.decision_invariants import (
+    check_decision_provenance,
+    check_substitute_tax_eligibility,
+    check_substitute_tax_plafond,
+)
+from ccnl_engine.payroll.application.ledger_invariants import (
+    check_earning_contribution_exclusive,
+    check_employer_cost_identity,
+    check_gross_identity,
+    check_irpef_withheld_continuity,
+    check_ledger_entry_unique,
+    check_net_identity,
+    check_pay_item_posted,
+)
+from ccnl_engine.payroll.application.lifecycle_invariants import (
+    check_extra_month_accrual_limit,
+    check_run_within_employment,
+)
+from ccnl_engine.payroll.application.sign_invariants import check_signs
 from ccnl_engine.payroll.application.state_invariants import (
-    check_i11,
-    check_i16,
-    check_i18,
-    check_i19,
+    check_carried_recovery_advance,
+    check_credit_recovery_bounds,
+    check_run_counters,
+    check_ytd_continuity,
+)
+from ccnl_engine.payroll.application.withholding_invariants import (
+    check_contribution_ceiling,
+    check_irpef_annual_reconciliation,
 )
 
 if TYPE_CHECKING:
@@ -72,8 +80,11 @@ if TYPE_CHECKING:
     )
 
 __all__ = [
+    "InvariantCode",
     "ReconciliationResult",
     "ReconciliationViolation",
+    "RunFacts",
+    "check_period",
     "reconcile",
 ]
 
@@ -102,31 +113,58 @@ class ReconciliationResult:
 def reconcile(
     result: PeriodCalculationResult,
     opening: PeriodState,
+    facts: RunFacts | None = None,
 ) -> ReconciliationResult:
     """Run all reconciliation invariants on *result* and return findings.
 
     Args:
         result: The completed period calculation result to verify.
-        opening: The YTD state that was passed into the calculation,
-            used by invariants I10 and I11.
+        opening: The state that was passed into the calculation.
+        facts: Facts of the run the result does not carry.  ``None`` skips
+            the checks that need them (employment, massimale, PdR limit,
+            ratei, projected taxable income).
 
     Returns:
         A :class:`ReconciliationResult` whose :attr:`~ReconciliationResult.ok`
         property is ``True`` when every invariant passes.
     """
+    run_facts = facts if facts is not None else RunFacts()
     violations: list[ReconciliationViolation] = []
-    violations.extend(check_i1(result))
-    violations.extend(check_i2(result))
-    violations.extend(check_i9(result))
-    violations.extend(check_i10(result, opening))
-    violations.extend(check_i11(result, opening))
-    violations.extend(check_i12(result))
-    violations.extend(check_i13(result))
-    violations.extend(check_i14(result))
-    violations.extend(check_i15(result))
-    violations.extend(check_i16(result))
-    violations.extend(check_i17(result))
-    violations.extend(check_i18(result, opening))
-    violations.extend(check_i19(result, opening))
-    violations.extend(check_legal(result, opening))
+    violations.extend(check_pay_item_posted(result))
+    violations.extend(check_earning_contribution_exclusive(result))
+    violations.extend(check_net_identity(result))
+    violations.extend(check_irpef_withheld_continuity(result, opening))
+    violations.extend(check_employer_cost_identity(result))
+    violations.extend(check_gross_identity(result))
+    violations.extend(check_ledger_entry_unique(result))
+    violations.extend(check_signs(result))
+    violations.extend(check_run_counters(result, opening))
+    violations.extend(check_ytd_continuity(result, opening))
+    violations.extend(check_credit_recovery_bounds(result))
+    violations.extend(check_carried_recovery_advance(result, opening))
+    violations.extend(check_substitute_tax_plafond(result, opening, run_facts))
+    violations.extend(check_substitute_tax_eligibility(result))
+    violations.extend(check_decision_provenance(result))
+    violations.extend(check_run_within_employment(result, run_facts))
+    violations.extend(check_extra_month_accrual_limit(run_facts))
+    violations.extend(check_contribution_ceiling(result, opening, run_facts))
+    violations.extend(check_irpef_annual_reconciliation(result, opening, run_facts))
     return ReconciliationResult(violations=tuple(violations))
+
+
+def check_period(
+    result: PeriodCalculationResult,
+    opening: PeriodState,
+    facts: RunFacts,
+) -> None:
+    """Raise when ``result`` breaks a reconciliation invariant.
+
+    Raises:
+        DataIntegrityError: When :func:`reconcile` reports a violation; the
+            message lists each one as ``[code] message``.
+    """
+    rec = reconcile(result, opening, facts)
+    if not rec.ok:
+        msgs = "; ".join(f"[{v.invariant_id}] {v.message}" for v in rec.violations)
+        msg = f"Period reconciliation failed: {msgs}"
+        raise DataIntegrityError(msg)

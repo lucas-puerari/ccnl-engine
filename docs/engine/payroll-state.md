@@ -146,8 +146,9 @@ so it often continues into N+1.
 - Installments posted in N+1 are a negative tax credit line on the payslip
   (`{kind}_recovery_{N}_{run_id}`, account `CREDITS`). They do not enter the
   N+1 credit account, and the N+1 credit is computed as for any other year.
-- Invariant I19 checks that each carried recovery posts its next
-  installment and closes one installment further along.
+- The invariant `carried_recovery_advance` checks that each carried
+  recovery posts its next installment and closes one installment further
+  along.
 - Each carried installment records a `CalculationDecision` with capability
   `trattamento_integrativo_recovery` (rule `dl3-2020-art1-c3`) or
   `somma_esente_recovery` (rule `l207-2024-art1-c7`), reason
