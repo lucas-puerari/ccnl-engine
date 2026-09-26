@@ -107,8 +107,8 @@ class TestT01PdRExcessReturnsToIrpef:
             prior_income=Decimal("25000.00"),
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
-        assert result.closing_state.fringe.pdr == Decimal("5000.00"), (
-            f"pdr_ytd must be 5,000 (cap); got {result.closing_state.fringe.pdr}."
+        assert result.closing_state.ytd.fringe.pdr == Decimal("5000.00"), (
+            f"pdr_ytd must be 5,000 (cap); got {result.closing_state.ytd.fringe.pdr}."
         )
 
     def test_excess_increases_ordinary_irpef_base(self) -> None:
@@ -163,7 +163,7 @@ class TestT03SecondPdRPartialPlafond:
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == Decimal("30.00")
-        assert result.closing_state.fringe.pdr == Decimal("3000.00")
+        assert result.closing_state.ytd.fringe.pdr == Decimal("3000.00")
 
     def test_second_pdr_only_headroom_eligible(self) -> None:
         """Second 3,000 EUR PdR: only 2,000 EUR headroom left, sub_tax = 20.00."""
@@ -187,7 +187,7 @@ class TestT03SecondPdRPartialPlafond:
             f"Expected 20.00 (2,000 EUR * 1%); got {sub_tax}. "
             "Only 2,000 EUR headroom remains after first period."
         )
-        assert r2.closing_state.fringe.pdr == Decimal("5000.00")
+        assert r2.closing_state.ytd.fringe.pdr == Decimal("5000.00")
 
     def test_second_pdr_excess_in_ordinary_base(self) -> None:
         """The 1,000 EUR excess in period 2 must raise ordinary IRPEF vs zero-bonus."""
@@ -239,9 +239,9 @@ class TestT04TrattamentoNoOverRecovery:
             req = _req_portieri(month, opening=opening, events=events)
             result = calculate_period(req)
             cs = result.closing_state
-            assert cs.trattamento.recovered <= cs.trattamento.recognized, (
-                f"Month {month}: recovered {cs.trattamento.recovered} > "
-                f"recognized {cs.trattamento.recognized}"
+            assert cs.ytd.trattamento.recovered <= cs.ytd.trattamento.recognized, (
+                f"Month {month}: recovered {cs.ytd.trattamento.recovered} > "
+                f"recognized {cs.ytd.trattamento.recognized}"
             )
             rec = reconcile(result, opening)
             assert rec.ok, f"Month {month} reconcile failed: {rec.violations}"

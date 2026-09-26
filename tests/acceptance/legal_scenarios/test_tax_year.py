@@ -4,15 +4,32 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import PayrollState
+from ccnl_engine import (
+    EmploymentFacts,
+    OpeningBalances,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+    PayrollState,
+    RecoveryObligation,
+    RecoveryPlan,
+)
 from ccnl_engine.engine.errors import InvalidInputError, UnsupportedTaxYearError
 from ccnl_engine.payroll.domain.employment_context import TemporalContext
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.payroll.domain.ytd_accounts import TrattamentoAccount
-from tests.acceptance.legal_scenarios._support import regular_period
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from tests.acceptance.legal_scenarios._support import (
+    COMMERCIO,
+    ENGINE,
+    regular_period,
+)
+from tests.fixtures.next_year_repository import NextYearRepository
+
+if TYPE_CHECKING:
+    from ccnl_engine import PayrollResult
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -63,47 +80,133 @@ def test_run_of_unbundled_tax_year_raises_domain_error(
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
     """December 2026 paid on 13 January 2027 cannot close into the 2026 state."""
     opening = PayrollState(
-        tax_year=2026, regular_periods_closed=11, tax_withholding_periods_closed=11
+        ytd=TaxYearState(
+            tax_year=2026, regular_periods_closed=11, tax_withholding_periods_closed=11
+        )
     )
 
     with pytest.raises(InvalidInputError, match="belongs to tax year 2027"):
         regular_period(month=12, payment_date=date(2027, 1, 13), opening_state=opening)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="starting a new tax year drops an active installment recovery plan",
+_PLAN = RecoveryPlan(
+    kind="trattamento_integrativo",
+    original_amount=Decimal(160),
+    installment_amount=Decimal(20),
+    installments_total=8,
+    installments_posted=2,
 )
+_NEXT_YEAR_ENGINE = PayrollEngine(repository=NextYearRepository())
+
+
+def _december_2026() -> tuple[PayrollResult, PayrollResult]:
+    """Close 2026 on Commercio L4: December, then the tredicesima.
+
+    The opening balances come from a previous provider: 11 regular runs and
+    the quattordicesima paid, 160.00 of trattamento integrativo recognized
+    and a recovery plan of 8 x 20.00 with 2 installments posted (40.00).
+
+    Returns:
+        The December and tredicesima results, in payment order.
+    """
+    opening = OpeningBalances(
+        tax_year=2026,
+        regular_periods_closed=11,
+        tax_withholding_periods_closed=12,
+        trattamento_recognized=Decimal(160),
+        trattamento_recovered=Decimal(40),
+        recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
+    ).to_state()
+    december = regular_period(month=12, opening_state=opening)
+    thirteenth = ENGINE.calculate(
+        PayrollRequest(
+            run=PayrollRun.thirteenth(2026, 12),
+            payment_date=date(2026, 12, 27),
+            ccnl_slug=COMMERCIO,
+            level_code="4",
+            employment_facts=EmploymentFacts(),
+            opening_state=december.closing_state,
+        )
+    )
+    return december, thirteenth
+
+
+def _january_2027(opening: PayrollState) -> PayrollResult:
+    """Compute January 2027 on 2026 rules standing in for 2027.
+
+    Returns:
+        The January 2027 result.
+    """
+    return _NEXT_YEAR_ENGINE.calculate(
+        PayrollRequest(
+            run=PayrollRun.regular(2027, 1),
+            payment_date=date(2027, 1, 27),
+            ccnl_slug=COMMERCIO,
+            level_code="4",
+            employment_facts=EmploymentFacts(),
+            opening_state=opening,
+        )
+    )
+
+
 def test_installment_recovery_survives_the_year_change() -> None:
     """D.L. 3/2020 art. 1 c. 3: recovery above 60 EUR runs in 8 installments.
 
     A plan of 160.00 EUR in 8 installments of 20.00 with 2 posted before
-    December posts the third in December, leaving 5 installments (100.00) for
-    2027.  The state that opens 2027 must still carry them.
-
-    Observed on 26 September 2026: December posts -20.00 and keeps the plan,
-    but ``zero()`` returns a state without it.
+    December posts the third in December and the fourth on the tredicesima,
+    leaving 4 installments (80.00) for 2027.  The state that opens 2027 has
+    fresh year-to-date accounts and still carries them.
     """
-    plan = RecoveryPlan(
-        kind="trattamento_integrativo",
-        original_amount=Decimal(160),
-        installment_amount=Decimal(20),
-        installments_total=8,
-        installments_posted=2,
-    )
-    opening = PayrollState(
-        tax_year=2026,
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=11,
-        trattamento=TrattamentoAccount(
-            recognized=Decimal(160), recovered=Decimal(40), plan=plan
-        ),
-    )
-    december = regular_period(month=12, opening_state=opening)
-    carried = december.closing_state.trattamento.plan
-    assert carried is not None
-    assert carried.residual == Decimal("100.00")
+    _, thirteenth = _december_2026()
 
-    next_year = december.closing_state.zero()
+    next_year = ENGINE.close_tax_year(thirteenth.closing_state)
 
-    assert next_year.trattamento.plan == carried
+    (carried,) = next_year.obligations.recoveries
+    assert carried.tax_year == 2026
+    assert carried.plan.installments_posted == 4
+    assert carried.plan.residual == Decimal("80.00")
+    assert next_year.ytd == TaxYearState(tax_year=2027)
+
+
+def test_close_tax_year_rejects_a_state_before_the_last_run() -> None:
+    """The tredicesima is still due: 2026 cannot be closed after December."""
+    december, _ = _december_2026()
+
+    with pytest.raises(InvalidInputError, match="13 of 14 withholding slots"):
+        ENGINE.close_tax_year(december.closing_state)
+
+
+def test_carried_installment_is_deducted_in_the_next_year() -> None:
+    """January 2027 deducts the fifth installment and keeps its own credit.
+
+    Differential oracle on the same 2027 run with and without the carried
+    plan: net pay is exactly 20.00 lower, the plan moves from 4 to 5 posted
+    (residual 60.00), and the 2027 trattamento integrativo account is the
+    same as without the plan, because a 2026 recovery is not a 2027 credit.
+    """
+    _, thirteenth = _december_2026()
+    opening = ENGINE.close_tax_year(thirteenth.closing_state)
+
+    with_plan = _january_2027(opening)
+    without_plan = _january_2027(PayrollState(ytd=opening.ytd))
+
+    assert without_plan.period_net - with_plan.period_net == Decimal("20.00")
+    (carried,) = with_plan.closing_state.obligations.recoveries
+    assert carried.plan.installments_posted == 5
+    assert carried.plan.residual == Decimal("60.00")
+    assert with_plan.closing_state.ytd == without_plan.closing_state.ytd
+    recovery = [
+        item
+        for item in with_plan.pay_items
+        if item.item_id == "trattamento_integrativo_recovery_2026_2027-01-regular"
+    ]
+    assert [item.amount for item in recovery] == [Decimal(-20)]
+    (decision,) = [
+        d
+        for d in with_plan.decisions
+        if d.capability == "trattamento_integrativo_recovery"
+    ]
+    assert decision.reason_code == "installment_posted"
+    assert decision.amount == Decimal(-20)
+    assert decision.inputs["origin_tax_year"] == "2026"
+    assert decision.inputs["installment_number"] == Decimal(5)

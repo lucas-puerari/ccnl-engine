@@ -79,6 +79,33 @@ in v0.5. Migrate to `PayrollEngine` for all new code.
   surtax outcome from `result.decisions` (capabilities
   `addizionale_regionale`, `addizionale_comunale`).
 
+## Payroll state: tax year and obligations
+
+`PayrollState` (`PeriodState`) is now a composite of the tax year state and
+the obligations that survive the year change.
+
+| Before | After |
+|---|---|
+| `state.earnings`, `state.tax`, `state.fringe`, `state.trattamento`, `state.somma_esente`, `state.work_time_regime` | `state.ytd.<same name>` |
+| `state.regular_periods_closed`, `state.tax_withholding_periods_closed`, `state.closed_run_ids` | `state.ytd.<same name>` |
+| `state.tax_year` | unchanged (shortcut for `state.ytd.tax_year`) |
+| `PayrollState(tax=TaxYtd(...), ...)` | `PayrollState(ytd=TaxYearState(tax=TaxYtd(...), ...))`, or `OpeningBalances(...).to_state()` |
+| `TrattamentoAccount(plan=...)` | `PayrollState(obligations=EmploymentObligations(recoveries=(RecoveryObligation(tax_year, plan),)))` |
+| `closing_state.zero()` to start a new year (dropped a running recovery) | `PayrollEngine.close_tax_year(closing_state)` |
+| `calculate_year` always started from zero | `PayrollYearRequest.opening_state` / `calculate_year(opening_state=...)` |
+
+- `PeriodState.SCHEMA_VERSION` is now 2.
+- `TaxYearState.withholding_slots` records the slots of the schedule of the
+  last run; `close_tax_year` requires them all closed.
+- Installments of a recovery carried from an earlier year are posted as a
+  negative tax credit line `trattamento_integrativo_recovery_{year}_{run_id}`
+  and no longer suppress the trattamento integrativo of the new year.  Each one records a decision with capability
+  `trattamento_integrativo_recovery`.
+- `KnowledgeRepository` gains `load_variable_pay_rules(year)` and
+  `load_family_deduction_rules(year)`; a custom repository must implement
+  them.
+- New public names: `OpeningBalances`, `RecoveryObligation`, `RecoveryPlan`.
+
 ## Decisions and capability report
 
 - `result.decisions` now also holds the decisions of the tax credits

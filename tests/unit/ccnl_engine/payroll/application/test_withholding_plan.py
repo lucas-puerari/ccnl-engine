@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodSt
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount, WithholdingSchedule
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -95,10 +96,12 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
     split the balance over the December payslip and the tredicesima.
     """
     opening = PeriodState(
-        tax_year=_YEAR,
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=12,
-        earnings=EarningsYtd(taxable=Decimal("18043.97")),
+        ytd=TaxYearState(
+            tax_year=_YEAR,
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=12,
+            earnings=EarningsYtd(taxable=Decimal("18043.97")),
+        )
     )
     result = calculate_period(
         PeriodCalculationRequest(

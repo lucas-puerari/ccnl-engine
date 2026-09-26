@@ -65,7 +65,7 @@ class TestTerminationSettlement:
         }
         assert policies == {"it/earning/extra_month"}
         assert september.period_gross == Decimal("2675.65")
-        assert september.closing_state.earnings.inps_base == Decimal("6243.15")
+        assert september.closing_state.ytd.earnings.inps_base == Decimal("6243.15")
 
     def test_extra_run_in_the_termination_month_is_not_settled_again(self) -> None:
         """Ended 10 June: the June quattordicesima run pays; May closes 13th.
@@ -188,7 +188,7 @@ def test_employment_days_reach_the_work_deduction() -> None:
     result = _commercio_year(EmploymentPeriod(date(_YEAR, 7, 1), date(_YEAR, 9, 30)))
     last = result.period_results[-1]
     components = {c.name: c.amount for c in last.tax_computation.components}
-    taxable = last.closing_state.earnings.taxable
+    taxable = last.closing_state.ytd.earnings.taxable
     assert components["work_deduction"] == work_income_deduction(taxable, 92)
     assert components["work_deduction"] < work_income_deduction(taxable)
 

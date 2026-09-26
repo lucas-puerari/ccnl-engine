@@ -1,17 +1,15 @@
-"""Typed YTD accumulator sub-containers for PeriodState.
+"""Typed YTD accumulator sub-containers for TaxYearState.
 
 Each container groups logically related year-to-date running totals.
-``PeriodState`` holds one instance of each; they are all frozen dataclasses
+``TaxYearState`` holds one instance of each; they are all frozen dataclasses
 with no circular dependencies so they can be tested and serialised in
 isolation.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from decimal import Decimal
-
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 
 _ZERO = Decimal(0)
 
@@ -98,14 +96,13 @@ class TrattamentoAccount:
             this tax year.
         recovered: Cumulative trattamento integrativo recovered (clawed back)
             this tax year when prior-period credits exceeded the annual
-            entitlement.
-        plan: Active installment recovery plan from D.L. 3/2020 art. 1 co. 3,
-            or ``None`` when no recovery is in progress.
+            entitlement.  An installment recovery lives in
+            :class:`~ccnl_engine.payroll.domain.obligations\
+.EmploymentObligations`, because it can outlast the tax year.
     """
 
     recognized: Decimal = _ZERO
     recovered: Decimal = _ZERO
-    plan: RecoveryPlan | None = field(default=None)
 
     def __post_init__(self) -> None:
         """Validate that recovered credit does not exceed recognized credit.

@@ -52,6 +52,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -154,8 +155,8 @@ def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     result_with = calculate_period(_req(month=1, events=(bonus,)))
 
     ytd_diff = (
-        result_with.closing_state.earnings.taxable
-        - result_base.closing_state.earnings.taxable
+        result_with.closing_state.ytd.earnings.taxable
+        - result_base.closing_state.ytd.earnings.taxable
     )
     assert ytd_diff == Decimal("905.10"), (
         f"taxable_ytd increase from a 1,000 EUR bonus must be exactly 905.10 "
@@ -225,8 +226,8 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
     result_base = calculate_period(_req(month=1))
     result_with = calculate_period(_req(month=1, events=(fund,)))
 
-    base_ytd = result_base.closing_state.earnings.inps_employee
-    with_ytd = result_with.closing_state.earnings.inps_employee
+    base_ytd = result_base.closing_state.ytd.earnings.inps_employee
+    with_ytd = result_with.closing_state.ytd.earnings.inps_employee
     assert with_ytd == base_ytd, (
         f"inps_employee_ytd with bilateral fund ({with_ytd}) must equal "
         f"baseline ({base_ytd}).  Fund employee amount currently posted to "
@@ -371,10 +372,12 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
     Expected: addizionale_1pct == 0.
     """
     opening = PeriodState(
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=11,
-        # > 122,295 IVS massimale 2026
-        earnings=EarningsYtd(inps_base=Decimal("130000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            # > 122,295 IVS massimale 2026
+            earnings=EarningsYtd(inps_base=Decimal("130000.00")),
+        )
     )
     result = calculate_period(
         _req(
@@ -393,7 +396,8 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
         _ZERO,
     )
     assert addizionale == _ZERO, (
-        f"addizionale_1pct must be 0 when inps_base_ytd ({opening.earnings.inps_base}) "
+        "addizionale_1pct must be 0 when inps_base_ytd "
+        f"({opening.ytd.earnings.inps_base}) "
         f"exceeds the IVS massimale (122,295 EUR, INPS circ. 4/2026); "
         f"got {addizionale}.  The +1% is currently not gated on the massimale."
     )

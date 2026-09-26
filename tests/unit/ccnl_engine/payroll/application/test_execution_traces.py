@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -37,6 +36,7 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 
@@ -243,7 +243,7 @@ class TestPdrDecision:
 
     def test_annual_limit_reached(self) -> None:
         """A bonus over an exhausted annual limit decides a zero tax."""
-        opening = replace(PeriodState.zero(), fringe=FringeYtd(pdr=_PDR.max_amount))
+        opening = PeriodState(ytd=TaxYearState(fringe=FringeYtd(pdr=_PDR.max_amount)))
         (decision,) = _decisions(
             _run(events=(self._BONUS,), opening_state=opening), "bonus_pdr"
         )

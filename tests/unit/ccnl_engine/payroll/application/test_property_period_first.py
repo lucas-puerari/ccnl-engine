@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -50,9 +51,11 @@ def _req(
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState(
-            regular_periods_closed=regular_periods_closed,
-            tax_withholding_periods_closed=regular_periods_closed,
-            tax=TaxYtd(irpef=irpef_ytd),
+            ytd=TaxYearState(
+                regular_periods_closed=regular_periods_closed,
+                tax_withholding_periods_closed=regular_periods_closed,
+                tax=TaxYtd(irpef=irpef_ytd),
+            )
         ),
     )
 
@@ -75,7 +78,7 @@ class TestReconcilePassesUnderHypothesis:
         self, month: int, irpef_ytd: Decimal
     ) -> None:
         """Any non-negative irpef_withheld_ytd opening value passes reconcile."""
-        opening = PeriodState(tax=TaxYtd(irpef=irpef_ytd))
+        opening = PeriodState(ytd=TaxYearState(tax=TaxYtd(irpef=irpef_ytd)))
         result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
         r = reconcile(result, opening)
         assert r.ok, f"Month {month}, ytd={irpef_ytd}: {r.violations}"
@@ -137,7 +140,7 @@ class TestSerializationLossless:
             for e in result.ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
-        assert result.closing_state.tax.irpef == irpef_from_ledger
+        assert result.closing_state.ytd.tax.irpef == irpef_from_ledger
 
 
 class TestOpeningPlusMovementsEqualsClosing:
@@ -151,9 +154,11 @@ class TestOpeningPlusMovementsEqualsClosing:
         """gross_ytd closing = opening.gross_ytd + CASH_EARNINGS for any month."""
         opening_gross = Decimal("1000.00") * months_closed
         opening = PeriodState(
-            regular_periods_closed=months_closed,
-            tax_withholding_periods_closed=months_closed,
-            earnings=EarningsYtd(gross=opening_gross),
+            ytd=TaxYearState(
+                regular_periods_closed=months_closed,
+                tax_withholding_periods_closed=months_closed,
+                earnings=EarningsYtd(gross=opening_gross),
+            )
         )
         req = PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=month),
@@ -168,4 +173,4 @@ class TestOpeningPlusMovementsEqualsClosing:
             for e in result.ledger_entries
             if e.account == AccountKind.CASH_EARNINGS
         )
-        assert result.closing_state.earnings.gross == opening_gross + cash
+        assert result.closing_state.ytd.earnings.gross == opening_gross + cash

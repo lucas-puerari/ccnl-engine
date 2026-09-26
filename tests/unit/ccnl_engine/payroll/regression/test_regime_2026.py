@@ -95,9 +95,9 @@ class TestRinnovoContrattuale:
             prior_income=_RENEWAL_ELIGIBLE_INCOME,
         )
         result = calculate_period(_req(events=(bonus,)))
-        assert result.closing_state.fringe.pdr == _ZERO, (
+        assert result.closing_state.ytd.fringe.pdr == _ZERO, (
             f"contract_renewal must not consume PdR plafond; "
-            f"got fringe.pdr={result.closing_state.fringe.pdr}."
+            f"got fringe.pdr={result.closing_state.ytd.fringe.pdr}."
         )
 
     def test_ineligible_renewal_is_ordinary_income_not_pdr(self) -> None:
@@ -118,7 +118,7 @@ class TestRinnovoContrattuale:
             for income in (_RENEWAL_ELIGIBLE_INCOME, Decimal("100000.00"))
         )
         assert _sum_account(ineligible, AccountKind.SUBSTITUTE_TAX) == _ZERO
-        assert ineligible.closing_state.fringe.pdr == _ZERO
+        assert ineligible.closing_state.ytd.fringe.pdr == _ZERO
         assert _sum_account(ineligible, AccountKind.ORDINARY_TAX) > _sum_account(
             eligible, AccountKind.ORDINARY_TAX
         )

@@ -8,7 +8,9 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityCatalog
     from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
+    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
 
 
 class KnowledgeRepository(Protocol):  # pragma: no cover
@@ -36,4 +38,12 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_capability_catalog(self, year: int) -> CapabilityCatalog:
         """Load and return the capability catalog for *year*."""
+        ...
+
+    def load_variable_pay_rules(self, year: int) -> VariablePayRules:
+        """Load and return the statutory variable-pay rules for *year*."""
+        ...
+
+    def load_family_deduction_rules(self, year: int) -> FamilyDeductionRules:
+        """Load and return the Art. 12 TUIR family deduction rules for *year*."""
         ...

@@ -49,6 +49,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -164,13 +165,17 @@ def test_p0_03_taxable_ytd_affects_conguaglio() -> None:
     and one with taxable_ytd=5,000, must produce different ordinary_tax.
     """
     opening_zero = PeriodState(
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=11,
+        ytd=TaxYearState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+        )
     )
     opening_high = PeriodState(
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=11,
-        earnings=EarningsYtd(taxable=Decimal("5000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+            earnings=EarningsYtd(taxable=Decimal("5000.00")),
+        )
     )
     result_zero = calculate_period(_req(month=12, opening=opening_zero))
     result_high = calculate_period(_req(month=12, opening=opening_high))
@@ -204,9 +209,11 @@ def test_p0_04_fringe_retroactive_on_threshold_crossing() -> None:
     1,200 > 1,000 threshold → irpef_base must equal 1,200 (full retroactive).
     """
     state_after_m1 = PeriodState(
-        regular_periods_closed=1,
-        tax_withholding_periods_closed=1,
-        fringe=FringeYtd(value=Decimal("600.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=1,
+            tax_withholding_periods_closed=1,
+            fringe=FringeYtd(value=Decimal("600.00")),
+        )
     )
     fringe = FringeEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("600.00"))
     result = calculate_period(_req(month=2, opening=state_after_m1, events=(fringe,)))
@@ -269,9 +276,11 @@ def test_p0_06_inps_addizionale_1pct_on_threshold_crossing() -> None:
     component with amount > 0 must appear in contribution_breakdown.
     """
     opening = PeriodState(
-        regular_periods_closed=5,
-        tax_withholding_periods_closed=5,
-        earnings=EarningsYtd(inps_base=Decimal("56000.00")),
+        ytd=TaxYearState(
+            regular_periods_closed=5,
+            tax_withholding_periods_closed=5,
+            earnings=EarningsYtd(inps_base=Decimal("56000.00")),
+        )
     )
     result = calculate_period(_req(month=6, opening=opening))
 

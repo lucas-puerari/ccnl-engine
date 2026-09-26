@@ -1,20 +1,53 @@
-"""Per-run helpers of the full-year orchestration: events and partial months."""
+"""Run selection of a payroll year: runs, events per run and partial months."""
 
 from __future__ import annotations
 
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
+from ccnl_engine.payroll.domain.period import PeriodState
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.schedule import PayrollSchedule
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.period import PeriodCalculationResult
     from ccnl_engine.payroll.domain.run import PayrollRun
 
 _PARTIAL_MONTH = "partial_month_not_prorated"
+
+
+def opening_of_year(year: int, opening_state: PeriodState | None) -> PeriodState:
+    """Return the state the first run of ``year`` opens with.
+
+    A year calculation computes every run of the year, so its opening state
+    closes no run of it: :meth:`PeriodState.zero` for a new employment, or
+    the result of
+    :func:`~ccnl_engine.payroll.application.close_tax_year.close_tax_year`
+    to carry the obligations of the previous year.
+
+    Returns:
+        ``opening_state``, or :meth:`PeriodState.zero` when it is ``None``.
+
+    Raises:
+        InvalidInputError: When ``opening_state`` has a run of the year
+            closed, a YTD amount set, or is bound to another tax year.
+    """
+    if opening_state is None:
+        return PeriodState.zero()
+    if opening_state.ytd not in {TaxYearState(), TaxYearState(tax_year=year)}:
+        msg = (
+            f"the opening state of a {year} year calculation must close no run "
+            "of the year: pass PeriodState.zero() or the result of "
+            "close_tax_year() on the last run of the previous year"
+        )
+        raise InvalidInputError(msg, feature="tax_year")
+    return opening_state
 
 
 def allocate_run_events(
@@ -56,6 +89,27 @@ def allocate_run_events(
     if in_period:
         return period_events[run.month]
     return ()
+
+
+def select_runs(
+    calendar: WorkCalendar, employment_period: EmploymentPeriod | None
+) -> PayrollSchedule:
+    """Return the runs of the year the employment overlaps.
+
+    Returns:
+        :meth:`PayrollSchedule.from_calendar` restricted to the employment.
+
+    Raises:
+        InvalidInputError: When the employment has no day in the year.
+    """
+    schedule = PayrollSchedule.from_calendar(calendar, employment_period)
+    if not schedule.runs:
+        msg = (
+            f"employment period {employment_period} has no day in "
+            f"{calendar.year}: there is no payroll run to compute"
+        )
+        raise InvalidInputError(msg, feature="employment_facts")
+    return schedule
 
 
 def flag_partial_month(

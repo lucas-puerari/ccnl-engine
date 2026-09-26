@@ -46,8 +46,8 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.family import FamilyComposition
-    from ccnl_engine.payroll.domain.period import PeriodState
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+    from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 
 @dataclass(frozen=True)
@@ -164,7 +164,7 @@ def _compute_amounts(
     event_tfr_base: Decimal,
     event_irpef_base: Decimal,
     event_substitute_base: Decimal,
-    opening: PeriodState,
+    opening: TaxYearState,
     withholding_schedule: WithholdingSchedule,
     upcoming_gross: Decimal,
     rules: YearRules,
@@ -181,6 +181,7 @@ def _compute_amounts(
     contributable_hours: Decimal | None = None,
     domestic_hourly_rate: Decimal | None = None,
     eligible_work_days: int = DAYS_IN_YEAR,
+    recovery_plan: RecoveryPlan | None = None,
 ) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
@@ -190,7 +191,8 @@ def _compute_amounts(
     ``upcoming_gross`` is zero, so the projection equals the final taxable
     income and the conguaglio settles on it.  ``eligible_work_days`` are
     the days of employment in the tax year the deductions are proportioned
-    to.
+    to.  ``recovery_plan`` is the installment recovery opened in this tax
+    year, if one is running.
 
     Returns:
         ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
@@ -259,7 +261,7 @@ def _compute_amounts(
         withholding_schedule=withholding_schedule,
         slots_closed=opening.tax_withholding_periods_closed,
         family_deductions=fam_ded,
-        recovery_plan=opening.trattamento.plan,
+        recovery_plan=recovery_plan,
         eligible_work_days=eligible_work_days,
     )
     tax_comp, next_recovery_plan = tax.computation, tax.recovery_plan

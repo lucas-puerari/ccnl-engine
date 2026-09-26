@@ -48,7 +48,7 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
     20,000 threshold of the further deduction.
     """
     year = _coop_sociali_d2_year()
-    final_taxable = year.period_results[-1].closing_state.earnings.taxable
+    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
     withheld = sum(
         (r.tax_computation.ordinary_tax for r in year.period_results), Decimal(0)
     )
@@ -110,7 +110,7 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
             employment_facts=EmploymentFacts(started_on=date(2026, 3, 15)),
         )
     )
-    final_taxable = year.period_results[-1].closing_state.earnings.taxable
+    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
     withheld = sum(
         (r.tax_computation.ordinary_tax for r in year.period_results), Decimal(0)
     )

@@ -62,6 +62,7 @@ from ccnl_engine.engine.errors import (
 from ccnl_engine.payroll.application.calculate_year import (
     YearCalculationResult as PayrollYearResult,
 )
+from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
@@ -74,7 +75,9 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
+from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.version import __version__ as engine_version
 
@@ -101,6 +104,7 @@ __all__ = [
     "FixedTerm",
     "Headcount",
     "InvalidInputError",
+    "OpeningBalances",
     "OutOfScopeError",
     "PayrollCalendar",
     "PayrollEngine",
@@ -111,6 +115,8 @@ __all__ = [
     "PayrollYearRequest",
     "PayrollYearResult",
     "Permanent",
+    "RecoveryObligation",
+    "RecoveryPlan",
     "SupplementaryAllowance",
     "UnknownCcnlError",
     "UnknownLevelError",

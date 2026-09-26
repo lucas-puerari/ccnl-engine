@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -105,7 +106,7 @@ class TestMultiPeriodChain:
         feb_irpef = sum(
             e.amount for e in r2.ledger_entries if e.account == AccountKind.ORDINARY_TAX
         )
-        assert r2.closing_state.tax.irpef == jan_irpef + feb_irpef
+        assert r2.closing_state.ytd.tax.irpef == jan_irpef + feb_irpef
 
     def test_regular_periods_closed_increments_through_chain(self) -> None:
         """regular_periods_closed advances by 1 per regular period through a chain."""
@@ -113,7 +114,7 @@ class TestMultiPeriodChain:
         for expected_months in range(1, 4):
             month = expected_months
             result = calculate_period(_req(month=month, opening=opening))
-            assert result.closing_state.regular_periods_closed == expected_months
+            assert result.closing_state.ytd.regular_periods_closed == expected_months
             opening = result.closing_state
 
 
@@ -205,7 +206,11 @@ class TestOpeningStateSensitivity:
         """gross_ytd alone does not affect net (IRPEF computation uses irpef_ytd)."""
         r_zero = calculate_period(_req())
         r_high_gross = calculate_period(
-            _req(opening=PeriodState(earnings=EarningsYtd(gross=Decimal("50000.00"))))
+            _req(
+                opening=PeriodState(
+                    ytd=TaxYearState(earnings=EarningsYtd(gross=Decimal("50000.00")))
+                )
+            )
         )
         assert r_zero.period_gross == r_high_gross.period_gross
 
@@ -215,7 +220,9 @@ class TestOpeningStateSensitivity:
         r_high_inps = calculate_period(
             _req(
                 opening=PeriodState(
-                    earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
+                    ytd=TaxYearState(
+                        earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
+                    )
                 )
             )
         )

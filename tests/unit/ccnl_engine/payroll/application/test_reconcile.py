@@ -29,6 +29,7 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     TaxYtd,
@@ -126,13 +127,15 @@ class _Builder:
             period_net=self.period_net,
             period_employer_cost=self.period_employer_cost,
             closing_state=PeriodState(
-                regular_periods_closed=self.closing_months,
-                tax_withholding_periods_closed=self.closing_months,
-                tax=TaxYtd(irpef=self.closing_irpef),
-                earnings=EarningsYtd(
-                    inps_employee=self.closing_inps,
-                    gross=self.closing_gross,
-                ),
+                ytd=TaxYearState(
+                    regular_periods_closed=self.closing_months,
+                    tax_withholding_periods_closed=self.closing_months,
+                    tax=TaxYtd(irpef=self.closing_irpef),
+                    earnings=EarningsYtd(
+                        inps_employee=self.closing_inps,
+                        gross=self.closing_gross,
+                    ),
+                )
             ),
             pay_items=self.pay_items,
             ledger_entries=self.ledger_entries,
@@ -473,7 +476,7 @@ class TestI16CreditBounds:
         assert [v for v in r.violations if v.invariant_id == "I16"] == []
 
     def test_violation_when_recovered_is_negative(self) -> None:
-        """I16 fires when closing.trattamento.recovered is negative.
+        """I16 fires when closing.ytd.trattamento.recovered is negative.
 
         A negative recovered value cannot be produced by the engine (which uses
         max(0, ...) when accumulating) but can appear in a synthetic or
@@ -491,16 +494,18 @@ class TestI16CreditBounds:
             period_net=result.period_net,
             period_employer_cost=result.period_employer_cost,
             closing_state=PeriodState(
-                regular_periods_closed=result.closing_state.regular_periods_closed,
-                tax_withholding_periods_closed=(
-                    result.closing_state.tax_withholding_periods_closed
-                ),
-                closed_run_ids=result.closing_state.closed_run_ids,
-                earnings=result.closing_state.earnings,
-                fringe=result.closing_state.fringe,
-                tax=result.closing_state.tax,
-                trattamento=neg_tratt,
-                somma_esente=result.closing_state.somma_esente,
+                ytd=TaxYearState(
+                    regular_periods_closed=result.closing_state.ytd.regular_periods_closed,
+                    tax_withholding_periods_closed=(
+                        result.closing_state.ytd.tax_withholding_periods_closed
+                    ),
+                    closed_run_ids=result.closing_state.ytd.closed_run_ids,
+                    earnings=result.closing_state.ytd.earnings,
+                    fringe=result.closing_state.ytd.fringe,
+                    tax=result.closing_state.ytd.tax,
+                    trattamento=neg_tratt,
+                    somma_esente=result.closing_state.ytd.somma_esente,
+                )
             ),
             pay_items=result.pay_items,
             ledger_entries=result.ledger_entries,

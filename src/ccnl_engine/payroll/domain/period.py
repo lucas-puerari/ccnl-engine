@@ -24,15 +24,9 @@ from ccnl_engine.payroll.domain.employment import (
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
+from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    FringeYtd,
-    RegimeCapAccount,
-    SommaEsenteAccount,
-    TaxYtd,
-    TrattamentoAccount,
-)
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityReport
@@ -50,93 +44,53 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
-_ZERO = Decimal(0)
-
 
 @final
 @dataclass(frozen=True)
 class PeriodState:
-    """YTD state entering a period-first payroll calculation.
+    """State entering a payroll run: the tax year and the lasting obligations.
 
-    Pass :meth:`zero` for January (no prior periods closed this tax year).
+    Pass :meth:`zero` for the first run of an employment.  Between runs of
+    one tax year, pass the ``closing_state`` of the previous run.  To open
+    the next tax year, pass the closing state of the last run of the year to
+    :func:`~ccnl_engine.payroll.application.close_tax_year.close_tax_year`:
+    it resets :attr:`ytd` and carries :attr:`obligations`.
 
     Attributes:
-        regular_periods_closed: Number of regular (``run_kind="regular"``)
-            payroll periods already closed this tax year.  Not used for the
-            extra-month ratei, which are counted from the employment dates
-            (:class:`~ccnl_engine.payroll.domain.accrual.ExtraMonthAccrual`).
-        tax_withholding_periods_closed: Number of periods that have consumed
-            an IRPEF withholding slot (regular + thirteenth + fourteenth;
-            not adjustment).  Used for the conguaglio divisor.
-        closed_run_ids: Frozen set of ``run_id`` strings for every run
-            already closed this tax year.  Prevents reprocessing the same
-            run and enforces monotonic ordering.
-        earnings: Running totals for earned income and INPS contribution
-            bases (gross, taxable, INPS base, employee INPS).
-        fringe: Running totals for fringe benefits and PdR (value, taxed
-            base, PdR eligible amount).
-        tax: Running totals for tax withheld this year (IRPEF, surtax).
-        trattamento: YTD credit account for trattamento integrativo,
-            including any active installment recovery plan.
-        somma_esente: YTD credit account for the somma esente bonus
-            (L. 207/2024).
-        work_time_regime: YTD usage of the annual cap of the night, holiday
-            and shift supplement substitute tax (L. 199/2025 art. 1
-            cc. 10-11).
+        ytd: Counters and YTD accounts of the current tax year; they
+            restart every tax year.
+        obligations: Obligations that survive the change of tax year, such
+            as an installment recovery of trattamento integrativo.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 1
+    SCHEMA_VERSION: ClassVar[int] = 2
 
-    tax_year: int | None = None
-    regular_periods_closed: int = 0
-    tax_withholding_periods_closed: int = 0
-    closed_run_ids: frozenset[str] = field(default_factory=frozenset)
-    earnings: EarningsYtd = field(default_factory=EarningsYtd)
-    fringe: FringeYtd = field(default_factory=FringeYtd)
-    tax: TaxYtd = field(default_factory=TaxYtd)
-    trattamento: TrattamentoAccount = field(default_factory=TrattamentoAccount)
-    somma_esente: SommaEsenteAccount = field(default_factory=SommaEsenteAccount)
-    work_time_regime: RegimeCapAccount = field(default_factory=RegimeCapAccount)
+    ytd: TaxYearState = field(default_factory=TaxYearState)
+    obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
 
     def __post_init__(self) -> None:
-        """Validate structural invariants on construction.
+        """Reject an obligation opened after the tax year of the state.
 
         Raises:
-            ValueError: When any field violates a range or ordering constraint.
+            ValueError: When a recovery originates in a year later than
+                ``ytd.tax_year``.
         """
-        if self.tax_year is not None and self.tax_year < 2020:
-            msg = f"tax_year must be >= 2020; got {self.tax_year}"
-            raise ValueError(msg)
-        if self.regular_periods_closed < 0:
+        latest = self.obligations.latest_tax_year
+        if self.tax_year is not None and latest is not None and latest > self.tax_year:
             msg = (
-                f"regular_periods_closed must be >= 0; "
-                f"got {self.regular_periods_closed}"
+                f"obligations include a recovery opened in {latest}, after the "
+                f"tax year of the state ({self.tax_year})"
             )
             raise ValueError(msg)
-        if self.regular_periods_closed > 12:
-            msg = (
-                f"regular_periods_closed must be <= 12; "
-                f"got {self.regular_periods_closed}"
-            )
-            raise ValueError(msg)
-        if self.tax_withholding_periods_closed < self.regular_periods_closed:
-            msg = (
-                f"tax_withholding_periods_closed "
-                f"({self.tax_withholding_periods_closed}) "
-                f"must be >= regular_periods_closed "
-                f"({self.regular_periods_closed})"
-            )
-            raise ValueError(msg)
-        if self.tax_withholding_periods_closed > 14:
-            msg = (
-                f"tax_withholding_periods_closed must be <= 14; "
-                f"got {self.tax_withholding_periods_closed}"
-            )
-            raise ValueError(msg)
+
+    @property
+    def tax_year(self) -> int | None:
+        """Tax year of :attr:`ytd`; ``None`` when not yet bound to a year."""
+        return self.ytd.tax_year
 
     @classmethod
     def zero(cls) -> PeriodState:
-        """Return a zero-valued state for the first period of the year.
+        """Return the state of a new employment: no run closed, no obligation.
 
         Returns:
             A :class:`PeriodState` with all counters and accumulators at zero.
@@ -159,8 +113,10 @@ class PeriodCalculationRequest:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``metalmeccanico-federmeccanica.json``.
         level_code: Worker's contractual level code, e.g. ``C3``.
-        opening_state: YTD state entering this period. Use
-            :meth:`PeriodState.zero` for January.
+        opening_state: State entering this period.  Use
+            :meth:`PeriodState.zero` for the first run of an employment and
+            :func:`~ccnl_engine.payroll.application.close_tax_year\
+.close_tax_year` for the first run of a later tax year.
         employer: The employer; its headcount resolves INPS rates (some
             rates differ by firm size).  Defaults to an employer with 50
             employees.
@@ -273,9 +229,15 @@ class PeriodCalculationRequest:
                 f"run {self.period_id.year}-{self.period_id.month:02d} paid on "
                 f"{self.payment_date.isoformat()} belongs to tax year {tax_year} "
                 f"(TUIR art. 51 c. 1), but opening_state is for tax year "
-                f"{opening_year}: pass PeriodState.zero() to start a new tax "
-                "year; carrying year-to-date state across tax years is not "
-                "supported"
+                f"{opening_year}: open the new tax year with close_tax_year() "
+                "on the closing state of the last run of the previous year"
+            )
+            raise InvalidInputError(msg, feature="tax_year")
+        latest = self.opening_state.obligations.latest_tax_year
+        if latest is not None and latest > tax_year:
+            msg = (
+                f"opening_state carries a recovery opened in {latest}, after "
+                f"the tax year of the run ({tax_year})"
             )
             raise InvalidInputError(msg, feature="tax_year")
         schedule = self.withholding_schedule
@@ -304,8 +266,11 @@ class PeriodCalculationResult:
         unpaid_absence_deduction: Sum of EMPLOYEE_DEDUCTIONS ledger entries.
             Represents wages not paid due to unpaid absences or sickness.
             Zero when no absences are present.
-        closing_state: YTD state after closing this period. Pass as
-            ``opening_state`` to the next period's request.
+        closing_state: State after closing this period: the tax year state
+            and the obligations.  Pass as ``opening_state`` to the next
+            run of the same tax year, or to
+            :func:`~ccnl_engine.payroll.application.close_tax_year\
+.close_tax_year` after the last run of the year.
         pay_items: All pay items produced for this period.
         ledger_entries: All ledger entries posted for this period.
         contribution_breakdown: Per-component INPS breakdown for audit

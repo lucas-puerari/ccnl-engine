@@ -199,11 +199,46 @@ normative source are data in the tax bundle.
 
 The year-to-date part of a regime's annual cap already taxed at the
 substitute rate.  For the night, holiday and shift supplement regime
-(L. 199/2025 art. 1 cc. 10-11, cap 1,500 EUR) it lives in the period state and
-carries over between runs of the tax year; each supplement only gets the
-substitute rate on what is left, the excess is ordinary income.
+(L. 199/2025 art. 1 cc. 10-11, cap 1,500 EUR) it lives in the tax year state
+and carries over between runs of the tax year; each supplement only gets the
+substitute rate on what is left, the excess is ordinary income.  It restarts
+with the next tax year.
 
-`RegimeCapAccount`, `PayrollState.work_time_regime`
+`RegimeCapAccount`, `PayrollState.ytd.work_time_regime`
+
+### tax year state (progressivi dell'anno fiscale)
+
+Run counters, withholding slots and year-to-date accounts of one tax year:
+earnings, fringe, tax withheld, trattamento integrativo, somma esente and the
+regime cap account.  It restarts at zero when the next tax year opens.
+
+`TaxYearState`, `PayrollState.ytd`
+
+### employment obligations (obbligazioni del rapporto)
+
+What a run owes or is owed beyond the tax year that created it, carried from
+run to run until settled.  Today: installment recoveries of trattamento
+integrativo (D.L. 3/2020 art. 1 c. 3), each bound to the tax year whose
+conguaglio opened it.  Installments posted in a later year do not enter the
+credit account of that year.
+
+`EmploymentObligations`, `RecoveryObligation`, `PayrollState.obligations`
+
+### year close (chiusura dell'anno fiscale)
+
+The transition from the state after the last run of year N to the opening
+state of N+1: fresh tax year state, obligations carried.  Rejected when a
+withholding slot of N is still open.
+
+`close_tax_year`, `PayrollEngine.close_tax_year`
+
+### opening balances (progressivi di subentro)
+
+Year-to-date totals and running recoveries computed by a previous payroll
+provider, validated and turned into the state of the first run the engine
+computes.
+
+`OpeningBalances`
 
 ### regime eligibility (spettanza del regime agevolato)
 
