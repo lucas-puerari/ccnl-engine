@@ -34,11 +34,6 @@ def _coop_sociali_d2_year() -> PayrollYearResult:
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="fractional extra months truncate withholding slots, so the year-end "
-    "conguaglio does not reach the tax owed on the final taxable income",
-)
 def test_fractional_extra_months_withhold_the_annual_tax() -> None:
     """Sum of per-run ordinary IRPEF equals the oracle on the final taxable.
 
@@ -46,8 +41,10 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
     21,182.05 EUR the oracle gives 1,337.83 EUR (derivation in
     ``test_irpef_oracle.test_first_bracket_with_further_deduction``).
 
-    Observed on 26 September 2026: 14 runs, annual gross 23,325.71, final
-    taxable 21,182.05, IRPEF withheld 1,833.32, last run IRPEF 0.00.
+    Before the withholding schedule was split from the equivalent months,
+    the engine withheld 1,833.32 (26 September 2026): 13 slots for 14 runs
+    made the last run project the opening taxable 19,613.01, below the
+    20,000 threshold of the further deduction.
     """
     year = _coop_sociali_d2_year()
     final_taxable = year.period_results[-1].closing_state.earnings.taxable
@@ -58,11 +55,6 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
     assert abs(withheld - net_irpef(final_taxable)) <= _CENT
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="fractional extra months leave trattamento integrativo credited "
-    "although the annual income makes it not due",
-)
 def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
     """Net trattamento integrativo over the year is zero.
 
@@ -72,8 +64,9 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
     deduction, stays below the gross tax of 4,871.87, so nothing is due at
     year end.
 
-    Observed on 26 September 2026: 171.43 credited in the fourteenth run and
-    seven recoveries of 21.43, net 21.42 left credited.
+    Before the withholding schedule was split from the equivalent months,
+    the engine credited 171.43 in the fourteenth run and recovered seven
+    instalments of 21.43, leaving 21.42 (26 September 2026).
     """
     year = _coop_sociali_d2_year()
     net_credit = sum(

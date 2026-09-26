@@ -129,9 +129,9 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
 # ---------------------------------------------------------------------------
 # P0-02: calculate_year always 12 periods — extra months ignored
 #
-# The CCNL parameter additional_months encodes how many payslips are issued
-# per year (13 = tredicesima, 14 = also quattordicesima).  calculate_year
-# must produce one PeriodCalculationResult per payroll run, not always 12.
+# The calendar lists the extra months (tredicesima, quattordicesima), each
+# paid in its own run.  calculate_year must produce one
+# PeriodCalculationResult per payroll run, not always 12.
 # Source: CCNL calendar; WorkCalendar.extra_months carries the schedule.
 # ---------------------------------------------------------------------------
 

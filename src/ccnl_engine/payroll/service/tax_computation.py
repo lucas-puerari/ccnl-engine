@@ -17,6 +17,7 @@ from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 
 _ZERO = Decimal(0)
 # D.L. 3/2020 art. 1 co. 3: recovery exceeding 60 EUR uses 8 equal installments.
@@ -118,8 +119,8 @@ def resolve_tax_computation(
     *,
     opening_irpef_withheld: Decimal = _ZERO,
     opening_tratt_ytd: Decimal = _ZERO,
-    months_closed: int = 0,
-    additional_months: int = 12,
+    withholding_schedule: WithholdingSchedule,
+    slots_closed: int = 0,
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
 ) -> tuple[TaxComputation, RecoveryPlan | None]:
@@ -136,7 +137,10 @@ def resolve_tax_computation(
     7. ``somma_esente`` — L. 207/2024 low-income bonus (if configured).
 
     The period withholding (``ordinary_tax``) is the conguaglio share:
-    ``max(0, (irpef_net_annual - ytd_withheld) / remaining_periods)``.
+    ``max(0, (irpef_net_annual - ytd_withheld) / remaining_slots)``, where
+    ``remaining_slots`` counts the slots of ``withholding_schedule`` not yet
+    closed, the current one included.  The last slot settles the full
+    balance, which can be negative (a refund).
 
     Args:
         taxable: Annual IRPEF taxable base (gross - employee INPS).
@@ -145,8 +149,9 @@ def resolve_tax_computation(
         opening_tratt_ytd: Trattamento integrativo already given this year
             (YTD).  Used for the conguaglio so over-payments are recovered
             and the annual entitlement is never exceeded.
-        months_closed: Periods already closed this year (for conguaglio).
-        additional_months: Total periods in the year (usually 12).
+        withholding_schedule: Withholding slots of the year, one per
+            payslip.  Never derived from the equivalent months of pay.
+        slots_closed: Withholding slots already closed this year.
         family_deductions: Annual Art. 12 family deductions (computed
             separately by :func:`~...compute_family_deductions`).
         recovery_plan: Active installment recovery plan from the previous
@@ -227,7 +232,7 @@ def resolve_tax_computation(
     # The last period settles the full balance; earlier periods clamp at zero to
     # avoid spreading a mid-year refund across months.
     withholding_due = irpef_net_annual - opening_irpef_withheld
-    remaining = max(1, additional_months - months_closed)
+    remaining = withholding_schedule.remaining(slots_closed)
     if remaining == 1:
         # Final period: settle the full balance (can be negative = refund).
         ordinary_tax = money(withholding_due)

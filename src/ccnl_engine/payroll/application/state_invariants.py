@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application._reconcile_types import (
     _sum_account,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.run import RunKind
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
@@ -31,7 +32,7 @@ def check_i11(
         Violations for any YTD field that does not advance as expected.
     """
     violations: list[ReconciliationViolation] = []
-    run_kind = result.run.run_kind if result.run is not None else "regular"
+    run_kind = result.run.run_kind if result.run is not None else RunKind.REGULAR
     run_id = (
         result.run.run_id
         if result.run is not None
@@ -52,7 +53,7 @@ def check_i11(
         )
 
     expected_tax = opening.tax_withholding_periods_closed + (
-        0 if run_kind == "adjustment" else 1
+        1 if run_kind.consumes_withholding_slot else 0
     )
     if result.closing_state.tax_withholding_periods_closed != expected_tax:
         violations.append(

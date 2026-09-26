@@ -34,9 +34,12 @@ from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
     _effective_resolver,
     _int_value,
-    _make_entry,
-    _require_resolution,
     _sum_ledger,
+)
+from ccnl_engine.payroll.application._withholding_plan import (
+    resolve_withholding_schedule,
+    somma_esente_credit,
+    upcoming_recurring_gross,
 )
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.post_ledger import (
@@ -50,18 +53,15 @@ from ccnl_engine.payroll.domain.employment_context import (
     EffectiveDateContext,
     TemporalContext,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.pay_items import (
-    CompetencePeriod,
-    PayItem,
-    TaxCreditItem,
-)
+from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -142,7 +142,9 @@ def calculate_period(
         tctx.fiscal_year, ccnl.meta.tax_sector, request.employer.headcount.value
     )
     catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
-    additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
+    withholding_schedule = resolve_withholding_schedule(
+        request.withholding_schedule, ccnl, tctx.competence, tctx.fiscal_year
+    )
     worker_category = resolve_worker_category(
         ccnl, level, request.category, seniority=request.seniority_months
     )
@@ -157,8 +159,10 @@ def calculate_period(
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
-    run_kind = request.run.run_kind if request.run is not None else "regular"
+    run_kind = request.run.run_kind if request.run is not None else RunKind.REGULAR
     run_id = _resolve_run_id(request, tctx)
+    slots_closed = request.opening_state.tax_withholding_periods_closed
+    upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
     chain = _apply_extra_month_policy(
         chain,
         run_kind,
@@ -223,7 +227,8 @@ def calculate_period(
         event_totals.irpef_base,
         event_totals.substitute_base,
         request.opening_state,
-        additional_months,
+        withholding_schedule,
+        upcoming_gross,
         year_rules,
         request.contract_type,
         worker_category,
@@ -263,44 +268,16 @@ def calculate_period(
         run_tag=run_id,
     )
 
-    # Somma esente (L. 207/2024): extract annual amount, prorate to period
-    annual_somma_esente = next(
-        (c.amount for c in tax_computation.components if c.name == "somma_esente"),
-        _ZERO,
+    # Somma esente (L. 207/2024): this run's share of the projected annual amount
+    period_somma_esente, se_items, se_entries = somma_esente_credit(
+        tax_computation,
+        withholding_schedule,
+        effective_resolver,
+        policy_context,
+        cp,
+        request.payment_date,
+        run_id,
     )
-    period_somma_esente = (
-        money(annual_somma_esente / additional_months)
-        if annual_somma_esente > _ZERO
-        else _ZERO
-    )
-    se_items: tuple[PayItem, ...] = ()
-    se_entries: tuple[LedgerEntry, ...] = ()
-    if period_somma_esente > _ZERO:
-        credit_pid = _require_resolution(
-            effective_resolver, "tax_credit_item", policy_context
-        ).policy_id
-        se_item_id = f"somma_esente_{run_id}"
-        se_items = (
-            TaxCreditItem(
-                item_id=se_item_id,
-                competence_period=cp,
-                payment_date=request.payment_date,
-                quantity=Decimal(1),
-                amount=period_somma_esente,
-            ),
-        )
-        se_entries = (
-            _make_entry(
-                se_item_id,
-                se_item_id,
-                "tax_credit_item",
-                cp,
-                request.payment_date,
-                AccountKind.CREDITS,
-                period_somma_esente,
-                policy_id=credit_pid,
-            ),
-        )
 
     all_entries = ledger_entries + event_entries + se_entries
 
@@ -329,7 +306,7 @@ def calculate_period(
 
     period_inps_base = monthly_gross + event_totals.inps_base
     regular_delta = 1 if run_kind == "regular" else 0
-    tax_delta = 0 if run_kind == "adjustment" else 1
+    tax_delta = 1 if run_kind.consumes_withholding_slot else 0
     op = request.opening_state
     closing = PeriodState(
         tax_year=tctx.fiscal_year,

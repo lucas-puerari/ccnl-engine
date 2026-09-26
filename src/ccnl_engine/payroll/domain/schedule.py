@@ -1,14 +1,24 @@
-"""PayrollSchedule: the ordered run sequence for a payroll year.
+"""Payroll schedule, run count and withholding schedule for a payroll year.
 
 A :class:`PayrollSchedule` describes exactly which payroll runs happen during
 a tax year and in what order, including extra months (tredicesima, quattordicesima).
 It is the single source of truth used by :func:`calculate_year` to determine
 how many :class:`~ccnl_engine.payroll.domain.run.PayrollRun` to compute.
+
+Three quantities are kept apart because they differ as soon as an extra month
+is fractional (13.5 equivalent months, 14 payslips):
+
+- :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthEntitlement`: how
+  many months of pay the year grants;
+- :class:`PayrollRunCount`: how many payslips the year issues;
+- :class:`WithholdingSchedule`: the ordered IRPEF withholding slots that the
+  annual projection and the year-end conguaglio run on.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
@@ -17,7 +27,37 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
 
-__all__ = ["PayrollSchedule"]
+__all__ = [
+    "PayrollRunCount",
+    "PayrollSchedule",
+    "WithholdingSchedule",
+    "WithholdingSlot",
+]
+
+_ONE = Decimal(1)
+
+
+@dataclass(frozen=True)
+class PayrollRunCount:
+    """Number of payslips issued in a payroll year.
+
+    An integer, never derived by truncating an
+    :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthEntitlement`: half
+    a quattordicesima is still one payslip.
+
+    Attributes:
+        value: Number of runs, at least 1.
+    """
+
+    value: int
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if isinstance(self.value, bool) or not isinstance(self.value, int):
+            msg = f"run count must be an int; got {type(self.value).__name__}"
+            raise TypeError(msg)
+        if self.value < 1:
+            msg = f"run count must be >= 1; got {self.value}"
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True)
@@ -78,3 +118,109 @@ class PayrollSchedule:
                     else:
                         runs.append(PayrollRun.thirteenth(year, month))
         return cls(year=year, runs=tuple(runs))
+
+    @property
+    def run_count(self) -> PayrollRunCount:
+        """Number of payslips in this schedule."""
+        return PayrollRunCount(len(self.runs))
+
+
+@dataclass(frozen=True)
+class WithholdingSlot:
+    """One IRPEF withholding slot: a run and the share of monthly pay it carries.
+
+    Attributes:
+        run: The payroll run that consumes this slot.
+        pay_fraction: Share of one regular monthly pay the run carries at full
+            accrual: ``1`` for a regular month or a full extra month, the
+            contractual fraction for a partial one (``0.5`` for half a
+            quattordicesima).  Used to project the recurring pay of future
+            slots; never to count them.
+    """
+
+    run: PayrollRun
+    pay_fraction: Decimal = field(default_factory=lambda: _ONE)
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if not self.run.run_kind.consumes_withholding_slot:
+            msg = f"run {self.run.run_id} does not consume a withholding slot"
+            raise ValueError(msg)
+        if not Decimal(0) < self.pay_fraction <= _ONE:
+            msg = f"pay_fraction must be in (0, 1]; got {self.pay_fraction}"
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True)
+class WithholdingSchedule:
+    """Ordered IRPEF withholding slots of a payroll year.
+
+    The annual IRPEF projection and the year-end conguaglio (art. 23 c. 3
+    DPR 600/1973) run on these slots: the tax still due is spread over the
+    slots not yet closed, and the last slot settles the balance on the final
+    taxable income.  There is one slot per payslip, so a fractional extra
+    month keeps its own slot.
+
+    Attributes:
+        year: The tax year.
+        slots: Slots in payment order, at least one.
+    """
+
+    year: int
+    slots: tuple[WithholdingSlot, ...]
+
+    def __post_init__(self) -> None:  # noqa: D105
+        if not self.slots:
+            msg = "WithholdingSchedule needs at least one slot"
+            raise ValueError(msg)
+        PayrollSchedule(year=self.year, runs=tuple(s.run for s in self.slots))
+
+    @classmethod
+    def from_calendar(cls, calendar: WorkCalendar) -> WithholdingSchedule:
+        """Build the withholding schedule of the runs a calendar generates.
+
+        Args:
+            calendar: Year-level payroll calendar.
+
+        Returns:
+            One slot per run of :meth:`PayrollSchedule.from_calendar`, with
+            the extra months carrying their ``max_fraction``.
+        """
+        fractions = {e.kind.value: e.max_fraction for e in calendar.extra_months}
+        runs = PayrollSchedule.from_calendar(calendar).runs
+        return cls(
+            year=calendar.year,
+            slots=tuple(
+                WithholdingSlot(run, fractions.get(run.run_kind, _ONE)) for run in runs
+            ),
+        )
+
+    @property
+    def run_count(self) -> PayrollRunCount:
+        """Number of payslips holding a withholding slot."""
+        return PayrollRunCount(len(self.slots))
+
+    def remaining(self, slots_closed: int) -> int:
+        """Return the slots left including the current one, at least 1.
+
+        Once every slot is closed the current run is treated as the last
+        one, so it still settles the balance.
+
+        Args:
+            slots_closed: Withholding slots already closed this tax year.
+
+        Returns:
+            ``max(1, len(slots) - slots_closed)``.
+        """
+        return max(1, len(self.slots) - slots_closed)
+
+    def upcoming(self, slots_closed: int) -> tuple[WithholdingSlot, ...]:
+        """Return the slots after the current one.
+
+        Args:
+            slots_closed: Withholding slots already closed this tax year; the
+                current run takes slot ``slots_closed``.
+
+        Returns:
+            The slots still to come after the current run, possibly empty.
+        """
+        return self.slots[slots_closed + 1 :]

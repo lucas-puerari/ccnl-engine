@@ -76,6 +76,22 @@ All Italian workers receive a **thirteenth month** (*tredicesima*) paid in Decem
 Many CCNLs add a **fourteenth month** (*quattordicesima*), usually in June. The
 engine accounts for both via the `parameters.additional_months` time series.
 
+`additional_months` is an entitlement in equivalent months of pay, not a count
+of payslips. Cooperative Sociali grants 13.5: a full tredicesima and half a
+quattordicesima. The engine keeps three values apart:
+
+| Concept | Type | Cooperative Sociali |
+|---|---|---|
+| Equivalent months of pay | `ExtraMonthEntitlement` | 13.5 |
+| Payslips in the year | `PayrollRunCount` | 14 |
+| IRPEF withholding slots | `WithholdingSchedule` | 14, the June quattordicesima carrying 0.5 |
+
+The IRPEF projection and the year-end conguaglio run on the withholding
+schedule. Each upcoming slot is projected at the pay its run kind carries
+(a regular month, or the extra-month pay scaled by its fraction), and the last
+slot settles the tax on the final taxable income. A value strictly between 12
+and 13 (a partial tredicesima) is rejected.
+
 ### Hourly divisor (*divisore orario*)
 
 The hourly divisor converts a monthly salary into an hourly rate. It is derived from
