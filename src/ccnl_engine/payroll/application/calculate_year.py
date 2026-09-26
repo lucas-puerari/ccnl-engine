@@ -11,7 +11,7 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.calendar import ExtraMonthEntitlement, WorkCalendar
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
@@ -32,7 +32,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.schedule import PayrollSchedule
+from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
@@ -153,7 +153,10 @@ def calculate_year(
     months (1-12) plus any extra months (tredicesima, quattordicesima) are each
     computed as separate :func:`calculate_period` calls, with the closing
     :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each run passed
-    as the opening state of the next.
+    as the opening state of the next.  Every run receives the same
+    :class:`~ccnl_engine.payroll.domain.schedule.WithholdingSchedule`, one
+    slot per run, so the IRPEF conguaglio settles on the last run even when
+    an extra month is fractional.
 
     Args:
         year: The tax year.
@@ -226,15 +229,16 @@ def calculate_year(
         effective_repo = repo if repo is not None else BundledKnowledgeRepository()
         ccnl = effective_repo.load_ccnl(ccnl_slug)
         as_of = date(year, 1, 1)
-        additional_months_decimal = Decimal(
-            str(ccnl.parameters.additional_months.value_at(as_of))
+        entitlement = ExtraMonthEntitlement.of(
+            ccnl.parameters.additional_months.value_at(as_of)
         )
-        calendar = WorkCalendar.from_additional_months(year, additional_months_decimal)
+        calendar = WorkCalendar.from_additional_months(year, entitlement)
     elif calendar.year != year:
         msg = f"calendar.year={calendar.year} does not match year={year}"
         raise ValueError(msg)
 
     schedule = PayrollSchedule.from_calendar(calendar)
+    withholding_schedule = WithholdingSchedule.from_calendar(calendar)
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
@@ -281,6 +285,7 @@ def calculate_year(
             family_composition=family_composition,
             has_dependent_children=has_dependent_children,
             run=run,
+            withholding_schedule=withholding_schedule,
         )
         result = calculate_period(
             req, repo=repo, resolver=resolver, bundle_version=bundle_version

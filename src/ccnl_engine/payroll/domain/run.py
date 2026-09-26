@@ -28,6 +28,15 @@ class RunKind(StrEnum):
     ADJUSTMENT = "adjustment"
     TERMINATION = "termination"
 
+    @property
+    def consumes_withholding_slot(self) -> bool:
+        """Whether a run of this kind takes one IRPEF withholding slot.
+
+        Every payslip does, except an adjustment run, which corrects a run
+        already closed without opening a new withholding instalment.
+        """
+        return self is not RunKind.ADJUSTMENT
+
 
 @dataclass(frozen=True)
 class PayrollRun:

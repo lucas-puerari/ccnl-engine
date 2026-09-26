@@ -29,7 +29,9 @@ component.
 ### taxable (imponibile fiscale)
 
 The base on which IRPEF and its surcharges (addizionali) are computed.
-Derived annually as: `recurring_gross × N_months − employee_INPS_annual`.
+Projected annually as: YTD taxable, plus the current run, plus the recurring
+gross of the withholding slots still to come, minus the employee INPS on
+them.  On the last slot the projection is the final taxable income.
 One-off events (overtime, bonuses) are added on their own taxable amount
 after deducting the INPS due on them.  Non-cash benefits may contribute to
 the taxable base when the exempt threshold is exceeded (see `fringe` below).
@@ -67,6 +69,33 @@ the year-end or termination settlement of the difference between liability
 and withheld YTD.
 
 `TFR_SETTLEMENT ledger account`
+
+### extra-month entitlement (mensilità equivalenti)
+
+Equivalent months of pay granted per year: 12 regular months plus the
+extra months, possibly fractional (13.5 means a full tredicesima and half a
+quattordicesima).  It says how much is paid, never how many payslips are
+issued.  Read from the CCNL `parameters.additional_months`.
+
+`ExtraMonthEntitlement`, `WorkCalendar.entitlement`
+
+### payroll run count (numero di cedolini)
+
+Number of payslips issued in the year: 12 regular runs plus one run per
+extra month, whatever its fraction.  With 13.5 equivalent months the year
+has 14 runs.
+
+`PayrollRunCount`, `PayrollSchedule.run_count`
+
+### withholding schedule (piano delle ritenute)
+
+The ordered IRPEF withholding slots of the year, one per payslip.  The
+annual projection spreads the tax still due over the slots not yet closed,
+and the last slot performs the conguaglio on the final taxable income
+(art. 23 c. 3 DPR 600/1973).  Surtax and somma esente are split per slot.
+Never derived from the entitlement.
+
+`WithholdingSchedule`, `WithholdingSlot`, `PeriodCalculationRequest.withholding_schedule`
 
 ### calculation status (stato del calcolo)
 

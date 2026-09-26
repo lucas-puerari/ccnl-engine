@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.errors import DataIntegrityError, MissingRequiredFactError
 from ccnl_engine.payroll.application._period_utils import _ZERO
+from ccnl_engine.payroll.application._withholding_plan import slot_share
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
     ContributionComponent,
@@ -40,6 +41,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.period import PeriodState
+    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 
 
 @dataclass(frozen=True)
@@ -248,7 +250,8 @@ def _compute_amounts(
     event_irpef_base: Decimal,
     event_substitute_base: Decimal,
     opening: PeriodState,
-    additional_months: int,
+    withholding_schedule: WithholdingSchedule,
+    upcoming_gross: Decimal,
     rules: YearRules,
     contract_type: Permanent | FixedTerm | Apprentice,
     category: WorkerCategory | None,
@@ -264,6 +267,12 @@ def _compute_amounts(
     domestic_hourly_rate: Decimal | None = None,
 ) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
+
+    The annual taxable income is projected as the opening YTD taxable, plus
+    this run, plus ``upcoming_gross`` for the withholding slots still to
+    come (net of employee INPS at the current rate).  On the last slot
+    ``upcoming_gross`` is zero, so the projection equals the final taxable
+    income and the conguaglio settles on it.
 
     Returns:
         ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
@@ -307,8 +316,7 @@ def _compute_amounts(
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     effective_irpef_base = event_irpef_base + pdr_excess
 
-    months_remaining = additional_months - opening.tax_withholding_periods_closed
-    recurring_remaining = monthly_gross * months_remaining
+    recurring_remaining = monthly_gross + upcoming_gross
     recurring_inps_remaining = money(recurring_remaining * employee_rate_for_irpef)
     recurring_taxable = recurring_remaining - recurring_inps_remaining
     event_inps_on_irpef = money(event_inps_base * employee_rate_for_irpef)
@@ -330,8 +338,8 @@ def _compute_amounts(
         rules,
         opening_irpef_withheld=opening.tax.irpef,
         opening_tratt_ytd=net_credit_ytd,
-        months_closed=opening.tax_withholding_periods_closed,
-        additional_months=additional_months,
+        withholding_schedule=withholding_schedule,
+        slots_closed=opening.tax_withholding_periods_closed,
         family_deductions=fam_ded,
         recovery_plan=opening.trattamento.plan,
     )
@@ -348,7 +356,7 @@ def _compute_amounts(
         irpef_due=ig,
     )
     period_surtax_annual = surtax_reg + surtax_com
-    period_surtax = money(period_surtax_annual / additional_months)
+    period_surtax = slot_share(period_surtax_annual, withholding_schedule)
 
     period_taxable = money(monthly_gross - inps_employee + effective_irpef_base)
 

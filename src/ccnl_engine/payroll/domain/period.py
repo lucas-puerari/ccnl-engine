@@ -39,6 +39,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
 _ZERO = Decimal(0)
@@ -177,6 +178,11 @@ class PeriodCalculationRequest:
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
             seniority increments for the level differ by category.
+        withholding_schedule: Withholding slots of the tax year, one per
+            payslip, used by the IRPEF projection and conguaglio.
+            :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
+            passes the schedule of the runs it computes.  ``None`` uses the
+            standard calendar of the CCNL ``additional_months``.
     """
 
     period_id: PeriodId
@@ -202,9 +208,10 @@ class PeriodCalculationRequest:
     category: WorkerCategory | None = None
     extra_month_accrual_start: int = 1
     extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
+    withholding_schedule: WithholdingSchedule | None = None
 
     def __post_init__(self) -> None:
-        """Guard against cross-year state and hours above full time.
+        """Guard against cross-year state or schedule and hours above full time.
 
         When ``opening_state.tax_year`` is set, it must match the period year.
         States produced by :func:`~ccnl_engine.payroll.application\
@@ -213,8 +220,9 @@ class PeriodCalculationRequest:
 
         Raises:
             ValueError: When ``opening_state.tax_year`` is not ``None`` and
-                differs from ``period_id.year``, or when ``weekly_hours``
-                exceeds ``full_time_weekly_hours``.
+                differs from ``period_id.year``, when ``weekly_hours``
+                exceeds ``full_time_weekly_hours``, or when
+                ``withholding_schedule`` belongs to another year.
         """
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         if (
@@ -225,6 +233,15 @@ class PeriodCalculationRequest:
                 f"opening_state.tax_year ({self.opening_state.tax_year}) "
                 f"does not match period year ({self.period_id.year}): "
                 "pass PeriodState.zero() to start a new tax year"
+            )
+            raise ValueError(msg)
+        if (
+            self.withholding_schedule is not None
+            and self.withholding_schedule.year != self.period_id.year
+        ):
+            msg = (
+                f"withholding_schedule.year ({self.withholding_schedule.year}) "
+                f"does not match period year ({self.period_id.year})"
             )
             raise ValueError(msg)
 

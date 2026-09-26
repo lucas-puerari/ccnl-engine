@@ -3,6 +3,11 @@
 A :class:`WorkCalendar` describes when the regular 12 payroll periods fall
 and how many extra contractual months (e.g. tredicesima, quattordicesima) are
 paid and in which calendar month.
+
+The CCNL ``additional_months`` parameter is an :class:`ExtraMonthEntitlement`:
+equivalent months of pay per year, possibly fractional (13.5).  It is not a
+count of payslips; see :class:`~ccnl_engine.payroll.domain.schedule.PayrollRunCount`
+and :class:`~ccnl_engine.payroll.domain.schedule.WithholdingSchedule`.
 """
 
 from __future__ import annotations
@@ -11,10 +16,68 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import Enum
 
-__all__ = ["ExtraMonthKind", "ExtraMonthSchedule", "WorkCalendar"]
+__all__ = [
+    "ExtraMonthEntitlement",
+    "ExtraMonthKind",
+    "ExtraMonthSchedule",
+    "WorkCalendar",
+]
 
 _MAX_ADDITIONAL_MONTHS = Decimal(14)
 _MIN_ADDITIONAL_MONTHS = Decimal(12)
+_WITH_THIRTEENTH = Decimal(13)
+
+
+def _require_decimal(value: object) -> None:
+    if not isinstance(value, Decimal):
+        msg = f"additional_months must be a Decimal; got {type(value).__name__}"
+        raise TypeError(msg)
+
+
+@dataclass(frozen=True)
+class ExtraMonthEntitlement:
+    """Equivalent months of pay per year: 12 regular months plus extra months.
+
+    The value is a :class:`~decimal.Decimal` and may be fractional: ``13.5``
+    means a full tredicesima plus half a quattordicesima.  It says how much
+    is paid, not how many payslips are issued; a fractional extra month is
+    still paid in its own run.
+
+    Attributes:
+        value: Equivalent months, between 12 and 14 inclusive.
+    """
+
+    value: Decimal
+
+    def __post_init__(self) -> None:  # noqa: D105
+        _require_decimal(self.value)
+        if not self.value.is_finite() or self.value < _MIN_ADDITIONAL_MONTHS:
+            msg = (
+                f"additional_months={self.value} is below the minimum "
+                f"of 12; a CCNL must have at least 12 regular months"
+            )
+            raise ValueError(msg)
+        if self.value > _MAX_ADDITIONAL_MONTHS:
+            msg = (
+                f"additional_months={self.value} exceeds the maximum "
+                f"supported value of {_MAX_ADDITIONAL_MONTHS}; "
+                f"only CCNL contracts with up to {_MAX_ADDITIONAL_MONTHS} "
+                f"months are supported"
+            )
+            raise ValueError(msg)
+
+    @classmethod
+    def of(cls, value: int | Decimal) -> ExtraMonthEntitlement:
+        """Build an entitlement from a CCNL parameter value.
+
+        Args:
+            value: Equivalent months as ``int`` or ``Decimal``.  Converted
+                through ``str`` so no binary rounding is introduced.
+
+        Returns:
+            The validated :class:`ExtraMonthEntitlement`.
+        """
+        return cls(Decimal(str(value)))
 
 
 class ExtraMonthKind(Enum):
@@ -114,11 +177,21 @@ class WorkCalendar:
             )
             raise ValueError(msg)
 
+    @property
+    def entitlement(self) -> ExtraMonthEntitlement:
+        """Equivalent months of pay granted by this calendar.
+
+        Twelve regular months plus the ``max_fraction`` of each extra month,
+        so a full tredicesima and half a quattordicesima give ``13.5``.
+        """
+        extra = sum((s.max_fraction for s in self.extra_months), Decimal(0))
+        return ExtraMonthEntitlement(_MIN_ADDITIONAL_MONTHS + extra)
+
     @classmethod
     def from_additional_months(
         cls,
         year: int,
-        additional_months: int | Decimal,
+        additional_months: int | Decimal | ExtraMonthEntitlement,
         *,
         thirteenth_payment_month: int = 12,
         fourteenth_payment_month: int = 6,
@@ -139,9 +212,9 @@ class WorkCalendar:
 
         Args:
             year: Tax year.
-            additional_months: Value from CCNL parameters (13, 13.5 or 14).
-                Values outside the range 12-14 raise :class:`ValueError`.
-                Accepts ``int`` or ``Decimal``; fractional parts are preserved.
+            additional_months: Value from CCNL parameters (13, 13.5 or 14),
+                as :class:`ExtraMonthEntitlement`, ``int`` or ``Decimal``.
+                Fractional parts are preserved.
             thirteenth_payment_month: Calendar month for the tredicesima.
                 Defaults to December (12).
             fourteenth_payment_month: Calendar month for the quattordicesima.
@@ -152,28 +225,27 @@ class WorkCalendar:
 
         Raises:
             ValueError: When ``additional_months`` is outside the range
-                ``[12, 14]``.
+                ``[12, 14]``, or strictly between 12 and 13: a partial
+                tredicesima is not a supported calendar and would otherwise
+                be dropped silently.
         """
-        am = Decimal(str(additional_months))
-        if am < _MIN_ADDITIONAL_MONTHS:
+        entitlement = (
+            additional_months
+            if isinstance(additional_months, ExtraMonthEntitlement)
+            else ExtraMonthEntitlement.of(additional_months)
+        )
+        am = entitlement.value
+        if _MIN_ADDITIONAL_MONTHS < am < _WITH_THIRTEENTH:
             msg = (
-                f"additional_months={am} is below the minimum "
-                f"of 12; a CCNL must have at least 12 regular months"
-            )
-            raise ValueError(msg)
-        if am > _MAX_ADDITIONAL_MONTHS:
-            msg = (
-                f"additional_months={am} exceeds the maximum "
-                f"supported value of {_MAX_ADDITIONAL_MONTHS}; "
-                f"only CCNL contracts with up to {_MAX_ADDITIONAL_MONTHS} "
-                f"months are supported"
+                f"additional_months={am} grants a partial tredicesima, "
+                f"which is not supported; use 12, 13 or a value up to 14"
             )
             raise ValueError(msg)
         # Accrual window start for the quattordicesima: the month after the
         # payment month (wrapping at December → January).
         fourteenth_window_start = (fourteenth_payment_month % 12) + 1
         schedules: list[ExtraMonthSchedule] = []
-        if am >= 13:
+        if am >= _WITH_THIRTEENTH:
             schedules.append(
                 ExtraMonthSchedule(
                     kind=ExtraMonthKind.THIRTEENTH,
@@ -183,7 +255,7 @@ class WorkCalendar:
                     max_fraction=Decimal(1),
                 )
             )
-        if am >= 14:
+        if am >= _MAX_ADDITIONAL_MONTHS:
             schedules.append(
                 ExtraMonthSchedule(
                     kind=ExtraMonthKind.FOURTEENTH,
@@ -193,8 +265,8 @@ class WorkCalendar:
                     max_fraction=Decimal(1),
                 )
             )
-        elif am > 13:
-            fraction = am - 13
+        elif am > _WITH_THIRTEENTH:
+            fraction = am - _WITH_THIRTEENTH
             schedules.append(
                 ExtraMonthSchedule(
                     kind=ExtraMonthKind.FOURTEENTH,

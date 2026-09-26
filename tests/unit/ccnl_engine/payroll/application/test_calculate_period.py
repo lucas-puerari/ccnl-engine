@@ -32,6 +32,7 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationResult,
     ReconciliationViolation,
 )
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
@@ -51,6 +52,7 @@ from ccnl_engine.payroll.domain.period import (
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -61,6 +63,7 @@ _LEVEL = "C3"
 _ZERO = Decimal(0)
 
 _RESOLVER = PolicyResolver.load()
+_TWELVE_SLOTS = WithholdingSchedule.from_calendar(WorkCalendar(year=2026))
 _POLICY_CTX = PolicyContext(year=2026, as_of=date(2026, 1, 1))
 
 # C3 salary: 2158.26 until 2026-06-01, 2211.43 from 2026-06-01
@@ -399,7 +402,7 @@ class TestWithholdingDue:
 
     def test_withholding_due_negative_final_period_excess(self) -> None:
         """Final period with excess YTD produces negative withholding_due."""
-        # metalmeccanico additional_months=13; twpc=12 → remaining=1
+        # metalmeccanico has 13 withholding slots; twpc=12 → remaining=1
         # regular_periods_closed=11 so the closing from this run reaches 12.
         opening = PeriodState(
             regular_periods_closed=11,
@@ -440,8 +443,7 @@ class TestResolveTaxComputation:
             Decimal(25000),
             rules,
             opening_irpef_withheld=_ZERO,
-            months_closed=0,
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         assert tc.ordinary_tax > _ZERO
         names = [c.name for c in tc.components]
@@ -461,8 +463,7 @@ class TestResolveTaxComputation:
             Decimal(10000),
             rules_with_ti,
             opening_irpef_withheld=_ZERO,
-            months_closed=0,
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" in names
@@ -476,8 +477,7 @@ class TestResolveTaxComputation:
             Decimal(10000),
             rules,
             opening_irpef_withheld=_ZERO,
-            months_closed=0,
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" not in names
@@ -497,7 +497,7 @@ class TestResolveTaxComputation:
         tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules_with_ud,
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         names = [c.name for c in tc.components]
         assert "ulteriore_detrazione" not in names
@@ -514,7 +514,7 @@ class TestResolveTaxComputation:
             Decimal(250000),
             rules_with_s,
             family_deductions=Decimal(1000),
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         names = [c.name for c in tc.components]
         assert "sterilizzazione_detrazioni" in names
@@ -529,7 +529,7 @@ class TestResolveTaxComputation:
         tc, _ = resolve_tax_computation(
             Decimal(10000),
             rules_with_se,
-            additional_months=12,
+            withholding_schedule=_TWELVE_SLOTS,
         )
         names = [c.name for c in tc.components]
         assert "somma_esente" in names
