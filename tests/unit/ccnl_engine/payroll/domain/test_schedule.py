@@ -152,7 +152,7 @@ class TestWorkCalendarFromAdditionalMonths:
         assert fourteenth.max_fraction == Decimal("0.5")
 
     def test_duplicate_extra_month_raises(self) -> None:
-        """Two schedules with the same kind and payment_month raise ValueError."""
+        """Two schedules with the same kind raise ValueError."""
         sched = ExtraMonthSchedule(
             kind=ExtraMonthKind.THIRTEENTH,
             name="tredicesima",
@@ -160,3 +160,28 @@ class TestWorkCalendarFromAdditionalMonths:
         )
         with pytest.raises(ValueError, match="duplicate"):
             WorkCalendar(year=2026, extra_months=(sched, sched))
+
+    def test_duplicate_kind_different_payment_months_raises(self) -> None:
+        """Two THIRTEENTH schedules in different payment months raise ValueError."""
+        sched_june = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima-june",
+            payment_month=6,
+        )
+        sched_dec = ExtraMonthSchedule(
+            kind=ExtraMonthKind.THIRTEENTH,
+            name="tredicesima-dec",
+            payment_month=12,
+        )
+        with pytest.raises(ValueError, match="duplicate"):
+            WorkCalendar(year=2026, extra_months=(sched_june, sched_dec))
+
+    def test_fourteenth_without_thirteenth_raises(self) -> None:
+        """A FOURTEENTH schedule without THIRTEENTH raises ValueError."""
+        sched = ExtraMonthSchedule(
+            kind=ExtraMonthKind.FOURTEENTH,
+            name="quattordicesima",
+            payment_month=6,
+        )
+        with pytest.raises(ValueError, match="fourteenth month requires a thirteenth"):
+            WorkCalendar(year=2026, extra_months=(sched,))
