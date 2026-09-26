@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
     from decimal import Decimal
 
-    from ccnl_engine.engine.provenance.domain.source import SourceLocation
+    from ccnl_engine.provenance.domain.source import SourceLocation
 
 __all__ = ["CalculationDecision", "CalculationIssue", "CalculationStatus"]
 

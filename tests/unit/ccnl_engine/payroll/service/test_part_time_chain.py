@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.engine.contract.domain.compensation import Allowance
-from ccnl_engine.engine.contract.domain.validity import TimeSeries
+from ccnl_engine.contract.domain.compensation import Allowance
+from ccnl_engine.contract.domain.validity import TimeSeries
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 

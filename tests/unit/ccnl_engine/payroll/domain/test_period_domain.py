@@ -7,10 +7,9 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.capability_catalog import CapabilityReport
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
@@ -32,6 +31,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     FringeYtd,
     TaxYtd,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)

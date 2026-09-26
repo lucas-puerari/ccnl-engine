@@ -22,11 +22,11 @@ from ccnl_engine.payroll.service.ulteriore_recovery import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
 

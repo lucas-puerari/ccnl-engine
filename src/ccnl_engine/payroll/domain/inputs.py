@@ -17,7 +17,6 @@ from datetime import date
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import ContributableHours, Employment
@@ -32,6 +31,7 @@ from ccnl_engine.payroll.domain.tax_year import (
     DEFAULT_PAYMENT_DAY,
     monthly_payment_date,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual

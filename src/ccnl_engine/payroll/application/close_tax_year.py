@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.period import PeriodState
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = ["close_tax_year"]
 

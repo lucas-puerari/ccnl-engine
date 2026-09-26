@@ -6,13 +6,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.primitives.domain.primitives import Bracket
-from ccnl_engine.engine.surtax.domain.rules import (
-    ComunaleEntry,
-    RegionaleEntry,
-    SurtaxRules,
-)
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 from ccnl_engine.payroll.service.fiscal_surtax import (
@@ -21,6 +14,13 @@ from ccnl_engine.payroll.service.fiscal_surtax import (
     SurtaxOutcome,
     compute_surtax,
 )
+from ccnl_engine.shared.domain.primitives import Bracket
+from ccnl_engine.tax.domain.surtax_rules import (
+    ComunaleEntry,
+    RegionaleEntry,
+    SurtaxRules,
+)
+from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 
 _D = Decimal
 _TAXABLE = _D("30000")

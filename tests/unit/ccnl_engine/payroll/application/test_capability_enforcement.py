@@ -12,11 +12,11 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.engine.capability_catalog import (
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityGapKind,
     CapabilityReport,
 )
-from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,

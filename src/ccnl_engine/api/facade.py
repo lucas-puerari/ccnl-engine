@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.knowledge import __version__
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.knowledge import __version__
 from ccnl_engine.payroll.application.calculate_period import (
     calculate_period as _calculate_period,
 )
@@ -17,13 +17,14 @@ from ccnl_engine.payroll.application.calculate_year import (
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
 )
-from ccnl_engine.payroll.domain.policy import PolicyResolver
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application.calculate_year import YearResult
+    from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.inputs import PeriodInput, YearInput
     from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+    from ccnl_engine.payroll.domain.policy import PolicyResolver
 
 __all__ = ["PayrollEngine"]
 
@@ -76,7 +77,7 @@ class PayrollEngine:
             repository if repository is not None else BundledKnowledgeRepository()
         )
         self._resolver: PolicyResolver = (
-            policies if policies is not None else PolicyResolver.load()
+            policies if policies is not None else load_policy_resolver()
         )
 
     @classmethod
@@ -124,7 +125,7 @@ class PayrollEngine:
 
         A calendar override that drops or lowers an extra month the CCNL
         grants, or does not match its reason, raises
-        :class:`~ccnl_engine.engine.errors.InvalidInputError`.
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
         return _calculate_year(
             request,

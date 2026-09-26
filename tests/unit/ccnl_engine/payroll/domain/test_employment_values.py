@@ -7,7 +7,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
@@ -19,6 +18,7 @@ from ccnl_engine.payroll.domain.employment import (
 )
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _START = date(2026, 3, 1)
 

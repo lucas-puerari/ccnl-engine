@@ -7,14 +7,14 @@ from unittest.mock import patch
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.engine.primitives.domain.primitives import Bracket
-from ccnl_engine.engine.surtax.domain.rules import (
+from ccnl_engine.shared.domain.errors import DataIntegrityError, UnsupportedTaxYearError
+from ccnl_engine.shared.domain.primitives import Bracket
+from ccnl_engine.tax.domain.surtax_rules import (
     ComunaleEntry,
     RegionaleEntry,
     SurtaxRules,
 )
-from ccnl_engine.engine.surtax.service.loaders import (
+from ccnl_engine.tax.service.surtax_loaders import (
     _load_surtax_rules_cached,
     load_surtax_rules,
 )
@@ -110,7 +110,7 @@ class TestSurtaxLoaderIdentity:
         _load_surtax_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.surtax.service.loaders.read_bundled",
+                "ccnl_engine.tax.service.surtax_loaders.read_bundled",
                 side_effect=[tampered_reg, valid_com],
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -125,7 +125,7 @@ class TestSurtaxLoaderIdentity:
         _load_surtax_rules_cached.cache_clear()
         with (
             patch(
-                "ccnl_engine.engine.surtax.service.loaders.read_bundled",
+                "ccnl_engine.tax.service.surtax_loaders.read_bundled",
                 side_effect=[valid_reg, tampered_com],
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),

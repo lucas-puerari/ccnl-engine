@@ -13,7 +13,6 @@ from dataclasses import dataclass, fields
 from decimal import Decimal
 from typing import final
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
@@ -31,6 +30,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     UlterioreDetrazioneAccount,
     WithholdingShortfall,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = ["OpeningBalances"]
 

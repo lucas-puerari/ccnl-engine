@@ -36,18 +36,18 @@ from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.contract.domain.compensation import Level
-    from ccnl_engine.engine.contract.domain.identity import CCNL
-    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
-    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
+    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.domain.compensation import Level
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
     from ccnl_engine.payroll.service.ulteriore_recovery import UlterioreSettlement
+    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+    from ccnl_engine.tax.domain.variable_pay import PdRRules
 
 
 @dataclass(frozen=True)

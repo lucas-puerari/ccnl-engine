@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.calendar import ExtraMonthEntitlement, WorkCalendar
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
 
 __all__ = ["effective_calendar", "standard_calendar"]

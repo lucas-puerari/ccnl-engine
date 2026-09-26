@@ -41,7 +41,7 @@ hash at load time and raise `ValueError` on mismatch — tampered or
 accidentally edited files are caught before any computation.
 
 ```python
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.service.loaders import load_ccnl
 
 ccnl = load_ccnl("metalmeccanico-federmeccanica.json")
 print(ccnl.ruleset.id)  # "ccnl/metalmeccanico-federmeccanica"
@@ -109,8 +109,8 @@ appropriate INPS rate tier (based on `num_employees`) and applies the
 correct IRPEF bracket schedule:
 
 ```python
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 
 rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
 ```
@@ -127,7 +127,7 @@ year. The caller selects them with `regione` and `comune_belfiore` on the
 skipped. See [Fiscal computation](../engine/fiscal.md#surtax-decisions).
 
 ```python
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 
 surtax = load_surtax_rules(2026)
 ```

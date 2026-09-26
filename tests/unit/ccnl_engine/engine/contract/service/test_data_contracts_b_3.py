@@ -3,9 +3,9 @@
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.service.loaders import load_ccnl
 
 
 class TestLoadRecapitoCorrispondenzaFise:

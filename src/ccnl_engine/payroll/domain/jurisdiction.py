@@ -24,7 +24,7 @@ import re
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Mapping

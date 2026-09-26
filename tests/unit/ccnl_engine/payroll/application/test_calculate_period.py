@@ -8,19 +8,11 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.compensation import Allowance
-from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.contract.domain.compensation import Allowance
+from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.engine.tax.domain.credit_rules import (
-    SommaEsenteBand,
-    SommaEsenteRules,
-    TrattamentoIntegrativoRules,
-    UlterioreDetrazioneRules,
-)
-from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 from ccnl_engine.payroll.application import reconcile as _reconcile_mod
 from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._period_utils import _require_resolution
@@ -55,20 +47,29 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.payroll.service.types import MonthlyPayChain
+from ccnl_engine.shared.domain.errors import DataIntegrityError, InvalidInputError
+from ccnl_engine.tax.domain.credit_rules import (
+    SommaEsenteBand,
+    SommaEsenteRules,
+    TrattamentoIntegrativoRules,
+    UlterioreDetrazioneRules,
+)
+from ccnl_engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
 from tests.helpers import EMPLOYER_50, make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _ZERO = Decimal(0)
 
-_RESOLVER = PolicyResolver.load()
+_RESOLVER = load_policy_resolver()
 _TWELVE_SLOTS = WithholdingSchedule.from_calendar(WorkCalendar(year=2026))
 _POLICY_CTX = PolicyContext(year=2026, as_of=date(2026, 1, 1))
 

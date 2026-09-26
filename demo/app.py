@@ -29,9 +29,9 @@ from ccnl_engine import (
     SeniorityMonths,
     WeeklyHours,
 )
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.io.service.bundled import read_bundled
-from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
+from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 
 
@@ -111,7 +111,7 @@ def list_ccnls() -> str:
 
     Works for both editable installs (plain ``.json``) and installed wheels
     (compressed ``.json.gz``): iterates the data package, normalises the name,
-    then reads via :func:`~ccnl_engine.engine.io.bundled.read_bundled`.
+    then reads via :func:`~ccnl_engine.knowledge.service.bundled.read_bundled`.
 
     Returns:
         JSON-encoded list of ``{file, id, name, tax_sector}`` dicts.

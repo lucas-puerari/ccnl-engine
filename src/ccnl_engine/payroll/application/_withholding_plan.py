@@ -22,7 +22,7 @@ from ccnl_engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
     from ccnl_engine.payroll.domain.schedule import WithholdingSlot
     from ccnl_engine.payroll.service.types import MonthlyPayChain

@@ -1,7 +1,7 @@
 """Eligibility of a pay item for a preferential tax regime.
 
 :func:`assess_regime` checks a
-:class:`~ccnl_engine.engine.tax.domain.preferential_regime.PreferentialTaxRegime`
+:class:`~ccnl_engine.tax.domain.preferential_regime.PreferentialTaxRegime`
 against the worker facts of the request and splits the amount into the part
 taxed at the substitute rate and the part taxed as ordinary income.
 
@@ -30,7 +30,7 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.preferential_regime import (
+    from ccnl_engine.tax.domain.preferential_regime import (
         EmployerActivity,
         EmploymentSector,
         PreferentialTaxRegime,

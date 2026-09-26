@@ -51,7 +51,7 @@ Both group the facts by owner and are validated when built:
       members:
         - PriorYearTaxFacts
 
-::: ccnl_engine.engine.tax.domain.preferential_regime
+::: ccnl_engine.tax.domain.preferential_regime
     options:
       members:
         - EmploymentSector
@@ -76,7 +76,7 @@ omitted. A different calendar is accepted only as a validated
         - CalendarOverride
         - CalendarOverrideReason
 
-::: ccnl_engine.engine.contract.domain.category
+::: ccnl_engine.contract.domain.category
     options:
       members:
         - WorkerCategory

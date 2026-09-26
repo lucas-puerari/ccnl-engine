@@ -6,10 +6,10 @@ Each ``<year>-<sector>.json`` pair in ``knowledge/tax/data`` and
 pre-split tax files.
 """
 
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.tax.domain.ruleset import YearRulesRaw
-from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
-from ccnl_engine.engine.tax.service.tax_resource_reader import (
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.tax.domain.ruleset import YearRulesRaw
+from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.service.tax_resource_reader import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )

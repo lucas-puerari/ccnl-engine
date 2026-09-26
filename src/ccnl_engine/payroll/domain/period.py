@@ -7,8 +7,6 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
-from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -37,12 +35,14 @@ from ccnl_engine.payroll.domain.request_checks import (
 )
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.capability_catalog import CapabilityReport
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+    from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition

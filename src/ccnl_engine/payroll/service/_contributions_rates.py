@@ -14,10 +14,10 @@ from ccnl_engine.payroll.service._contributions_apprentice import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.tax.domain.contribution_rules import InpsRates
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.employment import Contract as Employment
+    from ccnl_engine.tax.domain.contribution_rules import InpsRates
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 
 @dataclass(frozen=True)

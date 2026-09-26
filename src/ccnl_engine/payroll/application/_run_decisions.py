@@ -10,18 +10,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.contract.domain.category import parse_worker_category
+from ccnl_engine.contract.domain.category import parse_worker_category
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.contract.domain.compensation import Level
-    from ccnl_engine.engine.contract.domain.identity import CCNL
-    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
+    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.domain.compensation import Level
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment import SeniorityMonths
+    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.domain.variable_pay import PdRRules
 
 _NONE = "none"
 

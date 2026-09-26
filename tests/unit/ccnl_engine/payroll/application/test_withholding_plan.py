@@ -7,7 +7,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.application._withholding_plan import (

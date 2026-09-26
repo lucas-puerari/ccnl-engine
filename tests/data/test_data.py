@@ -21,14 +21,14 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.apprenticeship import (
+from ccnl_engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.service.loaders import load_ccnl
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.domain.identity import CCNL
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))

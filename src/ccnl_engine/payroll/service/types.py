@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Protocol
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.compensation import Allowance
+    from ccnl_engine.contract.domain.compensation import Allowance
 
 _ZERO = Decimal(0)
 
@@ -45,7 +45,7 @@ class MonthlyPayChain:
         """Scale only proportionable components by ``factor``.
 
         Base salary and seniority are always proportionable.  Allowances are
-        scaled only when :attr:`~ccnl_engine.engine.contract.domain.compensation\
+        scaled only when :attr:`~ccnl_engine.contract.domain.compensation\
 .Allowance.part_time_proportionable` is ``True``; allowances with
         ``part_time_proportionable=False`` retain their full contractual value.
 

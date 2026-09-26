@@ -4,14 +4,14 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.category import (
+from ccnl_engine.contract.domain.category import (
     WorkerCategory,
     parse_worker_category,
 )
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.domain.employment import SeniorityMonths
 from ccnl_engine.payroll.service.category import resolve_worker_category
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _FISE = load_ccnl("servizi-postali-appalto-fise.json")
 _COMMERCIO = load_ccnl("commercio-confcommercio.json")

@@ -10,8 +10,8 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
     from decimal import Decimal
 
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 
 def credit_decision(

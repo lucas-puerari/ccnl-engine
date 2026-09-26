@@ -4,9 +4,11 @@ Full reference for every public type and function exported by `ccnl_engine`.
 
 ## Modules
 
-The package is split in two namespaces: `ccnl_engine.engine` (computation,
-schemas and loaders) and `ccnl_engine.knowledge` (the versioned JSON data
-bundle the loaders read). See [Knowledge base](knowledge.md).
+The package is organised by capability: `ccnl_engine.payroll` (computation),
+`ccnl_engine.contract` and `ccnl_engine.tax` (schemas and loaders), and
+`ccnl_engine.knowledge` (the versioned JSON data bundle the loaders read, plus
+the readers in `ccnl_engine.knowledge.service`). See
+[Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|

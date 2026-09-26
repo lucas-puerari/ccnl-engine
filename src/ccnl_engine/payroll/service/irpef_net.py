@@ -27,8 +27,8 @@ from ccnl_engine.payroll.service import irpef_credits
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["NetIrpef", "net_irpef", "run_withholding"]
 

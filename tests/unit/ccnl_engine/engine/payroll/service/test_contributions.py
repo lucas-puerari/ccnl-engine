@@ -4,8 +4,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.tax.domain.ruleset import YearRules
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     FixedTerm,
@@ -16,6 +15,7 @@ from ccnl_engine.payroll.service.contributions import (
     resolve_contributions,
 )
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.tax.domain.ruleset import YearRules
 from tests.helpers import make_domestic_year_rules, make_year_rules
 
 _D = Decimal

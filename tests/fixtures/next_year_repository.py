@@ -12,17 +12,17 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.capability_catalog import CapabilityCatalog
-    from ccnl_engine.engine.contract.domain.identity import CCNL, TaxSector
-    from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
-    from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
-    from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
+    from ccnl_engine.contract.domain.identity import CCNL, TaxSector
+    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.tax.domain.family import FamilyDeductionRules
+    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+    from ccnl_engine.tax.domain.variable_pay import VariablePayRules
 
 SOURCE_YEAR = 2026
 TARGET_YEAR = 2027

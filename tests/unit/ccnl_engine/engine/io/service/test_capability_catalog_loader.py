@@ -8,8 +8,11 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-import ccnl_engine.engine.io.service.capability_catalog_loader as _catalog_mod
-from ccnl_engine.engine.capability_catalog import (
+import ccnl_engine.knowledge.service.capability_catalog_loader as _catalog_mod
+from ccnl_engine.knowledge.service.capability_catalog_loader import (
+    load_capability_catalog,
+)
+from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
     CapabilityGap,
@@ -17,10 +20,7 @@ from ccnl_engine.engine.capability_catalog import (
     CapabilityReport,
     CapabilityStatus,
 )
-from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.io.service.capability_catalog_loader import (
-    load_capability_catalog,
-)
+from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 # ---------------------------------------------------------------------------
 # CapabilityStatus enum

@@ -4,8 +4,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.primitives.domain.primitives import Bracket
-from ccnl_engine.engine.surtax.domain.rules import (
+from ccnl_engine.shared.domain.primitives import Bracket
+from ccnl_engine.tax.domain.surtax_rules import (
     ComunaleEntry,
     RegionaleEntry,
     _validate_surtax_brackets,

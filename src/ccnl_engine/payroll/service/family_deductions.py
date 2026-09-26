@@ -26,14 +26,14 @@ from ccnl_engine.payroll.domain.family import DependentRelationship
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.family import (
+    from ccnl_engine.payroll.domain.family import Dependent, FamilyComposition
+    from ccnl_engine.tax.domain.family import (
         ChildrenDeductionRules,
         FamilyDeductionRules,
         OtherDependentRules,
         SpouseDeductionRules,
     )
-    from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
-    from ccnl_engine.payroll.domain.family import Dependent, FamilyComposition
+    from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
 
 _ZERO = Decimal(0)
 _HUNDRED = Decimal(100)

@@ -22,6 +22,7 @@ so it can be updated or redistributed independently of the engine.
 
 ## Reading data
 
-Loaders in `ccnl_engine.engine` read these resources through
+Loaders in `ccnl_engine.contract.service`, `ccnl_engine.tax.service` and
+`ccnl_engine.knowledge.service` read these resources through
 `importlib.resources` and validate them against the engine's pydantic schemas.
 Neither the engine nor the loaders recompute or store data themselves.

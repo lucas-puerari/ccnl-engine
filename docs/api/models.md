@@ -16,7 +16,7 @@ behind each model.
 
 ## CCNL
 
-::: ccnl_engine.engine.contract.domain.identity
+::: ccnl_engine.contract.domain.identity
     options:
       members:
         - CCNL
@@ -25,7 +25,7 @@ behind each model.
         - CoverageNote
         - NoteKind
 
-::: ccnl_engine.engine.contract.domain.compensation
+::: ccnl_engine.contract.domain.compensation
     options:
       members:
         - Level

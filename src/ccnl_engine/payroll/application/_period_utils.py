@@ -5,7 +5,6 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.policy import (
@@ -17,6 +16,8 @@ from ccnl_engine.payroll.domain.policy import (
     TfrAxis,
 )
 from ccnl_engine.payroll.domain.treatment import EventTreatment
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
+from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
     from datetime import date
@@ -32,7 +33,7 @@ def _int_value(fact: WeeklyHours | SeniorityMonths | None) -> int | None:
 
 
 def _effective_resolver(resolver: PolicyResolver | None) -> PolicyResolver:
-    return resolver if resolver is not None else PolicyResolver.load()
+    return resolver if resolver is not None else load_policy_resolver()
 
 
 def _require_resolution(

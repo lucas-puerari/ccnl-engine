@@ -20,10 +20,10 @@ from unittest.mock import patch
 
 import pytest
 
-import ccnl_engine.engine.contract.service.loaders as contract_loaders
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.io.service.bundled import read_bundled
-from ccnl_engine.engine.io.service.bundled_resources import BundledResourceStore
+import ccnl_engine.contract.service.loaders as contract_loaders
+from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.knowledge.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
 
 if TYPE_CHECKING:
     from pathlib import Path

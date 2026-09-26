@@ -5,7 +5,7 @@ from datetime import date
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.metadata.domain.rules import (
+from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetIdentity,
     SourceType,
     VerificationStatus,

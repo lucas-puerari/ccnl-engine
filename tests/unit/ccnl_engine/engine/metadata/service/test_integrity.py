@@ -14,30 +14,30 @@ from typing import Any, cast
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.contract.service import loaders as contract_loaders
-from ccnl_engine.engine.contract.service.loaders import (
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.service import loaders as contract_loaders
+from ccnl_engine.contract.service.loaders import (
     _verify_ruleset_hash as _verify_contract_hash,
 )
-from ccnl_engine.engine.contract.service.loaders import (
+from ccnl_engine.contract.service.loaders import (
     load_ccnl as load_ccnl_from_bundle,
 )
-from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
-from ccnl_engine.engine.surtax.service.loaders import _load_surtax_rules_cached
-from ccnl_engine.engine.tax.service import (
+from ccnl_engine.shared.domain.errors import DataIntegrityError
+from ccnl_engine.tax.service import surtax_loaders
+from ccnl_engine.tax.service import (
     tax_resource_reader as tax_resource_reader_mod,
 )
-from ccnl_engine.engine.tax.service.tax_annual_assembler import (
+from ccnl_engine.tax.service.surtax_loaders import _load_surtax_rules_cached
+from ccnl_engine.tax.service.tax_annual_assembler import (
     _load_year_rules_cached,
     load_year_rules,
 )
 from tests.helpers import make_ccnl_dict
 
 LOADER_PATHS = (
-    "ccnl_engine.engine.contract.service.loaders",
-    "ccnl_engine.engine.tax.service.tax_resource_reader",
-    "ccnl_engine.engine.surtax.service.loaders",
+    "ccnl_engine.contract.service.loaders",
+    "ccnl_engine.tax.service.tax_resource_reader",
+    "ccnl_engine.tax.service.surtax_loaders",
 )
 
 

@@ -1,4 +1,4 @@
-"""Unit tests for ccnl_engine.engine.io.bundled.read_bundled.
+"""Unit tests for ccnl_engine.knowledge.service.bundled.read_bundled.
 
 Covers three branches:
   1. Compressed ``.gz`` variant found and decompressed successfully.
@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.io.service.bundled import read_bundled
+from ccnl_engine.knowledge.service.bundled import read_bundled
 
 if TYPE_CHECKING:
     from pathlib import Path

@@ -9,7 +9,6 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import PayrollEngine
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
@@ -27,6 +26,7 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import TrattamentoAccount
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"

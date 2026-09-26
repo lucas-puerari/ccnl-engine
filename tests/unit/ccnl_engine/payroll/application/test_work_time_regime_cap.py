@@ -8,7 +8,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.decision_invariants import (
@@ -30,6 +29,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
+from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
 _YEAR = 2026
 _CAP = Decimal(1_500)

@@ -8,10 +8,6 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
-from ccnl_engine.engine.tax.service.tax_optional_loaders import (
-    load_family_deduction_rules,
-)
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -27,6 +23,10 @@ from ccnl_engine.payroll.service.family_deductions import (
     compute_family_deductions,
 )
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
+from ccnl_engine.tax.service.tax_optional_loaders import (
+    load_family_deduction_rules,
+)
 
 _RULES = load_family_deduction_rules(2026)
 _D = Decimal

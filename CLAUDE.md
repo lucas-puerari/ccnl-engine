@@ -52,13 +52,25 @@ Run them in this order. Fix coverage first, then lint, then types.
 
 ## Repository layout
 
-The package is split in two namespaces:
+The package is organised by capability. Each capability holds only the layers
+it needs: `application/` (use cases), `service/` (calculators, loaders,
+repositories) and `domain/` (pure types and rules).
 
-- `src/ccnl_engine/engine/` — computation, pydantic schemas, and loaders
-  (`contract`, `tax`, `surtax`, `payroll`, `io`, `primitives`).
-- `src/ccnl_engine/knowledge/` — the versioned data bundle only: CCNL, tax,
-  INPS and surtax JSON under `data/`, plus `__version__`.
-  Loaders read it via `importlib.resources`; it carries no logic.
+- `src/ccnl_engine/api/`: the public `PayrollEngine` facade.
+- `src/ccnl_engine/payroll/`: period and year payroll computation.
+- `src/ccnl_engine/contract/`: CCNL models, discovery and loader.
+- `src/ccnl_engine/tax/`: IRPEF, INPS, TFR and surtax rules and loaders.
+- `src/ccnl_engine/provenance/`: source, extraction and ruleset identity models.
+- `src/ccnl_engine/diff/`: rules diff between two dates of a CCNL.
+- `src/ccnl_engine/shared/domain/`: primitives and the error hierarchy, used by
+  several capabilities.
+- `src/ccnl_engine/knowledge/`: the versioned data bundle. CCNL, tax, INPS,
+  surtax, capability and policy JSON under `*/data/` (pure data, no logic),
+  plus `__version__`. `knowledge/service/` is its only code: bundled resource
+  readers and the bundled knowledge repository, via `importlib.resources`.
+
+Maximum depth: three directories under `ccnl_engine` before a file
+(`ccnl_engine/<capability>/<layer>/<subfeature>/file.py`); `data/` is exempt.
 
 JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
 behaviour. End-to-end scenarios live in `tests/integration/cases/`.

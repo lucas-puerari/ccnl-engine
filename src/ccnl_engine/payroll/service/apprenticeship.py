@@ -6,22 +6,22 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.contract.domain.apprenticeship import ApprenticeshipPercentage
-from ccnl_engine.engine.errors import OutOfScopeError
+from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipPercentage
 from ccnl_engine.payroll.service.chain import _level_chain
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.shared.domain.errors import OutOfScopeError
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
     from datetime import date
 
-    from ccnl_engine.engine.contract.domain.apprenticeship import (
+    from ccnl_engine.contract.domain.apprenticeship import (
         ApprenticeshipTrack,
         ApprenticeshipUnderClassification,
     )
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.contract.domain.compensation import Level
-    from ccnl_engine.engine.contract.domain.identity import CCNL
+    from ccnl_engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.contract.domain.compensation import Level
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment import Apprentice
     from ccnl_engine.payroll.service.types import MonthlyPayChain, MonthPeriod
 

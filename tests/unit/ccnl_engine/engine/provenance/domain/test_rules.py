@@ -7,14 +7,14 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
-from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
-from ccnl_engine.engine.provenance.domain.extraction import (
+from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.domain.extraction import (
     BackCalculationStep,
     ExtractionMethod,
     ExtractionTrace,
 )
-from ccnl_engine.engine.provenance.domain.source import (
+from ccnl_engine.provenance.domain.ruleset_identity import VerificationStatus
+from ccnl_engine.provenance.domain.source import (
     _KIND_TO_AUTHORITY,
     SourceAuthority,
     SourceDocument,
