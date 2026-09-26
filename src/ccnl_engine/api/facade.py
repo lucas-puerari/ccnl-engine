@@ -5,8 +5,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.knowledge import __version__
-from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
-    BundledKnowledgeRepository,
+from ccnl_engine.payroll.application.bundled_sources import (
+    bundled_policies,
+    bundled_repository,
 )
 from ccnl_engine.payroll.application.calculate_period import (
     calculate_period as _calculate_period,
@@ -17,7 +18,6 @@ from ccnl_engine.payroll.application.calculate_year import (
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
 )
-from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.calculate_year import YearResult
@@ -74,10 +74,10 @@ class PayrollEngine:
                 avoid repeated JSON parsing across many calculations.
         """
         self._repo: KnowledgeRepository = (
-            repository if repository is not None else BundledKnowledgeRepository()
+            repository if repository is not None else bundled_repository()
         )
         self._resolver: PolicyResolver = (
-            policies if policies is not None else load_policy_resolver()
+            policies if policies is not None else bundled_policies()
         )
 
     @classmethod

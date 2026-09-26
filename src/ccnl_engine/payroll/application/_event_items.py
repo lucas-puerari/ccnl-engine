@@ -38,8 +38,8 @@ from ccnl_engine.payroll.domain.policy import (
     PolicyResolution,
     PolicyResolver,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.treatment import EventTreatment
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:

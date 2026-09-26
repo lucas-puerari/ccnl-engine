@@ -10,7 +10,7 @@ from ccnl_engine.payroll.domain.contributions import (
     ContributionComponent,
 )
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.shared.domain.errors import (
     DataIntegrityError,
     MissingRequiredFactError,

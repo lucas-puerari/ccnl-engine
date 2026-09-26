@@ -7,9 +7,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.payroll.application._withholding_plan import (
     resolve_withholding_schedule,
     slot_share,
@@ -20,11 +17,14 @@ from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount, WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _YEAR = 2026

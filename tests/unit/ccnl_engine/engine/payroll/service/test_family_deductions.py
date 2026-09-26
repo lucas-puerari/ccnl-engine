@@ -13,6 +13,7 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.family_deductions import (
     _child_is_eligible,
     _children_deduction,
@@ -22,7 +23,6 @@ from ccnl_engine.payroll.service.family_deductions import (
     _spouse_deduction,
     compute_family_deductions,
 )
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
 from ccnl_engine.tax.service.tax_optional_loaders import (
     load_family_deduction_rules,

@@ -29,6 +29,7 @@ from ccnl_engine.payroll.domain.pay_items._policy import (
     PayItemPolicy,
     PolicyDecision,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.treatments import (
     ContributionTreatment,
     CostTreatment,
@@ -41,7 +42,6 @@ from ccnl_engine.payroll.service.apprenticeship import (
     _select_track,
 )
 from ccnl_engine.payroll.service.chain import _allowance_active
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import (
     _count_from_tiers,
     _resolve_seniority_count,

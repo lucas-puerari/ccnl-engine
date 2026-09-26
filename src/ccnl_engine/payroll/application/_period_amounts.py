@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.contributions import (
 )
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
@@ -30,7 +31,6 @@ from ccnl_engine.payroll.service.family_deductions import compute_family_deducti
 from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome, compute_surtax
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_net import net_irpef
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.payroll.service.types import MonthlyPayChain

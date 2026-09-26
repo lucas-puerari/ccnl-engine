@@ -4,7 +4,7 @@ Passive JSON resources consumed by the capability loaders (contract, tax,
 payroll). The ``*/data/`` directories carry no Python logic: every file there is
 data plus version metadata, so it can be upgraded or redistributed
 independently of the engine. The only code is :mod:`ccnl_engine.knowledge.service`,
-which reads those resources and implements the bundled knowledge repository.
+which reads those resources.
 
 Sub-packages:
 - ``ccnl_engine.knowledge.ccnl`` — one JSON file per CCNL contract.

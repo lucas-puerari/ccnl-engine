@@ -22,9 +22,9 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service import irpef_credits
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome

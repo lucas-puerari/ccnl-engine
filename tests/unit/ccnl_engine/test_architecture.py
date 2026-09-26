@@ -1,4 +1,7 @@
-"""Architectural invariants for the ccnl-engine package.
+"""Repository invariants outside the source layering rules.
+
+Import direction, domain purity and source layout live in
+``tests/architecture``.
 
 These tests gate structural properties of the codebase.  Each test documents
 the *current* set of allowed exceptions and fails when a new violation is
@@ -22,7 +25,6 @@ import pytest
 # ---------------------------------------------------------------------------
 
 _SRC = Path(str(importlib.resources.files("ccnl_engine"))).parent  # .../src
-_PAYROLL_DOMAIN = _SRC / "ccnl_engine" / "payroll" / "domain"
 _TESTS = Path(__file__).parent.parent.parent  # .../tests
 
 
@@ -55,97 +57,9 @@ def _type_checking_node_ids(tree: ast.Module) -> set[int]:
     return ids
 
 
-def _runtime_foreign_imports(path: Path) -> list[str]:
-    """Return ``ccnl_engine`` modules outside payroll imported at runtime.
-
-    Returns:
-        List of ``ccnl_engine.*`` module paths, excluding
-        ``ccnl_engine.payroll.*``, found outside TYPE_CHECKING blocks.
-    """
-    tree = ast.parse(path.read_text(encoding="utf-8"))
-    tc_ids = _type_checking_node_ids(tree)
-    return [
-        node.module or ""
-        for node in ast.walk(tree)
-        if id(node) not in tc_ids
-        and isinstance(node, ast.ImportFrom)
-        and _is_foreign_module(node.module or "")
-    ]
-
-
-def _is_foreign_module(module: str) -> bool:
-    """Return True for a ``ccnl_engine`` module owned by another capability.
-
-    Returns:
-        True when *module* is ``ccnl_engine`` or a submodule outside
-        ``ccnl_engine.payroll``.
-    """
-    in_package = module == "ccnl_engine" or module.startswith("ccnl_engine.")
-    in_payroll = module == "ccnl_engine.payroll" or module.startswith(
-        "ccnl_engine.payroll."
-    )
-    return in_package and not in_payroll
-
-
 def _class_definitions(path: Path) -> list[str]:
     tree = ast.parse(path.read_text(encoding="utf-8"))
     return [node.name for node in ast.walk(tree) if isinstance(node, ast.ClassDef)]
-
-
-# ---------------------------------------------------------------------------
-# Test: payroll/domain must not import other capabilities at runtime
-#
-# Allowed exceptions document pre-existing coupling that must be resolved in
-# a dedicated refactor PR before removal from this list.
-# ---------------------------------------------------------------------------
-
-_ALLOWED_DOMAIN_FOREIGN_IMPORTS: dict[str, set[str]] = {
-    "sickness.py": {"ccnl_engine.shared.domain.errors"},
-    # The public inputs validate against value types owned by the contract
-    # and tax capabilities: worker category, sector, activity and regimes.
-    "employment.py": {
-        "ccnl_engine.shared.domain.errors",
-        "ccnl_engine.contract.domain.category",
-        "ccnl_engine.tax.domain.preferential_regime",
-    },
-    "employer.py": {
-        "ccnl_engine.shared.domain.errors",
-        "ccnl_engine.tax.domain.preferential_regime",
-    },
-    "inputs.py": {"ccnl_engine.shared.domain.errors"},
-    "prior_year.py": {
-        "ccnl_engine.shared.domain.errors",
-        "ccnl_engine.tax.domain.preferential_regime",
-    },
-    "calendar_override.py": {"ccnl_engine.shared.domain.errors"},
-    "period.py": {
-        "ccnl_engine.shared.domain.errors",
-        "ccnl_engine.tax.domain.preferential_regime",
-    },
-    "jurisdiction.py": {"ccnl_engine.shared.domain.errors"},
-    "tax_year.py": {"ccnl_engine.shared.domain.errors"},
-    "events/variable_pay.py": {"ccnl_engine.shared.domain.errors"},
-    "events/termination.py": {"ccnl_engine.shared.domain.errors"},
-    "events/work_time.py": {"ccnl_engine.shared.domain.errors"},
-    "events/absence_sickness.py": {"ccnl_engine.shared.domain.errors"},
-}
-
-
-def test_payroll_domain_runtime_foreign_imports_within_allowlist() -> None:
-    """No new runtime foreign imports in payroll/domain beyond the allowlist."""
-    violations: list[str] = []
-    for path in _python_files(_PAYROLL_DOMAIN):
-        rel = str(path.relative_to(_PAYROLL_DOMAIN))
-        found = set(_runtime_foreign_imports(path))
-        if not found:
-            continue
-        allowed = _ALLOWED_DOMAIN_FOREIGN_IMPORTS.get(rel, set())
-        new = found - allowed
-        if new:
-            violations.append(f"{rel}: {sorted(new)}")
-    assert not violations, (
-        "New runtime foreign imports found in payroll/domain:\n" + "\n".join(violations)
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -166,31 +80,6 @@ def test_employment_defined_once() -> None:
         "Employment": ["ccnl_engine/payroll/domain/employment.py"],
         "EmploymentFacts": [],
     }
-
-
-# ---------------------------------------------------------------------------
-# Test: production module line limits
-#
-# No production file should exceed 400 lines without an explicit exception.
-# Exceptions document files that require a dedicated split PR.
-# ---------------------------------------------------------------------------
-
-_PROD_LINE_LIMIT = 400
-_ALLOWED_LARGE_PROD: dict[str, int] = {}
-
-
-def test_production_modules_below_line_limit() -> None:
-    """No production module exceeds 400 lines unless explicitly exempted."""
-    violations: list[str] = []
-    for path in _python_files(_SRC / "ccnl_engine"):
-        rel = str(path.relative_to(_SRC))
-        lines = len(path.read_text(encoding="utf-8").splitlines())
-        limit = _ALLOWED_LARGE_PROD.get(rel, _PROD_LINE_LIMIT)
-        if lines > limit:
-            violations.append(f"{rel}: {lines} lines (limit {limit})")
-    assert not violations, "Production modules exceeding line limit:\n" + "\n".join(
-        violations
-    )
 
 
 # ---------------------------------------------------------------------------

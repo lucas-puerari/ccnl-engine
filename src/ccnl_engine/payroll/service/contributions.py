@@ -19,8 +19,8 @@ from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
     ContributionComponent,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory

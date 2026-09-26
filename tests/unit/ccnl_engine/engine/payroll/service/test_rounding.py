@@ -5,7 +5,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 import pytest
 
-from ccnl_engine.payroll.service.rounding import MONETARY, RoundingPolicy, money
+from ccnl_engine.payroll.domain.rounding import MONETARY, RoundingPolicy, money
 
 
 class TestRoundingPolicy:

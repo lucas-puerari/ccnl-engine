@@ -7,8 +7,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipPercentage
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.chain import _level_chain
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.shared.domain.errors import OutOfScopeError
 
 if TYPE_CHECKING:

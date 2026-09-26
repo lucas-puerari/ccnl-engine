@@ -67,7 +67,11 @@ repositories) and `domain/` (pure types and rules).
 - `src/ccnl_engine/knowledge/`: the versioned data bundle. CCNL, tax, INPS,
   surtax, capability and policy JSON under `*/data/` (pure data, no logic),
   plus `__version__`. `knowledge/service/` is its only code: bundled resource
-  readers and the bundled knowledge repository, via `importlib.resources`.
+  readers via `importlib.resources`. The bundled knowledge repository lives in
+  `payroll/service/`.
+
+Import direction and source depth are enforced by `tests/architecture/`
+(see `docs/engine/architecture.md`).
 
 Maximum depth: three directories under `ccnl_engine` before a file
 (`ccnl_engine/<capability>/<layer>/<subfeature>/file.py`); `data/` is exempt.

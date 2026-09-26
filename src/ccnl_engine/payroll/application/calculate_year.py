@@ -6,9 +6,6 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.payroll.application._calendar import effective_calendar
 from ccnl_engine.payroll.application._extra_month_accrual import (
     non_accruing_days,
@@ -30,6 +27,9 @@ from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
+from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository

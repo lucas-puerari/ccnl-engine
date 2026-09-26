@@ -10,9 +10,6 @@ import pytest
 
 from ccnl_engine.contract.domain.compensation import Allowance
 from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
-    BundledKnowledgeRepository,
-)
 from ccnl_engine.payroll.application import reconcile as _reconcile_mod
 from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._period_utils import _require_resolution
@@ -52,6 +49,9 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.payroll.service.types import MonthlyPayChain

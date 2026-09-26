@@ -13,8 +13,8 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.irpef import _DEFAULT_WD, DAYS_IN_YEAR, for_days
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.domain.credit_rules import (
