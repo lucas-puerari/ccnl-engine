@@ -7,7 +7,15 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
-from ccnl_engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.employment import (
+    ContributableHours,
+    EmploymentPeriod,
+    Headcount,
+    Permanent,
+    SeniorityMonths,
+    WeeklyHours,
+    check_within_full_time,
+)
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -135,7 +143,7 @@ class PeriodCalculationRequest:
         opening_state: YTD state entering this period. Use
             :meth:`PeriodState.zero` for January.
         num_employees: Employer headcount used to resolve INPS rates
-            (some rates differ by firm size). Defaults to 50.
+            (some rates differ by firm size). Defaults to 50; at least 1.
         ceiling_status: Whether the IVS massimale contribution ceiling
             applies to this worker.  Use :attr:`ContributionCeilingStatus.POST_1995`
             for post-1995 workers and :attr:`ContributionCeilingStatus.NOT_APPLICABLE`
@@ -147,13 +155,20 @@ class PeriodCalculationRequest:
             fiscally dependent child (figlio a carico).  Selects the
             higher fringe-benefit exemption threshold under Art. 51 c. 3
             TUIR.  Defaults to ``False``.
-        weekly_hours: Contracted weekly hours.  Required for domestic
-            CCNLs (``lavoro-domestico`` tax sector) to select the INPS
-            contribution bracket (above or below the hours threshold).
-            Ignored for standard sectors.
+        weekly_hours: Contracted weekly hours, positive.  Required for
+            domestic CCNLs (``lavoro-domestico`` tax sector) to select the
+            INPS contribution bracket (above or below the hours threshold).
+            Below ``full_time_weekly_hours`` it scales the pay chain for
+            part time.
         contributable_hours: Actual hours worked and paid in the period
-            that are subject to INPS contributions.  Required for domestic
-            CCNLs.  Ignored for standard sectors.
+            that are subject to INPS contributions, non-negative.  Required
+            for domestic CCNLs.  Ignored for standard sectors.
+        full_time_weekly_hours: Full-time weekly hours of the contract,
+            positive.  ``weekly_hours`` must not exceed it.
+        employment_period: Start and optional end of the employment.
+            ``None`` when not tracked.
+        seniority_months: Months of continuous service, non-negative.
+            ``None`` means seniority increments are not applied.
     """
 
     period_id: PeriodId
@@ -162,7 +177,7 @@ class PeriodCalculationRequest:
     level_code: str
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    num_employees: int = 50
+    num_employees: Headcount = field(default_factory=lambda: Headcount(50))
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
@@ -170,19 +185,18 @@ class PeriodCalculationRequest:
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
     run: PayrollRun | None = None
-    weekly_hours: int | None = None
-    contributable_hours: Decimal | None = None
-    full_time_weekly_hours: int | None = None
-    started_on: date | None = None
-    ended_on: date | None = None
-    seniority_months: int | None = None
+    weekly_hours: WeeklyHours | None = None
+    contributable_hours: ContributableHours | None = None
+    full_time_weekly_hours: WeeklyHours | None = None
+    employment_period: EmploymentPeriod | None = None
+    seniority_months: SeniorityMonths | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
     category: str | None = None
     extra_month_accrual_start: int = 1
     extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
 
     def __post_init__(self) -> None:
-        """Guard against cross-year state being passed into a new tax year.
+        """Guard against cross-year state and hours above full time.
 
         When ``opening_state.tax_year`` is set, it must match the period year.
         States produced by :func:`~ccnl_engine.payroll.application\
@@ -191,8 +205,10 @@ class PeriodCalculationRequest:
 
         Raises:
             ValueError: When ``opening_state.tax_year`` is not ``None`` and
-                differs from ``period_id.year``.
+                differs from ``period_id.year``, or when ``weekly_hours``
+                exceeds ``full_time_weekly_hours``.
         """
+        check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         if (
             self.opening_state.tax_year is not None
             and self.opening_state.tax_year != self.period_id.year

@@ -10,6 +10,11 @@ Implemented invariants:
     L2 — every ORDINARY_TAX ledger entry has a non-negative amount.
          IRPEF withholding is always positive; refunds use the CREDITS account
          (tax_refund_item policy), not a negative ORDINARY_TAX entry.
+    L3: every EMPLOYEE_CONTRIBUTIONS ledger entry has a non-negative amount.
+    L4: every EMPLOYER_CONTRIBUTIONS ledger entry has a non-negative amount.
+         Ordinary social security contributions are never negative; a
+         correction of past contributions is a distinct movement, not a
+         negative ordinary contribution.
 """
 
 from __future__ import annotations
@@ -64,6 +69,24 @@ def check_l2(result: PeriodCalculationResult) -> list[ReconciliationViolation]:
     return _check_account_non_negative(result, AccountKind.ORDINARY_TAX, "L2")
 
 
+def check_l3(result: PeriodCalculationResult) -> list[ReconciliationViolation]:
+    """L3: every EMPLOYEE_CONTRIBUTIONS entry has a non-negative amount.
+
+    Returns:
+        Violations for any entry that posts a negative employee contribution.
+    """
+    return _check_account_non_negative(result, AccountKind.EMPLOYEE_CONTRIBUTIONS, "L3")
+
+
+def check_l4(result: PeriodCalculationResult) -> list[ReconciliationViolation]:
+    """L4: every EMPLOYER_CONTRIBUTIONS entry has a non-negative amount.
+
+    Returns:
+        Violations for any entry that posts a negative employer contribution.
+    """
+    return _check_account_non_negative(result, AccountKind.EMPLOYER_CONTRIBUTIONS, "L4")
+
+
 def check_legal(
     result: PeriodCalculationResult,
     opening: PeriodState,  # noqa: ARG001
@@ -76,4 +99,6 @@ def check_legal(
     violations: list[ReconciliationViolation] = []
     violations.extend(check_l1(result))
     violations.extend(check_l2(result))
+    violations.extend(check_l3(result))
+    violations.extend(check_l4(result))
     return violations

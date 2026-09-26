@@ -29,6 +29,10 @@ Invariants:
     I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
           Refunds and adjustments must use an explicit account, not a negative
           deduction.
+
+Legal invariants (L1 to L4, see ``legal_invariants``) reject negative
+substitute tax, ordinary tax, employee contributions and employer
+contributions.
 """
 
 from __future__ import annotations

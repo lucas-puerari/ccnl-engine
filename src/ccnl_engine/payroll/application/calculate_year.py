@@ -17,8 +17,13 @@ from ccnl_engine.payroll.domain.eligibility import (
 )
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
+    ContributableHours,
+    EmploymentPeriod,
     FixedTerm,
+    Headcount,
     Permanent,
+    SeniorityMonths,
+    WeeklyHours,
 )
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
@@ -38,6 +43,7 @@ if TYPE_CHECKING:
 __all__ = ["YearCalculationResult", "calculate_year"]
 
 _ZERO = Decimal(0)
+_DEFAULT_HEADCOUNT = Headcount(50)
 
 
 @dataclass(frozen=True)
@@ -109,14 +115,13 @@ def calculate_year(
     *,
     calendar: WorkCalendar | None = None,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
-    num_employees: int = 50,
+    num_employees: Headcount = _DEFAULT_HEADCOUNT,
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
-    weekly_hours: int | None = None,
-    contributable_hours: Decimal | None = None,
-    full_time_weekly_hours: int | None = None,
-    started_on: date | None = None,
-    ended_on: date | None = None,
-    seniority_months: int | None = None,
+    weekly_hours: WeeklyHours | None = None,
+    contributable_hours: ContributableHours | None = None,
+    full_time_weekly_hours: WeeklyHours | None = None,
+    employment_period: EmploymentPeriod | None = None,
+    seniority_months: SeniorityMonths | None = None,
     roles: frozenset[str] = frozenset(),
     category: str | None = None,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
@@ -160,12 +165,14 @@ def calculate_year(
             (ceiling not applied; caller should supply the worker's enrollment status).
         weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to
             select the INPS contribution bracket.  ``None`` for non-domestic CCNLs.
+            Must not exceed ``full_time_weekly_hours``.
         contributable_hours: Actual hours worked per period.  Required for domestic
             CCNLs to compute flat-rate INPS contributions.  ``None`` otherwise.
         full_time_weekly_hours: Standard full-time weekly hours for the CCNL,
             used to compute the part-time fraction.  ``None`` when not applicable.
-        started_on: Employment start date.  ``None`` when not tracked.
-        ended_on: Employment end date.  ``None`` for open-ended contracts.
+        employment_period: Employment start and optional end.  ``None`` when
+            not tracked.  Carried on each period request; it does not yet
+            select the runs.
         seniority_months: Months of continuous service for seniority resolution.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
@@ -199,7 +206,8 @@ def calculate_year(
     Raises:
         ValueError: If ``calendar.year`` does not match ``year``, or if the
             same run is allocated events in both ``period_events`` and
-            ``per_run_events``.
+            ``per_run_events``, or if ``weekly_hours`` exceeds
+            ``full_time_weekly_hours``.
     """
     if calendar is None:
         effective_repo = repo if repo is not None else BundledKnowledgeRepository()
@@ -244,8 +252,7 @@ def calculate_year(
             weekly_hours=weekly_hours,
             contributable_hours=contributable_hours,
             full_time_weekly_hours=full_time_weekly_hours,
-            started_on=started_on,
-            ended_on=ended_on,
+            employment_period=employment_period,
             seniority_months=seniority_months,
             roles=roles,
             category=category,

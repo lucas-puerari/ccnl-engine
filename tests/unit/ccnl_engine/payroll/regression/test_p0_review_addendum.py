@@ -28,6 +28,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.errors import (
+    DataIntegrityError,
     InvalidInputError,
     MissingRequiredFactError,
 )
@@ -39,7 +40,12 @@ from ccnl_engine.payroll.domain.calendar import (
     WorkCalendar,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
-from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
+from ccnl_engine.payroll.domain.employment import (
+    ContributableHours,
+    FixedTerm,
+    Permanent,
+    WeeklyHours,
+)
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BilateralFundEvent,
@@ -80,8 +86,12 @@ def _req(
         level_code=level,
         opening_state=opening,
         events=events,  # type: ignore[arg-type]
-        weekly_hours=weekly_hours,
-        contributable_hours=contributable_hours,
+        weekly_hours=None if weekly_hours is None else WeeklyHours(weekly_hours),
+        contributable_hours=(
+            None
+            if contributable_hours is None
+            else ContributableHours(contributable_hours)
+        ),
         contract_type=ct,  # type: ignore[arg-type]
         ceiling_status=ceiling_status,
     )
@@ -245,29 +255,47 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
 
 
 # ---------------------------------------------------------------------------
-# AbsenceEvent(hours=240) accepted and period_gross stays positive
+# Large unpaid absences and period_gross
 #
-# _check_event_date validates 0 < hours <= 240, so 240 passes the guard.
 # Since absences post to EMPLOYEE_DEDUCTIONS (not CASH_EARNINGS), period_gross
-# equals the base salary and is always non-negative regardless of absence size.
+# equals the base salary and is non-negative regardless of absence size.
+# Metalmeccanico C3 gross is 2,158.26 EUR in January 2026.
 # Source: REVIEW.md §5, P0-6.
 # ---------------------------------------------------------------------------
 
 
-def test_absence_240h_does_not_produce_negative_gross() -> None:
-    """AbsenceEvent(hours=240) is accepted and period_gross stays positive.
+def test_large_absence_does_not_produce_negative_gross() -> None:
+    """AbsenceEvent(hours=160) is accepted and period_gross stays positive.
 
     Source: REVIEW.md §5, P0-6.  Absences post to EMPLOYEE_DEDUCTIONS so
-    period_gross reflects base salary only.  240 hours is the period ceiling;
-    the calculation succeeds and I15 is satisfied.
+    period_gross reflects base salary only.  160 hours at 12.50 EUR deduct
+    2,000 EUR, below the monthly pay; the calculation succeeds and I15 is
+    satisfied.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(160),
+        hourly_rate=Decimal("12.50"),
+    )
+    result = calculate_period(_req(events=(absence,)))
+    assert result.period_gross > Decimal(0)
+
+
+def test_absence_above_monthly_pay_fails_closed() -> None:
+    """An absence deduction above the monthly pay is not priced.
+
+    240 hours at 12.50 EUR deduct 3,000 EUR from 2,158.26 EUR of pay, so
+    the INPS base turns negative.  Ordinary contributions cannot be
+    negative: the contribution invariant rejects the result instead of
+    posting -79.89 employee and -254.21 employer contributions.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(240),
         hourly_rate=Decimal("12.50"),
     )
-    result = calculate_period(_req(events=(absence,)))
-    assert result.period_gross > Decimal(0)
+    with pytest.raises(DataIntegrityError, match=r"\[L3\].*\[L4\]"):
+        calculate_period(_req(events=(absence,)))
 
 
 # ---------------------------------------------------------------------------

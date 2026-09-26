@@ -87,6 +87,7 @@ def _class_definitions(path: Path) -> list[str]:
 _ALLOWED_DOMAIN_ENGINE_IMPORTS: dict[str, set[str]] = {
     "sickness.py": {"ccnl_engine.engine.errors"},
     "policy.py": {"ccnl_engine.engine.io.service.bundled"},
+    "employment.py": {"ccnl_engine.engine.errors"},
     "employer.py": {
         "ccnl_engine.engine.contract.domain.ccnl",
         "ccnl_engine.engine.primitives.domain.primitives",

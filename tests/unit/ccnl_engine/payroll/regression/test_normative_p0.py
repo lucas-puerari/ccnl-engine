@@ -41,6 +41,7 @@ from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthSchedule,
     WorkCalendar,
 )
+from ccnl_engine.payroll.domain.employment import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BonusEvent,
@@ -79,8 +80,12 @@ def _req(
         level_code=level,
         opening_state=opening,
         events=events,  # type: ignore[arg-type]
-        weekly_hours=weekly_hours,
-        contributable_hours=contributable_hours,
+        weekly_hours=None if weekly_hours is None else WeeklyHours(weekly_hours),
+        contributable_hours=(
+            None
+            if contributable_hours is None
+            else ContributableHours(contributable_hours)
+        ),
     )
 
 

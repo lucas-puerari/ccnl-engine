@@ -116,10 +116,10 @@ def _resolve_chain(
             worker_category=worker_category,
             seniority_months=seniority_months,
         )
+    # Both values are positive: WeeklyHours validates them on construction.
     if (
-        full_time_weekly_hours
-        and weekly_hours
-        and full_time_weekly_hours > 0
+        full_time_weekly_hours is not None
+        and weekly_hours is not None
         and weekly_hours < full_time_weekly_hours
     ):
         chain = chain.scaled_for_part_time(

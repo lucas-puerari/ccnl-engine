@@ -131,10 +131,6 @@ def _negative_contributable_hours() -> EmploymentFacts:
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="impossible employment facts are accepted and produce a result",
-)
 @pytest.mark.parametrize(
     ("facts", "ccnl_slug", "level_code"),
     [
