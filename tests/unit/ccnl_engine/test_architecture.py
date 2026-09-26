@@ -90,6 +90,8 @@ _ALLOWED_DOMAIN_ENGINE_IMPORTS: dict[str, set[str]] = {
     "employment.py": {"ccnl_engine.engine.errors"},
     "employer.py": {"ccnl_engine.engine.errors"},
     "calendar_override.py": {"ccnl_engine.engine.errors"},
+    "period.py": {"ccnl_engine.engine.errors"},
+    "tax_year.py": {"ccnl_engine.engine.errors"},
     "events/variable_pay.py": {"ccnl_engine.engine.errors"},
     "events/termination.py": {"ccnl_engine.engine.errors"},
     "events/work_time.py": {"ccnl_engine.engine.errors"},

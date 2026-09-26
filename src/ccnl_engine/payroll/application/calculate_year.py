@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -40,6 +39,10 @@ from ccnl_engine.payroll.domain.period import (
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
+from ccnl_engine.payroll.domain.tax_year import (
+    DEFAULT_PAYMENT_DAY,
+    monthly_payment_date,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
@@ -212,6 +215,7 @@ def calculate_year(
     comune_belfiore: str | None = None,
     family_composition: FamilyComposition | None = None,
     has_dependent_children: bool = False,
+    payment_day: int = DEFAULT_PAYMENT_DAY,
     repo: KnowledgeRepository | None = None,
     resolver: PolicyResolver | None = None,
     bundle_version: str | None = None,
@@ -289,6 +293,8 @@ def calculate_year(
         family_composition: Dependent family composition for tax credits.
         has_dependent_children: Whether the worker has fiscally dependent
             children; selects the higher fringe-benefit threshold.
+        payment_day: Day of the run month on which every run is paid, 1-28.
+            Every payment falls in ``year``, the tax year of every run.
         repo: Optional knowledge repository.  Uses the bundled repository
             when ``None``.
         resolver: Optional pre-loaded policy resolver.  When ``None``,
@@ -303,14 +309,13 @@ def calculate_year(
         per selected run (12, 13, or 14 for a full year depending on the
         CCNL) and aggregated totals.
 
-    Errors: an override for another year, or one that drops or lowers an
-    extra month the CCNL grants or does not match its reason, raises
-    :class:`~ccnl_engine.engine.errors.InvalidInputError` (see
-    :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`).
-    The same run allocated events in both ``period_events`` and
-    ``per_run_events``, or ``weekly_hours`` above ``full_time_weekly_hours``,
-    raises :class:`ValueError`.  An ``employment_period`` with no day in
-    ``year`` raises :class:`~ccnl_engine.engine.errors.InvalidInputError`.
+    Errors: :class:`~ccnl_engine.engine.errors.InvalidInputError` for an
+    override rejected by
+    :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`,
+    an ``employment_period`` with no day in ``year`` or a ``payment_day``
+    outside 1-28; :class:`ValueError` for a run allocated events in both
+    ``period_events`` and ``per_run_events``, or ``weekly_hours`` above
+    ``full_time_weekly_hours``.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(ccnl_slug)
@@ -321,7 +326,6 @@ def calculate_year(
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
     non_accruing = non_accruing_days(effective_period_events, effective_per_run_events)
-    # Build a lookup from (run_kind, payment_month) to ExtraMonthSchedule.
     extra_month_index = {
         (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
     }
@@ -334,7 +338,7 @@ def calculate_year(
 
     for run in schedule.runs:
         pid = PeriodId(year=run.year, month=run.month)
-        payment_date = date(run.year, run.month, 28)
+        payment_date = monthly_payment_date(run.year, run.month, payment_day)
         allocated_events = _allocate_events(
             run, effective_period_events, effective_per_run_events
         )

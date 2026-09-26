@@ -57,6 +57,7 @@ from ccnl_engine.engine.errors import (
     OutOfScopeError,
     UnknownCcnlError,
     UnknownLevelError,
+    UnsupportedTaxYearError,
 )
 from ccnl_engine.payroll.application.calculate_year import (
     YearCalculationResult as PayrollYearResult,
@@ -113,6 +114,7 @@ __all__ = [
     "SupplementaryAllowance",
     "UnknownCcnlError",
     "UnknownLevelError",
+    "UnsupportedTaxYearError",
     "WorkerCategory",
     "engine_version",
     "get_ccnl",

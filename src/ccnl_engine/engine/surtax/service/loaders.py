@@ -7,7 +7,7 @@ import json
 from functools import cache
 from typing import Any
 
-from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.io.service.loader_utils import verify_ruleset_hash
 from ccnl_engine.engine.surtax.domain.rules import (
@@ -64,10 +64,14 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
 
     Raises:
         DataIntegrityError: If a data file's year field doesn't match *year*.
+        UnsupportedTaxYearError: If the bundle has no surtax file for *year*.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.surtax.data")
-    reg_raw = read_bundled(pkg, f"regionale-{year}.json")
-    com_raw = read_bundled(pkg, f"comunale-{year}.json")
+    try:
+        reg_raw = read_bundled(pkg, f"regionale-{year}.json")
+        com_raw = read_bundled(pkg, f"comunale-{year}.json")
+    except FileNotFoundError as exc:
+        raise UnsupportedTaxYearError(year) from exc
     reg_payload = json.loads(reg_raw)
     com_payload = json.loads(com_raw)
     _verify_ruleset_hash(reg_payload, f"regionale-{year}.json")

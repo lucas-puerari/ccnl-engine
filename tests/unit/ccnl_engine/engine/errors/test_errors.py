@@ -12,6 +12,7 @@ from ccnl_engine.engine.errors import (
     OutOfScopeError,
     UnknownCcnlError,
     UnknownLevelError,
+    UnsupportedTaxYearError,
 )
 
 
@@ -250,6 +251,26 @@ class TestInvalidInputError:
         assert err.remediation == "check inputs"
 
 
+class TestUnsupportedTaxYearError:
+    """UnsupportedTaxYearError names the tax year the bundle lacks."""
+
+    def test_year_only(self) -> None:
+        """Without a sector the message names the whole year."""
+        err = UnsupportedTaxYearError(2027)
+        assert isinstance(err, CcnlEngineError)
+        assert err.code == "unsupported_tax_year"
+        assert err.year == 2027
+        assert err.sector is None
+        assert str(err) == "No tax tables for tax year 2027 in the knowledge bundle"
+
+    def test_with_sector(self) -> None:
+        """A sector narrows the message to the missing table."""
+        err = UnsupportedTaxYearError(2027, sector="terziario")
+        assert err.sector == "terziario"
+        assert "tax year 2027 for sector 'terziario'" in str(err)
+        assert err.remediation is not None
+
+
 class TestPublicErrorCodes:
     """PUBLIC_ERROR_CODES is a stable contract."""
 
@@ -260,6 +281,7 @@ class TestPublicErrorCodes:
         "data_integrity",
         "invalid_input",
         "missing_required_fact",
+        "unsupported_tax_year",
     })
 
     def test_exact_set(self) -> None:
@@ -278,6 +300,7 @@ class TestPublicErrorCodes:
             OutOfScopeError("x"),
             DataIntegrityError("x"),
             InvalidInputError("x"),
+            UnsupportedTaxYearError(2027),
         ]
         for err in instances:
             assert err.code in PUBLIC_ERROR_CODES, (

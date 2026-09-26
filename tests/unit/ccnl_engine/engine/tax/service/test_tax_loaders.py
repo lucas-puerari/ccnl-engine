@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import TYPE_CHECKING
 from unittest.mock import patch
 
 import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.engine.tax.service.loaders import (
     _load_year_rules_cached,
     _try_ruleset,
@@ -17,6 +18,22 @@ from ccnl_engine.engine.tax.service.loaders import (
     load_variable_pay_rules,
     load_year_rules,
 )
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+
+@pytest.mark.parametrize(
+    "loader", [load_family_deduction_rules, load_art15_deduction_rules]
+)
+def test_year_keyed_rules_of_unbundled_year_raise_domain_error(
+    loader: Callable[[int], object],
+) -> None:
+    """A year the bundle does not ship raises UnsupportedTaxYearError."""
+    with pytest.raises(UnsupportedTaxYearError) as info:
+        loader(1900)
+    assert info.value.year == 1900
+    assert info.value.sector is None
 
 
 class TestLoadVariablePayRules:
@@ -73,7 +90,7 @@ class TestLoadFamilyDeductionRules:
         }
         with (
             patch(
-                "ccnl_engine.engine.tax.service.tax_optional_loaders._read_json",
+                "ccnl_engine.engine.tax.service.tax_optional_loaders.read_year_json",
                 return_value=tampered_raw,
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),
@@ -116,7 +133,7 @@ class TestLoadArt15DeductionRules:
         }
         with (
             patch(
-                "ccnl_engine.engine.tax.service.tax_optional_loaders._read_json",
+                "ccnl_engine.engine.tax.service.tax_optional_loaders.read_year_json",
                 return_value=tampered_raw,
             ),
             pytest.raises(DataIntegrityError, match="does not match requested year"),

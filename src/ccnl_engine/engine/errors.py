@@ -203,6 +203,33 @@ class MissingRequiredFactError(CcnlEngineError):
         )
 
 
+class UnsupportedTaxYearError(CcnlEngineError):
+    """Raised when the knowledge bundle has no tax tables for a tax year.
+
+    The tax year of a run follows its payment date, so a run of one year
+    paid in the next can need tables the bundle does not ship yet.
+
+    Attributes:
+        year: The tax year with no bundled tables.
+        sector: Tax sector of the missing table, or ``None`` when the
+            whole year is missing.
+    """
+
+    def __init__(self, year: int, *, sector: str | None = None) -> None:
+        """Initialise with the unsupported tax year and optional sector."""
+        self.year = year
+        self.sector = sector
+        scope = f" for sector {sector!r}" if sector is not None else ""
+        super().__init__(
+            f"No tax tables for tax year {year}{scope} in the knowledge bundle",
+            code="unsupported_tax_year",
+            remediation=(
+                "Use a payment date in a supported tax year or upgrade the "
+                "knowledge bundle."
+            ),
+        )
+
+
 #: Public error codes. Each code is a permanent commitment: its name and
 #: semantics cannot change without a major version bump.
 PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
@@ -212,4 +239,5 @@ PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
     "data_integrity",
     "invalid_input",
     "missing_required_fact",
+    "unsupported_tax_year",
 })

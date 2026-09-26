@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.employment import (
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
 
 if TYPE_CHECKING:
     from datetime import date
@@ -207,6 +208,8 @@ class PayrollYearRequest:
         comune_belfiore: Belfiore code for municipal surtax.
         family_composition: Dependent family composition.
         has_dependent_children: Higher fringe-benefit threshold when True.
+        payment_day: Day of the run month on which every run is paid, 1-28.
+            Defaults to 28.
 
     Raises:
         InvalidInputError: When ``calendar`` is neither ``None`` nor a
@@ -226,6 +229,7 @@ class PayrollYearRequest:
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
+    payment_day: int = DEFAULT_PAYMENT_DAY
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_calendar_override(self.calendar)

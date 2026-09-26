@@ -8,7 +8,9 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.engine.capability_catalog import CapabilityReport
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.employer import Employer, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
@@ -22,6 +24,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
@@ -230,19 +233,75 @@ class TestPeriodCalculationRequest:
             req.level_code = "B2"  # type: ignore[misc]
 
     def test_year_guard_raises_when_tax_year_mismatch(self) -> None:
-        """opening_state.tax_year != period_id.year raises ValueError."""
+        """An opening state of another tax year raises InvalidInputError."""
         prior_year_state = PeriodState(
             tax_year=2025,
             regular_periods_closed=12,
             tax_withholding_periods_closed=12,
         )
-        with pytest.raises(ValueError, match=r"opening_state\.tax_year"):
+        with pytest.raises(InvalidInputError, match="opening_state is for tax year"):
             PeriodCalculationRequest(
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 31),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
                 opening_state=prior_year_state,
+            )
+
+    def test_payment_before_period_start_raises(self) -> None:
+        """A run cannot be paid before its competence period starts."""
+        with pytest.raises(InvalidInputError, match="before the start"):
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=3),
+                payment_date=date(2026, 2, 28),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+            )
+
+    def test_run_of_next_tax_year_rejects_current_year_state(self) -> None:
+        """December paid on 13 January belongs to 2027, not to a 2026 state."""
+        state_2026 = PeriodState(
+            tax_year=2026,
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+        )
+        with pytest.raises(InvalidInputError, match="belongs to tax year 2027") as info:
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=12),
+                payment_date=date(2027, 1, 13),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+                opening_state=state_2026,
+            )
+        assert info.value.feature == "tax_year"
+
+    def test_run_paid_by_twelve_january_accepts_current_year_state(self) -> None:
+        """December paid on 12 January stays in the 2026 state."""
+        state_2026 = PeriodState(
+            tax_year=2026,
+            regular_periods_closed=11,
+            tax_withholding_periods_closed=11,
+        )
+        req = PeriodCalculationRequest(
+            period_id=PeriodId(year=2026, month=12),
+            payment_date=date(2027, 1, 12),
+            ccnl_slug=_CCNL,
+            level_code=_LEVEL,
+            opening_state=state_2026,
+        )
+        assert req.opening_state.tax_year == 2026
+
+    def test_withholding_schedule_of_other_tax_year_raises(self) -> None:
+        """The withholding schedule must belong to the attributed tax year."""
+        with pytest.raises(InvalidInputError, match=r"withholding_schedule\.year"):
+            PeriodCalculationRequest(
+                period_id=PeriodId(year=2026, month=12),
+                payment_date=date(2027, 1, 13),
+                ccnl_slug=_CCNL,
+                level_code=_LEVEL,
+                withholding_schedule=WithholdingSchedule.from_calendar(
+                    WorkCalendar(year=2026)
+                ),
             )
 
     def test_year_guard_passes_when_tax_year_none(self) -> None:

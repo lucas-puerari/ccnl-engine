@@ -83,7 +83,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _resolve_run_id(request: PeriodCalculationRequest, tctx: TemporalContext) -> str:
+def _resolve_run_id(request: PeriodCalculationRequest) -> str:
     """Return the run identifier and raise if the run was already processed.
 
     Returns:
@@ -95,7 +95,7 @@ def _resolve_run_id(request: PeriodCalculationRequest, tctx: TemporalContext) ->
     run_id = (
         request.run.run_id
         if request.run is not None
-        else f"{tctx.fiscal_year}_{request.period_id.month:02d}"
+        else f"{request.period_id.year}_{request.period_id.month:02d}"
     )
     if run_id in request.opening_state.closed_run_ids:
         msg = f"Run '{run_id}' was already processed in this payroll year"
@@ -141,7 +141,7 @@ def calculate_period(
     )
     level = ccnl.level_by_code(request.level_code)
     date_ctx = EffectiveDateContext.from_period(
-        tctx.fiscal_year, request.period_id.month, tctx.payment
+        request.period_id.year, request.period_id.month, tctx.payment
     )
     year_rules = effective_repo.load_year_rules(
         tctx.fiscal_year, ccnl.meta.tax_sector, request.employer.headcount.value
@@ -165,7 +165,7 @@ def calculate_period(
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
     run_kind = request.run.run_kind if request.run is not None else RunKind.REGULAR
-    run_id = _resolve_run_id(request, tctx)
+    run_id = _resolve_run_id(request)
     slots_closed = request.opening_state.tax_withholding_periods_closed
     upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
     chain = _apply_extra_month_policy(
@@ -191,7 +191,7 @@ def calculate_period(
         sector=ccnl.meta.tax_sector,
         gross_ytd=request.opening_state.earnings.gross,
     )
-    cp = CompetencePeriod(year=tctx.fiscal_year, month=request.period_id.month)
+    cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(
         request.events,
         cp,

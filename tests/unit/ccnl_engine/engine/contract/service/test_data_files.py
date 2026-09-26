@@ -10,6 +10,7 @@ import pytest
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.engine.errors import UnsupportedTaxYearError
 from ccnl_engine.engine.tax.domain.rules import YearRules
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
 
@@ -143,9 +144,11 @@ class TestLoadYearRules:
         assert yr_at.inps.employer_rate < yr_above.inps.employer_rate
 
     def test_missing_year_raises(self) -> None:
-        """A year with no data file must raise FileNotFoundError."""
-        with pytest.raises(FileNotFoundError):
+        """A year with no data file raises the unsupported tax year error."""
+        with pytest.raises(UnsupportedTaxYearError) as info:
             load_year_rules(1900, TaxSector.TERZIARIO, 50)
+        assert info.value.year == 1900
+        assert info.value.sector == "terziario"
 
     def test_load_year_rules_isolated(self) -> None:
         """Two calls return independent YearRules copies (mutation isolation)."""
