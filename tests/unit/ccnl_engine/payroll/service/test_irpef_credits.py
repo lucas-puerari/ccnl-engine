@@ -115,7 +115,8 @@ class TestUlterioreOutcome:
     def test_part_year_keeps_reason(self) -> None:
         """Proportioning to the days worked keeps the zone reason."""
         outcome = ulteriore_detrazione_outcome(_D(25000), _UD, 182)
-        assert outcome == CreditOutcome(_D("498.6"), "full_amount")
+        # money(1 000 * 182 / 365) = money(498.6301...) = 498.63
+        assert outcome == CreditOutcome(_D("498.63"), "full_amount")
 
 
 class TestComputeTaxDecisions:

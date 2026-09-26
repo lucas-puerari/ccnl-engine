@@ -10,7 +10,7 @@ Scope (anything outside raises :class:`ValueError`):
   further deduction are multiplied by ``days / 365`` ("rapportata al
   periodo di lavoro nell'anno") after the full-year amount is rounded to
   cents.  The day ratio is not truncated: the four-decimal rule quoted
-  below is read as applying to the income ratios only;
+  below applies to the income ratios of art. 13 TUIR only;
 - employment income is the only income (reddito complessivo equals the
   employment income, no deduzioni from the art. 10 TUIR base);
 - no family deductions and no other art. 15 TUIR deductions;
@@ -31,8 +31,13 @@ against an official worked example):
 - Further deduction: L. 207/2024 art. 1 c. 6.
 - Day pro-rata: art. 13 c. 1 TUIR and L. 207/2024 art. 1 c. 6, both
   "rapportata al periodo di lavoro nell'anno".
-- Rounding of ratios: Agenzia delle Entrate, istruzioni modello 730 and
-  Redditi PF, "il rapporto si assume nelle prime quattro cifre decimali".
+- Rounding of ratios: art. 13 c. 6 TUIR, "Se il risultato dei rapporti
+  indicati nei commi 1, 3, 4 e 5 è maggiore di zero, lo stesso si assume
+  nelle prime quattro cifre decimali"; 730/2026 istruzioni, Tabella 6,
+  note (2), on the income ratios of the employment deduction.  The taper
+  of L. 207/2024 art. 1 c. 6 lett. b) is not an art. 13 ratio and neither
+  the law nor circolare AdE 4/E of 16 May 2025 truncates it, so it is used
+  at full precision.
 """
 
 from __future__ import annotations
@@ -152,7 +157,8 @@ def further_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
     """Return the L. 207/2024 art. 1 c. 6 further deduction.
 
     - 20,000 < income <= 32,000: 1,000;
-    - 32,000 < income <= 40,000: 1,000 * (40,000 - income) / 8,000;
+    - 32,000 < income <= 40,000: 1,000 * (40,000 - income) / 8,000, the
+      ratio not truncated;
     - otherwise: 0 (below 20,000 the somma esente of c. 4 applies instead);
     - the full-year amount, rounded to cents, times ``days / 365``.
 
@@ -163,7 +169,7 @@ def further_deduction(income: Decimal, days: int = _DAYS_IN_YEAR) -> Decimal:
     if Decimal(20_000) < income <= Decimal(32_000):
         full_year = Decimal("1000.00")
     elif Decimal(32_000) < income <= Decimal(40_000):
-        ratio = _ratio(Decimal(40_000) - income, Decimal(8_000))
+        ratio = (Decimal(40_000) - income) / Decimal(8_000)
         full_year = _cents(Decimal(1_000) * ratio)
     else:
         full_year = Decimal("0.00")

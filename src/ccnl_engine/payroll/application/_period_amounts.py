@@ -31,6 +31,7 @@ from ccnl_engine.payroll.service.contributions import (
 from ccnl_engine.payroll.service.family_deductions import compute_family_deductions
 from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome, compute_surtax
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
+from ccnl_engine.payroll.service.irpef_net import net_irpef
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.tax_computation import compute_tax
@@ -161,6 +162,21 @@ def _domestic_hourly_rate(
     return money(monthly_gross / hourly_divisor) if monthly_gross > _ZERO else _ZERO
 
 
+def _family_deductions(
+    taxable: Decimal,
+    family: FamilyComposition | None,
+    rules: FamilyDeductionRules | None,
+) -> Decimal:
+    """Return the annual art. 12 TUIR deductions on ``taxable``.
+
+    Returns:
+        Zero without a family composition or its rules.
+    """
+    if family is None or rules is None:
+        return _ZERO
+    return compute_family_deductions(family, taxable, rules)[3]
+
+
 def _compute_amounts(
     monthly_gross: Decimal,
     event_inps_base: Decimal,
@@ -246,12 +262,38 @@ def _compute_amounts(
     upcoming_inps = money(upcoming_gross * employee_rate_for_irpef)
     taxable = opening.earnings.taxable + period_taxable + upcoming_gross - upcoming_inps
 
-    fam_ded = _ZERO
     family_rules = None if family_composition is None else family_deduction_rules
-    if family_composition is not None and family_rules is not None:
-        _, _, _, fam_ded = compute_family_deductions(
-            family_composition, taxable, family_rules
+    fam_ded = _family_deductions(taxable, family_composition, family_rules)
+    # One-off income of the run (events, excess PdR) is withheld on the run:
+    # its taxable is the run's taxable less that of its recurring pay alone.
+    one_off_taxable = _ZERO
+    if effective_irpef_base > _ZERO:
+        recurring_inps = (
+            inps_employee
+            if rules.inps is None
+            else resolve_contributions(
+                monthly_gross,
+                rules,
+                contract_type,
+                category,
+                ytd_inps_base=opening.earnings.inps_base,
+                ivs_ceiling_applies=ivs_ceiling_applies,
+            ).employee
         )
+        recurring_taxable = money(monthly_gross - recurring_inps)
+        one_off_taxable = max(_ZERO, period_taxable - recurring_taxable)
+    net_without_one_off = (
+        net_irpef(
+            taxable - one_off_taxable,
+            rules,
+            family_deductions=_family_deductions(
+                taxable - one_off_taxable, family_composition, family_rules
+            ),
+            eligible_work_days=min(eligible_work_days, DAYS_IN_YEAR),
+        ).net
+        if one_off_taxable > _ZERO
+        else None
+    )
 
     # Net credit = recognized minus already recovered; prevents re-recovering credits
     # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
@@ -266,19 +308,21 @@ def _compute_amounts(
         family_deductions=fam_ded,
         recovery_plan=recovery_plan,
         eligible_work_days=eligible_work_days,
+        net_without_one_off=net_without_one_off,
     )
     tax_comp, next_recovery_plan = tax.computation, tax.recovery_plan
     period_irpef = tax_comp.ordinary_tax
     period_tratt = tax_comp.trattamento_integrativo
 
-    ig = next((c.amount for c in tax_comp.components if c.name == "irpef_gross"), _ZERO)
+    # D.Lgs. 446/1997 art. 50 c. 2 and D.Lgs. 360/1998 art. 1 c. 4: the
+    # surtax is due only when the IRPEF net of its deductions is due.
     surtax = (
         compute_surtax(
             taxable,
             surtax_rules,
             regione=regione,
             comune_belfiore=comune_belfiore,
-            irpef_due=ig,
+            irpef_due=tax.irpef_net,
         )
         if surtax_rules is not None
         else SurtaxOutcome()

@@ -20,7 +20,11 @@ from ccnl_engine.payroll.application._period_utils import (
     _require_resolution,
 )
 from ccnl_engine.payroll.application._withholding_plan import slot_share
-from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.obligations import (
     RECOVERY_RULES,
@@ -83,6 +87,8 @@ class SommaEsenteOutcome:
         entries: The matching ``CREDITS`` ledger entry, if any.
         decisions: What the run decided on the credit, empty when the
             credit is not in force and no recovery of it is running.
+        issues: A provisional issue while an amount is due: the reddito
+            complessivo of c. 4 is taken as the employment income.
     """
 
     amount: Decimal = _ZERO
@@ -92,6 +98,20 @@ class SommaEsenteOutcome:
     items: tuple[PayItem, ...] = ()
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
+    issues: tuple[CalculationIssue, ...] = ()
+
+
+#: Other income can only raise the reddito complessivo, so the assumption
+#: matters only while the somma esente is due.
+INCOME_ASSUMED_ISSUE = CalculationIssue(
+    code="somma_esente_income_assumed",
+    message=(
+        "somma_esente: the reddito complessivo of L. 207/2024 art. 1 c. 4 is "
+        "taken as the employment income of this employer; other income may "
+        "remove the entitlement, which the conguaglio or the tax return settles"
+    ),
+    status=CalculationStatus.PROVISIONAL,
+)
 
 
 @dataclass(frozen=True)
@@ -225,6 +245,7 @@ def resolve_somma_esente(
         items=items,
         entries=entries,
         decisions=(decision,),
+        issues=(INCOME_ASSUMED_ISSUE,) if money(annual) > _ZERO else (),
     )
 
 

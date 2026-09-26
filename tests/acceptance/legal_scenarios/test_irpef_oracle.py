@@ -11,6 +11,9 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.payroll.service.irpef_net import net_irpef as engine_net_irpef
 from tests.fixtures.legal_examples.irpef_2026 import (
     employment_deduction,
     further_deduction,
@@ -104,3 +107,46 @@ def test_out_of_scope_income_is_rejected(income: Decimal) -> None:
     """Negative incomes and incomes above 200,000 EUR are outside the oracle."""
     with pytest.raises(ValueError, match="income"):
         net_irpef(income)
+
+
+def test_taper_ratio_is_not_truncated() -> None:
+    """Income 33,333.33 EUR: the c. 6 taper keeps its full precision.
+
+    - taper ratio 6,666.67 / 8,000 = 0.83333375, not truncated (L. 207/2024
+      art. 1 c. 6 lett. b) has no four-decimal rule);
+    - further deduction: 1,000 * 0.83333375 = 833.33375, in cents 833.33.
+      Truncating the ratio to 0.8333 would give 833.30.
+    """
+    assert further_deduction(Decimal("33333.33")) == Decimal("833.33")
+
+
+def test_day_ratio_is_not_truncated() -> None:
+    """Income 10,000 EUR over 92 days: 1,955 * 92 / 365 = 492.7671..., 492.77.
+
+    Truncating 92 / 365 to 0.2520 would give 492.66.
+    """
+    assert employment_deduction(Decimal(10_000), 92) == Decimal("492.77")
+
+
+_RULES = load_year_rules(2026, TaxSector.TERZIARIO, 50)
+
+
+@pytest.mark.parametrize(
+    "income",
+    [
+        Decimal(10000),
+        Decimal("21182.05"),
+        Decimal("30438.68"),
+        Decimal("33333.33"),
+        Decimal("36123.45"),
+        Decimal("39999.99"),
+        Decimal(45000),
+    ],
+)
+@pytest.mark.parametrize("days", [92, 182, 292, 365])
+def test_engine_matches_the_oracle(income: Decimal, days: int) -> None:
+    """The engine net IRPEF equals the oracle for part-year and taper cases."""
+    engine = engine_net_irpef(
+        income, _RULES, family_deductions=Decimal(0), eligible_work_days=days
+    )
+    assert engine.net == net_irpef(income, days)

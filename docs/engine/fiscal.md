@@ -18,10 +18,13 @@ meets the statutory requirements: see
 
 1. **Taxable income** = gross − INPS employee contributions
 2. **IRPEF gross** = taxable income × progressive brackets (Art. 11 TUIR)
-3. **Work income deduction** (Art. 13 TUIR) reduces IRPEF gross
+3. **Work income deduction** (Art. 13 TUIR) reduces IRPEF gross. Its income
+   ratios are truncated to four decimals (art. 13 c. 6 TUIR).
 4. **Ulteriore detrazione lavoro** (Art. 1 c. 6 L. 207/2024): additional credit
    of up to €1,000/year for taxable income between €20,000 and €40,000.
    Flat €1,000 from €20,001 to €32,000; linear taper to zero from €32,001 to €40,000.
+   The taper ratio is not truncated: c. 6 has no four-decimal rule and the
+   one of art. 13 c. 6 TUIR lists the ratios of art. 13 only.
 5. **IRPEF net** = IRPEF gross − work income deduction − ulteriore detrazione
    − family deductions − Art. 15 deductions + clawback sterilisation (floored at 0)
 6. **Trattamento integrativo** (Art. 1 D.L. 3/2020): up to €1,200/year.
@@ -31,6 +34,42 @@ meets the statutory requirements: see
    - €15,001–€28,000: granted only when total deductions exceed IRPEF gross;
      amount equals the excess, capped at €1,200.
    - RC > €28,000: zero.
+
+For a part-year employment the work deduction, the ulteriore detrazione and
+the trattamento integrativo (with its €75 corrective) are "rapportata al
+periodo di lavoro nell'anno": the full-year amount, in cents, times
+`days / 365` (730/2026 istruzioni, quadro C: "365 per l'intero anno"). The
+day ratio is not
+truncated to four decimals, since it is not one of the ratios art. 13 c. 6
+TUIR lists: 92 days of the €1,955 deduction give €492.77, not €492.66.
+
+### Withholding of a run
+
+Every run projects the annual taxable income (YTD, this run, and the
+recurring pay of the slots still to come) and withholds on that basis:
+
+- income the run pays once (bonus, overtime, ordinary arrears, excess PdR,
+  ratei settled at termination) is not in the projection of later slots,
+  so the tax it adds to the year is withheld on that run (art. 23 c. 2
+  DPR 600/1973: lett. a) on the sums "corrisposti in ciascun periodo di
+  paga", lett. b) on the "compensi della stessa natura" of the mensilità
+  aggiuntive). It is the net annual IRPEF with the income less the net annual
+  IRPEF without it. A €20,000 bonus paid in November to a Metalmeccanico C3
+  withholds about €8,399 on the November payslip instead of spreading it
+  over November, December and the tredicesima;
+- the rest of the balance still owed is spread evenly over the remaining
+  slots, the run included;
+- the last slot settles the whole balance on the final income, which can
+  be a refund (art. 23 c. 3).
+
+The projection of a future tredicesima or quattordicesima uses the rateo
+the run will pay on the employment period: a worker hired on 1 July is
+projected 6/12 of the tredicesima, not a full month. Absences still to come
+are not known and settle at the conguaglio.
+
+A run whose unpaid absences leave less pay than the withholdings due is
+still rejected (`withholding_shortfall`): capping the withholding at the pay
+left and carrying the rest to the next payslip is not modelled.
 
 ## Regional and municipal surcharges
 
@@ -69,7 +108,7 @@ taxable income, and its `rule` and `rule_version` the bundled ruleset.
 | `table_applied` | `final` | computed | The bundled brackets were applied. |
 | `advance_applied` | `final` | computed | Municipal rates are the prior year ones: only the advance (`advance_fraction`, 30%) is computed. |
 | `below_exemption_threshold` | `final` | 0 | The municipal exemption threshold covers the taxable income. |
-| `no_irpef_due` | `final` | 0 | Gross IRPEF on the projected taxable income is zero, so no surtax is withheld. |
+| `no_irpef_due` | `final` | 0 | Net IRPEF (gross less the deductions) on the projected taxable income is zero, so no surtax is withheld. |
 | `table_unknown` | `incomplete` | `None` | The code is well formed but the tax year table has no row for it. |
 
 A `table_unknown` decision comes with a `CalculationIssue` coded
@@ -78,6 +117,12 @@ withheld for that surtax (the ledger posts 0), and the period result, hence
 the year result, is `incomplete`: **it must not be paid as is**.  Without
 `regione` and `comune_belfiore` no surtax decision is taken and nothing is
 withheld.
+
+The surtax is due only when the IRPEF net of its deductions is due
+(D.Lgs. 446/1997 art. 50 c. 2 for the regional, D.Lgs. 360/1998 art. 1 c. 4
+for the municipal): a worker whose deductions absorb the whole gross IRPEF
+owes neither. Both articles also net the foreign tax credit (art. 165
+TUIR), which the engine does not model.
 
 The annual surtax is split in equal parts over the withholding slots of the
 year, not settled on the actual installments (advance in the year, balance

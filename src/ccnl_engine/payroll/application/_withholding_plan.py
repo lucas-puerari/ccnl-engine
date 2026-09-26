@@ -12,7 +12,10 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._calendar import standard_calendar
+from ccnl_engine.payroll.application._extra_month_accrual import run_schedule
 from ccnl_engine.payroll.application._period_utils import _apply_extra_month_policy
+from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.rounding import money
 
@@ -20,6 +23,8 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+    from ccnl_engine.payroll.domain.schedule import WithholdingSlot
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _ZERO = Decimal(0)
@@ -55,20 +60,24 @@ def upcoming_recurring_gross(
     regular_chain: MonthlyPayChain,
     schedule: WithholdingSchedule,
     slots_closed: int,
+    employment: EmploymentPeriod | None = None,
 ) -> Decimal:
     """Project the recurring gross of the slots after the current one.
 
     Each upcoming slot is valued with the pay chain its run kind would pay:
     the regular chain for a regular month, the extra-month chain scaled by
-    the slot's ``pay_fraction`` for a tredicesima or quattordicesima.  Future
-    extra months are projected at full accrual; a lower rateo on the
-    employment period is settled by the conguaglio of the last slot.
+    the rateo the slot's run will pay for a tredicesima or quattordicesima.
+    The rateo is counted on ``employment`` as the run will count it, so a
+    worker hired during the year is not projected at full accrual; absences
+    still to come are unknown and settle at the conguaglio.
 
     Args:
         regular_chain: Pay chain of a regular month, before any extra-month
             adjustment of the current run.
         schedule: Withholding schedule of the year.
         slots_closed: Withholding slots already closed this tax year.
+        employment: Employment period, or ``None`` for a worker employed
+            over every accrual window.
 
     Returns:
         Sum of the projected gross of the upcoming slots, zero on the last.
@@ -76,10 +85,26 @@ def upcoming_recurring_gross(
     total = _ZERO
     for slot in schedule.upcoming(slots_closed):
         chain = _apply_extra_month_policy(
-            regular_chain, slot.run.run_kind, slot.pay_fraction
+            regular_chain, slot.run.run_kind, _slot_fraction(slot, employment)
         )
         total += money(chain.base + chain.seniority + chain.allowances_total)
     return total
+
+
+def _slot_fraction(
+    slot: WithholdingSlot, employment: EmploymentPeriod | None
+) -> Decimal:
+    """Return the share of a monthly pay the run of ``slot`` will pay.
+
+    Returns:
+        ``slot.pay_fraction`` for a regular run; for an extra-month run the
+        rateo accrued on ``employment`` up to its payment month.
+    """
+    kind = slot.run.run_kind.value
+    if kind not in {k.value for k in ExtraMonthKind}:
+        return slot.pay_fraction
+    extra = run_schedule(ExtraMonthKind(kind), slot.run.month, slot.pay_fraction)
+    return ExtraMonthAccrual.of(extra, slot.run.year, employment).fraction
 
 
 def slot_share(annual: Decimal, schedule: WithholdingSchedule) -> Decimal:

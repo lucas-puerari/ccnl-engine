@@ -77,10 +77,11 @@ class SommaEsenteRules(BaseModel):
     """Somma esente L. 207/2024 for low-income workers.
 
     A flat-rate bonus added to net pay when reddito complessivo does not
-    exceed the last band's ``up_to`` threshold.  The applicable rate is
-    the rate of the first band whose ``up_to`` is >= reddito complessivo;
-    it is applied to the full reddito complessivo (not just the marginal
-    slice).
+    exceed the last band's ``up_to`` threshold (art. 1 c. 4).  The rate is
+    that of the first band whose ``up_to`` covers the employment income
+    annualised to the whole year (c. 5), the last band's above them all;
+    it is applied to the whole employment income of the year (not just
+    the marginal slice).
 
     Band cut points in the knowledge bundle are unverified reconstructions
     from available examples and are flagged in the JSON ``notes`` array.

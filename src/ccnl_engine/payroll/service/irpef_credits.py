@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.service.irpef import _DEFAULT_WD, DAYS_IN_YEAR, _trunc4
+from ccnl_engine.payroll.service.irpef import _DEFAULT_WD, DAYS_IN_YEAR, for_days
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -24,7 +24,6 @@ if TYPE_CHECKING:
     )
 
 _ZERO = Decimal(0)
-_ONE = Decimal(1)
 
 
 @dataclass(frozen=True, slots=True)
@@ -71,9 +70,10 @@ def trattamento_integrativo(
 
     - RC > ``rules.threshold_upper``: zero.
 
-    Both ``rules.max_amount`` and the 75 EUR corrective are scaled by
-    ``eligible_work_days / 365`` for part-year workers so that eligibility
-    thresholds remain consistent when ``work_deduction`` is also pro-rated.
+    Both ``rules.max_amount`` and the 75 EUR corrective are proportioned to
+    ``eligible_work_days / 365`` (not truncated) for part-year workers so
+    that eligibility thresholds remain consistent when ``work_deduction``
+    is also pro-rated.
 
     Args:
         gross_annual: Reddito complessivo di riferimento (taxable income).
@@ -125,13 +125,8 @@ def trattamento_integrativo_outcome(
     c = constants if constants is not None else _DEFAULT_WD
     if gross_annual > rules.threshold_upper:
         return CreditOutcome(_ZERO, "income_above_upper_threshold")
-    if eligible_work_days == DAYS_IN_YEAR:
-        prorata = _ONE
-        seventy_five = c.seventy_five
-    else:
-        prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
-        seventy_five = money(c.seventy_five * prorata)
-    max_amount = money(rules.max_amount * prorata)
+    seventy_five = for_days(c.seventy_five, eligible_work_days)
+    max_amount = for_days(rules.max_amount, eligible_work_days)
     if gross_annual <= rules.threshold_mid:
         # Eligibility condition: IRPEF > (Art. 13 deduction - EUR 75 corrective).
         threshold = money(max(_ZERO, work_deduction - seventy_five))
@@ -158,10 +153,14 @@ def ulteriore_detrazione_lavoro(
     - ``threshold_low < rc <= threshold_mid``: ``max_amount`` (flat).
     - ``threshold_mid < rc <= threshold_high``:
       ``max_amount * (threshold_high - rc) / (threshold_high - threshold_mid)``
-      (linear taper to zero at ``threshold_high``).
+      (linear taper to zero at ``threshold_high``).  The ratio is not
+      truncated: c. 6 does not refer to art. 13 c. 6 TUIR, whose
+      four-decimal rule covers the ratios of art. 13 only.
     - ``rc > threshold_high``: zero.
 
-    The full-year amount is scaled by ``eligible_work_days / 365``.
+    The full-year amount, rounded to cents, is proportioned to
+    ``eligible_work_days / 365`` by :func:`~ccnl_engine.payroll.service\
+.irpef.for_days`.
     Pass ``eligible_work_days=365`` (the default) for a full year.
 
     Args:
@@ -171,8 +170,8 @@ def ulteriore_detrazione_lavoro(
             worker is employed.  Scales the result proportionally.
 
     Returns:
-        The ulteriore detrazione amount (unrounded; pro-rated when
-        ``eligible_work_days < 365``).
+        The ulteriore detrazione amount, rounded to cents and pro-rated
+        when ``eligible_work_days < 365``.
     """
     return ulteriore_detrazione_outcome(
         taxable_income, rules, eligible_work_days
@@ -203,7 +202,4 @@ def ulteriore_detrazione_outcome(
         span = rules.threshold_high - rules.threshold_mid
         full_year = rules.max_amount * (rules.threshold_high - taxable_income) / span
         reason = "tapered_amount"
-    if eligible_work_days == DAYS_IN_YEAR:
-        return CreditOutcome(full_year, reason)
-    prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
-    return CreditOutcome(full_year * prorata, reason)
+    return CreditOutcome(for_days(full_year, eligible_work_days), reason)

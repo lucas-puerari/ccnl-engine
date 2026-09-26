@@ -3,8 +3,10 @@
 Each jurisdiction the caller supplies yields one
 :class:`~ccnl_engine.payroll.domain.decisions.CalculationDecision`:
 
-- ``no_irpef_due`` (final, amount 0): gross IRPEF is zero, so no surtax is
-  withheld;
+- ``no_irpef_due`` (final, amount 0): the IRPEF net of its deductions is
+  zero, so no surtax is due (D.Lgs. 446/1997 art. 50 c. 2 for the regional,
+  D.Lgs. 360/1998 art. 1 c. 4 for the municipal; the foreign tax credit
+  they also net is not modelled);
 - ``below_exemption_threshold`` (final, amount 0): the municipal exemption
   threshold covers the taxable income;
 - ``table_applied`` or ``advance_applied`` (final): the bundled table was
@@ -188,7 +190,8 @@ def compute_surtax(
         surtax: Bundled surtax tables of the tax year.
         regione: Well-formed region code, or ``None`` to skip.
         comune_belfiore: Well-formed Belfiore code, or ``None`` to skip.
-        irpef_due: Gross IRPEF; no surtax is due when it is zero.
+        irpef_due: Net annual IRPEF, gross less the deductions; no surtax
+            is due when it is zero.
 
     Returns:
         The annual amounts, one decision per supplied jurisdiction and one

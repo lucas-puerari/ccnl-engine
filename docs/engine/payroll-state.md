@@ -68,6 +68,14 @@ it lives in `state.obligations`, one per credit and origin year
 
 The somma esente (L. 207/2024 art. 1 c. 4) is paid on every run as its share
 of the annual amount on the projected income, capped at what is still due.
+The annual amount is a percentage of the employment income of the year; the
+percentage is chosen on that income "rapportato all'intero anno" (c. 5),
+`income * 365 / days`, as in circolare AdE 4/E of 16 May 2025, esempio 1
+(€2,000 in 62 days: 5.3%, €106). The 20,000 EUR limit applies to the
+reddito complessivo, which is not an input: the engine takes the employment
+income for it. Other income can only raise the reddito complessivo, so a
+run with an amount due carries the `provisional` issue
+`somma_esente_income_assumed`.
 Its entitlement is verified at the conguaglio, the last withholding slot
 (art. 1 c. 7):
 
