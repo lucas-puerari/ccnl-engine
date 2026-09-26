@@ -513,6 +513,56 @@ class TestI16CreditBounds:
         violations = reconcile(bad_result, _OPENING).violations
         i16 = [v for v in violations if v.invariant_id == "I16"]
         assert len(i16) == 1
+class TestL1SubstituteTaxNonNegative:
+    """L1: every SUBSTITUTE_TAX entry must have a non-negative amount."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No L1 violation on a real calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id == "L1"] == []
+
+    def test_violation_on_negative_substitute_tax(self) -> None:
+        """L1 violation when a SUBSTITUTE_TAX entry has a negative amount."""
+        e = _entry("st", AccountKind.SUBSTITUTE_TAX, Decimal("-50.00"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        l1 = [v for v in r.violations if v.invariant_id == "L1"]
+        assert len(l1) == 1
+        assert "st" in l1[0].message
+
+    def test_no_violation_for_zero_substitute_tax(self) -> None:
+        """Zero SUBSTITUTE_TAX is not a violation."""
+        e = _entry("st", AccountKind.SUBSTITUTE_TAX, Decimal("0.00"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == "L1"] == []
+
+
+class TestL2OrdinaryTaxNonNegative:
+    """L2: every ORDINARY_TAX entry must have a non-negative amount."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No L2 violation on a real calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id == "L2"] == []
+
+    def test_violation_on_negative_ordinary_tax(self) -> None:
+        """L2 violation when an ORDINARY_TAX entry has a negative amount."""
+        e = _entry("irpef", AccountKind.ORDINARY_TAX, Decimal("-100.00"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        l2 = [v for v in r.violations if v.invariant_id == "L2"]
+        assert len(l2) == 1
+        assert "irpef" in l2[0].message
+
+    def test_no_violation_for_zero_ordinary_tax(self) -> None:
+        """Zero ORDINARY_TAX is not a violation."""
+        e = _entry("irpef", AccountKind.ORDINARY_TAX, Decimal("0.00"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == "L2"] == []
 
 
 class TestReconcileIntegration:
