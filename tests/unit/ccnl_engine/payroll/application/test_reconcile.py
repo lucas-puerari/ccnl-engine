@@ -482,10 +482,9 @@ class TestI16CreditBounds:
         max(0, ...) when accumulating) but can appear in a synthetic or
         deserialized state with corrupted data.
         """
-        neg_tratt = TrattamentoAccount(
-            recognized=Decimal("-5.00"),
-            recovered=Decimal("-10.00"),
-        )
+        neg_tratt = TrattamentoAccount()
+        # Corrupt a valid account: the constructor rejects the value itself.
+        object.__setattr__(neg_tratt, "recovered", Decimal("-10.00"))  # noqa: PLC2801
         result = _real_result()[0]
         bad_result = type(result)(
             period_id=result.period_id,
@@ -495,6 +494,7 @@ class TestI16CreditBounds:
             period_employer_cost=result.period_employer_cost,
             closing_state=PeriodState(
                 ytd=TaxYearState(
+                    tax_year=result.closing_state.ytd.tax_year,
                     regular_periods_closed=result.closing_state.ytd.regular_periods_closed,
                     tax_withholding_periods_closed=(
                         result.closing_state.ytd.tax_withholding_periods_closed

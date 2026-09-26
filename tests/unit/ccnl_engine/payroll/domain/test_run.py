@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
+from ccnl_engine.payroll.domain.run import (
+    PayrollRun,
+    PayrollRunId,
+    RunKind,
+    run_identifier,
+)
 
 
 class TestPayrollRun:
@@ -79,3 +84,45 @@ class TestPayrollRun:
         a = PayrollRun.regular(2026, 12)
         b = PayrollRun.thirteenth(2026, 12)
         assert a != b
+
+
+class TestPayrollRunId:
+    """Typed run identifier: parse, format and order."""
+
+    def test_round_trips_the_run_id_text(self) -> None:
+        """str() of the identifier is the run_id of the run."""
+        run = PayrollRun.fourteenth(2026, 6)
+
+        assert run.identifier == PayrollRunId(2026, 6, RunKind.FOURTEENTH)
+        assert str(run.identifier) == run.run_id
+        assert PayrollRunId.parse(run.run_id) == run.identifier
+
+    @pytest.mark.parametrize(
+        ("text", "match"),
+        [
+            ("2026_01", "must look like"),
+            ("2026-13-regular", "month must be 1-12"),
+            ("1969-01-regular", "year must be >= 1970"),
+            ("2026-01-bonus", "run_kind must be one of"),
+        ],
+    )
+    def test_parse_rejects_a_malformed_id(self, text: str, match: str) -> None:
+        """Only the engine's run id text is accepted."""
+        with pytest.raises(ValueError, match=match):
+            PayrollRunId.parse(text)
+
+    def test_orders_regular_before_extra_months_and_termination(self) -> None:
+        """Payment order inside a month."""
+        keys = [
+            PayrollRunId(2026, 12, kind).order_key
+            for kind in (RunKind.REGULAR, RunKind.THIRTEENTH, RunKind.TERMINATION)
+        ]
+
+        assert keys == sorted(keys)
+        assert PayrollRunId(2026, 11, RunKind.TERMINATION).order_key < keys[0]
+
+    def test_bare_period_closes_its_regular_run(self) -> None:
+        """Without a run, a period closes the regular run of its month."""
+        assert run_identifier(None, 2026, 3) == PayrollRunId.parse("2026-03-regular")
+        run = PayrollRun.thirteenth(2026, 12)
+        assert run_identifier(run, 2026, 12) == run.identifier

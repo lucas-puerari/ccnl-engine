@@ -78,7 +78,7 @@ from ccnl_engine.payroll.domain.family import (
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
@@ -111,6 +111,7 @@ __all__ = [
     "PayrollRequest",
     "PayrollResult",
     "PayrollRun",
+    "PayrollRunId",
     "PayrollState",
     "PayrollYearRequest",
     "PayrollYearResult",

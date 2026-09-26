@@ -9,7 +9,7 @@ pass as ``opening_state`` to the first run computed by the engine.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, fields
+from dataclasses import dataclass, fields
 from decimal import Decimal
 from typing import final
 
@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
@@ -42,15 +43,21 @@ class OpeningBalances:
     """Progressive totals of a tax year computed outside the engine.
 
     Every amount is in EUR, non-negative and with at most two decimals.
+    The totals are validated by the same rules as the state the engine
+    produces (:class:`~ccnl_engine.payroll.domain.tax_year_state.TaxYearState`
+    and its accounts); a violation is raised as ``InvalidInputError``.
 
     Attributes:
         tax_year: Tax year of the totals.
         regular_periods_closed: Regular runs already paid this tax year.
         tax_withholding_periods_closed: Runs that already consumed an IRPEF
             withholding slot this tax year (regular and extra months).
-        closed_run_ids: Identifiers of the runs already paid, when the
-            integration keeps the engine's ``run_id`` format; they are
-            rejected if computed again.
+        closed_run_ids: Identifiers of the runs already paid, in payment
+            order, when the integration keeps them
+            (:meth:`~ccnl_engine.payroll.domain.run.PayrollRunId.parse`
+            reads the engine's ``run_id`` text); they are rejected if
+            computed again, and a run of the tax year before the last one
+            is rejected as out of order.
         gross: Contractual gross earnings paid.
         taxable: IRPEF taxable income.
         inps_base: INPS contribution base.
@@ -63,6 +70,7 @@ class OpeningBalances:
         trattamento_recognized: Trattamento integrativo paid.
         trattamento_recovered: Trattamento integrativo already recovered.
         somma_esente_recognized: Somma esente (L. 207/2024) paid.
+        somma_esente_recovered: Somma esente already recovered.
         work_time_regime_used: Night, holiday and shift supplements already
             taxed at the substitute rate (L. 199/2025 art. 1 cc. 10-11).
         recoveries: Installment recoveries still running, from this tax
@@ -72,7 +80,7 @@ class OpeningBalances:
     tax_year: int
     regular_periods_closed: int = 0
     tax_withholding_periods_closed: int = 0
-    closed_run_ids: frozenset[str] = field(default_factory=frozenset)
+    closed_run_ids: tuple[PayrollRunId, ...] = ()
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_base: Decimal = _ZERO
@@ -85,6 +93,7 @@ class OpeningBalances:
     trattamento_recognized: Decimal = _ZERO
     trattamento_recovered: Decimal = _ZERO
     somma_esente_recognized: Decimal = _ZERO
+    somma_esente_recovered: Decimal = _ZERO
     work_time_regime_used: Decimal = _ZERO
     recoveries: tuple[RecoveryObligation, ...] = ()
 
@@ -92,19 +101,19 @@ class OpeningBalances:
         """Validate every amount and the consistency of the totals.
 
         Raises:
-            InvalidInputError: When an amount is negative, not finite or
-                finer than a cent, or when the totals do not form a valid
-                state (e.g. more recovered than recognized, a recovery
-                opened after ``tax_year``).
+            InvalidInputError: When the totals do not form a valid state
+                (e.g. a negative amount, more recovered than recognized, a
+                closed run out of order, a recovery opened after
+                ``tax_year``) or an amount is finer than a cent.
         """
-        for f in fields(self):
-            value = getattr(self, f.name)
-            if isinstance(value, Decimal):
-                _check_amount(f.name, value)
         try:
             self.to_state()
         except ValueError as exc:
             raise InvalidInputError(str(exc), feature=_FEATURE) from exc
+        for f in fields(self):
+            value = getattr(self, f.name)
+            if isinstance(value, Decimal):
+                _check_cents(f.name, value)
 
     def to_state(self) -> PeriodState:
         """Return the state to open the next run with.
@@ -132,7 +141,10 @@ class OpeningBalances:
                 recognized=self.trattamento_recognized,
                 recovered=self.trattamento_recovered,
             ),
-            somma_esente=SommaEsenteAccount(recognized=self.somma_esente_recognized),
+            somma_esente=SommaEsenteAccount(
+                recognized=self.somma_esente_recognized,
+                recovered=self.somma_esente_recovered,
+            ),
             work_time_regime=RegimeCapAccount(used=self.work_time_regime_used),
         )
         return PeriodState(
@@ -140,15 +152,12 @@ class OpeningBalances:
         )
 
 
-def _check_amount(name: str, value: Decimal) -> None:
-    """Reject a non-finite, negative or sub-cent amount.
+def _check_cents(name: str, value: Decimal) -> None:
+    """Reject an amount finer than a cent.
 
     Raises:
-        InvalidInputError: When ``value`` is not a valid EUR amount.
+        InvalidInputError: When ``value`` has more than two decimals.
     """
-    if not value.is_finite() or value < _ZERO:
-        msg = f"OpeningBalances.{name} must be a non-negative amount; got {value}"
-        raise InvalidInputError(msg, feature=_FEATURE)
     if value != value.quantize(_CENT):
         msg = f"OpeningBalances.{name} has more than two decimals; got {value}"
         raise InvalidInputError(msg, feature=_FEATURE)

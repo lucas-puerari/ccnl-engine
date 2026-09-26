@@ -1,10 +1,11 @@
 """Installments of a recovery carried from an earlier tax year.
 
 An installment recovery opened by the conguaglio of year N (D.L. 3/2020
-art. 1 c. 3) keeps running on the runs of N+1.  Those installments recover
-a credit of N: they are deducted on the payslip as a negative tax credit
-line but do not enter the trattamento integrativo account of N+1, whose
-own conguaglio runs as for any other year.
+art. 1 c. 3 for the trattamento integrativo, L. 207/2024 art. 1 c. 7 for
+the somma esente) keeps running on the runs of N+1.  Those installments
+recover a credit of N: they are deducted on the payslip as a negative tax
+credit line but do not enter the credit account of N+1, whose own
+conguaglio runs as for any other year.
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.obligations import RecoveryObligation
+from ccnl_engine.payroll.domain.obligations import RECOVERY_RULES, RecoveryObligation
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
 
 if TYPE_CHECKING:
@@ -40,7 +41,7 @@ class CarriedRecoveries:
         remaining: The carried recoveries after this run, without those
             whose last installment was just posted.
         decisions: One decision per installment posted, capability
-            :data:`CAPABILITY`.
+            :func:`recovery_capability` of the recovered credit.
     """
 
     items: tuple[PayItem, ...] = ()
@@ -49,8 +50,13 @@ class CarriedRecoveries:
     decisions: tuple[CalculationDecision, ...] = ()
 
 
-#: Capability of the decisions recording a carried installment.
-CAPABILITY = "trattamento_integrativo_recovery"
+def recovery_capability(kind: str) -> str:
+    """Return the capability of the decisions recording a ``kind`` installment.
+
+    Returns:
+        ``"{kind}_recovery"``, e.g. ``"trattamento_integrativo_recovery"``.
+    """
+    return f"{kind}_recovery"
 
 
 def installment_decision(obligation: RecoveryObligation) -> CalculationDecision:
@@ -65,10 +71,10 @@ def installment_decision(obligation: RecoveryObligation) -> CalculationDecision:
     number = plan.installments_posted + 1
     last = number == plan.installments_total
     return CalculationDecision(
-        capability=CAPABILITY,
+        capability=recovery_capability(plan.kind),
         status=CalculationStatus.FINAL,
         reason_code="last_installment_posted" if last else "installment_posted",
-        rule="dl3-2020-art1-c3",
+        rule=RECOVERY_RULES[plan.kind].rule,
         rule_version=str(obligation.tax_year),
         inputs={
             "origin_tax_year": str(obligation.tax_year),

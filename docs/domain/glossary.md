@@ -92,7 +92,9 @@ has 14 runs.
 The ordered IRPEF withholding slots of the year, one per payslip.  The
 annual projection spreads the tax still due over the slots not yet closed,
 and the last slot performs the conguaglio on the final taxable income
-(art. 23 c. 3 DPR 600/1973).  Surtax and somma esente are split per slot.
+(art. 23 c. 3 DPR 600/1973).  Surtax and somma esente are split per slot;
+the last slot settles the somma esente due and recovers what was paid in
+excess (L. 207/2024 art. 1 c. 7).
 Never derived from the entitlement.
 
 `WithholdingSchedule`, `WithholdingSlot`, `PeriodCalculationRequest.withholding_schedule`
@@ -208,18 +210,38 @@ with the next tax year.
 
 ### tax year state (progressivi dell'anno fiscale)
 
-Run counters, withholding slots and year-to-date accounts of one tax year:
-earnings, fringe, tax withheld, trattamento integrativo, somma esente and the
-regime cap account.  It restarts at zero when the next tax year opens.
+Run counters, closed run ids, withholding slots and year-to-date accounts of
+one tax year: earnings, fringe, tax withheld, trattamento integrativo, somma
+esente and the regime cap account.  Every total is non-negative.  It
+restarts at zero when the next tax year opens.
 
 `TaxYearState`, `PayrollState.ytd`
+
+### payroll run id (identificativo del cedolino)
+
+Year, month and kind of a payroll run, written `"2026-12-thirteenth"`.  The
+runs of a tax year close once each and in payment order; an adjustment run
+and a late run of an earlier year are not ordered.
+
+`PayrollRunId`, `PayrollRun.identifier`, `TaxYearState.closed_run_ids`
+
+### credit account (conto del credito d'imposta)
+
+Year-to-date account of a tax credit paid on the payslip that can be paid in
+excess: recognized, recovered, updated due and reason of the last decision,
+with the residual still to recover.  Used for the trattamento integrativo and
+the somma esente; the recovery plan lives in the employment obligations.
+Not used for a regime cap, which limits usage and is never recovered.
+
+`CreditAccount`, `TrattamentoAccount`, `SommaEsenteAccount`
 
 ### employment obligations (obbligazioni del rapporto)
 
 What a run owes or is owed beyond the tax year that created it, carried from
 run to run until settled.  Today: installment recoveries of trattamento
-integrativo (D.L. 3/2020 art. 1 c. 3), each bound to the tax year whose
-conguaglio opened it.  Installments posted in a later year do not enter the
+integrativo (D.L. 3/2020 art. 1 c. 3) and of somma esente (L. 207/2024
+art. 1 c. 7), each bound to the credit and the tax year whose conguaglio
+opened it.  Installments posted in a later year do not enter the
 credit account of that year.
 
 `EmploymentObligations`, `RecoveryObligation`, `PayrollState.obligations`

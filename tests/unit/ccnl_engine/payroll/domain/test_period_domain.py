@@ -107,7 +107,7 @@ class TestPeriodState:
         s = PeriodState.zero()
         assert s.ytd.regular_periods_closed == 0
         assert s.ytd.tax_withholding_periods_closed == 0
-        assert s.ytd.closed_run_ids == frozenset()
+        assert s.ytd.closed_run_ids == ()
         assert s.ytd.tax.irpef == _ZERO
         assert s.ytd.earnings.inps_employee == _ZERO
         assert s.ytd.earnings.gross == _ZERO

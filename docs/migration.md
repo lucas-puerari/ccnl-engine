@@ -106,6 +106,31 @@ the obligations that survive the year change.
   them.
 - New public names: `OpeningBalances`, `RecoveryObligation`, `RecoveryPlan`.
 
+## Credit accounts and run ids
+
+| Before | After |
+|---|---|
+| `state.ytd.closed_run_ids: frozenset[str]` | `tuple[PayrollRunId, ...]` in closing order; `PayrollRunId.parse("2026-01-regular")` |
+| `OpeningBalances(closed_run_ids=frozenset({"2026-06-regular"}))` | `OpeningBalances(closed_run_ids=(PayrollRunId.parse("2026-06-regular"),))` |
+| `obligations.recovery_of(tax_year)` | `obligations.recovery_of(tax_year, kind)`, kind `"trattamento_integrativo"` or `"somma_esente"` |
+| `SommaEsenteAccount(recognized=...)` only | `CreditAccount` schema: `recognized`, `recovered`, `due`, `reason`, `net`, `residual` |
+| bare period run id `"2026_01"` in item ids | `"2026-01-regular"`, the regular run of the month |
+
+- A run already closed, of a year after the tax year, or before a closed run
+  of the tax year raises `InvalidInputError` (feature `payroll_run`), a
+  subclass of `ValueError` as before.
+- Every YTD total rejects a negative amount. A run producing one fails with
+  `DataIntegrityError`; an `OpeningBalances` with one raises
+  `InvalidInputError` naming the account field (`EarningsYtd.gross`).
+- The somma esente is settled at the conguaglio: the credits of a full year
+  now add up to the annual amount (before, the last slot paid a plain share
+  and the total could drift by several EUR from the annual due). An excess
+  is recovered in full up to 60 EUR, in ten installments above it
+  (L. 207/2024 art. 1 c. 7). Every run records a decision with capability
+  `somma_esente`; carried installments record `somma_esente_recovery`.
+- `OpeningBalances` gains `somma_esente_recovered`.
+- New public name: `PayrollRunId`.
+
 ## Decisions and capability report
 
 - `result.decisions` now also holds the decisions of the tax credits

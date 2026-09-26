@@ -12,6 +12,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import final
 
+from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -48,9 +49,15 @@ class TaxYearState:
             last run was computed on, or ``None`` before the first run.  The
             tax year is complete when ``tax_withholding_periods_closed``
             reaches it.
-        closed_run_ids: Frozen set of ``run_id`` strings for every run
-            already closed this tax year.  Prevents reprocessing the same
-            run.
+        closed_run_ids: Identifiers of the runs already closed this tax
+            year, in closing order.  Each run closes once; no run is of a
+            year after ``tax_year``; the runs of ``tax_year`` itself close in
+            payment order (month, then regular before extra months before
+            termination), adjustment runs excepted.  A run of an earlier
+            year paid late (TUIR art. 51 c. 1) is not ordered.  Integrations
+            that do not keep run ids may leave it empty; otherwise it holds
+            at most as many regular and slot-consuming runs as the
+            counters.
         earnings: Running totals for earned income and INPS contribution
             bases (gross, taxable, INPS base, employee INPS).
         fringe: Running totals for fringe benefits and PdR (value, taxed
@@ -70,7 +77,7 @@ class TaxYearState:
     regular_periods_closed: int = 0
     tax_withholding_periods_closed: int = 0
     withholding_slots: int | None = None
-    closed_run_ids: frozenset[str] = field(default_factory=frozenset)
+    closed_run_ids: tuple[PayrollRunId, ...] = ()
     earnings: EarningsYtd = field(default_factory=EarningsYtd)
     fringe: FringeYtd = field(default_factory=FringeYtd)
     tax: TaxYtd = field(default_factory=TaxYtd)
@@ -111,6 +118,49 @@ class TaxYearState:
         if self.withholding_slots is not None and self.withholding_slots < 1:
             msg = f"withholding_slots must be >= 1; got {self.withholding_slots}"
             raise ValueError(msg)
+        self._check_closed_runs()
+
+    def _check_closed_runs(self) -> None:
+        """Validate :attr:`closed_run_ids` against the tax year and counters.
+
+        Raises:
+            ValueError: When the ids are not bound to a tax year, break the
+                closing rules of :attr:`closed_run_ids` or outnumber the
+                counters.
+        """
+        ids = self.closed_run_ids
+        if not ids:
+            return
+        if self.tax_year is None:
+            msg = "closed_run_ids requires a tax_year"
+            raise ValueError(msg)
+        seen: list[PayrollRunId] = []
+        for run_id in ids:
+            _check_next_run(tuple(seen), run_id, self.tax_year)
+            seen.append(run_id)
+        regular = sum(1 for r in ids if r.kind is RunKind.REGULAR)
+        slots = sum(1 for r in ids if r.kind.consumes_withholding_slot)
+        if regular > self.regular_periods_closed:
+            msg = (
+                f"closed_run_ids holds {regular} regular runs but "
+                f"regular_periods_closed is {self.regular_periods_closed}"
+            )
+            raise ValueError(msg)
+        if slots > self.tax_withholding_periods_closed:
+            msg = (
+                f"closed_run_ids holds {slots} slot-consuming runs but "
+                f"tax_withholding_periods_closed is "
+                f"{self.tax_withholding_periods_closed}"
+            )
+            raise ValueError(msg)
+
+    def check_next_run(self, run_id: PayrollRunId) -> None:
+        """Check that ``run_id`` can close next in this tax year.
+
+        A run already closed, of a year after :attr:`tax_year`, or before a
+        run of the tax year already closed raises ``ValueError``.
+        """
+        _check_next_run(self.closed_run_ids, run_id, self.tax_year)
 
     @property
     def is_complete(self) -> bool:
@@ -124,3 +174,38 @@ class TaxYearState:
             self.withholding_slots is not None
             and self.tax_withholding_periods_closed >= self.withholding_slots
         )
+
+
+def _check_next_run(
+    closed: tuple[PayrollRunId, ...], run_id: PayrollRunId, tax_year: int | None
+) -> None:
+    """Check that ``run_id`` can close after the runs ``closed``.
+
+    Raises:
+        ValueError: When ``run_id`` is in ``closed``, is of a year after
+            ``tax_year``, or is a run of ``tax_year`` other than an
+            adjustment that precedes a run of ``tax_year`` in ``closed``.
+    """
+    if run_id in closed:
+        msg = f"Run '{run_id}' was already processed in this payroll year"
+        raise ValueError(msg)
+    if tax_year is None:
+        return
+    if run_id.year > tax_year:
+        msg = f"run '{run_id}' is of a year after the tax year {tax_year}"
+        raise ValueError(msg)
+    if run_id.year < tax_year or run_id.kind is RunKind.ADJUSTMENT:
+        return
+    later = [
+        r
+        for r in closed
+        if r.year == tax_year
+        and r.kind is not RunKind.ADJUSTMENT
+        and r.order_key > run_id.order_key
+    ]
+    if later:
+        msg = (
+            f"run '{run_id}' is out of order: run '{later[0]}' of tax year "
+            f"{tax_year} is already closed"
+        )
+        raise ValueError(msg)
