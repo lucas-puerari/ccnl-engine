@@ -28,8 +28,14 @@ Each file carries the correct INPS rate table and level structure for that varia
 
 ## Usage
 
-Pass `weekly_hours` in `WorkArrangement`. The engine uses it together with the
-flat-rate INPS table to compute contributions.
+Pass `weekly_hours` and `contributable_hours` in `EmploymentFacts`. The engine
+uses them together with the flat-rate INPS table to compute contributions.
+
+Both facts are validated when `EmploymentFacts` is built: `weekly_hours` must be
+positive (and not above `full_time_weekly_hours` when that is given), and
+`contributable_hours` must be a non-negative `Decimal`. Impossible values raise
+`InvalidInputError` (a `ValueError`) instead of producing negative
+contributions.
 
 ```python
 --8 < --"docs/examples/10_domestic.py"
@@ -40,5 +46,5 @@ flat-rate INPS table to compute contributions.
     `Decimal(0)` for domestic workers. `payroll.irpef_gross` is computed for
     informational purposes but is not deducted.
 
-**API reference:** [`WorkArrangement`](../api/engine.md),
+**API reference:** [`EmploymentFacts`](../api/engine.md),
 [`PayrollResult.employer_withholds_irpef`](../api/engine.md)

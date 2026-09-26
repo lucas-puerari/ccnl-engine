@@ -567,6 +567,44 @@ class TestL2OrdinaryTaxNonNegative:
         assert [v for v in r.violations if v.invariant_id == "L2"] == []
 
 
+_CONTRIBUTION_INVARIANTS = [
+    pytest.param(AccountKind.EMPLOYEE_CONTRIBUTIONS, "L3", id="employee"),
+    pytest.param(AccountKind.EMPLOYER_CONTRIBUTIONS, "L4", id="employer"),
+]
+
+
+class TestL3L4ContributionsNonNegative:
+    """L3/L4: ordinary employee and employer contributions are never negative."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No L3 or L4 violation on a real calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id in {"L3", "L4"}] == []
+
+    @pytest.mark.parametrize(("account", "invariant_id"), _CONTRIBUTION_INVARIANTS)
+    def test_violation_on_negative_contribution(
+        self, account: AccountKind, invariant_id: str
+    ) -> None:
+        """A negative contribution entry is reported with its pay item id."""
+        e = _entry("inps", account, Decimal("-68.80"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        found = [v for v in r.violations if v.invariant_id == invariant_id]
+        assert len(found) == 1
+        assert "inps" in found[0].message
+
+    @pytest.mark.parametrize(("account", "invariant_id"), _CONTRIBUTION_INVARIANTS)
+    def test_no_violation_for_zero_contribution(
+        self, account: AccountKind, invariant_id: str
+    ) -> None:
+        """A zero contribution is not a violation."""
+        e = _entry("inps", account, Decimal("0.00"))
+        b = _Builder(ledger_entries=(e,))
+        r = reconcile(b.build(), _OPENING)
+        assert [v for v in r.violations if v.invariant_id == invariant_id] == []
+
+
 class TestReconcileIntegration:
     """reconcile() aggregates all invariant checks into one result."""
 

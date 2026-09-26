@@ -80,6 +80,7 @@ These equalities must hold after every period calculation and are enforced by
 | I9 — net | `CASH_EARNINGS + CREDITS + TFR_SETTLEMENT − EMPLOYEE_CONTRIBUTIONS − ORDINARY_TAX − SURTAX − SEPARATE_TAX = period_net` |
 | I12 — employer cost | `CASH_EARNINGS + EMPLOYER_CONTRIBUTIONS + TFR_ACCRUAL = period_employer_cost` |
 | I13 — gross | `CASH_EARNINGS = period_gross` |
+| L3, L4 (contributions) | every `EMPLOYEE_CONTRIBUTIONS` and `EMPLOYER_CONTRIBUTIONS` entry `>= 0`; corrections are a distinct movement, not a negative ordinary contribution |
 
 ---
 

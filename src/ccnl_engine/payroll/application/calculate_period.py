@@ -71,6 +71,7 @@ from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.domain.employment import SeniorityMonths, WeeklyHours
 
 _ZERO = Decimal(0)
 
@@ -93,6 +94,10 @@ def _resolve_run_id(request: PeriodCalculationRequest, tctx: TemporalContext) ->
         msg = f"Run '{run_id}' was already processed in this payroll year"
         raise ValueError(msg)
     return run_id
+
+
+def _int_value(fact: WeeklyHours | SeniorityMonths | None) -> int | None:
+    return None if fact is None else fact.value
 
 
 def _effective_resolver(resolver: PolicyResolver | None) -> PolicyResolver:
@@ -140,7 +145,7 @@ def calculate_period(
         tctx.fiscal_year, request.period_id.month, tctx.payment
     )
     year_rules = effective_repo.load_year_rules(
-        tctx.fiscal_year, ccnl.meta.tax_sector, request.num_employees
+        tctx.fiscal_year, ccnl.meta.tax_sector, request.num_employees.value
     )
     catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
     additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
@@ -149,11 +154,11 @@ def calculate_period(
         level,
         request.contract_type,
         tctx.competence,
-        seniority_months=request.seniority_months,
+        seniority_months=_int_value(request.seniority_months),
         roles=request.roles,
         worker_category=None,
-        weekly_hours=request.weekly_hours,
-        full_time_weekly_hours=request.full_time_weekly_hours,
+        weekly_hours=_int_value(request.weekly_hours),
+        full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
     run_kind = request.run.run_kind if request.run is not None else "regular"
     run_id = _resolve_run_id(request, tctx)
@@ -183,7 +188,7 @@ def calculate_period(
         ccnl_slug=request.ccnl_slug,
         sector=ccnl.meta.tax_sector,
         gross_ytd=request.opening_state.earnings.gross,
-        num_employees=request.num_employees,
+        num_employees=request.num_employees.value,
     )
     cp = CompetencePeriod(year=tctx.fiscal_year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(
@@ -233,8 +238,12 @@ def calculate_period(
         family_deduction_rules=fam_ded_rules,
         ivs_ceiling_applies=ivs_ceiling_applies,
         pdr_rules=var_pay_rules.pdr,
-        weekly_hours=request.weekly_hours,
-        contributable_hours=request.contributable_hours,
+        weekly_hours=_int_value(request.weekly_hours),
+        contributable_hours=(
+            request.contributable_hours.value
+            if request.contributable_hours is not None
+            else None
+        ),
         domestic_hourly_rate=domestic_hr,
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed

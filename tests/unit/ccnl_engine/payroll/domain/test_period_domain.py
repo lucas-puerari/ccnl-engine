@@ -10,6 +10,7 @@ import pytest
 from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+from ccnl_engine.payroll.domain.employment import Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -215,7 +216,7 @@ class TestPeriodCalculationRequest:
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
         )
-        assert req.num_employees == 50
+        assert req.num_employees == Headcount(50)
 
     def test_frozen(self) -> None:
         """PeriodCalculationRequest is immutable: assignment raises AttributeError."""

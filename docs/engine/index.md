@@ -97,7 +97,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | Type | What it describes |
 |---|---|
 | `PayrollRequest` | Full period request: run, payment date, CCNL slug, level, employment facts, events |
-| `EmploymentFacts` | Contract shape: type, headcount, hours, seniority, ceiling status |
+| `EmploymentFacts` | Contract shape: type, headcount, hours, seniority, ceiling status; impossible values are rejected on construction |
 | `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
 | `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
 | `OvertimeEvent` | Overtime hours for a specific date |
