@@ -47,6 +47,7 @@ __all__ = [
     "non_accruing_days",
     "run_accrual",
     "run_fraction",
+    "run_schedule",
     "settle_extra_months",
     "termination_settlements",
 ]
@@ -81,14 +82,26 @@ def run_accrual(
         (s.max_fraction for s in standard.extra_months if s.kind is kind),
         Decimal(1),
     )
-    schedule = ExtraMonthSchedule(
+    schedule = run_schedule(kind, run.month, max_fraction)
+    return ExtraMonthAccrual.of(schedule, run.year, request.employment_period)
+
+
+def run_schedule(
+    kind: ExtraMonthKind, payment_month: int, max_fraction: Decimal
+) -> ExtraMonthSchedule:
+    """Return the schedule of an extra month paid in ``payment_month``.
+
+    Returns:
+        The schedule whose accrual window is the 12 months ending in the
+        payment month.
+    """
+    return ExtraMonthSchedule(
         kind=kind,
         name=kind.value,
-        payment_month=run.month,
-        accrual_window_start_month=run.month % 12 + 1,
+        payment_month=payment_month,
+        accrual_window_start_month=payment_month % 12 + 1,
         max_fraction=max_fraction,
     )
-    return ExtraMonthAccrual.of(schedule, run.year, request.employment_period)
 
 
 def run_fraction(accrual: ExtraMonthAccrual | None) -> Decimal:

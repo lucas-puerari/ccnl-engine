@@ -513,12 +513,12 @@ class TestUlterioreDedrazioneLavoro:
         assert ulteriore_detrazione_lavoro(Decimal(32000), _UD_RULES) == Decimal(1000)
 
     def test_just_above_threshold_mid_taper_starts(self) -> None:
-        """Income just above threshold_mid: taper begins, still near max_amount."""
+        """Income just above threshold_mid: taper begins, rounds to max_amount.
+
+        1 000 * 7 999.99 / 8 000 = 999.99875, not truncated, in cents 1 000.00.
+        """
         result = ulteriore_detrazione_lavoro(Decimal("32000.01"), _UD_RULES)
-        expected = (
-            Decimal(1000) * (Decimal(40000) - Decimal("32000.01")) / Decimal(8000)
-        )
-        assert result == expected
+        assert result == Decimal("1000.00")
 
     def test_taper_interior_36204(self) -> None:
         """Taper at 36 204: 1000 * (40000 - 36204) / 8000 = 474.50."""
@@ -593,6 +593,27 @@ class TestSommaEsente:
     def test_well_above_ceiling_returns_zero(self) -> None:
         """High income: benefit is zero."""
         assert somma_esente(Decimal(50000), _SE_RULES) == Decimal(0)
+
+    def test_percentage_follows_the_annualised_income(self) -> None:
+        """Circolare AdE 4/E of 16 May 2025, esempio 1: 2,000 EUR in 62 days.
+
+        Annualised 2,000 / 62 * 365 = 11,774.19 (the circolare prints
+        11.744,19), in the 8,500 to 15,000 band: 5.3% of the 2,000 EUR
+        actually earned is 106 EUR.  On the unannualised income the rate
+        would be 7.1% (142 EUR).
+        """
+        amount = somma_esente(Decimal(2000), _SE_RULES, eligible_work_days=62)
+        assert amount == Decimal("106.000")
+
+    def test_annualised_income_above_every_band_takes_the_last_rate(self) -> None:
+        """12,000 EUR in 151 days: annualised 29,006.62, above 20,000.
+
+        The reddito complessivo (12,000) is within the 20,000 EUR limit, so
+        the credit is due at the rate for income above 15,000: 4.8% of
+        12,000 = 576 EUR (L. 207/2024 art. 1 c. 4 lett. c) and c. 5).
+        """
+        amount = somma_esente(Decimal(12000), _SE_RULES, eligible_work_days=151)
+        assert amount == Decimal("576.000")
 
 
 class TestWorkIncomeDeductionProrata:

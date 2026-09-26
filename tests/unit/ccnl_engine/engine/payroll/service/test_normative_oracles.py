@@ -191,8 +191,9 @@ class TestWorkDeductionBoundaryOracles:
 
 
 # ---------------------------------------------------------------------------
-# Art. 13 c. 6 TUIR - part-year pro-rata oracles
-# The full-year deduction is scaled by trunc4(eligible_work_days / 365).
+# Art. 13 c. 1 TUIR - part-year pro-rata oracles
+# The full-year deduction, in cents, is scaled by eligible_work_days / 365.
+# The four-decimal truncation of art. 13 c. 6 covers the income ratios only.
 # ---------------------------------------------------------------------------
 
 
@@ -200,15 +201,14 @@ class TestWorkDeductionProrataOracles:
     """Art. 13 c. 6 TUIR - exact pro-rata values for part-year workers."""
 
     def test_flat_band_182_days(self) -> None:
-        """RC=10 000, 182 days: full-year 1 955 scaled by trunc4(182/365).
+        """RC=10 000, 182 days: full-year 1 955 scaled by 182/365.
 
         Derivation:
           full_year = 1 955 (flat band, RC <= 15 000)
-          prorata   = trunc4(182 / 365) = trunc4(0.498630...) = 0.4986
-          result    = money(1 955 * 0.4986) = money(974.763) = 974.76
+          result    = money(1 955 * 182 / 365) = money(974.8219...) = 974.82
         """
         result = work_income_deduction(Decimal(10000), eligible_work_days=182)
-        assert result == Decimal("974.76")
+        assert result == Decimal("974.82")
 
     def test_flat_band_full_year_returns_exact_flat(self) -> None:
         """RC=10 000, 365 days: full-year amount returned unchanged.
@@ -222,16 +222,15 @@ class TestWorkDeductionProrataOracles:
         assert result == Decimal("1955.00")
 
     def test_mid_band_182_days_exact(self) -> None:
-        """RC=20 000, 182 days: mid-band full-year scaled by 0.4986.
+        """RC=20 000, 182 days: mid-band full-year scaled by 182/365.
 
         Derivation:
           ratio     = trunc4(8 000 / 13 000) = trunc4(0.615384...) = 0.6153
-          full_year = 1 910 + 1 190 * 0.6153 = 1 910 + 732.207 = 2 642.207
-          prorata   = trunc4(182 / 365) = 0.4986
-          result    = money(2 642.207 * 0.4986) = money(1 317.40441) = 1 317.40
+          full_year = 1 910 + 1 190 * 0.6153 = 2 642.207, in cents 2 642.21
+          result    = money(2 642.21 * 182 / 365) = money(1 317.4887...) = 1 317.49
         """
         result = work_income_deduction(Decimal(20000), eligible_work_days=182)
-        assert result == Decimal("1317.40")
+        assert result == Decimal("1317.49")
 
 
 # ---------------------------------------------------------------------------
@@ -242,6 +241,25 @@ class TestWorkDeductionProrataOracles:
 
 class TestTrattamentoIntegrativoOracles:
     """Art. 1 D.L. 3/2020 - trattamento integrativo at exact thresholds."""
+
+    def test_part_year_amount_follows_the_days(self) -> None:
+        """RC=10 000, 182 days: 1 200 "rapportato al periodo di lavoro".
+
+        Derivation:
+          10 000 <= 15 000: low band; irpef_gross 2 300 exceeds the work
+          deduction 974.82 less the corrective money(75 * 182 / 365) = 37.40.
+          bonus = money(1 200 * 182 / 365) = money(598.3561...) = 598.36;
+          the truncated day ratio 0.4986 would give 598.32.
+        """
+        result = trattamento_integrativo(
+            Decimal(10000),
+            Decimal(2300),
+            Decimal("974.82"),
+            Decimal("974.82"),
+            _TI_RULES,
+            eligible_work_days=182,
+        )
+        assert result == Decimal("598.36")
 
     def test_upper_threshold_exact_uses_mid_band_logic(self) -> None:
         """RC=28 000 (exactly at threshold_upper) uses mid-band logic, not zero.
@@ -315,30 +333,28 @@ class TestUlterioreDetrazioneOracles:
         assert ulteriore_detrazione_lavoro(Decimal(36000), _UD_RULES) == Decimal(500)
 
     def test_part_year_flat_band_exact(self) -> None:
-        """RC=25 000 (flat band), 91 days: max_amount * trunc4(91/365).
+        """RC=25 000 (flat band), 91 days: max_amount * 91/365.
 
         Derivation:
           full_year = 1 000 (flat band, 20 000 < 25 000 <= 32 000)
-          prorata   = trunc4(91 / 365) = trunc4(0.249315...) = 0.2493
-          result    = 1 000 * 0.2493 = 249.3 (unrounded)
+          result    = money(1 000 * 91 / 365) = money(249.3150...) = 249.32
         """
         result = ulteriore_detrazione_lavoro(
             Decimal(25000), _UD_RULES, eligible_work_days=91
         )
-        assert result == Decimal("249.3")
+        assert result == Decimal("249.32")
 
     def test_part_year_taper_band_exact(self) -> None:
-        """RC=36 000 (taper), 182 days: tapered full-year * trunc4(182/365).
+        """RC=36 000 (taper), 182 days: tapered full-year * 182/365.
 
         Derivation:
           full_year = 1 000 * (40 000 - 36 000) / 8 000 = 500
-          prorata   = trunc4(182 / 365) = 0.4986
-          result    = 500 * 0.4986 = 249.3 (unrounded)
+          result    = money(500 * 182 / 365) = money(249.3150...) = 249.32
         """
         result = ulteriore_detrazione_lavoro(
             Decimal(36000), _UD_RULES, eligible_work_days=182
         )
-        assert result == Decimal("249.3")
+        assert result == Decimal("249.32")
 
 
 # ---------------------------------------------------------------------------

@@ -175,3 +175,33 @@ the obligations that survive the year change.
   instead of `DataIntegrityError`. Absences that leave less pay than the
   withholdings due raise `OutOfScopeError` (reason `withholding_shortfall`)
   instead of returning a negative net pay.
+
+## Fiscal rule corrections
+
+- One-off income of a run (bonus, overtime, ordinary arrears, excess PdR,
+  ratei settled at termination) has its IRPEF withheld on that run: the net
+  annual IRPEF with the income less the net annual IRPEF without it. Before,
+  that tax was spread over the remaining slots, so a 20,000 EUR bonus in
+  November left the tredicesima run with a negative net and the year failed
+  with `DataIntegrityError`. The annual IRPEF is unchanged; the runs that
+  pay one-off income withhold more and the later runs less.
+- The regional and municipal surtaxes are due only when the net IRPEF
+  (gross less the deductions) is due, not the gross IRPEF. A 12-hour
+  part-time Metalmeccanico C3 in Lombardia no longer withholds 93.71 EUR of
+  regional surtax a year; the decisions record `no_irpef_due`.
+- The work deduction, the ulteriore detrazione and the trattamento
+  integrativo follow `days / 365` without truncating the day ratio to four
+  decimals: 92 days of the 1,955 EUR deduction give 492.77 EUR instead of
+  492.66. The ulteriore detrazione is rounded to cents.
+- The somma esente percentage is chosen on the employment income
+  annualised to the whole year and applied to the income of the year: a
+  Metalmeccanico C3 ended on 31 May receives 507.90 EUR (4.8%) instead of
+  560.80 (5.3%).
+- A run with a somma esente due carries the `provisional` issue
+  `somma_esente_income_assumed`: the reddito complessivo is taken as the
+  employment income. Low-income results that were `final` are now
+  `provisional`; `YearCalculationResult.issues` lists the issue once per run.
+- The projection of a future tredicesima or quattordicesima uses the rateo
+  accrued on the employment period instead of a full month: a worker hired
+  on 1 July withholds evenly over the seven slots of the year instead of
+  overwithholding until the conguaglio.

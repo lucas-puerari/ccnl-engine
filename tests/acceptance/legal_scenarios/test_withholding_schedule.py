@@ -117,3 +117,34 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
 
     assert net_irpef(final_taxable, 292) == expected
     assert abs(withheld - expected) <= _CENT
+
+
+def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
+    """Metalmeccanico C3 hired 1 July 2026 withholds evenly over its 7 slots.
+
+    The tredicesima of December pays 6/12 (July to December), so every run
+    must project that rateo, not a full month.  With the projection equal
+    to the final taxable income, each of the seven slots (July to December
+    plus the tredicesima) withholds a seventh of the annual tax.
+
+    Expected: ``net_irpef(final taxable, 184) / 7`` per run, within two
+    cents of rounding; 184 days from 1 July to 31 December.
+
+    Observed on 26 September 2026 before the rateo reached the projection:
+    the runs of July to December projected 14,010.96 EUR instead of
+    13,010.20 and withheld 319.57 each, leaving 89.39 for the tredicesima.
+    """
+    year = ENGINE.calculate_year(
+        PayrollYearRequest(
+            year=2026,
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            employment_facts=EmploymentFacts(started_on=date(2026, 7, 1)),
+        )
+    )
+    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
+    share = net_irpef(final_taxable, 184) / 7
+
+    assert len(year.period_results) == 7
+    for run in year.period_results:
+        assert abs(run.tax_computation.ordinary_tax - share) <= Decimal("0.02")

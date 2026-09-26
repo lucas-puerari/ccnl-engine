@@ -146,7 +146,9 @@ def calculate_period(
     run_kind, run_id = closed_run_id.kind, str(closed_run_id)
     opening = request.opening_state
     slots_closed = opening.ytd.tax_withholding_periods_closed
-    upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
+    upcoming_gross = upcoming_recurring_gross(
+        chain, withholding_schedule, slots_closed, request.employment_period
+    )
     accrual = run_accrual(request, ccnl, tctx.competence)
     chain = _apply_extra_month_policy(chain, run_kind, run_fraction(accrual))
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
@@ -363,7 +365,7 @@ def calculate_period(
         benefit_breakdown=benefit_breakdown,
         run=request.run,
         bundle_version=bundle_version,
-        issues=event_totals.issues + amounts.surtax.issues,
+        issues=event_totals.issues + amounts.surtax.issues + somma.issues,
         decisions=decisions + somma.decisions + carried.decisions,
     )
     check_net_covered(result)

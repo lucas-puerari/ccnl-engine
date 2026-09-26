@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service import irpef_credits
 from ccnl_engine.payroll.service.credit_decisions import credit_decision
+from ccnl_engine.payroll.service.irpef_net import net_irpef, run_withholding
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -46,11 +47,14 @@ class TaxResolution:
         decisions: One decision per credit whose rules are in force for the
             year: ``ulteriore_detrazione_lavoro`` then
             ``trattamento_integrativo``.
+        irpef_net: Net annual IRPEF: gross less the deductions, at least
+            zero.  The surtax is due only when it is positive.
     """
 
     computation: TaxComputation
     recovery_plan: RecoveryPlan | None
     decisions: tuple[CalculationDecision, ...] = ()
+    irpef_net: Decimal = _ZERO
 
 
 def _advance_plan(plan: RecoveryPlan) -> RecoveryPlan | None:
@@ -206,6 +210,7 @@ def compute_tax(
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
     eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
+    net_without_one_off: Decimal | None = None,
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -219,11 +224,13 @@ def compute_tax(
     6. ``trattamento_integrativo`` — Art. 1 D.L. 3/2020 / L. 207/2024.
     7. ``somma_esente`` — L. 207/2024 low-income bonus (if configured).
 
-    The period withholding (``ordinary_tax``) is the conguaglio share:
-    ``max(0, (irpef_net_annual - ytd_withheld) / remaining_slots)``, where
-    ``remaining_slots`` counts the slots of ``withholding_schedule`` not yet
-    closed, the current one included.  The last slot settles the full
-    balance, which can be negative (a refund).
+    The period withholding (``ordinary_tax``) is
+    :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: the tax
+    the one-off income of the run adds, plus the share
+    ``max(0, (irpef_net_annual - one_off_tax - ytd_withheld) /
+    remaining_slots)``, where ``remaining_slots`` counts the slots of
+    ``withholding_schedule`` not yet closed, the current one included.  The
+    last slot settles the full balance, which can be negative (a refund).
 
     Args:
         taxable: Annual IRPEF taxable base (gross - employee INPS).
@@ -246,6 +253,9 @@ def compute_tax(
             trattamento integrativo are proportioned to them ("rapportata
             al periodo di lavoro nell'anno": art. 13 c. 1 TUIR, L. 207/2024
             art. 1 c. 6, D.L. 3/2020 art. 1).
+        net_without_one_off: Net annual IRPEF on the projection without the
+            one-off income the run pays, or ``None`` when it pays none.  The
+            difference from the full net is withheld on the run.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -258,28 +268,24 @@ def compute_tax(
     decisions: list[CalculationDecision] = []
     eligible_work_days = min(eligible_work_days, irpef_svc.DAYS_IN_YEAR)
 
-    ig = irpef_svc.irpef_gross(taxable, rules)
-    components.append(
+    annual = net_irpef(
+        taxable,
+        rules,
+        family_deductions=family_deductions,
+        eligible_work_days=eligible_work_days,
+    )
+    ig, wd = annual.gross, annual.work_deduction
+    components.extend((
         TaxLineItem(
-            name="irpef_gross",
-            amount=ig,
-            rule_id="art11-tuir",
-            fonte="Art. 11 TUIR",
-        )
-    )
-
-    wd = irpef_svc.work_income_deduction(
-        taxable, eligible_work_days, constants=rules.work_deduction
-    )
-    components.append(
+            name="irpef_gross", amount=ig, rule_id="art11-tuir", fonte="Art. 11 TUIR"
+        ),
         TaxLineItem(
             name="work_deduction",
             amount=wd,
             rule_id="art13-tuir",
             fonte="Art. 13 co. 1 TUIR",
-        )
-    )
-
+        ),
+    ))
     if family_deductions > _ZERO:
         components.append(
             TaxLineItem(
@@ -291,62 +297,46 @@ def compute_tax(
         )
 
     # Ulteriore detrazione (2026): Art. 1 c. 6 L. 207/2024
-    ud = _ZERO
-    if rules.ulteriore_detrazione is not None:
-        ud_outcome = irpef_credits.ulteriore_detrazione_outcome(
-            taxable, rules.ulteriore_detrazione, eligible_work_days
-        )
-        ud = ud_outcome.amount
+    if annual.ulteriore is not None:
         decisions.append(
             credit_decision(
                 "ulteriore_detrazione_lavoro",
                 _ULTERIORE_RULE,
                 rules,
-                ud_outcome,
+                annual.ulteriore,
                 {
                     "taxable_income": taxable,
                     "eligible_work_days": str(eligible_work_days),
                 },
             )
         )
-        if ud > _ZERO:
+        if annual.ulteriore.amount > _ZERO:
             components.append(
                 TaxLineItem(
                     name="ulteriore_detrazione",
-                    amount=ud,
+                    amount=annual.ulteriore.amount,
                     rule_id=_ULTERIORE_RULE,
                     fonte="Art. 1 c. 6 L. 207/2024",
                 )
             )
 
-    total_deductions = wd + family_deductions + ud
     # Sterilizzazione: Art. 1 c. 3-4 L. 199/2025 (high earners, > EUR 200k)
-    effective_deductions = irpef_svc.apply_sterilizzazione_detrazioni(
-        total_deductions, taxable, rules.sterilizzazione_detrazioni
-    )
-    if effective_deductions < total_deductions:
-        reduction = total_deductions - effective_deductions
+    if annual.effective_deductions < annual.total_deductions:
         components.append(
             TaxLineItem(
                 name="sterilizzazione_detrazioni",
-                amount=-reduction,
+                amount=annual.effective_deductions - annual.total_deductions,
                 rule_id="l199-2025-art1-c3-c4",
                 fonte="Art. 1 c. 3-4 L. 199/2025",
             )
         )
 
-    irpef_net_annual = max(_ZERO, ig - effective_deductions)
-
     # withholding_due: positive = still owed; negative = refund due to worker.
-    # The last period settles the full balance; earlier periods clamp at zero to
-    # avoid spreading a mid-year refund across months.
-    withholding_due = irpef_net_annual - opening_irpef_withheld
+    withholding_due = annual.net - opening_irpef_withheld
     remaining = withholding_schedule.remaining(slots_closed)
-    if remaining == 1:
-        # Final period: settle the full balance (can be negative = refund).
-        ordinary_tax = money(withholding_due)
-    else:
-        ordinary_tax = money(max(_ZERO, withholding_due / remaining))
+    ordinary_tax = run_withholding(
+        annual.net, net_without_one_off, opening_irpef_withheld, remaining
+    )
 
     period_tratt, tratt_component, next_recovery_plan, tratt = _resolve_trattamento(
         taxable,
@@ -365,14 +355,14 @@ def compute_tax(
 
     # Somma esente: L. 207/2024 low-income bonus
     if rules.somma_esente is not None:
-        se = irpef_svc.somma_esente(taxable, rules.somma_esente)
+        se = irpef_svc.somma_esente(taxable, rules.somma_esente, eligible_work_days)
         if se > _ZERO:
             components.append(
                 TaxLineItem(
                     name="somma_esente",
                     amount=se,
                     rule_id="l207-2024-somma-esente",
-                    fonte="L. 207/2024 (somma esente)",
+                    fonte="Art. 1 c. 4-5 L. 207/2024",
                 )
             )
 
@@ -382,4 +372,6 @@ def compute_tax(
         withholding_due=withholding_due,
         components=tuple(components),
     )
-    return TaxResolution(computation, next_recovery_plan, tuple(decisions))
+    return TaxResolution(
+        computation, next_recovery_plan, tuple(decisions), irpef_net=annual.net
+    )

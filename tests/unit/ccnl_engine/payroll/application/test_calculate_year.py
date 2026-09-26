@@ -332,7 +332,12 @@ class TestEmploymentPeriodRuns:
         assert result.status is CalculationStatus.PROVISIONAL
 
     def test_termination_in_may_has_no_december_tredicesima(self) -> None:
-        """Ended 31 May: five regular runs, no extra-month run."""
+        """Ended 31 May: five regular runs, no extra-month run.
+
+        The income of five months is within the 20,000 EUR limit of the
+        somma esente, which rests on the employment income standing for the
+        reddito complessivo: the result is provisional for that alone.
+        """
         result = calculate_year(
             _YEAR,
             _CCNL,
@@ -342,7 +347,10 @@ class TestEmploymentPeriodRuns:
         assert [r.run.run_kind for r in result.period_results if r.run] == [
             RunKind.REGULAR
         ] * 5
-        assert result.status is CalculationStatus.FINAL
+        assert result.status is CalculationStatus.PROVISIONAL
+        assert {i.code for r in result.period_results for i in r.issues} == {
+            "somma_esente_income_assumed"
+        }
 
     def test_employment_outside_the_year_is_rejected(self) -> None:
         """An employment ended in 2025 has nothing to compute in 2026."""

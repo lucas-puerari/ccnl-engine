@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application._somma_esente import (
     resolve_somma_esente,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
     EmploymentObligations,
@@ -145,6 +146,15 @@ class TestBeforeTheConguaglio:
         assert outcome.due == _ZERO
         assert outcome.reason == "not_due"
         assert outcome.decisions[0].capability == "somma_esente"
+        assert outcome.issues == ()
+
+    def test_due_amount_is_provisional_on_the_income_assumed(self) -> None:
+        """A due somma esente rests on employment income as reddito complessivo."""
+        outcome = _resolve(Decimal(1200), _opening(closed=0))
+
+        (issue,) = outcome.issues
+        assert issue.code == "somma_esente_income_assumed"
+        assert issue.status is CalculationStatus.PROVISIONAL
 
 
 class TestAtTheConguaglio:

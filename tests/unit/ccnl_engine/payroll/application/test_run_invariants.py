@@ -13,7 +13,10 @@ from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.payroll.application._period_checks import check_net_covered
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.application.calculate_year import (
+    YearCalculationResult,
+    calculate_year,
+)
 from ccnl_engine.payroll.application.lifecycle_invariants import (
     check_extra_month_accrual_limit,
     check_run_within_employment,
@@ -37,10 +40,11 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TrattamentoAccount
+from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -337,18 +341,68 @@ class TestClosingStateRejected:
             _run(12, opening)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=DataIntegrityError,
-    reason="IRPEF on a one-off bonus is spread over the later withholding slots",
-)
+def _november_irpef(result: YearCalculationResult) -> Decimal:
+    (november,) = (
+        r
+        for r in result.period_results
+        if r.period_id.month == 11
+        and r.run is not None
+        and r.run.run_kind is RunKind.REGULAR
+    )
+    return november.tax_computation.ordinary_tax
+
+
+def _final_taxable(result: YearCalculationResult) -> Decimal:
+    return result.period_results[-1].closing_state.ytd.earnings.taxable
+
+
 def test_large_bonus_leaves_every_net_non_negative() -> None:
     """A 20,000 EUR bonus in November must not make a later net negative.
 
-    The IRPEF of the bonus is withheld over the remaining slots of the
-    year instead of on the bonus payslip, so the tredicesima run withholds
-    more than it pays and ``net_pay_non_negative`` rejects the year.
+    The IRPEF of the bonus used to be withheld over the remaining slots of
+    the year instead of on the bonus payslip, so the tredicesima run
+    withheld more than it paid and ``net_pay_non_negative`` rejected the
+    year.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
     result = calculate_year(_YEAR, _CCNL, _LEVEL, period_events={11: (bonus,)})
     assert all(r.period_net >= 0 for r in result.period_results)
+
+
+def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
+    """A 20,000 EUR bonus in November is taxed on the November payslip.
+
+    Art. 23 c. 2 lett. a) DPR 600/1973 withholds on the sums paid in each
+    pay period.  The November run withholds its share of the recurring tax
+    plus the whole tax the bonus adds to the year; spreading that tax over
+    the later slots made the tredicesima run withhold more than it paid.
+
+    Expected, from the oracle on the final taxable incomes of the year with
+    and without the bonus: the November IRPEF grows by
+    ``net_irpef(with) - net_irpef(without)`` (8,398.79 EUR), and the runs
+    after it withhold what they withhold without the bonus.  The tolerance
+    of 0.50 EUR is the rounding of the projection of the later slots, which
+    the conguaglio settles (the engine withholds 8,398.60 more in November,
+    then 0.09 and 0.10 more on the two later runs).
+    """
+    bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
+    with_bonus = calculate_year(_YEAR, _CCNL, _LEVEL, period_events={11: (bonus,)})
+    without = calculate_year(_YEAR, _CCNL, _LEVEL)
+
+    bonus_tax = oracle_net_irpef(_final_taxable(with_bonus)) - oracle_net_irpef(
+        _final_taxable(without)
+    )
+    grown = _november_irpef(with_bonus) - _november_irpef(without)
+
+    tail_growth = sum(
+        (
+            a.tax_computation.ordinary_tax - b.tax_computation.ordinary_tax
+            for a, b in zip(
+                with_bonus.period_results[-2:], without.period_results[-2:], strict=True
+            )
+        ),
+        Decimal(0),
+    )
+
+    assert abs(grown - bonus_tax) <= Decimal("0.50")
+    assert abs(tail_growth) <= Decimal("0.50")

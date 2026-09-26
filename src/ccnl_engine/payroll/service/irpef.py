@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)
-DAYS_IN_YEAR = 365  # statutory denominator for Art. 13 co. 6 TUIR pro-rata
+DAYS_IN_YEAR = 365  # "365 per l'intero anno": 730/2026 istruzioni, quadro C
 
 # Default Art. 13 constants (2026). Callers may pass rules.work_deduction instead.
 _DEFAULT_WD = WorkDeductionRules()
@@ -64,10 +64,12 @@ def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
 
 
 def _trunc4(ratio: Decimal) -> Decimal:
-    """Truncate *ratio* to four decimal places per Art. 13 co. 6 TUIR.
+    """Truncate an income ratio of art. 13 TUIR to four decimal places.
 
-    Italian law requires intermediate ratios to be floored (not rounded)
-    to four decimal places before multiplication.
+    Art. 13 c. 6 TUIR: "Se il risultato dei rapporti indicati nei commi 1,
+    3, 4 e 5 è maggiore di zero, lo stesso si assume nelle prime quattro
+    cifre decimali".  It covers the income ratios of those commi only, not
+    the proportion to the days of work (see :func:`for_days`).
 
     Returns:
         The ratio truncated toward zero to four decimal places.
@@ -75,6 +77,23 @@ def _trunc4(ratio: Decimal) -> Decimal:
     return (ratio * _TEN_THOUSAND).to_integral_value(
         rounding=ROUND_FLOOR
     ) / _TEN_THOUSAND
+
+
+def for_days(full_year: Decimal, eligible_work_days: int) -> Decimal:
+    """Proportion a full-year credit to the days of work in the year.
+
+    Art. 13 c. 1 TUIR, L. 207/2024 art. 1 c. 6 and D.L. 3/2020 art. 1 give
+    the amount "rapportata al periodo di lavoro nell'anno"; the 730/2026
+    istruzioni count the days of work with "365 per l'intero anno" (quadro
+    C, periodo di lavoro), so the amount is ``amount * days / 365``.  The
+    four-decimal truncation of art. 13 c. 6 TUIR is not applied: the days
+    are not one of the ratios it lists.  The full-year amount is rounded to
+    cents first, as the tables state it in euro.
+
+    Returns:
+        ``money(money(full_year) * eligible_work_days / 365)``.
+    """
+    return money(money(full_year) * eligible_work_days / DAYS_IN_YEAR)
 
 
 def work_income_deduction(
@@ -95,8 +114,8 @@ def work_income_deduction(
     An additional EUR 65 increment applies when 25 000 < RC ≤ 35 000,
     overlapping both middle and upper bands.
 
-    The full-year amount is then scaled by
-    ``trunc4(eligible_work_days / 365)`` per Art. 13 co. 6 TUIR.
+    The full-year amount is then proportioned to the days by
+    :func:`for_days`, without truncating ``eligible_work_days / 365``.
     Pass ``eligible_work_days=365`` (the default) for a full year.
 
     Args:
@@ -130,37 +149,43 @@ def work_income_deduction(
             full_year = c.detr_a * ratio + increment
         else:
             return _ZERO
-    if eligible_work_days == DAYS_IN_YEAR:
-        return money(full_year)
-    prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
-    return money(full_year * prorata)
+    return for_days(full_year, eligible_work_days)
 
 
 def somma_esente(
     taxable_income: Decimal,
     rules: SommaEsenteRules,
+    eligible_work_days: int = DAYS_IN_YEAR,
 ) -> Decimal:
-    """Compute the somma esente (L. 207/2024) for low-income workers.
+    """Compute the somma esente of L. 207/2024 art. 1 c. 4-5.
 
-    The bonus is added directly to net pay.  The applicable rate is the
-    rate of the first band whose ``up_to`` value is >= ``taxable_income``;
-    it is applied to the full ``taxable_income`` (not just the marginal
-    slice).  Returns zero when ``taxable_income`` exceeds all band ceilings
-    or is non-positive.
+    - Eligibility (c. 4): reddito complessivo not above the last band's
+      ``up_to`` (20,000 EUR).  Employment income is the only income the
+      engine knows, so it stands for the reddito complessivo.
+    - Percentage (c. 5): chosen on the employment income "rapportato
+      all'intero anno", ``income * 365 / days`` (circolare AdE 4/E of 16
+      May 2025, par. 1.2, esempio 1); the rate of the first band whose
+      ``up_to`` covers it, the last band's rate above every ``up_to``.
+    - Amount (c. 4): the percentage times the employment income actually
+      earned in the year, not the annualised one.
 
     Args:
-        taxable_income: Reddito complessivo di riferimento.
+        taxable_income: Employment income of the year, also used as the
+            reddito complessivo.
         rules: Band schedule from the tax data file.
+        eligible_work_days: Days of employment in the tax year, at most 365.
 
     Returns:
-        The somma esente amount (unrounded; full-year).
+        The somma esente amount (unrounded; full-year), zero when not due.
     """
-    if taxable_income <= _ZERO:
+    if taxable_income <= _ZERO or taxable_income > rules.bands[-1].up_to:
         return _ZERO
-    for band in rules.bands:
-        if taxable_income <= band.up_to:
-            return taxable_income * band.rate
-    return _ZERO
+    annualised = taxable_income * DAYS_IN_YEAR / eligible_work_days
+    rate = next(
+        (band.rate for band in rules.bands if annualised <= band.up_to),
+        rules.bands[-1].rate,
+    )
+    return taxable_income * rate
 
 
 def surtax_from_brackets(
