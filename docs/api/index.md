@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `estimate_annual()`, `estimate_period_effects()`, `Calculation`, `AnnualEstimateInput`, `PeriodPayrollInput`, `Employee`, `Employment`, `Employer`, `PayrollResult` |
+| [Engine](engine.md) | `estimate_annual()`, `estimate_period_effects()`, `Calculation`, `AnnualEstimateInput`, `PeriodPayrollInput`, `Employee`, `Employment`, `Employer`, `PayrollResult`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |

@@ -8,6 +8,9 @@ import ccnl_engine
 
 EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "Apprentice",
+    "CalculationDecision",
+    "CalculationIssue",
+    "CalculationStatus",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",
