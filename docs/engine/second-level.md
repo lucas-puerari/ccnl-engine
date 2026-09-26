@@ -28,5 +28,4 @@ bonus that is INPS-exempt under Art. 1 c. 182 L. 208/2015).
     The preferential 5% IRPEF rate on *premi di risultato* is not computed by the
     engine — tax is always applied at ordinary rates.
 
-**API reference:** [`Employer`](../api/engine.md),
-[`SupplementaryAllowance`](../api/engine.md)
+**API reference:** [`SupplementaryAllowance`](../api/engine.md)
