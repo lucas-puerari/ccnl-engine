@@ -83,6 +83,41 @@ The annual surtax is split in equal parts over the withholding slots of the
 year, not settled on the actual installments (advance in the year, balance
 over the following year).
 
+### Tax credit decisions
+
+The ulteriore detrazione (Art. 1 c. 6 L. 207/2024) and the trattamento
+integrativo (Art. 1 D.L. 3/2020) each record one `CalculationDecision` per
+run in `result.decisions`, with capability `ulteriore_detrazione_lavoro` or
+`trattamento_integrativo`, whenever the tax year rules put the credit in
+force.  The decision is `final`, its `amount` is the **annual** entitlement
+(0 when the credit is not due) and its `reason_code` names the rule branch
+that produced the amount:
+
+| Capability | `reason_code` | Amount |
+|---|---|---|
+| `ulteriore_detrazione_lavoro` | `income_not_above_lower_threshold` | 0 |
+| `ulteriore_detrazione_lavoro` | `full_amount` | full, proportioned to the days worked |
+| `ulteriore_detrazione_lavoro` | `tapered_amount` | tapered, proportioned to the days worked |
+| `ulteriore_detrazione_lavoro` | `income_above_upper_threshold` | 0 |
+| `trattamento_integrativo` | `full_amount` | full (income up to 15,000 EUR, IRPEF above the work deduction) |
+| `trattamento_integrativo` | `irpef_not_above_work_deduction` | 0 (income up to 15,000 EUR) |
+| `trattamento_integrativo` | `deductions_above_irpef` | deductions minus IRPEF, capped (15,000 to 28,000 EUR) |
+| `trattamento_integrativo` | `deductions_not_above_irpef` | 0 (15,000 to 28,000 EUR) |
+| `trattamento_integrativo` | `income_above_upper_threshold` | 0 |
+
+The trattamento decision also records the signed `period_amount` paid or
+recovered on the run and `recovery_in_progress`, `true` while an installment
+recovery (D.L. 3/2020 art. 1 c. 3) is running.
+
+The other decisions a run can record are `worker_category` (the category
+used and its origin: `declared` on the employment or `fixed_by_level`),
+`seniority` (`increments_applied` or `no_increment_due`, only when the
+months of service are given), `family_deductions` (`deductions_applied` or
+`no_deduction_due`, only with a family composition), `bonus_pdr`
+(`substitute_tax_applied` or `annual_limit_reached`, only for a bonus routed
+to the PdR substitute tax) and the substitute tax regimes described in
+[Substitute tax regimes](substitute-tax-regimes.md).
+
 ## Warnings
 
 `PayrollResult.warnings` is a tuple of human-readable strings. The engine emits

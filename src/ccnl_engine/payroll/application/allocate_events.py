@@ -19,7 +19,21 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
 )
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
-from ccnl_engine.payroll.domain.events import WorkEvent
+from ccnl_engine.payroll.domain.events import (
+    AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    ShiftWorkEvent,
+    SickLeaveEvent,
+    SicknessCaseEvent,
+    TerminationTFREvent,
+    WelfareEvent,
+    WorkEvent,
+)
 from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
@@ -33,9 +47,40 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 
 
+#: Catalog feature each event type executes.  A bonus has none of its own:
+#: its PdR substitute tax is the ``bonus_pdr`` decision of the run.
+EVENT_FEATURES: dict[type, str] = {
+    OvertimeEvent: "overtime",
+    NightShiftEvent: "night_work",
+    HolidayWorkEvent: "holiday_work",
+    ShiftWorkEvent: "shift_work",
+    AbsenceEvent: "absence",
+    SickLeaveEvent: "leave",
+    SicknessCaseEvent: "sickness",
+    FringeEvent: "fringe_benefit",
+    WelfareEvent: "welfare",
+    ArrearsEvent: "contract_renewal_arrears",
+    BilateralFundEvent: "bilateral_funds",
+    TerminationTFREvent: "termination_tfr",
+}
+
+
+def _has_effect(effect: EventEffect) -> bool:
+    """Return whether a handler posted a non-zero amount or took a decision.
+
+    Returns:
+        ``True`` when ``effect`` changes the payslip or records a decision.
+    """
+    return bool(effect.decisions) or any(i.amount for i in effect.intents)
+
+
 @dataclass(frozen=True)
 class _EventTotals:
-    """Aggregated INPS/TFR/IRPEF bases, decisions and issues of the events."""
+    """Aggregated INPS/TFR/IRPEF bases, decisions and issues of the events.
+
+    ``executed_features`` are the catalog features of the events whose
+    handler had an effect (see :func:`_has_effect`).
+    """
 
     inps_base: Decimal
     tfr_base: Decimal
@@ -47,6 +92,7 @@ class _EventTotals:
     work_time_cap_used: Decimal = _ZERO
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
+    executed_features: frozenset[str] = frozenset()
 
 
 def _process_events(
@@ -93,6 +139,7 @@ def _process_events(
     intents: list[PostingIntent] = []
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
+    executed: set[str] = set()
 
     for i, event in enumerate(events):
         evt_id = f"{tag}_evt{i}"
@@ -123,6 +170,9 @@ def _process_events(
         intents.extend(result.intents)
         decisions.extend(result.decisions)
         issues.extend(result.issues)
+        feature = EVENT_FEATURES.get(type(event))
+        if feature is not None and _has_effect(result):
+            executed.add(feature)
         total_inps += result.inps_delta
         total_tfr += result.tfr_delta
         total_irpef += result.irpef_delta
@@ -148,6 +198,7 @@ def _process_events(
             work_time_cap_used=work_time_cap.used - opening_cap.used,
             decisions=tuple(decisions),
             issues=tuple(issues),
+            executed_features=frozenset(executed),
         ),
         tuple(items),
         _post(tuple(intents), cp, payment_date),
