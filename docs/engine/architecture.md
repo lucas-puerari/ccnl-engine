@@ -27,13 +27,14 @@ api -> application -> service -> domain
   reason. An entry that no import uses any more fails the suite, so the list
   can only shrink.
 - `service` never imports `application`.
-- `api` imports `application` only; it never reaches loaders such as
-  `knowledge.service` directly.
+- `api` imports `application`, plus metadata such as the bundle version; it
+  never reaches loaders such as `knowledge.service` directly.
 - Only the package root `ccnl_engine/__init__.py` imports `api`.
 - The graph of `<capability>.<layer>` nodes has no cycle.
-- Every module belongs to a layer. The package root, `ccnl_engine.version`
-  and the `knowledge` data bundle outside `knowledge/service` are metadata
-  and may be imported by any layer except `domain`.
+- Every module belongs to a layer. `ccnl_engine.version` and the
+  `knowledge` data bundle outside `knowledge/service` are metadata: any
+  layer except `domain` may import them. A capability `__init__.py` stays
+  import free.
 
 ## Domain purity
 
