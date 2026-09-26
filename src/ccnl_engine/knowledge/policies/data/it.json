@@ -77,6 +77,18 @@
     "legal_basis": "L. 199/2025 art. 1 cc. 7-12; L. 208/2015 art. 1 cc. 182-190"
   },
   {
+    "policy_id": "it/earning/contract_renewal",
+    "policy_version": "2026.1",
+    "kinds": ["contract_renewal_earning"],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "substitute",
+    "contribution": "included",
+    "tfr": "excluded",
+    "cost": "employee_cash",
+    "legal_basis": "L. 199/2025 art. 1 co. 7 — incrementi salariali da rinnovo contrattuale, imposta sostitutiva 5%"
+  },
+  {
     "policy_id": "it/benefit/fringe",
     "policy_version": "2026.1",
     "kinds": ["fringe_benefit_item"],

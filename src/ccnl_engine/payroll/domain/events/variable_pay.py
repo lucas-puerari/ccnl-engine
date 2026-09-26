@@ -40,7 +40,7 @@ class BonusEvent:
 
     event_date: date
     amount: Decimal
-    kind: Literal["bonus", "productivity_bonus"] = "bonus"
+    kind: Literal["bonus", "productivity_bonus", "contract_renewal"] = "bonus"
     prior_income: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105

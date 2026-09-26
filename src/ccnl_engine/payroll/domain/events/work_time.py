@@ -47,13 +47,21 @@ class OvertimeEvent:
 class NightShiftEvent:
     """Night-shift supplement: INPS + IRPEF + TFR on the supplement amount.
 
+    When ``prior_income`` is set and does not exceed the statutory ceiling
+    the supplement qualifies for the 15% substitute-tax regime
+    (L.199/2025 art. 1 co. 10).  Fail-closed: ``None`` means income status
+    is unknown and ordinary IRPEF applies.
+
     Attributes:
         event_date: Calendar date the shift was worked.
         supplement_amount: Flat supplement for the night period in EUR.  Must be >= 0.
+        prior_income: Worker's prior-year reddito complessivo in EUR.  When
+            ``None`` the substitute-tax regime does not apply.
     """
 
     event_date: date
     supplement_amount: Decimal
+    prior_income: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.supplement_amount < 0:

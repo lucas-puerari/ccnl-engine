@@ -161,8 +161,12 @@ def _standard_event_item(
             ),
             "sickness_item",
         )
-    is_pdr_kind = event.kind == "productivity_bonus"
-    kind = "productivity_bonus_earning" if is_pdr_kind else "bonus_earning"
+    if event.kind == "productivity_bonus":
+        kind = "productivity_bonus_earning"
+    elif event.kind == "contract_renewal":
+        kind = "contract_renewal_earning"
+    else:
+        kind = "bonus_earning"
     return (
         BonusEarning(
             item_id=evt_id,
