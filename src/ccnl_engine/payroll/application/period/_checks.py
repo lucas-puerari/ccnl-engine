@@ -15,7 +15,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
-from ccnl_engine.payroll.application._reconcile_types import RunFacts
+from ccnl_engine.payroll.application.invariants._types import RunFacts
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.run import run_identifier
 from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError

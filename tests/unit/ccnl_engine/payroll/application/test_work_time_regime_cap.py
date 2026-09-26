@@ -8,9 +8,9 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.decision_invariants import (
+from ccnl_engine.payroll.application.invariants._types import RunFacts
+from ccnl_engine.payroll.application.invariants.decisions import (
     check_substitute_tax_plafond,
 )
 from ccnl_engine.payroll.application.reconcile import reconcile

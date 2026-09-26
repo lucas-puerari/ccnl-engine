@@ -24,15 +24,15 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._reconcile_types import (
+from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
 )
-from ccnl_engine.payroll.application.state_invariants import run_id_of
+from ccnl_engine.payroll.application.invariants.state import run_id_of
 from ccnl_engine.payroll.domain.obligations import ULTERIORE_RECOVERY
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.application._reconcile_types import RunFacts
+    from ccnl_engine.payroll.application.invariants._types import RunFacts
     from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
     from ccnl_engine.payroll.domain.tax import TaxComputation
 

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.domain.treatment import EventTreatment
     from ccnl_engine.tax.domain.preferential_regime import (
         PreferentialTaxRegime,
     )
@@ -89,3 +90,18 @@ class EventEffect:
     regime_cap_used: Decimal = _ZERO
     decisions: list[CalculationDecision] = field(default_factory=list)
     issues: list[CalculationIssue] = field(default_factory=list)
+
+
+def _treatment_deltas(
+    treatment: EventTreatment, gross: Decimal
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return (inps_delta, tfr_delta, irpef_delta) for a standard event.
+
+    Returns:
+        A triple of gross or zero for each axis per the treatment policy.
+    """
+    return (
+        gross if treatment.inps else _ZERO,
+        gross if treatment.tfr else _ZERO,
+        gross if treatment.irpef else _ZERO,
+    )

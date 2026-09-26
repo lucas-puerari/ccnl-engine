@@ -15,17 +15,17 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._reconcile_types import (
+from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
 )
-from ccnl_engine.payroll.application.state_invariants import run_id_of
+from ccnl_engine.payroll.application.invariants.state import run_id_of
 from ccnl_engine.payroll.domain.run import RunKind
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.application._reconcile_types import RunFacts
+    from ccnl_engine.payroll.application.invariants._types import RunFacts
     from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
     from ccnl_engine.payroll.domain.period import PeriodResult
 

@@ -11,8 +11,8 @@ import pytest
 from ccnl_engine.contract.domain.compensation import Allowance
 from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.payroll.application import reconcile as _reconcile_mod
-from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._period_utils import _require_resolution
+from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,

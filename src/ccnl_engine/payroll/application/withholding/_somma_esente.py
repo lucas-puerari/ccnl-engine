@@ -19,7 +19,7 @@ from ccnl_engine.payroll.application._period_utils import (
     _make_entry,
     _require_resolution,
 )
-from ccnl_engine.payroll.application._withholding_plan import slot_share
+from ccnl_engine.payroll.application.withholding._plan import slot_share
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,

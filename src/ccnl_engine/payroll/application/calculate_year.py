@@ -6,27 +6,20 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._calendar import effective_calendar
-from ccnl_engine.payroll.application._extra_month_accrual import (
-    non_accruing_days,
-    termination_settlements,
-)
-from ccnl_engine.payroll.application._year_runs import (
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.application.year._calendar import effective_calendar
+from ccnl_engine.payroll.application.year._runs import (
     flag_partial_month,
     opening_of_year,
-    select_runs,
+    plan_year,
+    run_request,
 )
-from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
-from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -107,6 +100,31 @@ class YearResult:
         return self.period_results[-1].closing_state
 
 
+def _year_result(
+    request: YearInput,
+    year_calendar: WorkCalendar,
+    period_results: tuple[PeriodResult, ...],
+    bundle_version: str | None,
+) -> YearResult:
+    """Aggregate the period results of the year.
+
+    Returns:
+        The year result with its annual totals.
+    """
+    return YearResult(
+        year=request.year,
+        period_results=period_results,
+        annual_gross=sum((r.period_gross for r in period_results), _ZERO),
+        annual_net=sum((r.period_net for r in period_results), _ZERO),
+        annual_employer_cost=sum(
+            (r.period_employer_cost for r in period_results), _ZERO
+        ),
+        calendar=year_calendar,
+        calendar_override=request.calendar_override,
+        bundle_version=bundle_version,
+    )
+
+
 def calculate_year(
     request: YearInput,
     *,
@@ -166,46 +184,15 @@ def calculate_year(
     with a run of the year closed.
     """
     year = request.year
-    employment = request.employment
-    period = employment.employment_period
+    period = request.employment.employment_period
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
-    ccnl = effective_repo.load_ccnl(employment.ccnl_slug)
+    ccnl = effective_repo.load_ccnl(request.employment.ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, request.calendar_override)
-    schedule = select_runs(year_calendar, period)
-    withholding_schedule = WithholdingSchedule.for_runs(schedule, year_calendar)
-    non_accruing = non_accruing_days(
-        event for facts in request.facts_by_run.values() for event in facts.events
-    )
-    extra_month_index = {
-        (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
-    }
-    settlements = termination_settlements(year_calendar, period, non_accruing)
-
+    plan = plan_year(request, year_calendar)
     state = opening_of_year(year, request.opening_state)
     results: list[PeriodResult] = []
-
-    for run in schedule.runs:
-        extra_sched = extra_month_index.get((run.run_kind, run.month))
-        period_input = PeriodInput(
-            run=run,
-            payment_date=monthly_payment_date(run.year, run.month, request.payment_day),
-            employment=employment,
-            employer=request.employer,
-            facts=request.facts_for(run),
-            prior_year=request.prior_year,
-            opening_state=state,
-        )
-        req = period_input.calculation_request(
-            extra_month_accrual=(
-                ExtraMonthAccrual.of(
-                    extra_sched, year, period, non_accruing_days=non_accruing
-                )
-                if extra_sched is not None
-                else None
-            ),
-            extra_month_settlements=settlements.get(run.run_id, ()),
-            withholding_schedule=withholding_schedule,
-        )
+    for run in plan.schedule.runs:
+        req = run_request(request, plan, run, state)
         result = flag_partial_month(
             calculate_period(
                 req, repo=repo, resolver=resolver, bundle_version=bundle_version
@@ -215,17 +202,4 @@ def calculate_year(
         )
         results.append(result)
         state = result.closing_state
-
-    period_results = tuple(results)
-    return YearResult(
-        year=year,
-        period_results=period_results,
-        annual_gross=sum((r.period_gross for r in period_results), _ZERO),
-        annual_net=sum((r.period_net for r in period_results), _ZERO),
-        annual_employer_cost=sum(
-            (r.period_employer_cost for r in period_results), _ZERO
-        ),
-        calendar=year_calendar,
-        calendar_override=request.calendar_override,
-        bundle_version=bundle_version,
-    )
+    return _year_result(request, year_calendar, tuple(results), bundle_version)

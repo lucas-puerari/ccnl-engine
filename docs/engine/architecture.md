@@ -51,3 +51,25 @@ Domain modules perform no I/O: no `importlib.resources`, no `pathlib`, no
 - No layer directory exists without at least one module besides
   `__init__.py`.
 - No production module exceeds 400 lines.
+
+## Payroll application layout
+
+`payroll/application/` keeps its entry modules at the top level:
+`calculate_period`, `calculate_year`, `close_tax_year`, `opening_balances`,
+`reconcile`, `allocate_events`, `post_ledger`, `knowledge_repository` and
+`bundled_sources`, plus the shared helpers `_period_utils` and
+`_posting_service`. The steps they call live in subfeature packages, each
+private to the application layer:
+
+| Package | Holds |
+|---|---|
+| `period/` | one run: context, pipeline steps, base lines, closing state, checks, result assembly |
+| `amounts/` | contributions and TFR, taxable income, IRPEF and surtax of a run |
+| `withholding/` | withholding plan and cap, somma esente, carried recoveries |
+| `year/` | calendar, run selection and requests, extra-month ratei |
+| `invariants/` | the reconciliation invariants that `reconcile` runs |
+| `handlers/` | one handler per event family, their registry and event totals |
+
+`calculate_period` reads as the pipeline: `build_context`, then
+`run_events`, `run_amounts`, `run_decisions`, `run_credits`, `post_run` and
+`assemble_result`.

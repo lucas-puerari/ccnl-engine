@@ -7,12 +7,12 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.application._withholding_plan import (
+from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
     slot_share,
     upcoming_recurring_gross,
 )
-from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState

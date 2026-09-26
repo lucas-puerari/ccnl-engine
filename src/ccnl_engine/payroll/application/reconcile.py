@@ -37,17 +37,17 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._reconcile_types import (
+from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
     RunFacts,
 )
-from ccnl_engine.payroll.application.decision_invariants import (
+from ccnl_engine.payroll.application.invariants.decisions import (
     check_decision_provenance,
     check_substitute_tax_eligibility,
     check_substitute_tax_plafond,
 )
-from ccnl_engine.payroll.application.ledger_invariants import (
+from ccnl_engine.payroll.application.invariants.ledger import (
     check_earning_contribution_exclusive,
     check_employer_cost_identity,
     check_gross_identity,
@@ -56,18 +56,18 @@ from ccnl_engine.payroll.application.ledger_invariants import (
     check_net_identity,
     check_pay_item_posted,
 )
-from ccnl_engine.payroll.application.lifecycle_invariants import (
+from ccnl_engine.payroll.application.invariants.lifecycle import (
     check_extra_month_accrual_limit,
     check_run_within_employment,
 )
-from ccnl_engine.payroll.application.sign_invariants import check_signs
-from ccnl_engine.payroll.application.state_invariants import (
+from ccnl_engine.payroll.application.invariants.signs import check_signs
+from ccnl_engine.payroll.application.invariants.state import (
     check_carried_recovery_advance,
     check_credit_recovery_bounds,
     check_run_counters,
     check_ytd_continuity,
 )
-from ccnl_engine.payroll.application.withholding_invariants import (
+from ccnl_engine.payroll.application.invariants.withholding import (
     check_contribution_ceiling,
     check_irpef_annual_reconciliation,
 )

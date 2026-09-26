@@ -2,12 +2,6 @@
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.application._event_items import (
-    _make_standard_event_intent,
-    _standard_event_gross,
-    _standard_event_item,
-    _treatment_deltas,
-)
 from ccnl_engine.payroll.application._period_utils import (
     _ZERO,
     _require_resolution,
@@ -16,9 +10,15 @@ from ccnl_engine.payroll.application._period_utils import (
 from ccnl_engine.payroll.application.handlers._context import (
     EventEffect,
     _EventHandlerCtx,
+    _treatment_deltas,
 )
 from ccnl_engine.payroll.application.handlers._preferential_regime import (
     apply_preferential_regime,
+)
+from ccnl_engine.payroll.application.handlers._standard_event import (
+    _make_standard_event_intent,
+    _standard_event_gross,
+    _standard_event_item,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,

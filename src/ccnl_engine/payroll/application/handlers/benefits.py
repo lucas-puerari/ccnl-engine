@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.payroll.application._event_items import _fringe_bases
-from ccnl_engine.payroll.application._period_utils import _require_resolution
+from ccnl_engine.payroll.application._period_utils import _ZERO, _require_resolution
 from ccnl_engine.payroll.application.handlers._context import (
     EventEffect,
     _EventHandlerCtx,
@@ -13,6 +12,25 @@ from ccnl_engine.payroll.application.handlers._context import (
 from ccnl_engine.payroll.domain.events import FringeEvent, WelfareEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem, WelfareItem
+
+
+def _fringe_bases(
+    amount: Decimal,
+    cumulative_fringe: Decimal,
+    threshold: Decimal,
+    cumulative_taxed: Decimal = _ZERO,
+) -> tuple[Decimal, Decimal, Decimal]:
+    """Return (inps_base, irpef_base, new_cumulative) for a fringe event.
+
+    Returns:
+        ``(inps_base, irpef_base, new_cumulative)`` where the first two
+        are the retroactive taxable base or zero depending on cumulative taxability.
+    """
+    new_cumulative = cumulative_fringe + amount
+    if new_cumulative > threshold:
+        retroactive = new_cumulative - cumulative_taxed
+        return retroactive, retroactive, new_cumulative
+    return _ZERO, _ZERO, new_cumulative
 
 
 def _handle_welfare(event: WelfareEvent, ctx: _EventHandlerCtx) -> EventEffect:

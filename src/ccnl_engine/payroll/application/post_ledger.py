@@ -1,36 +1,78 @@
-"""Build base pay items and project base ledger entries for a period."""
+"""Build base pay items and project base ledger entries for a period.
+
+The base lines of a run (salary chain, INPS, TFR, IRPEF, credits, surtax and
+PdR substitute tax) are collected as intents by
+:mod:`~ccnl_engine.payroll.application.period._base_lines`; pay items and
+ledger entries are two projections of the same intents.
+"""
 
 from __future__ import annotations
 
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._period_utils import (
-    _ZERO,
     _make_entry,
     _require_resolution,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.application.period._base_lines import _base_lines
+from ccnl_engine.payroll.domain.ledger import LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
-    BaseSalaryEarning,
     CompetencePeriod,
-    EmployeeWithholdingItem,
-    EmployerContributionItem,
     FixedAllowanceEarning,
     PayItem,
-    SeniorityEarning,
-    TaxCreditItem,
-    TaxRefundItem,
-    TfrAccrualItem,
 )
 
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
+    from ccnl_engine.payroll.application.period._base_lines import _BaseLine
     from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.service.types import MonthlyPayChain
+
+#: Kinds resolved once per run, before any entry is posted; any other kind
+#: is resolved only when a line of that kind is posted.
+_EAGER_KINDS = (
+    "base_salary_earning",
+    "employee_withholding_item",
+    "employer_contribution_item",
+    "tfr_accrual_item",
+)
+
+
+def _run_tag(period_id: PeriodId, run_tag: str | None) -> str:
+    return run_tag if run_tag is not None else f"{period_id.year}_{period_id.month:02d}"
+
+
+def _pay_item(
+    line: _BaseLine, tag: str, cp: CompetencePeriod, payment_date: date
+) -> PayItem | None:
+    """Return the pay item of ``line``, or ``None`` for a ledger-only line.
+
+    Returns:
+        The pay item, with the allowance code for a fixed allowance line.
+    """
+    item_id = f"{line.stem}_{tag}"
+    if line.allowance_code is not None:
+        return FixedAllowanceEarning(
+            item_id=item_id,
+            competence_period=cp,
+            payment_date=payment_date,
+            quantity=Decimal(1),
+            amount=line.amount,
+            allowance_code=line.allowance_code,
+        )
+    if line.item_type is None:
+        return None
+    return line.item_type(
+        item_id=item_id,
+        competence_period=cp,
+        payment_date=payment_date,
+        quantity=Decimal(1),
+        amount=line.amount,
+    )
 
 
 def _build_pay_items(
@@ -47,102 +89,11 @@ def _build_pay_items(
         instances for this period.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
-    tag = run_tag if run_tag is not None else f"{period_id.year}_{period_id.month:02d}"
-    items: list[PayItem] = [
-        BaseSalaryEarning(
-            item_id=f"base_salary_{tag}",
-            competence_period=cp,
-            payment_date=payment_date,
-            quantity=Decimal(1),
-            amount=chain.base,
-        ),
-    ]
-    if chain.seniority > _ZERO:
-        items.append(
-            SeniorityEarning(
-                item_id=f"seniority_{tag}",
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=chain.seniority,
-            )
-        )
-    for allowance, amount in chain.allowances:
-        if amount > _ZERO:
-            items.append(
-                FixedAllowanceEarning(
-                    item_id=f"allowance_{allowance.code}_{tag}",
-                    competence_period=cp,
-                    payment_date=payment_date,
-                    quantity=Decimal(1),
-                    amount=amount,
-                    allowance_code=allowance.code,
-                )
-            )
-    items.extend([
-        EmployeeWithholdingItem(
-            item_id=f"inps_employee_{tag}",
-            competence_period=cp,
-            payment_date=payment_date,
-            quantity=Decimal(1),
-            amount=amounts.inps_employee,
-        ),
-        EmployerContributionItem(
-            item_id=f"inps_employer_{tag}",
-            competence_period=cp,
-            payment_date=payment_date,
-            quantity=Decimal(1),
-            amount=amounts.inps_employer,
-        ),
-        TfrAccrualItem(
-            item_id=f"tfr_{tag}",
-            competence_period=cp,
-            payment_date=payment_date,
-            quantity=Decimal(1),
-            amount=amounts.tfr,
-        ),
-    ])
-    if amounts.period_irpef > _ZERO:
-        items.append(
-            EmployeeWithholdingItem(
-                item_id=f"irpef_{tag}",
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=amounts.period_irpef,
-            )
-        )
-    elif amounts.period_irpef < _ZERO:
-        items.append(
-            TaxRefundItem(
-                item_id=f"irpef_refund_{tag}",
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=-amounts.period_irpef,
-            )
-        )
-    if amounts.period_tratt != _ZERO:
-        items.append(
-            TaxCreditItem(
-                item_id=f"tratt_integ_{tag}",
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=amounts.period_tratt,
-            )
-        )
-    if amounts.period_surtax > _ZERO:
-        items.append(
-            EmployeeWithholdingItem(
-                item_id=f"surtax_{tag}",
-                competence_period=cp,
-                payment_date=payment_date,
-                quantity=Decimal(1),
-                amount=amounts.period_surtax,
-            )
-        )
-    return tuple(items)
+    tag = _run_tag(period_id, run_tag)
+    items = (
+        _pay_item(line, tag, cp, payment_date) for line in _base_lines(amounts, chain)
+    )
+    return tuple(item for item in items if item is not None)
 
 
 def _project_ledger(
@@ -161,162 +112,27 @@ def _project_ledger(
         instances.
     """
     cp = CompetencePeriod(year=period_id.year, month=period_id.month)
-    tag = run_tag if run_tag is not None else f"{period_id.year}_{period_id.month:02d}"
-    ordinary_pid = _require_resolution(
-        resolver, "base_salary_earning", context
-    ).policy_id
-    emp_pid = _require_resolution(
-        resolver, "employee_withholding_item", context
-    ).policy_id
-    er_pid = _require_resolution(
-        resolver, "employer_contribution_item", context
-    ).policy_id
-    tfr_pid = _require_resolution(resolver, "tfr_accrual_item", context).policy_id
-    entries: list[LedgerEntry] = [
-        _make_entry(
-            f"cash_earnings_{tag}",
-            f"base_salary_{tag}",
-            "base_salary_earning",
-            cp,
-            payment_date,
-            AccountKind.CASH_EARNINGS,
-            chain.base,
-            policy_id=ordinary_pid,
-        ),
-    ]
-    if chain.seniority > _ZERO:
-        seniority_pid = _require_resolution(
-            resolver, "seniority_earning", context
-        ).policy_id
+    tag = _run_tag(period_id, run_tag)
+    eager = {
+        kind: _require_resolution(resolver, kind, context).policy_id
+        for kind in _EAGER_KINDS
+    }
+    entries: list[LedgerEntry] = []
+    for line in _base_lines(amounts, chain):
+        policy_id = eager.get(line.kind)
+        if policy_id is None:
+            policy_id = _require_resolution(resolver, line.kind, context).policy_id
+        entry_stem = line.entry_stem if line.entry_stem is not None else line.stem
         entries.append(
             _make_entry(
-                f"seniority_{tag}",
-                f"seniority_{tag}",
-                "seniority_earning",
+                f"{entry_stem}_{tag}",
+                f"{line.stem}_{tag}",
+                line.kind,
                 cp,
                 payment_date,
-                AccountKind.CASH_EARNINGS,
-                chain.seniority,
-                policy_id=seniority_pid,
-            )
-        )
-    for allowance, amount in chain.allowances:
-        if amount > _ZERO:
-            allowance_pid = _require_resolution(
-                resolver, "fixed_allowance_earning", context
-            ).policy_id
-            entries.append(
-                _make_entry(
-                    f"allowance_{allowance.code}_{tag}",
-                    f"allowance_{allowance.code}_{tag}",
-                    "fixed_allowance_earning",
-                    cp,
-                    payment_date,
-                    AccountKind.CASH_EARNINGS,
-                    amount,
-                    policy_id=allowance_pid,
-                )
-            )
-    entries.extend([
-        _make_entry(
-            f"inps_employee_{tag}",
-            f"inps_employee_{tag}",
-            "employee_withholding_item",
-            cp,
-            payment_date,
-            AccountKind.EMPLOYEE_CONTRIBUTIONS,
-            amounts.inps_employee,
-            policy_id=emp_pid,
-        ),
-        _make_entry(
-            f"inps_employer_{tag}",
-            f"inps_employer_{tag}",
-            "employer_contribution_item",
-            cp,
-            payment_date,
-            AccountKind.EMPLOYER_CONTRIBUTIONS,
-            amounts.inps_employer,
-            policy_id=er_pid,
-        ),
-        _make_entry(
-            f"tfr_{tag}",
-            f"tfr_{tag}",
-            "tfr_accrual_item",
-            cp,
-            payment_date,
-            AccountKind.TFR_ACCRUAL,
-            amounts.tfr,
-            policy_id=tfr_pid,
-        ),
-    ])
-    if amounts.period_irpef > _ZERO:
-        entries.append(
-            _make_entry(
-                f"irpef_{tag}",
-                f"irpef_{tag}",
-                "employee_withholding_item",
-                cp,
-                payment_date,
-                AccountKind.ORDINARY_TAX,
-                amounts.period_irpef,
-                policy_id=emp_pid,
-            )
-        )
-    elif amounts.period_irpef < _ZERO:
-        refund_pid = _require_resolution(resolver, "tax_refund_item", context).policy_id
-        entries.append(
-            _make_entry(
-                f"irpef_refund_{tag}",
-                f"irpef_refund_{tag}",
-                "tax_refund_item",
-                cp,
-                payment_date,
-                AccountKind.CREDITS,
-                -amounts.period_irpef,
-                policy_id=refund_pid,
-            )
-        )
-    if amounts.period_tratt != _ZERO:
-        credit_pid = _require_resolution(resolver, "tax_credit_item", context).policy_id
-        entries.append(
-            _make_entry(
-                f"tratt_integ_{tag}",
-                f"tratt_integ_{tag}",
-                "tax_credit_item",
-                cp,
-                payment_date,
-                AccountKind.CREDITS,
-                amounts.period_tratt,
-                policy_id=credit_pid,
-            )
-        )
-    if amounts.period_surtax > _ZERO:
-        entries.append(
-            _make_entry(
-                f"surtax_{tag}",
-                f"surtax_{tag}",
-                "employee_withholding_item",
-                cp,
-                payment_date,
-                AccountKind.SURTAX,
-                amounts.period_surtax,
-                policy_id=emp_pid,
-            )
-        )
-    if amounts.period_substitute_tax > _ZERO:
-        prod_pid = _require_resolution(
-            resolver, "productivity_bonus_earning", context
-        ).policy_id
-        entries.append(
-            _make_entry(
-                f"substitute_tax_{tag}",
-                f"substitute_tax_{tag}",
-                "productivity_bonus_earning",
-                cp,
-                payment_date,
-                AccountKind.SUBSTITUTE_TAX,
-                amounts.period_substitute_tax,
-                policy_id=prod_pid,
+                line.account,
+                line.amount,
+                policy_id=policy_id,
             )
         )
     return tuple(entries)
