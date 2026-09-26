@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Edilizia Cooperative ANCPL (F016), level 4, April 2026 regular run, permanent, full time.",
+  "_notes": [
+    "March 2026 tranche: paga base L4 1553.74.",
+    "Contingenza L4 521.70 (frozen) + EDR 10.33 = allowances 532.03.",
+    "Period gross = 1553.74 + 532.03 = 2085.77."
+  ],
+  "source": {
+    "document": "Tabella retributiva CCNL Edilizia Industria e Cooperative dal 1 marzo 2026",
+    "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
+    "section": "Minimi tabellari cooperative, livello 4"
+  },
+  "inputs": {
+    "ccnl_slug": "edilizia-cooperative-ancpl.json",
+    "level_code": "4",
+    "year": 2026,
+    "month": 4,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1553.74",
+    "fixed_allowances": "532.03",
+    "period_gross": "2085.77"
+  }
+}

@@ -1,13 +1,13 @@
 """Enforce verification status and provenance on reference case fixtures.
 
 Every case in ``tests/fixtures/expected/`` declares a top-level ``verification``
-field: ``verified``, ``source_linked`` or ``engine_generated``. ``verified``
-and ``source_linked`` cases must carry a non-empty ``source`` object.
+field, ``verified`` or ``source_linked``, and carries a non-empty ``source``
+object. Expected values produced by the engine itself are not a status: they
+detect no systematic error, so such cases are rejected.
 
 Modes:
 
-- default (new fixtures): each file must be valid and must not be
-  ``engine_generated``; new cases have to cite a source.
+- default (new fixtures): each file must be valid.
 - ``--modified``: each file must be valid and must not drop a ``source``
   object it had at ``--base`` (default ``HEAD~1``).
 - ``--all``: validate every case in the fixture directory.
@@ -37,8 +37,7 @@ from collections import Counter
 from pathlib import Path
 
 CASES_DIR = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "expected"
-STATUSES = ("verified", "source_linked", "engine_generated")
-_SOURCED = frozenset({"verified", "source_linked"})
+STATUSES = ("verified", "source_linked")
 
 
 def _parse(text: str) -> dict[str, object] | None:
@@ -88,7 +87,7 @@ def verification_error(case: dict[str, object]) -> str | None:
     source = case.get("source")
     if source is not None and not isinstance(source, dict):
         return "'source' must be a JSON object"
-    if status in _SOURCED and not source:
+    if not source:
         return f"verification {status!r} requires a non-empty 'source' object"
     return None
 
@@ -111,8 +110,6 @@ def check(
             continue
         counts[str(case.get("verification"))] += 1
         reason = verification_error(case)
-        if reason is None and mode == "new" and case["verification"] not in _SOURCED:
-            reason = "new cases must cite a source (verified or source_linked)"
         if reason is None and mode == "modified":
             previous = _load_at(base, path)
             if previous and previous.get("source") and not case.get("source"):

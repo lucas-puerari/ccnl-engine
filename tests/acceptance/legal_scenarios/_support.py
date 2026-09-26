@@ -18,7 +18,6 @@ from ccnl_engine import (
     PeriodState,
     PriorYearTaxFacts,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult, WorkEvent
@@ -30,6 +29,9 @@ COOP_SOCIALI = "cooperative-sociali.json"
 DOMESTIC = "lavoro-domestico-non-convivente.json"
 POSTAL_FISE = "servizi-postali-appalto-fise.json"
 PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran.json"
+
+#: Ledger account of the flat taxes of the substitute regimes.
+_SUBSTITUTE_TAX = "substitute_tax"
 
 #: Employer of 50 employees, the headcount the scenarios assume.
 EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -87,7 +89,7 @@ def substitute_tax(result: PeriodResult) -> Decimal:
         (
             entry.amount
             for entry in result.ledger_entries
-            if entry.account is AccountKind.SUBSTITUTE_TAX
+            if entry.account == _SUBSTITUTE_TAX
         ),
         Decimal(0),
     )

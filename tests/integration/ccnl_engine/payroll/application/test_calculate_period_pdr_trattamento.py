@@ -1,19 +1,19 @@
-"""Regression tests for the two P0 normative bugs fixed in this PR.
+"""Regression tests for the PdR cap and the trattamento integrativo recovery.
 
-T01 — PdR 6,000 EUR with annual cap 5,000 EUR:
+PdR 6,000 EUR with annual cap 5,000 EUR:
     The 1,000 EUR excess must return to the ordinary IRPEF base.
     Source: L. 199/2025 art. 1 co. 9.
 
-T03 — Second PdR bonus with partially consumed plafond:
+Second PdR bonus with partially consumed plafond:
     Only the remaining headroom is eligible; the excess is ordinary.
-    Source: L. 199/2025 art. 1 co. 9 — cumulative 5,000 EUR cap.
+    Source: L. 199/2025 art. 1 co. 9, cumulative 5,000 EUR cap.
 
-T04 — Trattamento integrativo: no over-recovery across a full year.
+Trattamento integrativo: no over-recovery across a full year.
     Once the recognized credit has been fully recovered,
     credit_recovered_ytd must never exceed credit_recognized_ytd.
     Source: D.L. 3/2020 art. 1 co. 3.
 
-T-I16 — TrattamentoAccount invariant: recovered > recognized raises ValueError
+TrattamentoAccount invariant: recovered > recognized raises ValueError
     at construction, preventing the invalid state from being representable.
 """
 
@@ -90,7 +90,7 @@ def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
 
 
 class TestPdRExcessReturnsToIrpef:
-    """T01: PdR 6,000 EUR with 5,000 EUR annual cap."""
+    """PdR 6,000 EUR with 5,000 EUR annual cap."""
 
     def test_substitute_tax_capped_at_5000(self) -> None:
         """SUBSTITUTE_TAX must be 50.00 (5,000 EUR * 1%), not 60.00."""
@@ -154,7 +154,7 @@ class TestPdRExcessReturnsToIrpef:
 
 
 class TestSecondPdRPartialPlafond:
-    """T03: second PdR with partially consumed plafond."""
+    """second PdR with partially consumed plafond."""
 
     def test_first_pdr_fully_eligible(self) -> None:
         """First 3,000 EUR PdR is fully eligible: sub_tax = 30.00."""
@@ -216,7 +216,7 @@ class TestSecondPdRPartialPlafond:
 
 
 class TestTrattamentoNoOverRecovery:
-    """T04: trattamento integrativo — recovered never exceeds recognized."""
+    """trattamento integrativo — recovered never exceeds recognized."""
 
     def test_no_over_recovery_across_12_months(self) -> None:
         """After Jan credit + Feb large bonus, recovery never exceeds recognized.

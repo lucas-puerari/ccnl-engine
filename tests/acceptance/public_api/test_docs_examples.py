@@ -1,11 +1,8 @@
-"""Smoke-test every script in docs/examples/.
+"""Every script under ``docs/examples/`` runs against the public API.
 
-Each script is executed via runpy.run_path(). If any example raises an
-exception, the test fails — ensuring that API changes that break examples
-are caught in CI rather than silently producing stale documentation.
-
-A new .py file in docs/examples/ is automatically picked up; no test edit
-is needed.
+The numbered examples are the ones the guides embed: each must run and print
+something. The per-contract examples in ``docs/examples/contracts/`` must run
+without error. A new file in either place is picked up with no test edit.
 """
 
 from __future__ import annotations
@@ -15,11 +12,30 @@ from pathlib import Path
 
 import pytest
 
-_EXAMPLES_DIR = Path(__file__).parent.parent.parent.parent / "docs" / "examples"
-_EXAMPLE_FILES = sorted(_EXAMPLES_DIR.glob("*.py"))
+_EXAMPLES_DIR = Path(__file__).parents[3] / "docs" / "examples"
+_GUIDE_EXAMPLES = sorted(_EXAMPLES_DIR.glob("[0-9]*.py"))
+_CONTRACT_EXAMPLES = sorted(
+    path
+    for path in (_EXAMPLES_DIR / "contracts").glob("*.py")
+    if path.name != "__init__.py"
+)
 
 
-@pytest.mark.parametrize("example_file", _EXAMPLE_FILES, ids=lambda p: p.stem)
-def test_example_runs(example_file: Path) -> None:
-    """Execute the example script and assert it raises no exception."""
-    runpy.run_path(str(example_file))
+def test_guide_examples_exist() -> None:
+    """The glob below runs on the real docs tree, not an empty directory."""
+    assert _GUIDE_EXAMPLES
+
+
+@pytest.mark.parametrize("example", _GUIDE_EXAMPLES, ids=lambda p: p.stem)
+def test_guide_example_runs_and_prints(
+    example: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """A guide example raises nothing and prints its result."""
+    runpy.run_path(str(example), run_name="__main__")
+    assert capsys.readouterr().out.strip(), f"{example.name} printed nothing"
+
+
+@pytest.mark.parametrize("example", _CONTRACT_EXAMPLES, ids=lambda p: p.stem)
+def test_contract_example_runs(example: Path) -> None:
+    """A per-contract example raises nothing."""
+    runpy.run_path(str(example), run_name="__main__")

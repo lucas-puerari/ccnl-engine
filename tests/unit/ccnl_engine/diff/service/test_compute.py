@@ -471,12 +471,12 @@ class TestDiffCcnlApprenticeAmount:
 
 
 # ---------------------------------------------------------------------------
-# diff_ccnl — overtime band rate changes (R8)
+# diff_ccnl — overtime band rate changes
 # ---------------------------------------------------------------------------
 
 
 class TestDiffCcnlOvertimeBandChange:
-    """diff_ccnl detects overtime/supplement band rate changes (R8)."""
+    """diff_ccnl detects overtime/supplement band rate changes."""
 
     @staticmethod
     def _make_band(code: str, rate_series: dict[str, Any]) -> dict[str, Any]:

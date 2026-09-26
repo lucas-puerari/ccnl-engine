@@ -122,11 +122,11 @@ class TestWorkIncomeDeduction:
         assert work_income_deduction(Decimal(-1)) == Decimal("0.00")
 
     def test_income_below_lo_threshold(self) -> None:
-        """Income < 15 000: flat deduction of EUR 1 955 (REVIEW.md R12 row 1)."""
+        """Income < 15 000: flat deduction of EUR 1 955."""
         assert work_income_deduction(Decimal(10000)) == Decimal("1955.00")
 
     def test_income_at_lo_threshold(self) -> None:
-        """Income exactly at 15 000: flat deduction EUR 1 955 (REVIEW.md R12)."""
+        """Income exactly at 15 000: flat deduction EUR 1 955."""
         assert work_income_deduction(Decimal(15000)) == Decimal("1955.00")
 
     def test_income_in_mid_band_no_increment(self) -> None:
@@ -134,7 +134,7 @@ class TestWorkIncomeDeduction:
 
         ratio = trunc4((28000-20000)/13000) = trunc4(0.615384...) = 0.6153
         deduction = 1910 + 1190 * 0.6153 = 1910 + 732.207 = 2642.21
-        Expected 2642.21 (REVIEW.md R12 row 3).
+        Expected 2642.21.
         """
         assert work_income_deduction(Decimal(20000)) == Decimal("2642.21")
 
@@ -142,7 +142,7 @@ class TestWorkIncomeDeduction:
         """Income exactly at 28 000 (mid boundary): 1910 + 0 + 65 = 1975.
 
         28 000 falls in 25 001-35 000 so the 65 EUR increment applies.
-        Expected 1975.00 (REVIEW.md R12 row 4).
+        Expected 1975.00.
         """
         assert work_income_deduction(Decimal(28000)) == Decimal("1975.00")
 
@@ -151,7 +151,7 @@ class TestWorkIncomeDeduction:
 
         ratio = trunc4((50000-30000)/22000) = trunc4(0.909090...) = 0.9090
         deduction = 1910 * 0.9090 = 1736.19; +65 = 1801.19
-        Expected 1801.19 (REVIEW.md R12 row 5).
+        Expected 1801.19.
         """
         assert work_income_deduction(Decimal(30000)) == Decimal("1801.19")
 
@@ -230,7 +230,7 @@ class TestTrattamentoIntegrativo:
     def test_lower_band_bonus_granted(self) -> None:
         """RC=8300, IRPEF=1909, detr=1955 (full year): 1909 > 1955-75=1880.
 
-        REVIEW.md R13: was returning zero instead of 1200.
+        Regression: this once returned zero instead of 1200.
         """
         result = trattamento_integrativo(
             Decimal(8300),
@@ -279,7 +279,7 @@ class TestTrattamentoIntegrativo:
     def test_mid_band_requisito_not_met(self) -> None:
         """RC=20000, IRPEF=4600, relevant=2642.21: IRPEF > deductions → 0.
 
-        REVIEW.md R13: was returning 738.46 (wrong linear taper).
+        Regression: this once returned 738.46 (wrong linear taper).
         """
         result = trattamento_integrativo(
             Decimal(20000),

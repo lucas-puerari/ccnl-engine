@@ -1,23 +1,16 @@
-"""Regression evidence: counterexamples from §2.2 of REVIEW.md.
+"""Regression evidence: counterexamples to the period pipeline.
 
-Each test asserts the CORRECT behaviour and is marked xfail(strict=True)
-because the bug is present on main.  When a later PR fixes the underlying
-issue the xfail turns into an XPASS, causing CI to fail and prompting the
-developer to remove the marker.
+Each test asserts the correct behaviour of a counterexample that has been
+fixed.
 
-Counterexamples (REVIEW §2.2):
-  CE-3  excess YTD withheld produces a refund of 0.00 instead of a credit
-  CE-4  two fringe events below the per-event threshold yield taxable = 0.00
-        instead of taxable = 400.00 (cumulative threshold not applied)
-  CE-5  WelfareEvent increases cash earnings and gross (non-cash benefit
-        should not appear as monetary pay)
-  CE-6  an event amount with sub-cent precision produces reconcile ok=False
-        (fixed in PR-05: period_net derived from ledger)
-
-Note: CE-1 and CE-2 tested the old PayrollEngine API delegating to the
-annual-first path. PR-02 wired PayrollEngine.calculate_period() to the
-period-first core, eliminating that path. Those counterexamples no longer
-apply and the tests have been removed.
+Counterexamples:
+  - excess YTD withheld produces a refund of 0.00 instead of a credit
+  - two fringe events below the per-event threshold yield taxable = 0.00
+    instead of taxable = 400.00 (cumulative threshold not applied)
+  - WelfareEvent increases cash earnings and gross (non-cash benefit
+    should not appear as monetary pay)
+  - an event amount with sub-cent precision produces reconcile ok=False
+    (period_net is now derived from the ledger)
 """
 
 from __future__ import annotations
@@ -77,12 +70,12 @@ def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
 
 
 # ---------------------------------------------------------------------------
-# CE-3: pregresso superiore al debito → rimborso 0.00
+# pregresso superiore al debito → rimborso 0.00
 # ---------------------------------------------------------------------------
 
 
 def test_excess_ytd_produces_refund() -> None:
-    """CE-3: when YTD already withheld exceeds annual liability a refund must appear.
+    """When YTD already withheld exceeds annual liability a refund must appear.
 
     A December calculation with irpef_withheld_ytd=5000 and annual IRPEF
     liability well below 5000 must post a TaxRefundItem in CREDITS rather than
@@ -112,12 +105,12 @@ def test_excess_ytd_produces_refund() -> None:
 
 
 # ---------------------------------------------------------------------------
-# CE-4: due fringe da 200 con soglia 258,23 — imponibile 0.00 invece di 400.00
+# due fringe da 200 con soglia 258,23 — imponibile 0.00 invece di 400.00
 # ---------------------------------------------------------------------------
 
 
 def test_cumulative_fringe_threshold() -> None:
-    """CE-4: two fringe events whose cumulative sum exceeds the threshold are taxable.
+    """Two fringe events whose cumulative sum exceeds the threshold are taxable.
 
     Two FringeEvent(600) in the same period: cumulative = 1200, which exceeds
     the 2026 standard threshold (1000 EUR under L. 207/2024). Both amounts must
@@ -140,12 +133,12 @@ def test_cumulative_fringe_threshold() -> None:
 
 
 # ---------------------------------------------------------------------------
-# CE-5: welfare da 100 → cash earnings e lordo aumentano di 100
+# welfare da 100 → cash earnings e lordo aumentano di 100
 # ---------------------------------------------------------------------------
 
 
 def test_welfare_does_not_increase_cash_earnings() -> None:
-    """CE-5: a WelfareEvent must not increase period_gross or CASH_EARNINGS.
+    """A WelfareEvent must not increase period_gross or CASH_EARNINGS.
 
     After the fix calculate_period with WelfareEvent(100) must produce the
     same period_gross and CASH_EARNINGS as a calculation with no events.
@@ -169,12 +162,12 @@ def test_welfare_does_not_increase_cash_earnings() -> None:
 
 
 # ---------------------------------------------------------------------------
-# CE-6: riconciliazione con frazioni di centesimo → ok=False
+# riconciliazione con frazioni di centesimo → ok=False
 # ---------------------------------------------------------------------------
 
 
 def test_sub_cent_event_amount_reconciles() -> None:
-    """CE-6: event amounts with sub-cent precision reconcile cleanly.
+    """Event amounts with sub-cent precision reconcile cleanly.
 
     period_net is derived from the same ledger entries, so sub-cent amounts
     on both sides of the I9 identity cancel out and reconcile passes.
@@ -190,7 +183,7 @@ def test_sub_cent_event_amount_reconciles() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Gate PR-14: credito riconosciuto e recuperato aggiorna i progressivi YTD
+# credito riconosciuto e recuperato aggiorna i progressivi YTD
 # ---------------------------------------------------------------------------
 
 _CCNL_TRATT = "portieri-fabbricati-confedilizia.json"

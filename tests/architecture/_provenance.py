@@ -6,12 +6,10 @@ Every JSON file in ``tests/fixtures/expected/`` declares a top-level
 - ``verified``: expected values checked against an independent source (a real
   payslip or an official worked example), not produced by this engine.
 - ``source_linked``: the case cites the primary source it models, but its
-  expected values have not been independently checked.
-- ``engine_generated``: expected values were produced by the engine itself and
-  cite no source. Such a case only detects regressions, never systematic errors.
+  expected values have not been checked against a payslip.
 
-``verified`` and ``source_linked`` cases must carry a non-empty ``source``
-object.
+Both statuses require a non-empty ``source`` object. Expected values produced
+by the engine itself detect no systematic error, so they are not a status.
 """
 
 from __future__ import annotations
@@ -22,8 +20,7 @@ from pathlib import Path
 from typing import Final
 
 CASES_DIR: Final = Path(__file__).parents[1] / "fixtures" / "expected"
-VERIFICATION_STATUSES: Final = ("verified", "source_linked", "engine_generated")
-_SOURCED_STATUSES: Final = frozenset({"verified", "source_linked"})
+VERIFICATION_STATUSES: Final = ("verified", "source_linked")
 
 
 def load_case(path: Path) -> dict[str, object]:
@@ -57,7 +54,7 @@ def verification_errors(case: dict[str, object]) -> list[str]:
     source = case.get("source")
     if source is not None and not isinstance(source, dict):
         return [f"'source' must be an object, got {type(source).__name__}"]
-    if status in _SOURCED_STATUSES and not source:
+    if not source:
         return [f"verification {status!r} requires a non-empty 'source' object"]
     return []
 

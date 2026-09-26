@@ -1,71 +1,27 @@
 {
   "verification": "source_linked",
-  "_description": "Golden case: CCNL Commercio-Confcommercio, Level 4, 2026-09-01, permanent, full-time, no seniority.",
+  "_description": "CCNL Commercio Confcommercio, level 4, September 2026 regular run, permanent, full time.",
   "_notes": [
-    "Nov-2025 tranche: base=1257.46, contingenza=524.22, EDR=2.07.",
-    "Fifth tranche (Nov-2026) not yet in effect on 2026-09-01.",
-    "INPS rates: employee 9.19%, employer 28.98% (commerce, ≤50 employees).",
-    "Art. 13 TUIR deduction: piecewise-linear at gross_income=24972.50."
+    "November 2025 tranche: minimo 1257.46.",
+    "Contingenza 524.22 + terzo elemento 2.07 = allowances 526.29.",
+    "The November 2026 tranche is not yet in effect in September.",
+    "Period gross = 1257.46 + 526.29 = 1783.75."
   ],
   "source": {
     "document": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
     "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
-    "section": "Level 4 minimo tabellare and contingenza, tranche from November 2025",
-    "notes": "Expected values computed by the engine; unverified against a real payslip"
+    "section": "Level 4 minimo tabellare and contingenza, tranche from November 2025"
   },
   "inputs": {
-    "ccnl_file": "commercio-confcommercio.json",
-    "year": 2026,
-    "tax_sector": "terziario",
-    "num_employees": 50,
+    "ccnl_slug": "commercio-confcommercio.json",
     "level_code": "4",
-    "as_of": "2026-09-01",
-    "employment_type": "permanent",
-    "seniority_count": 0,
-    "negotiated_ral": null,
-    "part_time_ratio": "1"
+    "year": 2026,
+    "month": 9,
+    "headcount": 50
   },
   "expected": {
-    "ccnl_id": "commercio-confcommercio",
-    "level_code": "4",
-    "employment_type": "permanent",
-    "part_time_ratio": "1",
-    "year": 2026,
-    "seniority_count": 0,
-    "base_monthly": "1257.46",
-    "seniority_monthly": "0.00",
-    "allowances_monthly": "526.29",
-    "ad_personam_monthly": "0.00",
-    "gross_monthly": "1783.75",
-    "gross_annual": "24972.50",
-    "hourly_rate": "10.62",
-    "apprenticeship_pct": null,
-    "apprenticeship_under_level_code": null,
-    "inps_employee_annual": "2294.97",
-    "inps_employer_annual": "7237.03",
-    "employer_funds_annual": "0.00",
-    "tfr_annual": "1849.81",
-    "bilateral_employee_annual": "0.00",
-    "bilateral_employer_annual": "0.00",
-    "taxable_income": "22677.53",
-    "irpef_gross": "5215.83",
-    "work_income_deduction": "2397.19",
-    "irpef_net": "1818.64",
-    "net_annual": "20858.89",
-    "net_monthly": "1489.92",
-    "employer_cost_annual": "34059.34",
-    "addizionale_regionale_annual": "0",
-    "addizionale_comunale_annual": "0",
-    "trattamento_integrativo": "0",
-    "fiscal_simplifications": [
-      "no_addizionale_comunale",
-      "no_addizionale_regionale",
-      "no_assegno_unico",
-      "no_bilateral_funds",
-      "no_detrazioni_art15_mortgage",
-      "no_detrazioni_familiari",
-      "partial_detrazioni_art15"
-    ],
-    "ulteriore_detrazione_lavoro": "1000"
+    "base_salary": "1257.46",
+    "fixed_allowances": "526.29",
+    "period_gross": "1783.75"
   }
 }

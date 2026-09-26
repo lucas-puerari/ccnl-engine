@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -10,6 +11,7 @@ import pytest
 
 from ccnl_engine import (
     Employment,
+    InvalidInputError,
     OpeningBalances,
     PayrollEngine,
     PayrollRun,
@@ -17,10 +19,8 @@ from ccnl_engine import (
     PeriodState,
     RecoveryObligation,
     RecoveryPlan,
+    UnsupportedTaxYearError,
 )
-from ccnl_engine.payroll.domain.employment_context import TemporalContext
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.shared.domain.errors import InvalidInputError, UnsupportedTaxYearError
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,
@@ -52,14 +52,6 @@ def test_december_paid_by_ten_january_stays_in_previous_year() -> None:
     assert result.closing_state.tax_year == 2026
 
 
-def test_december_paid_after_twelve_january_moves_to_next_year() -> None:
-    """Art. 51 c. 1 TUIR: pay received after 12 January is taxed by cash in 2027."""
-    temporal = TemporalContext.from_period(2026, 12, date(2027, 1, 13))
-
-    assert temporal.competence == date(2026, 12, 1)
-    assert temporal.fiscal_year == 2027
-
-
 @pytest.mark.parametrize(
     ("payment_date", "tax_year"),
     [(date(2027, 1, 13), 2027), (date(2028, 6, 28), 2028)],
@@ -80,11 +72,13 @@ def test_run_of_unbundled_tax_year_raises_domain_error(
 
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
     """December 2026 paid on 13 January 2027 cannot close into the 2026 state."""
-    opening = PeriodState(
-        ytd=TaxYearState(
-            tax_year=2026, regular_periods_closed=11, tax_withholding_periods_closed=11
-        )
+    ytd = replace(
+        PeriodState.zero().ytd,
+        tax_year=2026,
+        regular_periods_closed=11,
+        tax_withholding_periods_closed=11,
     )
+    opening = PeriodState(ytd=ytd)
 
     with pytest.raises(InvalidInputError, match="belongs to tax year 2027"):
         regular_period(month=12, payment_date=date(2027, 1, 13), opening_state=opening)
@@ -164,7 +158,7 @@ def test_installment_recovery_survives_the_year_change() -> None:
     assert carried.tax_year == 2026
     assert carried.plan.installments_posted == 4
     assert carried.plan.residual == Decimal("80.00")
-    assert next_year.ytd == TaxYearState(tax_year=2027)
+    assert next_year.ytd == replace(PeriodState.zero().ytd, tax_year=2027)
 
 
 def test_close_tax_year_rejects_a_state_before_the_last_run() -> None:

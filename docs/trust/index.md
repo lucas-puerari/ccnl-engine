@@ -137,31 +137,34 @@ alter engine behaviour and carry the same gates as Python source.
 This is a hard rule:
 
 > Every new feature must ship with a `provenance` entry on the relevant JSON
-> rule and at least two reference test cases that exercise the feature
-> end-to-end and assert exact output values.
+> rule and tests whose expected values come from a source independent of the
+> engine: a signed table, an official worked example or a hand calculation
+> formulated differently.
 
-A feature with no reference case has no proof of correctness.
-End-to-end scenarios live in `tests/fixtures/expected/scenarios/` and are byte-identical
-assertions: the test fails if a salary table change shifts any output by
-even one cent.
+Expected values copied from engine output detect regressions only, never a
+systematic error, so they are not accepted as proof of correctness.
+Reference cases live in `tests/fixtures/expected/` and
+`tests/acceptance/public_api/test_reference_cases.py` runs each one through
+`PayrollEngine`. A case asserts only the values its source states (base
+salary, fixed allowances and period gross from the cited table), to the cent.
 
 ### Reference case verification status
 
-Golden cases in `tests/fixtures/expected/` declare how far their expected
-values can be trusted with a top-level `verification` field:
+Reference cases declare how far their expected values can be trusted with a
+top-level `verification` field:
 
 | Value | Meaning | `source` |
 |---|---|---|
 | `verified` | Expected values checked against an independent source (a real payslip or an official worked example) | Required |
-| `source_linked` | The case cites the primary source it models; expected values are not independently checked | Required |
-| `engine_generated` | Expected values were produced by the engine and cite no source; they catch regressions, not systematic errors | Optional |
+| `source_linked` | The case cites the primary source it models; expected values are not checked against a payslip | Required |
 
 `tests/architecture/test_data_quality.py` rejects a missing or unknown
-value and a `verified` or `source_linked` case without a `source` object.
-In CI, `scripts/ci/check_provenance.py` validates every case, prints the count
-per status, rejects new `engine_generated` cases, and rejects a modified case
-that drops its `source`. Expected values are never regenerated from the engine
-by a script: changing one is a reviewed edit to the JSON file.
+value, a case without a `source` object, and a case whose inputs or expected
+values differ from what the runner executes. In CI,
+`scripts/ci/check_provenance.py` validates every case, prints the count per
+status, and rejects a modified case that drops its `source`. Expected values
+are never regenerated from the engine by a script: changing one is a reviewed
+edit to the JSON file.
 
 ## Data operations
 

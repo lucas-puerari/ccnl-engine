@@ -20,7 +20,6 @@ from ccnl_engine import (
     WorkerCategory,
     YearInput,
 )
-from ccnl_engine.payroll.domain.run import RunKind
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     DOMESTIC,
@@ -65,7 +64,7 @@ def test_three_month_employment_has_no_runs_outside_the_period() -> None:
     year = _three_month_year()
     runs = [(r.run.month, r.run.run_kind) for r in year.period_results if r.run]
 
-    assert runs == [(month, RunKind.REGULAR) for month in (7, 8, 9)]
+    assert runs == [(month, "regular") for month in (7, 8, 9)]
 
 
 def test_three_month_employment_pays_the_accrued_extra_months() -> None:
@@ -113,12 +112,12 @@ def test_hire_in_march_accrues_a_third_of_the_quattordicesima() -> None:
     extra = {
         r.run.run_kind: r.period_gross
         for r in year.period_results
-        if r.run is not None and r.run.run_kind is not RunKind.REGULAR
+        if r.run is not None and r.run.run_kind != "regular"
     }
 
     assert extra == {
-        RunKind.FOURTEENTH: Decimal("594.58"),
-        RunKind.THIRTEENTH: Decimal("1515.63"),
+        "fourteenth": Decimal("594.58"),
+        "thirteenth": Decimal("1515.63"),
     }
 
 
@@ -137,7 +136,7 @@ def test_three_month_employment_never_pays_a_full_year(hire_month: int) -> None:
         EmploymentPeriod(date(2026, hire_month, 1), date(2026, last_month, last_day))
     )
     regular_runs = [
-        r for r in year.period_results if r.run and r.run.run_kind is RunKind.REGULAR
+        r for r in year.period_results if r.run and r.run.run_kind == "regular"
     ]
     monthly = max(
         r.period_gross

@@ -1,22 +1,19 @@
-"""Normative P0 red tests — all marked xfail(strict=True).
+"""Normative regressions: payslips that must conform to labour and tax law.
 
-Each test documents a correctness bug that causes the engine to produce
-payslips that do not conform to Italian labour or tax law.  The expected
-values are derived from primary sources (laws, INPS circulars) and are
-independent of the engine implementation.
+Each test documents a correctness bug that made the engine produce payslips
+not conforming to Italian labour or tax law. The expected values are derived
+from primary sources (laws, INPS circulars) and are independent of the
+engine implementation.
 
-When a later PR fixes the underlying bug the xfail turns into an XPASS,
-causing CI to fail and prompting the developer to remove the marker.
-
-P0 findings:
-  P0-01  BonusEvent used for PdR bonus — no substitute-tax regime
-  P0-02  calculate_year always 12 periods — extra months ignored
-  P0-03  taxable_ytd in PeriodState not used in IRPEF conguaglio
-  P0-04  cross-period fringe retroactive adjustment missing
-  P0-05  somma_esente computed but never posted to CREDITS ledger
-  P0-06  1% INPS addizionale on income > 56,224 EUR not computed
-  P0-07  lavoro-domestico-convivente.json raises TypeError
-  P0-08  AbsenceEvent with impossible hours accepted silently
+Findings:
+  - BonusEvent used for PdR bonus: no substitute-tax regime
+  - calculate_year always 12 periods: extra months ignored
+  - taxable_ytd in PeriodState not used in IRPEF conguaglio
+  - cross-period fringe retroactive adjustment missing
+  - somma_esente computed but never posted to CREDITS ledger
+  - 1% INPS addizionale on income > 56,224 EUR not computed
+  - lavoro-domestico-convivente.json raises TypeError
+  - AbsenceEvent with impossible hours accepted silently
 
 Sources:
   L. 199/2025 art. 1 co. 9: PdR substitute rate 1% up to 5,000 EUR
@@ -99,7 +96,7 @@ def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
 
 
 # ---------------------------------------------------------------------------
-# P0-01: BonusEvent posted as PdR bonus → substitute-tax applies
+# BonusEvent posted as PdR bonus → substitute-tax applies
 #
 # L. 199/2025 art. 1 co. 9: PdR bonuses up to 5,000 EUR are subject to a
 # 1% flat substitute tax in place of ordinary IRPEF.  A 1,000 EUR PdR bonus
@@ -133,7 +130,7 @@ def test_pdr_bonus_substitute_tax() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-02: calculate_year always 12 periods — extra months ignored
+# calculate_year always 12 periods — extra months ignored
 #
 # The calendar lists the extra months (tredicesima, quattordicesima), each
 # paid in its own run.  calculate_year must produce one
@@ -158,7 +155,7 @@ def test_calculate_year_extra_months() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-03: taxable_ytd in PeriodState not used in IRPEF conguaglio
+# taxable_ytd in PeriodState not used in IRPEF conguaglio
 #
 # The conguaglio (IRPEF settling) in the final period depends on the actual
 # YTD taxable income, not only on the projected annual figure.  When
@@ -201,7 +198,7 @@ def test_taxable_ytd_affects_conguaglio() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-04: cross-period fringe retroactive adjustment missing
+# cross-period fringe retroactive adjustment missing
 #
 # TUIR art. 51 co. 3-bis: when the annual cumulated fringe benefit exceeds
 # the threshold, the ENTIRE annual cumulated amount is subject to INPS and
@@ -236,7 +233,7 @@ def test_fringe_retroactive_on_threshold_crossing() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-05: somma_esente computed but never posted to CREDITS ledger
+# somma_esente computed but never posted to CREDITS ledger
 #
 # L. 160/2019 (art. 1 co. 3, as renamed): low-income workers whose reddito
 # does not exceed 28,000 EUR receive a somma_esente credit that reduces IRPEF
@@ -269,7 +266,7 @@ def test_somma_esente_posted_to_credits() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-06: 1% INPS addizionale on income > 56,224 EUR not computed
+# 1% INPS addizionale on income > 56,224 EUR not computed
 #
 # INPS circ. 4/2026: workers whose cumulated INPS contribution base exceeds
 # 56,224 EUR pay an additional 1% on the excess (charged to the employee).
@@ -314,7 +311,7 @@ def test_inps_addizionale_1pct_on_threshold_crossing() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-07: lavoro-domestico-convivente.json raises TypeError
+# lavoro-domestico-convivente.json raises TypeError
 #
 # calculate_period invokes resolve_rates which requires standard INPS rates.
 # The domestic CCNL uses flat per-hour contributions and is incompatible with
@@ -347,7 +344,7 @@ def test_domestic_work_no_type_error() -> None:
 
 
 # ---------------------------------------------------------------------------
-# P0-08: AbsenceEvent with impossible hours accepted silently
+# AbsenceEvent with impossible hours accepted silently
 #
 # A monthly payroll period has at most ~184 working hours (23 days x 8 h).
 # AbsenceEvent(hours=1000) in a single month is physically impossible and
