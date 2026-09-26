@@ -16,11 +16,11 @@ from ccnl_engine.engine.tax.domain.family import (
     OtherDependentRules,
     SpouseDeductionRules,
 )
+from ccnl_engine.engine.tax.domain.preferential_regime import PreferentialTaxRegime
 from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.engine.tax.domain.variable_pay import (
     FringeBenefitRules,
-    NotteTurnoRules,
     PdRRules,
     RinnovoRules,
     VariablePayRules,
@@ -86,7 +86,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
     fb_raw = raw["fringe_benefit"]
     pdr_raw = raw["pdr"]
     rinnovo_raw = raw["rinnovo"]
-    notte_raw = raw["notte_turno"]
+    work_time_raw = raw["notte_festivi_turni"]
     return VariablePayRules(
         year=int(raw["year"]),
         description=raw.get("description", ""),
@@ -103,10 +103,10 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             **{k: v for k, v in rinnovo_raw.items() if k != "description"},
             "ruleset": _as_ruleset(raw),
         }),
-        notte_turno=NotteTurnoRules(
-            flat_tax_rate=Decimal(str(notte_raw["flat_tax_rate"])),
-            income_ceiling=Decimal(str(notte_raw["income_ceiling"])),
-        ),
+        notte_festivi_turni=PreferentialTaxRegime.model_validate({
+            **{k: v for k, v in work_time_raw.items() if k != "description"},
+            "ruleset": _as_ruleset(raw),
+        }),
         ruleset=_as_ruleset(raw),
     )
 

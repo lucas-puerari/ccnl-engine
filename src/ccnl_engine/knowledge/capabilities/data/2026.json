@@ -32,6 +32,7 @@
     {"feature": "overtime", "status": "computed", "description": "Lavoro straordinario e supplementare"},
     {"feature": "night_work", "status": "computed", "description": "Lavoro notturno"},
     {"feature": "holiday_work", "status": "computed", "description": "Lavoro festivo"},
+    {"feature": "shift_work", "status": "computed", "description": "Lavoro a turni"},
     {"feature": "absence", "status": "computed", "description": "Assenze ingiustificate"},
     {"feature": "leave", "status": "computed", "description": "Ferie e permessi ROL"},
     {"feature": "sickness", "status": "computed", "description": "Malattia"},

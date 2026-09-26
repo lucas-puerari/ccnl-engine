@@ -16,12 +16,19 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from ccnl_engine import CalculationDecision, CalculationStatus
-from ccnl_engine.events import BonusEvent, HolidayWorkEvent, NightShiftEvent
+from ccnl_engine.events import (
+    BonusEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    ShiftWorkEvent,
+)
 from tests.acceptance.legal_scenarios._support import (
     PA_FUNZIONI_CENTRALI,
     regular_period,
@@ -29,7 +36,7 @@ from tests.acceptance.legal_scenarios._support import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine import PayrollResult
+    from ccnl_engine import PayrollResult, PayrollState
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -110,42 +117,206 @@ def test_renewal_increment_with_unknown_income_is_ordinary_and_provisional() -> 
     assert [issue.code for issue in result.issues] == ["rinnovo_eligibility_unknown"]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="night supplement substitute tax has no annual 1500 euro cap",
-)
-def test_night_supplement_above_annual_cap_splits_regime() -> None:
-    """Night supplement 2,000 EUR: 1,500 * 15% = 225.00, 500 stays ordinary.
+_WORK_TIME = "notte_festivi_turni_substitute_tax"
+_CAP = Decimal(1_500)
+_RATE = Decimal("0.15")
 
-    Observed on 26 September 2026: substitute tax 300.00 on the whole 2,000.
-    """
-    event = NightShiftEvent(
+
+def _night(
+    amount: Decimal,
+    prior_income: Decimal | None = _ELIGIBLE_PRIOR_INCOME,
+    *,
+    day: date = _EVENT_DAY,
+    waived: bool = False,
+) -> NightShiftEvent:
+    return NightShiftEvent(
+        event_date=day,
+        supplement_amount=amount,
+        prior_income=prior_income,
+        substitute_tax_waived=waived,
+    )
+
+
+def _work_time_decisions(result: PayrollResult) -> list[CalculationDecision]:
+    return [d for d in result.decisions if d.capability == _WORK_TIME]
+
+
+def _taxable(result: PayrollResult) -> Decimal:
+    return result.closing_state.earnings.taxable
+
+
+def test_night_supplement_above_annual_cap_splits_regime() -> None:
+    """Night supplement 2,000 EUR: 1,500 * 15% = 225.00, 500 stays ordinary."""
+    result = regular_period(month=3, events=(_night(Decimal(2_000)),))
+
+    assert substitute_tax(result) == Decimal("225.00")
+    (decision,) = _work_time_decisions(result)
+    assert decision.reason_code == "requirements_met"
+    assert decision.inputs["eligible_amount"] == _CAP
+    assert decision.inputs["ordinary_amount"] == Decimal(500)
+    assert result.closing_state.work_time_regime.used == _CAP
+    assert result.status is CalculationStatus.FINAL
+
+
+def test_holiday_supplement_uses_substitute_tax() -> None:
+    """Holiday supplement 500 EUR, eligible income: 500 * 15% = 75.00."""
+    event = HolidayWorkEvent(
         event_date=_EVENT_DAY,
-        supplement_amount=Decimal(2_000),
+        supplement_amount=Decimal(500),
         prior_income=_ELIGIBLE_PRIOR_INCOME,
     )
     result = regular_period(month=3, events=(event,))
 
-    assert substitute_tax(result) == Decimal("225.00")
+    assert substitute_tax(result) == Decimal("75.00")
+    assert result.closing_state.work_time_regime.used == Decimal(500)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="holiday work supplements are not eligible for the 15 percent regime",
-)
-def test_holiday_supplement_uses_substitute_tax() -> None:
-    """Holiday supplement 500 EUR, eligible income: 500 * 15% = 75.00.
-
-    Eligibility needs the prior-year income, as for night work, so the event
-    is built with ``prior_income``.  Unknown income must stay ordinary.
-
-    Observed on 26 September 2026: ``HolidayWorkEvent`` has no
-    ``prior_income`` field; without it the run posts no substitute tax.
-    """
-    eligibility: dict[str, Any] = {"prior_income": _ELIGIBLE_PRIOR_INCOME}
-    event = HolidayWorkEvent(
-        event_date=_EVENT_DAY, supplement_amount=Decimal(500), **eligibility
+def test_shift_allowance_uses_substitute_tax() -> None:
+    """Shift allowance 300 EUR (indennita di turno, c. 10 lett. c): 45.00."""
+    event = ShiftWorkEvent(
+        event_date=_EVENT_DAY,
+        supplement_amount=Decimal(300),
+        prior_income=_ELIGIBLE_PRIOR_INCOME,
     )
     result = regular_period(month=3, events=(event,))
 
+    assert substitute_tax(result) == Decimal("45.00")
+
+
+def test_work_time_supplement_at_income_ceiling_uses_substitute_tax() -> None:
+    """Prior income exactly 40,000 is "non superiore": 500 * 15% = 75.00."""
+    result = regular_period(month=3, events=(_night(Decimal(500), Decimal(40_000)),))
+
     assert substitute_tax(result) == Decimal("75.00")
+
+
+def test_work_time_supplement_above_income_ceiling_is_ordinary() -> None:
+    """Prior income 40,000.01 > 40,000: ordinary, and no cap is consumed."""
+    events = (_night(Decimal(500), Decimal("40000.01")),)
+    result = regular_period(month=3, events=events)
+
+    assert substitute_tax(result) == Decimal(0)
+    (decision,) = _work_time_decisions(result)
+    assert decision.reason_code == "prior_income_above_ceiling"
+    assert result.closing_state.work_time_regime.used == Decimal(0)
+
+
+def test_work_time_supplement_waived_in_writing_is_ordinary() -> None:
+    """A written waiver keeps the supplement ordinary."""
+    result = regular_period(month=3, events=(_night(Decimal(500), waived=True),))
+
+    assert substitute_tax(result) == Decimal(0)
+    (decision,) = _work_time_decisions(result)
+    assert decision.reason_code == "waived_by_worker"
+
+
+def test_work_time_supplement_in_public_sector_is_ordinary() -> None:
+    """Only "sostituti d'imposta del settore privato" apply the regime (c. 11)."""
+    result = regular_period(
+        ccnl_slug=PA_FUNZIONI_CENTRALI,
+        level_code="ASSISTENTI",
+        month=3,
+        events=(_night(Decimal(500)),),
+    )
+
+    assert substitute_tax(result) == Decimal(0)
+    (decision,) = _work_time_decisions(result)
+    assert decision.reason_code == "sector_not_eligible"
+
+
+def test_work_time_supplement_with_unknown_income_is_provisional() -> None:
+    """Unknown 2025 income: ordinary IRPEF and a provisional result."""
+    result = regular_period(month=3, events=(_night(Decimal(500), None),))
+
+    assert substitute_tax(result) == Decimal(0)
+    assert result.status is CalculationStatus.PROVISIONAL
+    assert [issue.code for issue in result.issues] == [
+        "notte_festivi_turni_eligibility_unknown"
+    ]
+    assert result.closing_state.work_time_regime.used == Decimal(0)
+
+
+def test_annual_cap_is_shared_by_supplements_of_one_run() -> None:
+    """Night 1,000 and holiday 1,000 in one run share one 1,500 EUR cap."""
+    holiday = HolidayWorkEvent(
+        event_date=_EVENT_DAY,
+        supplement_amount=Decimal(1_000),
+        prior_income=_ELIGIBLE_PRIOR_INCOME,
+    )
+    result = regular_period(month=3, events=(_night(Decimal(1_000)), holiday))
+
+    assert substitute_tax(result) == Decimal("225.00")
+    first, second = _work_time_decisions(result)
+    assert first.inputs["eligible_amount"] == Decimal(1_000)
+    assert second.inputs["cap_available"] == Decimal(500)
+    assert second.inputs["eligible_amount"] == Decimal(500)
+    assert second.inputs["ordinary_amount"] == Decimal(500)
+
+
+def _month(month: int, amount: Decimal, opening: PayrollState | None) -> PayrollResult:
+    event = _night(amount, day=date(2026, month, 10))
+    return regular_period(month=month, events=(event,), opening_state=opening)
+
+
+def test_annual_cap_is_consumed_across_runs() -> None:
+    """March 1,000 (150.00), April 1,000 (500 at 15% = 75.00), May 1,000 (0)."""
+    march = _month(3, Decimal(1_000), None)
+    april = _month(4, Decimal(1_000), march.closing_state)
+    may = _month(5, Decimal(1_000), april.closing_state)
+
+    assert substitute_tax(march) == Decimal("150.00")
+    assert substitute_tax(april) == Decimal("75.00")
+    assert substitute_tax(may) == Decimal(0)
+    assert march.closing_state.work_time_regime.used == Decimal(1_000)
+    assert april.closing_state.work_time_regime.used == _CAP
+    assert may.closing_state.work_time_regime.used == _CAP
+    (april_decision,) = _work_time_decisions(april)
+    assert april_decision.inputs["ordinary_amount"] == Decimal(500)
+    (may_decision,) = _work_time_decisions(may)
+    assert may_decision.reason_code == "requirements_met"
+    assert may_decision.inputs["ordinary_amount"] == Decimal(1_000)
+
+
+_AMOUNTS = st.decimals(
+    min_value=Decimal(1), max_value=Decimal(3_000), places=2, allow_nan=False
+)
+
+
+def _split(result: PayrollResult) -> tuple[Decimal, Decimal]:
+    (decision,) = _work_time_decisions(result)
+    return (
+        Decimal(decision.inputs["eligible_amount"]),
+        Decimal(decision.inputs["ordinary_amount"]),
+    )
+
+
+def _capped_tax(amount: Decimal) -> Decimal:
+    return (min(amount, _CAP) * _RATE).quantize(Decimal("0.01"))
+
+
+@given(amount=_AMOUNTS, extra=_AMOUNTS)
+@settings(max_examples=15)
+def test_beyond_the_cap_only_the_excess_changes_regime(
+    amount: Decimal, extra: Decimal
+) -> None:
+    """Raising a supplement moves only the part above 1,500 EUR to ordinary.
+
+    The substitute tax is 15% of ``min(amount, 1,500)``.  Raising the amount
+    by ``extra`` adds to the ordinary part exactly what lies above the cap,
+    and leaves the substitute tax unchanged once the cap is reached.
+    """
+    low = regular_period(month=3, events=(_night(amount),))
+    high = regular_period(month=3, events=(_night(amount + extra),))
+    low_eligible, low_ordinary = _split(low)
+    high_eligible, high_ordinary = _split(high)
+
+    assert substitute_tax(low) == _capped_tax(amount)
+    assert substitute_tax(high) == _capped_tax(amount + extra)
+    assert low_eligible + low_ordinary == amount
+    assert high_eligible + high_ordinary == amount + extra
+    zero = Decimal(0)
+    excess_increase = max(amount + extra - _CAP, zero) - max(amount - _CAP, zero)
+    assert high_ordinary - low_ordinary == excess_increase
+    if amount >= _CAP:
+        assert substitute_tax(high) == substitute_tax(low)
+        assert _taxable(high) > _taxable(low)

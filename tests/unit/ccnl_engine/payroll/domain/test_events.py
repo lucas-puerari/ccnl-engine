@@ -8,6 +8,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BonusEvent,
@@ -15,6 +16,7 @@ from ccnl_engine.payroll.domain.events import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
+    ShiftWorkEvent,
     SickLeaveEvent,
     WelfareEvent,
 )
@@ -80,6 +82,40 @@ class TestHolidayWorkEvent:
         evt = HolidayWorkEvent(event_date=_DATE, supplement_amount=Decimal(75))
         with pytest.raises(FrozenInstanceError):
             evt.supplement_amount = Decimal(100)  # type: ignore[misc]
+
+
+class TestShiftWorkEvent:
+    """ShiftWorkEvent carries a shift allowance and the regime facts."""
+
+    def test_defaults_leave_regime_facts_unknown(self) -> None:
+        """Prior income defaults to unknown and the waiver to not given."""
+        evt = ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(40))
+        assert evt.supplement_amount == Decimal(40)
+        assert evt.prior_income is None
+        assert evt.substitute_tax_waived is False
+
+    def test_negative_supplement_raises(self) -> None:
+        """A negative shift allowance is rejected."""
+        with pytest.raises(InvalidInputError, match="ShiftWorkEvent"):
+            ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(-1))
+
+
+class TestWorkTimeRegimeFacts:
+    """Night and holiday events carry the same regime facts as BonusEvent."""
+
+    @pytest.mark.parametrize("event_type", [NightShiftEvent, HolidayWorkEvent])
+    def test_prior_income_and_waiver_are_stored(
+        self, event_type: type[NightShiftEvent | HolidayWorkEvent]
+    ) -> None:
+        """``prior_income`` and ``substitute_tax_waived`` are kept as given."""
+        evt = event_type(
+            event_date=_DATE,
+            supplement_amount=Decimal(10),
+            prior_income=Decimal(30_000),
+            substitute_tax_waived=True,
+        )
+        assert evt.prior_income == Decimal(30_000)
+        assert evt.substitute_tax_waived is True
 
 
 class TestAbsenceEvent:

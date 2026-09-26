@@ -18,6 +18,7 @@ _ZERO = Decimal(0)
 __all__ = [
     "EarningsYtd",
     "FringeYtd",
+    "RegimeCapAccount",
     "SommaEsenteAccount",
     "TaxYtd",
     "TrattamentoAccount",
@@ -131,3 +132,37 @@ class SommaEsenteAccount:
     """
 
     recognized: Decimal = _ZERO
+
+
+@dataclass(frozen=True)
+class RegimeCapAccount:
+    """YTD usage of the annual cap of a capped preferential tax regime.
+
+    Tracks the part of the cap already taxed at the substitute rate this tax
+    year, so that a later run only gets the substitute rate on what is left.
+    Used for the night, holiday and shift supplement regime (L. 199/2025
+    art. 1 cc. 10-11, cap 1,500 EUR).
+
+    Attributes:
+        used: Cumulative amount taxed at the substitute rate this tax year.
+    """
+
+    used: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that the used amount is non-negative.
+
+        Raises:
+            ValueError: When ``used < 0``.
+        """
+        if self.used < _ZERO:
+            msg = f"RegimeCapAccount.used must be >= 0; got {self.used}"
+            raise ValueError(msg)
+
+    def available(self, cap: Decimal) -> Decimal:
+        """Return the part of ``cap`` not yet used, never negative.
+
+        Returns:
+            ``max(cap - used, 0)``.
+        """
+        return max(cap - self.used, _ZERO)

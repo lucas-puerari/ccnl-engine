@@ -29,6 +29,8 @@ Invariants:
     I17 — every EMPLOYEE_DEDUCTIONS ledger entry has a non-negative amount.
           Refunds and adjustments must use an explicit account, not a negative
           deduction.
+    I18: closing.work_time_regime.used = opening used + eligible amounts of
+         the capped regime decisions, and does not exceed the annual cap.
 
 Legal invariants (L1 to L4, see ``legal_invariants``) reject negative
 substitute tax, ordinary tax, employee contributions and employer
@@ -53,7 +55,11 @@ from ccnl_engine.payroll.application.ledger_invariants import (
     check_i17,
 )
 from ccnl_engine.payroll.application.legal_invariants import check_legal
-from ccnl_engine.payroll.application.state_invariants import check_i11, check_i16
+from ccnl_engine.payroll.application.state_invariants import (
+    check_i11,
+    check_i16,
+    check_i18,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import (
@@ -116,5 +122,6 @@ def reconcile(
     violations.extend(check_i15(result))
     violations.extend(check_i16(result))
     violations.extend(check_i17(result))
+    violations.extend(check_i18(result, opening))
     violations.extend(check_legal(result, opening))
     return ReconciliationResult(violations=tuple(violations))

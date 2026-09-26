@@ -1,7 +1,8 @@
-"""State-transition reconciliation invariants (I11, I16).
+"""State-transition reconciliation invariants (I11, I16, I18).
 
 These invariants verify that the closing PeriodState advances correctly
-from the opening state, and that YTD credit fields stay within their bounds.
+from the opening state, and that YTD credit and cap fields stay within their
+bounds.
 """
 
 from __future__ import annotations
@@ -123,3 +124,45 @@ def check_i16(
             )
         ]
     return []
+
+
+def check_i18(
+    result: PeriodCalculationResult,
+    opening: PeriodState,
+) -> list[ReconciliationViolation]:
+    """I18: the work-time regime cap account advances by the eligible amounts.
+
+    The closing ``work_time_regime.used`` must equal the opening value plus
+    the ``eligible_amount`` of every capped regime decision of the run, and
+    must not exceed the ``annual_cap`` those decisions record.
+
+    Returns:
+        Violations for a wrong advance or a used amount above the cap.
+    """
+    capped = [d for d in result.decisions if "annual_cap" in d.inputs]
+    used = result.closing_state.work_time_regime.used
+    expected = opening.work_time_regime.used + sum(
+        (Decimal(d.inputs["eligible_amount"]) for d in capped), _ZERO
+    )
+    violations: list[ReconciliationViolation] = []
+    if used != expected:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id="I18",
+                message="work_time_regime.used not advanced by the eligible amounts",
+                expected=expected,
+                actual=used,
+            )
+        )
+    caps = {Decimal(d.inputs["annual_cap"]) for d in capped}
+    violations.extend(
+        ReconciliationViolation(
+            invariant_id="I18",
+            message=f"work_time_regime.used {used} exceeds the annual cap {cap}",
+            expected=cap,
+            actual=used,
+        )
+        for cap in sorted(caps)
+        if used > cap
+    )
+    return violations

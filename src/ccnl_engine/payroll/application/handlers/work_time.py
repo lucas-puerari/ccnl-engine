@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from decimal import Decimal
-
 from ccnl_engine.payroll.application._event_items import (
     _make_standard_event_intent,
     _standard_event_gross,
@@ -20,7 +18,7 @@ from ccnl_engine.payroll.application.handlers._context import (
     _EventHandlerCtx,
 )
 from ccnl_engine.payroll.application.handlers._preferential_regime import (
-    apply_renewal_regime,
+    apply_preferential_regime,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -32,11 +30,11 @@ from ccnl_engine.payroll.domain.events import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
+    ShiftWorkEvent,
     SickLeaveEvent,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
+from ccnl_engine.payroll.domain.ledger import PostingIntent
 from ccnl_engine.payroll.domain.treatment import EventTreatment
-from ccnl_engine.payroll.service.rounding import money
 
 
 def _pdr_ceiling_exceeded(
@@ -64,32 +62,11 @@ def _pdr_ceiling_exceeded(
     return event.prior_income > ctx.pdr_income_ceiling
 
 
-def _notte_turno_tax(
-    event: object, ctx: _EventHandlerCtx, gross: Decimal
-) -> Decimal | None:
-    """Return the 15% substitute tax for an eligible NightShiftEvent, or None.
-
-    Fail-closed: ``None`` prior_income → ordinary IRPEF (not substitute rate).
-
-    Returns:
-        Tax amount, or ``None`` when not eligible or rate is not configured.
-    """
-    if not (
-        isinstance(event, NightShiftEvent)
-        and event.prior_income is not None
-        and ctx.notte_flat_rate is not None
-        and ctx.notte_income_ceiling is not None
-    ):
-        return None
-    if event.prior_income > ctx.notte_income_ceiling:
-        return None
-    return money(gross * ctx.notte_flat_rate)
-
-
 def _handle_standard(
     event: OvertimeEvent
     | NightShiftEvent
     | HolidayWorkEvent
+    | ShiftWorkEvent
     | AbsenceEvent
     | SickLeaveEvent
     | BonusEvent,
@@ -118,31 +95,19 @@ def _handle_standard(
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
 
-    regime = apply_renewal_regime(
+    cap_used = _ZERO
+    regime = apply_preferential_regime(
         event, kind, treatment.substitute, ctx, gross, resolution.policy_id
     )
     if regime is not None:
         intents.extend(regime.intents)
         dirpef = regime.ordinary_amount
+        cap_used = regime.cap_used
         decisions.append(regime.decision)
         if regime.issue is not None:
             issues.append(regime.issue)
     elif treatment.substitute:
         substitute_delta = gross
-
-    notte = _notte_turno_tax(event, ctx, gross)
-    if notte is not None:
-        intents.append(
-            PostingIntent(
-                entry_id=f"notte_tax_{ctx.evt_id}",
-                source_item_id=ctx.evt_id,
-                pay_item_kind=kind,
-                account=AccountKind.SUBSTITUTE_TAX,
-                amount=notte,
-                policy_decision_id=resolution.policy_id,
-            )
-        )
-        dirpef = _ZERO
 
     return EventEffect(
         items=[item],
@@ -151,6 +116,7 @@ def _handle_standard(
         tfr_delta=dt,
         irpef_delta=dirpef,
         substitute_delta=substitute_delta,
+        regime_cap_used=cap_used,
         decisions=decisions,
         issues=issues,
     )

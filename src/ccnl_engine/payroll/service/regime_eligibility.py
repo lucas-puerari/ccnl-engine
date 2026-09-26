@@ -88,6 +88,8 @@ class RegimeAssessment:
             ``"prior_income_above_ceiling"``.
         eligible_amount: Part of the amount taxed at the substitute rate.
         ordinary_amount: Part of the amount taxed as ordinary income.
+        cap_available: Part of the annual cap not yet used before this
+            amount, or ``None`` when the regime has no cap.
     """
 
     regime: PreferentialTaxRegime
@@ -97,6 +99,7 @@ class RegimeAssessment:
     reason_code: str
     eligible_amount: Decimal
     ordinary_amount: Decimal
+    cap_available: Decimal | None = None
 
     @property
     def status(self) -> CalculationStatus:
@@ -113,26 +116,31 @@ class RegimeAssessment:
 
         Returns:
             A decision for capability ``"<regime_id>_substitute_tax"`` whose
-            amount is ``substitute_tax``.
+            amount is ``substitute_tax``.  A capped regime also records
+            ``annual_cap`` and the ``cap_available`` before this amount.
         """
         ruleset = self.regime.ruleset
         facts = self.facts
         prior_income = facts.prior_income
+        inputs: dict[str, Decimal | str] = {
+            "eligibility": self.eligibility.value,
+            "tax_year": str(self.tax_year),
+            "prior_income": _UNKNOWN if prior_income is None else prior_income,
+            "sector": _UNKNOWN if facts.sector is None else facts.sector.value,
+            "waived": str(facts.waived).lower(),
+            "eligible_amount": self.eligible_amount,
+            "ordinary_amount": self.ordinary_amount,
+        }
+        if self.regime.annual_cap is not None and self.cap_available is not None:
+            inputs["annual_cap"] = self.regime.annual_cap
+            inputs["cap_available"] = self.cap_available
         return CalculationDecision(
             capability=f"{self.regime.regime_id}_substitute_tax",
             status=self.status,
             reason_code=self.reason_code,
             rule=self.regime.regime_id if ruleset is None else ruleset.id,
             rule_version=(str(self.tax_year) if ruleset is None else ruleset.version),
-            inputs={
-                "eligibility": self.eligibility.value,
-                "tax_year": str(self.tax_year),
-                "prior_income": _UNKNOWN if prior_income is None else prior_income,
-                "sector": _UNKNOWN if facts.sector is None else facts.sector.value,
-                "waived": str(facts.waived).lower(),
-                "eligible_amount": self.eligible_amount,
-                "ordinary_amount": self.ordinary_amount,
-            },
+            inputs=inputs,
             source=self.regime.source,
             amount=substitute_tax,
         )
@@ -246,9 +254,11 @@ def assess_regime(
     else:
         eligibility, reason = RegimeEligibility.ELIGIBLE, "requirements_met"
     eligible = amount if eligibility is RegimeEligibility.ELIGIBLE else _ZERO
+    available: Decimal | None = None
     if regime.annual_cap is not None:
-        available = regime.annual_cap if cap_available is None else cap_available
-        eligible = min(eligible, max(available, _ZERO))
+        cap = regime.annual_cap if cap_available is None else cap_available
+        available = max(cap, _ZERO)
+        eligible = min(eligible, available)
     return RegimeAssessment(
         regime=regime,
         facts=facts,
@@ -257,4 +267,5 @@ def assess_regime(
         reason_code=reason,
         eligible_amount=eligible,
         ordinary_amount=amount - eligible,
+        cap_available=available,
     )

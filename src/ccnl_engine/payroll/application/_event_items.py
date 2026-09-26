@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.events import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
+    ShiftWorkEvent,
     SickLeaveEvent,
     SicknessCaseEvent,
     WorkEvent,
@@ -50,6 +51,7 @@ _CashEvent = (
     OvertimeEvent
     | NightShiftEvent
     | HolidayWorkEvent
+    | ShiftWorkEvent
     | AbsenceEvent
     | SickLeaveEvent
     | BonusEvent
@@ -90,7 +92,7 @@ def _standard_event_gross(event: _CashEvent) -> Decimal:
     """
     if isinstance(event, OvertimeEvent):
         return money(event.hours * event.hourly_rate * event.multiplier)
-    if isinstance(event, (NightShiftEvent, HolidayWorkEvent)):
+    if isinstance(event, (NightShiftEvent, HolidayWorkEvent, ShiftWorkEvent)):
         return event.supplement_amount
     if isinstance(event, AbsenceEvent):
         return -money(event.hours * event.hourly_rate)
@@ -126,7 +128,7 @@ def _standard_event_item(
             ),
             "overtime_earning",
         )
-    if isinstance(event, (NightShiftEvent, HolidayWorkEvent)):
+    if isinstance(event, (NightShiftEvent, HolidayWorkEvent, ShiftWorkEvent)):
         return (
             NightHolidayShiftEarning(
                 item_id=evt_id,
