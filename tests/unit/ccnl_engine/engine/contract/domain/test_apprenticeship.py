@@ -8,7 +8,7 @@ from decimal import Decimal
 import pytest
 from pydantic import TypeAdapter, ValidationError
 
-from ccnl_engine.engine.contract.domain.apprenticeship import (
+from ccnl_engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipTrack,
     ApprenticeshipUnderClassification,

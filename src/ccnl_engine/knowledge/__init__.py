@@ -1,9 +1,10 @@
 """ccnl_engine.knowledge — versioned dataset bundle (data only).
 
-Passive JSON resources consumed by the engine's loaders
-(:mod:`ccnl_engine.engine`). The knowledge base carries no Python logic: every
-file here is data plus version metadata, so it can be upgraded or redistributed
-independently of the engine.
+Passive JSON resources consumed by the capability loaders (contract, tax,
+payroll). The ``*/data/`` directories carry no Python logic: every file there is
+data plus version metadata, so it can be upgraded or redistributed
+independently of the engine. The only code is :mod:`ccnl_engine.knowledge.service`,
+which reads those resources and implements the bundled knowledge repository.
 
 Sub-packages:
 - ``ccnl_engine.knowledge.ccnl`` — one JSON file per CCNL contract.

@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.tax.domain.preferential_regime import SubstituteTaxRegime
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.tax.domain.preferential_regime import SubstituteTaxRegime
 
 __all__ = ["PriorYearTaxFacts", "SubstituteTaxRegime"]
 

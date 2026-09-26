@@ -13,7 +13,7 @@ Or directly::
 import json
 from pathlib import Path
 
-from ccnl_engine.engine.metadata.domain.rules import source_hash
+from ccnl_engine.provenance.domain.ruleset_identity import source_hash
 
 data_dir = Path("src/ccnl_engine/knowledge/ccnl/data")
 updated = 0

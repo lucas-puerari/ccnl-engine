@@ -10,15 +10,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.application.allocate_events import EVENT_FEATURES
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.engine.capability_catalog import CapabilityCatalog
+    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
 
 # Pipeline stages every run executes unconditionally.

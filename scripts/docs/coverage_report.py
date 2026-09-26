@@ -18,13 +18,13 @@ import importlib.resources
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 
-from ccnl_engine.engine.contract.domain.identity import CCNL, NoteKind
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.metadata.domain.rules import (
+from ccnl_engine.contract.domain.identity import CCNL, NoteKind
+from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.provenance.domain.extraction import ExtractionMethod
+from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetReadiness,
     VerificationStatus,
 )
-from ccnl_engine.engine.provenance.domain.extraction import ExtractionMethod
 
 # Data classes
 

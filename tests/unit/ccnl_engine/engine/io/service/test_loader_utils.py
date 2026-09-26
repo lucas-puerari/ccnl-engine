@@ -4,13 +4,13 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.io.service.loader_utils import (
+from ccnl_engine.knowledge.service.loader_utils import (
     as_ruleset,
     try_ruleset,
     verify_ruleset_hash,
 )
-from ccnl_engine.engine.metadata.domain.rules import source_hash
+from ccnl_engine.provenance.domain.ruleset_identity import source_hash
+from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 
 class TestVerifyRulesetHash:

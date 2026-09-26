@@ -9,17 +9,17 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.provenance.domain.source import (
+from ccnl_engine.provenance.domain.source import (
     SourceDocument,
     SourceKind,
     SourceLocation,
 )
-from ccnl_engine.engine.tax.domain.preferential_regime import (
+from ccnl_engine.tax.domain.preferential_regime import (
     EmployerActivity,
     EmploymentSector,
     PreferentialTaxRegime,
 )
-from ccnl_engine.engine.tax.service.tax_optional_loaders import (
+from ccnl_engine.tax.service.tax_optional_loaders import (
     load_variable_pay_rules,
 )
 

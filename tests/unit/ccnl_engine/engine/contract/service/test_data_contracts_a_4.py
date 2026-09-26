@@ -4,12 +4,12 @@ import importlib.resources
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.engine.contract.domain.apprenticeship import (
+from ccnl_engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.contract.service.loaders import load_ccnl
 
 # ---------------------------------------------------------------------------
 # Parametrised: every JSON in ccnl_engine.knowledge.ccnl.data must validate

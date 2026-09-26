@@ -6,7 +6,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
@@ -14,6 +13,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _PLAN = RecoveryPlan(
     kind="trattamento_integrativo",

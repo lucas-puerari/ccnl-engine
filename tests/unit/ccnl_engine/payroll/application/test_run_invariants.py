@@ -9,7 +9,6 @@ from functools import cache
 
 import pytest
 
-from ccnl_engine.engine.errors import DataIntegrityError, OutOfScopeError
 from ccnl_engine.payroll.application._period_checks import check_net_covered
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -49,6 +48,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TrattamentoAccount,
     WithholdingShortfall,
 )
+from ccnl_engine.shared.domain.errors import DataIntegrityError, OutOfScopeError
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 from tests.helpers import year_input
 

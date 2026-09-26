@@ -10,14 +10,14 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.contract.domain.category import (
+from ccnl_engine.contract.domain.category import (
     WorkerCategory,
     parse_worker_category,
 )
-from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.request_checks import type_error
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
 _FEATURE = "employment_facts"
 
@@ -277,7 +277,7 @@ class Employment:
 
     Facts are validated on construction: a value of the wrong type or an
     impossible combination raises
-    :class:`~ccnl_engine.engine.errors.InvalidInputError` (a ``ValueError``)
+    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError` (a ``ValueError``)
     instead of producing a payslip.
 
     Attributes:

@@ -8,7 +8,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import (
     ReconciliationResult,
@@ -16,6 +15,7 @@ from ccnl_engine.payroll.application.reconcile import (
     reconcile,
 )
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry

@@ -197,13 +197,13 @@ Never work directly on `main`. Never push directly to `main`.
 
 ## Step 4 — Check if engine modifications are needed
 
-**TaxSector enum** (`src/ccnl_engine/engine/contract/domain/ccnl.py`):
+**TaxSector enum** (`src/ccnl_engine/contract/domain/identity/_enums.py`):
 - `tax_sector` already in `TaxSector` → no change needed.
 - Not present → add `NEW_SECTOR = "new_sector"` to the enum **before any other file**.
   The loader rejects JSON that references an unknown sector.
 
 **Tax data file** (`src/ccnl_engine/knowledge/tax/data/{year}-{sector}.json`):
-- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/engine/tax/service/loaders.py`).
+- File already exists → reuse it (check `load_year_rules` in `src/ccnl_engine/tax/service/tax_annual_assembler.py`).
 - Does not exist → create it by copying the nearest existing tax file and replacing values.
   Branch coverage on a new `TaxSector` value requires both (a) the enum value and (b) the CCNL
   JSON file in `src/ccnl_engine/knowledge/ccnl/data/` — ship both in the same commit or coverage will fail.
@@ -229,7 +229,7 @@ Pydantic validators enforce these invariants at load time (violations = immediat
 
 Validate immediately after writing:
 ```bash
-uv run python -c "from ccnl_engine.engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"
+uv run python -c "from ccnl_engine.contract.service.loaders import load_ccnl; load_ccnl('{id}.json')"
 ```
 Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
@@ -241,27 +241,23 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ```python
 from datetime import date
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
-from ccnl_engine.engine.payroll.service.orchestrator import compute
-from ccnl_engine.engine.payroll.domain.employee import (
-    ContractPosition,
-    Employee,
-    WorkArrangement,
+from ccnl_engine import (
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodInput,
 )
-from ccnl_engine.engine.payroll.domain.employment import Permanent
 
-ccnl = load_ccnl("{id}.json")
-rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
-employee = Employee(
-    position=ContractPosition(
-        level_code="{level}",
-        as_of=date({year}, {mm}, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
+result = PayrollEngine.bundled().calculate_period(
+    PeriodInput(
+        run=PayrollRun.regular(year={year}, month={mm}),
+        payment_date=date({year}, {mm}, 28),
+        employment=Employment(ccnl_slug="{id}.json", level_code="{level}"),
+        employer=EmployerProfile(headcount=Headcount(50)),
+    )
 )
-result = compute(ccnl, rules, employee)
 ```
 
 Choose: mid-range level, no seniority, permanent, 50 employees,
@@ -278,11 +274,11 @@ Append class `TestLoad{CamelCaseName}` at the bottom of
 
 **Required imports at the top of the file** — add only what is missing (never inside methods):
 ```python
-from ccnl_engine.engine.contract.domain.apprenticeship import (
+from ccnl_engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.contract.domain.identity import CCNL, TaxSector
 ```
 Imports inside test methods trigger ruff PLC0415 and fail CI.
 

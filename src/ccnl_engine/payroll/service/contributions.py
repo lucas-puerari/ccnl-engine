@@ -23,9 +23,9 @@ from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
 

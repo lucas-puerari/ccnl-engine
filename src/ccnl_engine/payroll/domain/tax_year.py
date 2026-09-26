@@ -13,7 +13,7 @@ from datetime import date
 from enum import StrEnum
 from typing import ClassVar
 
-from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = [
     "DEFAULT_PAYMENT_DAY",

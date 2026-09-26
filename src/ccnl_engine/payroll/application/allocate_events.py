@@ -42,11 +42,11 @@ from ccnl_engine.payroll.service.regime_eligibility import RegimeFacts
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.tax.domain.preferential_regime import (
-        PreferentialTaxRegime,
-    )
     from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.tax.domain.preferential_regime import (
+        PreferentialTaxRegime,
+    )
 
 
 _NO_FACTS = RegimeFacts()

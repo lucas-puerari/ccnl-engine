@@ -13,8 +13,8 @@ from dataclasses import dataclass
 from decimal import Decimal
 from enum import StrEnum
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import ExtraMonthKind, WorkCalendar
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = ["CalendarOverride", "CalendarOverrideReason"]
 

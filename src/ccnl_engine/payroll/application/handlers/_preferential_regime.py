@@ -20,15 +20,15 @@ from ccnl_engine.payroll.service.regime_eligibility import (
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.preferential_regime import (
-        PreferentialTaxRegime,
-    )
     from ccnl_engine.payroll.application.handlers._context import _EventHandlerCtx
     from ccnl_engine.payroll.domain.decisions import (
         CalculationDecision,
         CalculationIssue,
     )
     from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
+    from ccnl_engine.tax.domain.preferential_regime import (
+        PreferentialTaxRegime,
+    )
 
 _ZERO = Decimal(0)
 

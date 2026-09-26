@@ -16,7 +16,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import SicknessCaseEvent
@@ -29,6 +28,7 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.sickness import SicknessCase
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

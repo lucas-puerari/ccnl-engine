@@ -35,36 +35,26 @@ Usage::
 from __future__ import annotations
 
 from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.engine.capability_catalog import (
-    CapabilityCatalog,
-    CapabilityEntry,
-    CapabilityGap,
-    CapabilityStatus,
-)
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.service.discovery import (
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.service.discovery import (
     CcnlId,
     CcnlInfo,
     get_ccnl,
     list_ccnls,
     search_ccnls,
 )
-from ccnl_engine.engine.errors import (
-    CcnlEngineError,
-    DataIntegrityError,
-    InvalidInputError,
-    OutOfScopeError,
-    UnknownCcnlError,
-    UnknownLevelError,
-    UnsupportedTaxYearError,
-)
-from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application.calculate_year import YearResult
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
+)
+from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityCatalog,
+    CapabilityEntry,
+    CapabilityGap,
+    CapabilityStatus,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -117,6 +107,16 @@ from ccnl_engine.payroll.domain.prior_year import (
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
+from ccnl_engine.shared.domain.errors import (
+    CcnlEngineError,
+    DataIntegrityError,
+    InvalidInputError,
+    OutOfScopeError,
+    UnknownCcnlError,
+    UnknownLevelError,
+    UnsupportedTaxYearError,
+)
+from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [

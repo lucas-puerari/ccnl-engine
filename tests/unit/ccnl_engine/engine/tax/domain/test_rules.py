@@ -1,4 +1,4 @@
-"""Tests for ccnl_engine.engine.tax.models.
+"""Tests for ccnl_engine.tax.models.
 
 Covers every branch in YearRules validators and tests that the canonical
 2026-terziario.json data file loads correctly via load_year_rules.
@@ -10,11 +10,18 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.primitives.domain.primitives import Bracket
-from ccnl_engine.engine.tax.domain.contribution_rules import (
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.identity import TaxSector
+from ccnl_engine.payroll.service._contributions_apprentice import (
+    apprentice_employer_rate,
+)
+from ccnl_engine.payroll.service._contributions_domestic import (
+    resolve_domestic_inps_rate,
+)
+from ccnl_engine.payroll.service._contributions_rates import inps_employer_rate
+from ccnl_engine.shared.domain.errors import DataIntegrityError
+from ccnl_engine.shared.domain.primitives import Bracket
+from ccnl_engine.tax.domain.contribution_rules import (
     ApprenticeRates,
     ApprenticeRawRates,
     DomesticInpsRates,
@@ -23,27 +30,20 @@ from ccnl_engine.engine.tax.domain.contribution_rules import (
     InpsRates,
     InpsRawRates,
 )
-from ccnl_engine.engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
-from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint, IrpefBracket
-from ccnl_engine.engine.tax.domain.ruleset import YearRules, YearRulesRaw
-from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
-from ccnl_engine.engine.tax.domain.tfr_rules import TfrRules
-from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
-from ccnl_engine.engine.tax.service.tax_resource_reader import (
+from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
+from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint, IrpefBracket
+from ccnl_engine.tax.domain.ruleset import YearRules, YearRulesRaw
+from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
+from ccnl_engine.tax.domain.tfr_rules import TfrRules
+from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.tax.service.tax_resource_reader import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )
-from ccnl_engine.engine.tax.service.tax_tier_resolver import (
+from ccnl_engine.tax.service.tax_tier_resolver import (
     _assert_tier_integrity,
     _resolve_tier,
 )
-from ccnl_engine.payroll.service._contributions_apprentice import (
-    apprentice_employer_rate,
-)
-from ccnl_engine.payroll.service._contributions_domestic import (
-    resolve_domestic_inps_rate,
-)
-from ccnl_engine.payroll.service._contributions_rates import inps_employer_rate
 from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,

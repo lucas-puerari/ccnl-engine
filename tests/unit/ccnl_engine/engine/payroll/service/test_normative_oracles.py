@@ -24,16 +24,8 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
-from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
-from ccnl_engine.engine.tax.domain.credit_rules import (
-    TrattamentoIntegrativoRules,
-    UlterioreDetrazioneRules,
-)
-from ccnl_engine.engine.tax.service.tax_optional_loaders import (
-    load_family_deduction_rules,
-)
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -54,6 +46,14 @@ from ccnl_engine.payroll.service.irpef_credits import (
     ulteriore_detrazione_lavoro,
 )
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.tax.domain.credit_rules import (
+    TrattamentoIntegrativoRules,
+    UlterioreDetrazioneRules,
+)
+from ccnl_engine.tax.domain.surtax_rules import SurtaxBracket
+from ccnl_engine.tax.service.tax_optional_loaders import (
+    load_family_deduction_rules,
+)
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------

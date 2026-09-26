@@ -27,10 +27,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import (
-    InvalidInputError,
-    MissingRequiredFactError,
-)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
@@ -54,6 +50,10 @@ from ccnl_engine.payroll.domain.period import (
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
+from ccnl_engine.shared.domain.errors import (
+    InvalidInputError,
+    MissingRequiredFactError,
+)
 from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"

@@ -10,7 +10,7 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.validity import (
+from ccnl_engine.contract.domain.validity import (
     SalaryGapError,
     SalaryGapKind,
     TimeSeries,

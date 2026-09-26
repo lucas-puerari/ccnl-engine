@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.policy import (
     _Rule,
     require,
 )
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 
 _TODAY = date(2026, 1, 15)
 _FUTURE = date(2030, 1, 1)
@@ -361,21 +362,6 @@ class TestRuleFromDict:
         assert rule.effective_until is None
 
 
-class TestPolicyResolverLoad:
-    """PolicyResolver.load() loads and indexes the bundled Italian ruleset."""
-
-    def test_load_returns_resolver(self) -> None:
-        """load() returns a PolicyResolver instance."""
-        assert isinstance(PolicyResolver.load(), PolicyResolver)
-
-    def test_load_resolves_base_salary_earning(self) -> None:
-        """load() produces a resolver that resolves base_salary_earning."""
-        resolver = PolicyResolver.load()
-        result = resolver.resolve("base_salary_earning", _ctx())
-        assert result is not None
-        assert result.policy_id == "it/earning/ordinary"
-
-
 class TestPolicyResolverResolve:
     """PolicyResolver.resolve() matches kinds to rules by date range."""
 
@@ -466,28 +452,28 @@ class TestMisclassificationFixes:
 
     def test_tfr_accrual_tax_not_applicable(self) -> None:
         """tfr_accrual_item tax axis is NOT_APPLICABLE at accrual time."""
-        resolver = PolicyResolver.load()
+        resolver = load_policy_resolver()
         result = resolver.resolve("tfr_accrual_item", _ctx())
         assert result is not None
         assert result.tax == TaxAxis.NOT_APPLICABLE
 
     def test_contract_renewal_arrears_tax_unknown(self) -> None:
         """contract_renewal_arrears tax axis is UNKNOWN (context-dependent)."""
-        resolver = PolicyResolver.load()
+        resolver = load_policy_resolver()
         result = resolver.resolve("contract_renewal_arrears", _ctx())
         assert result is not None
         assert result.tax == TaxAxis.UNKNOWN
 
     def test_productivity_bonus_tax_substitute(self) -> None:
         """productivity_bonus_earning tax axis is SUBSTITUTE (L. 199/2025)."""
-        resolver = PolicyResolver.load()
+        resolver = load_policy_resolver()
         result = resolver.resolve("productivity_bonus_earning", _ctx())
         assert result is not None
         assert result.tax == TaxAxis.SUBSTITUTE
 
     def test_arrears_tax_require_raises(self) -> None:
         """require('tax') on arrears resolution raises UnresolvablePolicyError."""
-        resolver = PolicyResolver.load()
+        resolver = load_policy_resolver()
         result = resolver.resolve("contract_renewal_arrears", _ctx())
         assert result is not None
         with pytest.raises(UnresolvablePolicyError):

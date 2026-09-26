@@ -8,9 +8,9 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError, OutOfScopeError
 from ccnl_engine.payroll.domain.events import SicknessCaseEvent
 from ccnl_engine.payroll.domain.sickness import SicknessCase
+from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)

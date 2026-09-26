@@ -37,13 +37,13 @@ from ccnl_engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.period import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxComputation
     from ccnl_engine.payroll.domain.ytd_accounts import SommaEsenteAccount
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["SommaEsenteOutcome", "SommaEsentePosting", "resolve_somma_esente"]
 

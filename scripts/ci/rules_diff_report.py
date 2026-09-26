@@ -21,16 +21,16 @@ from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.identity import CCNL
+from ccnl_engine.contract.domain.identity import CCNL
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.compensation import CCNLParameters, Level
-    from ccnl_engine.engine.contract.domain.seniority import SeniorityIncrements
-    from ccnl_engine.engine.contract.domain.validity import TimeSeries
+    from ccnl_engine.contract.domain.compensation import CCNLParameters, Level
+    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
+    from ccnl_engine.contract.domain.validity import TimeSeries
 
 # Paths inside the repo used for git diff filtering.
 _KNOWLEDGE_ROOT = "src/ccnl_engine/knowledge"

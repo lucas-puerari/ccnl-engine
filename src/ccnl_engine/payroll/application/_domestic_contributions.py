@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import DataIntegrityError, MissingRequiredFactError
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
@@ -12,12 +11,16 @@ from ccnl_engine.payroll.domain.contributions import (
 )
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.shared.domain.errors import (
+    DataIntegrityError,
+    MissingRequiredFactError,
+)
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.tax.domain.contribution_rules import DomesticInpsRates
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.contribution_rules import DomesticInpsRates
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 
 def _pick_domestic_per_hour(

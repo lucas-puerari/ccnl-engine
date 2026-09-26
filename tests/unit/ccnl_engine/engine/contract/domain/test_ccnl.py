@@ -12,17 +12,17 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.compensation import CCNLParameters, EmployerFund
-from ccnl_engine.engine.contract.domain.identity import CCNL, CCNLMeta
-from ccnl_engine.engine.contract.domain.seniority import SeniorityIncrements
-from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
-from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
-from ccnl_engine.engine.provenance.domain.source import SourceKind
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.compensation import CCNLParameters, EmployerFund
+from ccnl_engine.contract.domain.identity import CCNL, CCNLMeta
+from ccnl_engine.contract.domain.seniority import SeniorityIncrements
+from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.payroll.service.seniority import (
     seniority_first_cadence,
     seniority_maximum,
 )
+from ccnl_engine.provenance.domain.extraction import ExtractionTrace
+from ccnl_engine.provenance.domain.source import SourceKind
 from tests.helpers import TEST_PROV, _series_with_prov, make_ccnl_dict
 
 _SERIES = {"periods": [{"valid_from": "2020-01-01", "valid_until": None, "value": "1"}]}

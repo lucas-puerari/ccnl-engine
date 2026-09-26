@@ -4,13 +4,13 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.jurisdiction import (
     REGION_CODES,
     TRENTINO_ALTO_ADIGE,
     check_surtax_codes,
     region_table_name,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 @pytest.mark.parametrize(

@@ -23,8 +23,8 @@ from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["resolve_trattamento"]
 

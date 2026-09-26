@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employer import (
     EmployerActivity,
     EmployerProfile,
     Headcount,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 class TestHeadcount:

@@ -8,11 +8,6 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.engine.provenance.domain.source import (
-    SourceDocument,
-    SourceKind,
-    SourceLocation,
-)
 from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
@@ -21,6 +16,11 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+)
+from ccnl_engine.provenance.domain.source import (
+    SourceDocument,
+    SourceKind,
+    SourceLocation,
 )
 from tests.helpers import year_input
 

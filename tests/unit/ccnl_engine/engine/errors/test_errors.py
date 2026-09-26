@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.errors import (
+from ccnl_engine.shared.domain.errors import (
     PUBLIC_ERROR_CODES,
     CcnlEngineError,
     DataIntegrityError,

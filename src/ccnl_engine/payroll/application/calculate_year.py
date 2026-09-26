@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.application._calendar import effective_calendar
@@ -32,7 +32,7 @@ from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
     from ccnl_engine.payroll.domain.inputs import YearInput
@@ -159,7 +159,7 @@ def calculate_year(
         run (12, 13, or 14 for a full year depending on the CCNL) and
         aggregated totals.
 
-    Errors: :class:`~ccnl_engine.engine.errors.InvalidInputError` for an
+    Errors: :class:`~ccnl_engine.shared.domain.errors.InvalidInputError` for an
     override rejected by
     :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`,
     an employment period with no day in the year or an ``opening_state``

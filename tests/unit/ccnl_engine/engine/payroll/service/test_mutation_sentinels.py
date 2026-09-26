@@ -21,7 +21,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
 from ccnl_engine.payroll.service import irpef as _irpef
 from ccnl_engine.payroll.service.irpef import (
     work_income_deduction,
@@ -30,6 +29,7 @@ from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
 )
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
 
 _ZERO = Decimal(0)
 

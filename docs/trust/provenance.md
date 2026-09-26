@@ -100,7 +100,7 @@ CCNL. Every pay level, every non-gap salary period and every fixed allowance
 carries one.
 
 ```python
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
+from ccnl_engine.contract.service.loaders import load_ccnl
 
 ccnl = load_ccnl("commercio-confcommercio.json")
 

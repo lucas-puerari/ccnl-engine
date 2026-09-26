@@ -5,8 +5,8 @@ from __future__ import annotations
 from datetime import UTC, date, datetime
 from decimal import Decimal
 
-from ccnl_engine.engine.diff.service.compute import RuleChange, RulesDiff
-from ccnl_engine.engine.diff.service.format import format_diff
+from ccnl_engine.diff.service.compute import RuleChange, RulesDiff
+from ccnl_engine.diff.service.format import format_diff
 
 
 def _change(

@@ -18,9 +18,9 @@ from ccnl_engine import (
     RecoveryObligation,
     RecoveryPlan,
 )
-from ccnl_engine.engine.errors import InvalidInputError, UnsupportedTaxYearError
 from ccnl_engine.payroll.domain.employment_context import TemporalContext
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.shared.domain.errors import InvalidInputError, UnsupportedTaxYearError
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,

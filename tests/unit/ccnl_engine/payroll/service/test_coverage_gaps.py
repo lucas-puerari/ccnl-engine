@@ -10,22 +10,20 @@ from typing import Any
 import pytest
 
 from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.compensation import Allowance
-from ccnl_engine.engine.contract.domain.identity._ccnl import CCNL
-from ccnl_engine.engine.contract.domain.seniority import (
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.domain.compensation import Allowance
+from ccnl_engine.contract.domain.identity._ccnl import CCNL
+from ccnl_engine.contract.domain.seniority import (
     SeniorityIncrements,
     SeniorityTier,
 )
-from ccnl_engine.engine.contract.domain.validity import TimeSeries
-from ccnl_engine.engine.contract.domain.working_time import (
+from ccnl_engine.contract.domain.validity import TimeSeries
+from ccnl_engine.contract.domain.working_time import (
     OvertimeBand,
     TimeSupplementKind,
     TimeSupplements,
     WorkKind,
 )
-from ccnl_engine.engine.errors import InvalidInputError, OutOfScopeError
-from ccnl_engine.engine.tax.service.tax_optional_loaders import load_sick_pay_rates
 from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.domain.pay_items._policy import (
     PayItemPolicy,
@@ -53,6 +51,8 @@ from ccnl_engine.payroll.service.seniority import (
     seniority_maximum,
 )
 from ccnl_engine.payroll.service.types import MonthlyPayChain
+from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.tax.service.tax_optional_loaders import load_sick_pay_rates
 from tests.helpers import TEST_PROV, _series, make_ccnl_dict, make_minimal_ccnl
 
 _AS_OF = date(2026, 6, 1)

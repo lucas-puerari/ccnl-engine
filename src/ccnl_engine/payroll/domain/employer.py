@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.engine.tax.domain.preferential_regime import EmployerActivity
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.tax.domain.preferential_regime import EmployerActivity
 
 __all__ = ["EmployerActivity", "EmployerProfile", "Headcount"]
 

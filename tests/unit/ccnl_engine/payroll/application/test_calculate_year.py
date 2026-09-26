@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application import calculate_year as calculate_year_module
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -26,6 +25,7 @@ from ccnl_engine.payroll.domain.employment import EmploymentPeriod, Permanent
 from ccnl_engine.payroll.domain.events import AbsenceEvent, WorkEvent
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
 if TYPE_CHECKING:

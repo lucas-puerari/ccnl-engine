@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 
 if TYPE_CHECKING:
     from datetime import date

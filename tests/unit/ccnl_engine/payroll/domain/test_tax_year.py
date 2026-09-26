@@ -6,13 +6,13 @@ from datetime import date
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.tax_year import (
     DEFAULT_PAYMENT_DAY,
     TaxYearBasis,
     TaxYearPolicy,
     monthly_payment_date,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DECEMBER_2026 = date(2026, 12, 1)
 _POLICY = TaxYearPolicy()

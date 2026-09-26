@@ -42,8 +42,8 @@ from ccnl_engine.payroll.service import irpef as _irpef
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
-    from ccnl_engine.engine.surtax.domain.rules import (
+    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.tax.domain.surtax_rules import (
         ComunaleEntry,
         RegionaleEntry,
         SurtaxRules,

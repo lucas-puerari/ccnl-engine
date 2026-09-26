@@ -7,7 +7,6 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
 from ccnl_engine.payroll.application._somma_esente import (
     SommaEsenteOutcome,
     SommaEsentePosting,
@@ -22,16 +21,18 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import PeriodState
-from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import SommaEsenteAccount
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
+from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
 _YEAR = 2026
@@ -46,7 +47,7 @@ _RULES = make_year_rules().model_copy(
     }
 )
 _POSTING = SommaEsentePosting(
-    resolver=PolicyResolver.load(),
+    resolver=load_policy_resolver(),
     policy_context=PolicyContext(year=_YEAR, as_of=date(_YEAR, 12, 1)),
     competence_period=CompetencePeriod(year=_YEAR, month=12),
     payment_date=date(_YEAR, 12, 28),

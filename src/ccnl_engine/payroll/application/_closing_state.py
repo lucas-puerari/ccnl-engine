@@ -6,7 +6,6 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import (
@@ -23,6 +22,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
     WithholdingShortfall,
 )
+from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts

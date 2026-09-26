@@ -7,19 +7,19 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.tax.domain.preferential_regime import (
-    EmployerActivity,
-    EmploymentSector,
-    PreferentialTaxRegime,
-)
-from ccnl_engine.engine.tax.service.tax_optional_loaders import (
-    load_variable_pay_rules,
-)
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.service.regime_eligibility import (
     RegimeEligibility,
     RegimeFacts,
     assess_regime,
+)
+from ccnl_engine.tax.domain.preferential_regime import (
+    EmployerActivity,
+    EmploymentSector,
+    PreferentialTaxRegime,
+)
+from ccnl_engine.tax.service.tax_optional_loaders import (
+    load_variable_pay_rules,
 )
 
 _RULES = load_variable_pay_rules(2026)

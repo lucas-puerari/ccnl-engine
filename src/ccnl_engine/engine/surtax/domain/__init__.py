@@ -1,1 +1,0 @@
-"""Surtax domain models."""

@@ -55,11 +55,12 @@ def _type_checking_node_ids(tree: ast.Module) -> set[int]:
     return ids
 
 
-def _runtime_engine_imports(path: Path) -> list[str]:
-    """Return module paths imported from ``ccnl_engine.engine.*`` outside TYPE_CHECKING.
+def _runtime_foreign_imports(path: Path) -> list[str]:
+    """Return ``ccnl_engine`` modules outside payroll imported at runtime.
 
     Returns:
-        List of ``ccnl_engine.engine.*`` module paths found at runtime scope.
+        List of ``ccnl_engine.*`` module paths, excluding
+        ``ccnl_engine.payroll.*``, found outside TYPE_CHECKING blocks.
     """
     tree = ast.parse(path.read_text(encoding="utf-8"))
     tc_ids = _type_checking_node_ids(tree)
@@ -68,8 +69,22 @@ def _runtime_engine_imports(path: Path) -> list[str]:
         for node in ast.walk(tree)
         if id(node) not in tc_ids
         and isinstance(node, ast.ImportFrom)
-        and (node.module or "").startswith("ccnl_engine.engine")
+        and _is_foreign_module(node.module or "")
     ]
+
+
+def _is_foreign_module(module: str) -> bool:
+    """Return True for a ``ccnl_engine`` module owned by another capability.
+
+    Returns:
+        True when *module* is ``ccnl_engine`` or a submodule outside
+        ``ccnl_engine.payroll``.
+    """
+    in_package = module == "ccnl_engine" or module.startswith("ccnl_engine.")
+    in_payroll = module == "ccnl_engine.payroll" or module.startswith(
+        "ccnl_engine.payroll."
+    )
+    return in_package and not in_payroll
 
 
 def _class_definitions(path: Path) -> list[str]:
@@ -78,60 +93,58 @@ def _class_definitions(path: Path) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# Test: payroll/domain must not import engine at runtime
+# Test: payroll/domain must not import other capabilities at runtime
 #
 # Allowed exceptions document pre-existing coupling that must be resolved in
 # a dedicated refactor PR before removal from this list.
 # ---------------------------------------------------------------------------
 
-_ALLOWED_DOMAIN_ENGINE_IMPORTS: dict[str, set[str]] = {
-    "sickness.py": {"ccnl_engine.engine.errors"},
-    "policy.py": {"ccnl_engine.engine.io.service.bundled"},
+_ALLOWED_DOMAIN_FOREIGN_IMPORTS: dict[str, set[str]] = {
+    "sickness.py": {"ccnl_engine.shared.domain.errors"},
     # The public inputs validate against value types owned by the contract
     # and tax capabilities: worker category, sector, activity and regimes.
     "employment.py": {
-        "ccnl_engine.engine.errors",
-        "ccnl_engine.engine.contract.domain.category",
-        "ccnl_engine.engine.tax.domain.preferential_regime",
+        "ccnl_engine.shared.domain.errors",
+        "ccnl_engine.contract.domain.category",
+        "ccnl_engine.tax.domain.preferential_regime",
     },
     "employer.py": {
-        "ccnl_engine.engine.errors",
-        "ccnl_engine.engine.tax.domain.preferential_regime",
+        "ccnl_engine.shared.domain.errors",
+        "ccnl_engine.tax.domain.preferential_regime",
     },
-    "inputs.py": {"ccnl_engine.engine.errors"},
+    "inputs.py": {"ccnl_engine.shared.domain.errors"},
     "prior_year.py": {
-        "ccnl_engine.engine.errors",
-        "ccnl_engine.engine.tax.domain.preferential_regime",
+        "ccnl_engine.shared.domain.errors",
+        "ccnl_engine.tax.domain.preferential_regime",
     },
-    "calendar_override.py": {"ccnl_engine.engine.errors"},
+    "calendar_override.py": {"ccnl_engine.shared.domain.errors"},
     "period.py": {
-        "ccnl_engine.engine.errors",
-        "ccnl_engine.engine.tax.domain.preferential_regime",
+        "ccnl_engine.shared.domain.errors",
+        "ccnl_engine.tax.domain.preferential_regime",
     },
-    "jurisdiction.py": {"ccnl_engine.engine.errors"},
-    "tax_year.py": {"ccnl_engine.engine.errors"},
-    "events/variable_pay.py": {"ccnl_engine.engine.errors"},
-    "events/termination.py": {"ccnl_engine.engine.errors"},
-    "events/work_time.py": {"ccnl_engine.engine.errors"},
-    "events/absence_sickness.py": {"ccnl_engine.engine.errors"},
+    "jurisdiction.py": {"ccnl_engine.shared.domain.errors"},
+    "tax_year.py": {"ccnl_engine.shared.domain.errors"},
+    "events/variable_pay.py": {"ccnl_engine.shared.domain.errors"},
+    "events/termination.py": {"ccnl_engine.shared.domain.errors"},
+    "events/work_time.py": {"ccnl_engine.shared.domain.errors"},
+    "events/absence_sickness.py": {"ccnl_engine.shared.domain.errors"},
 }
 
 
-def test_payroll_domain_runtime_engine_imports_within_allowlist() -> None:
-    """No new runtime engine imports in payroll/domain beyond documented exceptions."""
+def test_payroll_domain_runtime_foreign_imports_within_allowlist() -> None:
+    """No new runtime foreign imports in payroll/domain beyond the allowlist."""
     violations: list[str] = []
     for path in _python_files(_PAYROLL_DOMAIN):
         rel = str(path.relative_to(_PAYROLL_DOMAIN))
-        found = set(_runtime_engine_imports(path))
+        found = set(_runtime_foreign_imports(path))
         if not found:
             continue
-        allowed = _ALLOWED_DOMAIN_ENGINE_IMPORTS.get(rel, set())
+        allowed = _ALLOWED_DOMAIN_FOREIGN_IMPORTS.get(rel, set())
         new = found - allowed
         if new:
             violations.append(f"{rel}: {sorted(new)}")
     assert not violations, (
-        "New runtime ccnl_engine.engine imports found in payroll/domain:\n"
-        + "\n".join(violations)
+        "New runtime foreign imports found in payroll/domain:\n" + "\n".join(violations)
     )
 
 
@@ -228,20 +241,21 @@ def test_integration_cases_are_valid_json() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Test: zero engine.payroll imports anywhere in the repository
+# Test: zero imports of the removed engine wrapper anywhere in the repository
 #
-# engine.payroll was the legacy payroll namespace.  After its removal, no
-# source or test file may import from it.
+# ccnl_engine.engine was the legacy wrapper package (including the legacy
+# engine.payroll namespace).  After its removal, no source or test file may
+# import from it.
 # ---------------------------------------------------------------------------
 
 _REPO_ROOT = Path(__file__).parent.parent.parent.parent
 
 
-def _engine_payroll_imports(path: Path) -> list[str]:
-    """Return any runtime import referencing ccnl_engine.engine.payroll.*.
+def _engine_wrapper_imports(path: Path) -> list[str]:
+    """Return any runtime import referencing ccnl_engine.engine.*.
 
     Returns:
-        List of module paths starting with ``ccnl_engine.engine.payroll``.
+        List of module paths starting with ``ccnl_engine.engine``.
     """
     tree = ast.parse(path.read_text(encoding="utf-8"))
     tc_ids = _type_checking_node_ids(tree)
@@ -250,21 +264,24 @@ def _engine_payroll_imports(path: Path) -> list[str]:
         for node in ast.walk(tree)
         if id(node) not in tc_ids
         and isinstance(node, ast.ImportFrom)
-        and (node.module or "").startswith("ccnl_engine.engine.payroll")
+        and (
+            node.module == "ccnl_engine.engine"
+            or (node.module or "").startswith("ccnl_engine.engine.")
+        )
     ]
 
 
-def test_no_engine_payroll_imports() -> None:
-    """No file in src/ or tests/ may import from ccnl_engine.engine.payroll.*."""
+def test_no_engine_wrapper_imports() -> None:
+    """No file in src/ or tests/ may import from ccnl_engine.engine.*."""
     violations: list[str] = []
     for root in (_REPO_ROOT / "src", _REPO_ROOT / "tests"):
         for path in _python_files(root):
-            found = _engine_payroll_imports(path)
+            found = _engine_wrapper_imports(path)
             if found:
                 rel = str(path.relative_to(_REPO_ROOT))
                 violations.append(f"{rel}: {sorted(set(found))}")
-    assert not violations, (
-        "Forbidden ccnl_engine.engine.payroll imports found:\n" + "\n".join(violations)
+    assert not violations, "Forbidden ccnl_engine.engine imports found:\n" + "\n".join(
+        violations
     )
 
 
@@ -278,7 +295,7 @@ def test_no_engine_payroll_imports() -> None:
 
 _ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
     "ccnl_engine/__init__.py",
-    "ccnl_engine/engine/contract/domain/identity/__init__.py",
+    "ccnl_engine/contract/domain/identity/__init__.py",
     "ccnl_engine/payroll/domain/events/__init__.py",
     "ccnl_engine/payroll/domain/pay_items/__init__.py",
 })

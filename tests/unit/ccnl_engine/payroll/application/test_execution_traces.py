@@ -6,15 +6,14 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.capability_catalog import CapabilityGapKind
-from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from ccnl_engine.contract.domain.category import WorkerCategory
+from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application._capability_traces import build_traces
 from ccnl_engine.payroll.application._run_decisions import worker_category_decision
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityGapKind
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import SeniorityMonths
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
@@ -36,11 +35,13 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
+from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
 from tests.helpers import year_input
 
 if TYPE_CHECKING:
@@ -53,7 +54,7 @@ _PAYMENT = date(_YEAR, 1, 28)
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _COMMERCIO = "commercio-confcommercio.json"
 _FISE = "servizi-postali-appalto-fise.json"
-_RESOLVER = PolicyResolver.load()
+_RESOLVER = load_policy_resolver()
 _PDR = load_variable_pay_rules(_YEAR).pdr
 
 

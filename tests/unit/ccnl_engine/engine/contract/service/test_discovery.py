@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ccnl_engine.engine.contract.service.discovery import (
+from ccnl_engine.contract.service.discovery import (
     CcnlId,
     CcnlInfo,
     _load_all,
@@ -12,7 +12,7 @@ from ccnl_engine.engine.contract.service.discovery import (
     list_ccnls,
     search_ccnls,
 )
-from ccnl_engine.engine.errors import UnknownCcnlError
+from ccnl_engine.shared.domain.errors import UnknownCcnlError
 
 
 class TestListCcnls:

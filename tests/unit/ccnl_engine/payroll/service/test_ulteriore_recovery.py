@@ -12,8 +12,7 @@ from datetime import date
 from decimal import Decimal
 from functools import cache
 
-from ccnl_engine.engine.contract.domain.identity import TaxSector
-from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
@@ -31,6 +30,7 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.ytd_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
+from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef
 from tests.helpers import year_input
 

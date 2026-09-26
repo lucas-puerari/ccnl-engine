@@ -1,7 +1,8 @@
 """Data-driven policy resolver for the period-first payroll engine.
 
-:class:`PolicyResolver` loads a versioned JSON ruleset from the bundled
-knowledge package and maps pay-item kinds to per-axis treatment outcomes.
+:class:`PolicyResolver` maps pay-item kinds to per-axis treatment outcomes
+from an ordered list of rules. Loading the bundled ruleset is a service
+concern: see :func:`~ccnl_engine.payroll.service.policy_loader.load_policy_resolver`.
 
 Each axis independently reports one of its concrete treatment values,
 ``NOT_APPLICABLE`` (the concept does not apply to this item type), or
@@ -17,15 +18,11 @@ Design notes:
 
 from __future__ import annotations
 
-import importlib.resources
-import json
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 from typing import Literal
-
-from ccnl_engine.engine.io.service.bundled import read_bundled
 
 __all__ = [
     "ContributionAxis",
@@ -230,18 +227,6 @@ class PolicyResolver:
         for rule in rules:
             for kind in rule.kinds:
                 self._index.setdefault(kind, []).append(rule)
-
-    @classmethod
-    def load(cls) -> PolicyResolver:
-        """Load the bundled Italian ruleset from ``knowledge/policies/data/``.
-
-        Returns:
-            A :class:`PolicyResolver` backed by the built-in ``it.json`` file.
-        """
-        pkg = importlib.resources.files("ccnl_engine.knowledge.policies.data")
-        raw = read_bundled(pkg, "it.json")
-        data: list[dict[str, object]] = json.loads(raw)
-        return cls([_Rule.from_dict(r) for r in data])
 
     def resolve(
         self,

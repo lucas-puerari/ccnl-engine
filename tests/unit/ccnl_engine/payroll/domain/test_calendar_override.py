@@ -6,7 +6,6 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
     ExtraMonthSchedule,
@@ -16,6 +15,7 @@ from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _YEAR = 2026
 _PAYMENT_MONTH = CalendarOverrideReason.PAYMENT_MONTH

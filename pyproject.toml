@@ -96,18 +96,18 @@ ignore = [
 # them to TYPE_CHECKING blocks, breaking model_validate and field resolution.
 # Applies to Pydantic model files and primitives.py (Bracket is a dataclass
 # whose field types Pydantic resolves at runtime via get_type_hints).
-"src/ccnl_engine/engine/tax/domain/irpef_rules.py" = ["TCH"]
-"src/ccnl_engine/engine/tax/domain/contribution_rules.py" = ["TCH"]
-"src/ccnl_engine/engine/tax/domain/tfr_rules.py" = ["TCH"]
-"src/ccnl_engine/engine/tax/domain/credit_rules.py" = ["TCH"]
-"src/ccnl_engine/engine/tax/domain/ruleset.py" = ["TCH"]
-"src/ccnl_engine/engine/tax/domain/family.py" = ["TCH"]
-"src/ccnl_engine/engine/contract/domain/**" = ["TCH"]
+"src/ccnl_engine/tax/domain/irpef_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/contribution_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/tfr_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/credit_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/ruleset.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/family.py" = ["TCH"]
+"src/ccnl_engine/contract/domain/**" = ["TCH"]
 "src/ccnl_engine/payroll/domain/**" = ["TCH"]
 "src/ccnl_engine/payroll/application/**" = ["TCH"]
-"src/ccnl_engine/engine/surtax/domain/**" = ["TCH"]
-"src/ccnl_engine/engine/metadata/domain/**" = ["TCH"]
-"src/ccnl_engine/engine/primitives/domain/primitives.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/surtax_rules.py" = ["TCH"]
+"src/ccnl_engine/provenance/domain/ruleset_identity.py" = ["TCH"]
+"src/ccnl_engine/shared/domain/primitives.py" = ["TCH"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -208,16 +208,10 @@ path = "scripts/packaging/build_hook.py"
 # ---------------------------------------------------------------------------
 [tool.mutmut]
 source_paths = [
-    "src/ccnl_engine/engine/payroll/service/contributions.py",
-    "src/ccnl_engine/engine/payroll/service/irpef.py",
-    "src/ccnl_engine/engine/payroll/service/ledger_builder/_contributions.py",
-    "src/ccnl_engine/engine/payroll/service/ledger_builder/_earnings.py",
-    "src/ccnl_engine/engine/payroll/service/ledger_builder/_special.py",
-    "src/ccnl_engine/engine/payroll/domain/ledger.py",
-    "src/ccnl_engine/engine/payroll/service/rounding.py",
-    "src/ccnl_engine/engine/payroll/service/fiscal_helpers.py",
-    "src/ccnl_engine/engine/payroll/service/fiscal_contributions.py",
-    "src/ccnl_engine/engine/payroll/service/fiscal_deductions.py",
+    "src/ccnl_engine/payroll/service/contributions.py",
+    "src/ccnl_engine/payroll/service/irpef.py",
+    "src/ccnl_engine/payroll/domain/ledger.py",
+    "src/ccnl_engine/payroll/service/rounding.py",
 ]
 # Exclude docs tests that load scripts at their original filesystem path.
 # Limit collection to payroll unit tests; copy full src so imports resolve.

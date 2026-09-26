@@ -10,7 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
+from ccnl_engine.knowledge.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.application._capability_traces import capability_report
@@ -79,8 +79,8 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+    from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
 
 _ZERO = Decimal(0)
@@ -99,7 +99,7 @@ def calculate_period(
         request: Period calculation input: CCNL, level, period, YTD state and
             optional variable events.
         repo: Optional knowledge repository. Uses
-            :class:`~ccnl_engine.engine.io.service.bundled_knowledge_repository\
+            :class:`~ccnl_engine.knowledge.service.bundled_knowledge_repository\
 .BundledKnowledgeRepository` when ``None``.
         resolver: Optional pre-loaded :class:`~ccnl_engine.payroll.domain.policy\
 .PolicyResolver`.  When ``None``, the bundled Italian ruleset is loaded on every

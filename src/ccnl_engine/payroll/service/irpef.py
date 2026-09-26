@@ -19,16 +19,16 @@ from __future__ import annotations
 from decimal import ROUND_FLOOR, Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.tax.domain.irpef_rules import WorkDeductionRules
 from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.tax.domain.irpef_rules import WorkDeductionRules
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
-    from ccnl_engine.engine.tax.domain.credit_rules import SommaEsenteRules
-    from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
-    from ccnl_engine.engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.credit_rules import SommaEsenteRules
+    from ccnl_engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
+    from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.surtax_rules import SurtaxBracket
 
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)
@@ -201,7 +201,7 @@ def surtax_from_brackets(
     Args:
         taxable_income: IRPEF taxable base (gross annual minus employee INPS).
         brackets: Ordered sequence of
-            :class:`~ccnl_engine.engine.surtax.domain.rules.SurtaxBracket`
+            :class:`~ccnl_engine.tax.domain.surtax_rules.SurtaxBracket`
             entries; the last entry must have ``up_to=None``.
         exemption_threshold: Full-exemption threshold: if
             ``taxable_income <= exemption_threshold`` the surtax is zero.
