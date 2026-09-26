@@ -18,8 +18,21 @@ See [Guide: Employment types](../domain/employment-types.md) and
     options:
       members:
         - PayrollRequest
+        - PayrollYearRequest
         - PayrollRun
         - EmploymentFacts
+
+## Year calendar
+
+`PayrollYearRequest` derives the calendar from the CCNL when `calendar` is
+omitted. A different calendar is accepted only as a validated
+`CalendarOverride`.
+
+::: ccnl_engine.payroll.domain.calendar_override
+    options:
+      members:
+        - CalendarOverride
+        - CalendarOverrideReason
 
 ::: ccnl_engine.payroll.domain.employer
     options:

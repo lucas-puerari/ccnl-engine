@@ -33,27 +33,14 @@ print(f"Employer cost:  {result.period_employer_cost} EUR")
 # ── Full-year calculation ────────────────────────────────────────────────────
 
 from ccnl_engine import PayrollYearRequest  # noqa: E402
-from ccnl_engine.payroll.domain.calendar import (  # noqa: E402
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
 
+# The calendar is derived from the CCNL: Commercio grants tredicesima and
+# quattordicesima, so the year has 14 runs.
 year_result = engine.calculate_year(
     PayrollYearRequest(
         year=2026,
         ccnl_slug="commercio-confcommercio.json",
         level_code="4",
-        calendar=WorkCalendar(
-            year=2026,
-            extra_months=(
-                ExtraMonthSchedule(
-                    kind=ExtraMonthKind.THIRTEENTH,
-                    name="tredicesima",
-                    payment_month=12,
-                ),
-            ),
-        ),
     )
 )
 

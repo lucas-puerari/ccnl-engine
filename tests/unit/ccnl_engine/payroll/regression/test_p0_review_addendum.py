@@ -34,11 +34,6 @@ from ccnl_engine.engine.errors import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
@@ -97,19 +92,6 @@ def _req(
     )
 
 
-def _calendar_13() -> WorkCalendar:
-    return WorkCalendar(
-        year=_YEAR,
-        extra_months=(
-            ExtraMonthSchedule(
-                kind=ExtraMonthKind.THIRTEENTH,
-                name="tredicesima",
-                payment_month=12,
-            ),
-        ),
-    )
-
-
 # ---------------------------------------------------------------------------
 # Bonus duplicated across extra month run
 #
@@ -127,15 +109,13 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
     containing a 100 EUR bonus, annual_gross must equal baseline + 100.
     Expected: diff == Decimal("100.00").
     """
-    calendar = _calendar_13()
     bonus = BonusEvent(event_date=date(_YEAR, 12, 15), amount=Decimal("100.00"))
 
-    result_base = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=calendar)
+    result_base = calculate_year(_YEAR, _CCNL, _LEVEL)
     result_with = calculate_year(
         _YEAR,
         _CCNL,
         _LEVEL,
-        calendar=calendar,
         period_events={12: (bonus,)},
     )
 

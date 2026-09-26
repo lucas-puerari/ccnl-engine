@@ -23,7 +23,6 @@ result = ...  # AnnualEstimateInput / estimate_annual no longer available
 from datetime import date
 
 from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun, PayrollYearRequest
-from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
 
 engine = PayrollEngine.bundled()
 
@@ -39,16 +38,12 @@ result = engine.calculate(
 print(result.period_gross)
 print(result.period_net)
 
-# Full year (13-month calendar)
+# Full year: the calendar is derived from the CCNL (13 runs for metalmeccanico)
 year = engine.calculate_year(
     PayrollYearRequest(
         year=2026,
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        calendar=WorkCalendar(
-            year=2026,
-            extra_months=(ExtraMonthSchedule(name="tredicesima", payment_month=12),),
-        ),
     )
 )
 print(year.annual_gross)
@@ -61,7 +56,7 @@ print(year.annual_gross)
 | Input model | `AnnualEstimateInput` | `PayrollYearRequest` |
 | Output model | `AnnualEstimate` | `YearCalculationResult` |
 | YTD state | internal, not exposed | threaded via `PeriodState` |
-| Run sequence | implicit (annual) | explicit via `WorkCalendar` |
+| Run sequence | implicit (annual) | derived from the CCNL; `CalendarOverride` with a reason to change it |
 | Events | via `PeriodPayrollInput` | via `period_events` dict |
 
 ## `estimate_annual` is removed

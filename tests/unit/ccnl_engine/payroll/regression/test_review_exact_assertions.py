@@ -31,11 +31,7 @@ import pytest
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -59,19 +55,6 @@ _YEAR = 2026
 # so they are included in regular monthly runs but excluded from the tredicesima.
 _CCNL_WITH_ALLOWANCES = "igiene-ambientale-utilitalia.json"
 _LEVEL_WITH_ALLOWANCES = "D1"
-
-
-def _calendar_13() -> WorkCalendar:
-    return WorkCalendar(
-        year=_YEAR,
-        extra_months=(
-            ExtraMonthSchedule(
-                kind=ExtraMonthKind.THIRTEENTH,
-                name="tredicesima",
-                payment_month=12,
-            ),
-        ),
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -129,7 +112,7 @@ def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     Source: REVIEW.md §4.  With 13 runs the year produces 65 entries, but only
     60 distinct IDs because the two December runs share entry IDs.
     """
-    result = calculate_year(_YEAR, _CCNL, _LEVEL, calendar=_calendar_13())
+    result = calculate_year(_YEAR, _CCNL, _LEVEL)
 
     all_ids = [e.entry_id for r in result.period_results for e in r.ledger_entries]
     unique_ids = set(all_ids)

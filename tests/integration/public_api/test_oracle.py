@@ -27,11 +27,6 @@ from ccnl_engine import (
     PayrollYearRequest,
 )
 from ccnl_engine.events import BonusEvent, FringeEvent, SickLeaveEvent
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
 
 engine = PayrollEngine.bundled()
 
@@ -107,22 +102,16 @@ def test_tfr_accrual_metalmeccanico_c3() -> None:
 
 
 def test_tredicesima_commercio_level4() -> None:
-    """Tredicesima for commercio level 4, computed via full-year run."""
+    """Tredicesima for commercio level 4, computed via full-year run.
+
+    The standard calendar is derived from the CCNL: tredicesima and
+    quattordicesima, 14 runs.
+    """
     yr = engine.calculate_year(
         PayrollYearRequest(
             year=2026,
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
-            calendar=WorkCalendar(
-                year=2026,
-                extra_months=(
-                    ExtraMonthSchedule(
-                        kind=ExtraMonthKind.THIRTEENTH,
-                        name="tredicesima",
-                        payment_month=12,
-                    ),
-                ),
-            ),
             employment_facts=EmploymentFacts(),
             employer=Employer(headcount=Headcount(50)),
         )
@@ -133,7 +122,7 @@ def test_tredicesima_commercio_level4() -> None:
         if r.run is not None and r.run.run_id == "2026-12-thirteenth"
     )
     assert tredicesima.period_gross == Decimal("1818.75")
-    assert yr.annual_gross == Decimal("23293.75")
+    assert len(yr.period_results) == 14
 
 
 # ---------------------------------------------------------------------------

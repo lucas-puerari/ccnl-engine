@@ -14,7 +14,6 @@ from ccnl_engine import (
     PayrollRun,
     PayrollYearRequest,
 )
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -46,7 +45,6 @@ def _annual_employer_cost(employer: Employer) -> Decimal:
             year=2026,
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
-            calendar=WorkCalendar(year=2026),
             employer=employer,
         )
     )

@@ -97,6 +97,17 @@ Never derived from the entitlement.
 
 `WithholdingSchedule`, `WithholdingSlot`, `PeriodCalculationRequest.withholding_schedule`
 
+### calendar override (deroga al calendario)
+
+A calendar that replaces the one derived from the CCNL, with a domain
+reason and a note.  `PAYMENT_MONTH` moves when an extra month is paid, its
+12-month accrual window ending in the payment month, and keeps the
+entitlement unchanged; `MORE_FAVOURABLE_TREATMENT`
+records an agreement granting more than the CCNL (art. 2077 c.c.).  No
+reason allows dropping or lowering an extra month the CCNL grants.
+
+`CalendarOverride`, `CalendarOverrideReason`, `YearCalculationResult.calendar`
+
 ### calculation status (stato del calcolo)
 
 How far a result can be relied upon, from least to most severe:
