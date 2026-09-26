@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from decimal import Decimal
-from typing import TYPE_CHECKING, final
+from typing import TYPE_CHECKING, ClassVar, final
 
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import Permanent
@@ -62,6 +62,9 @@ class PeriodState:
             (L. 207/2024).
     """
 
+    SCHEMA_VERSION: ClassVar[int] = 1
+
+    tax_year: int | None = None
     regular_periods_closed: int = 0
     tax_withholding_periods_closed: int = 0
     closed_run_ids: frozenset[str] = field(default_factory=frozenset)
@@ -72,14 +75,23 @@ class PeriodState:
     somma_esente: SommaEsenteAccount = field(default_factory=SommaEsenteAccount)
 
     def __post_init__(self) -> None:
-        """Validate counter invariants on construction.
+        """Validate structural invariants on construction.
 
         Raises:
-            ValueError: When counters violate ordering or range constraints.
+            ValueError: When any field violates a range or ordering constraint.
         """
+        if self.tax_year is not None and self.tax_year < 2020:
+            msg = f"tax_year must be >= 2020; got {self.tax_year}"
+            raise ValueError(msg)
         if self.regular_periods_closed < 0:
             msg = (
                 f"regular_periods_closed must be >= 0; "
+                f"got {self.regular_periods_closed}"
+            )
+            raise ValueError(msg)
+        if self.regular_periods_closed > 12:
+            msg = (
+                f"regular_periods_closed must be <= 12; "
                 f"got {self.regular_periods_closed}"
             )
             raise ValueError(msg)
@@ -89,6 +101,12 @@ class PeriodState:
                 f"({self.tax_withholding_periods_closed}) "
                 f"must be >= regular_periods_closed "
                 f"({self.regular_periods_closed})"
+            )
+            raise ValueError(msg)
+        if self.tax_withholding_periods_closed > 14:
+            msg = (
+                f"tax_withholding_periods_closed must be <= 14; "
+                f"got {self.tax_withholding_periods_closed}"
             )
             raise ValueError(msg)
 
@@ -162,6 +180,29 @@ class PeriodCalculationRequest:
     category: str | None = None
     extra_month_accrual_start: int = 1
     extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
+
+    def __post_init__(self) -> None:
+        """Guard against cross-year state being passed into a new tax year.
+
+        When ``opening_state.tax_year`` is set, it must match the period year.
+        States produced by :func:`~ccnl_engine.payroll.application\
+.calculate_period.calculate_period` always carry ``tax_year``; manually
+        constructed states default to ``None`` and are not checked.
+
+        Raises:
+            ValueError: When ``opening_state.tax_year`` is not ``None`` and
+                differs from ``period_id.year``.
+        """
+        if (
+            self.opening_state.tax_year is not None
+            and self.opening_state.tax_year != self.period_id.year
+        ):
+            msg = (
+                f"opening_state.tax_year ({self.opening_state.tax_year}) "
+                f"does not match period year ({self.period_id.year}): "
+                "pass PeriodState.zero() to start a new tax year"
+            )
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True)

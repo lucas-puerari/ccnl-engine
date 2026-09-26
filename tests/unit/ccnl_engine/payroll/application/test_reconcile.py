@@ -29,7 +29,11 @@ from ccnl_engine.payroll.domain.period import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax import TaxComputation
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    TaxYtd,
+    TrattamentoAccount,
+)
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -304,7 +308,7 @@ class TestI11StateTransition:
 
     def test_violation_when_regular_periods_closed_wrong(self) -> None:
         """I11 violation when regular_periods_closed is not correctly incremented."""
-        b = _Builder(closing_months=99)
+        b = _Builder(closing_months=2)  # expected 1 for the first period
         r = reconcile(b.build(), _OPENING)
         i11 = [v for v in r.violations if v.invariant_id == "I11"]
         msgs = [v.message for v in i11]
@@ -457,6 +461,58 @@ class TestI15NonNegativeGross:
         b = _Builder(period_gross=Decimal(0))
         r = reconcile(b.build(), _OPENING)
         assert [v for v in r.violations if v.invariant_id == "I15"] == []
+
+
+class TestI16CreditBounds:
+    """I16: closing trattamento.recovered must be in [0, recognized]."""
+
+    def test_no_violation_on_real_result(self) -> None:
+        """No I16 violation on a genuine calculate_period result."""
+        result, opening = _real_result()
+        r = reconcile(result, opening)
+        assert [v for v in r.violations if v.invariant_id == "I16"] == []
+
+    def test_violation_when_recovered_is_negative(self) -> None:
+        """I16 fires when closing.trattamento.recovered is negative.
+
+        A negative recovered value cannot be produced by the engine (which uses
+        max(0, ...) when accumulating) but can appear in a synthetic or
+        deserialized state with corrupted data.
+        """
+        neg_tratt = TrattamentoAccount(
+            recognized=Decimal("-5.00"),
+            recovered=Decimal("-10.00"),
+        )
+        result = _real_result()[0]
+        bad_result = type(result)(
+            period_id=result.period_id,
+            payment_date=result.payment_date,
+            period_gross=result.period_gross,
+            period_net=result.period_net,
+            period_employer_cost=result.period_employer_cost,
+            closing_state=PeriodState(
+                regular_periods_closed=result.closing_state.regular_periods_closed,
+                tax_withholding_periods_closed=(
+                    result.closing_state.tax_withholding_periods_closed
+                ),
+                closed_run_ids=result.closing_state.closed_run_ids,
+                earnings=result.closing_state.earnings,
+                fringe=result.closing_state.fringe,
+                tax=result.closing_state.tax,
+                trattamento=neg_tratt,
+                somma_esente=result.closing_state.somma_esente,
+            ),
+            pay_items=result.pay_items,
+            ledger_entries=result.ledger_entries,
+            capability_report=result.capability_report,
+            contribution_breakdown=result.contribution_breakdown,
+            tax_computation=result.tax_computation,
+            benefit_breakdown=result.benefit_breakdown,
+            run=result.run,
+        )
+        violations = reconcile(bad_result, _OPENING).violations
+        i16 = [v for v in violations if v.invariant_id == "I16"]
+        assert len(i16) == 1
 
 
 class TestReconcileIntegration:

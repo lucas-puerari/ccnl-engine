@@ -400,8 +400,9 @@ class TestWithholdingDue:
     def test_withholding_due_negative_final_period_excess(self) -> None:
         """Final period with excess YTD produces negative withholding_due."""
         # metalmeccanico additional_months=13; twpc=12 → remaining=1
+        # regular_periods_closed=11 so the closing from this run reaches 12.
         opening = PeriodState(
-            regular_periods_closed=12,
+            regular_periods_closed=11,
             tax_withholding_periods_closed=12,
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
@@ -411,7 +412,7 @@ class TestWithholdingDue:
     def test_ordinary_tax_negative_in_final_period_with_excess(self) -> None:
         """ordinary_tax is negative in the final period when YTD exceeds liability."""
         opening = PeriodState(
-            regular_periods_closed=12,
+            regular_periods_closed=11,
             tax_withholding_periods_closed=12,
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
