@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Agenzie Marittime I481, level 4, 2026-01-01, permanent, no seniority.",
   "_notes": [
     "01/01/2026 is the third tranche (valid_from 2026-01-01): L4 paga conglobata = 2137.70 EUR/month.",

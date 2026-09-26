@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Sistemazioni Idraulico-Forestali (Impiegati), Level I4, 2026-06-01, permanent.",
   "_notes": [
     "Conglobated model. Hourly divisor: 169. Additional months: 14.",

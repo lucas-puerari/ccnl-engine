@@ -1,4 +1,5 @@
 {
+  "verification": "source_linked",
   "_description": "Golden case: CCNL Commercio-Confcommercio, Level 4, 2026-09-01, permanent, full-time, no seniority.",
   "_notes": [
     "Nov-2025 tranche: base=1257.46, contingenza=524.22, EDR=2.07.",
@@ -6,6 +7,12 @@
     "INPS rates: employee 9.19%, employer 28.98% (commerce, ≤50 employees).",
     "Art. 13 TUIR deduction: piecewise-linear at gross_income=24972.50."
   ],
+  "source": {
+    "document": "Tabelle retributive CCNL Terziario Distribuzione e Servizi 2024-2027 (rinnovo 22/03/2024, accordo integrativo 28/03/2024)",
+    "url": "https://www.lexplain.it/tabelle-retributive-ccnl-commercio-2024-2027/",
+    "section": "Level 4 minimo tabellare and contingenza, tranche from November 2025",
+    "notes": "Expected values computed by the engine; unverified against a real payslip"
+  },
   "inputs": {
     "ccnl_file": "commercio-confcommercio.json",
     "year": 2026,

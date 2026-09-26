@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "CCNL Autostrade e Trafori (I192) — level B, 2026-08-01 (first 2026 contract tranche)",
   "_notes": [
     "Split model: paga base + CONTINGENZA + EDR_1991 (13m) + EDR_1997 + IDR_2021.",

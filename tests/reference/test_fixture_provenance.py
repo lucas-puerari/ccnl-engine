@@ -1,49 +1,95 @@
 """Validate provenance metadata on reference case fixtures.
 
 These tests run against the JSON files in ``tests/reference/cases/`` and
-assert that their ``source`` blocks are structurally correct.  They are
-distinct from ``test_reference.py`` (which checks engine output) and from
-``test_result_schema_enforcement.py`` (which validates result/schema shape).
+assert that each declares a known ``verification`` status consistent with its
+``source`` block. The rules live in :mod:`tests.reference.provenance`.
 """
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 
-_CASES_DIR = Path(__file__).parent / "cases"
-_ALL_CASES = sorted(_CASES_DIR.glob("*.json"))
-_VALID_VERIFICATION_STATUSES = frozenset({"verified", "unverified"})
+from tests.reference.provenance import (
+    CASES_DIR,
+    count_by_status,
+    load_case,
+    verification_errors,
+)
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+_ALL_CASES = sorted(CASES_DIR.glob("*.json"))
+_SOURCE: dict[str, object] = {"document": "CCNL", "section": "Art. 1"}
 
 
-def _load(path: Path) -> dict[str, object]:
-    data: dict[str, object] = json.loads(path.read_text(encoding="utf-8"))
-    return data
+def test_cases_exist() -> None:
+    """The fixture directory is not accidentally empty."""
+    assert _ALL_CASES
 
 
 @pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
-def test_source_is_dict_when_present(path: Path) -> None:
-    """A 'source' field, if present, must be a JSON object, not a string."""
-    case = _load(path)
-    src = case.get("source")
-    if src is not None:
-        assert isinstance(src, dict), (
-            f"{path.name}: 'source' must be a dict, got {type(src).__name__}"
-        )
+def test_case_verification_is_valid(path: Path) -> None:
+    """Every case declares a known status consistent with its source."""
+    assert verification_errors(load_case(path)) == [], path.name
 
 
-@pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
-def test_verification_status_is_known_value(path: Path) -> None:
-    """'source.verification_status', if present, must be a known value."""
-    case = _load(path)
-    src = case.get("source")
-    if not isinstance(src, dict):
-        return
-    status = src.get("verification_status")
-    if status is not None:
-        assert status in _VALID_VERIFICATION_STATUSES, (
-            f"{path.name}: unknown verification_status {status!r}; "
-            f"allowed: {sorted(_VALID_VERIFICATION_STATUSES)}"
-        )
+def test_status_counts_cover_every_case() -> None:
+    """Every case falls into exactly one known status bucket."""
+    cases = [load_case(path) for path in _ALL_CASES]
+    assert sum(count_by_status(cases).values()) == len(cases)
+
+
+@pytest.mark.parametrize(
+    "case",
+    [
+        {"verification": "engine_generated"},
+        {"verification": "engine_generated", "source": _SOURCE},
+        {"verification": "source_linked", "source": _SOURCE},
+        {"verification": "verified", "source": _SOURCE},
+    ],
+)
+def test_valid_cases_are_accepted(case: dict[str, object]) -> None:
+    """Consistent status and source pass validation."""
+    assert verification_errors(case) == []
+
+
+@pytest.mark.parametrize(
+    ("case", "fragment"),
+    [
+        ({}, "missing 'verification'"),
+        ({"source": _SOURCE}, "missing 'verification'"),
+        ({"verification": "unverified"}, "unknown verification"),
+        ({"verification": "source_linked"}, "requires a non-empty 'source'"),
+        (
+            {"verification": "source_linked", "source": {}},
+            "requires a non-empty 'source'",
+        ),
+        ({"verification": "verified"}, "requires a non-empty 'source'"),
+        (
+            {"verification": "source_linked", "source": "CCNL Art. 1"},
+            "'source' must be an object",
+        ),
+    ],
+)
+def test_invalid_cases_are_rejected(case: dict[str, object], fragment: str) -> None:
+    """Missing, unknown, or unsupported statuses are rejected."""
+    errors = verification_errors(case)
+    assert len(errors) == 1
+    assert fragment in errors[0]
+
+
+def test_load_case_rejects_non_object(tmp_path: Path) -> None:
+    """A case file must hold a JSON object."""
+    path = tmp_path / "case.json"
+    path.write_text("[]", encoding="utf-8")
+    with pytest.raises(TypeError, match="must be a JSON object"):
+        load_case(path)
+
+
+def test_count_by_status_reports_zero_for_missing_buckets() -> None:
+    """Statuses with no cases still appear with a zero count."""
+    counts = count_by_status([{"verification": "engine_generated"}])
+    assert counts == {"verified": 0, "source_linked": 0, "engine_generated": 1}

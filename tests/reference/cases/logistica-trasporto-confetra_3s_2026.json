@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Logistica I100, Level 3S, 2026-01-01, permanent, full-time, no seniority, 50 employees.",
   "_notes": [
     "base_monthly is the conglobated minimum at second tranche (2026-01-01): 3S = 2160.37 (tab + EPA).",

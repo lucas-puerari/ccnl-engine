@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Lavoro Domestico convivente (D200), Level CS, 2026-01-01, permanent, 40h/week, seniority_count=2.",
   "_notes": [
     "withholding_exempt=True: employer is not sostituto d'imposta.",

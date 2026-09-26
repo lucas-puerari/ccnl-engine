@@ -1,4 +1,5 @@
 {
+  "verification": "source_linked",
   "_description": "Golden case: CCNL Aziende Termali Federterme (K461), Level 3, 2026-06-01, permanent.",
   "_notes": [
     "Split model: paga base (1193.48) + CONTINGENZA (516.42) + EDR (10.33) = 1720.23 EUR/month.",

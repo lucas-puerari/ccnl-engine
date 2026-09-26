@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "impiegati-tecnici-agricoli.json",
     "level_code": "3",

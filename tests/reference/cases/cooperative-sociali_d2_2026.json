@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Cooperative Sociali T151, Level D2, 2026-01-01, permanent, full-time, no seniority, 50 employees.",
   "_notes": [
     "base_monthly is the conglobated minimum at third tranche (2025-10-01): D2 = 1727.83. Divisore 165, 38h/week.",

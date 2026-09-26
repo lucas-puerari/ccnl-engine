@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Metalmeccanico PMI Unionmeccanica-Confapi, Level 5, 2026-09-01, permanent, full-time, no seniority, 50 employees.",
   "_notes": [
     "base_monthly is the minimo conglobato (includes contingenza=0 + terzo elemento=0) from the June 2026 tranche: 2245.87 €.",
