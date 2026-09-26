@@ -56,7 +56,12 @@
         {
           "valid_from": "2022-11-02",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -65,6 +70,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -96,6 +102,7 @@
             "valid_until": "2024-01-01",
             "value": "1586.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -118,6 +125,7 @@
             "valid_until": null,
             "value": "1701.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -139,6 +147,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -168,6 +177,7 @@
             "valid_until": "2024-01-01",
             "value": "1675.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -190,6 +200,7 @@
             "valid_until": null,
             "value": "1795.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -211,6 +222,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -240,6 +252,7 @@
             "valid_until": "2024-01-01",
             "value": "1786.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -262,6 +275,7 @@
             "valid_until": null,
             "value": "1913.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -283,6 +297,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -312,6 +327,7 @@
             "valid_until": "2024-01-01",
             "value": "1941.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -334,6 +350,7 @@
             "valid_until": null,
             "value": "2076.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -355,6 +372,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -384,6 +402,7 @@
             "valid_until": "2024-01-01",
             "value": "2692.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -406,6 +425,7 @@
             "valid_until": null,
             "value": "2886.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "allegato1736872056-pdf",
@@ -427,6 +447,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "allegato1736872056-pdf",
@@ -504,7 +525,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "d876fc69ddf9211ef493449943acdd017e77a7c3db60548103409fac20a71137",
+    "source_hash": "27d910eaa521a4af4b8c6eeb9f0ba59733eb8d2a79d572ffc02347d8d0e164d9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -530,6 +551,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-aran-2022-2024",
@@ -565,6 +587,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-aran-2022-2024",
@@ -600,6 +623,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-aran-2022-2024",
@@ -635,6 +659,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-sanita-aran-2022-2024",
@@ -658,6 +683,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-aran-2022-2024",
@@ -684,6 +710,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-aran-2022-2024",
@@ -706,6 +733,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-sanita-aran-2022-2024",

@@ -87,7 +87,12 @@
         {
           "valid_from": "2024-11-11",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -187,6 +192,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -217,6 +223,7 @@
             "valid_until": "2024-12-01",
             "value": "1289.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -239,6 +246,7 @@
             "valid_until": "2026-01-01",
             "value": "1401.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -261,6 +269,7 @@
             "valid_until": "2027-01-01",
             "value": "1469.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -283,6 +292,7 @@
             "valid_until": null,
             "value": "1560.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -304,6 +314,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -332,6 +343,7 @@
             "valid_until": "2024-12-01",
             "value": "1621.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -354,6 +366,7 @@
             "valid_until": "2026-01-01",
             "value": "1708.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -376,6 +389,7 @@
             "valid_until": "2027-01-01",
             "value": "1760.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -398,6 +412,7 @@
             "valid_until": null,
             "value": "1803.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -419,6 +434,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -447,6 +463,7 @@
             "valid_until": "2024-12-01",
             "value": "1657.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -469,6 +486,7 @@
             "valid_until": "2026-01-01",
             "value": "1746.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -491,6 +509,7 @@
             "valid_until": "2027-01-01",
             "value": "1799.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -513,6 +532,7 @@
             "valid_until": null,
             "value": "1843.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -534,6 +554,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -562,6 +583,7 @@
             "valid_until": "2024-12-01",
             "value": "1707.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -584,6 +606,7 @@
             "valid_until": "2026-01-01",
             "value": "1798.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -606,6 +629,7 @@
             "valid_until": "2027-01-01",
             "value": "1853.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -628,6 +652,7 @@
             "valid_until": null,
             "value": "1899.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -649,6 +674,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -677,6 +703,7 @@
             "valid_until": "2024-12-01",
             "value": "1745.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -699,6 +726,7 @@
             "valid_until": "2026-01-01",
             "value": "1839.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -721,6 +749,7 @@
             "valid_until": "2027-01-01",
             "value": "1894.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -743,6 +772,7 @@
             "valid_until": null,
             "value": "1941.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -764,6 +794,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -792,6 +823,7 @@
             "valid_until": "2024-12-01",
             "value": "1786.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -814,6 +846,7 @@
             "valid_until": "2026-01-01",
             "value": "1881.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -836,6 +869,7 @@
             "valid_until": "2027-01-01",
             "value": "1938.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -858,6 +892,7 @@
             "valid_until": null,
             "value": "1986.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -879,6 +914,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -907,6 +943,7 @@
             "valid_until": "2024-12-01",
             "value": "1878.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -929,6 +966,7 @@
             "valid_until": "2026-01-01",
             "value": "1978.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -951,6 +989,7 @@
             "valid_until": "2027-01-01",
             "value": "2037.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -973,6 +1012,7 @@
             "valid_until": null,
             "value": "2088.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -994,6 +1034,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -1022,6 +1063,7 @@
             "valid_until": "2024-12-01",
             "value": "2005.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1044,6 +1086,7 @@
             "valid_until": "2026-01-01",
             "value": "2111.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1066,6 +1109,7 @@
             "valid_until": "2027-01-01",
             "value": "2175.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1088,6 +1132,7 @@
             "valid_until": null,
             "value": "2229.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1109,6 +1154,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -1137,6 +1183,7 @@
             "valid_until": "2024-12-01",
             "value": "2136.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1159,6 +1206,7 @@
             "valid_until": "2026-01-01",
             "value": "2250.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1181,6 +1229,7 @@
             "valid_until": "2027-01-01",
             "value": "2318.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1203,6 +1252,7 @@
             "valid_until": null,
             "value": "2376.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1224,6 +1274,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -1252,6 +1303,7 @@
             "valid_until": "2024-12-01",
             "value": "2264.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1274,6 +1326,7 @@
             "valid_until": "2026-01-01",
             "value": "2385.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1296,6 +1349,7 @@
             "valid_until": "2027-01-01",
             "value": "2457.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1318,6 +1372,7 @@
             "valid_until": null,
             "value": "2518.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tessile-smi",
@@ -1351,6 +1406,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tessile-smi",
@@ -1370,6 +1426,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tessile-smi",
@@ -1557,7 +1614,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "4553aefcb3d88c7f80a08c30d20008ae46531e49ba5dc3c2f77214c0b3bf3480",
+    "source_hash": "4f06ae808e1ce55b6a6c115d3c138d3163b150e1997f2c7bd7d40f7b1562d6c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1583,6 +1640,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-tessile-smi-industria",
@@ -1618,6 +1676,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-tessile-smi-industria",
@@ -1653,6 +1712,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-tessile-smi-industria",
@@ -1676,6 +1736,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-tessile-smi-industria",
@@ -1702,6 +1763,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-tessile-smi-industria",
@@ -1724,6 +1786,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-tessile-smi-industria",

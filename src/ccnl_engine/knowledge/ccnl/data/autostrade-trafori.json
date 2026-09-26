@@ -72,6 +72,7 @@
             "valid_until": "2023-06-01",
             "value": "1189.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -94,6 +95,7 @@
             "valid_until": "2024-01-01",
             "value": "1223.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -116,6 +118,7 @@
             "valid_until": "2025-01-01",
             "value": "1243.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -138,6 +141,7 @@
             "valid_until": "2026-08-01",
             "value": "1291.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -160,6 +164,7 @@
             "valid_until": "2027-01-01",
             "value": "1334.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -182,6 +187,7 @@
             "valid_until": "2027-08-01",
             "value": "1378.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -204,6 +210,7 @@
             "valid_until": "2028-01-01",
             "value": "1419.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -226,6 +233,7 @@
             "valid_until": null,
             "value": "1459.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -260,6 +268,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -291,6 +300,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -322,6 +332,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -363,6 +374,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -382,6 +394,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -410,6 +423,7 @@
             "valid_until": "2023-06-01",
             "value": "1606.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -432,6 +446,7 @@
             "valid_until": "2024-01-01",
             "value": "1651.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -454,6 +469,7 @@
             "valid_until": "2025-01-01",
             "value": "1679.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -476,6 +492,7 @@
             "valid_until": "2026-08-01",
             "value": "1742.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -498,6 +515,7 @@
             "valid_until": "2027-01-01",
             "value": "1802.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -520,6 +538,7 @@
             "valid_until": "2027-08-01",
             "value": "1861.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -542,6 +561,7 @@
             "valid_until": "2028-01-01",
             "value": "1916.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -564,6 +584,7 @@
             "valid_until": null,
             "value": "1970.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -598,6 +619,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -629,6 +651,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -660,6 +683,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -701,6 +725,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -720,6 +745,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -748,6 +774,7 @@
             "valid_until": "2023-06-01",
             "value": "1760.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -770,6 +797,7 @@
             "valid_until": "2024-01-01",
             "value": "1810.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -792,6 +820,7 @@
             "valid_until": "2025-01-01",
             "value": "1840.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -814,6 +843,7 @@
             "valid_until": "2026-08-01",
             "value": "1910.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -836,6 +866,7 @@
             "valid_until": "2027-01-01",
             "value": "1975.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -858,6 +889,7 @@
             "valid_until": "2027-08-01",
             "value": "2040.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -880,6 +912,7 @@
             "valid_until": "2028-01-01",
             "value": "2100.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -902,6 +935,7 @@
             "valid_until": null,
             "value": "2160.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -936,6 +970,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -967,6 +1002,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -998,6 +1034,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1039,6 +1076,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1058,6 +1096,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1086,6 +1125,7 @@
             "valid_until": "2023-06-01",
             "value": "1843.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1108,6 +1148,7 @@
             "valid_until": "2024-01-01",
             "value": "1896.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1130,6 +1171,7 @@
             "valid_until": "2025-01-01",
             "value": "1927.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1152,6 +1194,7 @@
             "valid_until": "2026-08-01",
             "value": "2001.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1174,6 +1217,7 @@
             "valid_until": "2027-01-01",
             "value": "2069.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1196,6 +1240,7 @@
             "valid_until": "2027-08-01",
             "value": "2137.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1218,6 +1263,7 @@
             "valid_until": "2028-01-01",
             "value": "2200.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1240,6 +1286,7 @@
             "valid_until": null,
             "value": "2262.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1274,6 +1321,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1305,6 +1353,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1336,6 +1385,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1377,6 +1427,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1396,6 +1447,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1424,6 +1476,7 @@
             "valid_until": "2023-06-01",
             "value": "2010.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1446,6 +1499,7 @@
             "valid_until": "2024-01-01",
             "value": "2067.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1468,6 +1522,7 @@
             "valid_until": "2025-01-01",
             "value": "2101.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1490,6 +1545,7 @@
             "valid_until": "2026-08-01",
             "value": "2181.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1512,6 +1568,7 @@
             "valid_until": "2027-01-01",
             "value": "2256.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1534,6 +1591,7 @@
             "valid_until": "2027-08-01",
             "value": "2330.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1556,6 +1614,7 @@
             "valid_until": "2028-01-01",
             "value": "2398.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1578,6 +1637,7 @@
             "valid_until": null,
             "value": "2467.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1612,6 +1672,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1643,6 +1704,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1674,6 +1736,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1715,6 +1778,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1734,6 +1798,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1762,6 +1827,7 @@
             "valid_until": "2023-06-01",
             "value": "2093.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1784,6 +1850,7 @@
             "valid_until": "2024-01-01",
             "value": "2153.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1806,6 +1873,7 @@
             "valid_until": "2025-01-01",
             "value": "2188.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1828,6 +1896,7 @@
             "valid_until": "2026-08-01",
             "value": "2272.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1850,6 +1919,7 @@
             "valid_until": "2027-01-01",
             "value": "2349.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1872,6 +1942,7 @@
             "valid_until": "2027-08-01",
             "value": "2426.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1894,6 +1965,7 @@
             "valid_until": "2028-01-01",
             "value": "2498.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1916,6 +1988,7 @@
             "valid_until": null,
             "value": "2569.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1950,6 +2023,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -1981,6 +2055,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2012,6 +2087,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2053,6 +2129,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2072,6 +2149,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2100,6 +2178,7 @@
             "valid_until": "2023-06-01",
             "value": "2200.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2122,6 +2201,7 @@
             "valid_until": "2024-01-01",
             "value": "2263.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2144,6 +2224,7 @@
             "valid_until": "2025-01-01",
             "value": "2300.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2166,6 +2247,7 @@
             "valid_until": "2026-08-01",
             "value": "2388.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2188,6 +2270,7 @@
             "valid_until": "2027-01-01",
             "value": "2469.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2210,6 +2293,7 @@
             "valid_until": "2027-08-01",
             "value": "2550.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2232,6 +2316,7 @@
             "valid_until": "2028-01-01",
             "value": "2625.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2254,6 +2339,7 @@
             "valid_until": null,
             "value": "2700.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2288,6 +2374,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2319,6 +2406,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2350,6 +2438,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2391,6 +2480,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2410,6 +2500,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2438,6 +2529,7 @@
             "valid_until": "2023-06-01",
             "value": "2284.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2460,6 +2552,7 @@
             "valid_until": "2024-01-01",
             "value": "2348.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2482,6 +2575,7 @@
             "valid_until": "2025-01-01",
             "value": "2387.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2504,6 +2598,7 @@
             "valid_until": "2026-08-01",
             "value": "2478.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2526,6 +2621,7 @@
             "valid_until": "2027-01-01",
             "value": "2563.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2548,6 +2644,7 @@
             "valid_until": "2027-08-01",
             "value": "2647.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2570,6 +2667,7 @@
             "valid_until": "2028-01-01",
             "value": "2725.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2592,6 +2690,7 @@
             "valid_until": null,
             "value": "2803.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2626,6 +2725,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2657,6 +2757,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2688,6 +2789,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2729,6 +2831,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2748,6 +2851,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2776,6 +2880,7 @@
             "valid_until": "2023-06-01",
             "value": "2498.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2798,6 +2903,7 @@
             "valid_until": "2024-01-01",
             "value": "2569.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2820,6 +2926,7 @@
             "valid_until": "2025-01-01",
             "value": "2611.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2842,6 +2949,7 @@
             "valid_until": "2026-08-01",
             "value": "2711.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2864,6 +2972,7 @@
             "valid_until": "2027-01-01",
             "value": "2803.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2886,6 +2995,7 @@
             "valid_until": "2027-08-01",
             "value": "2895.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2908,6 +3018,7 @@
             "valid_until": "2028-01-01",
             "value": "2980.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2930,6 +3041,7 @@
             "valid_until": null,
             "value": "3065.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2964,6 +3076,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -2995,6 +3108,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3026,6 +3140,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3067,6 +3182,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3086,6 +3202,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3114,6 +3231,7 @@
             "valid_until": "2023-06-01",
             "value": "2795.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3136,6 +3254,7 @@
             "valid_until": "2024-01-01",
             "value": "2875.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3158,6 +3277,7 @@
             "valid_until": "2025-01-01",
             "value": "2922.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3180,6 +3300,7 @@
             "valid_until": "2026-08-01",
             "value": "3033.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3202,6 +3323,7 @@
             "valid_until": "2027-01-01",
             "value": "3137.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3224,6 +3346,7 @@
             "valid_until": "2027-08-01",
             "value": "3240.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3246,6 +3369,7 @@
             "valid_until": "2028-01-01",
             "value": "3335.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3268,6 +3392,7 @@
             "valid_until": null,
             "value": "3430.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3302,6 +3427,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3333,6 +3459,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3364,6 +3491,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3405,6 +3533,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3424,6 +3553,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3452,6 +3582,7 @@
             "valid_until": "2023-06-01",
             "value": "2795.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3474,6 +3605,7 @@
             "valid_until": "2024-01-01",
             "value": "2875.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3496,6 +3628,7 @@
             "valid_until": "2025-01-01",
             "value": "2922.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3518,6 +3651,7 @@
             "valid_until": "2026-08-01",
             "value": "3033.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3540,6 +3674,7 @@
             "valid_until": "2027-01-01",
             "value": "3137.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3562,6 +3697,7 @@
             "valid_until": "2027-08-01",
             "value": "3240.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3584,6 +3720,7 @@
             "valid_until": "2028-01-01",
             "value": "3335.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3606,6 +3743,7 @@
             "valid_until": null,
             "value": "3430.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3640,6 +3778,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3671,6 +3810,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3702,6 +3842,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3743,6 +3884,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3774,6 +3916,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3793,6 +3936,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3817,7 +3961,12 @@
         {
           "valid_from": "2023-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -3935,6 +4084,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-collettivo-autostrade-trafori",
@@ -3986,7 +4136,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "87b65dbe92d12880127d4b47b4ca79079bd251b0e27a04521ffed9f1c7522ae2",
+    "source_hash": "a047fab10d9ce289ce18dda11bd7eb6713d29b7cbd4ef3a592faa34def0fbf9d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4012,6 +4162,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autostrade-trafori",
@@ -4047,6 +4198,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autostrade-trafori",
@@ -4082,6 +4234,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autostrade-trafori",
@@ -4117,6 +4270,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autostrade-trafori",
@@ -4140,6 +4294,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autostrade-trafori",
@@ -4166,6 +4321,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autostrade-trafori",
@@ -4188,6 +4344,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autostrade-trafori",

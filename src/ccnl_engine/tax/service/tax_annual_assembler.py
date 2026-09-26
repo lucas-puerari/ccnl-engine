@@ -97,7 +97,11 @@ def _load_year_rules_cached(
         ruleset=_as_ruleset(tax_raw),
         inps_ruleset=_as_ruleset(inps_raw),
         irpef_brackets=rules.irpef_brackets,
+        irpef_brackets_provenance=rules.irpef_brackets_provenance,
         fixed_term_additional_rate=rules.fixed_term_additional_rate,
+        fixed_term_additional_rate_provenance=(
+            rules.fixed_term_additional_rate_provenance
+        ),
         inps=inps,
         apprentice=apprentice,
         domestic_contributions=rules.domestic_contributions,

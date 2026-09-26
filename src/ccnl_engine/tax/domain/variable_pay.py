@@ -6,6 +6,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ccnl_engine.provenance.domain.chain import RuleProvenance  # noqa: TC001
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetIdentity,  # noqa: TC001
 )
@@ -27,6 +28,7 @@ class FringeBenefitRules(BaseModel):
         threshold_with_children: Annual exemption for workers with at
             least one dependent child.
         ruleset: Provenance of the statutory source.
+        provenance: Source and status of the thresholds.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -34,6 +36,7 @@ class FringeBenefitRules(BaseModel):
     threshold_standard: Decimal = Field(gt=Decimal(0))
     threshold_with_children: Decimal = Field(gt=Decimal(0))
     ruleset: RulesetIdentity | None = None
+    provenance: RuleProvenance | None = None
 
 
 class PdRRules(BaseModel):
@@ -48,6 +51,7 @@ class PdRRules(BaseModel):
         flat_tax_rate: Substitutive income-tax rate (imposta sostitutiva).
         income_ceiling: Maximum gross employment income for eligibility.
         ruleset: Provenance of the statutory source.
+        provenance: Source and status of the PdR parameters.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -56,6 +60,7 @@ class PdRRules(BaseModel):
     flat_tax_rate: Decimal = Field(gt=Decimal(0), lt=Decimal(1))
     income_ceiling: Decimal = Field(gt=Decimal(0))
     ruleset: RulesetIdentity | None = None
+    provenance: RuleProvenance | None = None
 
 
 class VariablePayRules(BaseModel):

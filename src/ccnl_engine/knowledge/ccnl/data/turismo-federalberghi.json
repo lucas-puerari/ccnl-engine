@@ -61,7 +61,12 @@
         {
           "valid_from": "1990-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -161,6 +166,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -192,6 +198,7 @@
             "valid_until": "2024-07-01",
             "value": "2210.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -214,6 +221,7 @@
             "valid_until": "2025-06-01",
             "value": "2309.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -236,6 +244,7 @@
             "valid_until": "2026-05-01",
             "value": "2366.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -258,6 +267,7 @@
             "valid_until": "2027-04-01",
             "value": "2416.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -280,6 +290,7 @@
             "valid_until": "2027-11-01",
             "value": "2466.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -302,6 +313,7 @@
             "valid_until": null,
             "value": "2495.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -323,6 +335,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -352,6 +365,7 @@
             "valid_until": "2024-07-01",
             "value": "2046.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -374,6 +388,7 @@
             "valid_until": "2025-06-01",
             "value": "2138.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -396,6 +411,7 @@
             "valid_until": "2026-05-01",
             "value": "2191.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -418,6 +434,7 @@
             "valid_until": "2027-04-01",
             "value": "2237.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -440,6 +457,7 @@
             "valid_until": "2027-11-01",
             "value": "2283.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -462,6 +480,7 @@
             "valid_until": null,
             "value": "2310.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -483,6 +502,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -512,6 +532,7 @@
             "valid_until": "2024-07-01",
             "value": "1906.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -534,6 +555,7 @@
             "valid_until": "2025-06-01",
             "value": "1992.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -556,6 +578,7 @@
             "valid_until": "2026-05-01",
             "value": "2041.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -578,6 +601,7 @@
             "valid_until": "2027-04-01",
             "value": "2084.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -600,6 +624,7 @@
             "valid_until": "2027-11-01",
             "value": "2127.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -622,6 +647,7 @@
             "valid_until": null,
             "value": "2152.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -643,6 +669,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -672,6 +699,7 @@
             "valid_until": "2024-07-01",
             "value": "1742.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -694,6 +722,7 @@
             "valid_until": "2025-06-01",
             "value": "1821.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -716,6 +745,7 @@
             "valid_until": "2026-05-01",
             "value": "1866.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -738,6 +768,7 @@
             "valid_until": "2027-04-01",
             "value": "1905.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -760,6 +791,7 @@
             "valid_until": "2027-11-01",
             "value": "1944.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -782,6 +814,7 @@
             "valid_until": null,
             "value": "1967.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -803,6 +836,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -832,6 +866,7 @@
             "valid_until": "2024-07-01",
             "value": "1643.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -854,6 +889,7 @@
             "valid_until": "2025-06-01",
             "value": "1717.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -876,6 +912,7 @@
             "valid_until": "2026-05-01",
             "value": "1759.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -898,6 +935,7 @@
             "valid_until": "2027-04-01",
             "value": "1797.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -920,6 +958,7 @@
             "valid_until": "2027-11-01",
             "value": "1834.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -942,6 +981,7 @@
             "valid_until": null,
             "value": "1855.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -963,6 +1003,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -992,6 +1033,7 @@
             "valid_until": "2024-07-01",
             "value": "1550.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1014,6 +1056,7 @@
             "valid_until": "2025-06-01",
             "value": "1620.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1036,6 +1079,7 @@
             "valid_until": "2026-05-01",
             "value": "1660.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1058,6 +1102,7 @@
             "valid_until": "2027-04-01",
             "value": "1695.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1080,6 +1125,7 @@
             "valid_until": "2027-11-01",
             "value": "1730.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1102,6 +1148,7 @@
             "valid_until": null,
             "value": "1750.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1123,6 +1170,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1152,6 +1200,7 @@
             "valid_until": "2024-07-01",
             "value": "1454.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1174,6 +1223,7 @@
             "valid_until": "2025-06-01",
             "value": "1519.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1196,6 +1246,7 @@
             "valid_until": "2026-05-01",
             "value": "1557.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1218,6 +1269,7 @@
             "valid_until": "2027-04-01",
             "value": "1590.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1240,6 +1292,7 @@
             "valid_until": "2027-11-01",
             "value": "1623.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1262,6 +1315,7 @@
             "valid_until": null,
             "value": "1641.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1283,6 +1337,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1312,6 +1367,7 @@
             "valid_until": "2024-07-01",
             "value": "1398.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1334,6 +1390,7 @@
             "valid_until": "2025-06-01",
             "value": "1461.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1356,6 +1413,7 @@
             "valid_until": "2026-05-01",
             "value": "1497.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1378,6 +1436,7 @@
             "valid_until": "2027-04-01",
             "value": "1529.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1400,6 +1459,7 @@
             "valid_until": "2027-11-01",
             "value": "1560.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1422,6 +1482,7 @@
             "valid_until": null,
             "value": "1578.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1443,6 +1504,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1472,6 +1534,7 @@
             "valid_until": "2024-07-01",
             "value": "1378.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1494,6 +1557,7 @@
             "valid_until": "2025-06-01",
             "value": "1440.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1516,6 +1580,7 @@
             "valid_until": "2026-05-01",
             "value": "1476.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1538,6 +1603,7 @@
             "valid_until": "2027-04-01",
             "value": "1507.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1560,6 +1626,7 @@
             "valid_until": "2027-11-01",
             "value": "1538.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1582,6 +1649,7 @@
             "valid_until": null,
             "value": "1556.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1603,6 +1671,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1632,6 +1701,7 @@
             "valid_until": "2024-07-01",
             "value": "1291.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1654,6 +1724,7 @@
             "valid_until": "2025-06-01",
             "value": "1350.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1676,6 +1747,7 @@
             "valid_until": "2026-05-01",
             "value": "1383.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1698,6 +1770,7 @@
             "valid_until": "2027-04-01",
             "value": "1412.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1720,6 +1793,7 @@
             "valid_until": "2027-11-01",
             "value": "1441.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1742,6 +1816,7 @@
             "valid_until": null,
             "value": "1458.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1763,6 +1838,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-confcommercio-2010-pdf",
@@ -1871,7 +1947,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "e36073a41c0826616c01daa3e31c33f9112ea7912c8061cb8daaa3a6a9991762",
+    "source_hash": "2064de2bddb2e555b709d4ee90b1f7a3b9473fa0726cc7e7ead4323c012ea819",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1897,6 +1973,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-federalberghi-confcommercio",
@@ -1932,6 +2009,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-federalberghi-confcommercio",
@@ -1967,6 +2045,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-turismo-federalberghi-confcommercio",
@@ -1990,6 +2069,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-federalberghi-confcommercio",
@@ -2016,6 +2096,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-federalberghi-confcommercio",
@@ -2038,6 +2119,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-turismo-federalberghi-confcommercio",

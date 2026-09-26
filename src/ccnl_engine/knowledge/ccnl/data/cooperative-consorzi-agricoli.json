@@ -66,6 +66,7 @@
             "valid_until": "2025-05-01",
             "value": "1223.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -88,6 +89,7 @@
             "valid_until": "2026-05-01",
             "value": "1242.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -110,6 +112,7 @@
             "valid_until": "2027-02-01",
             "value": "1261.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -132,6 +135,7 @@
             "valid_until": null,
             "value": "1280.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -153,6 +157,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -181,6 +186,7 @@
             "valid_until": "2025-05-01",
             "value": "1450.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -203,6 +209,7 @@
             "valid_until": "2026-05-01",
             "value": "1473.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -225,6 +232,7 @@
             "valid_until": "2027-02-01",
             "value": "1495.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -247,6 +255,7 @@
             "valid_until": null,
             "value": "1518.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -268,6 +277,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -296,6 +306,7 @@
             "valid_until": "2025-05-01",
             "value": "1563.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -318,6 +329,7 @@
             "valid_until": "2026-05-01",
             "value": "1588.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -340,6 +352,7 @@
             "valid_until": "2027-02-01",
             "value": "1612.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -362,6 +375,7 @@
             "valid_until": null,
             "value": "1636.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -383,6 +397,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -411,6 +426,7 @@
             "valid_until": "2025-05-01",
             "value": "1610.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -433,6 +449,7 @@
             "valid_until": "2026-05-01",
             "value": "1635.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -455,6 +472,7 @@
             "valid_until": "2027-02-01",
             "value": "1660.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -477,6 +495,7 @@
             "valid_until": null,
             "value": "1685.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -498,6 +517,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -526,6 +546,7 @@
             "valid_until": "2025-05-01",
             "value": "1693.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -548,6 +569,7 @@
             "valid_until": "2026-05-01",
             "value": "1719.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -570,6 +592,7 @@
             "valid_until": "2027-02-01",
             "value": "1746.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -592,6 +615,7 @@
             "valid_until": null,
             "value": "1772.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -613,6 +637,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -641,6 +666,7 @@
             "valid_until": "2025-05-01",
             "value": "1821.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -663,6 +689,7 @@
             "valid_until": "2026-05-01",
             "value": "1849.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -685,6 +712,7 @@
             "valid_until": "2027-02-01",
             "value": "1877.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -707,6 +735,7 @@
             "valid_until": null,
             "value": "1906.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -728,6 +757,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -756,6 +786,7 @@
             "valid_until": "2025-05-01",
             "value": "1978.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -778,6 +809,7 @@
             "valid_until": "2026-05-01",
             "value": "2009.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -800,6 +832,7 @@
             "valid_until": "2027-02-01",
             "value": "2040.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -822,6 +855,7 @@
             "valid_until": null,
             "value": "2070.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -861,6 +895,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -880,6 +915,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -908,6 +944,7 @@
             "valid_until": "2025-05-01",
             "value": "2200.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -930,6 +967,7 @@
             "valid_until": "2026-05-01",
             "value": "2235.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -952,6 +990,7 @@
             "valid_until": "2027-02-01",
             "value": "2269.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -974,6 +1013,7 @@
             "valid_until": null,
             "value": "2303.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -1013,6 +1053,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -1032,6 +1073,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -1056,7 +1098,12 @@
         {
           "valid_from": "2024-04-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -1147,6 +1194,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cooperative-e-consorzi-agricoli-2024-2027-pdf",
@@ -1195,7 +1243,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "9054f6e3afadc348204a055604e8d1a5fc10fca3721dd6b32aa50bf22c99b92c",
+    "source_hash": "5d442e1bd157a1403c438a6cb24a04f3c66930a30e2f3f77d30a23120cdec259",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1221,6 +1269,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-consorzi-agricoli",
@@ -1256,6 +1305,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-consorzi-agricoli",
@@ -1291,6 +1341,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-consorzi-agricoli",
@@ -1314,6 +1365,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-consorzi-agricoli",
@@ -1340,6 +1392,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-consorzi-agricoli",
@@ -1362,6 +1415,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-consorzi-agricoli",

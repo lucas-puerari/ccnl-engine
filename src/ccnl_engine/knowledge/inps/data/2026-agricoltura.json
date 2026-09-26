@@ -18,7 +18,20 @@
     ],
     "ceiling": "122295.00",
     "employee_additional_rate": "0.01",
-    "employee_additional_threshold": "56224.00"
+    "employee_additional_threshold": "56224.00",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "ciatreviso-contributi-2026",
+          "title": "CIA Treviso, contributi INPS e INAIL 2026 agricoli",
+          "kind": "associazione",
+          "url": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/"
+        },
+        "section": "OTI rates 2026"
+      },
+      "note": "Employee 8.84%, employer 21.66%; IVS ceiling from INPS Circ. 6/2026."
+    }
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -29,7 +42,19 @@
     "small_firm_employer_rate_months_0_11": "0.0311",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
-    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-296-2006",
+          "title": "L. 296/2006, legge finanziaria 2007",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+      },
+      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%."
+    }
   },
   "ruleset": {
     "id": "inps/2026/agricoltura",
@@ -39,7 +64,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "ff4a8f58a5a1746cf11d09adae1986be021c717f355eca1698bf0a6697cfe6e9",
+    "source_hash": "3698770d92611aacad18eb98461c1ad3bcbc80746cd9306afad15e3a2ef74344",
     "source_type": "estimated"
   }
 }

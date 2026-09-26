@@ -1,103 +1,147 @@
 # Provenance
 
-Every fact in the knowledge base traces to a primary source document. The
-provenance system makes that trace machine-readable, so callers can inspect
-exactly which article or table produced a given salary figure.
+Every payable rule in the knowledge base carries a provenance record: where
+the value comes from and how far that source backs it. The record is
+machine-readable, so callers can inspect which article or table produced a
+figure, and the engine can refuse to present an amount as reliable when no
+source backs it.
 
-## The provenance block
+## Payable rules
 
-Each rule in a CCNL JSON carries a `provenance` object at the point where
-the fact is stated:
+A payable rule is a bundled value that the payroll run reads to compute a
+posted amount.
+
+| Rule | Where it lives | Record |
+|---|---|---|
+| Salary table | `ccnl/data/*.json`: `levels[].base_salary.periods[]` | Per period, or inherited from the level |
+| Fixed allowance | `ccnl/data/*.json`: `levels[].fixed_allowances[]` | Per allowance, or inherited from the level |
+| Seniority increments | `ccnl/data/*.json`: `parameters.seniority_increments` | Per block |
+| Extra-month entitlement | `ccnl/data/*.json`: `parameters.additional_months.periods[]` | Per period |
+| IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
+| Art. 13 work deduction, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `sterilizzazione_detrazioni` | Per block |
+| Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
+| TFR divisor | `tax/data/<year>-<sector>.json`: `tfr` | Per block |
+| Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate` | Sibling `fixed_term_additional_rate_provenance` |
+| INPS rates | `inps/data/<year>-<sector>.json`: `inps`, `apprentice`, `domestic_contributions` | Per block |
+| Regional and municipal surtax | `surtax/data/regionale-<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
+| Art. 12 family deductions | `tax/data/family-deductions-<year>.json`: `spouse`, `children`, `other_dependents` | Per block |
+| Fringe-benefit thresholds, PdR limits | `tax/data/variable-pay-rules.json`: `fringe_benefit`, `pdr` | Per block |
+| Substitute-tax regimes | `tax/data/variable-pay-rules.json`: `rinnovo`, `notte_festivi_turni` | Their `source` location with `source_status` |
+
+CCNL rules carry one record per rule, because each salary tranche and
+allowance is read from its own row of a table. Fiscal values are statutory
+parameters stated once per block (the brackets of one comma, the constants
+of one article), so their record is per block: a record per bracket would
+repeat the same citation, and a record per file would mix blocks with
+different backing (for example the somma esente cut points, which are
+reconstructions, sit next to the IRPEF brackets of the law). The surtax
+tables come from one MEF publication each, so they carry one record per
+table instead of one per municipality.
+
+Bundled values the run does not read are not payable: CCNL work rules
+(overtime bands, absence, leave, sickness), apprenticeship tracks, the
+Art. 15 deductions and the INPS sick-pay bands.
+
+## The provenance record
 
 ```json
 {
-  "seniority_increments": {
-    "cadence_months": 36,
-    "maximum_count": 10,
-    "amount_by_level": { ... },
-    "provenance": {
-      "location": {
-        "source_document": {
-          "document_id": "ccnl-commercio-confcommercio-2019",
-          "title": "CCNL Terziario Distribuzione e Servizi — Testo Unico 2019",
-          "kind": "associazione",
-          "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione",
-          "published_on": "2024-03-22"
-        },
-        "section": "Art. 205 — Scatti di anzianità",
-        "quote": null
+  "provenance": {
+    "status": "derived",
+    "location": {
+      "source_document": {
+        "document_id": "ccnl-commercio-confcommercio-2019",
+        "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 2019",
+        "kind": "associazione",
+        "url": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione",
+        "published_on": "2024-03-22"
       },
-      "extraction": {
-        "method": "ai",
-        "model": "claude-sonnet-4-6",
-        "extraction_timestamp": "2026-08-30T00:00:00",
-        "verified_by": null,
-        "verified_at": null,
-        "verification_status": "unverified",
-        "effective_from": "1990-01-01",
-        "effective_until": null,
-        "back_calculation": null
-      },
-      "note": "Dieci scatti triennali; importi vigenti dal 01/01/1990..."
-    }
+      "section": "Art. 205, Scatti di anzianità",
+      "quote": null
+    },
+    "extraction": {
+      "method": "manual",
+      "extraction_timestamp": "2026-08-30T00:00:00",
+      "verified_by": null,
+      "verified_at": null,
+      "verification_status": "unverified",
+      "effective_from": "1990-01-01",
+      "effective_until": null,
+      "back_calculation": null
+    },
+    "transformation": null,
+    "note": "Dieci scatti triennali"
   }
 }
 ```
 
-## Provenance fields
-
-### `location`
-
 | Field | Description |
 |---|---|
-| `source_document.document_id` | Stable identifier for the document |
-| `source_document.title` | Human-readable document title |
-| `source_document.kind` | Document type: `tabella_retributiva`, `associazione`, `official_contract`, `renewal_summary`, `official_codification` |
-| `source_document.url` | URL of the primary source |
-| `source_document.published_on` | Publication or agreement date |
-| `section` | Article, table, or page reference within the document |
-| `quote` | Verbatim excerpt when relevant (optional) |
+| `status` | `verified`, `derived`, `assumed` or `missing` (see below) |
+| `location.source_document` | The document: `document_id`, `title`, `kind`, `url`, `published_on`. The `document_id` with `published_on` identifies the version |
+| `location.section` / `page` / `quote` | Article, comma or table; page; verbatim excerpt |
+| `extraction` | Method, validity (`effective_from` / `effective_until`) and reviewer (`verified_by` / `verified_at`). Optional: when absent, the validity is the one of the period or ruleset that holds the rule |
+| `transformation` | How the source text became the stored value, when not verbatim |
+| `note` | Free-form context, such as a known simplification |
 
-### `extraction`
+Document kinds: `gazzetta`, `cnel`, `inps_circolare`, `legge`, `dpr`, `dl`,
+`dlgs` and `amministrazione` (MEF, Agenzia delle Entrate) are official;
+`associazione`, `tabella_retributiva`, `rivista` and `altro` are secondary.
+Authority is a separate axis from the status: a `derived` value may come
+from a secondary document.
 
-| Field | Description |
-|---|---|
-| `method` | `"ai"` \| `"manual"` \| `"back_calculation"` \| `"import"` |
-| `model` | Model identifier; required when `method` is `"ai"`, null otherwise |
-| `extraction_timestamp` | When the fact was extracted |
-| `verified_by` | Name or identifier of human reviewer (null if unverified) |
-| `verified_at` | Date of human verification |
-| `verification_status` | `"verified"` \| `"unverified"` \| `"needs_review"` |
-| `effective_from` | First date this specific fact is valid |
-| `effective_until` | Last date this fact is valid (null = open-ended) |
-| `back_calculation` | How the value was derived (e.g. hourly rate back-calculation) |
+## Provenance status
 
-## Verification status
+| Status | Meaning | Record requirements |
+|---|---|---|
+| `verified` | A named person checked the value against the cited location on a recorded date | `location`, `extraction.verified_by` and `extraction.verified_at` |
+| `derived` | Taken or computed from a cited document location, without a recorded check | `location` |
+| `assumed` | Adopted without a located citation: an unchecked AI extraction, a reconstruction or estimate, or a value whose clause was never located | `location` optional |
+| `missing` | No source backs the value | no `location` |
 
-The `verification_status` field is the most important signal for callers:
+The model rejects a record whose status disagrees with what it records.
+Nothing becomes `verified` without a named reviewer and a date: the legacy
+`extraction.verification_status: "verified"` alone, or the file-level
+`verification.human_reviewed_by`, does not say which value was checked by
+whom, so such records are `derived`.
 
-| Status | Meaning |
-|---|---|
-| `"verified"` | A human has compared the extracted value to the primary source document and confirmed it |
-| `"unverified"` | The value was extracted but has not been independently checked |
-| `"needs_review"` | The value was verified but a subsequent renewal may have changed it |
+`scripts/data/assign_rule_provenance.py` assigns the status of existing
+records from what they record and fills the fiscal blocks from the citations
+in each file's notes and ruleset source (or, where the data records none,
+the rule model docstrings; the record then says so in `transformation`).
+The script is idempotent and rehashes the files it changes.
 
-Verification status is informational: the engine does not read it when it
-computes a result, so an unverified figure does not change `result.status`
-or the capability report. See [Trust: Confidence](confidence.md).
+### Current counts
 
-## Provenance and payroll results
+| Status | CCNL rules | Fiscal blocks | Total |
+|---|---:|---:|---:|
+| `verified` | 0 | 0 | 0 |
+| `derived` | 5 248 | 75 | 5 323 |
+| `assumed` | 472 | 13 | 485 |
+| `missing` | 0 | 0 | 0 |
 
-A `PeriodResult` does not carry provenance records. It links back to its
-sources in two ways:
+`assumed` covers AI-extracted CCNL values, extra-month counts with no
+located clause, the somma esente cut points, the artigianato and edilizia
+INPS proxies, the PA apprentice placeholder, the PA fixed-term exemption and
+the regional surtax table. `python scripts/ci/check_provenance.py --rules`
+prints the current counts.
 
-- `result.bundle_version` is the version of the knowledge bundle used.
-- `result.decisions` records, for each capability that logs a decision, the
-  `rule` and `rule_version` it applied.
+## Enforcement
 
-To see where a contract figure comes from, read the provenance on the loaded
-CCNL. Every pay level, every non-gap salary period and every fixed allowance
-carries one.
+- **Load time.** A schema-0.5 CCNL without a record on a level, salary
+  period, allowance, seniority block or additional-months period does not
+  load.
+- **CI.** `scripts/ci/check_provenance.py --all` fails when any payable rule
+  of the bundle has no record or an unknown status, and lists every
+  `missing` record. `tests/architecture/test_data_quality.py` runs the same
+  inventory.
+- **Run time.** A capability that executed and read a `missing` rule adds a
+  `rule_source_missing` issue naming the rule, and the result is
+  `incomplete`. `result.capability_report.rule_sources` holds, for each
+  executed capability, the weakest status among the rules it read. See
+  [Confidence](confidence.md).
+
+## Reading provenance
 
 ```python
 from ccnl_engine.contract.service.loaders import load_ccnl
@@ -106,13 +150,17 @@ ccnl = load_ccnl("commercio-confcommercio.json")
 
 for level in ccnl.levels:
     for period in level.base_salary.periods:
-        if period.provenance is None:
+        record = period.provenance or level.provenance
+        if record is None or record.location is None:
             continue
-        src = period.provenance.location.source_document
+        src = record.location.source_document
         print(f"{level.code}: {src.title} ({src.url})")
-        print(f"  section: {period.provenance.location.section}")
-        print(f"  status:  {period.provenance.extraction.verification_status}")
+        print(f"  section: {record.location.section}")
+        print(f"  status:  {record.status}")
 ```
 
-The full JSON of each contract, provenance included, is also shown on its
-page under [Contracts](../contracts/index.md).
+A `PeriodResult` links back to its sources through `result.bundle_version`,
+the `rule` and `rule_version` of each decision in `result.decisions`, and the
+per-capability statuses in `result.capability_report.rule_sources`. The full
+JSON of each contract, provenance included, is shown on its page under
+[Contracts](../contracts/index.md).

@@ -1,107 +1,59 @@
-# Task: Populate provenance for fiscal rule files
-
-**Priority**: Medium (prerequisite for auditor trace — Step 4 of the trace roadmap)
+# Task: Verify the provenance of fiscal rule files
 
 **Scope**: `src/ccnl_engine/knowledge/tax/`, `inps/`, `surtax/` JSON files
 
 ---
 
-## Background
+## Current state
 
-The `CalculationTrace.fiscal_steps` chain (added in `feature/calculation-trace-fiscal`)
-emits step-by-step derivations from gross to net. To expose the auditor view
-("which norm justifies this figure?"), each fiscal rule file needs its
-`ruleset.source` and `ruleset.verification_status` fields filled in.
+Every payable block of the fiscal files carries a provenance record (see
+[Trust: Provenance](../trust/provenance.md)): one per block of the tax and
+INPS files, the sibling `irpef_brackets_provenance` and
+`fixed_term_additional_rate_provenance`, one per surtax table, and the
+`source_status` of each substitute-tax regime.
 
-### Current state (measured 2026-09-09)
+The records cite what each file already recorded in its notes and ruleset
+source. None is `verified`: no file names a reviewer and a date. The blocks
+recorded as `assumed` are:
 
-| Domain | Files | `source` | `verification_status` |
-|---|---|---|---|
-| CCNL levels | 991 levels across 103 files | 100% populated | varies |
-| Tax (IRPEF brackets, deductions) | 11 files | `"unavailable"` | `"unverified"` |
-| INPS rates | 9 files | `"unavailable"` | `"unverified"` |
-| Surtax (regionale, comunale) | 2 files | `"unavailable"` | `"unverified"` |
-
-CCNL data is already covered. Fiscal rule files are the gap.
+| File | Block | Why |
+|---|---|---|
+| `tax/data/2026-*.json` | `somma_esente` | Band cut points are reconstructions from worked examples |
+| `tax/data/2026-pubblica-amministrazione.json` | `fixed_term_additional_rate` | Exemption cited from commentary, no clause located |
+| `inps/data/2026-artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
+| `inps/data/2026-edilizia.json` | `inps` | Proxy values from a 1998 rate structure |
+| `inps/data/2026-pubblica-amministrazione.json` | `apprentice` | Schema placeholder |
+| `surtax/data/regionale-2026.json` | table | Publisher named, no document or date |
 
 ---
 
 ## What needs to be done
 
-For each file in `knowledge/tax/data/`, `inps/data/`, `surtax/data/`:
+For each block:
 
-1. **Identify the primary normative source** (see references below).
-2. **Replace `source: "unavailable"`** with a structured citation string:
-   `"<type>/<id>"` — e.g. `"legge/207-2024"`, `"dm/2024-01-22"`,
-   `"circolare-inps/32-2024"`.
-3. **Set `verification_status: "verified"`** after cross-checking the rates
-   against the source document.
-4. **Update `source_hash`** if any rate values were corrected during the check.
+1. Check the stored values against the primary source (Gazzetta Ufficiale,
+   INPS circular, MEF table).
+2. Record the location precisely in `location` (`section`, `page`, `quote`).
+3. When the check is done, add an `extraction` with `verified_by` and
+   `verified_at` and set `status` to `verified`. The model rejects
+   `verified` without both.
+4. When a value changes, update it and run
+   `uv run python scripts/data/assign_rule_provenance.py` to rehash the file.
 
-Do NOT add a top-level `provenance` field — the existing `ruleset` block
-is the correct schema for file-level provenance.
+Primary sources to check against:
 
----
-
-## Files and their normative sources
-
-### Tax files (`knowledge/tax/data/`)
-
-Each file is named `{year}-{sector}.json`. The IRPEF brackets and deduction
-formulas are statutory (same across sectors for a given year), set by the
-annual legge di bilancio or specific DL/DPR.
-
-| Year | Primary source |
-|---|---|
-| 2026 | L. 207/2024 (legge di bilancio 2025, art. 1 cc. 2-7) + L. 199/2025 (riforma IRPEF) |
-| 2025 | L. 213/2023 (legge di bilancio 2024) + D.Lgs. 216/2023 |
-| 2024 | D.Lgs. 216/2023 + L. 213/2023 |
-
-The `work_income_deduction` formula is Art. 13 TUIR (DPR 917/1986) as amended
-by the applicable legge di bilancio.
-
-The `trattamento_integrativo` parameters are Art. 1 D.L. 3/2020 as amended.
-
-### INPS files (`knowledge/inps/data/`)
-
-Each file covers one sector/year. Rates come from:
-
-- **Industria / commercio / terziario**: circolari INPS annual rate tables,
-  typically Circolare INPS n. 5-10 of each year + aliquote D.Lgs. 148/2015
-  for FIS/CIGS funds.
-- **Artigianato**: circolari INPS for artigianato sector rates.
-- **Agricoltura**: circolari INPS for agriculture.
-- **Credito**: specific CCNL-level INPS rates per bancari-ABI contract.
-- **Lavoro domestico**: specific domestic flat rates per DM.
-
-Use [INPS → Datori → Aliquote contributive] for each sector.
-
-### Surtax files (`knowledge/surtax/data/`)
-
-- **Addizionale regionale**: each region deliberates its rates by 31/12 of the
-  previous year. Source: MEF database at
-  `https://www.finanze.gov.it/it/fiscalita-regionale-e-locale/addizionale-irpef/addizionale-regionale/`.
-- **Addizionale comunale**: MEF database at
-  `https://www.finanze.gov.it/it/fiscalita-regionale-e-locale/addizionale-irpef/addizionale-comunale/`.
-
-For both, verification means checking that the bracket rates in the JSON match
-the deliberated rates for the reference year.
+- IRPEF and credits 2026: L. 199/2025 art. 1 cc. 2-4, L. 207/2024 art. 1
+  cc. 4-7, D.L. 3/2020 art. 1, Art. 13 TUIR.
+- INPS: the annual INPS circulars per sector (Circ. 6/2026 for the IVS
+  ceiling and rates, Circ. 9/2026 for domestic work), D.Lgs. 148/2015 for
+  CIGO, CIGS and FIS.
+- Surtax: the MEF tables of the addizionale regionale and comunale.
 
 ---
 
 ## Acceptance criteria
 
-- Every file in `tax/data/`, `inps/data/`, `surtax/data/` has:
-  - `ruleset.source` != `"unavailable"`
-  - `ruleset.verification_status` == `"verified"`
-- No existing rate values changed without an updated `source_hash`.
-- `uv run pytest` still passes at 100% coverage after any JSON changes.
-
----
-
-## Out of scope
-
-- Adding per-bracket or per-rate citations inside each file (fine-grained
-  provenance). The file-level citation is sufficient for the auditor view.
-- Changing the `RuleProvenance` schema — it is already correct.
-- CCNL level/seniority provenance — already 100% covered.
+- `python scripts/ci/check_provenance.py --rules` passes and reports the
+  block as `verified`.
+- No value changed without a recomputed `source_hash`.
+- `uv run pytest` still passes at 100% coverage.

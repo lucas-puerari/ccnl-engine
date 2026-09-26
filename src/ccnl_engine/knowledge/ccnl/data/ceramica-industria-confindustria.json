@@ -71,6 +71,7 @@
             "valid_until": "2025-07-01",
             "value": "1564.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -93,6 +94,7 @@
             "valid_until": "2026-07-01",
             "value": "1591.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -115,6 +117,7 @@
             "valid_until": "2027-06-01",
             "value": "1625.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -137,6 +140,7 @@
             "valid_until": null,
             "value": "1666.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -157,6 +161,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -186,6 +191,7 @@
             "valid_until": "2025-07-01",
             "value": "1671.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -208,6 +214,7 @@
             "valid_until": "2026-07-01",
             "value": "1701.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -230,6 +237,7 @@
             "valid_until": "2027-06-01",
             "value": "1738.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -252,6 +260,7 @@
             "valid_until": null,
             "value": "1783.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -272,6 +281,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -322,6 +332,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -347,6 +358,7 @@
             "valid_until": "2025-07-01",
             "value": "1671.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -369,6 +381,7 @@
             "valid_until": "2026-07-01",
             "value": "1701.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -391,6 +404,7 @@
             "valid_until": "2027-06-01",
             "value": "1738.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -413,6 +427,7 @@
             "valid_until": null,
             "value": "1783.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -433,6 +448,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -462,6 +478,7 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -484,6 +501,7 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -506,6 +524,7 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -528,6 +547,7 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -548,6 +568,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -598,6 +619,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -623,6 +645,7 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -645,6 +668,7 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -667,6 +691,7 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -689,6 +714,7 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -709,6 +735,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -759,6 +786,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -784,6 +812,7 @@
             "valid_until": "2025-07-01",
             "value": "1839.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -806,6 +835,7 @@
             "valid_until": "2026-07-01",
             "value": "1875.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -828,6 +858,7 @@
             "valid_until": "2027-06-01",
             "value": "1919.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -850,6 +881,7 @@
             "valid_until": null,
             "value": "1972.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -870,6 +902,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -899,6 +932,7 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -921,6 +955,7 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -943,6 +978,7 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -965,6 +1001,7 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -985,6 +1022,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1035,6 +1073,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1060,6 +1099,7 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1082,6 +1122,7 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1104,6 +1145,7 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1126,6 +1168,7 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1146,6 +1189,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1196,6 +1240,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1221,6 +1266,7 @@
             "valid_until": "2025-07-01",
             "value": "2041.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1243,6 +1289,7 @@
             "valid_until": "2026-07-01",
             "value": "2082.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1265,6 +1312,7 @@
             "valid_until": "2027-06-01",
             "value": "2133.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1287,6 +1335,7 @@
             "valid_until": null,
             "value": "2194.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1307,6 +1356,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1336,6 +1386,7 @@
             "valid_until": "2025-07-01",
             "value": "2341.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1358,6 +1409,7 @@
             "valid_until": "2026-07-01",
             "value": "2387.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1380,6 +1432,7 @@
             "valid_until": "2027-06-01",
             "value": "2445.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1402,6 +1455,7 @@
             "valid_until": null,
             "value": "2515.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1422,6 +1476,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1472,6 +1527,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1497,6 +1553,7 @@
             "valid_until": "2025-07-01",
             "value": "2341.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1519,6 +1576,7 @@
             "valid_until": "2026-07-01",
             "value": "2387.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1541,6 +1599,7 @@
             "valid_until": "2027-06-01",
             "value": "2445.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1563,6 +1622,7 @@
             "valid_until": null,
             "value": "2515.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1583,6 +1643,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1612,6 +1673,7 @@
             "valid_until": "2025-07-01",
             "value": "2600.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1634,6 +1696,7 @@
             "valid_until": "2026-07-01",
             "value": "2651.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1656,6 +1719,7 @@
             "valid_until": "2027-06-01",
             "value": "2716.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1678,6 +1742,7 @@
             "valid_until": null,
             "value": "2793.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1698,6 +1763,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1731,7 +1797,12 @@
         {
           "valid_from": "2024-09-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -1849,6 +1920,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "240722-ceramiche-rinnovo-1luglio2023-30giugno2027-tabelle-pdf",
@@ -1902,7 +1974,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "85cfcfc83bc3c2af2543fac4f0c19a7f8616016e63543a399fa8a74e090fe4dc",
+    "source_hash": "63de62cadb3c713f023be85ef7c1ae901e376ffe4ad6c748f78c0b67765a43b0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1928,6 +2000,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ceramica-industria-confindustria",
@@ -1963,6 +2036,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ceramica-industria-confindustria",
@@ -1998,6 +2072,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ceramica-industria-confindustria",
@@ -2021,6 +2096,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ceramica-industria-confindustria",
@@ -2047,6 +2123,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ceramica-industria-confindustria",
@@ -2069,6 +2146,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ceramica-industria-confindustria",

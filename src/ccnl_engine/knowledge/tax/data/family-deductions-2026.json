@@ -25,7 +25,19 @@
         "deduction": "0.00"
       }
     ],
-    "notes": "Sub-band supplements (EUR 10-30 in income range 29001-35200) not modelled; EUR 690 flat assumed in 15001-40000 range"
+    "notes": "Sub-band supplements (EUR 10-30 in income range 29001-35200) not modelled; EUR 690 flat assumed in 15001-40000 range",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 12 c. 1 lett. a"
+      },
+      "transformation": "Sub-band supplements of 10-30 EUR in the 29 001-35 200 EUR range are not modelled; 690 EUR flat in 15 001-40 000 EUR."
+    }
   },
   "children": {
     "auu_age_cutoff": 21,
@@ -35,13 +47,35 @@
     "dependent_income_threshold": "2840.51",
     "young_child_income_threshold": "4000.00",
     "young_age_cutoff": 24,
-    "notes": "Figli under 21 not eligible (AUU, D.Lgs. 230/2021). Figli 21-29 eligible; figli 30+ only with certified disability (L. 104/92). Income threshold: 2840.51 general, 4000 for under-24 (Art. 12 c. 2 TUIR)."
+    "notes": "Figli under 21 not eligible (AUU, D.Lgs. 230/2021). Figli 21-29 eligible; figli 30+ only with certified disability (L. 104/92). Income threshold: 2840.51 general, 4000 for under-24 (Art. 12 c. 2 TUIR).",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 12 c. 1 lett. c"
+      }
+    }
   },
   "other_dependents": {
     "dependent_income_threshold": "2840.51",
     "amount": "750.00",
     "income_ceiling": "80000.00",
-    "notes": "Post L. 207/2024: only ascendenti conviventi qualify. Other categories (fratelli, sorelle, generi, nuore, suoceri) no longer eligible."
+    "notes": "Post L. 207/2024: only ascendenti conviventi qualify. Other categories (fratelli, sorelle, generi, nuore, suoceri) no longer eligible.",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 12 c. 1 lett. d"
+      }
+    }
   },
   "ruleset": {
     "id": "tax/2026/family-deductions",
@@ -52,6 +86,6 @@
     "source": "D.P.R. 22 dicembre 1986 n. 917 (TUIR), art. 12",
     "source_type": "official_primary",
     "verification_status": "unverified",
-    "source_hash": "2662c6185053e76de5991b29c62692ec6b19ca221ff95893538216ff9746d1b2"
+    "source_hash": "a2cd443473111f2acec724bd9a02125bbb4b538abfa3db73c89afccbec8702cf"
   }
 }

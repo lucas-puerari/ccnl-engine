@@ -83,7 +83,12 @@
         {
           "valid_from": "2023-09-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -165,6 +170,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -195,6 +201,7 @@
             "valid_until": "2025-06-01",
             "value": "1381.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -217,6 +224,7 @@
             "valid_until": "2025-09-01",
             "value": "1407.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -239,6 +247,7 @@
             "valid_until": "2026-09-01",
             "value": "1447.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -261,6 +270,7 @@
             "valid_until": "2027-09-01",
             "value": "1482.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -283,6 +293,7 @@
             "valid_until": null,
             "value": "1517.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -304,6 +315,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -332,6 +344,7 @@
             "valid_until": "2025-06-01",
             "value": "1435.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -354,6 +367,7 @@
             "valid_until": "2025-09-01",
             "value": "1463.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -376,6 +390,7 @@
             "valid_until": "2026-09-01",
             "value": "1504.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -398,6 +413,7 @@
             "valid_until": "2027-09-01",
             "value": "1540.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -420,6 +436,7 @@
             "valid_until": null,
             "value": "1577.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -441,6 +458,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -469,6 +487,7 @@
             "valid_until": "2025-06-01",
             "value": "1438.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -491,6 +510,7 @@
             "valid_until": "2025-09-01",
             "value": "1465.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -513,6 +533,7 @@
             "valid_until": "2026-09-01",
             "value": "1506.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -535,6 +556,7 @@
             "valid_until": "2027-09-01",
             "value": "1543.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -557,6 +579,7 @@
             "valid_until": null,
             "value": "1579.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -578,6 +601,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -606,6 +630,7 @@
             "valid_until": "2025-06-01",
             "value": "1484.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -628,6 +653,7 @@
             "valid_until": "2025-09-01",
             "value": "1512.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -650,6 +676,7 @@
             "valid_until": "2026-09-01",
             "value": "1555.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -672,6 +699,7 @@
             "valid_until": "2027-09-01",
             "value": "1592.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -694,6 +722,7 @@
             "valid_until": null,
             "value": "1630.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -715,6 +744,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -743,6 +773,7 @@
             "valid_until": "2025-06-01",
             "value": "1564.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -765,6 +796,7 @@
             "valid_until": "2025-09-01",
             "value": "1594.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -787,6 +819,7 @@
             "valid_until": "2026-09-01",
             "value": "1639.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -809,6 +842,7 @@
             "valid_until": "2027-09-01",
             "value": "1679.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -831,6 +865,7 @@
             "valid_until": null,
             "value": "1719.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -852,6 +887,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -880,6 +916,7 @@
             "valid_until": "2025-06-01",
             "value": "1584.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -902,6 +939,7 @@
             "valid_until": "2025-09-01",
             "value": "1614.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -924,6 +962,7 @@
             "valid_until": "2026-09-01",
             "value": "1659.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -946,6 +985,7 @@
             "valid_until": "2027-09-01",
             "value": "1699.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -968,6 +1008,7 @@
             "valid_until": null,
             "value": "1739.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -989,6 +1030,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1017,6 +1059,7 @@
             "valid_until": "2025-06-01",
             "value": "1740.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1039,6 +1082,7 @@
             "valid_until": "2025-09-01",
             "value": "1773.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1061,6 +1105,7 @@
             "valid_until": "2026-09-01",
             "value": "1824.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1083,6 +1128,7 @@
             "valid_until": "2027-09-01",
             "value": "1868.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1105,6 +1151,7 @@
             "valid_until": null,
             "value": "1912.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1126,6 +1173,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1154,6 +1202,7 @@
             "valid_until": "2025-06-01",
             "value": "1780.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1176,6 +1225,7 @@
             "valid_until": "2025-09-01",
             "value": "1813.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1198,6 +1248,7 @@
             "valid_until": "2026-09-01",
             "value": "1865.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1220,6 +1271,7 @@
             "valid_until": "2027-09-01",
             "value": "1910.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1242,6 +1294,7 @@
             "valid_until": null,
             "value": "1955.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1263,6 +1316,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme-pdf",
@@ -1311,7 +1365,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "87e08d8f4b803e22fe3a200bb07cbd02d71a631f5d666c572c430ad6c3be581c",
+    "source_hash": "fd0075bdf1d2cddc57cc11e7509b418a2f71de57982e1d503ea2ce74d4ee079b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1337,6 +1391,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1372,6 +1427,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1407,6 +1463,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1442,6 +1499,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1465,6 +1523,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1491,6 +1550,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-scuole-materne-fism-2024-2027",
@@ -1513,6 +1573,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-scuole-materne-fism-2024-2027",

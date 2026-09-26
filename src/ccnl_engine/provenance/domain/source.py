@@ -14,7 +14,12 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class SourceKind(StrEnum):
-    """Category of a source document."""
+    """Category of a source document.
+
+    ``dlgs`` is a decreto legislativo; ``amministrazione`` is a document a
+    public administration publishes (MEF tables, Agenzia delle Entrate
+    circolari).
+    """
 
     GAZZETTA = "gazzetta"
     CNEL = "cnel"
@@ -23,6 +28,8 @@ class SourceKind(StrEnum):
     LEGGE = "legge"
     DPR = "dpr"
     DL = "dl"
+    DLGS = "dlgs"
+    AMMINISTRAZIONE = "amministrazione"
     TABELLA_RETRIBUTIVA = "tabella_retributiva"
     RIVISTA = "rivista"
     ALTRO = "altro"
@@ -35,7 +42,9 @@ class SourceAuthority(StrEnum):
     is); this describes *how much weight* to give it.
 
     ``official``  — primary legal or institutional source: Gazzetta Ufficiale,
-                    CNEL archive, normattiva.it, INPS circolari, DPR/DL/Legge.
+                    CNEL archive, normattiva.it, INPS circolari, DPR/DL/
+                    D.Lgs./Legge, publications of a public administration
+                    (MEF, Agenzia delle Entrate).
     ``secondary`` — union/employer-association PDFs, salary tables published
                     by sector bodies, commentary and aggregator sites.
     ``derived``   — back-calculated or interpolated values not present verbatim
@@ -54,6 +63,8 @@ _KIND_TO_AUTHORITY: dict[SourceKind, SourceAuthority] = {
     SourceKind.LEGGE: SourceAuthority.OFFICIAL,
     SourceKind.DPR: SourceAuthority.OFFICIAL,
     SourceKind.DL: SourceAuthority.OFFICIAL,
+    SourceKind.DLGS: SourceAuthority.OFFICIAL,
+    SourceKind.AMMINISTRAZIONE: SourceAuthority.OFFICIAL,
     SourceKind.ASSOCIAZIONE: SourceAuthority.SECONDARY,
     SourceKind.TABELLA_RETRIBUTIVA: SourceAuthority.SECONDARY,
     SourceKind.RIVISTA: SourceAuthority.SECONDARY,

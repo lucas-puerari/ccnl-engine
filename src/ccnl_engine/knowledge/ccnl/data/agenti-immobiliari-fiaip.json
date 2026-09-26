@@ -113,7 +113,12 @@
         {
           "valid_from": "2025-05-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -121,6 +126,7 @@
       "cadence_months": 36,
       "maximum_count": 10,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -216,6 +222,7 @@
             "valid_until": "2026-01-01",
             "value": "2604.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -238,6 +245,7 @@
             "valid_until": "2027-01-01",
             "value": "2664.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -260,6 +268,7 @@
             "valid_until": "2027-05-01",
             "value": "2724.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -282,6 +291,7 @@
             "valid_until": null,
             "value": "2799.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -304,6 +314,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -332,6 +343,7 @@
             "valid_until": "2026-01-01",
             "value": "2404.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -354,6 +366,7 @@
             "valid_until": "2027-01-01",
             "value": "2459.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -376,6 +389,7 @@
             "valid_until": "2027-05-01",
             "value": "2514.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -398,6 +412,7 @@
             "valid_until": null,
             "value": "2583.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -420,6 +435,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -448,6 +464,7 @@
             "valid_until": "2026-01-01",
             "value": "2156.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -470,6 +487,7 @@
             "valid_until": "2027-01-01",
             "value": "2206.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -492,6 +510,7 @@
             "valid_until": "2027-05-01",
             "value": "2255.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -514,6 +533,7 @@
             "valid_until": null,
             "value": "2317.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -536,6 +556,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -564,6 +585,7 @@
             "valid_until": "2026-01-01",
             "value": "1925.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -586,6 +608,7 @@
             "valid_until": "2027-01-01",
             "value": "1970.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -608,6 +631,7 @@
             "valid_until": "2027-05-01",
             "value": "2014.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -630,6 +654,7 @@
             "valid_until": null,
             "value": "2069.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -652,6 +677,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -680,6 +706,7 @@
             "valid_until": "2026-01-01",
             "value": "1742.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -702,6 +729,7 @@
             "valid_until": "2027-01-01",
             "value": "1782.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -724,6 +752,7 @@
             "valid_until": "2027-05-01",
             "value": "1822.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -746,6 +775,7 @@
             "valid_until": null,
             "value": "1872.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -768,6 +798,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -796,6 +827,7 @@
             "valid_until": "2026-01-01",
             "value": "1629.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -818,6 +850,7 @@
             "valid_until": "2027-01-01",
             "value": "1666.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -840,6 +873,7 @@
             "valid_until": "2027-05-01",
             "value": "1704.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -862,6 +896,7 @@
             "valid_until": null,
             "value": "1750.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -884,6 +919,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -912,6 +948,7 @@
             "valid_until": "2026-01-01",
             "value": "1517.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -934,6 +971,7 @@
             "valid_until": "2027-01-01",
             "value": "1549.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -956,6 +994,7 @@
             "valid_until": "2027-05-01",
             "value": "1582.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -978,6 +1017,7 @@
             "valid_until": null,
             "value": "1623.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1000,6 +1040,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenti-immobiliari-fiaip-2025-pdf",
@@ -1120,6 +1161,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "753cca964ad5f1c320a99b874d24be98b561306f3085e7b3f3a2e1e995970739"
+    "source_hash": "8fd4341fb9382dbf35872398c8f7b514345373c271b2fddd38ee7c9c221efe1b"
   }
 }

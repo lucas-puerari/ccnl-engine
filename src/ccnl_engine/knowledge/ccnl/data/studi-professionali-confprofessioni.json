@@ -90,7 +90,12 @@
         {
           "valid_from": "2024-02-16",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -172,6 +177,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -202,6 +208,7 @@
             "valid_until": "2024-10-01",
             "value": "1406.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -224,6 +231,7 @@
             "valid_until": "2025-10-01",
             "value": "1445.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -246,6 +254,7 @@
             "valid_until": "2026-12-01",
             "value": "1484.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -268,6 +277,7 @@
             "valid_until": null,
             "value": "1502.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -289,6 +299,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -317,6 +328,7 @@
             "valid_until": "2024-10-01",
             "value": "1511.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -339,6 +351,7 @@
             "valid_until": "2025-10-01",
             "value": "1553.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -361,6 +374,7 @@
             "valid_until": "2026-12-01",
             "value": "1595.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -383,6 +397,7 @@
             "valid_until": null,
             "value": "1614.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -404,6 +419,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -432,6 +448,7 @@
             "valid_until": "2024-10-01",
             "value": "1567.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -454,6 +471,7 @@
             "valid_until": "2025-10-01",
             "value": "1611.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -476,6 +494,7 @@
             "valid_until": "2026-12-01",
             "value": "1654.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -498,6 +517,7 @@
             "valid_until": null,
             "value": "1674.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -519,6 +539,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -547,6 +568,7 @@
             "valid_until": "2024-10-01",
             "value": "1616.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -569,6 +591,7 @@
             "valid_until": "2025-10-01",
             "value": "1661.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -591,6 +614,7 @@
             "valid_until": "2026-12-01",
             "value": "1706.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -613,6 +637,7 @@
             "valid_until": null,
             "value": "1726.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -634,6 +659,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -662,6 +688,7 @@
             "valid_until": "2024-10-01",
             "value": "1631.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -684,6 +711,7 @@
             "valid_until": "2025-10-01",
             "value": "1676.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -706,6 +734,7 @@
             "valid_until": "2026-12-01",
             "value": "1722.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -728,6 +757,7 @@
             "valid_until": null,
             "value": "1742.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -762,6 +792,7 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -781,6 +812,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -809,6 +841,7 @@
             "valid_until": "2024-10-01",
             "value": "1758.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -831,6 +864,7 @@
             "valid_until": "2025-10-01",
             "value": "1807.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -853,6 +887,7 @@
             "valid_until": "2026-12-01",
             "value": "1856.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -875,6 +910,7 @@
             "valid_until": null,
             "value": "1878.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -909,6 +945,7 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -928,6 +965,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -956,6 +994,7 @@
             "valid_until": "2024-10-01",
             "value": "2018.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -978,6 +1017,7 @@
             "valid_until": "2025-10-01",
             "value": "2075.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1000,6 +1040,7 @@
             "valid_until": "2026-12-01",
             "value": "2131.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1022,6 +1063,7 @@
             "valid_until": null,
             "value": "2156.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1056,6 +1098,7 @@
           },
           "role": "confedertecnica_pre_2004",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1075,6 +1118,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1103,6 +1147,7 @@
             "valid_until": "2024-10-01",
             "value": "2281.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1125,6 +1170,7 @@
             "valid_until": "2025-10-01",
             "value": "2345.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1147,6 +1193,7 @@
             "valid_until": "2026-12-01",
             "value": "2408.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1169,6 +1216,7 @@
             "valid_until": null,
             "value": "2436.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1191,6 +1239,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-2024-integrale-definitivo-pdf",
@@ -1247,7 +1296,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "0bd555ee00b080f88afaa9da9cfe0f3e147b482bdd5af5e68ffa22212e630e69",
+    "source_hash": "8d22255502b1d8052e4f5c8d56cd6a0608f017b19b26cb093638540e9c1666f9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1273,6 +1322,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1308,6 +1358,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1343,6 +1394,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1378,6 +1430,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1401,6 +1454,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1427,6 +1481,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-professionali-confprofessioni-2024",
@@ -1449,6 +1504,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-studi-professionali-confprofessioni-2024",

@@ -86,6 +86,7 @@
             "valid_until": "2027-01-01",
             "value": "1325.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -108,6 +109,7 @@
             "valid_until": "2028-01-01",
             "value": "1358.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -130,6 +132,7 @@
             "valid_until": null,
             "value": "1376.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -151,6 +154,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "redigo-info-a181-operai",
@@ -179,6 +183,7 @@
             "valid_until": "2027-01-01",
             "value": "1436.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -201,6 +206,7 @@
             "valid_until": "2028-01-01",
             "value": "1471.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -223,6 +229,7 @@
             "valid_until": null,
             "value": "1491.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -244,6 +251,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "redigo-info-a181-operai",
@@ -272,6 +280,7 @@
             "valid_until": "2027-01-01",
             "value": "1471.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -294,6 +303,7 @@
             "valid_until": "2028-01-01",
             "value": "1507.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -316,6 +326,7 @@
             "valid_until": null,
             "value": "1528.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -337,6 +348,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "redigo-info-a181-operai",
@@ -365,6 +377,7 @@
             "valid_until": "2027-01-01",
             "value": "1537.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -387,6 +400,7 @@
             "valid_until": "2028-01-01",
             "value": "1575.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -409,6 +423,7 @@
             "valid_until": null,
             "value": "1596.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -430,6 +445,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "redigo-info-a181-operai",
@@ -458,6 +474,7 @@
             "valid_until": "2027-01-01",
             "value": "1633.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -480,6 +497,7 @@
             "valid_until": "2028-01-01",
             "value": "1673.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -502,6 +520,7 @@
             "valid_until": null,
             "value": "1695.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "redigo-info-a181-operai",
@@ -523,6 +542,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "redigo-info-a181-operai",
@@ -547,7 +567,12 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -611,6 +636,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-idraulico-forestali-2021",
@@ -711,7 +737,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "f819fe6f3246dfd91fa07ed2f6ddad061b637666d8712ba0b309345eee3f1142",
+    "source_hash": "cb3c7792cd8cad9cfe94ba2b7fcea85aa644cab02d0f7a9363c65643cc18a00e",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -736,6 +762,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "sistemazioni-idraulico-forestali-operai",
@@ -771,6 +798,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "sistemazioni-idraulico-forestali-operai",
@@ -806,6 +834,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "sistemazioni-idraulico-forestali-operai",
@@ -829,6 +858,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sistemazioni-idraulico-forestali-operai",
@@ -855,6 +885,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sistemazioni-idraulico-forestali-operai",
@@ -877,6 +908,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sistemazioni-idraulico-forestali-operai",

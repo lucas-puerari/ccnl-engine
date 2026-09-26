@@ -61,7 +61,12 @@
         {
           "valid_from": "2020-12-17",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -70,6 +75,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "dirigenza-funzioni-locali-aran",
@@ -101,6 +107,7 @@
             "valid_until": "2024-01-01",
             "value": "3616.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-funzioni-locali-aran",
@@ -123,6 +130,7 @@
             "valid_until": null,
             "value": "3846.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-funzioni-locali-aran",
@@ -144,6 +152,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "dirigenza-funzioni-locali-aran",
@@ -237,7 +246,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "df0232dc9058a57232b1ee803b7a034dcc157217afcbde7f532f33dc484349ab",
+    "source_hash": "e7a3b7981539202892dabd20b8cee8965104d77ea94813afde8101ccc859988f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -250,6 +259,7 @@
       "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fl-2022-2024",
@@ -280,6 +290,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fl-2022-2024",
@@ -302,6 +313,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 540,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-fl-2022-2024",

@@ -91,7 +91,12 @@
         {
           "valid_from": "2024-03-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -209,6 +214,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -239,6 +245,7 @@
             "valid_until": "2024-09-01",
             "value": "1365.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -261,6 +268,7 @@
             "valid_until": "2025-05-01",
             "value": "1383.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -283,6 +291,7 @@
             "valid_until": "2025-10-01",
             "value": "1400.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -305,6 +314,7 @@
             "valid_until": "2026-07-01",
             "value": "1430.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -327,6 +337,7 @@
             "valid_until": null,
             "value": "1460.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -348,6 +359,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -376,6 +388,7 @@
             "valid_until": "2024-09-01",
             "value": "1485.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -398,6 +411,7 @@
             "valid_until": "2025-05-01",
             "value": "1505.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -420,6 +434,7 @@
             "valid_until": "2025-10-01",
             "value": "1526.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -442,6 +457,7 @@
             "valid_until": "2026-07-01",
             "value": "1559.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -464,6 +480,7 @@
             "valid_until": null,
             "value": "1595.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -485,6 +502,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -513,6 +531,7 @@
             "valid_until": "2024-09-01",
             "value": "1582.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -535,6 +554,7 @@
             "valid_until": "2025-05-01",
             "value": "1604.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -557,6 +577,7 @@
             "valid_until": "2025-10-01",
             "value": "1626.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -579,6 +600,7 @@
             "valid_until": "2026-07-01",
             "value": "1663.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -601,6 +623,7 @@
             "valid_until": null,
             "value": "1702.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -622,6 +645,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -650,6 +674,7 @@
             "valid_until": "2024-09-01",
             "value": "1694.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -672,6 +697,7 @@
             "valid_until": "2025-05-01",
             "value": "1719.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -694,6 +720,7 @@
             "valid_until": "2025-10-01",
             "value": "1743.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -716,6 +743,7 @@
             "valid_until": "2026-07-01",
             "value": "1784.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -738,6 +766,7 @@
             "valid_until": null,
             "value": "1827.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -759,6 +788,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -787,6 +817,7 @@
             "valid_until": "2024-09-01",
             "value": "1852.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -809,6 +840,7 @@
             "valid_until": "2025-05-01",
             "value": "1880.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -831,6 +863,7 @@
             "valid_until": "2025-10-01",
             "value": "1908.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -853,6 +886,7 @@
             "valid_until": "2026-07-01",
             "value": "1954.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -875,6 +909,7 @@
             "valid_until": null,
             "value": "2002.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -896,6 +931,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -924,6 +960,7 @@
             "valid_until": "2024-09-01",
             "value": "1964.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -946,6 +983,7 @@
             "valid_until": "2025-05-01",
             "value": "1994.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -968,6 +1006,7 @@
             "valid_until": "2025-10-01",
             "value": "2024.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -990,6 +1029,7 @@
             "valid_until": "2026-07-01",
             "value": "2074.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1012,6 +1052,7 @@
             "valid_until": null,
             "value": "2126.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1033,6 +1074,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1061,6 +1103,7 @@
             "valid_until": "2024-09-01",
             "value": "2077.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1083,6 +1126,7 @@
             "valid_until": "2025-05-01",
             "value": "2109.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1105,6 +1149,7 @@
             "valid_until": "2025-10-01",
             "value": "2142.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1127,6 +1172,7 @@
             "valid_until": "2026-07-01",
             "value": "2196.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1149,6 +1195,7 @@
             "valid_until": null,
             "value": "2252.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1170,6 +1217,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1198,6 +1246,7 @@
             "valid_until": "2024-09-01",
             "value": "2184.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1220,6 +1269,7 @@
             "valid_until": "2025-05-01",
             "value": "2218.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1242,6 +1292,7 @@
             "valid_until": "2025-10-01",
             "value": "2253.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1264,6 +1315,7 @@
             "valid_until": "2026-07-01",
             "value": "2311.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1286,6 +1338,7 @@
             "valid_until": null,
             "value": "2371.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1307,6 +1360,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1335,6 +1389,7 @@
             "valid_until": "2024-09-01",
             "value": "2233.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1357,6 +1412,7 @@
             "valid_until": "2025-05-01",
             "value": "2269.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1379,6 +1435,7 @@
             "valid_until": "2025-10-01",
             "value": "2304.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1401,6 +1458,7 @@
             "valid_until": "2026-07-01",
             "value": "2363.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1423,6 +1481,7 @@
             "valid_until": null,
             "value": "2425.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1444,6 +1503,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1472,6 +1532,7 @@
             "valid_until": "2024-09-01",
             "value": "2304.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1494,6 +1555,7 @@
             "valid_until": "2025-05-01",
             "value": "2341.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1516,6 +1578,7 @@
             "valid_until": "2025-10-01",
             "value": "2378.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1538,6 +1601,7 @@
             "valid_until": "2026-07-01",
             "value": "2440.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1560,6 +1624,7 @@
             "valid_until": null,
             "value": "2504.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1581,6 +1646,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1609,6 +1675,7 @@
             "valid_until": "2024-09-01",
             "value": "2634.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1631,6 +1698,7 @@
             "valid_until": "2025-05-01",
             "value": "2678.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1653,6 +1721,7 @@
             "valid_until": "2025-10-01",
             "value": "2722.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1675,6 +1744,7 @@
             "valid_until": "2026-07-01",
             "value": "2795.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1697,6 +1767,7 @@
             "valid_until": null,
             "value": "2871.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1718,6 +1789,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1746,6 +1818,7 @@
             "valid_until": "2024-09-01",
             "value": "2644.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1768,6 +1841,7 @@
             "valid_until": "2025-05-01",
             "value": "2688.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1790,6 +1864,7 @@
             "valid_until": "2025-10-01",
             "value": "2732.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1812,6 +1887,7 @@
             "valid_until": "2026-07-01",
             "value": "2805.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1834,6 +1910,7 @@
             "valid_until": null,
             "value": "2882.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "grafica-editoria-aieg",
@@ -1855,6 +1932,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "grafica-editoria-aieg",
@@ -1979,7 +2057,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "c3aeaa6835529f2c1faef6c8913f53eea440720204cd17527e5d3efb1311aaa9",
+    "source_hash": "d4607dbafba0ef8d05ceea396be449450d9a16c7b33df6e38aa6b97e48d0ea9f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2005,6 +2083,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2040,6 +2119,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2075,6 +2155,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2110,6 +2191,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2133,6 +2215,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2159,6 +2242,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-grafica-editoria-industria-2022",
@@ -2181,6 +2265,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-grafica-editoria-industria-2022",

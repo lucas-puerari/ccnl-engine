@@ -62,7 +62,12 @@
         {
           "valid_from": "2021-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -71,6 +76,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -102,6 +108,7 @@
             "valid_until": "2024-01-01",
             "value": "3616.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -124,6 +131,7 @@
             "valid_until": null,
             "value": "3846.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -145,6 +153,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -174,6 +183,7 @@
             "valid_until": "2024-01-01",
             "value": "4623.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -196,6 +206,7 @@
             "valid_until": null,
             "value": "4908.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -217,6 +228,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "dirigenza-istruzione-ricerca-aran",
@@ -306,7 +318,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "db213dbc7dc40e43fdda5bbbf8e2b082555fc94eb3b8510236b9654490ccd22e",
+    "source_hash": "a2c4fada2fe1ebaf7111aab3249303cb33fa74199bd9fa97ae963bc338952fbe",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -319,6 +331,7 @@
       "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-ir-2022-2024",
@@ -349,6 +362,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-ir-2022-2024",
@@ -371,6 +385,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 540,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-ir-2022-2024",

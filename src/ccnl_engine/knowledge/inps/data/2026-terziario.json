@@ -28,7 +28,20 @@
     ],
     "ceiling": "122295.00",
     "employee_additional_rate": "0.01",
-    "employee_additional_threshold": "56224.00"
+    "employee_additional_threshold": "56224.00",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "kitech-contributi-4_138",
+          "title": "kitech.it, contributi previdenziali terziario 2026",
+          "kind": "rivista",
+          "url": "https://www.kitech.it/Contributi-previdenziali.aspx?p=4_138"
+        },
+        "section": "Table 7.1"
+      },
+      "note": "Pages 4_136 and 4_134 for firms above 50 employees."
+    }
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -39,7 +52,19 @@
     "small_firm_employer_rate_months_0_11": "0.0311",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
-    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-296-2006",
+          "title": "L. 296/2006, legge finanziaria 2007",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+      },
+      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%."
+    }
   },
   "ruleset": {
     "id": "inps/2026/terziario",
@@ -49,7 +74,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "38c1b9434d3f71fade26ef272b8f8b07d9d67d9c6cb43e3a28fc81e76d065707",
+    "source_hash": "40eca3202e505bef396ce5a5aa71bde3eadf6409fdf05f7c4c34c4d93b8d40e6",
     "source_type": "estimated"
   }
 }

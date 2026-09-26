@@ -107,7 +107,12 @@
         {
           "valid_from": "2022-06-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -189,6 +194,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -219,6 +225,7 @@
             "valid_until": "2023-06-01",
             "value": "1363.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -241,6 +248,7 @@
             "valid_until": "2024-12-01",
             "value": "1385.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -263,6 +271,7 @@
             "valid_until": "2025-06-01",
             "value": "1424.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -285,6 +294,7 @@
             "valid_until": null,
             "value": "1574.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -306,6 +316,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -334,6 +345,7 @@
             "valid_until": "2023-06-01",
             "value": "1502.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -356,6 +368,7 @@
             "valid_until": "2024-12-01",
             "value": "1526.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -378,6 +391,7 @@
             "valid_until": "2025-06-01",
             "value": "1569.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -400,6 +414,7 @@
             "valid_until": null,
             "value": "1734.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -421,6 +436,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -449,6 +465,7 @@
             "valid_until": "2023-06-01",
             "value": "1563.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -471,6 +488,7 @@
             "valid_until": "2024-12-01",
             "value": "1588.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -493,6 +511,7 @@
             "valid_until": "2025-06-01",
             "value": "1632.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -515,6 +534,7 @@
             "valid_until": null,
             "value": "1804.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -536,6 +556,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -564,6 +585,7 @@
             "valid_until": "2023-06-01",
             "value": "1670.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -586,6 +608,7 @@
             "valid_until": "2024-12-01",
             "value": "1697.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -608,6 +631,7 @@
             "valid_until": "2025-06-01",
             "value": "1744.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -630,6 +654,7 @@
             "valid_until": null,
             "value": "1928.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -651,6 +676,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -679,6 +705,7 @@
             "valid_until": "2023-06-01",
             "value": "1782.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -701,6 +728,7 @@
             "valid_until": "2024-12-01",
             "value": "1811.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -723,6 +751,7 @@
             "valid_until": "2025-06-01",
             "value": "1861.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -745,6 +774,7 @@
             "valid_until": null,
             "value": "2058.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -766,6 +796,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -794,6 +825,7 @@
             "valid_until": "2023-06-01",
             "value": "1916.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -816,6 +848,7 @@
             "valid_until": "2024-12-01",
             "value": "1947.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -838,6 +871,7 @@
             "valid_until": "2025-06-01",
             "value": "2001.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -860,6 +894,7 @@
             "valid_until": null,
             "value": "2212.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -881,6 +916,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -909,6 +945,7 @@
             "valid_until": "2023-06-01",
             "value": "2083.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -931,6 +968,7 @@
             "valid_until": "2024-12-01",
             "value": "2117.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -953,6 +991,7 @@
             "valid_until": "2025-06-01",
             "value": "2176.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -975,6 +1014,7 @@
             "valid_until": null,
             "value": "2405.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1008,6 +1048,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1028,6 +1069,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1056,6 +1098,7 @@
             "valid_until": "2023-06-01",
             "value": "2083.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1078,6 +1121,7 @@
             "valid_until": "2024-12-01",
             "value": "2117.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1100,6 +1144,7 @@
             "valid_until": "2025-06-01",
             "value": "2176.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1122,6 +1167,7 @@
             "valid_until": null,
             "value": "2405.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1155,6 +1201,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1175,6 +1222,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
@@ -1233,7 +1281,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "49b69776e170a50c366769562da7c8be5cd94bb3f44d43bee2072c6acf26c6c2",
+    "source_hash": "c1e62433e589d07a69db2a25d470b60f4b0944cd7e002d004bd8afbef9ae48a7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1259,6 +1307,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1294,6 +1343,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1330,6 +1380,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1365,6 +1416,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1388,6 +1440,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1414,6 +1467,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-orafi-argentieri-industria-2017",
@@ -1436,6 +1490,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-orafi-argentieri-industria-2017",

@@ -82,7 +82,12 @@
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -191,6 +196,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -222,6 +228,7 @@
             "valid_until": "2026-01-01",
             "value": "1211.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -244,6 +251,7 @@
             "valid_until": "2026-07-01",
             "value": "1244.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -266,6 +274,7 @@
             "valid_until": "2027-07-01",
             "value": "1309.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -288,6 +297,7 @@
             "valid_until": "2028-01-01",
             "value": "1375.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -310,6 +320,7 @@
             "valid_until": null,
             "value": "1440.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -331,6 +342,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -359,6 +371,7 @@
             "valid_until": "2026-01-01",
             "value": "1352.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -381,6 +394,7 @@
             "valid_until": "2026-07-01",
             "value": "1389.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -403,6 +417,7 @@
             "valid_until": "2027-07-01",
             "value": "1462.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -425,6 +440,7 @@
             "valid_until": "2028-01-01",
             "value": "1535.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -447,6 +463,7 @@
             "valid_until": null,
             "value": "1608.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -468,6 +485,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -496,6 +514,7 @@
             "valid_until": "2026-01-01",
             "value": "1510.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -518,6 +537,7 @@
             "valid_until": "2026-07-01",
             "value": "1551.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -540,6 +560,7 @@
             "valid_until": "2027-07-01",
             "value": "1632.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -562,6 +583,7 @@
             "valid_until": "2028-01-01",
             "value": "1714.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -584,6 +606,7 @@
             "valid_until": null,
             "value": "1796.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -605,6 +628,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -633,6 +657,7 @@
             "valid_until": "2026-01-01",
             "value": "1665.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -655,6 +680,7 @@
             "valid_until": "2026-07-01",
             "value": "1710.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -677,6 +703,7 @@
             "valid_until": "2027-07-01",
             "value": "1800.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -699,6 +726,7 @@
             "valid_until": "2028-01-01",
             "value": "1890.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -721,6 +749,7 @@
             "valid_until": null,
             "value": "1980.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -742,6 +771,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -770,6 +800,7 @@
             "valid_until": "2026-01-01",
             "value": "1768.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -792,6 +823,7 @@
             "valid_until": "2026-07-01",
             "value": "1816.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -814,6 +846,7 @@
             "valid_until": "2027-07-01",
             "value": "1912.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -836,6 +869,7 @@
             "valid_until": "2028-01-01",
             "value": "2007.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -858,6 +892,7 @@
             "valid_until": null,
             "value": "2103.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -879,6 +914,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -907,6 +943,7 @@
             "valid_until": "2026-01-01",
             "value": "1820.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -929,6 +966,7 @@
             "valid_until": "2026-07-01",
             "value": "1869.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -951,6 +989,7 @@
             "valid_until": "2027-07-01",
             "value": "1968.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -973,6 +1012,7 @@
             "valid_until": "2028-01-01",
             "value": "2066.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -995,6 +1035,7 @@
             "valid_until": null,
             "value": "2164.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1016,6 +1057,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1044,6 +1086,7 @@
             "valid_until": "2026-01-01",
             "value": "1864.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1066,6 +1109,7 @@
             "valid_until": "2026-07-01",
             "value": "1915.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1088,6 +1132,7 @@
             "valid_until": "2027-07-01",
             "value": "2016.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1110,6 +1155,7 @@
             "valid_until": "2028-01-01",
             "value": "2116.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1132,6 +1178,7 @@
             "valid_until": null,
             "value": "2217.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1153,6 +1200,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1181,6 +1229,7 @@
             "valid_until": "2026-01-01",
             "value": "2043.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1203,6 +1252,7 @@
             "valid_until": "2026-07-01",
             "value": "2099.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1225,6 +1275,7 @@
             "valid_until": "2027-07-01",
             "value": "2209.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1247,6 +1298,7 @@
             "valid_until": "2028-01-01",
             "value": "2320.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1269,6 +1321,7 @@
             "valid_until": null,
             "value": "2430.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1290,6 +1343,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1318,6 +1372,7 @@
             "valid_until": "2026-01-01",
             "value": "2111.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1340,6 +1395,7 @@
             "valid_until": "2026-07-01",
             "value": "2168.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1362,6 +1418,7 @@
             "valid_until": "2027-07-01",
             "value": "2282.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1384,6 +1441,7 @@
             "valid_until": "2028-01-01",
             "value": "2396.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1406,6 +1464,7 @@
             "valid_until": null,
             "value": "2510.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1427,6 +1486,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1455,6 +1515,7 @@
             "valid_until": "2026-01-01",
             "value": "2319.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1477,6 +1538,7 @@
             "valid_until": "2026-07-01",
             "value": "2382.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1499,6 +1561,7 @@
             "valid_until": "2027-07-01",
             "value": "2507.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1521,6 +1584,7 @@
             "valid_until": "2028-01-01",
             "value": "2633.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1543,6 +1607,7 @@
             "valid_until": null,
             "value": "2758.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1564,6 +1629,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1592,6 +1658,7 @@
             "valid_until": "2026-01-01",
             "value": "2422.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1614,6 +1681,7 @@
             "valid_until": "2026-07-01",
             "value": "2487.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1636,6 +1704,7 @@
             "valid_until": "2027-07-01",
             "value": "2618.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1658,6 +1727,7 @@
             "valid_until": "2028-01-01",
             "value": "2749.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1680,6 +1750,7 @@
             "valid_until": null,
             "value": "2880.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1701,6 +1772,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1726,7 +1798,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "8db7a13e7385e0877869a9e2ad9e78613f473da6cd72b93815d9d82a404768bc",
+    "source_hash": "7a903c390833ccdbdd49344886537ad340b536032d34c9f811efd708286d554e",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
@@ -1752,6 +1824,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1787,6 +1860,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1822,6 +1896,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1857,6 +1932,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1880,6 +1956,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1906,6 +1983,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",
@@ -1928,6 +2006,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cinema-audiovisivi-industria-g111-lavoro-economia",

@@ -54,7 +54,12 @@
         {
           "valid_from": "1990-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -136,6 +141,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -167,6 +173,7 @@
             "valid_until": "2023-04-01",
             "value": "2697.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -189,6 +196,7 @@
             "valid_until": "2024-04-01",
             "value": "2749.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -211,6 +219,7 @@
             "valid_until": "2025-03-01",
             "value": "2871.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -233,6 +242,7 @@
             "valid_until": "2025-11-01",
             "value": "2923.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -255,6 +265,7 @@
             "valid_until": "2026-11-01",
             "value": "2984.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -277,6 +288,7 @@
             "valid_until": "2027-02-01",
             "value": "3045.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -299,6 +311,7 @@
             "valid_until": null,
             "value": "3114.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -320,6 +333,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -349,6 +363,7 @@
             "valid_until": "2023-04-01",
             "value": "2246.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -371,6 +386,7 @@
             "valid_until": "2024-04-01",
             "value": "2292.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -393,6 +409,7 @@
             "valid_until": "2025-03-01",
             "value": "2402.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -415,6 +432,7 @@
             "valid_until": "2025-11-01",
             "value": "2449.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -437,6 +455,7 @@
             "valid_until": "2026-11-01",
             "value": "2504.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -459,6 +478,7 @@
             "valid_until": "2027-02-01",
             "value": "2558.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -481,6 +501,7 @@
             "valid_until": null,
             "value": "2621.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -502,6 +523,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -531,6 +553,7 @@
             "valid_until": "2023-04-01",
             "value": "2010.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -553,6 +576,7 @@
             "valid_until": "2024-04-01",
             "value": "2050.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -575,6 +599,7 @@
             "valid_until": "2025-03-01",
             "value": "2145.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -597,6 +622,7 @@
             "valid_until": "2025-11-01",
             "value": "2186.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -619,6 +645,7 @@
             "valid_until": "2026-11-01",
             "value": "2233.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -641,6 +668,7 @@
             "valid_until": "2027-02-01",
             "value": "2280.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -663,6 +691,7 @@
             "valid_until": null,
             "value": "2335.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -684,6 +713,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -713,6 +743,7 @@
             "valid_until": "2023-04-01",
             "value": "1791.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -735,6 +766,7 @@
             "valid_until": "2024-04-01",
             "value": "1825.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -757,6 +789,7 @@
             "valid_until": "2025-03-01",
             "value": "1906.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -779,6 +812,7 @@
             "valid_until": "2025-11-01",
             "value": "1941.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -801,6 +835,7 @@
             "valid_until": "2026-11-01",
             "value": "1981.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -823,6 +858,7 @@
             "valid_until": "2027-02-01",
             "value": "2022.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -845,6 +881,7 @@
             "valid_until": null,
             "value": "2068.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -866,6 +903,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -895,6 +933,7 @@
             "valid_until": "2023-04-01",
             "value": "1616.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -917,6 +956,7 @@
             "valid_until": "2024-04-01",
             "value": "1646.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -939,6 +979,7 @@
             "valid_until": "2025-03-01",
             "value": "1716.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -961,6 +1002,7 @@
             "valid_until": "2025-11-01",
             "value": "1746.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -983,6 +1025,7 @@
             "valid_until": "2026-11-01",
             "value": "1781.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1005,6 +1048,7 @@
             "valid_until": "2027-02-01",
             "value": "1816.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1027,6 +1071,7 @@
             "valid_until": null,
             "value": "1856.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1048,6 +1093,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1077,6 +1123,7 @@
             "valid_until": "2023-04-01",
             "value": "1508.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1099,6 +1146,7 @@
             "valid_until": "2024-04-01",
             "value": "1536.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1121,6 +1169,7 @@
             "valid_until": "2025-03-01",
             "value": "1599.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1143,6 +1192,7 @@
             "valid_until": "2025-11-01",
             "value": "1626.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1165,6 +1215,7 @@
             "valid_until": "2026-11-01",
             "value": "1658.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1187,6 +1238,7 @@
             "valid_until": "2027-02-01",
             "value": "1689.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1209,6 +1261,7 @@
             "valid_until": null,
             "value": "1725.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1230,6 +1283,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1259,6 +1313,7 @@
             "valid_until": "2023-04-01",
             "value": "1405.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1281,6 +1336,7 @@
             "valid_until": "2024-04-01",
             "value": "1430.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1303,6 +1359,7 @@
             "valid_until": "2025-03-01",
             "value": "1486.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1325,6 +1382,7 @@
             "valid_until": "2025-11-01",
             "value": "1511.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1347,6 +1405,7 @@
             "valid_until": "2026-11-01",
             "value": "1539.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1369,6 +1428,7 @@
             "valid_until": "2027-02-01",
             "value": "1568.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1391,6 +1451,7 @@
             "valid_until": null,
             "value": "1600.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1412,6 +1473,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1441,6 +1503,7 @@
             "valid_until": "2023-04-01",
             "value": "1281.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1463,6 +1526,7 @@
             "valid_until": "2024-04-01",
             "value": "1302.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1485,6 +1549,7 @@
             "valid_until": "2025-03-01",
             "value": "1350.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1507,6 +1572,7 @@
             "valid_until": "2025-11-01",
             "value": "1371.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1529,6 +1595,7 @@
             "valid_until": "2026-11-01",
             "value": "1395.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1551,6 +1618,7 @@
             "valid_until": "2027-02-01",
             "value": "1420.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1573,6 +1641,7 @@
             "valid_until": null,
             "value": "1447.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1594,6 +1663,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-contratto-collettivo-nazionale-pdf",
@@ -1709,7 +1779,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "11442241196c787f563c3317b83ba125c89d6eb2ab8e58a3d58da4b571b14a68",
+    "source_hash": "0ec6b0d40fbba55dec6a16c11630daa7453bdf1bfce9751fc4bdedaf9ab7478c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1735,6 +1805,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1770,6 +1841,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1806,6 +1878,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1841,6 +1914,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1864,6 +1938,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1890,6 +1965,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-terziario-confesercenti-2022",
@@ -1912,6 +1988,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-terziario-confesercenti-2022",

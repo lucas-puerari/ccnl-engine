@@ -107,7 +107,12 @@
         {
           "valid_from": "2021-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -115,6 +120,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -201,6 +207,7 @@
             "valid_until": "2021-09-01",
             "value": "1488.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -223,6 +230,7 @@
             "valid_until": "2022-02-01",
             "value": "1532.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -245,6 +253,7 @@
             "valid_until": null,
             "value": "1577.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -278,6 +287,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -308,6 +318,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -338,6 +349,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -358,6 +370,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -386,6 +399,7 @@
             "valid_until": "2021-09-01",
             "value": "1158.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -408,6 +422,7 @@
             "valid_until": "2022-02-01",
             "value": "1193.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -430,6 +445,7 @@
             "valid_until": null,
             "value": "1227.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -463,6 +479,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -493,6 +510,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -513,6 +531,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -541,6 +560,7 @@
             "valid_until": "2021-09-01",
             "value": "997.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -563,6 +583,7 @@
             "valid_until": "2022-02-01",
             "value": "1027.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -585,6 +606,7 @@
             "valid_until": null,
             "value": "1057.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -618,6 +640,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -648,6 +671,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -668,6 +692,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -696,6 +721,7 @@
             "valid_until": "2021-09-01",
             "value": "931.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -718,6 +744,7 @@
             "valid_until": "2022-02-01",
             "value": "959.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -740,6 +767,7 @@
             "valid_until": null,
             "value": "987.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -773,6 +801,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -803,6 +832,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -823,6 +853,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -851,6 +882,7 @@
             "valid_until": "2021-09-01",
             "value": "885.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -873,6 +905,7 @@
             "valid_until": "2022-02-01",
             "value": "911.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -895,6 +928,7 @@
             "valid_until": null,
             "value": "938.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -928,6 +962,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -958,6 +993,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -978,6 +1014,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -1006,6 +1043,7 @@
             "valid_until": "2021-09-01",
             "value": "744.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -1028,6 +1066,7 @@
             "valid_until": "2022-02-01",
             "value": "766.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -1050,6 +1089,7 @@
             "valid_until": null,
             "value": "788.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -1083,6 +1123,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -1113,6 +1154,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoscuole-unasca-verbale-rettifica-2023-pdf",
@@ -1133,6 +1175,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoscuole-unasca-ccnl-2023-pdf",
@@ -1265,7 +1308,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "914189a3d4ccda5af51152e1635cf70084f4fa5aeb47383609b45f6ec5a7e65d",
+    "source_hash": "36d735164157938c634831ebca3703a91a48c71cb5c16747d7947d0ef9f01abf",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

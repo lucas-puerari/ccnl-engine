@@ -93,7 +93,12 @@
         {
           "valid_from": "2025-02-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -101,6 +106,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -275,6 +281,7 @@
             "valid_until": "2026-03-01",
             "value": "1085.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -297,6 +304,7 @@
             "valid_until": "2027-03-01",
             "value": "1135.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -319,6 +327,7 @@
             "valid_until": null,
             "value": "1185.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -352,6 +361,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -382,6 +392,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -401,6 +412,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -429,6 +441,7 @@
             "valid_until": "2026-03-01",
             "value": "1240.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -451,6 +464,7 @@
             "valid_until": "2027-03-01",
             "value": "1297.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -473,6 +487,7 @@
             "valid_until": null,
             "value": "1354.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -506,6 +521,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -536,6 +552,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -555,6 +572,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -583,6 +601,7 @@
             "valid_until": "2026-03-01",
             "value": "1381.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -605,6 +624,7 @@
             "valid_until": "2027-03-01",
             "value": "1445.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -627,6 +647,7 @@
             "valid_until": null,
             "value": "1508.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -660,6 +681,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -690,6 +712,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -709,6 +732,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -737,6 +761,7 @@
             "valid_until": "2026-03-01",
             "value": "1485.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -759,6 +784,7 @@
             "valid_until": "2027-03-01",
             "value": "1553.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -781,6 +807,7 @@
             "valid_until": null,
             "value": "1621.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -814,6 +841,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -844,6 +872,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -863,6 +892,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -891,6 +921,7 @@
             "valid_until": "2026-03-01",
             "value": "1659.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -913,6 +944,7 @@
             "valid_until": "2027-03-01",
             "value": "1735.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -935,6 +967,7 @@
             "valid_until": null,
             "value": "1812.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -968,6 +1001,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -998,6 +1032,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1017,6 +1052,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1045,6 +1081,7 @@
             "valid_until": "2026-03-01",
             "value": "1953.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1067,6 +1104,7 @@
             "valid_until": "2027-03-01",
             "value": "2043.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1089,6 +1127,7 @@
             "valid_until": null,
             "value": "2133.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1122,6 +1161,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1152,6 +1192,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1171,6 +1212,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1199,6 +1241,7 @@
             "valid_until": "2026-03-01",
             "value": "2274.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1221,6 +1264,7 @@
             "valid_until": "2027-03-01",
             "value": "2379.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1243,6 +1287,7 @@
             "valid_until": null,
             "value": "2484.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1276,6 +1321,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1306,6 +1352,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1325,6 +1372,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1353,6 +1401,7 @@
             "valid_until": "2026-03-01",
             "value": "2274.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1375,6 +1424,7 @@
             "valid_until": "2027-03-01",
             "value": "2379.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1397,6 +1447,7 @@
             "valid_until": null,
             "value": "2484.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1430,6 +1481,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1460,6 +1512,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1490,6 +1543,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1509,6 +1563,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1537,6 +1592,7 @@
             "valid_until": "2026-03-01",
             "value": "2712.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1559,6 +1615,7 @@
             "valid_until": "2027-03-01",
             "value": "2837.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1581,6 +1638,7 @@
             "valid_until": null,
             "value": "2962.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1614,6 +1672,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1644,6 +1703,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1663,6 +1723,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1691,6 +1752,7 @@
             "valid_until": "2026-03-01",
             "value": "2712.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1713,6 +1775,7 @@
             "valid_until": "2027-03-01",
             "value": "2837.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1735,6 +1798,7 @@
             "valid_until": null,
             "value": "2962.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1768,6 +1832,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1798,6 +1863,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1828,6 +1894,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-kitech-c124",
@@ -1847,6 +1914,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1872,7 +1940,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "a81704bb96cd9d9f22027928f31309a91057c80072b451e092e15959edcbbaf3",
+    "source_hash": "97bde613402dacad7341f0453ef671f9f6131e86a0d06d5136a3bf3a10dcb128",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1898,6 +1966,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1933,6 +2002,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -1968,6 +2038,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",
@@ -2003,6 +2074,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-cooperative-rinnovo-21022025",

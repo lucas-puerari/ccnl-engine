@@ -161,6 +161,8 @@ class RegionaleRaw(BaseModel):
     ruleset: RulesetIdentity | None = None
     notes: list[str] = Field(default_factory=list)
     rates: dict[str, RegionaleEntry]
+    provenance: RuleProvenance | None = None
+    """Source and status of the whole table; an entry may override it."""
     sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
 
@@ -173,6 +175,8 @@ class ComunaleRaw(BaseModel):
     ruleset: RulesetIdentity | None = None
     notes: list[str] = []
     rates: dict[str, ComunaleEntry]
+    provenance: RuleProvenance | None = None
+    """Source and status of the whole table; an entry may override it."""
     sources: list[SourceDocument] = []
     extraction: ExtractionTrace | None = None
     rates_are_advance: bool = False
@@ -194,6 +198,8 @@ class SurtaxRules(BaseModel):
             (e.g. ``"Lombardia"``).
         comunale: Per-municipality surtax data, keyed by *codice catastale*
             (e.g. ``"H501"`` for Rome).
+        regional_provenance: Source and status of the regional table.
+        municipal_provenance: Source and status of the municipal table.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -203,6 +209,8 @@ class SurtaxRules(BaseModel):
     municipal_ruleset: RulesetIdentity | None = None
     regionale: dict[str, RegionaleEntry]
     comunale: dict[str, ComunaleEntry]
+    regional_provenance: RuleProvenance | None = None
+    municipal_provenance: RuleProvenance | None = None
     comunale_rates_are_advance: bool = False
     """True when comunale rates are from a prior year (advance only)."""
     comunale_advance_fraction: Decimal = Decimal("0.30")

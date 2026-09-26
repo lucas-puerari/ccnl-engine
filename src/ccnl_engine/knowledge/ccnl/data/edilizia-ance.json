@@ -98,7 +98,12 @@
         {
           "valid_from": "2025-02-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -171,6 +176,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -201,6 +207,7 @@
             "valid_until": "2026-03-01",
             "value": "1590.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -223,6 +230,7 @@
             "valid_until": "2027-03-01",
             "value": "1640.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -245,6 +253,7 @@
             "valid_until": null,
             "value": "1690.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -266,6 +275,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -294,6 +304,7 @@
             "valid_until": "2026-03-01",
             "value": "1775.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -316,6 +327,7 @@
             "valid_until": "2027-03-01",
             "value": "1834.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -338,6 +350,7 @@
             "valid_until": null,
             "value": "1892.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -359,6 +372,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -387,6 +401,7 @@
             "valid_until": "2026-03-01",
             "value": "1917.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -409,6 +424,7 @@
             "valid_until": "2027-03-01",
             "value": "1982.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -431,6 +447,7 @@
             "valid_until": null,
             "value": "2047.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -452,6 +469,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -480,6 +498,7 @@
             "valid_until": "2026-03-01",
             "value": "2025.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -502,6 +521,7 @@
             "valid_until": "2027-03-01",
             "value": "2095.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -524,6 +544,7 @@
             "valid_until": null,
             "value": "2165.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -545,6 +566,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -573,6 +595,7 @@
             "valid_until": "2026-03-01",
             "value": "2134.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -595,6 +618,7 @@
             "valid_until": "2027-03-01",
             "value": "2209.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -617,6 +641,7 @@
             "valid_until": null,
             "value": "2284.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -638,6 +663,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -666,6 +692,7 @@
             "valid_until": "2026-03-01",
             "value": "2461.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -688,6 +715,7 @@
             "valid_until": "2027-03-01",
             "value": "2551.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -710,6 +738,7 @@
             "valid_until": null,
             "value": "2641.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -731,6 +760,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -759,6 +789,7 @@
             "valid_until": "2026-03-01",
             "value": "2678.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -781,6 +812,7 @@
             "valid_until": "2027-03-01",
             "value": "2778.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -803,6 +835,7 @@
             "valid_until": null,
             "value": "2878.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -824,6 +857,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
@@ -900,7 +934,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "f2503bd9b39d96cbad4d3cfde09062497544d2132cfa31650306e8ae83fe0c42",
+    "source_hash": "6877c8eda0061de8c37602e02c994c3d73167750b80bac79dff599cfdac0601b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -926,6 +960,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-industria",
@@ -961,6 +996,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-industria",
@@ -996,6 +1032,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-industria",
@@ -1031,6 +1068,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-edilizia-industria",
@@ -1054,6 +1092,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-industria",
@@ -1080,6 +1119,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-industria",
@@ -1102,6 +1142,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-edilizia-industria",

@@ -100,7 +100,12 @@
         {
           "valid_from": "2025-07-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -804,6 +809,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -836,6 +842,7 @@
             "valid_until": "2026-01-01",
             "value": "1501.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -858,6 +865,7 @@
             "valid_until": null,
             "value": "1534.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -879,6 +887,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -908,6 +917,7 @@
             "valid_until": "2026-01-01",
             "value": "1561.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -930,6 +940,7 @@
             "valid_until": null,
             "value": "1595.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -951,6 +962,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -980,6 +992,7 @@
             "valid_until": "2026-01-01",
             "value": "1606.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1002,6 +1015,7 @@
             "valid_until": null,
             "value": "1641.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1023,6 +1037,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1052,6 +1067,7 @@
             "valid_until": "2026-01-01",
             "value": "1681.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1074,6 +1090,7 @@
             "valid_until": null,
             "value": "1718.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1095,6 +1112,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1124,6 +1142,7 @@
             "valid_until": "2026-01-01",
             "value": "1726.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1146,6 +1165,7 @@
             "valid_until": null,
             "value": "1764.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1167,6 +1187,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1196,6 +1217,7 @@
             "valid_until": "2026-01-01",
             "value": "1741.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1218,6 +1240,7 @@
             "valid_until": null,
             "value": "1779.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1239,6 +1262,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1268,6 +1292,7 @@
             "valid_until": "2026-01-01",
             "value": "1756.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1290,6 +1315,7 @@
             "valid_until": null,
             "value": "1794.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1311,6 +1337,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1340,6 +1367,7 @@
             "valid_until": "2026-01-01",
             "value": "1771.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1362,6 +1390,7 @@
             "valid_until": null,
             "value": "1810.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1383,6 +1412,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1412,6 +1442,7 @@
             "valid_until": "2026-01-01",
             "value": "1831.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1434,6 +1465,7 @@
             "valid_until": null,
             "value": "1871.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1455,6 +1487,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1484,6 +1517,7 @@
             "valid_until": "2026-01-01",
             "value": "1906.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1506,6 +1540,7 @@
             "valid_until": null,
             "value": "1948.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1527,6 +1562,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1556,6 +1592,7 @@
             "valid_until": "2026-01-01",
             "value": "1921.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1578,6 +1615,7 @@
             "valid_until": null,
             "value": "1963.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1599,6 +1637,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1628,6 +1667,7 @@
             "valid_until": "2026-01-01",
             "value": "1921.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1650,6 +1690,7 @@
             "valid_until": null,
             "value": "1963.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1671,6 +1712,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1700,6 +1742,7 @@
             "valid_until": "2026-01-01",
             "value": "1981.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1722,6 +1765,7 @@
             "valid_until": null,
             "value": "2025.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1743,6 +1787,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1772,6 +1817,7 @@
             "valid_until": "2026-01-01",
             "value": "1981.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1794,6 +1840,7 @@
             "valid_until": null,
             "value": "2025.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1815,6 +1862,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1844,6 +1892,7 @@
             "valid_until": "2026-01-01",
             "value": "2011.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1866,6 +1915,7 @@
             "valid_until": null,
             "value": "2055.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1887,6 +1937,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1916,6 +1967,7 @@
             "valid_until": "2026-01-01",
             "value": "2026.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1938,6 +1990,7 @@
             "valid_until": null,
             "value": "2071.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -1959,6 +2012,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -1988,6 +2042,7 @@
             "valid_until": "2026-01-01",
             "value": "2357.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2010,6 +2065,7 @@
             "valid_until": null,
             "value": "2408.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2031,6 +2087,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2060,6 +2117,7 @@
             "valid_until": "2026-01-01",
             "value": "2387.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2082,6 +2140,7 @@
             "valid_until": null,
             "value": "2439.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2103,6 +2162,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2132,6 +2192,7 @@
             "valid_until": "2026-01-01",
             "value": "2402.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2154,6 +2215,7 @@
             "valid_until": null,
             "value": "2454.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2175,6 +2237,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2204,6 +2267,7 @@
             "valid_until": "2026-01-01",
             "value": "2432.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2226,6 +2290,7 @@
             "valid_until": null,
             "value": "2485.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2247,6 +2312,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2276,6 +2342,7 @@
             "valid_until": "2026-01-01",
             "value": "2462.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2298,6 +2365,7 @@
             "valid_until": null,
             "value": "2516.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2319,6 +2387,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2348,6 +2417,7 @@
             "valid_until": "2026-01-01",
             "value": "2552.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2370,6 +2440,7 @@
             "valid_until": null,
             "value": "2608.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2391,6 +2462,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2420,6 +2492,7 @@
             "valid_until": "2026-01-01",
             "value": "2762.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2442,6 +2515,7 @@
             "valid_until": null,
             "value": "2822.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2463,6 +2537,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2492,6 +2567,7 @@
             "valid_until": "2026-01-01",
             "value": "2777.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2514,6 +2590,7 @@
             "valid_until": null,
             "value": "2838.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2535,6 +2612,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2564,6 +2642,7 @@
             "valid_until": "2026-01-01",
             "value": "2807.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2586,6 +2665,7 @@
             "valid_until": null,
             "value": "2868.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "consorzi-di-bonifica-snebi",
@@ -2607,6 +2687,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2632,7 +2713,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "c881ea0ca5761d02d7d2f7d9629e81433294ea21010cf685eef366bccd2b787f",
+    "source_hash": "296a434b11d701c4c2c5663be89c4879fe958f5bfa7e3dfe6906a30af7710e7f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2658,6 +2739,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-di-bonifica-snebi",
@@ -2693,6 +2775,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-di-bonifica-snebi",
@@ -2728,6 +2811,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "consorzi-di-bonifica-snebi",
@@ -2751,6 +2835,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2777,6 +2862,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",
@@ -2799,6 +2885,7 @@
       "full_pay_integration_rate": "0",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "consorzi-di-bonifica-snebi",

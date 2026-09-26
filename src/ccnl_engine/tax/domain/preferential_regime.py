@@ -15,6 +15,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetIdentity,  # noqa: TC001
 )
@@ -80,6 +81,12 @@ class SubstituteTaxRegime(StrEnum):
     NOTTE_FESTIVI_TURNI = "notte_festivi_turni"
 
 
+_REGIME_SOURCE_STATUSES = frozenset({
+    ProvenanceStatus.DERIVED,
+    ProvenanceStatus.ASSUMED,
+})
+
+
 class PreferentialTaxRegime(BaseModel):
     """A statutory substitute tax on selected pay items.
 
@@ -112,6 +119,10 @@ class PreferentialTaxRegime(BaseModel):
         agreements_signed_until: Last signing date of a qualifying
             agreement.  Required with ``agreements_signed_from``.
         source: Normative source of the regime: document, section and quote.
+        source_status: How far the parameters are backed by ``source``:
+            ``derived`` or ``assumed``.  A regime always cites its source and
+            records no reviewer, so it is neither ``missing`` nor
+            ``verified``.
         ruleset: Provenance of the data file the regime was read from.
 
     Raises:
@@ -136,10 +147,18 @@ class PreferentialTaxRegime(BaseModel):
     agreements_signed_from: date | None = None
     agreements_signed_until: date | None = None
     source: SourceLocation
+    source_status: ProvenanceStatus
     ruleset: RulesetIdentity | None = None
 
     @model_validator(mode="after")
     def _check_consistency(self) -> Self:
+        if self.source_status not in _REGIME_SOURCE_STATUSES:
+            msg = (
+                f"source_status {self.source_status.value!r} is not allowed: a "
+                "regime cites its source and records no reviewer, so it is "
+                "'derived' or 'assumed'"
+            )
+            raise ValueError(msg)
         if self.valid_from_year > self.valid_until_year:
             msg = (
                 f"valid_from_year {self.valid_from_year} is after "

@@ -98,6 +98,7 @@
       "order": 1,
       "description": "Sesto livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -121,6 +122,7 @@
             "valid_until": "2024-07-01",
             "value": "1247.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -143,6 +145,7 @@
             "valid_until": "2025-07-01",
             "value": "1283.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -165,6 +168,7 @@
             "valid_until": "2026-07-01",
             "value": "1310.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -187,6 +191,7 @@
             "valid_until": null,
             "value": "1336.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -213,6 +218,7 @@
       "order": 2,
       "description": "Quinto livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -236,6 +242,7 @@
             "valid_until": "2024-07-01",
             "value": "1319.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -258,6 +265,7 @@
             "valid_until": "2025-07-01",
             "value": "1356.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -280,6 +288,7 @@
             "valid_until": "2026-07-01",
             "value": "1385.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -302,6 +311,7 @@
             "valid_until": null,
             "value": "1413.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -328,6 +338,7 @@
       "order": 3,
       "description": "Quarto livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -351,6 +362,7 @@
             "valid_until": "2024-07-01",
             "value": "1406.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -373,6 +385,7 @@
             "valid_until": "2025-07-01",
             "value": "1446.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -395,6 +408,7 @@
             "valid_until": "2026-07-01",
             "value": "1476.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -417,6 +431,7 @@
             "valid_until": null,
             "value": "1506.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -443,6 +458,7 @@
       "order": 4,
       "description": "Terzo livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -466,6 +482,7 @@
             "valid_until": "2024-07-01",
             "value": "1527.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -488,6 +505,7 @@
             "valid_until": "2025-07-01",
             "value": "1570.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -510,6 +528,7 @@
             "valid_until": "2026-07-01",
             "value": "1603.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -532,6 +551,7 @@
             "valid_until": null,
             "value": "1636.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -558,6 +578,7 @@
       "order": 5,
       "description": "Secondo livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -581,6 +602,7 @@
             "valid_until": "2024-07-01",
             "value": "1686.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -603,6 +625,7 @@
             "valid_until": "2025-07-01",
             "value": "1734.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -625,6 +648,7 @@
             "valid_until": "2026-07-01",
             "value": "1770.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -647,6 +671,7 @@
             "valid_until": null,
             "value": "1807.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -673,6 +698,7 @@
       "order": 6,
       "description": "Primo livello",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -696,6 +722,7 @@
             "valid_until": "2024-07-01",
             "value": "1856.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -718,6 +745,7 @@
             "valid_until": "2025-07-01",
             "value": "1909.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -740,6 +768,7 @@
             "valid_until": "2026-07-01",
             "value": "1949.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -762,6 +791,7 @@
             "valid_until": null,
             "value": "1989.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -788,6 +818,7 @@
       "order": 7,
       "description": "Quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "sindacato-it-h077",
@@ -811,6 +842,7 @@
             "valid_until": "2024-07-01",
             "value": "1943.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -833,6 +865,7 @@
             "valid_until": "2025-07-01",
             "value": "1999.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -855,6 +888,7 @@
             "valid_until": "2026-07-01",
             "value": "2041.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "sindacato-it-h077",
@@ -877,6 +911,7 @@
             "valid_until": null,
             "value": "2083.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-h077",
@@ -908,6 +943,7 @@
                 "valid_until": null,
                 "value": "60.00",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "kitech-h077",
@@ -928,6 +964,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "kitech-h077",
@@ -954,7 +991,12 @@
         {
           "valid_from": "2024-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -972,6 +1014,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1012,6 +1055,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1043,6 +1087,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1074,6 +1119,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1100,7 +1146,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "c4e4fd7f9b06310ee78d6cfb03294476cbec4a977c753e8988d725106590c706",
+    "source_hash": "7a5146279d7673768ca77ac0b79d556bed0458ac30c9d21f96728a0a7048de44",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1125,6 +1171,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cusi-sport-2024",
@@ -1160,6 +1207,7 @@
           ],
           "hour_threshold_per_week": 40,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cusi-sport-2024",
@@ -1195,6 +1243,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cusi-sport-2024",
@@ -1229,6 +1278,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-cusi-sport-2024",
@@ -1252,6 +1302,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1273,6 +1324,7 @@
       "default_annual_days": "26",
       "entitlement_tiers": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",
@@ -1296,6 +1348,7 @@
       "tiers": [],
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-cusi-sport-2024",

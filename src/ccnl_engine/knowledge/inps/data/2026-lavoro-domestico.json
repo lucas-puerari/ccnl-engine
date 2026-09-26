@@ -27,7 +27,18 @@
         "employer_per_hour": "1.75",
         "employer_per_hour_fixed_term": "1.91"
       }
-    ]
+    ],
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-9-2026",
+          "title": "INPS Circolare n. 9 del 3 febbraio 2026, contributi lavoro domestico 2026",
+          "kind": "inps_circolare"
+        },
+        "section": "contribution table 2026"
+      }
+    }
   },
   "ruleset": {
     "id": "inps/2026/lavoro-domestico",
@@ -37,7 +48,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "afa10f55e45e8c82294945c6300f18f563843aadac5a813c40d506c92a0c0000",
+    "source_hash": "5ce20f743390d40a2928377a9f1ca1d011300b8f9a1b06299b9886ca9b28a4b3",
     "source_type": "estimated"
   }
 }

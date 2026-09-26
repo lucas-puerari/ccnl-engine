@@ -55,7 +55,12 @@
         {
           "valid_from": "2024-06-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -155,6 +160,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -186,6 +192,7 @@
             "valid_until": "2024-07-01",
             "value": "2210.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -208,6 +215,7 @@
             "valid_until": "2025-09-01",
             "value": "2281.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -230,6 +238,7 @@
             "valid_until": "2026-09-01",
             "value": "2338.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -252,6 +261,7 @@
             "valid_until": "2027-06-01",
             "value": "2395.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -274,6 +284,7 @@
             "valid_until": "2027-12-01",
             "value": "2438.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -296,6 +307,7 @@
             "valid_until": null,
             "value": "2495.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -317,6 +329,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -346,6 +359,7 @@
             "valid_until": "2024-07-01",
             "value": "2046.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -368,6 +382,7 @@
             "valid_until": "2025-09-01",
             "value": "2112.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -390,6 +405,7 @@
             "valid_until": "2026-09-01",
             "value": "2164.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -412,6 +428,7 @@
             "valid_until": "2027-06-01",
             "value": "2217.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -434,6 +451,7 @@
             "valid_until": "2027-12-01",
             "value": "2257.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -456,6 +474,7 @@
             "valid_until": null,
             "value": "2310.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -477,6 +496,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -506,6 +526,7 @@
             "valid_until": "2024-07-01",
             "value": "1906.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -528,6 +549,7 @@
             "valid_until": "2025-09-01",
             "value": "1967.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -550,6 +572,7 @@
             "valid_until": "2026-09-01",
             "value": "2017.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -572,6 +595,7 @@
             "valid_until": "2027-06-01",
             "value": "2066.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -594,6 +618,7 @@
             "valid_until": "2027-12-01",
             "value": "2103.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -616,6 +641,7 @@
             "valid_until": null,
             "value": "2152.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -637,6 +663,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -666,6 +693,7 @@
             "valid_until": "2024-07-01",
             "value": "1742.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -688,6 +716,7 @@
             "valid_until": "2025-09-01",
             "value": "1798.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -710,6 +739,7 @@
             "valid_until": "2026-09-01",
             "value": "1843.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -732,6 +762,7 @@
             "valid_until": "2027-06-01",
             "value": "1888.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -754,6 +785,7 @@
             "valid_until": "2027-12-01",
             "value": "1922.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -776,6 +808,7 @@
             "valid_until": null,
             "value": "1967.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -797,6 +830,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -826,6 +860,7 @@
             "valid_until": "2024-07-01",
             "value": "1643.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -848,6 +883,7 @@
             "valid_until": "2025-09-01",
             "value": "1696.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -870,6 +906,7 @@
             "valid_until": "2026-09-01",
             "value": "1738.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -892,6 +929,7 @@
             "valid_until": "2027-06-01",
             "value": "1781.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -914,6 +952,7 @@
             "valid_until": "2027-12-01",
             "value": "1812.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -936,6 +975,7 @@
             "valid_until": null,
             "value": "1855.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -957,6 +997,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -986,6 +1027,7 @@
             "valid_until": "2024-07-01",
             "value": "1550.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1008,6 +1050,7 @@
             "valid_until": "2025-09-01",
             "value": "1600.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1030,6 +1073,7 @@
             "valid_until": "2026-09-01",
             "value": "1640.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1052,6 +1096,7 @@
             "valid_until": "2027-06-01",
             "value": "1680.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1074,6 +1119,7 @@
             "valid_until": "2027-12-01",
             "value": "1710.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1096,6 +1142,7 @@
             "valid_until": null,
             "value": "1750.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1117,6 +1164,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -1146,6 +1194,7 @@
             "valid_until": "2024-07-01",
             "value": "1454.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1168,6 +1217,7 @@
             "valid_until": "2025-09-01",
             "value": "1501.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1190,6 +1240,7 @@
             "valid_until": "2026-09-01",
             "value": "1538.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1212,6 +1263,7 @@
             "valid_until": "2027-06-01",
             "value": "1576.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1234,6 +1286,7 @@
             "valid_until": "2027-12-01",
             "value": "1604.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1256,6 +1309,7 @@
             "valid_until": null,
             "value": "1641.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1277,6 +1331,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -1306,6 +1361,7 @@
             "valid_until": "2024-07-01",
             "value": "1398.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1328,6 +1384,7 @@
             "valid_until": "2025-09-01",
             "value": "1443.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1350,6 +1407,7 @@
             "valid_until": "2026-09-01",
             "value": "1479.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1372,6 +1430,7 @@
             "valid_until": "2027-06-01",
             "value": "1515.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1394,6 +1453,7 @@
             "valid_until": "2027-12-01",
             "value": "1542.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1416,6 +1476,7 @@
             "valid_until": null,
             "value": "1578.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1437,6 +1498,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -1466,6 +1528,7 @@
             "valid_until": "2024-07-01",
             "value": "1378.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1488,6 +1551,7 @@
             "valid_until": "2025-09-01",
             "value": "1423.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1510,6 +1574,7 @@
             "valid_until": "2026-09-01",
             "value": "1458.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1532,6 +1597,7 @@
             "valid_until": "2027-06-01",
             "value": "1494.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1554,6 +1620,7 @@
             "valid_until": "2027-12-01",
             "value": "1520.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1576,6 +1643,7 @@
             "valid_until": null,
             "value": "1556.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1597,6 +1665,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -1626,6 +1695,7 @@
             "valid_until": "2024-07-01",
             "value": "1291.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1648,6 +1718,7 @@
             "valid_until": "2025-09-01",
             "value": "1333.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1670,6 +1741,7 @@
             "valid_until": "2026-09-01",
             "value": "1366.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1692,6 +1764,7 @@
             "valid_until": "2027-06-01",
             "value": "1400.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1714,6 +1787,7 @@
             "valid_until": "2027-12-01",
             "value": "1425.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1736,6 +1810,7 @@
             "valid_until": null,
             "value": "1458.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "20108-pdf",
@@ -1757,6 +1832,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "20108-pdf",
@@ -1855,7 +1931,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "5dd80bb6651dd4a6a0a2b945dc6c6c5225ef36144e49624f78bfc283b9768e2a",
+    "source_hash": "22cb4350c1873db4f24c432d7c8b5ec76c6ea80aa5a85b00d99c7ff22c4fd6b9",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1881,6 +1957,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-viaggio-fiavet",
@@ -1916,6 +1993,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-viaggio-fiavet",
@@ -1951,6 +2029,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-viaggio-fiavet",
@@ -1974,6 +2053,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-viaggio-fiavet",
@@ -2000,6 +2080,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-viaggio-fiavet",
@@ -2022,6 +2103,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-viaggio-fiavet",

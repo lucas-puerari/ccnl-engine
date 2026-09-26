@@ -57,6 +57,7 @@
       "category": "operaio",
       "description": "Livello F — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -80,6 +81,7 @@
             "valid_until": "2024-01-01",
             "value": "1577.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -102,6 +104,7 @@
             "valid_until": "2025-04-01",
             "value": "1611.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -124,6 +127,7 @@
             "valid_until": "2026-01-01",
             "value": "1646.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -146,6 +150,7 @@
             "valid_until": null,
             "value": "1683.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -177,6 +182,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -197,6 +203,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -222,6 +229,7 @@
       "category": "operaio",
       "description": "Livello E — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -245,6 +253,7 @@
             "valid_until": "2024-01-01",
             "value": "1703.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -267,6 +276,7 @@
             "valid_until": "2025-04-01",
             "value": "1741.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -289,6 +299,7 @@
             "valid_until": "2026-01-01",
             "value": "1780.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -311,6 +322,7 @@
             "valid_until": null,
             "value": "1822.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -342,6 +354,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -362,6 +375,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -387,6 +401,7 @@
       "category": "operaio",
       "description": "Livello D — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -410,6 +425,7 @@
             "valid_until": "2024-01-01",
             "value": "1938.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -432,6 +448,7 @@
             "valid_until": "2025-04-01",
             "value": "1983.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -454,6 +471,7 @@
             "valid_until": "2026-01-01",
             "value": "2030.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -476,6 +494,7 @@
             "valid_until": null,
             "value": "2080.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -507,6 +526,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -527,6 +547,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -552,6 +573,7 @@
       "category": "impiegato",
       "description": "Livello C — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -575,6 +597,7 @@
             "valid_until": "2024-01-01",
             "value": "2187.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -597,6 +620,7 @@
             "valid_until": "2025-04-01",
             "value": "2240.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -619,6 +643,7 @@
             "valid_until": "2026-01-01",
             "value": "2295.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -641,6 +666,7 @@
             "valid_until": null,
             "value": "2354.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -672,6 +698,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -692,6 +719,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -717,6 +745,7 @@
       "category": "impiegato",
       "description": "Livello B — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -740,6 +769,7 @@
             "valid_until": "2024-01-01",
             "value": "2427.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -762,6 +792,7 @@
             "valid_until": "2025-04-01",
             "value": "2487.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -784,6 +815,7 @@
             "valid_until": "2026-01-01",
             "value": "2550.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -806,6 +838,7 @@
             "valid_until": null,
             "value": "2616.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -837,6 +870,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -857,6 +891,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -882,6 +917,7 @@
       "category": "quadro",
       "description": "Livello A — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -905,6 +941,7 @@
             "valid_until": "2024-01-01",
             "value": "2661.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -927,6 +964,7 @@
             "valid_until": "2025-04-01",
             "value": "2729.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -949,6 +987,7 @@
             "valid_until": "2026-01-01",
             "value": "2799.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -971,6 +1010,7 @@
             "valid_until": null,
             "value": "2874.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -1002,6 +1042,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
+                  "status": "derived",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -1022,6 +1063,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -1057,7 +1099,12 @@
         {
           "valid_from": "2023-03-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -1065,6 +1112,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -1143,6 +1191,7 @@
         "code": "FONCHIM",
         "description": "Fondo di Previdenza Complementare per i lavoratori della chimica e settori affini",
         "provenance": {
+          "status": "derived",
           "location": {
             "source_document": {
               "document_id": "assovetro-rinnovo-2026-04-09",
@@ -1227,6 +1276,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "518c193a7c7c53e79d4b202e6c62bf85a1ab79d54fea0a5a29375d1e20ab5f03"
+    "source_hash": "2d79247d30796b1580b3cfce619ee58ca886b8b3fec86f52ee8e3b315021e828"
   }
 }

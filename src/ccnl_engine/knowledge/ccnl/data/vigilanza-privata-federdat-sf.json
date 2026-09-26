@@ -64,6 +64,7 @@
             "valid_until": "2024-01-01",
             "value": "1021.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -86,6 +87,7 @@
             "valid_until": "2024-07-01",
             "value": "1035.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -108,6 +110,7 @@
             "valid_until": "2024-10-01",
             "value": "1067.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -130,6 +133,7 @@
             "valid_until": "2025-01-01",
             "value": "1114.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -152,6 +156,7 @@
             "valid_until": "2025-07-01",
             "value": "1142.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -174,6 +179,7 @@
             "valid_until": "2025-12-01",
             "value": "1170.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -196,6 +202,7 @@
             "valid_until": "2026-04-01",
             "value": "1188.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -218,6 +225,7 @@
             "valid_until": null,
             "value": "1207.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -239,6 +247,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -267,6 +276,7 @@
             "valid_until": "2024-01-01",
             "value": "1114.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -289,6 +299,7 @@
             "valid_until": "2024-07-01",
             "value": "1128.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -311,6 +322,7 @@
             "valid_until": "2024-10-01",
             "value": "1160.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -333,6 +345,7 @@
             "valid_until": "2025-01-01",
             "value": "1207.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -355,6 +368,7 @@
             "valid_until": "2025-07-01",
             "value": "1235.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -377,6 +391,7 @@
             "valid_until": "2025-12-01",
             "value": "1262.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -399,6 +414,7 @@
             "valid_until": "2026-04-01",
             "value": "1281.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -421,6 +437,7 @@
             "valid_until": null,
             "value": "1300.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -442,6 +459,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -470,6 +488,7 @@
             "valid_until": "2024-01-01",
             "value": "1333.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -492,6 +511,7 @@
             "valid_until": "2024-07-01",
             "value": "1350.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -514,6 +534,7 @@
             "valid_until": "2024-10-01",
             "value": "1389.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -536,6 +557,7 @@
             "valid_until": "2025-01-01",
             "value": "1444.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -558,6 +580,7 @@
             "valid_until": "2025-07-01",
             "value": "1478.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -580,6 +603,7 @@
             "valid_until": "2025-12-01",
             "value": "1511.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -602,6 +626,7 @@
             "valid_until": "2026-04-01",
             "value": "1534.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -624,6 +649,7 @@
             "valid_until": null,
             "value": "1556.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -645,6 +671,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -673,6 +700,7 @@
             "valid_until": "2024-01-01",
             "value": "1583.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -695,6 +723,7 @@
             "valid_until": "2024-07-01",
             "value": "1603.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -717,6 +746,7 @@
             "valid_until": "2024-10-01",
             "value": "1650.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -739,6 +769,7 @@
             "valid_until": "2025-01-01",
             "value": "1716.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -761,6 +792,7 @@
             "valid_until": "2025-07-01",
             "value": "1756.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -783,6 +815,7 @@
             "valid_until": "2025-12-01",
             "value": "1796.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -805,6 +838,7 @@
             "valid_until": "2026-04-01",
             "value": "1822.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -827,6 +861,7 @@
             "valid_until": null,
             "value": "1849.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -848,6 +883,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -876,6 +912,7 @@
             "valid_until": "2024-01-01",
             "value": "1740.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -898,6 +935,7 @@
             "valid_until": "2024-07-01",
             "value": "1762.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -920,6 +958,7 @@
             "valid_until": "2024-10-01",
             "value": "1813.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -942,6 +981,7 @@
             "valid_until": "2025-01-01",
             "value": "1886.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -964,6 +1004,7 @@
             "valid_until": "2025-07-01",
             "value": "1930.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -986,6 +1027,7 @@
             "valid_until": "2025-12-01",
             "value": "1973.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -1008,6 +1050,7 @@
             "valid_until": "2026-04-01",
             "value": "2003.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -1030,6 +1073,7 @@
             "valid_until": null,
             "value": "2032.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -1051,6 +1095,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -1075,12 +1120,22 @@
         {
           "valid_from": "2023-06-01",
           "valid_until": "2024-01-01",
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         },
         {
           "valid_from": "2024-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -1144,6 +1199,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabelle-ccnl-16-2-2024-firmato-2023-2026-pdf",
@@ -1190,7 +1246,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "e4e1fb781a7ba1fb490ad536c9bd4084af2724d7cd0e2db8157c99153221ec68",
+    "source_hash": "4a2f650da73b2b12677b514a8cb7e0f46850d740ee81f497e01dfd79273fead9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1216,6 +1272,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
@@ -1251,6 +1308,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
@@ -1286,6 +1344,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
@@ -1309,6 +1368,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
@@ -1335,6 +1395,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",
@@ -1357,6 +1418,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-vigilanza-privata-federdat-sf-2024",

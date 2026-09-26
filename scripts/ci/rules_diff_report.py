@@ -16,12 +16,17 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess  # noqa: S404
+import sys
+from collections import Counter
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 from ccnl_engine.contract.domain.identity import CCNL
+from scripts.data.assign_rule_provenance import migrate_ccnl
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
@@ -94,8 +99,10 @@ def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
 
     The base branch may predate the current validator (e.g. ``model`` was null
     before PR #344 made it required for AI extractions).  A ``ValidationError``
-    is treated as "file existed but cannot be compared" — equivalent to a new
-    file from the diff's perspective.
+    is treated as "file existed but cannot be compared", equivalent to a new
+    file from the diff's perspective.  A base file whose provenance records
+    predate the required ``status`` is compared after assigning the statuses
+    in memory, as ``scripts/data/assign_rule_provenance.py`` does.
 
     Returns:
         Validated CCNL instance, or ``None`` if the file did not exist at
@@ -104,8 +111,13 @@ def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
     raw = _git_show(base_ref, file_path)
     if raw is None:
         return None
+    data = json.loads(raw)
     try:
-        return CCNL.model_validate(json.loads(raw))
+        return CCNL.model_validate(data)
+    except ValidationError:
+        pass
+    try:
+        return CCNL.model_validate(migrate_ccnl(data, Counter()))
     except ValidationError:
         return None
 

@@ -83,12 +83,22 @@
         {
           "valid_from": "2024-02-01",
           "valid_until": "2025-01-01",
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         },
         {
           "valid_from": "2025-01-01",
           "valid_until": null,
-          "value": "13.5"
+          "value": "13.5",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -242,6 +252,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -272,6 +283,7 @@
             "valid_until": "2024-10-01",
             "value": "1307.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -294,6 +306,7 @@
             "valid_until": "2025-10-01",
             "value": "1333.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -316,6 +329,7 @@
             "valid_until": null,
             "value": "1359.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -337,6 +351,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -365,6 +380,7 @@
             "valid_until": "2024-10-01",
             "value": "1319.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -387,6 +403,7 @@
             "valid_until": "2025-10-01",
             "value": "1345.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -409,6 +426,7 @@
             "valid_until": null,
             "value": "1372.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -430,6 +448,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -458,6 +477,7 @@
             "valid_until": "2024-10-01",
             "value": "1380.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -480,6 +500,7 @@
             "valid_until": "2025-10-01",
             "value": "1408.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -502,6 +523,7 @@
             "valid_until": null,
             "value": "1436.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -523,6 +545,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -551,6 +574,7 @@
             "valid_until": "2024-10-01",
             "value": "1485.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -573,6 +597,7 @@
             "valid_until": "2025-10-01",
             "value": "1515.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -595,6 +620,7 @@
             "valid_until": null,
             "value": "1545.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -616,6 +642,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -644,6 +671,7 @@
             "valid_until": "2024-10-01",
             "value": "1529.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -666,6 +694,7 @@
             "valid_until": "2025-10-01",
             "value": "1560.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -688,6 +717,7 @@
             "valid_until": null,
             "value": "1591.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -709,6 +739,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -737,6 +768,7 @@
             "valid_until": "2024-10-01",
             "value": "1574.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -759,6 +791,7 @@
             "valid_until": "2025-10-01",
             "value": "1605.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -781,6 +814,7 @@
             "valid_until": null,
             "value": "1637.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -802,6 +836,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -830,6 +865,7 @@
             "valid_until": "2024-10-01",
             "value": "1574.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -852,6 +888,7 @@
             "valid_until": "2025-10-01",
             "value": "1605.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -874,6 +911,7 @@
             "valid_until": null,
             "value": "1637.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -895,6 +933,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -923,6 +962,7 @@
             "valid_until": "2024-10-01",
             "value": "1660.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -945,6 +985,7 @@
             "valid_until": "2025-10-01",
             "value": "1694.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -967,6 +1008,7 @@
             "valid_until": null,
             "value": "1727.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -988,6 +1030,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1016,6 +1059,7 @@
             "valid_until": "2024-10-01",
             "value": "1768.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1038,6 +1082,7 @@
             "valid_until": "2025-10-01",
             "value": "1803.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1060,6 +1105,7 @@
             "valid_until": null,
             "value": "1839.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1081,6 +1127,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1109,6 +1156,7 @@
             "valid_until": "2024-10-01",
             "value": "1768.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1131,6 +1179,7 @@
             "valid_until": "2025-10-01",
             "value": "1803.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1153,6 +1202,7 @@
             "valid_until": null,
             "value": "1839.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1174,6 +1224,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1202,6 +1253,7 @@
             "valid_until": "2024-10-01",
             "value": "1908.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1224,6 +1276,7 @@
             "valid_until": "2025-10-01",
             "value": "1946.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1246,6 +1299,7 @@
             "valid_until": null,
             "value": "1985.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1267,6 +1321,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1295,6 +1350,7 @@
             "valid_until": "2024-10-01",
             "value": "1908.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1317,6 +1373,7 @@
             "valid_until": "2025-10-01",
             "value": "1946.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1339,6 +1396,7 @@
             "valid_until": null,
             "value": "1985.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1372,6 +1430,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -1392,6 +1451,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1420,6 +1480,7 @@
             "valid_until": "2024-10-01",
             "value": "2107.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1442,6 +1503,7 @@
             "valid_until": "2025-10-01",
             "value": "2150.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1464,6 +1526,7 @@
             "valid_until": null,
             "value": "2192.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1485,6 +1548,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1513,6 +1577,7 @@
             "valid_until": "2024-10-01",
             "value": "2107.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1535,6 +1600,7 @@
             "valid_until": "2025-10-01",
             "value": "2150.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1557,6 +1623,7 @@
             "valid_until": null,
             "value": "2192.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1590,6 +1657,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -1610,6 +1678,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1638,6 +1707,7 @@
             "valid_until": "2024-10-01",
             "value": "2407.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1660,6 +1730,7 @@
             "valid_until": "2025-10-01",
             "value": "2455.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1682,6 +1753,7 @@
             "valid_until": null,
             "value": "2504.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1703,6 +1775,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1731,6 +1804,7 @@
             "valid_until": "2024-10-01",
             "value": "2407.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1753,6 +1827,7 @@
             "valid_until": "2025-10-01",
             "value": "2455.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1775,6 +1850,7 @@
             "valid_until": null,
             "value": "2504.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "cooperative-sociali",
@@ -1808,6 +1884,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -1828,6 +1905,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -1934,7 +2012,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-cooperative-sociali-2024-2025-e-anni-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "afdfc7a72776b02385109c596f3904f8678b80edbc6ce0d577ccfa4d1e51c99c",
+    "source_hash": "1a1bc2fb84ba65d392153b407180880be967056b0dde986c18e87d5ded3696b8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1960,6 +2038,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -1995,6 +2074,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -2030,6 +2110,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -2065,6 +2146,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "cooperative-sociali",
@@ -2088,6 +2170,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -2114,6 +2197,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",
@@ -2136,6 +2220,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "cooperative-sociali",

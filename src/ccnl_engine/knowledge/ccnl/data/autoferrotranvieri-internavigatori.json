@@ -122,7 +122,12 @@
         {
           "valid_from": "2024-12-11",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -429,6 +434,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -459,6 +465,7 @@
             "valid_until": "2025-03-01",
             "value": "1254.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -481,6 +488,7 @@
             "valid_until": "2026-08-01",
             "value": "1288.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -503,6 +511,7 @@
             "valid_until": null,
             "value": "1346.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -547,6 +556,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -566,6 +576,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -594,6 +605,7 @@
             "valid_until": "2025-03-01",
             "value": "1329.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -616,6 +628,7 @@
             "valid_until": "2026-08-01",
             "value": "1367.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -638,6 +651,7 @@
             "valid_until": null,
             "value": "1430.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -682,6 +696,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -701,6 +716,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -729,6 +745,7 @@
             "valid_until": "2025-03-01",
             "value": "1372.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -751,6 +768,7 @@
             "valid_until": "2026-08-01",
             "value": "1412.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -773,6 +791,7 @@
             "valid_until": null,
             "value": "1478.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -817,6 +836,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -836,6 +856,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -864,6 +885,7 @@
             "valid_until": "2025-03-01",
             "value": "1407.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -886,6 +908,7 @@
             "valid_until": "2026-08-01",
             "value": "1449.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -908,6 +931,7 @@
             "valid_until": null,
             "value": "1518.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -952,6 +976,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -971,6 +996,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -999,6 +1025,7 @@
             "valid_until": "2025-03-01",
             "value": "1424.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1021,6 +1048,7 @@
             "valid_until": "2026-08-01",
             "value": "1467.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1043,6 +1071,7 @@
             "valid_until": null,
             "value": "1537.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1087,6 +1116,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1106,6 +1136,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1134,6 +1165,7 @@
             "valid_until": "2025-03-01",
             "value": "1467.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1156,6 +1188,7 @@
             "valid_until": "2026-08-01",
             "value": "1511.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1178,6 +1211,7 @@
             "valid_until": null,
             "value": "1585.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1222,6 +1256,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1241,6 +1276,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1269,6 +1305,7 @@
             "valid_until": "2025-03-01",
             "value": "1474.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1291,6 +1328,7 @@
             "valid_until": "2026-08-01",
             "value": "1519.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1313,6 +1351,7 @@
             "valid_until": null,
             "value": "1593.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1357,6 +1396,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1376,6 +1416,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1404,6 +1445,7 @@
             "valid_until": "2025-03-01",
             "value": "1510.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1426,6 +1468,7 @@
             "valid_until": "2026-08-01",
             "value": "1556.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1448,6 +1491,7 @@
             "valid_until": null,
             "value": "1633.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1492,6 +1536,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1511,6 +1556,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1539,6 +1585,7 @@
             "valid_until": "2025-03-01",
             "value": "1535.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1561,6 +1608,7 @@
             "valid_until": "2026-08-01",
             "value": "1582.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1583,6 +1631,7 @@
             "valid_until": null,
             "value": "1661.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1627,6 +1676,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1646,6 +1696,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1674,6 +1725,7 @@
             "valid_until": "2025-03-01",
             "value": "1542.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1696,6 +1748,7 @@
             "valid_until": "2026-08-01",
             "value": "1590.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1718,6 +1771,7 @@
             "valid_until": null,
             "value": "1669.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1762,6 +1816,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1781,6 +1836,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1809,6 +1865,7 @@
             "valid_until": "2025-03-01",
             "value": "1549.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1831,6 +1888,7 @@
             "valid_until": "2026-08-01",
             "value": "1597.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1853,6 +1911,7 @@
             "valid_until": null,
             "value": "1677.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1897,6 +1956,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -1916,6 +1976,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -1944,6 +2005,7 @@
             "valid_until": "2025-03-01",
             "value": "1571.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1966,6 +2028,7 @@
             "valid_until": "2026-08-01",
             "value": "1620.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -1988,6 +2051,7 @@
             "valid_until": null,
             "value": "1701.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2032,6 +2096,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2051,6 +2116,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2079,6 +2145,7 @@
             "valid_until": "2025-03-01",
             "value": "1585.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2101,6 +2168,7 @@
             "valid_until": "2026-08-01",
             "value": "1635.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2123,6 +2191,7 @@
             "valid_until": null,
             "value": "1717.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2167,6 +2236,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2186,6 +2256,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2214,6 +2285,7 @@
             "valid_until": "2025-03-01",
             "value": "1628.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2236,6 +2308,7 @@
             "valid_until": "2026-08-01",
             "value": "1679.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2258,6 +2331,7 @@
             "valid_until": null,
             "value": "1766.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2302,6 +2376,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2321,6 +2396,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2349,6 +2425,7 @@
             "valid_until": "2025-03-01",
             "value": "1642.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2371,6 +2448,7 @@
             "valid_until": "2026-08-01",
             "value": "1694.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2393,6 +2471,7 @@
             "valid_until": null,
             "value": "1782.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2437,6 +2516,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2456,6 +2536,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2484,6 +2565,7 @@
             "valid_until": "2025-03-01",
             "value": "1649.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2506,6 +2588,7 @@
             "valid_until": "2026-08-01",
             "value": "1702.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2528,6 +2611,7 @@
             "valid_until": null,
             "value": "1790.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2572,6 +2656,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2591,6 +2676,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2619,6 +2705,7 @@
             "valid_until": "2025-03-01",
             "value": "1656.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2641,6 +2728,7 @@
             "valid_until": "2026-08-01",
             "value": "1709.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2663,6 +2751,7 @@
             "valid_until": null,
             "value": "1798.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2707,6 +2796,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2726,6 +2816,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2754,6 +2845,7 @@
             "valid_until": "2025-03-01",
             "value": "1681.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2776,6 +2868,7 @@
             "valid_until": "2026-08-01",
             "value": "1735.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2798,6 +2891,7 @@
             "valid_until": null,
             "value": "1825.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2842,6 +2936,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2861,6 +2956,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -2889,6 +2985,7 @@
             "valid_until": "2025-03-01",
             "value": "1695.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2911,6 +3008,7 @@
             "valid_until": "2026-08-01",
             "value": "1750.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2933,6 +3031,7 @@
             "valid_until": null,
             "value": "1841.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -2977,6 +3076,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -2996,6 +3096,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3024,6 +3125,7 @@
             "valid_until": "2025-03-01",
             "value": "1731.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3046,6 +3148,7 @@
             "valid_until": "2026-08-01",
             "value": "1787.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3068,6 +3171,7 @@
             "valid_until": null,
             "value": "1882.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3112,6 +3216,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3131,6 +3236,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3159,6 +3265,7 @@
             "valid_until": "2025-03-01",
             "value": "1769.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3181,6 +3288,7 @@
             "valid_until": "2026-08-01",
             "value": "1828.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3203,6 +3311,7 @@
             "valid_until": null,
             "value": "1925.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3247,6 +3356,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3266,6 +3376,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3294,6 +3405,7 @@
             "valid_until": "2025-03-01",
             "value": "1805.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3316,6 +3428,7 @@
             "valid_until": "2026-08-01",
             "value": "1865.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3338,6 +3451,7 @@
             "valid_until": null,
             "value": "1965.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3382,6 +3496,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3401,6 +3516,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3429,6 +3545,7 @@
             "valid_until": "2025-03-01",
             "value": "1826.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3451,6 +3568,7 @@
             "valid_until": "2026-08-01",
             "value": "1888.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3473,6 +3591,7 @@
             "valid_until": null,
             "value": "1989.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3517,6 +3636,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3536,6 +3656,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3564,6 +3685,7 @@
             "valid_until": "2025-03-01",
             "value": "1841.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3586,6 +3708,7 @@
             "valid_until": "2026-08-01",
             "value": "1902.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3608,6 +3731,7 @@
             "valid_until": null,
             "value": "2005.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3652,6 +3776,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3671,6 +3796,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3699,6 +3825,7 @@
             "valid_until": "2025-03-01",
             "value": "1863.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3721,6 +3848,7 @@
             "valid_until": "2026-08-01",
             "value": "1926.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3743,6 +3871,7 @@
             "valid_until": null,
             "value": "2030.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3787,6 +3916,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3806,6 +3936,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3834,6 +3965,7 @@
             "valid_until": "2025-03-01",
             "value": "1899.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3856,6 +3988,7 @@
             "valid_until": "2026-08-01",
             "value": "1963.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3878,6 +4011,7 @@
             "valid_until": null,
             "value": "2071.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3922,6 +4056,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -3941,6 +4076,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -3969,6 +4105,7 @@
             "valid_until": "2025-03-01",
             "value": "1915.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -3991,6 +4128,7 @@
             "valid_until": "2026-08-01",
             "value": "1980.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4013,6 +4151,7 @@
             "valid_until": null,
             "value": "2089.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4057,6 +4196,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4076,6 +4216,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4104,6 +4245,7 @@
             "valid_until": "2025-03-01",
             "value": "1936.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4126,6 +4268,7 @@
             "valid_until": "2026-08-01",
             "value": "2003.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4148,6 +4291,7 @@
             "valid_until": null,
             "value": "2113.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4192,6 +4336,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4211,6 +4356,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4239,6 +4385,7 @@
             "valid_until": "2025-03-01",
             "value": "2005.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4261,6 +4408,7 @@
             "valid_until": "2026-08-01",
             "value": "2074.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4283,6 +4431,7 @@
             "valid_until": null,
             "value": "2189.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4327,6 +4476,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4346,6 +4496,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4374,6 +4525,7 @@
             "valid_until": "2025-03-01",
             "value": "2026.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4396,6 +4548,7 @@
             "valid_until": "2026-08-01",
             "value": "2096.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4418,6 +4571,7 @@
             "valid_until": null,
             "value": "2213.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4462,6 +4616,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4481,6 +4636,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4509,6 +4665,7 @@
             "valid_until": "2025-03-01",
             "value": "2062.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4531,6 +4688,7 @@
             "valid_until": "2026-08-01",
             "value": "2134.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4553,6 +4711,7 @@
             "valid_until": null,
             "value": "2254.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4597,6 +4756,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4616,6 +4776,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4644,6 +4805,7 @@
             "valid_until": "2025-03-01",
             "value": "2260.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4666,6 +4828,7 @@
             "valid_until": "2026-08-01",
             "value": "2339.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4688,6 +4851,7 @@
             "valid_until": null,
             "value": "2470.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4732,6 +4896,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4751,6 +4916,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4779,6 +4945,7 @@
             "valid_until": "2025-03-01",
             "value": "2428.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4801,6 +4968,7 @@
             "valid_until": "2026-08-01",
             "value": "2514.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4823,6 +4991,7 @@
             "valid_until": null,
             "value": "2657.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "tabella-autoferro-pdf",
@@ -4867,6 +5036,7 @@
           },
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "tabella-autoferro-pdf",
@@ -4886,6 +5056,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "tabella-autoferro-pdf",
@@ -4959,7 +5130,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "af64f206385011174dbd9f00bcd75446a4e04cf58ae4b5ee2bbe7062e7b8f6f8",
+    "source_hash": "b7218b8d21ccb8cf33bf951d4ce7ab83e17a9b9d42ec2e1b19499ecde503811e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4985,6 +5156,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoferrotranvieri-internavigatori",
@@ -5020,6 +5192,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoferrotranvieri-internavigatori",
@@ -5055,6 +5228,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autoferrotranvieri-internavigatori",
@@ -5078,6 +5252,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoferrotranvieri-internavigatori",
@@ -5112,6 +5287,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoferrotranvieri-internavigatori",
@@ -5134,6 +5310,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autoferrotranvieri-internavigatori",

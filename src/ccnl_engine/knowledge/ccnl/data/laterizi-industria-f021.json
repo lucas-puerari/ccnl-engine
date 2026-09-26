@@ -106,7 +106,12 @@
         {
           "valid_from": "2022-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -197,6 +202,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -324,6 +330,7 @@
             "valid_until": "2022-07-01",
             "value": "2095.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -346,6 +353,7 @@
             "valid_until": "2023-10-01",
             "value": "2159.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -368,6 +376,7 @@
             "valid_until": "2025-02-01",
             "value": "2200.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -390,6 +399,7 @@
             "valid_until": "2025-10-01",
             "value": "2257.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -412,6 +422,7 @@
             "valid_until": "2026-07-01",
             "value": "2402.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -434,6 +445,7 @@
             "valid_until": "2027-07-01",
             "value": "2491.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -456,6 +468,7 @@
             "valid_until": "2028-07-01",
             "value": "2580.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -478,6 +491,7 @@
             "valid_until": null,
             "value": "2588.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -511,6 +525,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -541,6 +556,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -571,6 +587,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -590,6 +607,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -618,6 +636,7 @@
             "valid_until": "2022-07-01",
             "value": "2095.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -640,6 +659,7 @@
             "valid_until": "2023-10-01",
             "value": "2159.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -662,6 +682,7 @@
             "valid_until": "2025-02-01",
             "value": "2200.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -684,6 +705,7 @@
             "valid_until": "2025-10-01",
             "value": "2257.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -706,6 +728,7 @@
             "valid_until": "2026-07-01",
             "value": "2402.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -728,6 +751,7 @@
             "valid_until": "2027-07-01",
             "value": "2491.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -750,6 +774,7 @@
             "valid_until": "2028-07-01",
             "value": "2580.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -772,6 +797,7 @@
             "valid_until": null,
             "value": "2588.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -805,6 +831,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -835,6 +862,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -854,6 +882,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -882,6 +911,7 @@
             "valid_until": "2022-07-01",
             "value": "1761.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -904,6 +934,7 @@
             "valid_until": "2023-10-01",
             "value": "1816.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -926,6 +957,7 @@
             "valid_until": "2025-02-01",
             "value": "1850.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -948,6 +980,7 @@
             "valid_until": "2025-10-01",
             "value": "1897.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -970,6 +1003,7 @@
             "valid_until": "2026-07-01",
             "value": "2020.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -992,6 +1026,7 @@
             "valid_until": "2027-07-01",
             "value": "2095.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1014,6 +1049,7 @@
             "valid_until": "2028-07-01",
             "value": "2170.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1036,6 +1072,7 @@
             "valid_until": null,
             "value": "2176.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1069,6 +1106,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1099,6 +1137,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1118,6 +1157,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1146,6 +1186,7 @@
             "valid_until": "2022-07-01",
             "value": "1438.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1168,6 +1209,7 @@
             "valid_until": "2023-10-01",
             "value": "1482.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1190,6 +1232,7 @@
             "valid_until": "2025-02-01",
             "value": "1510.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1212,6 +1255,7 @@
             "valid_until": "2025-10-01",
             "value": "1549.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1234,6 +1278,7 @@
             "valid_until": "2026-07-01",
             "value": "1649.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1256,6 +1301,7 @@
             "valid_until": "2027-07-01",
             "value": "1710.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1278,6 +1324,7 @@
             "valid_until": "2028-07-01",
             "value": "1771.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1300,6 +1347,7 @@
             "valid_until": null,
             "value": "1776.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1333,6 +1381,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1363,6 +1412,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1382,6 +1432,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1410,6 +1461,7 @@
             "valid_until": "2022-07-01",
             "value": "1360.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1432,6 +1484,7 @@
             "valid_until": "2023-10-01",
             "value": "1402.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1454,6 +1507,7 @@
             "valid_until": "2025-02-01",
             "value": "1428.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1476,6 +1530,7 @@
             "valid_until": "2025-10-01",
             "value": "1465.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1498,6 +1553,7 @@
             "valid_until": "2026-07-01",
             "value": "1560.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1520,6 +1576,7 @@
             "valid_until": "2027-07-01",
             "value": "1617.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1542,6 +1599,7 @@
             "valid_until": "2028-07-01",
             "value": "1675.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1564,6 +1622,7 @@
             "valid_until": null,
             "value": "1681.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1597,6 +1656,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1627,6 +1687,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1646,6 +1707,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1674,6 +1736,7 @@
             "valid_until": "2022-07-01",
             "value": "1294.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1696,6 +1759,7 @@
             "valid_until": "2023-10-01",
             "value": "1334.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1718,6 +1782,7 @@
             "valid_until": "2025-02-01",
             "value": "1359.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1740,6 +1805,7 @@
             "valid_until": "2025-10-01",
             "value": "1394.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1762,6 +1828,7 @@
             "valid_until": "2026-07-01",
             "value": "1484.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1784,6 +1851,7 @@
             "valid_until": "2027-07-01",
             "value": "1539.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1806,6 +1874,7 @@
             "valid_until": "2028-07-01",
             "value": "1594.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1828,6 +1897,7 @@
             "valid_until": null,
             "value": "1599.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1861,6 +1931,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1891,6 +1962,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1910,6 +1982,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1938,6 +2011,7 @@
             "valid_until": "2022-07-01",
             "value": "1203.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1960,6 +2034,7 @@
             "valid_until": "2023-10-01",
             "value": "1240.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -1982,6 +2057,7 @@
             "valid_until": "2025-02-01",
             "value": "1263.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2004,6 +2080,7 @@
             "valid_until": "2025-10-01",
             "value": "1295.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2026,6 +2103,7 @@
             "valid_until": "2026-07-01",
             "value": "1379.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2048,6 +2126,7 @@
             "valid_until": "2027-07-01",
             "value": "1430.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2070,6 +2149,7 @@
             "valid_until": "2028-07-01",
             "value": "1481.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2092,6 +2172,7 @@
             "valid_until": null,
             "value": "1485.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2125,6 +2206,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2155,6 +2237,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2174,6 +2257,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2202,6 +2286,7 @@
             "valid_until": "2022-07-01",
             "value": "1115.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2224,6 +2309,7 @@
             "valid_until": "2023-10-01",
             "value": "1149.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2246,6 +2332,7 @@
             "valid_until": "2025-02-01",
             "value": "1171.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2268,6 +2355,7 @@
             "valid_until": "2025-10-01",
             "value": "1201.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2290,6 +2378,7 @@
             "valid_until": "2026-07-01",
             "value": "1278.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2312,6 +2401,7 @@
             "valid_until": "2027-07-01",
             "value": "1326.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2334,6 +2424,7 @@
             "valid_until": "2028-07-01",
             "value": "1373.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2356,6 +2447,7 @@
             "valid_until": null,
             "value": "1377.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2389,6 +2481,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2419,6 +2512,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2438,6 +2532,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2466,6 +2561,7 @@
             "valid_until": "2022-07-01",
             "value": "954.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2488,6 +2584,7 @@
             "valid_until": "2023-10-01",
             "value": "983.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2510,6 +2607,7 @@
             "valid_until": "2025-02-01",
             "value": "1002.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2532,6 +2630,7 @@
             "valid_until": "2025-10-01",
             "value": "1027.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2554,6 +2653,7 @@
             "valid_until": "2026-07-01",
             "value": "1093.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2576,6 +2676,7 @@
             "valid_until": "2027-07-01",
             "value": "1134.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2598,6 +2699,7 @@
             "valid_until": "2028-07-01",
             "value": "1174.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2620,6 +2722,7 @@
             "valid_until": null,
             "value": "1178.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2653,6 +2756,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2683,6 +2787,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2702,6 +2807,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-manufatti-industria-31-5-2022-pdf",
@@ -2727,7 +2833,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "1b43b35daa131b56075c975493ea0acb67c817bdba43ebb0e0a64cf7e21ebb05",
+    "source_hash": "235b577d4b56b623878dd8e7e3d60423874b5e3ff693bc5f9de3d0ae19866131",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2753,6 +2859,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-industria-2022",
@@ -2788,6 +2895,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-industria-2022",
@@ -2823,6 +2931,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-industria-2022",
@@ -2858,6 +2967,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-laterizi-industria-2022",
@@ -2881,6 +2991,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-industria-2022",
@@ -2907,6 +3018,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-industria-2022",
@@ -2929,6 +3041,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-laterizi-industria-2022",

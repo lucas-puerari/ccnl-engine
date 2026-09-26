@@ -106,7 +106,12 @@
         {
           "valid_from": "2024-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -114,6 +119,7 @@
       "cadence_months": 24,
       "maximum_count": 4,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -252,6 +258,7 @@
       "category": "operaio",
       "description": "Livello 1 — base",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -275,6 +282,7 @@
             "valid_until": "2025-01-01",
             "value": "1281.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -297,6 +305,7 @@
             "valid_until": null,
             "value": "1558.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -324,6 +333,7 @@
       "category": "operaio",
       "description": "Livello 2",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -347,6 +357,7 @@
             "valid_until": "2025-01-01",
             "value": "1624.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -369,6 +380,7 @@
             "valid_until": "2026-01-01",
             "value": "1710.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -391,6 +403,7 @@
             "valid_until": "2027-01-01",
             "value": "1762.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -413,6 +426,7 @@
             "valid_until": null,
             "value": "1796.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -440,6 +454,7 @@
       "category": "operaio",
       "description": "Livello 2 bis",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -463,6 +478,7 @@
             "valid_until": "2025-01-01",
             "value": "1669.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -485,6 +501,7 @@
             "valid_until": "2026-01-01",
             "value": "1759.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -507,6 +524,7 @@
             "valid_until": "2027-01-01",
             "value": "1813.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -529,6 +547,7 @@
             "valid_until": null,
             "value": "1850.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -556,6 +575,7 @@
       "category": "operaio",
       "description": "Livello 3",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -579,6 +599,7 @@
             "valid_until": "2025-01-01",
             "value": "1720.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -601,6 +622,7 @@
             "valid_until": "2026-01-01",
             "value": "1814.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -623,6 +645,7 @@
             "valid_until": "2027-01-01",
             "value": "1871.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -645,6 +668,7 @@
             "valid_until": null,
             "value": "1908.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -672,6 +696,7 @@
       "category": "operaio",
       "description": "Livello 3 bis",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -695,6 +720,7 @@
             "valid_until": "2025-01-01",
             "value": "1761.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -717,6 +743,7 @@
             "valid_until": "2026-01-01",
             "value": "1858.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -739,6 +766,7 @@
             "valid_until": "2027-01-01",
             "value": "1916.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -761,6 +789,7 @@
             "valid_until": null,
             "value": "1955.72",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -788,6 +817,7 @@
       "category": "impiegato",
       "description": "Livello 4",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -811,6 +841,7 @@
             "valid_until": "2025-01-01",
             "value": "1802.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -833,6 +864,7 @@
             "valid_until": "2026-01-01",
             "value": "1902.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -855,6 +887,7 @@
             "valid_until": "2027-01-01",
             "value": "1962.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -877,6 +910,7 @@
             "valid_until": null,
             "value": "2002.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -904,6 +938,7 @@
       "category": "impiegato",
       "description": "Livello 5",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -927,6 +962,7 @@
             "valid_until": "2025-01-01",
             "value": "1904.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -949,6 +985,7 @@
             "valid_until": "2026-01-01",
             "value": "2010.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -971,6 +1008,7 @@
             "valid_until": "2027-01-01",
             "value": "2074.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -993,6 +1031,7 @@
             "valid_until": null,
             "value": "2116.84",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1020,6 +1059,7 @@
       "category": "impiegato",
       "description": "Livello 6",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1043,6 +1083,7 @@
             "valid_until": "2025-01-01",
             "value": "2032.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1065,6 +1106,7 @@
             "valid_until": "2026-01-01",
             "value": "2145.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1087,6 +1129,7 @@
             "valid_until": "2027-01-01",
             "value": "2212.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1109,6 +1152,7 @@
             "valid_until": null,
             "value": "2257.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1136,6 +1180,7 @@
       "category": "impiegato",
       "description": "Livello 7",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1159,6 +1204,7 @@
             "valid_until": "2025-01-01",
             "value": "2165.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1181,6 +1227,7 @@
             "valid_until": "2026-01-01",
             "value": "2284.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1203,6 +1250,7 @@
             "valid_until": "2027-01-01",
             "value": "2355.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1225,6 +1273,7 @@
             "valid_until": null,
             "value": "2403.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1252,6 +1301,7 @@
       "category": "quadro",
       "description": "Livello 8 — quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "kitech-tessile-pmi-categ501",
@@ -1275,6 +1325,7 @@
             "valid_until": "2025-01-01",
             "value": "2294.34",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1297,6 +1348,7 @@
             "valid_until": "2026-01-01",
             "value": "2421.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1319,6 +1371,7 @@
             "valid_until": "2027-01-01",
             "value": "2497.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "kitech-tessile-pmi-categ501",
@@ -1341,6 +1394,7 @@
             "valid_until": null,
             "value": "2548.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "fiscoetasse-tessile-pmi-2025-2027",
@@ -1374,6 +1428,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "kitech-tessile-pmi-categ501",
@@ -1403,6 +1458,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "755d359cf29fe752e3380ab18b80a2f06b6f2af0b3428fa4bb4aaead46876557"
+    "source_hash": "f1ac6f3111d673c4537eadaf8a046da4665ee73d14947d528964e0d71be37621"
   }
 }

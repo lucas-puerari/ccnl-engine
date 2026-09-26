@@ -131,3 +131,49 @@ class TestCompareCcnlVersionsHourlyDivisor:
             report_mod._compare_ccnl_versions(metalmeccanico_ccnl, metalmeccanico_ccnl)
         )
         assert "_No computational changes detected._" in lines
+
+
+# ---------------------------------------------------------------------------
+# _git_load_ccnl_base: provenance records without a status
+# ---------------------------------------------------------------------------
+
+
+def _strip_statuses(value: object) -> object:
+    """Return ``value`` with the ``status`` of every provenance record removed.
+
+    Returns:
+        A copy shaped like the data before statuses were required.
+    """
+    if isinstance(value, list):
+        return [_strip_statuses(v) for v in value]
+    if not isinstance(value, dict):
+        return value
+    return {
+        k: (
+            {f: x for f, x in v.items() if f != "status"}
+            if k == "provenance" and isinstance(v, dict)
+            else _strip_statuses(v)
+        )
+        for k, v in value.items()
+    }
+
+
+def test_base_without_provenance_status_is_compared(
+    report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A base file predating the required status still loads for the diff."""
+    pkg = importlib.resources.files(ccnl_data_pkg)
+    head = json.loads(pkg.joinpath("commercio-confcommercio.json").read_text())
+    base = json.dumps(_strip_statuses(head))
+    monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: base)
+    ccnl = report_mod._git_load_ccnl_base("main", "x.json")
+    assert isinstance(ccnl, CCNL)
+    assert ccnl.levels[0].provenance is not None
+
+
+def test_base_that_cannot_validate_is_treated_as_new(
+    report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A base file invalid even with statuses is not compared."""
+    monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: "{}")
+    assert report_mod._git_load_ccnl_base("main", "x.json") is None

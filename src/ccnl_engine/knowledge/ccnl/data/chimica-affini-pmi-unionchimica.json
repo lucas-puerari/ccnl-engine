@@ -99,7 +99,12 @@
         {
           "valid_from": "2026-01-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -181,6 +186,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -211,6 +217,7 @@
             "valid_until": null,
             "value": "1690.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -233,6 +240,7 @@
       "fixed_allowances": [],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -261,6 +269,7 @@
             "valid_until": null,
             "value": "1830.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -283,6 +292,7 @@
       "fixed_allowances": [],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -311,6 +321,7 @@
             "valid_until": null,
             "value": "2033.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -333,6 +344,7 @@
       "fixed_allowances": [],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -361,6 +373,7 @@
             "valid_until": null,
             "value": "2267.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -383,6 +396,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -411,6 +425,7 @@
             "valid_until": null,
             "value": "2444.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -444,6 +459,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -464,6 +480,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -492,6 +509,7 @@
             "valid_until": null,
             "value": "2703.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -525,6 +543,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -545,6 +564,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -573,6 +593,7 @@
             "valid_until": null,
             "value": "2973.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -606,6 +627,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -626,6 +648,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -654,6 +677,7 @@
             "valid_until": null,
             "value": "3168.51",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -687,6 +711,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -707,6 +732,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "retribuzione-stipendio-ccnl-aspx-codicecateg-181",
@@ -786,7 +812,7 @@
     "effective_until": "2028-12-31",
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=181",
     "verification_status": "unverified",
-    "source_hash": "7ea438a361b00f17b11a2a649b896c383a0d702dd311ae4a9f9605ef74129e7e",
+    "source_hash": "fd505feff953b10ebf3d8913cb03116ae13c668e286d27e84813196c438619d2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -812,6 +838,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-affini-pmi-unionchimica",
@@ -847,6 +874,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-affini-pmi-unionchimica",
@@ -882,6 +910,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "chimica-affini-pmi-unionchimica",
@@ -905,6 +934,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-affini-pmi-unionchimica",
@@ -935,6 +965,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-affini-pmi-unionchimica",
@@ -957,6 +988,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 365,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "chimica-affini-pmi-unionchimica",

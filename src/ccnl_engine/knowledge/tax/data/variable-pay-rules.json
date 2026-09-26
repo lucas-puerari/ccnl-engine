@@ -4,17 +4,43 @@
   "fringe_benefit": {
     "threshold_standard": "1000.00",
     "threshold_with_children": "2000.00",
-    "description": "Art. 51 c. 3 TUIR — Legge di bilancio 2025 (L. 207/2024, art. 1 c. 390)"
+    "description": "Art. 51 c. 3 TUIR — Legge di bilancio 2025 (L. 207/2024, art. 1 c. 390)",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dpr-917-1986",
+          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
+          "kind": "dpr"
+        },
+        "section": "art. 51 c. 3"
+      },
+      "note": "Thresholds per L. 207/2024 art. 1 c. 390."
+    }
   },
   "pdr": {
     "max_amount": "5000.00",
     "flat_tax_rate": "0.01",
     "income_ceiling": "80000.00",
-    "description": "Art. 1 cc. 182-190 L. 208/2015 — premio di risultato, imposta sostitutiva 1% (L. 207/2024 art. 1 c. 385)"
+    "description": "Art. 1 cc. 182-190 L. 208/2015 — premio di risultato, imposta sostitutiva 1% (L. 207/2024 art. 1 c. 385)",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-208-2015",
+          "title": "L. 208/2015, legge di stabilità 2016",
+          "kind": "legge"
+        },
+        "section": "art. 1 cc. 182-190"
+      },
+      "note": "Substitute rate 1% per L. 207/2024 art. 1 c. 385."
+    }
   },
   "rinnovo": {
     "regime_id": "rinnovo",
-    "eligible_kinds": ["contract_renewal_earning"],
+    "eligible_kinds": [
+      "contract_renewal_earning"
+    ],
     "valid_from_year": 2026,
     "valid_until_year": 2026,
     "flat_tax_rate": "0.05",
@@ -35,11 +61,14 @@
       "section": "art. 1 c. 7",
       "quote": "gli incrementi retributivi corrisposti ai lavoratori dipendenti nell'anno 2026, in attuazione di rinnovi contrattuali sottoscritti dal 1° gennaio 2024 al 31 dicembre 2026, sono assoggettati, salva espressa rinuncia scritta del prestatore di lavoro, a un'imposta sostitutiva dell'imposta sul reddito delle persone fisiche e delle addizionali regionali e comunali pari al 5 per cento. L'imposta sostitutiva di cui al primo periodo si applica soltanto ai lavoratori del settore privato con un reddito di lavoro dipendente, nell'anno 2025, non superiore a 33.000 euro."
     },
-    "description": "Incrementi retributivi 2026 da rinnovi contrattuali sottoscritti dal 2024-01-01 al 2026-12-31: imposta sostitutiva 5%, settore privato, reddito di lavoro dipendente 2025 non superiore a 33.000 EUR, salvo rinuncia scritta"
+    "description": "Incrementi retributivi 2026 da rinnovi contrattuali sottoscritti dal 2024-01-01 al 2026-12-31: imposta sostitutiva 5%, settore privato, reddito di lavoro dipendente 2025 non superiore a 33.000 EUR, salvo rinuncia scritta",
+    "source_status": "derived"
   },
   "notte_festivi_turni": {
     "regime_id": "notte_festivi_turni",
-    "eligible_kinds": ["night_holiday_shift_earning"],
+    "eligible_kinds": [
+      "night_holiday_shift_earning"
+    ],
     "valid_from_year": 2026,
     "valid_until_year": 2026,
     "flat_tax_rate": "0.15",
@@ -48,7 +77,11 @@
     "income_reference_year": 2025,
     "required_sector": "private",
     "waivable": true,
-    "excluded_activities": ["food_and_beverage_service", "tourism", "thermal_establishment"],
+    "excluded_activities": [
+      "food_and_beverage_service",
+      "tourism",
+      "thermal_establishment"
+    ],
     "source": {
       "source_document": {
         "document_id": "l-199-2025",
@@ -59,7 +92,8 @@
       "section": "art. 1 cc. 10-11",
       "quote": "Per il periodo d'imposta 2026, salva espressa rinuncia scritta del prestatore di lavoro, sono assoggettate a un'imposta sostitutiva dell'imposta sul reddito delle persone fisiche e delle addizionali regionali e comunali pari al 15 per cento le somme corrisposte, entro il limite annuo di 1.500 euro, ai lavoratori dipendenti a titolo di: a) maggiorazioni e indennita' per lavoro notturno ai sensi dell'articolo 1, comma 2, del decreto legislativo 8 aprile 2003, n. 66, e dei contratti collettivi nazionali di lavoro (CCNL); b) maggiorazioni e indennita' per lavoro prestato nei giorni festivi e nei giorni di riposo settimanale, come individuati dai CCNL; c) indennita' di turno e ulteriori emolumenti connessi al lavoro a turni, previsti dai CCNL. Le disposizioni di cui al comma 10 sono applicate dai sostituti d'imposta del settore privato, escluse le attivita' di cui al comma 18, nei confronti dei titolari di reddito di lavoro dipendente di importo non superiore, nell'anno 2025, a 40.000 euro."
     },
-    "description": "Maggiorazioni e indennita' 2026 per lavoro notturno, festivo o di riposo settimanale e a turni: imposta sostitutiva 15% entro 1.500 EUR annui, settore privato, reddito di lavoro dipendente 2025 non superiore a 40.000 EUR, salvo rinuncia scritta"
+    "description": "Maggiorazioni e indennita' 2026 per lavoro notturno, festivo o di riposo settimanale e a turni: imposta sostitutiva 15% entro 1.500 EUR annui, settore privato, reddito di lavoro dipendente 2025 non superiore a 40.000 EUR, salvo rinuncia scritta",
+    "source_status": "derived"
   },
   "ruleset": {
     "id": "tax/variable-pay-rules/2026",
@@ -69,7 +103,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10-11",
     "verification_status": "unverified",
-    "source_hash": "96b48900cf943343b93073caf05235ae6eb140539549ed5c87755844a57598c5",
+    "source_hash": "3c07846bef425dca31325b6643c29653798676ea4e90e0c84dcabe46c4086ff6",
     "source_type": "official_primary"
   }
 }

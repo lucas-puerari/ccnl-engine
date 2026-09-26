@@ -1,5 +1,24 @@
 # Migration guide
 
+## Provenance status required on every rule record
+
+Every `provenance` record now declares a `status`: `verified`, `derived`,
+`assumed` or `missing` (see [Provenance](trust/provenance.md)). Bundled data
+is migrated; caller-supplied data must add it.
+
+| Change | What to do |
+|---|---|
+| `RuleProvenance.status` is required | Add `"status"` to each `provenance` object; `uv run python scripts/data/assign_rule_provenance.py` shows the mapping |
+| `RuleProvenance.location` and `extraction` are optional | Guard `record.location` and `record.extraction` against `None` |
+| `verified` needs `extraction.verified_by` and `verified_at` | Records claiming a check without both are rejected |
+| Non-gap `additional_months` periods need a record at load | Add a `provenance` to each period |
+| `PreferentialTaxRegime.source_status` is required | Add `"source_status": "derived"` (or `"assumed"`) next to `source` |
+| `CapabilityReport.rule_sources` added | Read the weakest status per executed capability |
+| `SourceKind.DLGS`, `SourceKind.AMMINISTRAZIONE` added | Match them where kinds are enumerated |
+| New issues `rule_source_missing` (incomplete) and `employer_rate_category_assumed` (provisional) | Handle them where issue codes are matched |
+
+Amounts are unchanged.
+
 ## Oversized domain and service modules split
 
 Seven modules were split by responsibility. Only internal module paths

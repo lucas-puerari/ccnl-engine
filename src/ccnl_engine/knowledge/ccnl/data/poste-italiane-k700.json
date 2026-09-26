@@ -102,7 +102,12 @@
         {
           "valid_from": "2024-07-23",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -111,6 +116,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -160,6 +166,7 @@
             "valid_until": "2025-09-01",
             "value": "997.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -182,6 +189,7 @@
             "valid_until": "2026-09-01",
             "value": "1039.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -204,6 +212,7 @@
             "valid_until": "2027-09-01",
             "value": "1081.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -226,6 +235,7 @@
             "valid_until": "2027-12-01",
             "value": "1121.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -248,6 +258,7 @@
             "valid_until": null,
             "value": "1154.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -281,6 +292,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -300,6 +312,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -328,6 +341,7 @@
             "valid_until": "2025-09-01",
             "value": "1117.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -350,6 +364,7 @@
             "valid_until": "2026-09-01",
             "value": "1162.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -372,6 +387,7 @@
             "valid_until": "2027-09-01",
             "value": "1207.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -394,6 +410,7 @@
             "valid_until": "2027-12-01",
             "value": "1252.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -416,6 +433,7 @@
             "valid_until": null,
             "value": "1287.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -449,6 +467,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -468,6 +487,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -496,6 +516,7 @@
             "valid_until": "2025-09-01",
             "value": "1266.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -518,6 +539,7 @@
             "valid_until": "2026-09-01",
             "value": "1316.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -540,6 +562,7 @@
             "valid_until": "2027-09-01",
             "value": "1365.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -562,6 +585,7 @@
             "valid_until": "2027-12-01",
             "value": "1413.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -584,6 +608,7 @@
             "valid_until": null,
             "value": "1452.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -617,6 +642,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -636,6 +662,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -664,6 +691,7 @@
             "valid_until": "2025-09-01",
             "value": "1330.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -686,6 +714,7 @@
             "valid_until": "2026-09-01",
             "value": "1381.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -708,6 +737,7 @@
             "valid_until": "2027-09-01",
             "value": "1432.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -730,6 +760,7 @@
             "valid_until": "2027-12-01",
             "value": "1482.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -752,6 +783,7 @@
             "valid_until": null,
             "value": "1522.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -785,6 +817,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -804,6 +837,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -832,6 +866,7 @@
             "valid_until": "2025-09-01",
             "value": "1448.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -854,6 +889,7 @@
             "valid_until": "2026-09-01",
             "value": "1503.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -876,6 +912,7 @@
             "valid_until": "2027-09-01",
             "value": "1557.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -898,6 +935,7 @@
             "valid_until": "2027-12-01",
             "value": "1610.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -920,6 +958,7 @@
             "valid_until": null,
             "value": "1652.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -953,6 +992,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -972,6 +1012,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1000,6 +1041,7 @@
             "valid_until": "2025-09-01",
             "value": "1695.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1022,6 +1064,7 @@
             "valid_until": "2026-09-01",
             "value": "1757.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1044,6 +1087,7 @@
             "valid_until": "2027-09-01",
             "value": "1818.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1066,6 +1110,7 @@
             "valid_until": "2027-12-01",
             "value": "1878.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1088,6 +1133,7 @@
             "valid_until": null,
             "value": "1926.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1121,6 +1167,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1152,6 +1199,7 @@
           },
           "months_per_year": 12,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1185,6 +1233,7 @@
           "months_per_year": 12,
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1204,6 +1253,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1232,6 +1282,7 @@
             "valid_until": "2025-09-01",
             "value": "1914.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1254,6 +1305,7 @@
             "valid_until": "2026-09-01",
             "value": "1982.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1276,6 +1328,7 @@
             "valid_until": "2027-09-01",
             "value": "2050.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1298,6 +1351,7 @@
             "valid_until": "2027-12-01",
             "value": "2116.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1320,6 +1374,7 @@
             "valid_until": null,
             "value": "2169.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1353,6 +1408,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1384,6 +1440,7 @@
           },
           "months_per_year": 12,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1417,6 +1474,7 @@
           "months_per_year": 12,
           "tfr_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1436,6 +1494,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-posteitaliane-uilposte2024-pdf",
@@ -1461,7 +1520,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8a3d90e35caf9381a07cd6b1adebf5482fd0851f4e127bd42f0d1f53f4769f51",
+    "source_hash": "762c2255949cff891e016f429fbf505e466f3a5f657a87260fcd2e8e513b9af9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1487,6 +1546,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-poste-italiane-2024",
@@ -1522,6 +1582,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-poste-italiane-2024",
@@ -1557,6 +1618,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-poste-italiane-2024",
@@ -1592,6 +1654,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-poste-italiane-2024",
@@ -1615,6 +1678,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-poste-italiane-2024",
@@ -1649,6 +1713,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-poste-italiane-2024",
@@ -1671,6 +1736,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 502,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-poste-italiane-2024",

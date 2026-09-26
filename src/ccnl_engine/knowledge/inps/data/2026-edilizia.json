@@ -33,7 +33,20 @@
     ],
     "ceiling": "122295.00",
     "employee_additional_rate": "0.01",
-    "employee_additional_threshold": "56224.00"
+    "employee_additional_threshold": "56224.00",
+    "provenance": {
+      "status": "assumed",
+      "location": {
+        "source_document": {
+          "document_id": "kitech-contributi-5_152",
+          "title": "kitech.it, contributi previdenziali edilizia",
+          "kind": "rivista",
+          "url": "https://www.kitech.it/Contributi-previdenziali.aspx?p=5_152"
+        },
+        "section": "1998 rate structure"
+      },
+      "note": "Proxy values, estimated; not checked against the 2026 INPS circular."
+    }
   },
   "apprentice": {
     "employee_rate": "0.0584",
@@ -44,7 +57,19 @@
     "small_firm_employer_rate_months_0_11": "0.0311",
     "small_firm_employer_ivs_rate_months_0_11": "0.0150",
     "small_firm_employer_rate_months_12_23": "0.0461",
-    "small_firm_employer_ivs_rate_months_12_23": "0.0300"
+    "small_firm_employer_ivs_rate_months_12_23": "0.0300",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "l-296-2006",
+          "title": "L. 296/2006, legge finanziaria 2007",
+          "kind": "legge"
+        },
+        "section": "art. 1 c. 773; L. 92/2012 art. 2 cc. 36-37"
+      },
+      "transformation": "Employer rate 10% + NASpI 1.31% + 0.30% = 11.61%."
+    }
   },
   "ruleset": {
     "id": "inps/2026/edilizia",
@@ -54,7 +79,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "1a989408afb069b49fe268248158aec6621e928bd974fb16e1d890ee0896107f",
+    "source_hash": "3166ad89e2002b7a70f32973eaec1ebf57690a3028e29351a1e2e1bfbf093056",
     "source_type": "estimated"
   }
 }

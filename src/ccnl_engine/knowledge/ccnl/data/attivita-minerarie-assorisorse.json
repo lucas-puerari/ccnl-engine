@@ -86,7 +86,12 @@
         {
           "valid_from": "2022-04-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -95,6 +100,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -160,6 +166,7 @@
             "valid_until": "2023-01-01",
             "value": "1557.28",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -183,6 +190,7 @@
             "valid_until": "2023-12-01",
             "value": "1590.56",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -206,6 +214,7 @@
             "valid_until": "2025-01-01",
             "value": "1646.12",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -229,6 +238,7 @@
             "valid_until": null,
             "value": "1705.38",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -251,6 +261,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -280,6 +291,7 @@
             "valid_until": "2023-01-01",
             "value": "1686.20",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -303,6 +315,7 @@
             "valid_until": "2023-12-01",
             "value": "1724.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -326,6 +339,7 @@
             "valid_until": "2025-01-01",
             "value": "1788.42",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -349,6 +363,7 @@
             "valid_until": null,
             "value": "1856.57",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -371,6 +386,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -400,6 +416,7 @@
             "valid_until": "2023-01-01",
             "value": "1796.52",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -423,6 +440,7 @@
             "valid_until": "2023-12-01",
             "value": "1838.19",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -446,6 +464,7 @@
             "valid_until": "2025-01-01",
             "value": "1907.63",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -469,6 +488,7 @@
             "valid_until": null,
             "value": "1981.71",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -491,6 +511,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -520,6 +541,7 @@
             "valid_until": "2023-01-01",
             "value": "1903.19",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -543,6 +565,7 @@
             "valid_until": "2023-12-01",
             "value": "1948.19",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -566,6 +589,7 @@
             "valid_until": "2025-01-01",
             "value": "2023.19",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -589,6 +613,7 @@
             "valid_until": null,
             "value": "2103.19",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -611,6 +636,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -640,6 +666,7 @@
             "valid_until": "2023-01-01",
             "value": "2013.34",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -663,6 +690,7 @@
             "valid_until": "2023-12-01",
             "value": "2061.67",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -686,6 +714,7 @@
             "valid_until": "2025-01-01",
             "value": "2142.23",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -709,6 +738,7 @@
             "valid_until": null,
             "value": "2228.15",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -731,6 +761,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -760,6 +791,7 @@
             "valid_until": "2023-01-01",
             "value": "2215.78",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -783,6 +815,7 @@
             "valid_until": "2023-12-01",
             "value": "2270.78",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -806,6 +839,7 @@
             "valid_until": "2025-01-01",
             "value": "2362.45",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -829,6 +863,7 @@
             "valid_until": null,
             "value": "2460.22",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -851,6 +886,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -880,6 +916,7 @@
             "valid_until": "2023-01-01",
             "value": "2486.63",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -903,6 +940,7 @@
             "valid_until": "2023-12-01",
             "value": "2549.96",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -926,6 +964,7 @@
             "valid_until": "2025-01-01",
             "value": "2655.52",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -949,6 +988,7 @@
             "valid_until": null,
             "value": "2768.11",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -971,6 +1011,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1000,6 +1041,7 @@
             "valid_until": "2023-01-01",
             "value": "2684.45",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1023,6 +1065,7 @@
             "valid_until": "2023-12-01",
             "value": "2753.45",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1046,6 +1089,7 @@
             "valid_until": "2025-01-01",
             "value": "2868.45",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1069,6 +1113,7 @@
             "valid_until": null,
             "value": "2991.12",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1091,6 +1136,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1120,6 +1166,7 @@
             "valid_until": "2023-01-01",
             "value": "2719.43",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1143,6 +1190,7 @@
             "valid_until": "2023-12-01",
             "value": "2791.10",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1166,6 +1214,7 @@
             "valid_until": "2025-01-01",
             "value": "2910.54",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1189,6 +1238,7 @@
             "valid_until": null,
             "value": "3037.95",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1211,6 +1261,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "filctem-b282-ccnl-attivita-minerarie-2022-2025",
@@ -1237,7 +1288,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "440a7e371d179b423fb9bfb51d25916fe2004389c273399ce9a9093765490937",
+    "source_hash": "afd5ed4196fb95bea94e9b0ff27084373fbd51c236bcc6819efddbb5bb55e339",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

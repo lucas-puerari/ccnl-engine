@@ -209,12 +209,17 @@ class CCNL(BaseModel):
 
         Raises:
             ValueError: If any level, salary period, allowance monthly period,
-                or seniority_increments is missing a ``provenance`` entry.
+                additional-months period or seniority_increments is missing a
+                ``provenance`` entry.
         """
         si = self.parameters.seniority_increments
         if si.provenance is None:
             msg = "seniority_increments.provenance is required"
             raise ValueError(msg)
+        for i, period in enumerate(self.parameters.additional_months.periods):
+            if not period.is_gap and period.provenance is None:
+                msg = f"additional_months.periods[{i}].provenance is required"
+                raise ValueError(msg)
         for level in self.levels:
             _assert_level_provenance(level)
 

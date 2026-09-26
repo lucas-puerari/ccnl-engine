@@ -84,7 +84,12 @@
         {
           "valid_from": "2024-09-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -200,6 +205,7 @@
         "QD4": 12
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -230,6 +236,7 @@
             "valid_until": "2025-01-01",
             "value": "4978.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -252,6 +259,7 @@
             "valid_until": "2026-01-01",
             "value": "5059.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -274,6 +282,7 @@
             "valid_until": null,
             "value": "5160.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -296,6 +305,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -324,6 +334,7 @@
             "valid_until": "2025-01-01",
             "value": "4239.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -346,6 +357,7 @@
             "valid_until": "2026-01-01",
             "value": "4309.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -368,6 +380,7 @@
             "valid_until": null,
             "value": "4396.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -390,6 +403,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -418,6 +432,7 @@
             "valid_until": "2025-01-01",
             "value": "3815.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -440,6 +455,7 @@
             "valid_until": "2026-01-01",
             "value": "3882.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -462,6 +478,7 @@
             "valid_until": null,
             "value": "3965.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -484,6 +501,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -512,6 +530,7 @@
             "valid_until": "2025-01-01",
             "value": "3600.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -534,6 +553,7 @@
             "valid_until": "2026-01-01",
             "value": "3663.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -556,6 +576,7 @@
             "valid_until": null,
             "value": "3743.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -578,6 +599,7 @@
       "fixed_allowances": [],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -606,6 +628,7 @@
             "valid_until": "2025-01-01",
             "value": "3206.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -628,6 +651,7 @@
             "valid_until": "2026-01-01",
             "value": "3266.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -650,6 +674,7 @@
             "valid_until": null,
             "value": "3341.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -672,6 +697,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -700,6 +726,7 @@
             "valid_until": "2025-01-01",
             "value": "2943.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -722,6 +749,7 @@
             "valid_until": "2026-01-01",
             "value": "2994.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -744,6 +772,7 @@
             "valid_until": null,
             "value": "3059.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -766,6 +795,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -794,6 +824,7 @@
             "valid_until": "2025-01-01",
             "value": "2780.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -816,6 +847,7 @@
             "valid_until": "2026-01-01",
             "value": "2829.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -838,6 +870,7 @@
             "valid_until": null,
             "value": "2890.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -860,6 +893,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -888,6 +922,7 @@
             "valid_until": "2025-01-01",
             "value": "2637.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -910,6 +945,7 @@
             "valid_until": "2026-01-01",
             "value": "2684.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -932,6 +968,7 @@
             "valid_until": null,
             "value": "2742.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -954,6 +991,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -982,6 +1020,7 @@
             "valid_until": "2025-01-01",
             "value": "2474.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1004,6 +1043,7 @@
             "valid_until": "2026-01-01",
             "value": "2517.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1026,6 +1066,7 @@
             "valid_until": null,
             "value": "2572.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1048,6 +1089,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1076,6 +1118,7 @@
             "valid_until": "2025-01-01",
             "value": "2315.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1098,6 +1141,7 @@
             "valid_until": "2026-01-01",
             "value": "2355.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1120,6 +1164,7 @@
             "valid_until": null,
             "value": "2406.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1142,6 +1187,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1170,6 +1216,7 @@
             "valid_until": "2025-01-01",
             "value": "2156.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1192,6 +1239,7 @@
             "valid_until": "2026-01-01",
             "value": "2194.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1214,6 +1262,7 @@
             "valid_until": null,
             "value": "2241.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1236,6 +1285,7 @@
       "fixed_allowances": [],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-bcc-testo-coordinato-19-dicembre-2024-pdf",
@@ -1285,7 +1335,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0efd9e8220ba56f87cdf3208cf9e3f74d6f1345ff77a047ba05851a5f84d2ca9",
+    "source_hash": "1b754d03d740a45bf96044dce040683086170e75624f5b2bd11b7b630c3b5e04",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1311,6 +1361,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bcc-credito-cooperativo",
@@ -1346,6 +1397,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bcc-credito-cooperativo",
@@ -1381,6 +1433,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bcc-credito-cooperativo",
@@ -1416,6 +1469,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "bcc-credito-cooperativo",
@@ -1439,6 +1493,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bcc-credito-cooperativo",
@@ -1465,6 +1520,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bcc-credito-cooperativo",
@@ -1487,6 +1543,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "bcc-credito-cooperativo",

@@ -814,23 +814,7 @@ class TestServiceMonthsThreshold:
 # Schema 0.5 provenance completeness
 # ---------------------------------------------------------------------------
 
-_PROV = {
-    "location": {
-        "source_document": {
-            "document_id": "doc",
-            "title": "T",
-            "kind": "tabella_retributiva",
-            "url": "https://example.com",
-        },
-        "section": "Tabella livelli",
-    },
-    "extraction": {
-        "method": "manual",
-        "extraction_timestamp": "2026-01-01T00:00:00",
-        "verification_status": "unverified",
-        "effective_from": "2020-01-01",
-    },
-}
+_PROV = TEST_PROV
 
 
 def _make_v5_dict() -> dict[str, Any]:

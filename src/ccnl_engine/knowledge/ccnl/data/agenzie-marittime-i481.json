@@ -103,7 +103,12 @@
         {
           "valid_from": "2024-09-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -176,6 +181,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -266,6 +272,7 @@
             "valid_until": "2025-09-01",
             "value": "1509.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -288,6 +295,7 @@
             "valid_until": "2026-01-01",
             "value": "1542.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -310,6 +318,7 @@
             "valid_until": "2026-09-01",
             "value": "1571.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -332,6 +341,7 @@
             "valid_until": null,
             "value": "1601.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -353,6 +363,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -381,6 +392,7 @@
             "valid_until": "2025-09-01",
             "value": "1735.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -403,6 +415,7 @@
             "valid_until": "2026-01-01",
             "value": "1773.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -425,6 +438,7 @@
             "valid_until": "2026-09-01",
             "value": "1807.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -447,6 +461,7 @@
             "valid_until": null,
             "value": "1841.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -468,6 +483,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -496,6 +512,7 @@
             "valid_until": "2025-09-01",
             "value": "1811.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -518,6 +535,7 @@
             "valid_until": "2026-01-01",
             "value": "1850.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -540,6 +558,7 @@
             "valid_until": "2026-09-01",
             "value": "1886.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -562,6 +581,7 @@
             "valid_until": null,
             "value": "1921.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -583,6 +603,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -611,6 +632,7 @@
             "valid_until": "2025-09-01",
             "value": "2052.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -633,6 +655,7 @@
             "valid_until": "2026-01-01",
             "value": "2097.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -655,6 +678,7 @@
             "valid_until": "2026-09-01",
             "value": "2137.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -677,6 +701,7 @@
             "valid_until": null,
             "value": "2177.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -698,6 +723,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -726,6 +752,7 @@
             "valid_until": "2025-09-01",
             "value": "2173.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -748,6 +775,7 @@
             "valid_until": "2026-01-01",
             "value": "2220.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -770,6 +798,7 @@
             "valid_until": "2026-09-01",
             "value": "2263.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -792,6 +821,7 @@
             "valid_until": null,
             "value": "2305.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -813,6 +843,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -841,6 +872,7 @@
             "valid_until": "2025-09-01",
             "value": "2234.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -863,6 +895,7 @@
             "valid_until": "2026-01-01",
             "value": "2283.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -885,6 +918,7 @@
             "valid_until": "2026-09-01",
             "value": "2326.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -907,6 +941,7 @@
             "valid_until": null,
             "value": "2370.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -928,6 +963,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -956,6 +992,7 @@
             "valid_until": "2025-09-01",
             "value": "2339.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -978,6 +1015,7 @@
             "valid_until": "2026-01-01",
             "value": "2390.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -1000,6 +1038,7 @@
             "valid_until": "2026-09-01",
             "value": "2435.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -1022,6 +1061,7 @@
             "valid_until": null,
             "value": "2481.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -1055,6 +1095,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -1074,6 +1115,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agenziemarittime21-23-pdf",
@@ -1099,7 +1141,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "485afe36f5ee9717796df5c6ac0487fc7594296b7382a92c28129c718eea087e",
+    "source_hash": "3ccacc9c6330c72e6f44354ac9214ce03298a5ef64b44920954b3adf4fa36c45",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1125,6 +1167,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-marittime-i481",
@@ -1160,6 +1203,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-marittime-i481",
@@ -1195,6 +1239,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-marittime-i481",
@@ -1230,6 +1275,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "agenzie-marittime-i481",
@@ -1253,6 +1299,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-marittime-i481",
@@ -1279,6 +1326,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-marittime-i481",
@@ -1301,6 +1349,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "agenzie-marittime-i481",

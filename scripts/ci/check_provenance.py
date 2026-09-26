@@ -1,16 +1,26 @@
-"""Enforce verification status and provenance on reference case fixtures.
+"""Enforce provenance on payable rules and on reference case fixtures.
 
-Every case in ``tests/fixtures/expected/`` declares a top-level ``verification``
-field, ``verified`` or ``source_linked``, and carries a non-empty ``source``
-object. Expected values produced by the engine itself are not a status: they
-detect no systematic error, so such cases are rejected.
+Payable rules: every payable rule of the bundled knowledge data (see
+:mod:`scripts.ci.payable_rules`) carries a provenance record with a known
+status, ``verified``, ``derived``, ``assumed`` or ``missing``.  A rule
+without a record fails the check; a ``missing`` record is allowed in the
+data but listed, because the engine marks any result that reads it
+incomplete.
+
+Reference cases: every case in ``tests/fixtures/expected/`` declares a
+top-level ``verification`` field, ``verified`` or ``source_linked``, and
+carries a non-empty ``source`` object. Expected values produced by the
+engine itself are not a status: they detect no systematic error, so such
+cases are rejected.
 
 Modes:
 
 - default (new fixtures): each file must be valid.
 - ``--modified``: each file must be valid and must not drop a ``source``
   object it had at ``--base`` (default ``HEAD~1``).
-- ``--all``: validate every case in the fixture directory.
+- ``--rules``: check the payable rules only.
+- ``--all``: check the payable rules and every case in the fixture
+  directory.
 
 Every mode prints the number of checked cases per verification status.
 The script uses the standard library only, so CI can run it without
@@ -20,6 +30,7 @@ Usage::
 
     python scripts/ci/check_provenance.py new.json ...
     python scripts/ci/check_provenance.py --modified changed.json ...
+    python scripts/ci/check_provenance.py --rules
     python scripts/ci/check_provenance.py --all
 
 Exit codes:
@@ -35,6 +46,10 @@ import subprocess  # noqa: S404
 import sys
 from collections import Counter
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from scripts.ci import payable_rules
 
 CASES_DIR = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "expected"
 STATUSES = ("verified", "source_linked")
@@ -129,8 +144,44 @@ def _print_counts(counts: Counter[str]) -> None:
         print(f"  invalid or missing: {other}")
 
 
-def main() -> None:
-    """Entry point."""
+def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
+    """Check the payable rules of the bundle and print their statuses.
+
+    Args:
+        root: Knowledge directory to scan.
+
+    Returns:
+        ``True`` when every payable rule has a record with a known status.
+    """
+    rules = payable_rules.inventory(root)
+    counts = payable_rules.count_by_status(rules)
+    print(f"Payable rules checked: {len(rules)}")
+    for status in payable_rules.STATUSES:
+        print(f"  {status}: {counts[status]}")
+    missing = [rule for rule in rules if rule.status == "missing"]
+    for rule in missing:
+        print(f"  missing source: {rule.file}: {rule.path}")
+    errors = payable_rules.rule_errors(rules)
+    if errors:
+        print(
+            f"\n{len(errors)} payable rule(s) without a provenance record:\n"
+            + "\n".join(f"  {error}" for error in errors),
+            file=sys.stderr,
+        )
+        print(
+            "\nGive each rule a 'provenance' record with a 'status'; use "
+            '"missing" when no source backs the value.',
+            file=sys.stderr,
+        )
+    return not errors
+
+
+def _parser() -> argparse.ArgumentParser:
+    """Return the command-line parser.
+
+    Returns:
+        The parser of the modes, the base ref and the case files.
+    """
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
@@ -143,7 +194,12 @@ def main() -> None:
     group.add_argument(
         "--all",
         action="store_true",
-        help=f"Check every case in {CASES_DIR}.",
+        help=f"Check the payable rules and every case in {CASES_DIR}.",
+    )
+    group.add_argument(
+        "--rules",
+        action="store_true",
+        help="Check the payable rules of the bundled knowledge data only.",
     )
     parser.add_argument(
         "--base",
@@ -157,20 +213,31 @@ def main() -> None:
         metavar="case_file",
         help="Reference case JSON files to check.",
     )
+    return parser
+
+
+def main() -> None:
+    """Entry point."""
+    parser = _parser()
     args = parser.parse_args()
 
+    rules_ok = check_rules() if args.all or args.rules else True
+    if args.rules:
+        sys.exit(0 if rules_ok else 1)
     if args.all:
         paths = sorted(CASES_DIR.glob("*.json"))
         mode = "all"
     else:
         if not args.files:
-            parser.error("case_file arguments are required unless --all is given")
+            parser.error("case_file arguments are required without --all or --rules")
         paths = args.files
         mode = "modified" if args.modified else "new"
 
     failures, counts = check(paths, mode=mode, base=args.base)
     _print_counts(counts)
 
+    if not rules_ok and not failures:
+        sys.exit(1)
     if failures:
         print(
             f"\n{len(failures)} {mode} reference case(s) failed provenance check:\n"

@@ -106,7 +106,12 @@
         {
           "valid_from": "2023-01-19",
           "valid_until": null,
-          "value": 14
+          "value": 14,
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -200,6 +205,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -284,6 +290,7 @@
             "valid_until": "2026-01-01",
             "value": "2746.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -306,6 +313,7 @@
             "valid_until": null,
             "value": "2788.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -327,6 +335,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -355,6 +364,7 @@
             "valid_until": "2026-01-01",
             "value": "2297.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -377,6 +387,7 @@
             "valid_until": null,
             "value": "2331.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -398,6 +409,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -426,6 +438,7 @@
             "valid_until": "2026-01-01",
             "value": "2065.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -448,6 +461,7 @@
             "valid_until": null,
             "value": "2096.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -469,6 +483,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -497,6 +512,7 @@
             "valid_until": "2026-01-01",
             "value": "1835.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -519,6 +535,7 @@
             "valid_until": null,
             "value": "1863.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -540,6 +557,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -568,6 +586,7 @@
             "valid_until": "2026-01-01",
             "value": "1709.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -590,6 +609,7 @@
             "valid_until": null,
             "value": "1735.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -611,6 +631,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -639,6 +660,7 @@
             "valid_until": "2026-01-01",
             "value": "1565.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -661,6 +683,7 @@
             "valid_until": null,
             "value": "1588.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-ooss-pdf",
@@ -682,6 +705,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-pdf",
@@ -707,7 +731,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "7b470a217759ff1dc0c2310d76ff84540f8cefa90e7e7fcfb657807b03e4173c",
+    "source_hash": "76b4cf852e747b66b0c8c59d7cb1c38285fc48e5e4551c85441d7408eb857611",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -733,6 +757,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -768,6 +793,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -803,6 +829,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -838,6 +865,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -861,6 +889,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -887,6 +916,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-unsic-confsal-2023",
@@ -909,6 +939,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-ooss-unsic-confsal-2023",

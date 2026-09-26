@@ -98,7 +98,12 @@
         {
           "valid_from": "2024-10-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -207,6 +212,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -237,6 +243,7 @@
             "valid_until": "2025-07-01",
             "value": "1293.12",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -259,6 +266,7 @@
             "valid_until": "2026-03-01",
             "value": "1337.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -281,6 +289,7 @@
             "valid_until": null,
             "value": "1359.20",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -302,6 +311,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -330,6 +340,7 @@
             "valid_until": "2025-07-01",
             "value": "1328.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -352,6 +363,7 @@
             "valid_until": "2026-03-01",
             "value": "1373.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -374,6 +386,7 @@
             "valid_until": null,
             "value": "1395.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -395,6 +408,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -423,6 +437,7 @@
             "valid_until": "2025-07-01",
             "value": "1363.01",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -445,6 +460,7 @@
             "valid_until": "2026-03-01",
             "value": "1409.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -467,6 +483,7 @@
             "valid_until": null,
             "value": "1432.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -488,6 +505,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -516,6 +534,7 @@
             "valid_until": "2025-07-01",
             "value": "1397.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -538,6 +557,7 @@
             "valid_until": "2026-03-01",
             "value": "1445.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -560,6 +580,7 @@
             "valid_until": null,
             "value": "1469.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -581,6 +602,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -609,6 +631,7 @@
             "valid_until": "2025-07-01",
             "value": "1421.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -631,6 +654,7 @@
             "valid_until": "2026-03-01",
             "value": "1469.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -653,6 +677,7 @@
             "valid_until": null,
             "value": "1493.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -674,6 +699,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -702,6 +728,7 @@
             "valid_until": "2025-07-01",
             "value": "1467.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -724,6 +751,7 @@
             "valid_until": "2026-03-01",
             "value": "1517.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -746,6 +774,7 @@
             "valid_until": null,
             "value": "1542.86",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -767,6 +796,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -795,6 +825,7 @@
             "valid_until": "2025-07-01",
             "value": "1549.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -817,6 +848,7 @@
             "valid_until": "2026-03-01",
             "value": "1602.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -839,6 +871,7 @@
             "valid_until": null,
             "value": "1628.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -860,6 +893,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -888,6 +922,7 @@
             "valid_until": "2025-07-01",
             "value": "1607.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -910,6 +945,7 @@
             "valid_until": "2026-03-01",
             "value": "1662.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -932,6 +968,7 @@
             "valid_until": null,
             "value": "1689.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -953,6 +990,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -981,6 +1019,7 @@
             "valid_until": "2025-07-01",
             "value": "1735.81",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1003,6 +1042,7 @@
             "valid_until": "2026-03-01",
             "value": "1794.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1025,6 +1065,7 @@
             "valid_until": null,
             "value": "1824.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1046,6 +1087,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1074,6 +1116,7 @@
             "valid_until": "2025-07-01",
             "value": "1840.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1096,6 +1139,7 @@
             "valid_until": "2026-03-01",
             "value": "1903.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1118,6 +1162,7 @@
             "valid_until": null,
             "value": "1934.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1139,6 +1184,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1167,6 +1213,7 @@
             "valid_until": "2025-07-01",
             "value": "1957.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1189,6 +1236,7 @@
             "valid_until": "2026-03-01",
             "value": "2023.82",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1211,6 +1259,7 @@
             "valid_until": null,
             "value": "2057.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1244,6 +1293,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1264,6 +1314,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "contratto-uneba-2025-testo-firmato-pdf",
@@ -1392,7 +1443,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b8c9e25f6ad9732b4cdfbd9cdee3e25f33c30907329095e89576bc2aeb39bab",
+    "source_hash": "f5cc4294ba192e16b78ff28f392cf3ea54d892f78d26299a043cb99157622d24",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1418,6 +1469,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-uneba-2025",
@@ -1453,6 +1505,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-uneba-2025",
@@ -1488,6 +1541,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-uneba-2025",
@@ -1523,6 +1577,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-uneba-2025",
@@ -1546,6 +1601,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-uneba-2025",
@@ -1572,6 +1628,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-uneba-2025",
@@ -1594,6 +1651,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-uneba-2025",

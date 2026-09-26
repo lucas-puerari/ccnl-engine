@@ -42,6 +42,7 @@ def _regime(**overrides: object) -> PreferentialTaxRegime:
         "income_reference_year": 2025,
         "required_sector": EmploymentSector.PRIVATE,
         "source": _SOURCE,
+        "source_status": "derived",
     }
     fields.update(overrides)
     return PreferentialTaxRegime(**fields)
@@ -112,6 +113,12 @@ class TestPreferentialTaxRegime:
         assert not regime.has_signing_window
         assert regime.signed_within_window(date(1990, 1, 1))
 
+    @pytest.mark.parametrize("status", ["missing", "verified"])
+    def test_source_status_is_derived_or_assumed(self, status: str) -> None:
+        """A regime cites its source and names no reviewer."""
+        with pytest.raises(ValidationError, match="'derived' or 'assumed'"):
+            _regime(source_status=status)
+
     @pytest.mark.parametrize(
         "overrides",
         [
@@ -148,6 +155,7 @@ class TestBundledRinnovoRegime:
             date(2026, 12, 31),
         )
         assert rinnovo.source.section == "art. 1 c. 7"
+        assert rinnovo.source_status == "derived"
         assert rinnovo.ruleset is not None
 
 

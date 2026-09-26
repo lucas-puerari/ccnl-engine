@@ -100,6 +100,7 @@
           "valid_until": null,
           "value": "173",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -126,6 +127,7 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -149,6 +151,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -265,6 +268,7 @@
       "order": 1,
       "description": "Category 2 — semi-skilled worker, standard repetitive operations",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -288,6 +292,7 @@
             "valid_until": "2027-06-01",
             "value": "1816.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -310,6 +315,7 @@
             "valid_until": "2028-06-01",
             "value": "1860.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -332,6 +338,7 @@
             "valid_until": null,
             "value": "1896.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -358,6 +365,7 @@
       "order": 2,
       "description": "Category 3 — skilled worker, qualified operations",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -381,6 +389,7 @@
             "valid_until": "2027-06-01",
             "value": "2013.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -403,6 +412,7 @@
             "valid_until": "2028-06-01",
             "value": "2063.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -425,6 +435,7 @@
             "valid_until": null,
             "value": "2103.44",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -451,6 +462,7 @@
       "order": 3,
       "description": "Category 4 — specialist worker, complex independent operations",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -474,6 +486,7 @@
             "valid_until": "2027-06-01",
             "value": "2101.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -496,6 +509,7 @@
             "valid_until": "2028-06-01",
             "value": "2153.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -518,6 +532,7 @@
             "valid_until": null,
             "value": "2195.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -544,6 +559,7 @@
       "order": 4,
       "description": "Category 5 — highly skilled worker, autonomous complex tasks",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -567,6 +583,7 @@
             "valid_until": "2027-06-01",
             "value": "2251.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -589,6 +606,7 @@
             "valid_until": "2028-06-01",
             "value": "2306.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -611,6 +629,7 @@
             "valid_until": null,
             "value": "2351.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -637,6 +656,7 @@
       "order": 5,
       "description": "Category 6 — senior specialist, team coordinator or technical reference",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -660,6 +680,7 @@
             "valid_until": "2027-06-01",
             "value": "2414.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -682,6 +703,7 @@
             "valid_until": "2028-06-01",
             "value": "2473.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -704,6 +726,7 @@
             "valid_until": null,
             "value": "2521.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -730,6 +753,7 @@
       "order": 6,
       "description": "Category 7 — expert specialist, university-level role or equivalent experience",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -753,6 +777,7 @@
             "valid_until": "2027-06-01",
             "value": "2591.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -775,6 +800,7 @@
             "valid_until": "2028-06-01",
             "value": "2654.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -797,6 +823,7 @@
             "valid_until": null,
             "value": "2706.26",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -823,6 +850,7 @@
       "order": 7,
       "description": "Category 8 — senior specialist or impiegato direttivo; includes elemento retributivo",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -846,6 +874,7 @@
             "valid_until": "2027-06-01",
             "value": "2818.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -868,6 +897,7 @@
             "valid_until": "2028-06-01",
             "value": "2887.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -890,6 +920,7 @@
             "valid_until": null,
             "value": "2943.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -923,6 +954,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -947,6 +979,7 @@
       "order": 8,
       "description": "Category 8Q — quadro (middle management), with funzione quadro allowance",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -970,6 +1003,7 @@
             "valid_until": "2027-06-01",
             "value": "2818.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -992,6 +1026,7 @@
             "valid_until": "2028-06-01",
             "value": "2887.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1014,6 +1049,7 @@
             "valid_until": null,
             "value": "2943.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1047,6 +1083,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1077,6 +1114,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1101,6 +1139,7 @@
       "order": 9,
       "description": "Category 9 — expert specialist, senior impiegato direttivo; includes elemento retributivo",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1124,6 +1163,7 @@
             "valid_until": "2027-06-01",
             "value": "3133.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1146,6 +1186,7 @@
             "valid_until": "2028-06-01",
             "value": "3209.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1168,6 +1209,7 @@
             "valid_until": null,
             "value": "3272.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1201,6 +1243,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1225,6 +1268,7 @@
       "order": 10,
       "description": "Category 9Q — senior quadro (senior management), with funzione quadro allowance",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1248,6 +1292,7 @@
             "valid_until": "2027-06-01",
             "value": "3133.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1270,6 +1315,7 @@
             "valid_until": "2028-06-01",
             "value": "3209.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1292,6 +1338,7 @@
             "valid_until": null,
             "value": "3272.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-c01a-confimi-consulenti-ts-2026-08",
@@ -1325,6 +1372,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1355,6 +1403,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-pdf-direzionelavoro",
@@ -1383,7 +1432,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "d0b8f1f067c0b30a47ef2b656b7c89309e756bd2aaff57222f52cfdeff1a41e1",
+    "source_hash": "9bccbde4b95bffd2fc316cec3ddc3fc734c7ec1e8f8d7cbaff9ce6dd70bde028",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -1409,6 +1458,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1444,6 +1494,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1479,6 +1530,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1514,6 +1566,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1537,6 +1590,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1563,6 +1617,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",
@@ -1585,6 +1640,7 @@
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-c01a-confimi-kitech-445",

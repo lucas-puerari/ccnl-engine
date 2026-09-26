@@ -103,7 +103,12 @@
         {
           "valid_from": "2025-12-09",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -212,6 +217,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -278,6 +284,7 @@
             "valid_until": "2026-01-01",
             "value": "1002.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -300,6 +307,7 @@
             "valid_until": "2026-10-01",
             "value": "1028.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -322,6 +330,7 @@
             "valid_until": "2027-05-01",
             "value": "1053.85",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -344,6 +353,7 @@
             "valid_until": "2027-11-01",
             "value": "1092.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -366,6 +376,7 @@
             "valid_until": null,
             "value": "1131.27",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -399,6 +410,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -429,6 +441,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -459,6 +472,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -478,6 +492,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -506,6 +521,7 @@
             "valid_until": "2026-01-01",
             "value": "1282.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -528,6 +544,7 @@
             "valid_until": "2026-10-01",
             "value": "1315.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -550,6 +567,7 @@
             "valid_until": "2027-05-01",
             "value": "1348.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -572,6 +590,7 @@
             "valid_until": "2027-11-01",
             "value": "1398.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -594,6 +613,7 @@
             "valid_until": null,
             "value": "1448.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -627,6 +647,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -657,6 +678,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -687,6 +709,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -706,6 +729,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -734,6 +758,7 @@
             "valid_until": "2026-01-01",
             "value": "1383.09",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -756,6 +781,7 @@
             "valid_until": "2026-10-01",
             "value": "1418.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -778,6 +804,7 @@
             "valid_until": "2027-05-01",
             "value": "1454.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -800,6 +827,7 @@
             "valid_until": "2027-11-01",
             "value": "1507.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -822,6 +850,7 @@
             "valid_until": null,
             "value": "1561.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -855,6 +884,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -885,6 +915,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -915,6 +946,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -934,6 +966,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -962,6 +995,7 @@
             "valid_until": "2026-01-01",
             "value": "1553.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -984,6 +1018,7 @@
             "valid_until": "2026-10-01",
             "value": "1593.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1006,6 +1041,7 @@
             "valid_until": "2027-05-01",
             "value": "1633.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1028,6 +1064,7 @@
             "valid_until": "2027-11-01",
             "value": "1693.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1050,6 +1087,7 @@
             "valid_until": null,
             "value": "1753.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1083,6 +1121,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1113,6 +1152,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1143,6 +1183,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1162,6 +1203,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1190,6 +1232,7 @@
             "valid_until": "2026-01-01",
             "value": "1613.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1212,6 +1255,7 @@
             "valid_until": "2026-10-01",
             "value": "1655.16",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1234,6 +1278,7 @@
             "valid_until": "2027-05-01",
             "value": "1696.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1256,6 +1301,7 @@
             "valid_until": "2027-11-01",
             "value": "1759.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1278,6 +1324,7 @@
             "valid_until": null,
             "value": "1821.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1311,6 +1358,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1341,6 +1389,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1371,6 +1420,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1390,6 +1440,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1418,6 +1469,7 @@
             "valid_until": "2026-01-01",
             "value": "1683.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1440,6 +1492,7 @@
             "valid_until": "2026-10-01",
             "value": "1727.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1462,6 +1515,7 @@
             "valid_until": "2027-05-01",
             "value": "1770.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1484,6 +1538,7 @@
             "valid_until": "2027-11-01",
             "value": "1835.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1506,6 +1561,7 @@
             "valid_until": null,
             "value": "1900.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1539,6 +1595,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1569,6 +1626,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1599,6 +1657,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1618,6 +1677,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1646,6 +1706,7 @@
             "valid_until": "2026-01-01",
             "value": "1763.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1668,6 +1729,7 @@
             "valid_until": "2026-10-01",
             "value": "1809.37",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1690,6 +1752,7 @@
             "valid_until": "2027-05-01",
             "value": "1854.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1712,6 +1775,7 @@
             "valid_until": "2027-11-01",
             "value": "1922.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1734,6 +1798,7 @@
             "valid_until": null,
             "value": "1991.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1767,6 +1832,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1797,6 +1863,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1827,6 +1894,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1846,6 +1914,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1874,6 +1943,7 @@
             "valid_until": "2026-01-01",
             "value": "1934.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1896,6 +1966,7 @@
             "valid_until": "2026-10-01",
             "value": "1984.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1918,6 +1989,7 @@
             "valid_until": "2027-05-01",
             "value": "2033.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1940,6 +2012,7 @@
             "valid_until": "2027-11-01",
             "value": "2108.65",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1962,6 +2035,7 @@
             "valid_until": null,
             "value": "2183.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -1995,6 +2069,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2025,6 +2100,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2055,6 +2131,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2074,6 +2151,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2102,6 +2180,7 @@
             "valid_until": "2026-01-01",
             "value": "2054.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2124,6 +2203,7 @@
             "valid_until": "2026-10-01",
             "value": "2107.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2146,6 +2226,7 @@
             "valid_until": "2027-05-01",
             "value": "2160.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2168,6 +2249,7 @@
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2190,6 +2272,7 @@
             "valid_until": null,
             "value": "2319.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2223,6 +2306,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2253,6 +2337,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2283,6 +2368,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2302,6 +2388,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2330,6 +2417,7 @@
             "valid_until": "2026-01-01",
             "value": "2054.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2352,6 +2440,7 @@
             "valid_until": "2026-10-01",
             "value": "2107.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2374,6 +2463,7 @@
             "valid_until": "2027-05-01",
             "value": "2160.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2396,6 +2486,7 @@
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2418,6 +2509,7 @@
             "valid_until": null,
             "value": "2319.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2451,6 +2543,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2481,6 +2574,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2511,6 +2605,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2530,6 +2625,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2558,6 +2654,7 @@
             "valid_until": "2026-01-01",
             "value": "2054.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2580,6 +2677,7 @@
             "valid_until": "2026-10-01",
             "value": "2107.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2602,6 +2700,7 @@
             "valid_until": "2027-05-01",
             "value": "2160.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2624,6 +2723,7 @@
             "valid_until": "2027-11-01",
             "value": "2239.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2646,6 +2746,7 @@
             "valid_until": null,
             "value": "2319.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2679,6 +2780,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2709,6 +2811,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2739,6 +2842,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2758,6 +2862,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ic35-verbale-accordo-09122025-pdf",
@@ -2783,7 +2888,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "501d634412736dcb554af80f844f19c4b8c8cabf7488019dc7f87aebb7eb3de7",
+    "source_hash": "a3a68e75e557645f79b923801d63352a72923626758798ec9b3de8d7088df77c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2809,6 +2914,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autorimesse-ic35",
@@ -2844,6 +2950,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autorimesse-ic35",
@@ -2879,6 +2986,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autorimesse-ic35",
@@ -2914,6 +3022,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "autorimesse-ic35",
@@ -2937,6 +3046,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autorimesse-ic35",
@@ -2963,6 +3073,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autorimesse-ic35",
@@ -2985,6 +3096,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "autorimesse-ic35",

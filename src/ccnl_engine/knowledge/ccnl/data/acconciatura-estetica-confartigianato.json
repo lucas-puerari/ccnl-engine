@@ -114,7 +114,12 @@
         {
           "valid_from": "2023-02-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -169,6 +174,7 @@
         ]
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -199,6 +205,7 @@
             "valid_until": "2024-05-01",
             "value": "1234.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -221,6 +228,7 @@
             "valid_until": "2025-01-01",
             "value": "1300.19",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -243,6 +251,7 @@
             "valid_until": "2026-01-01",
             "value": "1347.33",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -265,6 +274,7 @@
             "valid_until": "2026-10-01",
             "value": "1387.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -287,6 +297,7 @@
             "valid_until": null,
             "value": "1406.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -309,6 +320,7 @@
       "fixed_allowances": [],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -337,6 +349,7 @@
             "valid_until": "2024-05-01",
             "value": "1309.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -359,6 +372,7 @@
             "valid_until": "2025-01-01",
             "value": "1379.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -381,6 +395,7 @@
             "valid_until": "2026-01-01",
             "value": "1429.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -403,6 +418,7 @@
             "valid_until": "2026-10-01",
             "value": "1472.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -425,6 +441,7 @@
             "valid_until": null,
             "value": "1492.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -447,6 +464,7 @@
       "fixed_allowances": [],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -475,6 +493,7 @@
             "valid_until": "2024-05-01",
             "value": "1380.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -497,6 +516,7 @@
             "valid_until": "2025-01-01",
             "value": "1454.58",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -519,6 +539,7 @@
             "valid_until": "2026-01-01",
             "value": "1507.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -541,6 +562,7 @@
             "valid_until": "2026-10-01",
             "value": "1552.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -563,6 +585,7 @@
             "valid_until": null,
             "value": "1573.78",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -597,6 +620,7 @@
           },
           "role": "responsabile_tecnico",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -617,6 +641,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -645,6 +670,7 @@
             "valid_until": "2024-05-01",
             "value": "1511.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -667,6 +693,7 @@
             "valid_until": "2025-01-01",
             "value": "1592.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -689,6 +716,7 @@
             "valid_until": "2026-01-01",
             "value": "1650.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -711,6 +739,7 @@
             "valid_until": "2026-10-01",
             "value": "1699.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -733,6 +762,7 @@
             "valid_until": null,
             "value": "1722.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -767,6 +797,7 @@
           },
           "role": "responsabile_tecnico",
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -787,6 +818,7 @@
       ],
       "category": "impiegato",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-benessere-app-prof-fino-30-9-24-pdf",
@@ -916,7 +948,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "374051f12696a458cc4a9d6a744700371794de8b5e1d6225f8b861987077ea38",
+    "source_hash": "7d0ee8faa00edfe2ffb7e889003c2ed768523a788a17ce6af3f33b5b0e6bc36c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -942,6 +974,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "acconciatura-estetica-confartigianato",
@@ -977,6 +1010,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "acconciatura-estetica-confartigianato",
@@ -1012,6 +1046,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "acconciatura-estetica-confartigianato",
@@ -1035,6 +1070,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "acconciatura-estetica-confartigianato",
@@ -1065,6 +1101,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "acconciatura-estetica-confartigianato",
@@ -1087,6 +1124,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "acconciatura-estetica-confartigianato",

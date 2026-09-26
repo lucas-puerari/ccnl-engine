@@ -1,30 +1,91 @@
-<!-- auto-generated -- run: uv run python scripts/docs/gen_capability_matrix.py -->
+<!-- auto-generated; run: uv run python scripts/docs/gen_capability_matrix.py -->
 
-<!-- generated: 2026-09-18 -->
+<!-- generated: 2026-09-26 -->
 
 # Capability Matrix
 
-Per-feature coverage for all 125 bundled CCNLs. Generated from
-`coverage` blocks in the knowledge-base JSON files.
+What the engine computes for fiscal year 2026, and how far the bundled
+data behind it is backed by sources. Generated from the capability catalog,
+the provenance records of the payable rules and the `coverage` blocks of the
+125 bundled CCNLs.
 
-→ [CCNL Coverage index](index.md)
+→ [CCNL Coverage index](index.md) ·
+[Provenance statuses](../trust/provenance.md)
 
-## Legend
+## Capabilities
+
+| Label | Meaning |
+|---|---|
+| verified | Implemented; a named person checked every bundled rule it reads |
+| implemented | Computed; the bundled rules it reads, if any, cite a source |
+| simplified | Computed partially, or reads an `assumed` or `missing` rule |
+| unavailable | Not computed by the engine |
+
+Rules counts the payable rules of the bundle each capability reads, by
+provenance status: verified / derived / assumed / missing. "none bundled"
+means the capability reads no bundled table: it computes from engine
+formulas or caller-declared amounts.
+
+| Capability | Description | Catalog | Label | Rules (v / d / a / m) |
+|---|---|---|---|---|
+| `base_salary` | Paga base contrattuale | computed | simplified | 0 / 5129 / 466 / 0 |
+| `seniority` | Scatti di anzianità | computed | simplified | 0 / 119 / 6 / 0 |
+| `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | computed | implemented | none bundled |
+| `inps_employee` | Contributi INPS a carico dipendente | computed | simplified | 0 / 12 / 3 / 0 |
+| `inps_employer` | Contributi INPS a carico azienda | computed | simplified | 0 / 19 / 4 / 0 |
+| `inail` | INAIL (caller-declared rate) | partially_computed | simplified | none bundled |
+| `contribution_exemption` | Esonero contributivo (caller-declared) | partially_computed | simplified | none bundled |
+| `fiscal_adjustment` | Conguaglio IRPEF da periodo precedente (caller-declared) | partially_computed | simplified | none bundled |
+| `maternity_leave` | Indennità maternità INPS (caller-declared) | partially_computed | simplified | none bundled |
+| `workplace_injury` | Indennità infortuno INAIL (caller-declared) | partially_computed | simplified | none bundled |
+| `termination_residual_leave` | Monetizzazione ferie residue (caller-declared) | partially_computed | simplified | none bundled |
+| `termination_tfr` | Liquidazione TFR (caller-declared) | partially_computed | simplified | none bundled |
+| `contract_renewal_arrears` | Arretrati rinnovo contratto (caller-declared) | partially_computed | simplified | none bundled |
+| `una_tantum` | Una tantum (caller-declared) | partially_computed | simplified | none bundled |
+| `personal_withholdings` | Ritenute personali (caller-declared) | partially_computed | simplified | none bundled |
+| `additional_irpef_base` | Base aggiuntiva IRPEF (caller-declared) | partially_computed | simplified | none bundled |
+| `health_fund_employee` | Fondo sanitario a carico dipendente (caller-declared) | partially_computed | simplified | none bundled |
+| `health_fund_employer` | Fondo sanitario a carico azienda (caller-declared) | partially_computed | simplified | none bundled |
+| `territorial_supplement` | Integrazione territoriale (caller-declared) | partially_computed | simplified | none bundled |
+| `company_supplement` | Integrazione aziendale (caller-declared) | partially_computed | simplified | none bundled |
+| `tfr` | Trattamento di Fine Rapporto | computed | implemented | 0 / 8 / 0 / 0 |
+| `irpef` | IRPEF (sostituto d'imposta) | computed | implemented | 0 / 24 / 0 / 0 |
+| `trattamento_integrativo` | Trattamento integrativo (ex bonus 80€) | computed | implemented | 0 / 8 / 0 / 0 |
+| `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | computed | implemented | 0 / 8 / 0 / 0 |
+| `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | computed | simplified | 0 / 0 / 8 / 0 |
+| `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | computed | implemented | none bundled |
+| `addizionale_regionale` | Addizionale regionale IRPEF | computed | simplified | 0 / 0 / 1 / 0 |
+| `addizionale_comunale` | Addizionale comunale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
+| `family_deductions` | Detrazioni familiari a carico | computed | implemented | 0 / 3 / 0 / 0 |
+| `art15_deductions` | Detrazioni Art. 15 (interessi mutuo e oneri) | partially_computed | simplified | none bundled |
+| `overtime` | Lavoro straordinario e supplementare | computed | implemented | none bundled |
+| `night_work` | Lavoro notturno | computed | implemented | none bundled |
+| `holiday_work` | Lavoro festivo | computed | implemented | none bundled |
+| `shift_work` | Lavoro a turni | computed | implemented | none bundled |
+| `absence` | Assenze ingiustificate | computed | implemented | none bundled |
+| `leave` | Ferie e permessi ROL | computed | implemented | none bundled |
+| `sickness` | Malattia | computed | implemented | none bundled |
+| `fringe_benefit` | Fringe benefit (informativo) | computed | implemented | 0 / 1 / 0 / 0 |
+| `welfare` | Welfare aziendale (informativo) | computed | implemented | none bundled |
+| `bonus_pdr` | Premio di risultato PDR (informativo) | computed | implemented | 0 / 1 / 0 / 0 |
+| `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
+| `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
+| `bilateral_funds` | Fondi bilaterali (informativo) | computed | implemented | none bundled |
+
+## CCNL coverage
 
 | | |
 |---|---|
 | ✅ | Implemented |
-| ⚠️ | Partial — see contract notes |
+| ⚠️ | Partial, see contract notes |
 | 🚫 | Out of scope |
 | 🔲 | Not yet implemented |
 
-**L1 — Gross:** base salary, seniority, fixed allowances, additional months.
-**L2 — Net:** INPS contributions, TFR, IRPEF, surtax, family deductions.
+**L1 (gross):** base salary, seniority, fixed allowances, additional months.
+**L2 (net):** INPS contributions, TFR, IRPEF, surtax, family deductions.
 **OT / Night / Holiday / Absence / Sick / Leave / Bonus / Benefits /
 Welfare / Fringe / Fam.Ded. / Co.Agr. / Terr.Agr.:** L3 work-rules
 per-feature status.
-
-## Matrix
 
 
 | # | CCNL | L1 | L2 | OT | Night | Holiday | Absence | Sick | Leave | Bonus | Benefits | Welfare | Fringe | Fam.Ded. | Co.Agr. | Terr.Agr. |

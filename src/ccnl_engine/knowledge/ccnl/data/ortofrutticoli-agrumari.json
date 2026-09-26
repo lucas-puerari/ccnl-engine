@@ -150,7 +150,12 @@
         {
           "valid_from": "2024-01-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -241,6 +246,7 @@
         }
       },
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -276,6 +282,7 @@
       "order": 9,
       "description": "Quadro",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -310,6 +317,7 @@
             "valid_until": "2024-09-01",
             "value": "2239.26",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -343,6 +351,7 @@
             "valid_until": "2025-06-01",
             "value": "2336.65",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ilccnl-ortofrutticoli-2024",
@@ -376,6 +385,7 @@
             "valid_until": "2026-06-01",
             "value": "2366.62",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -409,6 +419,7 @@
             "valid_until": "2027-08-01",
             "value": "2396.59",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -442,6 +453,7 @@
             "valid_until": null,
             "value": "2486.49",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -486,6 +498,7 @@
             ]
           },
           "provenance": {
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "lavoro-economia-h341",
@@ -522,6 +535,7 @@
       "order": 8,
       "description": "Primo livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -556,6 +570,7 @@
             "valid_until": "2024-09-01",
             "value": "2136.72",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -589,6 +604,7 @@
             "valid_until": "2025-06-01",
             "value": "2229.65",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ilccnl-ortofrutticoli-2024",
@@ -622,6 +638,7 @@
             "valid_until": "2026-06-01",
             "value": "2258.24",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -655,6 +672,7 @@
             "valid_until": "2027-08-01",
             "value": "2286.83",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -688,6 +706,7 @@
             "valid_until": null,
             "value": "2372.61",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -726,6 +745,7 @@
       "order": 7,
       "description": "Secondo livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -760,6 +780,7 @@
             "valid_until": "2024-09-01",
             "value": "1888.05",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -793,6 +814,7 @@
             "valid_until": "2025-06-01",
             "value": "1970.16",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ilccnl-ortofrutticoli-2024",
@@ -826,6 +848,7 @@
             "valid_until": "2026-06-01",
             "value": "1995.43",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -859,6 +882,7 @@
             "valid_until": "2027-08-01",
             "value": "2020.70",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -892,6 +916,7 @@
             "valid_until": null,
             "value": "2096.50",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -930,6 +955,7 @@
       "order": 6,
       "description": "Terzo livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -964,6 +990,7 @@
             "valid_until": "2024-09-01",
             "value": "1805.39",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -997,6 +1024,7 @@
             "valid_until": "2025-06-01",
             "value": "1883.91",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ilccnl-ortofrutticoli-2024",
@@ -1030,6 +1058,7 @@
             "valid_until": "2026-06-01",
             "value": "1908.07",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1063,6 +1092,7 @@
             "valid_until": "2027-08-01",
             "value": "1932.23",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -1096,6 +1126,7 @@
             "valid_until": null,
             "value": "2004.71",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1134,6 +1165,7 @@
       "order": 5,
       "description": "Quarto livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -1168,6 +1200,7 @@
             "valid_until": "2024-09-01",
             "value": "1635.13",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1201,6 +1234,7 @@
             "valid_until": "2025-06-01",
             "value": "1706.24",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1234,6 +1268,7 @@
             "valid_until": "2026-06-01",
             "value": "1728.12",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1267,6 +1302,7 @@
             "valid_until": "2027-08-01",
             "value": "1750.00",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -1300,6 +1336,7 @@
             "valid_until": null,
             "value": "1815.64",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1338,6 +1375,7 @@
       "order": 4,
       "description": "Quinto livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -1372,6 +1410,7 @@
             "valid_until": "2024-09-01",
             "value": "1564.72",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1405,6 +1444,7 @@
             "valid_until": "2025-06-01",
             "value": "1632.77",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1438,6 +1478,7 @@
             "valid_until": "2026-06-01",
             "value": "1653.71",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1471,6 +1512,7 @@
             "valid_until": "2027-08-01",
             "value": "1674.65",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -1504,6 +1546,7 @@
             "valid_until": null,
             "value": "1737.47",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1542,6 +1585,7 @@
       "order": 3,
       "description": "Sesto livello superiore",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -1576,6 +1620,7 @@
             "valid_until": "2024-09-01",
             "value": "1531.31",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1609,6 +1654,7 @@
             "valid_until": "2025-06-01",
             "value": "1597.91",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1642,6 +1688,7 @@
             "valid_until": "2026-06-01",
             "value": "1618.40",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1675,6 +1722,7 @@
             "valid_until": "2027-08-01",
             "value": "1638.89",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -1708,6 +1756,7 @@
             "valid_until": null,
             "value": "1700.37",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1746,6 +1795,7 @@
       "order": 2,
       "description": "Sesto livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -1780,6 +1830,7 @@
             "valid_until": "2024-09-01",
             "value": "1494.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1813,6 +1864,7 @@
             "valid_until": "2025-06-01",
             "value": "1559.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1846,6 +1898,7 @@
             "valid_until": "2026-06-01",
             "value": "1579.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1879,6 +1932,7 @@
             "valid_until": "2027-08-01",
             "value": "1599.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1912,6 +1966,7 @@
             "valid_until": null,
             "value": "1659.53",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -1950,6 +2005,7 @@
       "order": 1,
       "description": "Settimo livello",
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-ortofrutta-2026",
@@ -1984,6 +2040,7 @@
             "valid_until": "2024-09-01",
             "value": "1437.29",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -2017,6 +2074,7 @@
             "valid_until": "2025-06-01",
             "value": "1499.80",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -2050,6 +2108,7 @@
             "valid_until": "2026-06-01",
             "value": "1519.03",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -2083,6 +2142,7 @@
             "valid_until": "2027-08-01",
             "value": "1538.26",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-ortofrutta-2026",
@@ -2116,6 +2176,7 @@
             "valid_until": null,
             "value": "1595.96",
             "provenance": {
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "lavoro-economia-h341",
@@ -2159,7 +2220,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "066037fefabcbb5df9d579fa09816bfa331d6b144a560417f5fa3d10eaf4124d",
+    "source_hash": "5c8a7ee2186c9ce4204fba4e17a0e8b4e8a7bd391b1bc880bc37a7b84942ffae",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2183,6 +2244,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "lavoro-economia-h341",
@@ -2222,6 +2284,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "lavoro-economia-h341",
@@ -2260,6 +2323,7 @@
             "night"
           ],
           "provenance": {
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "lavoro-economia-h341",
@@ -2298,6 +2362,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "lavoro-economia-h341",
@@ -2325,6 +2390,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "lavoro-economia-h341",
@@ -2352,6 +2418,7 @@
       "tiers": [],
       "max_duration_days": 180,
       "provenance": {
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "lavoro-economia-h341",

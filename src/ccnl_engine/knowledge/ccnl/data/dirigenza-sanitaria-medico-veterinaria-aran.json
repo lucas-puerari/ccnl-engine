@@ -64,7 +64,12 @@
         {
           "valid_from": "2019-12-19",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -73,6 +78,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
@@ -104,6 +110,7 @@
             "valid_until": "2024-01-01",
             "value": "3616.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
@@ -126,6 +133,7 @@
             "valid_until": null,
             "value": "3846.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
@@ -168,6 +176,7 @@
           "tfr_relevant": false,
           "contribution_relevant": true,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
@@ -187,6 +196,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
@@ -288,7 +298,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "0e07ba0bba56ac944b08d77ae1173d1739449c043405c4389b30a639029be1c2",
+    "source_hash": "3f6924a0677539388019b3839fef34ba1f1b105ca24bbbdfe79c2a8b399c65c0",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -314,6 +324,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-area-sanita-2022-2024",
@@ -349,6 +360,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-area-sanita-2022-2024",
@@ -372,6 +384,7 @@
       "daily_divisor_method": "by_hourly",
       "daily_hours": "7.6",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",
@@ -402,6 +415,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",
@@ -424,6 +438,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 540,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",

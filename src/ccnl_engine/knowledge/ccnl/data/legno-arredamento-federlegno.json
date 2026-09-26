@@ -99,7 +99,12 @@
         {
           "valid_from": "2023-07-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -253,6 +258,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -283,6 +289,7 @@
             "valid_until": "2024-01-01",
             "value": "1113.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -305,6 +312,7 @@
             "valid_until": "2025-01-01",
             "value": "1211.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -327,6 +335,7 @@
             "valid_until": null,
             "value": "1230.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -360,6 +369,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -390,6 +400,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -410,6 +421,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -438,6 +450,7 @@
             "valid_until": "2024-01-01",
             "value": "1323.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -460,6 +473,7 @@
             "valid_until": "2025-01-01",
             "value": "1434.04",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -482,6 +496,7 @@
             "valid_until": null,
             "value": "1455.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -515,6 +530,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -545,6 +561,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -565,6 +582,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -593,6 +611,7 @@
             "valid_until": "2024-01-01",
             "value": "1406.48",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -615,6 +634,7 @@
             "valid_until": "2025-01-01",
             "value": "1522.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -637,6 +657,7 @@
             "valid_until": null,
             "value": "1544.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -670,6 +691,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -700,6 +722,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -720,6 +743,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -748,6 +772,7 @@
             "valid_until": "2024-01-01",
             "value": "1489.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -770,6 +795,7 @@
             "valid_until": "2025-01-01",
             "value": "1610.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -792,6 +818,7 @@
             "valid_until": null,
             "value": "1633.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -825,6 +852,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -855,6 +883,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -875,6 +904,7 @@
       ],
       "category": "operaio",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -903,6 +933,7 @@
             "valid_until": "2024-01-01",
             "value": "1489.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -925,6 +956,7 @@
             "valid_until": "2025-01-01",
             "value": "1610.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -947,6 +979,7 @@
             "valid_until": null,
             "value": "1633.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -980,6 +1013,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1010,6 +1044,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1029,6 +1064,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1057,6 +1093,7 @@
             "valid_until": "2024-01-01",
             "value": "1556.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1079,6 +1116,7 @@
             "valid_until": "2025-01-01",
             "value": "1680.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1101,6 +1139,7 @@
             "valid_until": null,
             "value": "1705.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1134,6 +1173,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1164,6 +1204,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1183,6 +1224,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1211,6 +1253,7 @@
             "valid_until": "2024-01-01",
             "value": "1556.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1233,6 +1276,7 @@
             "valid_until": "2025-01-01",
             "value": "1680.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1255,6 +1299,7 @@
             "valid_until": null,
             "value": "1705.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1288,6 +1333,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1318,6 +1364,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1337,6 +1384,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1365,6 +1413,7 @@
             "valid_until": "2024-01-01",
             "value": "1639.62",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1387,6 +1436,7 @@
             "valid_until": "2025-01-01",
             "value": "1769.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1409,6 +1459,7 @@
             "valid_until": null,
             "value": "1795.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1442,6 +1493,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1472,6 +1524,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1491,6 +1544,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1519,6 +1573,7 @@
             "valid_until": "2024-01-01",
             "value": "1722.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1541,6 +1596,7 @@
             "valid_until": "2025-01-01",
             "value": "1857.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1563,6 +1619,7 @@
             "valid_until": null,
             "value": "1883.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1596,6 +1653,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1626,6 +1684,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1645,6 +1704,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1673,6 +1733,7 @@
             "valid_until": "2024-01-01",
             "value": "1722.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1695,6 +1756,7 @@
             "valid_until": "2025-01-01",
             "value": "1857.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1717,6 +1779,7 @@
             "valid_until": null,
             "value": "1883.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1750,6 +1813,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1780,6 +1844,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1799,6 +1864,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1827,6 +1893,7 @@
             "valid_until": "2024-01-01",
             "value": "1722.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1849,6 +1916,7 @@
             "valid_until": "2025-01-01",
             "value": "1857.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1871,6 +1939,7 @@
             "valid_until": null,
             "value": "1883.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -1904,6 +1973,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1934,6 +2004,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -1953,6 +2024,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -1981,6 +2053,7 @@
             "valid_until": "2024-01-01",
             "value": "1888.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2003,6 +2076,7 @@
             "valid_until": "2025-01-01",
             "value": "2033.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2025,6 +2099,7 @@
             "valid_until": null,
             "value": "2061.83",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2058,6 +2133,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2088,6 +2164,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2107,6 +2184,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -2135,6 +2213,7 @@
             "valid_until": "2024-01-01",
             "value": "2054.02",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2157,6 +2236,7 @@
             "valid_until": "2025-01-01",
             "value": "2209.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2179,6 +2259,7 @@
             "valid_until": null,
             "value": "2239.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2212,6 +2293,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2242,6 +2324,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2262,6 +2345,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -2290,6 +2374,7 @@
             "valid_until": "2024-01-01",
             "value": "2164.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2312,6 +2397,7 @@
             "valid_until": "2025-01-01",
             "value": "2326.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2334,6 +2420,7 @@
             "valid_until": null,
             "value": "2358.74",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2367,6 +2454,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2397,6 +2485,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2417,6 +2506,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -2445,6 +2535,7 @@
             "valid_until": "2024-01-01",
             "value": "2275.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2467,6 +2558,7 @@
             "valid_until": "2025-01-01",
             "value": "2444.87",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2489,6 +2581,7 @@
             "valid_until": null,
             "value": "2478.22",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2522,6 +2615,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2552,6 +2646,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2572,6 +2667,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -2600,6 +2696,7 @@
             "valid_until": "2024-01-01",
             "value": "2330.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2622,6 +2719,7 @@
             "valid_until": "2025-01-01",
             "value": "2502.30",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2644,6 +2742,7 @@
             "valid_until": null,
             "value": "2536.28",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "legno-industria-cnel-f051-pdf",
@@ -2677,6 +2776,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2707,6 +2807,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2737,6 +2838,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "legno-industria-cnel-f051-pdf",
@@ -2757,6 +2859,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "legno-industria-cnel-f051-pdf",
@@ -2968,7 +3071,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "8a074c524802eccac8f6126364dc6278d4cdafbbe34681915c4d1b8d228befa7",
+    "source_hash": "c6111cfe66f48aded31e865ba735583a88e81e0316f6023f040b2dfc5d1c4c23",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2994,6 +3097,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-arredamento-industria",
@@ -3029,6 +3133,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-arredamento-industria",
@@ -3064,6 +3169,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-arredamento-industria",
@@ -3099,6 +3205,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-legno-arredamento-industria",
@@ -3122,6 +3229,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-arredamento-industria",
@@ -3148,6 +3256,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-arredamento-industria",
@@ -3170,6 +3279,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-legno-arredamento-industria",

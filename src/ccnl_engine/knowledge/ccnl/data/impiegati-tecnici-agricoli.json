@@ -117,7 +117,12 @@
         {
           "valid_from": "2024-07-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -190,6 +195,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -220,6 +226,7 @@
             "valid_until": null,
             "value": "1217.23",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -242,6 +249,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -270,6 +278,7 @@
             "valid_until": null,
             "value": "1278.60",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -292,6 +301,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -320,6 +330,7 @@
             "valid_until": null,
             "value": "1335.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -342,6 +353,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -370,6 +382,7 @@
             "valid_until": null,
             "value": "1417.89",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -392,6 +405,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -420,6 +434,7 @@
             "valid_until": null,
             "value": "1541.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -442,6 +457,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -470,6 +486,7 @@
             "valid_until": null,
             "value": "1686.76",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -492,6 +509,7 @@
       "fixed_allowances": [],
       "category": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -520,6 +538,7 @@
             "valid_until": null,
             "value": "1788.38",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "impiegati-tecnici-agricoli",
@@ -553,6 +572,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "impiegati-tecnici-agricoli",
@@ -573,6 +593,7 @@
       ],
       "category": "quadro",
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "impiegati-tecnici-agricoli",
@@ -599,7 +620,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "a452770eb187a2194674e11ad99095cea449bdde2f8c80e45f76fbe980b41c0b",
+    "source_hash": "a5eeb85e95da61b2d8fc414852eff8654d6c4f0c01c3f3c919ee416252f2e19a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -625,6 +646,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -660,6 +682,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -695,6 +718,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -730,6 +754,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -753,6 +778,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -779,6 +805,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agricoltura-impiegati-2022",
@@ -801,6 +828,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-agricoltura-impiegati-2022",

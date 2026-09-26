@@ -87,7 +87,12 @@
         {
           "valid_from": "2024-08-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -187,6 +192,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -217,6 +223,7 @@
             "valid_until": "2025-01-01",
             "value": "1315.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -239,6 +246,7 @@
             "valid_until": "2025-08-01",
             "value": "1502.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -261,6 +269,7 @@
             "valid_until": "2026-08-01",
             "value": "1530.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -283,6 +292,7 @@
             "valid_until": null,
             "value": "1557.00",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -304,6 +314,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -332,6 +343,7 @@
             "valid_until": "2025-08-01",
             "value": "1705.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -354,6 +366,7 @@
             "valid_until": "2026-08-01",
             "value": "1751.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -376,6 +389,7 @@
             "valid_until": null,
             "value": "1796.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -397,6 +411,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -425,6 +440,7 @@
             "valid_until": "2025-08-01",
             "value": "1740.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -447,6 +463,7 @@
             "valid_until": "2026-08-01",
             "value": "1787.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -469,6 +486,7 @@
             "valid_until": null,
             "value": "1832.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -490,6 +508,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -518,6 +537,7 @@
             "valid_until": "2025-08-01",
             "value": "1795.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -540,6 +560,7 @@
             "valid_until": "2026-08-01",
             "value": "1843.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -562,6 +583,7 @@
             "valid_until": null,
             "value": "1891.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -583,6 +605,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -611,6 +634,7 @@
             "valid_until": "2025-08-01",
             "value": "1835.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -633,6 +657,7 @@
             "valid_until": "2026-08-01",
             "value": "1884.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -655,6 +680,7 @@
             "valid_until": null,
             "value": "1933.07",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -676,6 +702,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -704,6 +731,7 @@
             "valid_until": "2025-08-01",
             "value": "1879.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -726,6 +754,7 @@
             "valid_until": "2026-08-01",
             "value": "1930.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -748,6 +777,7 @@
             "valid_until": null,
             "value": "1980.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -769,6 +799,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -797,6 +828,7 @@
             "valid_until": "2025-08-01",
             "value": "1950.40",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -819,6 +851,7 @@
             "valid_until": "2026-08-01",
             "value": "2002.93",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -841,6 +874,7 @@
             "valid_until": null,
             "value": "2054.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -862,6 +896,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -890,6 +925,7 @@
             "valid_until": "2025-08-01",
             "value": "2053.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -912,6 +948,7 @@
             "valid_until": "2026-08-01",
             "value": "2109.29",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -934,6 +971,7 @@
             "valid_until": null,
             "value": "2163.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -955,6 +993,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -983,6 +1022,7 @@
             "valid_until": "2025-08-01",
             "value": "2234.50",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1005,6 +1045,7 @@
             "valid_until": "2026-08-01",
             "value": "2295.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1027,6 +1068,7 @@
             "valid_until": null,
             "value": "2355.70",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1048,6 +1090,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1076,6 +1119,7 @@
             "valid_until": "2025-08-01",
             "value": "2384.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1098,6 +1142,7 @@
             "valid_until": "2026-08-01",
             "value": "2447.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1120,6 +1165,7 @@
             "valid_until": null,
             "value": "2509.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1141,6 +1187,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturieri-industria-e-minimi-retributivi",
@@ -1246,7 +1293,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "724f7adad930e3c2d6276949077f4796f00d31aa13d490b85caa7506e89980ed",
+    "source_hash": "822d9ac6b6c73e5cc171fda45e5394bd8338ff18408fefafc7bdf7dd4488cba1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1272,6 +1319,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "calzaturiero-assocalzaturifici",
@@ -1307,6 +1355,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "calzaturiero-assocalzaturifici",
@@ -1342,6 +1391,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "calzaturiero-assocalzaturifici",
@@ -1365,6 +1415,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturiero-assocalzaturifici",
@@ -1391,6 +1442,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturiero-assocalzaturifici",
@@ -1413,6 +1465,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "calzaturiero-assocalzaturifici",

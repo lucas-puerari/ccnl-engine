@@ -93,7 +93,12 @@
         {
           "valid_from": "2025-06-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -184,6 +189,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -214,6 +220,7 @@
             "valid_until": "2026-06-01",
             "value": "1754.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -236,6 +243,7 @@
             "valid_until": "2027-06-01",
             "value": "1789.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -258,6 +266,7 @@
             "valid_until": "2028-06-01",
             "value": "1824.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -280,6 +289,7 @@
             "valid_until": null,
             "value": "1861.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -301,6 +311,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -329,6 +340,7 @@
             "valid_until": "2026-06-01",
             "value": "1945.13",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -351,6 +363,7 @@
             "valid_until": "2027-06-01",
             "value": "1984.03",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -373,6 +386,7 @@
             "valid_until": "2028-06-01",
             "value": "2023.71",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -395,6 +409,7 @@
             "valid_until": null,
             "value": "2064.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -416,6 +431,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -444,6 +460,7 @@
             "valid_until": "2026-06-01",
             "value": "1987.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -466,6 +483,7 @@
             "valid_until": "2027-06-01",
             "value": "2026.88",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -488,6 +506,7 @@
             "valid_until": "2028-06-01",
             "value": "2067.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -510,6 +529,7 @@
             "valid_until": null,
             "value": "2108.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -531,6 +551,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -559,6 +580,7 @@
             "valid_until": "2026-06-01",
             "value": "2029.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -581,6 +603,7 @@
             "valid_until": "2027-06-01",
             "value": "2069.75",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -603,6 +626,7 @@
             "valid_until": "2028-06-01",
             "value": "2111.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -625,6 +649,7 @@
             "valid_until": null,
             "value": "2153.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -646,6 +671,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -674,6 +700,7 @@
             "valid_until": "2026-06-01",
             "value": "2173.17",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -696,6 +723,7 @@
             "valid_until": "2027-06-01",
             "value": "2216.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -718,6 +746,7 @@
             "valid_until": "2028-06-01",
             "value": "2260.96",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -740,6 +769,7 @@
             "valid_until": null,
             "value": "2306.18",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -761,6 +791,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -789,6 +820,7 @@
             "valid_until": "2026-06-01",
             "value": "2329.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -811,6 +843,7 @@
             "valid_until": "2027-06-01",
             "value": "2375.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -833,6 +866,7 @@
             "valid_until": "2028-06-01",
             "value": "2423.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -855,6 +889,7 @@
             "valid_until": null,
             "value": "2471.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -876,6 +911,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -904,6 +940,7 @@
             "valid_until": "2026-06-01",
             "value": "2498.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -926,6 +963,7 @@
             "valid_until": "2027-06-01",
             "value": "2548.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -948,6 +986,7 @@
             "valid_until": "2028-06-01",
             "value": "2599.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -970,6 +1009,7 @@
             "valid_until": null,
             "value": "2651.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -991,6 +1031,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -1019,6 +1060,7 @@
             "valid_until": "2026-06-01",
             "value": "2717.15",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1041,6 +1083,7 @@
             "valid_until": "2027-06-01",
             "value": "2771.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1063,6 +1106,7 @@
             "valid_until": "2028-06-01",
             "value": "2826.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1085,6 +1129,7 @@
             "valid_until": null,
             "value": "2883.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1118,6 +1163,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "metalmeccanica-cooperative",
@@ -1137,6 +1183,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -1165,6 +1212,7 @@
             "valid_until": "2026-06-01",
             "value": "2994.63",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1187,6 +1235,7 @@
             "valid_until": "2027-06-01",
             "value": "3054.52",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1209,6 +1258,7 @@
             "valid_until": "2028-06-01",
             "value": "3115.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1231,6 +1281,7 @@
             "valid_until": null,
             "value": "3177.92",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "metalmeccanica-cooperative",
@@ -1264,6 +1315,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "metalmeccanica-cooperative",
@@ -1283,6 +1335,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "metalmeccanica-cooperative",
@@ -1345,7 +1398,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "add3caf468fd7601e1e81bec18e9d544aeb6e5c5054115a4604a34419ad5df82",
+    "source_hash": "b1d115f63cd51201b373004be3f821d446046bb331ccb0e0b709f55cca19d780",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1371,6 +1424,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1406,6 +1460,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1441,6 +1496,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1476,6 +1532,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1499,6 +1556,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1525,6 +1583,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanica-cooperative-2024",
@@ -1547,6 +1606,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-metalmeccanica-cooperative-2024",

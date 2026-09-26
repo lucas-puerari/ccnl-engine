@@ -116,7 +116,12 @@
         {
           "valid_from": "2026-05-01",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -216,6 +221,7 @@
         }
       },
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -298,6 +304,7 @@
             "valid_until": "2026-12-01",
             "value": "1563.45",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -320,6 +327,7 @@
             "valid_until": null,
             "value": "1579.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -341,6 +349,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -369,6 +378,7 @@
             "valid_until": "2026-12-01",
             "value": "1768.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -391,6 +401,7 @@
             "valid_until": null,
             "value": "1786.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -424,6 +435,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -443,6 +455,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -471,6 +484,7 @@
             "valid_until": "2026-12-01",
             "value": "1862.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -493,6 +507,7 @@
             "valid_until": null,
             "value": "1882.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -526,6 +541,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -545,6 +561,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -573,6 +590,7 @@
             "valid_until": "2026-12-01",
             "value": "1897.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -595,6 +613,7 @@
             "valid_until": null,
             "value": "1917.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -628,6 +647,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -647,6 +667,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -675,6 +696,7 @@
             "valid_until": "2026-12-01",
             "value": "1991.35",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -697,6 +719,7 @@
             "valid_until": null,
             "value": "2012.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -730,6 +753,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -749,6 +773,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -777,6 +802,7 @@
             "valid_until": "2026-12-01",
             "value": "2177.06",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -799,6 +825,7 @@
             "valid_until": null,
             "value": "2202.14",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -832,6 +859,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -851,6 +879,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -879,6 +908,7 @@
             "valid_until": "2026-12-01",
             "value": "2250.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -901,6 +931,7 @@
             "valid_until": null,
             "value": "2275.64",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -934,6 +965,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -953,6 +985,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -981,6 +1014,7 @@
             "valid_until": "2026-12-01",
             "value": "2535.98",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1003,6 +1037,7 @@
             "valid_until": null,
             "value": "2566.77",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1036,6 +1071,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -1055,6 +1091,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -1083,6 +1120,7 @@
             "valid_until": "2026-12-01",
             "value": "2975.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1105,6 +1143,7 @@
             "valid_until": null,
             "value": "3015.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1138,6 +1177,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -1157,6 +1197,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -1186,6 +1227,7 @@
             "valid_until": "2026-12-01",
             "value": "2975.91",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1208,6 +1250,7 @@
             "valid_until": null,
             "value": "3015.43",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "lavanderie-industriali-assosistema",
@@ -1241,6 +1284,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -1271,6 +1315,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "lavanderie-industriali-assosistema",
@@ -1290,6 +1335,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "lavanderie-industriali-assosistema",
@@ -1315,7 +1361,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "8c706b03d865e0a739b1969fdae9581846044125184e21365f5046d46033a2e8",
+    "source_hash": "d552efa110de810becd33f7e2e046b791fcbaeff22072b05883e146a1b4ce5eb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1341,6 +1387,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1376,6 +1423,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1411,6 +1459,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1446,6 +1495,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1469,6 +1519,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1495,6 +1546,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavanderie-industria-assosistema",
@@ -1517,6 +1569,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-lavanderie-industria-assosistema",

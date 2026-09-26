@@ -61,7 +61,12 @@
         {
           "valid_from": "2022-05-09",
           "valid_until": null,
-          "value": "13"
+          "value": "13",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -70,6 +75,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -101,6 +107,7 @@
             "valid_until": "2024-01-01",
             "value": "1532.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -123,6 +130,7 @@
             "valid_until": "2025-01-01",
             "value": "1653.97",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -145,6 +153,7 @@
             "valid_until": "2026-01-01",
             "value": "1698.67",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -167,6 +176,7 @@
             "valid_until": "2027-01-01",
             "value": "1743.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -189,6 +199,7 @@
             "valid_until": null,
             "value": "1780.57",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -210,6 +221,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -239,6 +251,7 @@
             "valid_until": "2024-01-01",
             "value": "1612.66",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -261,6 +274,7 @@
             "valid_until": "2025-01-01",
             "value": "1740.36",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -283,6 +297,7 @@
             "valid_until": "2026-01-01",
             "value": "1787.46",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -305,6 +320,7 @@
             "valid_until": "2027-01-01",
             "value": "1834.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -327,6 +343,7 @@
             "valid_until": null,
             "value": "1873.56",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -348,6 +365,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -377,6 +395,7 @@
             "valid_until": "2024-01-01",
             "value": "1958.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -399,6 +418,7 @@
             "valid_until": "2025-01-01",
             "value": "2113.59",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -421,6 +441,7 @@
             "valid_until": "2026-01-01",
             "value": "2170.79",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -443,6 +464,7 @@
             "valid_until": "2027-01-01",
             "value": "2227.99",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -465,6 +487,7 @@
             "valid_until": null,
             "value": "2275.39",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -486,6 +509,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -515,6 +539,7 @@
             "valid_until": "2024-01-01",
             "value": "2692.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -537,6 +562,7 @@
             "valid_until": "2025-01-01",
             "value": "2886.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -559,6 +585,7 @@
             "valid_until": "2026-01-01",
             "value": "2964.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -581,6 +608,7 @@
             "valid_until": "2027-01-01",
             "value": "3042.41",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -603,6 +631,7 @@
             "valid_until": null,
             "value": "3107.21",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-l-c-fc-2025-2027-cisl",
@@ -624,6 +653,7 @@
       },
       "fixed_allowances": [],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-l-c-fc-2022-2024-pdf",
@@ -693,7 +723,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "bf61e29ebe0bc52d693b7dec0a26e03678c2408790b1b0730a1a833aa8e19269",
+    "source_hash": "1ba4f706fd01465633d3207383ddd47b2eb7efb24c62e67f1326ae7d7e027c97",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -719,6 +749,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -754,6 +785,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -789,6 +821,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -824,6 +857,7 @@
             "night_holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -847,6 +881,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -873,6 +908,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",
@@ -895,6 +931,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 270,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-funzioni-centrali-2022-2024",

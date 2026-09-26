@@ -119,7 +119,12 @@
         {
           "valid_from": "2025-07-01",
           "valid_until": null,
-          "value": "14"
+          "value": "14",
+          "provenance": {
+            "status": "assumed",
+            "location": null,
+            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
         }
       ]
     },
@@ -128,6 +133,7 @@
       "maximum_count": 0,
       "amount_by_level": {},
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -231,6 +237,7 @@
             "valid_until": "2025-12-01",
             "value": "1942.80",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -253,6 +260,7 @@
             "valid_until": "2026-01-01",
             "value": "1965.69",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -275,6 +283,7 @@
             "valid_until": "2026-07-01",
             "value": "1980.95",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -297,6 +306,7 @@
             "valid_until": "2027-07-01",
             "value": "2022.90",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -319,6 +329,7 @@
             "valid_until": null,
             "value": "2072.49",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -358,6 +369,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -377,6 +389,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -405,6 +418,7 @@
             "valid_until": "2025-12-01",
             "value": "2233.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -427,6 +441,7 @@
             "valid_until": "2026-01-01",
             "value": "2259.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -449,6 +464,7 @@
             "valid_until": "2026-07-01",
             "value": "2277.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -471,6 +487,7 @@
             "valid_until": "2027-07-01",
             "value": "2325.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -493,6 +510,7 @@
             "valid_until": null,
             "value": "2382.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -532,6 +550,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -551,6 +570,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -579,6 +599,7 @@
             "valid_until": "2025-12-01",
             "value": "2233.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -601,6 +622,7 @@
             "valid_until": "2026-01-01",
             "value": "2259.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -623,6 +645,7 @@
             "valid_until": "2026-07-01",
             "value": "2277.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -645,6 +668,7 @@
             "valid_until": "2027-07-01",
             "value": "2325.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -667,6 +691,7 @@
             "valid_until": null,
             "value": "2382.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -706,6 +731,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -737,6 +763,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -756,6 +783,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -784,6 +812,7 @@
             "valid_until": "2025-12-01",
             "value": "2233.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -806,6 +835,7 @@
             "valid_until": "2026-01-01",
             "value": "2259.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -828,6 +858,7 @@
             "valid_until": "2026-07-01",
             "value": "2277.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -850,6 +881,7 @@
             "valid_until": "2027-07-01",
             "value": "2325.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -872,6 +904,7 @@
             "valid_until": null,
             "value": "2382.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -911,6 +944,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -942,6 +976,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -961,6 +996,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -989,6 +1025,7 @@
             "valid_until": "2025-12-01",
             "value": "2233.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1011,6 +1048,7 @@
             "valid_until": "2026-01-01",
             "value": "2259.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1033,6 +1071,7 @@
             "valid_until": "2026-07-01",
             "value": "2277.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1055,6 +1094,7 @@
             "valid_until": "2027-07-01",
             "value": "2325.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1077,6 +1117,7 @@
             "valid_until": null,
             "value": "2382.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1116,6 +1157,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1147,6 +1189,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1166,6 +1209,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -1194,6 +1238,7 @@
             "valid_until": "2025-12-01",
             "value": "2233.24",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1216,6 +1261,7 @@
             "valid_until": "2026-01-01",
             "value": "2259.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1238,6 +1284,7 @@
             "valid_until": "2026-07-01",
             "value": "2277.08",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1260,6 +1307,7 @@
             "valid_until": "2027-07-01",
             "value": "2325.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1282,6 +1330,7 @@
             "valid_until": null,
             "value": "2382.32",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1321,6 +1370,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1352,6 +1402,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1371,6 +1422,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -1399,6 +1451,7 @@
             "valid_until": "2025-12-01",
             "value": "2546.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1421,6 +1474,7 @@
             "valid_until": "2026-01-01",
             "value": "2576.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1443,6 +1497,7 @@
             "valid_until": "2026-07-01",
             "value": "2596.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1465,6 +1520,7 @@
             "valid_until": "2027-07-01",
             "value": "2651.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1487,6 +1543,7 @@
             "valid_until": null,
             "value": "2716.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1526,6 +1583,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1557,6 +1615,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1576,6 +1635,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -1604,6 +1664,7 @@
             "valid_until": "2025-12-01",
             "value": "2546.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1626,6 +1687,7 @@
             "valid_until": "2026-01-01",
             "value": "2576.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1648,6 +1710,7 @@
             "valid_until": "2026-07-01",
             "value": "2596.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1670,6 +1733,7 @@
             "valid_until": "2027-07-01",
             "value": "2651.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1692,6 +1756,7 @@
             "valid_until": null,
             "value": "2716.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1731,6 +1796,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1762,6 +1828,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1781,6 +1848,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -1809,6 +1877,7 @@
             "valid_until": "2025-12-01",
             "value": "2546.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1831,6 +1900,7 @@
             "valid_until": "2026-01-01",
             "value": "2576.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1853,6 +1923,7 @@
             "valid_until": "2026-07-01",
             "value": "2596.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1875,6 +1946,7 @@
             "valid_until": "2027-07-01",
             "value": "2651.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1897,6 +1969,7 @@
             "valid_until": null,
             "value": "2716.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -1936,6 +2009,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1967,6 +2041,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -1986,6 +2061,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -2014,6 +2090,7 @@
             "valid_until": "2025-12-01",
             "value": "2546.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2036,6 +2113,7 @@
             "valid_until": "2026-01-01",
             "value": "2576.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2058,6 +2136,7 @@
             "valid_until": "2026-07-01",
             "value": "2596.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2080,6 +2159,7 @@
             "valid_until": "2027-07-01",
             "value": "2651.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2102,6 +2182,7 @@
             "valid_until": null,
             "value": "2716.61",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2141,6 +2222,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2172,6 +2254,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2191,6 +2274,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -2219,6 +2303,7 @@
             "valid_until": "2025-12-01",
             "value": "2881.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2241,6 +2326,7 @@
             "valid_until": "2026-01-01",
             "value": "2915.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2263,6 +2349,7 @@
             "valid_until": "2026-07-01",
             "value": "2938.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2285,6 +2372,7 @@
             "valid_until": "2027-07-01",
             "value": "3000.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2307,6 +2395,7 @@
             "valid_until": null,
             "value": "3074.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2346,6 +2435,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2377,6 +2467,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2396,6 +2487,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -2424,6 +2516,7 @@
             "valid_until": "2025-12-01",
             "value": "2881.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2446,6 +2539,7 @@
             "valid_until": "2026-01-01",
             "value": "2915.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2468,6 +2562,7 @@
             "valid_until": "2026-07-01",
             "value": "2938.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2490,6 +2585,7 @@
             "valid_until": "2027-07-01",
             "value": "3000.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2512,6 +2608,7 @@
             "valid_until": null,
             "value": "3074.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2551,6 +2648,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2582,6 +2680,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2601,6 +2700,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -2629,6 +2729,7 @@
             "valid_until": "2025-12-01",
             "value": "2881.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2651,6 +2752,7 @@
             "valid_until": "2026-01-01",
             "value": "2915.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2673,6 +2775,7 @@
             "valid_until": "2026-07-01",
             "value": "2938.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2695,6 +2798,7 @@
             "valid_until": "2027-07-01",
             "value": "3000.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2717,6 +2821,7 @@
             "valid_until": null,
             "value": "3074.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2756,6 +2861,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2787,6 +2893,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2806,6 +2913,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -2834,6 +2942,7 @@
             "valid_until": "2025-12-01",
             "value": "2881.73",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2856,6 +2965,7 @@
             "valid_until": "2026-01-01",
             "value": "2915.68",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2878,6 +2988,7 @@
             "valid_until": "2026-07-01",
             "value": "2938.31",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2900,6 +3011,7 @@
             "valid_until": "2027-07-01",
             "value": "3000.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2922,6 +3034,7 @@
             "valid_until": null,
             "value": "3074.11",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -2961,6 +3074,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -2992,6 +3106,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3011,6 +3126,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -3039,6 +3155,7 @@
             "valid_until": "2025-12-01",
             "value": "3182.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3061,6 +3178,7 @@
             "valid_until": "2026-01-01",
             "value": "3219.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3083,6 +3201,7 @@
             "valid_until": "2026-07-01",
             "value": "3244.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3105,6 +3224,7 @@
             "valid_until": "2027-07-01",
             "value": "3313.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3127,6 +3247,7 @@
             "valid_until": null,
             "value": "3394.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3166,6 +3287,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3197,6 +3319,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3216,6 +3339,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -3244,6 +3368,7 @@
             "valid_until": "2025-12-01",
             "value": "3182.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3266,6 +3391,7 @@
             "valid_until": "2026-01-01",
             "value": "3219.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3288,6 +3414,7 @@
             "valid_until": "2026-07-01",
             "value": "3244.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3310,6 +3437,7 @@
             "valid_until": "2027-07-01",
             "value": "3313.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3332,6 +3460,7 @@
             "valid_until": null,
             "value": "3394.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3371,6 +3500,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3402,6 +3532,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3421,6 +3552,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -3449,6 +3581,7 @@
             "valid_until": "2025-12-01",
             "value": "3182.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3471,6 +3604,7 @@
             "valid_until": "2026-01-01",
             "value": "3219.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3493,6 +3627,7 @@
             "valid_until": "2026-07-01",
             "value": "3244.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3515,6 +3650,7 @@
             "valid_until": "2027-07-01",
             "value": "3313.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3537,6 +3673,7 @@
             "valid_until": null,
             "value": "3394.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3576,6 +3713,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3607,6 +3745,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3626,6 +3765,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -3654,6 +3794,7 @@
             "valid_until": "2025-12-01",
             "value": "3182.05",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3676,6 +3817,7 @@
             "valid_until": "2026-01-01",
             "value": "3219.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3698,6 +3840,7 @@
             "valid_until": "2026-07-01",
             "value": "3244.53",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3720,6 +3863,7 @@
             "valid_until": "2027-07-01",
             "value": "3313.25",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3742,6 +3886,7 @@
             "valid_until": null,
             "value": "3394.47",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3781,6 +3926,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3812,6 +3958,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -3831,6 +3978,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -3860,6 +4008,7 @@
             "valid_until": "2025-12-01",
             "value": "3513.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3882,6 +4031,7 @@
             "valid_until": "2026-01-01",
             "value": "3554.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3904,6 +4054,7 @@
             "valid_until": "2026-07-01",
             "value": "3582.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3926,6 +4077,7 @@
             "valid_until": "2027-07-01",
             "value": "3658.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3948,6 +4100,7 @@
             "valid_until": null,
             "value": "3748.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -3987,6 +4140,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4023,6 +4177,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4053,6 +4208,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4072,6 +4228,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -4101,6 +4258,7 @@
             "valid_until": "2025-12-01",
             "value": "3513.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4123,6 +4281,7 @@
             "valid_until": "2026-01-01",
             "value": "3554.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4145,6 +4304,7 @@
             "valid_until": "2026-07-01",
             "value": "3582.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4167,6 +4327,7 @@
             "valid_until": "2027-07-01",
             "value": "3658.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4189,6 +4350,7 @@
             "valid_until": null,
             "value": "3748.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4228,6 +4390,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4264,6 +4427,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4294,6 +4458,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4313,6 +4478,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -4342,6 +4508,7 @@
             "valid_until": "2025-12-01",
             "value": "3513.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4364,6 +4531,7 @@
             "valid_until": "2026-01-01",
             "value": "3554.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4386,6 +4554,7 @@
             "valid_until": "2026-07-01",
             "value": "3582.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4408,6 +4577,7 @@
             "valid_until": "2027-07-01",
             "value": "3658.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4430,6 +4600,7 @@
             "valid_until": null,
             "value": "3748.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4469,6 +4640,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4505,6 +4677,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4535,6 +4708,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4554,6 +4728,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -4583,6 +4758,7 @@
             "valid_until": "2025-12-01",
             "value": "3513.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4605,6 +4781,7 @@
             "valid_until": "2026-01-01",
             "value": "3554.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4627,6 +4804,7 @@
             "valid_until": "2026-07-01",
             "value": "3582.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4649,6 +4827,7 @@
             "valid_until": "2027-07-01",
             "value": "3658.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4671,6 +4850,7 @@
             "valid_until": null,
             "value": "3748.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4710,6 +4890,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4746,6 +4927,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4776,6 +4958,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4795,6 +4978,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -4824,6 +5008,7 @@
             "valid_until": "2025-12-01",
             "value": "3513.55",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4846,6 +5031,7 @@
             "valid_until": "2026-01-01",
             "value": "3554.94",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4868,6 +5054,7 @@
             "valid_until": "2026-07-01",
             "value": "3582.54",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4890,6 +5077,7 @@
             "valid_until": "2027-07-01",
             "value": "3658.42",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4912,6 +5100,7 @@
             "valid_until": null,
             "value": "3748.10",
             "provenance": {
+              "status": "derived",
               "location": {
                 "source_document": {
                   "document_id": "energia-petrolio-confindustria",
@@ -4951,6 +5140,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -4987,6 +5177,7 @@
           },
           "apprenticeship_pct_relevant": false,
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -5017,6 +5208,7 @@
             ]
           },
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "energia-petrolio-confindustria",
@@ -5036,6 +5228,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "energia-petrolio-confindustria",
@@ -5061,7 +5254,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "123c7cd8e4bc36083f8be7bfab8a34d418dc511cc945273fb1c0a3d60a93fceb",
+    "source_hash": "60869ec7e65a9140cb0fd6fe5a87d6d38bd7574ac49edd66d66c7123fd3282f7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5087,6 +5280,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-energia-petrolio",
@@ -5122,6 +5316,7 @@
             "weekday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-energia-petrolio",
@@ -5158,6 +5353,7 @@
             "night"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-energia-petrolio",
@@ -5193,6 +5389,7 @@
             "holiday"
           ],
           "provenance": {
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-energia-petrolio",
@@ -5216,6 +5413,7 @@
       "daily_divisor_method": "by_26",
       "daily_hours": null,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-energia-petrolio",
@@ -5246,6 +5444,7 @@
         }
       ],
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-energia-petrolio",
@@ -5268,6 +5467,7 @@
       "full_pay_integration_rate": "1",
       "max_duration_days": 180,
       "provenance": {
+        "status": "derived",
         "location": {
           "source_document": {
             "document_id": "ccnl-energia-petrolio",
