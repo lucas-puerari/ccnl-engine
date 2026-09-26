@@ -32,7 +32,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
     from datetime import date

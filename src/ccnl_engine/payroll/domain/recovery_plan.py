@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 
 _ZERO = Decimal(0)
 

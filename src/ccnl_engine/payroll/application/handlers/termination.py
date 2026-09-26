@@ -16,7 +16,7 @@ from ccnl_engine.payroll.domain.pay_items import (
     EmployerContributionItem,
     TfrSettlementItem,
 )
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 
 
 def _handle_bilateral_fund(

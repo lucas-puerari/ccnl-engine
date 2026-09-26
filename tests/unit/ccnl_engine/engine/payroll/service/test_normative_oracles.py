@@ -31,6 +31,7 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.family_deductions import (
     _children_deduction,
     _spouse_deduction,
@@ -45,7 +46,6 @@ from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
 )
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.tax.domain.credit_rules import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,

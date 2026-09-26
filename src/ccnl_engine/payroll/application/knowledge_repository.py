@@ -17,7 +17,7 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
     """Read-only access to the versioned payroll rule bundle.
 
     The engine depends on this interface, not on any concrete loader.
-    :class:`~ccnl_engine.knowledge.service.bundled_knowledge_repository\
+    :class:`~ccnl_engine.payroll.service.bundled_knowledge_repository\
 .BundledKnowledgeRepository` is the production implementation that reads
     from the package-bundled JSON files.
     """

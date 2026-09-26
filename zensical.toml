@@ -22,6 +22,7 @@ nav = [
     { "Fiscal"            = "engine/fiscal.md" },
     { "Substitute-tax regimes" = "engine/substitute-tax-regimes.md" },
     { "Domestic work"     = "engine/domestic-work.md" },
+    { "Architecture rules" = "engine/architecture.md" },
   ]},
   { "Trust" = [
     { "Overview"          = "trust/index.md" },

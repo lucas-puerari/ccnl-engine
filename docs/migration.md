@@ -1,5 +1,15 @@
 # Migration guide
 
+## Rounding and bundled repository moved to their layers
+
+Two internal modules moved so that the layers import in one direction only.
+Names exported from `ccnl_engine` and amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `ccnl_engine.payroll.service.rounding` | `ccnl_engine.payroll.domain.rounding` |
+| `ccnl_engine.knowledge.service.bundled_knowledge_repository` | `ccnl_engine.payroll.service.bundled_knowledge_repository` |
+
 ## Engine package flattened into capabilities
 
 The `ccnl_engine.engine` wrapper is removed. Its subpackages are now

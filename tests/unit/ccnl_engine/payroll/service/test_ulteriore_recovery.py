@@ -27,8 +27,8 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.period import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import UlterioreDetrazioneAccount
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef

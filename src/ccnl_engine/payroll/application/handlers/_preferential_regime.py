@@ -13,11 +13,11 @@ from ccnl_engine.payroll.domain.events import (
     ShiftWorkEvent,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.regime_eligibility import (
     RegimeFacts,
     assess_regime,
 )
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.handlers._context import _EventHandlerCtx

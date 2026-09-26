@@ -12,7 +12,7 @@ from ccnl_engine.payroll.application.handlers._context import (
 from ccnl_engine.payroll.domain.events import ArrearsEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import ContractRenewalArrears
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 
 
 def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:

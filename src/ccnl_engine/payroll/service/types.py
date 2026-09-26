@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING, Protocol
 
-from ccnl_engine.payroll.service.rounding import money
+from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.compensation import Allowance

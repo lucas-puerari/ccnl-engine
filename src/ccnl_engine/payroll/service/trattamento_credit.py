@@ -16,11 +16,11 @@ from ccnl_engine.payroll.domain.obligations import (
     TRATTAMENTO_RECOVERY,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service import irpef_credits
 from ccnl_engine.payroll.service.credit_decisions import credit_decision
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision

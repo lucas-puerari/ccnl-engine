@@ -38,8 +38,8 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
 )
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service import irpef as _irpef
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity

@@ -25,8 +25,8 @@ from ccnl_engine.payroll.domain.calendar import ExtraMonthKind, ExtraMonthSchedu
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import ExtraMonthEarning, PayItem
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from collections.abc import Iterable

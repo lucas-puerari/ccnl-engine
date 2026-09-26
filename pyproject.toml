@@ -211,7 +211,7 @@ source_paths = [
     "src/ccnl_engine/payroll/service/contributions.py",
     "src/ccnl_engine/payroll/service/irpef.py",
     "src/ccnl_engine/payroll/domain/ledger.py",
-    "src/ccnl_engine/payroll/service/rounding.py",
+    "src/ccnl_engine/payroll/domain/rounding.py",
 ]
 # Exclude docs tests that load scripts at their original filesystem path.
 # Limit collection to payroll unit tests; copy full src so imports resolve.

@@ -10,11 +10,11 @@ from ccnl_engine.payroll.domain.employment import (
     FixedTerm,
     Permanent,
 )
+from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.contributions import (
     resolve_contributions,
 )
-from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.tax.domain.ruleset import YearRules
 from tests.helpers import make_domestic_year_rules, make_year_rules
 
