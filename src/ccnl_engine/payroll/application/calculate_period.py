@@ -26,7 +26,6 @@ from ccnl_engine.payroll.application._capability_traces import (
     traces_to_observed as _traces_to_observed,
 )
 from ccnl_engine.payroll.application._period_amounts import (
-    _as_of,
     _compute_amounts,
     _domestic_hourly_rate,
     _resolve_chain,
@@ -45,7 +44,10 @@ from ccnl_engine.payroll.application.post_ledger import (
 from ccnl_engine.payroll.application.reconcile import reconcile as _reconcile
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
-from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
+from ccnl_engine.payroll.domain.employment_context import (
+    EffectiveDateContext,
+    TemporalContext,
+)
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     CompetencePeriod,
@@ -73,7 +75,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _resolve_run_id(request: PeriodCalculationRequest, period_year: int) -> str:
+def _resolve_run_id(request: PeriodCalculationRequest, tctx: TemporalContext) -> str:
     """Return the run identifier and raise if the run was already processed.
 
     Returns:
@@ -85,7 +87,7 @@ def _resolve_run_id(request: PeriodCalculationRequest, period_year: int) -> str:
     run_id = (
         request.run.run_id
         if request.run is not None
-        else f"{period_year}_{request.period_id.month:02d}"
+        else f"{tctx.fiscal_year}_{request.period_id.month:02d}"
     )
     if run_id in request.opening_state.closed_run_ids:
         msg = f"Run '{run_id}' was already processed in this payroll year"
@@ -130,27 +132,30 @@ def calculate_period(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     effective_resolver = _effective_resolver(resolver)
     ccnl = effective_repo.load_ccnl(request.ccnl_slug)
-    as_of = _as_of(request.period_id)
-    level = ccnl.level_by_code(request.level_code)
-    date_ctx = EffectiveDateContext.from_period(
+    tctx = TemporalContext.from_period(
         request.period_id.year, request.period_id.month, request.payment_date
     )
-    period_year = request.period_id.year
-    year_rules = effective_repo.load_year_rules(
-        period_year, ccnl.meta.tax_sector, request.num_employees
+    level = ccnl.level_by_code(request.level_code)
+    date_ctx = EffectiveDateContext.from_period(
+        tctx.fiscal_year, request.period_id.month, tctx.payment
     )
-    catalog = effective_repo.load_capability_catalog(period_year)
+    year_rules = effective_repo.load_year_rules(
+        tctx.fiscal_year, ccnl.meta.tax_sector, request.num_employees
+    )
+    catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
     traces = _build_traces(request)
     capability_gaps = catalog.gaps(
-        _traces_to_observed(traces), detect_absent=True, year=period_year
+        _traces_to_observed(traces), detect_absent=True, year=tctx.fiscal_year
     )
-    capability_report = CapabilityReport(catalog_year=period_year, gaps=capability_gaps)
-    additional_months = int(ccnl.parameters.additional_months.value_at(as_of))
+    capability_report = CapabilityReport(
+        catalog_year=tctx.fiscal_year, gaps=capability_gaps
+    )
+    additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
     chain = _resolve_chain(
         ccnl,
         level,
         request.contract_type,
-        as_of,
+        tctx.competence,
         seniority_months=request.seniority_months,
         roles=request.roles,
         worker_category=None,
@@ -158,7 +163,7 @@ def calculate_period(
         full_time_weekly_hours=request.full_time_weekly_hours,
     )
     run_kind = request.run.run_kind if request.run is not None else "regular"
-    run_id = _resolve_run_id(request, period_year)
+    run_id = _resolve_run_id(request, tctx)
     chain = _apply_extra_month_policy(
         chain,
         run_kind,
@@ -168,7 +173,7 @@ def calculate_period(
     )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
-    var_pay_rules = load_variable_pay_rules(period_year)
+    var_pay_rules = load_variable_pay_rules(tctx.fiscal_year)
     fringe_threshold = (
         var_pay_rules.fringe_benefit.threshold_with_children
         if request.has_dependent_children
@@ -180,18 +185,18 @@ def calculate_period(
         ContributionCeilingStatus.OPTED_IN,
     }
     policy_context = PolicyContext(
-        year=period_year,
-        as_of=as_of,
+        year=tctx.fiscal_year,
+        as_of=tctx.competence,
         ccnl_slug=request.ccnl_slug,
         sector=ccnl.meta.tax_sector,
         gross_ytd=request.opening_state.earnings.gross,
         num_employees=request.num_employees,
     )
-    cp = CompetencePeriod(year=request.period_id.year, month=request.period_id.month)
+    cp = CompetencePeriod(year=tctx.fiscal_year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(
         request.events,
         cp,
-        request.payment_date,
+        tctx.payment,
         run_id,
         date_ctx,
         effective_resolver,
@@ -207,14 +212,16 @@ def calculate_period(
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
     surtax_rules = (
-        effective_repo.load_surtax_rules(period_year) if needs_surtax else None
+        effective_repo.load_surtax_rules(tctx.fiscal_year) if needs_surtax else None
     )
     fam_ded_rules = (
-        load_family_deduction_rules(period_year)
+        load_family_deduction_rules(tctx.fiscal_year)
         if request.family_composition is not None
         else None
     )
-    domestic_hr = _domestic_hourly_rate(ccnl, year_rules, monthly_gross, as_of)
+    domestic_hr = _domestic_hourly_rate(
+        ccnl, year_rules, monthly_gross, tctx.competence
+    )
     computed = _compute_amounts(
         monthly_gross,
         event_totals.inps_base,
@@ -320,7 +327,7 @@ def calculate_period(
     tax_delta = 0 if run_kind == "adjustment" else 1
     op = request.opening_state
     closing = PeriodState(
-        tax_year=period_year,
+        tax_year=tctx.fiscal_year,
         regular_periods_closed=op.regular_periods_closed + regular_delta,
         tax_withholding_periods_closed=(op.tax_withholding_periods_closed + tax_delta),
         closed_run_ids=op.closed_run_ids | {run_id},
