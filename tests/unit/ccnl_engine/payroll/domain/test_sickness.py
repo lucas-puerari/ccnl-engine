@@ -126,6 +126,10 @@ class TestSicknessCaseValidation:
         with pytest.raises(OutOfScopeError):
             _case(cumulative_sick_days_ytd=1)
 
+
+class TestSicknessCaseBoundaries:
+    """SicknessCase accepts values on the edge of each constraint."""
+
     def test_boundary_inps_rate_zero_accepted(self) -> None:
         """inps_daily_rate = 0 is accepted."""
         sc = _case(inps_daily_rate=_ZERO)

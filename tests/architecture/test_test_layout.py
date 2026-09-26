@@ -9,8 +9,9 @@
 - acceptance tests live in ``public_api`` or ``legal_scenarios`` and import
   ``ccnl_engine`` only through its root, the public API;
 - ``fixtures`` holds data and helpers, never tests;
-- at most five directories under ``tests`` before a file, ``fixtures`` aside;
-- no test file exceeds the line limit without an explicit exception.
+- at most five directories under ``tests`` before a file, ``fixtures`` aside.
+
+The test file line limit belongs to ``scripts/ci/check_structure.py``.
 """
 
 from __future__ import annotations
@@ -41,10 +42,6 @@ _CATEGORY_ROOTS: dict[str, frozenset[str]] = {
     "integration": frozenset(_MIRROR_ROOTS),
 }
 _MAX_DEPTH = 5
-
-_TEST_LINE_LIMIT = 1000
-#: Files allowed above the limit, with their own ceiling; empty by design.
-_ALLOWED_LARGE_TESTS: dict[str, int] = {}
 
 
 def _skipped(part: str) -> bool:
@@ -248,29 +245,6 @@ def test_test_depth_within_limit() -> None:
 def test_unit_and_integration_mirror_sources() -> None:
     """Each unit and integration test mirrors an existing source module."""
     assert mirror_violations(_TESTS, _MIRROR_ROOTS, _CATEGORY_ROOTS) == []
-
-
-def test_test_files_below_line_limit() -> None:
-    """No test file exceeds 1 000 lines unless explicitly exempted."""
-    violations: list[str] = []
-    for rel in _files(_TESTS, "*.py"):
-        lines = len((_TESTS / rel).read_text(encoding="utf-8").splitlines())
-        limit = _ALLOWED_LARGE_TESTS.get(rel.as_posix(), _TEST_LINE_LIMIT)
-        if lines > limit:
-            violations.append(f"{rel.as_posix()}: {lines} lines (limit {limit})")
-    assert not violations, "Test files exceeding line limit:\n" + "\n".join(violations)
-
-
-def test_large_test_allowlist_has_no_stale_entry() -> None:
-    """Every line-limit exception names an existing file above the limit."""
-    stale = [
-        rel
-        for rel in _ALLOWED_LARGE_TESTS
-        if not (_TESTS / rel).is_file()
-        or len((_TESTS / rel).read_text(encoding="utf-8").splitlines())
-        <= _TEST_LINE_LIMIT
-    ]
-    assert stale == []
 
 
 def test_analysis_sees_the_suite() -> None:
