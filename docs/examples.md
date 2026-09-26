@@ -1,7 +1,7 @@
 # Examples
 
 Runnable scripts covering every major feature of the engine.
-Each file in `docs/examples/` is executed in CI via `tests/doc/test_docs_examples.py` —
+Each file in `docs/examples/` is executed in CI via `tests/unit/docs/test_docs_examples.py`:
 if an API change breaks an example, the build fails.
 
 ## Trust — Why this number?
@@ -11,29 +11,27 @@ net salary?" but "why is it that number?" This example walks through all three
 verifiability layers: provenance, versioning, and calculation scope.
 
 ```python
---8 < --"docs/examples/11_why_this_number.py"
+--8<-- "docs/examples/11_why_this_number.py"
 ```
 
 ## Basics
 
 ### Quickstart
 
-Minimal call: load a CCNL, build an `Employee`, call `estimate_annual()`.
+Minimal call: build a `PayrollRequest` and pass it to `PayrollEngine.calculate()`.
 
 ```python
---8 < --"docs/examples/01_quickstart.py"
+--8<-- "docs/examples/01_quickstart.py"
 ```
 
-### Reading the AnnualEstimate
+### Reading the result
 
-`estimate_annual()` returns a `Calculation`: a frozen dataclass that bundles the
-`AnnualEstimate` (`calculation.result`) with the engine version, the CCNL / tax / INPS /
-surtax ruleset revisions used (`calculation.ruleset_version`) and a snapshot of
-the inputs (`calculation.input_snapshot`). Attribute reads are forwarded onto
-the `AnnualEstimate`, so `calculation.net_annual` works too.
+`PayrollEngine.calculate()` returns a `PayrollResult` for one run: period
+gross, net and employer cost, the INPS contribution breakdown, the IRPEF
+computation and the pay items.
 
 ```python
---8 < --"docs/examples/02_payroll_fields.py"
+--8<-- "docs/examples/02_payroll_fields.py"
 ```
 
 ## Contract types
@@ -43,7 +41,7 @@ the `AnnualEstimate`, so `calculation.net_annual` works too.
 `FixedTerm()` adds the 1.40% NASpI *addizionale* to the employer's INPS contribution; gross and net are unchanged.
 
 ```python
---8 < --"docs/examples/03_fixed_term.py"
+--8<-- "docs/examples/03_fixed_term.py"
 ```
 
 ### Apprenticeship (apprendistato)
@@ -51,33 +49,33 @@ the `AnnualEstimate`, so `calculation.net_annual` works too.
 Percentage track: the apprentice's pay is a % of the destination level, increasing with `months_elapsed`.
 
 ```python
---8 < --"docs/examples/06_apprentice.py"
+--8<-- "docs/examples/06_apprentice.py"
 ```
 
 ## Pay components
 
-### Part-time
+### Family deductions
 
-`part_time_ratio` scales base pay, seniority, and allowances. `ad_personam_monthly` is NOT scaled.
+A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the net pay.
 
 ```python
---8 < --"docs/examples/04_part_time.py"
+--8<-- "docs/examples/04_part_time.py"
 ```
 
 ### Seniority increments (scatti di anzianità)
 
-Two equivalent ways to express seniority: explicit count or total service months.
+Pass the months of service as `EmploymentFacts.seniority_months`; the category selects category-specific increments.
 
 ```python
---8 < --"docs/examples/05_seniority.py"
+--8<-- "docs/examples/05_seniority.py"
 ```
 
-### Negotiated RAL
+### Year-to-date chaining
 
-When the worker's gross is individually agreed above the CCNL minimum, pass `negotiated_ral` to bypass the table.
+Pass the `closing_state` of one run as the `opening_state` of the next, so progressive IRPEF and the year-to-date totals carry forward.
 
 ```python
---8 < --"docs/examples/09_negotiated_ral.py"
+--8<-- "docs/examples/09_negotiated_ral.py"
 ```
 
 ### Second-level bargaining (contrattazione di secondo livello)
@@ -85,7 +83,7 @@ When the worker's gross is individually agreed above the CCNL minimum, pass `neg
 Territorial or company allowances on top of the CCNL minimums, with per-item contribution/TFR/apprenticeship control.
 
 ```python
---8 < --"docs/examples/08_second_level.py"
+--8<-- "docs/examples/08_second_level.py"
 ```
 
 ## Fiscal
@@ -95,7 +93,7 @@ Territorial or company allowances on top of the CCNL minimums, with per-item con
 Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (Belfiore code, e.g. `F257`) to include addizionale regionale and comunale. Check `result.status` and `result.decisions`: an unknown table makes the result `incomplete`.
 
 ```python
---8 < --"docs/examples/07_addizionali.py"
+--8<-- "docs/examples/07_addizionali.py"
 ```
 
 ### Domestic work (lavoro domestico)
@@ -103,5 +101,5 @@ Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (
 Flat per-hour INPS contributions; the employer does not withhold IRPEF. `weekly_hours` is required.
 
 ```python
---8 < --"docs/examples/10_domestic.py"
+--8<-- "docs/examples/10_domestic.py"
 ```

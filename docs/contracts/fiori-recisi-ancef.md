@@ -136,5 +136,5 @@ Destination levels: `5`
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/fiori-recisi-ancef.py"
+--8<-- "docs/examples/contracts/fiori-recisi-ancef.py"
 ```

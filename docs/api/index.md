@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `estimate_annual()`, `estimate_period_effects()`, `Calculation`, `AnnualEstimateInput`, `PeriodPayrollInput`, `Employee`, `Employment`, `Employer`, `PayrollResult`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
+| [Engine](engine.md) | `PayrollEngine`, `PayrollRequest`, `PayrollYearRequest`, `PayrollRun`, `EmploymentFacts`, `CalendarOverride`, `Employer`, `WorkerCategory`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -19,82 +19,85 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 ```python
 from ccnl_engine import (
-    # Entry points
-    estimate_annual,
-    estimate_period_effects,
-    # Scenarios
-    AnnualEstimateInput,  # structural: employee + employment
-    PeriodPayrollInput,  # period events: overtime, absences, benefits
-    # Legacy entry point (still supported)
-    compute,
-    PayrollScenario,
-    # Shared input models
-    Employee,
-    Employment,
-    Employer,
-    Jurisdiction,
-    Agreement,
-    # Employment types
+    # Entry point
+    PayrollEngine,
+    # Requests
+    PayrollRequest,
+    PayrollYearRequest,
+    PayrollRun,
+    EmploymentFacts,
+    CalendarOverride,
+    CalendarOverrideReason,
+    PayrollCalendar,
+    PayrollState,
+    # Employment and employer
     Permanent,
     FixedTerm,
     Apprentice,
-    # Seniority
-    SeniorityByCount,
-    SeniorityByDate,
-    SeniorityByMonths,
-    # Salary overrides
-    RalOverride,
-    DestinationRalOverride,
-    # Dependants and deductions
+    WorkerCategory,
+    Employer,
+    Headcount,
+    SupplementaryAllowance,
+    # Family
     FamilyComposition,
-    Art15Deductions,
-    # Period events (used in PeriodPayrollInput)
-    OvertimeHours,
-    WeeklyOvertimeHours,
-    AbsenceDays,
-    LeaveInput,
-    SickInput,
-    FringeBenefitInput,
-    WelfareInput,
-    BonusInput,
-    # Output
+    Dependent,
+    DependentRelationship,
+    # Results
     PayrollResult,
-    ScopeItem,
-    # Grouped output views
-    PayrollPeriod,
-    PayrollPay,
-    PayrollTax,
-    PayrollEmployer,
-    PayrollQuality,
-    # Calculation envelope
-    Calculation,
-    CalculationTrace,
-    InputSnapshot,
-    TraceCategory,
-    TraceStep,
-    # Serialisation
-    scenario_schema,
-    result_schema,
+    PayrollYearResult,
+    CalculationStatus,
+    CalculationIssue,
+    CalculationDecision,
+    # Capability coverage
+    CapabilityCatalog,
+    CapabilityEntry,
+    CapabilityGap,
+    CapabilityStatus,
     # CCNL discovery
+    CcnlId,
+    CcnlInfo,
     list_ccnls,
     get_ccnl,
     search_ccnls,
-    # Rendering
-    AnnualBreakdown,
-    render_breakdown,
+    # Errors
+    CcnlEngineError,
+    DataIntegrityError,
+    InvalidInputError,
+    OutOfScopeError,
+    UnknownCcnlError,
+    UnknownLevelError,
+    UnsupportedTaxYearError,
     # Version
     engine_version,
 )
+from ccnl_engine.events import (
+    AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
+    BonusEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    ShiftWorkEvent,
+    SickLeaveEvent,
+    SicknessCaseEvent,
+    TerminationTFREvent,
+    WelfareEvent,
+    WorkEvent,
+)
 ```
 
-All types above are re-exported from the top-level `ccnl_engine` package.
+All names in the first import are re-exported from the top-level
+`ccnl_engine` package. Work event types live in `ccnl_engine.events`; see
+[Work rules](../engine/work-rules.md).
 
 ## Guide cross-references
 
 | Guide | Relevant API |
 |---|---|
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
-| [Pay components](../engine/pay-components.md) | `SeniorityByCount`, `SeniorityByMonths`, `RalOverride` |
+| [Pay components](../engine/pay-components.md) | `EmploymentFacts.seniority_months`, `EmploymentFacts.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
 | [Second level](../engine/second-level.md) | `SupplementaryAllowance` |
 | [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |
 | [Domestic work](../engine/domestic-work.md) | `EmploymentFacts.weekly_hours` |

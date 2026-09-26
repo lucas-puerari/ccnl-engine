@@ -127,5 +127,5 @@ Destination levels: `1`, `2`, `3`, `4`, `5`, `6`
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/funivie-anef.py"
+--8<-- "docs/examples/contracts/funivie-anef.py"
 ```

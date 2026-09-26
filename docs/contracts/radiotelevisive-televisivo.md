@@ -136,5 +136,5 @@ These are deliberate modelling approximations. Read them before using this contr
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/radiotelevisive-televisivo.py"
+--8<-- "docs/examples/contracts/radiotelevisive-televisivo.py"
 ```

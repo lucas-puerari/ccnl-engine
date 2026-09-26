@@ -126,5 +126,5 @@ under-level: `1`
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/chimica-farmaceutica-federchimica.py"
+--8<-- "docs/examples/contracts/chimica-farmaceutica-federchimica.py"
 ```

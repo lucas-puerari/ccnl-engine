@@ -1,30 +1,51 @@
 # Pay components
 
-This page covers the runtime knobs that adjust gross pay beyond the CCNL table
-minimum: part-time scaling, seniority, and individually negotiated salary.
+This page covers the employment facts that adjust gross pay beyond the CCNL
+table minimum: part-time scaling, seniority and worker category. It also
+covers bilateral fund contributions, which change net pay and employer cost.
 
 See [Domain: Components](../domain/components.md) for the legal background.
 
 ## Part-time
 
-Pass `part_time_ratio` (a `Decimal` between 0 and 1 exclusive) to `Employee`.
-Base salary, seniority, and contractual allowances all scale proportionally.
-Individually frozen *ad personam* amounts do not scale.
+Pass the contracted `weekly_hours` together with the CCNL
+`full_time_weekly_hours` on `EmploymentFacts`. The engine derives the
+part-time fraction from the two and scales the contractual pay by it.
+`weekly_hours` must not exceed `full_time_weekly_hours`.
 
 ```python
---8 < --"docs/examples/04_part_time.py"
+from datetime import date
+
+from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+
+engine = PayrollEngine.bundled()
+
+
+def gross(facts: EmploymentFacts) -> str:
+    result = engine.calculate(
+        PayrollRequest(
+            run=PayrollRun.regular(year=2026, month=3),
+            payment_date=date(2026, 3, 27),
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+            employment_facts=facts,
+        )
+    )
+    return str(result.period_gross)
+
+
+print("Full time:", gross(EmploymentFacts()))
+print("Half time:", gross(EmploymentFacts(weekly_hours=20, full_time_weekly_hours=40)))
 ```
 
 ## Seniority increments (*scatti di anzianità*)
 
-Two equivalent ways to specify seniority:
-
-- `SeniorityByCount(n)` — you already know how many increments have matured.
-- `SeniorityByMonths(m)` — total service months; the engine derives the count from
-  the CCNL cadence.
+Pass the months of continuous service as `EmploymentFacts.seniority_months`.
+The engine derives the number of matured increments from the CCNL cadence and
+adds the amount the level earns.
 
 ```python
---8 < --"docs/examples/05_seniority.py"
+--8<-- "docs/examples/05_seniority.py"
 ```
 
 ### Worker category
@@ -42,59 +63,41 @@ artigianato).
   `seniority_months` without a category, the calculation raises
   `InvalidInputError` instead of silently dropping the increment.
 
-## Individually negotiated salary (*RAL concordata*)
-
-When a worker's annual gross is negotiated above the CCNL minimum, pass a
-`SalaryOverrides` with a `RalOverride`. The engine uses this figure directly and
-derives monthly and hourly rates from it, instead of building pay from the level
-table.
-
-```python
---8 < --"docs/examples/09_negotiated_ral.py"
-```
-
-**API reference:** [`WorkArrangement`](../api/engine.md),
-[`SeniorityByCount`, `SeniorityByMonths`](../api/engine.md),
-[`SalaryOverrides`, `RalOverride`](../api/engine.md)
-
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
-training funds, supplementary pension). Pass a tuple of fund inputs on
-`AnnualEstimateInput.bilateral_funds`:
+training funds, supplementary pension). The engine does not derive them from
+the CCNL: pass the amounts due in the period as a `BilateralFundEvent`. The
+employee portion reduces net pay; the employer portion increases employer
+cost.
 
 ```python
+from datetime import date
 from decimal import Decimal
-from ccnl_engine import FlatMonthlyFund, RateFund
 
-# A fixed-amount fund: e.g. EST (€2.00/month employee + €13.00/month employer)
-est = FlatMonthlyFund(
-    employee_monthly=Decimal("2.00"),
-    employer_monthly=Decimal("13.00"),
-)
+from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine.events import BilateralFundEvent
 
-# A rate-based fund applied to the TFR base: e.g. Fon.Te (0.55 % + 1.55 %)
-fon_te = RateFund(
-    employee_rate=Decimal("0.0055"),
-    employer_rate=Decimal("0.0155"),
-    base="tfr_base",          # or "gross_annual"
-)
+engine = PayrollEngine.bundled()
 
-scenario = AnnualEstimateInput(
-    ...
-    bilateral_funds=(est, fon_te),
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=3),
+        payment_date=date(2026, 3, 27),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        employment_facts=EmploymentFacts(),
+        events=(
+            BilateralFundEvent(
+                event_date=date(2026, 3, 1),
+                employee_amount=Decimal("2.00"),
+                employer_amount=Decimal("13.00"),
+            ),
+        ),
+    )
 )
+print(result.period_net, result.period_employer_cost)
 ```
 
-The engine annualises flat funds (× 12) and applies rates to the chosen base.
-Results appear in `PayrollResult`:
-
-| Field | Effect |
-|---|---|
-| `bilateral_employee_annual` | Deducted from `net_annual` |
-| `bilateral_employer_annual` | Added to `employer_cost_annual` |
-
-When `bilateral_funds` is empty (the default), both fields are `0` and the
-`NO_BILATERAL_FUNDS` flag appears in `fiscal_simplifications`.
-
-**API reference:** [`FlatMonthlyFund`, `RateFund`](../api/engine.md)
+**API reference:** [`EmploymentFacts`](../api/engine.md),
+[`WorkerCategory`](../api/engine.md)

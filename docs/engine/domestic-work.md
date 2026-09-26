@@ -38,7 +38,7 @@ positive (and not above `full_time_weekly_hours` when that is given), and
 contributions.
 
 ```python
---8 < --"docs/examples/10_domestic.py"
+--8<-- "docs/examples/10_domestic.py"
 ```
 
 !!! warning

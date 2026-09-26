@@ -52,7 +52,7 @@ A malformed code (`ER`, `Lombardia`, `IT45`, `f257`) is rejected with
 is not an input error: see the decisions below.
 
 ```python
---8 < --"docs/examples/07_addizionali.py"
+--8<-- "docs/examples/07_addizionali.py"
 ```
 
 ### Surtax decisions
