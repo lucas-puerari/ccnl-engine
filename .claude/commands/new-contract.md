@@ -263,14 +263,14 @@ result = PayrollEngine.bundled().calculate_period(
 Choose: mid-range level, no seniority, permanent, 50 employees,
 date on the second tranche.
 
-Save to `tests/integration/cases/{id}_{level}_{year}.json`.
+Save to `tests/fixtures/expected/scenarios/{id}_{level}_{year}.json`.
 
 ---
 
-## Step 7 — Write unit tests
+## Step 7: Write bundle loader tests
 
 Append class `TestLoad{CamelCaseName}` at the bottom of
-`tests/unit/ccnl_engine/engine/contract/service/test_data_files.py`.
+`tests/integration/ccnl_engine/contract/service/test_loaders_data_files.py`.
 
 **Required imports at the top of the file** — add only what is missing (never inside methods):
 ```python
@@ -394,9 +394,9 @@ silently truncated in the sidebar). Match the style of existing entries.
 
 ---
 
-**CI smoke-test**: `tests/unit/docs/test_contract_examples.py` automatically
+**CI smoke-test**: `tests/acceptance/public_api/test_contract_examples.py` automatically
 picks up `docs/examples/contracts/{id}.py` — no test edit is needed.
-Run `uv run pytest tests/unit/docs/` to verify before committing.
+Run `uv run pytest tests/acceptance/public_api/` to verify before committing.
 
 ---
 

@@ -73,3 +73,13 @@ private to the application layer:
 `calculate_period` reads as the pipeline: `build_context`, then
 `run_events`, `run_amounts`, `run_decisions`, `run_credits`, `post_run` and
 `assemble_result`.
+
+## Test layout
+
+`tests/architecture/test_test_layout.py` keeps the suite in five categories:
+`unit` (pure rules), `integration` (real bundle, loaders, wiring),
+`acceptance` (`public_api` and `legal_scenarios`, through `PayrollEngine`),
+`architecture` and `fixtures` (data only). Unit and integration paths mirror
+the module under test, for example `src/ccnl_engine/payroll/domain/calendar.py`
+and `tests/unit/ccnl_engine/payroll/domain/test_calendar.py`. No file sits
+deeper than five directories under `tests`, `fixtures` aside.

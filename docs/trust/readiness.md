@@ -64,7 +64,7 @@ In addition to the `reviewed` criteria:
 
 1. All L2 values (INPS sector, apprenticeship rules, TFR) must be verified
    against primary sources.
-2. At least one reference case must exist in `tests/integration/cases/`
+2. At least one reference case must exist in `tests/fixtures/expected/scenarios/`
    sourced from a real payslip (anonymised) or an official regulatory example,
    not a synthetic scenario.
 3. A named owner must be recorded in `verification.human_reviewed_by`.

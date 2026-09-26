@@ -1,7 +1,7 @@
 # Examples
 
 Runnable scripts covering every major feature of the engine.
-Each file in `docs/examples/` is executed in CI via `tests/unit/docs/test_docs_examples.py`:
+Each file in `docs/examples/` is executed in CI via `tests/acceptance/public_api/test_docs_examples.py`:
 if an API change breaks an example, the build fails.
 
 ## Trust — Why this number?

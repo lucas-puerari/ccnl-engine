@@ -1,6 +1,6 @@
 """Enforce verification status and provenance on reference case fixtures.
 
-Every case in ``tests/reference/cases/`` declares a top-level ``verification``
+Every case in ``tests/fixtures/expected/`` declares a top-level ``verification``
 field: ``verified``, ``source_linked`` or ``engine_generated``. ``verified``
 and ``source_linked`` cases must carry a non-empty ``source`` object.
 
@@ -36,7 +36,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-CASES_DIR = Path(__file__).resolve().parents[2] / "tests" / "reference" / "cases"
+CASES_DIR = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "expected"
 STATUSES = ("verified", "source_linked", "engine_generated")
 _SOURCED = frozenset({"verified", "source_linked"})
 

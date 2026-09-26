@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 from hypothesis import HealthCheck, settings
 
-from tests.reference.provenance import CASES_DIR, count_by_status, load_case
+from tests.architecture._provenance import CASES_DIR, count_by_status, load_case
 
 if TYPE_CHECKING:
     import pytest
