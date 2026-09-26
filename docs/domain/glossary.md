@@ -131,10 +131,44 @@ the status it implies and, when one applies, its normative source.
 What one capability actually decided in a run: its status, a stable
 `reason_code`, the normalized inputs it used, the rule and rule version
 applied, the normative source and the resulting amount (`None` when unknown).
-Distinct from the capability report, which records whether a capability ran,
-not what it decided.
+A capability that ran and found nothing due still decides: amount 0 and a
+reason such as `income_above_upper_threshold`.  The capability trace is
+built from the decisions.
 
-`CalculationDecision`, `PeriodCalculationResult.decisions`
+`CalculationDecision`, `PeriodCalculationResult.decisions`,
+`YearCalculationResult.decisions`
+
+### capability trace (traccia di esecuzione)
+
+The state of each catalog feature in one run, derived from what executed and
+never from the request: computed, partial, unresolved, skipped or not
+applicable.  A feature decided by a `final` decision is computed, by a
+`provisional` one partial, by an `incomplete` or `rejected` one unresolved;
+an event feature is computed only when an event handler posted a non-zero
+amount or took a decision.  The capability report lists the features the
+catalog promises whose trace falls short, an unresolved one included.
+
+`DecisionTrace`, `TraceState`, `CapabilityReport`, `CapabilityGapKind`
+
+### worker category decision (decisione sulla categoria)
+
+The calculation decision recording the worker category used for pay and
+contributions and its origin: `declared` on the employment, or
+`fixed_by_level` when the level admits a single category.  No decision is
+taken when no category applies.
+
+`CalculationDecision`, `WorkerCategory`
+
+### tax credit decision (decisione sulle detrazioni)
+
+The calculation decision of the ulteriore detrazione
+(`ulteriore_detrazione_lavoro`) or of the trattamento integrativo
+(`trattamento_integrativo`): the annual entitlement and the reason code of
+the rule branch that produced it, e.g. `full_amount`, `tapered_amount`,
+`deductions_not_above_irpef`.  Taken on every run whose tax year rules put
+the credit in force.
+
+`CalculationDecision`, `CreditOutcome`
 
 ### surtax decision (decisione sulle addizionali)
 

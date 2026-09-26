@@ -73,6 +73,10 @@ of the conguaglio (D.L. 3/2020 art. 1 c. 3), so it often continues into N+1.
   trattamento integrativo is computed as for any other year.
 - Invariant I19 checks that each carried recovery posts its next
   installment and closes one installment further along.
+- Each carried installment records a `CalculationDecision` with capability
+  `trattamento_integrativo_recovery`, reason `installment_posted` or
+  `last_installment_posted`, the origin tax year, the installment number and
+  the residual before it, and the negative installment as amount.
 
 At most one recovery per origin year is held. The recovery opened by the
 conguaglio of the current year runs inside the conguaglio, as before.

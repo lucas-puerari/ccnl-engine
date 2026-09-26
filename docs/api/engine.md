@@ -74,8 +74,27 @@ An `incomplete` result still carries amounts, but at least one of them is
 missing, not zero: for example a surtax whose table is unknown is withheld
 as 0 and flagged by the issue `regional_surtax_unknown` or
 `municipal_surtax_unknown`.  `result.decisions` records what each capability
-decided, e.g. the surtax decisions described in
-[Fiscal computation](../engine/fiscal.md#surtax-decisions).
+decided, e.g. the surtax and tax credit decisions described in
+[Fiscal computation](../engine/fiscal.md#surtax-decisions).  The year result
+exposes the decisions of its periods in payment order.
+
+### Capability report
+
+`result.capability_report` compares what the run executed with the capability
+catalog of the tax year.  Each feature is traced from what actually ran,
+never from the presence of an input:
+
+- the core stages (base salary, INPS, TFR, IRPEF) run on every period;
+- an event feature (overtime, welfare, ...) is computed only when one of its
+  events posted a non-zero amount or took a decision, otherwise skipped;
+- every other feature follows its decisions: `final` is computed (a zero
+  amount with its reason counts), `provisional` is partial, `incomplete` or
+  `rejected` is unresolved, and no decision is not applicable.
+
+A feature the catalog promises is a gap when it is absent
+(`feature_absent`), not computed (`not_computed`), unresolved (`unresolved`,
+e.g. a surtax without a table), or only partial where the catalog promises
+it computed (`promised_computed_got_partial`).
 
 ::: ccnl_engine.payroll.domain.decisions
     options:

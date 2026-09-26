@@ -54,6 +54,8 @@ dev = [
 target-version = "py312"
 line-length = 88
 preview = true
+# Honour excludes even for paths passed explicitly (editors, hooks).
+force-exclude = true
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -118,6 +120,10 @@ ignore = [
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+# Preview mode formats Python fences inside Markdown and rewrites the
+# pymdownx.snippets include marker into an arithmetic expression, which
+# breaks every include. Markdown is never formatted by ruff.
+exclude = ["*.md"]
 
 # ---------------------------------------------------------------------------
 # Pytest

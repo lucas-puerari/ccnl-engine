@@ -7,22 +7,46 @@ euro of tax to its statutory basis.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.service import irpef as irpef_svc
+from ccnl_engine.payroll.service import irpef_credits
+from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 
 _ZERO = Decimal(0)
 # D.L. 3/2020 art. 1 co. 3: recovery exceeding 60 EUR uses 8 equal installments.
 _RECOVERY_INSTALLMENT_THRESHOLD = Decimal(60)
 _RECOVERY_INSTALLMENTS = 8
+_TRATTAMENTO_RULE = "dl3-2020-art1"
+_ULTERIORE_RULE = "l207-2024-art1-c6"
+
+
+@dataclass(frozen=True, slots=True)
+class TaxResolution:
+    """IRPEF computation of a period with the decisions taken on its credits.
+
+    Attributes:
+        computation: The per-component IRPEF computation.
+        recovery_plan: Recovery plan to carry into the next period, or
+            ``None`` when no recovery is in progress.
+        decisions: One decision per credit whose rules are in force for the
+            year: ``ulteriore_detrazione_lavoro`` then
+            ``trattamento_integrativo``.
+    """
+
+    computation: TaxComputation
+    recovery_plan: RecoveryPlan | None
+    decisions: tuple[CalculationDecision, ...] = ()
 
 
 def _advance_plan(plan: RecoveryPlan) -> RecoveryPlan | None:
@@ -63,7 +87,9 @@ def _resolve_trattamento(
     remaining: int,
     existing_plan: RecoveryPlan | None = None,
     eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
-) -> tuple[Decimal, TaxLineItem | None, RecoveryPlan | None]:
+) -> tuple[
+    Decimal, TaxLineItem | None, RecoveryPlan | None, CalculationDecision | None
+]:
     """Compute the per-period trattamento integrativo via conguaglio.
 
     When the worker owes back a credit (tratt_due < 0) the recovery is split
@@ -75,24 +101,27 @@ def _resolve_trattamento(
     residual.
 
     Returns:
-        ``(period_tratt, component, next_plan)`` where:
+        ``(period_tratt, component, next_plan, decision)`` where:
         - ``period_tratt`` is the signed per-period amount (negative = recovery);
         - ``component`` is a :class:`TaxLineItem` for the audit trace when the
           annual entitlement is positive, or ``None`` otherwise;
         - ``next_plan`` is the updated :class:`RecoveryPlan` to carry into the
-          next period's opening state, or ``None`` when no plan is active.
+          next period's opening state, or ``None`` when no plan is active;
+        - ``decision`` records the annual entitlement, why it is due or not,
+          and the signed ``period_amount``; ``None`` when the credit is not
+          in force for the year.
     """
     if rules.trattamento_integrativo is None:
-        return _ZERO, None, None
-    tratt_rules = rules.trattamento_integrativo
-    annual_tratt = irpef_svc.trattamento_integrativo(
+        return _ZERO, None, None, None
+    outcome = irpef_credits.trattamento_integrativo_outcome(
         taxable,
         irpef_gross,
         work_deduction,
         work_deduction,
-        tratt_rules,
+        rules.trattamento_integrativo,
         eligible_work_days=eligible_work_days,
     )
+    annual_tratt = outcome.amount
     if existing_plan is not None:
         period_tratt = -existing_plan.next_installment
         next_plan: RecoveryPlan | None = _advance_plan(existing_plan)
@@ -110,13 +139,27 @@ def _resolve_trattamento(
         TaxLineItem(
             name="trattamento_integrativo",
             amount=annual_tratt,
-            rule_id="dl3-2020-art1",
+            rule_id=_TRATTAMENTO_RULE,
             fonte="Art. 1 D.L. 3/2020 (L. 207/2024)",
         )
         if annual_tratt > _ZERO
         else None
     )
-    return period_tratt, component, next_plan
+    decision = credit_decision(
+        "trattamento_integrativo",
+        _TRATTAMENTO_RULE,
+        rules,
+        outcome,
+        {
+            "taxable_income": taxable,
+            "irpef_gross": irpef_gross,
+            "work_deduction": work_deduction,
+            "eligible_work_days": str(eligible_work_days),
+            "recovery_in_progress": str(existing_plan is not None).lower(),
+            "period_amount": period_tratt,
+        },
+    )
+    return period_tratt, component, next_plan, decision
 
 
 def resolve_tax_computation(
@@ -131,6 +174,37 @@ def resolve_tax_computation(
     recovery_plan: RecoveryPlan | None = None,
     eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
 ) -> tuple[TaxComputation, RecoveryPlan | None]:
+    """Compute IRPEF as :func:`compute_tax`, without the credit decisions.
+
+    Returns:
+        ``(TaxComputation, RecoveryPlan | None)`` of :func:`compute_tax`.
+    """
+    resolution = compute_tax(
+        taxable,
+        rules,
+        opening_irpef_withheld=opening_irpef_withheld,
+        opening_tratt_ytd=opening_tratt_ytd,
+        withholding_schedule=withholding_schedule,
+        slots_closed=slots_closed,
+        family_deductions=family_deductions,
+        recovery_plan=recovery_plan,
+        eligible_work_days=eligible_work_days,
+    )
+    return resolution.computation, resolution.recovery_plan
+
+
+def compute_tax(
+    taxable: Decimal,
+    rules: YearRules,
+    *,
+    opening_irpef_withheld: Decimal = _ZERO,
+    opening_tratt_ytd: Decimal = _ZERO,
+    withholding_schedule: WithholdingSchedule,
+    slots_closed: int = 0,
+    family_deductions: Decimal = _ZERO,
+    recovery_plan: RecoveryPlan | None = None,
+    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
+) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
     Applies in order:
@@ -172,11 +246,14 @@ def resolve_tax_computation(
             art. 1 c. 6, D.L. 3/2020 art. 1).
 
     Returns:
-        ``(TaxComputation, RecoveryPlan | None)`` — the IRPEF computation
-        with all components and the updated recovery plan to carry into the
-        next period's opening state.
+        The IRPEF computation with all components, the updated recovery plan
+        to carry into the next period's opening state, and one decision per
+        credit in force: the ulteriore detrazione and the trattamento
+        integrativo, each with its annual amount and the reason it is due
+        or not (e.g. ``income_above_upper_threshold``).
     """
     components: list[TaxLineItem] = []
+    decisions: list[CalculationDecision] = []
     eligible_work_days = min(eligible_work_days, irpef_svc.DAYS_IN_YEAR)
 
     ig = irpef_svc.irpef_gross(taxable, rules)
@@ -214,15 +291,28 @@ def resolve_tax_computation(
     # Ulteriore detrazione (2026): Art. 1 c. 6 L. 207/2024
     ud = _ZERO
     if rules.ulteriore_detrazione is not None:
-        ud = irpef_svc.ulteriore_detrazione_lavoro(
+        ud_outcome = irpef_credits.ulteriore_detrazione_outcome(
             taxable, rules.ulteriore_detrazione, eligible_work_days
+        )
+        ud = ud_outcome.amount
+        decisions.append(
+            credit_decision(
+                "ulteriore_detrazione_lavoro",
+                _ULTERIORE_RULE,
+                rules,
+                ud_outcome,
+                {
+                    "taxable_income": taxable,
+                    "eligible_work_days": str(eligible_work_days),
+                },
+            )
         )
         if ud > _ZERO:
             components.append(
                 TaxLineItem(
                     name="ulteriore_detrazione",
                     amount=ud,
-                    rule_id="l207-2024-art1-c6",
+                    rule_id=_ULTERIORE_RULE,
                     fonte="Art. 1 c. 6 L. 207/2024",
                 )
             )
@@ -256,7 +346,7 @@ def resolve_tax_computation(
     else:
         ordinary_tax = money(max(_ZERO, withholding_due / remaining))
 
-    period_tratt, tratt_component, next_recovery_plan = _resolve_trattamento(
+    period_tratt, tratt_component, next_recovery_plan, tratt = _resolve_trattamento(
         taxable,
         ig,
         wd,
@@ -268,6 +358,8 @@ def resolve_tax_computation(
     )
     if tratt_component is not None:
         components.append(tratt_component)
+    if tratt is not None:
+        decisions.append(tratt)
 
     # Somma esente: L. 207/2024 low-income bonus
     if rules.somma_esente is not None:
@@ -282,9 +374,10 @@ def resolve_tax_computation(
                 )
             )
 
-    return TaxComputation(
+    computation = TaxComputation(
         ordinary_tax=ordinary_tax,
         trattamento_integrativo=period_tratt,
         withholding_due=withholding_due,
         components=tuple(components),
-    ), next_recovery_plan
+    )
+    return TaxResolution(computation, next_recovery_plan, tuple(decisions))

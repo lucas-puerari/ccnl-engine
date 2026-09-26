@@ -22,7 +22,11 @@ from ccnl_engine.payroll.application._year_runs import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
 )
@@ -61,7 +65,6 @@ __all__ = ["YearCalculationResult", "calculate_year"]
 
 _ZERO = Decimal(0)
 _DEFAULT_EMPLOYER = Employer()
-_PARTIAL_MONTH = "partial_month_not_prorated"
 
 
 @dataclass(frozen=True)
@@ -100,6 +103,11 @@ class YearCalculationResult:
     def issues(self) -> tuple[CalculationIssue, ...]:
         """Issues of every period, concatenated in payment order."""
         return tuple(issue for r in self.period_results for issue in r.issues)
+
+    @property
+    def decisions(self) -> tuple[CalculationDecision, ...]:
+        """Decisions of every period, concatenated in payment order."""
+        return tuple(d for r in self.period_results for d in r.decisions)
 
 
 def calculate_year(

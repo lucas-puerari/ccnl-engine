@@ -24,9 +24,11 @@ from ccnl_engine.payroll.service.irpef import (
     irpef_gross,
     somma_esente,
     surtax_from_brackets,
+    work_income_deduction,
+)
+from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
-    work_income_deduction,
 )
 from tests.helpers import make_year_rules
 

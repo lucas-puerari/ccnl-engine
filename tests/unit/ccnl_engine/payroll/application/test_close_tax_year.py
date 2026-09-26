@@ -114,6 +114,16 @@ class TestCarriedRecoveryInAYear:
             (_recovery(2025, 7),),
             (),
         ]
+        reasons = [
+            d.reason_code
+            for d in with_plan.decisions
+            if d.capability == "trattamento_integrativo_recovery"
+        ]
+        assert reasons == [
+            "installment_posted",
+            "installment_posted",
+            "last_installment_posted",
+        ]
         last_with = with_plan.period_results[-1].closing_state.ytd
         last_without = without_plan.period_results[-1].closing_state.ytd
         assert last_with == last_without

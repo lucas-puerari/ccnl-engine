@@ -1,122 +1,78 @@
 # Confidence
 
-`PayrollResult.confidence` is a three-tier signal that summarises how much
-to trust a specific computation result. It is derived automatically — callers
-do not set it.
+A payroll result carries two independent reliability signals. Neither is set
+by the caller.
 
-## The three levels
-
-| Level | When assigned |
+| Signal | Answers |
 |---|---|
-| `"low"` | Any active warning is present |
-| `"medium"` | Complete or partial computation with no warnings, but at least one source (salary table, fiscal ruleset, or INPS ruleset) has `verification_status != "verified"` |
-| `"high"` | Complete computation, no warnings, every salary-table source and every consumed ruleset is `"verified"` |
+| `result.status` | Can this payslip be paid as computed? |
+| `result.capability_report` | Did every capability the fiscal-year catalog declares actually run? |
+
+Neither signal reads the `verification_status` of the underlying sources:
+an unverified salary table does not lower either one. Source verification is
+described in [Provenance](provenance.md).
+
+## Calculation status
+
+`result.status` is a `CalculationStatus`, derived from `result.issues`: the
+worst status among the issues, or `final` when there are none.
+
+| Status | Meaning |
+|---|---|
+| `final` | Every capability decided from known rules and facts. |
+| `provisional` | Computed, but a decision rests on an assumption that may change the amounts. |
+| `incomplete` | At least one amount could not be determined; do not pay as is. |
+| `rejected` | The inputs cannot produce a meaningful result. |
+
+`result.decisions` records what each capability decided and on which rule, so
+a `final` result can still be explained line by line.
+
+## Capability report
+
+`result.capability_report` compares the capabilities the fiscal-year catalog
+declares as computed or partially computed with what the calculation
+observed. Each mismatch is a `CapabilityGap`.
+
+| `status` | `confidence` | When |
+|---|---|---|
+| `"complete"` | `"high"` | No gaps |
+| `"partial"` | `"medium"` | Only gaps where a capability declared computed ran partially |
+| `"incomplete"` | `"low"` | Any other gap, such as a declared capability that did not run |
+
+The report describes engine coverage for the year, not the specific payslip:
+a result can be `final` while its capability report is `"low"`, because a
+declared capability (for example INAIL) is not wired into the period run.
+
+## Using both signals
 
 ```python
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employment,
-    Employer,
-    Permanent,
-    estimate_annual,
-)
 from datetime import date
 
-scenario = AnnualEstimateInput(
-    employee=Employee(level_code="C2"),
-    employment=Employment(
-        ccnl="metalmeccanico-federmeccanica.json",
-        contract=Permanent(),
-        employer=Employer(headcount=Headcount(50)),
-        as_of=date(2026, 1, 1),
-    ),
+from ccnl_engine import (
+    CalculationStatus,
+    EmploymentFacts,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
 )
-result = estimate_annual(scenario).result
-print(result.confidence)  # "low" | "medium" | "high"
+
+engine = PayrollEngine.bundled()
+result = engine.calculate(
+    PayrollRequest(
+        run=PayrollRun.regular(year=2026, month=1),
+        payment_date=date(2026, 1, 28),
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        employment_facts=EmploymentFacts(),
+    )
+)
+
+if result.status is not CalculationStatus.FINAL:
+    for issue in result.issues:
+        print(issue.code, issue.status, issue.message)
+
+report = result.capability_report
+print(report.status, report.confidence)
+for gap in report.gaps:
+    print(gap.feature, gap.kind.value)
 ```
-
-## Derivation logic
-
-```
-warnings non-empty?
-  YES → "low"
-  NO  ↓
-
-Any salary provenance or consumed ruleset with verification_status != "verified"?
-  YES → "medium"
-  NO  ↓
-
-status == "complete" and all sources verified?
-  YES → "high"
-  NO  → "medium"
-```
-
-### What counts as a verified source
-
-Two categories of sources are evaluated for the `"high"` gate:
-
-1. **Salary provenance** — every `RuleProvenance` record collected from the
-   CCNL schema (pay level, base-salary period, allowances, seniority). Records
-   whose `extraction.verification_status` is not `"verified"` cause the result
-   to be classified `"medium"`.
-
-2. **Consumed rulesets** — the `RulesetIdentity` objects for the fiscal and
-   INPS year files (and surtax when loaded). Their `verification_status` is
-   evaluated alongside salary provenance. A fiscal or INPS ruleset marked
-   `"unverified"` therefore prevents `"high"` confidence even when every CCNL
-   salary figure has been human-reviewed.
-
-### Why `fiscal_simplifications` does not affect confidence
-
-The `fiscal_simplifications` frozenset records deliberate caller omissions
-(e.g. no region passed → addizionale regionale excluded). These reflect
-choices, not uncertainty. They appear in `calculation_scope` as `"excluded"`
-items so callers can account for them, but they do not lower confidence.
-
-### Why `"partial"` status does not always mean `"low"`
-
-A computation is `"partial"` when certain L3 work-rule features are absent
-from the contract's data (e.g. sickness rules not yet modelled). This is
-expected and declared in `calculation_scope`. As long as there are no
-warnings, the result is still useful and gets `"medium"` — not `"low"`.
-
-A warning is reserved for situations the engine cannot quantify at all, such
-as a contract whose JSON schema is missing a required block.
-
-## Using confidence in practice
-
-```python
-result = estimate_annual(scenario).result
-
-if result.confidence == "low":
-    # Something is wrong — read warnings before using the number
-    for warning in result.warnings:
-        print("WARNING:", warning)
-
-elif result.confidence == "medium":
-    # Result is usable; check what's excluded
-    excluded = [
-        item.feature for item in result.calculation_scope if item.status == "excluded"
-    ]
-    if excluded:
-        print("Excluded from net:", excluded)
-
-else:  # "high"
-    # All salary sources and rulesets verified, no warnings, complete computation
-    pass
-```
-
-## What raises confidence to `"high"`
-
-Currently, most contracts have `verification_status = "unverified"` on their
-salary-table provenance, and the fiscal/INPS rulesets also carry
-`"unverified"` until a human reviewer confirms the statutory parameters. This
-means the default confidence for a normal computation is `"medium"`. Confidence
-reaches `"high"` only when every salary figure and every consumed ruleset has
-been human-reviewed and set to `"verified"`.
-
-This is intentional: `"high"` is a strong claim. It requires that a specific
-person confirmed a specific value from a specific document on a specific date.
-
-See [Provenance](provenance.md) for the verification workflow.

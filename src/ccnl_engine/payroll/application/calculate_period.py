@@ -10,17 +10,11 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.application._capability_traces import (
-    build_traces as _build_traces,
-)
-from ccnl_engine.payroll.application._capability_traces import (
-    traces_to_observed as _traces_to_observed,
-)
+from ccnl_engine.payroll.application._capability_traces import capability_report
 from ccnl_engine.payroll.application._carried_recovery import (
     post_carried_recoveries,
 )
@@ -40,6 +34,7 @@ from ccnl_engine.payroll.application._period_utils import (
     _int_value,
     _sum_ledger,
 )
+from ccnl_engine.payroll.application._run_decisions import contract_decisions
 from ccnl_engine.payroll.application._withholding_plan import (
     resolve_withholding_schedule,
     somma_esente_credit,
@@ -260,12 +255,18 @@ def calculate_period(
         recovery_plan=opening.obligations.recovery_of(tctx.fiscal_year),
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
-    traces = _build_traces(request, amounts)
-    capability_gaps = catalog.gaps(
-        _traces_to_observed(traces), detect_absent=True, year=tctx.fiscal_year
-    )
-    capability_report = CapabilityReport(
-        catalog_year=tctx.fiscal_year, gaps=capability_gaps
+    decisions = (
+        contract_decisions(
+            ccnl,
+            level,
+            request.category,
+            worker_category,
+            request.seniority_months,
+            chain.seniority,
+            tctx.competence.year,
+        )
+        + event_totals.decisions
+        + amounts.decisions
     )
     pay_items = _build_pay_items(
         amounts, chain, request.period_id, request.payment_date, run_tag=run_id
@@ -358,14 +359,19 @@ def calculate_period(
         closing_state=closing,
         pay_items=pay_items + event_items + se_items + carried.items,
         ledger_entries=all_entries,
-        capability_report=capability_report,
+        capability_report=capability_report(
+            catalog,
+            decisions + carried.decisions,
+            event_totals.executed_features,
+            tctx.fiscal_year,
+        ),
         contribution_breakdown=contribution_breakdown,
         tax_computation=tax_computation,
         benefit_breakdown=benefit_breakdown,
         run=request.run,
         bundle_version=bundle_version,
         issues=event_totals.issues + amounts.surtax.issues,
-        decisions=event_totals.decisions + amounts.surtax.decisions,
+        decisions=decisions + carried.decisions,
     )
     rec = _reconcile(result, opening)
     if not rec.ok:

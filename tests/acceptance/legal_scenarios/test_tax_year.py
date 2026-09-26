@@ -201,3 +201,12 @@ def test_carried_installment_is_deducted_in_the_next_year() -> None:
         if item.item_id == "trattamento_integrativo_recovery_2026_2027-01-regular"
     ]
     assert [item.amount for item in recovery] == [Decimal(-20)]
+    (decision,) = [
+        d
+        for d in with_plan.decisions
+        if d.capability == "trattamento_integrativo_recovery"
+    ]
+    assert decision.reason_code == "installment_posted"
+    assert decision.amount == Decimal(-20)
+    assert decision.inputs["origin_tax_year"] == "2026"
+    assert decision.inputs["installment_number"] == Decimal(5)

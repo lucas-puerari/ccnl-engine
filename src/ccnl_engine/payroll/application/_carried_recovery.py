@@ -17,6 +17,7 @@ from ccnl_engine.payroll.application._period_utils import (
     _make_entry,
     _require_resolution,
 )
+from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
@@ -38,11 +39,45 @@ class CarriedRecoveries:
         entries: The matching ``CREDITS`` ledger entries.
         remaining: The carried recoveries after this run, without those
             whose last installment was just posted.
+        decisions: One decision per installment posted, capability
+            :data:`CAPABILITY`.
     """
 
     items: tuple[PayItem, ...] = ()
     entries: tuple[LedgerEntry, ...] = ()
     remaining: tuple[RecoveryObligation, ...] = ()
+    decisions: tuple[CalculationDecision, ...] = ()
+
+
+#: Capability of the decisions recording a carried installment.
+CAPABILITY = "trattamento_integrativo_recovery"
+
+
+def installment_decision(obligation: RecoveryObligation) -> CalculationDecision:
+    """Return the decision recording the next installment of ``obligation``.
+
+    Returns:
+        A final decision whose amount is the (negative) installment, with
+        reason ``last_installment_posted`` when it settles the recovery and
+        ``installment_posted`` otherwise.
+    """
+    plan = obligation.plan
+    number = plan.installments_posted + 1
+    last = number == plan.installments_total
+    return CalculationDecision(
+        capability=CAPABILITY,
+        status=CalculationStatus.FINAL,
+        reason_code="last_installment_posted" if last else "installment_posted",
+        rule="dl3-2020-art1-c3",
+        rule_version=str(obligation.tax_year),
+        inputs={
+            "origin_tax_year": str(obligation.tax_year),
+            "installment_number": Decimal(number),
+            "installments_total": Decimal(plan.installments_total),
+            "residual_before": plan.residual,
+        },
+        amount=-plan.next_installment,
+    )
 
 
 def carried_item_id(obligation: RecoveryObligation, run_id: str) -> str:
@@ -109,4 +144,5 @@ def post_carried_recoveries(
         items=tuple(items),
         entries=tuple(entries),
         remaining=tuple(remaining),
+        decisions=tuple(installment_decision(o) for o in carried),
     )

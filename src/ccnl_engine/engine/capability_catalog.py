@@ -28,13 +28,18 @@ class CapabilityGapKind(StrEnum):
             observed as ``"not_computed"`` in the calculation.
         FEATURE_ABSENT: Feature declared computed or partially_computed, but
             absent from the observed map entirely (integration missing).
+        UNRESOLVED: Feature declared computed or partially_computed that
+            ran but could not decide, observed as ``"unresolved"`` (e.g. a
+            surtax without a table for the jurisdiction).
         PROMISED_COMPUTED_GOT_PARTIAL: Feature declared as ``computed`` but
-            the engine only produced a ``"partially_computed"`` result.
+            the engine only produced a partial result, observed as
+            ``"partial"`` or ``"partially_computed"``.
         WRONG_YEAR: Catalog year differs from the requested computation year.
     """
 
     NOT_COMPUTED = "not_computed"
     FEATURE_ABSENT = "feature_absent"
+    UNRESOLVED = "unresolved"
     PROMISED_COMPUTED_GOT_PARTIAL = "promised_computed_got_partial"
     WRONG_YEAR = "wrong_year"
 
@@ -147,8 +152,10 @@ class CapabilityCatalog:
     ) -> tuple[CapabilityGap, ...]:
         """Return entries where the observed status is worse than declared.
 
-        The base behavior (``detect_absent=False``, no ``year``) reports only
-        features explicitly observed as ``"not_computed"``.  With
+        The base behavior (``detect_absent=False``, no ``year``) reports
+        features observed as ``"not_computed"`` or ``"unresolved"``, and
+        features declared ``computed`` observed as ``"partial"`` or
+        ``"partially_computed"``.  With
         ``detect_absent=True``, features absent from *observed* are also
         reported as :attr:`~CapabilityGapKind.FEATURE_ABSENT` gaps.  When
         *year* is provided and differs from :attr:`year`, a
@@ -176,41 +183,42 @@ class CapabilityCatalog:
                 )
             )
         for entry in self.capabilities:
-            if entry.status not in {
-                CapabilityStatus.COMPUTED,
-                CapabilityStatus.PARTIALLY_COMPUTED,
-            }:
+            if entry.status not in _PROMISED:
                 continue
             obs = observed.get(entry.feature)
-            if obs is None:
-                if detect_absent:
-                    result.append(
-                        CapabilityGap(
-                            feature=entry.feature,
-                            declared=entry.status,
-                            observed="absent",
-                            kind=CapabilityGapKind.FEATURE_ABSENT,
-                        )
-                    )
-            elif obs == "not_computed":
+            kind = _gap_kind(entry.status, obs, detect_absent=detect_absent)
+            if kind is not None:
                 result.append(
                     CapabilityGap(
                         feature=entry.feature,
                         declared=entry.status,
-                        observed=obs,
-                        kind=CapabilityGapKind.NOT_COMPUTED,
-                    )
-                )
-            elif (
-                entry.status == CapabilityStatus.COMPUTED
-                and obs == "partially_computed"
-            ):
-                result.append(
-                    CapabilityGap(
-                        feature=entry.feature,
-                        declared=entry.status,
-                        observed=obs,
-                        kind=CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL,
+                        observed="absent" if obs is None else obs,
+                        kind=kind,
                     )
                 )
         return tuple(result)
+
+
+_PROMISED = frozenset({CapabilityStatus.COMPUTED, CapabilityStatus.PARTIALLY_COMPUTED})
+_PARTIAL_OBSERVATIONS = frozenset({"partial", "partially_computed"})
+_OBSERVED_GAPS: dict[str, CapabilityGapKind] = {
+    "not_computed": CapabilityGapKind.NOT_COMPUTED,
+    "unresolved": CapabilityGapKind.UNRESOLVED,
+}
+
+
+def _gap_kind(
+    declared: CapabilityStatus, observed: str | None, *, detect_absent: bool
+) -> CapabilityGapKind | None:
+    """Classify the observation of a feature the catalog promises.
+
+    Returns:
+        The gap kind, or ``None`` when the observation keeps the promise.
+    """
+    if observed is None:
+        return CapabilityGapKind.FEATURE_ABSENT if detect_absent else None
+    if observed in _OBSERVED_GAPS:
+        return _OBSERVED_GAPS[observed]
+    if declared is CapabilityStatus.COMPUTED and observed in _PARTIAL_OBSERVATIONS:
+        return CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
+    return None

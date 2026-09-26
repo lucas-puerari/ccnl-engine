@@ -82,59 +82,37 @@ The `verification_status` field is the most important signal for callers:
 | `"unverified"` | The value was extracted but has not been independently checked |
 | `"needs_review"` | The value was verified but a subsequent renewal may have changed it |
 
-All provenance records must have `"verified"` status for a result's confidence
-to reach `"high"`. See [Trust: Confidence](confidence.md).
+Verification status is informational: the engine does not read it when it
+computes a result, so an unverified figure does not change `result.status`
+or the capability report. See [Trust: Confidence](confidence.md).
 
-## Propagation into `PayrollResult`
+## Provenance and payroll results
 
-The `provenance` field of a `PayrollResult` is a tuple of `RuleProvenance`
-objects — one per rule applied during the computation. Each entry links a
-computed quantity to its source:
+A `PayrollResult` does not carry provenance records. It links back to its
+sources in two ways:
 
-```python
-for prov in result.provenance:
-    src = prov.location.source_document
-    print(src.kind, prov.location.section)
-# tabella_retributiva    Tabella retributiva — livello C3
-# contratto_collettivo   Art. 205 — Scatti di anzianità
-```
+- `result.bundle_version` is the version of the knowledge bundle used.
+- `result.decisions` records, for each capability that logs a decision, the
+  `rule` and `rule_version` it applied.
 
-This tuple is also serialised by `result.to_dict()` and `result.to_json()`,
-so provenance survives round-trips through storage and APIs.
-
-## Reading provenance in practice
+To see where a contract figure comes from, read the provenance on the loaded
+CCNL. Every pay level, every non-gap salary period and every fixed allowance
+carries one.
 
 ```python
-from datetime import date
+from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
-from ccnl_engine import (
-    AnnualEstimateInput,
-    Employee,
-    Employer,
-    Employment,
-    Permanent,
-    estimate_annual,
-)
+ccnl = load_ccnl("commercio-confcommercio.json")
 
-calc = estimate_annual(
-    AnnualEstimateInput(
-        employee=Employee(level_code="4"),
-        employment=Employment(
-            ccnl="commercio-confcommercio.json",
-            contract=Permanent(),
-            employer=Employer(headcount=Headcount(50)),
-            as_of=date(2026, 1, 1),
-        ),
-    )
-)
-result = calc.result
-
-for prov in result.provenance:
-    src = prov.location.source_document
-    print(f"{src.title} ({src.url})")
-    print(f"  section: {prov.location.section}")
-    print(f"  status:  {prov.extraction.verification_status}")
+for level in ccnl.levels:
+    for period in level.base_salary.periods:
+        if period.provenance is None:
+            continue
+        src = period.provenance.location.source_document
+        print(f"{level.code}: {src.title} ({src.url})")
+        print(f"  section: {period.provenance.location.section}")
+        print(f"  status:  {period.provenance.extraction.verification_status}")
 ```
 
-See also [example 11 — Why this number?](../examples.md) for a full
-walkthrough combining provenance, scope, and warnings.
+The full JSON of each contract, provenance included, is also shown on its
+page under [Contracts](../contracts/index.md).

@@ -109,20 +109,22 @@ appropriate INPS rate tier (based on `num_employees`) and applies the
 correct IRPEF bracket schedule:
 
 ```python
+from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
 
-rules = load_year_rules(2026, tax_sector="industria", num_employees=50)
+rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
 ```
 
-The `tax_sector` must match the CCNL's `meta.tax_sector`. Valid values:
-`industria`, `commercio`, `artigianato`, `agricoltura`, `terziario`,
-`credito`, `assicurazioni`, `pubblica_amministrazione`.
+The sector must match the CCNL's `meta.tax_sector`. Valid values:
+`terziario`, `industria`, `edilizia`, `credito`, `artigianato`,
+`pubblica-amministrazione`, `lavoro-domestico`, `agricoltura`.
 
 ## Surtax rules
 
-Regional and municipal surtax rates are loaded separately and passed
-optionally to `estimate_annual()` or `estimate_period_effects()`. When omitted, the regional and municipal
-components are zero and appear in `calculation_scope` as `"excluded"`.
+Regional and municipal surtax tables are loaded by the engine for the tax
+year. The caller selects them with `regione` and `comune_belfiore` on
+`PayrollRequest` or `PayrollYearRequest`; a component whose code is `None` is
+skipped. See [Fiscal computation](../engine/fiscal.md#surtax-decisions).
 
 ```python
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
