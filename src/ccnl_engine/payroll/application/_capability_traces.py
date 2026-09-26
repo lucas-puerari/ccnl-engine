@@ -1,14 +1,14 @@
-"""Build DecisionTrace list from a PeriodCalculationRequest."""
+"""Build DecisionTrace list from a PeriodCalculationRequest and computed results."""
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,
-    BonusEvent,
     FringeEvent,
     HolidayWorkEvent,
     NightShiftEvent,
@@ -21,11 +21,14 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
     from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
 
-_STANDARD_FEATURES: frozenset[str] = frozenset({
+_ZERO = Decimal(0)
+
+# Features always computed regardless of inputs.
+_ALWAYS_COMPUTED: frozenset[str] = frozenset({
     "base_salary",
-    "seniority",
     "inps_employee",
     "inps_employer",
     "tfr",
@@ -34,6 +37,7 @@ _STANDARD_FEATURES: frozenset[str] = frozenset({
     "ulteriore_detrazione_lavoro",
 })
 
+# Event types where COMPUTED/SKIPPED is determined by event presence.
 _EVENT_FEATURE_MAP: tuple[tuple[type, str], ...] = (
     (OvertimeEvent, "overtime"),
     (NightShiftEvent, "night_work"),
@@ -43,30 +47,55 @@ _EVENT_FEATURE_MAP: tuple[tuple[type, str], ...] = (
     (SicknessCaseEvent, "sickness"),
     (FringeEvent, "fringe_benefit"),
     (WelfareEvent, "welfare"),
-    (BonusEvent, "bonus_pdr"),
     (ArrearsEvent, "contract_renewal_arrears"),
     (BilateralFundEvent, "bilateral_funds"),
     (TerminationTFREvent, "termination_tfr"),
 )
 
 
-def build_traces(request: PeriodCalculationRequest) -> tuple[DecisionTrace, ...]:
-    """Build decision traces from a period request for capability reporting.
+def build_traces(
+    request: PeriodCalculationRequest,
+    amounts: _PeriodAmounts,
+) -> tuple[DecisionTrace, ...]:
+    """Build decision traces from actual computation results for capability reporting.
 
-    Standard features are always COMPUTED.  Event-based features are COMPUTED
-    when matching events are present, SKIPPED otherwise.  Parameter-dependent
-    features use NOT_APPLICABLE when the required input is absent.
+    Standard features are COMPUTED when the engine applied them; seniority is
+    NOT_APPLICABLE when the caller did not supply ``seniority_months``.
+    Event-based features are COMPUTED when matching events are present.
+    ``bonus_pdr`` is COMPUTED only when PdR substitute tax was actually applied
+    (``pdr_eligible > 0``).  Parameter-dependent features use NOT_APPLICABLE
+    when the required input is absent.
+
+    Args:
+        request: The original period calculation request.
+        amounts: Computed monetary amounts for the period.
 
     Returns:
         One :class:`~ccnl_engine.payroll.domain.trace.DecisionTrace` per feature.
     """
     traces: list[DecisionTrace] = [
-        DecisionTrace(feature=f, state=TraceState.COMPUTED) for f in _STANDARD_FEATURES
+        DecisionTrace(feature=f, state=TraceState.COMPUTED) for f in _ALWAYS_COMPUTED
     ]
+    # Seniority: NOT_APPLICABLE when the caller did not supply seniority_months,
+    # meaning seniority increments were not evaluated for this employee.
+    seniority_state = (
+        TraceState.NOT_APPLICABLE
+        if request.seniority_months is None
+        else TraceState.COMPUTED
+    )
+    traces.append(DecisionTrace(feature="seniority", state=seniority_state))
+
     present = {type(e) for e in request.events}
     for event_cls, feature in _EVENT_FEATURE_MAP:
         state = TraceState.COMPUTED if event_cls in present else TraceState.SKIPPED
         traces.append(DecisionTrace(feature=feature, state=state))
+
+    # bonus_pdr is COMPUTED only when PdR substitute tax was actually applied.
+    pdr_state = (
+        TraceState.COMPUTED if amounts.pdr_eligible > _ZERO else TraceState.SKIPPED
+    )
+    traces.append(DecisionTrace(feature="bonus_pdr", state=pdr_state))
+
     na = TraceState.NOT_APPLICABLE
     ok = TraceState.COMPUTED
     traces.extend([
