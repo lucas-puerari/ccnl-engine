@@ -40,7 +40,6 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.period import PeriodState
-    from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 
 @dataclass(frozen=True)
@@ -61,15 +60,6 @@ class _PeriodAmounts:
     period_taxable: Decimal
     period_substitute_tax: Decimal
     pdr_eligible: Decimal
-
-
-def _as_of(period_id: PeriodId) -> date:
-    """Return the first calendar day of the competence period.
-
-    Returns:
-        ``date(year, month, 1)`` for the given period.
-    """
-    return date(period_id.year, period_id.month, 1)
 
 
 def _resolve_chain(
