@@ -327,7 +327,7 @@ def calculate_period(
     tax_delta = 0 if run_kind == "adjustment" else 1
     op = request.opening_state
     closing = PeriodState(
-        tax_year=period_year,
+        tax_year=tctx.fiscal_year,
         regular_periods_closed=op.regular_periods_closed + regular_delta,
         tax_withholding_periods_closed=(op.tax_withholding_periods_closed + tax_delta),
         closed_run_ids=op.closed_run_ids | {run_id},
