@@ -272,3 +272,24 @@ class TestYearResultStatus:
         )
         assert year.status is _REJECTED
         assert year.issues == (first, second, third)
+
+
+def test_year_issues_are_listed_once(year_result: YearCalculationResult) -> None:
+    """An issue repeated on every run is listed once, at its first run.
+
+    The same code with another message is a different issue and is kept.
+    """
+    first_run, second_run, *rest = year_result.period_results
+    repeated = _issue(_PROVISIONAL, code="repeated")
+    other = CalculationIssue(
+        code="repeated", message="another message", status=_PROVISIONAL
+    )
+    year = replace(
+        year_result,
+        period_results=(
+            replace(first_run, issues=(repeated,)),
+            replace(second_run, issues=(repeated, other)),
+            *(replace(r, issues=(repeated,)) for r in rest),
+        ),
+    )
+    assert year.issues == (repeated, other)

@@ -32,9 +32,13 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "family_deductions": TraceState.NOT_APPLICABLE,
     "ulteriore_detrazione_lavoro": TraceState.NOT_APPLICABLE,
     "trattamento_integrativo": TraceState.NOT_APPLICABLE,
+    "somma_esente": TraceState.NOT_APPLICABLE,
+    "withholding_shortfall": TraceState.NOT_APPLICABLE,
     "addizionale_regionale": TraceState.NOT_APPLICABLE,
     "addizionale_comunale": TraceState.NOT_APPLICABLE,
     "bonus_pdr": TraceState.SKIPPED,
+    "rinnovo_substitute_tax": TraceState.NOT_APPLICABLE,
+    "notte_festivi_turni_substitute_tax": TraceState.NOT_APPLICABLE,
 }
 
 _STATE_OF_STATUS: dict[CalculationStatus, TraceState] = {

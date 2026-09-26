@@ -5,8 +5,8 @@ Every run opens with a `PayrollState` and returns the next one as
 
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
-| `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld, trattamento integrativo, somma esente, night/holiday/shift cap |
-| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente, L. 207/2024 art. 1 c. 7) |
+| `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld, trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
+| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) |
 
 `state.tax_year` is a shortcut for `state.ytd.tax_year`.
 
@@ -48,8 +48,11 @@ that would break this is rejected; a run that produces one fails with
 `fringe.taxed <= fringe.value`: taxable income can exceed gross (a fringe
 benefit above the threshold is taxable without cash gross).
 
-The trattamento integrativo and the somma esente share one account schema,
-`CreditAccount` (`TrattamentoAccount`, `SommaEsenteAccount`):
+The trattamento integrativo, the somma esente and the ulteriore detrazione
+share one account schema, `CreditAccount` (`TrattamentoAccount`,
+`SommaEsenteAccount`, `UlterioreDetrazioneAccount`; for the deduction,
+`recognized` is the part the withholding applied, see
+[Fiscal](fiscal.md#ulteriore-detrazione-recognized-and-recovered)):
 
 | Field | Meaning |
 |---|---|
@@ -144,11 +147,14 @@ year: `PayrollState.zero()` or the result of `close_tax_year`.
 
 ## Recovery carried into the next year
 
-The conguaglio of year N can find that trattamento integrativo or somma
-esente was not due. Above 60 EUR the recovery runs in equal installments
-from the payslip of the conguaglio (eight for the trattamento integrativo,
-D.L. 3/2020 art. 1 c. 3; ten for the somma esente, L. 207/2024 art. 1 c. 7),
-so it often continues into N+1.
+The conguaglio of year N can find that trattamento integrativo, somma
+esente or ulteriore detrazione was not due. Above 60 EUR the recovery runs
+in equal installments from the payslip of the conguaglio (eight for the
+trattamento integrativo, D.L. 3/2020 art. 1 c. 3; ten for the somma esente
+and the ulteriore detrazione, L. 207/2024 art. 1 c. 7), so it often
+continues into N+1. The ulteriore detrazione installments after the first
+start in N+1; an employment that ends in N recovers that excess in full on
+its last run.
 
 - Installments posted in N enter `recovered` of the N credit account.
 - Installments posted in N+1 are a negative tax credit line on the payslip

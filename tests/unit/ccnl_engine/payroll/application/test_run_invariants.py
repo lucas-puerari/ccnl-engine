@@ -9,7 +9,7 @@ from functools import cache
 
 import pytest
 
-from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.engine.errors import DataIntegrityError, OutOfScopeError
 from ccnl_engine.payroll.application._period_checks import check_net_covered
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
@@ -43,7 +43,11 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TrattamentoAccount
+from ccnl_engine.payroll.domain.ytd_accounts import (
+    EarningsYtd,
+    TrattamentoAccount,
+    WithholdingShortfall,
+)
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -193,6 +197,20 @@ class TestIrpefAnnualReconciliation:
         assert violation.invariant_id == "irpef_annual_reconciliation"
         assert violation.actual == violation.expected + 1  # type: ignore[operator]
 
+    def test_shortfall_left_counts_as_due(self) -> None:
+        """IRPEF the pay did not cover still settles the year with it."""
+        previous, last = _last_two()
+        tax = last.closing_state.ytd.tax
+        short = _with_ytd(
+            last,
+            tax=replace(tax, irpef=tax.irpef - 30),
+            shortfall=WithholdingShortfall(irpef=Decimal(30)),
+        )
+        assert (
+            check_irpef_annual_reconciliation(short, previous.closing_state, RunFacts())
+            == []
+        )
+
     def test_one_cent_is_within_rounding(self) -> None:
         """A one-cent difference is rounding, not a violation."""
         previous, last = _last_two()
@@ -318,6 +336,17 @@ class TestNetPayNonNegative:
         (violation,) = check_signs(bad)
         assert violation.invariant_id == "net_pay_non_negative"
         assert violation.actual == Decimal("-19.08")
+
+    def test_negative_net_with_absences_is_out_of_scope(self) -> None:
+        """Deductions other than the capped taxes above the pay left raise."""
+        bad = replace(
+            _run(),
+            period_net=Decimal("-5.00"),
+            unpaid_absence_deduction=Decimal(2000),
+        )
+        with pytest.raises(OutOfScopeError, match=r"other than IRPEF") as exc:
+            check_net_covered(bad)
+        assert exc.value.reason == "withholding_shortfall"
 
     def test_negative_net_without_absences_reaches_the_invariant(self) -> None:
         """Without absences a negative net is left to the invariant."""

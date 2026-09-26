@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -10,6 +10,7 @@ from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import (
+    ULTERIORE_RECOVERY,
     EmploymentObligations,
     RecoveryObligation,
 )
@@ -20,6 +21,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     FringeYtd,
     RegimeCapAccount,
     TaxYtd,
+    WithholdingShortfall,
 )
 
 if TYPE_CHECKING:
@@ -63,6 +65,7 @@ class RunOutcome:
         recovery_plan: Trattamento integrativo plan of the current tax year
             after the run, if any.
         carried: Recoveries of earlier tax years still running after it.
+        shortfall: IRPEF and surtax not yet withheld after the run.
     """
 
     tax_year: int
@@ -76,6 +79,7 @@ class RunOutcome:
     somma_esente: SommaEsenteOutcome
     recovery_plan: RecoveryPlan | None
     carried: tuple[RecoveryObligation, ...]
+    shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
 
 
 def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
@@ -85,7 +89,8 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         The opening tax year state advanced by the run.  The obligations
         hold the carried recoveries still running, then the recoveries of
         the current tax year running after the run: trattamento integrativo
-        first, then somma esente.
+        first, then somma esente, then the ulteriore detrazione, whose
+        installments start on the first run of the next tax year.
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
@@ -98,9 +103,15 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         msg = f"Closing state rejected: {exc}"
         raise DataIntegrityError(msg) from exc
     somma = outcome.somma_esente
+    ulteriore = outcome.amounts.ulteriore
+    ulteriore_plan = (
+        ulteriore.plan
+        if ulteriore is not None and ulteriore.plan is not None
+        else opening.obligations.recovery_of(outcome.tax_year, ULTERIORE_RECOVERY)
+    )
     current = tuple(
         RecoveryObligation(tax_year=outcome.tax_year, plan=plan)
-        for plan in (outcome.recovery_plan, somma.plan)
+        for plan in (outcome.recovery_plan, somma.plan, ulteriore_plan)
         if plan is not None
     )
     return PeriodState(
@@ -150,7 +161,17 @@ def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
             None if tratt is None else tratt.reason_code,
         ),
         somma_esente=op.somma_esente.after(somma.amount, somma.due, somma.reason),
+        ulteriore_detrazione=(
+            op.ulteriore_detrazione
+            if amounts.ulteriore is None
+            else op.ulteriore_detrazione.after(
+                amounts.ulteriore.amount,
+                amounts.ulteriore.due,
+                amounts.ulteriore.reason,
+            )
+        ),
         work_time_regime=RegimeCapAccount(
             used=op.work_time_regime.used + events.work_time_cap_used
         ),
+        shortfall=outcome.shortfall,
     )

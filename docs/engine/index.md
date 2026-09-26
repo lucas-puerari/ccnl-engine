@@ -175,8 +175,16 @@ employment dates and never from the runs already closed:
   quattordicesima accrues March to June, 4/12);
 - a month qualifies when it has at least 15 accruing calendar days. This is
   an engine default, not read from the CCNL files, which carry no accrual
-  threshold; CCNLs word it differently (some count only fractions above 15
-  days);
+  threshold and no clause text to check it against. CCNLs word it
+  differently: Metalmeccanico industria (Federmeccanica-Assistal), art. 7
+  "Tredicesima mensilità", reads "La frazione di mese superiore a 15 giorni
+  va considerata a questi effetti come mese intero" (text as published by
+  contrattometalmeccanici.it, not the signed agreement), so a month of
+  exactly 15 days does not accrue there and the engine counts it. The
+  default is kept until the threshold is carried per CCNL in the data, with
+  the signed text as source; a caller building the `ExtraMonthAccrual` of a
+  `calculate_period` request can pass `MonthAccrualRule(min_days=16)` for
+  the stricter reading;
 - an `AbsenceEvent` with `suspends_accrual=True` (for example aspettativa non
   retribuita) removes its calendar days from every window. The caller says
   which absences suspend accrual; an ordinary unpaid absence reduces pay,

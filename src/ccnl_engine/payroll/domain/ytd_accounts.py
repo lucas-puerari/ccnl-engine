@@ -29,6 +29,8 @@ __all__ = [
     "SommaEsenteAccount",
     "TaxYtd",
     "TrattamentoAccount",
+    "UlterioreDetrazioneAccount",
+    "WithholdingShortfall",
 ]
 
 
@@ -131,6 +133,38 @@ class TaxYtd:
         A negative or non-finite total raises ``ValueError``.
         """
         _check_non_negative(self)
+
+
+@dataclass(frozen=True)
+class WithholdingShortfall:
+    """Tax due on earlier runs of the tax year and not yet withheld.
+
+    A run withholds IRPEF and surtax only up to the pay left after the
+    contributions and the other deductions; the rest is carried and added
+    to what the next runs withhold.  What is still carried after the last
+    withholding slot is not withheld by the employer: it is communicated to
+    the worker, who pays it (art. 33 c. 4 D.Lgs. 33/2025, ex art. 23 c. 3
+    DPR 600/1973).
+
+    Attributes:
+        irpef: IRPEF not yet withheld.
+        surtax: Regional and municipal surtax not yet withheld.
+    """
+
+    irpef: Decimal = _ZERO
+    surtax: Decimal = _ZERO
+
+    def __post_init__(self) -> None:
+        """Validate that both amounts are non-negative.
+
+        A negative or non-finite amount raises ``ValueError``.
+        """
+        _check_non_negative(self)
+
+    @property
+    def total(self) -> Decimal:
+        """IRPEF plus surtax not yet withheld."""
+        return self.irpef + self.surtax
 
 
 @dataclass(frozen=True)
@@ -239,6 +273,21 @@ class SommaEsenteAccount(CreditAccount):
     """
 
     KIND: ClassVar[str] = "somma_esente"
+
+
+@dataclass(frozen=True)
+class UlterioreDetrazioneAccount(CreditAccount):
+    """YTD account of the ulteriore detrazione (L. 207/2024 art. 1 c. 6).
+
+    The deduction lowers the IRPEF withheld rather than being paid, so
+    ``recognized`` is the part of the annual deduction the withholding of
+    the runs before the conguaglio has already applied: each run recognizes
+    ``(due - net) / remaining slots``, never less than zero.  At the
+    conguaglio the excess over the annual due is recovered, in ten
+    installments above 60 EUR (art. 1 c. 7).
+    """
+
+    KIND: ClassVar[str] = "ulteriore_detrazione_lavoro"
 
 
 @dataclass(frozen=True)

@@ -7,9 +7,12 @@ Implemented invariants:
         itself is not capped: it measures the headroom, so it can exceed
         the massimale.
     irpef_annual_reconciliation: on the run that closes the last
-        withholding slot of the tax year, the IRPEF withheld YTD equals the
-        net annual IRPEF of the tax computation, rebuilt from its components
-        (gross IRPEF less the deductions, floored at zero), within one cent;
+        withholding slot of the tax year, the IRPEF withheld YTD plus the
+        IRPEF the pay could not cover (still carried as a shortfall) and
+        the ulteriore detrazione deferred to installments equals
+        the net annual IRPEF of the tax computation, rebuilt from its
+        components (gross IRPEF less the deductions, floored at zero),
+        within one cent;
         and the taxable income that computation used equals the final
         taxable income YTD, within two cents of rounding (the projection
         rounds the employee INPS of the run on the total rate, the ledger
@@ -26,6 +29,7 @@ from ccnl_engine.payroll.application._reconcile_types import (
     ReconciliationViolation,
 )
 from ccnl_engine.payroll.application.state_invariants import run_id_of
+from ccnl_engine.payroll.domain.obligations import ULTERIORE_RECOVERY
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application._reconcile_types import RunFacts
@@ -107,20 +111,31 @@ def check_irpef_annual_reconciliation(
 
     Returns:
         Violations when, on the run closing the last slot, the IRPEF
-        withheld YTD differs from the net annual IRPEF by more than a cent,
-        or the taxable income of the tax computation differs from the final
-        taxable income YTD by more than two cents.
+        withheld YTD plus the IRPEF shortfall still carried differs from
+        the net annual IRPEF by more than a cent, or the taxable income of
+        the tax computation differs from the final taxable income YTD by
+        more than two cents.
     """
     if not _closes_last_slot(result, opening):
         return []
     violations: list[ReconciliationViolation] = []
     due = net_annual_irpef(result.tax_computation)
-    withheld = result.closing_state.ytd.tax.irpef
+    ytd = result.closing_state.ytd
+    deferred = result.closing_state.obligations.recovery_of(
+        ytd.tax_year or 0, ULTERIORE_RECOVERY
+    )
+    withheld = (
+        ytd.tax.irpef
+        + ytd.shortfall.irpef
+        + (_ZERO if deferred is None else deferred.residual)
+    )
     if abs(withheld - due) > _CENT:
         violations.append(
             ReconciliationViolation(
                 invariant_id=InvariantCode.IRPEF_ANNUAL_RECONCILIATION,
-                message="IRPEF withheld YTD differs from the net annual IRPEF",
+                message=(
+                    "IRPEF withheld YTD and shortfall differ from the net annual IRPEF"
+                ),
                 expected=due,
                 actual=withheld,
             )

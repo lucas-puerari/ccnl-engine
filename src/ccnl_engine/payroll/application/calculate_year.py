@@ -101,8 +101,21 @@ class YearCalculationResult:
 
     @property
     def issues(self) -> tuple[CalculationIssue, ...]:
-        """Issues of every period, concatenated in payment order."""
-        return tuple(issue for r in self.period_results for issue in r.issues)
+        """Issues of every period in payment order, each reported once.
+
+        A run repeats the issue of an assumption that holds for the whole
+        year (e.g. ``somma_esente_income_assumed``) on every payslip; the
+        year lists it once, at its first occurrence.  Issues with the same
+        code and a different message (e.g. two shortfall amounts) are kept.
+        The issues of a single run stay on :attr:`period_results`.
+        """
+        seen: set[tuple[str, str]] = set()
+        issues: list[CalculationIssue] = []
+        for issue in (i for r in self.period_results for i in r.issues):
+            if (issue.code, issue.message) not in seen:
+                seen.add((issue.code, issue.message))
+                issues.append(issue)
+        return tuple(issues)
 
     @property
     def decisions(self) -> tuple[CalculationDecision, ...]:

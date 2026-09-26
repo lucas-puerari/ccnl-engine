@@ -17,7 +17,7 @@ Bugs covered:
    Source: D.L. 3/2020, art. 1 comma 3 — if the amount to recover exceeds 60 EUR
    the recovery must occur in eight equal installments ("otto rate di pari
    ammontare") starting from the reconciliation payslip.
-   Current: _resolve_trattamento divides the recovery by remaining periods,
+   Current: resolve_trattamento divides the recovery by remaining periods,
    producing a rate proportional to calendar position rather than a fixed
    eight-installment plan.
 """

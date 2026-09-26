@@ -4,7 +4,8 @@ Unlike :class:`~ccnl_engine.payroll.domain.tax_year_state.TaxYearState`,
 nothing here restarts on 1 January: an installment recovery opened by the
 conguaglio of year N keeps running on the payslips of year N+1 until its
 last installment (D.L. 3/2020 art. 1 c. 3 for the trattamento integrativo,
-L. 207/2024 art. 1 c. 7 for the somma esente).
+L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
+detrazione).
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ __all__ = [
     "RECOVERY_RULES",
     "SOMMA_ESENTE_RECOVERY",
     "TRATTAMENTO_RECOVERY",
+    "ULTERIORE_RECOVERY",
     "EmploymentObligations",
     "RecoveryObligation",
     "RecoveryRule",
@@ -27,6 +29,8 @@ __all__ = [
 TRATTAMENTO_RECOVERY = "trattamento_integrativo"
 #: ``RecoveryPlan.kind`` of the somma esente recovery.
 SOMMA_ESENTE_RECOVERY = "somma_esente"
+#: ``RecoveryPlan.kind`` of the ulteriore detrazione recovery.
+ULTERIORE_RECOVERY = "ulteriore_detrazione_lavoro"
 _MIN_TAX_YEAR = 2020
 
 
@@ -44,11 +48,12 @@ class RecoveryRule:
     installments: int
 
 
-#: Recovery rule per recovered credit.  Both credits recover up to 60 EUR on
+#: Recovery rule per recovered credit.  Every credit recovers up to 60 EUR on
 #: one payslip; above it the installments differ.
 RECOVERY_RULES: dict[str, RecoveryRule] = {
     TRATTAMENTO_RECOVERY: RecoveryRule(rule="dl3-2020-art1-c3", installments=8),
     SOMMA_ESENTE_RECOVERY: RecoveryRule(rule="l207-2024-art1-c7", installments=10),
+    ULTERIORE_RECOVERY: RecoveryRule(rule="l207-2024-art1-c7", installments=10),
 }
 
 

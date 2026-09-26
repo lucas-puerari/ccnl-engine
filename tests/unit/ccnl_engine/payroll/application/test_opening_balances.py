@@ -100,3 +100,45 @@ def test_rejects_a_recovery_opened_after_the_tax_year() -> None:
             tax_year=2026,
             recoveries=(RecoveryObligation(tax_year=2027, plan=_PLAN),),
         )
+
+
+def test_to_state_maps_due_reason_and_shortfall() -> None:
+    """The last annual due and reason of a credit and the shortfall carry over."""
+    ytd = (
+        OpeningBalances(
+            tax_year=2026,
+            trattamento_recognized=Decimal("600.00"),
+            trattamento_due=Decimal("1200.00"),
+            trattamento_reason="full_amount",
+            somma_esente_due=Decimal("0.00"),
+            somma_esente_reason="income_above_threshold",
+            ulteriore_recognized=Decimal("461.54"),
+            ulteriore_due=Decimal("1000.00"),
+            ulteriore_reason="share_recognized",
+            irpef_shortfall=Decimal("19.08"),
+            surtax_shortfall=Decimal("2.10"),
+        )
+        .to_state()
+        .ytd
+    )
+
+    assert ytd.trattamento.due == Decimal("1200.00")
+    assert ytd.trattamento.reason == "full_amount"
+    assert ytd.somma_esente.due == Decimal("0.00")
+    assert ytd.somma_esente.reason == "income_above_threshold"
+    assert ytd.ulteriore_detrazione.net == Decimal("461.54")
+    assert ytd.ulteriore_detrazione.due == Decimal("1000.00")
+    assert ytd.shortfall.irpef == Decimal("19.08")
+    assert ytd.shortfall.surtax == Decimal("2.10")
+
+
+def test_rejects_a_reason_that_is_not_a_code() -> None:
+    """A reason is a lower snake case code, as on the engine's own accounts."""
+    with pytest.raises(InvalidInputError, match="lower snake case"):
+        OpeningBalances(tax_year=2026, trattamento_reason="Full amount")
+
+
+def test_unknown_due_is_accepted() -> None:
+    """A due left ``None`` is not checked for cents."""
+    state = OpeningBalances(tax_year=2026, ulteriore_due=None).to_state()
+    assert state.ytd.ulteriore_detrazione.due is None
