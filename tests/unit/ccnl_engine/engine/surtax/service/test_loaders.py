@@ -7,7 +7,7 @@ from unittest.mock import patch
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.engine.primitives import Bracket
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
@@ -93,10 +93,11 @@ class TestLoadSurtaxRules:
                 f"{code}: last bracket is not unbounded"
             )
 
-    def test_unknown_year_raises_file_not_found(self) -> None:
-        """Requesting a non-bundled year raises FileNotFoundError."""
-        with pytest.raises(FileNotFoundError):
+    def test_unknown_year_raises_unsupported_tax_year(self) -> None:
+        """Requesting a non-bundled year raises UnsupportedTaxYearError."""
+        with pytest.raises(UnsupportedTaxYearError) as info:
             load_surtax_rules(1900)
+        assert info.value.year == 1900
 
 
 class TestSurtaxLoaderIdentity:

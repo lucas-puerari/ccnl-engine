@@ -51,8 +51,10 @@ class PayrollRun:
             - ``RunKind.ADJUSTMENT`` — conguaglio correction run.
             - ``RunKind.TERMINATION`` — cessazione run including TFR settlement.
 
-        month: Calendar month (1-12) in which the run is paid.
-        year: Tax year this run belongs to.
+        month: Calendar month (1-12) of the run.
+        year: Year of the run month.  The tax year follows from the payment
+            date (:class:`~ccnl_engine.payroll.domain.tax_year.TaxYearPolicy`)
+            and can be the next year when the run is paid late.
         run_id: Unique, deterministic identifier derived from year, month and
             kind, e.g. ``"2026-01-regular"`` or ``"2026-12-thirteenth"``.
             Computed automatically; do not pass to the constructor.
@@ -85,7 +87,7 @@ class PayrollRun:
         """Create a regular monthly run for the given year and month.
 
         Args:
-            year: Tax year.
+            year: Year of the run month.
             month: Calendar month (1-12).
 
         Returns:
@@ -99,7 +101,7 @@ class PayrollRun:
         """Create a tredicesima run paid in the given calendar month.
 
         Args:
-            year: Tax year.
+            year: Year of the run month.
             payment_month: Calendar month in which the tredicesima is paid.
 
         Returns:
@@ -112,7 +114,7 @@ class PayrollRun:
         """Create a quattordicesima run paid in the given calendar month.
 
         Args:
-            year: Tax year.
+            year: Year of the run month.
             payment_month: Calendar month in which the quattordicesima is paid.
 
         Returns:

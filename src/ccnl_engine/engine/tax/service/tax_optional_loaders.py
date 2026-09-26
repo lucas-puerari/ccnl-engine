@@ -29,6 +29,7 @@ from ccnl_engine.engine.tax.service.tax_resource_reader import (
     _as_ruleset,
     _read_json,
     _try_ruleset,
+    read_year_json,
 )
 
 
@@ -127,7 +128,7 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
     filename = f"family-deductions-{year}.json"
-    raw = _read_json(pkg, filename)
+    raw = read_year_json(pkg, filename, year)
     if raw.get("year") != year:
         msg = (
             f"{filename} year={raw.get('year')!r} "
@@ -201,7 +202,7 @@ def load_art15_deduction_rules(year: int) -> Art15DeductionRules:
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
     filename = f"art15-deductions-{year}.json"
-    raw = _read_json(pkg, filename)
+    raw = read_year_json(pkg, filename, year)
     if raw.get("year") != year:
         msg = (
             f"{filename} year={raw.get('year')!r} "

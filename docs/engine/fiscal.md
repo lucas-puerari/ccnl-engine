@@ -6,6 +6,10 @@ integrativo*, and optionally regional and municipal surcharges.
 See [Domain: IRPEF and surcharges](../domain/components.md#10-irpef-and-surcharges)
 for the legal background.
 
+The tax year of a run follows its payment date, with the 12 January
+extension of TUIR art. 51 c. 1: see
+[Tax year and payment date](index.md#tax-year-and-payment-date).
+
 ## IRPEF flow
 
 1. **Taxable income** = gross − INPS employee contributions

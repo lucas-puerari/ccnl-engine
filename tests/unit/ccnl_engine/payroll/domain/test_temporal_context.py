@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from datetime import date
 
+import pytest
+
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employment_context import TemporalContext
+from ccnl_engine.payroll.domain.tax_year import TaxYearBasis, TaxYearPolicy
 
 
 class TestTemporalContextFromPeriod:
@@ -16,9 +20,34 @@ class TestTemporalContextFromPeriod:
         assert tctx.competence == date(2026, 6, 1)
 
     def test_fiscal_year_equals_period_year(self) -> None:
-        """Fiscal year equals the period year for single-year contracts."""
+        """A run paid in its competence year belongs to that year."""
         tctx = TemporalContext.from_period(2026, 6, date(2026, 6, 28))
         assert tctx.fiscal_year == 2026
+        assert tctx.fiscal_year_basis is TaxYearBasis.CASH
+
+    def test_fiscal_year_extended_cash(self) -> None:
+        """December paid on 10 January stays in the competence year."""
+        tctx = TemporalContext.from_period(2026, 12, date(2027, 1, 10))
+        assert tctx.competence == date(2026, 12, 1)
+        assert tctx.fiscal_year == 2026
+        assert tctx.fiscal_year_basis is TaxYearBasis.EXTENDED_CASH
+
+    def test_fiscal_year_follows_late_payment(self) -> None:
+        """December paid in June two years later belongs to the payment year."""
+        tctx = TemporalContext.from_period(2026, 12, date(2028, 6, 28))
+        assert tctx.fiscal_year == 2028
+
+    def test_explicit_policy(self) -> None:
+        """An injected policy is used instead of the default."""
+        tctx = TemporalContext.from_period(
+            2026, 12, date(2027, 1, 13), policy=TaxYearPolicy()
+        )
+        assert tctx.fiscal_year == 2027
+
+    def test_payment_before_competence_raises(self) -> None:
+        """A payment before the competence period is rejected."""
+        with pytest.raises(InvalidInputError):
+            TemporalContext.from_period(2026, 6, date(2026, 5, 31))
 
     def test_payment_equals_supplied_payment_date(self) -> None:
         """Payment axis equals the supplied payment_date unchanged."""

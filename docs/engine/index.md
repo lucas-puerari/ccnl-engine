@@ -65,6 +65,34 @@ result = engine.calculate(
 `calculate()` returns a `PeriodCalculationResult` with gross, net, pay items,
 and a full ledger of every accounting entry. See [API: Engine](../api/engine.md).
 
+## Tax year and payment date
+
+`payment_date` is required on every `PayrollRequest`. It selects the tax year
+of the run (TUIR art. 51 c. 1, `TaxYearPolicy`), while the run year and month
+keep selecting the contractual values (salary table, seniority, allowances):
+
+| Payment of a December 2026 run | Tax year | Rule |
+|---|---|---|
+| any day of December 2026 | 2026 | cash |
+| 1 to 12 January 2027 | 2026 | *cassa allargata* |
+| 13 January 2027 or later in 2027 | 2027 | cash |
+| June 2028 | 2028 | cash |
+
+- The 12 January extension covers only runs of the previous year: December
+  2025 paid on 10 January 2027 belongs to 2027.
+- A payment before the first day of the run month raises `InvalidInputError`.
+- There is no upper bound on the payment date. Separate taxation of arrears
+  (TUIR art. 17) is not modelled.
+- The tax tables, INPS rates, surtax tables and year-to-date state are those
+  of the attributed tax year. A year the bundle does not ship (2027 today)
+  raises `UnsupportedTaxYearError` with the year, instead of computing the
+  run with the rules of another year.
+- `opening_state.tax_year`, when set, must match the attributed tax year: a
+  December 2026 run paid on 13 January 2027 does not close into the 2026
+  state and raises `InvalidInputError`. Start the new year from
+  `PayrollState.zero()`; carrying obligations across years is not supported
+  yet.
+
 ## Full year: `calculate_year()`
 
 `calculate_year()` runs every payslip of the year. The calendar is derived
@@ -102,6 +130,22 @@ full-year worker less than the fraction, so a tredicesima stays in December. Pay
 the ratei monthly (mensilizzazione) is not supported: the engine does not
 pay ratei inside regular runs. The effective calendar and the override are
 returned on the year result as `calendar` and `calendar_override`.
+
+Every run is paid on `payment_day` of its own month, 28 by default. Any day
+from 1 to 28 is accepted, so every payment falls in the requested year and
+every run belongs to that tax year; another day raises `InvalidInputError`.
+
+```python
+tenth = engine.calculate_year(
+    PayrollYearRequest(
+        year=2026,
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="4",
+        payment_day=10,
+    )
+)
+print(tenth.period_results[0].payment_date)  # 2026-01-10
+```
 
 ### Employment period
 

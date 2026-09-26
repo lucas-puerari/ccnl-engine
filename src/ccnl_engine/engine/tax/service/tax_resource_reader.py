@@ -6,6 +6,7 @@ import importlib.resources
 import json
 from typing import TYPE_CHECKING, Any
 
+from ccnl_engine.engine.errors import UnsupportedTaxYearError
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.io.service.loader_utils import (
     as_ruleset,
@@ -56,6 +57,34 @@ def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
     return data
 
 
+def read_year_json(
+    pkg: Traversable, filename: str, year: int, sector: str | None = None
+) -> dict[str, Any]:
+    """Read the year-keyed data file *filename* from *pkg*.
+
+    Args:
+        pkg: Package data directory.
+        filename: File name for *year*.
+        year: Tax year the file belongs to.
+        sector: Tax sector of the file, or ``None`` when it covers all.
+
+    Returns:
+        The JSON payload, with its ruleset hash verified.
+
+    Raises:
+        UnsupportedTaxYearError: When the bundle has no such file.
+    """
+    try:
+        return _read_json(pkg, filename)
+    except FileNotFoundError as exc:
+        raise UnsupportedTaxYearError(year, sector=sector) from exc
+
+
+def _read_year_json(package: str, year: int, sector: TaxSector) -> dict[str, Any]:
+    pkg = importlib.resources.files(package)
+    return read_year_json(pkg, f"{year}-{sector.value}.json", year, sector.value)
+
+
 def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
     """Read the IRPEF/TFR block of a tax year file as a raw dict.
 
@@ -63,12 +92,13 @@ def read_tax_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
         year: Tax year.
         sector: INPS sector classification.
 
+    A year missing from the bundle raises
+    :class:`~ccnl_engine.engine.errors.UnsupportedTaxYearError`.
+
     Returns:
         The ``knowledge/tax/data/<year>-<sector>.json`` payload.
     """
-    filename = f"{year}-{sector.value}.json"
-    pkg = importlib.resources.files("ccnl_engine.knowledge.tax.data")
-    return _read_json(pkg, filename)
+    return _read_year_json("ccnl_engine.knowledge.tax.data", year, sector)
 
 
 def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
@@ -81,6 +111,4 @@ def read_inps_rules_raw(year: int, sector: TaxSector) -> dict[str, Any]:
     Returns:
         The ``knowledge/inps/data/<year>-<sector>.json`` payload.
     """
-    filename = f"{year}-{sector.value}.json"
-    pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
-    return _read_json(pkg, filename)
+    return _read_year_json("ccnl_engine.knowledge.inps.data", year, sector)

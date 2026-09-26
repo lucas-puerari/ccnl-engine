@@ -175,6 +175,7 @@ YearCalculationResult` with one result per run and aggregated annual totals.
             comune_belfiore=request.comune_belfiore,
             family_composition=request.family_composition,
             has_dependent_children=request.has_dependent_children,
+            payment_day=request.payment_day,
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,

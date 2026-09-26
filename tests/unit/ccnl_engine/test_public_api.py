@@ -42,6 +42,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "SupplementaryAllowance",
     "UnknownCcnlError",
     "UnknownLevelError",
+    "UnsupportedTaxYearError",
     "WorkerCategory",
     "engine_version",
     "get_ccnl",

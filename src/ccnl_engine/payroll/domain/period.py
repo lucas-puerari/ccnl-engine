@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import Employer
@@ -17,6 +19,7 @@ from ccnl_engine.payroll.domain.employment import (
     WeeklyHours,
     check_within_full_time,
 )
+from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -26,8 +29,6 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
 )
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.engine.capability_catalog import CapabilityReport
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
@@ -138,10 +139,13 @@ class PeriodCalculationRequest:
     """Input for a single period-first payroll calculation.
 
     Attributes:
-        period_id: The competence period (year, month). Governs all
-            temporal lookups: salary table, tax rules, INPS rates.
-        payment_date: Date on which the payment is made. Propagated to
-            every ledger entry and pay item.
+        period_id: The competence period (year, month).  Governs the
+            contractual lookups: salary table, seniority, allowances.
+        payment_date: Date on which the payment is made, not before the
+            first day of ``period_id``.  Selects the tax year, hence the tax
+            rules and INPS rates
+            (:class:`~ccnl_engine.payroll.domain.tax_year.TaxYearPolicy`),
+            and is propagated to every ledger entry and pay item.
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``metalmeccanico-federmeccanica.json``.
         level_code: Worker's contractual level code, e.g. ``C3``.
@@ -225,39 +229,44 @@ class PeriodCalculationRequest:
     withholding_schedule: WithholdingSchedule | None = None
 
     def __post_init__(self) -> None:
-        """Guard against cross-year state or schedule and hours above full time.
+        """Guard dates, cross-year state or schedule and hours above full time.
 
-        When ``opening_state.tax_year`` is set, it must match the period year.
+        The tax year of the run is attributed from ``payment_date`` by
+        :class:`~ccnl_engine.payroll.domain.tax_year.TaxYearPolicy`.  When
+        ``opening_state.tax_year`` is set, it must match that tax year.
         States produced by :func:`~ccnl_engine.payroll.application\
 .calculate_period.calculate_period` always carry ``tax_year``; manually
         constructed states default to ``None`` and are not checked.
+        ``weekly_hours`` above ``full_time_weekly_hours`` raises
+        :class:`ValueError`.
 
         Raises:
-            ValueError: When ``opening_state.tax_year`` is not ``None`` and
-                differs from ``period_id.year``, when ``weekly_hours``
-                exceeds ``full_time_weekly_hours``, or when
-                ``withholding_schedule`` belongs to another year.
+            InvalidInputError: When ``payment_date`` is before the start of
+                the competence period, when ``opening_state.tax_year`` is not
+                ``None`` and differs from the attributed tax year, or when
+                ``withholding_schedule`` belongs to another tax year.
         """
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
-        if (
-            self.opening_state.tax_year is not None
-            and self.opening_state.tax_year != self.period_id.year
-        ):
+        competence = date(self.period_id.year, self.period_id.month, 1)
+        tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
+        opening_year = self.opening_state.tax_year
+        if opening_year is not None and opening_year != tax_year:
             msg = (
-                f"opening_state.tax_year ({self.opening_state.tax_year}) "
-                f"does not match period year ({self.period_id.year}): "
-                "pass PeriodState.zero() to start a new tax year"
+                f"run {self.period_id.year}-{self.period_id.month:02d} paid on "
+                f"{self.payment_date.isoformat()} belongs to tax year {tax_year} "
+                f"(TUIR art. 51 c. 1), but opening_state is for tax year "
+                f"{opening_year}: pass PeriodState.zero() to start a new tax "
+                "year; carrying year-to-date state across tax years is not "
+                "supported"
             )
-            raise ValueError(msg)
-        if (
-            self.withholding_schedule is not None
-            and self.withholding_schedule.year != self.period_id.year
-        ):
+            raise InvalidInputError(msg, feature="tax_year")
+        schedule = self.withholding_schedule
+        if schedule is not None and schedule.year != tax_year:
             msg = (
-                f"withholding_schedule.year ({self.withholding_schedule.year}) "
-                f"does not match period year ({self.period_id.year})"
+                f"withholding_schedule.year ({schedule.year}) "
+                f"does not match tax year ({tax_year})"
             )
-            raise ValueError(msg)
+            raise InvalidInputError(msg, feature="tax_year")
 
 
 @dataclass(frozen=True)
