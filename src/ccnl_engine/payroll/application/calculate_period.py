@@ -25,6 +25,10 @@ from ccnl_engine.payroll.application._capability_traces import (
 from ccnl_engine.payroll.application._capability_traces import (
     traces_to_observed as _traces_to_observed,
 )
+from ccnl_engine.payroll.application._extra_month_accrual import (
+    run_fraction,
+    settle_extra_months,
+)
 from ccnl_engine.payroll.application._period_amounts import (
     _compute_amounts,
     _domestic_hourly_rate,
@@ -70,6 +74,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TrattamentoAccount,
 )
 from ccnl_engine.payroll.service.category import resolve_worker_category
+from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
@@ -164,11 +169,7 @@ def calculate_period(
     slots_closed = request.opening_state.tax_withholding_periods_closed
     upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
     chain = _apply_extra_month_policy(
-        chain,
-        run_kind,
-        request.opening_state.regular_periods_closed,
-        accrual_window_start=request.extra_month_accrual_start,
-        max_fraction=request.extra_month_max_fraction,
+        chain, run_kind, run_fraction(request, ccnl, tctx.competence)
     )
     monthly_gross = money(chain.base + chain.seniority + chain.allowances_total)
 
@@ -207,6 +208,18 @@ def calculate_period(
         notte_flat_rate=var_pay_rules.notte_turno.flat_tax_rate,
         notte_income_ceiling=var_pay_rules.notte_turno.income_ceiling,
     )
+    settlement = settle_extra_months(
+        request.extra_month_settlements,
+        chain,
+        cp,
+        tctx.payment,
+        run_id,
+        effective_resolver,
+        policy_context,
+    )
+    event_totals = settlement.added_to(event_totals)
+    event_items += settlement.items
+    event_entries += settlement.entries
 
     needs_surtax = request.regione is not None or request.comune_belfiore is not None
     surtax_rules = (
@@ -246,6 +259,11 @@ def calculate_period(
             else None
         ),
         domestic_hourly_rate=domestic_hr,
+        eligible_work_days=(
+            request.employment_period.days_in_year(tctx.fiscal_year)
+            if request.employment_period is not None
+            else DAYS_IN_YEAR
+        ),
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
     traces = _build_traces(request, amounts)

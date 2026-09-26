@@ -25,6 +25,7 @@ from ccnl_engine.payroll.service.contributions import (
 )
 from ccnl_engine.payroll.service.family_deductions import compute_family_deductions
 from ccnl_engine.payroll.service.fiscal_surtax import _compute_addizionali
+from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
@@ -265,6 +266,7 @@ def _compute_amounts(
     weekly_hours: int | None = None,
     contributable_hours: Decimal | None = None,
     domestic_hourly_rate: Decimal | None = None,
+    eligible_work_days: int = DAYS_IN_YEAR,
 ) -> tuple[_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None]:
     """Resolve all monetary amounts for the period from gross, events and YTD state.
 
@@ -272,7 +274,9 @@ def _compute_amounts(
     this run, plus ``upcoming_gross`` for the withholding slots still to
     come (net of employee INPS at the current rate).  On the last slot
     ``upcoming_gross`` is zero, so the projection equals the final taxable
-    income and the conguaglio settles on it.
+    income and the conguaglio settles on it.  ``eligible_work_days`` are
+    the days of employment in the tax year the deductions are proportioned
+    to.
 
     Returns:
         ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
@@ -342,6 +346,7 @@ def _compute_amounts(
         slots_closed=opening.tax_withholding_periods_closed,
         family_deductions=fam_ded,
         recovery_plan=opening.trattamento.plan,
+        eligible_work_days=eligible_work_days,
     )
     period_irpef = tax_comp.ordinary_tax
     period_tratt = tax_comp.trattamento_integrativo

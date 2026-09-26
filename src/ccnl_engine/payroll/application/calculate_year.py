@@ -12,7 +12,12 @@ from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.application._calendar import effective_calendar
+from ccnl_engine.payroll.application._extra_month_accrual import (
+    non_accruing_days,
+    termination_settlements,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
@@ -226,11 +231,12 @@ def calculate_year(
 
     Runs are selected from ``employment_period``: a regular run for each
     month with at least one employed day, an extra-month run only when its
-    payment month is such a month.  A regular run of a month the employment
-    covers only in part carries the full monthly pay and a
-    ``partial_month_not_prorated`` issue with provisional status.  CCNL and
-    level validity is not a run filter: a month the salary table does not
-    cover fails in the salary lookup instead of being dropped.
+    payment month is such a month.  A partly employed month keeps the full
+    monthly pay with a provisional ``partial_month_not_prorated`` issue.
+    Extra months accrue per qualifying month of their window
+    (:class:`~ccnl_engine.payroll.domain.accrual.ExtraMonthAccrual`); the
+    ratei of an extra month not paid before the termination are paid on the
+    last regular run.  CCNL and level validity is not a run filter.
 
     Args:
         year: The tax year.
@@ -263,9 +269,8 @@ def calculate_year(
         full_time_weekly_hours: Standard full-time weekly hours for the CCNL,
             used to compute the part-time fraction.  ``None`` when not applicable.
         employment_period: Employment start and optional end.  ``None``
-            computes every run of the calendar.  Otherwise it selects the
-            runs, and each extra-month run carries its accrual window with
-            the start clipped to the hire date.
+            computes every run of the calendar with full ratei.  Otherwise it
+            selects the runs and bounds the accrual windows.
         seniority_months: Months of continuous service for seniority resolution.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
@@ -273,8 +278,8 @@ def calculate_year(
             takes the category fixed by the level, if any.
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
-            (thirteenth, fourteenth) receive no events from this mapping;
-            use ``per_run_events`` for explicit run-level allocation.
+            receive no events from it.  An absence with ``suspends_accrual``
+            in either mapping removes its days from every accrual window.
         per_run_events: Optional mapping from ``run_id`` to events for that
             specific run.  Supports any run kind (regular, thirteenth, etc.).
             A run that appears in both ``period_events`` (by month) and
@@ -312,14 +317,17 @@ def calculate_year(
     year_calendar = effective_calendar(ccnl, year, calendar)
     schedule = _select_runs(year_calendar, employment_period)
     withholding_schedule = WithholdingSchedule.for_runs(schedule, year_calendar)
-    started_on = employment_period.started_on if employment_period else None
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
+    non_accruing = non_accruing_days(effective_period_events, effective_per_run_events)
     # Build a lookup from (run_kind, payment_month) to ExtraMonthSchedule.
     extra_month_index = {
         (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
     }
+    settlements = termination_settlements(
+        year_calendar, employment_period, non_accruing
+    )
 
     state = PeriodState.zero()
     results: list[PeriodCalculationResult] = []
@@ -347,17 +355,14 @@ def calculate_year(
             seniority_months=seniority_months,
             roles=roles,
             category=category,
-            extra_month_accrual_start=(
-                extra_sched.accrual_window_start_month if extra_sched is not None else 1
-            ),
-            extra_month_max_fraction=(
-                extra_sched.max_fraction if extra_sched is not None else Decimal(1)
-            ),
-            extra_month_accrual_window=(
-                extra_sched.accrual_window(year, started_on)
+            extra_month_accrual=(
+                ExtraMonthAccrual.of(
+                    extra_sched, year, employment_period, non_accruing_days=non_accruing
+                )
                 if extra_sched is not None
                 else None
             ),
+            extra_month_settlements=settlements.get(run.run_id, ()),
             events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,

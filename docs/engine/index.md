@@ -121,11 +121,31 @@ define no daily divisor, so the engine does not choose between calendar-day
 and 26ths proration. The run carries a `partial_month_not_prorated` issue and
 its status is `PROVISIONAL`.
 
-Each extra-month run carries its accrual window on the period request, with
-the start clipped to the hire date. The rateo amount does not use it yet:
-it still counts the regular runs closed, plus the months before 1 January
-of a cross-year window. Liquidating the ratei accrued before a termination
-that falls before the payment month is not supported yet.
+Extra months accrue per qualifying month of their window, counted from the
+employment dates and never from the runs already closed:
+
+- the 12-month window ends in the payment month and starts at the hire date
+  when the worker was hired inside it (hire on 15 March: the June
+  quattordicesima accrues March to June, 4/12);
+- a month qualifies when it has at least 15 accruing calendar days. This is
+  an engine default, not read from the CCNL files, which carry no accrual
+  threshold; CCNLs word it differently (some count only fractions above 15
+  days);
+- an `AbsenceEvent` with `suspends_accrual=True` (for example aspettativa non
+  retribuita) removes its calendar days from every window. The caller says
+  which absences suspend accrual; an ordinary unpaid absence reduces pay,
+  not the ratei. Absences of the previous year are not known, and a single
+  `calculate()` call on an extra-month run counts from the employment dates
+  only;
+- when the employment ends before an extra month's payment month, the ratei
+  accrued up to the termination are paid on the last regular run as
+  `extra_month_earning` items (ordinary IRPEF, INPS and TFR base). A
+  quattordicesima whose June run was already paid restarts in July, so an
+  end in September liquidates 3/12 of the next one.
+
+The work deduction (art. 13 TUIR), the ulteriore detrazione (L. 207/2024
+art. 1 c. 6) and the trattamento integrativo are proportioned to the days of
+employment in the tax year, at most 365.
 
 CCNL and level validity does not drop runs: a month the salary table does not
 cover fails in the salary lookup.
@@ -146,6 +166,7 @@ short = engine.calculate_year(
     )
 )
 print(len(short.period_results))  # 3: July, August, September
+print(short.annual_gross)  # 6243.15: three months plus 3/12 of each extra month
 ```
 
 ```python
@@ -205,7 +226,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
 | `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
 | `OvertimeEvent` | Overtime hours for a specific date |
-| `AbsenceEvent` | Unpaid absence days in the period |
+| `AbsenceEvent` | Unpaid absence in the period; `suspends_accrual` also stops the extra-month ratei |
 | `SickLeaveEvent` | Sick-leave calendar days |
 | `FringeEvent` | Fringe-benefit value and threshold flag |
 | `WelfareEvent` | Welfare benefit annual amount |

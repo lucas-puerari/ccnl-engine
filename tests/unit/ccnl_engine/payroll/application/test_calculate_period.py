@@ -33,7 +33,11 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationViolation,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
+from ccnl_engine.payroll.domain.employment import (
+    Apprentice,
+    EmploymentPeriod,
+    FixedTerm,
+)
 from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import (
@@ -974,6 +978,7 @@ class TestExtraMonthRateo:
         regular_periods_closed: int,
         run: PayrollRun,
         period_month: int,
+        employment_period: EmploymentPeriod | None = None,
     ) -> Decimal:
         """Run an extra-month period calculation and return period_gross.
 
@@ -990,6 +995,7 @@ class TestExtraMonthRateo:
                 tax_withholding_periods_closed=regular_periods_closed,
             ),
             run=run,
+            employment_period=employment_period,
         )
         return calculate_period(req).period_gross
 
@@ -1005,8 +1011,10 @@ class TestExtraMonthRateo:
     def test_accrued_months_determine_rateo(self) -> None:
         """Six accrued months give half the gross of twelve.
 
-        Rateo derives from regular_periods_closed, not from the payment month.
-        Both runs use the same December salary, so the rateo is the only factor.
+        The rateo derives from the employment dates (hire 1 July: July to
+        December), not from the payment month or the runs already closed:
+        both runs report twelve closed periods.  Both use the same December
+        salary, so the rateo is the only factor.
         """
         full_year = self._run_extra_month(
             regular_periods_closed=12,
@@ -1014,9 +1022,10 @@ class TestExtraMonthRateo:
             period_month=12,
         )
         half_year = self._run_extra_month(
-            regular_periods_closed=6,
+            regular_periods_closed=12,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
+            employment_period=EmploymentPeriod(date(2026, 7, 1)),
         )
         assert half_year == (full_year / 2).quantize(Decimal("0.01"))
 
@@ -1024,7 +1033,8 @@ class TestExtraMonthRateo:
         """A full-year employee receives the same tredicesima in June and December.
 
         Moving the payment date must not change the already-accrued entitlement.
-        Both runs use regular_periods_closed=12, so rateo=12/12=1.0 in both.
+        Without employment dates the worker accrues the 12 months ending in
+        the payment month, so rateo=12/12=1.0 in both.
         The salary rate at the payment date may differ if there was an increase
         between June and December; the invariant is the accrual fraction, not
         the absolute amount.

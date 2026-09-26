@@ -5,16 +5,19 @@ payments (tredicesima plus half a quattordicesima), no other income, no
 family deductions.  At the last run of the year the sostituto d'imposta must
 perform the conguaglio (art. 23 c. 3 DPR 600/1973), so the IRPEF withheld
 over the year equals the net IRPEF on the final annual taxable income.
+The same holds for a part-year employment, whose deductions are
+proportioned to its days.
 """
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import PayrollYearRequest, PayrollYearResult
-from tests.acceptance.legal_scenarios._support import COOP_SOCIALI, ENGINE
+from ccnl_engine import EmploymentFacts, PayrollYearRequest, PayrollYearResult
+from tests.acceptance.legal_scenarios._support import COMMERCIO, COOP_SOCIALI, ENGINE
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 
 pytestmark = pytest.mark.legal_scenario
@@ -73,3 +76,44 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
     )
 
     assert net_credit == Decimal(0)
+
+
+@pytest.mark.parametrize(
+    ("level_code", "expected"),
+    [
+        pytest.param("Q", Decimal("5034.22"), id="second-bracket"),
+        pytest.param("3", Decimal("1753.46"), id="first-bracket"),
+    ],
+)
+def test_part_year_employment_withholds_the_tax_on_its_days(
+    level_code: str, expected: Decimal
+) -> None:
+    """Commercio hired 15 March 2026, open-ended: 292 days of employment.
+
+    The deductions proportioned to the days (art. 13 c. 1 TUIR, L. 207/2024
+    art. 1 c. 6) must reach the conguaglio.  292 / 365 is exactly 0.8.
+
+    - Level Q, final taxable 30,438.68: 5,034.22 (derivation in
+      ``test_irpef_oracle.test_part_year_deductions_follow_the_days``).
+    - Level 3, final taxable 20,221.90: gross 4,651.04; ratio 7,778.10 /
+      13,000 truncated 0.5983; deduction (1,910 + 1,190 * 0.5983) * 0.8 =
+      2,621.98 * 0.8 = 2,097.58; further deduction 800.00; net 1,753.46.
+
+    Observed on 26 September 2026 before the days reached the tax
+    computation: full-year deductions on a 292-day employment.
+    """
+    year = ENGINE.calculate_year(
+        PayrollYearRequest(
+            year=2026,
+            ccnl_slug=COMMERCIO,
+            level_code=level_code,
+            employment_facts=EmploymentFacts(started_on=date(2026, 3, 15)),
+        )
+    )
+    final_taxable = year.period_results[-1].closing_state.earnings.taxable
+    withheld = sum(
+        (r.tax_computation.ordinary_tax for r in year.period_results), Decimal(0)
+    )
+
+    assert net_irpef(final_taxable, 292) == expected
+    assert abs(withheld - expected) <= _CENT

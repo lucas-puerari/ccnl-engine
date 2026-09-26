@@ -32,9 +32,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _ZERO = Decimal(0)
-# Future extra months are projected at full accrual; proration of the rateo on
-# the employment period is not anticipated by the projection.
-_FULL_ACCRUAL_MONTHS = 12
 
 
 def resolve_withholding_schedule(
@@ -72,7 +69,9 @@ def upcoming_recurring_gross(
 
     Each upcoming slot is valued with the pay chain its run kind would pay:
     the regular chain for a regular month, the extra-month chain scaled by
-    the slot's ``pay_fraction`` for a tredicesima or quattordicesima.
+    the slot's ``pay_fraction`` for a tredicesima or quattordicesima.  Future
+    extra months are projected at full accrual; a lower rateo on the
+    employment period is settled by the conguaglio of the last slot.
 
     Args:
         regular_chain: Pay chain of a regular month, before any extra-month
@@ -86,10 +85,7 @@ def upcoming_recurring_gross(
     total = _ZERO
     for slot in schedule.upcoming(slots_closed):
         chain = _apply_extra_month_policy(
-            regular_chain,
-            slot.run.run_kind,
-            _FULL_ACCRUAL_MONTHS,
-            max_fraction=slot.pay_fraction,
+            regular_chain, slot.run.run_kind, slot.pay_fraction
         )
         total += money(chain.base + chain.seniority + chain.allowances_total)
     return total

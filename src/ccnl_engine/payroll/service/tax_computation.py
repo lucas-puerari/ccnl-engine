@@ -62,6 +62,7 @@ def _resolve_trattamento(
     opening_tratt_ytd: Decimal,
     remaining: int,
     existing_plan: RecoveryPlan | None = None,
+    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
 ) -> tuple[Decimal, TaxLineItem | None, RecoveryPlan | None]:
     """Compute the per-period trattamento integrativo via conguaglio.
 
@@ -85,7 +86,12 @@ def _resolve_trattamento(
         return _ZERO, None, None
     tratt_rules = rules.trattamento_integrativo
     annual_tratt = irpef_svc.trattamento_integrativo(
-        taxable, irpef_gross, work_deduction, work_deduction, tratt_rules
+        taxable,
+        irpef_gross,
+        work_deduction,
+        work_deduction,
+        tratt_rules,
+        eligible_work_days=eligible_work_days,
     )
     if existing_plan is not None:
         period_tratt = -existing_plan.next_installment
@@ -123,6 +129,7 @@ def resolve_tax_computation(
     slots_closed: int = 0,
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
+    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
 ) -> tuple[TaxComputation, RecoveryPlan | None]:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -158,6 +165,11 @@ def resolve_tax_computation(
             period's closing state, or ``None`` when no recovery is in
             progress.  When present, the installment amount is taken from
             the plan rather than recomputed.
+        eligible_work_days: Days of employment in the tax year, capped at
+            365.  The work deduction, the ulteriore detrazione and the
+            trattamento integrativo are proportioned to them ("rapportata
+            al periodo di lavoro nell'anno": art. 13 c. 1 TUIR, L. 207/2024
+            art. 1 c. 6, D.L. 3/2020 art. 1).
 
     Returns:
         ``(TaxComputation, RecoveryPlan | None)`` — the IRPEF computation
@@ -165,6 +177,7 @@ def resolve_tax_computation(
         next period's opening state.
     """
     components: list[TaxLineItem] = []
+    eligible_work_days = min(eligible_work_days, irpef_svc.DAYS_IN_YEAR)
 
     ig = irpef_svc.irpef_gross(taxable, rules)
     components.append(
@@ -176,7 +189,9 @@ def resolve_tax_computation(
         )
     )
 
-    wd = irpef_svc.work_income_deduction(taxable, constants=rules.work_deduction)
+    wd = irpef_svc.work_income_deduction(
+        taxable, eligible_work_days, constants=rules.work_deduction
+    )
     components.append(
         TaxLineItem(
             name="work_deduction",
@@ -199,7 +214,9 @@ def resolve_tax_computation(
     # Ulteriore detrazione (2026): Art. 1 c. 6 L. 207/2024
     ud = _ZERO
     if rules.ulteriore_detrazione is not None:
-        ud = irpef_svc.ulteriore_detrazione_lavoro(taxable, rules.ulteriore_detrazione)
+        ud = irpef_svc.ulteriore_detrazione_lavoro(
+            taxable, rules.ulteriore_detrazione, eligible_work_days
+        )
         if ud > _ZERO:
             components.append(
                 TaxLineItem(
@@ -240,7 +257,14 @@ def resolve_tax_computation(
         ordinary_tax = money(max(_ZERO, withholding_due / remaining))
 
     period_tratt, tratt_component, next_recovery_plan = _resolve_trattamento(
-        taxable, ig, wd, rules, opening_tratt_ytd, remaining, recovery_plan
+        taxable,
+        ig,
+        wd,
+        rules,
+        opening_tratt_ytd,
+        remaining,
+        recovery_plan,
+        eligible_work_days,
     )
     if tratt_component is not None:
         components.append(tratt_component)

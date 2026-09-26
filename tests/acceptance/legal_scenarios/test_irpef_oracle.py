@@ -76,6 +76,29 @@ def test_deductions_are_not_refundable() -> None:
     assert net_irpef(Decimal(5_000)) == Decimal("0.00")
 
 
+def test_part_year_deductions_follow_the_days() -> None:
+    """Income 30,438.68 EUR over 292 days (hired 15 March 2026).
+
+    - gross: 6,440 + 2,438.68 * 33% = 7,244.76;
+    - ratio 19,561.32 / 22,000 = 0.88915..., truncated 0.8891;
+    - full-year employment deduction: 1,910 * 0.8891 + 65 = 1,763.18;
+    - 292 / 365 = 0.8 exactly: employment deduction 1,410.54, further
+      deduction 1,000 * 0.8 = 800.00;
+    - net: 7,244.76 - 1,410.54 - 800.00 = 5,034.22.
+    """
+    income = Decimal("30438.68")
+    assert employment_deduction(income, 292) == Decimal("1410.54")
+    assert further_deduction(income, 292) == Decimal("800.00")
+    assert net_irpef(income, 292) == Decimal("5034.22")
+
+
+@pytest.mark.parametrize("days", [0, 366])
+def test_out_of_scope_days_are_rejected(days: int) -> None:
+    """An employment has 1 to 365 days in the year."""
+    with pytest.raises(ValueError, match="days"):
+        net_irpef(Decimal(30_000), days)
+
+
 @pytest.mark.parametrize("income", [Decimal(-1), Decimal(200_001)])
 def test_out_of_scope_income_is_rejected(income: Decimal) -> None:
     """Negative incomes and incomes above 200,000 EUR are outside the oracle."""

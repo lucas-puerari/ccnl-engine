@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
 _TEN_THOUSAND = Decimal(10000)
-_DAYS_IN_YEAR = 365  # statutory denominator for Art. 13 co. 6 TUIR pro-rata
+DAYS_IN_YEAR = 365  # statutory denominator for Art. 13 co. 6 TUIR pro-rata
 
 # Default Art. 13 constants (2026). Callers may pass rules.work_deduction instead.
 _DEFAULT_WD = WorkDeductionRules()
@@ -80,7 +80,7 @@ def _trunc4(ratio: Decimal) -> Decimal:
 
 def work_income_deduction(
     gross_income: Decimal,
-    eligible_work_days: int = _DAYS_IN_YEAR,
+    eligible_work_days: int = DAYS_IN_YEAR,
     constants: WorkDeductionRules | None = None,
 ) -> Decimal:
     """Compute the Art. 13 co. 1 TUIR work-income deduction.
@@ -131,9 +131,9 @@ def work_income_deduction(
             full_year = c.detr_a * ratio + increment
         else:
             return _ZERO
-    if eligible_work_days == _DAYS_IN_YEAR:
+    if eligible_work_days == DAYS_IN_YEAR:
         return money(full_year)
-    prorata = _trunc4(Decimal(eligible_work_days) / _DAYS_IN_YEAR)
+    prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
     return money(full_year * prorata)
 
 
@@ -143,7 +143,7 @@ def trattamento_integrativo(
     work_deduction: Decimal,
     relevant_deductions: Decimal,
     rules: TrattamentoIntegrativoRules,
-    eligible_work_days: int = _DAYS_IN_YEAR,
+    eligible_work_days: int = DAYS_IN_YEAR,
     constants: WorkDeductionRules | None = None,
 ) -> Decimal:
     """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
@@ -191,11 +191,11 @@ def trattamento_integrativo(
     c = constants if constants is not None else _DEFAULT_WD
     if gross_annual > rules.threshold_upper:
         return _ZERO
-    if eligible_work_days == _DAYS_IN_YEAR:
+    if eligible_work_days == DAYS_IN_YEAR:
         prorata = _ONE
         seventy_five = c.seventy_five
     else:
-        prorata = _trunc4(Decimal(eligible_work_days) / _DAYS_IN_YEAR)
+        prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
         seventy_five = money(c.seventy_five * prorata)
     max_amount = money(rules.max_amount * prorata)
     if gross_annual <= rules.threshold_mid:
@@ -211,7 +211,7 @@ def trattamento_integrativo(
 def ulteriore_detrazione_lavoro(
     taxable_income: Decimal,
     rules: UlterioreDetrazioneRules,
-    eligible_work_days: int = _DAYS_IN_YEAR,
+    eligible_work_days: int = DAYS_IN_YEAR,
 ) -> Decimal:
     """Compute the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
 
@@ -244,9 +244,9 @@ def ulteriore_detrazione_lavoro(
     else:
         span = rules.threshold_high - rules.threshold_mid
         full_year = rules.max_amount * (rules.threshold_high - taxable_income) / span
-    if eligible_work_days == _DAYS_IN_YEAR:
+    if eligible_work_days == DAYS_IN_YEAR:
         return full_year
-    prorata = _trunc4(Decimal(eligible_work_days) / _DAYS_IN_YEAR)
+    prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
     return full_year * prorata
 
 
