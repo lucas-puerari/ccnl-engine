@@ -77,4 +77,23 @@ Maximum depth: three directories under `ccnl_engine` before a file
 (`ccnl_engine/<capability>/<layer>/<subfeature>/file.py`); `data/` is exempt.
 
 JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
-behaviour. End-to-end scenarios live in `tests/integration/cases/`.
+behaviour. End-to-end scenarios live in `tests/fixtures/expected/scenarios/`.
+
+## Test layout
+
+Enforced by `tests/architecture/test_test_layout.py`:
+
+- `tests/unit/ccnl_engine/...`: pure rules, no filesystem and no real bundle.
+  The path mirrors the module: `src/ccnl_engine/x/y/z.py` is tested by
+  `tests/unit/ccnl_engine/x/y/test_z.py` or `test_z_<suffix>.py`.
+- `tests/integration/ccnl_engine/...`: same mirror, for tests that read the
+  real bundle, loaders, repositories or wire several modules (a
+  `calculate_period` call without a repository reads the bundle).
+  `tests/integration/scripts/` and `tests/integration/demo/` mirror tooling.
+- `tests/acceptance/public_api/` and `tests/acceptance/legal_scenarios/`:
+  behaviour through `PayrollEngine` only.
+- `tests/architecture/`: dependencies, structure, public exports, data quality.
+- `tests/fixtures/`: data and helpers only (`contracts/`, `expected/`,
+  `legal_examples/`), never tests.
+
+At most five directories under `tests` before a file (`fixtures` aside).

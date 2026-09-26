@@ -135,7 +135,8 @@ jobs:
       - name: Reject new reference cases without source
         run: |
           ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD \
-            -- tests/reference/cases/ 2>/dev/null || true)
+            -- tests/ 2>/dev/null \
+            | grep -E '^tests/fixtures/expected/[^/]+\.json$' || true)
           if [ -z "$ADDED" ]; then
             echo "No new reference cases added."
           else
@@ -147,7 +148,8 @@ jobs:
       - name: Reject modified reference cases that lost their source
         run: |
           MODIFIED=$(git diff --name-only --diff-filter=M HEAD~1 HEAD \
-            -- tests/reference/cases/ 2>/dev/null || true)
+            -- tests/ 2>/dev/null \
+            | grep -E '^tests/fixtures/expected/[^/]+\.json$' || true)
           if [ -z "$MODIFIED" ]; then
             echo "No reference cases modified."
             exit 0

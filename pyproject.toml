@@ -128,7 +128,6 @@ markers = [
 ]
 filterwarnings = [
     "error::DeprecationWarning",
-    "default::DeprecationWarning:tests.unit.ccnl_engine.engine.*",
 ]
 
 # ---------------------------------------------------------------------------
@@ -214,16 +213,23 @@ source_paths = [
     "src/ccnl_engine/payroll/domain/ledger.py",
     "src/ccnl_engine/payroll/domain/rounding.py",
 ]
-# Exclude docs tests that load scripts at their original filesystem path.
-# Limit collection to payroll unit tests; copy full src so imports resolve.
-pytest_add_cli_args_test_selection = ["tests/unit/ccnl_engine/engine/payroll"]
-pytest_add_cli_args = [
-    "--no-cov",
-    # Hypothesis tests use multiple executors and are incompatible with fork mode.
-    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_invariants.py",
-    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_metamorphic_invariants.py",
-    "--ignore=tests/unit/ccnl_engine/engine/payroll/service/test_property_period_first.py",
+# Limit collection to the tests of the mutated payroll modules; copy full src
+# so imports resolve. Hypothesis tests are left out: they use multiple
+# executors and are incompatible with fork mode.
+pytest_add_cli_args_test_selection = [
+    "tests/unit/ccnl_engine/payroll/domain/test_employment.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_family.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_ledger.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_pay_items.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_rounding.py",
+    "tests/unit/ccnl_engine/payroll/domain/test_treatments.py",
+    "tests/unit/ccnl_engine/payroll/service/test_contributions.py",
+    "tests/unit/ccnl_engine/payroll/service/test_irpef.py",
+    "tests/unit/ccnl_engine/payroll/service/test_irpef_mutation_sentinels.py",
+    "tests/integration/ccnl_engine/payroll/service/test_family_deductions.py",
+    "tests/integration/ccnl_engine/payroll/service/test_irpef_normative_oracles.py",
 ]
+pytest_add_cli_args = ["--no-cov"]
 mutate_only_covered_lines = true
 # Copy the full source tree so all test imports resolve inside mutants/.
 also_copy = ["src"]

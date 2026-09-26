@@ -141,13 +141,13 @@ This is a hard rule:
 > end-to-end and assert exact output values.
 
 A feature with no reference case has no proof of correctness.
-End-to-end scenarios live in `tests/integration/cases/` and are byte-identical
+End-to-end scenarios live in `tests/fixtures/expected/scenarios/` and are byte-identical
 assertions: the test fails if a salary table change shifts any output by
 even one cent.
 
 ### Reference case verification status
 
-Golden cases in `tests/reference/cases/` declare how far their expected
+Golden cases in `tests/fixtures/expected/` declare how far their expected
 values can be trusted with a top-level `verification` field:
 
 | Value | Meaning | `source` |
@@ -156,7 +156,7 @@ values can be trusted with a top-level `verification` field:
 | `source_linked` | The case cites the primary source it models; expected values are not independently checked | Required |
 | `engine_generated` | Expected values were produced by the engine and cite no source; they catch regressions, not systematic errors | Optional |
 
-`tests/reference/test_fixture_provenance.py` rejects a missing or unknown
+`tests/architecture/test_data_quality.py` rejects a missing or unknown
 value and a `verified` or `source_linked` case without a `source` object.
 In CI, `scripts/ci/check_provenance.py` validates every case, prints the count
 per status, rejects new `engine_generated` cases, and rejects a modified case
