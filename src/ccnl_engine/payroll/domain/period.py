@@ -8,7 +8,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
 from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
@@ -297,6 +301,9 @@ class PeriodCalculationResult:
         issues: Conditions that lower the reliability of this result, in
             the order they were raised.  Empty when every capability
             decided from known rules and facts.
+        decisions: What the capabilities that record a decision decided in
+            this run, e.g. the eligibility of a pay item for a preferential
+            tax regime, in the order they were taken.
     """
 
     period_id: PeriodId
@@ -315,6 +322,7 @@ class PeriodCalculationResult:
     unpaid_absence_deduction: Decimal = Decimal(0)
     bundle_version: str | None = None
     issues: tuple[CalculationIssue, ...] = ()
+    decisions: tuple[CalculationDecision, ...] = ()
 
     @property
     def status(self) -> CalculationStatus:

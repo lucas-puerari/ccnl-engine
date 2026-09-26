@@ -26,6 +26,7 @@ COMMERCIO = "commercio-confcommercio.json"
 COOP_SOCIALI = "cooperative-sociali.json"
 DOMESTIC = "lavoro-domestico-non-convivente.json"
 POSTAL_FISE = "servizi-postali-appalto-fise.json"
+PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran.json"
 
 
 def regular_period(

@@ -14,6 +14,10 @@ from ccnl_engine.payroll.application.handlers.registry import (
     EventEffect,
     _EventHandlerCtx,
 )
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+)
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import WorkEvent
 from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
@@ -22,12 +26,15 @@ from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.engine.tax.domain.preferential_regime import (
+        PreferentialTaxRegime,
+    )
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 
 
 @dataclass(frozen=True)
 class _EventTotals:
-    """Aggregated INPS/TFR/IRPEF bases from variable work events."""
+    """Aggregated INPS/TFR/IRPEF bases, decisions and issues of the events."""
 
     inps_base: Decimal
     tfr_base: Decimal
@@ -36,6 +43,8 @@ class _EventTotals:
     fringe_inps: Decimal
     fringe_irpef: Decimal
     substitute_base: Decimal
+    decisions: tuple[CalculationDecision, ...] = ()
+    issues: tuple[CalculationIssue, ...] = ()
 
 
 def _process_events(
@@ -50,7 +59,7 @@ def _process_events(
     opening_fringe_ytd: Decimal = _ZERO,
     opening_fringe_taxed: Decimal = _ZERO,
     pdr_income_ceiling: Decimal | None = None,
-    rinnovo_flat_rate: Decimal | None = None,
+    rinnovo_regime: PreferentialTaxRegime | None = None,
     notte_flat_rate: Decimal | None = None,
     notte_income_ceiling: Decimal | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
@@ -74,6 +83,8 @@ def _process_events(
     cumulative_taxed = opening_fringe_taxed
     items: list[PayItem] = []
     intents: list[PostingIntent] = []
+    decisions: list[CalculationDecision] = []
+    issues: list[CalculationIssue] = []
 
     for i, event in enumerate(events):
         evt_id = f"{tag}_evt{i}"
@@ -94,7 +105,7 @@ def _process_events(
             cumulative_fringe=cumulative_fringe,
             cumulative_taxed=cumulative_taxed,
             pdr_income_ceiling=pdr_income_ceiling,
-            rinnovo_flat_rate=rinnovo_flat_rate,
+            rinnovo_regime=rinnovo_regime,
             notte_flat_rate=notte_flat_rate,
             notte_income_ceiling=notte_income_ceiling,
         )
@@ -102,6 +113,8 @@ def _process_events(
 
         items.extend(result.items)
         intents.extend(result.intents)
+        decisions.extend(result.decisions)
+        issues.extend(result.issues)
         total_inps += result.inps_delta
         total_tfr += result.tfr_delta
         total_irpef += result.irpef_delta
@@ -123,6 +136,8 @@ def _process_events(
             fringe_inps=total_fringe_inps,
             fringe_irpef=total_fringe_irpef,
             substitute_base=total_substitute,
+            decisions=tuple(decisions),
+            issues=tuple(issues),
         ),
         tuple(items),
         _post(tuple(intents), cp, payment_date),

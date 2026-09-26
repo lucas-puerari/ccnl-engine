@@ -56,11 +56,12 @@ def load_sick_pay_rates() -> InpsSickPayRates:
 
 
 def load_variable_pay_rules(year: int) -> VariablePayRules:
-    """Load statutory variable-pay rules (fringe benefits and PdR) for *year*.
+    """Load statutory variable-pay rules for *year*.
 
     The file ``knowledge/tax/data/variable-pay-rules.json`` is not
-    sector-specific.  It carries Art. 51 c. 3 TUIR thresholds and PdR
-    flat-tax parameters, which vary by fiscal year but not by sector or CCNL.
+    sector-specific.  It carries Art. 51 c. 3 TUIR thresholds, PdR flat-tax
+    parameters and the L. 199/2025 substitute-tax regimes, which vary by
+    fiscal year but not by sector or CCNL.
 
     Args:
         year: Fiscal year (e.g. ``2026``).  The filename is looked up as
@@ -98,9 +99,10 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             flat_tax_rate=Decimal(str(pdr_raw["flat_tax_rate"])),
             income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
         ),
-        rinnovo=RinnovoRules(
-            flat_tax_rate=Decimal(str(rinnovo_raw["flat_tax_rate"])),
-        ),
+        rinnovo=RinnovoRules.model_validate({
+            **{k: v for k, v in rinnovo_raw.items() if k != "description"},
+            "ruleset": _as_ruleset(raw),
+        }),
         notte_turno=NotteTurnoRules(
             flat_tax_rate=Decimal(str(notte_raw["flat_tax_rate"])),
             income_ceiling=Decimal(str(notte_raw["income_ceiling"])),

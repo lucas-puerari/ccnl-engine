@@ -13,6 +13,13 @@ from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.engine.tax.domain.preferential_regime import (
+        PreferentialTaxRegime,
+    )
+    from ccnl_engine.payroll.domain.decisions import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 
 
@@ -33,7 +40,7 @@ class _EventHandlerCtx:
     cumulative_fringe: Decimal
     cumulative_taxed: Decimal
     pdr_income_ceiling: Decimal | None = None
-    rinnovo_flat_rate: Decimal | None = None
+    rinnovo_regime: PreferentialTaxRegime | None = None
     notte_flat_rate: Decimal | None = None
     notte_income_ceiling: Decimal | None = None
 
@@ -49,12 +56,14 @@ class EventEffect:
         inps_delta: Increase in the INPS contribution base.
         tfr_delta: Increase in the TFR accrual base.
         irpef_delta: Increase in the IRPEF taxable base.
-        substitute_delta: Increase in the substitute-tax base (PdR only).
+        substitute_delta: Increase in the PdR substitute-tax base.
         fringe_value: Total fringe benefit value (FringeEvent only).
         fringe_inps: Fringe INPS-taxable portion (FringeEvent only).
         fringe_irpef: Fringe IRPEF-taxable portion (FringeEvent only).
         new_cumulative_fringe: Updated cumulative fringe YTD (FringeEvent only).
         new_cumulative_taxed: Updated cumulative taxed fringe (FringeEvent only).
+        decisions: Decisions taken on the event, e.g. a regime eligibility.
+        issues: Conditions raised by the event that lower the result status.
     """
 
     items: list[PayItem] = field(default_factory=list)
@@ -68,3 +77,5 @@ class EventEffect:
     fringe_irpef: Decimal = _ZERO
     new_cumulative_fringe: Decimal | None = None
     new_cumulative_taxed: Decimal | None = None
+    decisions: list[CalculationDecision] = field(default_factory=list)
+    issues: list[CalculationIssue] = field(default_factory=list)

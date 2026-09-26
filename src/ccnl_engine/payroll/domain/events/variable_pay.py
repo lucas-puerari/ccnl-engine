@@ -31,17 +31,25 @@ class BonusEvent:
         amount: Gross bonus amount in EUR.  Must be >= 0.
         kind: ``"productivity_bonus"`` routes the amount through the PdR
             substitute-tax regime (L. 208/2015 art. 1 cc. 182-190).
-            ``"bonus"`` (the default) applies ordinary IRPEF.
-        prior_income: Worker's prior-year reddito complessivo in EUR.  Required
-            to enforce the income ceiling on PdR substitute-tax eligibility
-            (L. 199/2025 art. 1 c. 9: ceiling is 80,000 EUR).  When ``None``
-            the ceiling is not enforced (caller asserts eligibility).
+            ``"contract_renewal"`` marks a salary increment paid under a CCNL
+            renewal, for the renewal substitute-tax regime (L. 199/2025
+            art. 1 c. 7).  ``"bonus"`` (the default) applies ordinary IRPEF.
+        prior_income: Worker's employment income (reddito di lavoro
+            dipendente) of the year the regime of ``kind`` refers to, in EUR:
+            the prior year for PdR (ceiling 80,000 EUR), 2025 for a 2026
+            renewal (ceiling 33,000 EUR).  ``None`` means unknown: both
+            regimes then fail closed to ordinary IRPEF, and a renewal makes
+            the result provisional.
+        substitute_tax_waived: Whether the worker renounced the renewal
+            substitute tax in writing; the increment is then taxed as
+            ordinary income.  Ignored for the other kinds.
     """
 
     event_date: date
     amount: Decimal
     kind: Literal["bonus", "productivity_bonus", "contract_renewal"] = "bonus"
     prior_income: Decimal | None = None
+    substitute_tax_waived: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.amount < 0:

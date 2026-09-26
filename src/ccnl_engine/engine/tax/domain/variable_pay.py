@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from datetime import date  # noqa: TC003
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.engine.metadata import RulesetIdentity  # noqa: TC001
+from ccnl_engine.engine.tax.domain.preferential_regime import PreferentialTaxRegime
 
 
 class FringeBenefitRules(BaseModel):
@@ -53,21 +55,27 @@ class PdRRules(BaseModel):
     ruleset: RulesetIdentity | None = None
 
 
-class RinnovoRules(BaseModel):
-    """Rinnovo contrattuale substitute-tax rules (L.199/2025 art. 1 co. 7).
+class RinnovoRules(PreferentialTaxRegime):
+    """Contract-renewal substitute tax (L. 199/2025 art. 1 c. 7).
 
-    Salary increments from CCNL contract renewals are taxed at
-    ``flat_tax_rate`` with no income ceiling.
+    Salary increments paid in 2026 under CCNL renewals signed from
+    1 January 2024 to 31 December 2026 are taxed at ``flat_tax_rate`` (5%)
+    instead of IRPEF and its surtaxes.  The regime applies only to
+    private-sector employees whose 2025 employment income (reddito di
+    lavoro dipendente) does not exceed ``income_ceiling`` (33,000 EUR),
+    unless the worker renounces it in writing.  There is no annual cap.
+
+    The signing window is recorded as data: the engine does not receive the
+    signing date of a renewal, so the caller asserts it by declaring the
+    increment as a contract renewal.
 
     Attributes:
-        flat_tax_rate: Substitutive rate applied to renewal increments.
-        ruleset: Provenance of the statutory source.
+        agreements_signed_from: First signing date of a qualifying renewal.
+        agreements_signed_until: Last signing date of a qualifying renewal.
     """
 
-    model_config = ConfigDict(extra="forbid")
-
-    flat_tax_rate: Decimal = Field(gt=Decimal(0), lt=Decimal(1))
-    ruleset: RulesetIdentity | None = None
+    agreements_signed_from: date
+    agreements_signed_until: date
 
 
 class NotteTurnoRules(BaseModel):
@@ -96,7 +104,7 @@ class VariablePayRules(BaseModel):
         year: Fiscal year these rules apply to.
         fringe_benefit: Fringe-benefit exemption thresholds.
         pdr: Premio di risultato flat-tax parameters.
-        rinnovo: Contract-renewal salary increment substitute-tax parameters.
+        rinnovo: Contract-renewal substitute-tax regime.
         notte_turno: Night/shift supplement substitute-tax parameters.
         ruleset: Provenance of the statutory source.
     """

@@ -134,7 +134,28 @@ applied, the normative source and the resulting amount (`None` when unknown).
 Distinct from the capability report, which records whether a capability ran,
 not what it decided.
 
-`CalculationDecision`
+`CalculationDecision`, `PeriodCalculationResult.decisions`
+
+### preferential tax regime (regime di imposta sostitutiva)
+
+A statutory flat tax that replaces IRPEF and its surtaxes on the pay items it
+covers, for the tax years it is in force, within an optional annual cap, and
+only for workers meeting its requirements: prior-year employment income not
+above a ceiling, employment sector, no written renunciation.  Parameters and
+normative source are data in the tax bundle.
+
+`PreferentialTaxRegime`, `RinnovoRules`
+
+### regime eligibility (spettanza del regime agevolato)
+
+The outcome of checking a pay item against a preferential regime:
+`eligible` (substitute rate on the eligible amount, ordinary on any excess
+over the cap), `ineligible` (ordinary) or `unknown` when a required fact is
+missing (ordinary, and a provisional issue).  A definite ineligibility wins
+over a missing fact.  Recorded as a calculation decision with a stable
+`reason_code`, e.g. `prior_income_above_ceiling`.
+
+`RegimeEligibility`, `assess_regime`
 
 ---
 
