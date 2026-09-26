@@ -12,7 +12,7 @@ from ccnl_engine import (
     Employment,
     Headcount,
     InvalidInputError,
-    PayrollCalendar,
+    WorkCalendar,
     PayrollEngine,
     YearInput,
 )
@@ -48,9 +48,7 @@ for r in result.period_results:
 
 # Same entitlement, quattordicesima paid with the July salary.
 july = CalendarOverride(
-    calendar=PayrollCalendar.from_additional_months(
-        2026, 14, fourteenth_payment_month=7
-    ),
+    calendar=WorkCalendar.from_additional_months(2026, 14, fourteenth_payment_month=7),
     reason=CalendarOverrideReason.PAYMENT_MONTH,
     note="quattordicesima paid with the July salary",
 )
@@ -59,7 +57,7 @@ print(f"Runs with July quattordicesima: {len(moved.period_results)}")
 
 # Dropping the quattordicesima is rejected whatever the reason.
 only_thirteenth = CalendarOverride(
-    calendar=PayrollCalendar.from_additional_months(2026, 13),
+    calendar=WorkCalendar.from_additional_months(2026, 13),
     reason=CalendarOverrideReason.PAYMENT_MONTH,
     note="attempt to skip the quattordicesima",
 )

@@ -13,17 +13,12 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.ccnl import (
-    CCNL,
-    CCNLMeta,
-    CCNLParameters,
-    EmployerFund,
-    SeniorityIncrements,
-)
+from ccnl_engine.engine.contract.domain.compensation import CCNLParameters, EmployerFund
+from ccnl_engine.engine.contract.domain.identity import CCNL, CCNLMeta
+from ccnl_engine.engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceKind
-from ccnl_engine.payroll.service.contributions import fund_applies_to
 from ccnl_engine.payroll.service.seniority import (
     seniority_first_cadence,
     seniority_maximum,
@@ -651,26 +646,24 @@ class TestVerification:
 
 
 class TestEmployerFundsAndAllowances:
-    """EmployerFund.applies_to and allowance field constraints."""
+    """EmployerFund category restriction and allowance field constraints."""
 
     def test_applies_to(self) -> None:
-        """Category restriction semantics."""
+        """Category restriction is parsed; an unrestricted fund carries None."""
         fund = EmployerFund.model_validate({
             "code": "ce",
             "description": "Cassa Edile",
             "rate": _series("0.185"),
             "applies_to_categories": ["operaio"],
         })
-        assert fund_applies_to(fund, WorkerCategory.OPERAIO)
-        assert not fund_applies_to(fund, WorkerCategory.IMPIEGATO)
-        assert not fund_applies_to(fund, None)
+        assert fund.applies_to_categories == (WorkerCategory.OPERAIO,)
         assert fund.rate.value_at(date(2026, 1, 1)) == Decimal("0.185")
         open_fund = EmployerFund.model_validate({
             "code": "f",
             "description": "f",
             "rate": _series("0.01"),
         })
-        assert fund_applies_to(open_fund, None)
+        assert open_fund.applies_to_categories is None
 
     def test_invalid_category_raises(self) -> None:
         """Categories are a closed vocabulary."""

@@ -30,20 +30,20 @@ from ccnl_engine import (
     FixedTerm,
     Headcount,
     InvalidInputError,
-    PayrollCalendar,
+    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
-    PayrollState,
     PeriodFacts,
     PeriodInput,
+    PeriodState,
     PriorYearTaxFacts,
     SeniorityMonths,
     SubstituteTaxRegime,
     WeeklyHours,
+    WorkCalendar,
     WorkerCategory,
     YearInput,
 )
-from ccnl_engine.events import OvertimeEvent
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _ENGINE = PayrollEngine.bundled()
@@ -257,7 +257,7 @@ class TestPeriodInput:
             has_dependent_children=True,
         )
         prior = PriorYearTaxFacts(employment_income=Decimal(20000))
-        opening = PayrollState.zero()
+        opening = PeriodState.zero()
         run = PayrollRun.regular(_YEAR, 6)
         request = PeriodInput(
             run=run,
@@ -419,7 +419,7 @@ class TestYearInput:
             ("prior_year", "x"),
             ("periods", [(6, "x")]),
             ("default_facts", "x"),
-            ("calendar_override", PayrollCalendar(year=_YEAR)),
+            ("calendar_override", WorkCalendar(year=_YEAR)),
             ("opening_state", "x"),
             ("year", "2026"),
         ],
@@ -432,7 +432,7 @@ class TestYearInput:
     def test_calendar_override_is_accepted(self) -> None:
         """A calendar override with its reason is kept on the input."""
         override = CalendarOverride(
-            calendar=PayrollCalendar.from_additional_months(_YEAR, 13),
+            calendar=WorkCalendar.from_additional_months(_YEAR, 13),
             reason=CalendarOverrideReason.PAYMENT_MONTH,
             note="standard calendar",
         )

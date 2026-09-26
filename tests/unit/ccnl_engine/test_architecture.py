@@ -266,3 +266,53 @@ def test_no_engine_payroll_imports() -> None:
     assert not violations, (
         "Forbidden ccnl_engine.engine.payroll imports found:\n" + "\n".join(violations)
     )
+
+
+# ---------------------------------------------------------------------------
+# Test: no re-export-only modules
+#
+# A module whose body is only imports (plus docstring and __all__) is a shim.
+# The package root is the public API; the other exceptions are package
+# interfaces over their own underscore-private submodules.
+# ---------------------------------------------------------------------------
+
+_ALLOWED_REEXPORT_MODULES: frozenset[str] = frozenset({
+    "ccnl_engine/__init__.py",
+    "ccnl_engine/engine/contract/domain/identity/__init__.py",
+    "ccnl_engine/payroll/domain/events/__init__.py",
+    "ccnl_engine/payroll/domain/pay_items/__init__.py",
+})
+
+
+def _is_reexport_only(tree: ast.Module) -> bool:
+    """Return True when *tree* holds imports and nothing but metadata.
+
+    Returns:
+        True for a module made of a docstring, imports and ``__all__`` only,
+        with at least one import other than ``from __future__``.
+    """
+    has_import = False
+    for node in tree.body:
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant):
+            continue
+        if isinstance(node, ast.ImportFrom) and node.module == "__future__":
+            continue
+        if isinstance(node, ast.Import | ast.ImportFrom):
+            has_import = True
+            continue
+        if isinstance(node, ast.Assign) and any(
+            isinstance(t, ast.Name) and t.id == "__all__" for t in node.targets
+        ):
+            continue
+        return False
+    return has_import
+
+
+def test_no_reexport_only_modules() -> None:
+    """No module in src/ only re-exports names defined elsewhere."""
+    found = {
+        str(path.relative_to(_SRC))
+        for path in _python_files(_SRC / "ccnl_engine")
+        if _is_reexport_only(ast.parse(path.read_text(encoding="utf-8")))
+    }
+    assert found == _ALLOWED_REEXPORT_MODULES

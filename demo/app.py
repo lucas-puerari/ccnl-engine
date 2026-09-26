@@ -15,6 +15,7 @@ from decimal import Decimal
 
 from ccnl_engine import (
     Apprentice,
+    ContributableHours,
     ContributionCeilingStatus,
     EmployerProfile,
     Employment,
@@ -439,6 +440,18 @@ def compute_salary(
             weekly_hours_domestic=weekly_hours_domestic,
         )
 
+        # Domestic contributions are charged per hour: the demo assumes the
+        # contractual weekly hours were all worked and paid in the month.
+        contributable_hours = (
+            ContributableHours(
+                (Decimal(employment.weekly_hours.value) * 52 / 12).quantize(
+                    Decimal("0.01")
+                )
+            )
+            if employment.weekly_hours is not None
+            else None
+        )
+
         result = _ENGINE.calculate_period(
             PeriodInput(
                 run=PayrollRun.regular(_DEFAULT_YEAR, 12),
@@ -448,6 +461,7 @@ def compute_salary(
                 facts=PeriodFacts(
                     regione=regione or None,
                     comune_belfiore=comune_belfiore or None,
+                    contributable_hours=contributable_hours,
                 ),
             )
         )
@@ -510,8 +524,6 @@ def compute_salary(
         irpef_withholding = 0.0
         if result.tax_computation:
             irpef_withholding = float(result.tax_computation.ordinary_tax)
-
-        capability_entries: list[dict[str, object]] = []
 
         return json.dumps({
             "ccnl_name": ccnl_name,
@@ -577,9 +589,16 @@ def compute_salary(
             "fiscal_simplifications": [],
             "trace": {},
             "provenance": [],
-            "confidence": 1.0,
-            "warnings": [],
-            "calculation_scope": capability_entries,
+            "status": str(result.status),
+            "warnings": [issue.message for issue in result.issues],
+            "decisions": [
+                {
+                    "capability": d.capability,
+                    "status": str(d.status),
+                    "reason_code": d.reason_code,
+                }
+                for d in result.decisions
+            ],
             "ccnl_id": getattr(ccnl.meta, "ccnl_id", ""),
             "weekly_hours": (
                 str(weekly_hours_domestic)

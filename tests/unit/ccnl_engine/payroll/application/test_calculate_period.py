@@ -60,7 +60,7 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
-from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
+from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 from tests.helpers import EMPLOYER_50, make_year_rules
 
@@ -443,17 +443,17 @@ class TestWithholdingDue:
 
 
 class TestResolveTaxComputation:
-    """resolve_tax_computation: IRPEF breakdown with rule_id and fonte annotation."""
+    """compute_tax: IRPEF breakdown with rule_id and fonte annotation."""
 
     def test_ordinary_tax_positive_for_typical_income(self) -> None:
         """Typical income produces positive ordinary_tax and irpef_gross component."""
         rules = make_year_rules()
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(25000),
             rules,
             opening_irpef_withheld=_ZERO,
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         assert tc.ordinary_tax > _ZERO
         names = [c.name for c in tc.components]
         assert "irpef_gross" in names
@@ -468,12 +468,12 @@ class TestResolveTaxComputation:
             max_amount=Decimal(1200),
         )
         rules_with_ti = rules.model_copy(update={"trattamento_integrativo": ti})
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(10000),
             rules_with_ti,
             opening_irpef_withheld=_ZERO,
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" in names
         assert tc.trattamento_integrativo > _ZERO
@@ -482,12 +482,12 @@ class TestResolveTaxComputation:
         """When trattamento_integrativo rules are absent the period credit is zero."""
         rules = make_year_rules()
         # Default make_year_rules() has trattamento_integrativo=None
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(10000),
             rules,
             opening_irpef_withheld=_ZERO,
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" not in names
         assert tc.trattamento_integrativo == _ZERO
@@ -503,11 +503,11 @@ class TestResolveTaxComputation:
         )
         rules_with_ud = rules.model_copy(update={"ulteriore_detrazione": ud_rules})
         # taxable=10000 <= threshold_low → zero
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(10000),
             rules_with_ud,
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         names = [c.name for c in tc.components]
         assert "ulteriore_detrazione" not in names
 
@@ -519,12 +519,12 @@ class TestResolveTaxComputation:
         )
         rules_with_s = rules.model_copy(update={"sterilizzazione_detrazioni": steriliz})
         # taxable > 200000 + non-zero deductions so reduction is applied
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(250000),
             rules_with_s,
             family_deductions=Decimal(1000),
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         names = [c.name for c in tc.components]
         assert "sterilizzazione_detrazioni" in names
 
@@ -535,11 +535,11 @@ class TestResolveTaxComputation:
             bands=[SommaEsenteBand(up_to=Decimal(20000), rate=Decimal("0.07"))]
         )
         rules_with_se = rules.model_copy(update={"somma_esente": se_rules})
-        tc, _ = resolve_tax_computation(
+        tc = compute_tax(
             Decimal(10000),
             rules_with_se,
             withholding_schedule=_TWELVE_SLOTS,
-        )
+        ).computation
         names = [c.name for c in tc.components]
         assert "somma_esente" in names
 

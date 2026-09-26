@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.engine.tax.domain.contribution_rules import DomesticInpsRates
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
 
 
 def _pick_domestic_per_hour(

@@ -4,7 +4,7 @@ import copy
 
 import pytest
 
-from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.primitives.domain.primitives import FrozenDict
 
 
 class TestFrozenDictMutation:

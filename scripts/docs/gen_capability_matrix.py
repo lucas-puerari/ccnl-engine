@@ -20,7 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from ccnl_engine.engine.contract.domain.ccnl import CoverageStatus, WorkRuleFeature
+from ccnl_engine.engine.contract.domain.identity import CoverageStatus, WorkRuleFeature
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 # Abbreviated column headers (keep short for table readability).

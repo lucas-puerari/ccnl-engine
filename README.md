@@ -18,7 +18,7 @@ I never really understood employment contracts or pay slips. The whole system st
 
 ## The Problem
 
-Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
+Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values: they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
 PayrollEngine.calculate_period(PeriodInput) → PeriodResult
@@ -99,16 +99,16 @@ take `default_facts`.
 125 contract configurations covering an estimated 16 million employees across
 private and public sectors (individual contracts may cover overlapping populations).
 
-- **L1 — Gross:** base salary, seniority, fixed allowances, additional months, hourly rate.
-- **L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax.
-- **L3 — Work rules:** overtime and night/holiday premiums, absence deduction,
+- **L1 (Gross):** base salary, seniority, fixed allowances, additional months, hourly rate.
+- **L2 (Net):** INPS contributions, TFR, IRPEF, regional/municipal surtax.
+- **L3 (Work rules):** overtime and night/holiday premiums, absence deduction,
   leave accrual, sick-pay integration, performance bonuses, welfare/benefits.
   Pass `OvertimeHours.weeks` (a `WeeklyOvertimeHours` per calendar week) for CCNLs
   with per-week band thresholds to get accurate band partitioning.
 
 Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (max −20%).
 
-[**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html) — per-contract coverage, verification status, and feature breakdown
+[**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html): per-contract coverage, verification status, and feature breakdown
 
 ## Disclaimer
 

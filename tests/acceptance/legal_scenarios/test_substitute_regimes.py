@@ -29,6 +29,7 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from ccnl_engine import (
+    BonusEvent,
     CalculationDecision,
     CalculationStatus,
     EmployerActivity,
@@ -36,14 +37,11 @@ from ccnl_engine import (
     Employment,
     EmploymentSector,
     Headcount,
-    PriorYearTaxFacts,
-    SubstituteTaxRegime,
-)
-from ccnl_engine.events import (
-    BonusEvent,
     HolidayWorkEvent,
     NightShiftEvent,
+    PriorYearTaxFacts,
     ShiftWorkEvent,
+    SubstituteTaxRegime,
     WorkEvent,
 )
 from tests.acceptance.legal_scenarios._support import (
@@ -54,7 +52,7 @@ from tests.acceptance.legal_scenarios._support import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine import PayrollState, PeriodResult
+    from ccnl_engine import PeriodResult, PeriodState
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -83,7 +81,7 @@ def _period(
     *events: WorkEvent,
     worker: _Worker = _ELIGIBLE,
     month: int = 3,
-    opening: PayrollState | None = None,
+    opening: PeriodState | None = None,
 ) -> PeriodResult:
     waived = frozenset(SubstituteTaxRegime) if worker.waived else frozenset()
     return regular_period(
@@ -371,7 +369,7 @@ def test_annual_cap_is_shared_by_supplements_of_one_run() -> None:
     assert second.inputs["ordinary_amount"] == Decimal(500)
 
 
-def _month(month: int, amount: Decimal, opening: PayrollState | None) -> PeriodResult:
+def _month(month: int, amount: Decimal, opening: PeriodState | None) -> PeriodResult:
     event = _night(amount, day=date(2026, month, 10))
     return _period(event, month=month, opening=opening)
 

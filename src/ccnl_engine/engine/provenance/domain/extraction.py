@@ -15,7 +15,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.metadata.domain.rules import VerificationStatus
-from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.primitives.domain.primitives import FrozenDict
 
 
 class ExtractionMethod(StrEnum):

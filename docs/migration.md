@@ -1,5 +1,32 @@
 # Migration guide
 
+## Legacy modules and aliases removed
+
+Every public name is now imported from `ccnl_engine`; internal modules are
+imported from the module that defines them. The re-export modules, the empty
+`serialization` stubs and the alias names are removed without a compatibility
+layer. Amounts are unchanged.
+
+| Before | After |
+|---|---|
+| `from ccnl_engine.events import OvertimeEvent` (any work event) | `from ccnl_engine import OvertimeEvent` |
+| `PayrollState` | `PeriodState` |
+| `PayrollCalendar` | `WorkCalendar` |
+| `ccnl_engine.api.PeriodInput` (any name of `ccnl_engine.api`) | `ccnl_engine.PeriodInput` |
+| `ccnl_engine.engine.contract.domain.ccnl.CCNL` | `ccnl_engine.engine.contract.domain.identity.CCNL` (identity, coverage, metadata and enums); other names from their own module: `compensation`, `absence`, `category`, `seniority`, `sickness`, `working_time` |
+| `ccnl_engine.engine.tax.domain.rules.YearRules` | `ccnl_engine.engine.tax.domain.ruleset.YearRules`; other names from `contribution_rules`, `credit_rules`, `irpef_rules`, `tfr_rules` |
+| `ccnl_engine.engine.tax.service.loaders.load_year_rules` | `ccnl_engine.engine.tax.service.tax_annual_assembler.load_year_rules`; the other loaders from `tax_optional_loaders`, `tax_resource_reader`, `tax_tier_resolver` |
+| `from ccnl_engine.engine.tax import load_year_rules` (and the same for `contract`, `surtax`, `diff`, `io`, `metadata`, `primitives`, `provenance`) | import from the defining module, e.g. `ccnl_engine.engine.surtax.service.loaders.load_surtax_rules` |
+| `ccnl_engine.knowledge.version.__version__` | `ccnl_engine.knowledge.__version__` |
+| `ccnl_engine.engine.serialization` | removed: it held no code |
+
+Unused internals are removed as well: the `Ledger` and `Posting` classes and
+the `AccountPolicy` alias of `payroll.domain.ledger`, `AnnualisedPay`,
+`MonthlyPayChain.scaled_selective()`, `resolve_tax_computation` (use `compute_tax(...).computation`),
+`RulesetIdentity.as_dict()`, and the contribution helpers
+`inps_contribution`, `inps_employee_additional`, `tfr` and `fund_applies_to`
+(the payroll uses `resolve_contributions`).
+
 ## PeriodInput and YearInput
 
 The facade no longer takes a flat request. `calculate_period()` takes a
@@ -47,6 +74,7 @@ from ccnl_engine import (
     Employment,
     EmploymentSector,
     Headcount,
+    NightShiftEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -55,7 +83,6 @@ from ccnl_engine import (
     SeniorityMonths,
     YearInput,
 )
-from ccnl_engine.events import NightShiftEvent
 
 engine = PayrollEngine.bundled()
 employment = Employment(

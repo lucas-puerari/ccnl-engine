@@ -17,11 +17,11 @@ from ccnl_engine.payroll.service.irpef import _DEFAULT_WD, DAYS_IN_YEAR, for_day
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.rules import (
+    from ccnl_engine.engine.tax.domain.credit_rules import (
         TrattamentoIntegrativoRules,
         UlterioreDetrazioneRules,
-        WorkDeductionRules,
     )
+    from ccnl_engine.engine.tax.domain.irpef_rules import WorkDeductionRules
 
 _ZERO = Decimal(0)
 

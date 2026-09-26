@@ -871,10 +871,11 @@ const FEATURE_LABELS = {
   bonus_pdr:                   "Production/PDR bonus",
 };
 
-const CONF_LABELS = {
-  high:   { cls: "conf-high",   dot: "dot-green", label: "High confidence" },
-  medium: { cls: "conf-medium", dot: "dot-amber", label: "Medium confidence" },
-  low:    { cls: "conf-low",    dot: "dot-amber", label: "Low confidence" },
+const STATUS_LABELS = {
+  final:       { cls: "conf-high",   dot: "dot-green", label: "Final" },
+  provisional: { cls: "conf-medium", dot: "dot-amber", label: "Provisional" },
+  incomplete:  { cls: "conf-low",    dot: "dot-amber", label: "Incomplete" },
+  rejected:    { cls: "conf-low",    dot: "dot-amber", label: "Rejected" },
 };
 
 const SIMP_LABELS = {
@@ -903,9 +904,9 @@ function sanitizeWarning(w) {
     .replace(/_/g, " "); // last-resort: replace underscores in any remaining identifiers
 }
 
-function renderScope(calcScope, confidence, warnings, fiscalSimps) {
-  // Confidence pill
-  const conf = CONF_LABELS[confidence] || CONF_LABELS.medium;
+function renderScope(decisions, status, warnings, fiscalSimps) {
+  // Result status pill
+  const conf = STATUS_LABELS[status] || STATUS_LABELS.provisional;
   const pill = document.getElementById("confidence-pill");
   pill.className = `confidence-pill ${conf.cls}`;
   pill.innerHTML = `<span class="dot ${conf.dot}"></span>${conf.label}`;
@@ -928,16 +929,16 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
     warnArea.style.display = "none";
   }
 
-  // Scope lists
-  const verified = (calcScope || []).filter(s => s.status === "verified");
-  const excluded = (calcScope || []).filter(s => s.status !== "verified");
+  // Scope lists: capabilities decided as final versus the others
+  const verified = (decisions || []).filter(d => d.status === "final");
+  const excluded = (decisions || []).filter(d => d.status !== "final");
 
   const vEl = document.getElementById("scope-verified");
   vEl.innerHTML = "";
   for (const s of verified) {
     const div = document.createElement("div");
     div.className = "feature-item";
-    div.innerHTML = `<i class="f-icon" style="color:var(--color-success)">✓</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--color-success)">✓</i> ${esc(FEATURE_LABELS[s.capability] || s.capability)}`;
     vEl.appendChild(div);
   }
 
@@ -946,7 +947,7 @@ function renderScope(calcScope, confidence, warnings, fiscalSimps) {
   for (const s of excluded) {
     const div = document.createElement("div");
     div.className = "feature-item excluded";
-    div.innerHTML = `<i class="f-icon" style="color:var(--c-faint)">–</i> ${esc(FEATURE_LABELS[s.feature] || s.feature)}`;
+    div.innerHTML = `<i class="f-icon" style="color:var(--c-faint)">–</i> ${esc(FEATURE_LABELS[s.capability] || s.capability)}`;
     xEl.appendChild(div);
   }
 
@@ -1255,8 +1256,8 @@ function doCompute(pyodide) {
   // Sources
   renderSources(r.provenance || [], r.ruleset_version || {});
 
-  // Scope & confidence
-  renderScope(r.calculation_scope, r.confidence, r.warnings, r.fiscal_simplifications);
+  // Scope & status
+  renderScope(r.decisions, r.status, r.warnings, r.fiscal_simplifications);
 
   // Reset all collapsibles to closed
   document.querySelectorAll("#panel-detail details.collapsible-section").forEach(d => d.removeAttribute("open"));

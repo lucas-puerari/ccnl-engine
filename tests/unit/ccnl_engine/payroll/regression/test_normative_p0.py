@@ -239,7 +239,7 @@ def test_p0_04_fringe_retroactive_on_threshold_crossing() -> None:
 #
 # L. 160/2019 (art. 1 co. 3, as renamed): low-income workers whose reddito
 # does not exceed 28,000 EUR receive a somma_esente credit that reduces IRPEF
-# due.  The credit is computed inside resolve_tax_computation (visible in
+# due.  The credit is computed inside compute_tax (visible in
 # TaxComputation.components) but calculate_period never posts it to the
 # CREDITS ledger account.
 # Normative value for acconciatura-estetica level 3, month 6, 2026:

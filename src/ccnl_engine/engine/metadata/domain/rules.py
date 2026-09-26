@@ -174,29 +174,3 @@ class RulesetIdentity(BaseModel):
             The ``id@version`` identifier, e.g. ``"tax/2026/industria@2026.1"``.
         """
         return f"{self.id}@{self.version}"
-
-    def as_dict(self) -> dict[str, object]:
-        """Serialise to a JSON-native dict.
-
-        Returns:
-            A plain dict with ISO-8601 date strings (JSON-serialisable).
-        """
-        return {
-            "id": self.id,
-            "version": self.version,
-            "effective_from": self.effective_from.isoformat(),
-            "effective_until": (
-                self.effective_until.isoformat()
-                if self.effective_until is not None
-                else None
-            ),
-            "published_at": self.published_at.isoformat(),
-            "source": self.source,
-            "source_type": str(self.source_type),
-            "source_hash": self.source_hash,
-            "verification_status": str(self.verification_status),
-            "verified_by": self.verified_by,
-            "verified_at": (
-                self.verified_at.isoformat() if self.verified_at is not None else None
-            ),
-        }

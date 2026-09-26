@@ -11,10 +11,10 @@ from ccnl_engine.payroll.service.rounding import money
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.contract.domain.ccnl import (
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.engine.contract.domain.seniority import (
         SeniorityIncrements,
         SeniorityTier,
-        WorkerCategory,
     )
 
 _ZERO = Decimal(0)

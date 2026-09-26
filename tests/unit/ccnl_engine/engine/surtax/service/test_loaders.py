@@ -8,7 +8,7 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.engine.primitives import Bracket
+from ccnl_engine.engine.primitives.domain.primitives import Bracket
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
     RegionaleEntry,

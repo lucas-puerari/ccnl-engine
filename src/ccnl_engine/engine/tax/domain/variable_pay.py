@@ -6,7 +6,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.metadata import RulesetIdentity  # noqa: TC001
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity  # noqa: TC001
 from ccnl_engine.engine.tax.domain.preferential_regime import (
     PreferentialTaxRegime,  # noqa: TC001
 )

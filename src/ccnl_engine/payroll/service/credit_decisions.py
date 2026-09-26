@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
     from decimal import Decimal
 
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
 
 

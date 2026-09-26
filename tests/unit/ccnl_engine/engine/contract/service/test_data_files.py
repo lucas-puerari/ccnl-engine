@@ -8,11 +8,11 @@ from pathlib import Path
 import pydantic
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.engine.contract.domain.identity import CCNL, TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.errors import UnsupportedTaxYearError
-from ccnl_engine.engine.tax.domain.rules import YearRules
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.tax.domain.ruleset import YearRules
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
 
 # ---------------------------------------------------------------------------
 # Parametrised: every JSON in ccnl_engine.knowledge.ccnl.data must validate

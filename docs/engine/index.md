@@ -47,8 +47,7 @@ To add period-specific events (overtime, absences, benefits), pass them in
 the `PeriodFacts` of the run:
 
 ```python
-from ccnl_engine import PeriodFacts
-from ccnl_engine.events import OvertimeEvent
+from ccnl_engine import OvertimeEvent, PeriodFacts
 
 result = engine.calculate_period(
     PeriodInput(
@@ -142,7 +141,7 @@ against the CCNL calendar and raises `InvalidInputError` when a rule fails:
 No reason allows dropping or lowering an extra month the CCNL grants. Every
 extra month must accrue over the 12 months ending in its payment month
 (`accrual_window_start_month == payment_month % 12 + 1`, which
-`PayrollCalendar.from_additional_months` sets): any other window pays a
+`WorkCalendar.from_additional_months` sets): any other window pays a
 full-year worker less than the fraction, so a tredicesima stays in December. Paying
 the ratei monthly (mensilizzazione) is not supported: the engine does not
 pay ratei inside regular runs. The effective calendar and the override are
@@ -235,10 +234,10 @@ print(short.annual_gross)  # 6243.15: three months plus 3/12 of each extra month
 ```
 
 ```python
-from ccnl_engine import CalendarOverride, CalendarOverrideReason, PayrollCalendar
+from ccnl_engine import CalendarOverride, CalendarOverrideReason, WorkCalendar
 
 july = CalendarOverride(
-    calendar=PayrollCalendar.from_additional_months(
+    calendar=WorkCalendar.from_additional_months(
         2026, 14, fourteenth_payment_month=7
     ),
     reason=CalendarOverrideReason.PAYMENT_MONTH,
@@ -270,7 +269,7 @@ The engine applies rules in a fixed sequence:
 9. Apply Art. 12 family deductions and Art. 15 mortgage interest deduction
    (reduce irpef_net / net_annual; only when inputs are provided)
    ↓
-10. Compute L3 work-rules supplements (informational — do not mutate gross/net):
+10. Compute L3 work-rules supplements (informational, do not mutate gross/net):
     overtime pay, absence deduction, leave accrual, sick-pay integration,
     fringe benefits, welfare, PdR bonus
     ↓
@@ -279,7 +278,7 @@ The engine applies rules in a fixed sequence:
 ```
 
 Steps 7–9 are fiscal and can be parameterised heavily. See
-[Fiscal](fiscal.md) for the full reference. Step 10 is optional — see
+[Fiscal](fiscal.md) for the full reference. Step 10 is optional; see
 [Work rules](work-rules.md).
 
 ## Input types

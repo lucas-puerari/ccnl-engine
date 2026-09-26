@@ -5,7 +5,7 @@ from datetime import date
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.metadata import (
+from ccnl_engine.engine.metadata.domain.rules import (
     RulesetIdentity,
     SourceType,
     VerificationStatus,
@@ -87,33 +87,6 @@ class TestRulesetIdentity:
         """str() collapses the identity to 'id@version'."""
         ident = _identity()
         assert str(ident) == "ccnl/metalmeccanico-federmeccanica@2026.1"
-
-    def test_as_dict(self) -> None:
-        """as_dict returns a JSON-native dict with ISO dates."""
-        ident = _identity(effective_until="2027-12-31")
-        d = ident.as_dict()
-        assert d["id"] == "ccnl/metalmeccanico-federmeccanica"
-        assert d["version"] == "2026.1"
-        assert d["effective_from"] == "2025-01-01"
-        assert d["effective_until"] == "2027-12-31"
-        assert d["published_at"] == "2026-09-07"
-        assert d["source"] == "https://example.com/ccnl"
-        assert d["source_type"] == "official_primary"
-        assert d["source_hash"] == "0" * 64
-        assert d["verification_status"] == "verified"
-        assert d["verified_by"] is None
-        assert d["verified_at"] is None
-
-    def test_as_dict_verified_at(self) -> None:
-        """as_dict serialises verified_at as an ISO-8601 string."""
-        ident = _identity(verified_by="lucas-puerari", verified_at="2026-09-18")
-        d = ident.as_dict()
-        assert d["verified_by"] == "lucas-puerari"
-        assert d["verified_at"] == "2026-09-18"
-
-    def test_as_dict_none_effective_until(self) -> None:
-        """as_dict keeps effective_until as None when open-ended."""
-        assert _identity().as_dict()["effective_until"] is None
 
     def test_verification_status_coerced_to_enum(self) -> None:
         """verification_status string is coerced to the StrEnum member."""

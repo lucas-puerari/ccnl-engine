@@ -272,30 +272,7 @@ class TestAllowanceActive:
 
 
 class TestMonthlyPayChain:
-    """MonthlyPayChain.scaled_selective, scaled, for_extra_month, allowances_total."""
-
-    def test_scaled_selective_non_relevant_allowance_uses_base_factor(self) -> None:
-        """scaled_selective: base_factor only for apprenticeship-exempt allowances."""
-        a_relevant = _allowance(
-            code="BASE", apprenticeship_pct_relevant=True, monthly="100.00"
-        )
-        a_exempt = _allowance(
-            code="EDR", apprenticeship_pct_relevant=False, monthly="50.00"
-        )
-        chain = MonthlyPayChain(
-            base=Decimal("1000.00"),
-            seniority=Decimal("0.00"),
-            allowances=(
-                (a_relevant, Decimal("100.00")),
-                (a_exempt, Decimal("50.00")),
-            ),
-        )
-        base_factor = Decimal("0.5")
-        apprenticeship_pct = Decimal("0.8")
-        result = chain.scaled_selective(base_factor, apprenticeship_pct)
-        combined = base_factor * apprenticeship_pct
-        assert result.allowances[0][1] == Decimal("100.00") * combined
-        assert result.allowances[1][1] == Decimal("50.00") * base_factor
+    """MonthlyPayChain.scaled, for_extra_month, allowances_total."""
 
     def test_scaled_applies_factor_to_all_components(self) -> None:
         """scaled() multiplies base, seniority, and all allowances by factor."""

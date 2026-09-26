@@ -1,10 +1,12 @@
 """Tests for the engine provenance namespace."""
 
-from ccnl_engine.engine.provenance import (
+from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.engine.provenance.domain.extraction import (
     BackCalculationStep,
     ExtractionMethod,
     ExtractionTrace,
-    RuleProvenance,
+)
+from ccnl_engine.engine.provenance.domain.source import (
     SourceDocument,
     SourceKind,
     SourceLocation,

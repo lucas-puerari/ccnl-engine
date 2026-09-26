@@ -16,7 +16,7 @@ from ccnl_engine.engine.contract.service.discovery import list_ccnls
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.engine.contract.domain.identity import CCNL
 
 # Load all CCNLs once at collection time; load_ccnl is cached so this is cheap.
 _ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id + ".json") for ci in list_ccnls()]

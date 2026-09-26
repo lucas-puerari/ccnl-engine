@@ -17,15 +17,15 @@ from ccnl_engine.engine.io.service.loader_utils import (
 if TYPE_CHECKING:
     from importlib.abc import Traversable
 
-    from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-    from ccnl_engine.engine.metadata import RulesetIdentity
+    from ccnl_engine.engine.contract.domain.identity import TaxSector
+    from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
 
 
 def _as_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
     """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.as_ruleset`.
 
     Returns:
-        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        The parsed :class:`~ccnl_engine.engine.metadata.domain.rules.RulesetIdentity`,
         or ``None`` when the dict carries no ``ruleset`` block.
     """
     return as_ruleset(raw)
@@ -35,7 +35,7 @@ def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
     """Delegate to :func:`~ccnl_engine.engine.io.service.loader_utils.try_ruleset`.
 
     Returns:
-        The parsed :class:`~ccnl_engine.engine.metadata.RulesetIdentity`,
+        The parsed :class:`~ccnl_engine.engine.metadata.domain.rules.RulesetIdentity`,
         or ``None`` when absent or invalid.
     """
     return try_ruleset(raw)

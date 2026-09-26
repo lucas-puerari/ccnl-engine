@@ -13,7 +13,7 @@ from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.engine.primitives import validate_open_sequence
+from ccnl_engine.engine.primitives.domain.primitives import validate_open_sequence
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 _ONE: Decimal = Decimal(1)

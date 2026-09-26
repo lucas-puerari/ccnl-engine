@@ -6,8 +6,8 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ccnl_engine.engine.metadata import RulesetIdentity
-from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
+from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
 
 
 class SpouseDeductionRules(BaseModel):

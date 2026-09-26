@@ -5,13 +5,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.tax.domain.rules import ApprenticeRates, InpsRates
+from ccnl_engine.engine.tax.domain.contribution_rules import ApprenticeRates, InpsRates
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
     from decimal import Decimal
 
-    from ccnl_engine.engine.tax.domain.rules import ApprenticeRawRates, InpsRawRates
+    from ccnl_engine.engine.tax.domain.contribution_rules import (
+        ApprenticeRawRates,
+        InpsRawRates,
+    )
 
 
 class _Tier(Protocol):

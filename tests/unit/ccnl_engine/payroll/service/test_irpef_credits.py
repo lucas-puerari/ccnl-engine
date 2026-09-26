@@ -6,12 +6,12 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.tax.domain.credit_rules import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
@@ -23,7 +23,6 @@ from ccnl_engine.payroll.service.irpef_credits import (
 )
 from ccnl_engine.payroll.service.tax_computation import (
     compute_tax,
-    resolve_tax_computation,
 )
 from tests.helpers import make_year_rules
 
@@ -170,10 +169,3 @@ class TestComputeTaxDecisions:
         ).decisions
         assert ulteriore.rule_version == "2026"
         assert ulteriore.reason_code == "full_amount"
-
-    def test_resolve_tax_computation_matches(self) -> None:
-        """resolve_tax_computation returns the same computation and plan."""
-        tax = compute_tax(_D(12000), _RULES, withholding_schedule=_SCHEDULE)
-        assert resolve_tax_computation(
-            _D(12000), _RULES, withholding_schedule=_SCHEDULE
-        ) == (tax.computation, tax.recovery_plan)

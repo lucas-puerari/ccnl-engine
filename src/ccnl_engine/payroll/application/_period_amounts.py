@@ -22,12 +22,10 @@ from ccnl_engine.payroll.domain.contributions import (
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
-from ccnl_engine.payroll.service.contributions import (
-    resolve_contributions,
-    resolve_rates,
-)
+from ccnl_engine.payroll.service.contributions import resolve_contributions
 from ccnl_engine.payroll.service.family_deductions import compute_family_deductions
 from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome, compute_surtax
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
@@ -39,11 +37,11 @@ from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL
     from ccnl_engine.engine.contract.domain.compensation import Level
+    from ccnl_engine.engine.contract.domain.identity import CCNL
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.engine.tax.domain.variable_pay import PdRRules
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.family import FamilyComposition

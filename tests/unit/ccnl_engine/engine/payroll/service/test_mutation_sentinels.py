@@ -10,9 +10,7 @@ Mutations targeted:
   - Inclusive/exclusive threshold comparisons (<=  vs < in bracket/deduction code).
   - Truncation direction: _trunc4 floors to 4 decimal places (ROUND_FLOOR),
     not rounds; a change to standard rounding silently shifts deductions.
-  - IVS ceiling applied to IVS portion only; ceiling-miss mutates the split.
   - Net formula signs: INPS is subtracted, trattamento_integrativo added.
-  - None vs zero: inps_employee_additional returns 0 when rates is None.
   - Deduction cap: work_income_deduction never returns a negative amount.
   - Trattamento integrativo: strictly > threshold_upper gives zero.
 """
@@ -23,12 +21,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.tax.domain.rules import TrattamentoIntegrativoRules
+from ccnl_engine.engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
 from ccnl_engine.payroll.service import irpef as _irpef
-from ccnl_engine.payroll.service.contributions import (
-    inps_contribution,
-    inps_employee_additional,
-)
 from ccnl_engine.payroll.service.irpef import (
     work_income_deduction,
 )
@@ -36,7 +30,6 @@ from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
 )
 from ccnl_engine.payroll.service.rounding import money
-from tests.helpers import make_year_rules
 
 _ZERO = Decimal(0)
 
@@ -229,128 +222,6 @@ class TestTrattamentoIntegrativoBoundaries:
 
 
 # ---------------------------------------------------------------------------
-# IVS ceiling split: ceiling applies only to IVS portion
-# ---------------------------------------------------------------------------
-
-
-class TestIvsCeilingSplit:
-    """inps_contribution applies the ceiling ONLY to the IVS portion.
-
-    Mutations targeted:
-      - Applying ceiling to full base (loses the non-IVS portion effect).
-      - Not applying ceiling at all when ivs_ceiling_applies=True.
-      - Reversing IVS and non-IVS rates in the split formula.
-    """
-
-    def test_ceiling_applied_to_ivs_only(self) -> None:
-        """Base 150 000 > ceiling 122 295: IVS capped, non-IVS on full base.
-
-        All-IVS case (ivs_rate = total_rate = 0.0919):
-          ivs_base = min(150000, 122295) = 122295
-          non_ivs_rate = 0.0919 - 0.0919 = 0
-          contribution = 122295 * 0.0919 + 150000 * 0 = 11,249.93
-        Without ceiling: 150 000 * 0.0919 = 13 785.00 (differs → catches mutation).
-        """
-        rules = make_year_rules(inps=_INPS_WITH_CEILING)
-        result = inps_contribution(
-            Decimal(150000),
-            total_rate=Decimal("0.0919"),
-            ivs_rate=Decimal("0.0919"),
-            rules=rules,
-            ivs_ceiling_applies=True,
-        )
-        assert result == money(Decimal("122295.00") * Decimal("0.0919"))
-
-    def test_no_ceiling_when_flag_false(self) -> None:
-        """When ivs_ceiling_applies=False, full rate applies to full base.
-
-        Base 150 000, total_rate 0.0919, no ceiling applied:
-          contribution = 150 000 * 0.0919 = 13 785.00.
-        """
-        rules = make_year_rules(inps=_INPS_WITH_CEILING)
-        result = inps_contribution(
-            Decimal(150000),
-            total_rate=Decimal("0.0919"),
-            ivs_rate=Decimal("0.0919"),
-            rules=rules,
-            ivs_ceiling_applies=False,
-        )
-        assert result == money(Decimal(150000) * Decimal("0.0919"))
-
-    def test_below_ceiling_ceiling_inactive(self) -> None:
-        """Base below ceiling: result equals base * total_rate regardless of flag."""
-        rules = make_year_rules(inps=_INPS_WITH_CEILING)
-        base = Decimal(50000)
-        total_rate = Decimal("0.0919")
-        with_flag = inps_contribution(
-            base,
-            total_rate=total_rate,
-            ivs_rate=total_rate,
-            rules=rules,
-            ivs_ceiling_applies=True,
-        )
-        without_flag = inps_contribution(
-            base,
-            total_rate=total_rate,
-            ivs_rate=total_rate,
-            rules=rules,
-            ivs_ceiling_applies=False,
-        )
-        assert with_flag == without_flag == money(base * total_rate)
-
-    def test_mixed_ivs_non_ivs_rate(self) -> None:
-        """Non-IVS portion (NASpI 1.4%) not subject to ceiling.
-
-        Base 150 000, IVS rate 0.0919, NASpI addizionale 0.014:
-          total_rate = 0.1059, ivs_rate = 0.0919, non_ivs = 0.014.
-          ivs_base = min(150 000, 122 295) = 122 295.
-          contribution = 122295 * 0.0919 + 150000 * 0.014
-                       = money(11249.9805) + money(2100)
-                       = money(11249.9805 + 2100)  (single money() call)
-        """
-        rules = make_year_rules(inps=_INPS_WITH_CEILING)
-        result = inps_contribution(
-            Decimal(150000),
-            total_rate=Decimal("0.1059"),
-            ivs_rate=Decimal("0.0919"),
-            rules=rules,
-            ivs_ceiling_applies=True,
-        )
-        expected = money(
-            Decimal(122295) * Decimal("0.0919") + Decimal(150000) * Decimal("0.014")
-        )
-        assert result == expected
-
-
-# ---------------------------------------------------------------------------
-# None vs zero: inps_employee_additional returns 0 when rates is None
-# ---------------------------------------------------------------------------
-
-
-class TestNoneVsZeroInContributions:
-    """inps_employee_additional must return zero when rates=None, not raise.
-
-    Mutation targeted:
-      - Removing the `if rates is None: return _ZERO` guard.
-      - Treating None as 0 with different arithmetic.
-    """
-
-    def test_none_rates_returns_zero(self) -> None:
-        """rates=None: additional contribution is 0 (not an error)."""
-        result = inps_employee_additional(
-            Decimal(50000), rates=None, ivs_ceiling_applies=False
-        )
-        assert result == _ZERO
-
-    def test_none_rates_ceiling_flag_does_not_matter(self) -> None:
-        """rates=None with ceiling flag: still returns 0."""
-        result = inps_employee_additional(
-            Decimal(150000), rates=None, ivs_ceiling_applies=True
-        )
-        assert result == _ZERO
-
-
-# ---------------------------------------------------------------------------
 # Net formula direction: INPS reduces net, trattamento_integrativo adds to it
 # ---------------------------------------------------------------------------
 
@@ -386,15 +257,3 @@ class TestNetFormulaDirectionality:
     def test_work_deduction_always_non_negative(self, income: int) -> None:
         """work_income_deduction is always >= 0; no sign error in formula."""
         assert work_income_deduction(Decimal(income)) >= _ZERO
-
-    def test_inps_contribution_always_non_negative(self) -> None:
-        """inps_contribution is never negative; rate signs cannot be flipped."""
-        rules = make_year_rules()
-        result = inps_contribution(
-            Decimal(30000),
-            total_rate=Decimal("0.0919"),
-            ivs_rate=Decimal("0.0919"),
-            rules=rules,
-            ivs_ceiling_applies=False,
-        )
-        assert result > _ZERO

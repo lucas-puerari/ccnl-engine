@@ -10,7 +10,7 @@ from ccnl_engine.engine.io.service.loader_utils import (
     try_ruleset,
     verify_ruleset_hash,
 )
-from ccnl_engine.engine.metadata import source_hash
+from ccnl_engine.engine.metadata.domain.rules import source_hash
 
 
 class TestVerifyRulesetHash:

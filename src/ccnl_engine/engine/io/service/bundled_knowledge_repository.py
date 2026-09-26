@@ -9,18 +9,18 @@ from ccnl_engine.engine.io.service.capability_catalog_loader import (
     load_capability_catalog,
 )
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.engine.tax.service.loaders import (
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.engine.tax.service.tax_optional_loaders import (
     load_family_deduction_rules,
     load_variable_pay_rules,
-    load_year_rules,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityCatalog
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+    from ccnl_engine.engine.contract.domain.identity import CCNL, TaxSector
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
 
 
@@ -46,7 +46,7 @@ class BundledKnowledgeRepository:
         """Return resolved tax year rules for *year*, *sector*, *num_employees*.
 
         Returns:
-            A :class:`~ccnl_engine.engine.tax.domain.rules.YearRules` with
+            A :class:`~ccnl_engine.engine.tax.domain.ruleset.YearRules` with
             INPS rates resolved for the given headcount.
         """
         return load_year_rules(year, sector, num_employees)

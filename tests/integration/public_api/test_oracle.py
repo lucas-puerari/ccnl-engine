@@ -14,6 +14,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    BonusEvent,
     CalculationStatus,
     ContributableHours,
     Dependent,
@@ -22,16 +23,17 @@ from ccnl_engine import (
     Employment,
     FamilyComposition,
     FixedTerm,
+    FringeEvent,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PriorYearTaxFacts,
+    SickLeaveEvent,
     WeeklyHours,
     YearInput,
 )
-from ccnl_engine.events import BonusEvent, FringeEvent, SickLeaveEvent
 
 engine = PayrollEngine.bundled()
 

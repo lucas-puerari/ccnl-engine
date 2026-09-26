@@ -1,6 +1,6 @@
 # Payroll state and the year change
 
-Every run opens with a `PayrollState` and returns the next one as
+Every run opens with a `PeriodState` and returns the next one as
 `result.closing_state`. The state has two parts with different lifetimes:
 
 | Part | Type | Lifetime | Holds |
@@ -13,7 +13,7 @@ Every run opens with a `PayrollState` and returns the next one as
 ## Within a tax year
 
 Pass the `closing_state` of a run as the `opening_state` of the next run of
-the same tax year. `PayrollState.zero()` opens the first run of a new
+the same tax year. `PeriodState.zero()` opens the first run of a new
 employment. A run attributed to another tax year
 (see [tax year attribution](index.md)) is rejected with `InvalidInputError`.
 
@@ -123,7 +123,7 @@ whole year that schedule is never completed, so `close_tax_year` rejects the
 state: compute the year with `calculate_year`, whose schedule follows the
 employment, or build the N+1 state with `OpeningBalances`.
 
-`PayrollState.zero()` is the state of a new employment: used at the year
+`PeriodState.zero()` is the state of a new employment: used at the year
 change it drops every obligation, which cannot be told apart from a new
 employment.
 
@@ -143,7 +143,7 @@ opening_2027 = engine.close_tax_year(year_2026.closing_state)
 ```
 
 `calculate_year` accepts `opening_state` only when it closes no run of the
-year: `PayrollState.zero()` or the result of `close_tax_year`.
+year: `PeriodState.zero()` or the result of `close_tax_year`.
 
 ## Recovery carried into the next year
 
@@ -182,7 +182,7 @@ non-negative with at most two decimals, credit recovered not above
 recognized (`trattamento_*`, `somma_esente_*`), taxed fringe not above fringe
 value, closed runs (`closed_run_ids`, a tuple of `PayrollRunId`) of the tax
 year and in order, no recovery opened after the tax year. A violation raises
-`InvalidInputError` with feature `opening_balances`. `to_state()` returns the `PayrollState`
+`InvalidInputError` with feature `opening_balances`. `to_state()` returns the `PeriodState`
 for the first run the engine computes.
 
 ```python

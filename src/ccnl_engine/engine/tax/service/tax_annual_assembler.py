@@ -6,7 +6,7 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.tax.domain.rules import YearRules, YearRulesRaw
+from ccnl_engine.engine.tax.domain.ruleset import YearRules, YearRulesRaw
 from ccnl_engine.engine.tax.service.tax_resource_reader import (
     _as_ruleset,
     read_inps_rules_raw,
@@ -18,7 +18,7 @@ from ccnl_engine.engine.tax.service.tax_tier_resolver import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+    from ccnl_engine.engine.contract.domain.identity import TaxSector
 
 
 def load_year_rules(
@@ -35,7 +35,7 @@ def load_year_rules(
     The IRPEF/TFR block comes from ``ccnl_engine/knowledge/tax/data/``; the
     INPS contribution block (aliquote, apprentice, domestic) comes from
     ``ccnl_engine/knowledge/inps/data/``. Both are merged and validated
-    against :class:`~ccnl_engine.engine.tax.domain.rules.YearRulesRaw` before
+    against :class:`~ccnl_engine.engine.tax.domain.ruleset.YearRulesRaw` before
     resolving tiers.
 
     Each call returns an independent deep copy of the cached rules object, so
@@ -69,7 +69,7 @@ def _load_year_rules_cached(
     each caller gets an independent object that may be mutated freely.
 
     Returns:
-        The shared :class:`~ccnl_engine.engine.tax.domain.rules.YearRules`
+        The shared :class:`~ccnl_engine.engine.tax.domain.ruleset.YearRules`
         object stored in the cache.
 
     Raises:

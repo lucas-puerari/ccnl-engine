@@ -24,7 +24,7 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     package bundle (``ccnl_engine/knowledge/surtax/data/``). In installed
     wheels the compressed ``.json.gz`` variants are preferred; plain ``.json``
     files are used as fallback for editable installs (mirroring the behaviour
-    of :func:`~ccnl_engine.engine.tax.service.loaders.load_year_rules`).
+    of :func:`~ccnl_engine.engine.tax.service.tax_annual_assembler.load_year_rules`).
 
     Each call returns a new :class:`~ccnl_engine.engine.surtax.domain.SurtaxRules`
     whose ``regionale`` and ``comunale`` dicts are freshly allocated, so callers
