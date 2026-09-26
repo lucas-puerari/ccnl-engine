@@ -16,13 +16,15 @@ __all__ = ["RecoveryPlan"]
 class RecoveryPlan:
     """Structured installment plan for recovering an over-paid tax credit.
 
-    Created when the amount to recover exceeds 60 EUR (D.L. 3/2020 art. 1 co. 3)
-    to spread the recovery over eight equal installments.  The last installment
-    absorbs any rounding residual so the sum is always exactly ``original_amount``.
+    Created when the amount to recover exceeds 60 EUR, to spread the recovery
+    over equal installments: eight for the trattamento integrativo (D.L.
+    3/2020 art. 1 co. 3), ten for the somma esente (L. 207/2024 art. 1 c. 7).
+    The last installment absorbs any rounding residual so the sum is always
+    exactly ``original_amount``.
 
     Attributes:
         kind: Identifier for the credit being recovered, e.g.
-            ``"trattamento_integrativo"``.
+            ``"trattamento_integrativo"`` or ``"somma_esente"``.
         original_amount: Total amount to recover (positive).
         installment_amount: Uniform per-period deduction (positive, rounded).
         installments_total: Number of periods over which the recovery runs.

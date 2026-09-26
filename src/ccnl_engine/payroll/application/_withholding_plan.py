@@ -12,13 +12,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._calendar import standard_calendar
-from ccnl_engine.payroll.application._period_utils import (
-    _apply_extra_month_policy,
-    _make_entry,
-    _require_resolution,
-)
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
+from ccnl_engine.payroll.application._period_utils import _apply_extra_month_policy
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.rounding import money
 
@@ -26,9 +20,6 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
-    from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-    from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.domain.tax import TaxComputation
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _ZERO = Decimal(0)
@@ -98,49 +89,3 @@ def slot_share(annual: Decimal, schedule: WithholdingSchedule) -> Decimal:
         ``annual / run_count`` rounded to cents.
     """
     return money(annual / schedule.run_count.value)
-
-
-def somma_esente_credit(
-    tax_computation: TaxComputation,
-    schedule: WithholdingSchedule,
-    resolver: PolicyResolver,
-    policy_context: PolicyContext,
-    competence_period: CompetencePeriod,
-    payment_date: date,
-    run_id: str,
-) -> tuple[Decimal, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
-    """Return this run's share of the somma esente (L. 207/2024) and its postings.
-
-    Returns:
-        ``(amount, pay_items, ledger_entries)``; empty postings and zero when
-        no somma esente is due on the projected annual income.
-    """
-    annual = next(
-        (c.amount for c in tax_computation.components if c.name == "somma_esente"),
-        _ZERO,
-    )
-    amount = slot_share(annual, schedule) if annual > _ZERO else _ZERO
-    if amount <= _ZERO:
-        return _ZERO, (), ()
-    credit_pid = _require_resolution(
-        resolver, "tax_credit_item", policy_context
-    ).policy_id
-    item_id = f"somma_esente_{run_id}"
-    item = TaxCreditItem(
-        item_id=item_id,
-        competence_period=competence_period,
-        payment_date=payment_date,
-        quantity=Decimal(1),
-        amount=amount,
-    )
-    entry = _make_entry(
-        item_id,
-        item_id,
-        "tax_credit_item",
-        competence_period,
-        payment_date,
-        AccountKind.CREDITS,
-        amount,
-        policy_id=credit_pid,
-    )
-    return amount, (item,), (entry,)

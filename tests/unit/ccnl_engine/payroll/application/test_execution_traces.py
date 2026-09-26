@@ -284,4 +284,4 @@ class TestYearDecisions:
         year = calculate_year(_YEAR, _METALMECCANICO, "C3", resolver=_RESOLVER)
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
-        assert len(year.decisions) == 2 * len(runs)
+        assert len(year.decisions) == 3 * len(runs)

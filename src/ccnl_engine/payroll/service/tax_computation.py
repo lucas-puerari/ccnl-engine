@@ -11,6 +11,10 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.obligations import (
+    RECOVERY_RULES,
+    TRATTAMENTO_RECOVERY,
+)
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.service import irpef as irpef_svc
@@ -26,7 +30,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 # D.L. 3/2020 art. 1 co. 3: recovery exceeding 60 EUR uses 8 equal installments.
 _RECOVERY_INSTALLMENT_THRESHOLD = Decimal(60)
-_RECOVERY_INSTALLMENTS = 8
+_RECOVERY_INSTALLMENTS = RECOVERY_RULES[TRATTAMENTO_RECOVERY].installments
 _TRATTAMENTO_RULE = "dl3-2020-art1"
 _ULTERIORE_RULE = "l207-2024-art1-c6"
 
@@ -72,9 +76,7 @@ def _new_recovery(recovery: Decimal) -> tuple[Decimal, RecoveryPlan | None]:
     """
     if recovery <= _RECOVERY_INSTALLMENT_THRESHOLD:
         return money(recovery), None
-    plan = RecoveryPlan.create(
-        "trattamento_integrativo", recovery, _RECOVERY_INSTALLMENTS
-    )
+    plan = RecoveryPlan.create(TRATTAMENTO_RECOVERY, recovery, _RECOVERY_INSTALLMENTS)
     return plan.next_installment, _advance_plan(plan)
 
 

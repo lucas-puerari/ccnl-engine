@@ -17,23 +17,23 @@ from ccnl_engine.payroll.application._reconcile_types import (
     _sum_account,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.run import run_identifier
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+    from ccnl_engine.payroll.domain.run import PayrollRunId
 
 _ZERO = Decimal(0)
 
 
-def _run_id(result: PeriodCalculationResult) -> str:
+def _run_id(result: PeriodCalculationResult) -> PayrollRunId:
     """Return the run identifier the calculation closed.
 
     Returns:
-        ``result.run.run_id``, or ``"{year}_{month:02d}"`` without a run.
+        The identifier of ``result.run``, or of the regular run of the
+        period without a run.
     """
-    if result.run is not None:
-        return result.run.run_id
-    return f"{result.period_id.year}_{result.period_id.month:02d}"
+    return run_identifier(result.run, result.period_id.year, result.period_id.month)
 
 
 def check_i11(
@@ -46,8 +46,8 @@ def check_i11(
         Violations for any YTD field that does not advance as expected.
     """
     violations: list[ReconciliationViolation] = []
-    run_kind = result.run.run_kind if result.run is not None else RunKind.REGULAR
     run_id = _run_id(result)
+    run_kind = run_id.kind
 
     expected_regular = opening.ytd.regular_periods_closed + (
         1 if run_kind == "regular" else 0
@@ -79,7 +79,7 @@ def check_i11(
         violations.append(
             ReconciliationViolation(
                 invariant_id="I11",
-                message=f"run_id {run_id!r} not added to closed_run_ids",
+                message=f"run_id '{run_id}' not added to closed_run_ids",
             )
         )
 
@@ -113,26 +113,30 @@ def check_i11(
 def check_i16(
     result: PeriodCalculationResult,
 ) -> list[ReconciliationViolation]:
-    """I16: credit_recovered_ytd is between zero and credit_recognized_ytd.
+    """I16: each credit account recovers between zero and what it recognized.
+
+    Checks the trattamento integrativo and the somma esente accounts.
 
     Returns:
-        A violation when the constraint is breached.
+        One violation per account that breaches the constraint.
     """
-    recovered = result.closing_state.ytd.trattamento.recovered
-    recognized = result.closing_state.ytd.trattamento.recognized
-    if recovered < _ZERO or recovered > recognized:
-        return [
-            ReconciliationViolation(
-                invariant_id="I16",
-                message=(
-                    "credit_recovered_ytd outside [0, credit_recognized_ytd]: "
-                    f"recovered={recovered}, recognized={recognized}"
-                ),
-                expected=recognized,
-                actual=recovered,
-            )
-        ]
-    return []
+    ytd = result.closing_state.ytd
+    return [
+        ReconciliationViolation(
+            invariant_id="I16",
+            message=(
+                f"{name} recovered outside [0, recognized]: "
+                f"recovered={account.recovered}, recognized={account.recognized}"
+            ),
+            expected=account.recognized,
+            actual=account.recovered,
+        )
+        for name, account in (
+            ("trattamento", ytd.trattamento),
+            ("somma_esente", ytd.somma_esente),
+        )
+        if account.recovered < _ZERO or account.recovered > account.recognized
+    ]
 
 
 def check_i18(
@@ -195,7 +199,7 @@ def check_i19(
     if tax_year is None:
         return []
     carried = opening.obligations.carried_into(tax_year)
-    run_id = _run_id(result)
+    run_id = str(_run_id(result))
     posted = {e.entry_id: e.amount for e in result.ledger_entries}
     violations = [
         ReconciliationViolation(

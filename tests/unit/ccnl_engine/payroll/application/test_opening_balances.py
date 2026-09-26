@@ -13,6 +13,7 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 
 _PLAN = RecoveryPlan(
     kind="trattamento_integrativo",
@@ -30,7 +31,7 @@ def test_to_state_maps_every_total() -> None:
         tax_year=2026,
         regular_periods_closed=6,
         tax_withholding_periods_closed=7,
-        closed_run_ids=frozenset({"2026-06-regular"}),
+        closed_run_ids=(PayrollRunId.parse("2026-06-regular"),),
         gross=Decimal("15000.00"),
         taxable=Decimal("13600.00"),
         inps_base=Decimal("15000.00"),
@@ -43,6 +44,7 @@ def test_to_state_maps_every_total() -> None:
         trattamento_recognized=Decimal("600.00"),
         trattamento_recovered=Decimal("0.00"),
         somma_esente_recognized=Decimal("300.00"),
+        somma_esente_recovered=Decimal("40.00"),
         work_time_regime_used=Decimal("500.00"),
         recoveries=(recovery,),
     ).to_state()
@@ -51,7 +53,7 @@ def test_to_state_maps_every_total() -> None:
     assert ytd.tax_year == 2026
     assert ytd.regular_periods_closed == 6
     assert ytd.tax_withholding_periods_closed == 7
-    assert ytd.closed_run_ids == frozenset({"2026-06-regular"})
+    assert ytd.closed_run_ids == (PayrollRunId(2026, 6, RunKind.REGULAR),)
     assert ytd.withholding_slots is None
     assert ytd.earnings.taxable == Decimal("13600.00")
     assert ytd.earnings.inps_employee == Decimal("1377.00")
@@ -61,6 +63,7 @@ def test_to_state_maps_every_total() -> None:
     assert ytd.fringe.pdr == Decimal("1000.00")
     assert ytd.trattamento.recognized == Decimal("600.00")
     assert ytd.somma_esente.recognized == Decimal("300.00")
+    assert ytd.somma_esente.recovered == Decimal("40.00")
     assert ytd.work_time_regime.used == Decimal("500.00")
     assert state.obligations == EmploymentObligations(recoveries=(recovery,))
 
@@ -69,9 +72,11 @@ def test_to_state_maps_every_total() -> None:
     "value", [Decimal(-1), Decimal("NaN"), Decimal("Infinity")], ids=str
 )
 def test_rejects_an_amount_that_is_not_a_non_negative_number(value: Decimal) -> None:
-    """Negative and non-finite amounts are rejected."""
-    with pytest.raises(InvalidInputError, match=r"OpeningBalances\.gross"):
+    """Negative and non-finite amounts are rejected by the state rules."""
+    with pytest.raises(InvalidInputError, match=r"EarningsYtd\.gross") as info:
         OpeningBalances(tax_year=2026, gross=value)
+
+    assert info.value.feature == "opening_balances"
 
 
 def test_rejects_an_amount_finer_than_a_cent() -> None:

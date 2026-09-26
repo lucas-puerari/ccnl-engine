@@ -266,16 +266,16 @@ def test_absence_above_monthly_pay_fails_closed() -> None:
     """An absence deduction above the monthly pay is not priced.
 
     240 hours at 12.50 EUR deduct 3,000 EUR from 2,158.26 EUR of pay, so
-    the INPS base turns negative.  Ordinary contributions cannot be
-    negative: the contribution invariant rejects the result instead of
-    posting -79.89 employee and -254.21 employer contributions.
+    the INPS base turns negative.  A YTD INPS base cannot be negative:
+    the closing state rejects the result instead of posting -79.89
+    employee and -254.21 employer contributions.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
         hours=Decimal(240),
         hourly_rate=Decimal("12.50"),
     )
-    with pytest.raises(DataIntegrityError, match=r"\[L3\].*\[L4\]"):
+    with pytest.raises(DataIntegrityError, match=r"inps_base must be a non-neg"):
         calculate_period(_req(events=(absence,)))
 
 

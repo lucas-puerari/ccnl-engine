@@ -10,7 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.errors import DataIntegrityError
+from ccnl_engine.engine.errors import DataIntegrityError, InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -35,9 +35,12 @@ from ccnl_engine.payroll.application._period_utils import (
     _sum_ledger,
 )
 from ccnl_engine.payroll.application._run_decisions import contract_decisions
+from ccnl_engine.payroll.application._somma_esente import (
+    SommaEsentePosting,
+    resolve_somma_esente,
+)
 from ccnl_engine.payroll.application._withholding_plan import (
     resolve_withholding_schedule,
-    somma_esente_credit,
     upcoming_recurring_gross,
 )
 from ccnl_engine.payroll.application.allocate_events import _process_events
@@ -53,13 +56,14 @@ from ccnl_engine.payroll.domain.employment_context import (
     TemporalContext,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.obligations import TRATTAMENTO_RECOVERY
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
     PeriodCalculationResult,
 )
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.run import PayrollRunId, run_identifier
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
@@ -70,23 +74,23 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 
 
-def _resolve_run_id(request: PeriodCalculationRequest) -> str:
-    """Return the run identifier and raise if the run was already processed.
+def _resolve_run_id(request: PeriodCalculationRequest) -> PayrollRunId:
+    """Return the run identifier and raise if the run cannot close next.
 
     Returns:
-        The run identifier string for this period.
+        The identifier of the run of this period.
 
     Raises:
-        ValueError: When the run was already closed in the opening state.
+        InvalidInputError: When the run was already closed in the opening
+            state, is of a later year, or comes before a closed run.
     """
-    run_id = (
-        request.run.run_id
-        if request.run is not None
-        else f"{request.period_id.year}_{request.period_id.month:02d}"
+    run_id = run_identifier(
+        request.run, request.period_id.year, request.period_id.month
     )
-    if run_id in request.opening_state.ytd.closed_run_ids:
-        msg = f"Run '{run_id}' was already processed in this payroll year"
-        raise ValueError(msg)
+    try:
+        request.opening_state.ytd.check_next_run(run_id)
+    except ValueError as exc:
+        raise InvalidInputError(str(exc), feature="payroll_run") from exc
     return run_id
 
 
@@ -117,8 +121,9 @@ def calculate_period(
         with gross, net, employer cost, closing YTD state, pay items and ledger.
 
     Raises:
-        DataIntegrityError: When the ledger reconciliation invariants fail after
-            computation, indicating an internal accounting consistency error.
+        DataIntegrityError: When the closing state or the ledger reconciliation
+            invariants fail, indicating an internal consistency error.  A run
+            that cannot close next in the tax year raises ``InvalidInputError``.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     effective_resolver = _effective_resolver(resolver)
@@ -151,8 +156,8 @@ def calculate_period(
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
-    run_kind = request.run.run_kind if request.run is not None else RunKind.REGULAR
-    run_id = _resolve_run_id(request)
+    closed_run_id = _resolve_run_id(request)
+    run_kind, run_id = closed_run_id.kind, str(closed_run_id)
     opening = request.opening_state
     slots_closed = opening.ytd.tax_withholding_periods_closed
     upcoming_gross = upcoming_recurring_gross(chain, withholding_schedule, slots_closed)
@@ -252,7 +257,9 @@ def calculate_period(
             if request.employment_period is not None
             else DAYS_IN_YEAR
         ),
-        recovery_plan=opening.obligations.recovery_of(tctx.fiscal_year),
+        recovery_plan=opening.obligations.recovery_of(
+            tctx.fiscal_year, TRATTAMENTO_RECOVERY
+        ),
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
     decisions = (
@@ -281,15 +288,15 @@ def calculate_period(
         run_tag=run_id,
     )
 
-    # Somma esente (L. 207/2024): this run's share of the projected annual amount
-    period_somma_esente, se_items, se_entries = somma_esente_credit(
+    somma = resolve_somma_esente(
         tax_computation,
+        year_rules,
+        opening,
         withholding_schedule,
-        effective_resolver,
-        policy_context,
-        cp,
-        request.payment_date,
-        run_id,
+        tctx.fiscal_year,
+        SommaEsentePosting(
+            effective_resolver, policy_context, cp, request.payment_date, run_id
+        ),
     )
 
     carried = post_carried_recoveries(
@@ -301,7 +308,7 @@ def calculate_period(
         request.payment_date,
         run_id,
     )
-    all_entries = ledger_entries + event_entries + se_entries + carried.entries
+    all_entries = ledger_entries + event_entries + somma.entries + carried.entries
 
     period_gross = _sum_ledger(all_entries, AccountKind.CASH_EARNINGS)
     period_net = (
@@ -331,13 +338,13 @@ def calculate_period(
         RunOutcome(
             tax_year=tctx.fiscal_year,
             withholding_slots=withholding_schedule.run_count.value,
-            run_id=run_id,
+            run_id=closed_run_id,
             run_kind=run_kind,
             entries=all_entries,
             period_inps_base=monthly_gross + event_totals.inps_base,
             amounts=amounts,
             events=event_totals,
-            somma_esente=period_somma_esente,
+            somma_esente=somma,
             recovery_plan=next_recovery_plan,
             carried=carried.remaining,
         ),
@@ -357,11 +364,11 @@ def calculate_period(
         period_employer_cost=period_employer_cost,
         unpaid_absence_deduction=unpaid_absence_deduction,
         closing_state=closing,
-        pay_items=pay_items + event_items + se_items + carried.items,
+        pay_items=pay_items + event_items + somma.items + carried.items,
         ledger_entries=all_entries,
         capability_report=capability_report(
             catalog,
-            decisions + carried.decisions,
+            decisions + somma.decisions + carried.decisions,
             event_totals.executed_features,
             tctx.fiscal_year,
         ),
@@ -371,7 +378,7 @@ def calculate_period(
         run=request.run,
         bundle_version=bundle_version,
         issues=event_totals.issues + amounts.surtax.issues,
-        decisions=decisions + carried.decisions,
+        decisions=decisions + somma.decisions + carried.decisions,
     )
     rec = _reconcile(result, opening)
     if not rec.ok:

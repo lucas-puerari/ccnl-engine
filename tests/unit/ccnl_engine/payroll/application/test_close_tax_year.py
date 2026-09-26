@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import TrattamentoAccount
 
@@ -57,7 +58,7 @@ class TestCloseTaxYear:
                 regular_periods_closed=12,
                 tax_withholding_periods_closed=13,
                 withholding_slots=13,
-                closed_run_ids=frozenset({"2026-12-regular"}),
+                closed_run_ids=(PayrollRunId.parse("2026-12-regular"),),
                 trattamento=TrattamentoAccount(
                     recognized=Decimal(160), recovered=Decimal(80)
                 ),

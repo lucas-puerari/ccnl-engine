@@ -7,11 +7,14 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.domain.obligations import (
+    SOMMA_ESENTE_RECOVERY,
+    TRATTAMENTO_RECOVERY,
     EmploymentObligations,
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.period import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 
@@ -28,8 +31,8 @@ def _plan(posted: int = 0, kind: str = "trattamento_integrativo") -> RecoveryPla
 class TestRecoveryObligation:
     """A recovery plan bound to the tax year of the credit it recovers."""
 
-    def test_rejects_a_credit_other_than_trattamento(self) -> None:
-        """Only the trattamento integrativo recovery is modelled."""
+    def test_rejects_an_unmodelled_credit(self) -> None:
+        """Only trattamento integrativo and somma esente recoveries exist."""
         with pytest.raises(ValueError, match=r"plan\.kind"):
             RecoveryObligation(tax_year=2026, plan=_plan(kind="bonus"))
 
@@ -67,10 +70,22 @@ class TestEmploymentObligations:
         obligations = EmploymentObligations(recoveries=(old, new))
 
         assert obligations.latest_tax_year == 2026
-        assert obligations.recovery_of(2026) == new.plan
-        assert obligations.recovery_of(2024) is None
+        assert obligations.recovery_of(2026, TRATTAMENTO_RECOVERY) == new.plan
+        assert obligations.recovery_of(2026, SOMMA_ESENTE_RECOVERY) is None
+        assert obligations.recovery_of(2024, TRATTAMENTO_RECOVERY) is None
         assert obligations.carried_into(2026) == (old,)
         assert obligations.carried_into(2027) == (old, new)
+
+    def test_one_recovery_per_credit_and_year(self) -> None:
+        """One conguaglio can open a trattamento and a somma esente recovery."""
+        tratt = RecoveryObligation(tax_year=2026, plan=_plan())
+        somma = RecoveryObligation(
+            tax_year=2026, plan=_plan(kind=SOMMA_ESENTE_RECOVERY)
+        )
+        obligations = EmploymentObligations(recoveries=(tratt, somma))
+
+        assert obligations.recovery_of(2026, SOMMA_ESENTE_RECOVERY) == somma.plan
+        assert obligations.recovery_of(2026, TRATTAMENTO_RECOVERY) == tratt.plan
 
     def test_empty_has_no_latest_year(self) -> None:
         """No recovery, no origin year."""
@@ -121,3 +136,86 @@ class TestPeriodState:
         )
 
         assert PeriodState(obligations=obligations).tax_year is None
+
+
+def _ids(*texts: str) -> tuple[PayrollRunId, ...]:
+    return tuple(PayrollRunId.parse(t) for t in texts)
+
+
+class TestClosedRunIds:
+    """The runs closed in a tax year: once each, of the year, in order."""
+
+    def _state(self, *texts: str, regular: int = 12, slots: int = 14) -> TaxYearState:
+        return TaxYearState(
+            tax_year=2026,
+            regular_periods_closed=regular,
+            tax_withholding_periods_closed=slots,
+            closed_run_ids=_ids(*texts),
+        )
+
+    def test_accepts_the_runs_in_payment_order(self) -> None:
+        """Regular before the extra month of the same month."""
+        state = self._state("2026-06-regular", "2026-06-fourteenth", "2026-07-regular")
+
+        assert [str(r) for r in state.closed_run_ids] == [
+            "2026-06-regular",
+            "2026-06-fourteenth",
+            "2026-07-regular",
+        ]
+
+    def test_rejects_a_duplicate(self) -> None:
+        """A run closes once."""
+        with pytest.raises(ValueError, match="already processed"):
+            self._state("2026-01-regular", "2026-01-regular")
+
+    def test_rejects_a_run_out_of_order(self) -> None:
+        """The extra month of June cannot close after July."""
+        with pytest.raises(ValueError, match="out of order"):
+            self._state("2026-07-regular", "2026-06-fourteenth")
+
+    def test_rejects_a_run_of_a_later_year(self) -> None:
+        """A 2027 run cannot belong to tax year 2026."""
+        with pytest.raises(ValueError, match="after the tax year 2026"):
+            self._state("2027-01-regular")
+
+    def test_adjustment_and_late_runs_are_not_ordered(self) -> None:
+        """A correction of March and a late December 2025 run after May."""
+        state = self._state(
+            "2026-05-regular", "2026-03-adjustment", "2025-12-regular", regular=2
+        )
+
+        assert len(state.closed_run_ids) == 3
+
+    def test_rejects_ids_without_a_tax_year(self) -> None:
+        """Closed runs belong to a tax year."""
+        with pytest.raises(ValueError, match="requires a tax_year"):
+            TaxYearState(
+                regular_periods_closed=1,
+                tax_withholding_periods_closed=1,
+                closed_run_ids=_ids("2026-01-regular"),
+            )
+
+    @pytest.mark.parametrize(
+        ("regular", "slots", "match"),
+        [(0, 2, "regular runs"), (1, 1, "slot-consuming runs")],
+    )
+    def test_rejects_more_runs_than_the_counters(
+        self, regular: int, slots: int, match: str
+    ) -> None:
+        """The ids never outnumber the runs the counters closed."""
+        with pytest.raises(ValueError, match=match):
+            self._state(
+                "2026-01-regular", "2026-06-fourteenth", regular=regular, slots=slots
+            )
+
+    def test_check_next_run(self) -> None:
+        """The same rules apply to the next run before it is computed."""
+        state = self._state("2026-03-regular", regular=1, slots=1)
+
+        state.check_next_run(PayrollRunId.parse("2026-04-regular"))
+        with pytest.raises(ValueError, match="out of order"):
+            state.check_next_run(PayrollRunId.parse("2026-02-regular"))
+
+    def test_unbound_state_only_rejects_duplicates(self) -> None:
+        """Without a tax year a first run of any year can close."""
+        TaxYearState().check_next_run(PayrollRunId.parse("2030-01-regular"))

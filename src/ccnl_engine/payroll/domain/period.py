@@ -60,10 +60,11 @@ class PeriodState:
         ytd: Counters and YTD accounts of the current tax year; they
             restart every tax year.
         obligations: Obligations that survive the change of tax year, such
-            as an installment recovery of trattamento integrativo.
+            as an installment recovery of trattamento integrativo or somma
+            esente.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 2
+    SCHEMA_VERSION: ClassVar[int] = 3
 
     ytd: TaxYearState = field(default_factory=TaxYearState)
     obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
