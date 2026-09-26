@@ -1,4 +1,5 @@
 {
+  "verification": "source_linked",
   "_description": "L3 time supplement — CCNL Metalmeccanico Federmeccanica, C2, 4h weekday + 3h night + 2h holiday, 2026-09-01",
   "_notes": [
     "Verifies that multiple supplement bands accumulate correctly.",
@@ -11,8 +12,7 @@
     "document": "CCNL Federmeccanica-Assistal 12/06/2025",
     "section": "Art. 14 — Lavoro straordinario, notturno e festivo",
     "verified_by": "lucas.puerari@intella.tech",
-    "verified_on": "2026-09-08",
-    "verification_status": "unverified"
+    "verified_on": "2026-09-08"
   },
   "inputs": {
     "ccnl_file": "metalmeccanico-federmeccanica.json",

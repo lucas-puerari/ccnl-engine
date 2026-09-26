@@ -1,4 +1,5 @@
 {
+  "verification": "source_linked",
   "_description": "L3 time supplement — CCNL Sistemazioni Idraulico-Forestali (Operai OTI), O3, 10h straordinario diurno, 2026-06-01",
   "_notes": [
     "Verifies weekday overtime supplement is computed correctly and does not alter gross_annual/net_annual.",
@@ -10,8 +11,7 @@
     "document": "CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria 2023 (Operai OTI)",
     "section": "Art. 50 — Lavoro straordinario, notturno e festivo (1) lavoro straordinario diurno 24%)",
     "verified_by": "lucas.puerari@intella.tech",
-    "verified_on": "2026-09-11",
-    "verification_status": "unverified"
+    "verified_on": "2026-09-11"
   },
   "inputs": {
     "ccnl_file": "sistemazioni-idraulico-forestali-operai.json",

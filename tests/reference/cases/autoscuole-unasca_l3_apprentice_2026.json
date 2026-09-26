@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Autoscuole UNASCA/CONFARCA (IC91), Level 3 apprentice, 20 months elapsed, 2026-06-01.",
   "_notes": [
     "Track L3-autoscuole-48m: months 16-31 sets levels_below=1 (destination 3, pay at level 2).",

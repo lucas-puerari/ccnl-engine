@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Edilizia ANCE (F012), Level 3 (operaio specializzato), 2026-03-01, permanent, full-time, no seniority, 50 employees.",
   "_notes": [
     "base_monthly is the conglobated minimum (paga base + contingenza + EDR): 1982.05 from the March 2026 tranche (second tranche of the 2025-2028 renewal, effective 2026-03-01).",

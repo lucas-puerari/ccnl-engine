@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "operai-agricoli-florovivaisti.json",
     "level_code": "Area2",

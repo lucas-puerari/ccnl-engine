@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "igiene-ambientale-utilitalia.json",
     "level_code": "C1s",

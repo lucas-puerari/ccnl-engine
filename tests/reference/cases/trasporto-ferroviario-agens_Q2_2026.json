@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "trasporto-ferroviario-agens.json",
     "level_code": "Q2",

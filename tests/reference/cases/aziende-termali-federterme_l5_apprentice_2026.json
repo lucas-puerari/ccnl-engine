@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Aziende Termali Federterme (K461), Level 5 apprentice, 12 months elapsed, 2026-06-01.",
   "_notes": [
     "Track L5-terme-18m: months 9+ sets levels_below=1 and midpoint_to_destination=True.",

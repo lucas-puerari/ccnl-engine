@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "forze-polizia-ordinamento-civile.json",
     "year": 2026,

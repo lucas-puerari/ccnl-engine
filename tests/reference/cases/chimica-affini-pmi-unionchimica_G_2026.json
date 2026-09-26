@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "chimica-affini-pmi-unionchimica.json",
     "level_code": "G",

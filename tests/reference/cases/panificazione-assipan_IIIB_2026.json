@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "inputs": {
     "ccnl_file": "panificazione-assipan.json",
     "level_code": "IIIB",

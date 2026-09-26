@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Metalmeccanico Federmeccanica (H041), Level C3, 2026-01-01, negotiated_ral=130000, ivs_ceiling_applies=True.",
   "_notes": [
     "negotiated_ral=130000 EUR/year forces the scenario above the 2026 INPS massimale.",

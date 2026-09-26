@@ -1,4 +1,5 @@
 {
+  "verification": "source_linked",
   "_description": "Golden case: CCNL Autoscuole UNASCA/CONFARCA (IC91), Level 3, 2026-06-01, permanent.",
   "_notes": [
     "Split model: paga base (987.04 a regime dal 01/02/2022) + CONTINGENZA (439.83) + EDR (10.33) = 1437.20 EUR/month.",

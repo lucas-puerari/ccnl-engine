@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Lavoro Domestico Non Convivente (H501), Level C, 2026-01-01, permanent, weekly_hours=40, no seniority.",
   "_notes": [
     "TABELLA C (non-conviventi) hourly: 7.86 EUR/h x 173 = 1359.78 EUR/month.",

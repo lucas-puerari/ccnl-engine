@@ -1,4 +1,5 @@
 {
+  "verification": "engine_generated",
   "_description": "Golden case: CCNL Industria Chimica-Farmaceutica Federchimica (B011), Level D1, 2026-07-01, permanent, full-time, no seniority, 50 employees.",
   "_notes": [
     "base_monthly is the TEM (Trattamento Economico Minimo) conglobato: base minimo (2053.03) + IPO (367.23) = 2420.26. EAR=0 for D category.",
