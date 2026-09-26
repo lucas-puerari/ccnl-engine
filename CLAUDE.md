@@ -77,7 +77,8 @@ Maximum depth: three directories under `ccnl_engine` before a file
 (`ccnl_engine/<capability>/<layer>/<subfeature>/file.py`); `data/` is exempt.
 
 JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
-behaviour. End-to-end scenarios live in `tests/fixtures/expected/scenarios/`.
+behaviour. Reference cases citing a signed source live in `tests/fixtures/expected/`
+and run through `PayrollEngine` in `tests/acceptance/public_api/test_reference_cases.py`.
 
 ## Test layout
 

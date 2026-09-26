@@ -265,7 +265,7 @@ class TestSicknessCaseNetDelta:
     """Gate: delta netto = -assenza + indennità + integrazione.
 
     These tests derive the expected delta from domain facts, not from the
-    production formula. They would have caught the P0 sign bug.
+    production formula. They would have caught the sign bug.
     """
 
     def _base_result(self) -> PeriodResult:

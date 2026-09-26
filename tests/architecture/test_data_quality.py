@@ -2,14 +2,13 @@
 
 These tests run against the JSON files in ``tests/fixtures/expected/`` and
 assert that each declares a known ``verification`` status consistent with its
-``source`` block. The rules live in :mod:`tests.architecture._provenance`.
-Scenario fixtures in ``tests/fixtures/expected/scenarios/`` must parse as
-non-empty JSON.
+``source`` block, and carries the inputs and expected values that
+``tests/acceptance/public_api/test_reference_cases.py`` executes. The rules
+live in :mod:`tests.architecture._provenance`.
 """
 
 from __future__ import annotations
 
-import json
 from typing import TYPE_CHECKING
 
 import pytest
@@ -25,7 +24,8 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 _ALL_CASES = sorted(CASES_DIR.glob("*.json"))
-_SCENARIOS_DIR = CASES_DIR / "scenarios"
+_INPUT_KEYS = frozenset({"ccnl_slug", "level_code", "year", "month", "headcount"})
+_EXPECTED_KEYS = frozenset({"base_salary", "fixed_allowances", "period_gross"})
 _SOURCE: dict[str, object] = {"document": "CCNL", "section": "Art. 1"}
 
 
@@ -49,8 +49,6 @@ def test_status_counts_cover_every_case() -> None:
 @pytest.mark.parametrize(
     "case",
     [
-        {"verification": "engine_generated"},
-        {"verification": "engine_generated", "source": _SOURCE},
         {"verification": "source_linked", "source": _SOURCE},
         {"verification": "verified", "source": _SOURCE},
     ],
@@ -66,6 +64,7 @@ def test_valid_cases_are_accepted(case: dict[str, object]) -> None:
         ({}, "missing 'verification'"),
         ({"source": _SOURCE}, "missing 'verification'"),
         ({"verification": "unverified"}, "unknown verification"),
+        ({"verification": "engine_generated"}, "unknown verification"),
         ({"verification": "source_linked"}, "requires a non-empty 'source'"),
         (
             {"verification": "source_linked", "source": {}},
@@ -95,14 +94,17 @@ def test_load_case_rejects_non_object(tmp_path: Path) -> None:
 
 def test_count_by_status_reports_zero_for_missing_buckets() -> None:
     """Statuses with no cases still appear with a zero count."""
-    counts = count_by_status([{"verification": "engine_generated"}])
-    assert counts == {"verified": 0, "source_linked": 0, "engine_generated": 1}
+    counts = count_by_status([{"verification": "source_linked"}])
+    assert counts == {"verified": 0, "source_linked": 1}
 
 
-def test_scenario_cases_are_valid_json() -> None:
-    """Every scenario case JSON is parseable and not empty."""
-    case_files = sorted(_SCENARIOS_DIR.glob("*.json"))
-    assert case_files, "fixtures/expected/scenarios/ must hold at least one case"
-    for path in case_files:
-        data = json.loads(path.read_text(encoding="utf-8"))
-        assert data, f"{path.name} is empty"
+@pytest.mark.parametrize("path", _ALL_CASES, ids=lambda p: p.stem)
+def test_case_declares_runnable_inputs(path: Path) -> None:
+    """Every case carries exactly the inputs and values the runner uses."""
+    case = load_case(path)
+    inputs = case.get("inputs")
+    expected = case.get("expected")
+    assert isinstance(inputs, dict), path.name
+    assert isinstance(expected, dict), path.name
+    assert set(inputs) == _INPUT_KEYS, path.name
+    assert set(expected) == _EXPECTED_KEYS, path.name

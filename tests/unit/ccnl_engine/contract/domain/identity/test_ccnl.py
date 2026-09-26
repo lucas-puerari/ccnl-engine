@@ -915,7 +915,7 @@ class TestSchema05ProvenanceRequired:
 
 
 # ---------------------------------------------------------------------------
-# CCNLParameters positive constraints (R21)
+# CCNLParameters positive constraints
 # ---------------------------------------------------------------------------
 
 
@@ -935,22 +935,22 @@ class TestCCNLParametersPositiveConstraints:
         }
 
     def test_zero_hourly_divisor_raises(self) -> None:
-        """R21: hourly_divisor=0 is rejected."""
+        """hourly_divisor=0 is rejected."""
         with pytest.raises(ValidationError, match="hourly_divisor"):
             CCNLParameters.model_validate(self._make_params(hourly_divisor="0"))
 
     def test_negative_hourly_divisor_raises(self) -> None:
-        """R21: hourly_divisor < 0 is rejected."""
+        """hourly_divisor < 0 is rejected."""
         with pytest.raises(ValidationError, match="hourly_divisor"):
             CCNLParameters.model_validate(self._make_params(hourly_divisor="-1"))
 
     def test_zero_additional_months_raises(self) -> None:
-        """R21: additional_months=0 is rejected."""
+        """additional_months=0 is rejected."""
         with pytest.raises(ValidationError, match="additional_months"):
             CCNLParameters.model_validate(self._make_params(additional_months="0"))
 
     def test_negative_additional_months_raises(self) -> None:
-        """R21: additional_months < 0 is rejected."""
+        """additional_months < 0 is rejected."""
         with pytest.raises(ValidationError, match="additional_months"):
             CCNLParameters.model_validate(self._make_params(additional_months="-14"))
 

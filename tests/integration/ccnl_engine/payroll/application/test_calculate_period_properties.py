@@ -1,4 +1,4 @@
-"""Hypothesis property tests for the period-first engine: §8.4 coverage.
+"""Hypothesis property tests for the period-first engine over generated inputs.
 
 Properties verified here hold for any structurally valid input that the
 period-first engine accepts without raising.  They complement the scenario

@@ -406,6 +406,36 @@ def test_family_deductions_increase_net() -> None:
     assert result_family.period_net > result_single.period_net
 
 
+def test_spouse_deduction_flat_band() -> None:
+    """A dependent spouse is worth 690 a year between 15,001 and 29,000 of income.
+
+    Art. 12 c. 1 lett. a) n. 2 TUIR: the deduction is a flat 690 for income
+    above 15,000 and up to 40,000; the supplements of the same article start
+    above 29,000. Metalmeccanico C2 projects about 24,300 of taxable income.
+    """
+    result = engine.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(year=2026, month=9),
+            payment_date=date(2026, 9, 27),
+            employment=Employment(
+                ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C2"
+            ),
+            employer=EmployerProfile(headcount=Headcount(50)),
+            facts=PeriodFacts(
+                family_composition=FamilyComposition(
+                    dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+                ),
+            ),
+        )
+    )
+    family = [
+        item.amount
+        for item in result.tax_computation.components
+        if item.name == "family_deductions"
+    ]
+    assert family == [Decimal("690.00")]
+
+
 # ---------------------------------------------------------------------------
 # YTD state chaining (area: conguaglio / YTD)
 # ---------------------------------------------------------------------------

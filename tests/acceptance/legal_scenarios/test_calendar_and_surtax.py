@@ -12,9 +12,9 @@ from ccnl_engine import (
     CalendarOverrideReason,
     Employment,
     InvalidInputError,
+    WorkCalendar,
     YearInput,
 )
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,

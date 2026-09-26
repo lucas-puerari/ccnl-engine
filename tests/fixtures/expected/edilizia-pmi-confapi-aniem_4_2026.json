@@ -1,0 +1,26 @@
+{
+  "verification": "source_linked",
+  "_description": "CCNL Edilizia PMI CONFAPI ANIEM (F018), level 4, January 2026 regular run, permanent, full time.",
+  "_notes": [
+    "April 2025 tranche: paga base L4 1523.17.",
+    "Contingenza L4 522.15 (frozen) + EDR 10.33 = allowances 532.48.",
+    "Period gross = 1523.17 + 532.48 = 2055.65."
+  ],
+  "source": {
+    "document": "CCNL Edilizia ANIEM CONFAPI armonizzato 15/04/2025 (FILLEA CGIL)",
+    "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+    "section": "Tabella retributiva dal 1 aprile 2025, livello 4"
+  },
+  "inputs": {
+    "ccnl_slug": "edilizia-pmi-confapi-aniem.json",
+    "level_code": "4",
+    "year": 2026,
+    "month": 1,
+    "headcount": 50
+  },
+  "expected": {
+    "base_salary": "1523.17",
+    "fixed_allowances": "532.48",
+    "period_gross": "2055.65"
+  }
+}

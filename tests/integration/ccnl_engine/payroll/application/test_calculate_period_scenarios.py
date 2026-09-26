@@ -1,4 +1,4 @@
-"""Scenario tests for the period-first engine: §8.3 coverage.
+"""Scenario tests for the period-first engine: cross-module invariants.
 
 Tests here verify structural invariants that span calculate_period and
 reconcile: ledger coverage (I1), account exclusivity (I2), net identity (I9),

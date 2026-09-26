@@ -45,7 +45,7 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
 
     Expected: ``net_irpef(final taxable)``.  With the final taxable of
     21,182.05 EUR the oracle gives 1,337.83 EUR (derivation in
-    ``test_irpef_oracle.test_first_bracket_with_further_deduction``).
+    ``test_irpef_net_oracle.test_first_bracket_with_further_deduction``).
 
     Before the withholding schedule was split from the equivalent months,
     the engine withheld 1,833.32 (26 September 2026): 13 slots for 14 runs
@@ -99,7 +99,7 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     art. 1 c. 6) must reach the conguaglio.  292 / 365 is exactly 0.8.
 
     - Level Q, final taxable 30,438.68: 5,034.22 (derivation in
-      ``test_irpef_oracle.test_part_year_deductions_follow_the_days``).
+      ``test_irpef_net_oracle.test_part_year_deductions_follow_the_days``).
     - Level 3, final taxable 20,221.90: gross 4,651.04; ratio 7,778.10 /
       13,000 truncated 0.5983; deduction (1,910 + 1,190 * 0.5983) * 0.8 =
       2,621.98 * 0.8 = 2,097.58; further deduction 800.00; net 1,753.46.

@@ -1,6 +1,6 @@
-"""Unit tests for the documentation generator helpers (R24).
+"""Unit tests for the documentation generator helpers.
 
-Targets the field-name bugs corrected in R24: ``_latest_value`` and
+Targets field-name bugs since corrected: ``_latest_value`` and
 ``_latest_date`` previously sorted and read by ``"from"`` instead of
 ``"valid_from"``; ``_track_params_line`` read ``"under_level"`` instead of
 ``"levels_below"``.

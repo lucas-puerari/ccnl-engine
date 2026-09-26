@@ -6,7 +6,8 @@
   ``tests/unit/ccnl_engine/x/y/test_z.py`` needs ``src/ccnl_engine/x/y/z.py``
   (or ``_z.py``, or a ``z`` package); ``test_z_<suffix>.py`` is accepted too.
   Integration tests may also mirror ``scripts`` and ``demo``;
-- acceptance tests live in ``public_api`` or ``legal_scenarios``;
+- acceptance tests live in ``public_api`` or ``legal_scenarios`` and import
+  ``ccnl_engine`` only through its root, the public API;
 - ``fixtures`` holds data and helpers, never tests;
 - at most five directories under ``tests`` before a file, ``fixtures`` aside;
 - no test file exceeds the line limit without an explicit exception.
@@ -14,6 +15,7 @@
 
 from __future__ import annotations
 
+import ast
 from pathlib import Path
 
 import pytest
@@ -41,11 +43,8 @@ _CATEGORY_ROOTS: dict[str, frozenset[str]] = {
 _MAX_DEPTH = 5
 
 _TEST_LINE_LIMIT = 1000
-_ALLOWED_LARGE_TESTS: dict[str, int] = {
-    # Dense domain rule tables: reorganisation tracked separately.
-    "integration/ccnl_engine/tax/domain/test_ruleset.py": 1100,
-    "integration/ccnl_engine/payroll/application/test_calculate_period.py": 1100,
-}
+#: Files allowed above the limit, with their own ceiling; empty by design.
+_ALLOWED_LARGE_TESTS: dict[str, int] = {}
 
 
 def _skipped(part: str) -> bool:
@@ -100,6 +99,40 @@ def acceptance_violations(tests: Path) -> list[str]:
         for rel in _test_files(root)
         if len(rel.parts) < 2 or rel.parts[0] not in _ACCEPTANCE_AREAS
     ]
+
+
+def _imported_modules(tree: ast.Module) -> list[str]:
+    """Return every module named by an ``import`` or ``from ... import``.
+
+    Returns:
+        Module names in source order; relative imports are skipped.
+    """
+    names: list[str] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom) and node.module:
+            names.append(node.module)
+        elif isinstance(node, ast.Import):
+            names.extend(alias.name for alias in node.names)
+    return names
+
+
+def internal_import_violations(tests: Path) -> list[str]:
+    """Return acceptance modules importing below the ``ccnl_engine`` root.
+
+    Returns:
+        Sorted ``path: module`` entries, one per internal import.
+    """
+    root = tests / "acceptance"
+    if not root.is_dir():
+        return []
+    return sorted(
+        f"acceptance/{rel.as_posix()}: {name}"
+        for rel in _files(root, "*.py")
+        for name in _imported_modules(
+            ast.parse((root / rel).read_text(encoding="utf-8"))
+        )
+        if name.startswith("ccnl_engine.")
+    )
 
 
 def fixture_violations(tests: Path) -> list[str]:
@@ -197,6 +230,11 @@ def test_acceptance_tests_sit_in_known_areas() -> None:
     assert acceptance_violations(_TESTS) == []
 
 
+def test_acceptance_uses_only_the_public_api() -> None:
+    """Acceptance tests import ``ccnl_engine`` names from the root only."""
+    assert internal_import_violations(_TESTS) == []
+
+
 def test_fixtures_hold_no_tests() -> None:
     """``fixtures`` is data, not an executable category."""
     assert fixture_violations(_TESTS) == []
@@ -278,6 +316,24 @@ def test_missing_areas_yield_no_violation(tmp_path: Path) -> None:
     """A tree without acceptance or fixtures has nothing to flag there."""
     assert acceptance_violations(tmp_path) == []
     assert fixture_violations(tmp_path) == []
+
+
+def test_internal_import_in_acceptance_is_rejected(tmp_path: Path) -> None:
+    """Deep ``ccnl_engine`` imports are flagged; root imports are not."""
+    module = tmp_path / "acceptance" / "public_api" / "test_x.py"
+    module.parent.mkdir(parents=True)
+    module.write_text(
+        "import ccnl_engine\n"
+        "import ccnl_engine.api\n"
+        "from ccnl_engine import PayrollEngine\n"
+        "from ccnl_engine.payroll.domain.run import RunKind\n",
+        encoding="utf-8",
+    )
+    assert internal_import_violations(tmp_path) == [
+        "acceptance/public_api/test_x.py: ccnl_engine.api",
+        "acceptance/public_api/test_x.py: ccnl_engine.payroll.domain.run",
+    ]
+    assert internal_import_violations(tmp_path / "absent") == []
 
 
 def test_test_under_fixtures_is_rejected(tmp_path: Path) -> None:

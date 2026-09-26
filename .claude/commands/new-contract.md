@@ -235,9 +235,11 @@ Fix all Pydantic errors before continuing. Do not proceed with broken JSON.
 
 ---
 
-## Step 6 — Compute the integration case with the engine
+## Step 6: Write a source-linked reference case
 
-**Never compute expected values by hand.** Run the engine and capture the output:
+Take base salary, fixed allowances and period gross from the signed salary table,
+never from engine output (an expected value produced by the engine detects nothing).
+Then check that the engine agrees:
 
 ```python
 from datetime import date
@@ -263,7 +265,12 @@ result = PayrollEngine.bundled().calculate_period(
 Choose: mid-range level, no seniority, permanent, 50 employees,
 date on the second tranche.
 
-Save to `tests/fixtures/expected/scenarios/{id}_{level}_{year}.json`.
+Save to `tests/fixtures/expected/{id}_{level}_{year}.json` with
+`"verification": "source_linked"`, a `source` object (document, url, section),
+`inputs` (`ccnl_slug`, `level_code`, `year`, `month`, `headcount`) and `expected`
+(`base_salary`, `fixed_allowances`, `period_gross`). See
+`tests/fixtures/expected/commercio-confcommercio_l4_2026.json`. The case runs in
+`tests/acceptance/public_api/test_reference_cases.py`.
 
 ---
 
@@ -394,8 +401,8 @@ silently truncated in the sidebar). Match the style of existing entries.
 
 ---
 
-**CI smoke-test**: `tests/acceptance/public_api/test_contract_examples.py` automatically
-picks up `docs/examples/contracts/{id}.py` — no test edit is needed.
+**CI smoke-test**: `tests/acceptance/public_api/test_docs_examples.py` automatically
+picks up `docs/examples/contracts/{id}.py`, so no test edit is needed.
 Run `uv run pytest tests/acceptance/public_api/` to verify before committing.
 
 ---

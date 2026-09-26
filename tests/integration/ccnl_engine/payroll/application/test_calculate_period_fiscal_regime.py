@@ -1,8 +1,7 @@
 """Regression tests for substitute tax regime eligibility and credit recovery bugs.
 
-All tests are marked xfail(strict=True): they document the normatively correct
-behaviour.  When fixes land these turn XPASS, causing CI to fail and prompting
-removal of the markers.
+Each test asserts the normatively correct behaviour of a bug that has been
+fixed; "Previously" describes what the engine did before the fix.
 
 Bugs covered:
 
@@ -10,14 +9,14 @@ Bugs covered:
    Source: L. 199/2025 art. 1 co. 9 — productivity bonus tassazione sostitutiva
    1% up to 5,000 EUR applies only to workers with reddito da lavoro dipendente
    e assimilati of the previous year within the income ceiling (80,000 EUR).
-   Current: no eligibility check; 1% is applied to every BonusEvent of kind
+   Previously: no eligibility check; 1% is applied to every BonusEvent of kind
    "productivity_bonus", including workers above the ceiling.
 
 2. Trattamento integrativo recovery does not use eight equal installments.
    Source: D.L. 3/2020, art. 1 comma 3 — if the amount to recover exceeds 60 EUR
    the recovery must occur in eight equal installments ("otto rate di pari
    ammontare") starting from the reconciliation payslip.
-   Current: resolve_trattamento divides the recovery by remaining periods,
+   Previously: resolve_trattamento divides the recovery by remaining periods,
    producing a rate proportional to calendar position rather than a fixed
    eight-installment plan.
 """

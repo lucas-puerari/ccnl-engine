@@ -1,10 +1,8 @@
-"""Regression suite for correctness bugs identified in REVIEW.md §3-5.
+"""Regression suite for correctness bugs found in the period pipeline.
 
-All tests are marked xfail(strict=True): they document the correct expected
-behaviour and will become XPASS once the underlying bug is fixed.  That XPASS
-causes CI to fail, prompting removal of the marker and confirming the fix.
+Each test asserts the correct behaviour of a bug that has been fixed.
 
-Bugs covered (REVIEW.md §5):
+Bugs covered:
   - bonus duplicated across extra month run
   - taxable_ytd diluted by additional_months divisor
   - domestic-work contributions silently zero
@@ -17,7 +15,6 @@ Bugs covered (REVIEW.md §5):
 
 Sources:
   INPS circ. 4/2026: massimale IVS 122,295 EUR; soglia +1% 56,224 EUR
-  REVIEW.md §5: P0-1, P0-2, P0-4, P0-5, P0-6, P0-7
 """
 
 from __future__ import annotations
@@ -95,14 +92,13 @@ def _req(
 # calculate_year maps periods keyed by month number.  When December has two
 # runs (regular + tredicesima), both receive periods[12].  A 100 EUR
 # bonus therefore inflates annual_gross by 200 instead of 100.
-# Source: REVIEW.md §5.
 # ---------------------------------------------------------------------------
 
 
 def test_bonus_not_duplicated_in_extra_run() -> None:
     """A December BonusEvent must increase annual_gross by exactly 100, not 200.
 
-    Source: REVIEW.md §5.  With a 13-run calendar and periods[12]
+    With a 13-run calendar and periods[12]
     containing a 100 EUR bonus, annual_gross must equal baseline + 100.
     Expected: diff == Decimal("100.00").
     """
@@ -129,14 +125,12 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
 # increments closing.taxable_ytd by that fraction.  A 1,000 EUR bonus whose
 # INPS-net taxable is ~905.10 EUR therefore adds only ~69.62 EUR (905.10/13)
 # to taxable_ytd instead of the full ~905.10.
-# Source: REVIEW.md §5, P0-2.
 # ---------------------------------------------------------------------------
 
 
 def test_taxable_ytd_not_diluted_by_extra_months() -> None:
     """closing_state.taxable_ytd must increase by exactly 905.10 for a 1,000 EUR bonus.
 
-    Source: REVIEW.md §4 (riproduzione numerica verificata).
     1,000 EUR bonus, employee INPS contribution 94.90 EUR (9.49%):
     event_taxable = 1,000.00 - 94.90 = 905.10.
     The current engine produces 810.20 due to a double-deduction of INPS
@@ -161,16 +155,15 @@ def test_taxable_ytd_not_diluted_by_extra_months() -> None:
 # Domestic-work contributions silently zero
 #
 # calculate_period routes domestic CCNLs through a zero-contribution path
-# (PR #601 fix).  The result has period_gross > 0 but contribution_breakdown
+# (now fixed).  The result has period_gross > 0 but contribution_breakdown
 # employee == employer == 0.  This is a silent incorrect result.
-# Source: REVIEW.md §5, P0-4.
 # ---------------------------------------------------------------------------
 
 
 def test_domestic_contributions_nonzero() -> None:
     """Lavoro domestico must produce employee and employer INPS contributions > 0.
 
-    Source: REVIEW.md §5, P0-4.  Uses the hours bracket (weekly_hours=30 > 24
+    Uses the hours bracket (weekly_hours=30 > 24
     threshold): employee 0.31/h, employer 0.93/h on 130 contributable hours.
     Expected: contribution_breakdown.employee > 0 and employer > 0.
     """
@@ -200,14 +193,13 @@ def test_domestic_contributions_nonzero() -> None:
 # BilateralFundEvent is posted to EMPLOYEE_CONTRIBUTIONS, which is also the
 # account whose running total drives inps_employee_ytd.  The fund contribution
 # is not an INPS amount and must not affect the INPS YTD counter.
-# Source: REVIEW.md §5, P0-5.
 # ---------------------------------------------------------------------------
 
 
 def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
     """BilateralFundEvent must not change inps_employee_ytd.
 
-    Source: REVIEW.md §5, P0-5.  A 100 EUR bilateral fund contribution must not
+    A 100 EUR bilateral fund contribution must not
     alter closing_state.inps_employee_ytd relative to the no-fund baseline.
     """
     fund = BilateralFundEvent(
@@ -234,7 +226,6 @@ def test_bilateral_fund_excluded_from_inps_employee_ytd() -> None:
 # Since absences post to EMPLOYEE_DEDUCTIONS (not CASH_EARNINGS), period_gross
 # equals the base salary and is non-negative regardless of absence size.
 # Metalmeccanico C3 gross is 2,158.26 EUR in January 2026.
-# Source: REVIEW.md §5, P0-6.
 # ---------------------------------------------------------------------------
 
 
@@ -295,14 +286,13 @@ def test_absence_above_monthly_pay_is_invalid_input() -> None:
 #
 # BonusEvent carries no invariants; a negative amount reduces the gross
 # silently and can propagate to negative taxable income.
-# Source: REVIEW.md §5, P0-6.
 # ---------------------------------------------------------------------------
 
 
 def test_negative_bonus_raises_invalid_input() -> None:
     """BonusEvent with a negative amount must raise InvalidInputError.
 
-    Source: REVIEW.md §5, P0-6.  A -100 EUR bonus reduces gross and taxable
+    A -100 EUR bonus reduces gross and taxable
     income without any explicit deduction record.  Expected: InvalidInputError.
     """
     with pytest.raises(InvalidInputError):
@@ -318,14 +308,13 @@ def test_negative_bonus_raises_invalid_input() -> None:
 # The carenza formula is amount - (amount / sick_days * waiting_period_days).
 # When sick_days=0 this produces a bare ZeroDivisionError instead of a
 # structured InvalidInputError.
-# Source: REVIEW.md §5, P0-6, P0-7.
 # ---------------------------------------------------------------------------
 
 
 def test_sick_leave_zero_days_raises_invalid_input() -> None:
     """SickLeaveEvent with sick_days=0 must raise InvalidInputError.
 
-    Source: REVIEW.md §5, P0-6/P0-7.  sick_days=0 is semantically invalid;
+    sick_days=0 is semantically invalid;
     the engine must reject it with a structured error before the formula runs.
     """
     with pytest.raises(InvalidInputError):
@@ -343,14 +332,13 @@ def test_sick_leave_zero_days_raises_invalid_input() -> None:
 # The docstring declares waiting_period_days must not exceed sick_days, but
 # no runtime check enforces this.  The formula produces a nonsensical result
 # (net < 0 when carenza > total).
-# Source: REVIEW.md §5, P0-7.
 # ---------------------------------------------------------------------------
 
 
 def test_waiting_period_exceeds_sick_days_raises_invalid_input() -> None:
     """SickLeaveEvent with waiting_period_days > sick_days must raise InvalidInputError.
 
-    Source: REVIEW.md §5, P0-7.  The docstring states this is invalid; the
+    The docstring states this is invalid; the
     engine must enforce it with a structured domain error.
     """
     with pytest.raises(InvalidInputError):
@@ -370,7 +358,7 @@ def test_waiting_period_exceeds_sick_days_raises_invalid_input() -> None:
 # no IVS and no +1% should apply to the current period income.  The engine
 # currently computes the +1% on the full period base regardless of whether
 # the massimale has been reached.
-# Source: REVIEW.md §5, P0-5; INPS circ. 4/2026.
+# Source: INPS circ. 4/2026.
 # ---------------------------------------------------------------------------
 
 

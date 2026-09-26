@@ -1,8 +1,8 @@
 """Regression tests verifying extra-month rateo is based on accrued months.
 
-These tests were initially marked xfail while the rateo was derived from the
-payment calendar month.  The rateo now counts the qualifying months of the
-12-month window ending in the payment month, from the employment dates.
+The rateo was once derived from the payment calendar month.  It now counts
+the qualifying months of the 12-month window ending in the payment month,
+from the employment dates.
 
 Normative basis:
   INPS circ. 154/2014: tredicesima matura nell'anno solare in costanza di rapporto.

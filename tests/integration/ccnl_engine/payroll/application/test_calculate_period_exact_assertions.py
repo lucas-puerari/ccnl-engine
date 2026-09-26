@@ -1,9 +1,4 @@
-"""Exact regression tests for bugs verified in REVIEW.md §4.
-
-All bugs are currently present on main.  Tests marked xfail(strict=True)
-document the correct expected behaviour and become XPASS once fixed.
-Tests without xfail assert behaviour that must already pass (the bug is
-already reproducible as an accepted-input failure).
+"""Exact regression tests for bugs reproduced numerically.
 
 Bugs covered:
   - Regular December and tredicesima produce identical gross and ledger IDs.
@@ -17,8 +12,6 @@ Bugs covered:
   - NightShiftEvent with negative supplement_amount accepted without error.
   - HolidayWorkEvent with negative supplement_amount accepted without error.
   - WorkCalendar.from_additional_months with unsupported count silently accepts.
-
-Source: REVIEW.md §4 (riproduzione numerica verificata), §5 P0-7.
 """
 
 from __future__ import annotations
@@ -117,7 +110,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
 def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     """Ledger entry IDs must be unique across all runs in a year.
 
-    Source: REVIEW.md §4.  With 13 runs the year produces 65 entries, but only
+    With 13 runs the year produces 65 entries, but only
     60 distinct IDs because the two December runs share entry IDs.
     """
     result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))

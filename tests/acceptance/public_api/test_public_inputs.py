@@ -1,4 +1,4 @@
-"""Public inputs: validation at construction and mapping to the calculation.
+"""Public inputs: validation at construction and use by the public entry points.
 
 Covers :class:`Employment`, :class:`EmployerProfile`,
 :class:`PriorYearTaxFacts`, :class:`PeriodFacts`, :class:`PeriodInput` and
@@ -7,7 +7,7 @@ Covers :class:`Employment`, :class:`EmployerProfile`,
 
 from __future__ import annotations
 
-from dataclasses import fields, replace
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import Any
@@ -19,15 +19,11 @@ from ccnl_engine import (
     CalendarOverrideReason,
     ContributableHours,
     ContributionCeilingStatus,
-    Dependent,
-    DependentRelationship,
     EmployerActivity,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
     EmploymentSector,
-    FamilyComposition,
-    FixedTerm,
     Headcount,
     InvalidInputError,
     OvertimeEvent,
@@ -35,16 +31,13 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    PeriodState,
     PriorYearTaxFacts,
-    SeniorityMonths,
     SubstituteTaxRegime,
     WeeklyHours,
     WorkCalendar,
     WorkerCategory,
     YearInput,
 )
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _ENGINE = PayrollEngine.bundled()
 _YEAR = 2026
@@ -228,73 +221,7 @@ class TestPeriodFacts:
 
 
 class TestPeriodInput:
-    """A run input is validated at construction and mapped to one request."""
-
-    def test_mapping_copies_every_fact_to_its_request_field(self) -> None:
-        """Each field of the request comes from its owner in the input."""
-        family = FamilyComposition(
-            dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
-        )
-        employment = Employment(
-            ccnl_slug=_METAL,
-            level_code="C3",
-            contract_type=FixedTerm(),
-            category=WorkerCategory.OPERAIO,
-            employment_period=EmploymentPeriod(date(2020, 1, 1)),
-            weekly_hours=WeeklyHours(30),
-            full_time_weekly_hours=WeeklyHours(40),
-            seniority_months=SeniorityMonths(24),
-            roles=frozenset({"caposquadra"}),
-            ceiling_status=ContributionCeilingStatus.POST_1995,
-            sector=EmploymentSector.PRIVATE,
-        )
-        facts = PeriodFacts(
-            contributable_hours=ContributableHours(Decimal(120)),
-            events=(_OVERTIME,),
-            regione="IT-45",
-            comune_belfiore="F257",
-            family_composition=family,
-            has_dependent_children=True,
-        )
-        prior = PriorYearTaxFacts(employment_income=Decimal(20000))
-        opening = PeriodState.zero()
-        run = PayrollRun.regular(_YEAR, 6)
-        request = PeriodInput(
-            run=run,
-            payment_date=date(_YEAR, 6, 28),
-            employment=employment,
-            employer=_EMPLOYER,
-            facts=facts,
-            prior_year=prior,
-            opening_state=opening,
-        ).calculation_request()
-
-        assert request.period_id == PeriodId(year=_YEAR, month=6)
-        assert request.run is run
-        assert request.payment_date == date(_YEAR, 6, 28)
-        assert request.employer is _EMPLOYER
-        assert request.opening_state is opening
-        assert request.prior_year is prior
-        for name in (
-            "ccnl_slug",
-            "level_code",
-            "contract_type",
-            "category",
-            "employment_period",
-            "weekly_hours",
-            "full_time_weekly_hours",
-            "seniority_months",
-            "roles",
-            "ceiling_status",
-            "sector",
-        ):
-            assert getattr(request, name) == getattr(employment, name), name
-        for field in fields(PeriodFacts):
-            name = field.name
-            assert getattr(request, name) == getattr(facts, name), name
-        assert request.extra_month_accrual is None
-        assert request.extra_month_settlements == ()
-        assert request.withholding_schedule is None
+    """A run input is validated at construction."""
 
     @pytest.mark.parametrize(
         "field",

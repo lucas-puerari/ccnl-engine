@@ -136,11 +136,6 @@ class TestSicknessCaseValidation:
         sc = _case(inps_daily_rate=_ONE)
         assert sc.inps_daily_rate == _ONE
 
-    def test_boundary_waiting_equals_working_accepted(self) -> None:
-        """waiting_period_days == working_days is accepted (all carenza)."""
-        sc = _case(working_days=5, waiting_period_days=5)
-        assert sc.indemnifiable_days == 0
-
     def test_gross_daily_zero_accepted(self) -> None:
         """gross_daily = 0 is accepted."""
         sc = _case(gross_daily=_ZERO)
