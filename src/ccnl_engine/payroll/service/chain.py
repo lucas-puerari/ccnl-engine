@@ -14,7 +14,7 @@ if TYPE_CHECKING:
         CCNL,
         Allowance,
         Level,
-        LevelCategory,
+        WorkerCategory,
     )
 
 
@@ -43,7 +43,7 @@ def _level_chain(
     roles: frozenset[str],
     as_of: date,
     *,
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
     is_apprentice: bool,
     seniority_months: int | None = None,
 ) -> MonthlyPayChain:

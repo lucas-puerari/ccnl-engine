@@ -32,6 +32,8 @@ from ccnl_engine.payroll.application._period_amounts import (
 )
 from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
+    _effective_resolver,
+    _int_value,
     _make_entry,
     _require_resolution,
     _sum_ledger,
@@ -67,11 +69,11 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
     TrattamentoAccount,
 )
+from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.domain.employment import SeniorityMonths, WeeklyHours
 
 _ZERO = Decimal(0)
 
@@ -94,14 +96,6 @@ def _resolve_run_id(request: PeriodCalculationRequest, tctx: TemporalContext) ->
         msg = f"Run '{run_id}' was already processed in this payroll year"
         raise ValueError(msg)
     return run_id
-
-
-def _int_value(fact: WeeklyHours | SeniorityMonths | None) -> int | None:
-    return None if fact is None else fact.value
-
-
-def _effective_resolver(resolver: PolicyResolver | None) -> PolicyResolver:
-    return resolver if resolver is not None else PolicyResolver.load()
 
 
 def calculate_period(
@@ -149,6 +143,9 @@ def calculate_period(
     )
     catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
     additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
+    worker_category = resolve_worker_category(
+        ccnl, level, request.category, seniority=request.seniority_months
+    )
     chain = _resolve_chain(
         ccnl,
         level,
@@ -156,7 +153,7 @@ def calculate_period(
         tctx.competence,
         seniority_months=_int_value(request.seniority_months),
         roles=request.roles,
-        worker_category=None,
+        worker_category=worker_category,
         weekly_hours=_int_value(request.weekly_hours),
         full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
     )
@@ -230,7 +227,7 @@ def calculate_period(
         additional_months,
         year_rules,
         request.contract_type,
-        level.category,
+        worker_category,
         surtax_rules=surtax_rules,
         regione=request.regione,
         comune_belfiore=request.comune_belfiore,

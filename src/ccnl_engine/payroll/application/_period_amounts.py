@@ -30,9 +30,9 @@ from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
     from ccnl_engine.engine.contract.domain.compensation import Level
-    from ccnl_engine.engine.contract.domain.seniority import LevelCategory
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.contribution_rules import DomesticInpsRates
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
@@ -70,7 +70,7 @@ def _resolve_chain(
     *,
     seniority_months: int | None = None,
     roles: frozenset[str] = frozenset(),
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
     weekly_hours: int | None = None,
     full_time_weekly_hours: int | None = None,
 ) -> MonthlyPayChain:
@@ -251,7 +251,7 @@ def _compute_amounts(
     additional_months: int,
     rules: YearRules,
     contract_type: Permanent | FixedTerm | Apprentice,
-    category: LevelCategory | None,
+    category: WorkerCategory | None,
     pdr_rules: PdRRules,
     surtax_rules: SurtaxRules | None = None,
     regione: str | None = None,

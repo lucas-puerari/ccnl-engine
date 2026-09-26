@@ -4,6 +4,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
@@ -61,12 +62,12 @@ class TestResolveRates:
 
     def test_permanent_category_override(self) -> None:
         """Category-specific employer rate applies when the category matches."""
-        assert resolve_rates(_rules(), Permanent(), "impiegato").employer_rate == _D(
-            "0.2471"
-        )
-        assert resolve_rates(_rules(), Permanent(), "operaio").employer_rate == _D(
-            "0.2898"
-        )
+        assert resolve_rates(
+            _rules(), Permanent(), WorkerCategory.IMPIEGATO
+        ).employer_rate == _D("0.2471")
+        assert resolve_rates(
+            _rules(), Permanent(), WorkerCategory.OPERAIO
+        ).employer_rate == _D("0.2898")
 
     def test_fixed_term_adds_naspi(self) -> None:
         """Fixed-term: employer rate + fixed_term_additional_rate."""
@@ -84,7 +85,7 @@ class TestResolveRates:
         ).employee_rate == (_D("0.0584"))
         assert [
             resolve_rates(
-                rules, Apprentice(months_elapsed=m), "impiegato"
+                rules, Apprentice(months_elapsed=m), WorkerCategory.IMPIEGATO
             ).employer_rate
             for m in (0, 12, 24)
         ] == [_D("0.0311"), _D("0.0461"), _D("0.1161")]

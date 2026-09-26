@@ -27,6 +27,21 @@ Two equivalent ways to specify seniority:
 --8 < --"docs/examples/05_seniority.py"
 ```
 
+### Worker category
+
+Some CCNLs price seniority by legal category (art. 2095 c.c.): in Servizi
+Postali in Appalto FISE an *operaio* and an *impiegato* on the same level earn
+different increments. Pass the category as `EmploymentFacts.category`, a
+`WorkerCategory` (`operaio`, `impiegato`, `quadro`, `dirigente`). The same
+value selects category-specific INPS employer rates (e.g. *impiegati* in
+artigianato).
+
+- A level reserved to one category (e.g. a `quadro` level) supplies it when
+  you omit it; declaring a different category raises `InvalidInputError`.
+- When increments for the level exist only per category and you pass
+  `seniority_months` without a category, the calculation raises
+  `InvalidInputError` instead of silently dropping the increment.
+
 ## Individually negotiated salary (*RAL concordata*)
 
 When a worker's annual gross is negotiated above the CCNL minimum, pass a

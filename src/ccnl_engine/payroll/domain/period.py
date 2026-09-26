@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.capability_catalog import CapabilityReport
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
@@ -170,6 +171,11 @@ class PeriodCalculationRequest:
             ``None`` when not tracked.
         seniority_months: Months of continuous service, non-negative.
             ``None`` means seniority increments are not applied.
+        roles: Role codes that unlock role-specific contractual allowances.
+        category: Worker category declared on the employment.  ``None``
+            takes the category fixed by the level, if any.  Must match the
+            level's category when the level fixes one, and is required when
+            seniority increments for the level differ by category.
     """
 
     period_id: PeriodId
@@ -192,7 +198,7 @@ class PeriodCalculationRequest:
     employment_period: EmploymentPeriod | None = None
     seniority_months: SeniorityMonths | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
-    category: str | None = None
+    category: WorkerCategory | None = None
     extra_month_accrual_start: int = 1
     extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
 

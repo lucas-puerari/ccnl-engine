@@ -35,6 +35,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 
 if TYPE_CHECKING:
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
@@ -134,7 +135,7 @@ def calculate_year(
     employment_period: EmploymentPeriod | None = None,
     seniority_months: SeniorityMonths | None = None,
     roles: frozenset[str] = frozenset(),
-    category: str | None = None,
+    category: WorkerCategory | None = None,
     period_events: dict[int, tuple[WorkEvent, ...]] | None = None,
     per_run_events: dict[str, tuple[WorkEvent, ...]] | None = None,
     regione: str | None = None,
@@ -187,7 +188,8 @@ def calculate_year(
         seniority_months: Months of continuous service for seniority resolution.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
-        category: Worker category code.  ``None`` when not applicable.
+        category: Worker category declared on the employment.  ``None``
+            takes the category fixed by the level, if any.
         period_events: Optional mapping from month number (1-12) to the
             variable work events for that regular period.  Extra-month runs
             (thirteenth, fourteenth) receive no events from this mapping;

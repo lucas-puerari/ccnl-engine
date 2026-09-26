@@ -12,9 +12,9 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import (
-        LevelCategory,
         SeniorityIncrements,
         SeniorityTier,
+        WorkerCategory,
     )
 
 _ZERO = Decimal(0)
@@ -97,7 +97,7 @@ def _resolve_tier_amount(
 def seniority_maximum(
     increments: SeniorityIncrements,
     level_code: str,
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
 ) -> int:
     """Return the maximum increment count applicable to a level/category.
 
@@ -120,7 +120,7 @@ def seniority_maximum(
 def seniority_first_cadence(
     increments: SeniorityIncrements,
     level_code: str,
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
 ) -> int:
     """Return the months of service required for the first increment.
 
@@ -145,7 +145,7 @@ def _resolve_seniority_count(
     seniority_count: int | None,
     seniority_months: int | None,
     *,
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
 ) -> int:
     """Resolve the seniority increment count from either explicit input.
 
@@ -193,7 +193,7 @@ def _seniority_amount(
     count: int,
     as_of: date,
     *,
-    worker_category: LevelCategory | None,
+    worker_category: WorkerCategory | None,
     is_apprentice: bool,
     seniority_months: int | None,
 ) -> Decimal:

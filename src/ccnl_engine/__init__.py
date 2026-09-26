@@ -41,6 +41,7 @@ from ccnl_engine.engine.capability_catalog import (
     CapabilityGap,
     CapabilityStatus,
 )
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.contract.service.discovery import (
     CcnlId,
@@ -103,6 +104,7 @@ __all__ = [
     "SupplementaryAllowance",
     "UnknownCcnlError",
     "UnknownLevelError",
+    "WorkerCategory",
     "engine_version",
     "get_ccnl",
     "list_ccnls",

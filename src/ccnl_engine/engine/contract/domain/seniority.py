@@ -1,15 +1,14 @@
 """Seniority increment models for CCNL contracts."""
 
 from collections.abc import Mapping
-from typing import Literal, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
 from ccnl_engine.engine.primitives import FrozenDict
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
-
-LevelCategory = Literal["operaio", "impiegato", "quadro", "dirigente"]
 
 
 class SeniorityTier(BaseModel):
@@ -75,15 +74,32 @@ class SeniorityIncrements(BaseModel):
     first_cadence_months_by_level: Mapping[str, int] = Field(default_factory=dict)
     maximum_count_by_level: Mapping[str, int] = Field(default_factory=dict)
     apprentice_amount: TimeSeries | None = None
-    excluded_categories: tuple[LevelCategory, ...] = Field(default=())
-    amount_by_level_by_category: Mapping[LevelCategory, Mapping[str, TimeSeries]] = (
+    excluded_categories: tuple[WorkerCategory, ...] = Field(default=())
+    amount_by_level_by_category: Mapping[WorkerCategory, Mapping[str, TimeSeries]] = (
         Field(default_factory=dict)
     )
-    maximum_count_by_category: Mapping[LevelCategory, int] = Field(default_factory=dict)
-    first_cadence_months_by_category: Mapping[LevelCategory, int] = Field(
+    maximum_count_by_category: Mapping[WorkerCategory, int] = Field(
+        default_factory=dict
+    )
+    first_cadence_months_by_category: Mapping[WorkerCategory, int] = Field(
         default_factory=dict
     )
     provenance: RuleProvenance | None = None
+
+    def requires_category(self, level_code: str) -> bool:
+        """Return whether increments for ``level_code`` exist only per category.
+
+        True when some category carries an amount for the level and there is
+        no category-independent amount to fall back on: without the worker
+        category the increment cannot be priced.
+
+        Returns:
+            Whether a worker category is needed to resolve the increment.
+        """
+        return level_code not in self.amount_by_level and any(
+            level_code in amounts
+            for amounts in self.amount_by_level_by_category.values()
+        )
 
     @model_validator(mode="after")
     def _check_cadence(self) -> Self:
@@ -156,7 +172,7 @@ class SeniorityIncrements(BaseModel):
             for code, months in self.first_cadence_months_by_level.items()
         ]
         candidates += [
-            (f"first_cadence_months_by_category[{cat!r}]", months)
+            (f"first_cadence_months_by_category[{cat.value!r}]", months)
             for cat, months in self.first_cadence_months_by_category.items()
         ]
         for name, months in candidates:
@@ -172,7 +188,10 @@ class SeniorityIncrements(BaseModel):
                 raise ValueError(msg)
         for cat, count in self.maximum_count_by_category.items():
             if count < 0:
-                msg = f"maximum_count_by_category[{cat!r}] must be >= 0, got {count}"
+                msg = (
+                    f"maximum_count_by_category[{cat.value!r}] must be >= 0, "
+                    f"got {count}"
+                )
                 raise ValueError(msg)
 
     @model_validator(mode="after")

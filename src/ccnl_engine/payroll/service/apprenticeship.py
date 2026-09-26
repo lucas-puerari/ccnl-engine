@@ -19,7 +19,7 @@ if TYPE_CHECKING:
         ApprenticeshipTrack,
         ApprenticeshipUnderClassification,
     )
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL, Level, LevelCategory
+    from ccnl_engine.engine.contract.domain.ccnl import CCNL, Level, WorkerCategory
     from ccnl_engine.payroll.domain.employment import Apprentice
     from ccnl_engine.payroll.service.types import MonthlyPayChain, MonthPeriod
 
@@ -116,7 +116,7 @@ def _percentage_track_chain(
     roles: frozenset[str],
     as_of: date,
     *,
-    worker_category: LevelCategory | None,
+    worker_category: WorkerCategory | None,
     seniority_months: int | None,
 ) -> tuple[MonthlyPayChain, Decimal, None]:
     """Build the pay chain for a percentage-based apprenticeship track.
@@ -151,7 +151,7 @@ def _underclass_track_chain(
     roles: frozenset[str],
     as_of: date,
     *,
-    worker_category: LevelCategory | None,
+    worker_category: WorkerCategory | None,
     seniority_months: int | None,
 ) -> tuple[MonthlyPayChain, None, str]:
     """Build the pay chain for an under-classification apprenticeship track.
@@ -187,7 +187,7 @@ def _apprentice_chain(
     roles: frozenset[str],
     as_of: date,
     *,
-    worker_category: LevelCategory | None = None,
+    worker_category: WorkerCategory | None = None,
     seniority_months: int | None = None,
 ) -> tuple[MonthlyPayChain, Decimal | None, str | None]:
     track = _select_track(ccnl, level, employment)

@@ -14,7 +14,7 @@ from ccnl_engine.payroll.service._contributions_apprentice import (
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.ccnl import LevelCategory
+    from ccnl_engine.engine.contract.domain.ccnl import WorkerCategory
     from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
     from ccnl_engine.payroll.domain.employment import Contract as Employment
 
@@ -29,7 +29,7 @@ class ContributionRates:
     employer_ivs_rate: Decimal
 
 
-def inps_employer_rate(rates: InpsRates, category: str | None) -> Decimal:
+def inps_employer_rate(rates: InpsRates, category: WorkerCategory | None) -> Decimal:
     """Return the employer rate applicable to a worker category.
 
     Returns:
@@ -41,7 +41,7 @@ def inps_employer_rate(rates: InpsRates, category: str | None) -> Decimal:
 
 
 def resolve_rates(
-    rules: YearRules, employment: Employment, category: LevelCategory | None
+    rules: YearRules, employment: Employment, category: WorkerCategory | None
 ) -> ContributionRates:
     """Resolve INPS rates for an employment type and worker category.
 

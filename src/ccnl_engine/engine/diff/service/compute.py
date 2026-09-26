@@ -22,9 +22,9 @@ if TYPE_CHECKING:
 
     from ccnl_engine.engine.contract.domain.ccnl import (
         CCNL,
-        LevelCategory,
         SeniorityIncrements,
         SeniorityTier,
+        WorkerCategory,
     )
     from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
@@ -276,7 +276,7 @@ def _check_tier(
 
 def _check_seniority_category(
     changes: list[RuleChange],
-    category: LevelCategory,
+    category: WorkerCategory,
     by_level: Mapping[str, TimeSeries],
     from_date: date,
     to_date: date,
