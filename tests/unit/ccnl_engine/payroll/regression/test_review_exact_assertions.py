@@ -44,8 +44,9 @@ from ccnl_engine.payroll.domain.events import (
     TerminationTFREvent,
     WelfareEvent,
 )
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.shared.domain.errors import InvalidInputError

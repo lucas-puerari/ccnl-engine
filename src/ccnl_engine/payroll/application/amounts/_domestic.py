@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.tax.domain.contribution_rules import DomesticInpsRates
+    from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 

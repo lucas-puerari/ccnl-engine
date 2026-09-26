@@ -37,7 +37,8 @@ from ccnl_engine.payroll.service.regime_eligibility import RegimeEligibility
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.invariants._types import RunFacts
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
-    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_state import PeriodState
 
 __all__: list[str] = []
 

@@ -18,7 +18,8 @@ from ccnl_engine.payroll.application.invariants._types import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_state import PeriodState
 
 _ZERO = Decimal(0)
 

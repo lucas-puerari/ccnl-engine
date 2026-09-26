@@ -11,21 +11,23 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
-from ccnl_engine.payroll.service import irpef as irpef_svc
-from ccnl_engine.payroll.service.irpef_net import net_irpef, run_withholding
+from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
+from ccnl_engine.payroll.service.irpef_net import net_irpef
+from ccnl_engine.payroll.service.irpef_trace import annual_items, somma_esente_items
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
 from ccnl_engine.payroll.service.ulteriore_recovery import (
     UlterioreSettlement,
-    settle_ulteriore,
-    ulteriore_items,
+    withhold_with_ulteriore,
 )
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
-    from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
+    from ccnl_engine.payroll.domain.tax import TaxLineItem
+    from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
@@ -65,7 +67,7 @@ def compute_tax(
     slots_closed: int = 0,
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
-    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
+    eligible_work_days: int = DAYS_IN_YEAR,
     net_without_one_off: Decimal | None = None,
     carried_shortfall: Decimal = _ZERO,
     ulteriore_account: CreditAccount | None = None,
@@ -133,127 +135,83 @@ def compute_tax(
         integrativo, each with its annual amount and the reason it is due
         or not (e.g. ``income_above_upper_threshold``).
     """
-    components: list[TaxLineItem] = []
-    decisions: list[CalculationDecision] = []
-    eligible_work_days = min(eligible_work_days, irpef_svc.DAYS_IN_YEAR)
-
+    days = min(eligible_work_days, DAYS_IN_YEAR)
     annual = net_irpef(
-        taxable,
-        rules,
-        family_deductions=family_deductions,
-        eligible_work_days=eligible_work_days,
+        taxable, rules, family_deductions=family_deductions, eligible_work_days=days
     )
-    ig, wd = annual.gross, annual.work_deduction
-    components.extend((
-        TaxLineItem(
-            name="irpef_gross", amount=ig, rule_id="art11-tuir", fonte="Art. 11 TUIR"
-        ),
-        TaxLineItem(
-            name="work_deduction",
-            amount=wd,
-            rule_id="art13-tuir",
-            fonte="Art. 13 co. 1 TUIR",
-        ),
-    ))
-    if family_deductions > _ZERO:
-        components.append(
-            TaxLineItem(
-                name="family_deductions",
-                amount=family_deductions,
-                rule_id="art12-tuir",
-                fonte="Art. 12 TUIR",
-            )
-        )
-
-    # Ulteriore detrazione (2026): Art. 1 c. 6 L. 207/2024
-    if annual.ulteriore is not None:
-        decision, component = ulteriore_items(
-            annual.ulteriore, rules, taxable, eligible_work_days
-        )
-        decisions.append(decision)
-        components.extend(component)
-
-    # Sterilizzazione: Art. 1 c. 3-4 L. 199/2025 (high earners, > EUR 200k)
-    if annual.effective_deductions < annual.total_deductions:
-        components.append(
-            TaxLineItem(
-                name="sterilizzazione_detrazioni",
-                amount=annual.effective_deductions - annual.total_deductions,
-                rule_id="l199-2025-art1-c3-c4",
-                fonte="Art. 1 c. 3-4 L. 199/2025",
-            )
-        )
-
-    # withholding_due: positive = still owed; negative = refund due to worker.
-    withholding_due = annual.net - opening_irpef_withheld
+    components, decisions = annual_items(
+        annual, rules, taxable, family_deductions, days
+    )
     remaining = withholding_schedule.remaining(slots_closed)
-    ordinary_tax = run_withholding(
-        annual.net,
-        net_without_one_off,
-        opening_irpef_withheld,
+    ordinary_tax, ulteriore = withhold_with_ulteriore(
+        annual,
         remaining,
-        carried_shortfall,
+        opening_irpef_withheld=opening_irpef_withheld,
+        net_without_one_off=net_without_one_off,
+        carried_shortfall=carried_shortfall,
+        ulteriore_account=ulteriore_account,
+        ulteriore_without_one_off=ulteriore_without_one_off,
+        later_payslips=later_payslips,
     )
-    ulteriore = None
-    if annual.ulteriore is not None and ulteriore_account is not None:
-        without = run_withholding(
-            annual.net + annual.ulteriore_effect,
-            None
-            if net_without_one_off is None
-            else net_without_one_off + ulteriore_without_one_off,
-            opening_irpef_withheld + ulteriore_account.net,
-            remaining,
-            carried_shortfall,
-        )
-        ulteriore = settle_ulteriore(
-            ordinary_tax,
-            without,
-            annual.ulteriore_effect,
-            ulteriore_account,
-            last_slot=remaining == 1,
-            defer=later_payslips,
-        )
-        ordinary_tax -= ulteriore.deferred
+    if ulteriore is not None:
         decisions.extend(ulteriore.decisions(rules))
 
-    period_tratt, tratt_component, next_recovery_plan, tratt = resolve_trattamento(
+    period_tratt, next_recovery_plan, tratt_items, tratt_decisions = _trattamento(
+        taxable, annual, rules, opening_tratt_ytd, remaining, recovery_plan, days
+    )
+    components.extend(tratt_items)
+    decisions.extend(tratt_decisions)
+    components.extend(somma_esente_items(taxable, rules, days))
+
+    return TaxResolution(
+        TaxComputation(
+            ordinary_tax=ordinary_tax,
+            trattamento_integrativo=period_tratt,
+            # Positive = still owed; negative = refund due to the worker.
+            withholding_due=annual.net - opening_irpef_withheld,
+            components=tuple(components),
+        ),
+        next_recovery_plan,
+        tuple(decisions),
+        irpef_net=annual.net,
+        ulteriore=ulteriore,
+    )
+
+
+def _trattamento(
+    taxable: Decimal,
+    annual: NetIrpef,
+    rules: YearRules,
+    opening_tratt_ytd: Decimal,
+    remaining: int,
+    recovery_plan: RecoveryPlan | None,
+    eligible_work_days: int,
+) -> tuple[
+    Decimal,
+    RecoveryPlan | None,
+    tuple[TaxLineItem, ...],
+    tuple[CalculationDecision, ...],
+]:
+    """Return the trattamento integrativo of the run with its trace.
+
+    Returns:
+        ``(period_tratt, next_plan, components, decisions)``: the signed
+        amount of the run, the recovery plan to carry forward, and the line
+        item and decision of the credit, each only when there is one.
+    """
+    period_tratt, component, next_plan, decision = resolve_trattamento(
         taxable,
-        ig,
-        wd,
+        annual.gross,
+        annual.work_deduction,
         rules,
         opening_tratt_ytd,
         remaining,
         recovery_plan,
         eligible_work_days,
     )
-    if tratt_component is not None:
-        components.append(tratt_component)
-    if tratt is not None:
-        decisions.append(tratt)
-
-    # Somma esente: L. 207/2024 low-income bonus
-    if rules.somma_esente is not None:
-        se = irpef_svc.somma_esente(taxable, rules.somma_esente, eligible_work_days)
-        if se > _ZERO:
-            components.append(
-                TaxLineItem(
-                    name="somma_esente",
-                    amount=se,
-                    rule_id="l207-2024-somma-esente",
-                    fonte="Art. 1 c. 4-5 L. 207/2024",
-                )
-            )
-
-    computation = TaxComputation(
-        ordinary_tax=ordinary_tax,
-        trattamento_integrativo=period_tratt,
-        withholding_due=withholding_due,
-        components=tuple(components),
-    )
-    return TaxResolution(
-        computation,
-        next_recovery_plan,
-        tuple(decisions),
-        irpef_net=annual.net,
-        ulteriore=ulteriore,
+    return (
+        period_tratt,
+        next_plan,
+        () if component is None else (component,),
+        () if decision is None else (decision,),
     )

@@ -21,12 +21,10 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import SicknessCaseEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import AbsenceDeduction, SicknessItem
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
+from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.shared.domain.errors import InvalidInputError
 

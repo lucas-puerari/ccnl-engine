@@ -22,13 +22,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.service import irpef as _irpef
-from ccnl_engine.payroll.service.irpef import (
-    work_income_deduction,
-)
+from ccnl_engine.payroll.service import irpef_deductions as _deductions
 from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
 )
+from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
 from ccnl_engine.tax.domain.credit_rules import TrattamentoIntegrativoRules
 
 _ZERO = Decimal(0)
@@ -63,7 +61,7 @@ class TestTrunc4TruncatesNotRounds:
     def test_trunc4_floors_repeating_decimal(self) -> None:
         """8000/13000 = 0.6153846…: floor gives 0.6153, round gives 0.6154."""
         ratio = Decimal(8000) / Decimal(13000)
-        assert _irpef._trunc4(ratio) == Decimal("0.6153")
+        assert _deductions._trunc4(ratio) == Decimal("0.6153")
 
     def test_work_deduction_at_20000_reflects_floor(self) -> None:
         """At RC=20 000, truncated ratio 0.6153 gives 2642.21, not 2642.33.
@@ -84,7 +82,7 @@ class TestTrunc4TruncatesNotRounds:
     def test_trunc4_does_not_round_up_fifth_digit(self) -> None:
         """A ratio whose fifth decimal is 9 must still floor, not round up."""
         ratio = Decimal("0.99999")
-        assert _irpef._trunc4(ratio) == Decimal("0.9999")
+        assert _deductions._trunc4(ratio) == Decimal("0.9999")
 
 
 # ---------------------------------------------------------------------------

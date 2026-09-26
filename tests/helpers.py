@@ -13,9 +13,10 @@ from typing import TYPE_CHECKING, Any
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
-from ccnl_engine.payroll.domain.inputs import PeriodFacts, YearInput
+from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
+from ccnl_engine.payroll.domain.year_input import YearInput
 from ccnl_engine.tax.domain.ruleset import YearRules
 
 if TYPE_CHECKING:
@@ -23,7 +24,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
     from ccnl_engine.payroll.domain.events import WorkEvent
-    from ccnl_engine.payroll.domain.period import PeriodState
+    from ccnl_engine.payroll.domain.period_state import PeriodState
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite

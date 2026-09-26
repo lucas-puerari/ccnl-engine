@@ -13,6 +13,7 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
     resolve_somma_esente,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.credit_accounts import SommaEsenteAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
@@ -20,13 +21,12 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import SommaEsenteAccount
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
 from tests.helpers import make_year_rules

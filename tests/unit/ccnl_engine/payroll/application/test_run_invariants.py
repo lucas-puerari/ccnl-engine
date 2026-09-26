@@ -6,6 +6,7 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from functools import cache
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -29,28 +30,28 @@ from ccnl_engine.payroll.application.invariants.withholding import (
 from ccnl_engine.payroll.application.period._checks import check_net_covered
 from ccnl_engine.payroll.application.reconcile import check_period, reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-from ccnl_engine.payroll.domain.calendar import AccrualWindow, ExtraMonthKind
+from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import BonusEvent
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
+from ccnl_engine.payroll.domain.extra_month_schedule import (
+    AccrualWindow,
+    ExtraMonthKind,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    TrattamentoAccount,
-    WithholdingShortfall,
-)
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, WithholdingShortfall
 from ccnl_engine.shared.domain.errors import DataIntegrityError, OutOfScopeError
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 from tests.helpers import year_input
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

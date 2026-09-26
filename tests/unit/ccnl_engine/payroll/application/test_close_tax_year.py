@@ -15,17 +15,18 @@ from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.application.invariants.state import (
     check_carried_recovery_advance,
 )
+from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import TrattamentoAccount
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 

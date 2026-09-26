@@ -23,10 +23,8 @@ from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
-    from ccnl_engine.payroll.domain.period import (
-        PeriodCalculationRequest,
-        PeriodResult,
-    )
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.tax.domain.ruleset import YearRules
 

@@ -73,6 +73,44 @@ def _addizionale_1pct(
     )
 
 
+def _side(
+    side: str,
+    rate: Decimal,
+    ivs_rate: Decimal,
+    ivs_base: Decimal,
+    full_base: Decimal,
+) -> tuple[Decimal, list[ContributionComponent]]:
+    """Split one side's contribution into its IVS and non-IVS parts.
+
+    The IVS part applies ``ivs_rate`` to the capped ``ivs_base``; the rest of
+    ``rate`` applies to the full base.
+
+    Returns:
+        The side's total and its components ``ivs_<side>`` and
+        ``non_ivs_<side>``, each only when its rate is positive.
+    """
+    non_ivs_rate = rate - ivs_rate
+    ivs = money(ivs_base * ivs_rate)
+    non_ivs = money(full_base * non_ivs_rate)
+    components: list[ContributionComponent] = []
+    if ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name=f"ivs_{side}", base=ivs_base, rate=ivs_rate, amount=ivs
+            )
+        )
+    if non_ivs_rate > _ZERO:
+        components.append(
+            ContributionComponent(
+                name=f"non_ivs_{side}",
+                base=full_base,
+                rate=non_ivs_rate,
+                amount=non_ivs,
+            )
+        )
+    return ivs + non_ivs, components
+
+
 def resolve_contributions(
     period_inps_base: Decimal,
     rules: YearRules,
@@ -117,57 +155,21 @@ def resolve_contributions(
     else:
         ivs_base = period_inps_base
 
-    # Employee side
-    emp_ivs_rate = rates.employee_ivs_rate
-    emp_non_ivs_rate = rates.employee_rate - emp_ivs_rate
-    emp_ivs = money(ivs_base * emp_ivs_rate)
-    emp_non_ivs = money(period_inps_base * emp_non_ivs_rate)
-    employee_total = emp_ivs + emp_non_ivs
-
-    # Employer side
-    er_ivs_rate = rates.employer_ivs_rate
-    er_non_ivs_rate = rates.employer_rate - er_ivs_rate
-    er_ivs = money(ivs_base * er_ivs_rate)
-    er_non_ivs = money(period_inps_base * er_non_ivs_rate)
-    employer_total = er_ivs + er_non_ivs
-
-    components: list[ContributionComponent] = []
-    if emp_ivs_rate > _ZERO:
-        components.append(
-            ContributionComponent(
-                name="ivs_employee",
-                base=ivs_base,
-                rate=emp_ivs_rate,
-                amount=emp_ivs,
-            )
-        )
-    if emp_non_ivs_rate > _ZERO:
-        components.append(
-            ContributionComponent(
-                name="non_ivs_employee",
-                base=period_inps_base,
-                rate=emp_non_ivs_rate,
-                amount=emp_non_ivs,
-            )
-        )
-    if er_ivs_rate > _ZERO:
-        components.append(
-            ContributionComponent(
-                name="ivs_employer",
-                base=ivs_base,
-                rate=er_ivs_rate,
-                amount=er_ivs,
-            )
-        )
-    if er_non_ivs_rate > _ZERO:
-        components.append(
-            ContributionComponent(
-                name="non_ivs_employer",
-                base=period_inps_base,
-                rate=er_non_ivs_rate,
-                amount=er_non_ivs,
-            )
-        )
+    employee_total, employee_items = _side(
+        "employee",
+        rates.employee_rate,
+        rates.employee_ivs_rate,
+        ivs_base,
+        period_inps_base,
+    )
+    employer_total, employer_items = _side(
+        "employer",
+        rates.employer_rate,
+        rates.employer_ivs_rate,
+        ivs_base,
+        period_inps_base,
+    )
+    components = [*employee_items, *employer_items]
 
     add_comp = _addizionale_1pct(
         period_inps_base, rules, ytd_inps_base=ytd_inps_base, ceiling=ceiling

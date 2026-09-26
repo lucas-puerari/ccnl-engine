@@ -1,7 +1,8 @@
 """IRPEF credits of employment income with the reason for their amount.
 
-The trattamento integrativo (Art. 1 D.L. 3/2020 as updated by L. 207/2024)
-and the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
+The trattamento integrativo (Art. 1 D.L. 3/2020 as updated by L. 207/2024),
+the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024) and
+the somma esente (Art. 1 c. 4-5 L. 207/2024).
 Each ``*_outcome`` function returns the annual amount together with the
 reason code of the rule branch that produced it, so the calculation decision
 of the credit comes from the same branch as its amount.
@@ -14,10 +15,15 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.service.irpef import _DEFAULT_WD, DAYS_IN_YEAR, for_days
+from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
+from ccnl_engine.payroll.service.irpef_deductions import (
+    DEFAULT_WORK_DEDUCTION,
+    for_days,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.domain.credit_rules import (
+        SommaEsenteRules,
         TrattamentoIntegrativoRules,
         UlterioreDetrazioneRules,
     )
@@ -122,7 +128,7 @@ def trattamento_integrativo_outcome(
         ``threshold_mid``), ``deductions_above_irpef`` or
         ``deductions_not_above_irpef`` (income up to ``threshold_upper``).
     """
-    c = constants if constants is not None else _DEFAULT_WD
+    c = constants if constants is not None else DEFAULT_WORK_DEDUCTION
     if gross_annual > rules.threshold_upper:
         return CreditOutcome(_ZERO, "income_above_upper_threshold")
     seventy_five = for_days(c.seventy_five, eligible_work_days)
@@ -203,3 +209,39 @@ def ulteriore_detrazione_outcome(
         full_year = rules.max_amount * (rules.threshold_high - taxable_income) / span
         reason = "tapered_amount"
     return CreditOutcome(for_days(full_year, eligible_work_days), reason)
+
+
+def somma_esente(
+    taxable_income: Decimal,
+    rules: SommaEsenteRules,
+    eligible_work_days: int = DAYS_IN_YEAR,
+) -> Decimal:
+    """Compute the somma esente of L. 207/2024 art. 1 c. 4-5.
+
+    - Eligibility (c. 4): reddito complessivo not above the last band's
+      ``up_to`` (20,000 EUR).  Employment income is the only income the
+      engine knows, so it stands for the reddito complessivo.
+    - Percentage (c. 5): chosen on the employment income "rapportato
+      all'intero anno", ``income * 365 / days`` (circolare AdE 4/E of 16
+      May 2025, par. 1.2, esempio 1); the rate of the first band whose
+      ``up_to`` covers it, the last band's rate above every ``up_to``.
+    - Amount (c. 4): the percentage times the employment income actually
+      earned in the year, not the annualised one.
+
+    Args:
+        taxable_income: Employment income of the year, also used as the
+            reddito complessivo.
+        rules: Band schedule from the tax data file.
+        eligible_work_days: Days of employment in the tax year, at most 365.
+
+    Returns:
+        The somma esente amount (unrounded; full-year), zero when not due.
+    """
+    if taxable_income <= _ZERO or taxable_income > rules.bands[-1].up_to:
+        return _ZERO
+    annualised = taxable_income * DAYS_IN_YEAR / eligible_work_days
+    rate = next(
+        (band.rate for band in rules.bands if annualised <= band.up_to),
+        rules.bands[-1].rate,
+    )
+    return taxable_income * rate

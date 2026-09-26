@@ -17,18 +17,18 @@ from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
 )
+from ccnl_engine.payroll.domain.credit_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod, WeeklyHours
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod, WeeklyHours
 from ccnl_engine.payroll.domain.events import AbsenceEvent, WorkEvent
 from ccnl_engine.payroll.domain.obligations import (
     ULTERIORE_RECOVERY,
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.domain.ytd_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef

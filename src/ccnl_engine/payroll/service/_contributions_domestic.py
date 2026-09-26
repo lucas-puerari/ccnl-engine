@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.tax.domain.contribution_rules import DomesticInpsRates
+    from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
 
 
 def resolve_domestic_inps_rate(

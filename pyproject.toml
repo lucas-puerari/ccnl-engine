@@ -84,8 +84,6 @@ ignore = [
 # PLR6301: pytest methods don't need self
 # pytest-fixture-autouse: autouse is intentional for per-test loader mocking
 "tests/**" = ["S", "ARG", "SLF001", "PLR6301", "pytest-fixture-autouse"]
-# C901: __post_init__ validates multiple sick-leave constraints in sequence.
-"src/ccnl_engine/payroll/domain/sickness.py" = ["C901"]
 # Examples and demo: print is intentional, late imports are illustrative, line length is secondary.
 "docs/examples/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "D100"]
 "demo/**" = ["T201", "E402", "RUF100", "I001", "E501", "N999", "RUF010", "INP001", "ARG", "F841", "C901", "TRY301", "SIM102", "PLR6201", "DOC501", "DOC502", "PLW0717"]
@@ -98,6 +96,8 @@ ignore = [
 # whose field types Pydantic resolves at runtime via get_type_hints).
 "src/ccnl_engine/tax/domain/irpef_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/contribution_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/contribution_tiers.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/domestic_contribution_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/tfr_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/credit_rules.py" = ["TCH"]
 "src/ccnl_engine/tax/domain/ruleset.py" = ["TCH"]
@@ -210,6 +210,7 @@ path = "scripts/packaging/build_hook.py"
 source_paths = [
     "src/ccnl_engine/payroll/service/contributions.py",
     "src/ccnl_engine/payroll/service/irpef.py",
+    "src/ccnl_engine/payroll/service/irpef_deductions.py",
     "src/ccnl_engine/payroll/domain/ledger.py",
     "src/ccnl_engine/payroll/domain/rounding.py",
 ]

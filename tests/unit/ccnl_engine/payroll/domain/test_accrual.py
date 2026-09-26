@@ -13,12 +13,12 @@ from ccnl_engine.payroll.domain.accrual import (
     MonthAccrualRule,
     absence_days,
 )
-from ccnl_engine.payroll.domain.calendar import (
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
+from ccnl_engine.payroll.domain.extra_month_schedule import (
     AccrualWindow,
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 
 _THIRTEENTH = ExtraMonthSchedule(
     kind=ExtraMonthKind.THIRTEENTH, name="tredicesima", payment_month=12

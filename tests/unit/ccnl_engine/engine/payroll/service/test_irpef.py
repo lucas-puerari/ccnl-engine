@@ -10,16 +10,15 @@ Every branch is tested: zero/negative income, each statutory band boundary,
 from decimal import Decimal
 from typing import Any
 
-from ccnl_engine.payroll.service.irpef import (
-    apply_sterilizzazione_detrazioni,
-    irpef_gross,
-    somma_esente,
-    surtax_from_brackets,
-    work_income_deduction,
-)
+from ccnl_engine.payroll.service.irpef import irpef_gross, surtax_from_brackets
 from ccnl_engine.payroll.service.irpef_credits import (
+    somma_esente,
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
+)
+from ccnl_engine.payroll.service.irpef_deductions import (
+    apply_sterilizzazione_detrazioni,
+    work_income_deduction,
 )
 from ccnl_engine.tax.domain.credit_rules import (
     SommaEsenteBand,

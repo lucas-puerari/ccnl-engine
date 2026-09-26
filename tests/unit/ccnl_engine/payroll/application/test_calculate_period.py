@@ -23,11 +23,8 @@ from ccnl_engine.payroll.application.reconcile import (
     ReconciliationViolation,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
-from ccnl_engine.payroll.domain.employment import (
-    Apprentice,
-    EmploymentPeriod,
-    FixedTerm,
-)
+from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import AbsenceEvent, ArrearsEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import (
@@ -39,11 +36,9 @@ from ccnl_engine.payroll.domain.pay_items import (
     TaxCreditItem,
     TfrAccrualItem,
 )
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule

@@ -46,7 +46,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
-    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+    from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule

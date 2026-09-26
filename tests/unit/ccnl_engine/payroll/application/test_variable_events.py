@@ -25,12 +25,10 @@ from ccnl_engine.payroll.domain.events import (
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import SicknessItem
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
+from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 

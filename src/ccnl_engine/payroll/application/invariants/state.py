@@ -29,9 +29,10 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.run import run_identifier
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+    from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.run import PayrollRunId
-    from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
 
 _ZERO = Decimal(0)
 

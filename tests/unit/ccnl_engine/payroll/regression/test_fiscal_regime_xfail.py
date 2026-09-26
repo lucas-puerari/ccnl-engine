@@ -28,18 +28,16 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    TaxYtd,
-    TrattamentoAccount,
-)
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

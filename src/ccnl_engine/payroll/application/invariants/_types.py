@@ -11,7 +11,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__ = ["InvariantCode", "ReconciliationViolation", "RunFacts"]

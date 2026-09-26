@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
     from decimal import Decimal
 
-    from ccnl_engine.tax.domain.contribution_rules import (
+    from ccnl_engine.tax.domain.contribution_tiers import (
         ApprenticeRawRates,
         InpsRawRates,
     )

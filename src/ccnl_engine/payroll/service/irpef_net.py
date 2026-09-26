@@ -23,8 +23,12 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service import irpef_credits
+from ccnl_engine.payroll.service.irpef import irpef_gross
+from ccnl_engine.payroll.service.irpef_deductions import (
+    apply_sterilizzazione_detrazioni,
+    work_income_deduction,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
@@ -89,8 +93,8 @@ def net_irpef(
     Returns:
         The net IRPEF and its components.
     """
-    gross = irpef_svc.irpef_gross(taxable, rules)
-    work = irpef_svc.work_income_deduction(
+    gross = irpef_gross(taxable, rules)
+    work = work_income_deduction(
         taxable, eligible_work_days, constants=rules.work_deduction
     )
     ulteriore = (
@@ -103,12 +107,12 @@ def net_irpef(
     total = (
         work + family_deductions + (_ZERO if ulteriore is None else ulteriore.amount)
     )
-    effective = irpef_svc.apply_sterilizzazione_detrazioni(
+    effective = apply_sterilizzazione_detrazioni(
         total, taxable, rules.sterilizzazione_detrazioni
     )
     effect = _ZERO
     if ulteriore is not None:
-        without = irpef_svc.apply_sterilizzazione_detrazioni(
+        without = apply_sterilizzazione_detrazioni(
             total - ulteriore.amount, taxable, rules.sterilizzazione_detrazioni
         )
         effect = max(_ZERO, gross - without) - max(_ZERO, gross - effective)

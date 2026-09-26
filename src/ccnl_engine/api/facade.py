@@ -22,9 +22,11 @@ from ccnl_engine.payroll.application.close_tax_year import (
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.calculate_year import YearResult
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.domain.inputs import PeriodInput, YearInput
-    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+    from ccnl_engine.payroll.domain.inputs import PeriodInput
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
+    from ccnl_engine.payroll.domain.year_input import YearInput
 
 __all__ = ["PayrollEngine"]
 

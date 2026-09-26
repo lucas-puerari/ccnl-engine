@@ -15,7 +15,7 @@ from ccnl_engine.payroll.application._period_utils import _apply_extra_month_pol
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
 from ccnl_engine.payroll.application.year._extra_month_accrual import run_schedule
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
+from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 
@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.schedule import WithholdingSlot
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 

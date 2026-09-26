@@ -1,5 +1,27 @@
 # Migration guide
 
+## Oversized domain and service modules split
+
+Seven modules were split by responsibility. Only internal module paths
+change: names exported from `ccnl_engine` are unchanged, and so are amounts.
+Names not listed stay where they were.
+
+| Name | Before | After |
+|---|---|---|
+| `WeeklyHours`, `SeniorityMonths`, `ContributableHours`, `EmploymentPeriod`, `check_within_full_time` | `payroll.domain.employment` | `payroll.domain.employment_facts` |
+| `PeriodState` | `payroll.domain.period` | `payroll.domain.period_state` |
+| `PeriodCalculationRequest` | `payroll.domain.period` | `payroll.domain.period_request` |
+| `YearInput` | `payroll.domain.inputs` | `payroll.domain.year_input` |
+| `ExtraMonthEntitlement` | `payroll.domain.calendar` | `payroll.domain.extra_month_entitlement` |
+| `AccrualWindow`, `ExtraMonthKind`, `ExtraMonthSchedule` | `payroll.domain.calendar` | `payroll.domain.extra_month_schedule` |
+| `CreditAccount`, `TrattamentoAccount`, `SommaEsenteAccount`, `UlterioreDetrazioneAccount` | `payroll.domain.ytd_accounts` | `payroll.domain.credit_accounts` |
+| `InpsEmployeeTier`, `InpsEmployerTier`, `InpsRawRates`, `ApprenticeRawRates` | `tax.domain.contribution_rules` | `tax.domain.contribution_tiers` |
+| `DomesticInpsRates`, `DomesticInpsHoursBracket`, `DomesticInpsWageBracket` | `tax.domain.contribution_rules` | `tax.domain.domestic_contribution_rules` |
+| `work_income_deduction`, `for_days`, `apply_sterilizzazione_detrazioni` | `payroll.service.irpef` | `payroll.service.irpef_deductions` |
+| `somma_esente` | `payroll.service.irpef` | `payroll.service.irpef_credits` |
+
+Every path is relative to `ccnl_engine`.
+
 ## Rounding and bundled repository moved to their layers
 
 Two internal modules moved so that the layers import in one direction only.

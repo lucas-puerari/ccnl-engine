@@ -5,7 +5,8 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.calendar import ExtraMonthEntitlement, WorkCalendar
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.extra_month_entitlement import ExtraMonthEntitlement
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL

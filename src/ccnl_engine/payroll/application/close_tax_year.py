@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 

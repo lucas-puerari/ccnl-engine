@@ -18,13 +18,13 @@ from ccnl_engine.payroll.application.year._extra_month_accrual import (
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import AbsenceEvent, OvertimeEvent
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
-from ccnl_engine.payroll.service.irpef import work_income_deduction
+from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from tests.helpers import make_year_rules, year_input
 

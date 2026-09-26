@@ -11,18 +11,14 @@ from ccnl_engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 from ccnl_engine.provenance.domain.source import SourceDocument
 from ccnl_engine.shared.domain.primitives import PercentageRate
-from ccnl_engine.tax.domain.contribution_rules import (
-    ApprenticeRates,
-    ApprenticeRawRates,
-    DomesticInpsRates,
-    InpsRates,
-    InpsRawRates,
-)
+from ccnl_engine.tax.domain.contribution_rules import ApprenticeRates, InpsRates
+from ccnl_engine.tax.domain.contribution_tiers import ApprenticeRawRates, InpsRawRates
 from ccnl_engine.tax.domain.credit_rules import (
     SommaEsenteRules,
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
 )
+from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
 from ccnl_engine.tax.domain.irpef_rules import (
     IrpefBracket,
     SterilizzazioneDetrazioniRules,

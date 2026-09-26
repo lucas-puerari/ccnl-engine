@@ -21,8 +21,11 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual, absence_days
-from ccnl_engine.payroll.domain.calendar import ExtraMonthKind, ExtraMonthSchedule
 from ccnl_engine.payroll.domain.events import AbsenceEvent
+from ccnl_engine.payroll.domain.extra_month_schedule import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+)
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import ExtraMonthEarning, PayItem
 from ccnl_engine.payroll.domain.rounding import money
@@ -35,10 +38,10 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
-    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 

@@ -30,13 +30,20 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service.credit_decisions import credit_decision
+from ccnl_engine.payroll.service.irpef_net import run_withholding
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
+    from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
+    from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
 
-__all__ = ["UlterioreSettlement", "settle_ulteriore", "ulteriore_items"]
+__all__ = [
+    "UlterioreSettlement",
+    "settle_ulteriore",
+    "ulteriore_items",
+    "withhold_with_ulteriore",
+]
 
 _ZERO = Decimal(0)
 #: L. 207/2024 art. 1 c. 7: up to 60 EUR the excess is recovered in full.
@@ -185,3 +192,53 @@ def settle_ulteriore(
         return UlterioreSettlement(amount, due, reason)
     reason, deferred, plan = _recover(-amount, defer=defer)
     return UlterioreSettlement(amount, due, reason, deferred, plan)
+
+
+def withhold_with_ulteriore(
+    annual: NetIrpef,
+    remaining: int,
+    *,
+    opening_irpef_withheld: Decimal,
+    net_without_one_off: Decimal | None,
+    carried_shortfall: Decimal,
+    ulteriore_account: CreditAccount | None,
+    ulteriore_without_one_off: Decimal,
+    later_payslips: bool,
+) -> tuple[Decimal, UlterioreSettlement | None]:
+    """Return the IRPEF withheld on the run and the ulteriore settlement.
+
+    When the ulteriore detrazione is tracked, the withholding is computed
+    again without it, and on the last slot an excess above 60 EUR is
+    deferred: the run withholds that much less.
+
+    Returns:
+        ``(ordinary_tax, ulteriore)``; ``ulteriore`` is ``None`` when the
+        detrazione is not in force or not tracked.
+    """
+    ordinary_tax = run_withholding(
+        annual.net,
+        net_without_one_off,
+        opening_irpef_withheld,
+        remaining,
+        carried_shortfall,
+    )
+    if annual.ulteriore is None or ulteriore_account is None:
+        return ordinary_tax, None
+    without = run_withholding(
+        annual.net + annual.ulteriore_effect,
+        None
+        if net_without_one_off is None
+        else net_without_one_off + ulteriore_without_one_off,
+        opening_irpef_withheld + ulteriore_account.net,
+        remaining,
+        carried_shortfall,
+    )
+    ulteriore = settle_ulteriore(
+        ordinary_tax,
+        without,
+        annual.ulteriore_effect,
+        ulteriore_account,
+        last_slot=remaining == 1,
+        defer=later_payslips,
+    )
+    return ordinary_tax - ulteriore.deferred, ulteriore

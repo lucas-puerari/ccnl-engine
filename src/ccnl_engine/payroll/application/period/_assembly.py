@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
-    from ccnl_engine.payroll.domain.period import PeriodState
+    from ccnl_engine.payroll.domain.period_state import PeriodState
 
 _ZERO = Decimal(0)
 

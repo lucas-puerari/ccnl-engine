@@ -22,12 +22,10 @@ from ccnl_engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
+from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

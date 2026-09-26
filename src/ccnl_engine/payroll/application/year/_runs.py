@@ -12,7 +12,7 @@ from ccnl_engine.payroll.application.year._extra_month_accrual import (
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.inputs import PeriodInput
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
@@ -22,11 +22,13 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.calendar import ExtraMonthSchedule, WorkCalendar
-    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
-    from ccnl_engine.payroll.domain.inputs import YearInput
-    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodResult
+    from ccnl_engine.payroll.domain.calendar import WorkCalendar
+    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
+    from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthSchedule
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.year_input import YearInput
 
 _PARTIAL_MONTH = "partial_month_not_prorated"
 

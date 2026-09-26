@@ -17,8 +17,8 @@ from ccnl_engine.payroll.application.period._run_decisions import (
 )
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityGapKind
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import SeniorityMonths
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
+from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
 from ccnl_engine.payroll.domain.events import (
     BonusEvent,
     OvertimeEvent,
@@ -31,12 +31,9 @@ from ccnl_engine.payroll.domain.family import (
     FamilyComposition,
 )
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
@@ -48,6 +45,7 @@ from tests.helpers import year_input
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 _D = Decimal
 _YEAR = 2026

@@ -18,6 +18,8 @@ from ccnl_engine.tax.service.tax_tier_resolver import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from ccnl_engine.contract.domain.identity import TaxSector
 
 
@@ -66,41 +68,18 @@ def _load_year_rules_cached(
     """Parse, validate and cache tax rules for the given arguments (internal use only).
 
     Callers must use :func:`load_year_rules`, which returns a deep copy so
-    each caller gets an independent object that may be mutated freely.
+    each caller gets an independent object that may be mutated freely.  A
+    tax or INPS file whose year or sector does not match the request raises
+    ``DataIntegrityError``.
 
     Returns:
         The shared :class:`~ccnl_engine.tax.domain.ruleset.YearRules`
         object stored in the cache.
-
-    Raises:
-        DataIntegrityError: If the tax or INPS file's year/sector doesn't match.
     """
     tax_raw = read_tax_rules_raw(year, sector)
-    if tax_raw.get("year") != year:
-        msg = (
-            f"tax-{year}-{sector.value}.json year={tax_raw.get('year')!r} "
-            f"does not match requested year={year!r}"
-        )
-        raise DataIntegrityError(msg)
-    if tax_raw.get("sector") != sector.value:
-        msg = (
-            f"tax-{year}-{sector.value}.json sector={tax_raw.get('sector')!r} "
-            f"does not match requested sector={sector.value!r}"
-        )
-        raise DataIntegrityError(msg)
+    _check_identity("tax", tax_raw, year, sector)
     inps_raw = read_inps_rules_raw(year, sector)
-    if inps_raw.get("year") != year:
-        msg = (
-            f"inps-{year}-{sector.value}.json year={inps_raw.get('year')!r} "
-            f"does not match requested year={year!r}"
-        )
-        raise DataIntegrityError(msg)
-    if inps_raw.get("sector") != sector.value:
-        msg = (
-            f"inps-{year}-{sector.value}.json sector={inps_raw.get('sector')!r} "
-            f"does not match requested sector={sector.value!r}"
-        )
-        raise DataIntegrityError(msg)
+    _check_identity("inps", inps_raw, year, sector)
     inps_sources = inps_raw.pop("sources", [])
     inps_extraction = inps_raw.pop("extraction", None)
     raw = {**tax_raw, **inps_raw}
@@ -134,3 +113,23 @@ def _load_year_rules_cached(
         inps_sources=rules.inps_sources,
         inps_extraction=rules.inps_extraction,
     )
+
+
+def _check_identity(
+    kind: str, raw: Mapping[str, object], year: int, sector: TaxSector
+) -> None:
+    """Reject a data file whose year or sector is not the one requested.
+
+    Raises:
+        DataIntegrityError: If the file's year or sector does not match.
+    """
+    name = f"{kind}-{year}-{sector.value}.json"
+    if raw.get("year") != year:
+        msg = f"{name} year={raw.get('year')!r} does not match requested year={year!r}"
+        raise DataIntegrityError(msg)
+    if raw.get("sector") != sector.value:
+        msg = (
+            f"{name} sector={raw.get('sector')!r} "
+            f"does not match requested sector={sector.value!r}"
+        )
+        raise DataIntegrityError(msg)

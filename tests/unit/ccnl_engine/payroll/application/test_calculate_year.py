@@ -11,28 +11,27 @@ import pytest
 from ccnl_engine.payroll.application import calculate_year as calculate_year_module
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod, Permanent
+from ccnl_engine.payroll.domain.employment import Permanent
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import AbsenceEvent, WorkEvent
+from ccnl_engine.payroll.domain.extra_month_schedule import (
+    ExtraMonthKind,
+    ExtraMonthSchedule,
+)
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import (
-        PeriodCalculationRequest,
-        PeriodResult,
-    )
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

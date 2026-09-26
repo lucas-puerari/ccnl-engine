@@ -67,7 +67,7 @@ def _deduction_from_breakpoints(
     """Evaluate a piecewise-linear deduction schedule.
 
     Mirrors the logic of
-    :func:`~ccnl_engine.payroll.service.irpef.work_income_deduction`.
+    :func:`~ccnl_engine.payroll.service.irpef_deductions.work_income_deduction`.
 
     Returns:
         The deduction amount for *income*, rounded to two decimal places.
