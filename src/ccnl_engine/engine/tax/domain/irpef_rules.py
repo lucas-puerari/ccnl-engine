@@ -6,7 +6,7 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict
 
-from ccnl_engine.engine.primitives import Bracket
+from ccnl_engine.engine.primitives.domain.primitives import Bracket
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 #: A single IRPEF marginal tax bracket (Art. 11 TUIR).

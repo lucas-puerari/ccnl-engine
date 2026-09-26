@@ -28,7 +28,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.engine.contract.domain.identity import CCNL
 
 _CASES_DIR = Path(__file__).parent / "cases"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))

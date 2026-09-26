@@ -10,12 +10,9 @@ from ccnl_engine.payroll.service.types import MonthlyPayChain
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.engine.contract.domain.ccnl import (
-        CCNL,
-        Allowance,
-        Level,
-        WorkerCategory,
-    )
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.engine.contract.domain.compensation import Allowance, Level
+    from ccnl_engine.engine.contract.domain.identity import CCNL
 
 
 def _allowance_active(

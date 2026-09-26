@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.capability_catalog import CapabilityGapKind
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
-from ccnl_engine.engine.tax.service.loaders import load_variable_pay_rules
+from ccnl_engine.engine.tax.service.tax_optional_loaders import load_variable_pay_rules
 from ccnl_engine.payroll.application._capability_traces import build_traces
 from ccnl_engine.payroll.application._run_decisions import worker_category_decision
 from ccnl_engine.payroll.application.allocate_events import _process_events

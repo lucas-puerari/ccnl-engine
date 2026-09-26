@@ -8,8 +8,10 @@ from decimal import Decimal
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
-from ccnl_engine.engine.tax.service.loaders import load_family_deduction_rules
+from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
+from ccnl_engine.engine.tax.service.tax_optional_loaders import (
+    load_family_deduction_rules,
+)
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,

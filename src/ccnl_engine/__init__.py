@@ -9,7 +9,7 @@ The single entry point is :class:`PayrollEngine`.  Construct it with
 :meth:`~PayrollEngine.close_tax_year` to open the next tax year.
 
 All types needed to call it and inspect its results are re-exported from
-this module; the work events are in :mod:`ccnl_engine.events`.
+this module, work events included.
 
 Usage::
 
@@ -34,16 +34,6 @@ Usage::
 
 from __future__ import annotations
 
-from ccnl_engine.api import (
-    CalculationDecision,
-    CalculationIssue,
-    CalculationStatus,
-    PeriodFacts,
-    PeriodInput,
-    PeriodResult,
-    YearInput,
-    YearResult,
-)
 from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
@@ -69,11 +59,17 @@ from ccnl_engine.engine.errors import (
     UnsupportedTaxYearError,
 )
 from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.payroll.application.calculate_year import YearResult
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
-from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
+)
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import (
@@ -91,13 +87,30 @@ from ccnl_engine.payroll.domain.employment import (
     SeniorityMonths,
     WeeklyHours,
 )
+from ccnl_engine.payroll.domain.events import (
+    AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
+    BonusEvent,
+    FringeEvent,
+    HolidayWorkEvent,
+    NightShiftEvent,
+    OvertimeEvent,
+    ShiftWorkEvent,
+    SickLeaveEvent,
+    SicknessCaseEvent,
+    TerminationTFREvent,
+    WelfareEvent,
+    WorkEvent,
+)
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput, YearInput
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
-from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
+from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 from ccnl_engine.payroll.domain.prior_year import (
     PriorYearTaxFacts,
     SubstituteTaxRegime,
@@ -107,7 +120,11 @@ from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
+    "AbsenceEvent",
     "Apprentice",
+    "ArrearsEvent",
+    "BilateralFundEvent",
+    "BonusEvent",
     "CalculationDecision",
     "CalculationIssue",
     "CalculationStatus",
@@ -132,28 +149,38 @@ __all__ = [
     "EmploymentSector",
     "FamilyComposition",
     "FixedTerm",
+    "FringeEvent",
     "Headcount",
+    "HolidayWorkEvent",
     "InvalidInputError",
+    "NightShiftEvent",
     "OpeningBalances",
     "OutOfScopeError",
-    "PayrollCalendar",
+    "OvertimeEvent",
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",
-    "PayrollState",
     "PeriodFacts",
     "PeriodInput",
     "PeriodResult",
+    "PeriodState",
     "Permanent",
     "PriorYearTaxFacts",
     "RecoveryObligation",
     "RecoveryPlan",
     "SeniorityMonths",
+    "ShiftWorkEvent",
+    "SickLeaveEvent",
+    "SicknessCaseEvent",
     "SubstituteTaxRegime",
+    "TerminationTFREvent",
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
     "WeeklyHours",
+    "WelfareEvent",
+    "WorkCalendar",
+    "WorkEvent",
     "WorkerCategory",
     "YearInput",
     "YearResult",

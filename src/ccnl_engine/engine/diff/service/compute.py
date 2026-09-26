@@ -2,7 +2,7 @@
 
 :func:`diff_ccnl` walks every date-indexed :class:`~ccnl_engine.engine.\
 contract.domain.validity.TimeSeries` in a :class:`~ccnl_engine.engine.\
-contract.domain.ccnl.CCNL` and reports which values changed between two
+contract.domain.identity.CCNL` and reports which values changed between two
 calendar dates.  The function is pure: it performs no I/O and does not
 depend on the knowledge-base loader.
 """
@@ -20,11 +20,11 @@ if TYPE_CHECKING:
     from datetime import datetime as _datetime
     from decimal import Decimal
 
-    from ccnl_engine.engine.contract.domain.ccnl import (
-        CCNL,
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.engine.contract.domain.identity import CCNL
+    from ccnl_engine.engine.contract.domain.seniority import (
         SeniorityIncrements,
         SeniorityTier,
-        WorkerCategory,
     )
     from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
     from ccnl_engine.engine.provenance.domain.chain import RuleProvenance

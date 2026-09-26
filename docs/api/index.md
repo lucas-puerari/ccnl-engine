@@ -29,8 +29,8 @@ from ccnl_engine import (
     PayrollRunId,
     CalendarOverride,
     CalendarOverrideReason,
-    PayrollCalendar,
-    PayrollState,
+    WorkCalendar,
+    PeriodState,
     OpeningBalances,
     RecoveryObligation,
     RecoveryPlan,
@@ -82,8 +82,7 @@ from ccnl_engine import (
     UnsupportedTaxYearError,
     # Version
     engine_version,
-)
-from ccnl_engine.events import (
+    # Work events
     AbsenceEvent,
     ArrearsEvent,
     BilateralFundEvent,
@@ -101,8 +100,8 @@ from ccnl_engine.events import (
 )
 ```
 
-All names in the first import are re-exported from the top-level
-`ccnl_engine` package. Work event types live in `ccnl_engine.events`; see
+Every public name, work events included, is exported by the top-level
+`ccnl_engine` package. For the work events see
 [Work rules](../engine/work-rules.md).
 
 ## Guide cross-references

@@ -11,7 +11,7 @@ raises `period_gross`; an unpaid absence is reported in
 `period_net` and `period_employer_cost`. Each event appears as pay items in
 `result.pay_items`.
 
-Import event types from `ccnl_engine.events`, the stable public path.
+Import event types from the `ccnl_engine` package, like every other public name.
 
 ```python
 --8<-- "docs/examples/12_work_rules.py"

@@ -16,10 +16,10 @@ import copy
 import pytest
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.identity import CCNL
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
-from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.primitives.domain.primitives import FrozenDict
 
 # Any exception class accepted as proof of immutability enforcement.
 _IMMUTABLE = (TypeError, AttributeError, ValidationError)

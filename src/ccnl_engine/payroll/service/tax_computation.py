@@ -22,7 +22,7 @@ from ccnl_engine.payroll.service.ulteriore_recovery import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
@@ -53,37 +53,6 @@ class TaxResolution:
     decisions: tuple[CalculationDecision, ...] = ()
     irpef_net: Decimal = _ZERO
     ulteriore: UlterioreSettlement | None = None
-
-
-def resolve_tax_computation(
-    taxable: Decimal,
-    rules: YearRules,
-    *,
-    opening_irpef_withheld: Decimal = _ZERO,
-    opening_tratt_ytd: Decimal = _ZERO,
-    withholding_schedule: WithholdingSchedule,
-    slots_closed: int = 0,
-    family_deductions: Decimal = _ZERO,
-    recovery_plan: RecoveryPlan | None = None,
-    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
-) -> tuple[TaxComputation, RecoveryPlan | None]:
-    """Compute IRPEF as :func:`compute_tax`, without the credit decisions.
-
-    Returns:
-        ``(TaxComputation, RecoveryPlan | None)`` of :func:`compute_tax`.
-    """
-    resolution = compute_tax(
-        taxable,
-        rules,
-        opening_irpef_withheld=opening_irpef_withheld,
-        opening_tratt_ytd=opening_tratt_ytd,
-        withholding_schedule=withholding_schedule,
-        slots_closed=slots_closed,
-        family_deductions=family_deductions,
-        recovery_plan=recovery_plan,
-        eligible_work_days=eligible_work_days,
-    )
-    return resolution.computation, resolution.recovery_plan
 
 
 def compute_tax(

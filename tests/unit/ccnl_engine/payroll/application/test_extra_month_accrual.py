@@ -25,7 +25,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.irpef import work_income_deduction
-from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
+from ccnl_engine.payroll.service.tax_computation import compute_tax
 from tests.helpers import make_year_rules, year_input
 
 _COMMERCIO = "commercio-confcommercio.json"
@@ -203,10 +203,10 @@ def test_employment_days_are_capped_at_365() -> None:
     """A leap year fully employed has 366 days; the deduction uses 365."""
     rules = make_year_rules()
     schedule = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
-    capped, _ = resolve_tax_computation(
+    capped = compute_tax(
         Decimal(20_000), rules, withholding_schedule=schedule, eligible_work_days=366
-    )
-    full, _ = resolve_tax_computation(
+    ).computation
+    full = compute_tax(
         Decimal(20_000), rules, withholding_schedule=schedule
-    )
+    ).computation
     assert capped == full

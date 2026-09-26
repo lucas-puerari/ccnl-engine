@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.schedule import (
     WithholdingSchedule,
     WithholdingSlot,
 )
-from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
+from ccnl_engine.payroll.service.tax_computation import compute_tax
 from tests.helpers import make_year_rules
 
 _YEAR = 2026
@@ -183,11 +183,11 @@ def test_fractional_entitlement_does_not_truncate_withholding_slots(
 
     rules = make_year_rules()
     taxable = Decimal(25000)
-    last, _ = resolve_tax_computation(
+    last = compute_tax(
         taxable, rules, withholding_schedule=schedule, slots_closed=13
-    )
-    before_last, _ = resolve_tax_computation(
+    ).computation
+    before_last = compute_tax(
         taxable, rules, withholding_schedule=schedule, slots_closed=12
-    )
+    ).computation
     assert last.ordinary_tax == last.withholding_due
     assert before_last.ordinary_tax < before_last.withholding_due

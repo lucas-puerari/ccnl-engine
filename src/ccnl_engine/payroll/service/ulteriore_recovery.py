@@ -32,7 +32,7 @@ from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
 

@@ -7,7 +7,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.engine.primitives import PercentageRate
+from ccnl_engine.engine.primitives.domain.primitives import PercentageRate
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 

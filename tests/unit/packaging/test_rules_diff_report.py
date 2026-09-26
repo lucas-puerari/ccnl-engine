@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 import ccnl_engine.knowledge.ccnl.data as ccnl_data_pkg
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.identity import CCNL
 from ccnl_engine.engine.contract.domain.validity import TimeSeries, ValidityPeriod
 
 if TYPE_CHECKING:

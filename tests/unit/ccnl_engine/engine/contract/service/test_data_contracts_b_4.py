@@ -6,7 +6,7 @@ from decimal import Decimal
 from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
 )
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 

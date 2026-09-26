@@ -22,8 +22,8 @@ from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.contract.domain.identity import TaxSector
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
 from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.application._withholding_cap import (
     CappedWithholding,

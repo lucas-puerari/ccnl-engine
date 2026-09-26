@@ -15,7 +15,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.engine.metadata import RulesetIdentity  # noqa: TC001
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity  # noqa: TC001
 from ccnl_engine.engine.provenance.domain.source import SourceLocation  # noqa: TC001
 
 __all__ = [

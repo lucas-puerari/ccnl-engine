@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from ccnl_engine.engine.tax.domain.rules import ApprenticeRates
+    from ccnl_engine.engine.tax.domain.contribution_rules import ApprenticeRates
 
 _APPRENTICE_STEP_1: int = 12
 _APPRENTICE_STEP_2: int = 24

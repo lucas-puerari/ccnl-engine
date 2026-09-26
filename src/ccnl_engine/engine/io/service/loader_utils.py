@@ -7,7 +7,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.metadata import RulesetIdentity, source_hash
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity, source_hash
 
 
 def verify_ruleset_hash(payload: dict[str, Any], filename: str = "<unknown>") -> None:

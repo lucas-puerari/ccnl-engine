@@ -21,18 +21,15 @@ from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from ccnl_engine.engine.contract.domain.ccnl import (
-    CCNL,
-    CCNLParameters,
-    Level,
-    SeniorityIncrements,
-)
+from ccnl_engine.engine.contract.domain.identity import CCNL
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
     from datetime import date
     from decimal import Decimal
 
+    from ccnl_engine.engine.contract.domain.compensation import CCNLParameters, Level
+    from ccnl_engine.engine.contract.domain.seniority import SeniorityIncrements
     from ccnl_engine.engine.contract.domain.validity import TimeSeries
 
 # Paths inside the repo used for git diff filtering.

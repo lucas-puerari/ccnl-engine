@@ -11,14 +11,14 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
-from ccnl_engine.engine.tax.domain.rules import (
+from ccnl_engine.engine.tax.domain.credit_rules import (
     SommaEsenteBand,
     SommaEsenteRules,
-    SterilizzazioneDetrazioniRules,
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,
-    YearRules,
 )
+from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
+from ccnl_engine.engine.tax.domain.ruleset import YearRules
 from ccnl_engine.payroll.service.irpef import (
     apply_sterilizzazione_detrazioni,
     irpef_gross,

@@ -10,8 +10,8 @@ import copy
 from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
-from ccnl_engine.engine.tax.domain.rules import YearRules
+from ccnl_engine.engine.contract.domain.identity import CCNL
+from ccnl_engine.engine.tax.domain.ruleset import YearRules
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts, YearInput

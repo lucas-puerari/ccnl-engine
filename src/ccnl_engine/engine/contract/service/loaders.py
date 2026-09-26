@@ -7,7 +7,7 @@ import json
 from functools import cache
 from typing import Any
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL
+from ccnl_engine.engine.contract.domain.identity import CCNL
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.io.service.loader_utils import verify_ruleset_hash
 

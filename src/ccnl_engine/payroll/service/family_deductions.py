@@ -32,7 +32,7 @@ if TYPE_CHECKING:
         OtherDependentRules,
         SpouseDeductionRules,
     )
-    from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
+    from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
     from ccnl_engine.payroll.domain.family import Dependent, FamilyComposition
 
 _ZERO = Decimal(0)

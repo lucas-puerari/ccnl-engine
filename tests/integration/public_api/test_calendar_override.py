@@ -11,8 +11,8 @@ from ccnl_engine import (
     Employment,
     Headcount,
     InvalidInputError,
-    PayrollCalendar,
     PayrollEngine,
+    WorkCalendar,
     YearInput,
 )
 
@@ -27,7 +27,7 @@ def test_omitted_calendar_runs_the_ccnl_calendar() -> None:
         YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
-    assert year.calendar == PayrollCalendar.from_additional_months(2026, 14)
+    assert year.calendar == WorkCalendar.from_additional_months(2026, 14)
     assert year.calendar_override is None
 
 
@@ -38,14 +38,14 @@ def test_bare_calendar_is_rejected() -> None:
             year=2026,
             employment=_EMPLOYMENT,
             employer=_EMPLOYER,
-            calendar_override=PayrollCalendar(year=2026),  # type: ignore[arg-type]
+            calendar_override=WorkCalendar(year=2026),  # type: ignore[arg-type]
         )
 
 
 def test_payment_month_override_is_reported_on_the_result() -> None:
     """A quattordicesima paid in July runs right after the July payslip."""
     override = CalendarOverride(
-        calendar=PayrollCalendar.from_additional_months(
+        calendar=WorkCalendar.from_additional_months(
             2026, 14, fourteenth_payment_month=7
         ),
         reason=CalendarOverrideReason.PAYMENT_MONTH,

@@ -30,7 +30,7 @@ from ccnl_engine.engine.contract.domain.validation import (
     _check_tier_level_codes,
     _collect_transition_dates,
 )
-from ccnl_engine.engine.metadata import RulesetIdentity
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
 
 
 class CCNL(BaseModel):

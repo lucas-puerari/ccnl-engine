@@ -19,7 +19,9 @@ if TYPE_CHECKING:
         ApprenticeshipTrack,
         ApprenticeshipUnderClassification,
     )
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL, Level, WorkerCategory
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.engine.contract.domain.compensation import Level
+    from ccnl_engine.engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment import Apprentice
     from ccnl_engine.payroll.service.types import MonthlyPayChain, MonthPeriod
 

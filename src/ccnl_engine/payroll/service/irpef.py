@@ -19,18 +19,16 @@ from __future__ import annotations
 from decimal import ROUND_FLOOR, Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.engine.tax.domain.rules import WorkDeductionRules
+from ccnl_engine.engine.tax.domain.irpef_rules import WorkDeductionRules
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
     from ccnl_engine.engine.surtax.domain.rules import SurtaxBracket
-    from ccnl_engine.engine.tax.domain.rules import (
-        SommaEsenteRules,
-        SterilizzazioneDetrazioniRules,
-        YearRules,
-    )
+    from ccnl_engine.engine.tax.domain.credit_rules import SommaEsenteRules
+    from ccnl_engine.engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
 _TEN_THOUSAND = Decimal(10000)

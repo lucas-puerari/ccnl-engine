@@ -16,15 +16,19 @@ behind each model.
 
 ## CCNL
 
-::: ccnl_engine.engine.contract.domain.ccnl
+::: ccnl_engine.engine.contract.domain.identity
     options:
       members:
         - CCNL
         - CCNLMeta
-        - Level
         - TaxSector
         - CoverageNote
         - NoteKind
+
+::: ccnl_engine.engine.contract.domain.compensation
+    options:
+      members:
+        - Level
 
 ## Fiscal
 

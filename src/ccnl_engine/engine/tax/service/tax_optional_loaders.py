@@ -16,8 +16,8 @@ from ccnl_engine.engine.tax.domain.family import (
     OtherDependentRules,
     SpouseDeductionRules,
 )
+from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint
 from ccnl_engine.engine.tax.domain.preferential_regime import PreferentialTaxRegime
-from ccnl_engine.engine.tax.domain.rules import DeductionBreakpoint
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.engine.tax.domain.variable_pay import (
     FringeBenefitRules,

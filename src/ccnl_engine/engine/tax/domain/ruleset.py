@@ -6,9 +6,9 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.engine.metadata import RulesetIdentity
-from ccnl_engine.engine.primitives import PercentageRate
+from ccnl_engine.engine.contract.domain.identity import TaxSector
+from ccnl_engine.engine.metadata.domain.rules import RulesetIdentity
+from ccnl_engine.engine.primitives.domain.primitives import PercentageRate
 from ccnl_engine.engine.provenance.domain.extraction import ExtractionTrace
 from ccnl_engine.engine.provenance.domain.source import SourceDocument
 from ccnl_engine.engine.tax.domain.contribution_rules import (

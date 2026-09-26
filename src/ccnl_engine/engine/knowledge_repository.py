@@ -6,10 +6,10 @@ from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityCatalog
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+    from ccnl_engine.engine.contract.domain.identity import CCNL, TaxSector
     from ccnl_engine.engine.surtax.domain.rules import SurtaxRules
     from ccnl_engine.engine.tax.domain.family import FamilyDeductionRules
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.engine.tax.domain.variable_pay import VariablePayRules
 
 

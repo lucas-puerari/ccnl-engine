@@ -11,38 +11,39 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.errors import DataIntegrityError
-from ccnl_engine.engine.primitives import Bracket
-from ccnl_engine.engine.tax.domain.rules import (
+from ccnl_engine.engine.primitives.domain.primitives import Bracket
+from ccnl_engine.engine.tax.domain.contribution_rules import (
     ApprenticeRates,
     ApprenticeRawRates,
-    DeductionBreakpoint,
     DomesticInpsRates,
     InpsEmployeeTier,
     InpsEmployerTier,
     InpsRates,
     InpsRawRates,
-    IrpefBracket,
-    SommaEsenteBand,
-    SommaEsenteRules,
-    TfrRules,
-    YearRules,
-    YearRulesRaw,
 )
+from ccnl_engine.engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
+from ccnl_engine.engine.tax.domain.irpef_rules import DeductionBreakpoint, IrpefBracket
+from ccnl_engine.engine.tax.domain.ruleset import YearRules, YearRulesRaw
 from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
-from ccnl_engine.engine.tax.service.loaders import (
-    _assert_tier_integrity,
-    _resolve_tier,
-    load_year_rules,
+from ccnl_engine.engine.tax.domain.tfr_rules import TfrRules
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
+from ccnl_engine.engine.tax.service.tax_resource_reader import (
     read_inps_rules_raw,
     read_tax_rules_raw,
 )
-from ccnl_engine.payroll.service.contributions import (
+from ccnl_engine.engine.tax.service.tax_tier_resolver import (
+    _assert_tier_integrity,
+    _resolve_tier,
+)
+from ccnl_engine.payroll.service._contributions_apprentice import (
     apprentice_employer_rate,
-    inps_employer_rate,
+)
+from ccnl_engine.payroll.service._contributions_domestic import (
     resolve_domestic_inps_rate,
 )
+from ccnl_engine.payroll.service._contributions_rates import inps_employer_rate
 from tests.helpers import (
     DOMESTIC_CONTRIBUTIONS,
     IRPEF_BRACKETS_2026,

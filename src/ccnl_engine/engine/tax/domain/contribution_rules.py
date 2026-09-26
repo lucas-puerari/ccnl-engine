@@ -8,7 +8,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.primitives import (
+from ccnl_engine.engine.primitives.domain.primitives import (
     NonNegativeRate,
     PositiveCeiling,
     assert_ivs_le_total,

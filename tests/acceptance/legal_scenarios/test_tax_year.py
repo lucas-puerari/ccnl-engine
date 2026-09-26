@@ -13,8 +13,8 @@ from ccnl_engine import (
     OpeningBalances,
     PayrollEngine,
     PayrollRun,
-    PayrollState,
     PeriodInput,
+    PeriodState,
     RecoveryObligation,
     RecoveryPlan,
 )
@@ -80,7 +80,7 @@ def test_run_of_unbundled_tax_year_raises_domain_error(
 
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
     """December 2026 paid on 13 January 2027 cannot close into the 2026 state."""
-    opening = PayrollState(
+    opening = PeriodState(
         ytd=TaxYearState(
             tax_year=2026, regular_periods_closed=11, tax_withholding_periods_closed=11
         )
@@ -131,7 +131,7 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
     return december, thirteenth
 
 
-def _january_2027(opening: PayrollState) -> PeriodResult:
+def _january_2027(opening: PeriodState) -> PeriodResult:
     """Compute January 2027 on 2026 rules standing in for 2027.
 
     Returns:
@@ -187,7 +187,7 @@ def test_carried_installment_is_deducted_in_the_next_year() -> None:
     opening = ENGINE.close_tax_year(thirteenth.closing_state)
 
     with_plan = _january_2027(opening)
-    without_plan = _january_2027(PayrollState(ytd=opening.ytd))
+    without_plan = _january_2027(PeriodState(ytd=opening.ytd))
 
     assert without_plan.period_net - with_plan.period_net == Decimal("20.00")
     (carried,) = with_plan.closing_state.obligations.recoveries

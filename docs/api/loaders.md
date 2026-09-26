@@ -14,15 +14,23 @@ See [Get started](../getting-started/index.md) for the typical loading sequence 
 
 ## Tax
 
-::: ccnl_engine.engine.tax.service.loaders
+::: ccnl_engine.engine.tax.service.tax_annual_assembler
     options:
       members:
         - load_year_rules
 
-::: ccnl_engine.engine.tax.domain.rules
+::: ccnl_engine.engine.tax.domain.ruleset
     options:
       members:
         - YearRules
+
+::: ccnl_engine.engine.tax.domain.contribution_rules
+    options:
+      members:
         - InpsRates
+
+::: ccnl_engine.engine.tax.domain.irpef_rules
+    options:
+      members:
         - IrpefBracket
         - DeductionBreakpoint

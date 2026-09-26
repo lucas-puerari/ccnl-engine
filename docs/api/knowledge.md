@@ -18,7 +18,7 @@ so it can be updated or redistributed independently of the engine.
 
 ## Version
 
-::: ccnl_engine.knowledge.version.__version__
+::: ccnl_engine.knowledge.__version__
 
 ## Reading data
 

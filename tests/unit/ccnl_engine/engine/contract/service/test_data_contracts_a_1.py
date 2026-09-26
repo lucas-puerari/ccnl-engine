@@ -8,7 +8,7 @@ from ccnl_engine.engine.contract.domain.apprenticeship import (
     ApprenticeshipPercentage,
     ApprenticeshipUnderClassification,
 )
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, TaxSector
+from ccnl_engine.engine.contract.domain.identity import CCNL, TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
 # ---------------------------------------------------------------------------

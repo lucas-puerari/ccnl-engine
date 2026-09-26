@@ -4,20 +4,18 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
+    AbsenceEvent,
+    BonusEvent,
     EmployerProfile,
     Employment,
+    FringeEvent,
     Headcount,
+    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PriorYearTaxFacts,
-)
-from ccnl_engine.events import (
-    AbsenceEvent,
-    BonusEvent,
-    FringeEvent,
-    OvertimeEvent,
     SickLeaveEvent,
     WelfareEvent,
 )

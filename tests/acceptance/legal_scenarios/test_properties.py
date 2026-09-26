@@ -14,9 +14,9 @@ from ccnl_engine import (
     EmployerProfile,
     Employment,
     Headcount,
+    OvertimeEvent,
     WeeklyHours,
 )
-from ccnl_engine.events import OvertimeEvent
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     DOMESTIC,

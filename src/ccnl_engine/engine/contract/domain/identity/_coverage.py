@@ -15,7 +15,7 @@ from ccnl_engine.engine.contract.domain.identity._enums import (
 )
 from ccnl_engine.engine.contract.domain.sickness import SicknessRules
 from ccnl_engine.engine.contract.domain.working_time import LeaveRules, TimeSupplements
-from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.primitives.domain.primitives import FrozenDict
 
 
 class CoverageNote(BaseModel):

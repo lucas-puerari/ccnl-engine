@@ -18,7 +18,7 @@ import importlib.resources
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 
-from ccnl_engine.engine.contract.domain.ccnl import CCNL, NoteKind
+from ccnl_engine.engine.contract.domain.identity import CCNL, NoteKind
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.metadata.domain.rules import (
     RulesetReadiness,

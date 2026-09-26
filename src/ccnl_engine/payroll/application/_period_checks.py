@@ -21,7 +21,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.run import run_identifier
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.period import (

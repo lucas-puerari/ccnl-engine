@@ -206,7 +206,7 @@ and carries over between runs of the tax year; each supplement only gets the
 substitute rate on what is left, the excess is ordinary income.  It restarts
 with the next tax year.
 
-`RegimeCapAccount`, `PayrollState.ytd.work_time_regime`
+`RegimeCapAccount`, `PeriodState.ytd.work_time_regime`
 
 ### tax year state (progressivi dell'anno fiscale)
 
@@ -215,7 +215,7 @@ one tax year: earnings, fringe, tax withheld, trattamento integrativo, somma
 esente and the regime cap account.  Every total is non-negative.  It
 restarts at zero when the next tax year opens.
 
-`TaxYearState`, `PayrollState.ytd`
+`TaxYearState`, `PeriodState.ytd`
 
 ### payroll run id (identificativo del cedolino)
 
@@ -244,7 +244,7 @@ art. 1 c. 7), each bound to the credit and the tax year whose conguaglio
 opened it.  Installments posted in a later year do not enter the
 credit account of that year.
 
-`EmploymentObligations`, `RecoveryObligation`, `PayrollState.obligations`
+`EmploymentObligations`, `RecoveryObligation`, `PeriodState.obligations`
 
 ### year close (chiusura dell'anno fiscale)
 

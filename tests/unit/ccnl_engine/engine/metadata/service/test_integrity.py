@@ -14,7 +14,7 @@ from typing import Any, cast
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.contract.service import loaders as contract_loaders
 from ccnl_engine.engine.contract.service.loaders import (
     _verify_ruleset_hash as _verify_contract_hash,
@@ -25,16 +25,18 @@ from ccnl_engine.engine.contract.service.loaders import (
 from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.surtax.service import loaders as surtax_loaders
 from ccnl_engine.engine.surtax.service.loaders import _load_surtax_rules_cached
-from ccnl_engine.engine.tax.service import loaders as tax_loaders
 from ccnl_engine.engine.tax.service import (
     tax_resource_reader as tax_resource_reader_mod,
 )
-from ccnl_engine.engine.tax.service.loaders import _load_year_rules_cached
+from ccnl_engine.engine.tax.service.tax_annual_assembler import (
+    _load_year_rules_cached,
+    load_year_rules,
+)
 from tests.helpers import make_ccnl_dict
 
 LOADER_PATHS = (
     "ccnl_engine.engine.contract.service.loaders",
-    "ccnl_engine.engine.tax.service.loaders",
+    "ccnl_engine.engine.tax.service.tax_resource_reader",
     "ccnl_engine.engine.surtax.service.loaders",
 )
 
@@ -142,7 +144,7 @@ class TestVerifyRulesetHash:
         """Tax loader includes the filename in the mismatch error."""
         payload = {"a": 2, "ruleset": {"source_hash": "0" * 64}}
         with pytest.raises(DataIntegrityError, match=r"in 2026-terziario\.json"):
-            tax_loaders._verify_ruleset_hash(payload, "2026-terziario.json")
+            tax_resource_reader_mod._verify_ruleset_hash(payload, "2026-terziario.json")
 
     def test_surtax_mismatch_raises_with_filename(self) -> None:
         """Surtax loader includes the filename in the mismatch error."""
@@ -163,7 +165,7 @@ class TestTaxLoaderIntegrity:
 
     def test_tax_and_inps_rulesets_propagated(self) -> None:
         """Both ruleset blocks surface on the merged YearRules."""
-        rules = tax_loaders.load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         assert rules.ruleset is not None
         assert rules.ruleset.id == "tax/2026/terziario"
         assert rules.inps_ruleset is not None
@@ -179,7 +181,7 @@ class TestTaxLoaderIntegrity:
         )
 
         with pytest.raises(DataIntegrityError, match="source_hash mismatch in 2026"):
-            tax_loaders.load_year_rules(2026, TaxSector.TERZIARIO, 50)
+            load_year_rules(2026, TaxSector.TERZIARIO, 50)
 
     def test_missing_ruleset_produces_none(
         self, monkeypatch: pytest.MonkeyPatch
@@ -197,7 +199,7 @@ class TestTaxLoaderIntegrity:
 
         monkeypatch.setattr(tax_resource_reader_mod, "read_bundled", fake_read)
 
-        rules = tax_loaders.load_year_rules(2026, TaxSector.TERZIARIO, 50)
+        rules = load_year_rules(2026, TaxSector.TERZIARIO, 50)
         assert rules.ruleset is None
         assert rules.inps_ruleset is None
 

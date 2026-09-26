@@ -11,8 +11,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.contract.domain.identity import TaxSector
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
 from ccnl_engine.payroll.service.irpef_net import net_irpef as engine_net_irpef
 from tests.fixtures.legal_examples.irpef_2026 import (
     employment_deduction,

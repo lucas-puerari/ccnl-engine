@@ -109,8 +109,8 @@ appropriate INPS rate tier (based on `num_employees`) and applies the
 correct IRPEF bracket schedule:
 
 ```python
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
-from ccnl_engine.engine.tax.service.loaders import load_year_rules
+from ccnl_engine.engine.contract.domain.identity import TaxSector
+from ccnl_engine.engine.tax.service.tax_annual_assembler import load_year_rules
 
 rules = load_year_rules(2026, TaxSector.INDUSTRIA, num_employees=50)
 ```

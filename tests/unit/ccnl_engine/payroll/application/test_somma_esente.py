@@ -31,7 +31,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import SommaEsenteAccount
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.tax.domain.rules import YearRules
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
 _YEAR = 2026

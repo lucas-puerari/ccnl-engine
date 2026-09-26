@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from datetime import date
 
-    from ccnl_engine.engine.contract.domain.ccnl import CCNL
+    from ccnl_engine.engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.application.allocate_events import _EventTotals
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod

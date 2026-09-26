@@ -13,16 +13,15 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
-    PayrollState,
     PeriodFacts,
     PeriodInput,
+    PeriodState,
     PriorYearTaxFacts,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult
-    from ccnl_engine.events import WorkEvent
+    from ccnl_engine import PeriodResult, WorkEvent
 
 ENGINE = PayrollEngine.bundled()
 
@@ -46,7 +45,7 @@ def regular_period(
     employment: Employment | None = None,
     employer: EmployerProfile = EMPLOYER,
     events: tuple[WorkEvent, ...] = (),
-    opening_state: PayrollState | None = None,
+    opening_state: PeriodState | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
     prior_year: PriorYearTaxFacts | None = None,
@@ -73,7 +72,7 @@ def regular_period(
                 comune_belfiore=comune_belfiore,
             ),
             prior_year=prior_year or PriorYearTaxFacts(),
-            opening_state=opening_state or PayrollState.zero(),
+            opening_state=opening_state or PeriodState.zero(),
         )
     )
 

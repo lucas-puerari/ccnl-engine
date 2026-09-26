@@ -1,4 +1,4 @@
-"""Social security and TFR contribution calculations.
+"""Social security contribution calculations.
 
 IVS ceiling split: when the ceiling applies and the tax file carries a non-null
 ``ceiling``, only the IVS portion of each INPS rate is capped at the massimale
@@ -19,116 +19,15 @@ from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
     ContributionComponent,
 )
-from ccnl_engine.payroll.service._contributions_apprentice import (
-    apprentice_employer_ivs_rate as apprentice_employer_ivs_rate,
-)
-from ccnl_engine.payroll.service._contributions_apprentice import (
-    apprentice_employer_rate as apprentice_employer_rate,
-)
-from ccnl_engine.payroll.service._contributions_domestic import (
-    resolve_domestic_inps_rate as resolve_domestic_inps_rate,
-)
-from ccnl_engine.payroll.service._contributions_rates import (
-    ContributionRates as ContributionRates,
-)
-from ccnl_engine.payroll.service._contributions_rates import (
-    inps_employer_rate as inps_employer_rate,
-)
-from ccnl_engine.payroll.service._contributions_rates import (
-    resolve_rates as resolve_rates,
-)
+from ccnl_engine.payroll.service._contributions_rates import resolve_rates
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, WorkerCategory
-    from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
+    from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.engine.tax.domain.ruleset import YearRules
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 
 _ZERO = Decimal(0)
-
-
-def inps_contribution(
-    base_annual: Decimal,
-    total_rate: Decimal,
-    ivs_rate: Decimal,
-    rules: YearRules,
-    *,
-    ivs_ceiling_applies: bool,
-) -> Decimal:
-    """Compute an INPS contribution, applying the IVS ceiling only to the IVS portion.
-
-    When ``ivs_ceiling_applies`` is True and ``rules.inps.ceiling`` is set,
-    the IVS portion (``ivs_rate``) is capped at the massimale retributivo
-    while the non-IVS remainder (NASpI, CUAF, CIG, etc.) is applied to the
-    full ``base_annual``.  When False, or when no ceiling is configured, a
-    flat rate is applied to the full base (preserving the previous behaviour).
-
-    Returns:
-        The annual INPS contribution amount, rounded to two decimal places.
-    """
-    ceiling = rules.inps.ceiling if rules.inps is not None else None
-    if ivs_ceiling_applies and ceiling is not None:
-        ivs_base = min(base_annual, ceiling)
-        non_ivs_rate = total_rate - ivs_rate
-        return money(ivs_base * ivs_rate + base_annual * non_ivs_rate)
-    return money(base_annual * total_rate)
-
-
-def inps_employee_additional(
-    base_annual: Decimal,
-    rates: InpsRates | None,
-    *,
-    ivs_ceiling_applies: bool,
-) -> Decimal:
-    """Compute the 1% employee additional IVS contribution (Art. 3-ter D.L. 384/1992).
-
-    Applies to the portion of annual earnings exceeding the first pensionable
-    band threshold. The additional is IVS and is therefore subject to the
-    massimale retributivo when ivs_ceiling_applies is True.
-
-    Returns zero when ``rates`` is None, or when the additional rate or
-    threshold is not configured for this sector.
-
-    Returns:
-        Additional employee INPS contribution, rounded to two decimal places.
-    """
-    if rates is None:
-        return _ZERO
-    add_rate = rates.employee_additional_rate
-    add_threshold = rates.employee_additional_threshold
-    if add_rate is None:
-        # InpsRates._check_rates guarantees the pair is either both set or both
-        # absent, so checking add_rate is sufficient.
-        return _ZERO
-    # Invariant: add_threshold is set whenever add_rate is set.
-    assert add_threshold is not None
-    capped = (
-        min(base_annual, rates.ceiling)
-        if ivs_ceiling_applies and rates.ceiling is not None
-        else base_annual
-    )
-    excess = max(_ZERO, capped - add_threshold)
-    return money(excess * add_rate)
-
-
-def tfr(base_annual: Decimal, rules: YearRules) -> Decimal:
-    """Compute the annual TFR accrual (Art. 2120 c.c.).
-
-    Returns:
-        The annual TFR accrual amount, rounded to two decimal places.
-    """
-    return money(base_annual / rules.tfr.accrual_divisor)
-
-
-def fund_applies_to(fund: EmployerFund, category: WorkerCategory | None) -> bool:
-    """Return whether the fund applies to a level of the given category.
-
-    Returns:
-        True if the fund applies to the given category, False otherwise.
-    """
-    if fund.applies_to_categories is None:
-        return True
-    return category is not None and category in fund.applies_to_categories
 
 
 def _addizionale_1pct(

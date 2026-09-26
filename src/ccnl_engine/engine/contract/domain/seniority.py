@@ -7,7 +7,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
-from ccnl_engine.engine.primitives import FrozenDict
+from ccnl_engine.engine.primitives.domain.primitives import FrozenDict
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
 

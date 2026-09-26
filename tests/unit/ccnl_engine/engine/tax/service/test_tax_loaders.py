@@ -8,16 +8,18 @@ from unittest.mock import patch
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.ccnl import TaxSector
+from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.errors import DataIntegrityError, UnsupportedTaxYearError
-from ccnl_engine.engine.tax.service.loaders import (
+from ccnl_engine.engine.tax.service.tax_annual_assembler import (
     _load_year_rules_cached,
-    _try_ruleset,
+    load_year_rules,
+)
+from ccnl_engine.engine.tax.service.tax_optional_loaders import (
     load_art15_deduction_rules,
     load_family_deduction_rules,
     load_variable_pay_rules,
-    load_year_rules,
 )
+from ccnl_engine.engine.tax.service.tax_resource_reader import _try_ruleset
 
 if TYPE_CHECKING:
     from collections.abc import Callable
