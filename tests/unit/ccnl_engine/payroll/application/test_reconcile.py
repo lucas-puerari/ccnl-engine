@@ -513,6 +513,8 @@ class TestI16CreditBounds:
         violations = reconcile(bad_result, _OPENING).violations
         i16 = [v for v in violations if v.invariant_id == "I16"]
         assert len(i16) == 1
+
+
 class TestL1SubstituteTaxNonNegative:
     """L1: every SUBSTITUTE_TAX entry must have a non-negative amount."""
 
