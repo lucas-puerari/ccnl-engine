@@ -9,6 +9,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.application._capability_traces import build_traces
+from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -46,6 +47,23 @@ def _req(**kwargs: object) -> PeriodCalculationRequest:
         opening_state=PeriodState.zero(),
         **kwargs,  # type: ignore[arg-type]
     )
+
+
+def _amounts(**overrides: object) -> _PeriodAmounts:
+    defaults: dict[str, Decimal] = {
+        "monthly_gross": _D("2000"),
+        "inps_employee": _D("180"),
+        "inps_employer": _D("440"),
+        "tfr": _D("154"),
+        "period_irpef": _D("300"),
+        "period_tratt": _D("0"),
+        "period_surtax": _D("0"),
+        "period_taxable": _D("1820"),
+        "period_substitute_tax": _D("0"),
+        "pdr_eligible": _D("0"),
+    }
+    defaults.update(overrides)  # type: ignore[arg-type]
+    return _PeriodAmounts(**defaults)
 
 
 def _make_sickness_case_event() -> SicknessCaseEvent:
@@ -114,15 +132,14 @@ class TestDecisionTrace:
 
 
 class TestBuildTraces:
-    """build_traces derives traces from the request without a static list."""
+    """build_traces derives traces from the request and computed amounts."""
 
     def test_standard_features_always_computed(self) -> None:
-        """Standard features are always traced as COMPUTED."""
-        traces = build_traces(_req())
+        """Standard non-seniority features are always traced as COMPUTED."""
+        traces = build_traces(_req(), _amounts())
         by_feature = {t.feature: t.state for t in traces}
         for feature in (
             "base_salary",
-            "seniority",
             "inps_employee",
             "inps_employer",
             "tfr",
@@ -132,9 +149,21 @@ class TestBuildTraces:
         ):
             assert by_feature[feature] == TraceState.COMPUTED, feature
 
+    def test_seniority_not_applicable_when_months_not_supplied(self) -> None:
+        """Seniority is NOT_APPLICABLE when seniority_months is None."""
+        traces = build_traces(_req(), _amounts())
+        by_feature = {t.feature: t.state for t in traces}
+        assert by_feature["seniority"] == TraceState.NOT_APPLICABLE
+
+    def test_seniority_computed_when_months_supplied(self) -> None:
+        """Seniority is COMPUTED when seniority_months is provided."""
+        traces = build_traces(_req(seniority_months=24), _amounts())
+        by_feature = {t.feature: t.state for t in traces}
+        assert by_feature["seniority"] == TraceState.COMPUTED
+
     def test_event_features_skipped_without_events(self) -> None:
         """Event-based features are SKIPPED when no matching events are present."""
-        traces = build_traces(_req())
+        traces = build_traces(_req(), _amounts())
         by_feature = {t.feature: t.state for t in traces}
         for feature in (
             "overtime",
@@ -145,7 +174,6 @@ class TestBuildTraces:
             "sickness",
             "fringe_benefit",
             "welfare",
-            "bonus_pdr",
             "contract_renewal_arrears",
             "bilateral_funds",
             "termination_tfr",
@@ -153,9 +181,9 @@ class TestBuildTraces:
             assert by_feature[feature] == TraceState.SKIPPED, feature
 
     def test_all_event_features_computed_when_events_present(self) -> None:
-        """All event-based features become COMPUTED when event types are present."""
+        """Event-based features become COMPUTED when matching events are present."""
         req = _req(events=_all_event_types())
-        by_feature = {t.feature: t.state for t in build_traces(req)}
+        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
         for feature in (
             "overtime",
             "night_work",
@@ -165,7 +193,6 @@ class TestBuildTraces:
             "sickness",
             "fringe_benefit",
             "welfare",
-            "bonus_pdr",
             "contract_renewal_arrears",
             "bilateral_funds",
             "termination_tfr",
@@ -193,14 +220,14 @@ class TestBuildTraces:
     ) -> None:
         """A single event type only marks its own feature as COMPUTED."""
         req = _req(events=(event,))
-        by_feature = {t.feature: t.state for t in build_traces(req)}
+        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
         assert by_feature[feature] == TraceState.COMPUTED
         other = "fringe_benefit" if feature == "overtime" else "overtime"
         assert by_feature[other] == TraceState.SKIPPED
 
     def test_parameter_features_not_applicable_without_params(self) -> None:
         """Parameter-dependent features are NOT_APPLICABLE when inputs absent."""
-        traces = build_traces(_req())
+        traces = build_traces(_req(), _amounts())
         by_feature = {t.feature: t.state for t in traces}
         assert by_feature["addizionale_regionale"] == TraceState.NOT_APPLICABLE
         assert by_feature["addizionale_comunale"] == TraceState.NOT_APPLICABLE
@@ -213,12 +240,41 @@ class TestBuildTraces:
             comune_belfiore="F205",
             family_composition=FamilyComposition(),
         )
-        by_feature = {t.feature: t.state for t in build_traces(req)}
+        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
         assert by_feature["addizionale_regionale"] == TraceState.COMPUTED
         assert by_feature["addizionale_comunale"] == TraceState.COMPUTED
         assert by_feature["family_deductions"] == TraceState.COMPUTED
 
+    def test_bonus_pdr_skipped_when_pdr_eligible_zero(self) -> None:
+        """bonus_pdr is SKIPPED when no PdR substitute tax was applied."""
+        req = _req(events=(BonusEvent(event_date=_DATE, amount=_D("500")),))
+        by_feature = {
+            t.feature: t.state
+            for t in build_traces(req, _amounts(pdr_eligible=_D("0")))
+        }
+        assert by_feature["bonus_pdr"] == TraceState.SKIPPED
+
+    def test_bonus_pdr_computed_when_pdr_eligible_positive(self) -> None:
+        """bonus_pdr is COMPUTED when PdR substitute tax was actually applied."""
+        req = _req(events=(BonusEvent(event_date=_DATE, amount=_D("500")),))
+        by_feature = {
+            t.feature: t.state
+            for t in build_traces(req, _amounts(pdr_eligible=_D("500")))
+        }
+        assert by_feature["bonus_pdr"] == TraceState.COMPUTED
+
+    def test_bonus_pdr_computed_without_bonus_event_when_pdr_eligible_positive(
+        self,
+    ) -> None:
+        """bonus_pdr is COMPUTED based on pdr_eligible amount, not event presence."""
+        by_feature = {
+            t.feature: t.state
+            for t in build_traces(_req(), _amounts(pdr_eligible=_D("100")))
+        }
+        assert by_feature["bonus_pdr"] == TraceState.COMPUTED
+
     def test_result_is_deterministic(self) -> None:
-        """Same request produces identical traces."""
+        """Same request and amounts produce identical traces."""
         req = _req()
-        assert build_traces(req) == build_traces(req)
+        amt = _amounts()
+        assert build_traces(req, amt) == build_traces(req, amt)

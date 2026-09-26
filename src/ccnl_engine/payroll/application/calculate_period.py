@@ -143,13 +143,6 @@ def calculate_period(
         tctx.fiscal_year, ccnl.meta.tax_sector, request.num_employees
     )
     catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
-    traces = _build_traces(request)
-    capability_gaps = catalog.gaps(
-        _traces_to_observed(traces), detect_absent=True, year=tctx.fiscal_year
-    )
-    capability_report = CapabilityReport(
-        catalog_year=tctx.fiscal_year, gaps=capability_gaps
-    )
     additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
     chain = _resolve_chain(
         ccnl,
@@ -245,6 +238,13 @@ def calculate_period(
         domestic_hourly_rate=domestic_hr,
     )
     amounts, contribution_breakdown, tax_computation, next_recovery_plan = computed
+    traces = _build_traces(request, amounts)
+    capability_gaps = catalog.gaps(
+        _traces_to_observed(traces), detect_absent=True, year=tctx.fiscal_year
+    )
+    capability_report = CapabilityReport(
+        catalog_year=tctx.fiscal_year, gaps=capability_gaps
+    )
     pay_items = _build_pay_items(
         amounts, chain, request.period_id, request.payment_date, run_tag=run_id
     )
