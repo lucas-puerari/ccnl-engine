@@ -78,3 +78,18 @@ in v0.5. Migrate to `PayrollEngine` for all new code.
 - `ccnl_engine.payroll.domain.fiscal.FiscalSimplification` is removed: read the
   surtax outcome from `result.decisions` (capabilities
   `addizionale_regionale`, `addizionale_comunale`).
+
+## Decisions and capability report
+
+- `result.decisions` now also holds the decisions of the tax credits
+  (`ulteriore_detrazione_lavoro`, `trattamento_integrativo`), of the worker
+  category, of seniority, of family deductions and of the PdR substitute tax.
+  Filter by `capability` instead of assuming only surtax or regime records.
+  `YearCalculationResult.decisions` concatenates the decisions of every run.
+- The capability report traces each feature from what the run executed: an
+  event present in the request with no effect is skipped, and the two credits
+  are no longer always computed.  A surtax without a table is now reported as
+  an `unresolved` gap (`CapabilityGapKind.UNRESOLVED`).
+- `trattamento_integrativo` and `ulteriore_detrazione_lavoro` moved from
+  `ccnl_engine.payroll.service.irpef` to
+  `ccnl_engine.payroll.service.irpef_credits`.

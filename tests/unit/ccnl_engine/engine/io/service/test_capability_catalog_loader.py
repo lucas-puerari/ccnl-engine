@@ -90,6 +90,7 @@ class TestCapabilityGapKind:
             "promised_computed_got_partial"
         )
         assert CapabilityGapKind.WRONG_YEAR.value == "wrong_year"
+        assert CapabilityGapKind.UNRESOLVED.value == "unresolved"
 
     def test_from_string(self) -> None:
         """Constructing from string returns the enum member."""
@@ -326,6 +327,49 @@ class TestCapabilityCatalog:
         gaps = cat.gaps({"base_salary": "not_computed"})
         assert len(gaps) == 1
         assert gaps[0].kind == CapabilityGapKind.NOT_COMPUTED
+
+
+class TestCapabilityCatalogTraceStates:
+    """Gaps classify the trace states a run reports for each feature."""
+
+    def _make(self) -> CapabilityCatalog:
+        return CapabilityCatalog(
+            year=2026,
+            capabilities=(
+                CapabilityEntry("irpef", CapabilityStatus.COMPUTED),
+                CapabilityEntry(
+                    "art15_deductions", CapabilityStatus.PARTIALLY_COMPUTED
+                ),
+                CapabilityEntry("bonus_pdr", CapabilityStatus.NOT_APPLICABLE),
+            ),
+        )
+
+    @pytest.mark.parametrize("feature", ["irpef", "art15_deductions"])
+    def test_gaps_unresolved_is_a_gap(self, feature: str) -> None:
+        """A promised feature that ran but could not decide is an UNRESOLVED gap."""
+        (gap,) = self._make().gaps({feature: "unresolved"})
+        assert gap.feature == feature
+        assert gap.kind is CapabilityGapKind.UNRESOLVED
+        assert gap.observed == "unresolved"
+
+    def test_gaps_unresolved_on_not_applicable_entry_no_gap(self) -> None:
+        """A feature the catalog does not promise is never a gap."""
+        assert self._make().gaps({"bonus_pdr": "unresolved"}) == ()
+
+    def test_gaps_trace_partial_is_promised_computed_got_partial(self) -> None:
+        """The trace state ``partial`` breaks a ``computed`` promise."""
+        (gap,) = self._make().gaps({"irpef": "partial"})
+        assert gap.kind is CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
+        assert gap.observed == "partial"
+
+    def test_gaps_trace_partial_keeps_partially_computed_promise(self) -> None:
+        """The trace state ``partial`` keeps a ``partially_computed`` promise."""
+        assert self._make().gaps({"art15_deductions": "partial"}) == ()
+
+    @pytest.mark.parametrize("state", ["skipped", "not_applicable", "computed"])
+    def test_gaps_other_trace_states_are_not_gaps(self, state: str) -> None:
+        """Skipped, not applicable and computed keep the promise."""
+        assert self._make().gaps({"irpef": state}) == ()
 
 
 # ---------------------------------------------------------------------------

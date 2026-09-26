@@ -30,8 +30,10 @@ from ccnl_engine.payroll.service.contributions import (
     inps_employee_additional,
 )
 from ccnl_engine.payroll.service.irpef import (
-    trattamento_integrativo,
     work_income_deduction,
+)
+from ccnl_engine.payroll.service.irpef_credits import (
+    trattamento_integrativo,
 )
 from ccnl_engine.payroll.service.rounding import money
 from tests.helpers import make_year_rules

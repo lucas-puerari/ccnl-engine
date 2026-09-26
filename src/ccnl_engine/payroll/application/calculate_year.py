@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -15,9 +15,17 @@ from ccnl_engine.payroll.application._extra_month_accrual import (
     non_accruing_days,
     termination_settlements,
 )
+from ccnl_engine.payroll.application._year_runs import (
+    allocate_run_events,
+    flag_partial_month,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
 )
@@ -37,7 +45,6 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
 from ccnl_engine.payroll.domain.tax_year import (
     DEFAULT_PAYMENT_DAY,
@@ -52,13 +59,11 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.run import PayrollRun
 
 __all__ = ["YearCalculationResult", "calculate_year"]
 
 _ZERO = Decimal(0)
 _DEFAULT_EMPLOYER = Employer()
-_PARTIAL_MONTH = "partial_month_not_prorated"
 
 
 @dataclass(frozen=True)
@@ -98,46 +103,10 @@ class YearCalculationResult:
         """Issues of every period, concatenated in payment order."""
         return tuple(issue for r in self.period_results for issue in r.issues)
 
-
-def _allocate_events(
-    run: PayrollRun,
-    period_events: dict[int, tuple[WorkEvent, ...]],
-    per_run_events: dict[str, tuple[WorkEvent, ...]],
-) -> tuple[WorkEvent, ...]:
-    """Return the events allocated to ``run`` under the two-layer policy.
-
-    Priority: explicit ``run_id`` allocation in ``per_run_events`` takes
-    precedence.  Regular runs fall back to ``period_events`` keyed by month.
-    Extra-month runs (thirteenth, fourteenth, etc.) that have no explicit
-    allocation receive no events.
-
-    Args:
-        run: The payroll run being processed.
-        period_events: Month-keyed events (applies only to regular runs).
-        per_run_events: ``run_id``-keyed events (any run kind).
-
-    Returns:
-        Tuple of :class:`~ccnl_engine.payroll.domain.events.WorkEvent` for
-        this run, possibly empty.
-
-    Raises:
-        ValueError: When the same run is allocated events from both
-            ``period_events`` and ``per_run_events`` (duplicate allocation).
-    """
-    in_per_run = run.run_id in per_run_events
-    in_period = run.run_kind == "regular" and run.month in period_events
-    if in_per_run and in_period:
-        msg = (
-            f"Duplicate event allocation for run '{run.run_id}': "
-            f"events are present in both period_events[{run.month}] and "
-            f"per_run_events['{run.run_id}']; supply events in one source only."
-        )
-        raise ValueError(msg)
-    if in_per_run:
-        return per_run_events[run.run_id]
-    if in_period:
-        return period_events[run.month]
-    return ()
+    @property
+    def decisions(self) -> tuple[CalculationDecision, ...]:
+        """Decisions of every period, concatenated in payment order."""
+        return tuple(d for r in self.period_results for d in r.decisions)
 
 
 def _select_runs(
@@ -159,38 +128,6 @@ def _select_runs(
         )
         raise InvalidInputError(msg, feature="employment_facts")
     return schedule
-
-
-def _flag_partial_month(
-    result: PeriodCalculationResult,
-    run: PayrollRun,
-    employment_period: EmploymentPeriod | None,
-) -> PeriodCalculationResult:
-    """Mark a regular run of a partly employed month as provisional.
-
-    The bundled CCNL data define no daily divisor for a partial month, so
-    the run carries the full monthly pay and a provisional issue.
-
-    Returns:
-        ``result``, with one more issue when the employment covers only part
-        of the run month.
-    """
-    if (
-        employment_period is None
-        or run.run_kind is not RunKind.REGULAR
-        or employment_period.covers_month(run.year, run.month)
-    ):
-        return result
-    issue = CalculationIssue(
-        code=_PARTIAL_MONTH,
-        message=(
-            f"employment covers only part of {run.year}-{run.month:02d}; the "
-            "full monthly pay is computed because the CCNL data define no "
-            "daily divisor for a partial month"
-        ),
-        status=CalculationStatus.PROVISIONAL,
-    )
-    return replace(result, issues=(*result.issues, issue))
 
 
 def calculate_year(
@@ -339,7 +276,7 @@ def calculate_year(
     for run in schedule.runs:
         pid = PeriodId(year=run.year, month=run.month)
         payment_date = monthly_payment_date(run.year, run.month, payment_day)
-        allocated_events = _allocate_events(
+        allocated_events = allocate_run_events(
             run, effective_period_events, effective_per_run_events
         )
         extra_sched = extra_month_index.get((run.run_kind, run.month))
@@ -375,7 +312,7 @@ def calculate_year(
             run=run,
             withholding_schedule=withholding_schedule,
         )
-        result = _flag_partial_month(
+        result = flag_partial_month(
             calculate_period(
                 req, repo=repo, resolver=resolver, bundle_version=bundle_version
             ),
