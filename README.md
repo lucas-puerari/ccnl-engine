@@ -56,6 +56,20 @@ print(result.period_net)  # → Decimal('...')
 print(result.period_id)  # → PeriodId(year=2026, month=1)
 ```
 
+A full year derives its calendar from the CCNL: Commercio grants tredicesima
+and quattordicesima, so the year has 14 runs. A different calendar needs a
+`CalendarOverride` with a reason, and an override that drops a CCNL extra
+month raises `InvalidInputError`.
+
+```python
+from ccnl_engine import PayrollYearRequest
+
+year = engine.calculate_year(
+    PayrollYearRequest(year=2026, ccnl_slug="commercio-confcommercio.json", level_code="4")
+)
+print(len(year.period_results))  # → 14
+```
+
 ## CCNL coverage
 
 125 contract configurations covering an estimated 16 million employees across

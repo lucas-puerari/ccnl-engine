@@ -36,11 +36,6 @@ import pytest
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthKind,
-    ExtraMonthSchedule,
-    WorkCalendar,
-)
 from ccnl_engine.payroll.domain.employment import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -132,7 +127,7 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
 # The calendar lists the extra months (tredicesima, quattordicesima), each
 # paid in its own run.  calculate_year must produce one
 # PeriodCalculationResult per payroll run, not always 12.
-# Source: CCNL calendar; WorkCalendar.extra_months carries the schedule.
+# Source: CCNL calendar, derived from additional_months.
 # ---------------------------------------------------------------------------
 
 
@@ -143,22 +138,7 @@ def test_p0_02_calculate_year_extra_months() -> None:
     Fixed in feature/payroll-schedule: PayrollSchedule.from_calendar generates
     extra runs; calculate_year iterates schedule.runs instead of range(1, 13).
     """
-    calendar = WorkCalendar(
-        year=_YEAR,
-        extra_months=(
-            ExtraMonthSchedule(
-                kind=ExtraMonthKind.THIRTEENTH,
-                name="tredicesima",
-                payment_month=12,
-            ),
-        ),
-    )
-    result = calculate_year(
-        _YEAR,
-        _CCNL,
-        _LEVEL,
-        calendar=calendar,
-    )
+    result = calculate_year(_YEAR, _CCNL, _LEVEL)
     assert len(result.period_results) == 13, (
         f"calculate_year with tredicesima must produce 13 period results; "
         f"got {len(result.period_results)}.  "

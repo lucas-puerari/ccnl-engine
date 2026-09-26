@@ -15,7 +15,6 @@ from ccnl_engine import (
     PayrollYearRequest,
     WorkerCategory,
 )
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.run import RunKind
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -49,7 +48,6 @@ def test_three_month_employment_has_no_runs_outside_the_period() -> None:
             year=2026,
             ccnl_slug=COMMERCIO,
             level_code="4",
-            calendar=WorkCalendar.from_additional_months(2026, 14),
             employment_facts=EmploymentFacts(
                 started_on=date(2026, 7, 1), ended_on=date(2026, 9, 30)
             ),

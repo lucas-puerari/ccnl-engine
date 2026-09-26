@@ -17,7 +17,6 @@ from ccnl_engine.payroll.application.calculate_year import (
     YearCalculationResult,
     calculate_year,
 )
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -60,7 +59,7 @@ def _decision(**overrides: Any) -> CalculationDecision:  # noqa: ANN401
 
 @pytest.fixture(scope="module")
 def year_result() -> YearCalculationResult:
-    """Compute twelve regular runs through the real pipeline.
+    """Compute the standard year (13 runs) through the real pipeline.
 
     Returns:
         The year result of a metalmeccanico C3 worker in 2026.
@@ -69,7 +68,6 @@ def year_result() -> YearCalculationResult:
         2026,
         "metalmeccanico-federmeccanica.json",
         "C3",
-        calendar=WorkCalendar.from_additional_months(2026, 12),
     )
 
 

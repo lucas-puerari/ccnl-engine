@@ -9,6 +9,8 @@ from ccnl_engine.engine.contract.domain.category import (
     WorkerCategory,
     parse_worker_category,
 )
+from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
@@ -25,7 +27,6 @@ if TYPE_CHECKING:
     from datetime import date
     from decimal import Decimal
 
-    from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
@@ -184,7 +185,14 @@ class PayrollYearRequest:
         year: The tax year.
         ccnl_slug: Knowledge-bundle CCNL filename.
         level_code: Worker's contractual level code.
-        calendar: Year-level payroll calendar; governs the run sequence.
+        calendar: Optional
+            :class:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride`.
+            ``None`` (the default) runs the standard calendar derived from the
+            CCNL ``additional_months``.  An override carries a domain reason
+            and is rejected with
+            :class:`~ccnl_engine.engine.errors.InvalidInputError` when it
+            drops or lowers an extra month the CCNL grants, or does not match
+            its reason.  A bare ``WorkCalendar`` is rejected.
         employment_facts: Worker-side employment facts (contract type,
             hours, seniority, IVS ceiling eligibility).
         employer: The employer; its headcount selects the INPS rate tier.
@@ -199,12 +207,17 @@ class PayrollYearRequest:
         comune_belfiore: Belfiore code for municipal surtax.
         family_composition: Dependent family composition.
         has_dependent_children: Higher fringe-benefit threshold when True.
+
+    Raises:
+        InvalidInputError: When ``calendar`` is neither ``None`` nor a
+            :class:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride`,
+            e.g. a bare ``WorkCalendar``.
     """
 
     year: int
     ccnl_slug: str
     level_code: str
-    calendar: WorkCalendar
+    calendar: CalendarOverride | None = None
     employment_facts: EmploymentFacts = field(default_factory=EmploymentFacts)
     employer: Employer = field(default_factory=Employer)
     period_events: dict[int, tuple[WorkEvent, ...]] = field(default_factory=dict)
@@ -213,3 +226,16 @@ class PayrollYearRequest:
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
     has_dependent_children: bool = False
+
+    def __post_init__(self) -> None:  # noqa: D105
+        _require_calendar_override(self.calendar)
+
+
+def _require_calendar_override(value: object) -> None:
+    if value is not None and not isinstance(value, CalendarOverride):
+        msg = (
+            f"calendar must be a CalendarOverride or None; got "
+            f"{type(value).__name__}: wrap a custom calendar in a "
+            f"CalendarOverride with its reason"
+        )
+        raise InvalidInputError(msg, feature="calendar_override")

@@ -14,7 +14,6 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import PayrollYearRequest, PayrollYearResult
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from tests.acceptance.legal_scenarios._support import COOP_SOCIALI, ENGINE
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 
@@ -29,7 +28,6 @@ def _coop_sociali_d2_year() -> PayrollYearResult:
             year=2026,
             ccnl_slug=COOP_SOCIALI,
             level_code="D2",
-            calendar=WorkCalendar.from_additional_months(2026, Decimal("13.5")),
         )
     )
 

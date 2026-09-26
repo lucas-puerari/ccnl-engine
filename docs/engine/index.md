@@ -65,6 +65,56 @@ result = engine.calculate(
 `calculate()` returns a `PeriodCalculationResult` with gross, net, pay items,
 and a full ledger of every accounting entry. See [API: Engine](../api/engine.md).
 
+## Full year: `calculate_year()`
+
+`calculate_year()` runs every payslip of the year. The calendar is derived
+from the CCNL `additional_months`: tredicesima in December and, when granted,
+quattordicesima in June. The run sequence and the IRPEF withholding schedule
+are both built from that calendar.
+
+```python
+from ccnl_engine import PayrollYearRequest
+
+year = engine.calculate_year(
+    PayrollYearRequest(
+        year=2026,
+        ccnl_slug="commercio-confcommercio.json",
+        level_code="4",
+    )
+)
+print(len(year.period_results))  # 14: 12 regular runs, tredicesima, quattordicesima
+```
+
+A different calendar is accepted only as a `CalendarOverride` with a
+`CalendarOverrideReason` and a non-blank note. The override is checked
+against the CCNL calendar and raises `InvalidInputError` when a rule fails:
+
+| Reason | Allowed | Rejected |
+|---|---|---|
+| `PAYMENT_MONTH` | another payment month, e.g. quattordicesima in July | any change of the extra months or their fractions |
+| `MORE_FAVOURABLE_TREATMENT` (art. 2077 c.c.) | adding an extra month or raising a fraction | an override that grants nothing more |
+
+No reason allows dropping or lowering an extra month the CCNL grants. Every
+extra month must accrue over the 12 months ending in its payment month
+(`accrual_window_start_month == payment_month % 12 + 1`, which
+`PayrollCalendar.from_additional_months` sets): any other window pays a
+full-year worker less than the fraction, so a tredicesima stays in December. Paying
+the ratei monthly (mensilizzazione) is not supported: the engine does not
+pay ratei inside regular runs. The effective calendar and the override are
+returned on the year result as `calendar` and `calendar_override`.
+
+```python
+from ccnl_engine import CalendarOverride, CalendarOverrideReason, PayrollCalendar
+
+july = CalendarOverride(
+    calendar=PayrollCalendar.from_additional_months(
+        2026, 14, fourteenth_payment_month=7
+    ),
+    reason=CalendarOverrideReason.PAYMENT_MONTH,
+    note="quattordicesima paid with the July salary",
+)
+```
+
 ## Computation chain
 
 The engine applies rules in a fixed sequence:

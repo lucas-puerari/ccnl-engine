@@ -142,11 +142,16 @@ class PayrollEngine:
 
         Args:
             request: A :class:`~ccnl_engine.api.requests.PayrollYearRequest`
-                carrying year, CCNL slug, level, calendar and optional events.
+                carrying year, CCNL slug, level, an optional calendar override
+                and optional events.
 
         Returns:
             A :class:`~ccnl_engine.payroll.application.calculate_year.\
 YearCalculationResult` with one result per run and aggregated annual totals.
+
+        A calendar override that drops or lowers an extra month the CCNL
+        grants, or does not match its reason, raises
+        :class:`~ccnl_engine.engine.errors.InvalidInputError`.
         """
         ef = request.employment_facts
         return _calculate_year(

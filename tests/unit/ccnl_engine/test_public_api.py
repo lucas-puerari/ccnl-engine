@@ -11,6 +11,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "CalculationDecision",
     "CalculationIssue",
     "CalculationStatus",
+    "CalendarOverride",
+    "CalendarOverrideReason",
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",

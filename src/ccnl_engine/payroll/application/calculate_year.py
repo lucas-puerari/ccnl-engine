@@ -10,8 +10,8 @@ from typing import TYPE_CHECKING
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.payroll.application._calendar import effective_calendar
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.domain.calendar import ExtraMonthEntitlement, WorkCalendar
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import (
     ContributionCeilingStatus,
@@ -37,6 +37,8 @@ from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSche
 if TYPE_CHECKING:
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.domain.calendar import WorkCalendar
+    from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.policy import PolicyResolver
@@ -59,6 +61,11 @@ class YearCalculationResult:
         annual_gross: Sum of ``period_gross`` across all runs.
         annual_net: Sum of ``period_net`` across all runs.
         annual_employer_cost: Sum of ``period_employer_cost`` across all runs.
+        calendar: The calendar the year ran on: the CCNL standard calendar,
+            or the accepted override.
+        calendar_override: The override that replaced the standard calendar,
+            with its reason and note, or ``None`` when the standard applied.
+        bundle_version: Knowledge-bundle version of the calculation.
     """
 
     year: int
@@ -66,6 +73,8 @@ class YearCalculationResult:
     annual_gross: Decimal
     annual_net: Decimal
     annual_employer_cost: Decimal
+    calendar: WorkCalendar
+    calendar_override: CalendarOverride | None = None
     bundle_version: str | None = None
 
     @property
@@ -125,7 +134,7 @@ def calculate_year(
     ccnl_slug: str,
     level_code: str,
     *,
-    calendar: WorkCalendar | None = None,
+    calendar: CalendarOverride | None = None,
     contract_type: Permanent | Apprentice | FixedTerm | None = None,
     employer: Employer = _DEFAULT_EMPLOYER,
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
@@ -148,8 +157,9 @@ def calculate_year(
 ) -> YearCalculationResult:
     """Compute payroll for all runs in a year.
 
-    Derives the run sequence from the ``calendar`` via
-    :class:`~ccnl_engine.payroll.domain.schedule.PayrollSchedule`.  Regular
+    Derives the run sequence from the effective calendar via
+    :class:`~ccnl_engine.payroll.domain.schedule.PayrollSchedule`: the CCNL
+    standard calendar, or ``calendar`` once validated against it.  Regular
     months (1-12) plus any extra months (tredicesima, quattordicesima) are each
     computed as separate :func:`calculate_period` calls, with the closing
     :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each run passed
@@ -163,13 +173,16 @@ def calculate_year(
         ccnl_slug: Knowledge-bundle CCNL filename (e.g.
             ``"metalmeccanico-federmeccanica.json"``).
         level_code: Worker's contractual level code (e.g. ``"C3"``).
-        calendar: Year-level payroll calendar.  Governs the run sequence:
-            extra months in ``calendar.extra_months`` produce additional runs
-            in the month configured by
-            :class:`~ccnl_engine.payroll.domain.calendar.ExtraMonthSchedule`.
+        calendar: Optional
+            :class:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride`.
             When ``None``, the calendar is derived from the CCNL
-            ``additional_months`` parameter via
+            ``additional_months`` parameter read on 1 January via
             :meth:`~ccnl_engine.payroll.domain.calendar.WorkCalendar.from_additional_months`.
+            An override is accepted only when
+            :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`
+            validates it against that standard calendar.  The run sequence
+            and the withholding schedule are both built from the effective
+            calendar.
         contract_type: Employment contract type.  Defaults to
             :class:`~ccnl_engine.engine.payroll.domain.employment.Permanent`.
         employer: The employer; its headcount resolves INPS rates.
@@ -219,32 +232,25 @@ def calculate_year(
         :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
         per run (12, 13, or 14 depending on the CCNL) and aggregated totals.
 
-    Raises:
-        ValueError: If ``calendar.year`` does not match ``year``, or if the
-            same run is allocated events in both ``period_events`` and
-            ``per_run_events``, or if ``weekly_hours`` exceeds
-            ``full_time_weekly_hours``.
+    Errors: an override for another year, or one that drops or lowers an
+    extra month the CCNL grants or does not match its reason, raises
+    :class:`~ccnl_engine.engine.errors.InvalidInputError` (see
+    :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`).
+    The same run allocated events in both ``period_events`` and
+    ``per_run_events``, or ``weekly_hours`` above ``full_time_weekly_hours``,
+    raises :class:`ValueError`.
     """
-    if calendar is None:
-        effective_repo = repo if repo is not None else BundledKnowledgeRepository()
-        ccnl = effective_repo.load_ccnl(ccnl_slug)
-        as_of = date(year, 1, 1)
-        entitlement = ExtraMonthEntitlement.of(
-            ccnl.parameters.additional_months.value_at(as_of)
-        )
-        calendar = WorkCalendar.from_additional_months(year, entitlement)
-    elif calendar.year != year:
-        msg = f"calendar.year={calendar.year} does not match year={year}"
-        raise ValueError(msg)
-
-    schedule = PayrollSchedule.from_calendar(calendar)
-    withholding_schedule = WithholdingSchedule.from_calendar(calendar)
+    effective_repo = repo if repo is not None else BundledKnowledgeRepository()
+    ccnl = effective_repo.load_ccnl(ccnl_slug)
+    year_calendar = effective_calendar(ccnl, year, calendar)
+    schedule = PayrollSchedule.from_calendar(year_calendar)
+    withholding_schedule = WithholdingSchedule.from_calendar(year_calendar)
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
     # Build a lookup from (run_kind, payment_month) to ExtraMonthSchedule.
     extra_month_index = {
-        (s.kind.value, s.payment_month): s for s in calendar.extra_months
+        (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
     }
 
     state = PeriodState.zero()
@@ -302,5 +308,7 @@ def calculate_year(
         annual_employer_cost=sum(
             (r.period_employer_cost for r in period_results), _ZERO
         ),
+        calendar=year_calendar,
+        calendar_override=calendar,
         bundle_version=bundle_version,
     )

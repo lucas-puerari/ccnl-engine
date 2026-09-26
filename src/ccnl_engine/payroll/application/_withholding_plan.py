@@ -11,12 +11,12 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application._calendar import standard_calendar
 from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
     _make_entry,
     _require_resolution,
 )
-from ccnl_engine.payroll.domain.calendar import ExtraMonthEntitlement, WorkCalendar
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
@@ -59,10 +59,7 @@ def resolve_withholding_schedule(
     """
     if requested is not None:
         return requested
-    entitlement = ExtraMonthEntitlement.of(
-        ccnl.parameters.additional_months.value_at(competence)
-    )
-    calendar = WorkCalendar.from_additional_months(fiscal_year, entitlement)
+    calendar = standard_calendar(ccnl, fiscal_year, competence)
     return WithholdingSchedule.from_calendar(calendar)
 
 
