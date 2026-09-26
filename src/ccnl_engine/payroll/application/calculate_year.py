@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.engine.io.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -32,6 +33,7 @@ from ccnl_engine.payroll.domain.period import (
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
 
 if TYPE_CHECKING:
@@ -48,6 +50,7 @@ __all__ = ["YearCalculationResult", "calculate_year"]
 
 _ZERO = Decimal(0)
 _DEFAULT_EMPLOYER = Employer()
+_PARTIAL_MONTH = "partial_month_not_prorated"
 
 
 @dataclass(frozen=True)
@@ -129,6 +132,59 @@ def _allocate_events(
     return ()
 
 
+def _select_runs(
+    calendar: WorkCalendar, employment_period: EmploymentPeriod | None
+) -> PayrollSchedule:
+    """Return the runs of the year the employment overlaps.
+
+    Returns:
+        :meth:`PayrollSchedule.from_calendar` restricted to the employment.
+
+    Raises:
+        InvalidInputError: When the employment has no day in the year.
+    """
+    schedule = PayrollSchedule.from_calendar(calendar, employment_period)
+    if not schedule.runs:
+        msg = (
+            f"employment period {employment_period} has no day in "
+            f"{calendar.year}: there is no payroll run to compute"
+        )
+        raise InvalidInputError(msg, feature="employment_facts")
+    return schedule
+
+
+def _flag_partial_month(
+    result: PeriodCalculationResult,
+    run: PayrollRun,
+    employment_period: EmploymentPeriod | None,
+) -> PeriodCalculationResult:
+    """Mark a regular run of a partly employed month as provisional.
+
+    The bundled CCNL data define no daily divisor for a partial month, so
+    the run carries the full monthly pay and a provisional issue.
+
+    Returns:
+        ``result``, with one more issue when the employment covers only part
+        of the run month.
+    """
+    if (
+        employment_period is None
+        or run.run_kind is not RunKind.REGULAR
+        or employment_period.covers_month(run.year, run.month)
+    ):
+        return result
+    issue = CalculationIssue(
+        code=_PARTIAL_MONTH,
+        message=(
+            f"employment covers only part of {run.year}-{run.month:02d}; the "
+            "full monthly pay is computed because the CCNL data define no "
+            "daily divisor for a partial month"
+        ),
+        status=CalculationStatus.PROVISIONAL,
+    )
+    return replace(result, issues=(*result.issues, issue))
+
+
 def calculate_year(
     year: int,
     ccnl_slug: str,
@@ -165,8 +221,16 @@ def calculate_year(
     :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each run passed
     as the opening state of the next.  Every run receives the same
     :class:`~ccnl_engine.payroll.domain.schedule.WithholdingSchedule`, one
-    slot per run, so the IRPEF conguaglio settles on the last run even when
-    an extra month is fractional.
+    slot per computed run, so the IRPEF conguaglio settles on the last run
+    even when an extra month is fractional.
+
+    Runs are selected from ``employment_period``: a regular run for each
+    month with at least one employed day, an extra-month run only when its
+    payment month is such a month.  A regular run of a month the employment
+    covers only in part carries the full monthly pay and a
+    ``partial_month_not_prorated`` issue with provisional status.  CCNL and
+    level validity is not a run filter: a month the salary table does not
+    cover fails in the salary lookup instead of being dropped.
 
     Args:
         year: The tax year.
@@ -198,9 +262,10 @@ def calculate_year(
             CCNLs to compute flat-rate INPS contributions.  ``None`` otherwise.
         full_time_weekly_hours: Standard full-time weekly hours for the CCNL,
             used to compute the part-time fraction.  ``None`` when not applicable.
-        employment_period: Employment start and optional end.  ``None`` when
-            not tracked.  Carried on each period request; it does not yet
-            select the runs.
+        employment_period: Employment start and optional end.  ``None``
+            computes every run of the calendar.  Otherwise it selects the
+            runs, and each extra-month run carries its accrual window with
+            the start clipped to the hire date.
         seniority_months: Months of continuous service for seniority resolution.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
@@ -230,7 +295,8 @@ def calculate_year(
     Returns:
         :class:`YearCalculationResult` with one
         :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
-        per run (12, 13, or 14 depending on the CCNL) and aggregated totals.
+        per selected run (12, 13, or 14 for a full year depending on the
+        CCNL) and aggregated totals.
 
     Errors: an override for another year, or one that drops or lowers an
     extra month the CCNL grants or does not match its reason, raises
@@ -238,13 +304,15 @@ def calculate_year(
     :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`).
     The same run allocated events in both ``period_events`` and
     ``per_run_events``, or ``weekly_hours`` above ``full_time_weekly_hours``,
-    raises :class:`ValueError`.
+    raises :class:`ValueError`.  An ``employment_period`` with no day in
+    ``year`` raises :class:`~ccnl_engine.engine.errors.InvalidInputError`.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, calendar)
-    schedule = PayrollSchedule.from_calendar(year_calendar)
-    withholding_schedule = WithholdingSchedule.from_calendar(year_calendar)
+    schedule = _select_runs(year_calendar, employment_period)
+    withholding_schedule = WithholdingSchedule.for_runs(schedule, year_calendar)
+    started_on = employment_period.started_on if employment_period else None
     effective_contract = contract_type if contract_type is not None else Permanent()
     effective_period_events: dict[int, tuple[WorkEvent, ...]] = period_events or {}
     effective_per_run_events: dict[str, tuple[WorkEvent, ...]] = per_run_events or {}
@@ -285,6 +353,11 @@ def calculate_year(
             extra_month_max_fraction=(
                 extra_sched.max_fraction if extra_sched is not None else Decimal(1)
             ),
+            extra_month_accrual_window=(
+                extra_sched.accrual_window(year, started_on)
+                if extra_sched is not None
+                else None
+            ),
             events=allocated_events,
             regione=regione,
             comune_belfiore=comune_belfiore,
@@ -293,8 +366,12 @@ def calculate_year(
             run=run,
             withholding_schedule=withholding_schedule,
         )
-        result = calculate_period(
-            req, repo=repo, resolver=resolver, bundle_version=bundle_version
+        result = _flag_partial_month(
+            calculate_period(
+                req, repo=repo, resolver=resolver, bundle_version=bundle_version
+            ),
+            run,
+            employment_period,
         )
         results.append(result)
         state = result.closing_state

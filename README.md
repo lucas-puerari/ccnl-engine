@@ -59,7 +59,9 @@ print(result.period_id)  # → PeriodId(year=2026, month=1)
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a
 `CalendarOverride` with a reason, and an override that drops a CCNL extra
-month raises `InvalidInputError`.
+month raises `InvalidInputError`. `EmploymentFacts.started_on` and
+`ended_on` select the runs: a worker employed from July to September gets
+three runs and no extra-month run.
 
 ```python
 from ccnl_engine import PayrollYearRequest

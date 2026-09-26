@@ -92,6 +92,11 @@ schedule. Each upcoming slot is projected at the pay its run kind carries
 slot settles the tax on the final taxable income. A value strictly between 12
 and 13 (a partial tredicesima) is rejected.
 
+These counts are for a full year. With an employment period, only the runs of
+months the employment overlaps exist, and an extra month has a run only when
+its payment month is one of them. The withholding schedule follows the
+selected runs.
+
 ### Hourly divisor (*divisore orario*)
 
 The hourly divisor converts a monthly salary into an hourly rate. It is derived from

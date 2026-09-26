@@ -2,17 +2,20 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
 
 from ccnl_engine.payroll.domain.calendar import (
+    AccrualWindow,
     ExtraMonthKind,
     ExtraMonthSchedule,
     WorkCalendar,
 )
-from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.schedule import PayrollSchedule
+from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
+from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
 
 
 class TestPayrollScheduleFromCalendar:
@@ -185,3 +188,94 @@ class TestWorkCalendarFromAdditionalMonths:
         )
         with pytest.raises(ValueError, match="fourteenth month requires a thirteenth"):
             WorkCalendar(year=2026, extra_months=(sched,))
+
+
+class TestScheduleForEmployment:
+    """Only the runs of months the employment overlaps are kept."""
+
+    _CALENDAR = WorkCalendar.from_additional_months(2026, 14)
+
+    def _runs(self, period: EmploymentPeriod) -> list[tuple[int, str]]:
+        schedule = PayrollSchedule.from_calendar(self._CALENDAR, period)
+        return [(r.month, r.run_kind) for r in schedule.runs]
+
+    def test_no_employment_keeps_every_run(self) -> None:
+        """Without an employment period the full calendar applies."""
+        schedule = PayrollSchedule.from_calendar(self._CALENDAR, None)
+        assert schedule.run_count.value == 14
+
+    def test_three_months_outside_both_payment_months(self) -> None:
+        """July to September: three regular runs and no extra month."""
+        period = EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30))
+        assert self._runs(period) == [(m, RunKind.REGULAR) for m in (7, 8, 9)]
+
+    def test_hire_after_june_drops_the_quattordicesima(self) -> None:
+        """An open-ended hire on 15 July keeps the December tredicesima only."""
+        runs = self._runs(EmploymentPeriod(date(2026, 7, 15)))
+        assert [m for m, kind in runs if kind is RunKind.REGULAR] == list(range(7, 13))
+        assert [(m, k) for m, k in runs if k is not RunKind.REGULAR] == [
+            (12, RunKind.THIRTEENTH)
+        ]
+
+    def test_end_in_june_keeps_the_june_quattordicesima(self) -> None:
+        """An employment ending on 10 June overlaps the payment month."""
+        runs = self._runs(EmploymentPeriod(date(2026, 1, 1), date(2026, 6, 10)))
+        assert runs[-2:] == [(6, RunKind.REGULAR), (6, RunKind.FOURTEENTH)]
+        assert (12, RunKind.THIRTEENTH) not in runs
+
+    def test_employment_outside_the_year_has_no_run(self) -> None:
+        """An employment ended in 2025 has no run in 2026."""
+        period = EmploymentPeriod(date(2025, 1, 1), date(2025, 12, 31))
+        assert PayrollSchedule.from_calendar(self._CALENDAR, period).runs == ()
+
+    def test_withholding_slots_follow_the_selected_runs(self) -> None:
+        """A short employment has one withholding slot per selected run."""
+        period = EmploymentPeriod(date(2026, 5, 1), date(2026, 7, 31))
+        schedule = PayrollSchedule.from_calendar(self._CALENDAR, period)
+        withholding = WithholdingSchedule.for_runs(schedule, self._CALENDAR)
+        assert tuple(s.run for s in withholding.slots) == schedule.runs
+        assert withholding.run_count.value == 4
+
+
+class TestAccrualWindow:
+    """An extra month accrues over dates that never precede the hire date."""
+
+    _FOURTEENTH = ExtraMonthSchedule(
+        kind=ExtraMonthKind.FOURTEENTH,
+        name="quattordicesima",
+        payment_month=6,
+        accrual_window_start_month=7,
+    )
+    _THIRTEENTH = ExtraMonthSchedule(
+        kind=ExtraMonthKind.THIRTEENTH, name="tredicesima", payment_month=12
+    )
+
+    def test_cross_year_window_without_hire_date(self) -> None:
+        """A July to June quattordicesima starts in the previous year."""
+        window = self._FOURTEENTH.accrual_window(2026)
+        assert window == AccrualWindow(
+            nominal_start=date(2025, 7, 1),
+            start=date(2025, 7, 1),
+            end=date(2026, 6, 30),
+        )
+
+    def test_cross_year_window_is_clipped_to_the_hire_date(self) -> None:
+        """A worker hired on 10 March 2026 accrues from 10 March only."""
+        window = self._FOURTEENTH.accrual_window(2026, date(2026, 3, 10))
+        assert window.nominal_start == date(2025, 7, 1)
+        assert window.start == date(2026, 3, 10)
+
+    def test_hire_before_the_window_keeps_the_nominal_start(self) -> None:
+        """A hire before 1 January leaves the tredicesima window unchanged."""
+        window = self._THIRTEENTH.accrual_window(2026, date(2020, 5, 4))
+        assert window.start == date(2026, 1, 1)
+        assert window.end == date(2026, 12, 31)
+
+    def test_unordered_dates_are_rejected(self) -> None:
+        """A start after the end cannot form a window."""
+        with pytest.raises(ValueError, match="nominal_start <= start <= end"):
+            AccrualWindow(
+                nominal_start=date(2026, 1, 1),
+                start=date(2026, 7, 1),
+                end=date(2026, 6, 30),
+            )

@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.capability_catalog import CapabilityReport
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+    from ccnl_engine.payroll.domain.calendar import AccrualWindow
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
@@ -171,6 +172,9 @@ class PeriodCalculationRequest:
             positive.  ``weekly_hours`` must not exceed it.
         employment_period: Start and optional end of the employment.
             ``None`` when not tracked.
+            :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
+            uses it to select the runs of the year; a single period
+            calculation carries it without checking the run month.
         seniority_months: Months of continuous service, non-negative.
             ``None`` means seniority increments are not applied.
         roles: Role codes that unlock role-specific contractual allowances.
@@ -183,6 +187,11 @@ class PeriodCalculationRequest:
             :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
             passes the schedule of the runs it computes.  ``None`` uses the
             standard calendar of the CCNL ``additional_months``.
+        extra_month_accrual_window: Accrual window of an extra-month run,
+            its start clipped to the hire date.  ``None`` for a regular run
+            or when not supplied.  Recorded for the accrual rule; the rateo
+            is still computed from ``extra_month_accrual_start`` and the
+            regular periods closed.
     """
 
     period_id: PeriodId
@@ -208,6 +217,7 @@ class PeriodCalculationRequest:
     category: WorkerCategory | None = None
     extra_month_accrual_start: int = 1
     extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
+    extra_month_accrual_window: AccrualWindow | None = None
     withholding_schedule: WithholdingSchedule | None = None
 
     def __post_init__(self) -> None:

@@ -27,23 +27,15 @@ from tests.acceptance.legal_scenarios._support import (
 if TYPE_CHECKING:
     from collections.abc import Callable
 
+    from ccnl_engine.payroll.application.calculate_year import (
+        YearCalculationResult,
+    )
+
 pytestmark = pytest.mark.legal_scenario
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="employment start and end dates do not select the payroll runs",
-)
-def test_three_month_employment_has_no_runs_outside_the_period() -> None:
-    """Commercio L4 hired 1 July and terminated 30 September 2026.
-
-    Expected: regular runs only for July, August and September; a worker
-    who is not employed cannot be paid a monthly salary (art. 2094 c.c.).
-
-    Observed on 26 September 2026: 14 runs (all 12 months plus both extra
-    months), annual gross 25,077.50, identical to a full-year employment.
-    """
-    year = ENGINE.calculate_year(
+def _three_month_year() -> YearCalculationResult:
+    return ENGINE.calculate_year(
         PayrollYearRequest(
             year=2026,
             ccnl_slug=COMMERCIO,
@@ -53,13 +45,45 @@ def test_three_month_employment_has_no_runs_outside_the_period() -> None:
             ),
         )
     )
-    regular_months = {
-        r.run.month
-        for r in year.period_results
-        if r.run is not None and r.run.run_kind is RunKind.REGULAR
-    }
 
-    assert regular_months == {7, 8, 9}
+
+def test_three_month_employment_has_no_runs_outside_the_period() -> None:
+    """Commercio L4 hired 1 July and terminated 30 September 2026.
+
+    Expected: runs only for July, August and September; a worker who is not
+    employed cannot be paid a monthly salary (art. 2094 c.c.).  Both extra
+    months are paid outside the employment (June and December), so neither
+    has its own run.
+    """
+    year = _three_month_year()
+    runs = [(r.run.month, r.run.run_kind) for r in year.period_results if r.run]
+
+    assert runs == [(month, RunKind.REGULAR) for month in (7, 8, 9)]
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="extra-month ratei accrued before termination are not liquidated",
+)
+def test_three_month_employment_pays_the_accrued_extra_months() -> None:
+    """The same employment accrues 3/12 of tredicesima and quattordicesima.
+
+    Expected: the ratei accrued from July to September are paid on
+    termination, so the annual gross exceeds the three regular months.
+
+    Observed on 26 September 2026: only the three regular runs are paid.
+    """
+    year = _three_month_year()
+    regular_gross = sum(
+        (
+            r.period_gross
+            for r in year.period_results
+            if r.run is not None and r.run.run_kind is RunKind.REGULAR
+        ),
+        Decimal(0),
+    )
+
+    assert year.annual_gross > regular_gross
 
 
 # Servizi Postali in Appalto FISE, level 2, base 1,650.74 + allowances 63.33
