@@ -18,9 +18,9 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
-from ccnl_engine.payroll.service import irpef as irpef_svc
 from ccnl_engine.payroll.service import irpef_credits
 from ccnl_engine.payroll.service.credit_decisions import credit_decision
+from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -62,6 +62,32 @@ def _new_recovery(recovery: Decimal) -> tuple[Decimal, RecoveryPlan | None]:
     return plan.next_installment, _advance_plan(plan)
 
 
+def _period_amount(
+    annual_tratt: Decimal,
+    opening_tratt_ytd: Decimal,
+    remaining: int,
+    existing_plan: RecoveryPlan | None,
+) -> tuple[Decimal, RecoveryPlan | None]:
+    """Return the signed amount of the run and the plan to carry forward.
+
+    A plan in force takes its next installment.  Otherwise the balance still
+    due is spread over the remaining slots, or an excess already paid opens
+    a recovery.
+
+    Returns:
+        ``(period_tratt, next_plan)``; ``period_tratt`` is negative for a
+        recovery.
+    """
+    if existing_plan is not None:
+        return -existing_plan.next_installment, _advance_plan(existing_plan)
+    tratt_due = annual_tratt - opening_tratt_ytd
+    if tratt_due >= _ZERO:
+        period = money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
+        return period, None
+    installment, next_plan = _new_recovery(-tratt_due)
+    return -installment, next_plan
+
+
 def resolve_trattamento(
     taxable: Decimal,
     irpef_gross: Decimal,
@@ -70,7 +96,7 @@ def resolve_trattamento(
     opening_tratt_ytd: Decimal,
     remaining: int,
     existing_plan: RecoveryPlan | None = None,
-    eligible_work_days: int = irpef_svc.DAYS_IN_YEAR,
+    eligible_work_days: int = DAYS_IN_YEAR,
 ) -> tuple[
     Decimal, TaxLineItem | None, RecoveryPlan | None, CalculationDecision | None
 ]:
@@ -106,19 +132,9 @@ def resolve_trattamento(
         eligible_work_days=eligible_work_days,
     )
     annual_tratt = outcome.amount
-    if existing_plan is not None:
-        period_tratt = -existing_plan.next_installment
-        next_plan: RecoveryPlan | None = _advance_plan(existing_plan)
-    else:
-        tratt_due = annual_tratt - opening_tratt_ytd
-        if tratt_due >= _ZERO:
-            period_tratt = (
-                money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
-            )
-            next_plan = None
-        else:
-            installment, next_plan = _new_recovery(-tratt_due)
-            period_tratt = -installment
+    period_tratt, next_plan = _period_amount(
+        annual_tratt, opening_tratt_ytd, remaining, existing_plan
+    )
     component = (
         TaxLineItem(
             name="trattamento_integrativo",

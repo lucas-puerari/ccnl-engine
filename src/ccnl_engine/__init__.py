@@ -69,11 +69,13 @@ from ccnl_engine.payroll.domain.employer import (
 )
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
-    ContributableHours,
     Employment,
-    EmploymentPeriod,
     FixedTerm,
     Permanent,
+)
+from ccnl_engine.payroll.domain.employment_facts import (
+    ContributableHours,
+    EmploymentPeriod,
     SeniorityMonths,
     WeeklyHours,
 )
@@ -98,15 +100,17 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
-from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput, YearInput
+from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
-from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+from ccnl_engine.payroll.domain.period import PeriodResult
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import (
     PriorYearTaxFacts,
     SubstituteTaxRegime,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
+from ccnl_engine.payroll.domain.year_input import YearInput
 from ccnl_engine.shared.domain.errors import (
     CcnlEngineError,
     DataIntegrityError,

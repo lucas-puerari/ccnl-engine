@@ -28,13 +28,21 @@ Both group the facts by owner and are validated when built:
     options:
       members:
         - PeriodInput
-        - YearInput
         - PeriodFacts
+
+::: ccnl_engine.payroll.domain.year_input
+    options:
+      members:
+        - YearInput
 
 ::: ccnl_engine.payroll.domain.employment
     options:
       members:
         - Employment
+
+::: ccnl_engine.payroll.domain.employment_facts
+    options:
+      members:
         - EmploymentPeriod
         - WeeklyHours
         - SeniorityMonths

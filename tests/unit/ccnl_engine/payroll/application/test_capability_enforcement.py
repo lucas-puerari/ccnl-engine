@@ -18,11 +18,9 @@ from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityReport,
 )
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

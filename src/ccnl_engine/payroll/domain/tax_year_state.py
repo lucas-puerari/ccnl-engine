@@ -12,15 +12,17 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import final
 
+from ccnl_engine.payroll.domain.credit_accounts import (
+    SommaEsenteAccount,
+    TrattamentoAccount,
+    UlterioreDetrazioneAccount,
+)
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
     RegimeCapAccount,
-    SommaEsenteAccount,
     TaxYtd,
-    TrattamentoAccount,
-    UlterioreDetrazioneAccount,
     WithholdingShortfall,
 )
 

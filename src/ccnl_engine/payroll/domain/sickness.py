@@ -63,6 +63,24 @@ class SicknessCase:
     cumulative_sick_days_ytd: int = 0
 
     def __post_init__(self) -> None:  # noqa: D105
+        self._check_days()
+        if self.gross_daily < _ZERO:
+            msg = f"SicknessCase.gross_daily must be >= 0; got {self.gross_daily}"
+            raise InvalidInputError(msg, feature="sickness")
+        for name in ("inps_daily_rate", "integration_rate", "carenza_integration_rate"):
+            value = getattr(self, name)
+            if not (_ZERO <= value <= _ONE):
+                msg = f"SicknessCase.{name} must be in [0, 1]; got {value}"
+                raise InvalidInputError(msg, feature="sickness")
+        self._check_cumulative_days()
+
+    def _check_days(self) -> None:
+        """Validate the episode dates, working days and carenza days.
+
+        Raises:
+            InvalidInputError: When the episode ends before it starts, or the
+                day counts are out of range.
+        """
         if self.episode_end < self.episode_start:
             msg = (
                 f"SicknessCase.episode_end ({self.episode_end}) must not precede "
@@ -84,27 +102,14 @@ class SicknessCase:
                 f"must not exceed working_days ({self.working_days})"
             )
             raise InvalidInputError(msg, feature="sickness")
-        if self.gross_daily < _ZERO:
-            msg = f"SicknessCase.gross_daily must be >= 0; got {self.gross_daily}"
-            raise InvalidInputError(msg, feature="sickness")
-        if not (_ZERO <= self.inps_daily_rate <= _ONE):
-            msg = (
-                f"SicknessCase.inps_daily_rate must be in [0, 1]; "
-                f"got {self.inps_daily_rate}"
-            )
-            raise InvalidInputError(msg, feature="sickness")
-        if not (_ZERO <= self.integration_rate <= _ONE):
-            msg = (
-                f"SicknessCase.integration_rate must be in [0, 1]; "
-                f"got {self.integration_rate}"
-            )
-            raise InvalidInputError(msg, feature="sickness")
-        if not (_ZERO <= self.carenza_integration_rate <= _ONE):
-            msg = (
-                f"SicknessCase.carenza_integration_rate must be in [0, 1]; "
-                f"got {self.carenza_integration_rate}"
-            )
-            raise InvalidInputError(msg, feature="sickness")
+
+    def _check_cumulative_days(self) -> None:
+        """Validate the sick days of earlier periods; tiers are out of scope.
+
+        Raises:
+            InvalidInputError: When ``cumulative_sick_days_ytd`` is negative.
+            OutOfScopeError: When it is positive.
+        """
         if self.cumulative_sick_days_ytd < 0:
             msg = (
                 f"SicknessCase.cumulative_sick_days_ytd must be >= 0; "

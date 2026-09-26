@@ -3,7 +3,7 @@
 An integration that takes over an employment mid-year, or at the start of
 a year with a recovery still running, states the progressive totals of the
 previous provider here.  :meth:`OpeningBalances.to_state` validates them
-and returns the :class:`~ccnl_engine.payroll.domain.period.PeriodState` to
+and returns the :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` to
 pass as ``opening_state`` to the first run computed by the engine.
 """
 
@@ -13,21 +13,23 @@ from dataclasses import dataclass, fields
 from decimal import Decimal
 from typing import final
 
+from ccnl_engine.payroll.domain.credit_accounts import (
+    SommaEsenteAccount,
+    TrattamentoAccount,
+    UlterioreDetrazioneAccount,
+)
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
     RegimeCapAccount,
-    SommaEsenteAccount,
     TaxYtd,
-    TrattamentoAccount,
-    UlterioreDetrazioneAccount,
     WithholdingShortfall,
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -147,7 +149,7 @@ class OpeningBalances:
         """Return the state to open the next run with.
 
         Returns:
-            A :class:`~ccnl_engine.payroll.domain.period.PeriodState` bound
+            A :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` bound
             to :attr:`tax_year`, carrying :attr:`recoveries`.
         """
         ytd = TaxYearState(

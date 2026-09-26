@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.payroll.application.invariants._types import RunFacts
-    from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
+    from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__: list[str] = []

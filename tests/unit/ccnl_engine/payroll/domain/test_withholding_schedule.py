@@ -8,11 +8,9 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
-from ccnl_engine.payroll.domain.calendar import (
-    ExtraMonthEntitlement,
-    ExtraMonthKind,
-    WorkCalendar,
-)
+from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.extra_month_entitlement import ExtraMonthEntitlement
+from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.schedule import (
     PayrollRunCount,

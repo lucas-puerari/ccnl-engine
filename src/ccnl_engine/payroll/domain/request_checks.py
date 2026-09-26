@@ -4,8 +4,8 @@ A request can come from an untyped caller (a JSON payload, a notebook).
 These checks describe a value of the wrong type, or a regular run outside
 the employment, so that the request raises ``InvalidInputError`` at
 construction instead of an ``AttributeError`` or a silent result deep in
-the calculation.  They return the problem and leave the raising to the
-request.
+the calculation.  They return the problem; :func:`raise_on` raises it
+with the feature of the input that found it.
 """
 
 from __future__ import annotations
@@ -13,15 +13,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.payroll.domain.employment import EmploymentPeriod
+    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.run import PayrollRun
 
-__all__ = ["FieldSpec", "employment_gap", "type_error"]
+__all__ = ["FieldSpec", "employment_gap", "raise_on", "type_error"]
 
 #: A request field to check: name, value, accepted types, ``None`` accepted.
 type FieldSpec = tuple[str, object, type | tuple[type, ...], bool]
@@ -44,6 +45,16 @@ def type_error(fields: Iterable[FieldSpec]) -> str | None:
         names = " or ".join(t.__name__ for t in types)
         return f"{name} must be {names}; got {type(value).__name__} {value!r}"
     return None
+
+
+def raise_on(problem: str | None, feature: str) -> None:
+    """Raise ``InvalidInputError`` for ``problem`` when there is one.
+
+    Raises:
+        InvalidInputError: When ``problem`` is not ``None``.
+    """
+    if problem is not None:
+        raise InvalidInputError(problem, feature=feature)
 
 
 def employment_gap(

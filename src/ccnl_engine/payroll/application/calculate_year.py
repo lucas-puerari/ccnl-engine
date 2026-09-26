@@ -19,7 +19,8 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
+from ccnl_engine.payroll.domain.period import PeriodResult
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -28,8 +29,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
-    from ccnl_engine.payroll.domain.inputs import YearInput
     from ccnl_engine.payroll.domain.policy import PolicyResolver
+    from ccnl_engine.payroll.domain.year_input import YearInput
 
 __all__ = ["YearResult", "calculate_year"]
 
@@ -140,14 +141,14 @@ def calculate_year(
     against it.  Regular months (1-12) plus any extra months (tredicesima,
     quattordicesima) are each computed as separate :func:`calculate_period`
     calls, with the closing
-    :class:`~ccnl_engine.payroll.domain.period.PeriodState` of each run passed
+    :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` of each run passed
     as the opening state of the next.  Every run receives the same
     :class:`~ccnl_engine.payroll.domain.schedule.WithholdingSchedule`, one
     slot per computed run, so the IRPEF conguaglio settles on the last run
     even when an extra month is fractional.  Each run is mapped to its
     request by :meth:`~ccnl_engine.payroll.domain.inputs.PeriodInput\
 .calculation_request`, with the facts of
-    :meth:`~ccnl_engine.payroll.domain.inputs.YearInput.facts_for`.
+    :meth:`~ccnl_engine.payroll.domain.year_input.YearInput.facts_for`.
 
     Runs are selected from the employment period: a regular run for each
     month with at least one employed day, an extra-month run only when its

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.contract.domain.compensation import Level
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.domain.employment import SeniorityMonths
+    from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.variable_pay import PdRRules
 

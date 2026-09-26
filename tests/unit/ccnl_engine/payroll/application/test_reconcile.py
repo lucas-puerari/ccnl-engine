@@ -17,25 +17,20 @@ from ccnl_engine.payroll.application.reconcile import (
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
     CompetencePeriod,
 )
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
+from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    TaxYtd,
-    TrattamentoAccount,
-)
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

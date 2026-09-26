@@ -9,7 +9,7 @@ from ccnl_engine.contract.domain.category import (
     parse_worker_category,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.payroll.domain.employment import SeniorityMonths
+from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.shared.domain.errors import InvalidInputError
 

@@ -24,7 +24,8 @@ from ccnl_engine.payroll.application.period._posting import post_run, run_credit
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodResult
+    from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyResolver
 
 

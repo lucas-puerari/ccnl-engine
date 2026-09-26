@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employer import (
@@ -23,14 +24,14 @@ from ccnl_engine.payroll.domain.employer import (
 )
 from ccnl_engine.payroll.domain.events import BonusEvent, NightShiftEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"

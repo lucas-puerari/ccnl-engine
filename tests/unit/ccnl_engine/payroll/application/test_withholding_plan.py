@@ -15,8 +15,9 @@ from ccnl_engine.payroll.application.withholding._plan import (
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount, WithholdingSchedule

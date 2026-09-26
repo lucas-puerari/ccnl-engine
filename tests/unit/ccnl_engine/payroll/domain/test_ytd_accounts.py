@@ -7,14 +7,12 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.domain.ytd_accounts import (
+from ccnl_engine.payroll.domain.credit_accounts import (
     CreditAccount,
-    EarningsYtd,
-    FringeYtd,
     SommaEsenteAccount,
-    TaxYtd,
     TrattamentoAccount,
 )
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd, TaxYtd
 
 if TYPE_CHECKING:
     from collections.abc import Callable

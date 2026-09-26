@@ -21,6 +21,7 @@ from dataclasses import replace
 from datetime import date
 from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
+from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
@@ -38,17 +39,17 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 from tests.helpers import year_input
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026

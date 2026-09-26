@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -16,18 +17,18 @@ from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 _YEAR = 2026
 # Low-income contract: somma esente of about 877 EUR a year.

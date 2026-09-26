@@ -8,9 +8,9 @@ from typing import Any
 import pytest
 
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import EmploymentPeriod, WeeklyHours
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod, WeeklyHours
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.request_checks import employment_gap, type_error
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.shared.domain.errors import InvalidInputError

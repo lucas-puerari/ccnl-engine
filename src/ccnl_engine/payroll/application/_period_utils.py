@@ -22,7 +22,7 @@ from ccnl_engine.shared.domain.errors import DataIntegrityError
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.employment import SeniorityMonths, WeeklyHours
+    from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths, WeeklyHours
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _ZERO = Decimal(0)

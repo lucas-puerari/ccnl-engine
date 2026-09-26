@@ -31,23 +31,17 @@ from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import (
-    ContributableHours,
-    FixedTerm,
-    Permanent,
-    WeeklyHours,
-)
+from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
+from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     BilateralFundEvent,
     BonusEvent,
     SickLeaveEvent,
 )
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodState,
-)
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.shared.domain.errors import (

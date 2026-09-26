@@ -37,15 +37,12 @@ from ccnl_engine.payroll.service.family_deductions import (
     _spouse_deduction,
     compute_family_deductions,
 )
-from ccnl_engine.payroll.service.irpef import (
-    irpef_gross,
-    surtax_from_brackets,
-    work_income_deduction,
-)
+from ccnl_engine.payroll.service.irpef import irpef_gross, surtax_from_brackets
 from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
     ulteriore_detrazione_lavoro,
 )
+from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
 from ccnl_engine.tax.domain.credit_rules import (
     TrattamentoIntegrativoRules,
     UlterioreDetrazioneRules,

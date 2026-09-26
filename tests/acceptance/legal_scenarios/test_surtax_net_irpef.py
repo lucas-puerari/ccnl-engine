@@ -11,19 +11,20 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
-from ccnl_engine.payroll.domain.employment import WeeklyHours
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodResult,
-    PeriodState,
-)
+from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 pytestmark = pytest.mark.legal_scenario
 

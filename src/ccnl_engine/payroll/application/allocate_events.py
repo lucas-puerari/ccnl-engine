@@ -32,7 +32,7 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.tax.domain.preferential_regime import (
         PreferentialTaxRegime,

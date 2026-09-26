@@ -21,16 +21,15 @@ from ccnl_engine.payroll.service._contributions_domestic import (
 from ccnl_engine.payroll.service._contributions_rates import inps_employer_rate
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.contribution_rules import (
-    ApprenticeRates,
+from ccnl_engine.tax.domain.contribution_rules import ApprenticeRates, InpsRates
+from ccnl_engine.tax.domain.contribution_tiers import (
     ApprenticeRawRates,
-    DomesticInpsRates,
     InpsEmployeeTier,
     InpsEmployerTier,
-    InpsRates,
     InpsRawRates,
 )
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
+from ccnl_engine.tax.domain.domestic_contribution_rules import DomesticInpsRates
 from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint, IrpefBracket
 from ccnl_engine.tax.domain.ruleset import YearRules, YearRulesRaw
 from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand

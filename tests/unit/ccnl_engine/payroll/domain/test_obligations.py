@@ -12,7 +12,7 @@ from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period import PeriodState
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
