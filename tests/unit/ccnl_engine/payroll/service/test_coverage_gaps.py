@@ -25,15 +25,8 @@ from ccnl_engine.engine.contract.domain.working_time import (
     WorkKind,
 )
 from ccnl_engine.engine.errors import InvalidInputError, OutOfScopeError
-from ccnl_engine.engine.primitives.domain.primitives import Bracket
-from ccnl_engine.engine.surtax.domain.rules import (
-    ComunaleEntry,
-    RegionaleEntry,
-    SurtaxRules,
-)
 from ccnl_engine.engine.tax.service.tax_optional_loaders import load_sick_pay_rates
 from ccnl_engine.payroll.domain.employment import Apprentice
-from ccnl_engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.payroll.domain.pay_items._policy import (
     PayItemPolicy,
     PolicyDecision,
@@ -50,10 +43,6 @@ from ccnl_engine.payroll.service.apprenticeship import (
     _select_track,
 )
 from ccnl_engine.payroll.service.chain import _allowance_active
-from ccnl_engine.payroll.service.fiscal_surtax import (
-    _compute_addizionali,
-    _comunale_amount,
-)
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import (
     _count_from_tiers,
@@ -104,32 +93,6 @@ def _allowance(
         apprenticeship_pct_relevant=apprenticeship_pct_relevant,
         service_months_threshold=service_months_threshold,
         provenance=None,
-    )
-
-
-def _surtax(
-    *,
-    regionale: dict[str, RegionaleEntry] | None = None,
-    comunale: dict[str, ComunaleEntry] | None = None,
-    advance: bool = False,
-) -> SurtaxRules:
-    """Build a minimal :class:`SurtaxRules` for testing.
-
-    Returns:
-        A :class:`SurtaxRules` with Lombardia and Roma H501 entries.
-    """
-    reg_bracket = Bracket(up_to=None, rate=Decimal("0.023"))
-    com_bracket = Bracket(up_to=None, rate=Decimal("0.0080"))
-    return SurtaxRules(
-        year=2026,
-        regionale=regionale
-        if regionale is not None
-        else {"Lombardia": RegionaleEntry(brackets=(reg_bracket,))},
-        comunale=comunale
-        if comunale is not None
-        else {"H501": ComunaleEntry(nome="Roma", brackets=(com_bracket,))},
-        comunale_rates_are_advance=advance,
-        comunale_advance_fraction=Decimal("0.30"),
     )
 
 
@@ -387,113 +350,6 @@ class TestMonthlyPayChain:
             allowances=((a1, Decimal("10.00")), (a2, Decimal("20.00"))),
         )
         assert chain.allowances_total == Decimal("30.00")
-
-
-class TestComunaleAmount:
-    """_comunale_amount edge cases."""
-
-    def test_unknown_comune_returns_zero_not_applied(self) -> None:
-        """Unknown comune Belfiore code returns (0, False) and sets UNKNOWN flag."""
-        sfs: set[FiscalSimplification] = set()
-        surtax = _surtax()
-        amount, applied = _comunale_amount(Decimal(30000), surtax, "ZZZZ", sfs)
-        assert amount == Decimal(0)
-        assert applied is False
-        assert FiscalSimplification.ADDIZIONALE_COMUNALE_UNKNOWN in sfs
-
-    def test_advance_fraction_applied_to_known_comune(self) -> None:
-        """Advance-mode surtax multiplies the amount by comunale_advance_fraction."""
-        surtax = _surtax(advance=True)
-        sfs: set[FiscalSimplification] = set()
-        amount, applied = _comunale_amount(Decimal(30000), surtax, "H501", sfs)
-        assert applied is True
-        assert FiscalSimplification.ADDIZIONALE_COMUNALE_ADVANCE_ONLY in sfs
-        assert amount > Decimal(0)
-
-
-class TestComputeAddizionali:
-    """_compute_addizionali branching logic."""
-
-    def test_zero_irpef_due_returns_zeros_with_no_flags(self) -> None:
-        """irpef_due=0 short-circuits returning zeros with NO_ADDIZIONALE flags."""
-        surtax = _surtax()
-        reg, com, sfs, reg_ok, com_ok = _compute_addizionali(
-            Decimal(30000),
-            surtax,
-            frozenset(),
-            regione="Lombardia",
-            comune_belfiore="H501",
-            irpef_due=Decimal(0),
-        )
-        assert reg == Decimal(0)
-        assert com == Decimal(0)
-        assert reg_ok is False
-        assert com_ok is False
-        assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE in sfs
-        assert FiscalSimplification.NO_ADDIZIONALE_COMUNALE in sfs
-
-    def test_unknown_regione_adds_unknown_flag(self) -> None:
-        """Unknown regione returns zero regionale with ADDIZIONALE_REGIONALE_UNKNOWN."""
-        surtax = _surtax()
-        reg, _com, sfs, reg_ok, _com_ok = _compute_addizionali(
-            Decimal(30000),
-            surtax,
-            frozenset(),
-            regione="RegioneSconosciuta",
-            comune_belfiore="H501",
-            irpef_due=Decimal(1000),
-        )
-        assert reg == Decimal(0)
-        assert reg_ok is False
-        assert FiscalSimplification.ADDIZIONALE_REGIONALE_UNKNOWN in sfs
-
-    def test_surtax_none_adds_no_surtax_flags(self) -> None:
-        """surtax=None sets both NO_ADDIZIONALE flags and returns zeros."""
-        reg, com, sfs, reg_ok, com_ok = _compute_addizionali(
-            Decimal(30000),
-            None,
-            frozenset(),
-            regione="Lombardia",
-            comune_belfiore="H501",
-            irpef_due=Decimal(1000),
-        )
-        assert reg == Decimal(0)
-        assert com == Decimal(0)
-        assert reg_ok is False
-        assert com_ok is False
-        assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE in sfs
-        assert FiscalSimplification.NO_ADDIZIONALE_COMUNALE in sfs
-
-    def test_regione_none_adds_no_regionale_flag(self) -> None:
-        """regione=None sets NO_ADDIZIONALE_REGIONALE even when surtax is present."""
-        surtax = _surtax()
-        reg, _com, sfs, reg_ok, _com_ok = _compute_addizionali(
-            Decimal(30000),
-            surtax,
-            frozenset(),
-            regione=None,
-            comune_belfiore="H501",
-            irpef_due=Decimal(1000),
-        )
-        assert reg == Decimal(0)
-        assert reg_ok is False
-        assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE in sfs
-
-    def test_known_regione_applies_correctly(self) -> None:
-        """Known regione + comune with non-zero irpef_due computes positive amounts."""
-        surtax = _surtax()
-        reg, _com, sfs, reg_ok, com_ok = _compute_addizionali(
-            Decimal(30000),
-            surtax,
-            frozenset(),
-            regione="Lombardia",
-            comune_belfiore="H501",
-            irpef_due=Decimal(1000),
-        )
-        assert reg > Decimal(0)
-        assert reg_ok is True
-        assert com_ok is True
-        assert FiscalSimplification.NO_ADDIZIONALE_REGIONALE not in sfs
 
 
 class TestCountFromTiers:

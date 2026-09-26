@@ -32,7 +32,7 @@ result_single = engine.calculate(
         level_code=level,
         employment_facts=facts,
         employer=employer,
-        regione="ER",
+        regione="IT-45",
     )
 )
 
@@ -45,7 +45,7 @@ result_family = engine.calculate(
         level_code=level,
         employment_facts=facts,
         employer=employer,
-        regione="ER",
+        regione="IT-45",
         family_composition=FamilyComposition(
             dependents=(
                 Dependent(relationship=DependentRelationship.SPOUSE),

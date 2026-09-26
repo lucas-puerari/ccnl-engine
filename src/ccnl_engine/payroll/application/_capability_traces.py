@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -55,6 +56,29 @@ _EVENT_FEATURE_MAP: tuple[tuple[type, str], ...] = (
 )
 
 
+_SURTAX_FEATURES = ("addizionale_regionale", "addizionale_comunale")
+
+
+def _surtax_trace(feature: str, amounts: _PeriodAmounts) -> DecisionTrace:
+    """Trace one surtax from its decision: none taken, final, or not final.
+
+    Returns:
+        NOT_APPLICABLE without a decision, COMPUTED for a final decision and
+        UNRESOLVED otherwise (unknown table).
+    """
+    decision = next(
+        (d for d in amounts.surtax.decisions if d.capability == feature), None
+    )
+    if decision is None:
+        return DecisionTrace(feature=feature, state=TraceState.NOT_APPLICABLE)
+    state = (
+        TraceState.COMPUTED
+        if decision.status is CalculationStatus.FINAL
+        else TraceState.UNRESOLVED
+    )
+    return DecisionTrace(feature=feature, state=state)
+
+
 def build_traces(
     request: PeriodCalculationRequest,
     amounts: _PeriodAmounts,
@@ -65,8 +89,9 @@ def build_traces(
     NOT_APPLICABLE when the caller did not supply ``seniority_months``.
     Event-based features are COMPUTED when matching events are present.
     ``bonus_pdr`` is COMPUTED only when PdR substitute tax was actually applied
-    (``pdr_eligible > 0``).  Parameter-dependent features use NOT_APPLICABLE
-    when the required input is absent.
+    (``pdr_eligible > 0``).  Surtax features follow their decisions.
+    Parameter-dependent features use NOT_APPLICABLE when the required input
+    is absent.
 
     Args:
         request: The original period calculation request.
@@ -101,14 +126,7 @@ def build_traces(
     na = TraceState.NOT_APPLICABLE
     ok = TraceState.COMPUTED
     traces.extend([
-        DecisionTrace(
-            feature="addizionale_regionale",
-            state=ok if request.regione is not None else na,
-        ),
-        DecisionTrace(
-            feature="addizionale_comunale",
-            state=ok if request.comune_belfiore is not None else na,
-        ),
+        *(_surtax_trace(feature, amounts) for feature in _SURTAX_FEATURES),
         DecisionTrace(
             feature="family_deductions",
             state=ok if request.family_composition is not None else na,

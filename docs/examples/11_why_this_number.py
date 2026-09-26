@@ -21,7 +21,7 @@ result = engine.calculate(
         level_code="C3",
         employment_facts=EmploymentFacts(seniority_months=36),
         employer=Employer(headcount=Headcount(100)),
-        regione="ER",
+        regione="IT-45",
         comune_belfiore="F257",
     )
 )

@@ -121,7 +121,7 @@ yield a `final` result.
 ### calculation issue (anomalia di calcolo)
 
 A condition that lowers the status of a result, identified by a stable
-lower snake case `code` (for example `surtax_table_unknown`), with a message,
+lower snake case `code` (for example `regional_surtax_unknown`), with a message,
 the status it implies and, when one applies, its normative source.
 
 `CalculationIssue`, `PeriodCalculationResult.issues`
@@ -135,6 +135,21 @@ Distinct from the capability report, which records whether a capability ran,
 not what it decided.
 
 `CalculationDecision`, `PeriodCalculationResult.decisions`
+
+### surtax decision (decisione sulle addizionali)
+
+The `CalculationDecision` of the regional or municipal surtax
+(`addizionale_regionale`, `addizionale_comunale`) for a jurisdiction named in
+the request.  It separates a surtax not due by rule (`no_irpef_due`,
+`below_exemption_threshold`: final, amount 0), a table applied
+(`table_applied`, `advance_applied`: final) and a well-formed code without a
+table row (`table_unknown`: incomplete, amount `None`, issue
+`regional_surtax_unknown` or `municipal_surtax_unknown`).  The region is the
+ISO 3166-2:IT code (`IT-45`), with `IT-BZ` / `IT-TN` for the autonomous
+provinces.  A malformed code is invalid input, not an unknown table.
+
+`CalculationDecision`, `REGION_CODES`, `PeriodCalculationRequest.regione`,
+`PeriodCalculationRequest.comune_belfiore`
 
 ### preferential tax regime (regime di imposta sostitutiva)
 

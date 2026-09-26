@@ -571,3 +571,24 @@ class TestPerRunEventAllocation:
         jun_net = result.period_results[5].period_net
         jan_net = result.period_results[0].period_net
         assert jun_net < jan_net
+
+
+class TestSurtaxStatus:
+    """Surtax decisions set the status of every run and of the year."""
+
+    def test_unknown_municipality_makes_every_run_and_the_year_incomplete(
+        self,
+    ) -> None:
+        """A Belfiore code without a table leaves the whole year incomplete."""
+        result = calculate_year(_YEAR, _CCNL, _LEVEL, comune_belfiore="Z999")
+
+        assert {r.status for r in result.period_results} == {
+            CalculationStatus.INCOMPLETE
+        }
+        assert result.status is CalculationStatus.INCOMPLETE
+        assert {i.code for i in result.issues} == {"municipal_surtax_unknown"}
+
+    def test_malformed_region_code_is_rejected(self) -> None:
+        """A region name instead of a region code is invalid input."""
+        with pytest.raises(InvalidInputError, match="ISO 3166-2:IT"):
+            calculate_year(_YEAR, _CCNL, _LEVEL, regione="Lombardia")

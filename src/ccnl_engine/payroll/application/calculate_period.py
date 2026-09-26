@@ -385,8 +385,8 @@ def calculate_period(
         benefit_breakdown=benefit_breakdown,
         run=request.run,
         bundle_version=bundle_version,
-        issues=event_totals.issues,
-        decisions=event_totals.decisions,
+        issues=event_totals.issues + amounts.surtax.issues,
+        decisions=event_totals.decisions + amounts.surtax.decisions,
     )
     rec = _reconcile(result, request.opening_state)
     if not rec.ok:

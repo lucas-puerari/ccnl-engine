@@ -29,6 +29,7 @@ from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 
 
 def _latest_bundled_year() -> int:
@@ -69,13 +70,22 @@ _ENGINE = PayrollEngine.bundled()
 
 
 def list_regioni() -> str:
-    """Return JSON list of Italian region names with addizionale regionale data.
+    """Return JSON list of regions with addizionale regionale data.
 
     Returns:
-        JSON-encoded sorted list of region name strings.
+        JSON-encoded list of ``{code, name}`` dicts ordered by name, where
+        ``code`` is the region code the engine expects.
     """
     surtax = load_surtax_rules(_DEFAULT_YEAR)
-    return json.dumps(sorted(surtax.regionale.keys()))
+    result = sorted(
+        [
+            {"code": code, "name": name}
+            for code, name in REGION_CODES.items()
+            if name in surtax.regionale
+        ],
+        key=operator.itemgetter("name"),
+    )
+    return json.dumps(result)
 
 
 def list_comuni() -> str:
@@ -353,7 +363,8 @@ def compute_salary(
         seniority_value: Seniority months of service (seniority_mode="months").
         seniority_mode: ``"count"`` (deprecated) or ``"months"``.
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
-        regione: Italian region name for addizionale regionale computation.
+        regione: ISO 3166-2:IT region code (e.g. ``"IT-45"``) for the
+            addizionale regionale.
             When empty, the surtax is not computed.
         comune_belfiore: Belfiore code (codice catastale) of the worker's
             municipality for addizionale comunale computation. When empty,

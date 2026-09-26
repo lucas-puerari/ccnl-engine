@@ -28,7 +28,8 @@ behind each model.
 
 ## Fiscal
 
-::: ccnl_engine.payroll.domain.fiscal
+::: ccnl_engine.payroll.domain.jurisdiction
     options:
       members:
-        - FiscalSimplification
+        - REGION_CODES
+        - check_surtax_codes

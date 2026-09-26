@@ -158,7 +158,7 @@ class PayrollRequest:
             :meth:`~ccnl_engine.payroll.domain.period.PeriodState.zero`
             for January.
         events: Variable work events for this run.
-        regione: ISO region code for regional surtax.  ``None`` skips.
+        regione: Region code for regional surtax, e.g. ``"IT-45"``.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
         has_dependent_children: Higher fringe-benefit threshold when True.
@@ -204,7 +204,7 @@ class PayrollYearRequest:
         per_run_events: Optional mapping from ``run_id`` to events for that
             specific run.  Supports any run kind (regular, thirteenth, etc.).
             A run present in both sources raises :class:`ValueError`.
-        regione: ISO region code for regional surtax.
+        regione: Region code for regional surtax, e.g. ``"IT-45"``.
         comune_belfiore: Belfiore code for municipal surtax.
         family_composition: Dependent family composition.
         has_dependent_children: Higher fringe-benefit threshold when True.

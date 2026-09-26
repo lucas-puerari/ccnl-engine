@@ -25,7 +25,7 @@ jan = engine.calculate(
         level_code="C3",
         employment_facts=facts,
         employer=employer,
-        regione="ER",
+        regione="IT-45",
     )
 )
 
@@ -38,7 +38,7 @@ feb = engine.calculate(
         level_code="C3",
         employment_facts=facts,
         employer=employer,
-        regione="ER",
+        regione="IT-45",
         opening_state=jan.closing_state,
     )
 )

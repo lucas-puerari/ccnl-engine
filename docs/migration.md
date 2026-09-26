@@ -63,3 +63,18 @@ print(year.annual_gross)
 
 `estimate_annual` and the `ccnl_engine.engine.payroll` namespace were removed
 in v0.5. Migrate to `PayrollEngine` for all new code.
+
+## Surtax codes and decisions
+
+- `regione` takes the ISO 3166-2:IT region code (`IT-45` Emilia-Romagna,
+  `IT-25` Lombardia, ...), with `IT-BZ` and `IT-TN` for the autonomous
+  provinces, listed in `ccnl_engine.payroll.domain.jurisdiction.REGION_CODES`.
+  A region name such as `"Lombardia"`, a short code such as `"ER"` and
+  `"IT-32"` (Trentino-Alto Adige) now raise `InvalidInputError`, like a
+  malformed Belfiore code.  Before, a code such as `"ER"` matched no regional row and the
+  regional surtax was silently zero.
+- A well-formed code without a table row makes the result `incomplete`, with
+  the issue `regional_surtax_unknown` or `municipal_surtax_unknown`.
+- `ccnl_engine.payroll.domain.fiscal.FiscalSimplification` is removed: read the
+  surtax outcome from `result.decisions` (capabilities
+  `addizionale_regionale`, `addizionale_comunale`).
