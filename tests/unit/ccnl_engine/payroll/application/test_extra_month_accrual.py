@@ -7,14 +7,14 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.application._extra_month_accrual import (
-    non_accruing_days,
-    termination_settlements,
-)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
+)
+from ccnl_engine.payroll.application.year._extra_month_accrual import (
+    non_accruing_days,
+    termination_settlements,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount

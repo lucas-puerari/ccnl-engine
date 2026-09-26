@@ -9,25 +9,25 @@ from functools import cache
 
 import pytest
 
-from ccnl_engine.payroll.application._period_checks import check_net_covered
-from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
 )
-from ccnl_engine.payroll.application.lifecycle_invariants import (
+from ccnl_engine.payroll.application.invariants._types import RunFacts
+from ccnl_engine.payroll.application.invariants.lifecycle import (
     check_extra_month_accrual_limit,
     check_run_within_employment,
 )
-from ccnl_engine.payroll.application.reconcile import check_period, reconcile
-from ccnl_engine.payroll.application.sign_invariants import check_signs
-from ccnl_engine.payroll.application.state_invariants import check_ytd_continuity
-from ccnl_engine.payroll.application.withholding_invariants import (
+from ccnl_engine.payroll.application.invariants.signs import check_signs
+from ccnl_engine.payroll.application.invariants.state import check_ytd_continuity
+from ccnl_engine.payroll.application.invariants.withholding import (
     check_contribution_ceiling,
     check_irpef_annual_reconciliation,
     net_annual_irpef,
 )
+from ccnl_engine.payroll.application.period._checks import check_net_covered
+from ccnl_engine.payroll.application.reconcile import check_period, reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.calendar import AccrualWindow, ExtraMonthKind
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus

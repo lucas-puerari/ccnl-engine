@@ -6,9 +6,9 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.decision_invariants import (
+from ccnl_engine.payroll.application.invariants._types import RunFacts
+from ccnl_engine.payroll.application.invariants.decisions import (
     check_decision_provenance,
     check_substitute_tax_eligibility,
     check_substitute_tax_plafond,

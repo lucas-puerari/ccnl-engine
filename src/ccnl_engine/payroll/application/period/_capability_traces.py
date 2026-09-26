@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application.allocate_events import EVENT_FEATURES
+from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState

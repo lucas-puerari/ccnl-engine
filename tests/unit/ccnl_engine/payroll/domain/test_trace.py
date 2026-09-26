@@ -7,8 +7,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.payroll.application._capability_traces import build_traces
-from ccnl_engine.payroll.application.allocate_events import EVENT_FEATURES
+from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
+from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationStatus,

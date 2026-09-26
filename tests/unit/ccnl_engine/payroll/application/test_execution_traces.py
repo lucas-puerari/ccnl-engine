@@ -8,11 +8,13 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.payroll.application._capability_traces import build_traces
-from ccnl_engine.payroll.application._run_decisions import worker_category_decision
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.application.period._capability_traces import build_traces
+from ccnl_engine.payroll.application.period._run_decisions import (
+    worker_category_decision,
+)
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityGapKind
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import SeniorityMonths

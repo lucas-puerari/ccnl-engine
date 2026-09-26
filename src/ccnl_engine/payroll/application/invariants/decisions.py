@@ -25,7 +25,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._reconcile_types import (
+from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
@@ -35,7 +35,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.service.regime_eligibility import RegimeEligibility
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.application._reconcile_types import RunFacts
+    from ccnl_engine.payroll.application.invariants._types import RunFacts
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 

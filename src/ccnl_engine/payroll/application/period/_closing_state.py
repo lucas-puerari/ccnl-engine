@@ -25,9 +25,11 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
-    from ccnl_engine.payroll.application._somma_esente import SommaEsenteOutcome
-    from ccnl_engine.payroll.application.allocate_events import _EventTotals
+    from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
+    from ccnl_engine.payroll.application.handlers._totals import _EventTotals
+    from ccnl_engine.payroll.application.withholding._somma_esente import (
+        SommaEsenteOutcome,
+    )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan

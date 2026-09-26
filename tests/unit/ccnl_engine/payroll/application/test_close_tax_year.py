@@ -12,7 +12,7 @@ from ccnl_engine import PayrollEngine
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
-from ccnl_engine.payroll.application.state_invariants import (
+from ccnl_engine.payroll.application.invariants.state import (
     check_carried_recovery_advance,
 )
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount

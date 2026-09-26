@@ -23,15 +23,15 @@ from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
 
 from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
-from ccnl_engine.payroll.application._withholding_cap import (
-    CappedWithholding,
-    cap_withholding,
-)
+from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
     YearResult,
     calculate_year,
+)
+from ccnl_engine.payroll.application.withholding._cap import (
+    CappedWithholding,
+    cap_withholding,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount

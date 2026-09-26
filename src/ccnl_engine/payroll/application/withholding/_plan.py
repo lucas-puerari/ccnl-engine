@@ -11,9 +11,9 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._calendar import standard_calendar
-from ccnl_engine.payroll.application._extra_month_accrual import run_schedule
 from ccnl_engine.payroll.application._period_utils import _apply_extra_month_policy
+from ccnl_engine.payroll.application.year._calendar import standard_calendar
+from ccnl_engine.payroll.application.year._extra_month_accrual import run_schedule
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
 from ccnl_engine.payroll.domain.rounding import money

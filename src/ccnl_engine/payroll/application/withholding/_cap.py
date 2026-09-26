@@ -32,7 +32,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+    from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.tax.domain.ruleset import YearRules

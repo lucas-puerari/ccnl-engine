@@ -12,7 +12,6 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._calendar import standard_calendar
 from ccnl_engine.payroll.application._period_utils import (
     _ZERO,
     _apply_extra_month_policy,
@@ -20,6 +19,7 @@ from ccnl_engine.payroll.application._period_utils import (
     _require_resolution,
     _treatment_from_resolution,
 )
+from ccnl_engine.payroll.application.year._calendar import standard_calendar
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual, absence_days
 from ccnl_engine.payroll.domain.calendar import ExtraMonthKind, ExtraMonthSchedule
 from ccnl_engine.payroll.domain.events import AbsenceEvent
@@ -33,7 +33,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.application.allocate_events import _EventTotals
+    from ccnl_engine.payroll.application.handlers._totals import _EventTotals
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
     from ccnl_engine.payroll.domain.events import WorkEvent

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
@@ -17,8 +18,9 @@ from ccnl_engine.shared.domain.errors import (
 )
 
 if TYPE_CHECKING:
-    from decimal import Decimal
+    from datetime import date
 
+    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.tax.domain.contribution_rules import DomesticInpsRates
     from ccnl_engine.tax.domain.ruleset import YearRules
 
@@ -116,3 +118,21 @@ def compute_domestic_breakdown(
             ),
         ),
     )
+
+
+def _domestic_hourly_rate(
+    ccnl: CCNL,
+    year_rules: YearRules,
+    monthly_gross: Decimal,
+    as_of: date,
+) -> Decimal | None:
+    """Return the derived domestic hourly rate, or ``None`` for non-domestic CCNLs.
+
+    Returns:
+        Hourly rate in EUR for domestic CCNLs (``monthly_gross / hourly_divisor``),
+        or ``None`` when the CCNL uses standard INPS rates.
+    """
+    if year_rules.domestic_contributions is None:
+        return None
+    hourly_divisor = Decimal(str(ccnl.parameters.hourly_divisor.value_at(as_of)))
+    return money(monthly_gross / hourly_divisor) if monthly_gross > _ZERO else _ZERO

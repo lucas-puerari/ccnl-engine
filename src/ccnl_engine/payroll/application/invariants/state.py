@@ -17,11 +17,13 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._carried_recovery import carried_item_id
-from ccnl_engine.payroll.application._reconcile_types import (
+from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
     _sum_account,
+)
+from ccnl_engine.payroll.application.withholding._carried_recovery import (
+    carried_item_id,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.run import run_identifier
