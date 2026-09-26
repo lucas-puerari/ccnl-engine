@@ -129,6 +129,9 @@ the obligations that survive the year change.
   (L. 207/2024 art. 1 c. 7). Every run records a decision with capability
   `somma_esente`; carried installments record `somma_esente_recovery`.
 - `OpeningBalances` gains `somma_esente_recovered`.
+- `PeriodState.SCHEMA_VERSION` is now 3: a persisted state of version 2
+  needs its closed run ids parsed into `PayrollRunId` and its credit accounts
+  read with `due` and `reason` unset.
 - New public name: `PayrollRunId`.
 
 ## Decisions and capability report

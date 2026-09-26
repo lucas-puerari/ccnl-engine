@@ -121,8 +121,9 @@ def calculate_period(
         with gross, net, employer cost, closing YTD state, pay items and ledger.
 
     Raises:
-        DataIntegrityError: When the ledger reconciliation invariants fail after
-            computation, indicating an internal accounting consistency error.
+        DataIntegrityError: When the closing state or the ledger reconciliation
+            invariants fail, indicating an internal consistency error.  A run
+            that cannot close next in the tax year raises ``InvalidInputError``.
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     effective_resolver = _effective_resolver(resolver)
