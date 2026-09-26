@@ -34,6 +34,7 @@ from ccnl_engine.engine.errors import (
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
     FixedTerm,
@@ -53,6 +54,7 @@ from ccnl_engine.payroll.domain.period import (
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -75,6 +77,7 @@ def _req(
         opening = PeriodState.zero()
     ct = contract_type if contract_type is not None else Permanent()
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=ccnl,
@@ -95,28 +98,25 @@ def _req(
 # ---------------------------------------------------------------------------
 # Bonus duplicated across extra month run
 #
-# calculate_year maps period_events by month number.  When December has two
-# runs (regular + tredicesima), both receive period_events[12].  A 100 EUR
+# calculate_year maps periods keyed by month number.  When December has two
+# runs (regular + tredicesima), both receive periods[12].  A 100 EUR
 # bonus therefore inflates annual_gross by 200 instead of 100.
-# Source: REVIEW.md §5, P0-1.
+# Source: REVIEW.md §5.
 # ---------------------------------------------------------------------------
 
 
 def test_bonus_not_duplicated_in_extra_run() -> None:
     """A December BonusEvent must increase annual_gross by exactly 100, not 200.
 
-    Source: REVIEW.md §5, P0-1.  With a 13-run calendar and period_events[12]
+    Source: REVIEW.md §5.  With a 13-run calendar and periods[12]
     containing a 100 EUR bonus, annual_gross must equal baseline + 100.
     Expected: diff == Decimal("100.00").
     """
     bonus = BonusEvent(event_date=date(_YEAR, 12, 15), amount=Decimal("100.00"))
 
-    result_base = calculate_year(_YEAR, _CCNL, _LEVEL)
+    result_base = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
     result_with = calculate_year(
-        _YEAR,
-        _CCNL,
-        _LEVEL,
-        period_events={12: (bonus,)},
+        year_input(_YEAR, _CCNL, _LEVEL, events={12: (bonus,)})
     )
 
     diff = result_with.annual_gross - result_base.annual_gross

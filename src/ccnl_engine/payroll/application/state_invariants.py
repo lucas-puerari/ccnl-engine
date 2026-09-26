@@ -27,14 +27,14 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.run import run_identifier
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
     from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.payroll.domain.ytd_accounts import CreditAccount
 
 _ZERO = Decimal(0)
 
 
-def run_id_of(result: PeriodCalculationResult) -> PayrollRunId:
+def run_id_of(result: PeriodResult) -> PayrollRunId:
     """Return the run identifier the calculation closed.
 
     Returns:
@@ -56,7 +56,7 @@ def _counter_violation(
 
 
 def check_run_counters(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
     """Check that the run counters and the closed run ids advance by the run.
@@ -100,14 +100,14 @@ def check_run_counters(
     return violations
 
 
-def _entry_total(result: PeriodCalculationResult, entry_ids: set[str]) -> Decimal:
+def _entry_total(result: PeriodResult, entry_ids: set[str]) -> Decimal:
     return sum(
         (e.amount for e in result.ledger_entries if e.entry_id in entry_ids), _ZERO
     )
 
 
 def check_ytd_continuity(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
     """Check that each YTD accumulator closes at opening plus the run amount.
@@ -177,7 +177,7 @@ def _outside_bounds(account: CreditAccount) -> bool:
 
 
 def check_credit_recovery_bounds(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that each credit account recovers within what it recognized.
 
@@ -206,7 +206,7 @@ def check_credit_recovery_bounds(
 
 
 def check_carried_recovery_advance(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
     """Check that recoveries carried from an earlier year advance one step.

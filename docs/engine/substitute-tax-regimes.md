@@ -4,7 +4,7 @@ A preferential regime replaces ordinary IRPEF and the regional and municipal
 surtaxes with a flat substitute tax (*imposta sostitutiva*) on the pay items it
 covers. The engine models each regime as data (`PreferentialTaxRegime`, read
 from `knowledge/tax/data/variable-pay-rules.json`) and checks every covered pay
-item against the worker facts of the request before applying it.
+item against the worker facts declared on the input before applying it.
 
 ## The regime model
 
@@ -18,6 +18,8 @@ item against the worker facts of the request before applying it.
 | `income_ceiling`, `income_reference_year` | Largest employment income of the reference year that keeps the worker eligible (the ceiling itself is eligible) |
 | `required_sector` | `private` or `public`, `null` when every sector qualifies |
 | `waivable` | Whether the worker may renounce the regime in writing |
+| `excluded_activities` | Employer activities the regime does not apply to; when not empty the employer activity is a required fact |
+| `agreements_signed_from`, `agreements_signed_until` | Signing window of the agreements whose increments qualify, `null` when the regime has none |
 | `source` | Normative source: document, section and verbatim quote |
 
 ## Eligibility decision
@@ -28,11 +30,12 @@ Each covered pay item gets one of three outcomes, recorded as a
 | Outcome | Reason codes | Taxation | Result status |
 |---|---|---|---|
 | `eligible` | `requirements_met` | substitute rate on the eligible amount, ordinary on any excess over the cap | final |
-| `ineligible` | `regime_not_in_force`, `waived_by_worker`, `sector_not_eligible`, `prior_income_above_ceiling` | ordinary | final |
-| `unknown` | `sector_unknown`, `prior_income_unknown` | ordinary | provisional |
+| `ineligible` | `regime_not_in_force`, `waived_by_worker`, `sector_not_eligible`, `employer_activity_excluded`, `agreement_signed_outside_window`, `prior_income_above_ceiling` | ordinary | final |
+| `unknown` | `sector_unknown`, `activity_unknown`, `agreement_signing_date_unknown`, `prior_income_unknown` | ordinary | provisional |
 
 A definite ineligibility wins over a missing fact: a public-sector worker is
-ineligible whatever the prior-year income. An `unknown` outcome also adds a
+ineligible whatever the prior-year income. Reason codes are checked in the
+order of the table. An `unknown` outcome also adds a
 `CalculationIssue` coded `<regime_id>_eligibility_unknown`, so the result
 status becomes `provisional`: the substitute rate is never applied to a worker
 who may turn out ineligible, and the amounts change once the missing fact is
@@ -40,8 +43,54 @@ provided.
 
 The decision `inputs` hold the normalized facts it was taken from:
 `eligibility`, `tax_year`, `prior_income` and `sector` (`unknown` when
-missing), `waived`, `eligible_amount` and `ordinary_amount`. Its `amount` is
-the substitute tax posted.
+missing), `waived`, `eligible_amount` and `ordinary_amount`; a regime with
+excluded activities adds `employer_activity`, a regime with a signing window
+adds `agreement_signed_on` (both `unknown` when missing). Its `amount` is the
+substitute tax posted.
+
+## Worker facts
+
+Every regime reads the same facts, declared once on the input and never
+inferred from the CCNL:
+
+| Fact | Input | `None` means |
+|---|---|---|
+| Prior-year employment income (*reddito di lavoro dipendente*) | `PriorYearTaxFacts.employment_income` | unknown: every regime with an income ceiling is `unknown`, the PdR is not applied |
+| Written renunciation | `PriorYearTaxFacts.waived_regimes`, a set of `SubstituteTaxRegime` | no waiver |
+| Private or public sector | `Employment.sector` (`EmploymentSector`) | unknown: a regime restricted to one sector is `unknown` |
+| Employer activity | `EmployerProfile.activity` (`EmployerActivity`) | unknown: the night, holiday and shift regime is `unknown` |
+| Signing date of the renewal | `BonusEvent.agreement_signed_on` | unknown: the renewal regime is `unknown` |
+
+The sector is not derived from the CCNL: a public employer may apply a
+private CCNL, and it is then a public-sector employment for these regimes.
+For a 2026 payment the prior year is 2025, the reference year of both
+L. 199/2025 regimes.
+
+```python
+from decimal import Decimal
+
+from ccnl_engine import (
+    EmployerActivity,
+    EmployerProfile,
+    Employment,
+    EmploymentSector,
+    Headcount,
+    PriorYearTaxFacts,
+    SubstituteTaxRegime,
+)
+
+employment = Employment(
+    ccnl_slug="commercio-confcommercio.json",
+    level_code="4",
+    sector=EmploymentSector.PRIVATE,
+)
+employer = EmployerProfile(headcount=Headcount(50), activity=EmployerActivity.OTHER)
+prior_year = PriorYearTaxFacts(employment_income=Decimal(20_000))  # 2025 income
+waived = PriorYearTaxFacts(
+    employment_income=Decimal(20_000),
+    waived_regimes=frozenset({SubstituteTaxRegime.RINNOVO}),
+)
+```
 
 ## Contract renewal increments (rinnovo)
 
@@ -51,13 +100,10 @@ IRPEF and surtaxes. The regime applies only to private-sector employees whose
 2025 employment income (*reddito di lavoro dipendente*) does not exceed
 33,000 EUR, unless the worker renounces it in writing. There is no annual cap.
 
-The facts come from the request:
-
-| Requirement | Input |
-|---|---|
-| 2025 employment income | `BonusEvent.prior_income`, the same field the PdR regime reads |
-| Private sector | the tax sector of the CCNL: a public administration contract (`pubblica-amministrazione`) is public, every other bundled contract is private |
-| Written renunciation | `BonusEvent.substitute_tax_waived` |
+The renewal is a `BonusEvent` with `kind="contract_renewal"` and the signing
+date of the renewal in `agreement_signed_on`. The date is checked against the
+window the data record as `agreements_signed_from` and
+`agreements_signed_until`, bounds included:
 
 ```python
 from datetime import date
@@ -69,17 +115,16 @@ renewal = BonusEvent(
     event_date=date(2026, 3, 10),
     amount=Decimal(2_000),
     kind="contract_renewal",
-    prior_income=Decimal(20_000),  # 2025 employment income
+    agreement_signed_on=date(2025, 3, 1),
 )
-# Substitute tax 2,000 x 5% = 100.00 on a private-sector CCNL.
-# prior_income=Decimal(100_000) or substitute_tax_waived=True: ordinary IRPEF.
-# prior_income=None: ordinary IRPEF and a provisional result.
+# With the private-sector employment and 2025 income of 20,000 declared
+# above: substitute tax 2,000 x 5% = 100.00.
+# Income 100,000 or a waiver of SubstituteTaxRegime.RINNOVO: ordinary IRPEF.
+# Unknown income, sector or signing date: ordinary IRPEF, provisional result.
+# Signed on 2023-12-31: agreement_signed_outside_window, ordinary IRPEF.
 ```
 
-The engine does not receive the signing date of a renewal: declaring the
-increment as `kind="contract_renewal"` asserts that it falls under a renewal
-signed within the window, which the data record as `agreements_signed_from`
-and `agreements_signed_until`.
+`agreement_signed_on` is accepted only on a contract renewal.
 
 ## Night, holiday and shift supplements
 
@@ -98,9 +143,18 @@ annual cap is ordinary income.
 | c) | indennita di turno and other shift-work pay (CCNL) | `ShiftWorkEvent` |
 
 The three events post the pay item kind `night_holiday_shift_earning`, which
-is the one kind the regime covers. Each carries the same facts as the renewal
-regime: `prior_income` (2025 employment income) and `substitute_tax_waived`
-(written renunciation); the sector comes from the CCNL tax sector.
+is the one kind the regime covers. The worker facts are those of the input:
+2025 income and waivers in `PriorYearTaxFacts`, the sector on `Employment`,
+the activity on `EmployerProfile`.
+
+c. 11 excludes the activities of c. 18, whose workers receive the
+*trattamento integrativo speciale* instead: "esercizi di somministrazione di
+alimenti e bevande, di cui all'articolo 5 della legge 25 agosto 1991, n. 287"
+and "comparto del turismo, ivi inclusi gli stabilimenti termali". An employer
+declared as `FOOD_AND_BEVERAGE_SERVICE`, `TOURISM` or `THERMAL_ESTABLISHMENT`
+is `ineligible` (`employer_activity_excluded`); `OTHER` passes the check; an
+activity left `None` is `unknown` (`activity_unknown`), because the law makes
+the exclusion depend on it.
 
 ```python
 from datetime import date
@@ -109,16 +163,11 @@ from decimal import Decimal
 from ccnl_engine.events import HolidayWorkEvent, NightShiftEvent
 
 night = NightShiftEvent(
-    event_date=date(2026, 3, 10),
-    supplement_amount=Decimal(2_000),
-    prior_income=Decimal(20_000),  # 2025 employment income
+    event_date=date(2026, 3, 10), supplement_amount=Decimal(2_000)
 )
-# Substitute tax 1,500 x 15% = 225.00; the other 500 is ordinary income.
-holiday = HolidayWorkEvent(
-    event_date=date(2026, 3, 1),
-    supplement_amount=Decimal(500),
-    prior_income=Decimal(20_000),
-)
+# Eligible worker: substitute tax 1,500 x 15% = 225.00; the other 500 is
+# ordinary income.
+holiday = HolidayWorkEvent(event_date=date(2026, 3, 1), supplement_amount=Decimal(500))
 # Alone: 500 x 15% = 75.00.  After the night supplement above, in the same
 # run or a later run of 2026: the cap is used up and the 500 is ordinary.
 ```
@@ -149,18 +198,16 @@ substitute rate.
 
 ### Not modelled
 
-- The activities c. 11 excludes by reference to c. 18 (food and beverage
-  service, tourism, thermal establishments): the engine has no fact for the
-  employer activity, so the regime is not excluded automatically for them.
 - Pay that, although called a supplement, replaces ordinary salary is excluded
   by c. 11; declaring it as a night, holiday or shift event is the caller's
   responsibility.
 - The written statement of 2025 income owed when another employer issued the
   2025 certificazione unica is a caller obligation; the engine reads the
-  declared `prior_income`.
+  declared `PriorYearTaxFacts.employment_income`.
+- The trattamento integrativo speciale of c. 18 itself.
 
 ## Other regimes
 
 The PdR regime (productivity bonus) still uses its dedicated rules
-(`PdRRules`); it fails closed to ordinary IRPEF when `prior_income` is not
-provided.
+(`PdRRules`) and reads the same `PriorYearTaxFacts.employment_income`; it
+fails closed to ordinary IRPEF when the income is not provided.

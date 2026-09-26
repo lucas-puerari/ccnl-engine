@@ -48,6 +48,7 @@
     "income_reference_year": 2025,
     "required_sector": "private",
     "waivable": true,
+    "excluded_activities": ["food_and_beverage_service", "tourism", "thermal_establishment"],
     "source": {
       "source_document": {
         "document_id": "l-199-2025",
@@ -68,7 +69,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10-11",
     "verification_status": "unverified",
-    "source_hash": "834dfd83fdc422447213f9a9ace8441be619f4f1a3bb71c520554257405c0afa",
+    "source_hash": "96b48900cf943343b93073caf05235ae6eb140539549ed5c87755844a57598c5",
     "source_type": "official_primary"
   }
 }

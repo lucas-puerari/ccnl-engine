@@ -1,7 +1,7 @@
 # ccnl-engine
 
 Python engine for auditable Italian payroll simulations: CCNL-aware gross-to-net and
-employer cost, versioned rules, provenance, and explicit calculation scope.
+employer cost, versioned rules, provenance, and an explicit status on every result.
 Built for technical teams in HR, payroll, and compensation.
 
 [**Demo**](../demo/) · [**GitHub**](https://github.com/lucas-puerari/ccnl-engine) · [**CCNL coverage**](contracts/index.md)
@@ -15,7 +15,7 @@ Built for technical teams in HR, payroll, and compensation.
 | **Domain** | How Italian labor law and CCNLs are represented as typed models |
 | **Rules** | The versioned knowledge base: CCNL tables, INPS rates, IRPEF brackets |
 | **Engine** | How rules are applied to produce a reproducible payroll figure |
-| **Trust** | Provenance, scope, versioning, and reference cases that make results verifiable |
+| **Trust** | Provenance, calculation status, versioning, and reference cases that make results verifiable |
 
 ---
 
@@ -27,7 +27,7 @@ Built for technical teams in HR, payroll, and compensation.
 | [Domain](domain/index.md) | What CCNLs are, Italian labor law, employment types |
 | [Rules](rules/index.md) | The versioned knowledge base: CCNL JSON schema, INPS, IRPEF, surtax |
 | [Engine](engine/index.md) | How to use `PayrollEngine` — pay components, fiscal, domestic work |
-| [Trust](trust/index.md) | Provenance, confidence, scope, versioning, quality gates |
+| [Trust](trust/index.md) | Provenance, calculation status, capability report, versioning, quality gates |
 | [Data operations](trust/data-operations.md) | Update policy, changelog, error reporting, version compatibility |
 | [Correctness layers](trust/correctness.md) | Software, source, and case correctness — what each layer means and how to read them |
 | [Contracts](contracts/index.md) | All 125 supported contracts — salary tables, sources, coverage |
@@ -39,32 +39,38 @@ Built for technical teams in HR, payroll, and compensation.
 
 Every result carries three verifiability layers:
 
-1. **Provenance** — each rule links to its primary source document (CCNL article,
+1. **Provenance**: each rule links to its primary source document (CCNL article,
    INPS circular, tax schedule) with a URL, section, and verification status.
-2. **Versioning** — `calculation.ruleset_version` records the exact knowledge-base
-   snapshot, so any figure can be reproduced verbatim after a CCNL renewal.
-3. **Scope** — `AnnualEstimate.calculation_scope` declares every feature as
-   `verified`, `excluded`, or `not_computed`, so callers are never silently wrong.
+2. **Versioning**: `result.bundle_version` records the knowledge-base version,
+   so any figure can be reproduced after a CCNL renewal by pinning the package.
+3. **Status and decisions**: `result.status` is `final`, `provisional`,
+   `incomplete` or `rejected`; `result.issues` says what lowered it,
+   `result.decisions` what each capability decided and from which inputs, and
+   `result.capability_report` which catalog features the run did not execute.
+   An unknown normative fact never yields a `final` result.
 
 ```python
-for item in result.calculation_scope:
-    print(item.feature, item.status)
-# base_salary       verified
-# irpef             verified
-# family_deductions excluded   ← explicitly absent from net figure
-# overtime          excluded
+from ccnl_engine import CalculationStatus
+
+if result.status is not CalculationStatus.FINAL:
+    for issue in result.issues:
+        print(issue.code, issue.status, issue.message)
+for decision in result.decisions:
+    print(decision.capability, decision.reason_code, decision.amount)
+for gap in result.capability_report.gaps:
+    print(gap.feature, gap.kind.value)
 ```
 
-See [example 11 — Why this number?](examples/11_why_this_number.py) for a
-full walkthrough of all three layers.
+See [example 11: Why this number?](examples/11_why_this_number.py) for a
+full walkthrough.
 
 ---
 
 ## Scope
 
-**Always computed (L1 — gross, L2 — net):**
+**Always computed (L1: gross, L2: net):**
 
-- IRPEF gross and net (Art. 11–13 TUIR), work income deductions,
+- IRPEF gross and net (Art. 11-13 TUIR), work income deductions,
   *trattamento integrativo* (Art. 1 D.L. 3/2020)
 - Regional and municipal income tax surcharges
   (*addizionale regionale e comunale IRPEF*)
@@ -74,32 +80,32 @@ full walkthrough of all three layers.
 - Part-time scaling, seniority increments, fixed allowances
 - Apprenticeship contracts (under-classification and percentage tracks)
 - Fixed-term contracts (NASpI *addizionale*)
-- Second-level bargaining — territorial and company supplementary allowances
 - Domestic work (flat per-hour contributions, non-withholding employer)
 
-**L3 — Work rules (125/125 contracts):**
+Second-level (territorial and company) allowances are not an engine input.
 
-L3 outputs are **informational**: they are reported alongside the payroll but
-do not mutate `gross_annual` or `net_annual`. Supply any combination of the
-inputs below to `PeriodPayrollInput`; the engine reports each one as `verified`
-or `not_computed` (when the CCNL does not model it) in `calculation_scope`.
+**L3: work rules (125/125 contracts):**
 
-- Overtime pay (lavoro straordinario diurno, notturno, festivo) — `OvertimeHours`
-- Night and holiday premiums — `OvertimeHours`
-- Absence deduction (unpaid days, by_26 or daily-hours method) — `AbsenceDays`
-- Leave accrual (ferie entitlement tiers) — `LeaveInput`
-- Sick-pay integration (employer complement over INPS indemnity) — `SickInput`
-- Performance bonuses (*premio di risultato*, incl. PdR flat tax) — `BonusInput`
-- Welfare and fringe benefits — `WelfareInput`, `FringeBenefitInput`
+Work events are part of the run: pass them in `PeriodFacts.events` and they
+change gross, net and employer cost according to their treatment. See
+[Work rules](engine/work-rules.md).
 
-**Opt-in (reduce `net_annual` when inputs are provided):**
+- Overtime pay (lavoro straordinario) with caller-supplied rate: `OvertimeEvent`
+- Night, holiday and shift supplements, with the 2026 substitute tax:
+  `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent`
+- Unpaid absences and sickness: `AbsenceEvent`, `SickLeaveEvent`, `SicknessCaseEvent`
+- Bonuses (ordinary, *premio di risultato* with its flat tax, renewal
+  increments): `BonusEvent`
+- Welfare and fringe benefits: `WelfareEvent`, `FringeEvent`
 
-- Family-dependent deductions (Art. 12 TUIR) — `FamilyComposition`
-- Art. 15 mortgage-interest deduction — `Art15Deductions`
-- Regional/municipal surtax — `Jurisdiction` (omitting it excludes surtax and reports it in `calculation_scope`)
+**Opt-in facts:**
 
-Every gap is reported in `AnnualEstimate.warnings` or `calculation_scope` so
-callers are never silently wrong.
+- Family-dependent deductions (Art. 12 TUIR): `PeriodFacts.family_composition`
+- Regional and municipal surtax: `PeriodFacts.regione` and `comune_belfiore`
+  (omitted, the surtax is skipped; a code without a table makes the result
+  `incomplete`)
+- Prior-year income and written waivers for the substitute-tax regimes:
+  `PriorYearTaxFacts`
 
 ---
 

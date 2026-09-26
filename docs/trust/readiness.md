@@ -82,18 +82,18 @@ default to `exploratory`. The target is to bring the 15 most-used CCNLs
 (by covered worker population) to `reviewed` status, with at least 5 reaching
 `production`.
 
-## Relationship to `confidence`
+## Relationship to the result status
 
-`confidence` is a result-level signal derived at compute time. `readiness` is
-a ruleset-level classification set by a human reviewer. They are related but
-answer different questions:
+`result.status` is a result-level signal derived at compute time from the
+issues of the run. `readiness` is a ruleset-level classification set by a
+human reviewer. They answer different questions:
 
 | Question | Field |
 |---|---|
-| Is this specific computation result trustworthy? | `result.confidence` |
+| Did this computation rest on known rules and facts? | `result.status` and `result.issues` |
 | Is this ruleset cleared for production use? | `ccnl.verification.readiness` |
 | Were the individual values checked against the source? | `ccnl.verification.confidence` |
 
-A result can have `confidence = "high"` (all sources marked verified, no
-warnings) while the ruleset is still `readiness = "exploratory"` if the
-`"verified"` flags were set without a documented promotion review.
+A result can be `final` while the ruleset is still `readiness =
+"exploratory"`: the status says every rule the run needed was known and
+applied, not that a person checked the values against the source.

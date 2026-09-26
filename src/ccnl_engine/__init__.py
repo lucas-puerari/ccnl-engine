@@ -1,40 +1,50 @@
-"""ccnl_engine — Italian CCNL payroll computation library.
+"""ccnl_engine: Italian CCNL payroll computation library.
 
 Public API
 ----------
 The single entry point is :class:`PayrollEngine`.  Construct it with
 :meth:`~PayrollEngine.bundled` and call
-:meth:`~PayrollEngine.calculate` for a single cedolino or
-:meth:`~PayrollEngine.calculate_year` for a full-year run.
+:meth:`~PayrollEngine.calculate_period` for one cedolino,
+:meth:`~PayrollEngine.calculate_year` for every run of a tax year and
+:meth:`~PayrollEngine.close_tax_year` to open the next tax year.
 
 All types needed to call it and inspect its results are re-exported from
-this module.
+this module; the work events are in :mod:`ccnl_engine.events`.
 
 Usage::
 
-    from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+    from datetime import date
+    from ccnl_engine import (
+        Employment, EmployerProfile, Headcount, PayrollEngine, PayrollRun,
+        PeriodInput,
+    )
 
     engine = PayrollEngine.bundled()
-    result = engine.calculate(PayrollRequest(
+    result = engine.calculate_period(PeriodInput(
         run=PayrollRun.regular(2026, 1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=EmploymentFacts(),
+        employment=Employment(
+            ccnl_slug="metalmeccanico-federmeccanica.json",
+            level_code="C3",
+        ),
+        employer=EmployerProfile(headcount=Headcount(50)),
     ))
-    print(result.period_net)
+    print(result.status, result.period_net)
 """
 
 from __future__ import annotations
 
-from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.api.requests import EmploymentFacts, PayrollRequest, PayrollYearRequest
-from ccnl_engine.api.results import (
+from ccnl_engine.api import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
-    PayrollResult,
+    PeriodFacts,
+    PeriodInput,
+    PeriodResult,
+    YearInput,
+    YearResult,
 )
+from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.engine.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
@@ -42,7 +52,6 @@ from ccnl_engine.engine.capability_catalog import (
     CapabilityStatus,
 )
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
-from ccnl_engine.engine.contract.domain.ccnl import SupplementaryAllowance
 from ccnl_engine.engine.contract.service.discovery import (
     CcnlId,
     CcnlInfo,
@@ -59,17 +68,29 @@ from ccnl_engine.engine.errors import (
     UnknownLevelError,
     UnsupportedTaxYearError,
 )
-from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult as PayrollYearResult,
-)
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.domain.calendar import WorkCalendar as PayrollCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
     CalendarOverrideReason,
 )
-from ccnl_engine.payroll.domain.employer import Employer, Headcount
-from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employer import (
+    EmployerActivity,
+    EmployerProfile,
+    Headcount,
+)
+from ccnl_engine.payroll.domain.employment import (
+    Apprentice,
+    ContributableHours,
+    Employment,
+    EmploymentPeriod,
+    FixedTerm,
+    Permanent,
+    SeniorityMonths,
+    WeeklyHours,
+)
 from ccnl_engine.payroll.domain.family import (
     Dependent,
     DependentRelationship,
@@ -77,6 +98,10 @@ from ccnl_engine.payroll.domain.family import (
 )
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.period import PeriodState as PayrollState
+from ccnl_engine.payroll.domain.prior_year import (
+    PriorYearTaxFacts,
+    SubstituteTaxRegime,
+)
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.version import __version__ as engine_version
@@ -95,11 +120,16 @@ __all__ = [
     "CcnlEngineError",
     "CcnlId",
     "CcnlInfo",
+    "ContributableHours",
+    "ContributionCeilingStatus",
     "DataIntegrityError",
     "Dependent",
     "DependentRelationship",
-    "Employer",
-    "EmploymentFacts",
+    "EmployerActivity",
+    "EmployerProfile",
+    "Employment",
+    "EmploymentPeriod",
+    "EmploymentSector",
     "FamilyComposition",
     "FixedTerm",
     "Headcount",
@@ -108,21 +138,25 @@ __all__ = [
     "OutOfScopeError",
     "PayrollCalendar",
     "PayrollEngine",
-    "PayrollRequest",
-    "PayrollResult",
     "PayrollRun",
     "PayrollRunId",
     "PayrollState",
-    "PayrollYearRequest",
-    "PayrollYearResult",
+    "PeriodFacts",
+    "PeriodInput",
+    "PeriodResult",
     "Permanent",
+    "PriorYearTaxFacts",
     "RecoveryObligation",
     "RecoveryPlan",
-    "SupplementaryAllowance",
+    "SeniorityMonths",
+    "SubstituteTaxRegime",
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
+    "WeeklyHours",
     "WorkerCategory",
+    "YearInput",
+    "YearResult",
     "engine_version",
     "get_ccnl",
     "list_ccnls",

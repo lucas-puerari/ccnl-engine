@@ -10,6 +10,7 @@ from decimal import Decimal
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
     ArrearsEvent,
     BilateralFundEvent,
@@ -23,7 +24,7 @@ from ccnl_engine.payroll.domain.family import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -39,6 +40,7 @@ _PAYMENT = date(_YEAR, _MONTH, 28)
 def _req(*events: object) -> PeriodCalculationRequest:
 
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,
@@ -53,7 +55,7 @@ def _base() -> PeriodCalculationRequest:
 
 
 def _inps_employee(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount
@@ -64,7 +66,7 @@ def _inps_employee(result: object) -> Decimal:
     )
 
 
-def _sep_tax(result: PeriodCalculationResult) -> Decimal:
+def _sep_tax(result: PeriodResult) -> Decimal:
     return sum(
         (
             e.amount
@@ -75,14 +77,14 @@ def _sep_tax(result: PeriodCalculationResult) -> Decimal:
     )
 
 
-def _surtax(result: PeriodCalculationResult) -> Decimal:
+def _surtax(result: PeriodResult) -> Decimal:
     return sum(
         (e.amount for e in result.ledger_entries if e.account == AccountKind.SURTAX),
         Decimal(0),
     )
 
 
-def _tfr_settle(result: PeriodCalculationResult) -> Decimal:
+def _tfr_settle(result: PeriodResult) -> Decimal:
     return sum(
         (
             e.amount
@@ -100,6 +102,7 @@ def _req_surtax(*events: object) -> PeriodCalculationRequest:
         A :class:`PeriodCalculationRequest` with Lombardia region and comune A001.
     """
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,
@@ -120,6 +123,7 @@ def _req_family(*events: object) -> PeriodCalculationRequest:
     spouse = Dependent(relationship=DependentRelationship.SPOUSE)
     family = FamilyComposition(dependents=(spouse,))
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,

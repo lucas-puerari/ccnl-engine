@@ -27,6 +27,7 @@ from decimal import Decimal
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
     BonusEvent,
     FringeEvent,
@@ -35,7 +36,7 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -57,6 +58,7 @@ def _req(
     if opening is None:
         opening = PeriodState.zero()
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
@@ -66,7 +68,7 @@ def _req(
     )
 
 
-def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decimal:
+def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
     return sum(
         (e.amount for e in result.ledger_entries if e.account == account),
         _ZERO,
@@ -202,6 +204,7 @@ def _req_tratt(
     if opening is None:
         opening = PeriodState.zero()
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL_TRATT,

@@ -37,6 +37,7 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.payroll.domain.ledger import LedgerEntry, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
+from ccnl_engine.payroll.service.regime_eligibility import RegimeFacts
 
 if TYPE_CHECKING:
     from datetime import date
@@ -44,8 +45,11 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.preferential_regime import (
         PreferentialTaxRegime,
     )
+    from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 
+
+_NO_FACTS = RegimeFacts()
 
 #: Catalog feature each event type executes.  A bonus has none of its own:
 #: its PdR substitute tax is the ``bonus_pdr`` decision of the run.
@@ -95,6 +99,21 @@ class _EventTotals:
     executed_features: frozenset[str] = frozenset()
 
 
+def worker_facts_of(request: PeriodCalculationRequest) -> RegimeFacts:
+    """Return the worker facts the regimes of a run are checked against.
+
+    Returns:
+        The prior-year income and waivers, the sector of the employment and
+        the activity of the employer, as declared on ``request``.
+    """
+    return RegimeFacts(
+        prior_income=request.prior_year.employment_income,
+        sector=request.sector,
+        activity=request.employer.activity,
+        waived_regimes=frozenset(request.prior_year.waived_regimes),
+    )
+
+
 def _process_events(
     events: tuple[WorkEvent, ...],
     cp: CompetencePeriod,
@@ -110,6 +129,7 @@ def _process_events(
     rinnovo_regime: PreferentialTaxRegime | None = None,
     work_time_regime: PreferentialTaxRegime | None = None,
     opening_work_time_cap: RegimeCapAccount | None = None,
+    worker_facts: RegimeFacts = _NO_FACTS,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -163,6 +183,7 @@ def _process_events(
             rinnovo_regime=rinnovo_regime,
             work_time_regime=work_time_regime,
             work_time_cap=work_time_cap,
+            worker_facts=worker_facts,
         )
         result: EventEffect = handler(event, ctx)
 

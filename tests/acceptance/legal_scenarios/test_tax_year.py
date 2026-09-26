@@ -9,12 +9,12 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    EmploymentFacts,
+    Employment,
     OpeningBalances,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
     PayrollState,
+    PeriodInput,
     RecoveryObligation,
     RecoveryPlan,
 )
@@ -23,13 +23,14 @@ from ccnl_engine.payroll.domain.employment_context import TemporalContext
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
+    EMPLOYER,
     ENGINE,
     regular_period,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:
-    from ccnl_engine import PayrollResult
+    from ccnl_engine import PeriodResult
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -99,7 +100,7 @@ _PLAN = RecoveryPlan(
 _NEXT_YEAR_ENGINE = PayrollEngine(repository=NextYearRepository())
 
 
-def _december_2026() -> tuple[PayrollResult, PayrollResult]:
+def _december_2026() -> tuple[PeriodResult, PeriodResult]:
     """Close 2026 on Commercio L4: December, then the tredicesima.
 
     The opening balances come from a previous provider: 11 regular runs and
@@ -118,32 +119,30 @@ def _december_2026() -> tuple[PayrollResult, PayrollResult]:
         recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
     ).to_state()
     december = regular_period(month=12, opening_state=opening)
-    thirteenth = ENGINE.calculate(
-        PayrollRequest(
+    thirteenth = ENGINE.calculate_period(
+        PeriodInput(
             run=PayrollRun.thirteenth(2026, 12),
             payment_date=date(2026, 12, 27),
-            ccnl_slug=COMMERCIO,
-            level_code="4",
-            employment_facts=EmploymentFacts(),
+            employment=Employment(ccnl_slug=COMMERCIO, level_code="4"),
+            employer=EMPLOYER,
             opening_state=december.closing_state,
         )
     )
     return december, thirteenth
 
 
-def _january_2027(opening: PayrollState) -> PayrollResult:
+def _january_2027(opening: PayrollState) -> PeriodResult:
     """Compute January 2027 on 2026 rules standing in for 2027.
 
     Returns:
         The January 2027 result.
     """
-    return _NEXT_YEAR_ENGINE.calculate(
-        PayrollRequest(
+    return _NEXT_YEAR_ENGINE.calculate_period(
+        PeriodInput(
             run=PayrollRun.regular(2027, 1),
             payment_date=date(2027, 1, 27),
-            ccnl_slug=COMMERCIO,
-            level_code="4",
-            employment_facts=EmploymentFacts(),
+            employment=Employment(ccnl_slug=COMMERCIO, level_code="4"),
+            employer=EMPLOYER,
             opening_state=opening,
         )
     )

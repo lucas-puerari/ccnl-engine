@@ -54,7 +54,10 @@ from ccnl_engine.payroll.application._withholding_plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
 )
-from ccnl_engine.payroll.application.allocate_events import _process_events
+from ccnl_engine.payroll.application.allocate_events import (
+    _process_events,
+    worker_facts_of,
+)
 from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,
     _project_ledger,
@@ -69,10 +72,7 @@ from ccnl_engine.payroll.domain.employment_context import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import TRATTAMENTO_RECOVERY
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-from ccnl_engine.payroll.domain.period import (
-    PeriodCalculationRequest,
-    PeriodCalculationResult,
-)
+from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodResult
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
@@ -92,7 +92,7 @@ def calculate_period(
     repo: KnowledgeRepository | None = None,
     resolver: PolicyResolver | None = None,
     bundle_version: str | None = None,
-) -> PeriodCalculationResult:
+) -> PeriodResult:
     """Compute payroll for one competence period using the period-first model.
 
     Args:
@@ -109,7 +109,7 @@ def calculate_period(
             ``None`` when called outside a :class:`PayrollEngine` context.
 
     Returns:
-        A :class:`~ccnl_engine.payroll.domain.period.PeriodCalculationResult`
+        A :class:`~ccnl_engine.payroll.domain.period.PeriodResult`
         with gross, net, employer cost, closing YTD state, pay items and ledger.
 
     A run that cannot close next in the tax year, or whose unpaid absences
@@ -197,6 +197,7 @@ def calculate_period(
         rinnovo_regime=var_pay_rules.rinnovo,
         work_time_regime=var_pay_rules.notte_festivi_turni,
         opening_work_time_cap=opening.ytd.work_time_regime,
+        worker_facts=worker_facts_of(request),
     )
     settlement = settle_extra_months(
         request.extra_month_settlements,
@@ -359,7 +360,7 @@ def calculate_period(
         inps_base=event_totals.fringe_inps,
         employer_cost=_sum_ledger(all_entries, AccountKind.NON_CASH_BENEFITS),
     )
-    result = PeriodCalculationResult(
+    result = PeriodResult(
         period_id=request.period_id,
         payment_date=request.payment_date,
         period_gross=period_gross,

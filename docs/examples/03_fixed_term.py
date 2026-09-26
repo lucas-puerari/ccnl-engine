@@ -3,27 +3,27 @@
 from datetime import date
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     FixedTerm,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodInput,
 )
 
 engine = PayrollEngine.bundled()
 
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-        employment_facts=EmploymentFacts(
+        employment=Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
             contract_type=FixedTerm(),
         ),
-        employer=Employer(headcount=Headcount(50)),
+        employer=EmployerProfile(headcount=Headcount(50)),
     )
 )
 

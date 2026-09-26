@@ -8,6 +8,7 @@ from typing import Any
 import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import EmploymentPeriod, WeeklyHours
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -23,6 +24,7 @@ def _request(**kwargs: Any) -> PeriodCalculationRequest:  # noqa: ANN401
         "payment_date": date(_YEAR, 3, 27),
         "ccnl_slug": "metalmeccanico-federmeccanica.json",
         "level_code": "C3",
+        "employer": EmployerProfile(headcount=Headcount(50)),
     }
     fields.update(kwargs)
     return PeriodCalculationRequest(**fields)

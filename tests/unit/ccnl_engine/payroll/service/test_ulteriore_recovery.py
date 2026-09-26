@@ -15,7 +15,7 @@ from functools import cache
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.tax.service.loaders import load_year_rules
 from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult,
+    YearResult,
     calculate_year,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
@@ -32,6 +32,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)
@@ -125,7 +126,7 @@ _ABSENCE = AbsenceEvent(
 
 
 @cache
-def _year() -> YearCalculationResult:
+def _year() -> YearResult:
     """C3 at 33 of 40 hours: about 20,950 EUR of taxable, 1,000 EUR deduction.
 
     144 absence hours on the tredicesima payslip, the conguaglio, bring the
@@ -136,12 +137,14 @@ def _year() -> YearCalculationResult:
         The year result.
     """
     return calculate_year(
-        2026,
-        _CCNL,
-        "C3",
-        weekly_hours=WeeklyHours(33),
-        full_time_weekly_hours=WeeklyHours(40),
-        per_run_events={"2026-12-thirteenth": (_ABSENCE,)},
+        year_input(
+            2026,
+            _CCNL,
+            "C3",
+            weekly_hours=WeeklyHours(33),
+            full_time_weekly_hours=WeeklyHours(40),
+            events={"2026-12-thirteenth": (_ABSENCE,)},
+        )
     )
 
 
@@ -200,7 +203,7 @@ def test_excess_is_not_deferred_without_a_later_payslip() -> None:
 
 
 @cache
-def _terminated() -> YearCalculationResult:
+def _terminated() -> YearResult:
     """C3 at 38 of 40 hours, employed 1 January to 30 November 2026.
 
     About 20,400 EUR of projected taxable income; 144 absence hours in
@@ -223,15 +226,17 @@ def _terminated() -> YearCalculationResult:
         for month in (10, 11)
     }
     return calculate_year(
-        2026,
-        _CCNL,
-        "C3",
-        weekly_hours=WeeklyHours(38),
-        full_time_weekly_hours=WeeklyHours(40),
-        employment_period=EmploymentPeriod(
-            started_on=date(2026, 1, 1), ended_on=date(2026, 11, 30)
-        ),
-        period_events=absence,
+        year_input(
+            2026,
+            _CCNL,
+            "C3",
+            weekly_hours=WeeklyHours(38),
+            full_time_weekly_hours=WeeklyHours(40),
+            employment_period=EmploymentPeriod(
+                started_on=date(2026, 1, 1), ended_on=date(2026, 11, 30)
+            ),
+            events=absence,
+        )
     )
 
 
@@ -269,8 +274,8 @@ def _carried(posted: int) -> RecoveryObligation:
 def test_installments_carried_into_the_next_year() -> None:
     """A 2025 plan with 7 of 10 posted costs 60.00 EUR on three 2026 runs."""
     opening = PeriodState(obligations=EmploymentObligations(recoveries=(_carried(7),)))
-    with_plan = calculate_year(2026, _CCNL, "C3", opening_state=opening)
-    without = calculate_year(2026, _CCNL, "C3")
+    with_plan = calculate_year(year_input(2026, _CCNL, "C3", opening_state=opening))
+    without = calculate_year(year_input(2026, _CCNL, "C3"))
     assert without.annual_net - with_plan.annual_net == Decimal("60.00")
     reasons = [
         d.reason_code

@@ -14,7 +14,7 @@ from ccnl_engine.payroll.application._period_checks import check_net_covered
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult,
+    YearResult,
     calculate_year,
 )
 from ccnl_engine.payroll.application.lifecycle_invariants import (
@@ -32,11 +32,12 @@ from ccnl_engine.payroll.application.withholding_invariants import (
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.calendar import AccrualWindow, ExtraMonthKind
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -49,6 +50,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     WithholdingShortfall,
 )
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -61,22 +63,21 @@ def _run(
     month: int = 1,
     opening: PeriodState = _OPENING,
     **kwargs: object,
-) -> PeriodCalculationResult:
+) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
+            employer=EmployerProfile(headcount=Headcount(50)),
             opening_state=opening,
             **kwargs,  # type: ignore[arg-type]
         )
     )
 
 
-def _with_ytd(
-    result: PeriodCalculationResult, **ytd: object
-) -> PeriodCalculationResult:
+def _with_ytd(result: PeriodResult, **ytd: object) -> PeriodResult:
     state = result.closing_state
     closing = replace(state, ytd=replace(state.ytd, **ytd))  # type: ignore[arg-type]
     return replace(result, closing_state=closing)
@@ -140,7 +141,7 @@ class TestContributionCeiling:
         ytd=TaxYearState(earnings=EarningsYtd(inps_base=_CEILING - 1_000))
     )
 
-    def _capped_run(self) -> PeriodCalculationResult:
+    def _capped_run(self) -> PeriodResult:
         return _run(
             12,
             self._NEAR_CEILING,
@@ -168,8 +169,8 @@ class TestContributionCeiling:
 
 
 @cache
-def _last_two() -> tuple[PeriodCalculationResult, PeriodCalculationResult]:
-    results = calculate_year(_YEAR, _CCNL, _LEVEL).period_results
+def _last_two() -> tuple[PeriodResult, PeriodResult]:
+    results = calculate_year(year_input(_YEAR, _CCNL, _LEVEL)).period_results
     return results[-2], results[-1]
 
 
@@ -258,7 +259,9 @@ class TestIrpefAnnualReconciliation:
         project its taxable income with the INPS it actually withholds, so
         the conguaglio settles the IRPEF of the final taxable income.
         """
-        results = calculate_year(_YEAR, "bancari-abi.json", "QD4").period_results
+        results = calculate_year(
+            year_input(_YEAR, "bancari-abi.json", "QD4")
+        ).period_results
         last = results[-1]
         assert last.closing_state.ytd.tax.irpef == net_annual_irpef(
             last.tax_computation
@@ -370,7 +373,7 @@ class TestClosingStateRejected:
             _run(12, opening)
 
 
-def _november_irpef(result: YearCalculationResult) -> Decimal:
+def _november_irpef(result: YearResult) -> Decimal:
     (november,) = (
         r
         for r in result.period_results
@@ -381,7 +384,7 @@ def _november_irpef(result: YearCalculationResult) -> Decimal:
     return november.tax_computation.ordinary_tax
 
 
-def _final_taxable(result: YearCalculationResult) -> Decimal:
+def _final_taxable(result: YearResult) -> Decimal:
     return result.period_results[-1].closing_state.ytd.earnings.taxable
 
 
@@ -394,7 +397,7 @@ def test_large_bonus_leaves_every_net_non_negative() -> None:
     year.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
-    result = calculate_year(_YEAR, _CCNL, _LEVEL, period_events={11: (bonus,)})
+    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}))
     assert all(r.period_net >= 0 for r in result.period_results)
 
 
@@ -415,8 +418,8 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     then 0.09 and 0.10 more on the two later runs).
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
-    with_bonus = calculate_year(_YEAR, _CCNL, _LEVEL, period_events={11: (bonus,)})
-    without = calculate_year(_YEAR, _CCNL, _LEVEL)
+    with_bonus = calculate_year(year_input(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}))
+    without = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
 
     bonus_tax = oracle_net_irpef(_final_taxable(with_bonus)) - oracle_net_irpef(
         _final_taxable(without)

@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A Python engine for auditable Italian payroll simulations. CCNL-aware gross-to-net and
-employer cost, versioned rules, provenance tracking, and explicit calculation scope.
+employer cost, versioned rules, provenance tracking, and an explicit status on every result.
 Built for technical teams in HR, payroll, and compensation.
 
 **[Documentation](https://lucas-puerari.github.io/ccnl-engine/docs/) · [Demo](https://lucas-puerari.github.io/ccnl-engine/demo/)**
@@ -21,57 +21,78 @@ I never really understood employment contracts or pay slips. The whole system st
 Italian payroll is governed by collective agreements (CCNL) that define base salaries, seniority increments, and allowances as time-series values — they change at negotiated renewal dates. Existing tools either lock this data inside proprietary systems or require a full HRMS. This library treats each CCNL as a validated JSON file and the computation as a pure function:
 
 ```
-PayrollEngine.calculate(PayrollRequest) → PeriodCalculationResult
+PayrollEngine.calculate_period(PeriodInput) → PeriodResult
+PayrollEngine.calculate_year(YearInput) → YearResult
 ```
 
-Each result is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF computation, pay items, and a ledger of every accounting entry — so any figure can be traced back to the engine and data that produced it.
+Each result carries a status (`final`, `provisional`, `incomplete` or `rejected`),
+the issues that lowered it and the decisions taken. It is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF computation, pay items, and a ledger of every accounting entry, so any figure can be traced back to the engine and data that produced it.
 
 ## Quickstart
 
 ```python
 from datetime import date
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodInput,
 )
 
-engine = PayrollEngine.from_builtin_data()
-result = engine.calculate(
-    PayrollRequest(
+engine = PayrollEngine.bundled()
+employment = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+employer = EmployerProfile(headcount=Headcount(50))
+
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-        employment_facts=EmploymentFacts(),
-        employer=Employer(headcount=Headcount(50)),
+        employment=employment,
+        employer=employer,
     )
 )
 
+print(result.status)  # → final
 print(result.period_gross)  # → Decimal('...')
 print(result.period_net)  # → Decimal('...')
-print(result.period_id)  # → PeriodId(year=2026, month=1)
 ```
+
+The inputs group the facts by owner: `Employment` (CCNL, level, contract,
+employment period, hours, seniority, sector), `EmployerProfile` (headcount,
+activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
+every substitute-tax regime) and `PeriodFacts` (events, surtax jurisdiction,
+family, contributable hours of one run). Every input is validated when it is
+built. A fact left unknown never looks final: the regime it drives is not
+applied and the result is `provisional`.
 
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a
 `CalendarOverride` with a reason, and an override that drops a CCNL extra
-month raises `InvalidInputError`. `EmploymentFacts.started_on` and
-`ended_on` select the runs: a worker employed from July to September gets
-three runs, and the September run also pays the 3/12 of tredicesima and
-quattordicesima accrued until the termination.
+month raises `InvalidInputError`. `Employment.employment_period` selects the
+runs: a worker employed from July to September gets three runs, and the
+September run also pays the 3/12 of tredicesima and quattordicesima accrued
+until the termination.
 
 ```python
-from ccnl_engine import PayrollYearRequest
+from ccnl_engine import PeriodFacts, YearInput
 
 year = engine.calculate_year(
-    PayrollYearRequest(year=2026, ccnl_slug="commercio-confcommercio.json", level_code="4")
+    YearInput(
+        year=2026,
+        employment=employment,
+        employer=employer,
+        default_facts=PeriodFacts(regione="IT-45"),
+    )
 )
 print(len(year.period_results))  # → 14
+next_year = engine.close_tax_year(year.closing_state)
 ```
+
+`YearInput.periods` maps a month (1-12) or a run id such as
+`"2026-12-thirteenth"` to the `PeriodFacts` of that run; runs without an entry
+take `default_facts`.
 
 ## CCNL coverage
 

@@ -1,31 +1,30 @@
 # Second-level bargaining
 
-Company or territorial agreements may add allowances on top of the national CCNL
-minimum. The `SupplementaryAllowance` type describes such an allowance; it is not
-yet an input of the payroll pipeline, and `Employer` carries only the headcount.
+Company or territorial agreements may add allowances on top of the national
+CCNL minimum. Second-level amounts are not an input of the engine: there is no
+model for a caller-supplied second-level allowance, and a CCNL data file
+carries only the allowances of the national agreement. An amount agreed at
+company level that must be paid can be declared today only through the work
+events of the run, for example a `BonusEvent`, with the treatment of that
+event.
 
 See [Domain: Second-level bargaining](../domain/components.md#12-second-level-bargaining-contrattazione-di-secondo-livello)
 for the legal background.
 
-## SupplementaryAllowance flags
+## Company agreements and the calendar
 
-Each `SupplementaryAllowance` entry has three boolean flags:
-
-| Flag | Default | Effect when `True` |
-|---|:---:|---|
-| `contribution_relevant` | `True` | Amount is included in the INPS base |
-| `tfr_relevant` | `True` | Amount is included in the TFR accrual base |
-| `apprenticeship_relevant` | `True` | Amount enters the apprentice's percentage or under-classification computation |
-
-Set a flag to `False` to exclude the allowance from that base (e.g. a productivity
-bonus that is INPS-exempt under Art. 1 c. 182 L. 208/2015).
+A company agreement can change when an extra month is paid, or grant more
+than the CCNL. The year calculation accepts such a calendar only as a
+`CalendarOverride` with its reason, validated against the CCNL calendar:
 
 ```python
 --8<-- "docs/examples/08_second_level.py"
 ```
 
 !!! note
-    The preferential 5% IRPEF rate on *premi di risultato* is not computed by the
-    engine — tax is always applied at ordinary rates.
+    A *premio di risultato* paid under a second-level agreement is a
+    `BonusEvent` with `kind="productivity_bonus"`. Its 1% substitute tax
+    needs the prior-year employment income in `PriorYearTaxFacts`; without
+    it the bonus is taxed at ordinary rates.
 
-**API reference:** [`SupplementaryAllowance`](../api/engine.md)
+**API reference:** [`YearInput`, `CalendarOverride`](../api/engine.md)

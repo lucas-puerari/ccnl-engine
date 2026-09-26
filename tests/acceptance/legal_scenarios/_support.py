@@ -7,17 +7,21 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    ContributableHours,
+    EmployerProfile,
+    Employment,
+    Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
     PayrollState,
+    PeriodFacts,
+    PeriodInput,
+    PriorYearTaxFacts,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
-    from ccnl_engine import PayrollResult
+    from ccnl_engine import PeriodResult
     from ccnl_engine.events import WorkEvent
 
 ENGINE = PayrollEngine.bundled()
@@ -28,6 +32,9 @@ DOMESTIC = "lavoro-domestico-non-convivente.json"
 POSTAL_FISE = "servizi-postali-appalto-fise.json"
 PA_FUNZIONI_CENTRALI = "funzioni-centrali-aran.json"
 
+#: Employer of 50 employees, the headcount the scenarios assume.
+EMPLOYER = EmployerProfile(headcount=Headcount(50))
+
 
 def regular_period(
     *,
@@ -36,35 +43,42 @@ def regular_period(
     year: int = 2026,
     month: int = 1,
     payment_date: date | None = None,
-    facts: EmploymentFacts | None = None,
-    employer: Employer | None = None,
+    employment: Employment | None = None,
+    employer: EmployerProfile = EMPLOYER,
     events: tuple[WorkEvent, ...] = (),
     opening_state: PayrollState | None = None,
     regione: str | None = None,
     comune_belfiore: str | None = None,
-) -> PayrollResult:
+    prior_year: PriorYearTaxFacts | None = None,
+    contributable_hours: ContributableHours | None = None,
+) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
+
+    ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``.
 
     Returns:
         The engine result for the requested run.
     """
-    return ENGINE.calculate(
-        PayrollRequest(
+    return ENGINE.calculate_period(
+        PeriodInput(
             run=PayrollRun.regular(year=year, month=month),
             payment_date=payment_date or date(year, month, 27),
-            ccnl_slug=ccnl_slug,
-            level_code=level_code,
-            employment_facts=facts or EmploymentFacts(),
-            employer=employer or Employer(),
+            employment=employment
+            or Employment(ccnl_slug=ccnl_slug, level_code=level_code),
+            employer=employer,
+            facts=PeriodFacts(
+                contributable_hours=contributable_hours,
+                events=events,
+                regione=regione,
+                comune_belfiore=comune_belfiore,
+            ),
+            prior_year=prior_year or PriorYearTaxFacts(),
             opening_state=opening_state or PayrollState.zero(),
-            events=events,
-            regione=regione,
-            comune_belfiore=comune_belfiore,
         )
     )
 
 
-def substitute_tax(result: PayrollResult) -> Decimal:
+def substitute_tax(result: PeriodResult) -> Decimal:
     """Return the total substitute tax posted to the ledger for one run.
 
     Returns:

@@ -4,28 +4,31 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    ContributableHours,
+    EmployerProfile,
+    Employment,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+    WeeklyHours,
 )
 
 engine = PayrollEngine.bundled()
 
 # Non-convivente domestic worker, level B, 25 h/week, 108 hours in January
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="lavoro-domestico-non-convivente.json",
-        level_code="B",
-        employment_facts=EmploymentFacts(
-            weekly_hours=25,
-            contributable_hours=Decimal(108),
+        employment=Employment(
+            ccnl_slug="lavoro-domestico-non-convivente.json",
+            level_code="B",
+            weekly_hours=WeeklyHours(25),
         ),
-        employer=Employer(headcount=Headcount(1)),
+        employer=EmployerProfile(headcount=Headcount(1)),
+        facts=PeriodFacts(contributable_hours=ContributableHours(Decimal(108))),
     )
 )
 

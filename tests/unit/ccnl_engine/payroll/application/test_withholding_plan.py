@@ -17,6 +17,7 @@ from ccnl_engine.payroll.application._withholding_plan import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
@@ -79,6 +80,7 @@ def test_request_schedule_of_other_year_rejected() -> None:
     """A withholding schedule of another tax year is rejected."""
     with pytest.raises(ValueError, match=r"withholding_schedule\.year"):
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=1),
             payment_date=date(_YEAR, 1, 28),
             ccnl_slug=_COOP_SOCIALI,
@@ -105,6 +107,7 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
     )
     result = calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=12),
             payment_date=date(_YEAR, 12, 28),
             ccnl_slug=_COOP_SOCIALI,

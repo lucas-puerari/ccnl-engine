@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.period import (
         PeriodCalculationRequest,
-        PeriodCalculationResult,
+        PeriodResult,
     )
     from ccnl_engine.payroll.domain.run import PayrollRunId
 
@@ -84,7 +84,7 @@ def check_absences_within_pay(
         raise InvalidInputError(msg, feature=_FEATURE)
 
 
-def check_net_covered(result: PeriodCalculationResult) -> None:
+def check_net_covered(result: PeriodResult) -> None:
     """Reject a run whose absences leave less pay than the deductions.
 
     IRPEF and surtax are already capped at the pay left, so a negative net

@@ -14,7 +14,7 @@ from ccnl_engine.engine.provenance.domain.source import (
     SourceLocation,
 )
 from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult,
+    YearResult,
     calculate_year,
 )
 from ccnl_engine.payroll.domain.decisions import (
@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
+from tests.helpers import year_input
 
 _FINAL = CalculationStatus.FINAL
 _PROVISIONAL = CalculationStatus.PROVISIONAL
@@ -58,17 +59,13 @@ def _decision(**overrides: Any) -> CalculationDecision:  # noqa: ANN401
 
 
 @pytest.fixture(scope="module")
-def year_result() -> YearCalculationResult:
+def year_result() -> YearResult:
     """Compute the standard year (13 runs) through the real pipeline.
 
     Returns:
         The year result of a metalmeccanico C3 worker in 2026.
     """
-    return calculate_year(
-        2026,
-        "metalmeccanico-federmeccanica.json",
-        "C3",
-    )
+    return calculate_year(year_input(2026, "metalmeccanico-federmeccanica.json", "C3"))
 
 
 class TestCalculationStatus:
@@ -220,16 +217,14 @@ class TestPeriodResultStatus:
     """Status of a period result is derived from its issues."""
 
     def test_computed_result_is_final_without_issues(
-        self, year_result: YearCalculationResult
+        self, year_result: YearResult
     ) -> None:
         """No capability raises issues yet: every result is final."""
         period = year_result.period_results[0]
         assert period.issues == ()
         assert period.status is _FINAL
 
-    def test_status_is_worst_issue_status(
-        self, year_result: YearCalculationResult
-    ) -> None:
+    def test_status_is_worst_issue_status(self, year_result: YearResult) -> None:
         """The period status is the most severe status among its issues."""
         period = replace(
             year_result.period_results[0],
@@ -242,21 +237,19 @@ class TestYearResultStatus:
     """Status and issues of a year result aggregate its periods."""
 
     def test_computed_year_is_final_without_issues(
-        self, year_result: YearCalculationResult
+        self, year_result: YearResult
     ) -> None:
         """A year of issue-free periods is final."""
         assert year_result.issues == ()
         assert year_result.status is _FINAL
 
-    def test_empty_year_is_final(self, year_result: YearCalculationResult) -> None:
+    def test_empty_year_is_final(self, year_result: YearResult) -> None:
         """A year without periods has no issues and is final."""
         empty = replace(year_result, period_results=())
         assert empty.issues == ()
         assert empty.status is _FINAL
 
-    def test_status_is_worst_period_status(
-        self, year_result: YearCalculationResult
-    ) -> None:
+    def test_status_is_worst_period_status(self, year_result: YearResult) -> None:
         """The year status is the worst period status; issues keep run order."""
         first_run, *middle_runs, last_run = year_result.period_results
         first = _issue(_PROVISIONAL, code="first")
@@ -274,7 +267,7 @@ class TestYearResultStatus:
         assert year.issues == (first, second, third)
 
 
-def test_year_issues_are_listed_once(year_result: YearCalculationResult) -> None:
+def test_year_issues_are_listed_once(year_result: YearResult) -> None:
     """An issue repeated on every run is listed once, at its first run.
 
     The same code with another message is a different issue and is kept.

@@ -14,6 +14,7 @@ from __future__ import annotations
 from datetime import date
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -36,6 +37,7 @@ def _extra_month_req(
     employment_period: EmploymentPeriod | None = None,
 ) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=payment_month),
         payment_date=date(_YEAR, payment_month, 28),
         ccnl_slug=ccnl,
@@ -94,6 +96,7 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
 
     regular_gross = calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=6),
             payment_date=date(_YEAR, 6, 28),
             ccnl_slug=_CCNL_METALMECCANICO,
@@ -158,6 +161,7 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
 
     regular_june = calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=6),
             payment_date=date(_YEAR, 6, 28),
             ccnl_slug=_CCNL_COMMERCIO,

@@ -88,7 +88,7 @@ or the capability report. See [Trust: Confidence](confidence.md).
 
 ## Provenance and payroll results
 
-A `PayrollResult` does not carry provenance records. It links back to its
+A `PeriodResult` does not carry provenance records. It links back to its
 sources in two ways:
 
 - `result.bundle_version` is the version of the knowledge bundle used.

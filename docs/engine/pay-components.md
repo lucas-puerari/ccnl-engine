@@ -9,38 +9,52 @@ See [Domain: Components](../domain/components.md) for the legal background.
 ## Part-time
 
 Pass the contracted `weekly_hours` together with the CCNL
-`full_time_weekly_hours` on `EmploymentFacts`. The engine derives the
+`full_time_weekly_hours` on `Employment`, as `WeeklyHours`. The engine derives the
 part-time fraction from the two and scales the contractual pay by it.
 `weekly_hours` must not exceed `full_time_weekly_hours`.
 
 ```python
 from datetime import date
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodInput,
+    WeeklyHours,
+)
 
 engine = PayrollEngine.bundled()
 
 
-def gross(facts: EmploymentFacts) -> str:
-    result = engine.calculate(
-        PayrollRequest(
+def gross(weekly_hours: WeeklyHours | None = None) -> str:
+    employment = Employment(
+        ccnl_slug="metalmeccanico-federmeccanica.json",
+        level_code="C3",
+        weekly_hours=weekly_hours,
+        full_time_weekly_hours=WeeklyHours(40),
+    )
+    result = engine.calculate_period(
+        PeriodInput(
             run=PayrollRun.regular(year=2026, month=3),
             payment_date=date(2026, 3, 27),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
-            level_code="C3",
-            employment_facts=facts,
+            employment=employment,
+            employer=EmployerProfile(headcount=Headcount(50)),
         )
     )
     return str(result.period_gross)
 
 
-print("Full time:", gross(EmploymentFacts()))
-print("Half time:", gross(EmploymentFacts(weekly_hours=20, full_time_weekly_hours=40)))
+print("Full time:", gross())
+print("Half time:", gross(WeeklyHours(20)))
 ```
 
 ## Seniority increments (*scatti di anzianità*)
 
-Pass the months of continuous service as `EmploymentFacts.seniority_months`.
+Pass the months of continuous service as `Employment.seniority_months`, a
+`SeniorityMonths`.
 The engine derives the number of matured increments from the CCNL cadence and
 adds the amount the level earns.
 
@@ -52,7 +66,7 @@ adds the amount the level earns.
 
 Some CCNLs price seniority by legal category (art. 2095 c.c.): in Servizi
 Postali in Appalto FISE an *operaio* and an *impiegato* on the same level earn
-different increments. Pass the category as `EmploymentFacts.category`, a
+different increments. Pass the category as `Employment.category`, a
 `WorkerCategory` (`operaio`, `impiegato`, `quadro`, `dirigente`). The same
 value selects category-specific INPS employer rates (e.g. *impiegati* in
 artigianato).
@@ -75,23 +89,34 @@ cost.
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+)
 from ccnl_engine.events import BilateralFundEvent
 
 engine = PayrollEngine.bundled()
 
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=3),
         payment_date=date(2026, 3, 27),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=EmploymentFacts(),
-        events=(
-            BilateralFundEvent(
-                event_date=date(2026, 3, 1),
-                employee_amount=Decimal("2.00"),
-                employer_amount=Decimal("13.00"),
+        employment=Employment(
+            ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+        ),
+        employer=EmployerProfile(headcount=Headcount(50)),
+        facts=PeriodFacts(
+            events=(
+                BilateralFundEvent(
+                    event_date=date(2026, 3, 1),
+                    employee_amount=Decimal("2.00"),
+                    employer_amount=Decimal("13.00"),
+                ),
             ),
         ),
     )
@@ -99,5 +124,5 @@ result = engine.calculate(
 print(result.period_net, result.period_employer_cost)
 ```
 
-**API reference:** [`EmploymentFacts`](../api/engine.md),
+**API reference:** [`Employment`](../api/engine.md),
 [`WorkerCategory`](../api/engine.md)

@@ -22,7 +22,6 @@ from ccnl_engine.engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.engine.tax.domain.variable_pay import (
     FringeBenefitRules,
     PdRRules,
-    RinnovoRules,
     VariablePayRules,
 )
 from ccnl_engine.engine.tax.service.tax_resource_reader import (
@@ -99,7 +98,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
             flat_tax_rate=Decimal(str(pdr_raw["flat_tax_rate"])),
             income_ceiling=Decimal(str(pdr_raw["income_ceiling"])),
         ),
-        rinnovo=RinnovoRules.model_validate({
+        rinnovo=PreferentialTaxRegime.model_validate({
             **{k: v for k, v in rinnovo_raw.items() if k != "description"},
             "ruleset": _as_ruleset(raw),
         }),

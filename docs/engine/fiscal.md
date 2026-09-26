@@ -292,17 +292,14 @@ months of service are given), `family_deductions` (`deductions_applied` or
 to the PdR substitute tax) and the substitute tax regimes described in
 [Substitute tax regimes](substitute-tax-regimes.md).
 
-## Warnings
+## IVS ceiling
 
-`PayrollResult.warnings` is a tuple of human-readable strings. The engine emits
-a warning (but never fails) for conditions that may indicate a configuration
-mistake:
-
-- **IVS ceiling**: when `SeniorityByDate` is supplied with a hire date on or after
-  1996-01-01 but `Employee.ivs_ceiling_applies` is `False`, and the contribution
-  base exceeds the IVS ceiling. Workers hired from 1996 are generally subject to
-  the *massimale IVS*; the flag defaults to `False` to avoid silent over-deduction
-  for pre-1996 workers.
+The *massimale IVS* applies according to `Employment.ceiling_status`
+(`ContributionCeilingStatus`): `POST_1995` and `OPTED_IN` apply it,
+`NOT_APPLICABLE` does not, and `UNKNOWN` (the default) does not apply it to
+avoid over-deducting contributions for workers enrolled before 1996. Declare
+the status for workers first enrolled from 1996. Conditions that lower the
+reliability of a result are reported in `result.issues`, never as free text.
 
 **API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
 [`REGION_CODES`](../api/models.md#fiscal),

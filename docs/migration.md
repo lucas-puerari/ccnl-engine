@@ -1,15 +1,136 @@
-# Migration guide: period-first API
+# Migration guide
 
-## What changed
+## PeriodInput and YearInput
+
+The facade no longer takes a flat request. `calculate_period()` takes a
+`PeriodInput` and `calculate_year()` a `YearInput`; both group the facts by
+owner and are validated when built. There is no compatibility layer: every
+name in the left column is removed.
+
+| Before | After |
+|---|---|
+| `engine.calculate(PayrollRequest(...))` | `engine.calculate_period(PeriodInput(...))` |
+| `engine.calculate_year(PayrollYearRequest(...))` | `engine.calculate_year(YearInput(...))` |
+| `PayrollEngine.from_builtin_data()` | `PayrollEngine.bundled()` |
+| `PayrollRequest.ccnl_slug`, `level_code` | `Employment.ccnl_slug`, `Employment.level_code` |
+| `EmploymentFacts(...)` | `Employment(...)`, with the CCNL slug and the level |
+| `EmploymentFacts(weekly_hours=25, full_time_weekly_hours=40)` | `Employment(weekly_hours=WeeklyHours(25), full_time_weekly_hours=WeeklyHours(40))` |
+| `EmploymentFacts(seniority_months=60)` | `Employment(seniority_months=SeniorityMonths(60))` |
+| `EmploymentFacts(started_on=..., ended_on=...)` | `Employment(employment_period=EmploymentPeriod(started_on, ended_on))` |
+| `EmploymentFacts(contributable_hours=Decimal(108))` | `PeriodFacts(contributable_hours=ContributableHours(Decimal(108)))` |
+| sector derived from the CCNL tax sector | `Employment.sector` (`EmploymentSector.PRIVATE` or `PUBLIC`), `None` means unknown |
+| `Employer()` (50 employees when omitted) | `EmployerProfile(headcount=Headcount(n))`, required on every input |
+| no employer activity | `EmployerProfile.activity` (`EmployerActivity`), `None` means unknown |
+| `prior_income=` on `BonusEvent`, `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent` | `PriorYearTaxFacts(employment_income=...)` on the input, once |
+| `substitute_tax_waived=True` on an event | `PriorYearTaxFacts(waived_regimes=frozenset({SubstituteTaxRegime.RINNOVO}))` |
+| renewal signing date not received | `BonusEvent(kind="contract_renewal", agreement_signed_on=...)` |
+| `regione`, `comune_belfiore`, `family_composition`, `has_dependent_children` on the request | `PeriodFacts` of the run |
+| `events=` on `PayrollRequest` | `PeriodFacts(events=...)` |
+| `period_events={3: (...)}` | `YearInput.periods={3: PeriodFacts(events=...)}` |
+| `per_run_events={"2026-12-thirteenth": (...)}` | `YearInput.periods={"2026-12-thirteenth": PeriodFacts(events=...)}` |
+| year-level `regione`, family, `contributable_hours` | `YearInput.default_facts` (an entry in `periods` replaces it for its run) |
+| `PayrollYearRequest.calendar` | `YearInput.calendar_override` |
+| `PayrollResult` (alias of `PeriodCalculationResult`) | `PeriodResult` |
+| `PayrollYearResult` (`YearCalculationResult`) | `YearResult`, with `closing_state` of the last run |
+| `year.period_results[-1].closing_state` | `year.closing_state` |
+| `SupplementaryAllowance`, `AgreementKind` | removed: second-level amounts are not an engine input |
+| `RinnovoRules` | `PreferentialTaxRegime` with `agreements_signed_from` and `agreements_signed_until` |
+
+```python
+from dataclasses import replace
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine import (
+    EmployerActivity,
+    EmployerProfile,
+    Employment,
+    EmploymentSector,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodFacts,
+    PeriodInput,
+    PriorYearTaxFacts,
+    SeniorityMonths,
+    YearInput,
+)
+from ccnl_engine.events import NightShiftEvent
+
+engine = PayrollEngine.bundled()
+employment = Employment(
+    ccnl_slug="metalmeccanico-federmeccanica.json",
+    level_code="C3",
+    seniority_months=SeniorityMonths(36),
+    sector=EmploymentSector.PRIVATE,
+)
+employer = EmployerProfile(headcount=Headcount(100), activity=EmployerActivity.OTHER)
+prior_year = PriorYearTaxFacts(employment_income=Decimal(30_000))
+base = PeriodFacts(regione="IT-45", comune_belfiore="F257")
+
+january = engine.calculate_period(
+    PeriodInput(
+        run=PayrollRun.regular(2026, 1),
+        payment_date=date(2026, 1, 28),
+        employment=employment,
+        employer=employer,
+        facts=base,
+        prior_year=prior_year,
+    )
+)
+
+night = NightShiftEvent(event_date=date(2026, 3, 10), supplement_amount=Decimal(200))
+year = engine.calculate_year(
+    YearInput(
+        year=2026,
+        employment=employment,
+        employer=employer,
+        prior_year=prior_year,
+        default_facts=base,
+        periods={3: replace(base, events=(night,))},
+    )
+)
+opening_2027 = engine.close_tax_year(year.closing_state)
+```
+
+Behaviour that changes with the inputs:
+
+- The sector of the employment is declared, not derived from the CCNL: a
+  public employer applying a private CCNL is public. When `sector` is `None`
+  the renewal and the night, holiday and shift regimes are `unknown` and the
+  result is `provisional`. Declare `EmploymentSector.PRIVATE` to keep a
+  private-sector worker eligible.
+- L. 199/2025 art. 1 c. 11 excludes the activities of c. 18 (food and
+  beverage service, tourism, thermal establishments) from the night, holiday
+  and shift regime: such an employer is `ineligible`, and an employer whose
+  activity is `None` is `unknown`.
+- A renewal increment is eligible only when `agreement_signed_on` lies
+  between 1 January 2024 and 31 December 2026; without it the renewal is
+  `unknown`.
+- A year run takes one prior-year income for every regime and every run:
+  the same worker cannot carry different incomes on different events.
+- Naming the same run twice in `periods` (by month and by run id) raises
+  `InvalidInputError`, a `ValueError`, at construction.
+- `default_facts` must carry no event.
+
+Amounts are unchanged for the same facts: the documentation examples print
+the same figures as before the change.
+
+## Earlier changes
+
+The sections below document earlier releases. Their code uses the names of
+the release that introduced them; the table above gives the current name.
+
+### From `estimate_annual()` to `PayrollEngine`
 
 The entry point changed from `estimate_annual()` to `PayrollEngine`.
 
 `estimate_annual()` computed an annual gross-to-net projection in a single call.
-`PayrollEngine.calculate()` computes one payroll run at a time, threading
+`PayrollEngine.calculate()` (now `calculate_period()`) computed one payroll run at a time, threading
 YTD state (`PeriodState`) between runs. `PayrollEngine.calculate_year()` does
 the full sequence in one call.
 
-## Before (legacy — removed)
+#### Before (removed)
 
 ```python
 from datetime import date
@@ -17,54 +138,14 @@ from datetime import date
 result = ...  # AnnualEstimateInput / estimate_annual no longer available
 ```
 
-## After (current API)
+The current API is described in the first section of this page.
 
-```python
-from datetime import date
-
-from ccnl_engine import PayrollEngine, PayrollRequest, PayrollRun, PayrollYearRequest
-
-engine = PayrollEngine.bundled()
-
-# Single period
-result = engine.calculate(
-    PayrollRequest(
-        run=PayrollRun.regular(year=2026, month=1),
-        payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-    )
-)
-print(result.period_gross)
-print(result.period_net)
-
-# Full year: the calendar is derived from the CCNL (13 runs for metalmeccanico)
-year = engine.calculate_year(
-    PayrollYearRequest(
-        year=2026,
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-    )
-)
-print(year.annual_gross)
-```
-
-## Key differences
-
-| | Legacy (`estimate_annual`) | `PayrollEngine.calculate_year` |
-|---|---|---|
-| Input model | `AnnualEstimateInput` | `PayrollYearRequest` |
-| Output model | `AnnualEstimate` | `YearCalculationResult` |
-| YTD state | internal, not exposed | threaded via `PeriodState` |
-| Run sequence | implicit (annual) | derived from the CCNL; `CalendarOverride` with a reason to change it |
-| Events | via `PeriodPayrollInput` | via `period_events` dict |
-
-## `estimate_annual` is removed
+#### `estimate_annual` is removed
 
 `estimate_annual` and the `ccnl_engine.engine.payroll` namespace were removed
 in v0.5. Migrate to `PayrollEngine` for all new code.
 
-## Surtax codes and decisions
+### Surtax codes and decisions
 
 - `regione` takes the ISO 3166-2:IT region code (`IT-45` Emilia-Romagna,
   `IT-25` Lombardia, ...), with `IT-BZ` and `IT-TN` for the autonomous
@@ -79,7 +160,7 @@ in v0.5. Migrate to `PayrollEngine` for all new code.
   surtax outcome from `result.decisions` (capabilities
   `addizionale_regionale`, `addizionale_comunale`).
 
-## Payroll state: tax year and obligations
+### Payroll state: tax year and obligations
 
 `PayrollState` (`PeriodState`) is now a composite of the tax year state and
 the obligations that survive the year change.
@@ -106,7 +187,7 @@ the obligations that survive the year change.
   them.
 - New public names: `OpeningBalances`, `RecoveryObligation`, `RecoveryPlan`.
 
-## Credit accounts and run ids
+### Credit accounts and run ids
 
 | Before | After |
 |---|---|
@@ -134,7 +215,7 @@ the obligations that survive the year change.
   read with `due` and `reason` unset.
 - New public name: `PayrollRunId`.
 
-## Decisions and capability report
+### Decisions and capability report
 
 - `result.decisions` now also holds the decisions of the tax credits
   (`ulteriore_detrazione_lavoro`, `trattamento_integrativo`), of the worker
@@ -149,7 +230,7 @@ the obligations that survive the year change.
   `ccnl_engine.payroll.service.irpef` to
   `ccnl_engine.payroll.service.irpef_credits`.
 
-## Invariants and input checks
+### Invariants and input checks
 
 - The reconciliation invariants have descriptive codes instead of `I1` to
   `I19` and `L1` to `L4` (for example `net_identity` for `I9`,
@@ -183,7 +264,7 @@ the obligations that survive the year change.
   `withholding_shortfall`) remains only when the other deductions exceed
   the pay left.
 
-## Fiscal rule corrections
+### Fiscal rule corrections
 
 - The ulteriore detrazione (L. 207/2024 art. 1 c. 6) recognized by the
   withholding is tracked in `state.ytd.ulteriore_detrazione`. An excess

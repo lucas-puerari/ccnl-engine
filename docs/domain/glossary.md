@@ -108,7 +108,7 @@ entitlement unchanged; `MORE_FAVOURABLE_TREATMENT`
 records an agreement granting more than the CCNL (art. 2077 c.c.).  No
 reason allows dropping or lowering an extra month the CCNL grants.
 
-`CalendarOverride`, `CalendarOverrideReason`, `YearCalculationResult.calendar`
+`CalendarOverride`, `CalendarOverrideReason`, `YearResult.calendar`
 
 ### calculation status (stato del calcolo)
 
@@ -118,7 +118,7 @@ worst status among its issues (`final` when there are none); a year status is
 the worst status among its periods.  An unknown normative input must never
 yield a `final` result.
 
-`CalculationStatus`, `PeriodCalculationResult.status`
+`CalculationStatus`, `PeriodResult.status`, `YearResult.status`
 
 ### calculation issue (anomalia di calcolo)
 
@@ -126,7 +126,7 @@ A condition that lowers the status of a result, identified by a stable
 lower snake case `code` (for example `regional_surtax_unknown`), with a message,
 the status it implies and, when one applies, its normative source.
 
-`CalculationIssue`, `PeriodCalculationResult.issues`
+`CalculationIssue`, `PeriodResult.issues`
 
 ### calculation decision (decisione di calcolo)
 
@@ -137,8 +137,7 @@ A capability that ran and found nothing due still decides: amount 0 and a
 reason such as `income_above_upper_threshold`.  The capability trace is
 built from the decisions.
 
-`CalculationDecision`, `PeriodCalculationResult.decisions`,
-`YearCalculationResult.decisions`
+`CalculationDecision`, `PeriodResult.decisions`, `YearResult.decisions`
 
 ### capability trace (traccia di esecuzione)
 
@@ -192,10 +191,11 @@ provinces.  A malformed code is invalid input, not an unknown table.
 A statutory flat tax that replaces IRPEF and its surtaxes on the pay items it
 covers, for the tax years it is in force, within an optional annual cap, and
 only for workers meeting its requirements: prior-year employment income not
-above a ceiling, employment sector, no written renunciation.  Parameters and
-normative source are data in the tax bundle.
+above a ceiling, employment sector, employer activity, signing date of the
+agreement, no written renunciation.  Parameters and normative source are data
+in the tax bundle; the worker facts are declared on the input.
 
-`PreferentialTaxRegime`, `RinnovoRules`
+`PreferentialTaxRegime`, `PriorYearTaxFacts`, `EmploymentSector`, `EmployerActivity`
 
 ### regime cap account (plafond annuo del regime agevolato)
 

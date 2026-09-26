@@ -1,4 +1,4 @@
-"""Reconciliation invariants for PeriodCalculationResult.
+"""Reconciliation invariants for PeriodResult.
 
 Each invariant is a pure function that accepts a result (and, where needed,
 the opening :class:`~ccnl_engine.payroll.domain.period.PeriodState` and the
@@ -75,7 +75,7 @@ from ccnl_engine.payroll.application.withholding_invariants import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import (
-        PeriodCalculationResult,
+        PeriodResult,
         PeriodState,
     )
 
@@ -111,7 +111,7 @@ class ReconciliationResult:
 
 
 def reconcile(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
     facts: RunFacts | None = None,
 ) -> ReconciliationResult:
@@ -153,7 +153,7 @@ def reconcile(
 
 
 def check_period(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
     facts: RunFacts,
 ) -> None:

@@ -13,10 +13,11 @@ from ccnl_engine.payroll.application._extra_month_accrual import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult,
+    YearResult,
     calculate_year,
 )
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import AbsenceEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
@@ -25,18 +26,20 @@ from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.irpef import work_income_deduction
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
-from tests.helpers import make_year_rules
+from tests.helpers import make_year_rules, year_input
 
 _COMMERCIO = "commercio-confcommercio.json"
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026
 
 
-def _commercio_year(employment: EmploymentPeriod) -> YearCalculationResult:
-    return calculate_year(_YEAR, _COMMERCIO, "4", employment_period=employment)
+def _commercio_year(employment: EmploymentPeriod) -> YearResult:
+    return calculate_year(
+        year_input(_YEAR, _COMMERCIO, "4", employment_period=employment)
+    )
 
 
-def _extra_items(result: YearCalculationResult) -> dict[str, Decimal]:
+def _extra_items(result: YearResult) -> dict[str, Decimal]:
     return {
         item.item_id: item.amount
         for r in result.period_results
@@ -91,10 +94,14 @@ class TestTerminationSettlement:
     def test_thirteen_month_contract_settles_only_the_tredicesima(self) -> None:
         """Metalmeccanico ended 31 May: the May run pays 5/12 of the 13th."""
         result = calculate_year(
-            _YEAR,
-            _METALMECCANICO,
-            "C3",
-            employment_period=EmploymentPeriod(date(2020, 1, 1), date(_YEAR, 5, 31)),
+            year_input(
+                _YEAR,
+                _METALMECCANICO,
+                "C3",
+                employment_period=EmploymentPeriod(
+                    date(2020, 1, 1), date(_YEAR, 5, 31)
+                ),
+            )
         )
         assert list(_extra_items(result)) == ["extra_month_thirteenth_2026-05-regular"]
 
@@ -118,16 +125,16 @@ class TestSuspendingAbsences:
             end_date=date(_YEAR, 4, 20),
             suspends_accrual=True,
         )
-        full = calculate_year(_YEAR, _METALMECCANICO, "C3")
+        full = calculate_year(year_input(_YEAR, _METALMECCANICO, "C3"))
         reduced = calculate_year(
-            _YEAR, _METALMECCANICO, "C3", period_events={4: (absence,)}
+            year_input(_YEAR, _METALMECCANICO, "C3", events={4: (absence,)})
         )
         assert reduced.period_results[-1].period_gross < (
             full.period_results[-1].period_gross
         )
 
-    def test_days_are_collected_from_both_event_maps(self) -> None:
-        """Flagged absences count wherever they are allocated; others do not."""
+    def test_only_flagged_absence_days_are_collected(self) -> None:
+        """Flagged absences count whatever run they belong to; others do not."""
         flagged = AbsenceEvent(
             event_date=date(_YEAR, 4, 1),
             hours=Decimal(8),
@@ -140,9 +147,7 @@ class TestSuspendingAbsences:
         overtime = OvertimeEvent(
             event_date=date(_YEAR, 5, 2), hours=Decimal(1), hourly_rate=Decimal(10)
         )
-        days = non_accruing_days(
-            {5: (unflagged, overtime)}, {"2026-04-regular": (flagged,)}
-        )
+        days = non_accruing_days((unflagged, overtime, flagged))
         assert days == frozenset({date(_YEAR, 4, 1)})
 
 
@@ -155,6 +160,7 @@ class TestStandaloneExtraRun:
     ) -> Decimal:
         calendar = WorkCalendar.from_additional_months(_YEAR, 14)
         request = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=run.month),
             payment_date=date(_YEAR, run.month, 28),
             ccnl_slug=ccnl,

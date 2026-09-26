@@ -11,6 +11,7 @@ from decimal import Decimal
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -26,7 +27,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import SicknessItem
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -44,6 +45,7 @@ _PAYMENT = date(_YEAR, _MONTH, 28)
 def _req(*events: object) -> PeriodCalculationRequest:
 
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,
@@ -58,7 +60,7 @@ def _base() -> PeriodCalculationRequest:
 
 
 def _cash(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount
@@ -70,7 +72,7 @@ def _cash(result: object) -> Decimal:
 
 
 def _ncb(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount
@@ -82,7 +84,7 @@ def _ncb(result: object) -> Decimal:
 
 
 def _inps_employee(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount
@@ -94,7 +96,7 @@ def _inps_employee(result: object) -> Decimal:
 
 
 def _employer_contrib(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount
@@ -522,6 +524,7 @@ class TestFringeYtdAccumulation:
             ytd=TaxYearState(fringe=FringeYtd(value=Decimal("500.00")))
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
             ccnl_slug=_CCNL,
@@ -546,6 +549,7 @@ class TestFringeYtdAccumulation:
             ytd=TaxYearState(fringe=FringeYtd(value=Decimal("600.00")))
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
             ccnl_slug=_CCNL,
@@ -564,6 +568,7 @@ class TestFringeYtdAccumulation:
             ytd=TaxYearState(fringe=FringeYtd(value=Decimal("900.00")))
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
             ccnl_slug=_CCNL,
@@ -584,6 +589,7 @@ class TestHasDependentChildrenThreshold:
         # threshold_with_children=2000 for 2026; 1500 < 2000 → exempt
         evt = FringeEvent(event_date=date(_YEAR, _MONTH, 1), amount=Decimal("1500.00"))
         req_no_children = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
             ccnl_slug=_CCNL,
@@ -592,6 +598,7 @@ class TestHasDependentChildrenThreshold:
             has_dependent_children=False,
         )
         req_with_children = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=_MONTH),
             payment_date=date(_YEAR, _MONTH, 28),
             ccnl_slug=_CCNL,
@@ -685,7 +692,7 @@ class TestWelfareEventAccounting:
 
 
 def _tfr(result: object) -> Decimal:
-    assert isinstance(result, PeriodCalculationResult)
+    assert isinstance(result, PeriodResult)
     return sum(
         (
             e.amount

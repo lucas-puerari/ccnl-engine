@@ -16,8 +16,13 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import EmploymentFacts, PayrollYearRequest, PayrollYearResult
-from tests.acceptance.legal_scenarios._support import COMMERCIO, COOP_SOCIALI, ENGINE
+from ccnl_engine import Employment, EmploymentPeriod, YearInput, YearResult
+from tests.acceptance.legal_scenarios._support import (
+    COMMERCIO,
+    COOP_SOCIALI,
+    EMPLOYER,
+    ENGINE,
+)
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 
 pytestmark = pytest.mark.legal_scenario
@@ -25,12 +30,12 @@ pytestmark = pytest.mark.legal_scenario
 _CENT = Decimal("0.01")
 
 
-def _coop_sociali_d2_year() -> PayrollYearResult:
+def _coop_sociali_d2_year() -> YearResult:
     return ENGINE.calculate_year(
-        PayrollYearRequest(
+        YearInput(
             year=2026,
-            ccnl_slug=COOP_SOCIALI,
-            level_code="D2",
+            employment=Employment(ccnl_slug=COOP_SOCIALI, level_code="D2"),
+            employer=EMPLOYER,
         )
     )
 
@@ -103,11 +108,14 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     computation: full-year deductions on a 292-day employment.
     """
     year = ENGINE.calculate_year(
-        PayrollYearRequest(
+        YearInput(
             year=2026,
-            ccnl_slug=COMMERCIO,
-            level_code=level_code,
-            employment_facts=EmploymentFacts(started_on=date(2026, 3, 15)),
+            employment=Employment(
+                ccnl_slug=COMMERCIO,
+                level_code=level_code,
+                employment_period=EmploymentPeriod(date(2026, 3, 15)),
+            ),
+            employer=EMPLOYER,
         )
     )
     final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
@@ -135,11 +143,14 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
     13,010.20 and withheld 319.57 each, leaving 89.39 for the tredicesima.
     """
     year = ENGINE.calculate_year(
-        PayrollYearRequest(
+        YearInput(
             year=2026,
-            ccnl_slug="metalmeccanico-federmeccanica.json",
-            level_code="C3",
-            employment_facts=EmploymentFacts(started_on=date(2026, 7, 1)),
+            employment=Employment(
+                ccnl_slug="metalmeccanico-federmeccanica.json",
+                level_code="C3",
+                employment_period=EmploymentPeriod(date(2026, 7, 1)),
+            ),
+            employer=EMPLOYER,
         )
     )
     final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable

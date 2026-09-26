@@ -1,4 +1,4 @@
-"""Public year request: derived calendar and validated overrides."""
+"""Public year input: derived calendar and validated overrides."""
 
 from __future__ import annotations
 
@@ -7,20 +7,24 @@ import pytest
 from ccnl_engine import (
     CalendarOverride,
     CalendarOverrideReason,
+    EmployerProfile,
+    Employment,
+    Headcount,
     InvalidInputError,
     PayrollCalendar,
     PayrollEngine,
-    PayrollYearRequest,
+    YearInput,
 )
 
 _ENGINE = PayrollEngine.bundled()
-_CCNL = "commercio-confcommercio.json"
+_EMPLOYMENT = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+_EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 
 def test_omitted_calendar_runs_the_ccnl_calendar() -> None:
     """Commercio grants 14 equivalent months: the result reports that calendar."""
     year = _ENGINE.calculate_year(
-        PayrollYearRequest(year=2026, ccnl_slug=_CCNL, level_code="4")
+        YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
     assert year.calendar == PayrollCalendar.from_additional_months(2026, 14)
@@ -28,13 +32,13 @@ def test_omitted_calendar_runs_the_ccnl_calendar() -> None:
 
 
 def test_bare_calendar_is_rejected() -> None:
-    """A WorkCalendar without a reason is not accepted by the request."""
+    """A WorkCalendar without a reason is not accepted by the input."""
     with pytest.raises(InvalidInputError, match="CalendarOverride"):
-        PayrollYearRequest(
+        YearInput(
             year=2026,
-            ccnl_slug=_CCNL,
-            level_code="4",
-            calendar=PayrollCalendar(year=2026),  # type: ignore[arg-type]
+            employment=_EMPLOYMENT,
+            employer=_EMPLOYER,
+            calendar_override=PayrollCalendar(year=2026),  # type: ignore[arg-type]
         )
 
 
@@ -48,14 +52,17 @@ def test_payment_month_override_is_reported_on_the_result() -> None:
         note="quattordicesima paid with the July salary",
     )
     year = _ENGINE.calculate_year(
-        PayrollYearRequest(
-            year=2026, ccnl_slug=_CCNL, level_code="4", calendar=override
+        YearInput(
+            year=2026,
+            employment=_EMPLOYMENT,
+            employer=_EMPLOYER,
+            calendar_override=override,
         )
     )
     run_ids = [r.run.run_id for r in year.period_results if r.run is not None]
 
     standard = _ENGINE.calculate_year(
-        PayrollYearRequest(year=2026, ccnl_slug=_CCNL, level_code="4")
+        YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
     assert run_ids[7] == "2026-07-fourteenth"

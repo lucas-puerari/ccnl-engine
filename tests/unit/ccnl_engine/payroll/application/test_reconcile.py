@@ -17,6 +17,7 @@ from ccnl_engine.payroll.application.reconcile import (
 )
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -24,7 +25,7 @@ from ccnl_engine.payroll.domain.pay_items import (
 )
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -46,15 +47,16 @@ _PID = PeriodId(year=_YEAR, month=1)
 
 def _real_result(
     month: int = 1, opening: PeriodState | None = None
-) -> tuple[PeriodCalculationResult, PeriodState]:
+) -> tuple[PeriodResult, PeriodState]:
     """Run a real calculation and return (result, opening_state).
 
     Returns:
-        Tuple of the :class:`PeriodCalculationResult` and the
+        Tuple of the :class:`PeriodResult` and the
         :class:`PeriodState` that was used as the opening state.
     """
     op = opening or PeriodState.zero()
     req = PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
@@ -114,13 +116,13 @@ class _Builder:
     pay_items: tuple[BaseSalaryEarning, ...] = ()
     ledger_entries: tuple[LedgerEntry, ...] = ()
 
-    def build(self) -> PeriodCalculationResult:
-        """Construct a :class:`PeriodCalculationResult` from the builder state.
+    def build(self) -> PeriodResult:
+        """Construct a :class:`PeriodResult` from the builder state.
 
         Returns:
-            A frozen :class:`PeriodCalculationResult`.
+            A frozen :class:`PeriodResult`.
         """
-        return PeriodCalculationResult(
+        return PeriodResult(
             period_id=_PID,
             payment_date=_PAYMENT,
             period_gross=self.period_gross,

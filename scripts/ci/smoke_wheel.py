@@ -12,12 +12,12 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodInput,
     get_ccnl,
     list_ccnls,
 )
@@ -31,18 +31,18 @@ def main() -> int:
         1 on any exception or unexpected result.
     """
     engine = PayrollEngine.bundled()
-    request = PayrollRequest(
+    request = PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="agenti-immobiliari-fiaip.json",
-        level_code="II",
-        employment_facts=EmploymentFacts(),
-        employer=Employer(headcount=Headcount(50)),
+        employment=Employment(
+            ccnl_slug="agenti-immobiliari-fiaip.json", level_code="II"
+        ),
+        employer=EmployerProfile(headcount=Headcount(50)),
     )
     try:
-        result = engine.calculate(request)
+        result = engine.calculate_period(request)
     except Exception as exc:  # noqa: BLE001
-        print(f"FAIL: engine.calculate() raised {type(exc).__name__}: {exc}")
+        print(f"FAIL: engine.calculate_period() raised {type(exc).__name__}: {exc}")
         return 1
 
     net = result.period_net

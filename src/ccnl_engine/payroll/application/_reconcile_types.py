@@ -12,7 +12,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__ = ["InvariantCode", "ReconciliationViolation", "RunFacts"]
 
@@ -100,7 +100,7 @@ class RunFacts:
 
 
 def _sum_account(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     account: AccountKind,
 ) -> Decimal:
     """Sum all ledger entry amounts for a given account kind.

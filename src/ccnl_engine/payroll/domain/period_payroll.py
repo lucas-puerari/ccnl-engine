@@ -10,9 +10,10 @@ class PeriodId:
     """Identifies a single payroll period by calendar year and month.
 
     Use this instead of relying on ``structural.employment.as_of`` to
-    identify the competence period.  Both :class:`PeriodPayrollRequest`
-    and :class:`PeriodPayrollResult` carry a ``period_id`` so consumers can
-    match requests to results without parsing dates.
+    identify the competence period.  Both the period calculation request and
+    :class:`~ccnl_engine.payroll.domain.period.PeriodResult` carry a
+    ``period_id`` so consumers can match requests to results without parsing
+    dates.
 
     Attributes:
         year: Calendar year (e.g. ``2026``).

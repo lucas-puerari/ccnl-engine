@@ -28,10 +28,12 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
@@ -62,16 +64,17 @@ def test_productivity_bonus_ineligible_above_income_ceiling() -> None:
 
     Source: L. 199/2025 art. 1 co. 9 — tassazione sostitutiva 1% applies only
     for workers with prior-year reddito <= income_ceiling (variable-pay-rules.json
-    income_ceiling=80000).  A worker with prior_income=90000 must have
+    income_ceiling=80000).  A worker with prior-year income 90000 must have
     SUBSTITUTE_TAX = 0.00 and the bonus taxed at ordinary IRPEF rates.
     """
     bonus = BonusEvent(
         event_date=date(_YEAR, 1, 15),
         amount=Decimal("5000.00"),
         kind="productivity_bonus",
-        prior_income=Decimal("90000.00"),
     )
     req = PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
+        prior_year=PriorYearTaxFacts(employment_income=Decimal("90000.00")),
         period_id=PeriodId(year=_YEAR, month=1),
         payment_date=date(_YEAR, 1, 28),
         ccnl_slug=_CCNL,
@@ -122,6 +125,7 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
         kind="bonus",
     )
     req = PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=10),
         payment_date=date(_YEAR, 10, 28),
         ccnl_slug=_CCNL,
@@ -166,6 +170,7 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
         kind="bonus",
     )
     req = PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=10),
         payment_date=date(_YEAR, 10, 28),
         ccnl_slug=_CCNL,

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from datetime import date  # noqa: TC003
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.engine.metadata import RulesetIdentity  # noqa: TC001
-from ccnl_engine.engine.tax.domain.preferential_regime import PreferentialTaxRegime
+from ccnl_engine.engine.tax.domain.preferential_regime import (
+    PreferentialTaxRegime,  # noqa: TC001
+)
 
 
 class FringeBenefitRules(BaseModel):
@@ -55,29 +56,6 @@ class PdRRules(BaseModel):
     ruleset: RulesetIdentity | None = None
 
 
-class RinnovoRules(PreferentialTaxRegime):
-    """Contract-renewal substitute tax (L. 199/2025 art. 1 c. 7).
-
-    Salary increments paid in 2026 under CCNL renewals signed from
-    1 January 2024 to 31 December 2026 are taxed at ``flat_tax_rate`` (5%)
-    instead of IRPEF and its surtaxes.  The regime applies only to
-    private-sector employees whose 2025 employment income (reddito di
-    lavoro dipendente) does not exceed ``income_ceiling`` (33,000 EUR),
-    unless the worker renounces it in writing.  There is no annual cap.
-
-    The signing window is recorded as data: the engine does not receive the
-    signing date of a renewal, so the caller asserts it by declaring the
-    increment as a contract renewal.
-
-    Attributes:
-        agreements_signed_from: First signing date of a qualifying renewal.
-        agreements_signed_until: Last signing date of a qualifying renewal.
-    """
-
-    agreements_signed_from: date
-    agreements_signed_until: date
-
-
 class VariablePayRules(BaseModel):
     """Container for all statutory variable-pay rules for a fiscal year.
 
@@ -85,7 +63,9 @@ class VariablePayRules(BaseModel):
         year: Fiscal year these rules apply to.
         fringe_benefit: Fringe-benefit exemption thresholds.
         pdr: Premio di risultato flat-tax parameters.
-        rinnovo: Contract-renewal substitute-tax regime.
+        rinnovo: Contract-renewal substitute-tax regime (L. 199/2025 art. 1
+            c. 7): increments paid in 2026 under renewals signed within its
+            signing window.
         notte_festivi_turni: Substitute-tax regime for night, holiday and
             rest-day, and shift supplements (L. 199/2025 art. 1 cc. 10-11).
         ruleset: Provenance of the statutory source.
@@ -97,6 +77,6 @@ class VariablePayRules(BaseModel):
     description: str = ""
     fringe_benefit: FringeBenefitRules
     pdr: PdRRules
-    rinnovo: RinnovoRules
+    rinnovo: PreferentialTaxRegime
     notte_festivi_turni: PreferentialTaxRegime
     ruleset: RulesetIdentity | None = None

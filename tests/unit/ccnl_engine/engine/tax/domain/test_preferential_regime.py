@@ -15,6 +15,7 @@ from ccnl_engine.engine.provenance.domain.source import (
     SourceLocation,
 )
 from ccnl_engine.engine.tax.domain.preferential_regime import (
+    EmployerActivity,
     EmploymentSector,
     PreferentialTaxRegime,
 )
@@ -83,6 +84,35 @@ class TestPreferentialTaxRegime:
         assert regime.income_ceiling is None
 
     @pytest.mark.parametrize(
+        ("signed_from", "signed_until"),
+        [(date(2024, 1, 1), None), (None, date(2026, 12, 31))],
+    )
+    def test_signing_window_needs_both_dates(
+        self, signed_from: date | None, signed_until: date | None
+    ) -> None:
+        """A signing window is given by both its dates or not at all."""
+        with pytest.raises(ValidationError, match="go together"):
+            _regime(
+                agreements_signed_from=signed_from,
+                agreements_signed_until=signed_until,
+            )
+
+    def test_rejects_reversed_signing_window(self) -> None:
+        """A signing window ending before it starts is rejected."""
+        with pytest.raises(ValidationError, match="is after"):
+            _regime(
+                agreements_signed_from=date(2026, 1, 1),
+                agreements_signed_until=date(2025, 12, 31),
+            )
+
+    def test_without_signing_window_every_date_qualifies(self) -> None:
+        """A regime without a signing window accepts any signing date."""
+        regime = _regime()
+
+        assert not regime.has_signing_window
+        assert regime.signed_within_window(date(1990, 1, 1))
+
+    @pytest.mark.parametrize(
         "overrides",
         [
             {"regime_id": "Rinnovo"},
@@ -119,3 +149,18 @@ class TestBundledRinnovoRegime:
         )
         assert rinnovo.source.section == "art. 1 c. 7"
         assert rinnovo.ruleset is not None
+
+
+class TestBundledWorkTimeRegime:
+    """The bundled data transcribe L. 199/2025 art. 1 cc. 10-11 and 18."""
+
+    def test_excludes_the_activities_of_comma_18(self) -> None:
+        """Food and beverage service, tourism and thermal establishments."""
+        regime = load_variable_pay_rules(2026).notte_festivi_turni
+
+        assert regime.excluded_activities == {
+            EmployerActivity.FOOD_AND_BEVERAGE_SERVICE,
+            EmployerActivity.TOURISM,
+            EmployerActivity.THERMAL_ESTABLISHMENT,
+        }
+        assert not regime.has_signing_window

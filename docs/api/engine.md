@@ -12,19 +12,61 @@ See [Guide: Employment types](../domain/employment-types.md) and
       members:
         - PayrollEngine
 
-## Request and run
+## Inputs
 
-::: ccnl_engine.api.requests
+`calculate_period` takes a `PeriodInput`, `calculate_year` a `YearInput`.
+Both group the facts by owner and are validated when built:
+
+| Model | Holds |
+|---|---|
+| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, weekly and full-time `WeeklyHours`, `SeniorityMonths`, roles, IVS ceiling status, sector (`None` means unknown) |
+| `EmployerProfile` | `Headcount` (required, no size is assumed) and activity (`None` means unknown) |
+| `PriorYearTaxFacts` | prior-year employment income and the regimes waived in writing, read by every substitute-tax regime and the PdR |
+| `PeriodFacts` | events, contributable hours, region and Belfiore code, family composition, dependent children of one run |
+
+::: ccnl_engine.payroll.domain.inputs
     options:
       members:
-        - PayrollRequest
-        - PayrollYearRequest
+        - PeriodInput
+        - YearInput
+        - PeriodFacts
+
+::: ccnl_engine.payroll.domain.employment
+    options:
+      members:
+        - Employment
+        - EmploymentPeriod
+        - WeeklyHours
+        - SeniorityMonths
+        - ContributableHours
+
+::: ccnl_engine.payroll.domain.employer
+    options:
+      members:
+        - EmployerProfile
+        - Headcount
+
+::: ccnl_engine.payroll.domain.prior_year
+    options:
+      members:
+        - PriorYearTaxFacts
+
+::: ccnl_engine.engine.tax.domain.preferential_regime
+    options:
+      members:
+        - EmploymentSector
+        - EmployerActivity
+        - SubstituteTaxRegime
+
+::: ccnl_engine.payroll.domain.run
+    options:
+      members:
         - PayrollRun
-        - EmploymentFacts
+        - PayrollRunId
 
 ## Year calendar
 
-`PayrollYearRequest` derives the calendar from the CCNL when `calendar` is
+`YearInput` derives the calendar from the CCNL when `calendar_override` is
 omitted. A different calendar is accepted only as a validated
 `CalendarOverride`.
 
@@ -33,12 +75,6 @@ omitted. A different calendar is accepted only as a validated
       members:
         - CalendarOverride
         - CalendarOverrideReason
-
-::: ccnl_engine.payroll.domain.employer
-    options:
-      members:
-        - Employer
-        - Headcount
 
 ::: ccnl_engine.engine.contract.domain.category
     options:
@@ -63,7 +99,7 @@ A result is `final` only when no capability raised an issue.
 ```python
 from ccnl_engine import CalculationStatus
 
-result = engine.calculate(request)
+result = engine.calculate_period(period_input)
 if result.status is not CalculationStatus.FINAL:
     for issue in result.issues:
         print(issue.code, issue.status, issue.message)
@@ -97,6 +133,16 @@ A feature the catalog promises is a gap when it is absent
 (`feature_absent`), not computed (`not_computed`), unresolved (`unresolved`,
 e.g. a surtax without a table), or only partial where the catalog promises
 it computed (`promised_computed_got_partial`).
+
+::: ccnl_engine.payroll.domain.period
+    options:
+      members:
+        - PeriodResult
+
+::: ccnl_engine.payroll.application.calculate_year
+    options:
+      members:
+        - YearResult
 
 ::: ccnl_engine.payroll.domain.decisions
     options:

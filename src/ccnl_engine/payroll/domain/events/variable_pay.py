@@ -34,26 +34,32 @@ class BonusEvent:
             ``"contract_renewal"`` marks a salary increment paid under a CCNL
             renewal, for the renewal substitute-tax regime (L. 199/2025
             art. 1 c. 7).  ``"bonus"`` (the default) applies ordinary IRPEF.
-        prior_income: Worker's employment income (reddito di lavoro
-            dipendente) of the year the regime of ``kind`` refers to, in EUR:
-            the prior year for PdR (ceiling 80,000 EUR), 2025 for a 2026
-            renewal (ceiling 33,000 EUR).  ``None`` means unknown: both
-            regimes then fail closed to ordinary IRPEF, and a renewal makes
-            the result provisional.
-        substitute_tax_waived: Whether the worker renounced the renewal
-            substitute tax in writing; the increment is then taxed as
-            ordinary income.  Ignored for the other kinds.
+        agreement_signed_on: Signing date of the CCNL renewal a
+            ``"contract_renewal"`` increment is paid under.  The renewal
+            substitute tax applies only to renewals signed within the window
+            of the regime (1 January 2024 to 31 December 2026); ``None``
+            means not known: ordinary IRPEF and a provisional result.  Only
+            allowed with ``kind="contract_renewal"``.
+
+    The prior-year income and the written waiver the regimes check are
+    declared once in
+    :class:`~ccnl_engine.payroll.domain.prior_year.PriorYearTaxFacts`.
     """
 
     event_date: date
     amount: Decimal
     kind: Literal["bonus", "productivity_bonus", "contract_renewal"] = "bonus"
-    prior_income: Decimal | None = None
-    substitute_tax_waived: bool = False
+    agreement_signed_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.amount < 0:
             msg = f"BonusEvent.amount must be >= 0; got {self.amount}"
+            raise InvalidInputError(msg, feature="bonus")
+        if self.agreement_signed_on is not None and self.kind != "contract_renewal":
+            msg = (
+                "BonusEvent.agreement_signed_on applies only to "
+                f"kind='contract_renewal'; got kind={self.kind!r}"
+            )
             raise InvalidInputError(msg, feature="bonus")
 
 
@@ -141,7 +147,7 @@ class BilateralFundEvent:
     Attributes:
         event_date: Date the contribution is attributed to.
         employee_amount: Employee-side contribution in EUR.  Must be >= 0.
-        employer_amount: Employer-side contribution in EUR.  Must be >= 0.
+        employer_amount: EmployerProfile-side contribution in EUR.  Must be >= 0.
     """
 
     event_date: date

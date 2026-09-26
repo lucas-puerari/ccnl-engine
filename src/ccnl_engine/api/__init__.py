@@ -1,22 +1,25 @@
 """Public API types for ccnl-engine.
 
-Re-exports the canonical request/result types used by
-:class:`~ccnl_engine.engine.payroll.service.engine.PayrollEngine`.
+Re-exports the inputs and results of
+:class:`~ccnl_engine.api.facade.PayrollEngine`.
 """
 
-from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
-from ccnl_engine.api.results import (
+from ccnl_engine.payroll.application.calculate_year import YearResult
+from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
-    PayrollResult,
 )
+from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput, YearInput
+from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__ = [
     "CalculationDecision",
     "CalculationIssue",
     "CalculationStatus",
-    "PayrollRequest",
-    "PayrollResult",
-    "PayrollYearRequest",
+    "PeriodFacts",
+    "PeriodInput",
+    "PeriodResult",
+    "YearInput",
+    "YearResult",
 ]

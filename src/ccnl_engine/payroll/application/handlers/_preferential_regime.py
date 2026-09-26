@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -16,7 +16,6 @@ from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.service.regime_eligibility import (
     RegimeFacts,
     assess_regime,
-    sector_of_tax_sector,
 )
 from ccnl_engine.payroll.service.rounding import money
 
@@ -92,18 +91,16 @@ def _coverage(
 def regime_facts(event: _RegimeEvent, ctx: _EventHandlerCtx) -> RegimeFacts:
     """Return the worker facts a regime is checked against.
 
-    Every regime reads the same inputs: the prior-year employment income and
-    the written renunciation from the event, the sector from the CCNL tax
-    sector of the policy context.
+    Every regime reads the same worker facts, declared once for the run:
+    the prior-year employment income, the written waivers, the sector and
+    the employer activity.  A renewal increment adds the signing date of
+    its agreement.
 
     Returns:
         The facts of ``event``.
     """
-    return RegimeFacts(
-        prior_income=event.prior_income,
-        sector=sector_of_tax_sector(ctx.context.sector),
-        waived=event.substitute_tax_waived,
-    )
+    signed_on = event.agreement_signed_on if isinstance(event, BonusEvent) else None
+    return replace(ctx.worker_facts, agreement_signed_on=signed_on)
 
 
 def apply_preferential_regime(

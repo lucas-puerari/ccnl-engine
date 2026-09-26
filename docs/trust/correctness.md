@@ -41,7 +41,8 @@ a bug-free implementation of an outdated salary table is source-incorrect.
 
 Source correctness is ruleset-scoped: each CCNL, tax year, and INPS file has its
 own readiness tier. A `reviewed` CCNL used with `exploratory` INPS rates gives a
-mixed-confidence result, which `calculation.result.confidence` reflects.
+mixed result; the engine does not fold the readiness tier into the result, so
+check it next to `result.status`.
 
 See [Readiness](readiness.md) for promotion criteria and the current tier of each
 contract.
@@ -52,25 +53,30 @@ contract.
 
 **The user's scenario falls within the engine's modelled scope.**
 
-This is what `calculation_scope` and `warnings` communicate. A scenario is
-case-complete when every relevant feature is either computed or explicitly excluded
-by a deliberate caller choice. It is case-incomplete when a feature the scenario
-needs is either not modelled in the CCNL data or not supplied as an input.
+This is what `result.status`, `result.issues`, `result.decisions` and
+`result.capability_report` communicate. A scenario is case-complete when every
+relevant feature is computed from known rules and facts. It is case-incomplete
+when a feature the scenario needs is not modelled in the CCNL data, or when a
+fact it depends on was not supplied.
 
 ```python
-for item in result.calculation_scope:
-    print(item.feature, item.status)
-# irpef                    verified      ← computed, included in net_annual
-# family_deductions        excluded      ← caller chose not to supply FamilyComposition
-# overtime                 not_computed  ← CCNL does not model this feature yet
+for issue in result.issues:
+    print(issue.code, issue.status)
+# rinnovo_eligibility_unknown  provisional   ← 2025 income not declared
+# regional_surtax_unknown      incomplete    ← no table for the region code
+for gap in result.capability_report.gaps:
+    print(gap.feature, gap.kind.value)
 ```
 
-The distinction between `excluded` and `not_computed` is important:
+The distinction between an omitted input and an unknown fact is important:
 
-- `excluded` — the caller deliberately omitted an optional input (e.g. no
-  `Jurisdiction` passed, so regional surtax is zero and excluded from the net)
-- `not_computed` — the engine could not compute this even if asked because the
-  CCNL data does not include the relevant rules
+- an optional input left out on purpose (no region code, no family
+  composition) skips the capability: nothing is withheld and the result stays
+  `final`;
+- a fact a rule needs but that is not known (prior-year income, sector,
+  employer activity, the signing date of a renewal) makes the rule fall back
+  to ordinary taxation and the result `provisional`, with an issue that names
+  the missing fact.
 
 Case completeness is the user's responsibility: only the caller knows whether
 their scenario requires overtime, family deductions, or second-level agreements.
@@ -84,9 +90,9 @@ The engine's job is to report every gap, not to silently ignore it.
 |---|---|---|
 | Calculation crashes or gives NaN | Software correctness | Open a GitHub issue with a reproduction |
 | Output differs from a real payslip | Source correctness | Check `readiness`, compare to sources |
-| Output missing expected components | Case completeness | Read `calculation_scope` and `warnings` |
-| Output slightly off but plausible | Source OR case | Check both readiness and scope |
+| Output missing expected components | Case completeness | Read `status`, `issues` and `capability_report` |
+| Output slightly off but plausible | Source OR case | Check both readiness and `decisions` |
 
-No single metric collapses all three layers into one. A `high` confidence result
-has high source confidence and no active warnings, but it still requires the caller
-to check case completeness against their scenario.
+No single metric collapses all three layers into one. A `final` result has no
+open issue, but it still requires the caller to check the readiness of the
+rulesets and case completeness against their scenario.

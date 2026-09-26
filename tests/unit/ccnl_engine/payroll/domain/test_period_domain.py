@@ -1,4 +1,4 @@
-"""Unit tests for PeriodState, PeriodCalculationRequest, PeriodCalculationResult."""
+"""Unit tests for PeriodState, PeriodCalculationRequest, PeriodResult."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-from ccnl_engine.payroll.domain.employer import Employer, Headcount
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.pay_items import (
 )
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -40,7 +40,7 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 
 
-def _make_result(**kwargs: object) -> PeriodCalculationResult:
+def _make_result(**kwargs: object) -> PeriodResult:
     defaults: dict[str, object] = {
         "period_id": _PERIOD,
         "payment_date": _DATE,
@@ -71,7 +71,7 @@ def _make_result(**kwargs: object) -> PeriodCalculationResult:
         ),
     }
     defaults.update(kwargs)
-    return PeriodCalculationResult(**defaults)  # type: ignore[arg-type]
+    return PeriodResult(**defaults)  # type: ignore[arg-type]
 
 
 class TestPeriodId:
@@ -206,6 +206,7 @@ class TestPeriodCalculationRequest:
             )
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=6),
             payment_date=date(2026, 6, 28),
             ccnl_slug=_CCNL,
@@ -221,6 +222,7 @@ class TestPeriodCalculationRequest:
     def test_default_opening_state_is_zero(self) -> None:
         """opening_state defaults to PeriodState.zero() when omitted."""
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
             ccnl_slug=_CCNL,
@@ -231,16 +233,18 @@ class TestPeriodCalculationRequest:
     def test_default_employer(self) -> None:
         """The employer defaults to 50 employees when omitted."""
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
         )
-        assert req.employer == Employer(headcount=Headcount(50))
+        assert req.employer == EmployerProfile(headcount=Headcount(50))
 
     def test_frozen(self) -> None:
         """PeriodCalculationRequest is immutable: assignment raises AttributeError."""
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
             ccnl_slug=_CCNL,
@@ -260,6 +264,7 @@ class TestPeriodCalculationRequest:
         )
         with pytest.raises(InvalidInputError, match="opening_state is for tax year"):
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 31),
                 ccnl_slug=_CCNL,
@@ -271,6 +276,7 @@ class TestPeriodCalculationRequest:
         """A run cannot be paid before its competence period starts."""
         with pytest.raises(InvalidInputError, match="before the start"):
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=3),
                 payment_date=date(2026, 2, 28),
                 ccnl_slug=_CCNL,
@@ -288,6 +294,7 @@ class TestPeriodCalculationRequest:
         )
         with pytest.raises(InvalidInputError, match="belongs to tax year 2027") as info:
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2027, 1, 13),
                 ccnl_slug=_CCNL,
@@ -306,6 +313,7 @@ class TestPeriodCalculationRequest:
             )
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=12),
             payment_date=date(2027, 1, 12),
             ccnl_slug=_CCNL,
@@ -318,6 +326,7 @@ class TestPeriodCalculationRequest:
         """The withholding schedule must belong to the attributed tax year."""
         with pytest.raises(InvalidInputError, match=r"withholding_schedule\.year"):
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2027, 1, 13),
                 ccnl_slug=_CCNL,
@@ -330,6 +339,7 @@ class TestPeriodCalculationRequest:
     def test_year_guard_passes_when_tax_year_none(self) -> None:
         """Manually constructed state with tax_year=None bypasses the year guard."""
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=_PERIOD,
             payment_date=_DATE,
             ccnl_slug=_CCNL,
@@ -348,6 +358,7 @@ class TestPeriodCalculationRequest:
             )
         )
         req = PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=6),
             payment_date=date(2026, 6, 28),
             ccnl_slug=_CCNL,
@@ -358,7 +369,7 @@ class TestPeriodCalculationRequest:
 
 
 class TestPeriodCalculationResult:
-    """PeriodCalculationResult stores all output fields and is immutable."""
+    """PeriodResult stores all output fields and is immutable."""
 
     def test_stored_scalar_fields(self) -> None:
         """All scalar fields are stored and retrievable after construction."""
@@ -407,7 +418,7 @@ class TestPeriodCalculationResult:
         assert result.ledger_entries[0] is entry
 
     def test_frozen(self) -> None:
-        """PeriodCalculationResult is immutable: assignment raises AttributeError."""
+        """PeriodResult is immutable: assignment raises AttributeError."""
         result = _make_result()
         with pytest.raises(AttributeError):
             result.period_net = Decimal(0)  # type: ignore[misc]

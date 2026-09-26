@@ -8,13 +8,14 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, ClassVar, final
 
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
-from ccnl_engine.payroll.domain.employer import Employer
+from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
     ContributableHours,
@@ -28,6 +29,7 @@ from ccnl_engine.payroll.domain.employment import (
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.request_checks import (
     FieldSpec,
     employment_gap,
@@ -125,8 +127,8 @@ class PeriodCalculationRequest:
             :func:`~ccnl_engine.payroll.application.close_tax_year\
 .close_tax_year` for the first run of a later tax year.
         employer: The employer; its headcount resolves INPS rates (some
-            rates differ by firm size).  Defaults to an employer with 50
-            employees.
+            rates differ by firm size) and its activity the regimes that
+            exclude some activities.
         ceiling_status: Whether the IVS massimale contribution ceiling
             applies to this worker.  Use :attr:`ContributionCeilingStatus.POST_1995`
             for post-1995 workers and :attr:`ContributionCeilingStatus.NOT_APPLICABLE`
@@ -180,15 +182,19 @@ class PeriodCalculationRequest:
         extra_month_settlements: Ratei liquidated on this run because the
             employment ends before their payment month.  Each is paid as an
             extra-month earning next to the regular pay.
+        sector: Private or public sector of the employment, ``None`` when
+            not known.  Read by the regimes restricted to one sector.
+        prior_year: Prior-year income and written waivers, read by every
+            preferential tax regime.
     """
 
     period_id: PeriodId
     payment_date: date
     ccnl_slug: str
     level_code: str
+    employer: EmployerProfile
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    employer: Employer = field(default_factory=Employer)
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
@@ -206,6 +212,8 @@ class PeriodCalculationRequest:
     extra_month_accrual: ExtraMonthAccrual | None = None
     extra_month_settlements: tuple[ExtraMonthAccrual, ...] = ()
     withholding_schedule: WithholdingSchedule | None = None
+    sector: EmploymentSector | None = None
+    prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
@@ -282,7 +290,7 @@ class PeriodCalculationRequest:
                 (Permanent, Apprentice, FixedTerm),
                 False,
             ),
-            ("employer", self.employer, Employer, False),
+            ("employer", self.employer, EmployerProfile, False),
             ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
             ("events", self.events, (tuple, list), False),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
@@ -290,11 +298,13 @@ class PeriodCalculationRequest:
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("seniority_months", self.seniority_months, SeniorityMonths, True),
+            ("sector", self.sector, EmploymentSector, True),
+            ("prior_year", self.prior_year, PriorYearTaxFacts, False),
         )
 
 
 @dataclass(frozen=True)
-class PeriodCalculationResult:
+class PeriodResult:
     """Result of one period-first payroll calculation.
 
     Attributes:

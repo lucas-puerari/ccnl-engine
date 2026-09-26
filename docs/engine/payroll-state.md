@@ -117,7 +117,7 @@ The input must be a year-end state: bound to a tax year, with every
 withholding slot of the year closed. The state after December but before the
 tredicesima is rejected, and so is a hand-built state that never ran.
 
-Single runs computed with `PayrollEngine.calculate()` use the standard
+Single runs computed with `PayrollEngine.calculate_period()` use the standard
 withholding schedule of the CCNL. For an employment that did not cover the
 whole year that schedule is never completed, so `close_tax_year` rejects the
 state: compute the year with `calculate_year`, whose schedule follows the
@@ -128,18 +128,18 @@ change it drops every obligation, which cannot be told apart from a new
 employment.
 
 ```python
-from ccnl_engine import PayrollEngine, PayrollYearRequest
+from ccnl_engine import EmployerProfile, Employment, Headcount, PayrollEngine, YearInput
 
 engine = PayrollEngine.bundled()
-year_2026 = engine.calculate_year(
-    PayrollYearRequest(
-        year=2026,
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-    )
+employment = Employment(
+    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
 )
-opening_2027 = engine.close_tax_year(year_2026.period_results[-1].closing_state)
-# engine.calculate_year(PayrollYearRequest(year=2027, ..., opening_state=opening_2027))
+employer = EmployerProfile(headcount=Headcount(50))
+year_2026 = engine.calculate_year(
+    YearInput(year=2026, employment=employment, employer=employer)
+)
+opening_2027 = engine.close_tax_year(year_2026.closing_state)
+# engine.calculate_year(YearInput(year=2027, ..., opening_state=opening_2027))
 ```
 
 `calculate_year` accepts `opening_state` only when it closes no run of the

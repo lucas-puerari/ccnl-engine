@@ -17,15 +17,13 @@ from ccnl_engine.payroll.application.calculate_year import (
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
 )
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyResolver
 
 if TYPE_CHECKING:
-    from ccnl_engine.api.requests import PayrollRequest, PayrollYearRequest
-    from ccnl_engine.api.results import PayrollResult
     from ccnl_engine.engine.knowledge_repository import KnowledgeRepository
-    from ccnl_engine.payroll.application.calculate_year import YearCalculationResult
+    from ccnl_engine.payroll.application.calculate_year import YearResult
+    from ccnl_engine.payroll.domain.inputs import PeriodInput, YearInput
+    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 
 __all__ = ["PayrollEngine"]
 
@@ -34,24 +32,27 @@ class PayrollEngine:
     """Unified entry point for Italian CCNL payroll computation.
 
     Pass explicit ``repository`` and ``policies`` arguments to inject custom
-    knowledge and policy data — useful for testing or air-gapped deployments.
-    Call :meth:`bundled` (or its alias :meth:`from_builtin_data`) to create
-    an engine backed by the package-bundled data.
+    knowledge and policy data, useful for testing or air-gapped deployments.
+    Call :meth:`bundled` to create an engine backed by the package-bundled
+    data.
 
     Example::
 
         from datetime import date
         from ccnl_engine import (
-            EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun,
+            Employment, EmployerProfile, Headcount, PayrollEngine,
+            PayrollRun, PeriodInput,
         )
 
         engine = PayrollEngine.bundled()
-        result = engine.calculate(PayrollRequest(
+        result = engine.calculate_period(PeriodInput(
             run=PayrollRun.regular(2026, 1),
             payment_date=date(2026, 1, 28),
-            ccnl_slug="metalmeccanico-federmeccanica.json",
-            level_code="C3",
-            employment_facts=EmploymentFacts(),
+            employment=Employment(
+                ccnl_slug="metalmeccanico-federmeccanica.json",
+                level_code="C3",
+            ),
+            employer=EmployerProfile(headcount=Headcount(50)),
         ))
         print(result.period_net)
     """
@@ -69,7 +70,7 @@ class PayrollEngine:
                 surtax tables.  Defaults to the package-bundled data.
             policies: Pre-loaded policy resolver for pay-item treatment rules.
                 Defaults to the bundled Italian ruleset.  Pass an instance to
-                avoid repeated JSON parsing across many :meth:`calculate` calls.
+                avoid repeated JSON parsing across many calculations.
         """
         self._repo: KnowledgeRepository = (
             repository if repository is not None else BundledKnowledgeRepository()
@@ -89,97 +90,44 @@ class PayrollEngine:
         """
         return cls()
 
-    @classmethod
-    def from_builtin_data(cls) -> PayrollEngine:
-        """Alias for :meth:`bundled` kept for backward compatibility.
-
-        Returns:
-            A :class:`PayrollEngine` instance using the bundled data.
-        """
-        return cls()
-
-    def calculate(self, request: PayrollRequest) -> PayrollResult:
+    def calculate_period(self, request: PeriodInput) -> PeriodResult:
         """Compute a single payroll run.
 
         Args:
-            request: A :class:`~ccnl_engine.api.requests.PayrollRequest`
-                carrying the run, CCNL slug, level, YTD state and events.
+            request: The run, its payment date, the employment, the employer,
+                the facts of the run, the prior-year facts and the opening
+                state.
 
         Returns:
-            A :class:`~ccnl_engine.api.results.PayrollResult` with gross,
-            net, employer cost, closing state, pay items and ledger entries.
+            The :class:`~ccnl_engine.payroll.domain.period.PeriodResult`:
+            status, issues, decisions, amounts, closing state, pay items,
+            ledger entries and capability report.
         """
-        ef = request.employment_facts
-        period_req = PeriodCalculationRequest(
-            period_id=PeriodId(year=request.run.year, month=request.run.month),
-            payment_date=request.payment_date,
-            ccnl_slug=request.ccnl_slug,
-            level_code=request.level_code,
-            opening_state=request.opening_state,
-            contract_type=ef.contract_type,
-            employer=request.employer,
-            ceiling_status=ef.ceiling_status,
-            weekly_hours=ef.contracted_hours,
-            contributable_hours=ef.contributable,
-            full_time_weekly_hours=ef.full_time_hours,
-            employment_period=ef.period,
-            seniority_months=ef.seniority,
-            roles=ef.roles,
-            category=ef.category,
-            events=request.events,
-            regione=request.regione,
-            comune_belfiore=request.comune_belfiore,
-            family_composition=request.family_composition,
-            has_dependent_children=request.has_dependent_children,
-            run=request.run,
-        )
         return _calculate_period(
-            period_req,
+            request.calculation_request(),
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
         )
 
-    def calculate_year(self, request: PayrollYearRequest) -> YearCalculationResult:
+    def calculate_year(self, request: YearInput) -> YearResult:
         """Compute payroll for all runs in a year.
 
         Args:
-            request: A :class:`~ccnl_engine.api.requests.PayrollYearRequest`
-                carrying year, CCNL slug, level, an optional calendar override
-                and optional events.
+            request: The year, the employment, the employer, the prior-year
+                facts, the facts per run, an optional calendar override, the
+                payment day and the opening state.
 
         Returns:
-            A :class:`~ccnl_engine.payroll.application.calculate_year.\
-YearCalculationResult` with one result per run and aggregated annual totals.
+            The :class:`~ccnl_engine.payroll.application.calculate_year\
+.YearResult` with one result per run and the annual totals.
 
         A calendar override that drops or lowers an extra month the CCNL
         grants, or does not match its reason, raises
         :class:`~ccnl_engine.engine.errors.InvalidInputError`.
         """
-        ef = request.employment_facts
         return _calculate_year(
-            request.year,
-            request.ccnl_slug,
-            request.level_code,
-            calendar=request.calendar,
-            contract_type=ef.contract_type,
-            employer=request.employer,
-            ceiling_status=ef.ceiling_status,
-            weekly_hours=ef.contracted_hours,
-            contributable_hours=ef.contributable,
-            full_time_weekly_hours=ef.full_time_hours,
-            employment_period=ef.period,
-            seniority_months=ef.seniority,
-            roles=ef.roles,
-            category=ef.category,
-            period_events=request.period_events or None,
-            per_run_events=request.per_run_events or None,
-            regione=request.regione,
-            comune_belfiore=request.comune_belfiore,
-            family_composition=request.family_composition,
-            has_dependent_children=request.has_dependent_children,
-            payment_day=request.payment_day,
-            opening_state=request.opening_state,
+            request,
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
