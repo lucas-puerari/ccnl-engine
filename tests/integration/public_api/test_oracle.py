@@ -132,7 +132,7 @@ def test_tredicesima_commercio_level4() -> None:
 
 
 def test_addizionali_emilia_romagna_modena() -> None:
-    """Regional (ER) and municipal (Modena F257) surtax reduces net vs. no-surtax.
+    """Regional (IT-45) and municipal (Modena F257) surtax reduces net vs. no-surtax.
 
     Hand derivation on the projected annual taxable income of 25,394.73
     (regional table 2026 is ``source_type: estimated``, unverified):
@@ -142,7 +142,7 @@ def test_addizionali_emilia_romagna_modena() -> None:
       25,394.73 x 0.008 = 203.16, x 0.30 = 60.95;
     - 373.31 over 13 withholding slots = 28.72; 1,751.35 - 28.72 = 1,722.63.
 
-    Before region codes were resolved, ``ER`` matched no regional row and
+    Before region codes were resolved, ``"ER"`` matched no regional row and
     only the municipal advance was withheld (net 1,746.66).
     """
     result_no_surtax = engine.calculate(
@@ -163,7 +163,7 @@ def test_addizionali_emilia_romagna_modena() -> None:
             level_code="C3",
             employment_facts=EmploymentFacts(),
             employer=Employer(headcount=Headcount(100)),
-            regione="ER",
+            regione="IT-45",
             comune_belfiore="F257",
         )
     )
@@ -363,7 +363,7 @@ def test_family_deductions_increase_net() -> None:
             level_code="4",
             employment_facts=EmploymentFacts(),
             employer=Employer(headcount=Headcount(50)),
-            regione="ER",
+            regione="IT-45",
         )
     )
     result_family = engine.calculate(
@@ -374,7 +374,7 @@ def test_family_deductions_increase_net() -> None:
             level_code="4",
             employment_facts=EmploymentFacts(),
             employer=Employer(headcount=Headcount(50)),
-            regione="ER",
+            regione="IT-45",
             family_composition=FamilyComposition(
                 dependents=(
                     Dependent(relationship=DependentRelationship.SPOUSE),

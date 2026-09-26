@@ -590,5 +590,5 @@ class TestSurtaxStatus:
 
     def test_malformed_region_code_is_rejected(self) -> None:
         """A region name instead of a region code is invalid input."""
-        with pytest.raises(InvalidInputError, match="two-letter"):
+        with pytest.raises(InvalidInputError, match="ISO 3166-2:IT"):
             calculate_year(_YEAR, _CCNL, _LEVEL, regione="Lombardia")

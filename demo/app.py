@@ -363,7 +363,8 @@ def compute_salary(
         seniority_value: Seniority months of service (seniority_mode="months").
         seniority_mode: ``"count"`` (deprecated) or ``"months"``.
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
-        regione: Region code (e.g. ``"ER"``) for addizionale regionale.
+        regione: ISO 3166-2:IT region code (e.g. ``"IT-45"``) for the
+            addizionale regionale.
             When empty, the surtax is not computed.
         comune_belfiore: Belfiore code (codice catastale) of the worker's
             municipality for addizionale comunale computation. When empty,

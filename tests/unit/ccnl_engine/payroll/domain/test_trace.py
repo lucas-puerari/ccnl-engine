@@ -269,7 +269,7 @@ class TestBuildTraces:
         Surtax features follow their final decisions, not the request codes.
         """
         req = _req(
-            regione="LO",
+            regione="IT-25",
             comune_belfiore="F205",
             family_composition=FamilyComposition(),
         )
@@ -285,7 +285,7 @@ class TestBuildTraces:
 
     def test_surtax_with_unknown_table_is_unresolved(self) -> None:
         """A surtax without a table is UNRESOLVED even though a code was given."""
-        req = _req(regione="ZZ", comune_belfiore="Z999")
+        req = _req(regione="IT-99", comune_belfiore="Z999")
         amounts = _amounts(
             surtax=_surtax_outcome((REGIONAL_SURTAX, None), (MUNICIPAL_SURTAX, None))
         )

@@ -144,8 +144,9 @@ the request.  It separates a surtax not due by rule (`no_irpef_due`,
 `below_exemption_threshold`: final, amount 0), a table applied
 (`table_applied`, `advance_applied`: final) and a well-formed code without a
 table row (`table_unknown`: incomplete, amount `None`, issue
-`regional_surtax_unknown` or `municipal_surtax_unknown`).  A malformed code is
-invalid input, not an unknown table.
+`regional_surtax_unknown` or `municipal_surtax_unknown`).  The region is the
+ISO 3166-2:IT code (`IT-45`), with `IT-BZ` / `IT-TN` for the autonomous
+provinces.  A malformed code is invalid input, not an unknown table.
 
 `CalculationDecision`, `REGION_CODES`, `PeriodCalculationRequest.regione`,
 `PeriodCalculationRequest.comune_belfiore`

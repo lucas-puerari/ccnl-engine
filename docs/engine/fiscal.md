@@ -37,14 +37,17 @@ meets the statutory requirements: see
 The engine computes *addizionale regionale* and *addizionale comunale* only
 for the jurisdictions the request names:
 
-- `regione`: a two-letter upper-case region code of this engine, for
-  example `ER` for Emilia-Romagna.  The codes are listed in
-  [`REGION_CODES`](../api/models.md#fiscal); they are not ISO 3166-2 codes.
+- `regione`: the ISO 3166-2:IT subdivision code of the region, `IT-` and
+  two digits, for example `IT-45` for Emilia-Romagna or `IT-25` for
+  Lombardia (source: [ISO Online Browsing Platform](https://www.iso.org/obp/ui/#iso:code:3166:IT)).
+  The regional surtax is set separately by the autonomous provinces, so use
+  `IT-BZ` (Bolzano) or `IT-TN` (Trento); `IT-32` (Trentino-Alto Adige) is
+  rejected.  The codes are listed in [`REGION_CODES`](../api/models.md#fiscal).
 - `comune_belfiore`: the *codice catastale* (Belfiore code) of the
   municipality, one upper-case letter and three digits, for example `F257`
   for Modena.
 
-A malformed code (`LOM`, `Lombardia`, `f257`) is rejected with
+A malformed code (`ER`, `Lombardia`, `IT45`, `f257`) is rejected with
 `InvalidInputError`.  A well-formed code without a row in the tax year table
 is not an input error: see the decisions below.
 

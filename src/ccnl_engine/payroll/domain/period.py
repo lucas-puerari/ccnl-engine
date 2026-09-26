@@ -171,8 +171,9 @@ class PeriodCalculationRequest:
             the ceiling to avoid over-deducting contributions.
         events: Variable work events (overtime, absences, bonuses, etc.)
             that occurred in this period. Defaults to no events.
-        regione: Region code for the regional surtax, two upper-case
-            letters (:data:`~ccnl_engine.payroll.domain.jurisdiction\
+        regione: ISO 3166-2:IT region code for the regional surtax, e.g.
+            ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
+            provinces (:data:`~ccnl_engine.payroll.domain.jurisdiction\
 .REGION_CODES`).  ``None`` skips the regional surtax.
         comune_belfiore: Belfiore code for the municipal surtax, e.g.
             ``"F257"``.  ``None`` skips the municipal surtax.

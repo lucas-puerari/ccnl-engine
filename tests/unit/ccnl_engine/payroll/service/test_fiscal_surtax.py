@@ -79,7 +79,7 @@ def test_no_jurisdiction_takes_no_decision() -> None:
 
 def test_known_tables_are_applied_and_final() -> None:
     """Known region and municipality give final decisions with annual amounts."""
-    outcome = _compute("LO", "H501")
+    outcome = _compute("IT-25", "H501")
 
     regional, municipal = outcome.decisions
     assert (regional.capability, regional.reason_code) == (
@@ -103,7 +103,7 @@ def test_known_tables_are_applied_and_final() -> None:
 
 def test_ruleset_identity_is_recorded_as_rule() -> None:
     """The bundled ruleset id and version identify the rule applied."""
-    outcome = _compute("LO", "H501", rules=_rules(ruleset=True))
+    outcome = _compute("IT-25", "H501", rules=_rules(ruleset=True))
 
     assert {(d.rule, d.rule_version) for d in outcome.decisions} == {
         ("surtax/2026/regionale", "2026.1")
@@ -133,7 +133,7 @@ def test_income_below_exemption_is_not_due() -> None:
 
 def test_no_irpef_due_means_no_surtax_due() -> None:
     """No IRPEF due: both surtaxes are final zero, even for unknown tables."""
-    outcome = _compute("ZZ", "Z999", irpef_due=_D(0))
+    outcome = _compute("IT-99", "Z999", irpef_due=_D(0))
 
     assert [d.reason_code for d in outcome.decisions] == [
         "no_irpef_due",
@@ -147,8 +147,8 @@ def test_no_irpef_due_means_no_surtax_due() -> None:
 @pytest.mark.parametrize(
     ("regione", "comune", "issue_code"),
     [
-        ("ZZ", None, "regional_surtax_unknown"),
-        ("ER", None, "regional_surtax_unknown"),
+        ("IT-99", None, "regional_surtax_unknown"),
+        ("IT-45", None, "regional_surtax_unknown"),
         (None, "Z999", "municipal_surtax_unknown"),
     ],
 )
@@ -157,7 +157,7 @@ def test_unknown_table_is_incomplete(
 ) -> None:
     """A well-formed code without a table row is incomplete, amount unknown.
 
-    ``ER`` is a known region code whose row is missing from this test table.
+    ``IT-45`` is a known region code whose row is missing from this test table.
     """
     outcome = _compute(regione, comune)
 

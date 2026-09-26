@@ -1,13 +1,14 @@
-"""Surtax jurisdiction codes: region code and municipality Belfiore code.
+"""Surtax jurisdiction codes: ISO 3166-2:IT region code and Belfiore code.
 
-A region is identified by a two-letter upper-case code of this engine,
-listed in :data:`REGION_CODES`.  The codes are not ISO 3166-2 codes: they
-are stable short names for the rows of the bundled regional surtax table,
-which is keyed by the Italian name of the region or autonomous province.
-No code is the vehicle plate (sigla) of a province of another region, so a
-province sigla passed by mistake never selects the wrong regional table:
-``CZ``, ``LO`` and ``VE`` are provinces of their own region, ``BZ`` and
-``TN`` are the autonomous provinces themselves.
+A region is identified by its ISO 3166-2:IT subdivision code, e.g.
+``"IT-45"`` for Emilia-Romagna, listed in :data:`REGION_CODES`.  The bundled
+regional surtax table has separate rows for the autonomous provinces of
+Bolzano and Trento, so they are identified by ``"IT-BZ"`` and ``"IT-TN"``;
+the region code of Trentino-Alto Adige, ``"IT-32"``, is rejected.
+
+Source: ISO Online Browsing Platform, ISO 3166-2:IT,
+https://www.iso.org/obp/ui/#iso:code:3166:IT (list cross-checked on
+https://en.wikipedia.org/wiki/ISO_3166-2:IT, 26 September 2026).
 
 A municipality is identified by its *codice catastale* (Belfiore code): one
 upper-case letter and three digits, e.g. ``"F257"`` for Modena.
@@ -30,36 +31,40 @@ if TYPE_CHECKING:
 
 __all__ = [
     "REGION_CODES",
+    "TRENTINO_ALTO_ADIGE",
     "check_surtax_codes",
     "region_table_name",
 ]
 
 #: Region code to the name keying the bundled regional surtax table.
 REGION_CODES: Mapping[str, str] = MappingProxyType({
-    "AB": "Abruzzo",
-    "BC": "Basilicata",
-    "BZ": "Provincia Autonoma di Bolzano",
-    "CM": "Campania",
-    "CZ": "Calabria",
-    "ER": "Emilia-Romagna",
-    "FV": "Friuli-Venezia Giulia",
-    "LA": "Lazio",
-    "LG": "Liguria",
-    "LO": "Lombardia",
-    "MA": "Marche",
-    "ML": "Molise",
-    "PL": "Puglia",
-    "PM": "Piemonte",
-    "SC": "Sicilia",
-    "SD": "Sardegna",
-    "TC": "Toscana",
-    "TN": "Provincia Autonoma di Trento",
-    "UM": "Umbria",
-    "VD": "Valle d'Aosta",
-    "VE": "Veneto",
+    "IT-21": "Piemonte",
+    "IT-23": "Valle d'Aosta",
+    "IT-25": "Lombardia",
+    "IT-34": "Veneto",
+    "IT-36": "Friuli-Venezia Giulia",
+    "IT-42": "Liguria",
+    "IT-45": "Emilia-Romagna",
+    "IT-52": "Toscana",
+    "IT-55": "Umbria",
+    "IT-57": "Marche",
+    "IT-62": "Lazio",
+    "IT-65": "Abruzzo",
+    "IT-67": "Molise",
+    "IT-72": "Campania",
+    "IT-75": "Puglia",
+    "IT-77": "Basilicata",
+    "IT-78": "Calabria",
+    "IT-82": "Sicilia",
+    "IT-88": "Sardegna",
+    "IT-BZ": "Provincia Autonoma di Bolzano",
+    "IT-TN": "Provincia Autonoma di Trento",
 })
 
-_REGION_CODE = re.compile(r"[A-Z]{2}")
+#: ISO code of Trentino-Alto Adige, whose surtax is set per autonomous province.
+TRENTINO_ALTO_ADIGE = "IT-32"
+
+_REGION_CODE = re.compile(r"IT-(?:[0-9]{2}|BZ|TN)")
 _BELFIORE_CODE = re.compile(r"[A-Z][0-9]{3}")
 
 
@@ -67,18 +72,27 @@ def check_surtax_codes(regione: str | None, comune_belfiore: str | None) -> None
     """Reject a malformed region or Belfiore code.
 
     Args:
-        regione: Region code, two upper-case letters, or ``None``.
+        regione: ISO 3166-2:IT region code, ``IT-`` and two digits, or
+            ``IT-BZ`` / ``IT-TN``, or ``None``.
         comune_belfiore: Belfiore code, one upper-case letter and three
             digits, or ``None``.
 
     Raises:
         InvalidInputError: When a code is given and does not match its
-            format.
+            format, or when ``regione`` is Trentino-Alto Adige (``IT-32``).
     """
+    if regione == TRENTINO_ALTO_ADIGE:
+        msg = (
+            "regione 'IT-32' (Trentino-Alto Adige) has no regional surtax "
+            "table: use the autonomous province code 'IT-BZ' (Bolzano) or "
+            "'IT-TN' (Trento)"
+        )
+        raise InvalidInputError(msg, feature="addizionale_regionale")
     if regione is not None and not _REGION_CODE.fullmatch(regione):
         msg = (
-            f"regione must be a two-letter upper-case region code "
-            f"(e.g. 'ER' for Emilia-Romagna); got {regione!r}"
+            "regione must be an ISO 3166-2:IT region code, 'IT-' and two "
+            f"digits or 'IT-BZ'/'IT-TN' (e.g. 'IT-45' for Emilia-Romagna); "
+            f"got {regione!r}"
         )
         raise InvalidInputError(
             msg,

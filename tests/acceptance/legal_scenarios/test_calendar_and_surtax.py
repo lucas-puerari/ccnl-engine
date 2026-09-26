@@ -53,7 +53,7 @@ def test_empty_calendar_that_drops_extra_months_is_rejected() -> None:
 
 def test_known_surtax_tables_are_withheld() -> None:
     """Control: Emilia-Romagna and Modena (F257) tables exist for 2026."""
-    result = regular_period(regione="ER", comune_belfiore="F257")
+    result = regular_period(regione="IT-45", comune_belfiore="F257")
 
     assert result.closing_state.tax.surtax > Decimal(0)
     assert result.status is CalculationStatus.FINAL
@@ -72,7 +72,7 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     municipality; the result status was final.  Now nothing is withheld,
     but the result is incomplete and names both unknown tables.
     """
-    result = regular_period(regione="ZZ", comune_belfiore="Z999")
+    result = regular_period(regione="IT-99", comune_belfiore="Z999")
 
     assert result.status is CalculationStatus.INCOMPLETE
     assert result.closing_state.tax.surtax == Decimal(0)
@@ -84,7 +84,14 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
 
 @pytest.mark.parametrize(
     ("regione", "comune_belfiore"),
-    [("LOM", None), ("Lombardia", None), ("er", None), (None, "F25"), ("ER", "f257")],
+    [
+        ("LOM", None),
+        ("Lombardia", None),
+        ("ER", None),
+        ("IT-32", None),
+        (None, "F25"),
+        ("IT-45", "f257"),
+    ],
 )
 def test_malformed_surtax_codes_are_rejected(
     regione: str | None, comune_belfiore: str | None
