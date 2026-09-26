@@ -217,6 +217,8 @@ tabbed.combine_header_slug   = true
 tasklist.custom_checkbox     = true
 tilde               = {}
 snippets.base_path  = ["."]
+# Fail the build when an include target is missing.
+snippets.check_paths = true
 
 [markdown_extensions.pymdownx.emoji]
 emoji_generator = "zensical.extensions.emoji.to_svg"

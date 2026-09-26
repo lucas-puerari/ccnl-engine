@@ -142,5 +142,5 @@ Destination levels: `2`
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/tessile-smi.py"
+--8<-- "docs/examples/contracts/tessile-smi.py"
 ```

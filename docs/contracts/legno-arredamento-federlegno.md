@@ -165,5 +165,5 @@ These are deliberate modelling approximations. Read them before using this contr
 ## Usage example
 
 ```python
---8 < --"docs/examples/contracts/legno-arredamento-federlegno.py"
+--8<-- "docs/examples/contracts/legno-arredamento-federlegno.py"
 ```
