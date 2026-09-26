@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -24,7 +24,7 @@ from ccnl_engine.payroll.service.contributions import (
     resolve_rates,
 )
 from ccnl_engine.payroll.service.family_deductions import compute_family_deductions
-from ccnl_engine.payroll.service.fiscal_surtax import _compute_addizionali
+from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome, compute_surtax
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.rounding import money
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
@@ -50,7 +50,8 @@ class _PeriodAmounts:
     """Computed monetary amounts passed to pay-item and ledger builders.
 
     Does not include period_gross, period_net or period_employer_cost — those
-    are derived from the ledger after all entries are posted.
+    are derived from the ledger after all entries are posted.  ``surtax``
+    carries the annual surtax decisions and issues behind ``period_surtax``.
     """
 
     monthly_gross: Decimal
@@ -63,6 +64,7 @@ class _PeriodAmounts:
     period_taxable: Decimal
     period_substitute_tax: Decimal
     pdr_eligible: Decimal
+    surtax: SurtaxOutcome = field(default_factory=SurtaxOutcome)
 
 
 def _resolve_chain(
@@ -352,16 +354,18 @@ def _compute_amounts(
     period_tratt = tax_comp.trattamento_integrativo
 
     ig = next((c.amount for c in tax_comp.components if c.name == "irpef_gross"), _ZERO)
-    surtax_reg, surtax_com, _, _, _ = _compute_addizionali(
-        taxable,
-        surtax_rules,
-        frozenset(),
-        regione=regione,
-        comune_belfiore=comune_belfiore,
-        irpef_due=ig,
+    surtax = (
+        compute_surtax(
+            taxable,
+            surtax_rules,
+            regione=regione,
+            comune_belfiore=comune_belfiore,
+            irpef_due=ig,
+        )
+        if surtax_rules is not None
+        else SurtaxOutcome()
     )
-    period_surtax_annual = surtax_reg + surtax_com
-    period_surtax = slot_share(period_surtax_annual, withholding_schedule)
+    period_surtax = slot_share(surtax.total, withholding_schedule)
 
     period_taxable = money(monthly_gross - inps_employee + effective_irpef_base)
 
@@ -377,6 +381,7 @@ def _compute_amounts(
             period_taxable=period_taxable,
             period_substitute_tax=period_substitute_tax,
             pdr_eligible=pdr_eligible,
+            surtax=surtax,
         ),
         breakdown,
         tax_comp,

@@ -59,7 +59,6 @@ from ccnl_engine import (
     BonusInput,
     # Output
     PayrollResult,
-    FiscalSimplification,
     ScopeItem,
     # Grouped output views
     PayrollPeriod,
@@ -97,5 +96,5 @@ All types above are re-exported from the top-level `ccnl_engine` package.
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
 | [Pay components](../engine/pay-components.md) | `SeniorityByCount`, `SeniorityByMonths`, `RalOverride` |
 | [Second level](../engine/second-level.md) | `SupplementaryAllowance` |
-| [Fiscal](../engine/fiscal.md) | `Jurisdiction`, `FiscalSimplification` |
+| [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |
 | [Domestic work](../engine/domestic-work.md) | `EmploymentFacts.weekly_hours` |

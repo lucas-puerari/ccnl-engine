@@ -106,7 +106,7 @@ def _req_surtax(*events: object) -> PeriodCalculationRequest:
         level_code=_LEVEL,
         opening_state=PeriodState.zero(),
         events=tuple(events),  # type: ignore[arg-type]
-        regione="03",
+        regione="LO",
         comune_belfiore="A001",
     )
 

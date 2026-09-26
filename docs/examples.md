@@ -92,7 +92,7 @@ Territorial or company allowances on top of the CCNL minimums, with per-item con
 
 ### Regional and municipal surcharges (addizionali)
 
-Pass `regione` + `comune_belfiore` and a `SurtaxRules` object to include addizionale regionale and comunale.
+Pass `regione` (two-letter region code, e.g. `ER`) and `comune_belfiore` (Belfiore code, e.g. `F257`) to include addizionale regionale and comunale. Check `result.status` and `result.decisions`: an unknown table makes the result `incomplete`.
 
 ```python
 --8 < --"docs/examples/07_addizionali.py"

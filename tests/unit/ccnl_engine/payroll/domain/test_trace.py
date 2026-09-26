@@ -10,6 +10,10 @@ import pytest
 
 from ccnl_engine.payroll.application._capability_traces import build_traces
 from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -30,6 +34,11 @@ from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodSt
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
+from ccnl_engine.payroll.service.fiscal_surtax import (
+    MUNICIPAL_SURTAX,
+    REGIONAL_SURTAX,
+    SurtaxOutcome,
+)
 
 _YEAR = 2026
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -49,6 +58,25 @@ def _req(**kwargs: object) -> PeriodCalculationRequest:
     )
 
 
+def _surtax_outcome(*decided: tuple[str, Decimal | None]) -> SurtaxOutcome:
+    decisions = tuple(
+        CalculationDecision(
+            capability=capability,
+            status=(
+                CalculationStatus.FINAL
+                if amount is not None
+                else CalculationStatus.INCOMPLETE
+            ),
+            reason_code="table_applied" if amount is not None else "table_unknown",
+            rule=f"surtax/2026/{capability}",
+            rule_version="2026",
+            amount=amount,
+        )
+        for capability, amount in decided
+    )
+    return SurtaxOutcome(decisions=decisions)
+
+
 def _amounts(**overrides: object) -> _PeriodAmounts:
     defaults: dict[str, Decimal] = {
         "monthly_gross": _D("2000"),
@@ -62,8 +90,10 @@ def _amounts(**overrides: object) -> _PeriodAmounts:
         "period_substitute_tax": _D("0"),
         "pdr_eligible": _D("0"),
     }
+    surtax = overrides.pop("surtax", SurtaxOutcome())
+    assert isinstance(surtax, SurtaxOutcome)
     defaults.update(overrides)  # type: ignore[arg-type]
-    return _PeriodAmounts(**defaults)
+    return _PeriodAmounts(**defaults, surtax=surtax)
 
 
 def _make_sickness_case_event() -> SicknessCaseEvent:
@@ -234,16 +264,34 @@ class TestBuildTraces:
         assert by_feature["family_deductions"] == TraceState.NOT_APPLICABLE
 
     def test_parameter_features_computed_when_params_present(self) -> None:
-        """Parameter-dependent features are COMPUTED when inputs are provided."""
+        """Parameter-dependent features are COMPUTED when inputs are provided.
+
+        Surtax features follow their final decisions, not the request codes.
+        """
         req = _req(
-            regione="LOM",
+            regione="LO",
             comune_belfiore="F205",
             family_composition=FamilyComposition(),
         )
-        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
+        amounts = _amounts(
+            surtax=_surtax_outcome(
+                (REGIONAL_SURTAX, _D("300")), (MUNICIPAL_SURTAX, _D("80"))
+            )
+        )
+        by_feature = {t.feature: t.state for t in build_traces(req, amounts)}
         assert by_feature["addizionale_regionale"] == TraceState.COMPUTED
         assert by_feature["addizionale_comunale"] == TraceState.COMPUTED
         assert by_feature["family_deductions"] == TraceState.COMPUTED
+
+    def test_surtax_with_unknown_table_is_unresolved(self) -> None:
+        """A surtax without a table is UNRESOLVED even though a code was given."""
+        req = _req(regione="ZZ", comune_belfiore="Z999")
+        amounts = _amounts(
+            surtax=_surtax_outcome((REGIONAL_SURTAX, None), (MUNICIPAL_SURTAX, None))
+        )
+        by_feature = {t.feature: t.state for t in build_traces(req, amounts)}
+        assert by_feature["addizionale_regionale"] == TraceState.UNRESOLVED
+        assert by_feature["addizionale_comunale"] == TraceState.UNRESOLVED
 
     def test_bonus_pdr_skipped_when_pdr_eligible_zero(self) -> None:
         """bonus_pdr is SKIPPED when no PdR substitute tax was applied."""

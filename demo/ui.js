@@ -393,7 +393,7 @@ async function populateRegioni(pyodide) {
   const sel = document.getElementById("sel-regione");
   for (const r of regioni) {
     const opt = document.createElement("option");
-    opt.value = r; opt.textContent = r;
+    opt.value = r.code; opt.textContent = r.name;
     sel.appendChild(opt);
   }
   window._regioneCombo.enable();

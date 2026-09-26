@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.employment import (
     WeeklyHours,
     check_within_full_time,
 )
+from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
@@ -170,6 +171,11 @@ class PeriodCalculationRequest:
             the ceiling to avoid over-deducting contributions.
         events: Variable work events (overtime, absences, bonuses, etc.)
             that occurred in this period. Defaults to no events.
+        regione: Region code for the regional surtax, two upper-case
+            letters (:data:`~ccnl_engine.payroll.domain.jurisdiction\
+.REGION_CODES`).  ``None`` skips the regional surtax.
+        comune_belfiore: Belfiore code for the municipal surtax, e.g.
+            ``"F257"``.  ``None`` skips the municipal surtax.
         has_dependent_children: Whether the worker has at least one
             fiscally dependent child (figlio a carico).  Selects the
             higher fringe-benefit exemption threshold under Art. 51 c. 3
@@ -253,9 +259,11 @@ class PeriodCalculationRequest:
             InvalidInputError: When ``payment_date`` is before the start of
                 the competence period, when ``opening_state.tax_year`` is not
                 ``None`` and differs from the attributed tax year, or when
-                ``withholding_schedule`` belongs to another tax year.
+                ``withholding_schedule`` belongs to another tax year, or
+                when ``regione`` or ``comune_belfiore`` is malformed.
         """
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+        check_surtax_codes(self.regione, self.comune_belfiore)
         competence = date(self.period_id.year, self.period_id.month, 1)
         tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
         opening_year = self.opening_state.tax_year

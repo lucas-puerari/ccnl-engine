@@ -7,6 +7,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
+    CalculationStatus,
     CalendarOverride,
     CalendarOverrideReason,
     InvalidInputError,
@@ -51,23 +52,43 @@ def test_empty_calendar_that_drops_extra_months_is_rejected() -> None:
 
 
 def test_known_surtax_tables_are_withheld() -> None:
-    """Control: Emilia-Romagna and Bologna (F257) tables exist for 2026."""
+    """Control: Emilia-Romagna and Modena (F257) tables exist for 2026."""
     result = regular_period(regione="ER", comune_belfiore="F257")
 
     assert result.closing_state.tax.surtax > Decimal(0)
+    assert result.status is CalculationStatus.FINAL
+    reasons = {d.capability: d.reason_code for d in result.decisions}
+    assert reasons == {
+        "addizionale_regionale": "table_applied",
+        "addizionale_comunale": "advance_applied",
+    }
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="unknown surtax tables become a silent zero in a final result",
-)
 def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     """Region and municipality without tables cannot yield a final payslip.
 
-    Observed on 26 September 2026: surtax 0.00 and net 1,489.92, identical to
-    a run without region or municipality; the result status is final.
+    Observed on 26 September 2026, before surtax decisions were kept:
+    surtax 0.00 and net 1,489.92, identical to a run without region or
+    municipality; the result status was final.  Now nothing is withheld,
+    but the result is incomplete and names both unknown tables.
     """
     result = regular_period(regione="ZZ", comune_belfiore="Z999")
-    status = getattr(result, "status", "final")
 
-    assert getattr(status, "value", status) != "final"
+    assert result.status is CalculationStatus.INCOMPLETE
+    assert result.closing_state.tax.surtax == Decimal(0)
+    assert {issue.code for issue in result.issues} == {
+        "regional_surtax_unknown",
+        "municipal_surtax_unknown",
+    }
+
+
+@pytest.mark.parametrize(
+    ("regione", "comune_belfiore"),
+    [("LOM", None), ("Lombardia", None), ("er", None), (None, "F25"), ("ER", "f257")],
+)
+def test_malformed_surtax_codes_are_rejected(
+    regione: str | None, comune_belfiore: str | None
+) -> None:
+    """A malformed code is an input error, not an unknown table."""
+    with pytest.raises(InvalidInputError, match=r"regione|comune_belfiore"):
+        regular_period(regione=regione, comune_belfiore=comune_belfiore)

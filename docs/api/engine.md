@@ -70,6 +70,13 @@ if result.status is not CalculationStatus.FINAL:
 Compare statuses with `severity` or `CalculationStatus.worst()`: the string
 values do not sort in severity order.
 
+An `incomplete` result still carries amounts, but at least one of them is
+missing, not zero: for example a surtax whose table is unknown is withheld
+as 0 and flagged by the issue `regional_surtax_unknown` or
+`municipal_surtax_unknown`.  `result.decisions` records what each capability
+decided, e.g. the surtax decisions described in
+[Fiscal computation](../engine/fiscal.md#surtax-decisions).
+
 ::: ccnl_engine.payroll.domain.decisions
     options:
       members:

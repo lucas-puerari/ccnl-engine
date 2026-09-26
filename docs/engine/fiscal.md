@@ -34,32 +34,51 @@ meets the statutory requirements: see
 
 ## Regional and municipal surcharges
 
-By default the engine skips *addizionale regionale* and *addizionale comunale*,
-recording both as [`FiscalSimplification`](../api/models.md) entries in
-`payroll.fiscal_simplifications`.
+The engine computes *addizionale regionale* and *addizionale comunale* only
+for the jurisdictions the request names:
 
-To include them, set `jurisdiction` on the `Employee` with `regione` and/or
-`comune_belfiore`. The engine loads the relevant surtax rules automatically.
+- `regione`: a two-letter upper-case region code of this engine, for
+  example `ER` for Emilia-Romagna.  The codes are listed in
+  [`REGION_CODES`](../api/models.md#fiscal); they are not ISO 3166-2 codes.
+- `comune_belfiore`: the *codice catastale* (Belfiore code) of the
+  municipality, one upper-case letter and three digits, for example `F257`
+  for Modena.
+
+A malformed code (`LOM`, `Lombardia`, `f257`) is rejected with
+`InvalidInputError`.  A well-formed code without a row in the tax year table
+is not an input error: see the decisions below.
 
 ```python
 --8 < --"docs/examples/07_addizionali.py"
 ```
 
-## FiscalSimplification flags
+### Surtax decisions
 
-Always check `payroll.fiscal_simplifications` before presenting results to end
-users. The frozenset contains every item the engine did **not** compute (or
-intentionally omitted), so callers know where to apply manual adjustments.
+Each jurisdiction named in the request records one `CalculationDecision` in
+`result.decisions`, with capability `addizionale_regionale` or
+`addizionale_comunale`.  Its `amount` is the annual surtax projected for the
+tax year; the payslip withholds an equal share of it on every withholding
+slot.  Its `inputs` hold the code, the table row name, the tax year and the
+taxable income, and its `rule` and `rule_version` the bundled ruleset.
 
-| Flag | Meaning |
-|---|---|
-| `NO_ADDIZIONALE_REGIONALE` | Regional surtax not computed; no `Jurisdiction.regione` was passed |
-| `NO_ADDIZIONALE_COMUNALE` | Municipal surtax not computed |
-| `NO_DETRAZIONI_FAMILIARI` | Family-dependent deductions (Art. 12 TUIR) not computed; no `FamilyComposition` was passed |
-| `NO_DETRAZIONI_ART15_MORTGAGE` | Mortgage-interest deduction (Art. 15 TUIR) not computed |
-| `PARTIAL_DETRAZIONI_ART15` | Always present; the engine only models mortgage interest — the other 14 Art. 15 categories (medical, insurance, etc.) are not modelled |
-| `NO_BILATERAL_FUNDS` | Always present when `bilateral_funds` is empty; bilateral fund contributions are not computed |
-| `NO_ASSEGNO_UNICO` | Always present; the *Assegno Unico e Universale* (D.Lgs. 230/2021) for children under 21 is paid directly by INPS and is not modelled by the engine |
+| `reason_code` | Status | Amount | Meaning |
+|---|---|---|---|
+| `table_applied` | `final` | computed | The bundled brackets were applied. |
+| `advance_applied` | `final` | computed | Municipal rates are the prior year ones: only the advance (`advance_fraction`, 30%) is computed. |
+| `below_exemption_threshold` | `final` | 0 | The municipal exemption threshold covers the taxable income. |
+| `no_irpef_due` | `final` | 0 | Gross IRPEF on the projected taxable income is zero, so no surtax is withheld. |
+| `table_unknown` | `incomplete` | `None` | The code is well formed but the tax year table has no row for it. |
+
+A `table_unknown` decision comes with a `CalculationIssue` coded
+`regional_surtax_unknown` or `municipal_surtax_unknown`.  Nothing is
+withheld for that surtax (the ledger posts 0), and the period result, hence
+the year result, is `incomplete`: **it must not be paid as is**.  Without
+`regione` and `comune_belfiore` no surtax decision is taken and nothing is
+withheld.
+
+The annual surtax is split in equal parts over the withholding slots of the
+year, not settled on the actual installments (advance in the year, balance
+over the following year).
 
 ## Warnings
 
@@ -73,6 +92,6 @@ mistake:
   the *massimale IVS*; the flag defaults to `False` to avoid silent over-deduction
   for pre-1996 workers.
 
-**API reference:** [`Jurisdiction`](../api/engine.md),
-[`FiscalSimplification`](../api/models.md),
+**API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
+[`REGION_CODES`](../api/models.md#fiscal),
 [`FamilyComposition`](../api/engine.md), [`Art15Deductions`](../api/engine.md)

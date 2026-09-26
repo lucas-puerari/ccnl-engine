@@ -288,7 +288,7 @@ def calculate_year(
             specific run.  Supports any run kind (regular, thirteenth, etc.).
             A run that appears in both ``period_events`` (by month) and
             ``per_run_events`` (by run_id) raises :class:`ValueError`.
-        regione: ISO region code for regional surtax.  ``None`` skips.
+        regione: Region code for regional surtax, e.g. ``"ER"``.  ``None`` skips.
         comune_belfiore: Belfiore code for municipal surtax.  ``None`` skips.
         family_composition: Dependent family composition for tax credits.
         has_dependent_children: Whether the worker has fiscally dependent
