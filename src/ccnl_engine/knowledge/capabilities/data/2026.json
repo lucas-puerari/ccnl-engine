@@ -4,6 +4,7 @@
   "capabilities": [
     {"feature": "base_salary", "status": "computed", "description": "Paga base contrattuale"},
     {"feature": "seniority", "status": "computed", "description": "Scatti di anzianità"},
+    {"feature": "worker_category", "status": "computed", "description": "Categoria lavoratore (dichiarata o fissata dal livello)"},
     {"feature": "inps_employee", "status": "computed", "description": "Contributi INPS a carico dipendente"},
     {"feature": "inps_employer", "status": "computed", "description": "Contributi INPS a carico azienda"},
     {"feature": "inail", "status": "partially_computed", "description": "INAIL (caller-declared rate)"},

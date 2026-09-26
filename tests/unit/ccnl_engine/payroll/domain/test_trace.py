@@ -1,134 +1,53 @@
-"""Tests for DecisionTrace and TraceState domain types."""
+"""Tests for DecisionTrace, TraceState and the traces built from a run."""
 
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
-from datetime import date
 from decimal import Decimal
 
 import pytest
 
 from ccnl_engine.payroll.application._capability_traces import build_traces
-from ccnl_engine.payroll.application._period_amounts import _PeriodAmounts
+from ccnl_engine.payroll.application.allocate_events import EVENT_FEATURES
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationStatus,
 )
-from ccnl_engine.payroll.domain.events import (
-    AbsenceEvent,
-    ArrearsEvent,
-    BilateralFundEvent,
-    BonusEvent,
-    FringeEvent,
-    HolidayWorkEvent,
-    NightShiftEvent,
-    OvertimeEvent,
-    SickLeaveEvent,
-    SicknessCaseEvent,
-    TerminationTFREvent,
-    WelfareEvent,
-    WorkEvent,
-)
-from ccnl_engine.payroll.domain.family import FamilyComposition
-from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodState
-from ccnl_engine.payroll.domain.period_payroll import PeriodId
-from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
-from ccnl_engine.payroll.service.fiscal_surtax import (
-    MUNICIPAL_SURTAX,
-    REGIONAL_SURTAX,
-    SurtaxOutcome,
+
+_D = Decimal
+_ZERO = _D(0)
+_CORE = ("base_salary", "inps_employee", "inps_employer", "tfr", "irpef")
+_DECIDED = (
+    "worker_category",
+    "seniority",
+    "family_deductions",
+    "ulteriore_detrazione_lavoro",
+    "trattamento_integrativo",
+    "addizionale_regionale",
+    "addizionale_comunale",
 )
 
-_YEAR = 2026
-_CCNL = "metalmeccanico-federmeccanica.json"
-_LEVEL = "C3"
-_DATE = date(_YEAR, 1, 15)
-_D = Decimal
 
-
-def _req(**kwargs: object) -> PeriodCalculationRequest:
-    return PeriodCalculationRequest(
-        period_id=PeriodId(year=_YEAR, month=1),
-        payment_date=date(_YEAR, 1, 28),
-        ccnl_slug=_CCNL,
-        level_code=_LEVEL,
-        opening_state=PeriodState.zero(),
-        **kwargs,  # type: ignore[arg-type]
+def _decision(
+    capability: str,
+    status: CalculationStatus = CalculationStatus.FINAL,
+    amount: Decimal | None = _ZERO,
+) -> CalculationDecision:
+    return CalculationDecision(
+        capability=capability,
+        status=status,
+        reason_code="test_reason",
+        rule=f"test/{capability}",
+        rule_version="2026",
+        amount=amount,
     )
 
 
-def _surtax_outcome(*decided: tuple[str, Decimal | None]) -> SurtaxOutcome:
-    decisions = tuple(
-        CalculationDecision(
-            capability=capability,
-            status=(
-                CalculationStatus.FINAL
-                if amount is not None
-                else CalculationStatus.INCOMPLETE
-            ),
-            reason_code="table_applied" if amount is not None else "table_unknown",
-            rule=f"surtax/2026/{capability}",
-            rule_version="2026",
-            amount=amount,
-        )
-        for capability, amount in decided
-    )
-    return SurtaxOutcome(decisions=decisions)
-
-
-def _amounts(**overrides: object) -> _PeriodAmounts:
-    defaults: dict[str, Decimal] = {
-        "monthly_gross": _D("2000"),
-        "inps_employee": _D("180"),
-        "inps_employer": _D("440"),
-        "tfr": _D("154"),
-        "period_irpef": _D("300"),
-        "period_tratt": _D("0"),
-        "period_surtax": _D("0"),
-        "period_taxable": _D("1820"),
-        "period_substitute_tax": _D("0"),
-        "pdr_eligible": _D("0"),
-    }
-    surtax = overrides.pop("surtax", SurtaxOutcome())
-    assert isinstance(surtax, SurtaxOutcome)
-    defaults.update(overrides)  # type: ignore[arg-type]
-    return _PeriodAmounts(**defaults, surtax=surtax)
-
-
-def _make_sickness_case_event() -> SicknessCaseEvent:
-    case = SicknessCase(
-        episode_start=_DATE,
-        episode_end=_DATE,
-        working_days=1,
-        waiting_period_days=0,
-        gross_daily=_D("70"),
-        inps_daily_rate=_D("0.50"),
-        integration_rate=_D("1"),
-        carenza_integration_rate=_D("0"),
-    )
-    return SicknessCaseEvent(event_date=_DATE, case=case)
-
-
-def _all_event_types() -> tuple[WorkEvent, ...]:
-    return (
-        OvertimeEvent(event_date=_DATE, hours=_D(2), hourly_rate=_D("15")),
-        NightShiftEvent(event_date=_DATE, supplement_amount=_D("10")),
-        HolidayWorkEvent(event_date=_DATE, supplement_amount=_D("20")),
-        AbsenceEvent(event_date=_DATE, hours=_D(8), hourly_rate=_D("15")),
-        SickLeaveEvent(event_date=_DATE, amount=_D("100")),
-        _make_sickness_case_event(),
-        FringeEvent(event_date=_DATE, amount=_D("50")),
-        WelfareEvent(event_date=_DATE, amount=_D("100")),
-        BonusEvent(event_date=_DATE, amount=_D("500")),
-        ArrearsEvent(event_date=_DATE, amount=_D("200"), separate_tax_rate=_D("0.23")),
-        BilateralFundEvent(
-            event_date=_DATE, employee_amount=_D("5"), employer_amount=_D("5")
-        ),
-        TerminationTFREvent(
-            event_date=_DATE, amount=_D("3000"), separate_tax_rate=_D("0.23")
-        ),
-    )
+def _states(
+    *decisions: CalculationDecision, executed: frozenset[str] = frozenset()
+) -> dict[str, TraceState]:
+    return {t.feature: t.state for t in build_traces(decisions, executed)}
 
 
 class TestDecisionTrace:
@@ -162,167 +81,94 @@ class TestDecisionTrace:
 
 
 class TestBuildTraces:
-    """build_traces derives traces from the request and computed amounts."""
+    """build_traces derives every trace from decisions and executed events."""
 
-    def test_standard_features_always_computed(self) -> None:
-        """Standard non-seniority features are always traced as COMPUTED."""
-        traces = build_traces(_req(), _amounts())
-        by_feature = {t.feature: t.state for t in traces}
-        for feature in (
-            "base_salary",
-            "inps_employee",
-            "inps_employer",
-            "tfr",
-            "irpef",
-            "trattamento_integrativo",
-            "ulteriore_detrazione_lavoro",
-        ):
-            assert by_feature[feature] == TraceState.COMPUTED, feature
+    def test_core_stages_are_computed(self) -> None:
+        """The pipeline stages every run executes are always COMPUTED."""
+        states = _states()
+        for feature in _CORE:
+            assert states[feature] is TraceState.COMPUTED, feature
 
-    def test_seniority_not_applicable_when_months_not_supplied(self) -> None:
-        """Seniority is NOT_APPLICABLE when seniority_months is None."""
-        traces = build_traces(_req(), _amounts())
-        by_feature = {t.feature: t.state for t in traces}
-        assert by_feature["seniority"] == TraceState.NOT_APPLICABLE
+    def test_nothing_executed_is_never_computed(self) -> None:
+        """Without decisions or event effects only the core stages are COMPUTED."""
+        computed = {f for f, s in _states().items() if s is TraceState.COMPUTED}
+        assert computed == set(_CORE)
 
-    def test_seniority_computed_when_months_supplied(self) -> None:
-        """Seniority is COMPUTED when seniority_months is provided."""
-        traces = build_traces(_req(seniority_months=24), _amounts())
-        by_feature = {t.feature: t.state for t in traces}
-        assert by_feature["seniority"] == TraceState.COMPUTED
+    def test_credits_are_not_applicable_without_decision(self) -> None:
+        """Trattamento and ulteriore detrazione are no longer always included."""
+        states = _states()
+        assert states["trattamento_integrativo"] is TraceState.NOT_APPLICABLE
+        assert states["ulteriore_detrazione_lavoro"] is TraceState.NOT_APPLICABLE
 
-    def test_event_features_skipped_without_events(self) -> None:
-        """Event-based features are SKIPPED when no matching events are present."""
-        traces = build_traces(_req(), _amounts())
-        by_feature = {t.feature: t.state for t in traces}
-        for feature in (
-            "overtime",
-            "night_work",
-            "holiday_work",
-            "absence",
-            "leave",
-            "sickness",
-            "fringe_benefit",
-            "welfare",
-            "contract_renewal_arrears",
-            "bilateral_funds",
-            "termination_tfr",
-        ):
-            assert by_feature[feature] == TraceState.SKIPPED, feature
+    @pytest.mark.parametrize("feature", _DECIDED)
+    def test_decided_feature_defaults_to_not_applicable(self, feature: str) -> None:
+        """A feature traced from decisions is NOT_APPLICABLE without one."""
+        assert _states()[feature] is TraceState.NOT_APPLICABLE
 
-    def test_all_event_features_computed_when_events_present(self) -> None:
-        """Event-based features become COMPUTED when matching events are present."""
-        req = _req(events=_all_event_types())
-        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
-        for feature in (
-            "overtime",
-            "night_work",
-            "holiday_work",
-            "absence",
-            "leave",
-            "sickness",
-            "fringe_benefit",
-            "welfare",
-            "contract_renewal_arrears",
-            "bilateral_funds",
-            "termination_tfr",
-        ):
-            assert by_feature[feature] == TraceState.COMPUTED, feature
+    @pytest.mark.parametrize("feature", _DECIDED)
+    def test_zero_amount_final_decision_is_computed(self, feature: str) -> None:
+        """A final decision computes the feature even with a zero amount."""
+        assert _states(_decision(feature))[feature] is TraceState.COMPUTED
+
+    def test_bonus_pdr_skipped_without_decision(self) -> None:
+        """No bonus routed to the PdR substitute tax leaves bonus_pdr SKIPPED."""
+        assert _states()["bonus_pdr"] is TraceState.SKIPPED
+
+    def test_bonus_pdr_computed_from_decision(self) -> None:
+        """A PdR decision computes bonus_pdr."""
+        states = _states(_decision("bonus_pdr", amount=_D("50")))
+        assert states["bonus_pdr"] is TraceState.COMPUTED
 
     @pytest.mark.parametrize(
-        ("event", "feature"),
+        ("status", "state"),
         [
-            (
-                OvertimeEvent(event_date=_DATE, hours=_D(2), hourly_rate=_D("15")),
-                "overtime",
-            ),
-            (FringeEvent(event_date=_DATE, amount=_D("50")), "fringe_benefit"),
-            (
-                BilateralFundEvent(
-                    event_date=_DATE, employee_amount=_D(5), employer_amount=_D(5)
-                ),
-                "bilateral_funds",
-            ),
+            (CalculationStatus.FINAL, TraceState.COMPUTED),
+            (CalculationStatus.PROVISIONAL, TraceState.PARTIAL),
+            (CalculationStatus.INCOMPLETE, TraceState.UNRESOLVED),
+            (CalculationStatus.REJECTED, TraceState.UNRESOLVED),
         ],
     )
-    def test_single_event_type_does_not_affect_others(
-        self, event: WorkEvent, feature: str
+    def test_decision_status_sets_state(
+        self, status: CalculationStatus, state: TraceState
     ) -> None:
-        """A single event type only marks its own feature as COMPUTED."""
-        req = _req(events=(event,))
-        by_feature = {t.feature: t.state for t in build_traces(req, _amounts())}
-        assert by_feature[feature] == TraceState.COMPUTED
-        other = "fringe_benefit" if feature == "overtime" else "overtime"
-        assert by_feature[other] == TraceState.SKIPPED
+        """Each decision status maps to one trace state."""
+        decision = _decision("addizionale_regionale", status, amount=None)
+        assert _states(decision)["addizionale_regionale"] is state
 
-    def test_parameter_features_not_applicable_without_params(self) -> None:
-        """Parameter-dependent features are NOT_APPLICABLE when inputs absent."""
-        traces = build_traces(_req(), _amounts())
-        by_feature = {t.feature: t.state for t in traces}
-        assert by_feature["addizionale_regionale"] == TraceState.NOT_APPLICABLE
-        assert by_feature["addizionale_comunale"] == TraceState.NOT_APPLICABLE
-        assert by_feature["family_deductions"] == TraceState.NOT_APPLICABLE
-
-    def test_parameter_features_computed_when_params_present(self) -> None:
-        """Parameter-dependent features are COMPUTED when inputs are provided.
-
-        Surtax features follow their final decisions, not the request codes.
-        """
-        req = _req(
-            regione="IT-25",
-            comune_belfiore="F205",
-            family_composition=FamilyComposition(),
+    def test_worst_decision_of_a_capability_wins(self) -> None:
+        """Two decisions of one capability trace as the worse of the two."""
+        states = _states(
+            _decision("seniority"),
+            _decision("seniority", CalculationStatus.INCOMPLETE),
+            _decision("seniority"),
         )
-        amounts = _amounts(
-            surtax=_surtax_outcome(
-                (REGIONAL_SURTAX, _D("300")), (MUNICIPAL_SURTAX, _D("80"))
-            )
+        assert states["seniority"] is TraceState.UNRESOLVED
+
+    def test_capability_without_default_is_traced_from_decision(self) -> None:
+        """A regime decision gets its own trace, partial when provisional."""
+        decision = _decision("rinnovo_substitute_tax", CalculationStatus.PROVISIONAL)
+        assert _states(decision)["rinnovo_substitute_tax"] is TraceState.PARTIAL
+
+    @pytest.mark.parametrize("feature", sorted(EVENT_FEATURES.values()))
+    def test_event_feature_follows_execution(self, feature: str) -> None:
+        """An event feature is COMPUTED only when one of its events had an effect."""
+        assert _states()[feature] is TraceState.SKIPPED
+        executed = _states(executed=frozenset({feature}))
+        assert executed[feature] is TraceState.COMPUTED
+        others = set(EVENT_FEATURES.values()) - {feature}
+        assert all(executed[f] is TraceState.SKIPPED for f in others)
+
+    def test_one_trace_per_feature(self) -> None:
+        """No feature is traced twice."""
+        traces = build_traces(
+            (_decision("seniority"), _decision("rinnovo_substitute_tax")),
+            frozenset({"overtime"}),
         )
-        by_feature = {t.feature: t.state for t in build_traces(req, amounts)}
-        assert by_feature["addizionale_regionale"] == TraceState.COMPUTED
-        assert by_feature["addizionale_comunale"] == TraceState.COMPUTED
-        assert by_feature["family_deductions"] == TraceState.COMPUTED
-
-    def test_surtax_with_unknown_table_is_unresolved(self) -> None:
-        """A surtax without a table is UNRESOLVED even though a code was given."""
-        req = _req(regione="IT-99", comune_belfiore="Z999")
-        amounts = _amounts(
-            surtax=_surtax_outcome((REGIONAL_SURTAX, None), (MUNICIPAL_SURTAX, None))
-        )
-        by_feature = {t.feature: t.state for t in build_traces(req, amounts)}
-        assert by_feature["addizionale_regionale"] == TraceState.UNRESOLVED
-        assert by_feature["addizionale_comunale"] == TraceState.UNRESOLVED
-
-    def test_bonus_pdr_skipped_when_pdr_eligible_zero(self) -> None:
-        """bonus_pdr is SKIPPED when no PdR substitute tax was applied."""
-        req = _req(events=(BonusEvent(event_date=_DATE, amount=_D("500")),))
-        by_feature = {
-            t.feature: t.state
-            for t in build_traces(req, _amounts(pdr_eligible=_D("0")))
-        }
-        assert by_feature["bonus_pdr"] == TraceState.SKIPPED
-
-    def test_bonus_pdr_computed_when_pdr_eligible_positive(self) -> None:
-        """bonus_pdr is COMPUTED when PdR substitute tax was actually applied."""
-        req = _req(events=(BonusEvent(event_date=_DATE, amount=_D("500")),))
-        by_feature = {
-            t.feature: t.state
-            for t in build_traces(req, _amounts(pdr_eligible=_D("500")))
-        }
-        assert by_feature["bonus_pdr"] == TraceState.COMPUTED
-
-    def test_bonus_pdr_computed_without_bonus_event_when_pdr_eligible_positive(
-        self,
-    ) -> None:
-        """bonus_pdr is COMPUTED based on pdr_eligible amount, not event presence."""
-        by_feature = {
-            t.feature: t.state
-            for t in build_traces(_req(), _amounts(pdr_eligible=_D("100")))
-        }
-        assert by_feature["bonus_pdr"] == TraceState.COMPUTED
+        features = [t.feature for t in traces]
+        assert len(features) == len(set(features))
 
     def test_result_is_deterministic(self) -> None:
-        """Same request and amounts produce identical traces."""
-        req = _req()
-        amt = _amounts()
-        assert build_traces(req, amt) == build_traces(req, amt)
+        """Same decisions and executed features produce identical traces."""
+        decisions = (_decision("seniority"),)
+        executed = frozenset({"welfare"})
+        assert build_traces(decisions, executed) == build_traces(decisions, executed)

@@ -2,14 +2,16 @@
 
 Implements Art. 11 TUIR brackets and the Art. 13 co. 1 TUIR work-income
 deduction (piecewise-linear schedule as modified by D.Lgs. 216/2023 and
-confirmed by L. 199/2025, Art. 1 c. 2), the trattamento integrativo (Art. 1 D.L.
-3/2020 as updated by L. 207/2024), the addizionale regionale e comunale
-IRPEF (Art. 50 TUIR; Art. 1 D.Lgs. 360/1998), and the sterilizzazione
-detrazioni for redditi > EUR 200k (Art. 1 c. 3-4 L. 199/2025).
+confirmed by L. 199/2025, Art. 1 c. 2), the somma esente (L. 207/2024), the
+addizionale regionale e comunale IRPEF (Art. 50 TUIR; Art. 1 D.Lgs.
+360/1998), and the sterilizzazione detrazioni for redditi > EUR 200k (Art. 1
+c. 3-4 L. 199/2025).
 
 Not in scope for this module (handled elsewhere in the engine):
-detrazioni per carichi di famiglia (Art. 12 TUIR) — applied by the
-orchestrator when ``PayrollScenario.family`` is set.
+detrazioni per carichi di famiglia (Art. 12 TUIR), applied by the
+orchestrator when ``PayrollScenario.family`` is set; the trattamento
+integrativo and the ulteriore detrazione, in
+:mod:`~ccnl_engine.payroll.service.irpef_credits`.
 """
 
 from __future__ import annotations
@@ -27,13 +29,10 @@ if TYPE_CHECKING:
     from ccnl_engine.engine.tax.domain.rules import (
         SommaEsenteRules,
         SterilizzazioneDetrazioniRules,
-        TrattamentoIntegrativoRules,
-        UlterioreDetrazioneRules,
         YearRules,
     )
 
 _ZERO = Decimal(0)
-_ONE = Decimal(1)
 _TEN_THOUSAND = Decimal(10000)
 DAYS_IN_YEAR = 365  # statutory denominator for Art. 13 co. 6 TUIR pro-rata
 
@@ -135,119 +134,6 @@ def work_income_deduction(
         return money(full_year)
     prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
     return money(full_year * prorata)
-
-
-def trattamento_integrativo(
-    gross_annual: Decimal,
-    irpef_gross: Decimal,
-    work_deduction: Decimal,
-    relevant_deductions: Decimal,
-    rules: TrattamentoIntegrativoRules,
-    eligible_work_days: int = DAYS_IN_YEAR,
-    constants: WorkDeductionRules | None = None,
-) -> Decimal:
-    """Compute the trattamento integrativo bonus (Art. 1 D.L. 3/2020).
-
-    Two income bands apply different eligibility rules:
-
-    - RC ≤ ``rules.threshold_mid`` (15 000): the bonus (up to
-      ``rules.max_amount``) is granted when IRPEF lorda exceeds the Art. 13
-      work-income deduction reduced by the EUR 75 corrective
-      (Art. 1 co. 3 L. 207/2024, also pro-rated when part-year).
-      The EUR 75 corrective offsets the 2025 deduction increase so that
-      beneficiaries remain entitled.
-
-    - ``rules.threshold_mid`` < RC ≤ ``rules.threshold_upper`` (28 000):
-      the bonus equals the excess of relevant deductions over IRPEF lorda,
-      capped at ``rules.max_amount``.  Relevant deductions are the sum of
-      Art. 13 (work-income), Art. 12 (family), and qualifying Art. 15
-      deductions (mortgages pre-2022 and specific other oneri).  When IRPEF
-      lorda exceeds relevant deductions the requisito is not met and the
-      bonus is zero.
-
-    - RC > ``rules.threshold_upper``: zero.
-
-    Both ``rules.max_amount`` and the 75 EUR corrective are scaled by
-    ``eligible_work_days / 365`` for part-year workers so that eligibility
-    thresholds remain consistent when ``work_deduction`` is also pro-rated.
-
-    Args:
-        gross_annual: Reddito complessivo di riferimento (taxable income).
-        irpef_gross: IRPEF lorda (Art. 11 TUIR) before any deductions.
-        work_deduction: Art. 13 co. 1 work-income deduction (already
-            pro-rated when ``eligible_work_days < 365``).
-        relevant_deductions: Sum of Art. 12 + Art. 13 + qualifying Art. 15
-            deductions used to verify the requisito in the 15 000-28 000 band.
-        rules: Threshold and cap parameters from the tax data file.
-        eligible_work_days: Calendar days in the tax year for which the
-            worker is employed.  Scales the max bonus and the 75 EUR
-            corrective proportionally.
-        constants: Versioned Art. 13 statutory constants (supplies the 75 EUR
-            corrective). Defaults to the 2026 schedule when ``None``.
-
-    Returns:
-        The trattamento integrativo amount, rounded to two decimal places.
-    """
-    c = constants if constants is not None else _DEFAULT_WD
-    if gross_annual > rules.threshold_upper:
-        return _ZERO
-    if eligible_work_days == DAYS_IN_YEAR:
-        prorata = _ONE
-        seventy_five = c.seventy_five
-    else:
-        prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
-        seventy_five = money(c.seventy_five * prorata)
-    max_amount = money(rules.max_amount * prorata)
-    if gross_annual <= rules.threshold_mid:
-        # Eligibility condition: IRPEF > (Art. 13 deduction - EUR 75 corrective).
-        threshold = money(max(_ZERO, work_deduction - seventy_five))
-        return max_amount if irpef_gross > threshold else _ZERO
-    # 15 000 < RC <= 28 000: bonus = min(max_amount, relevant_deductions - IRPEF).
-    if relevant_deductions <= irpef_gross:
-        return _ZERO
-    return money(min(max_amount, relevant_deductions - irpef_gross))
-
-
-def ulteriore_detrazione_lavoro(
-    taxable_income: Decimal,
-    rules: UlterioreDetrazioneRules,
-    eligible_work_days: int = DAYS_IN_YEAR,
-) -> Decimal:
-    """Compute the ulteriore detrazione del lavoro dipendente (Art. 1 c. 6 L. 207/2024).
-
-    Three income zones (reddito complessivo di riferimento):
-
-    - ``rc <= threshold_low``: zero.
-    - ``threshold_low < rc <= threshold_mid``: ``max_amount`` (flat).
-    - ``threshold_mid < rc <= threshold_high``:
-      ``max_amount * (threshold_high - rc) / (threshold_high - threshold_mid)``
-      (linear taper to zero at ``threshold_high``).
-    - ``rc > threshold_high``: zero.
-
-    The full-year amount is scaled by ``eligible_work_days / 365``.
-    Pass ``eligible_work_days=365`` (the default) for a full year.
-
-    Args:
-        taxable_income: Reddito complessivo di riferimento.
-        rules: Threshold and amount parameters from the tax data file.
-        eligible_work_days: Calendar days in the tax year for which the
-            worker is employed.  Scales the result proportionally.
-
-    Returns:
-        The ulteriore detrazione amount (unrounded; pro-rated when
-        ``eligible_work_days < 365``).
-    """
-    if taxable_income <= rules.threshold_low or taxable_income > rules.threshold_high:
-        return _ZERO
-    if taxable_income <= rules.threshold_mid:
-        full_year = rules.max_amount
-    else:
-        span = rules.threshold_high - rules.threshold_mid
-        full_year = rules.max_amount * (rules.threshold_high - taxable_income) / span
-    if eligible_work_days == DAYS_IN_YEAR:
-        return full_year
-    prorata = _trunc4(Decimal(eligible_work_days) / DAYS_IN_YEAR)
-    return full_year * prorata
 
 
 def somma_esente(

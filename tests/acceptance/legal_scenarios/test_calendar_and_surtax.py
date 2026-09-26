@@ -57,7 +57,11 @@ def test_known_surtax_tables_are_withheld() -> None:
 
     assert result.closing_state.tax.surtax > Decimal(0)
     assert result.status is CalculationStatus.FINAL
-    reasons = {d.capability: d.reason_code for d in result.decisions}
+    reasons = {
+        d.capability: d.reason_code
+        for d in result.decisions
+        if d.capability.startswith("addizionale_")
+    }
     assert reasons == {
         "addizionale_regionale": "table_applied",
         "addizionale_comunale": "advance_applied",
