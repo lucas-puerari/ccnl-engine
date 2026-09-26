@@ -7,6 +7,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.primitives import (
     NonNegativeRate,
     PositiveCeiling,
@@ -54,7 +55,7 @@ class InpsRates(BaseModel):
     employer_rate: NonNegativeRate
     employer_ivs_rate: NonNegativeRate
     ceiling: PositiveCeiling | None
-    employer_rate_by_category: dict[str, NonNegativeRate] = {}
+    employer_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     employee_additional_rate: NonNegativeRate | None = None
     employee_additional_threshold: NonNegativeRate | None = None
     provenance: RuleProvenance | None = None
@@ -168,7 +169,7 @@ class InpsEmployerTier(BaseModel):
     max_employees: int | None
     rate: NonNegativeRate
     ivs_rate: NonNegativeRate
-    rate_by_category: dict[str, NonNegativeRate] = {}
+    rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -177,7 +178,7 @@ class InpsEmployerTier(BaseModel):
         for cat, cat_rate in self.rate_by_category.items():
             if cat_rate < self.ivs_rate:
                 msg = (
-                    f"rate_by_category[{cat!r}] = {cat_rate} is below "
+                    f"rate_by_category[{cat.value!r}] = {cat_rate} is below "
                     f"ivs_rate {self.ivs_rate}; non-IVS portion would be negative"
                 )
                 raise ValueError(msg)

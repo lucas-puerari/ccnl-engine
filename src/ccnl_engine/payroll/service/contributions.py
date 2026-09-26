@@ -40,7 +40,7 @@ from ccnl_engine.payroll.service._contributions_rates import (
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, LevelCategory
+    from ccnl_engine.engine.contract.domain.ccnl import EmployerFund, WorkerCategory
     from ccnl_engine.engine.tax.domain.rules import InpsRates, YearRules
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 
@@ -120,7 +120,7 @@ def tfr(base_annual: Decimal, rules: YearRules) -> Decimal:
     return money(base_annual / rules.tfr.accrual_divisor)
 
 
-def fund_applies_to(fund: EmployerFund, category: LevelCategory | None) -> bool:
+def fund_applies_to(fund: EmployerFund, category: WorkerCategory | None) -> bool:
     """Return whether the fund applies to a level of the given category.
 
     Returns:
@@ -178,7 +178,7 @@ def resolve_contributions(
     period_inps_base: Decimal,
     rules: YearRules,
     contract_type: Permanent | FixedTerm | Apprentice,
-    category: LevelCategory | None,
+    category: WorkerCategory | None,
     *,
     ytd_inps_base: Decimal = _ZERO,
     ivs_ceiling_applies: bool = True,

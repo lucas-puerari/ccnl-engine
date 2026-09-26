@@ -3,6 +3,7 @@
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 
@@ -143,7 +144,7 @@ class TestLoadServiziPostaliAppaltoFise:
         """Operaio maximum_count=1 (Art. 35A single premio)."""
         ccnl = load_ccnl("servizi-postali-appalto-fise.json")
         si = ccnl.parameters.seniority_increments
-        assert si.maximum_count_by_category.get("operaio") == 1
+        assert si.maximum_count_by_category.get(WorkerCategory.OPERAIO) == 1
 
     def test_servizi_postali_appalto_fise_seniority_category_amounts(
         self,
@@ -151,8 +152,8 @@ class TestLoadServiziPostaliAppaltoFise:
         """Operaio and impiegato have different seniority amounts at L2."""
         ccnl = load_ccnl("servizi-postali-appalto-fise.json")
         si = ccnl.parameters.seniority_increments
-        op = si.amount_by_level_by_category["operaio"]["2"]
-        imp = si.amount_by_level_by_category["impiegato"]["2"]
+        op = si.amount_by_level_by_category[WorkerCategory.OPERAIO]["2"]
+        imp = si.amount_by_level_by_category[WorkerCategory.IMPIEGATO]["2"]
         assert op.value_at(date(2026, 1, 1)) == Decimal("56.66")
         assert imp.value_at(date(2026, 1, 1)) == Decimal("62.62")
 

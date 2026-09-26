@@ -12,6 +12,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.ccnl import (
     CCNL,
     CCNLMeta,
@@ -418,7 +419,7 @@ class TestCCNLSeniority:
                 cadence_months=24,
                 maximum_count=10,
                 amount_by_level={"2": _ts("1.00")},
-                maximum_count_by_category={"operaio": -1},
+                maximum_count_by_category={WorkerCategory.OPERAIO: -1},
             )
 
     def test_unknown_amount_by_level_by_category_raises(self) -> None:
@@ -437,10 +438,10 @@ class TestCCNLSeniority:
             maximum_count=10,
             amount_by_level={"2": _ts("1.00")},
             first_cadence_months=48,
-            first_cadence_months_by_category={"operaio": 24},
+            first_cadence_months_by_category={WorkerCategory.OPERAIO: 24},
         )
-        assert seniority_first_cadence(si, "2", "operaio") == 24
-        assert seniority_first_cadence(si, "2", "impiegato") == 48
+        assert seniority_first_cadence(si, "2", WorkerCategory.OPERAIO) == 24
+        assert seniority_first_cadence(si, "2", WorkerCategory.IMPIEGATO) == 48
         assert seniority_first_cadence(si, "2") == 48
 
     def test_flat_no_amounts_with_positive_max_raises(self) -> None:
@@ -467,7 +468,7 @@ class TestCCNLSeniority:
             cadence_months=24,
             maximum_count=10,
             amount_by_level={},
-            amount_by_level_by_category={"operaio": {"2": _ts("1.00")}},
+            amount_by_level_by_category={WorkerCategory.OPERAIO: {"2": _ts("1.00")}},
         )
         assert si.maximum_count == 10
 
@@ -660,8 +661,8 @@ class TestEmployerFundsAndAllowances:
             "rate": _series("0.185"),
             "applies_to_categories": ["operaio"],
         })
-        assert fund_applies_to(fund, "operaio")
-        assert not fund_applies_to(fund, "impiegato")
+        assert fund_applies_to(fund, WorkerCategory.OPERAIO)
+        assert not fund_applies_to(fund, WorkerCategory.IMPIEGATO)
         assert not fund_applies_to(fund, None)
         assert fund.rate.value_at(date(2026, 1, 1)) == Decimal("0.185")
         open_fund = EmployerFund.model_validate({

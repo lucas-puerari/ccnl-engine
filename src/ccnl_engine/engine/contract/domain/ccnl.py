@@ -9,6 +9,7 @@ from ccnl_engine.engine.contract.domain.absence import (
     AbsenceRules,
     DailyDivisorMethod,
 )
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.compensation import (
     AgreementKind,
     Allowance,
@@ -31,7 +32,6 @@ from ccnl_engine.engine.contract.domain.identity import (
     WorkRuleFeature,
 )
 from ccnl_engine.engine.contract.domain.seniority import (
-    LevelCategory,
     SeniorityIncrements,
     SeniorityTier,
 )
@@ -66,7 +66,6 @@ __all__ = [
     "LeaveEntitlementTier",
     "LeaveRules",
     "Level",
-    "LevelCategory",
     "NoteKind",
     "OvertimeBand",
     "SeniorityIncrements",
@@ -79,4 +78,5 @@ __all__ = [
     "TimeSupplements",
     "WorkKind",
     "WorkRuleFeature",
+    "WorkerCategory",
 ]

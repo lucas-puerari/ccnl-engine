@@ -10,6 +10,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.ccnl import TaxSector
 from ccnl_engine.engine.errors import DataIntegrityError
 from ccnl_engine.engine.primitives import Bracket
@@ -192,7 +193,7 @@ class TestInpsTiers:
                 max_employees=None,
                 rate=Decimal("0.2693"),
                 ivs_rate=Decimal("0.2381"),
-                rate_by_category={"impiegato": Decimal("0.20")},
+                rate_by_category={WorkerCategory.IMPIEGATO: Decimal("0.20")},
             )
 
 
@@ -229,11 +230,11 @@ class TestInpsRates:
             employer_rate=Decimal("0.2693"),
             employer_ivs_rate=Decimal("0.2381"),
             ceiling=None,
-            employer_rate_by_category={"impiegato": Decimal("0.2471")},
+            employer_rate_by_category={WorkerCategory.IMPIEGATO: Decimal("0.2471")},
         )
         assert inps_employer_rate(r, None) == Decimal("0.2693")
-        assert inps_employer_rate(r, "operaio") == Decimal("0.2693")
-        assert inps_employer_rate(r, "impiegato") == Decimal("0.2471")
+        assert inps_employer_rate(r, WorkerCategory.OPERAIO) == Decimal("0.2693")
+        assert inps_employer_rate(r, WorkerCategory.IMPIEGATO) == Decimal("0.2471")
 
 
 # ---------------------------------------------------------------------------

@@ -11,6 +11,7 @@ import pytest
 from pydantic import BaseModel, ConfigDict
 
 from ccnl_engine.api.facade import PayrollEngine
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.compensation import Allowance
 from ccnl_engine.engine.contract.domain.identity._ccnl import CCNL
 from ccnl_engine.engine.contract.domain.seniority import (
@@ -612,8 +613,14 @@ class TestSeniorityLookups:
             first_cadence_months=36,
             first_cadence_months_by_category={"operaio": 24},
         )
-        assert seniority_first_cadence(inc, "L1", worker_category="operaio") == 24
-        assert seniority_first_cadence(inc, "L1", worker_category="impiegato") == 36
+        assert (
+            seniority_first_cadence(inc, "L1", worker_category=WorkerCategory.OPERAIO)
+            == 24
+        )
+        assert (
+            seniority_first_cadence(inc, "L1", worker_category=WorkerCategory.IMPIEGATO)
+            == 36
+        )
 
     def test_maximum_category_override(self) -> None:
         """Category override to maximum_count_by_category takes precedence."""
@@ -622,8 +629,10 @@ class TestSeniorityLookups:
             maximum=5,
             maximum_count_by_category={"operaio": 3},
         )
-        assert seniority_maximum(inc, "L1", worker_category="operaio") == 3
-        assert seniority_maximum(inc, "L1", worker_category="impiegato") == 5
+        assert seniority_maximum(inc, "L1", worker_category=WorkerCategory.OPERAIO) == 3
+        assert (
+            seniority_maximum(inc, "L1", worker_category=WorkerCategory.IMPIEGATO) == 5
+        )
 
 
 class TestResolveSeniorityCount:
@@ -645,7 +654,7 @@ class TestResolveSeniorityCount:
             "L1",
             seniority_count=None,
             seniority_months=72,
-            worker_category="operaio",
+            worker_category=WorkerCategory.OPERAIO,
         )
         assert count == 0
 
@@ -685,7 +694,7 @@ class TestSeniorityAmount:
             "L1",
             count=3,
             as_of=_AS_OF,
-            worker_category="operaio",
+            worker_category=WorkerCategory.OPERAIO,
             is_apprentice=False,
             seniority_months=None,
         )
@@ -733,7 +742,7 @@ class TestSeniorityAmount:
             "L1",
             count=3,
             as_of=_AS_OF,
-            worker_category="operaio",
+            worker_category=WorkerCategory.OPERAIO,
             is_apprentice=False,
             seniority_months=None,
         )
@@ -753,7 +762,7 @@ class TestSeniorityAmount:
             "L1",
             count=2,
             as_of=_AS_OF,
-            worker_category="operaio",
+            worker_category=WorkerCategory.OPERAIO,
             is_apprentice=False,
             seniority_months=None,
         )

@@ -6,10 +6,8 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ccnl_engine.engine.contract.domain.seniority import (
-    LevelCategory,
-    SeniorityIncrements,
-)
+from ccnl_engine.engine.contract.domain.category import WorkerCategory
+from ccnl_engine.engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.engine.contract.domain.validity import TimeSeries
 from ccnl_engine.engine.provenance.domain.chain import RuleProvenance
 
@@ -124,7 +122,7 @@ class EmployerFund(BaseModel):
     code: str
     description: str
     rate: TimeSeries
-    applies_to_categories: tuple[LevelCategory, ...] | None = None
+    applies_to_categories: tuple[WorkerCategory, ...] | None = None
     provenance: RuleProvenance | None = None
 
 
@@ -178,9 +176,9 @@ class Level(BaseModel):
         base_salary: Time-series of monthly base salaries for this level.
         fixed_allowances: List of fixed monthly allowances attached to the
             level (e.g. EDR, contingenza). May be empty.
-        category: Worker category for this level. ``None`` when the level
-            hosts multiple categories and the category must be passed via
-            ``Scenario.category``.
+        category: Worker category fixed by this level. ``None`` when the
+            level hosts more than one category; the category then comes from
+            the employment facts (``EmploymentFacts.category``).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -190,7 +188,7 @@ class Level(BaseModel):
     description: str
     base_salary: TimeSeries
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
-    category: LevelCategory | None = None
+    category: WorkerCategory | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

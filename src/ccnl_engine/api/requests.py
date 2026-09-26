@@ -5,6 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.engine.contract.domain.category import (
+    WorkerCategory,
+    parse_worker_category,
+)
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
@@ -62,8 +66,12 @@ class EmploymentFacts:
             activate seniority-based allowances.  ``None`` when not tracked.
         roles: Set of role codes that unlock role-specific contractual
             allowances (e.g. ``{"caposquadra"}``).  Empty set by default.
-        category: Worker category code (e.g. ``"operaio"``, ``"impiegato"``).
-            ``None`` when not applicable or unknown.
+        category: Worker category (:class:`~ccnl_engine.engine.contract.domain\
+.category.WorkerCategory`); its string value (e.g. ``"operaio"``) is
+            accepted and normalized.  ``None`` takes the category fixed by the
+            level, if any.  The calculation raises when the category differs
+            from the one the level fixes, or when it is ``None`` and seniority
+            increments for the level differ by category.
     """
 
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
@@ -76,17 +84,19 @@ class EmploymentFacts:
     ended_on: date | None = None
     seniority_months: int | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
-    category: str | None = None
+    category: WorkerCategory | None = None
 
     def __post_init__(self) -> None:
         """Validate every fact by building its value object.
 
         The value objects raise ``InvalidInputError`` for impossible facts:
         a headcount below 1, negative seniority or contributable hours,
-        non-positive weekly hours, weekly hours above full time, or an end
-        date before the start date.
+        non-positive weekly hours, weekly hours above full time, an end
+        date before the start date, or an unknown worker category.  A
+        category given as its string value is normalized to the enum.
         """
         _ = (self.headcount, self.seniority, self.contributable, self.period)
+        object.__setattr__(self, "category", parse_worker_category(self.category))
         check_within_full_time(self.contracted_hours, self.full_time_hours)
 
     @property

@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import EmploymentFacts, PayrollYearRequest
+from ccnl_engine import EmploymentFacts, PayrollYearRequest, WorkerCategory
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.run import RunKind
 from tests.acceptance.legal_scenarios._support import (
@@ -67,21 +67,19 @@ def test_three_month_employment_has_no_runs_outside_the_period() -> None:
 _FISE_BASE_GROSS = Decimal("1724.40")
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="explicit worker category is dropped before seniority increments "
-    "are resolved",
-)
 @pytest.mark.parametrize(
     ("category", "increment"),
-    [("operaio", Decimal("56.66")), ("impiegato", Decimal("62.62"))],
+    [
+        (WorkerCategory.OPERAIO, Decimal("56.66")),
+        (WorkerCategory.IMPIEGATO, Decimal("62.62")),
+    ],
 )
 def test_worker_category_selects_the_seniority_increment(
-    category: str, increment: Decimal
+    category: WorkerCategory, increment: Decimal
 ) -> None:
     """Gross is base plus one category-specific increment at 60 months.
 
-    Observed on 26 September 2026: gross 1,724.40 for both categories.
+    Expected: 1,781.06 for operaio and 1,787.02 for impiegato.
     """
     result = regular_period(
         ccnl_slug=POSTAL_FISE,
@@ -92,15 +90,8 @@ def test_worker_category_selects_the_seniority_increment(
     assert result.period_gross == _FISE_BASE_GROSS + increment
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="a missing worker category is accepted where the contract needs it",
-)
 def test_missing_required_worker_category_is_rejected() -> None:
-    """FISE increments exist only per category, so no category cannot be priced.
-
-    Observed on 26 September 2026: accepted, gross 1,724.40.
-    """
+    """FISE increments exist only per category, so no category cannot be priced."""
     with pytest.raises(ValueError, match="category"):
         regular_period(
             ccnl_slug=POSTAL_FISE,

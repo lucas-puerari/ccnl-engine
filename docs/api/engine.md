@@ -21,6 +21,11 @@ See [Guide: Employment types](../domain/employment-types.md) and
         - PayrollRun
         - EmploymentFacts
 
+::: ccnl_engine.engine.contract.domain.category
+    options:
+      members:
+        - WorkerCategory
+
 ## Results and calculation status
 
 Every period result carries `issues` and a derived `status`; the year result
