@@ -30,8 +30,8 @@ if TYPE_CHECKING:
 
     from ccnl_engine.engine.capability_catalog import CapabilityReport
     from ccnl_engine.engine.contract.domain.category import WorkerCategory
+    from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
-    from ccnl_engine.payroll.domain.calendar import AccrualWindow
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
     from ccnl_engine.payroll.domain.events import WorkEvent
@@ -55,8 +55,9 @@ class PeriodState:
 
     Attributes:
         regular_periods_closed: Number of regular (``run_kind="regular"``)
-            payroll periods already closed this tax year.  Used to compute
-            extra-month accrual ratios (tredicesima, quattordicesima).
+            payroll periods already closed this tax year.  Not used for the
+            extra-month ratei, which are counted from the employment dates
+            (:class:`~ccnl_engine.payroll.domain.accrual.ExtraMonthAccrual`).
         tax_withholding_periods_closed: Number of periods that have consumed
             an IRPEF withholding slot (regular + thirteenth + fourteenth;
             not adjustment).  Used for the conguaglio divisor.
@@ -187,11 +188,15 @@ class PeriodCalculationRequest:
             :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
             passes the schedule of the runs it computes.  ``None`` uses the
             standard calendar of the CCNL ``additional_months``.
-        extra_month_accrual_window: Accrual window of an extra-month run,
-            its start clipped to the hire date.  ``None`` for a regular run
-            or when not supplied.  Recorded for the accrual rule; the rateo
-            is still computed from ``extra_month_accrual_start`` and the
-            regular periods closed.
+        extra_month_accrual: Rateo of an extra-month run: its window,
+            clipped to the hire date, and the qualifying months.
+            :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
+            supplies it.  ``None`` on an extra-month run counts it from
+            ``employment_period`` over the 12 months ending in the run month,
+            without absences.  Ignored on a regular run.
+        extra_month_settlements: Ratei liquidated on this run because the
+            employment ends before their payment month.  Each is paid as an
+            extra-month earning next to the regular pay.
     """
 
     period_id: PeriodId
@@ -215,9 +220,8 @@ class PeriodCalculationRequest:
     seniority_months: SeniorityMonths | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
     category: WorkerCategory | None = None
-    extra_month_accrual_start: int = 1
-    extra_month_max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
-    extra_month_accrual_window: AccrualWindow | None = None
+    extra_month_accrual: ExtraMonthAccrual | None = None
+    extra_month_settlements: tuple[ExtraMonthAccrual, ...] = ()
     withholding_schedule: WithholdingSchedule | None = None
 
     def __post_init__(self) -> None:

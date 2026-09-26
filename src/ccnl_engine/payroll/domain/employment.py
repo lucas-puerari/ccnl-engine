@@ -161,6 +161,23 @@ class EmploymentPeriod:
             self.ended_on is None or self.ended_on >= last
         )
 
+    def days_in_year(self, year: int) -> int:
+        """Return the calendar days of ``year`` the employment covers.
+
+        Args:
+            year: Calendar year.
+
+        Returns:
+            Days from the later of 1 January and ``started_on`` to the
+            earlier of 31 December and ``ended_on``, inclusive; zero when
+            the employment has no day in ``year``.
+        """
+        first = max(date(year, 1, 1), self.started_on)
+        last = date(year, 12, 31)
+        if self.ended_on is not None:
+            last = min(last, self.ended_on)
+        return max(0, (last - first).days + 1)
+
     def clip_start(self, day: date) -> date:
         """Return ``day``, or the hire date when ``day`` precedes it.
 

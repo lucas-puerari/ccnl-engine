@@ -27,12 +27,20 @@ class AbsenceEvent:
         end_date: Last day of the absence range.  ``None`` for single-day
             absences where ``event_date`` is both start and end.
             When set must be >= ``event_date``.
+        suspends_accrual: ``True`` when the absence suspends the
+            employment, so its calendar days do not accrue tredicesima and
+            quattordicesima ratei (for example aspettativa non retribuita,
+            or the congedo for serious family reasons of art. 4 c. 2
+            L. 53/2000).  The caller states it: the engine does not decide
+            which absences suspend accrual under the CCNL.  Defaults to
+            ``False``: an unpaid absence reduces pay, not the ratei.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
     end_date: date | None = None
+    suspends_accrual: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.hours <= 0:

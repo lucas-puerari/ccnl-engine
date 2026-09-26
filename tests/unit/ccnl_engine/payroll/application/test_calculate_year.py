@@ -359,7 +359,12 @@ class TestEmploymentPeriodRuns:
     def test_requests_carry_selected_slots_and_clipped_window(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """Slots match the selected runs; the fourteenth window starts at hire."""
+        """Slots match the selected runs; the windows start at hire.
+
+        Hired 10 March: March has 22 employed days, so it qualifies.  The
+        quattordicesima accrues March to June (4/12), the tredicesima March
+        to December (10/12).
+        """
         requests: list[PeriodCalculationRequest] = []
 
         def _spy(
@@ -380,15 +385,20 @@ class TestEmploymentPeriodRuns:
         assert tuple(s.run for s in schedule.slots) == tuple(
             r.run for r in requests if r.run is not None
         )
-        windows = {
-            r.run.run_kind: r.extra_month_accrual_window
+        accruals = {
+            r.run.run_kind: r.extra_month_accrual
             for r in requests
-            if r.run is not None and r.extra_month_accrual_window is not None
+            if r.run is not None and r.extra_month_accrual is not None
         }
-        assert windows[RunKind.FOURTEENTH].start == date(_YEAR, 3, 10)
-        assert windows[RunKind.FOURTEENTH].nominal_start == date(_YEAR - 1, 7, 1)
-        assert windows[RunKind.THIRTEENTH].start == date(_YEAR, 3, 10)
-        assert requests[0].extra_month_accrual_window is None
+        fourteenth = accruals[RunKind.FOURTEENTH]
+        thirteenth = accruals[RunKind.THIRTEENTH]
+        assert fourteenth.window.start == date(_YEAR, 3, 10)
+        assert fourteenth.window.nominal_start == date(_YEAR - 1, 7, 1)
+        assert fourteenth.months == 4
+        assert thirteenth.window.start == date(_YEAR, 3, 10)
+        assert thirteenth.months == 10
+        assert requests[0].extra_month_accrual is None
+        assert all(not r.extra_month_settlements for r in requests)
 
 
 class TestCalendarOverride:

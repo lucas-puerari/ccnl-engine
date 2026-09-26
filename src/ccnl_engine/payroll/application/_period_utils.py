@@ -95,20 +95,18 @@ def _sum_ledger(entries: tuple[LedgerEntry, ...], account: AccountKind) -> Decim
 
 
 def _apply_extra_month_policy(
-    chain: MonthlyPayChain,
-    run_kind: str,
-    accrued_months: int,
-    *,
-    accrual_window_start: int = 1,
-    max_fraction: Decimal | None = None,
+    chain: MonthlyPayChain, run_kind: str, fraction: Decimal
 ) -> MonthlyPayChain:
     """Adjust a pay chain for the run kind (tredicesima / quattordicesima).
 
-    The rateo combines the accrual ratio and the contractual maximum fraction.
-    ``accrual_window_start`` is the first month of the 12-month entitlement
-    window.  When the window crosses the year boundary (e.g. July-June for a
-    quattordicesima paid in June), the prior-year contribution is derived from
-    ``accrual_window_start`` so that a full-year worker receives rateo=1.
+    Keeps the allowances paid in the extra month and scales every component
+    by ``fraction``, rounding each to cents.
+
+    Args:
+        chain: Pay chain of a regular month.
+        run_kind: Kind of the run; a regular run keeps ``chain`` unchanged.
+        fraction: Share of a monthly pay due, the rateo times the
+            contractual fraction of the extra month.
 
     Returns:
         Adjusted :class:`~ccnl_engine.payroll.service.types.MonthlyPayChain`.
@@ -117,15 +115,6 @@ def _apply_extra_month_policy(
         return chain
     months_threshold = 14 if run_kind == "fourteenth" else 13
     chain = chain.for_extra_month(months_threshold)
-    one = Decimal(1)
-    twelve = Decimal(12)
-    prior_year_months = (
-        max(0, 12 - accrual_window_start + 1) if accrual_window_start > 1 else 0
-    )
-    useful = Decimal(accrued_months + prior_year_months)
-    accrual_ratio = min(useful / twelve, one)
-    effective_fraction = max_fraction if max_fraction is not None else one
-    rateo = accrual_ratio * effective_fraction
-    if rateo < one:
-        chain = chain.scaled(rateo)
+    if fraction < Decimal(1):
+        chain = chain.scaled(fraction)
     return chain

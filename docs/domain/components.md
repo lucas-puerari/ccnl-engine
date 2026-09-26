@@ -95,7 +95,9 @@ and 13 (a partial tredicesima) is rejected.
 These counts are for a full year. With an employment period, only the runs of
 months the employment overlaps exist, and an extra month has a run only when
 its payment month is one of them. The withholding schedule follows the
-selected runs.
+selected runs. Each extra month pays one twelfth per qualifying month of its
+window (at least 15 accruing days), and the ratei of an extra month not paid
+before the termination are paid on the last regular run.
 
 ### Hourly divisor (*divisore orario*)
 
