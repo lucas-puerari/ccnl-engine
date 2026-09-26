@@ -64,10 +64,9 @@ Italian labor law recognises a layered system:
 3. **Contratto aziendale** — a company-level agreement, which may improve on the
    national CCNL but not worsen it (the *favor prestatoris* principle).
 
-The ccnl-engine models the national CCNL layer (1). Company-level supplements
-(3) have a `SupplementaryAllowance` type but are not yet a payroll input (see
-[Second-level bargaining](../engine/second-level.md)). Territorial supplements
-(2) are not modelled.
+The ccnl-engine models the national CCNL layer (1). Company-level (3) and
+territorial (2) supplements are not an engine input (see
+[Second-level bargaining](../engine/second-level.md)).
 
 ## Next: CCNL components
 

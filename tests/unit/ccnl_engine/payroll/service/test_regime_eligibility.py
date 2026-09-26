@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.engine.contract.domain.identity import TaxSector
 from ccnl_engine.engine.tax.domain.preferential_regime import (
+    EmployerActivity,
     EmploymentSector,
     PreferentialTaxRegime,
 )
@@ -19,10 +20,12 @@ from ccnl_engine.payroll.service.regime_eligibility import (
     RegimeEligibility,
     RegimeFacts,
     assess_regime,
-    sector_of_tax_sector,
 )
 
-_RINNOVO = load_variable_pay_rules(2026).rinnovo
+_RULES = load_variable_pay_rules(2026)
+_RINNOVO = _RULES.rinnovo
+_WORK_TIME = _RULES.notte_festivi_turni
+_SIGNED = date(2025, 3, 1)
 _PRIVATE = EmploymentSector.PRIVATE
 _PUBLIC = EmploymentSector.PUBLIC
 _AMOUNT = Decimal(2_000)
@@ -39,8 +42,16 @@ def _facts(
     prior_income: Decimal | None = Decimal(20_000),
     sector: EmploymentSector | None = _PRIVATE,
     waived: bool = False,
+    signed_on: date | None = _SIGNED,
+    activity: EmployerActivity | None = EmployerActivity.OTHER,
 ) -> RegimeFacts:
-    return RegimeFacts(prior_income=prior_income, sector=sector, waived=waived)
+    return RegimeFacts(
+        prior_income=prior_income,
+        sector=sector,
+        activity=activity,
+        waived_regimes=frozenset({"rinnovo", "notte_festivi_turni"} if waived else ()),
+        agreement_signed_on=signed_on,
+    )
 
 
 class TestAssessRegime:
@@ -117,10 +128,15 @@ class TestAssessRegime:
     def test_regime_without_requirements_is_eligible_on_unknown_facts(self) -> None:
         """Facts the regime does not require cannot make it unknown."""
         regime = _regime(
-            required_sector=None, income_ceiling=None, income_reference_year=None
+            required_sector=None,
+            income_ceiling=None,
+            income_reference_year=None,
+            agreements_signed_from=None,
+            agreements_signed_until=None,
         )
+        facts = _facts(None, sector=None, signed_on=None, activity=None)
 
-        assessment = assess_regime(regime, _facts(None, sector=None), _AMOUNT, 2026)
+        assessment = assess_regime(regime, facts, _AMOUNT, 2026)
 
         assert assessment.eligibility is _ELIGIBLE
 
@@ -188,19 +204,98 @@ class TestAssessmentRecords:
         assert (decision.rule, decision.rule_version) == ("rinnovo", "2026")
 
 
-class TestSectorOfTaxSector:
-    """Employment sector implied by the CCNL tax sector."""
+class TestSigningWindow:
+    """A renewal qualifies only when signed within the window of the regime."""
 
     @pytest.mark.parametrize(
-        ("tax_sector", "sector"),
+        ("signed_on", "eligibility", "reason"),
         [
-            (TaxSector.PUBBLICA_AMMINISTRAZIONE.value, _PUBLIC),
-            (TaxSector.TERZIARIO.value, _PRIVATE),
-            (None, None),
+            (date(2024, 1, 1), _ELIGIBLE, "requirements_met"),
+            (date(2026, 12, 31), _ELIGIBLE, "requirements_met"),
+            (date(2023, 12, 31), _INELIGIBLE, "agreement_signed_outside_window"),
+            (date(2027, 1, 1), _INELIGIBLE, "agreement_signed_outside_window"),
+            (None, _UNKNOWN, "agreement_signing_date_unknown"),
         ],
     )
-    def test_maps_ccnl_tax_sector(
-        self, tax_sector: str | None, sector: EmploymentSector | None
+    def test_signing_date_against_window(
+        self, signed_on: date | None, eligibility: RegimeEligibility, reason: str
     ) -> None:
-        """Public administration is public, other sectors private."""
-        assert sector_of_tax_sector(tax_sector) is sector
+        """Bounds are included; an unknown date makes the renewal unknown."""
+        assessment = assess_regime(_RINNOVO, _facts(signed_on=signed_on), _AMOUNT, 2026)
+
+        assert (assessment.eligibility, assessment.reason_code) == (
+            eligibility,
+            reason,
+        )
+
+    def test_signing_date_recorded_on_decision(self) -> None:
+        """The decision records the signing date, or unknown."""
+        known = assess_regime(_RINNOVO, _facts(), _AMOUNT, 2026)
+        unknown = assess_regime(_RINNOVO, _facts(signed_on=None), _AMOUNT, 2026)
+
+        assert known.decision(Decimal(0)).inputs["agreement_signed_on"] == (
+            "2025-03-01"
+        )
+        assert unknown.decision(Decimal(0)).inputs["agreement_signed_on"] == ("unknown")
+
+    def test_regime_without_window_ignores_the_date(self) -> None:
+        """The work-time regime has no signing window."""
+        assessment = assess_regime(
+            _WORK_TIME, _facts(signed_on=None), _AMOUNT, 2026, Decimal(1_500)
+        )
+
+        assert assessment.eligibility is _ELIGIBLE
+        assert "agreement_signed_on" not in assessment.decision(Decimal(0)).inputs
+
+
+class TestEmployerActivity:
+    """L. 199/2025 art. 1 c. 11 excludes the activities of c. 18."""
+
+    @pytest.mark.parametrize(
+        ("activity", "eligibility", "reason"),
+        [
+            (EmployerActivity.OTHER, _ELIGIBLE, "requirements_met"),
+            (
+                EmployerActivity.FOOD_AND_BEVERAGE_SERVICE,
+                _INELIGIBLE,
+                "employer_activity_excluded",
+            ),
+            (EmployerActivity.TOURISM, _INELIGIBLE, "employer_activity_excluded"),
+            (
+                EmployerActivity.THERMAL_ESTABLISHMENT,
+                _INELIGIBLE,
+                "employer_activity_excluded",
+            ),
+            (None, _UNKNOWN, "activity_unknown"),
+        ],
+    )
+    def test_activity_against_exclusion(
+        self,
+        activity: EmployerActivity | None,
+        eligibility: RegimeEligibility,
+        reason: str,
+    ) -> None:
+        """An excluded activity is ineligible, an unknown one unknown."""
+        assessment = assess_regime(
+            _WORK_TIME, _facts(activity=activity), _AMOUNT, 2026, Decimal(1_500)
+        )
+
+        assert (assessment.eligibility, assessment.reason_code) == (
+            eligibility,
+            reason,
+        )
+
+    def test_activity_recorded_on_decision(self) -> None:
+        """The decision records the activity, or unknown."""
+        known = assess_regime(_WORK_TIME, _facts(), _AMOUNT, 2026)
+        unknown = assess_regime(_WORK_TIME, _facts(activity=None), _AMOUNT, 2026)
+
+        assert known.decision(Decimal(0)).inputs["employer_activity"] == "other"
+        assert unknown.decision(Decimal(0)).inputs["employer_activity"] == "unknown"
+
+    def test_renewal_regime_has_no_activity_exclusion(self) -> None:
+        """An unknown activity does not affect the renewal regime."""
+        assessment = assess_regime(_RINNOVO, _facts(activity=None), _AMOUNT, 2026)
+
+        assert assessment.eligibility is _ELIGIBLE
+        assert "employer_activity" not in assessment.decision(Decimal(0)).inputs

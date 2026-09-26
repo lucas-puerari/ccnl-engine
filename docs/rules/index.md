@@ -122,8 +122,8 @@ The sector must match the CCNL's `meta.tax_sector`. Valid values:
 ## Surtax rules
 
 Regional and municipal surtax tables are loaded by the engine for the tax
-year. The caller selects them with `regione` and `comune_belfiore` on
-`PayrollRequest` or `PayrollYearRequest`; a component whose code is `None` is
+year. The caller selects them with `regione` and `comune_belfiore` on the
+`PeriodFacts` of the run; a component whose code is `None` is
 skipped. See [Fiscal computation](../engine/fiscal.md#surtax-decisions).
 
 ```python

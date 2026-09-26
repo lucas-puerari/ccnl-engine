@@ -87,10 +87,27 @@ def _class_definitions(path: Path) -> list[str]:
 _ALLOWED_DOMAIN_ENGINE_IMPORTS: dict[str, set[str]] = {
     "sickness.py": {"ccnl_engine.engine.errors"},
     "policy.py": {"ccnl_engine.engine.io.service.bundled"},
-    "employment.py": {"ccnl_engine.engine.errors"},
-    "employer.py": {"ccnl_engine.engine.errors"},
+    # The public inputs validate against value types owned by the contract
+    # and tax capabilities: worker category, sector, activity and regimes.
+    "employment.py": {
+        "ccnl_engine.engine.errors",
+        "ccnl_engine.engine.contract.domain.category",
+        "ccnl_engine.engine.tax.domain.preferential_regime",
+    },
+    "employer.py": {
+        "ccnl_engine.engine.errors",
+        "ccnl_engine.engine.tax.domain.preferential_regime",
+    },
+    "inputs.py": {"ccnl_engine.engine.errors"},
+    "prior_year.py": {
+        "ccnl_engine.engine.errors",
+        "ccnl_engine.engine.tax.domain.preferential_regime",
+    },
     "calendar_override.py": {"ccnl_engine.engine.errors"},
-    "period.py": {"ccnl_engine.engine.errors"},
+    "period.py": {
+        "ccnl_engine.engine.errors",
+        "ccnl_engine.engine.tax.domain.preferential_regime",
+    },
     "jurisdiction.py": {"ccnl_engine.engine.errors"},
     "tax_year.py": {"ccnl_engine.engine.errors"},
     "events/variable_pay.py": {"ccnl_engine.engine.errors"},
@@ -119,29 +136,23 @@ def test_payroll_domain_runtime_engine_imports_within_allowlist() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Test: single EmploymentFacts
+# Test: one employment model
 #
-# Currently two definitions exist (api/requests.py and
-# payroll/domain/employment_context.py).  The goal is to consolidate to one.
-# This test fails as soon as a *third* definition appears.
+# The employment relationship has a single public model,
+# payroll/domain/employment.py::Employment.  No EmploymentFacts remains.
 # ---------------------------------------------------------------------------
 
-_ALLOWED_EMPLOYMENT_FACTS_MODULES: frozenset[str] = frozenset({
-    "ccnl_engine/api/requests.py",
-})
 
-
-def test_employment_facts_defined_in_allowed_modules_only() -> None:
-    """EmploymentFacts must not be duplicated beyond the two transitional locations."""
-    found: list[str] = []
+def test_employment_defined_once() -> None:
+    """Employment is defined once and EmploymentFacts nowhere."""
+    found: dict[str, list[str]] = {"Employment": [], "EmploymentFacts": []}
     for path in _python_files(_SRC / "ccnl_engine"):
-        if "EmploymentFacts" in _class_definitions(path):
-            rel = str(path.relative_to(_SRC))
-            found.append(rel)
-    unexpected = sorted(set(found) - _ALLOWED_EMPLOYMENT_FACTS_MODULES)
-    assert not unexpected, (
-        "EmploymentFacts defined outside allowed modules:\n" + "\n".join(unexpected)
-    )
+        for name in set(_class_definitions(path)) & found.keys():
+            found[name].append(str(path.relative_to(_SRC)))
+    assert found == {
+        "Employment": ["ccnl_engine/payroll/domain/employment.py"],
+        "EmploymentFacts": [],
+    }
 
 
 # ---------------------------------------------------------------------------

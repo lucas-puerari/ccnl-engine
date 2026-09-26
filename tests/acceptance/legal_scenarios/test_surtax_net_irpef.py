@@ -15,10 +15,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import WeeklyHours
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -30,9 +31,10 @@ _YEAR = 2026
 _FULL_TIME = 40
 
 
-def _run(weekly_hours: int) -> PeriodCalculationResult:
+def _run(weekly_hours: int) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=1),
             payment_date=date(_YEAR, 1, 27),
             ccnl_slug="metalmeccanico-federmeccanica.json",
@@ -46,7 +48,7 @@ def _run(weekly_hours: int) -> PeriodCalculationResult:
     )
 
 
-def _projected_taxable(result: PeriodCalculationResult) -> Decimal:
+def _projected_taxable(result: PeriodResult) -> Decimal:
     (decision,) = (
         d for d in result.decisions if d.capability == "addizionale_regionale"
     )
@@ -55,7 +57,7 @@ def _projected_taxable(result: PeriodCalculationResult) -> Decimal:
     return taxable
 
 
-def _surtax_reasons(result: PeriodCalculationResult) -> list[str]:
+def _surtax_reasons(result: PeriodResult) -> list[str]:
     return [
         d.reason_code
         for d in result.decisions

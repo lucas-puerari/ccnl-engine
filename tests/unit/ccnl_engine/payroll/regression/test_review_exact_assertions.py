@@ -32,6 +32,7 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -48,6 +49,7 @@ from ccnl_engine.payroll.domain.period import PeriodCalculationRequest, PeriodSt
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -79,6 +81,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     )
     regular = calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=pid,
             payment_date=date(2026, 12, 28),
             ccnl_slug=_CCNL_WITH_ALLOWANCES,
@@ -88,6 +91,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     )
     thirteenth = calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=pid,
             payment_date=date(2026, 12, 28),
             ccnl_slug=_CCNL_WITH_ALLOWANCES,
@@ -115,7 +119,7 @@ def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     Source: REVIEW.md §4.  With 13 runs the year produces 65 entries, but only
     60 distinct IDs because the two December runs share entry IDs.
     """
-    result = calculate_year(_YEAR, _CCNL, _LEVEL)
+    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
 
     all_ids = [e.entry_id for r in result.period_results for e in r.ledger_entries]
     unique_ids = set(all_ids)

@@ -1,73 +1,82 @@
 # Engine
 
-The engine takes a payroll scenario — employee, employment relationship, and
-applicable rules — and returns a fully itemised `PayrollResult`. It is a pure
+The engine takes a payroll scenario (the employment, the employer, the facts
+of the run and the applicable rules) and returns a fully itemised
+`PeriodResult`. It is a pure
 function: given the same inputs and the same knowledge base version, it always
 produces the same output.
 
 ## Entry point: `PayrollEngine`
 
 Construct the engine with `PayrollEngine.bundled()` and call
-`calculate()` for a single pay run or `calculate_year()` for a full year:
+`calculate_period()` for a single pay run or `calculate_year()` for a full
+year:
 
 ```python
 from datetime import date
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodInput,
 )
 
 engine = PayrollEngine.bundled()
+employment = Employment(
+    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+)
+employer = EmployerProfile(headcount=Headcount(50))
 
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=EmploymentFacts(),
-        employer=Employer(headcount=Headcount(50)),
+        employment=employment,
+        employer=employer,
     )
 )
+print(result.status)
 print(result.period_gross)
 print(result.period_net)
 ```
 
-To add period-specific events (overtime, absences, benefits), pass them on
-`PayrollRequest`:
+To add period-specific events (overtime, absences, benefits), pass them in
+the `PeriodFacts` of the run:
 
 ```python
-from ccnl_engine.payroll.domain.events import OvertimeEvent
+from ccnl_engine import PeriodFacts
+from ccnl_engine.events import OvertimeEvent
 
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        events=(
-            OvertimeEvent(
-                event_date=date(2026, 1, 10),
-                hours=8,
-                hourly_rate=...,
-                multiplier=...,
+        employment=employment,
+        employer=employer,
+        facts=PeriodFacts(
+            events=(
+                OvertimeEvent(
+                    event_date=date(2026, 1, 10),
+                    hours=8,
+                    hourly_rate=...,
+                    multiplier=...,
+                ),
             ),
         ),
     )
 )
 ```
 
-`calculate()` returns a `PeriodCalculationResult` with gross, net, pay items,
-and a full ledger of every accounting entry. See [API: Engine](../api/engine.md).
+`calculate_period()` returns a `PeriodResult` with status, issues, decisions,
+gross, net, pay items, the closing state and a full ledger of every
+accounting entry. See [API: Engine](../api/engine.md).
 
 ## Tax year and payment date
 
-`payment_date` is required on every `PayrollRequest`. It selects the tax year
+`payment_date` is required on every `PeriodInput`. It selects the tax year
 of the run (TUIR art. 51 c. 1, `TaxYearPolicy`), while the run year and month
 keep selecting the contractual values (salary table, seniority, allowances):
 
@@ -103,17 +112,23 @@ quattordicesima in June. The run sequence and the IRPEF withholding schedule
 are both built from that calendar.
 
 ```python
-from ccnl_engine import PayrollYearRequest
+from ccnl_engine import YearInput
 
+commercio = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
 year = engine.calculate_year(
-    PayrollYearRequest(
-        year=2026,
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-    )
+    YearInput(year=2026, employment=commercio, employer=employer)
 )
 print(len(year.period_results))  # 14: 12 regular runs, tredicesima, quattordicesima
 ```
+
+Each run takes its `PeriodFacts` from `YearInput.periods`, keyed by month
+(1-12, the regular run of that month) or by run id (for example
+`"2026-12-thirteenth"`), and otherwise from `default_facts`. An entry replaces
+`default_facts` for its run, so repeat the region and the family in it, for
+example with `dataclasses.replace(default_facts, events=...)`.
+`default_facts` must carry no event. Naming a run twice (by month and by run
+id) raises `InvalidInputError`. `year.closing_state` is the state after the
+last run: pass it to `engine.close_tax_year()` to open the next year.
 
 A different calendar is accepted only as a `CalendarOverride` with a
 `CalendarOverrideReason` and a non-blank note. The override is checked
@@ -139,19 +154,14 @@ every run belongs to that tax year; another day raises `InvalidInputError`.
 
 ```python
 tenth = engine.calculate_year(
-    PayrollYearRequest(
-        year=2026,
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-        payment_day=10,
-    )
+    YearInput(year=2026, employment=commercio, employer=employer, payment_day=10)
 )
 print(tenth.period_results[0].payment_date)  # 2026-01-10
 ```
 
 ### Employment period
 
-`EmploymentFacts.started_on` and `ended_on` select the runs of the year:
+`Employment.employment_period` selects the runs of the year:
 
 - a regular run for every month with at least one employed day;
 - an extra-month run only when its payment month is such a month, so a
@@ -189,7 +199,7 @@ employment dates and never from the runs already closed:
   retribuita) removes its calendar days from every window. The caller says
   which absences suspend accrual; an ordinary unpaid absence reduces pay,
   not the ratei. Absences of the previous year are not known, and a single
-  `calculate()` call on an extra-month run counts from the employment dates
+  `calculate_period()` call on an extra-month run counts from the employment dates
   only;
 - when the employment ends before an extra month's payment month, the ratei
   accrued up to the termination are paid on the last regular run as
@@ -207,16 +217,17 @@ cover fails in the salary lookup.
 ```python
 from datetime import date
 
-from ccnl_engine import EmploymentFacts
+from ccnl_engine import EmploymentPeriod
 
 short = engine.calculate_year(
-    PayrollYearRequest(
+    YearInput(
         year=2026,
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-        employment_facts=EmploymentFacts(
-            started_on=date(2026, 7, 1), ended_on=date(2026, 9, 30)
+        employment=Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            employment_period=EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30)),
         ),
+        employer=employer,
     )
 )
 print(len(short.period_results))  # 3: July, August, September
@@ -244,7 +255,7 @@ The engine applies rules in a fixed sequence:
    ↓
 2. Apply part-time coefficient and apprenticeship percentage
    ↓
-3. Add fixed allowances and second-level supplements
+3. Add fixed allowances
    ↓
 4. Compute INPS contributions (employee + employer, NASpI addizionale if fixed-term)
    ↓
@@ -263,7 +274,8 @@ The engine applies rules in a fixed sequence:
     overtime pay, absence deduction, leave accrual, sick-pay integration,
     fringe benefits, welfare, PdR bonus
     ↓
-11. Assemble PayrollResult: gross, net, employer cost, scope, warnings, confidence
+11. Assemble PeriodResult: gross, net, employer cost, status, issues,
+    decisions, capability report
 ```
 
 Steps 7–9 are fiscal and can be parameterised heavily. See
@@ -274,9 +286,12 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 
 | Type | What it describes |
 |---|---|
-| `PayrollRequest` | Full period request: run, payment date, CCNL slug, level, employment facts, employer, events |
-| `EmploymentFacts` | Contract shape: type, hours, seniority, ceiling status; impossible values are rejected on construction |
-| `Employer` | The employer; its `Headcount` (at least 1) selects the INPS rate tier. Defaults to 50 employees |
+| `PeriodInput` | One run: `PayrollRun`, payment date, employment, employer, facts of the run, prior-year facts, opening state |
+| `YearInput` | Every run of a tax year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day, opening state |
+| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityMonths`, roles, IVS ceiling status and sector; impossible values are rejected on construction |
+| `EmployerProfile` | The employer: its `Headcount` (required, at least 1) selects the INPS rate tier; `activity` feeds the L. 199/2025 c. 18 exclusion |
+| `PriorYearTaxFacts` | Prior-year employment income and written waivers, declared once and read by every substitute-tax regime |
+| `PeriodFacts` | Events, contributable hours, region and Belfiore code, family composition of one run |
 | `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
 | `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
 | `OvertimeEvent` | Overtime hours for a specific date |
@@ -284,15 +299,18 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `SickLeaveEvent` | Sick-leave calendar days |
 | `FringeEvent` | Fringe-benefit value and threshold flag |
 | `WelfareEvent` | Welfare benefit annual amount |
-| `BonusEvent` | PdR bonus amount and eligibility |
+| `BonusEvent` | Bonus amount and kind (ordinary, PdR, contract renewal with its signing date) |
 
 Full type reference: [API: Engine](../api/engine.md).
 
-## Output: `PayrollResult`
+## Output: `PeriodResult`
 
 The result contains every gross, net, and cost component. Key fields:
 
 ```python
+result.status               # final, provisional, incomplete or rejected
+result.issues               # conditions that lowered the status
+result.decisions            # what each capability decided, with its inputs
 result.period_gross         # gross entitlement for the period (before absence deductions)
 result.period_net           # net pay for this period
 result.period_employer_cost # total employer cost (gross + contributions + TFR accrual)
@@ -300,18 +318,21 @@ result.unpaid_absence_deduction  # wages withheld for unpaid absences
 result.closing_state        # tax year state and obligations: opening_state of the next run
 result.pay_items            # all pay items produced
 result.ledger_entries       # full accounting ledger
-result.capability_report    # feature support and confidence for this CCNL
+result.capability_report    # what the run executed against the capability catalog
 ```
 
-See [Trust: Confidence](../trust/confidence.md) for how the three-tier
-confidence score is derived.
+`YearResult` sums the runs (`annual_gross`, `annual_net`,
+`annual_employer_cost`), keeps every `PeriodResult` in `period_results` and
+exposes the worst `status`, the `issues` and `decisions` of its runs and the
+`closing_state` of the last run. See [Trust: Confidence](../trust/confidence.md)
+for how the status is derived.
 
 ## Guides
 
 | Page | Contents |
 |---|---|
 | [Pay components](pay-components.md) | Part-time, seniority, RAL overrides |
-| [Second level](second-level.md) | Territorial and company supplements |
+| [Second level](second-level.md) | Second-level agreements: what the engine does not take as input |
 | [Fiscal](fiscal.md) | IRPEF, surtax, family and Art. 15 deductions |
 | [Domestic work](domestic-work.md) | Flat per-hour contributions, non-withholding employer |
 | [Work rules](work-rules.md) | L3: overtime, absence, leave, sickness, bonus, welfare |

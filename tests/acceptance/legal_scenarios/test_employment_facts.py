@@ -10,16 +10,21 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    ContributableHours,
+    EmployerProfile,
+    Employment,
+    EmploymentPeriod,
     Headcount,
-    PayrollYearRequest,
+    SeniorityMonths,
+    WeeklyHours,
     WorkerCategory,
+    YearInput,
 )
 from ccnl_engine.payroll.domain.run import RunKind
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     DOMESTIC,
+    EMPLOYER,
     ENGINE,
     POSTAL_FISE,
     regular_period,
@@ -28,24 +33,25 @@ from tests.acceptance.legal_scenarios._support import (
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine.payroll.application.calculate_year import (
-        YearCalculationResult,
-    )
+    from ccnl_engine import YearResult
 
 pytestmark = pytest.mark.legal_scenario
 
 
-def _three_month_year() -> YearCalculationResult:
+def _commercio_year(period: EmploymentPeriod) -> YearResult:
     return ENGINE.calculate_year(
-        PayrollYearRequest(
+        YearInput(
             year=2026,
-            ccnl_slug=COMMERCIO,
-            level_code="4",
-            employment_facts=EmploymentFacts(
-                started_on=date(2026, 7, 1), ended_on=date(2026, 9, 30)
+            employment=Employment(
+                ccnl_slug=COMMERCIO, level_code="4", employment_period=period
             ),
+            employer=EMPLOYER,
         )
     )
+
+
+def _three_month_year() -> YearResult:
+    return _commercio_year(EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30)))
 
 
 def test_three_month_employment_has_no_runs_outside_the_period() -> None:
@@ -103,14 +109,7 @@ def test_hire_in_march_accrues_a_third_of_the_quattordicesima() -> None:
     Observed before the fix: the quattordicesima paid 10/12, counting the
     six months before January as accrued.
     """
-    year = ENGINE.calculate_year(
-        PayrollYearRequest(
-            year=2026,
-            ccnl_slug=COMMERCIO,
-            level_code="4",
-            employment_facts=EmploymentFacts(started_on=date(2026, 3, 15)),
-        )
-    )
+    year = _commercio_year(EmploymentPeriod(date(2026, 3, 15)))
     extra = {
         r.run.run_kind: r.period_gross
         for r in year.period_results
@@ -134,16 +133,8 @@ def test_three_month_employment_never_pays_a_full_year(hire_month: int) -> None:
     """
     last_month = hire_month + 2
     last_day = calendar.monthrange(2026, last_month)[1]
-    year = ENGINE.calculate_year(
-        PayrollYearRequest(
-            year=2026,
-            ccnl_slug=COMMERCIO,
-            level_code="4",
-            employment_facts=EmploymentFacts(
-                started_on=date(2026, hire_month, 1),
-                ended_on=date(2026, last_month, last_day),
-            ),
-        )
+    year = _commercio_year(
+        EmploymentPeriod(date(2026, hire_month, 1), date(2026, last_month, last_day))
     )
     regular_runs = [
         r for r in year.period_results if r.run and r.run.run_kind is RunKind.REGULAR
@@ -187,9 +178,12 @@ def test_worker_category_selects_the_seniority_increment(
     Expected: 1,781.06 for operaio and 1,787.02 for impiegato.
     """
     result = regular_period(
-        ccnl_slug=POSTAL_FISE,
-        level_code="2",
-        facts=EmploymentFacts(seniority_months=60, category=category),
+        employment=Employment(
+            ccnl_slug=POSTAL_FISE,
+            level_code="2",
+            seniority_months=SeniorityMonths(60),
+            category=category,
+        )
     )
 
     assert result.period_gross == _FISE_BASE_GROSS + increment
@@ -199,35 +193,54 @@ def test_missing_required_worker_category_is_rejected() -> None:
     """FISE increments exist only per category, so no category cannot be priced."""
     with pytest.raises(ValueError, match="category"):
         regular_period(
-            ccnl_slug=POSTAL_FISE,
-            level_code="2",
-            facts=EmploymentFacts(seniority_months=60, category=None),
+            employment=Employment(
+                ccnl_slug=POSTAL_FISE,
+                level_code="2",
+                seniority_months=SeniorityMonths(60),
+                category=None,
+            )
         )
 
 
 def _negative_headcount() -> None:
-    regular_period(employer=Employer(headcount=Headcount(-1)))
+    regular_period(employer=EmployerProfile(headcount=Headcount(-1)))
 
 
 def _negative_seniority() -> None:
-    regular_period(facts=EmploymentFacts(seniority_months=-12))
+    regular_period(
+        employment=Employment(
+            ccnl_slug=COMMERCIO, level_code="4", seniority_months=SeniorityMonths(-12)
+        )
+    )
 
 
 def _end_before_start() -> None:
-    facts = EmploymentFacts(started_on=date(2026, 9, 30), ended_on=date(2026, 7, 1))
-    regular_period(facts=facts)
+    period = EmploymentPeriod(date(2026, 9, 30), date(2026, 7, 1))
+    regular_period(
+        employment=Employment(
+            ccnl_slug=COMMERCIO, level_code="4", employment_period=period
+        )
+    )
 
 
 def _hours_above_full_time() -> None:
-    regular_period(facts=EmploymentFacts(weekly_hours=60, full_time_weekly_hours=40))
+    regular_period(
+        employment=Employment(
+            ccnl_slug=COMMERCIO,
+            level_code="4",
+            weekly_hours=WeeklyHours(60),
+            full_time_weekly_hours=WeeklyHours(40),
+        )
+    )
 
 
 def _negative_contributable_hours() -> None:
     regular_period(
-        ccnl_slug=DOMESTIC,
-        level_code="B",
-        facts=EmploymentFacts(weekly_hours=25, contributable_hours=Decimal(-160)),
-        employer=Employer(headcount=Headcount(1)),
+        employment=Employment(
+            ccnl_slug=DOMESTIC, level_code="B", weekly_hours=WeeklyHours(25)
+        ),
+        contributable_hours=ContributableHours(Decimal(-160)),
+        employer=EmployerProfile(headcount=Headcount(1)),
     )
 
 

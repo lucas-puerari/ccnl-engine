@@ -33,7 +33,7 @@ from ccnl_engine.payroll.domain.obligations import ULTERIORE_RECOVERY
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application._reconcile_types import RunFacts
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
 __all__: list[str] = []
@@ -53,7 +53,7 @@ _DEDUCTIONS = frozenset({
 
 
 def check_contribution_ceiling(
-    result: PeriodCalculationResult, opening: PeriodState, facts: RunFacts
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
 ) -> list[ReconciliationViolation]:
     """Check that the IVS base of the run stays within the massimale headroom.
 
@@ -95,7 +95,7 @@ def net_annual_irpef(computation: TaxComputation) -> Decimal:
     return max(_ZERO, gross - deductions)
 
 
-def _closes_last_slot(result: PeriodCalculationResult, opening: PeriodState) -> bool:
+def _closes_last_slot(result: PeriodResult, opening: PeriodState) -> bool:
     slots = result.closing_state.ytd.withholding_slots
     return (
         slots is not None
@@ -105,7 +105,7 @@ def _closes_last_slot(result: PeriodCalculationResult, opening: PeriodState) -> 
 
 
 def check_irpef_annual_reconciliation(
-    result: PeriodCalculationResult, opening: PeriodState, facts: RunFacts
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
 ) -> list[ReconciliationViolation]:
     """Check that the last withholding slot settles the IRPEF of the year.
 

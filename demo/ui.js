@@ -195,19 +195,6 @@ window._ccnlCombo    = makeCombobox("combo-ccnl-wrap",    "sel-ccnl",    t("form
 window._regioneCombo = makeCombobox("combo-regione-wrap", "sel-regione", t("form.regione.placeholder"),     t("form.regione.label"));
 window._comuneCombo  = makeCombobox("combo-comune-wrap",  "sel-comune",  t("form.comune.name_placeholder"), t("form.comune.name_label"));
 
-// ── RAL ↔ second-level mutual exclusion ─────────────────────────────────────
-
-document.getElementById("inp-ral").addEventListener("input", e => {
-  const hasRal = parseFloat(e.target.value) > 0;
-  document.getElementById("inp-second-level").disabled = hasRal;
-  if (hasRal) document.getElementById("inp-second-level").value = "0";
-});
-document.getElementById("inp-second-level").addEventListener("input", e => {
-  const hasSl = parseFloat(e.target.value) > 0;
-  document.getElementById("inp-ral").disabled = hasSl;
-  if (hasSl) document.getElementById("inp-ral").value = "0";
-});
-
 // ── CCNL / level population ──────────────────────────────────────────────────
 
 // ── Combobox helper ──────────────────────────────────────────────────────────
@@ -672,7 +659,6 @@ const CAT_META = {
   seniority:     { label: "SCATTI",   cls: "cat-senior"  },
   allowance:     { label: "ALLOW.",   cls: "cat-allow"   },
   ad_personam:   { label: "AD PER.",  cls: "cat-ad"     },
-  second_level:  { label: "2° LIV.", cls: "cat-allow"   },
   ral_override:  { label: "RAL",      cls: "cat-ad"     },
   gross:         { label: "TOTALE",   cls: "cat-gross"   },
 };
@@ -1028,8 +1014,7 @@ function renderBreakdown(r, enteredComune) {
   // If a RAL override was applied gross_monthly differs from the component sum;
   // the gap is shown as an explicit adjustment row so the Gross total reconciles.
   const componentSum = r.base_monthly + (r.seniority_monthly || 0)
-    + (r.allowances_monthly || 0) + (r.ad_personam_monthly || 0)
-    + (r.second_level_monthly || 0);
+    + (r.allowances_monthly || 0) + (r.ad_personam_monthly || 0);
   const ralAdj = r.gross_monthly - componentSum;
   body.appendChild(bHead(t("breakdown.head.components_template", { nm })));
   body.appendChild(bRow(t("breakdown.base_pay"), r.base_monthly, r.base_monthly * nm));
@@ -1042,13 +1027,11 @@ function renderBreakdown(r, enteredComune) {
     // All other components use additional_months, so the difference is exact.
     const allowances_annual = r.gross_annual
       - (r.base_monthly + (r.seniority_monthly || 0) + (r.ad_personam_monthly || 0)
-         + (r.second_level_monthly || 0) + ralAdj) * nm;
+         + ralAdj) * nm;
     body.appendChild(bRow(t("breakdown.allowances"), r.allowances_monthly, allowances_annual));
   }
   if (r.ad_personam_monthly > 0)
     body.appendChild(bRow(t("breakdown.ad_personam"), r.ad_personam_monthly, r.ad_personam_monthly * nm));
-  if (r.second_level_monthly > 0)
-    body.appendChild(bRow(t("breakdown.second_level"), r.second_level_monthly, r.second_level_monthly * nm));
   if (Math.abs(ralAdj) > 0.005)
     body.appendChild(bRow(t("breakdown.ral_adj"), ralAdj, ralAdj * nm));
   if (r.apprenticeship_pct !== null)
@@ -1181,7 +1164,6 @@ function doCompute(pyodide) {
   const regione     = document.getElementById("sel-regione").value;
   const comune      = document.getElementById("inp-comune").value.trim().toUpperCase();
   const adPersonam  = parseFloat(document.getElementById("inp-ad-personam").value)  || 0;
-  const secondLevel = parseFloat(document.getElementById("inp-second-level").value) || 0;
   const ralOverride = parseFloat(document.getElementById("inp-ral").value)          || 0;
   const ivsApplies  = document.getElementById("chk-ivs").checked;
 
@@ -1206,7 +1188,7 @@ function doCompute(pyodide) {
       `${JSON.stringify(file)}, ${JSON.stringify(levelCode)}, ${JSON.stringify(empType)}, ` +
       `${employees}, ${ptPct}, ${senValue}, ${JSON.stringify(senMode)}, ` +
       `${appMonths}, ${JSON.stringify(regione)}, ${JSON.stringify(comune)}, ` +
-      `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ${secondLevel}, ` +
+      `${ivsApplies ? "True" : "False"}, ${adPersonam}, ${ralOverride}, ` +
       `${otWeekday}, ${otNight}, ${otHoliday}, ${otNightHol}, ` +
       `${JSON.stringify(otWeeks)}, ` +
       `${absenceDays}, ${leaveDays}, ${sickDays}, ` +
@@ -1289,7 +1271,7 @@ function doCompute(pyodide) {
   _lastResult = r;
   _lastParams = {
     file, levelCode, empType, employees, ptPct, senValue, senMode, appMonths, appTrack,
-    regione, comune, adPersonam, secondLevel, ralOverride, ivsApplies,
+    regione, comune, adPersonam, ralOverride, ivsApplies,
     otWeekday, otNight, otHoliday, otNightHol, otWeeks,
     absenceDays, leaveDays, sickDays,
     fringeAnnual, welfareAnnual, bonusAnnual, bonusPdr,
@@ -1432,7 +1414,7 @@ function initCompare(pyodide) {
       `${JSON.stringify(file)}, ${JSON.stringify(level)}, ${JSON.stringify(p.empType)}, ` +
       `${p.employees}, ${p.ptPct}, ${p.senValue}, ${JSON.stringify(p.senMode)}, ` +
       `${p.appMonths}, ${JSON.stringify(p.regione)}, ${JSON.stringify(p.comune)}, ` +
-      `${p.ivsApplies ? "True" : "False"}, ${p.adPersonam}, ${p.ralOverride}, ${p.secondLevel}, ` +
+      `${p.ivsApplies ? "True" : "False"}, ${p.adPersonam}, ${p.ralOverride}, ` +
       `${p.otWeekday}, ${p.otNight}, ${p.otHoliday}, ${p.otNightHol}, ` +
       `${JSON.stringify(p.otWeeks || "")}, ` +
       `${p.absenceDays}, ${p.leaveDays}, ${p.sickDays}, ` +

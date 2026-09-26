@@ -10,6 +10,7 @@ from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.ledger import PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
+from ccnl_engine.payroll.service.regime_eligibility import RegimeFacts
 
 if TYPE_CHECKING:
     from datetime import date
@@ -31,7 +32,9 @@ class _EventHandlerCtx:
     Carries all inputs that are invariant across loop iterations, plus the
     current fringe accumulators which may change after each FringeEvent and
     the work-time regime cap account, which grows after each eligible
-    night, holiday or shift supplement.
+    night, holiday or shift supplement.  ``worker_facts`` carries the
+    prior-year income, the waivers, the sector and the employer activity
+    every regime and the PdR read.
     """
 
     evt_id: str
@@ -46,6 +49,7 @@ class _EventHandlerCtx:
     rinnovo_regime: PreferentialTaxRegime | None = None
     work_time_regime: PreferentialTaxRegime | None = None
     work_time_cap: RegimeCapAccount = field(default_factory=RegimeCapAccount)
+    worker_facts: RegimeFacts = field(default_factory=RegimeFacts)
 
 
 @dataclass

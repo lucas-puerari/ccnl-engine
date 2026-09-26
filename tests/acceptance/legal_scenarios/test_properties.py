@@ -9,9 +9,19 @@ import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine import Employer, EmploymentFacts, Headcount
+from ccnl_engine import (
+    ContributableHours,
+    EmployerProfile,
+    Employment,
+    Headcount,
+    WeeklyHours,
+)
 from ccnl_engine.events import OvertimeEvent
-from tests.acceptance.legal_scenarios._support import DOMESTIC, regular_period
+from tests.acceptance.legal_scenarios._support import (
+    COMMERCIO,
+    DOMESTIC,
+    regular_period,
+)
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -26,15 +36,22 @@ _OVERTIME_HOURS = st.decimals(
 _OVERTIME_RATE = Decimal("12.50")
 
 
-def _part_time(weekly_hours: int) -> EmploymentFacts:
-    return EmploymentFacts(weekly_hours=weekly_hours, full_time_weekly_hours=_FULL_TIME)
+def _part_time(weekly_hours: int) -> Employment:
+    return Employment(
+        ccnl_slug=COMMERCIO,
+        level_code="4",
+        weekly_hours=WeeklyHours(weekly_hours),
+        full_time_weekly_hours=WeeklyHours(_FULL_TIME),
+    )
 
 
 @given(weekly_hours=_WEEKLY_HOURS)
 @settings(max_examples=20)
 def test_part_time_contributions_are_never_negative(weekly_hours: int) -> None:
     """Ordinary INPS contributions are a rate times a non-negative base."""
-    breakdown = regular_period(facts=_part_time(weekly_hours)).contribution_breakdown
+    breakdown = regular_period(
+        employment=_part_time(weekly_hours)
+    ).contribution_breakdown
 
     assert breakdown.employee >= 0
     assert breakdown.employer >= 0
@@ -44,12 +61,13 @@ def test_part_time_contributions_are_never_negative(weekly_hours: int) -> None:
 @settings(max_examples=20)
 def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
     """Domestic INPS is an hourly flat rate times non-negative paid hours."""
-    facts = EmploymentFacts(weekly_hours=25, contributable_hours=hours)
+    employment = Employment(
+        ccnl_slug=DOMESTIC, level_code="B", weekly_hours=WeeklyHours(25)
+    )
     breakdown = regular_period(
-        ccnl_slug=DOMESTIC,
-        level_code="B",
-        facts=facts,
-        employer=Employer(headcount=Headcount(1)),
+        employment=employment,
+        contributable_hours=ContributableHours(hours),
+        employer=EmployerProfile(headcount=Headcount(1)),
     ).contribution_breakdown
 
     assert breakdown.employee >= 0
@@ -61,8 +79,8 @@ def test_domestic_contributions_are_never_negative(hours: Decimal) -> None:
 def test_gross_does_not_decrease_with_contracted_hours(first: int, second: int) -> None:
     """More part-time hours never lower the pre-tax gross."""
     low, high = sorted((first, second))
-    gross_low = regular_period(facts=_part_time(low)).period_gross
-    gross_high = regular_period(facts=_part_time(high)).period_gross
+    gross_low = regular_period(employment=_part_time(low)).period_gross
+    gross_high = regular_period(employment=_part_time(high)).period_gross
 
     assert gross_low <= gross_high
 

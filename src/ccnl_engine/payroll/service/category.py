@@ -61,6 +61,6 @@ def resolve_worker_category(
             f"worker category is required for level {level.code!r} of "
             f"{ccnl.meta.ccnl_id}: seniority increments differ by category"
         )
-        remediation = "Set EmploymentFacts.category (e.g. operaio or impiegato)."
+        remediation = "Set Employment.category (e.g. operaio or impiegato)."
         raise InvalidInputError(msg, feature=_FEATURE, remediation=remediation)
     return category

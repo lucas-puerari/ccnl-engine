@@ -91,8 +91,6 @@ class TestShiftWorkEvent:
         """Prior income defaults to unknown and the waiver to not given."""
         evt = ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(40))
         assert evt.supplement_amount == Decimal(40)
-        assert evt.prior_income is None
-        assert evt.substitute_tax_waived is False
 
     def test_negative_supplement_raises(self) -> None:
         """A negative shift allowance is rejected."""
@@ -100,22 +98,29 @@ class TestShiftWorkEvent:
             ShiftWorkEvent(event_date=_DATE, supplement_amount=Decimal(-1))
 
 
-class TestWorkTimeRegimeFacts:
-    """Night and holiday events carry the same regime facts as BonusEvent."""
+class TestRenewalSigningDate:
+    """A renewal increment carries the signing date of its agreement."""
 
-    @pytest.mark.parametrize("event_type", [NightShiftEvent, HolidayWorkEvent])
-    def test_prior_income_and_waiver_are_stored(
-        self, event_type: type[NightShiftEvent | HolidayWorkEvent]
-    ) -> None:
-        """``prior_income`` and ``substitute_tax_waived`` are kept as given."""
-        evt = event_type(
+    def test_signing_date_is_stored_on_a_renewal(self) -> None:
+        """``agreement_signed_on`` is kept on a contract renewal."""
+        evt = BonusEvent(
             event_date=_DATE,
-            supplement_amount=Decimal(10),
-            prior_income=Decimal(30_000),
-            substitute_tax_waived=True,
+            amount=Decimal(100),
+            kind="contract_renewal",
+            agreement_signed_on=date(2025, 3, 1),
         )
-        assert evt.prior_income == Decimal(30_000)
-        assert evt.substitute_tax_waived is True
+        assert evt.agreement_signed_on == date(2025, 3, 1)
+
+    @pytest.mark.parametrize("kind", ["bonus", "productivity_bonus"])
+    def test_signing_date_rejected_on_other_kinds(self, kind: str) -> None:
+        """Only a contract renewal has a signing date."""
+        with pytest.raises(InvalidInputError, match="agreement_signed_on"):
+            BonusEvent(
+                event_date=_DATE,
+                amount=Decimal(100),
+                kind=kind,  # type: ignore[arg-type]
+                agreement_signed_on=date(2025, 3, 1),
+            )
 
 
 class TestAbsenceEvent:

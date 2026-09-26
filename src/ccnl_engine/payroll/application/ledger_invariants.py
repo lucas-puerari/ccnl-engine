@@ -18,13 +18,13 @@ from ccnl_engine.payroll.application._reconcile_types import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 
 _ZERO = Decimal(0)
 
 
 def check_pay_item_posted(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that every PayItem has at least one matching LedgerEntry.
 
@@ -43,7 +43,7 @@ def check_pay_item_posted(
 
 
 def check_earning_contribution_exclusive(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that no item posts to both CASH_EARNINGS and EMPLOYEE_CONTRIBUTIONS.
 
@@ -73,7 +73,7 @@ def check_earning_contribution_exclusive(
 
 
 def check_net_identity(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check the net identity.
 
@@ -121,7 +121,7 @@ def check_net_identity(
 
 
 def check_irpef_withheld_continuity(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
     """Check that IRPEF withheld YTD advances by the net IRPEF of the ledger.
@@ -151,7 +151,7 @@ def check_irpef_withheld_continuity(
 
 
 def check_employer_cost_identity(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check the employer cost identity.
 
@@ -183,7 +183,7 @@ def check_employer_cost_identity(
 
 
 def check_gross_identity(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that period_gross equals the CASH_EARNINGS ledger total.
 
@@ -204,7 +204,7 @@ def check_gross_identity(
 
 
 def check_ledger_entry_unique(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that all ledger entry IDs within a period are unique.
 

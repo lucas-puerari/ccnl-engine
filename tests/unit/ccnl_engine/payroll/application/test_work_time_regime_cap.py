@@ -8,19 +8,26 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.decision_invariants import (
     check_substitute_tax_plafond,
 )
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.employer import (
+    EmployerActivity,
+    EmployerProfile,
+    Headcount,
+)
 from ccnl_engine.payroll.domain.events import NightShiftEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 
@@ -28,14 +35,18 @@ _YEAR = 2026
 _CAP = Decimal(1_500)
 
 
-def _night_run(amount: Decimal, opening: PeriodState) -> PeriodCalculationResult:
+def _night_run(amount: Decimal, opening: PeriodState) -> PeriodResult:
     event = NightShiftEvent(
         event_date=date(_YEAR, 3, 10),
         supplement_amount=amount,
-        prior_income=Decimal(20_000),
     )
     return calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(
+                headcount=Headcount(50), activity=EmployerActivity.OTHER
+            ),
+            sector=EmploymentSector.PRIVATE,
+            prior_year=PriorYearTaxFacts(employment_income=Decimal(20_000)),
             period_id=PeriodId(year=_YEAR, month=3),
             payment_date=date(_YEAR, 3, 27),
             ccnl_slug="commercio-confcommercio.json",
@@ -46,9 +57,7 @@ def _night_run(amount: Decimal, opening: PeriodState) -> PeriodCalculationResult
     )
 
 
-def _with_used(
-    result: PeriodCalculationResult, used: Decimal
-) -> PeriodCalculationResult:
+def _with_used(result: PeriodResult, used: Decimal) -> PeriodResult:
     state = result.closing_state
     closing = replace(
         state, ytd=replace(state.ytd, work_time_regime=RegimeCapAccount(used))

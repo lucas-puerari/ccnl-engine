@@ -31,22 +31,24 @@ from ccnl_engine.payroll.application._withholding_cap import (
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import (
-    YearCalculationResult,
+    YearResult,
     calculate_year,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.payroll.service.rounding import money
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026
@@ -57,11 +59,10 @@ _ABSENCE = AbsenceEvent(
 )
 
 
-def _run(
-    month: int, opening: PeriodState, *events: AbsenceEvent
-) -> PeriodCalculationResult:
+def _run(month: int, opening: PeriodState, *events: AbsenceEvent) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 27),
             ccnl_slug=_CCNL,
@@ -73,13 +74,13 @@ def _run(
 
 
 @cache
-def _january() -> PeriodCalculationResult:
+def _january() -> PeriodResult:
     return _run(1, PeriodState.zero(), _ABSENCE)
 
 
 @cache
-def _year() -> YearCalculationResult:
-    return calculate_year(_YEAR, _CCNL, "C3", period_events={1: (_ABSENCE,)})
+def _year() -> YearResult:
+    return calculate_year(year_input(_YEAR, _CCNL, "C3", events={1: (_ABSENCE,)}))
 
 
 def _expected_january_share() -> Decimal:
@@ -89,7 +90,7 @@ def _expected_january_share() -> Decimal:
     return money(net_irpef(projected) / 13)
 
 
-def _ordinary_tax(result: PeriodCalculationResult) -> Decimal:
+def _ordinary_tax(result: PeriodResult) -> Decimal:
     return sum(
         (
             e.amount

@@ -15,11 +15,12 @@ from typing import Any
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -42,6 +43,7 @@ def _req(
         A request for ``month`` of 2026 with the given ``opening`` state.
     """
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=payment_date or date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
@@ -52,7 +54,7 @@ def _req(
 
 def _run(
     month: int = 1, opening: PeriodState | None = None
-) -> tuple[PeriodCalculationResult, PeriodState]:
+) -> tuple[PeriodResult, PeriodState]:
     """Run calculate_period and return (result, opening_state).
 
     Returns:

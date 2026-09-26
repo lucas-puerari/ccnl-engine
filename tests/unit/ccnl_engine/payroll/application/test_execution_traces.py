@@ -15,6 +15,7 @@ from ccnl_engine.payroll.application._run_decisions import worker_category_decis
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import SeniorityMonths
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.events import (
@@ -31,14 +32,16 @@ from ccnl_engine.payroll.domain.family import (
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from tests.helpers import year_input
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -56,21 +59,20 @@ _PDR = load_variable_pay_rules(_YEAR).pdr
 
 def _run(
     ccnl_slug: str = _METALMECCANICO, level_code: str = "C3", **kwargs: object
-) -> PeriodCalculationResult:
+) -> PeriodResult:
     request = PeriodCalculationRequest(
         period_id=PeriodId(year=_YEAR, month=1),
         payment_date=_PAYMENT,
         ccnl_slug=ccnl_slug,
         level_code=level_code,
+        employer=kwargs.pop("employer", EmployerProfile(headcount=Headcount(50))),  # type: ignore[arg-type]
         opening_state=kwargs.pop("opening_state", PeriodState.zero()),  # type: ignore[arg-type]
         **kwargs,  # type: ignore[arg-type]
     )
     return calculate_period(request, resolver=_RESOLVER)
 
 
-def _decisions(
-    result: PeriodCalculationResult, capability: str
-) -> list[CalculationDecision]:
+def _decisions(result: PeriodResult, capability: str) -> list[CalculationDecision]:
     return [d for d in result.decisions if d.capability == capability]
 
 
@@ -227,16 +229,14 @@ class TestFamilyDeductionDecision:
 class TestPdrDecision:
     """The PdR substitute tax is decided only for a bonus routed to it."""
 
-    _BONUS = BonusEvent(
-        event_date=_DATE,
-        amount=_D(1000),
-        kind="productivity_bonus",
-        prior_income=_D(30000),
-    )
+    _BONUS = BonusEvent(event_date=_DATE, amount=_D(1000), kind="productivity_bonus")
+    _PRIOR = PriorYearTaxFacts(employment_income=_D(30000))
 
     def test_substitute_tax_applied(self) -> None:
         """An eligible productivity bonus records the substitute tax."""
-        (decision,) = _decisions(_run(events=(self._BONUS,)), "bonus_pdr")
+        (decision,) = _decisions(
+            _run(events=(self._BONUS,), prior_year=self._PRIOR), "bonus_pdr"
+        )
         assert decision.reason_code == "substitute_tax_applied"
         assert decision.amount == _D(1000) * _PDR.flat_tax_rate
         assert decision.inputs["eligible_amount"] == _D(1000)
@@ -245,7 +245,8 @@ class TestPdrDecision:
         """A bonus over an exhausted annual limit decides a zero tax."""
         opening = PeriodState(ytd=TaxYearState(fringe=FringeYtd(pdr=_PDR.max_amount)))
         (decision,) = _decisions(
-            _run(events=(self._BONUS,), opening_state=opening), "bonus_pdr"
+            _run(events=(self._BONUS,), opening_state=opening, prior_year=self._PRIOR),
+            "bonus_pdr",
         )
         assert decision.reason_code == "annual_limit_reached"
         assert decision.amount == _D(0)
@@ -281,7 +282,9 @@ class TestYearDecisions:
 
     def test_year_decisions_concatenate_runs(self) -> None:
         """Year decisions are the run decisions in payment order."""
-        year = calculate_year(_YEAR, _METALMECCANICO, "C3", resolver=_RESOLVER)
+        year = calculate_year(
+            year_input(_YEAR, _METALMECCANICO, "C3"), resolver=_RESOLVER
+        )
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
         assert len(year.decisions) == 3 * len(runs)

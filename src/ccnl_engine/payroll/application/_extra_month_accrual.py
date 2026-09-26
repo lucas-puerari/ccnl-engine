@@ -29,7 +29,7 @@ from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.service.rounding import money
 
 if TYPE_CHECKING:
-    from collections.abc import Mapping
+    from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.engine.contract.domain.ccnl import CCNL
@@ -223,22 +223,21 @@ def _gross(chain: MonthlyPayChain, accrual: ExtraMonthAccrual) -> Decimal:
     return money(scaled.base + scaled.seniority + scaled.allowances_total)
 
 
-def non_accruing_days(
-    *event_maps: Mapping[int, tuple[WorkEvent, ...]]
-    | Mapping[str, tuple[WorkEvent, ...]],
-) -> frozenset[date]:
+def non_accruing_days(events: Iterable[WorkEvent]) -> frozenset[date]:
     """Return the days of the year's absences that suspend accrual.
+
+    Args:
+        events: Every event of the year, of any run.
 
     Returns:
         Every calendar day of an :class:`AbsenceEvent` with
-        ``suspends_accrual`` set, across all the event maps.
+        ``suspends_accrual`` set.
     """
     days: set[date] = set()
-    for events in (e for m in event_maps for e in m.values()):
-        for event in events:
-            if isinstance(event, AbsenceEvent) and event.suspends_accrual:
-                last = event.end_date or event.event_date
-                days |= absence_days(event.event_date, last)
+    for event in events:
+        if isinstance(event, AbsenceEvent) and event.suspends_accrual:
+            last = event.end_date or event.event_date
+            days |= absence_days(event.event_date, last)
     return frozenset(days)
 
 

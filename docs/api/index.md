@@ -10,7 +10,7 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `PayrollEngine`, `PayrollRequest`, `PayrollYearRequest`, `PayrollRun`, `EmploymentFacts`, `CalendarOverride`, `Employer`, `WorkerCategory`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
+| [Engine](engine.md) | `PayrollEngine`, `PeriodInput`, `YearInput`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `YearResult`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -21,30 +21,43 @@ bundle the loaders read). See [Knowledge base](knowledge.md).
 from ccnl_engine import (
     # Entry point
     PayrollEngine,
-    # Requests
-    PayrollRequest,
-    PayrollYearRequest,
+    # Inputs
+    PeriodInput,
+    YearInput,
+    PeriodFacts,
     PayrollRun,
-    EmploymentFacts,
+    PayrollRunId,
     CalendarOverride,
     CalendarOverrideReason,
     PayrollCalendar,
     PayrollState,
-    # Employment and employer
+    OpeningBalances,
+    RecoveryObligation,
+    RecoveryPlan,
+    # Employment, employer and prior-year facts
+    Employment,
+    EmploymentPeriod,
+    WeeklyHours,
+    SeniorityMonths,
+    ContributableHours,
+    ContributionCeilingStatus,
+    EmploymentSector,
     Permanent,
     FixedTerm,
     Apprentice,
     WorkerCategory,
-    Employer,
+    EmployerProfile,
+    EmployerActivity,
     Headcount,
-    SupplementaryAllowance,
+    PriorYearTaxFacts,
+    SubstituteTaxRegime,
     # Family
     FamilyComposition,
     Dependent,
     DependentRelationship,
     # Results
-    PayrollResult,
-    PayrollYearResult,
+    PeriodResult,
+    YearResult,
     CalculationStatus,
     CalculationIssue,
     CalculationDecision,
@@ -97,7 +110,7 @@ All names in the first import are re-exported from the top-level
 | Guide | Relevant API |
 |---|---|
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
-| [Pay components](../engine/pay-components.md) | `EmploymentFacts.seniority_months`, `EmploymentFacts.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
-| [Second level](../engine/second-level.md) | `SupplementaryAllowance` |
+| [Pay components](../engine/pay-components.md) | `Employment.seniority_months`, `Employment.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
+| [Second level](../engine/second-level.md) | `YearInput`, `CalendarOverride` |
 | [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |
-| [Domestic work](../engine/domestic-work.md) | `EmploymentFacts.weekly_hours` |
+| [Domestic work](../engine/domestic-work.md) | `Employment.weekly_hours`, `PeriodFacts.contributable_hours` |

@@ -11,12 +11,10 @@ from ccnl_engine.engine.contract.domain.absence import (
 )
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
 from ccnl_engine.engine.contract.domain.compensation import (
-    AgreementKind,
     Allowance,
     CCNLParameters,
     EmployerFund,
     Level,
-    SupplementaryAllowance,
 )
 from ccnl_engine.engine.contract.domain.identity import (
     CCNL,
@@ -51,7 +49,6 @@ from ccnl_engine.engine.contract.domain.working_time import (
 __all__ = [
     "CCNL",
     "AbsenceRules",
-    "AgreementKind",
     "Allowance",
     "CCNLCoverage",
     "CCNLMeta",
@@ -72,7 +69,6 @@ __all__ = [
     "SeniorityTier",
     "SicknessRules",
     "SicknessTier",
-    "SupplementaryAllowance",
     "TaxSector",
     "TimeSupplementKind",
     "TimeSupplements",

@@ -18,12 +18,13 @@ import pytest
 
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import SicknessCaseEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import AbsenceDeduction, SicknessItem
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -40,6 +41,7 @@ _ZERO = Decimal(0)
 
 def _req(*events: object) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=_PID,
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,
@@ -133,11 +135,11 @@ class TestSicknessCaseEventCalculation:
         integration_rate: Decimal = Decimal("1.00"),
         carenza_integration_rate: Decimal = Decimal(0),
         gross_daily: Decimal = Decimal("80.00"),
-    ) -> PeriodCalculationResult:
+    ) -> PeriodResult:
         """Run calculate_period with a SicknessCaseEvent and return the result.
 
         Returns:
-            :class:`PeriodCalculationResult` from the calculation.
+            :class:`PeriodResult` from the calculation.
         """
         case = _make_case(
             working_days=working_days,
@@ -255,9 +257,9 @@ class TestSicknessCaseEventCalculation:
         assert len(sickness_items) == 0
 
     def test_result_is_valid_period_result(self) -> None:
-        """calculate_period returns a valid PeriodCalculationResult."""
+        """calculate_period returns a valid PeriodResult."""
         result = self._result_with_sickness()
-        assert isinstance(result, PeriodCalculationResult)
+        assert isinstance(result, PeriodResult)
         assert result.period_gross >= _ZERO
 
 
@@ -268,11 +270,11 @@ class TestSicknessCaseNetDelta:
     production formula. They would have caught the P0 sign bug.
     """
 
-    def _base_result(self) -> PeriodCalculationResult:
+    def _base_result(self) -> PeriodResult:
         """Run a base period with no events.
 
         Returns:
-            :class:`PeriodCalculationResult` for a period with no events.
+            :class:`PeriodResult` for a period with no events.
         """
         return calculate_period(_req())
 
@@ -284,7 +286,7 @@ class TestSicknessCaseNetDelta:
         inps_daily_rate: Decimal,
         integration_rate: Decimal,
         carenza_integration_rate: Decimal = _ZERO,
-    ) -> PeriodCalculationResult:
+    ) -> PeriodResult:
         case = _make_case(
             working_days=working_days,
             waiting_period_days=waiting_period_days,

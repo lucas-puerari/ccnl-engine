@@ -50,20 +50,23 @@ from datetime import date
 
 from ccnl_engine import (
     CalculationStatus,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
+    Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodInput,
 )
 
 engine = PayrollEngine.bundled()
-result = engine.calculate(
-    PayrollRequest(
+result = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=EmploymentFacts(),
+        employment=Employment(
+            ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+        ),
+        employer=EmployerProfile(headcount=Headcount(50)),
     )
 )
 

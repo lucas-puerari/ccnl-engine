@@ -14,7 +14,7 @@ makes all three explicit:
 |---|---|---|
 | **Software** | Does the engine apply its rules consistently? | 100% coverage, mypy strict, reference cases |
 | **Source** | Do the modelled rules match the current authoritative sources? | Ruleset readiness tier |
-| **Case** | Does the user's scenario fall within the modelled scope? | `calculation_scope` and `warnings` |
+| **Case** | Does the user's scenario fall within the modelled scope? | `status`, `issues`, `decisions` and `capability_report` |
 
 See [Correctness layers](correctness.md) for the full breakdown and a guide to
 reading all three together.
@@ -36,69 +36,57 @@ and shown in the [CCNL coverage matrix](../contracts/index.md).
 See [Readiness](readiness.md) for promotion criteria and the current status of
 each tier.
 
-## Three verifiability layers
+## Result signals
 
-Every result carries three independent layers:
+Every result carries its own reliability signals:
 
 ```
-PayrollResult
- ├── confidence           "low" | "medium" | "high"
- ├── calculation_scope    what was computed, excluded, or not run
- ├── warnings             active gaps the caller must know
- └── provenance           chain of source documents behind every rule
+PeriodResult
+ ├── status               final | provisional | incomplete | rejected
+ ├── issues               conditions that lowered the status
+ ├── decisions            what each capability decided, from which inputs
+ ├── capability_report    catalog features the run did not execute
+ └── bundle_version       knowledge-base version of the calculation
 ```
 
-### 1. Confidence
+`YearResult` exposes the worst status of its runs, their issues (each once)
+and their decisions in payment order.
 
-A single three-tier signal derived automatically from the result:
+### 1. Status
 
-| Level | Meaning |
+| Status | Meaning |
 |---|---|
-| `"high"` | Complete computation, no warnings, all salary-table sources verified |
-| `"medium"` | Complete or partial with no warnings, but some sources are unverified |
-| `"low"` | One or more active warnings — the engine detected a gap it cannot quantify |
+| `final` | Every capability decided from known rules and facts. |
+| `provisional` | Computed, but a decision rests on an assumption that may change the amounts, e.g. an unknown prior-year income for a substitute-tax regime. |
+| `incomplete` | At least one amount could not be determined, e.g. a surtax without a table; do not pay as is. |
+| `rejected` | The inputs cannot produce a meaningful result. |
 
 ```python
-result = calculation.result
-print(result.confidence)  # "medium"
+from ccnl_engine import CalculationStatus
+
+if result.status is not CalculationStatus.FINAL:
+    for issue in result.issues:
+        print(issue.code, issue.status, issue.message)
 ```
 
-See [Confidence](confidence.md) for the full derivation.
+An unknown normative fact never yields a `final` result: the rule it drives
+is not applied and an issue says why. See
+[Results and calculation status](../api/engine.md#results-and-calculation-status).
 
-### 2. Scope
+### 2. Decisions
 
-`calculation_scope` declares every engine feature as `"verified"`,
-`"excluded"`, or `"not_computed"`:
+`result.decisions` records every decision a capability took: its
+`reason_code`, the normalized `inputs` it read, the rule and rule version
+applied, the normative source and the amount. A capability that ran and found
+nothing due still records a decision with amount 0.
 
-```python
-for item in result.calculation_scope:
-    print(item.feature, item.status)
-# irpef                    verified
-# addizionale_regionale    verified
-# family_deductions        excluded    ← deliberate caller choice
-# overtime                 not_computed
-```
+### 3. Capability report
 
-`"excluded"` means the caller deliberately omitted that input (e.g. no
-region was passed, so regional surtax is zero and excluded).
-`"not_computed"` means the feature exists but the contract's work-rules data
-does not yet include it.
-
-Callers must never silently ignore `calculation_scope`: a `net_annual` that
-omits family deductions is meaningfully different from one that includes them.
-
-### 3. Warnings
-
-`warnings` is a tuple of strings describing active gaps — situations where the
-engine was asked to compute something it could not fully handle:
-
-```python
-for w in result.warnings:
-    print(w)
-# "CCNL schema missing time_supplements block — L3 not computed"
-```
-
-A non-empty `warnings` tuple sets `confidence = "low"` automatically.
+`result.capability_report` compares what the run executed with the capability
+catalog of the tax year. Each gap names the feature and why it is missing
+(`feature_absent`, `not_computed`, `unresolved`,
+`promised_computed_got_partial`). Its `confidence` summarises the gaps; see
+[Confidence](confidence.md).
 
 ## Provenance {#provenance}
 
@@ -117,19 +105,17 @@ See [Provenance](provenance.md) for the full schema and how to read it.
 Every payroll computation records exactly which ruleset versions it used:
 
 ```python
-for kind, identity in calc.ruleset_version.items():
-    print(kind, identity)
-# ccnl  metalmeccanico-federmeccanica@2026.2
-# tax   tax/2026/industria@2026.2
-# inps  inps@2026.2
+from ccnl_engine import engine_version
+
+print(result.bundle_version)  # knowledge-base version of the calculation
+print(engine_version)  # engine package version
+for decision in result.decisions:
+    print(decision.capability, decision.rule, decision.rule_version)
 ```
 
-`ruleset_version` is a plain `dict[str, str]` mapping ruleset kind (e.g.
-`"ccnl"`, `"tax"`, `"inps"`) to an `"id@version"` string.
-
-To reproduce a historical result, pin the same `ccnl-engine` package version
-and dataset version. `calc.engine_version` is the string version of the
-engine that produced the result.
+Each decision names the ruleset it applied (`rule`, `rule_version`), e.g.
+`tax/variable-pay-rules/2026` at `2026.1`. To reproduce a historical result,
+pin the same `ccnl-engine` package version: it ships the knowledge bundle.
 
 ## Quality gates
 

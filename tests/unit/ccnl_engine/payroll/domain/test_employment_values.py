@@ -7,10 +7,11 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import EmploymentFacts
 from ccnl_engine.engine.errors import InvalidInputError
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
+    Employment,
     EmploymentPeriod,
     SeniorityMonths,
     WeeklyHours,
@@ -173,6 +174,7 @@ class TestWithinFullTime:
         """The internal request enforces the same rule as the public facts."""
         with pytest.raises(InvalidInputError, match="must not exceed"):
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 27),
                 ccnl_slug="commercio-confcommercio.json",
@@ -182,42 +184,53 @@ class TestWithinFullTime:
             )
 
 
-class TestEmploymentFactsValidation:
-    """The public facts expose validated value objects."""
+class TestEmploymentValidation:
+    """The public employment holds validated value objects."""
 
-    def test_exposes_value_objects(self) -> None:
-        """Every scalar fact is available as its value object."""
-        facts = EmploymentFacts(
-            weekly_hours=20,
-            full_time_weekly_hours=40,
-            contributable_hours=Decimal(86),
-            seniority_months=36,
-            started_on=_START,
+    def test_keeps_value_objects(self) -> None:
+        """Every fact is stored as the value object given."""
+        employment = Employment(
+            ccnl_slug="commercio-confcommercio.json",
+            level_code="4",
+            weekly_hours=WeeklyHours(20),
+            full_time_weekly_hours=WeeklyHours(40),
+            seniority_months=SeniorityMonths(36),
+            employment_period=EmploymentPeriod(started_on=_START),
         )
-        assert facts.contracted_hours == WeeklyHours(20)
-        assert facts.full_time_hours == WeeklyHours(40)
-        assert facts.contributable == ContributableHours(Decimal(86))
-        assert facts.seniority == SeniorityMonths(36)
-        assert facts.period == EmploymentPeriod(started_on=_START)
+        assert employment.weekly_hours == WeeklyHours(20)
+        assert employment.full_time_weekly_hours == WeeklyHours(40)
+        assert employment.seniority_months == SeniorityMonths(36)
+        assert employment.employment_period == EmploymentPeriod(started_on=_START)
 
     def test_optional_facts_default_to_none(self) -> None:
         """Untracked facts stay ``None``."""
-        facts = EmploymentFacts()
-        assert facts.contracted_hours is None
-        assert facts.full_time_hours is None
-        assert facts.contributable is None
-        assert facts.seniority is None
-        assert facts.period is None
+        employment = Employment(
+            ccnl_slug="commercio-confcommercio.json", level_code="4"
+        )
+        assert employment.weekly_hours is None
+        assert employment.full_time_weekly_hours is None
+        assert employment.seniority_months is None
+        assert employment.employment_period is None
+        assert employment.sector is None
 
     @pytest.mark.parametrize(
         "kwargs",
         [
-            pytest.param({"weekly_hours": 0}, id="zero-weekly-hours"),
-            pytest.param({"full_time_weekly_hours": 0}, id="zero-full-time"),
-            pytest.param({"ended_on": date(2026, 9, 30)}, id="end-without-start"),
+            pytest.param({"weekly_hours": 20}, id="raw-weekly-hours"),
+            pytest.param({"full_time_weekly_hours": 40}, id="raw-full-time"),
+            pytest.param({"seniority_months": 36}, id="raw-seniority"),
+            pytest.param({"employment_period": _START}, id="raw-period"),
+            pytest.param({"roles": {"caposquadra"}}, id="mutable-roles"),
+            pytest.param({"ceiling_status": "post_1995"}, id="raw-ceiling"),
+            pytest.param({"ccnl_slug": 7}, id="non-str-slug"),
         ],
     )
-    def test_rejects_impossible_facts(self, kwargs: dict[str, object]) -> None:
-        """Impossible facts fail at construction."""
-        with pytest.raises(InvalidInputError):
-            EmploymentFacts(**kwargs)  # type: ignore[arg-type]
+    def test_rejects_values_of_the_wrong_type(self, kwargs: dict[str, object]) -> None:
+        """A raw value in place of its value object fails at construction."""
+        fields: dict[str, object] = {
+            "ccnl_slug": "commercio-confcommercio.json",
+            "level_code": "4",
+            **kwargs,
+        }
+        with pytest.raises(InvalidInputError, match="must be"):
+            Employment(**fields)  # type: ignore[arg-type]

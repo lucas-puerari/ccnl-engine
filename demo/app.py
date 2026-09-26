@@ -15,20 +15,22 @@ from decimal import Decimal
 
 from ccnl_engine import (
     Apprentice,
-    Employer,
-    EmploymentFacts,
+    ContributionCeilingStatus,
+    EmployerProfile,
+    Employment,
     FixedTerm,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodFacts,
+    PeriodInput,
     Permanent,
-    SupplementaryAllowance,
+    SeniorityMonths,
+    WeeklyHours,
 )
 from ccnl_engine.engine.contract.service.loaders import load_ccnl
 from ccnl_engine.engine.io.service.bundled import read_bundled
 from ccnl_engine.engine.surtax.service.loaders import load_surtax_rules
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
 
 
@@ -291,17 +293,19 @@ def _validate_time_supplements(
                 raise ValueError(msg)
 
 
-def _build_employment_facts(
+def _build_employment(
+    filename: str,
+    level_code: str,
     contract: Permanent | FixedTerm | Apprentice,
     seniority_mode: str,
     seniority_value: int,
     ivs_ceiling_applies: bool,
     weekly_hours_domestic: Decimal | None,
-) -> EmploymentFacts:
-    """Build EmploymentFacts from component inputs.
+) -> Employment:
+    """Build the Employment from component inputs.
 
     Returns:
-        An :class:`EmploymentFacts` instance.
+        An :class:`Employment` instance.
     """
     seniority_months: int | None = None
     if seniority_value > 0:
@@ -312,14 +316,20 @@ def _build_employment_facts(
         if ivs_ceiling_applies
         else ContributionCeilingStatus.UNKNOWN
     )
-    weekly_hours_int: int | None = (
-        int(weekly_hours_domestic) if weekly_hours_domestic is not None else None
+    weekly_hours = (
+        WeeklyHours(int(weekly_hours_domestic))
+        if weekly_hours_domestic is not None
+        else None
     )
-    return EmploymentFacts(
+    return Employment(
+        ccnl_slug=filename,
+        level_code=level_code,
         contract_type=contract,
-        seniority_months=seniority_months,
+        seniority_months=(
+            SeniorityMonths(seniority_months) if seniority_months is not None else None
+        ),
         ceiling_status=ceiling,
-        weekly_hours=weekly_hours_int,
+        weekly_hours=weekly_hours,
     )
 
 
@@ -337,7 +347,6 @@ def compute_salary(
     ivs_ceiling_applies: bool = False,
     ad_personam_monthly: float = 0.0,
     ral_override: float = 0.0,
-    second_level_monthly: float = 0.0,
     overtime_weekday_hours: float = 0.0,
     overtime_night_hours: float = 0.0,
     overtime_holiday_hours: float = 0.0,
@@ -376,8 +385,6 @@ def compute_salary(
             (reserved for future use; not currently applied).
         ral_override: Custom agreed annual gross (RAL) in EUR
             (reserved for future use; not currently applied).
-        second_level_monthly: Monthly amount from a territorial or company
-            second-level agreement in EUR.
         overtime_weekday_hours: Daytime weekday overtime hours (L3).
         overtime_night_hours: Weekday night hours (L3).
         overtime_holiday_hours: Daytime public-holiday hours (L3).
@@ -422,7 +429,9 @@ def compute_salary(
             ccnl.parameters.additional_months.value_at(_CALC_DATE)
         )
 
-        employment_facts = _build_employment_facts(
+        employment = _build_employment(
+            filename=filename,
+            level_code=level_code,
             contract=contract,
             seniority_mode=seniority_mode,
             seniority_value=seniority_value,
@@ -430,27 +439,18 @@ def compute_salary(
             weekly_hours_domestic=weekly_hours_domestic,
         )
 
-        supplementary_allowances: tuple[SupplementaryAllowance, ...] = ()
-        if second_level_monthly > 0:
-            supplementary_allowances = (
-                SupplementaryAllowance(
-                    code="SL",
-                    description="Second-level agreement",
-                    monthly=Decimal(str(second_level_monthly)),
+        result = _ENGINE.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(_DEFAULT_YEAR, 12),
+                payment_date=date(_DEFAULT_YEAR, 12, 28),
+                employment=employment,
+                employer=EmployerProfile(headcount=Headcount(num_employees)),
+                facts=PeriodFacts(
+                    regione=regione or None,
+                    comune_belfiore=comune_belfiore or None,
                 ),
             )
-
-        req = PayrollRequest(
-            run=PayrollRun.regular(_DEFAULT_YEAR, 12),
-            payment_date=date(_DEFAULT_YEAR, 12, 28),
-            ccnl_slug=filename,
-            level_code=level_code,
-            employment_facts=employment_facts,
-            employer=Employer(headcount=Headcount(num_employees)),
-            regione=regione or None,
-            comune_belfiore=comune_belfiore or None,
         )
-        result = _ENGINE.calculate(req)
 
         base_monthly = float(
             sum(
@@ -527,9 +527,6 @@ def compute_salary(
             "allowances_monthly": allowances_monthly,
             "ad_personam_monthly": float(ad_personam_monthly)
             if ad_personam_monthly > 0
-            else None,
-            "second_level_monthly": float(second_level_monthly)
-            if second_level_monthly > 0
             else None,
             "gross_monthly": gross_monthly,
             "gross_annual": gross_annual,

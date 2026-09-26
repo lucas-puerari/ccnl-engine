@@ -1,7 +1,6 @@
 """Compensation, allowance, and level models for CCNL contracts."""
 
 from decimal import Decimal
-from enum import StrEnum
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -50,58 +49,6 @@ class Allowance(BaseModel):
     apprenticeship_pct_relevant: bool = True
     part_time_proportionable: bool = True
     service_months_threshold: int | None = Field(default=None, ge=0)
-    provenance: RuleProvenance | None = None
-
-
-class AgreementKind(StrEnum):
-    """Origin of a second-level agreement (*contrattazione di secondo livello*).
-
-    Distinguishes whether the allowance comes from a company-level
-    (``company``) or territorial (``territorial``) agreement.
-    """
-
-    COMPANY = "company"
-    TERRITORIAL = "territorial"
-
-
-class SupplementaryAllowance(BaseModel):
-    """Caller-supplied allowance from a second-level (territorial or company) agreement.
-
-    Unlike :class:`Allowance` — which is embedded in a CCNL data file and
-    carries a time-series — this model holds a plain already-resolved monthly
-    amount supplied by the caller.  It is not yet an input of the payroll
-    pipeline.
-
-    ``months_per_year`` overrides the contract-wide ``additional_months`` for
-    the annualisation of this item only (e.g. a prize paid once a year uses
-    ``months_per_year=1``).  The three relevance flags mirror those on
-    :class:`Allowance`:
-
-    * ``contribution_relevant=False``: exclude from the INPS contribution base.
-    * ``tfr_relevant=False``: exclude from the TFR accrual base.
-    * ``apprenticeship_pct_relevant=False``: pay at full part-time value even
-      for percentage-based apprentices (the apprenticeship percentage does not
-      apply).
-
-    The amount is always scaled by ``part_time_ratio``; the
-    ``apprenticeship_pct_relevant`` flag further controls whether the
-    apprenticeship percentage is applied on top of that.
-
-    ``kind`` identifies the agreement level (company or territorial); optional
-    but recommended for audit trails.  ``provenance`` carries the source
-    citation for the allowance; caller-supplied, never required by the engine.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    code: str
-    description: str
-    monthly: Decimal = Field(ge=Decimal(0))
-    months_per_year: int | None = Field(default=None, ge=1)
-    tfr_relevant: bool = True
-    contribution_relevant: bool = True
-    apprenticeship_pct_relevant: bool = True
-    kind: AgreementKind | None = None
     provenance: RuleProvenance | None = None
 
 
@@ -179,7 +126,7 @@ class Level(BaseModel):
             level (e.g. EDR, contingenza). May be empty.
         category: Worker category fixed by this level. ``None`` when the
             level hosts more than one category; the category then comes from
-            the employment facts (``EmploymentFacts.category``).
+            the employment facts (``Employment.category``).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)

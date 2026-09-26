@@ -1,4 +1,4 @@
-"""Run selection of a payroll year: runs, events per run and partial months."""
+"""Run selection of a payroll year: opening state, runs and partial months."""
 
 from __future__ import annotations
 
@@ -15,8 +15,7 @@ from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment import EmploymentPeriod
-    from ccnl_engine.payroll.domain.events import WorkEvent
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult
+    from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.run import PayrollRun
 
 _PARTIAL_MONTH = "partial_month_not_prorated"
@@ -50,47 +49,6 @@ def opening_of_year(year: int, opening_state: PeriodState | None) -> PeriodState
     return opening_state
 
 
-def allocate_run_events(
-    run: PayrollRun,
-    period_events: dict[int, tuple[WorkEvent, ...]],
-    per_run_events: dict[str, tuple[WorkEvent, ...]],
-) -> tuple[WorkEvent, ...]:
-    """Return the events allocated to ``run`` under the two-layer policy.
-
-    Priority: explicit ``run_id`` allocation in ``per_run_events`` takes
-    precedence.  Regular runs fall back to ``period_events`` keyed by month.
-    Extra-month runs (thirteenth, fourteenth, etc.) that have no explicit
-    allocation receive no events.
-
-    Args:
-        run: The payroll run being processed.
-        period_events: Month-keyed events (applies only to regular runs).
-        per_run_events: ``run_id``-keyed events (any run kind).
-
-    Returns:
-        Tuple of :class:`~ccnl_engine.payroll.domain.events.WorkEvent` for
-        this run, possibly empty.
-
-    Raises:
-        ValueError: When the same run is allocated events from both
-            ``period_events`` and ``per_run_events`` (duplicate allocation).
-    """
-    in_per_run = run.run_id in per_run_events
-    in_period = run.run_kind == "regular" and run.month in period_events
-    if in_per_run and in_period:
-        msg = (
-            f"Duplicate event allocation for run '{run.run_id}': "
-            f"events are present in both period_events[{run.month}] and "
-            f"per_run_events['{run.run_id}']; supply events in one source only."
-        )
-        raise ValueError(msg)
-    if in_per_run:
-        return per_run_events[run.run_id]
-    if in_period:
-        return period_events[run.month]
-    return ()
-
-
 def select_runs(
     calendar: WorkCalendar, employment_period: EmploymentPeriod | None
 ) -> PayrollSchedule:
@@ -113,10 +71,10 @@ def select_runs(
 
 
 def flag_partial_month(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     run: PayrollRun,
     employment_period: EmploymentPeriod | None,
-) -> PeriodCalculationResult:
+) -> PeriodResult:
     """Mark a regular run of a partly employed month as provisional.
 
     The bundled CCNL data define no daily divisor for a partial month, so

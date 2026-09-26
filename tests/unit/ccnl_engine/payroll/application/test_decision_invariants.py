@@ -6,6 +6,7 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application._reconcile_types import RunFacts
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.decision_invariants import (
@@ -18,13 +19,19 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationStatus,
 )
+from ccnl_engine.payroll.domain.employer import (
+    EmployerActivity,
+    EmployerProfile,
+    Headcount,
+)
 from ccnl_engine.payroll.domain.events import BonusEvent, NightShiftEvent
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 
 _YEAR = 2026
@@ -33,41 +40,42 @@ _PLAFOND = "substitute_tax_plafond"
 _ELIGIBILITY = "substitute_tax_eligibility"
 
 
-def _run(*events: NightShiftEvent | BonusEvent) -> PeriodCalculationResult:
+def _run(*events: NightShiftEvent | BonusEvent, income: int = 20_000) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(
+                headcount=Headcount(50), activity=EmployerActivity.OTHER
+            ),
             period_id=PeriodId(year=_YEAR, month=3),
             payment_date=date(_YEAR, 3, 27),
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
             events=events,
+            sector=EmploymentSector.PRIVATE,
+            prior_year=PriorYearTaxFacts(employment_income=Decimal(income)),
         )
     )
 
 
-def _night(amount: int, prior_income: int = 20_000) -> NightShiftEvent:
+def _night(amount: int) -> NightShiftEvent:
     return NightShiftEvent(
-        event_date=date(_YEAR, 3, 10),
-        supplement_amount=Decimal(amount),
-        prior_income=Decimal(prior_income),
+        event_date=date(_YEAR, 3, 10), supplement_amount=Decimal(amount)
     )
 
 
 _PDR_BONUS = BonusEvent(
-    event_date=date(_YEAR, 3, 10),
-    amount=Decimal(1_000),
-    kind="productivity_bonus",
-    prior_income=Decimal(30_000),
+    event_date=date(_YEAR, 3, 10), amount=Decimal(1_000), kind="productivity_bonus"
 )
+_PDR_INCOME = 30_000
 
 
 def _with_decisions(
-    result: PeriodCalculationResult, *decisions: CalculationDecision
-) -> PeriodCalculationResult:
+    result: PeriodResult, *decisions: CalculationDecision
+) -> PeriodResult:
     return replace(result, decisions=decisions)
 
 
-def _regime_decision(result: PeriodCalculationResult) -> CalculationDecision:
+def _regime_decision(result: PeriodResult) -> CalculationDecision:
     return next(d for d in result.decisions if d.capability.endswith("_substitute_tax"))
 
 
@@ -121,14 +129,14 @@ class TestPdrPlafond:
 
     def test_real_pdr_run_passes(self) -> None:
         """A real PdR bonus advances fringe.pdr by its eligible amount."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         facts = RunFacts(pdr_cap=Decimal(5_000))
         assert result.closing_state.ytd.fringe.pdr == Decimal(1_000)
         assert check_substitute_tax_plafond(result, _OPENING, facts) == []
 
     def test_wrong_advance_is_reported(self) -> None:
         """A closing fringe.pdr that ignores the decision is a violation."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         ytd = result.closing_state.ytd
         closing = replace(
             result.closing_state,
@@ -142,7 +150,7 @@ class TestPdrPlafond:
 
     def test_ytd_above_limit_is_reported(self) -> None:
         """A PdR YTD above the annual limit is a violation."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         facts = RunFacts(pdr_cap=Decimal(500))
 
         (violation,) = check_substitute_tax_plafond(result, _OPENING, facts)
@@ -152,7 +160,7 @@ class TestPdrPlafond:
 
     def test_opening_pdr_is_carried(self) -> None:
         """The advance starts from the opening PdR YTD."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         opening = PeriodState(
             ytd=replace(_OPENING.ytd, fringe=FringeYtd(pdr=Decimal(100)))
         )
@@ -167,8 +175,8 @@ class TestSubstituteTaxEligibility:
         """Eligible, ineligible and PdR runs agree with their postings."""
         for result in (
             _run(_night(500)),
-            _run(_night(500, prior_income=50_000)),
-            _run(_PDR_BONUS),
+            _run(_night(500), income=50_000),
+            _run(_PDR_BONUS, income=_PDR_INCOME),
             _run(),
         ):
             assert check_substitute_tax_eligibility(result) == []
@@ -190,7 +198,7 @@ class TestSubstituteTaxEligibility:
 
     def test_tax_on_nil_eligible_amount_is_reported(self) -> None:
         """A decision taxing a nil eligible amount is a violation."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         decision = next(d for d in result.decisions if d.capability == "bonus_pdr")
         bad_decision = replace(
             decision, inputs={**decision.inputs, "eligible_amount": Decimal(0)}
@@ -225,7 +233,7 @@ class TestDecisionProvenance:
 
     def test_blank_rule_version_is_reported(self) -> None:
         """A final decision with a blank rule version is a violation."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         decision = next(d for d in result.decisions if d.capability == "bonus_pdr")
         object.__setattr__(decision, "rule_version", " ")  # noqa: PLC2801
 
@@ -235,7 +243,7 @@ class TestDecisionProvenance:
 
     def test_provisional_decision_is_not_checked(self) -> None:
         """Only final decisions must carry a rule and version."""
-        result = _run(_PDR_BONUS)
+        result = _run(_PDR_BONUS, income=_PDR_INCOME)
         decision = replace(
             next(d for d in result.decisions if d.capability == "bonus_pdr"),
             status=CalculationStatus.PROVISIONAL,

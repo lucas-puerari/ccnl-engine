@@ -37,7 +37,7 @@ from ccnl_engine.payroll.service.regime_eligibility import RegimeEligibility
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application._reconcile_types import RunFacts
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult, PeriodState
+    from ccnl_engine.payroll.domain.period import PeriodResult, PeriodState
 
 __all__: list[str] = []
 
@@ -52,7 +52,7 @@ def _input(decision: CalculationDecision, name: str) -> Decimal:
     return Decimal(decision.inputs.get(name, _ZERO))
 
 
-def _capped(result: PeriodCalculationResult) -> list[CalculationDecision]:
+def _capped(result: PeriodResult) -> list[CalculationDecision]:
     return [
         d
         for d in result.decisions
@@ -99,7 +99,7 @@ def _check_cap_chain(
 
 
 def _check_regime_cap(
-    result: PeriodCalculationResult, opening: PeriodState
+    result: PeriodResult, opening: PeriodState
 ) -> list[ReconciliationViolation]:
     """Check the work-time regime cap account against the capped decisions.
 
@@ -137,7 +137,7 @@ def _check_regime_cap(
 
 
 def _check_pdr_cap(
-    result: PeriodCalculationResult, opening: PeriodState, facts: RunFacts
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
 ) -> list[ReconciliationViolation]:
     """Check that the PdR eligible YTD advances and stays within its limit.
 
@@ -172,7 +172,7 @@ def _check_pdr_cap(
 
 
 def check_substitute_tax_plafond(
-    result: PeriodCalculationResult, opening: PeriodState, facts: RunFacts
+    result: PeriodResult, opening: PeriodState, facts: RunFacts
 ) -> list[ReconciliationViolation]:
     """Check that substitute-tax eligible amounts stay within their cap.
 
@@ -183,7 +183,7 @@ def check_substitute_tax_plafond(
 
 
 def _substitute_decisions(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[CalculationDecision]:
     return [
         d
@@ -223,7 +223,7 @@ def _eligibility_violations(d: CalculationDecision) -> list[ReconciliationViolat
 
 
 def check_substitute_tax_eligibility(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that substitute tax is posted only on eligible amounts.
 
@@ -250,7 +250,7 @@ def check_substitute_tax_eligibility(
 
 
 def check_decision_provenance(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
 ) -> list[ReconciliationViolation]:
     """Check that every final decision names its rule and rule version.
 

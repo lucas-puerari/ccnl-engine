@@ -7,10 +7,23 @@ from any module, including non-pytest code such as builders.py.
 from __future__ import annotations
 
 import copy
-from typing import Any
+from dataclasses import replace
+from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.engine.contract.domain.ccnl import CCNL
 from ccnl_engine.engine.tax.domain.rules import YearRules
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.employment import Employment
+from ccnl_engine.payroll.domain.inputs import PeriodFacts, YearInput
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping
+
+    from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
+    from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.period import PeriodState
 
 # ---------------------------------------------------------------------------
 # Shared raw data — canonical source for inline fixtures across the test suite
@@ -290,3 +303,54 @@ def make_minimal_ccnl(*, app_type: str = "percentage") -> CCNL:
         A validated CCNL instance.
     """
     return CCNL.model_validate(make_ccnl_dict(app_type=app_type))
+
+
+# ---------------------------------------------------------------------------
+# Payroll inputs
+# ---------------------------------------------------------------------------
+
+#: Employer of 50 employees, the headcount the fixtures assume.
+EMPLOYER_50 = EmployerProfile(headcount=Headcount(50))
+
+
+def year_input(
+    year: int,
+    ccnl_slug: str,
+    level_code: str,
+    *,
+    employer: EmployerProfile = EMPLOYER_50,
+    facts: PeriodFacts | None = None,
+    events: Mapping[int, tuple[WorkEvent, ...]]
+    | Mapping[str, tuple[WorkEvent, ...]]
+    | Mapping[int | str, tuple[WorkEvent, ...]]
+    | None = None,
+    prior_year: PriorYearTaxFacts | None = None,
+    calendar_override: CalendarOverride | None = None,
+    payment_day: int = DEFAULT_PAYMENT_DAY,
+    opening_state: PeriodState | None = None,
+    **employment: Any,  # noqa: ANN401
+) -> YearInput:
+    """Build a :class:`YearInput` whose runs share the same facts.
+
+    Every run takes ``facts``; a run keyed in ``events`` takes ``facts`` with
+    those events.  ``employment`` holds the :class:`Employment` fields other
+    than the CCNL and the level.
+
+    Returns:
+        The year input.
+    """
+    base = facts if facts is not None else PeriodFacts()
+    return YearInput(
+        year=year,
+        employment=Employment(ccnl_slug=ccnl_slug, level_code=level_code, **employment),
+        employer=employer,
+        prior_year=prior_year if prior_year is not None else PriorYearTaxFacts(),
+        periods={
+            key: replace(base, events=run_events)
+            for key, run_events in (events or {}).items()
+        },
+        default_facts=base,
+        calendar_override=calendar_override,
+        payment_day=payment_day,
+        opening_state=opening_state,
+    )

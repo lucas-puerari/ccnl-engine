@@ -760,11 +760,6 @@ class TestMiscCoverageGaps:
         engine = PayrollEngine.bundled()
         assert engine is not None
 
-    def test_payroll_engine_from_builtin_data(self) -> None:
-        """from_builtin_data() is a backward-compat alias for bundled()."""
-        engine = PayrollEngine.from_builtin_data()
-        assert engine is not None
-
     def test_load_sick_pay_rates_returns_valid_rates(self) -> None:
         """load_sick_pay_rates() loads the bundled sick-pay JSON without error."""
         rates = load_sick_pay_rates()

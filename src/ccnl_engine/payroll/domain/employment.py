@@ -3,15 +3,21 @@
 from __future__ import annotations
 
 import calendar
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ccnl_engine.engine.contract.domain.category import (
+    WorkerCategory,
+    parse_worker_category,
+)
 from ccnl_engine.engine.errors import InvalidInputError
-from ccnl_engine.payroll.domain.employer import Employer
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
+from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.request_checks import type_error
 
 _FEATURE = "employment_facts"
 
@@ -265,37 +271,101 @@ Contract = Annotated[
 ]
 
 
-class Employment(BaseModel):
-    """The employment relationship.
+@dataclass(frozen=True)
+class Employment:
+    """The employment relationship: contract, level and worker facts.
 
-    Ties together which CCNL applies, the contract type, the employer,
-    and the reference date for all time-series lookups.
+    Facts are validated on construction: a value of the wrong type or an
+    impossible combination raises
+    :class:`~ccnl_engine.engine.errors.InvalidInputError` (a ``ValueError``)
+    instead of producing a payslip.
 
     Attributes:
-        ccnl: Bundled CCNL filename (e.g.
-            ``"metalmeccanico-federmeccanica.json"``).
-        contract: Contract type — :class:`Permanent`, :class:`FixedTerm`,
-            or :class:`Apprentice`.
-        employer: The employer, with its headcount.
-        as_of: Reference date for all time-series lookups (base pay,
-            seniority amounts, allowances, additional months). Also the
-            upper bound for deriving months of service when seniority is
-            expressed as a :class:`~ccnl_engine.engine.payroll.domain\
-.employee.SeniorityByDate`.
-        tax_year: Override the fiscal year used for tax/INPS rule loading.
-            When ``None`` (default), ``as_of.year`` is used.
-            Set explicitly when applying a specific year's tax rules to a
-            date in a different calendar year (e.g. computing a late-2025
-            payslip with 2026 tax rules already in force).
+        ccnl_slug: Knowledge-bundle CCNL filename, e.g.
+            ``"metalmeccanico-federmeccanica.json"``.
+        level_code: Contractual level code, e.g. ``"C3"``.
+        contract_type: :class:`Permanent`, :class:`FixedTerm` or
+            :class:`Apprentice`.
+        category: Worker category; its string value (e.g. ``"operaio"``) is
+            accepted and normalized.  ``None`` takes the category fixed by
+            the level, if any.  The calculation raises when the category
+            differs from the one the level fixes, or when it is ``None`` and
+            seniority increments for the level differ by category.
+        employment_period: Start and optional end of the employment.
+            ``None`` when not tracked: a year then computes every run of the
+            calendar with full ratei.
+        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs
+            to select the INPS bracket; below ``full_time_weekly_hours`` it
+            scales the pay for part time.
+        full_time_weekly_hours: Full-time weekly hours of the contract.
+            ``weekly_hours`` must not exceed it.
+        seniority_months: Months of continuous service.  ``None`` applies no
+            seniority increment.
+        roles: Role codes that unlock role-specific contractual allowances.
+        ceiling_status: Whether the IVS massimale applies.  ``UNKNOWN`` (the
+            default) does not apply it.
+        sector: Private or public sector of the employment, for the regimes
+            restricted to one sector.  ``None`` means not known: those
+            regimes are then ``unknown`` and the result provisional.  It is
+            not derived from the CCNL: a public employer may apply a private
+            CCNL.
+
+    Raises:
+        InvalidInputError: When a field is not of its type, when
+            ``weekly_hours`` exceeds ``full_time_weekly_hours``, or when
+            ``category`` or ``sector`` names no known value.
     """
 
-    model_config = ConfigDict(frozen=True, extra="forbid")
+    ccnl_slug: str
+    level_code: str
+    contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
+    category: WorkerCategory | None = None
+    employment_period: EmploymentPeriod | None = None
+    weekly_hours: WeeklyHours | None = None
+    full_time_weekly_hours: WeeklyHours | None = None
+    seniority_months: SeniorityMonths | None = None
+    roles: frozenset[str] = frozenset()
+    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
+    sector: EmploymentSector | None = None
 
-    ccnl: str
-    contract: Annotated[
-        Permanent | FixedTerm | Apprentice,
-        Field(discriminator="type"),
-    ]
-    employer: Employer
-    as_of: date
-    tax_year: int | None = None
+    def __post_init__(self) -> None:  # noqa: D105
+        problem = type_error((
+            ("ccnl_slug", self.ccnl_slug, str, False),
+            ("level_code", self.level_code, str, False),
+            (
+                "contract_type",
+                self.contract_type,
+                (Permanent, Apprentice, FixedTerm),
+                False,
+            ),
+            ("employment_period", self.employment_period, EmploymentPeriod, True),
+            ("weekly_hours", self.weekly_hours, WeeklyHours, True),
+            ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
+            ("seniority_months", self.seniority_months, SeniorityMonths, True),
+            ("roles", self.roles, frozenset, False),
+            ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
+        ))
+        if problem is not None:
+            raise InvalidInputError(problem, feature=_FEATURE)
+        object.__setattr__(self, "category", parse_worker_category(self.category))
+        object.__setattr__(self, "sector", _sector(self.sector))
+        check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+
+
+def _sector(value: object) -> EmploymentSector | None:
+    """Return ``value`` as an :class:`EmploymentSector`, or ``None``.
+
+    Returns:
+        The sector named by ``value``; ``None`` when ``value`` is ``None``.
+
+    Raises:
+        InvalidInputError: When ``value`` names no sector.
+    """
+    if value is None:
+        return None
+    try:
+        return EmploymentSector(str(value))
+    except ValueError:
+        valid = [s.value for s in EmploymentSector]
+        msg = f"sector must be one of {valid}; got {value!r}"
+        raise InvalidInputError(msg, feature=_FEATURE) from None

@@ -34,7 +34,7 @@ from ccnl_engine.payroll.application._reconcile_types import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__: list[str] = []
 
@@ -57,7 +57,7 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
 
 
 def check_account_non_negative(
-    result: PeriodCalculationResult,
+    result: PeriodResult,
     account: AccountKind,
     code: InvariantCode,
 ) -> list[ReconciliationViolation]:
@@ -101,7 +101,7 @@ def _check_non_negative_total(
     ]
 
 
-def check_signs(result: PeriodCalculationResult) -> list[ReconciliationViolation]:
+def check_signs(result: PeriodResult) -> list[ReconciliationViolation]:
     """Run every sign invariant against ``result``.
 
     Returns:

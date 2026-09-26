@@ -3,42 +3,40 @@
 from datetime import date
 
 from ccnl_engine import (
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     Headcount,
     PayrollEngine,
-    PayrollRequest,
     PayrollRun,
+    PeriodFacts,
+    PeriodInput,
 )
 
 engine = PayrollEngine.bundled()
 
-facts = EmploymentFacts()
-employer = Employer(headcount=Headcount(100))
+employment = Employment(ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3")
+employer = EmployerProfile(headcount=Headcount(100))
+facts = PeriodFacts(regione="IT-45")
 
-# January — opening_state defaults to zero
-jan = engine.calculate(
-    PayrollRequest(
+# January: opening_state defaults to zero
+jan = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=1),
         payment_date=date(2026, 1, 28),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=facts,
+        employment=employment,
         employer=employer,
-        regione="IT-45",
+        facts=facts,
     )
 )
 
-# February — carry forward YTD state from January
-feb = engine.calculate(
-    PayrollRequest(
+# February: carry forward YTD state from January
+feb = engine.calculate_period(
+    PeriodInput(
         run=PayrollRun.regular(year=2026, month=2),
         payment_date=date(2026, 2, 27),
-        ccnl_slug="metalmeccanico-federmeccanica.json",
-        level_code="C3",
-        employment_facts=facts,
+        employment=employment,
         employer=employer,
-        regione="IT-45",
+        facts=facts,
         opening_state=jan.closing_state,
     )
 )

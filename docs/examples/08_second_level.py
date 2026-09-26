@@ -1,6 +1,6 @@
 """Full-year run: standard calendar derived from the CCNL, then an override.
 
-Without ``calendar`` the engine runs the calendar the CCNL grants.  A custom
+Without ``calendar_override`` the engine runs the calendar the CCNL grants.  A custom
 calendar is accepted only as a ``CalendarOverride`` with a domain reason; an
 override that drops or lowers a CCNL extra month raises ``InvalidInputError``.
 """
@@ -8,31 +8,29 @@ override that drops or lowers a CCNL extra month raises ``InvalidInputError``.
 from ccnl_engine import (
     CalendarOverride,
     CalendarOverrideReason,
-    Employer,
-    EmploymentFacts,
+    EmployerProfile,
+    Employment,
     Headcount,
     InvalidInputError,
     PayrollCalendar,
     PayrollEngine,
-    PayrollYearRequest,
+    YearInput,
 )
 
 engine = PayrollEngine.bundled()
 
 
-def year_request(calendar: CalendarOverride | None = None) -> PayrollYearRequest:
-    """Build a Commercio level 4 request for 2026.
+def year_request(calendar: CalendarOverride | None = None) -> YearInput:
+    """Build a Commercio level 4 input for 2026.
 
     Returns:
-        The year request, with ``calendar`` as the optional override.
+        The year input, with ``calendar`` as the optional override.
     """
-    return PayrollYearRequest(
+    return YearInput(
         year=2026,
-        ccnl_slug="commercio-confcommercio.json",
-        level_code="4",
-        calendar=calendar,
-        employment_facts=EmploymentFacts(),
-        employer=Employer(headcount=Headcount(50)),
+        employment=Employment(ccnl_slug="commercio-confcommercio.json", level_code="4"),
+        employer=EmployerProfile(headcount=Headcount(50)),
+        calendar_override=calendar,
     )
 
 

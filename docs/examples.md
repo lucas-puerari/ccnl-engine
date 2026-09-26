@@ -8,7 +8,7 @@ if an API change breaks an example, the build fails.
 
 The most important question a payroll engine must answer is not "what is the
 net salary?" but "why is it that number?" This example walks through all three
-verifiability layers: provenance, versioning, and calculation scope.
+verifiability layers: provenance, versioning, and the capability report.
 
 ```python
 --8<-- "docs/examples/11_why_this_number.py"
@@ -18,7 +18,7 @@ verifiability layers: provenance, versioning, and calculation scope.
 
 ### Quickstart
 
-Minimal call: build a `PayrollRequest` and pass it to `PayrollEngine.calculate()`.
+Minimal call: build a `PeriodInput` and pass it to `PayrollEngine.calculate_period()`.
 
 ```python
 --8<-- "docs/examples/01_quickstart.py"
@@ -26,7 +26,7 @@ Minimal call: build a `PayrollRequest` and pass it to `PayrollEngine.calculate()
 
 ### Reading the result
 
-`PayrollEngine.calculate()` returns a `PayrollResult` for one run: period
+`PayrollEngine.calculate_period()` returns a `PeriodResult` for one run: its status, period
 gross, net and employer cost, the INPS contribution breakdown, the IRPEF
 computation and the pay items.
 
@@ -64,7 +64,7 @@ A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the
 
 ### Seniority increments (scatti di anzianità)
 
-Pass the months of service as `EmploymentFacts.seniority_months`; the category selects category-specific increments.
+Pass the months of service as `Employment.seniority_months`; the category selects category-specific increments.
 
 ```python
 --8<-- "docs/examples/05_seniority.py"

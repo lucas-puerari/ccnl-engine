@@ -80,14 +80,14 @@ def compute_domestic_breakdown(
         raise DataIntegrityError(msg)
     if weekly_hours is None:
         msg = (
-            "domestic CCNL requires weekly_hours in PeriodCalculationRequest "
+            "domestic CCNL requires Employment.weekly_hours "
             "to select the INPS contribution bracket"
         )
         raise MissingRequiredFactError(msg, feature="domestic_contributions")
     if contributable_hours is None:
         msg = (
-            "domestic CCNL requires contributable_hours in "
-            "PeriodCalculationRequest to compute INPS contributions"
+            "domestic CCNL requires PeriodFacts.contributable_hours "
+            "to compute INPS contributions"
         )
         raise MissingRequiredFactError(msg, feature="domestic_contributions")
     emp_ph, empr_ph = _pick_domestic_per_hour(

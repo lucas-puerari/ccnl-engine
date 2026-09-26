@@ -28,6 +28,7 @@ Sources:
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -36,6 +37,7 @@ import pytest
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -45,12 +47,14 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -70,6 +74,7 @@ def _req(
     if opening is None:
         opening = PeriodState.zero()
     return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=ccnl,
@@ -85,7 +90,7 @@ def _req(
     )
 
 
-def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decimal:
+def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
     return sum(
         (e.amount for e in result.ledger_entries if e.account == account),
         _ZERO,
@@ -111,9 +116,13 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
         event_date=date(_YEAR, 1, 15),
         amount=Decimal("1000.00"),
         kind="productivity_bonus",
-        prior_income=Decimal("25000.00"),
     )
-    result = calculate_period(_req(events=(bonus,)))
+    result = calculate_period(
+        replace(
+            _req(events=(bonus,)),
+            prior_year=PriorYearTaxFacts(employment_income=Decimal("25000.00")),
+        )
+    )
 
     sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
     assert sub_tax == Decimal("10.00"), (
@@ -127,7 +136,7 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
 #
 # The calendar lists the extra months (tredicesima, quattordicesima), each
 # paid in its own run.  calculate_year must produce one
-# PeriodCalculationResult per payroll run, not always 12.
+# PeriodResult per payroll run, not always 12.
 # Source: CCNL calendar, derived from additional_months.
 # ---------------------------------------------------------------------------
 
@@ -139,7 +148,7 @@ def test_p0_02_calculate_year_extra_months() -> None:
     Fixed in feature/payroll-schedule: PayrollSchedule.from_calendar generates
     extra runs; calculate_year iterates schedule.runs instead of range(1, 13).
     """
-    result = calculate_year(_YEAR, _CCNL, _LEVEL)
+    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
     assert len(result.period_results) == 13, (
         f"calculate_year with tredicesima must produce 13 period results; "
         f"got {len(result.period_results)}.  "
@@ -309,7 +318,7 @@ def test_p0_06_inps_addizionale_1pct_on_threshold_crossing() -> None:
 # calculate_period invokes resolve_rates which requires standard INPS rates.
 # The domestic CCNL uses flat per-hour contributions and is incompatible with
 # the standard rate path.  Any call with a domestic CCNL slug must not raise
-# TypeError; it must return a valid PeriodCalculationResult.
+# TypeError; it must return a valid PeriodResult.
 # ---------------------------------------------------------------------------
 
 

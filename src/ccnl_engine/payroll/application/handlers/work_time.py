@@ -57,9 +57,10 @@ def _pdr_ceiling_exceeded(
     ):
         return False
     # Fail-closed: None means income status unknown → treat as ineligible.
-    if event.prior_income is None:
+    prior_income = ctx.worker_facts.prior_income
+    if prior_income is None:
         return True
-    return event.prior_income > ctx.pdr_income_ceiling
+    return prior_income > ctx.pdr_income_ceiling
 
 
 def _handle_standard(

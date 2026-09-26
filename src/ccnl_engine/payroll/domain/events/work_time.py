@@ -66,19 +66,10 @@ class NightShiftEvent:
         event_date: Calendar date the shift was worked.
         supplement_amount: Flat supplement for the night period in EUR.
             Must be >= 0.
-        prior_income: Worker's 2025 employment income (reddito di lavoro
-            dipendente) in EUR, for the 15% substitute tax on night, holiday
-            and shift supplements (L. 199/2025 art. 1 cc. 10-11, ceiling
-            40,000 EUR).  ``None`` means unknown: the supplement is taxed as
-            ordinary income and the result is provisional.
-        substitute_tax_waived: Whether the worker renounced the substitute
-            tax in writing; the supplement is then ordinary income.
     """
 
     event_date: date
     supplement_amount: Decimal
-    prior_income: Decimal | None = None
-    substitute_tax_waived: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         _check_supplement(self.supplement_amount, "NightShiftEvent", "night_shift")
@@ -97,19 +88,10 @@ class HolidayWorkEvent:
     Attributes:
         event_date: Calendar date the holiday or rest day was worked.
         supplement_amount: Flat supplement for the day in EUR.  Must be >= 0.
-        prior_income: Worker's 2025 employment income (reddito di lavoro
-            dipendente) in EUR, for the 15% substitute tax on night, holiday
-            and shift supplements (L. 199/2025 art. 1 cc. 10-11, ceiling
-            40,000 EUR).  ``None`` means unknown: the supplement is taxed as
-            ordinary income and the result is provisional.
-        substitute_tax_waived: Whether the worker renounced the substitute
-            tax in writing; the supplement is then ordinary income.
     """
 
     event_date: date
     supplement_amount: Decimal
-    prior_income: Decimal | None = None
-    substitute_tax_waived: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         _check_supplement(self.supplement_amount, "HolidayWorkEvent", "holiday_work")
@@ -126,19 +108,10 @@ class ShiftWorkEvent:
     Attributes:
         event_date: Calendar date the shift was worked.
         supplement_amount: Shift allowance in EUR.  Must be >= 0.
-        prior_income: Worker's 2025 employment income (reddito di lavoro
-            dipendente) in EUR, for the 15% substitute tax on night, holiday
-            and shift supplements (L. 199/2025 art. 1 cc. 10-11, ceiling
-            40,000 EUR).  ``None`` means unknown: the supplement is taxed as
-            ordinary income and the result is provisional.
-        substitute_tax_waived: Whether the worker renounced the substitute
-            tax in writing; the supplement is then ordinary income.
     """
 
     event_date: date
     supplement_amount: Decimal
-    prior_income: Decimal | None = None
-    substitute_tax_waived: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         _check_supplement(self.supplement_amount, "ShiftWorkEvent", "shift_work")

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -61,7 +62,7 @@ from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.service.tax_computation import resolve_tax_computation
 from ccnl_engine.payroll.service.types import MonthlyPayChain
-from tests.helpers import make_year_rules
+from tests.helpers import EMPLOYER_50, make_year_rules
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -87,6 +88,7 @@ def _req(
     if isinstance(opening_state, TaxYearState):
         opening_state = PeriodState(ytd=opening_state)
     return PeriodCalculationRequest(
+        employer=EMPLOYER_50,
         period_id=PeriodId(year=year, month=month),
         payment_date=payment_date,
         ccnl_slug=_CCNL,
@@ -719,6 +721,7 @@ class TestContractTypeRouting:
     def test_apprentice_gross_below_permanent(self) -> None:
         """Apprentice (85% track) produces a lower period_gross than Permanent."""
         permanent_req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -728,6 +731,7 @@ class TestContractTypeRouting:
         # metalmeccanico track professionalizzante_36: months 0-12 → 85%
         # C3 is covered by two tracks; explicit track= is required.
         apprentice_req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -742,20 +746,14 @@ class TestContractTypeRouting:
     def test_fixed_term_same_gross_as_permanent(self) -> None:
         """FixedTerm gross equals Permanent gross (only INPS employer rate differs)."""
         permanent_req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
             opening_state=PeriodState.zero(),
         )
-        fixed_req = PeriodCalculationRequest(
-            period_id=PeriodId(year=2026, month=1),
-            payment_date=date(2026, 1, 28),
-            ccnl_slug=_CCNL,
-            level_code=_LEVEL,
-            opening_state=PeriodState.zero(),
-            contract_type=FixedTerm(),
-        )
+        fixed_req = replace(permanent_req, contract_type=FixedTerm())
         perm_result = calculate_period(permanent_req)
         fixed_result = calculate_period(fixed_req)
         assert fixed_result.period_gross == perm_result.period_gross
@@ -773,6 +771,7 @@ class TestEventDateValidation:
             multiplier=Decimal("1.25"),
         )
         req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -791,6 +790,7 @@ class TestEventDateValidation:
             separate_tax_rate=Decimal("0.23"),
         )
         req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -809,6 +809,7 @@ class TestEventDateValidation:
             hourly_rate=Decimal("12.50"),
         )
         req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -855,6 +856,7 @@ class TestReconciliationFailureGuard:
         monkeypatch.setattr(_reconcile_mod, "reconcile", lambda *_: fake_result)
 
         req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=1),
             payment_date=date(2026, 1, 28),
             ccnl_slug=_CCNL,
@@ -991,6 +993,7 @@ class TestExtraMonthRateo:
             The ``period_gross`` of the extra-month run.
         """
         req = PeriodCalculationRequest(
+            employer=EMPLOYER_50,
             period_id=PeriodId(year=2026, month=period_month),
             payment_date=date(2026, period_month, 28),
             ccnl_slug=_CCNL,
@@ -1060,6 +1063,7 @@ class TestExtraMonthRateo:
         # Verify by checking that each equals its own month's regular gross.
         regular_june = calculate_period(
             PeriodCalculationRequest(
+                employer=EMPLOYER_50,
                 period_id=PeriodId(year=2026, month=6),
                 payment_date=date(2026, 6, 28),
                 ccnl_slug=_CCNL,
@@ -1074,6 +1078,7 @@ class TestExtraMonthRateo:
         ).period_gross
         regular_dec = calculate_period(
             PeriodCalculationRequest(
+                employer=EMPLOYER_50,
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2026, 12, 28),
                 ccnl_slug=_CCNL,

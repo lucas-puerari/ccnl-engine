@@ -337,24 +337,15 @@ class TestBreakdownReconciliation:
 
         # The breakdown table formula: allowances_annual is derived from gross_annual
         # so that base*nm + allowances_annual + seniority*nm + ad_personam*nm
-        # + second_level*nm == gross_annual (when no RAL override).
+        # == gross_annual (when no RAL override).
         base_annual = r["base_monthly"] * nm
         seniority_annual = (r["seniority_monthly"] or 0) * nm
         ad_personam_annual = (r["ad_personam_monthly"] or 0) * nm
-        second_level_annual = (r["second_level_monthly"] or 0) * nm
         allowances_annual = (
-            r["gross_annual"]
-            - base_annual
-            - seniority_annual
-            - ad_personam_annual
-            - second_level_annual
+            r["gross_annual"] - base_annual - seniority_annual - ad_personam_annual
         )
         reconstructed = (
-            base_annual
-            + seniority_annual
-            + allowances_annual
-            + ad_personam_annual
-            + second_level_annual
+            base_annual + seniority_annual + allowances_annual + ad_personam_annual
         )
         assert abs(reconstructed - r["gross_annual"]) < 0.01, (
             f"Breakdown does not reconcile: reconstructed {reconstructed:.2f} "

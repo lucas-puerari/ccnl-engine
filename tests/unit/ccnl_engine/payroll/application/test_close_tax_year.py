@@ -8,7 +8,7 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import PayrollEngine, PayrollYearRequest
+from ccnl_engine import PayrollEngine
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.application.state_invariants import (
     check_carried_recovery_advance,
 )
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
@@ -26,6 +27,7 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import TrattamentoAccount
+from tests.helpers import year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -86,7 +88,7 @@ class TestCloseTaxYear:
 
     def test_closes_the_state_of_the_last_run_of_calculate_year(self) -> None:
         """The last run of a year calculation closes every withholding slot."""
-        year = calculate_year(2026, _CCNL, _LEVEL)
+        year = calculate_year(year_input(2026, _CCNL, _LEVEL))
 
         opening = close_tax_year(year.period_results[-1].closing_state)
 
@@ -105,8 +107,10 @@ class TestCarriedRecoveryInAYear:
         """
         opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
 
-        with_plan = calculate_year(2026, _CCNL, _LEVEL, opening_state=opening)
-        without_plan = calculate_year(2026, _CCNL, _LEVEL)
+        with_plan = calculate_year(
+            year_input(2026, _CCNL, _LEVEL, opening_state=opening)
+        )
+        without_plan = calculate_year(year_input(2026, _CCNL, _LEVEL))
 
         assert without_plan.annual_net - with_plan.annual_net == Decimal("60.00")
         posted = [
@@ -142,12 +146,13 @@ class TestCarriedRecoveryInAYear:
         )
 
         with pytest.raises(InvalidInputError, match="must close no run"):
-            calculate_year(2026, _CCNL, _LEVEL, opening_state=opening)
+            calculate_year(year_input(2026, _CCNL, _LEVEL, opening_state=opening))
 
     def test_rejects_a_run_before_the_origin_of_a_recovery(self) -> None:
         """A 2027 recovery cannot be applied to a 2026 run."""
         with pytest.raises(InvalidInputError, match="after the tax year of the run"):
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=1),
                 payment_date=date(2026, 1, 28),
                 ccnl_slug=_CCNL,
@@ -157,12 +162,12 @@ class TestCarriedRecoveryInAYear:
 
 
 class TestYearRequestOpeningState:
-    """PayrollYearRequest.opening_state reaches the year calculation."""
+    """YearInput.opening_state reaches the year calculation."""
 
     def test_carried_recovery_through_the_facade(self) -> None:
         """The engine applies the 2025 recovery to the 2026 year it computes."""
         engine = PayrollEngine.bundled()
-        request = PayrollYearRequest(year=2026, ccnl_slug=_CCNL, level_code=_LEVEL)
+        request = year_input(2026, _CCNL, _LEVEL)
         opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
 
         with_plan = engine.calculate_year(replace(request, opening_state=opening))
@@ -192,6 +197,7 @@ class TestCurrentYearRecovery:
 
         result = calculate_period(
             PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(50)),
                 period_id=PeriodId(year=2026, month=12),
                 payment_date=date(2026, 12, 28),
                 ccnl_slug=_CCNL,
@@ -212,7 +218,7 @@ class TestCarriedRecoveryInvariant:
         """Dropping the posting and the advance yields two violations."""
         opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
         result = calculate_year(
-            2026, _CCNL, _LEVEL, opening_state=opening
+            year_input(2026, _CCNL, _LEVEL, opening_state=opening)
         ).period_results[0]
         tampered = replace(
             result,

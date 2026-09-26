@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.application._reconcile_types import RunFacts
     from ccnl_engine.payroll.domain.calendar import ExtraMonthKind
-    from ccnl_engine.payroll.domain.period import PeriodCalculationResult
+    from ccnl_engine.payroll.domain.period import PeriodResult
 
 __all__: list[str] = []
 
@@ -35,7 +35,7 @@ _MONTHS_PER_WINDOW = 12
 
 
 def check_run_within_employment(
-    result: PeriodCalculationResult, facts: RunFacts
+    result: PeriodResult, facts: RunFacts
 ) -> list[ReconciliationViolation]:
     """Check that a regular run falls in a month of the employment.
 

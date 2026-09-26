@@ -12,7 +12,7 @@ Every CCNL ruleset is classified by two orthogonal signals:
 | Signal | Field | Values | Meaning |
 |---|---|---|---|
 | Readiness | `verification.readiness` | `exploratory` / `reviewed` / `production` | Whether the ruleset has been human-reviewed for a given use context |
-| Confidence | `verification.status` | `unverified` / `verified` / `needs_review` | Per-value data confidence, surfaced in `calculation.result.confidence` |
+| Verification | `verification.status` | `unverified` / `verified` / `needs_review` | Per-value data verification of the source values; not folded into the result, whose reliability is `result.status` |
 
 See [Readiness](readiness.md) for promotion criteria between tiers and the
 current classification of each contract.
@@ -78,9 +78,10 @@ open an issue with the label `statutory-rate-error`.
 
 ## Deprecation and version compatibility
 
-**Knowledge-base versions** follow `YYYY.N` (e.g. `2026.2`). A
-`Calculation` records the exact version in `ruleset_version`, so any figure
-can be reproduced by pinning that version.
+**Knowledge-base versions** follow `YYYY.N` (e.g. `2026.2`). Every
+`PeriodResult` and `YearResult` records the version in `bundle_version`, and
+each decision names the ruleset it applied (`rule`, `rule_version`), so any
+figure can be reproduced by pinning that version.
 
 **Deprecation policy:**
 
@@ -95,7 +96,7 @@ can be reproduced by pinning that version.
 **Engine API compatibility:**
 
 The Python API follows semantic versioning. Patch releases are backwards
-compatible. Minor releases may add fields to `PayrollResult` or new values
+compatible. Minor releases may add fields to `PeriodResult` or new values
 to existing enums (callers must handle unknown values defensively). Major
 releases may break the public API and will be announced with a migration
 guide.

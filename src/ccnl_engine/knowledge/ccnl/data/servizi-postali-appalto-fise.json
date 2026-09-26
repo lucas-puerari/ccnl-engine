@@ -49,7 +49,7 @@
       },
       {
         "kind": "info",
-        "text": "Seniority Art. 35: dual model. Operai (Art. 35A): single premio after 24mo company service (max=1), amounts frozen at 31/12/1994 tabellare (L2=56.66, L3S=51.71, L3=49.70, L4S=47.24, L4=44.94, L5=40.72). Impiegati (Art. 35B): biennale (cadence=24mo), first scatto after 48mo, max=10 (5.55% biennale capped at 60%), amounts frozen at 2001 reference (L1=71.79, L2=62.62, L3=56.86, L4S=52.44 (kitech proxy), L5=49.40). L1 operai: no seniority. L3S, L4 impiegati: no seniority. Level categories are open, so callers must set EmploymentFacts.category to operaio or impiegato; with seniority_months and no category the calculation is rejected."
+        "text": "Seniority Art. 35: dual model. Operai (Art. 35A): single premio after 24mo company service (max=1), amounts frozen at 31/12/1994 tabellare (L2=56.66, L3S=51.71, L3=49.70, L4S=47.24, L4=44.94, L5=40.72). Impiegati (Art. 35B): biennale (cadence=24mo), first scatto after 48mo, max=10 (5.55% biennale capped at 60%), amounts frozen at 2001 reference (L1=71.79, L2=62.62, L3=56.86, L4S=52.44 (kitech proxy), L5=49.40). L1 operai: no seniority. L3S, L4 impiegati: no seniority. Level categories are open, so callers must set Employment.category to operaio or impiegato; with seniority_months and no category the calculation is rejected."
       },
       {
         "kind": "info",
@@ -1544,7 +1544,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "96838468caa43e5df87f92397490764b224cae3766b79642fe8722159758d674",
+    "source_hash": "3924f3b9a3a4a590de6f97738515e977d3afb1232a8c677f2056c130f92f4cd3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

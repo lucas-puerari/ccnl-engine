@@ -11,6 +11,7 @@ import pytest
 from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
     EmploymentObligations,
@@ -18,7 +19,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
@@ -26,22 +27,23 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.service.rounding import money
+from tests.helpers import year_input
 
 _YEAR = 2026
 # Low-income contract: somma esente of about 877 EUR a year.
 _CCNL = "autoscuole-unasca.json"
 _LEVEL = "3"
-_YEAR_RESULT = calculate_year(_YEAR, _CCNL, _LEVEL)
+_YEAR_RESULT = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
 
 
-def _somma(result: PeriodCalculationResult) -> Decimal:
+def _somma(result: PeriodResult) -> Decimal:
     return sum(
         (i.amount for i in result.pay_items if i.item_id.startswith("somma_esente")),
         Decimal(0),
     )
 
 
-def _last_run(opening: PeriodState) -> PeriodCalculationResult:
+def _last_run(opening: PeriodState) -> PeriodResult:
     """Compute the tredicesima, the last withholding slot, from ``opening``.
 
     Returns:
@@ -49,6 +51,7 @@ def _last_run(opening: PeriodState) -> PeriodCalculationResult:
     """
     return calculate_period(
         PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=12),
             payment_date=date(_YEAR, 12, 28),
             ccnl_slug=_CCNL,
@@ -159,7 +162,9 @@ class TestCarriedSommaEsenteRecovery:
             )
         )
 
-        with_plan = calculate_year(_YEAR, _CCNL, _LEVEL, opening_state=opening)
+        with_plan = calculate_year(
+            year_input(_YEAR, _CCNL, _LEVEL, opening_state=opening)
+        )
 
         assert _YEAR_RESULT.annual_net - with_plan.annual_net == Decimal("45.00")
         decisions = [
@@ -180,6 +185,7 @@ class TestClosedRuns:
 
     def _request(self, month: int, opening: PeriodState) -> PeriodCalculationRequest:
         return PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=month),
             payment_date=date(_YEAR, month, 28),
             ccnl_slug=_CCNL,

@@ -6,8 +6,8 @@ workers whose 2025 employment income does not exceed 33,000 EUR.
 
 Night, holiday and shift supplements (art. 1 cc. 10-11): 15% flat tax
 within 1,500 EUR a year when the worker's 2025 employment income does not
-exceed 40,000 EUR, NightShiftEvent with prior_income set.  Fail-closed: None
-means ordinary IRPEF.
+exceed 40,000 EUR.  The 2025 income is declared once in PriorYearTaxFacts.
+Fail-closed: an unknown income means ordinary IRPEF.
 """
 
 from __future__ import annotations
@@ -15,29 +15,43 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.employer import (
+    EmployerActivity,
+    EmployerProfile,
+    Headcount,
+)
 from ccnl_engine.payroll.domain.events import BonusEvent, NightShiftEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period import (
     PeriodCalculationRequest,
-    PeriodCalculationResult,
+    PeriodResult,
     PeriodState,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
 _YEAR = 2026
 _ZERO = Decimal(0)
 _RENEWAL_ELIGIBLE_INCOME = Decimal("20000.00")
+_SIGNED_ON = date(2025, 3, 1)
 
 
 def _req(
     month: int = 1,
     events: tuple[object, ...] = (),
     opening: PeriodState | None = None,
+    income: Decimal | None = _RENEWAL_ELIGIBLE_INCOME,
 ) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
+        employer=EmployerProfile(
+            headcount=Headcount(50), activity=EmployerActivity.OTHER
+        ),
+        sector=EmploymentSector.PRIVATE,
+        prior_year=PriorYearTaxFacts(employment_income=income),
         period_id=PeriodId(year=_YEAR, month=month),
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
@@ -47,7 +61,7 @@ def _req(
     )
 
 
-def _sum_account(result: PeriodCalculationResult, account: AccountKind) -> Decimal:
+def _sum_account(result: PeriodResult, account: AccountKind) -> Decimal:
     return sum((e.amount for e in result.ledger_entries if e.account == account), _ZERO)
 
 
@@ -60,7 +74,7 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
-            prior_income=_RENEWAL_ELIGIBLE_INCOME,
+            agreement_signed_on=_SIGNED_ON,
         )
         result = calculate_period(_req(events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -76,7 +90,7 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
-            prior_income=_RENEWAL_ELIGIBLE_INCOME,
+            agreement_signed_on=_SIGNED_ON,
         )
         with_bonus = calculate_period(_req(events=(bonus,)))
         inps_no = _sum_account(no_bonus, AccountKind.EMPLOYEE_CONTRIBUTIONS)
@@ -92,7 +106,7 @@ class TestRinnovoContrattuale:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("2000.00"),
             kind="contract_renewal",
-            prior_income=_RENEWAL_ELIGIBLE_INCOME,
+            agreement_signed_on=_SIGNED_ON,
         )
         result = calculate_period(_req(events=(bonus,)))
         assert result.closing_state.ytd.fringe.pdr == _ZERO, (
@@ -110,9 +124,10 @@ class TestRinnovoContrattuale:
                             event_date=date(_YEAR, 1, 15),
                             amount=Decimal("2000.00"),
                             kind="contract_renewal",
-                            prior_income=income,
+                            agreement_signed_on=_SIGNED_ON,
                         ),
-                    )
+                    ),
+                    income=income,
                 )
             )
             for income in (_RENEWAL_ELIGIBLE_INCOME, Decimal("100000.00"))
@@ -125,14 +140,13 @@ class TestRinnovoContrattuale:
 
 
 class TestNotteTurno:
-    """NightShiftEvent with prior_income → 15% substitute tax when eligible."""
+    """NightShiftEvent → 15% substitute tax when the worker is eligible."""
 
     def test_eligible_notte_posts_substitute_tax(self) -> None:
-        """Night shift with prior_income=20,000 must post SUBSTITUTE_TAX at 15%."""
+        """Night shift with 2025 income 20,000 must post SUBSTITUTE_TAX at 15%."""
         shift = NightShiftEvent(
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
-            prior_income=Decimal("20000.00"),
         )
         result = calculate_period(_req(events=(shift,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -150,49 +164,41 @@ class TestNotteTurno:
         shift_eligible = NightShiftEvent(
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
-            prior_income=Decimal("20000.00"),
-        )
-        shift_no_regime = NightShiftEvent(
-            event_date=date(_YEAR, 1, 15),
-            supplement_amount=Decimal("500.00"),
-            prior_income=None,
         )
         result_eligible = calculate_period(_req(events=(shift_eligible,)))
-        result_ordinary = calculate_period(_req(events=(shift_no_regime,)))
+        result_ordinary = calculate_period(_req(events=(shift_eligible,), income=None))
         sub_tax_eligible = _sum_account(result_eligible, AccountKind.SUBSTITUTE_TAX)
         sub_tax_ordinary = _sum_account(result_ordinary, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax_eligible == Decimal("75.00"), (
             f"Eligible notte must produce SUBSTITUTE_TAX=75.00; got {sub_tax_eligible}."
         )
         assert sub_tax_ordinary == _ZERO, (
-            "Notte without prior_income (fail-closed) must produce SUBSTITUTE_TAX=0; "
+            "Notte without 2025 income (fail-closed) must produce SUBSTITUTE_TAX=0; "
             f"got {sub_tax_ordinary}."
         )
 
     def test_ceiling_exceeded_notte_ordinary_irpef(self) -> None:
-        """Night shift with prior_income > 40,000 must not get the substitute rate."""
+        """Night shift with 2025 income > 40,000 must not get the substitute rate."""
         shift = NightShiftEvent(
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
-            prior_income=Decimal("45000.00"),
         )
-        result = calculate_period(_req(events=(shift,)))
+        result = calculate_period(_req(events=(shift,), income=Decimal("45000.00")))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == _ZERO, (
-            f"NightShiftEvent with prior_income=45,000 (> 40,000 ceiling) must "
+            f"NightShiftEvent with 2025 income 45,000 (> 40,000 ceiling) must "
             f"post SUBSTITUTE_TAX=0; got {sub_tax}."
         )
 
     def test_unknown_prior_income_notte_ordinary_irpef(self) -> None:
-        """Fail-closed: NightShiftEvent with prior_income=None → ordinary IRPEF."""
+        """Fail-closed: unknown 2025 income → ordinary IRPEF."""
         shift = NightShiftEvent(
             event_date=date(_YEAR, 1, 15),
             supplement_amount=Decimal("500.00"),
-            prior_income=None,
         )
-        result = calculate_period(_req(events=(shift,)))
+        result = calculate_period(_req(events=(shift,), income=None))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
         assert sub_tax == _ZERO, (
-            f"NightShiftEvent with prior_income=None must not get substitute rate; "
+            f"NightShiftEvent with unknown income must not get substitute rate; "
             f"got SUBSTITUTE_TAX={sub_tax}."
         )
