@@ -110,6 +110,7 @@ def test_p0_01_pdr_bonus_substitute_tax() -> None:
         event_date=date(_YEAR, 1, 15),
         amount=Decimal("1000.00"),
         kind="productivity_bonus",
+        prior_income=Decimal("25000.00"),
     )
     result = calculate_period(_req(events=(bonus,)))
 

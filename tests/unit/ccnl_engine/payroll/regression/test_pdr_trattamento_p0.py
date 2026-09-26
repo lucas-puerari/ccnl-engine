@@ -89,6 +89,7 @@ class TestT01PdRExcessReturnsToIrpef:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -103,6 +104,7 @@ class TestT01PdRExcessReturnsToIrpef:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         assert result.closing_state.fringe.pdr == Decimal("5000.00"), (
@@ -115,11 +117,13 @@ class TestT01PdRExcessReturnsToIrpef:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("5000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         bonus_6k = BonusEvent(
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         result_5k = calculate_period(_req_metal(1, events=(bonus_5k,)))
         result_6k = calculate_period(_req_metal(1, events=(bonus_6k,)))
@@ -137,6 +141,7 @@ class TestT01PdRExcessReturnsToIrpef:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("6000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         opening = PeriodState.zero()
         result = calculate_period(_req_metal(1, opening=opening, events=(bonus,)))
@@ -153,6 +158,7 @@ class TestT03SecondPdRPartialPlafond:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         result = calculate_period(_req_metal(1, events=(bonus,)))
         sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
@@ -165,6 +171,7 @@ class TestT03SecondPdRPartialPlafond:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         r1 = calculate_period(_req_metal(1, events=(bonus1,)))
 
@@ -172,6 +179,7 @@ class TestT03SecondPdRPartialPlafond:
             event_date=date(_YEAR, 2, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         r2 = calculate_period(_req_metal(2, opening=r1.closing_state, events=(bonus2,)))
         sub_tax = _sum_account(r2, AccountKind.SUBSTITUTE_TAX)
@@ -187,6 +195,7 @@ class TestT03SecondPdRPartialPlafond:
             event_date=date(_YEAR, 1, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         r1 = calculate_period(_req_metal(1, events=(bonus1,)))
 
@@ -194,6 +203,7 @@ class TestT03SecondPdRPartialPlafond:
             event_date=date(_YEAR, 2, 15),
             amount=Decimal("3000.00"),
             kind="productivity_bonus",
+            prior_income=Decimal("25000.00"),
         )
         r2_with_bonus = calculate_period(
             _req_metal(2, opening=r1.closing_state, events=(bonus2,))
@@ -272,3 +282,26 @@ class TestI16ReconciliationInvariant:
             recovered=Decimal("0.00"),
         )
         assert acc.recovered == Decimal("0.00")
+
+
+class TestPdREligibilityFailClosed:
+    """Fail-closed: unknown prior income must not grant the PdR substitute rate."""
+
+    def test_unknown_prior_income_no_substitute_tax(self) -> None:
+        """A productivity_bonus with prior_income=None must yield SUBSTITUTE_TAX=0.
+
+        Fail-closed: when the worker's prior-year reddito is unknown the engine
+        must apply ordinary IRPEF rather than the 1% substitute rate.
+        """
+        bonus = BonusEvent(
+            event_date=date(_YEAR, 1, 15),
+            amount=Decimal("1000.00"),
+            kind="productivity_bonus",
+            prior_income=None,
+        )
+        result = calculate_period(_req_metal(1, events=(bonus,)))
+        sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
+        assert sub_tax == _ZERO, (
+            f"productivity_bonus with unknown prior_income must not receive "
+            f"the substitute rate; got SUBSTITUTE_TAX={sub_tax}."
+        )
