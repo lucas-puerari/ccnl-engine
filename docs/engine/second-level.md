@@ -1,7 +1,8 @@
 # Second-level bargaining
 
 Company or territorial agreements may add allowances on top of the national CCNL
-minimum. These are modelled by passing an `Employer` object to `estimate_annual()` or `estimate_period_effects()`.
+minimum. The `SupplementaryAllowance` type describes such an allowance; it is not
+yet an input of the payroll pipeline, and `Employer` carries only the headcount.
 
 See [Domain: Second-level bargaining](../domain/components.md#12-second-level-bargaining-contrattazione-di-secondo-livello)
 for the legal background.
@@ -27,5 +28,4 @@ bonus that is INPS-exempt under Art. 1 c. 182 L. 208/2015).
     The preferential 5% IRPEF rate on *premi di risultato* is not computed by the
     engine — tax is always applied at ordinary rates.
 
-**API reference:** [`Employer`](../api/engine.md),
-[`SupplementaryAllowance`](../api/engine.md)
+**API reference:** [`SupplementaryAllowance`](../api/engine.md)

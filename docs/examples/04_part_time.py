@@ -5,8 +5,10 @@ from datetime import date
 from ccnl_engine import (
     Dependent,
     DependentRelationship,
+    Employer,
     EmploymentFacts,
     FamilyComposition,
+    Headcount,
     PayrollEngine,
     PayrollRequest,
     PayrollRun,
@@ -14,7 +16,8 @@ from ccnl_engine import (
 
 engine = PayrollEngine.bundled()
 
-facts = EmploymentFacts(num_employees=50)
+facts = EmploymentFacts()
+employer = Employer(headcount=Headcount(50))
 run = PayrollRun.regular(year=2026, month=1)
 payment = date(2026, 1, 28)
 slug = "commercio-confcommercio.json"
@@ -28,6 +31,7 @@ result_single = engine.calculate(
         ccnl_slug=slug,
         level_code=level,
         employment_facts=facts,
+        employer=employer,
         regione="ER",
     )
 )
@@ -40,6 +44,7 @@ result_family = engine.calculate(
         ccnl_slug=slug,
         level_code=level,
         employment_facts=facts,
+        employer=employer,
         regione="ER",
         family_composition=FamilyComposition(
             dependents=(

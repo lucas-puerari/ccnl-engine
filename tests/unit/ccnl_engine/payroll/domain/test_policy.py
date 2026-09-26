@@ -189,7 +189,6 @@ class TestPolicyContext:
         assert ctx.sector is None
         assert ctx.gross_ytd == Decimal(0)
         assert ctx.is_manager is False
-        assert ctx.num_employees is None
 
     def test_optional_fields_stored(self) -> None:
         """Optional fields are stored when explicitly supplied."""
@@ -200,13 +199,11 @@ class TestPolicyContext:
             sector="industria",
             gross_ytd=Decimal("50000.00"),
             is_manager=True,
-            num_employees=15,
         )
         assert ctx.ccnl_slug == "test.json"
         assert ctx.sector == "industria"
         assert ctx.gross_ytd == Decimal("50000.00")
         assert ctx.is_manager is True
-        assert ctx.num_employees == 15
 
     def test_frozen(self) -> None:
         """PolicyContext is immutable: attribute assignment raises AttributeError."""

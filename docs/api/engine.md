@@ -21,6 +21,12 @@ See [Guide: Employment types](../domain/employment-types.md) and
         - PayrollRun
         - EmploymentFacts
 
+::: ccnl_engine.payroll.domain.employer
+    options:
+      members:
+        - Employer
+        - Headcount
+
 ::: ccnl_engine.engine.contract.domain.category
     options:
       members:

@@ -69,7 +69,8 @@ class SupplementaryAllowance(BaseModel):
 
     Unlike :class:`Allowance` — which is embedded in a CCNL data file and
     carries a time-series — this model holds a plain already-resolved monthly
-    amount and is passed at runtime via ``Scenario.second_level_allowances``.
+    amount supplied by the caller.  It is not yet an input of the payroll
+    pipeline.
 
     ``months_per_year`` overrides the contract-wide ``additional_months`` for
     the annualisation of this item only (e.g. a prize paid once a year uses

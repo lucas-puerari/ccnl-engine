@@ -8,7 +8,6 @@ from decimal import Decimal
 from typing import Any
 
 import pytest
-from pydantic import BaseModel, ConfigDict
 
 from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.engine.contract.domain.category import WorkerCategory
@@ -26,14 +25,13 @@ from ccnl_engine.engine.contract.domain.working_time import (
     WorkKind,
 )
 from ccnl_engine.engine.errors import InvalidInputError, OutOfScopeError
-from ccnl_engine.engine.primitives.domain.primitives import Bracket, StrictDecimal
+from ccnl_engine.engine.primitives.domain.primitives import Bracket
 from ccnl_engine.engine.surtax.domain.rules import (
     ComunaleEntry,
     RegionaleEntry,
     SurtaxRules,
 )
 from ccnl_engine.engine.tax.service.tax_optional_loaders import load_sick_pay_rates
-from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import Apprentice
 from ccnl_engine.payroll.domain.fiscal import FiscalSimplification
 from ccnl_engine.payroll.domain.pay_items._policy import (
@@ -255,35 +253,6 @@ def _ccnl_two_tracks_same_level() -> CCNL:
     second_track["name"] = "alternative"
     raw["apprenticeship"].append(second_track)
     return CCNL.model_validate(raw)
-
-
-# ---------------------------------------------------------------------------
-# Employer validation
-# ---------------------------------------------------------------------------
-
-
-class TestEmployerValidation:
-    """Validation errors on Employer construction."""
-
-    def test_negative_inail_rate_raises(self) -> None:
-        """Negative inail_rate is rejected by the model validator."""
-        with pytest.raises(Exception, match="inail_rate must be >= 0"):
-            Employer(num_employees=10, inail_rate=Decimal("-0.001"))
-
-    def test_negative_inps_exemption_raises(self) -> None:
-        """Negative inps_employer_exemption_annual is rejected."""
-        match = "inps_employer_exemption_annual must be >= 0"
-        with pytest.raises(Exception, match=match):
-            Employer(num_employees=10, inps_employer_exemption_annual=Decimal(-1))
-
-    def test_valid_rates_accepted(self) -> None:
-        """Valid non-negative rates pass the validator and return self."""
-        e = Employer(
-            num_employees=5,
-            inail_rate=Decimal("0.015"),
-            inps_employer_exemption_annual=Decimal(3000),
-        )
-        assert e.inail_rate == Decimal("0.015")
 
 
 class TestPayItemPolicyResolve:
@@ -929,16 +898,6 @@ class TestApprenticeChain:
 
 class TestMiscCoverageGaps:
     """Remaining coverage gaps in primitives, facade, and loaders."""
-
-    def test_strict_decimal_rejects_float(self) -> None:
-        """StrictDecimal raises when a float is passed instead of Decimal."""
-
-        class _M(BaseModel):
-            model_config = ConfigDict(frozen=True)
-            v: StrictDecimal
-
-        with pytest.raises(Exception, match="float is not accepted"):
-            _M(v=1.5)  # type: ignore[arg-type]
 
     def test_payroll_engine_bundled(self) -> None:
         """PayrollEngine.bundled() returns a live engine instance."""

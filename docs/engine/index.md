@@ -13,7 +13,14 @@ Construct the engine with `PayrollEngine.bundled()` and call
 ```python
 from datetime import date
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 
 engine = PayrollEngine.bundled()
 
@@ -23,7 +30,8 @@ result = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        employment_facts=EmploymentFacts(num_employees=50),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 print(result.period_gross)
@@ -96,8 +104,9 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 
 | Type | What it describes |
 |---|---|
-| `PayrollRequest` | Full period request: run, payment date, CCNL slug, level, employment facts, events |
-| `EmploymentFacts` | Contract shape: type, headcount, hours, seniority, ceiling status; impossible values are rejected on construction |
+| `PayrollRequest` | Full period request: run, payment date, CCNL slug, level, employment facts, employer, events |
+| `EmploymentFacts` | Contract shape: type, hours, seniority, ceiling status; impossible values are rejected on construction |
+| `Employer` | The employer; its `Headcount` (at least 1) selects the INPS rate tier. Defaults to 50 employees |
 | `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
 | `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
 | `OvertimeEvent` | Overtime hours for a specific date |

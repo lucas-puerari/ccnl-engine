@@ -139,7 +139,7 @@ def calculate_period(
         tctx.fiscal_year, request.period_id.month, tctx.payment
     )
     year_rules = effective_repo.load_year_rules(
-        tctx.fiscal_year, ccnl.meta.tax_sector, request.num_employees.value
+        tctx.fiscal_year, ccnl.meta.tax_sector, request.employer.headcount.value
     )
     catalog = effective_repo.load_capability_catalog(tctx.fiscal_year)
     additional_months = int(ccnl.parameters.additional_months.value_at(tctx.competence))
@@ -185,7 +185,6 @@ def calculate_period(
         ccnl_slug=request.ccnl_slug,
         sector=ccnl.meta.tax_sector,
         gross_ytd=request.opening_state.earnings.gross,
-        num_employees=request.num_employees.value,
     )
     cp = CompetencePeriod(year=tctx.fiscal_year, month=request.period_id.month)
     event_totals, event_items, event_entries = _process_events(

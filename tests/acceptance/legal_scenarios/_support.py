@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine import (
+    Employer,
     EmploymentFacts,
     PayrollEngine,
     PayrollRequest,
@@ -35,6 +36,7 @@ def regular_period(
     month: int = 1,
     payment_date: date | None = None,
     facts: EmploymentFacts | None = None,
+    employer: Employer | None = None,
     events: tuple[WorkEvent, ...] = (),
     opening_state: PayrollState | None = None,
     regione: str | None = None,
@@ -52,6 +54,7 @@ def regular_period(
             ccnl_slug=ccnl_slug,
             level_code=level_code,
             employment_facts=facts or EmploymentFacts(),
+            employer=employer or Employer(),
             opening_state=opening_state or PayrollState.zero(),
             events=events,
             regione=regione,

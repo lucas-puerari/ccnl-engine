@@ -30,7 +30,14 @@ Each result is fully itemised: gross, net, employer cost, INPS breakdown, IRPEF 
 
 ```python
 from datetime import date
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 
 engine = PayrollEngine.from_builtin_data()
 result = engine.calculate(
@@ -39,7 +46,8 @@ result = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="commercio-confcommercio.json",
         level_code="4",
-        employment_facts=EmploymentFacts(num_employees=50),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 

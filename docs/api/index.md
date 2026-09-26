@@ -96,6 +96,6 @@ All types above are re-exported from the top-level `ccnl_engine` package.
 |---|---|
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
 | [Pay components](../engine/pay-components.md) | `SeniorityByCount`, `SeniorityByMonths`, `RalOverride` |
-| [Second level](../engine/second-level.md) | `Employer`, `Agreement` |
+| [Second level](../engine/second-level.md) | `SupplementaryAllowance` |
 | [Fiscal](../engine/fiscal.md) | `Jurisdiction`, `FiscalSimplification` |
 | [Domestic work](../engine/domestic-work.md) | `EmploymentFacts.weekly_hours` |

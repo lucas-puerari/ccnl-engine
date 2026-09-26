@@ -95,7 +95,6 @@ class PolicyContext:
         sector: Tax sector code, or ``None`` if not yet determined.
         gross_ytd: Year-to-date gross earnings for threshold checks.
         is_manager: Whether the worker is a dirigente.
-        num_employees: Employer headcount, used for certain contribution rules.
     """
 
     year: int
@@ -104,7 +103,6 @@ class PolicyContext:
     sector: str | None = None
     gross_ytd: Decimal = Decimal(0)
     is_manager: bool = False
-    num_employees: int | None = None
 
 
 @dataclass(frozen=True)

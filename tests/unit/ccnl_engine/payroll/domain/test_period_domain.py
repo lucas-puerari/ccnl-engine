@@ -10,7 +10,7 @@ import pytest
 from ccnl_engine.engine.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-from ccnl_engine.payroll.domain.employment import Headcount
+from ccnl_engine.payroll.domain.employer import Employer, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import (
     BaseSalaryEarning,
@@ -208,15 +208,15 @@ class TestPeriodCalculationRequest:
         )
         assert req.opening_state == PeriodState.zero()
 
-    def test_default_num_employees(self) -> None:
-        """num_employees defaults to 50 when omitted."""
+    def test_default_employer(self) -> None:
+        """The employer defaults to 50 employees when omitted."""
         req = PeriodCalculationRequest(
             period_id=_PERIOD,
             payment_date=_DATE,
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
         )
-        assert req.num_employees == Headcount(50)
+        assert req.employer == Employer(headcount=Headcount(50))
 
     def test_frozen(self) -> None:
         """PeriodCalculationRequest is immutable: assignment raises AttributeError."""

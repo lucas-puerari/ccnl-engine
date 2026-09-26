@@ -12,7 +12,6 @@ from ccnl_engine.engine.errors import InvalidInputError
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
     EmploymentPeriod,
-    Headcount,
     SeniorityMonths,
     WeeklyHours,
     check_within_full_time,
@@ -21,26 +20,6 @@ from ccnl_engine.payroll.domain.period import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 
 _START = date(2026, 3, 1)
-
-
-class TestHeadcount:
-    """Headcount counts at least the worker being paid."""
-
-    def test_accepts_one(self) -> None:
-        """A single employee is a valid headcount."""
-        assert Headcount(1).value == 1
-
-    @pytest.mark.parametrize("value", [0, -1])
-    def test_rejects_below_one(self, value: int) -> None:
-        """Zero or negative headcount is impossible."""
-        with pytest.raises(InvalidInputError, match="num_employees must be >= 1"):
-            Headcount(value)
-
-    @pytest.mark.parametrize("value", [True, 1.5, "3"])
-    def test_rejects_non_int(self, value: object) -> None:
-        """Bools, floats and strings are not silently coerced."""
-        with pytest.raises(InvalidInputError, match="must be an int"):
-            Headcount(value)  # type: ignore[arg-type]
 
 
 class TestWeeklyHours:
@@ -55,6 +34,12 @@ class TestWeeklyHours:
         """Zero or negative weekly hours are impossible."""
         with pytest.raises(InvalidInputError, match="weekly_hours must be > 0"):
             WeeklyHours(value)
+
+    @pytest.mark.parametrize("value", [True, 1.5, "3"])
+    def test_rejects_non_int(self, value: object) -> None:
+        """Bools, floats and strings are not silently coerced."""
+        with pytest.raises(InvalidInputError, match="weekly_hours must be an int"):
+            WeeklyHours(value)  # type: ignore[arg-type]
 
 
 class TestSeniorityMonths:
@@ -164,14 +149,12 @@ class TestEmploymentFactsValidation:
     def test_exposes_value_objects(self) -> None:
         """Every scalar fact is available as its value object."""
         facts = EmploymentFacts(
-            num_employees=12,
             weekly_hours=20,
             full_time_weekly_hours=40,
             contributable_hours=Decimal(86),
             seniority_months=36,
             started_on=_START,
         )
-        assert facts.headcount == Headcount(12)
         assert facts.contracted_hours == WeeklyHours(20)
         assert facts.full_time_hours == WeeklyHours(40)
         assert facts.contributable == ContributableHours(Decimal(86))
@@ -190,7 +173,6 @@ class TestEmploymentFactsValidation:
     @pytest.mark.parametrize(
         "kwargs",
         [
-            pytest.param({"num_employees": 0}, id="zero-headcount"),
             pytest.param({"weekly_hours": 0}, id="zero-weekly-hours"),
             pytest.param({"full_time_weekly_hours": 0}, id="zero-full-time"),
             pytest.param({"ended_on": date(2026, 9, 30)}, id="end-without-start"),

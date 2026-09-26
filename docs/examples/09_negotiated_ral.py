@@ -2,11 +2,19 @@
 
 from datetime import date
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 
 engine = PayrollEngine.bundled()
 
-facts = EmploymentFacts(num_employees=100)
+facts = EmploymentFacts()
+employer = Employer(headcount=Headcount(100))
 
 # January — opening_state defaults to zero
 jan = engine.calculate(
@@ -16,6 +24,7 @@ jan = engine.calculate(
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         employment_facts=facts,
+        employer=employer,
         regione="ER",
     )
 )
@@ -28,6 +37,7 @@ feb = engine.calculate(
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
         employment_facts=facts,
+        employer=employer,
         regione="ER",
         opening_state=jan.closing_state,
     )

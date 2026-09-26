@@ -1,6 +1,12 @@
 """Full-year run with tredicesima: WorkCalendar schedules extra-month runs."""
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollYearRequest
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollYearRequest,
+)
 from ccnl_engine.payroll.domain.calendar import (
     ExtraMonthKind,
     ExtraMonthSchedule,
@@ -24,7 +30,8 @@ result = engine.calculate_year(
                 ),
             ),
         ),
-        employment_facts=EmploymentFacts(num_employees=50),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(50)),
     )
 )
 

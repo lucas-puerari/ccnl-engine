@@ -2,7 +2,14 @@
 
 from datetime import date
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 
 engine = PayrollEngine.bundled()
 
@@ -13,7 +20,8 @@ result_no_surtax = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        employment_facts=EmploymentFacts(num_employees=100),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(100)),
     )
 )
 
@@ -24,7 +32,8 @@ result_surtax = engine.calculate(
         payment_date=date(2026, 1, 28),
         ccnl_slug="metalmeccanico-federmeccanica.json",
         level_code="C3",
-        employment_facts=EmploymentFacts(num_employees=100),
+        employment_facts=EmploymentFacts(),
+        employer=Employer(headcount=Headcount(100)),
         regione="ER",
         comune_belfiore="F257",  # Modena
     )

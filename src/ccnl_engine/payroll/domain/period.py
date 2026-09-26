@@ -8,10 +8,10 @@ from typing import TYPE_CHECKING, ClassVar, final
 
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.employer import Employer
 from ccnl_engine.payroll.domain.employment import (
     ContributableHours,
     EmploymentPeriod,
-    Headcount,
     Permanent,
     SeniorityMonths,
     WeeklyHours,
@@ -144,8 +144,9 @@ class PeriodCalculationRequest:
         level_code: Worker's contractual level code, e.g. ``C3``.
         opening_state: YTD state entering this period. Use
             :meth:`PeriodState.zero` for January.
-        num_employees: Employer headcount used to resolve INPS rates
-            (some rates differ by firm size). Defaults to 50; at least 1.
+        employer: The employer; its headcount resolves INPS rates (some
+            rates differ by firm size).  Defaults to an employer with 50
+            employees.
         ceiling_status: Whether the IVS massimale contribution ceiling
             applies to this worker.  Use :attr:`ContributionCeilingStatus.POST_1995`
             for post-1995 workers and :attr:`ContributionCeilingStatus.NOT_APPLICABLE`
@@ -184,7 +185,7 @@ class PeriodCalculationRequest:
     level_code: str
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    num_employees: Headcount = field(default_factory=lambda: Headcount(50))
+    employer: Employer = field(default_factory=Employer)
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None

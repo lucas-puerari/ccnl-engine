@@ -3,7 +3,14 @@
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import EmploymentFacts, PayrollEngine, PayrollRequest, PayrollRun
+from ccnl_engine import (
+    Employer,
+    EmploymentFacts,
+    Headcount,
+    PayrollEngine,
+    PayrollRequest,
+    PayrollRun,
+)
 
 engine = PayrollEngine.bundled()
 
@@ -15,10 +22,10 @@ result = engine.calculate(
         ccnl_slug="lavoro-domestico-non-convivente.json",
         level_code="B",
         employment_facts=EmploymentFacts(
-            num_employees=1,
             weekly_hours=25,
             contributable_hours=Decimal(108),
         ),
+        employer=Employer(headcount=Headcount(1)),
     )
 )
 
