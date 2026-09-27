@@ -41,6 +41,26 @@ class MonthlyPayChain:
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
         )
 
+    def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
+        """Scale the components a percentage apprenticeship reduces.
+
+        Base salary and seniority are always reduced.  Allowances are
+        reduced only when :attr:`~ccnl_engine.contract.domain.compensation\
+.Allowance.apprenticeship_pct_relevant` is ``True``; the others are paid
+        at their full contractual value.
+
+        Returns:
+            A new chain with selectively scaled components.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * percentage),
+            seniority=money(self.seniority * percentage),
+            allowances=tuple(
+                (a, money(v * percentage) if a.apprenticeship_pct_relevant else v)
+                for a, v in self.allowances
+            ),
+        )
+
     def scaled_for_part_time(self, factor: Decimal) -> MonthlyPayChain:
         """Scale only proportionable components by ``factor``.
 
@@ -93,3 +113,42 @@ class MonthlyPayChain:
     def allowances_total(self) -> Decimal:
         """Rounded sum of all allowance amounts."""
         return money(sum((v for _, v in self.allowances), _ZERO))
+
+
+@dataclass(frozen=True)
+class ApprenticeshipScaling:
+    """Percentage applied to an apprentice's pay chain and what it reduced.
+
+    Attributes:
+        percentage: Share of the reference pay due in the current period.
+        scaled: Components reduced to ``percentage``: ``base_salary``,
+            ``seniority`` when due, then the codes of the allowances whose
+            ``apprenticeship_pct_relevant`` is true.
+        unscaled: Codes of the allowances paid at full value.
+    """
+
+    percentage: Decimal
+    scaled: tuple[str, ...]
+    unscaled: tuple[str, ...]
+
+    @classmethod
+    def of(cls, chain: MonthlyPayChain, percentage: Decimal) -> ApprenticeshipScaling:
+        """Describe which components of ``chain`` the percentage reduces.
+
+        Mirrors :meth:`MonthlyPayChain.scaled_for_apprenticeship`.
+
+        Args:
+            chain: Full-value pay chain of the reference level.
+            percentage: Apprenticeship percentage of the current period.
+
+        Returns:
+            The percentage with the scaled and unscaled component codes.
+        """
+        fixed = ("base_salary", "seniority") if chain.seniority else ("base_salary",)
+        relevant = tuple(
+            a.code for a, _ in chain.allowances if a.apprenticeship_pct_relevant
+        )
+        exempt = tuple(
+            a.code for a, _ in chain.allowances if not a.apprenticeship_pct_relevant
+        )
+        return cls(percentage=percentage, scaled=fixed + relevant, unscaled=exempt)

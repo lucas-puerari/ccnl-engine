@@ -9,6 +9,7 @@ from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permane
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
 from ccnl_engine.payroll.service.seniority import _resolve_seniority_count
+from ccnl_engine.payroll.service.types import ApprenticeshipScaling
 
 if TYPE_CHECKING:
     from datetime import date
@@ -74,16 +75,22 @@ def _resolve_chain(
     worker_category: WorkerCategory | None = None,
     weekly_hours: int | None = None,
     full_time_weekly_hours: int | None = None,
-) -> MonthlyPayChain:
+) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.
 
-    Applies part-time scaling when ``weekly_hours < full_time_weekly_hours``.
+    For a percentage apprenticeship the percentage reduces the base salary,
+    the seniority and the allowances flagged ``apprenticeship_pct_relevant``;
+    the other allowances are paid in full.  Part-time scaling then applies
+    when ``weekly_hours < full_time_weekly_hours``.
 
     Returns:
         :class:`~ccnl_engine.payroll.service.types.MonthlyPayChain` with each
-        component rounded and ready for pay-item emission.
+        component rounded and ready for pay-item emission, and the
+        apprenticeship scaling applied, ``None`` unless the worker is on a
+        percentage apprenticeship track.
     """
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
+    scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice):
         chain, pct, _ = _apprentice_chain(
             ccnl,
@@ -95,7 +102,9 @@ def _resolve_chain(
             worker_category=worker_category,
             seniority_months=seniority_months,
         )
-        chain = chain.scaled(pct) if pct is not None else chain
+        if pct is not None:
+            scaling = ApprenticeshipScaling.of(chain, pct)
+            chain = chain.scaled_for_apprenticeship(pct)
     else:
         chain = _level_chain(
             ccnl,
@@ -107,4 +116,4 @@ def _resolve_chain(
             worker_category=worker_category,
             seniority_months=seniority_months,
         )
-    return _part_time(chain, weekly_hours, full_time_weekly_hours)
+    return _part_time(chain, weekly_hours, full_time_weekly_hours), scaling

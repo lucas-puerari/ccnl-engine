@@ -132,6 +132,36 @@ minimum, increasing at preset thresholds.
 
 Used in: Metalmeccanico, Chimica, Edilizia, and most industrial CCNLs.
 
+**What the percentage reduces.** The percentage applies to the base salary
+(*minimo tabellare*), to the seniority and to each fixed allowance whose
+`apprenticeship_pct_relevant` flag is `true`. An allowance with the flag
+`false` is paid at its full contractual value. The flag defaults to `true`,
+so an allowance is reduced unless the contract data exempts it.
+
+Many CCNLs list the elements the percentage applies to, and whatever is not
+listed is paid in full. *Example: Trasporto Aereo, Gestori Aeroportuali*,
+Art. G14 c. 16 applies the percentage to "minimi tabellari in vigore,
+indennità di contingenza"; the EDR (Art. G22) is not listed and is paid in
+full to apprentices.
+
+| Level 4, 36-month track, month 0 (75%) | Full value | Apprentice |
+|---|---:|---:|
+| Minimo tabellare | 1307.47 | 980.60 |
+| Indennità di contingenza | 522.19 | 391.64 |
+| EDR (`apprenticeship_pct_relevant: false`) | 41.85 | 41.85 |
+| **Gross** | 1871.51 | **1414.09** |
+
+Each component is rounded to the cent after the percentage. The run records
+an `apprenticeship_scaling` decision with the percentage, the scaled
+components (`base_salary`, `seniority` when due, allowance codes) and the
+unscaled allowance codes. Part-time scaling, when it applies, follows the
+apprenticeship percentage.
+
+Bundled CCNLs that exempt allowances: Trasporto Aereo (EDR), Energia e
+Petrolio (EDR IPCA, indennità di funzione), Igiene Ambientale Utilitalia
+(EDR, indennità integrativa). Vetro Meccanizzato flags its TER but models no
+apprenticeship track, so the flag has no effect there.
+
 ### Under-classification track (*sottoinquadramento*)
 
 The apprentice is formally assigned to a level two steps below the destination,

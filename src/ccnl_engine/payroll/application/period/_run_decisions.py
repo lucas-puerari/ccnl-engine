@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.compensation import Level
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
+    from ccnl_engine.payroll.service.types import ApprenticeshipScaling
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.variable_pay import PdRRules
 
@@ -121,6 +122,37 @@ def seniority_decision(
     )
 
 
+def apprenticeship_scaling_decision(
+    ccnl: CCNL,
+    scaling: ApprenticeshipScaling | None,
+    year: int,
+) -> CalculationDecision | None:
+    """Return the decision recording the apprenticeship percentage of the run.
+
+    Args:
+        ccnl: The applicable CCNL.
+        scaling: Percentage and components of a percentage apprenticeship.
+        year: Competence year, the rule version when the CCNL has no ruleset.
+
+    Returns:
+        A decision with reason ``percentage_applied``, the percentage and the
+        comma-separated codes of the scaled and unscaled components;
+        ``None`` when no percentage apprenticeship applies.
+    """
+    if scaling is None:
+        return None
+    return _final(
+        "apprenticeship_scaling",
+        "percentage_applied",
+        _ccnl_rule(ccnl, year),
+        {
+            "percentage": scaling.percentage,
+            "scaled": ",".join(scaling.scaled),
+            "unscaled": ",".join(scaling.unscaled) or _NONE,
+        },
+    )
+
+
 def family_deduction_decision(
     total: Decimal, rules: FamilyDeductionRules | None
 ) -> CalculationDecision | None:
@@ -192,15 +224,19 @@ def contract_decisions(
     months: SeniorityMonths | None,
     seniority_amount: Decimal,
     year: int,
+    apprenticeship: ApprenticeshipScaling | None = None,
 ) -> tuple[CalculationDecision, ...]:
-    """Return the worker category and seniority decisions taken in the run.
+    """Return the worker category, seniority and apprenticeship decisions.
 
     Returns:
-        The decisions of :func:`worker_category_decision` and
-        :func:`seniority_decision` that were taken, in that order.
+        The decisions of :func:`worker_category_decision`,
+        :func:`seniority_decision` and
+        :func:`apprenticeship_scaling_decision` that were taken, in that
+        order.
     """
     taken = (
         worker_category_decision(ccnl, level, declared, category, year),
         seniority_decision(ccnl, months, seniority_amount, year),
+        apprenticeship_scaling_decision(ccnl, apprenticeship, year),
     )
     return tuple(d for d in taken if d is not None)
