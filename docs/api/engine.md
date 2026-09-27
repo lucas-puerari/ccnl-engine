@@ -157,6 +157,13 @@ it computed (`promised_computed_got_partial`).
       members:
         - YearResult
 
+::: ccnl_engine.payroll.domain.remittance
+    options:
+      members:
+        - RemittanceLine
+        - RemittanceColumn
+        - remittance_summary
+
 ::: ccnl_engine.payroll.domain.decisions
     options:
       members:

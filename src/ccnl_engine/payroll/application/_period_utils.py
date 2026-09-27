@@ -72,6 +72,7 @@ def _make_entry(
     account: AccountKind,
     amount: Decimal,
     policy_id: str | None = None,
+    remittance_code: str | None = None,
 ) -> LedgerEntry:
     return LedgerEntry(
         entry_id=entry_id,
@@ -83,6 +84,7 @@ def _make_entry(
         amount=amount,
         source_item_id=pay_item_id,
         policy_decision_id=policy_id,
+        remittance_code=remittance_code,
     )
 
 

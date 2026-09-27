@@ -30,12 +30,24 @@ type Money = Decimal
 
 
 class AccountKind(StrEnum):
-    """The seventeen logical accounts that partition a payroll pay period.
+    """The twenty logical accounts that partition a payroll pay period.
 
     The three ``PENSION_FUND`` accounts hold what is paid to a complementary
     pension fund: the employee contribution withheld, the employer
     contribution and the TFR paid to the fund instead of accruing in the
     company.
+
+    Every entry of the tax and credit accounts is non-negative; the account
+    gives the direction:
+
+    - ``ORDINARY_TAX``: IRPEF withheld, before any credit is offset;
+    - ``TAX_REFUNDS``: IRPEF refunded to the worker by the conguaglio;
+    - ``CREDITS``: amounts paid to the worker that the withholding agent
+      recovers as an F24 credit (trattamento integrativo, somma esente);
+    - ``CREDIT_RECOVERIES``: those amounts, or an ulteriore detrazione of
+      an earlier year, taken back from the worker;
+    - ``CREDIT_RECOVERY_SHORTFALL``: a recovery of the run the pay could
+      not cover, given back on the payslip and carried to the next runs.
     """
 
     CASH_EARNINGS = "cash_earnings"
@@ -50,6 +62,9 @@ class AccountKind(StrEnum):
     SEPARATE_TAX = "separate_tax"
     SURTAX = "surtax"
     CREDITS = "credits"
+    CREDIT_RECOVERIES = "credit_recoveries"
+    CREDIT_RECOVERY_SHORTFALL = "credit_recovery_shortfall"
+    TAX_REFUNDS = "tax_refunds"
     TFR_ACCRUAL = "tfr_accrual"
     TFR_SETTLEMENT = "tfr_settlement"
     PENSION_FUND_EMPLOYEE = "pension_fund_employee"
@@ -72,6 +87,10 @@ class LedgerEntry(BaseModel):
         policy_decision_id: The ``policy_id`` of the
             :class:`PolicyDecision` that governs the treatment of this
             item, when available.
+        remittance_code: F24 codice tributo the amount is remitted or
+            offset under, one of
+            :mod:`~ccnl_engine.payroll.domain.remittance`; ``None`` when
+            the amount is not remitted by F24 or its code is not verified.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -86,6 +105,7 @@ class LedgerEntry(BaseModel):
     source_item_id: str = ""
     policy_decision_id: str | None = None
     note: str = ""
+    remittance_code: str | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -109,6 +129,7 @@ class PostingIntent:
         amount: Monetary amount in EUR (positive increases the account balance).
         policy_decision_id: Stable policy rule identifier from the resolver.
         note: Optional free-text annotation.
+        remittance_code: F24 codice tributo of the amount, when verified.
     """
 
     entry_id: str
@@ -118,3 +139,4 @@ class PostingIntent:
     amount: Money
     policy_decision_id: str | None = None
     note: str = ""
+    remittance_code: str | None = None

@@ -13,6 +13,7 @@ from ccnl_engine.payroll.domain.events import (
     ShiftWorkEvent,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
+from ccnl_engine.payroll.domain.remittance import REGIME_CODES
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.regime_eligibility import (
     RegimeFacts,
@@ -153,6 +154,7 @@ def apply_preferential_regime(
                 account=AccountKind.SUBSTITUTE_TAX,
                 amount=tax,
                 policy_decision_id=policy_id,
+                remittance_code=REGIME_CODES.get(regime.regime_id),
             ),
         )
     return RegimeOutcome(

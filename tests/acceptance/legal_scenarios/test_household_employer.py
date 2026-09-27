@@ -70,6 +70,9 @@ _TAX_ACCOUNTS = frozenset({
     "separate_tax",
     "surtax",
     "credits",
+    "credit_recoveries",
+    "credit_recovery_shortfall",
+    "tax_refunds",
 })
 _SKIPPED = (
     "irpef",

@@ -51,6 +51,7 @@ def post(
             source_item_id=intent.source_item_id,
             policy_decision_id=intent.policy_decision_id,
             note=intent.note,
+            remittance_code=intent.remittance_code,
         )
         for intent in intents
     )

@@ -6,14 +6,15 @@ of the monthly pay.  The withholding agent withholds what the pay covers and
 takes the rest on the next runs of the tax year: the cumulative method of the
 conguaglio settles the tax on the whole year (art. 33 c. 4 D.Lgs. 33/2025,
 ex art. 23 c. 3 DPR 600/1973, in force from 1 January 2026 by art. 243).
-The credit recoveries of the run (negative ``CREDITS`` lines) are taken
+The credit recoveries of the run (``CREDIT_RECOVERIES`` lines) are taken
 first, then the IRPEF and the surtax from what is left.  The carried
 amount is withheld in full on the next run, before any new share.  A
 credit recovery the pay cannot cover, e.g. the residual of a recovery
 settled at once on the last run of the employment (AdE circ. 29/E/2020
 par. 6 and 4/E/2025 par. 1.2), is carried in the same way: the run posts
 one ``credit_recovery_shortfall`` line that gives back the part not
-withheld, or withholds a part carried in.
+withheld (``CREDIT_RECOVERY_SHORTFALL``), or withholds a part carried in
+(``CREDIT_RECOVERIES``).
 
 What is still not withheld on the last withholding slot "deve essere
 comunicato all'interessato che deve provvedere al versamento entro il 15
@@ -68,7 +69,8 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
     """Return the net pay of the ledger ``entries`` of a run.
 
     Returns:
-        Cash earnings, TFR settled and credits, less the employee
+        Cash earnings, TFR settled, credits paid, IRPEF refunded and credit
+        recoveries given back, less the credits recovered, the employee
         contributions, bilateral and pension fund contributions, deductions
         and every tax withheld.
     """
@@ -76,6 +78,9 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
         _sum_ledger(entries, AccountKind.CASH_EARNINGS)
         + _sum_ledger(entries, AccountKind.TFR_SETTLEMENT)
         + _sum_ledger(entries, AccountKind.CREDITS)
+        + _sum_ledger(entries, AccountKind.TAX_REFUNDS)
+        + _sum_ledger(entries, AccountKind.CREDIT_RECOVERY_SHORTFALL)
+        - _sum_ledger(entries, AccountKind.CREDIT_RECOVERIES)
         - _sum_ledger(entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         - _sum_ledger(entries, AccountKind.BILATERAL_FUND_EMPLOYEE)
         - _sum_ledger(entries, AccountKind.PENSION_FUND_EMPLOYEE)
@@ -125,22 +130,6 @@ def _unrecovered_issue(shortfall: WithholdingShortfall) -> CalculationIssue:
     )
 
 
-def _run_recovery(entries: tuple[LedgerEntry, ...]) -> Decimal:
-    """Return the credit recoveries of the run as a positive amount.
-
-    Returns:
-        Minus the sum of the negative ``CREDITS`` entries.
-    """
-    return -sum(
-        (
-            e.amount
-            for e in entries
-            if e.account == AccountKind.CREDITS and e.amount < 0
-        ),
-        _ZERO,
-    )
-
-
 def cap_withholding(
     amounts: _PeriodAmounts,
     entries: tuple[LedgerEntry, ...],
@@ -167,7 +156,7 @@ def cap_withholding(
     """
     irpef_due = max(_ZERO, amounts.period_irpef)
     surtax_due = amounts.period_surtax
-    run_recovery = _run_recovery(entries)
+    run_recovery = _sum_ledger(entries, AccountKind.CREDIT_RECOVERIES)
     recovery_due = run_recovery + carried_in.credit_recovery
     available = max(_ZERO, run_net(entries) + irpef_due + surtax_due + run_recovery)
     recovered = min(recovery_due, available)

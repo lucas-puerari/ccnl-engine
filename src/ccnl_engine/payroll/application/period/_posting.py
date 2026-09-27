@@ -147,9 +147,14 @@ def _recovery_adjustment(
 ) -> tuple[tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Return the ``credit_recovery_shortfall`` line of ``amount``.
 
+    A positive ``amount`` is a recovery of the run the pay does not cover:
+    it is given back on ``CREDIT_RECOVERY_SHORTFALL``.  A negative one is a
+    recovery carried in and withheld now, posted to ``CREDIT_RECOVERIES``.
+    Neither is coded: the shortfall is not tracked by recovered credit.
+
     Returns:
-        Empty tuples for a zero amount; otherwise one tax credit item and
-        its ``CREDITS`` entry.
+        Empty tuples for a zero amount; otherwise one signed tax credit
+        item and its non-negative entry.
     """
     if amount == Decimal(0):
         return (), ()
@@ -171,8 +176,12 @@ def _recovery_adjustment(
         "tax_credit_item",
         ctx.cp,
         payment_date,
-        AccountKind.CREDITS,
-        amount,
+        (
+            AccountKind.CREDIT_RECOVERY_SHORTFALL
+            if amount > 0
+            else AccountKind.CREDIT_RECOVERIES
+        ),
+        abs(amount),
         policy_id=policy_id,
     )
     return (item,), (entry,)

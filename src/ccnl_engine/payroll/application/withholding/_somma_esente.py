@@ -37,6 +37,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
+from ccnl_engine.payroll.domain.remittance import SOMMA_ESENTE_CREDIT
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
@@ -91,7 +92,7 @@ class SommaEsenteOutcome:
         reason: Reason code of the decision, ``None`` without one.
         plan: Installment recovery of the current tax year after the run.
         items: The tax credit item of the run, if any.
-        entries: The matching ``CREDITS`` ledger entry, if any.
+        entries: The matching ledger entry, if any.
         decisions: What the run decided on the credit, empty when the
             credit is not in force and no recovery of it is running.
         issues: A provisional issue while an amount is due: the reddito
@@ -264,19 +265,19 @@ def resolve_somma_esente(
 def _postings(
     amount: Decimal, posting: SommaEsentePosting
 ) -> tuple[tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
-    """Return the tax credit item and ``CREDITS`` entry of ``amount``.
+    """Return the signed item and the entry of ``amount``, coded 1704.
 
     Returns:
-        Empty tuples for a zero amount; otherwise one item and one entry,
-        ``somma_esente_{run_id}`` when paid and
-        ``somma_esente_recovery_{run_id}`` when recovered.
+        Nothing for a zero amount; else ``somma_esente_{run_id}`` on
+        ``CREDITS`` or ``somma_esente_recovery_{run_id}`` on
+        ``CREDIT_RECOVERIES`` (ris. AdE 9/E/2025).
     """
     if amount == _ZERO:
         return (), ()
     policy_id = _require_resolution(
         posting.resolver, "tax_credit_item", posting.policy_context
     ).policy_id
-    prefix = "somma_esente" if amount > _ZERO else "somma_esente_recovery"
+    prefix = "somma_esente" if (paid := amount > _ZERO) else "somma_esente_recovery"
     item_id = f"{prefix}_{posting.run_id}"
     item = TaxCreditItem(
         item_id=item_id,
@@ -291,8 +292,9 @@ def _postings(
         "tax_credit_item",
         posting.competence_period,
         posting.payment_date,
-        AccountKind.CREDITS,
-        amount,
+        AccountKind.CREDITS if paid else AccountKind.CREDIT_RECOVERIES,
+        abs(amount),
         policy_id=policy_id,
+        remittance_code=SOMMA_ESENTE_CREDIT,
     )
     return (item,), (entry,)

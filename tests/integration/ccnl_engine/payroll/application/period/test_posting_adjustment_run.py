@@ -205,7 +205,10 @@ def _with_plan(year: YearResult, plan: RecoveryPlan) -> PeriodState:
     ("plan", "item"),
     [
         # 240 in eight installments of 30, the first on the conguaglio.
-        (RecoveryPlan.create(TRATTAMENTO_RECOVERY, Decimal(240), 8), "tratt_integ"),
+        (
+            RecoveryPlan.create(TRATTAMENTO_RECOVERY, Decimal(240), 8),
+            "tratt_integ_recovery",
+        ),
         # 250 in ten installments of 25, the first on the conguaglio.
         (
             RecoveryPlan.create(SOMMA_ESENTE_RECOVERY, Decimal(250), 10),
@@ -214,15 +217,15 @@ def _with_plan(year: YearResult, plan: RecoveryPlan) -> PeriodState:
     ],
 )
 def test_adjustment_posts_the_credit_installment(plan: RecoveryPlan, item: str) -> None:
-    """The adjustment run posts the second installment as a credit line."""
+    """The adjustment run posts the second installment as a credit recovery."""
     opened = plan.advance()
     result = _adjustment(_bonus_year(), _with_plan(_bonus_year(), opened))
     (line,) = (
         e.amount
         for e in result.ledger_entries
-        if e.account == AccountKind.CREDITS and e.entry_id.startswith(item)
+        if e.account == AccountKind.CREDIT_RECOVERIES and e.entry_id.startswith(item)
     )
-    assert line == -plan.installment_amount
+    assert line == plan.installment_amount
     assert _plan_of(result, plan.kind) == opened.advance()
     reasons = {d.reason_code for d in result.decisions}
     assert "installment_posted_adjustment_run" in reasons

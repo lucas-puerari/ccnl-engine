@@ -12,6 +12,7 @@ from ccnl_engine.payroll.application.handlers._context import (
 from ccnl_engine.payroll.domain.events import ArrearsEvent
 from ccnl_engine.payroll.domain.ledger import AccountKind, PostingIntent
 from ccnl_engine.payroll.domain.pay_items import ContractRenewalArrears
+from ccnl_engine.payroll.domain.remittance import ARREARS_WITHHOLDING
 from ccnl_engine.payroll.domain.rounding import money
 
 
@@ -51,6 +52,7 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
                 account=AccountKind.SEPARATE_TAX,
                 amount=sep_tax,
                 policy_decision_id=arrears_resolution.policy_id,
+                remittance_code=ARREARS_WITHHOLDING,
             ),
         ],
         inps_delta=gross,

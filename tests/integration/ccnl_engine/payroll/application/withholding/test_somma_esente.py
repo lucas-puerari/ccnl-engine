@@ -15,6 +15,7 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.credit_accounts import SommaEsenteAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
+from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
     EmploymentObligations,
@@ -122,7 +123,9 @@ class TestBeforeTheConguaglio:
         assert outcome.due == Decimal("1200.00")
         assert outcome.reason == "share_paid"
         assert outcome.items[0].item_id == "somma_esente_2026-12-thirteenth"
-        assert outcome.entries[0].amount == Decimal("100.00")
+        (entry,) = outcome.entries
+        assert (entry.account, entry.amount) == (AccountKind.CREDITS, Decimal(100))
+        assert entry.remittance_code == "1704"
 
     def test_caps_the_share_at_what_is_still_due(self) -> None:
         """1,150 paid of 1,200 due: the run pays the 50 left, not 100."""
@@ -181,7 +184,12 @@ class TestAtTheConguaglio:
         assert outcome.reason == "overpayment_recovered"
         assert outcome.plan is None
         assert outcome.items[0].item_id == "somma_esente_recovery_2026-12-thirteenth"
-        assert outcome.entries[0].amount == Decimal(-40)
+        (entry,) = outcome.entries
+        assert (entry.account, entry.amount) == (
+            AccountKind.CREDIT_RECOVERIES,
+            Decimal(40),
+        )
+        assert entry.remittance_code == "1704"
 
     def test_recovers_above_60_eur_in_ten_installments(self) -> None:
         """150 EUR in excess: 15 EUR now, nine installments left."""

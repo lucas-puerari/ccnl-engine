@@ -14,6 +14,7 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.remittance import remittance_summary
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
+    from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
@@ -84,3 +86,16 @@ class PeriodResult:
     def status(self) -> CalculationStatus:
         """Worst status implied by :attr:`issues`; final when there are none."""
         return CalculationStatus.worst(issue.status for issue in self.issues)
+
+    def remittance_summary(self) -> tuple[RemittanceLine, ...]:
+        """Return the tax and credit amounts of the run by F24 codice tributo.
+
+        IRPEF withheld, surtax, substitute and separate taxes, credits paid
+        and recovered, IRPEF refunded and recoveries carried for lack of
+        pay, one line per account and code (see
+        :func:`~ccnl_engine.payroll.domain.remittance.remittance_summary`).
+
+        Returns:
+            The lines of the run, uncoded ones included.
+        """
+        return remittance_summary(self.ledger_entries)

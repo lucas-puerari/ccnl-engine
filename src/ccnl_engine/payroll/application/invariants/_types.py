@@ -39,6 +39,7 @@ class InvariantCode(StrEnum):
     EMPLOYEE_CONTRIBUTION_NON_NEGATIVE = "employee_contribution_non_negative"
     EMPLOYER_CONTRIBUTION_NON_NEGATIVE = "employer_contribution_non_negative"
     NET_PAY_NON_NEGATIVE = "net_pay_non_negative"
+    CREDIT_NON_NEGATIVE = "credit_non_negative"
     RUN_COUNTERS_ADVANCE = "run_counters_advance"
     YTD_CONTINUITY = "ytd_continuity"
     IRPEF_WITHHELD_CONTINUITY = "irpef_withheld_continuity"
@@ -52,6 +53,7 @@ class InvariantCode(StrEnum):
     CONTRIBUTION_CEILING = "contribution_ceiling"
     IRPEF_ANNUAL_RECONCILIATION = "irpef_annual_reconciliation"
     NON_AGENT_UNTAXED = "non_agent_untaxed"
+    REMITTANCE_CODE_CONSISTENT = "remittance_code_consistent"
 
 
 @dataclass(frozen=True)

@@ -16,6 +16,7 @@ from ccnl_engine.payroll.domain.pay_items import (
     EmployerContributionItem,
     TfrSettlementItem,
 )
+from ccnl_engine.payroll.domain.remittance import SEVERANCE_WITHHOLDING
 from ccnl_engine.payroll.domain.rounding import money
 
 
@@ -111,6 +112,7 @@ def _handle_termination_tfr(
                 account=AccountKind.SEPARATE_TAX,
                 amount=sep_tax,
                 policy_decision_id=tfr_settle_resolution.policy_id,
+                remittance_code=SEVERANCE_WITHHOLDING,
             ),
         ],
     )

@@ -110,6 +110,7 @@ from ccnl_engine.payroll.domain.prior_year import (
     SubstituteTaxRegime,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
 from ccnl_engine.payroll.domain.year_input import YearInput
 from ccnl_engine.shared.domain.errors import (
@@ -174,6 +175,8 @@ __all__ = [
     "PriorYearTaxFacts",
     "RecoveryObligation",
     "RecoveryPlan",
+    "RemittanceColumn",
+    "RemittanceLine",
     "SeniorityMonths",
     "ShiftWorkEvent",
     "SickLeaveEvent",

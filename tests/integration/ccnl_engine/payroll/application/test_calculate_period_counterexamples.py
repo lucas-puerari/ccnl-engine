@@ -78,7 +78,7 @@ def test_excess_ytd_produces_refund() -> None:
     """When YTD already withheld exceeds annual liability a refund must appear.
 
     A December calculation with irpef_withheld_ytd=5000 and annual IRPEF
-    liability well below 5000 must post a TaxRefundItem in CREDITS rather than
+    liability well below 5000 must post a TaxRefundItem in TAX_REFUNDS rather than
     a negative ORDINARY_TAX entry (refunds now use the explicit TaxRefundItem
     representation instead of a signed withholding entry).
     """
@@ -91,15 +91,15 @@ def test_excess_ytd_produces_refund() -> None:
     )
     result = calculate_period(_req(month=12, opening=high_ytd))
 
-    # Refund appears as a positive CREDITS entry (tax_refund_item), not as
+    # Refund appears as a positive TAX_REFUNDS entry (tax_refund_item), not as
     # negative ORDINARY_TAX.
     refund = sum(
         e.amount
         for e in result.ledger_entries
-        if e.account == AccountKind.CREDITS and e.pay_item_kind == "tax_refund_item"
+        if e.account == AccountKind.TAX_REFUNDS and e.pay_item_kind == "tax_refund_item"
     )
     assert refund > _ZERO, (
-        f"No TaxRefundItem in CREDITS when 5000 YTD withheld exceeds liability; "
+        f"No TaxRefundItem in TAX_REFUNDS when 5000 YTD withheld exceeds liability; "
         f"ORDINARY_TAX = {_sum_account(result, AccountKind.ORDINARY_TAX)}"
     )
 

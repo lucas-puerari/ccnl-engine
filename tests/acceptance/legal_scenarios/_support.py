@@ -93,3 +93,19 @@ def substitute_tax(result: PeriodResult) -> Decimal:
         ),
         Decimal(0),
     )
+
+
+def remitted(result: PeriodResult, code: str) -> Decimal:
+    """Return the amount of one run under an F24 codice tributo.
+
+    Returns:
+        Sum of the remittance summary lines of ``result`` with ``code``.
+    """
+    return sum(
+        (
+            line.amount
+            for line in result.remittance_summary()
+            if line.remittance_code == code
+        ),
+        Decimal(0),
+    )

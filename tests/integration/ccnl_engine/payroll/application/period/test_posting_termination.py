@@ -89,13 +89,14 @@ def _recovery_reasons(result: YearResult, kind: str) -> list[str]:
     ]
 
 
-def _credit_line(result: YearResult, run: int, item_prefix: str) -> Decimal:
+def _recovery_line(result: YearResult, run: int, item_prefix: str) -> Decimal:
     period = result.period_results[run]
     return sum(
         (
             e.amount
             for e in period.ledger_entries
-            if e.account == AccountKind.CREDITS and e.entry_id.startswith(item_prefix)
+            if e.account == AccountKind.CREDIT_RECOVERIES
+            and e.entry_id.startswith(item_prefix)
         ),
         _ZERO,
     )
@@ -105,34 +106,42 @@ class TestCarriedPlanAtTermination:
     """A plan of 2025 still running when the employment ends on 31 March 2026."""
 
     @pytest.mark.parametrize(
-        ("plan", "installment", "residual"),
+        ("plan", "installment", "residual", "code"),
         [
             # 200 in ten installments of 20, three posted in 2025: January and
             # February post 20 each, March the residual 200 - 5 x 20 = 100.
-            (_plan(ULTERIORE_RECOVERY, "200", "20", 10, 3), "20", "100"),
-            (_plan(SOMMA_ESENTE_RECOVERY, "200", "20", 10, 3), "20", "100"),
+            (_plan(ULTERIORE_RECOVERY, "200", "20", 10, 3), "20", "100", None),
+            # The somma esente recovered is remitted under 1704, debit column
+            # (ris. AdE 9/E/2025).
+            (_plan(SOMMA_ESENTE_RECOVERY, "200", "20", 10, 3), "20", "100", "1704"),
             # 200 in eight installments of 25, three posted: March recovers
             # 200 - 5 x 25 = 75.
-            (_plan(TRATTAMENTO_RECOVERY, "200", "25", 8, 3), "25", "75"),
+            (_plan(TRATTAMENTO_RECOVERY, "200", "25", 8, 3), "25", "75", None),
         ],
     )
     def test_last_run_recovers_the_residual(
-        self, plan: RecoveryPlan, installment: str, residual: str
+        self, plan: RecoveryPlan, installment: str, residual: str, code: str | None
     ) -> None:
         """Two installments, then the residual on the March payslip."""
         result = _year(_carried(plan))
         prefix = f"{plan.kind}_recovery_2025"
-        lines = [_credit_line(result, run, prefix) for run in range(3)]
+        lines = [_recovery_line(result, run, prefix) for run in range(3)]
         assert lines == [
-            -Decimal(installment),
-            -Decimal(installment),
-            -Decimal(residual),
+            Decimal(installment),
+            Decimal(installment),
+            Decimal(residual),
         ]
         assert _recovery_reasons(result, plan.kind) == [
             "installment_posted",
             "installment_posted",
             "settled_at_termination",
         ]
+        assert {
+            e.remittance_code
+            for r in result.period_results
+            for e in r.ledger_entries
+            if e.entry_id.startswith(prefix)
+        } == {code}
         assert result.period_results[-1].closing_state.obligations.recoveries == ()
         recovered = 2 * Decimal(installment) + Decimal(residual)
         assert _q1_without_plan().annual_net - result.annual_net == recovered
@@ -154,8 +163,8 @@ class TestCarriedPlanAtTermination:
         runs = [r.run.run_id for r in result.period_results if r.run is not None]
         assert runs == ["2026-11-regular", "2026-12-regular", "2026-12-thirteenth"]
         prefix = f"{SOMMA_ESENTE_RECOVERY}_recovery_2025"
-        lines = [_credit_line(result, run, prefix) for run in range(3)]
-        assert lines == [Decimal(-20), Decimal(-20), Decimal(-100)]
+        lines = [_recovery_line(result, run, prefix) for run in range(3)]
+        assert lines == [Decimal(20), Decimal(20), Decimal(100)]
         assert _recovery_reasons(result, SOMMA_ESENTE_RECOVERY)[-1] == (
             "settled_at_termination"
         )
@@ -223,7 +232,7 @@ def _with_current_plan(plan: RecoveryPlan) -> PeriodState:
         # 240 in eight installments of 30, two posted: 240 - 2 x 30 = 180.
         (
             _plan(TRATTAMENTO_RECOVERY, "240", "30", 8, 2),
-            "tratt_integ",
+            "tratt_integ_recovery",
             "trattamento_integrativo_recovery",
         ),
         # 250 in ten installments of 25, two posted: 250 - 2 x 25 = 200.
@@ -246,9 +255,9 @@ def test_current_year_plan_is_settled_on_the_last_run(
     (line,) = (
         e.amount
         for e in result.ledger_entries
-        if e.account == AccountKind.CREDITS and e.entry_id.startswith(item)
+        if e.account == AccountKind.CREDIT_RECOVERIES and e.entry_id.startswith(item)
     )
-    assert line == -residual
+    assert line == residual
     (decision,) = (d for d in result.decisions if d.capability == reason_capability)
     assert decision.reason_code == "settled_at_termination"
     assert result.closing_state.obligations.recoveries == ()
@@ -276,6 +285,7 @@ def test_residual_above_the_pay_is_left_to_the_worker() -> None:
         e.amount
         for e in march.ledger_entries
         if e.entry_id.startswith("credit_recovery_shortfall_")
+        and e.account == AccountKind.CREDIT_RECOVERY_SHORTFALL
     )
     assert adjustment == shortfall.credit_recovery
     assert "withholding_shortfall_unrecovered" in {i.code for i in march.issues}

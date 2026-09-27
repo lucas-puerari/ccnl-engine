@@ -71,10 +71,11 @@ def test_recovery_above_the_pay_is_carried() -> None:
     """A 1,500 EUR recovery on 900 EUR of pay.
 
     The recovery takes the 900 EUR and IRPEF nothing: 600 EUR of recovery
-    and the 200 EUR of IRPEF are carried, and the run posts a +600 EUR
-    line so that its net is 1,000 - 100 - 1,500 + 600 = 0.
+    and the 200 EUR of IRPEF are carried, and the run gives back 600 EUR
+    on ``CREDIT_RECOVERY_SHORTFALL`` so that its net is
+    1,000 - 100 - 1,500 + 600 = 0.
     """
-    entries = _entries(_entry(AccountKind.CREDITS, Decimal(-1500)))
+    entries = _entries(_entry(AccountKind.CREDIT_RECOVERIES, Decimal(1500)))
     capped = cap_withholding(
         _amounts(), entries, WithholdingShortfall(), last_slot=True, rules=_RULES
     )
@@ -94,8 +95,8 @@ def test_recovery_above_the_pay_is_carried() -> None:
     net = run_net((
         _entry(AccountKind.CASH_EARNINGS, Decimal(1000)),
         _entry(AccountKind.EMPLOYEE_CONTRIBUTIONS, Decimal(100)),
-        _entry(AccountKind.CREDITS, Decimal(-1500)),
-        _entry(AccountKind.CREDITS, capped.recovery_adjustment),
+        _entry(AccountKind.CREDIT_RECOVERIES, Decimal(1500)),
+        _entry(AccountKind.CREDIT_RECOVERY_SHORTFALL, capped.recovery_adjustment),
     ))
     assert net == _ZERO
 
@@ -103,7 +104,7 @@ def test_recovery_above_the_pay_is_carried() -> None:
 def test_carried_recovery_is_withheld_on_the_next_run() -> None:
     """600 EUR carried in, 900 EUR of pay, 200 EUR of IRPEF.
 
-    The run withholds the 600 EUR first (a -600 EUR line), then the 200 EUR
+    The run withholds the 600 EUR first (a 600 EUR recovery), then the 200 EUR
     of IRPEF from the 300 EUR left: nothing is carried out.
     """
     capped = cap_withholding(
