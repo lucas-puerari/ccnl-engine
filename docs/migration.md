@@ -1,5 +1,26 @@
 # Migration guide
 
+## Credit offsets split from the IRPEF withholding
+
+The ledger now keeps IRPEF withheld, credits paid, credits recovered and
+IRPEF refunded on separate accounts, every entry non-negative, and tags
+each tax and credit entry with its F24 codice tributo when verified (see
+[Ledger accounts and F24 remittance](engine/payroll-state.md#ledger-accounts-and-f24-remittance)).
+
+| Change | What to do |
+|---|---|
+| `AccountKind.CREDIT_RECOVERIES` added: credits taken back (somma esente, trattamento integrativo, carried installments), positive | Read recoveries there; they are no longer negative `CREDITS` entries |
+| `AccountKind.CREDIT_RECOVERY_SHORTFALL` added: recovery the pay could not cover, given back | Read the positive `credit_recovery_shortfall_{run}` line there; a part carried in and withheld is on `CREDIT_RECOVERIES` |
+| `AccountKind.TAX_REFUNDS` added: IRPEF refunded by the conguaglio | Move reads of `tax_refund_item` entries from `CREDITS` to `TAX_REFUNDS` |
+| `CREDITS` holds only credits paid, never negative | Net = ... + `CREDITS` + `TAX_REFUNDS` + `CREDIT_RECOVERY_SHORTFALL` - `CREDIT_RECOVERIES`; update custom net formulas |
+| A trattamento integrativo recovery posts the entry `tratt_integ_recovery_{run}` | The pay item keeps the id `tratt_integ_{run}` and its negative amount |
+| The surtax posts `surtax_regional_{run}` and `surtax_municipal_{run}` (pay items too); `surtax_{run}` remains only for a surtax carried in when no annual surtax is left to split on | Match the three ids, or read the `SURTAX` account total, which is unchanged |
+| `LedgerEntry.remittance_code` and `PostingIntent.remittance_code` added | Optional, default `None` |
+| `PeriodResult.remittance_summary()`, `YearResult.remittance_summary()`, `RemittanceLine`, `RemittanceColumn` added | Use them to fill the F24 of each month of payment |
+| Invariants `credit_non_negative` and `remittance_code_consistent` added | Handle them where invariant codes are matched |
+
+Net pay and employer cost are unchanged.
+
 ## Household employers withhold no tax
 
 A household employer is not a withholding agent (art. 23 c. 1 DPR 600/1973;

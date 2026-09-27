@@ -78,8 +78,9 @@ def check_net_identity(
 ) -> list[ReconciliationViolation]:
     """Check the net identity.
 
-    CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-    - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE
+    CASH_EARNINGS + CREDITS + TAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL
+    + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS
+    - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE
     - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
     - ORDINARY_TAX - SURTAX - SEPARATE_TAX
     = period_net.
@@ -88,7 +89,12 @@ def check_net_identity(
         A single violation when the derived net diverges from ``period_net``.
     """
     cash = _sum_account(result, AccountKind.CASH_EARNINGS)
-    period_credits = _sum_account(result, AccountKind.CREDITS)
+    period_credits = (
+        _sum_account(result, AccountKind.CREDITS)
+        + _sum_account(result, AccountKind.TAX_REFUNDS)
+        + _sum_account(result, AccountKind.CREDIT_RECOVERY_SHORTFALL)
+        - _sum_account(result, AccountKind.CREDIT_RECOVERIES)
+    )
     tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
     contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
     bilateral_emp = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYEE)
@@ -131,16 +137,12 @@ def check_irpef_withheld_continuity(
 
     Returns:
         A violation when the closing-minus-opening IRPEF delta diverges from
-        the net IRPEF ledger movement.
+        ``ORDINARY_TAX`` less ``TAX_REFUNDS``.
     """
     delta = result.closing_state.ytd.tax.irpef - opening.ytd.tax.irpef
-    ordinary_tax = _sum_account(result, AccountKind.ORDINARY_TAX)
-    irpef_refund = sum(
-        e.amount
-        for e in result.ledger_entries
-        if e.account == AccountKind.CREDITS and e.pay_item_kind == "tax_refund_item"
+    net_withholding = _sum_account(result, AccountKind.ORDINARY_TAX) - _sum_account(
+        result, AccountKind.TAX_REFUNDS
     )
-    net_withholding = ordinary_tax - irpef_refund
     if delta != net_withholding:
         return [
             ReconciliationViolation(

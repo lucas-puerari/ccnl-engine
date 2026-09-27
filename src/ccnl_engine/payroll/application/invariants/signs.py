@@ -9,9 +9,12 @@ Implemented invariants:
     employee_deduction_non_negative: every EMPLOYEE_DEDUCTIONS entry is
         ``>= 0``; refunds and adjustments use an explicit account.
     substitute_tax_non_negative: every SUBSTITUTE_TAX entry is ``>= 0``;
-        refunds are posted to CREDITS, never as negative substitute tax.
+        a refund is never a negative substitute tax.
     ordinary_tax_non_negative: every ORDINARY_TAX entry is ``>= 0``; an
-        IRPEF refund uses the CREDITS account (``tax_refund_item`` policy).
+        IRPEF refund uses the TAX_REFUNDS account (``tax_refund_item``).
+    credit_non_negative: every CREDITS, CREDIT_RECOVERIES,
+        CREDIT_RECOVERY_SHORTFALL and TAX_REFUNDS entry is ``>= 0``: a
+        credit taken back is a recovery, not a negative credit.
     employee_contribution_non_negative and
     employer_contribution_non_negative: every EMPLOYEE_CONTRIBUTIONS and
         EMPLOYER_CONTRIBUTIONS entry is ``>= 0``, and so is every entry of
@@ -63,6 +66,10 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
         InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE,
     ),
     (AccountKind.PENSION_FUND_TFR, InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE),
+    (AccountKind.CREDITS, InvariantCode.CREDIT_NON_NEGATIVE),
+    (AccountKind.CREDIT_RECOVERIES, InvariantCode.CREDIT_NON_NEGATIVE),
+    (AccountKind.CREDIT_RECOVERY_SHORTFALL, InvariantCode.CREDIT_NON_NEGATIVE),
+    (AccountKind.TAX_REFUNDS, InvariantCode.CREDIT_NON_NEGATIVE),
 )
 
 

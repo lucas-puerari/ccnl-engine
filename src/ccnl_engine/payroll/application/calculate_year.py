@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.remittance import remittance_summary
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
     from ccnl_engine.payroll.domain.policy import PolicyResolver
+    from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.year_input import YearInput
 
 __all__ = ["YearResult", "calculate_year"]
@@ -91,6 +93,19 @@ class YearResult:
     def decisions(self) -> tuple[CalculationDecision, ...]:
         """Decisions of every period, concatenated in payment order."""
         return tuple(d for r in self.period_results for d in r.decisions)
+
+    def remittance_summary(self) -> tuple[RemittanceLine, ...]:
+        """Return the tax and credit amounts of the year by codice tributo.
+
+        The F24 is filed by month of payment: use
+        :meth:`PeriodResult.remittance_summary` on each run for that.
+
+        Returns:
+            The lines of every run of the year, summed by account and code.
+        """
+        return remittance_summary(
+            e for r in self.period_results for e in r.ledger_entries
+        )
 
     @property
     def closing_state(self) -> PeriodState:

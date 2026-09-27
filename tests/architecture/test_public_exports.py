@@ -56,6 +56,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "PriorYearTaxFacts",
     "RecoveryObligation",
     "RecoveryPlan",
+    "RemittanceColumn",
+    "RemittanceLine",
     "SeniorityMonths",
     "ShiftWorkEvent",
     "SickLeaveEvent",

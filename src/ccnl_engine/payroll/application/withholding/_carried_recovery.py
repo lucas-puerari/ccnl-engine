@@ -3,8 +3,8 @@
 An installment recovery opened by the conguaglio of year N (D.L. 3/2020
 art. 1 c. 3 for the trattamento integrativo, L. 207/2024 art. 1 c. 7 for
 the somma esente) keeps running on the runs of N+1.  Those installments
-recover a credit of N: they are deducted on the payslip as a negative tax
-credit line but do not enter the credit account of N+1, whose own
+recover a credit of N: they are posted to ``CREDIT_RECOVERIES`` and
+deducted on the payslip, but do not enter the credit account of N+1, whose own
 conguaglio runs as for any other year.  On the last run of the employment
 the whole residual is recovered at once
 (:meth:`~ccnl_engine.payroll.domain.recovery_plan.RecoveryPlan.post`).
@@ -22,8 +22,13 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.obligations import RECOVERY_RULES, RecoveryObligation
+from ccnl_engine.payroll.domain.obligations import (
+    RECOVERY_RULES,
+    SOMMA_ESENTE_RECOVERY,
+    RecoveryObligation,
+)
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
+from ccnl_engine.payroll.domain.remittance import SOMMA_ESENTE_CREDIT
 
 if TYPE_CHECKING:
     from datetime import date
@@ -37,13 +42,20 @@ if TYPE_CHECKING:
     )
 
 
+#: Codice tributo of a carried installment, by recovered credit: only the
+#: somma esente recovery has a verified code (ris. AdE 9/E/2025).
+_REMITTANCE_CODES = {SOMMA_ESENTE_RECOVERY: SOMMA_ESENTE_CREDIT}
+
+
 @dataclass(frozen=True)
 class CarriedRecoveries:
     """Postings of the carried installments of one run.
 
     Attributes:
         items: One negative tax credit item per carried recovery.
-        entries: The matching ``CREDITS`` ledger entries.
+        entries: The matching ``CREDIT_RECOVERIES`` ledger entries, coded
+            1704 for the somma esente and uncoded otherwise (see
+            :mod:`~ccnl_engine.payroll.domain.remittance`).
         remaining: The carried recoveries after this run, without those
             whose last installment was just posted.
         decisions: One decision per installment posted, capability
@@ -151,9 +163,10 @@ def post_carried_recoveries(
                 "tax_credit_item",
                 competence_period,
                 payment_date,
-                AccountKind.CREDITS,
-                -posted.amount,
+                AccountKind.CREDIT_RECOVERIES,
+                posted.amount,
                 policy_id=policy_id,
+                remittance_code=_REMITTANCE_CODES.get(obligation.plan.kind),
             )
         )
         decisions.append(installment_decision(obligation, posted))

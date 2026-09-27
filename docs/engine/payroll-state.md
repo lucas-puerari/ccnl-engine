@@ -97,7 +97,9 @@ reasons `share_paid`, `not_due`, `overpayment_pending_conguaglio`,
 `overpayment_recovery_opened`, `overpayment_recovered_at_termination`,
 `installment_posted`, `last_installment_posted`,
 `installment_posted_adjustment_run`, `settled_at_termination`. A recovery
-posts the line `somma_esente_recovery_{run_id}` on account `CREDITS`.
+posts the line `somma_esente_recovery_{run_id}` on account
+`CREDIT_RECOVERIES`, coded 1704 like the amount paid (see
+[Ledger accounts and F24 remittance](#ledger-accounts-and-f24-remittance)).
 
 The trattamento integrativo follows its own rule: an over-payment is
 recovered as soon as a run finds it, in eight installments above 60 EUR
@@ -131,7 +133,9 @@ What the pay cannot cover is not lost: the circolari refer to art. 23 c. 3
 DPR 600/1973, the amount is communicated to the worker. The withholding cap
 takes the credit recoveries first, then IRPEF and surtax; the part of a
 recovery the pay leaves uncovered is given back by one
-`credit_recovery_shortfall_{run_id}` line on `CREDITS`, tracked as
+`credit_recovery_shortfall_{run_id}` line on `CREDIT_RECOVERY_SHORTFALL`
+(a part carried in and withheld later posts the same line on
+`CREDIT_RECOVERIES`), tracked as
 `shortfall.credit_recovery` apart from the IRPEF, and reported by the
 provisional issue `withholding_shortfall_unrecovered`.
 
@@ -147,8 +151,8 @@ quale si applicano gli effetti del conguaglio", so it posts the next
 installment of every plan the conguaglio opened, with reason
 `installment_posted_adjustment_run`:
 
-- trattamento integrativo and somma esente post the installment as a
-  negative `CREDITS` line;
+- trattamento integrativo and somma esente post the installment on
+  `CREDIT_RECOVERIES`;
 - the ulteriore detrazione plan lives inside the IRPEF of N. The adjustment
   run settles the cumulative balance again, so it withholds the balance
   less what is still deferred after its installment. When the balance falls
@@ -212,8 +216,8 @@ continues into N+1. The adjustment runs of N post installments too; an
 employment that ends recovers the residual in full on its last run.
 
 - Installments posted in N enter `recovered` of the N credit account.
-- Installments posted in N+1 are a negative tax credit line on the payslip
-  (`{kind}_recovery_{N}_{run_id}`, account `CREDITS`). They do not enter the
+- Installments posted in N+1 are a `CREDIT_RECOVERIES` line on the payslip
+  (`{kind}_recovery_{N}_{run_id}`). They do not enter the
   N+1 credit account, and the N+1 credit is computed as for any other year.
 - The invariant `carried_recovery_advance` checks that each carried
   recovery posts its next installment and closes one installment further
@@ -229,6 +233,72 @@ employment that ends recovers the residual in full on its last run.
 
 At most one recovery per credit and origin year is held. The recovery opened
 by the conguaglio of the current year runs inside the conguaglio, as before.
+
+## Ledger accounts and F24 remittance
+
+The withholding agent remits the tax it withholds and offsets the credits
+it paid on the F24, one line per codice tributo. The ledger keeps each flow
+on its own account, every entry non-negative, so that the F24 lines of a
+run can be read from it:
+
+| Account | What it holds | Codice tributo |
+|---|---|---|
+| `ORDINARY_TAX` | IRPEF withheld, before any credit is offset | 1001 |
+| `TAX_REFUNDS` | IRPEF refunded by the conguaglio | none |
+| `SURTAX` | regional surtax (`surtax_regional_{run}`) | 3802 |
+| `SURTAX` | municipal surtax (`surtax_municipal_{run}`) | none |
+| `SUBSTITUTE_TAX` | PdR, rinnovo, notte, festivi e turni | 1053, 1075, 1076 |
+| `SEPARATE_TAX` | arrears, TFR | 1002, 1012 |
+| `CREDITS` | trattamento integrativo, somma esente paid | 1701, 1704 (credit column) |
+| `CREDIT_RECOVERIES` | somma esente recovered | 1704 (debit column) |
+| `CREDIT_RECOVERIES` | trattamento integrativo recovered, ulteriore detrazione of an earlier year | none |
+| `CREDIT_RECOVERY_SHORTFALL` | recovery the pay could not cover, given back and carried | none |
+
+Sources: Allegato 1 to the AdE provvedimento of 31 January 2025 (1001,
+1002, 1012, 1053, 1701, 1704, 3802), ris. 35/E/2020 (1701), ris. 9/E/2025
+(1704, "importi a credito compensati" for the amount paid and "importi a
+debito versati" for the amount "già erogata e poi recuperata"), ris.
+3/E/2026 (1075) and 2/E/2026 (1076). The codes live in
+`ccnl_engine.payroll.domain.remittance`; each entry carries its code in
+`LedgerEntry.remittance_code`.
+
+A code that cannot be verified is left out rather than guessed:
+
+- municipal surtax is 3847 (acconto) or 3848 (saldo), and the engine does
+  not split the two yet;
+- ris. 35/E/2020 gives 1701 for the credit column only, so a trattamento
+  integrativo recovered from the worker has no code;
+- the ulteriore detrazione recovered in the next tax year is IRPEF of the
+  earlier year after its conguaglio;
+- the national codes are used: the variants for Sicily, Sardinia and Valle
+  d'Aosta are not selected.
+
+The surtax withheld on a run is split in the ratio of the annual regional
+and municipal surtax; the municipal line takes the rounding residual. A
+surtax carried in when no annual surtax is left posts one uncoded
+`surtax_{run}` line. The recovery shortfall is not tracked by credit, so a
+somma esente recovery under 1704 can be partly given back on the uncoded
+shortfall line of the same run.
+
+`PeriodResult.remittance_summary()` returns one `RemittanceLine` per
+account and code (account, code, F24 column, amount) for a run, and
+`YearResult.remittance_summary()` the same totals for the year. The F24 is
+filed by month of payment, so use the run summaries to fill it.
+
+The net identity reads the accounts with their direction:
+
+```text
+period_net = CASH_EARNINGS + TFR_SETTLEMENT + CREDITS + TAX_REFUNDS
+           + CREDIT_RECOVERY_SHORTFALL - CREDIT_RECOVERIES
+           - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+           - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS
+           - ORDINARY_TAX - SURTAX - SUBSTITUTE_TAX - SEPARATE_TAX
+```
+
+The invariant `credit_non_negative` rejects a negative entry on the credit
+accounts, and `remittance_code_consistent` requires a code on every
+`ORDINARY_TAX`, `SEPARATE_TAX` and `CREDITS` entry and rejects a code the
+account does not admit.
 
 ## Balances from a previous provider
 

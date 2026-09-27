@@ -48,6 +48,7 @@ from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     PA_FUNZIONI_CENTRALI,
     regular_period,
+    remitted,
     substitute_tax,
 )
 
@@ -117,10 +118,14 @@ def _renewal_decision(result: PeriodResult) -> CalculationDecision:
 
 
 def test_renewal_increment_below_income_cap_uses_substitute_tax() -> None:
-    """Renewal 2,000 EUR, prior income 20,000: 2,000 * 5% = 100.00 (c. 7)."""
+    """Renewal 2,000 EUR, prior income 20,000: 2,000 * 5% = 100.00 (c. 7).
+
+    The tax is remitted under codice tributo 1075 (ris. AdE 3/E/2026).
+    """
     result = _period(_renewal())
 
     assert substitute_tax(result) == Decimal("100.00")
+    assert remitted(result, "1075") == Decimal("100.00")
     assert _renewal_decision(result).reason_code == "requirements_met"
     assert result.status is CalculationStatus.FINAL
 
@@ -250,11 +255,15 @@ def test_night_supplement_above_annual_cap_splits_regime() -> None:
 
 
 def test_holiday_supplement_uses_substitute_tax() -> None:
-    """Holiday supplement 500 EUR, eligible income: 500 * 15% = 75.00."""
+    """Holiday supplement 500 EUR, eligible income: 500 * 15% = 75.00.
+
+    The tax is remitted under codice tributo 1076 (ris. AdE 2/E/2026).
+    """
     event = HolidayWorkEvent(event_date=_EVENT_DAY, supplement_amount=Decimal(500))
     result = _period(event)
 
     assert substitute_tax(result) == Decimal("75.00")
+    assert remitted(result, "1076") == Decimal("75.00")
     assert result.closing_state.ytd.work_time_regime.used == Decimal(500)
 
 

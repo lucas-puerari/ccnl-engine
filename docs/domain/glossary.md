@@ -310,18 +310,19 @@ The code is stable and is the `invariant_id` of the violation.
 |---|---|
 | `pay_item_posted` | every pay item has at least one ledger entry |
 | `earning_contribution_exclusive` | no pay item posts to both `CASH_EARNINGS` and `EMPLOYEE_CONTRIBUTIONS` |
-| `net_identity` | `CASH_EARNINGS + CREDITS + TFR_SETTLEMENT - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX - ORDINARY_TAX - SURTAX - SEPARATE_TAX = period_net` |
+| `net_identity` | `CASH_EARNINGS + CREDITS + TAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX - ORDINARY_TAX - SURTAX - SEPARATE_TAX = period_net` |
 | `employer_cost_identity` | `CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR = period_employer_cost` |
 | `gross_identity` | `CASH_EARNINGS = period_gross` |
 | `ledger_entry_unique` | ledger entry ids of a run are unique |
-| `irpef_withheld_continuity` | closing IRPEF withheld YTD = opening + `ORDINARY_TAX` - IRPEF refunds (`tax_refund_item` in `CREDITS`) |
+| `irpef_withheld_continuity` | closing IRPEF withheld YTD = opening + `ORDINARY_TAX` - `TAX_REFUNDS` |
 | `gross_non_negative` | `period_gross >= 0` |
 | `employee_deduction_non_negative` | every `EMPLOYEE_DEDUCTIONS` entry `>= 0` |
-| `substitute_tax_non_negative`, `ordinary_tax_non_negative` | every `SUBSTITUTE_TAX` and `ORDINARY_TAX` entry `>= 0`; refunds use `CREDITS` |
+| `substitute_tax_non_negative`, `ordinary_tax_non_negative` | every `SUBSTITUTE_TAX` and `ORDINARY_TAX` entry `>= 0`; refunds use `TAX_REFUNDS` |
 | `employee_contribution_non_negative`, `employer_contribution_non_negative` | every `EMPLOYEE_CONTRIBUTIONS` and `EMPLOYER_CONTRIBUTIONS` entry `>= 0`; corrections are a distinct movement |
+| `credit_non_negative` | every `CREDITS`, `CREDIT_RECOVERIES`, `CREDIT_RECOVERY_SHORTFALL` and `TAX_REFUNDS` entry `>= 0`: a credit taken back is a recovery |
 | `net_pay_non_negative` | `period_net >= 0` |
 | `run_counters_advance` | regular and withholding-slot counters advance by the run; the run id enters `closed_run_ids` |
-| `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries) |
+| `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries less their `CREDIT_RECOVERIES` entries) |
 | `credit_recovery_bounds` | each credit account recovers between zero and what it recognized |
 | `carried_recovery_advance` | each recovery carried from an earlier tax year posts its next installment and advances one step, or posts its whole residual on the last run of the employment |
 | `substitute_tax_plafond` | the work-time regime cap account advances by the eligible amounts, stays within the annual cap and agrees with the `cap_available` of each decision; the PdR eligible YTD advances by the `bonus_pdr` decision and stays within the PdR limit |
@@ -331,6 +332,7 @@ The code is stable and is the `invariant_id` of the violation.
 | `extra_month_accrual_limit` | the ratei a run pays for one extra month and window add up to at most 12 months |
 | `contribution_ceiling` | when the IVS massimale applies, the IVS base of the run is within `max(0, massimale - opening INPS base YTD)` |
 | `irpef_annual_reconciliation` | on the run closing the last withholding slot, IRPEF withheld YTD = net annual IRPEF of the tax computation (gross IRPEF less deductions, floored at zero), within one cent, and the taxable income of that computation = final taxable income YTD, within two cents of rounding |
+| `remittance_code_consistent` | every `ORDINARY_TAX`, `SEPARATE_TAX` and `CREDITS` entry carries a codice tributo, and no entry carries a code its account does not admit |
 
 Not checked: the INPS base and IRPEF taxable YTD (not derivable from the
 result without recomputing the run), that the ordinary remainder of a

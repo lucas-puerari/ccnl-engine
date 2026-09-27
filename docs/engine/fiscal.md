@@ -281,10 +281,11 @@ is not spread again. On the last withholding slot:
   installments and the other nine are deferred: they open a recovery
   obligation of kind `ulteriore_detrazione_lavoro`, posted by the
   adjustment runs of the year and from the first run of the next tax year
-  as a negative tax credit line
-  (`ulteriore_detrazione_lavoro_recovery_{N}_{run_id}`, account `CREDITS`),
-  like the other c. 7 recoveries. The ledger does not tell the IRPEF they
-  recover apart from an offset credit.
+  as a credit recovery line
+  (`ulteriore_detrazione_lavoro_recovery_{N}_{run_id}`, account
+  `CREDIT_RECOVERIES`), like the other c. 7 recoveries. The line is
+  uncoded: it recovers IRPEF of year N after its conguaglio, and no
+  codice tributo for it is verified.
 
 The run records a decision with capability
 `ulteriore_detrazione_lavoro_recovery` (`overpayment_recovered`,

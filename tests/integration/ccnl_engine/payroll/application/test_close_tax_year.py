@@ -234,5 +234,5 @@ class TestCarriedRecoveryInvariant:
         assert check_carried_recovery_advance(result, opening) == []
         violations = check_carried_recovery_advance(tampered, opening)
         assert [v.invariant_id for v in violations] == ["carried_recovery_advance"] * 2
-        assert violations[0].expected == Decimal(-20)
+        assert violations[0].expected == Decimal(20)
         assert violations[0].actual is None

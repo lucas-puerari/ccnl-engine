@@ -132,11 +132,12 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     )
     result = calculate_period(req)
 
-    recovery = _sum_account(result, AccountKind.CREDITS)
+    recovery = _sum_account(result, AccountKind.CREDIT_RECOVERIES)
     installment = Decimal("900.00") / 8
-    assert recovery == -installment, (
-        f"First recovery installment must be -900/8 = -{installment}; got {recovery}."
+    assert recovery == installment, (
+        f"First recovery installment must be 900/8 = {installment}; got {recovery}."
     )
+    assert _sum_account(result, AccountKind.CREDITS) == Decimal(0)
 
 
 def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
@@ -177,7 +178,7 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
     )
     result = calculate_period(req)
 
-    recovery = _sum_account(result, AccountKind.CREDITS)
-    assert recovery == Decimal("-50.00"), (
+    recovery = _sum_account(result, AccountKind.CREDIT_RECOVERIES)
+    assert recovery == Decimal("50.00"), (
         f"Recovery ≤ 60 EUR must be fully deducted in one period; got {recovery}."
     )

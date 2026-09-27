@@ -21,7 +21,8 @@ Invariants, by module:
 - ``sign_invariants``: ``gross_non_negative``,
   ``employee_deduction_non_negative``, ``substitute_tax_non_negative``,
   ``ordinary_tax_non_negative``, ``employee_contribution_non_negative``,
-  ``employer_contribution_non_negative``, ``net_pay_non_negative``.
+  ``employer_contribution_non_negative``, ``net_pay_non_negative``,
+  ``credit_non_negative``.
 - ``state_invariants``: ``run_counters_advance``, ``ytd_continuity``,
   ``credit_recovery_bounds``, ``carried_recovery_advance``.
 - ``decision_invariants``: ``substitute_tax_plafond``,
@@ -31,6 +32,7 @@ Invariants, by module:
 - ``withholding_invariants``: ``contribution_ceiling``,
   ``irpef_annual_reconciliation``.
 - ``untaxed``: ``non_agent_untaxed``.
+- ``remittance``: ``remittance_code_consistent``.
 """
 
 from __future__ import annotations
@@ -60,6 +62,9 @@ from ccnl_engine.payroll.application.invariants.ledger import (
 from ccnl_engine.payroll.application.invariants.lifecycle import (
     check_extra_month_accrual_limit,
     check_run_within_employment,
+)
+from ccnl_engine.payroll.application.invariants.remittance import (
+    check_remittance_code_consistent,
 )
 from ccnl_engine.payroll.application.invariants.signs import check_signs
 from ccnl_engine.payroll.application.invariants.state import (
@@ -152,6 +157,7 @@ def reconcile(
     violations.extend(check_contribution_ceiling(result, opening, run_facts))
     violations.extend(check_irpef_annual_reconciliation(result, opening, run_facts))
     violations.extend(check_non_agent_untaxed(result, run_facts))
+    violations.extend(check_remittance_code_consistent(result))
     return ReconciliationResult(violations=tuple(violations))
 
 

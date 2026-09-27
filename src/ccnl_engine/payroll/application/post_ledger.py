@@ -27,7 +27,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
-    from ccnl_engine.payroll.application.period._base_lines import _BaseLine
+    from ccnl_engine.payroll.application.period._line import _BaseLine
     from ccnl_engine.payroll.domain.period_payroll import PeriodId
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -55,13 +55,14 @@ def _pay_item(
         The pay item, with the allowance code for a fixed allowance line.
     """
     item_id = f"{line.stem}_{tag}"
+    amount = line.amount if line.item_amount is None else line.item_amount
     if line.allowance_code is not None:
         return FixedAllowanceEarning(
             item_id=item_id,
             competence_period=cp,
             payment_date=payment_date,
             quantity=Decimal(1),
-            amount=line.amount,
+            amount=amount,
             allowance_code=line.allowance_code,
         )
     if line.item_type is None:
@@ -71,7 +72,7 @@ def _pay_item(
         competence_period=cp,
         payment_date=payment_date,
         quantity=Decimal(1),
-        amount=line.amount,
+        amount=amount,
     )
 
 
@@ -133,6 +134,7 @@ def _project_ledger(
                 line.account,
                 line.amount,
                 policy_id=policy_id,
+                remittance_code=line.remittance_code,
             )
         )
     return tuple(entries)

@@ -122,8 +122,9 @@ def check_ytd_continuity(
     - ``earnings.gross``: the CASH_EARNINGS total;
     - ``earnings.inps_employee``: the EMPLOYEE_CONTRIBUTIONS total;
     - ``tax.surtax``: the SURTAX total;
-    - ``trattamento`` net credit: the ``tratt_integ_{run}`` entry;
-    - ``somma_esente`` net credit: the ``somma_esente_{run}`` or
+    - ``trattamento`` net credit: the ``tratt_integ_{run}`` entry less the
+      ``tratt_integ_recovery_{run}`` entry;
+    - ``somma_esente`` net credit: the ``somma_esente_{run}`` entry less the
       ``somma_esente_recovery_{run}`` entry.
 
     Returns:
@@ -153,15 +154,15 @@ def check_ytd_continuity(
         (
             "trattamento net credit",
             op.trattamento.net,
-            _entry_total(result, {f"tratt_integ_{run}"}),
+            _entry_total(result, {f"tratt_integ_{run}"})
+            - _entry_total(result, {f"tratt_integ_recovery_{run}"}),
             closing.trattamento.net,
         ),
         (
             "somma_esente net credit",
             op.somma_esente.net,
-            _entry_total(
-                result, {f"somma_esente_{run}", f"somma_esente_recovery_{run}"}
-            ),
+            _entry_total(result, {f"somma_esente_{run}"})
+            - _entry_total(result, {f"somma_esente_recovery_{run}"}),
             closing.somma_esente.net,
         ),
     )
@@ -222,10 +223,10 @@ def _expected_step(
     Returns:
         ``(expected_amount, expected_remaining)``.
     """
-    if posted == -obligation.plan.residual:
-        return -obligation.plan.residual, None
+    if posted == obligation.plan.residual:
+        return obligation.plan.residual, None
     step, after = obligation.post(InstallmentRun())
-    return -step.amount, after
+    return step.amount, after
 
 
 def check_carried_recovery_advance(
@@ -235,7 +236,7 @@ def check_carried_recovery_advance(
     """Check that recoveries carried from an earlier year advance one step.
 
     Every recovery opened before the tax year of the run must post its next
-    installment as a negative ``CREDITS`` entry, and the closing state must
+    installment as a ``CREDIT_RECOVERIES`` entry, and the closing state must
     carry it one installment further, or no more after its last one.  On
     the last run of the employment the recovery may instead post its whole
     residual and close.
@@ -261,7 +262,7 @@ def check_carried_recovery_advance(
                     invariant_id=InvariantCode.CARRIED_RECOVERY_ADVANCE,
                     message=(
                         f"carried recovery of {o.tax_year} did not post its "
-                        f"installment {-amount}"
+                        f"installment {amount}"
                     ),
                     expected=amount,
                     actual=actual,

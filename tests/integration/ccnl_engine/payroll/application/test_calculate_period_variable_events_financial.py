@@ -75,6 +75,10 @@ def _sep_tax(result: PeriodResult) -> Decimal:
     )
 
 
+def _codes(result: PeriodResult, account: AccountKind) -> set[str | None]:
+    return {e.remittance_code for e in result.ledger_entries if e.account == account}
+
+
 def _surtax(result: PeriodResult) -> Decimal:
     return sum(
         (e.amount for e in result.ledger_entries if e.account == AccountKind.SURTAX),
@@ -154,10 +158,15 @@ class TestArrearsEventAccounting:
         assert _sep_tax(result) > Decimal(0)
 
     def test_separate_tax_amount_correct(self) -> None:
-        """SEPARATE_TAX equals amount * rate, rounded."""
+        """SEPARATE_TAX equals amount * rate, rounded, remitted under 1002.
+
+        1002 is "RITENUTE SU EMOLUMENTI ARRETRATI" (Allegato 1 to the AdE
+        provvedimento of 31 January 2025).
+        """
         result = calculate_period(_req(self._arrears()))
         expected = (Decimal("2000.00") * Decimal("0.23")).quantize(Decimal("0.01"))
         assert _sep_tax(result) == expected
+        assert _codes(result, AccountKind.SEPARATE_TAX) == {"1002"}
 
     def test_inps_increases_with_arrears(self) -> None:
         """Arrears increment the INPS base when policy contribution is 'included'."""
@@ -269,10 +278,16 @@ class TestTerminationTFREventAccounting:
         assert _tfr_settle(result) == Decimal("5000.00")
 
     def test_separate_tax_entry_posted(self) -> None:
-        """A SEPARATE_TAX entry is posted for the tassazione separata."""
+        """A SEPARATE_TAX entry is posted for the tassazione separata.
+
+        It is remitted under 1012, "RITENUTE SU INDENNITA' PER CESSAZIONE DI
+        RAPPORTO DI LAVORO" (Allegato 1 to the AdE provvedimento of 31
+        January 2025).
+        """
         result = calculate_period(_req(self._termination()))
         expected = (Decimal("5000.00") * Decimal("0.20")).quantize(Decimal("0.01"))
         assert _sep_tax(result) == expected
+        assert _codes(result, AccountKind.SEPARATE_TAX) == {"1012"}
 
     def test_net_increases_by_tfr_minus_tax(self) -> None:
         """period_net increases by TFR settlement minus its separate tax."""
@@ -321,11 +336,16 @@ class TestSurtaxAccounting:
         )
         assert base_irpef == surtax_irpef
 
-    def test_surtax_pay_item_present(self) -> None:
-        """An EmployeeWithholdingItem with 'surtax' in id appears when surtax > 0."""
+    def test_surtax_pay_items_present(self) -> None:
+        """One regional and one municipal surtax item appear when both are due."""
         result = calculate_period(_req_surtax())
-        surtax_items = [pi for pi in result.pay_items if "surtax" in pi.item_id]
-        assert len(surtax_items) == 1
+        surtax_items = {
+            pi.item_id.rsplit("_", 1)[0]: pi.amount
+            for pi in result.pay_items
+            if "surtax" in pi.item_id
+        }
+        assert set(surtax_items) == {"surtax_regional", "surtax_municipal"}
+        assert sum(surtax_items.values()) == _surtax(result)
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold when addizionali are computed."""

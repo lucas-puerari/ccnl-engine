@@ -100,9 +100,21 @@ class TestAccountKind:
 class TestAccountKindShape:
     """AccountKind is a closed string enumeration."""
 
-    def test_seventeen_members(self) -> None:
-        """AccountKind has exactly seventeen members."""
-        assert len(AccountKind) == 17
+    def test_twenty_members(self) -> None:
+        """AccountKind has exactly twenty members."""
+        assert len(AccountKind) == 20
+
+    @pytest.mark.parametrize(
+        ("account", "value"),
+        [
+            (AccountKind.CREDIT_RECOVERIES, "credit_recoveries"),
+            (AccountKind.CREDIT_RECOVERY_SHORTFALL, "credit_recovery_shortfall"),
+            (AccountKind.TAX_REFUNDS, "tax_refunds"),
+        ],
+    )
+    def test_recovery_and_refund_values(self, account: AccountKind, value: str) -> None:
+        """The recovery, shortfall and refund accounts keep their values."""
+        assert account.value == value
 
     def test_is_str(self) -> None:
         """AccountKind members are strings (StrEnum)."""

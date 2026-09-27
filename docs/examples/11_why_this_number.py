@@ -1,4 +1,4 @@
-"""Explain a result: inspect pay_items, contribution components, capability_report."""
+"""Explain a result: pay items, contributions, F24 remittance, capability report."""
 
 from datetime import date
 
@@ -42,6 +42,12 @@ tc = result.tax_computation
 print(f"  Ordinary IRPEF:           {tc.ordinary_tax}")
 print(f"  Trattamento integrativo:  {tc.trattamento_integrativo}")
 print(f"  Withholding due:          {tc.withholding_due}")
+
+print("\n=== F24 remittance by codice tributo ===")
+for line in result.remittance_summary():
+    code = line.remittance_code or "-"
+    column = line.column or "-"
+    print(f"  {line.account:26s} {code:5s} {column:7s} {line.amount}")
 
 print("\n=== Capability report ===")
 cr = result.capability_report
