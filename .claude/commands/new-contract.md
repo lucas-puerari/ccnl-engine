@@ -334,10 +334,37 @@ order used by the surrounding rows:
 | {N} | `{CNEL}` | [{CCNL Name}]({id}.md) | {Sector} | {workers} | ✅ | ✅ | {date} |
 ```
 
-### 8b. Create `docs/contracts/{id}.md`
+### 8b. Generate `docs/examples/contracts/{id}.py`
 
-After adding the JSON and example files, run the generator — it will pick up
-the new page automatically because the file now exists:
+Never write the example by hand. Run the generator; it writes one example per
+bundled CCNL from the JSON data, so the new contract gets its file:
+
+```bash
+uv run python scripts/docs/gen_contract_examples.py
+```
+
+The generator picks the middle level (`levels[len(levels) // 2]`), the regular
+September 2026 run, a full-time permanent employment, 50 employees (one for a
+domestic CCNL) and a worker resident in Milan (`IT-25`, `F205`). It declares
+the worker category `operaio` when the level fixes none and the INPS employer
+rate of the sector depends on it, and it adds weekly and contributable hours
+for domestic CCNLs. Change the rules in the generator, not in the example.
+
+Run the example and check that it exits cleanly:
+
+```bash
+uv run python docs/examples/contracts/{id}.py
+```
+
+If it raises, fix the data. If the failure is a missing caller input that
+applies to the whole CCNL, teach the generator to pass it. CI runs
+`gen_contract_examples.py --check`, so a stale or missing example fails the PR.
+
+### 8c. Create `docs/contracts/{id}.md`
+
+After adding the JSON and generating the example, run the page generator. It
+picks up the new page automatically because the file now exists, and embeds
+the example under "Usage example":
 
 ```bash
 uv run python scripts/docs/gen_contract_pages.py
@@ -355,50 +382,6 @@ echo "# {meta.name}" > docs/contracts/{id}.md
 
 Then run the generator to fill it in.
 
-### 8c. Create `docs/examples/contracts/{id}.py`
-
-Standard template (non-domestic):
-
-```python
-"""Usage example: {meta.name}."""
-
-from datetime import date
-from ccnl_engine import (
-    ContractPosition,
-    Employee,
-    Permanent,
-    WorkArrangement,
-    compute,
-    load_ccnl,
-    load_year_rules,
-)
-
-ccnl = load_ccnl("{id}.json")
-rules = load_year_rules({year}, ccnl.meta.tax_sector, num_employees=50)
-employee = Employee(
-    position=ContractPosition(
-        level_code="{middle_level_code}",
-        as_of=date({year}, {mm}, 1),
-        employment=Permanent(),
-    ),
-    arrangement=WorkArrangement(),
-)
-p = compute(ccnl, rules, employee)
-print(f"Gross monthly: {p.gross_monthly} EUR")
-print(f"Net annual:    {p.net_annual} EUR")
-print(f"Employer cost: {p.employer_cost_annual} EUR")
-```
-
-For domestic CCNLs (`lavoro-domestico-*`) add `from decimal import Decimal`,
-set `weekly_hours=Decimal("40")` in `WorkArrangement`, and print
-`p.employer_withholds_irpef`.
-
-Use `levels[len(levels) // 2]["code"]` from the JSON as `middle_level_code`.
-
-Use a `date` whose year matches the first period in `base_salary` whose
-`valid_from` ≤ today — never hardcode a date before the series starts or
-`value_at` will raise.
-
 ### 8d. Add a nav entry to `zensical.toml`
 
 Inside the `{ "Contracts" = [...] }` block, insert one line in alphabetical
@@ -414,7 +397,9 @@ silently truncated in the sidebar). Match the style of existing entries.
 ---
 
 **CI smoke-test**: `tests/acceptance/public_api/test_docs_examples.py` automatically
-picks up `docs/examples/contracts/{id}.py`, so no test edit is needed.
+picks up `docs/examples/contracts/{id}.py`: it checks that every bundled CCNL has
+an example, and that the example exits cleanly and prints gross, contributions,
+IRPEF, net, status and issue codes. No test edit is needed.
 Run `uv run pytest tests/acceptance/public_api/` to verify before committing.
 
 ---
@@ -500,10 +485,9 @@ Contract-specific pitfalls (general rules are in `CLAUDE.md`):
 - **Scatti cadence**: biennale (24), triennale (36), quadriennale (48) — never assume.
 - **`amount_by_level` codes**: must match `levels[].code` exactly — a mismatch is a load error.
 - **Coverage gap on new TaxSector**: ship enum change + tax file + CCNL JSON in the same commit.
-- **`value_at` date before series start**: the example script in `docs/examples/contracts/`
-  must use a `date` on or after the first `valid_from` in `base_salary`. Pick the
-  date of the second tranche (or later) to be safe — never hardcode `date(year, 1, 1)`
-  if the series starts after January.
+- **Salary series starting after the example month**: the generated example
+  runs September 2026. If the base salary of the middle level starts later, the
+  example fails; check the `valid_from` dates of the series.
 
 ---
 
