@@ -1,7 +1,10 @@
 """Surtax stage: addizionale regionale e comunale, with the decision taken.
 
 Each jurisdiction the caller supplies yields one
-:class:`~ccnl_engine.payroll.domain.decisions.CalculationDecision`:
+:class:`~ccnl_engine.payroll.domain.decisions.CalculationDecision`.  The
+surtax of the year is determined only by its conguaglio; any other run
+takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
+``table_unknown`` for an unknown one.  On the conguaglio:
 
 - ``no_irpef_due`` (final, amount 0): the IRPEF net of its deductions is
   zero, so no surtax is due (D.Lgs. 446/1997 art. 50 c. 2 for the regional,
@@ -9,21 +12,22 @@ Each jurisdiction the caller supplies yields one
   they also net, art. 165 TUIR, is not modelled);
 - ``below_exemption_threshold`` (final, amount 0): the municipal exemption
   threshold covers the taxable income;
-- ``table_applied`` or ``advance_applied`` (final): the bundled table was
-  applied, the second one when the municipal rates only give the advance.
-  The acconto is 30% of the surtax at the rate and exemption threshold
-  "nella misura vigente nell'anno precedente" (D.Lgs. 360/1998 art. 1
-  c. 4), which is what the bundled table holds, so the
-  decision is final for the advance; its input ``balance`` is
-  ``not_modelled``: the saldo, withheld in up to eleven installments of
-  the next year, is outside the calculation;
+- ``table_applied`` (final): the bundled table of the tax year was
+  applied;
+- ``prior_year_rates_applied`` (provisional): the bundled municipal table
+  holds the rates of the year before (the ones the acconto of the tax year
+  is computed with, D.Lgs. 360/1998 art. 1 c. 4), not those of the tax
+  year the conguaglio needs; they are applied and a provisional
+  :class:`~ccnl_engine.payroll.domain.decisions.CalculationIssue` names
+  the missing table;
 - ``table_unknown`` (incomplete, amount ``None``): the code is well formed
   but the tax year table has no row for it.  The amount withheld is zero
   and a :class:`~ccnl_engine.payroll.domain.decisions.CalculationIssue`
   marks the result as not payable.
 
-Decision amounts are annual amounts for the tax year, before the split over
-the withholding slots.
+Decision amounts are the annual surtax of the tax year, computed by its
+conguaglio; how it is withheld is decided by
+:mod:`~ccnl_engine.payroll.application.amounts._surtax`.
 """
 
 from __future__ import annotations
@@ -38,7 +42,6 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
 )
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
-from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service import irpef as _irpef
 
 if TYPE_CHECKING:
@@ -51,6 +54,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "MUNICIPAL_SURTAX",
+    "PRIOR_YEAR_RATES_ISSUE",
     "REGIONAL_SURTAX",
     "SurtaxOutcome",
     "compute_surtax",
@@ -62,6 +66,9 @@ _ZERO = Decimal(0)
 REGIONAL_SURTAX = "addizionale_regionale"
 #: Capability of the municipal surtax decision, as named in the catalog.
 MUNICIPAL_SURTAX = "addizionale_comunale"
+
+#: Issue of a municipal surtax computed on the rates of the year before.
+PRIOR_YEAR_RATES_ISSUE = "municipal_surtax_prior_year_rates"
 
 _UNKNOWN_ISSUE_CODES = {
     REGIONAL_SURTAX: "regional_surtax_unknown",
@@ -85,11 +92,6 @@ class SurtaxOutcome:
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
 
-    @property
-    def total(self) -> Decimal:
-        """Regional plus municipal annual surtax."""
-        return self.regional + self.municipal
-
 
 @dataclass(frozen=True, slots=True)
 class _Table:
@@ -106,16 +108,13 @@ class _Table:
         self,
         reason_code: str,
         amount: Decimal | None,
+        status: CalculationStatus = CalculationStatus.FINAL,
         **extra: Decimal | str,
     ) -> CalculationDecision:
         default_rule = f"surtax/{self.tax_year}/{self.capability}"
         return CalculationDecision(
             capability=self.capability,
-            status=(
-                CalculationStatus.FINAL
-                if amount is not None
-                else CalculationStatus.INCOMPLETE
-            ),
+            status=status if amount is not None else CalculationStatus.INCOMPLETE,
             reason_code=reason_code,
             rule=default_rule if self.ruleset is None else self.ruleset.id,
             rule_version=(
@@ -132,6 +131,18 @@ class _Table:
         )
 
     def issues_of(self, decision: CalculationDecision) -> tuple[CalculationIssue, ...]:
+        if decision.reason_code == "prior_year_rates_applied":
+            issue = CalculationIssue(
+                code=PRIOR_YEAR_RATES_ISSUE,
+                message=(
+                    f"{self.capability}: the bundled table holds the rates "
+                    f"of {self.tax_year - 1}; the surtax of {self.tax_year} "
+                    f"and the acconto of {self.tax_year + 1} are computed "
+                    "on them until the rates of the tax year are bundled"
+                ),
+                status=CalculationStatus.PROVISIONAL,
+            )
+            return (issue,)
         if decision.amount is not None:
             return ()
         issue = CalculationIssue(
@@ -175,13 +186,18 @@ def _municipal(
     )
     if not surtax.comunale_rates_are_advance:
         return table.decide("table_applied", amount)
-    fraction = surtax.comunale_advance_fraction
     return table.decide(
-        "advance_applied",
-        money(amount * fraction),
-        advance_fraction=fraction,
-        balance="not_modelled",
+        "prior_year_rates_applied",
+        amount,
+        CalculationStatus.PROVISIONAL,
+        rates_year=str(surtax.year - 1),
     )
+
+
+def _deferred(table: _Table, entry: object | None) -> CalculationDecision:
+    if entry is None:
+        return table.decide("table_unknown", None)
+    return table.decide("determined_at_conguaglio", _ZERO)
 
 
 def compute_surtax(
@@ -191,20 +207,25 @@ def compute_surtax(
     regione: str | None,
     comune_belfiore: str | None,
     irpef_due: Decimal,
+    at_conguaglio: bool = True,
 ) -> SurtaxOutcome:
     """Compute the annual regional and municipal surtax and their decisions.
 
     Args:
-        taxable_income: Projected annual IRPEF taxable income.
+        taxable_income: Annual IRPEF taxable income of the conguaglio.
         surtax: Bundled surtax tables of the tax year.
         regione: Well-formed region code, or ``None`` to skip.
         comune_belfiore: Well-formed Belfiore code, or ``None`` to skip.
         irpef_due: Net annual IRPEF, gross less the deductions; no surtax
             is due when it is zero.
+        at_conguaglio: Whether the run is the conguaglio of the tax year.
+            On any other run the surtax is not determined: a known table
+            yields ``determined_at_conguaglio`` with amount 0, an unknown
+            one ``table_unknown`` as at the conguaglio.
 
     Returns:
         The annual amounts, one decision per supplied jurisdiction and one
-        incomplete issue per jurisdiction whose table is unknown.
+        issue per jurisdiction whose table is unknown or of the year before.
     """
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
@@ -219,7 +240,11 @@ def compute_surtax(
             surtax.year,
             taxable_income,
         )
-        decisions.append(_regional(table, reg_entry, irpef_due))
+        decisions.append(
+            _regional(table, reg_entry, irpef_due)
+            if at_conguaglio
+            else _deferred(table, reg_entry)
+        )
         issues.extend(table.issues_of(decisions[-1]))
     if comune_belfiore is not None:
         com_entry = surtax.comunale.get(comune_belfiore)
@@ -231,7 +256,11 @@ def compute_surtax(
             surtax.year,
             taxable_income,
         )
-        decisions.append(_municipal(table, com_entry, surtax, irpef_due))
+        decisions.append(
+            _municipal(table, com_entry, surtax, irpef_due)
+            if at_conguaglio
+            else _deferred(table, com_entry)
+        )
         issues.extend(table.issues_of(decisions[-1]))
     amounts = {d.capability: d.amount or _ZERO for d in decisions}
     return SurtaxOutcome(

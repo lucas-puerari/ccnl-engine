@@ -19,18 +19,15 @@ from ccnl_engine.payroll.domain.pay_items import (
 from ccnl_engine.payroll.domain.remittance import (
     IRPEF_WITHHOLDING,
     PDR_SUBSTITUTE_TAX,
-    REGIONAL_SURTAX,
     TRATTAMENTO_CREDIT,
 )
-from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
-    from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome
 
-__all__ = ["surtax_split", "tax_lines"]
+__all__ = ["tax_lines"]
 
 
 def _trattamento_line(tratt: Decimal) -> _BaseLine:
@@ -94,60 +91,44 @@ def _irpef_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     return lines
 
 
-def surtax_split(withheld: Decimal, surtax: SurtaxOutcome) -> tuple[Decimal, Decimal]:
-    """Split the surtax withheld on a run between region and municipality.
-
-    The run withholds one amount: its share of the annual surtax plus any
-    surtax carried in, capped at the pay available.  It is split in the
-    ratio of the annual regional and municipal amounts; the municipal part
-    takes the rounding residual, so the two add up to ``withheld``.
-
-    Returns:
-        ``(regional, municipal)``; ``(0, 0)`` when no annual surtax is
-        known to split on.
-    """
-    total = surtax.total
-    if total == _ZERO:
-        return _ZERO, _ZERO
-    regional = money(withheld * surtax.regional / total)
-    return regional, withheld - regional
-
-
 def _surtax_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
-    """Return the regional and municipal surtax withheld on the run.
+    """Return the surtax withheld and refunded on the run.
 
-    The regional line is coded 3802; the municipal line is uncoded.  A
-    surtax carried in with no annual surtax to split on is posted on one
-    uncoded ``surtax`` line.
+    The surtax withheld after the pay cap is split over what was due
+    (:meth:`~ccnl_engine.payroll.application.amounts._surtax.RunSurtax\
+.allocate`): one line per component and reference year, coded 3802
+    (regional), 3848 (municipal saldo) or 3847 (municipal acconto), and one
+    uncoded ``surtax`` line for the surtax carried in for lack of pay.
+    Surtax given back by the conguaglio (usually a municipal acconto above
+    the surtax due) is a ``SURTAX_REFUNDS`` line.
 
     Returns:
         Each line only when its amount is positive.
     """
-    withheld = amounts.period_surtax
-    if withheld <= _ZERO:
-        return []
-    regional, municipal = surtax_split(withheld, amounts.surtax)
-    if regional == municipal == _ZERO:
-        parts: tuple[tuple[str, Decimal, str | None], ...] = (
-            ("surtax", withheld, None),
-        )
-    else:
-        parts = (
-            ("surtax_regional", regional, REGIONAL_SURTAX),
-            ("surtax_municipal", municipal, None),
-        )
-    return [
+    surtax = amounts.surtax
+    lines = [
         _BaseLine(
-            stem,
+            "surtax" if part is None else part.stem,
             WITHHOLDING,
             AccountKind.SURTAX,
             amount,
             EmployeeWithholdingItem,
-            remittance_code=code,
+            remittance_code=None if part is None else part.remittance_code,
         )
-        for stem, amount, code in parts
+        for part, amount in surtax.allocate(amounts.period_surtax)
         if amount > _ZERO
     ]
+    if surtax.refund > _ZERO:
+        lines.append(
+            _BaseLine(
+                "surtax_refund",
+                "tax_refund_item",
+                AccountKind.SURTAX_REFUNDS,
+                surtax.refund,
+                TaxRefundItem,
+            )
+        )
+    return lines
 
 
 def tax_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:

@@ -151,29 +151,112 @@ is not an input error: see the decisions below.
 --8<-- "docs/examples/07_addizionali.py"
 ```
 
+### When the surtax is withheld
+
+The surtax of tax year N is **determined by the conguaglio of N** and
+**withheld on the payslips of N+1**:
+
+| Component | Determined by | Withheld | Codice tributo | Source |
+|---|---|---|---|---|
+| Regional surtax of N | conguaglio of N | up to 11 installments, January to November of N+1 | 3802 | D.Lgs. 446/1997 art. 50 c. 4 |
+| Municipal saldo of N | conguaglio of N: municipal surtax of N less the acconto withheld in N | up to 11 installments, January to November of N+1 | 3848 | D.Lgs. 360/1998 art. 1 c. 5 |
+| Municipal acconto of N+1 | conguaglio of N: 30% of the municipal surtax on the income of N, rate and threshold of N | up to 9 installments, March to November of N+1 | 3847 | D.Lgs. 360/1998 art. 1 cc. 4-5 |
+
+Art. 50 c. 4 reads "trattenuto in un numero massimo di undici rate, a
+partire dal periodo di paga successivo a quello in cui le stesse sono
+effettuate e non oltre quello relativamente al quale le ritenute sono
+versate nel mese di dicembre"; art. 1 c. 5 applies the same words to the
+municipal saldo and sets the acconto "in un numero massimo di nove rate
+mensili, effettuate a partire dal mese di marzo". The withholding remitted
+in December is the one of the November pay period, so the engine, whose
+conguaglio is the last payslip of the year, withholds:
+
+- one installment on each **regular** payslip of the window, the maximum
+  number of equal installments rounded to the cent, the last one taking
+  the residual; the November payslip takes whatever is left;
+- nothing on the extra-month payslips (tredicesima, quattordicesima), the
+  December payslip or an adjustment run;
+- on the **last run of the employment**, every residual at once ("in caso
+  di cessazione del rapporto l'importo è trattenuto in unica soluzione",
+  art. 50 c. 4; "l'addizionale residua dovuta è prelevata in unica
+  soluzione", art. 1 c. 5). That run is also the conguaglio of its year:
+  the regional surtax and the municipal saldo of the year are withheld on
+  it, and no acconto of the next year is determined (CU 2026 instructions,
+  point 29 "non dovrà essere compilato" at the cessazione).
+
+When the acconto withheld in the year exceeds the municipal surtax due, the
+conguaglio gives the excess back on a `SURTAX_REFUNDS` line (CU 2026
+instructions, point 26: the acconto "effettivamente trattenuto, al netto,
+quindi, di quanto eventualmente restituito"). The CU text covers the
+cessazione; the engine applies the same refund at the ordinary conguaglio,
+where the saldo "determinato all'atto delle operazioni di conguaglio"
+(art. 1 c. 5) is negative.
+
+A termination run after the last withholding slot is a second conguaglio
+of the year: it determines the surtax of the year again on the final
+income, drops what the first conguaglio deferred, and withholds the
+difference from what an earlier conguaglio of the year already withheld.
+
+A debt keeps the region or municipality of the year that determined it:
+the installments of N+1 do not read the `regione` and `comune_belfiore` of
+the N+1 runs.
+
+#### First year computed by the engine
+
+The engine withholds in year N only the surtax an earlier conguaglio
+determined. For an employment it computes from January 2026 the 2025
+saldi and the 2026 acconto come from the conguaglio of 2025, run by the
+previous provider or by the employer before the engine: import them with
+`OpeningBalances.surtax_obligations` and `municipal_advance_withheld`.
+Without them **no surtax is withheld in 2026** and the whole 2026 surtax
+is deferred to 2027. The law still requires the 2025 amounts to be
+withheld in 2026 by the employer that certified them.
+
+For a worker hired during N with no earlier employment at the same
+employer, no acconto of N is withheld (the acconto is determined by the
+conguaglio of the year before), the conguaglio of N determines the whole
+municipal surtax as saldo, and the acconto of N+1 is computed on the income
+this employer paid in N.
+
 ### Surtax decisions
 
-Each jurisdiction named in the request records one `CalculationDecision` in
+Each jurisdiction named in the request records a `CalculationDecision` in
 `result.decisions`, with capability `addizionale_regionale` or
-`addizionale_comunale`.  Its `amount` is the annual surtax projected for the
-tax year; the payslip withholds an equal share of it on every withholding
-slot.  Its `inputs` hold the code, the table row name, the tax year and the
-taxable income, and its `rule` and `rule_version` the bundled ruleset.
+`addizionale_comunale`. On the conguaglio its `amount` is the annual surtax
+of the tax year on the annual taxable income; on any other run the surtax
+is not determined. Its `inputs` hold the code, the table row name, the tax
+year and the taxable income, and its `rule` and `rule_version` the bundled
+ruleset.
 
 | `reason_code` | Status | Amount | Meaning |
 |---|---|---|---|
-| `table_applied` | `final` | computed | The bundled brackets were applied. |
-| `advance_applied` | `final` | computed | Municipal rates are the prior year ones: only the advance (`advance_fraction`, 30%) is computed; `inputs["balance"]` is `not_modelled`. |
+| `determined_at_conguaglio` | `final` | 0 | A run before the conguaglio: the table exists, nothing of the year is determined yet. |
+| `table_applied` | `final` | computed | The bundled brackets of the tax year were applied. |
+| `prior_year_rates_applied` | `provisional` | computed | The bundled municipal table holds the rates of the year before; they are applied, issue `municipal_surtax_prior_year_rates`. |
 | `below_exemption_threshold` | `final` | 0 | The municipal exemption threshold covers the taxable income. |
-| `no_irpef_due` | `final` | 0 | Net IRPEF (gross less the deductions) on the projected taxable income is zero, so no surtax is withheld. |
+| `no_irpef_due` | `final` | 0 | Net IRPEF (gross less the deductions) of the year is zero, so no surtax is due. |
 | `table_unknown` | `incomplete` | `None` | The code is well formed but the tax year table has no row for it. |
 
 A `table_unknown` decision comes with a `CalculationIssue` coded
-`regional_surtax_unknown` or `municipal_surtax_unknown`.  Nothing is
-withheld for that surtax (the ledger posts 0), and the period result, hence
-the year result, is `incomplete`: **it must not be paid as is**.  Without
-`regione` and `comune_belfiore` no surtax decision is taken and nothing is
-withheld.
+`regional_surtax_unknown` or `municipal_surtax_unknown`, on every run, not
+only on the conguaglio. Nothing is determined for that surtax and the
+period result, hence the year result, is `incomplete`: **it must not be
+paid as is**. Without `regione` and `comune_belfiore` no surtax decision is
+taken and nothing is determined; the installments carried in are withheld
+all the same.
+
+The conguaglio and each installment record one more decision per
+component, with the same capability and `inputs["component"]`
+(`regional_balance`, `municipal_balance` or `municipal_advance`),
+`inputs["reference_year"]` and `inputs["jurisdiction"]`:
+
+| `reason_code` | Amount | Meaning |
+|---|---|---|
+| `deferred_to_installments` | deferred | The conguaglio opened the obligation; `inputs["installments_total"]`, and `inputs["advance_withheld"]` for the saldo. |
+| `withheld_at_termination` | withheld | The last run of the employment withheld the surtax of its year at once. |
+| `surtax_refunded` | negative | The surtax withheld in the year (usually the acconto) exceeded what is due; the difference is refunded. |
+| `installment_posted`, `last_installment_posted` | withheld | An installment of a carried obligation; `inputs["installment_number"]`, `installments_total`, `residual_before`. |
+| `settled_at_termination` | withheld | The residual of a carried obligation, on the last run of the employment. |
 
 The surtax is due only when the IRPEF net of its deductions is due
 (D.Lgs. 446/1997 art. 50 c. 2 for the regional, D.Lgs. 360/1998 art. 1 c. 4
@@ -192,39 +275,21 @@ taxed abroad the IRPEF withheld can be too high and a surtax can be
 withheld where the credit would bring the net IRPEF to zero; compute such
 cases outside the engine.
 
-#### Advance and balance
+#### Municipal rates of the tax year
 
-For the municipal surtax, D.Lgs. 360/1998 art. 1 c. 4 sets an acconto of
-30% of the surtax "ottenuta applicando le aliquote ... al reddito
-imponibile dell'anno precedente", where "l'aliquota di cui al comma 3 e
-la soglia di esenzione di cui al comma 3-bis sono assunte nella misura
-vigente nell'anno precedente", withheld "in un numero massimo di nove rate
-mensili, effettuate
-a partire dal mese di marzo". The saldo is determined at the conguaglio
-and withheld "in un numero massimo di undici rate" from the next pay
-period, within the December remittance.
-
-The bundled 2026 municipal table holds the rates deliberated for 2025,
-the ones the 2026 acconto uses, so the engine computes the acconto only
-(`advance_applied`). The decision stays `final`: the rates and the 30% are
-the statutory ones, and the status of a surtax decision grades the table
-applied, as for the regional surtax, whose timing is simplified the same
-way. What the engine does not model is recorded instead of hidden:
-
-- the saldo of the year (withheld in the next year) and the saldo of the
-  year before (withheld in this one) are not computed; `inputs["balance"]`
-  of the decision is `not_modelled`;
-- the acconto is computed on the projected taxable income of the current
-  year, not on the taxable income of the year before; the two differ for a
-  new hire or a change of pay;
-- the annual surtax, regional and municipal, is split in equal parts over
-  the withholding slots of the year, not over the statutory installments
-  (nine from March for the municipal acconto, eleven in the next year for
-  the balances).
-
-`provisional` was considered for the acconto: it would flag every
-municipal result as not final without telling the reader what is missing,
-and would leave the regional surtax, simplified in the same way, `final`.
+The acconto of N+1 uses the rate and threshold "nella misura vigente
+nell'anno precedente" (art. 1 c. 4), which at the conguaglio of N are those
+of N; the saldo of N uses them too. The bundled `comunale-2026.json` holds
+the rates deliberated for 2025 (MEF list of 26 January 2026,
+`rates_are_advance: true`), not those of 2026. Until a table of the 2026
+rates is bundled the conguaglio of 2026 applies the 2025 rates and its
+municipal decisions are `provisional`, with the issue
+`municipal_surtax_prior_year_rates`; most municipalities confirm their rate
+from year to year, but the result must be checked against the 2026
+deliberation. Bundling the rates of 2026 as `comunale-2026.json` with
+`rates_are_advance: false` makes them `final` without code changes; a
+`comunale-2027.json` of the 2026 rates flagged as advance would not, since
+the conguaglio of 2026 reads the 2026 file.
 
 ### Tax credit decisions
 

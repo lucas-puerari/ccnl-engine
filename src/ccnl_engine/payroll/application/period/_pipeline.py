@@ -32,6 +32,7 @@ from ccnl_engine.payroll.domain.obligations import (
     TRATTAMENTO_RECOVERY,
     ULTERIORE_RECOVERY,
 )
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.pension_fund import resolve_terms
 
@@ -196,6 +197,10 @@ def _amounts_input(
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
         pension=_pension_terms(ctx),
+        conguaglio=ctx.conguaglio,
+        surtax_obligations=ctx.opening.obligations.surtax,
+        run_month=request.period_id.month,
+        regular_run=ctx.run_kind is RunKind.REGULAR,
     )
 
 

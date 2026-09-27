@@ -13,6 +13,10 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+from ccnl_engine.payroll.domain.surtax_obligations import (
+    SurtaxComponent,
+    SurtaxObligation,
+)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _PLAN = RecoveryPlan(
@@ -142,3 +146,28 @@ def test_unknown_due_is_accepted() -> None:
     """A due left ``None`` is not checked for cents."""
     state = OpeningBalances(tax_year=2026, ulteriore_due=None).to_state()
     assert state.ytd.ulteriore_detrazione.due is None
+
+
+def test_imports_the_surtax_of_the_previous_conguaglio() -> None:
+    """The 2025 saldo and the 2026 acconto open 2026, with the acconto withheld."""
+    saldo = SurtaxObligation.open(
+        SurtaxComponent.REGIONAL_BALANCE, 2025, "IT-88", Decimal("110.00")
+    )
+    state = OpeningBalances(
+        tax_year=2026,
+        surtax_withheld=Decimal(30),
+        municipal_advance_withheld=Decimal(12),
+        surtax_obligations=(saldo,),
+    ).to_state()
+
+    assert state.obligations.surtax == (saldo,)
+    assert state.ytd.tax.municipal_advance == Decimal(12)
+
+
+def test_rejects_surtax_of_the_conguaglio_of_the_tax_year() -> None:
+    """Surtax the 2026 conguaglio determines cannot open 2026."""
+    late = SurtaxObligation.open(
+        SurtaxComponent.MUNICIPAL_ADVANCE, 2026, "I452", Decimal(9)
+    )
+    with pytest.raises(InvalidInputError, match="year before 2026"):
+        OpeningBalances(tax_year=2026, surtax_obligations=(late,))

@@ -24,6 +24,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
+from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
@@ -71,6 +72,9 @@ class OpeningBalances:
             the taxable income (D.Lgs. 252/2005 art. 8 c. 4).
         irpef_withheld: IRPEF withheld.
         surtax_withheld: Regional and municipal surtax withheld.
+        municipal_advance_withheld: Part of ``surtax_withheld`` withheld as
+            the municipal acconto of ``tax_year`` (D.Lgs. 360/1998 art. 1
+            c. 5); the conguaglio deducts it from the municipal surtax.
         fringe_value: Fringe benefit value granted (Art. 51 c. 3 TUIR).
         fringe_taxed: Part of ``fringe_value`` already taxed.
         pdr: Premio di Risultato taxed at the substitute rate.
@@ -97,6 +101,13 @@ class OpeningBalances:
             taxed at the substitute rate (L. 199/2025 art. 1 cc. 10-11).
         recoveries: Installment recoveries still running, from this tax
             year or an earlier one.
+        surtax_obligations: Surtax determined by the conguaglio of an
+            earlier tax year and not yet withheld: the regional surtax and
+            municipal saldo of ``tax_year - 1`` and the municipal acconto of
+            ``tax_year``, by the installments still to post.  For a worker
+            employed in the previous year, import them: the engine
+            withholds no surtax the previous provider determined unless it
+            is stated here.
     """
 
     tax_year: int
@@ -110,6 +121,7 @@ class OpeningBalances:
     pension_deducted: Decimal = _ZERO
     irpef_withheld: Decimal = _ZERO
     surtax_withheld: Decimal = _ZERO
+    municipal_advance_withheld: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_taxed: Decimal = _ZERO
     pdr: Decimal = _ZERO
@@ -129,6 +141,7 @@ class OpeningBalances:
     surtax_shortfall: Decimal = _ZERO
     work_time_regime_used: Decimal = _ZERO
     recoveries: tuple[RecoveryObligation, ...] = ()
+    surtax_obligations: tuple[SurtaxObligation, ...] = ()
 
     def __post_init__(self) -> None:
         """Validate every amount and the consistency of the totals.
@@ -137,8 +150,17 @@ class OpeningBalances:
             InvalidInputError: When the totals do not form a valid state
                 (e.g. a negative amount, more recovered than recognized, a
                 closed run out of order, a recovery opened after
-                ``tax_year``) or an amount is finer than a cent.
+                ``tax_year``, surtax determined by the conguaglio of
+                ``tax_year`` or later) or an amount is finer than a cent.
         """
+        late = [o for o in self.surtax_obligations if o.tax_year >= self.tax_year]
+        if late:
+            msg = (
+                f"OpeningBalances.surtax_obligations must be determined by "
+                f"the conguaglio of a year before {self.tax_year}; got "
+                f"{[(o.component.value, o.tax_year) for o in late]}"
+            )
+            raise InvalidInputError(msg, feature=_FEATURE)
         try:
             self.to_state()
         except ValueError as exc:
@@ -153,7 +175,8 @@ class OpeningBalances:
 
         Returns:
             A :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` bound
-            to :attr:`tax_year`, carrying :attr:`recoveries`.
+            to :attr:`tax_year`, carrying :attr:`recoveries`
+            and :attr:`surtax_obligations`.
         """
         ytd = TaxYearState(
             tax_year=self.tax_year,
@@ -170,7 +193,11 @@ class OpeningBalances:
             fringe=FringeYtd(
                 value=self.fringe_value, taxed=self.fringe_taxed, pdr=self.pdr
             ),
-            tax=TaxYtd(irpef=self.irpef_withheld, surtax=self.surtax_withheld),
+            tax=TaxYtd(
+                irpef=self.irpef_withheld,
+                surtax=self.surtax_withheld,
+                municipal_advance=self.municipal_advance_withheld,
+            ),
             trattamento=TrattamentoAccount(
                 recognized=self.trattamento_recognized,
                 recovered=self.trattamento_recovered,
@@ -195,7 +222,10 @@ class OpeningBalances:
             ),
         )
         return PeriodState(
-            ytd=ytd, obligations=EmploymentObligations(recoveries=self.recoveries)
+            ytd=ytd,
+            obligations=EmploymentObligations(
+                recoveries=self.recoveries, surtax=self.surtax_obligations
+            ),
         )
 
 

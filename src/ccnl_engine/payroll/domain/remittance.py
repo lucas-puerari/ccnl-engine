@@ -8,7 +8,7 @@ lists it:
 - Allegato 1 to the provvedimento of the Direttore dell'Agenzia of 31
   January 2025 prot. n. 25978/2025, "Codici tributo relativi alle
   ritenute/trattenute operate": 1001, 1002, 1012, 1053, 1701, 1704, 3802,
-  at
+  3847, 3848, at
   https://www.agenziaentrate.gov.it/portale/documents/20143/8647956/allegato+1+-+codici+tributo.pdf/c30b8847-5d55-4a04-7664-9d726e706c61
   ;
 - ris. 35/E of 26 June 2020 (1701), ris. 9/E of 31 January 2025 (1704),
@@ -18,13 +18,13 @@ Only the national codes are used: the variants for tax due in or remitted
 from Sicily, Sardinia and Valle d'Aosta (e.g. 1301, 1609, 1610) are not
 selected.  Amounts whose code the engine cannot tell are left uncoded:
 
-- municipal surtax: 3847 (acconto) or 3848 (saldo), and the engine does
-  not split the two;
+- surtax carried from an earlier run for lack of pay: the shortfall is
+  not tracked by component;
 - trattamento integrativo recovered from the worker: ris. 35/E/2020 gives
   1701 for the credit column only;
 - an ulteriore detrazione of an earlier year recovered by installments;
-- IRPEF refunded by the conguaglio and a recovery given back for lack of
-  pay, which are not remitted.
+- IRPEF and surtax refunded by the conguaglio and a recovery given back
+  for lack of pay, which are not remitted.
 """
 
 from __future__ import annotations
@@ -42,6 +42,8 @@ __all__ = [
     "ARREARS_WITHHOLDING",
     "CODED_ACCOUNTS",
     "IRPEF_WITHHOLDING",
+    "MUNICIPAL_SURTAX_ADVANCE",
+    "MUNICIPAL_SURTAX_BALANCE",
     "PDR_SUBSTITUTE_TAX",
     "REGIME_CODES",
     "REGIONAL_SURTAX",
@@ -79,6 +81,12 @@ SOMMA_ESENTE_CREDIT = "1704"
 #: "ADDIZIONALE REGIONALE ALL'IMPOSTA SUL REDDITO DELLE PERSONE FISICHE
 #: SOSTITUTI D'IMPOSTA" (Allegato 1, provv. 31/01/2025).
 REGIONAL_SURTAX = "3802"
+#: "ADDIZIONALE COMUNALE ALL'IRPEF TRATTENUTA DAL SOSTITUTO D'IMPOSTA -
+#: ACCONTO - RIS. N. 368/E DEL 12/12/2007" (Allegato 1, provv. 31/01/2025).
+MUNICIPAL_SURTAX_ADVANCE = "3847"
+#: "ADDIZIONALE COMUNALE ALL'IRPEF TRATTENUTA DAL SOSTITUTO D'IMPOSTA -
+#: SALDO - RIS. N. 368/E DEL 12/12/2007" (Allegato 1, provv. 31/01/2025).
+MUNICIPAL_SURTAX_BALANCE = "3848"
 
 #: Code of the substitute tax of each preferential regime, by regime id:
 #: 1075 for the incrementi retributivi of L. 199/2025 art. 1 c. 7
@@ -105,6 +113,7 @@ _COLUMNS: Mapping[AccountKind, RemittanceColumn | None] = MappingProxyType({
     AccountKind.ORDINARY_TAX: RemittanceColumn.DEBIT,
     AccountKind.TAX_REFUNDS: None,
     AccountKind.SURTAX: RemittanceColumn.DEBIT,
+    AccountKind.SURTAX_REFUNDS: None,
     AccountKind.SUBSTITUTE_TAX: RemittanceColumn.DEBIT,
     AccountKind.SEPARATE_TAX: RemittanceColumn.DEBIT,
     AccountKind.CREDITS: RemittanceColumn.CREDIT,
@@ -119,7 +128,11 @@ REMITTANCE_ACCOUNTS: tuple[AccountKind, ...] = tuple(_COLUMNS)
 #: never coded.
 ACCOUNT_CODES: Mapping[AccountKind, frozenset[str]] = MappingProxyType({
     AccountKind.ORDINARY_TAX: frozenset({IRPEF_WITHHOLDING}),
-    AccountKind.SURTAX: frozenset({REGIONAL_SURTAX}),
+    AccountKind.SURTAX: frozenset({
+        REGIONAL_SURTAX,
+        MUNICIPAL_SURTAX_ADVANCE,
+        MUNICIPAL_SURTAX_BALANCE,
+    }),
     AccountKind.SUBSTITUTE_TAX: frozenset({PDR_SUBSTITUTE_TAX, *REGIME_CODES.values()}),
     AccountKind.SEPARATE_TAX: frozenset({ARREARS_WITHHOLDING, SEVERANCE_WITHHOLDING}),
     AccountKind.CREDITS: frozenset({TRATTAMENTO_CREDIT, SOMMA_ESENTE_CREDIT}),

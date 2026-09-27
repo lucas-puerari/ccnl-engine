@@ -121,7 +121,7 @@ def check_ytd_continuity(
 
     - ``earnings.gross``: the CASH_EARNINGS total;
     - ``earnings.inps_employee``: the EMPLOYEE_CONTRIBUTIONS total;
-    - ``tax.surtax``: the SURTAX total;
+    - ``tax.surtax``: the SURTAX total less the SURTAX_REFUNDS total;
     - ``trattamento`` net credit: the ``tratt_integ_{run}`` entry less the
       ``tratt_integ_recovery_{run}`` entry;
     - ``somma_esente`` net credit: the ``somma_esente_{run}`` entry less the
@@ -148,7 +148,8 @@ def check_ytd_continuity(
         (
             "surtax_ytd",
             op.tax.surtax,
-            _sum_account(result, AccountKind.SURTAX),
+            _sum_account(result, AccountKind.SURTAX)
+            - _sum_account(result, AccountKind.SURTAX_REFUNDS),
             closing.tax.surtax,
         ),
         (

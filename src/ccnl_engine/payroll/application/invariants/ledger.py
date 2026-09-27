@@ -78,8 +78,9 @@ def check_net_identity(
 ) -> list[ReconciliationViolation]:
     """Check the net identity.
 
-    CASH_EARNINGS + CREDITS + TAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL
-    + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS
+    CASH_EARNINGS + CREDITS + TAX_REFUNDS + SURTAX_REFUNDS
+    + CREDIT_RECOVERY_SHORTFALL + TFR_SETTLEMENT
+    - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS
     - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE
     - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
     - ORDINARY_TAX - SURTAX - SEPARATE_TAX
@@ -92,6 +93,7 @@ def check_net_identity(
     period_credits = (
         _sum_account(result, AccountKind.CREDITS)
         + _sum_account(result, AccountKind.TAX_REFUNDS)
+        + _sum_account(result, AccountKind.SURTAX_REFUNDS)
         + _sum_account(result, AccountKind.CREDIT_RECOVERY_SHORTFALL)
         - _sum_account(result, AccountKind.CREDIT_RECOVERIES)
     )

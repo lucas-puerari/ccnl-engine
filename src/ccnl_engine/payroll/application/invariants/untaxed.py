@@ -38,6 +38,7 @@ _TAX_ACCOUNTS = (
     AccountKind.CREDIT_RECOVERIES,
     AccountKind.CREDIT_RECOVERY_SHORTFALL,
     AccountKind.TAX_REFUNDS,
+    AccountKind.SURTAX_REFUNDS,
 )
 
 

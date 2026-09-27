@@ -7,7 +7,9 @@ last installment (D.L. 3/2020 art. 1 c. 3 for the trattamento integrativo,
 L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
 detrazione).  On the last run of the employment the whole residual is
 recovered instead (:meth:`~ccnl_engine.payroll.domain.recovery_plan\
-.RecoveryPlan.post`), so no recovery outlives the employment.
+.RecoveryPlan.post`), so no recovery outlives the employment.  The surtax a
+conguaglio of year N determines is withheld the same way on the payslips of
+N+1 (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`).
 """
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ if TYPE_CHECKING:
         InstallmentRun,
         PostedInstallment,
     )
+    from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 
 __all__ = [
     "RECOVERY_RULES",
@@ -126,16 +129,27 @@ class EmploymentObligations:
     Attributes:
         recoveries: Active installment recoveries, at most one per credit
             kind and origin tax year, in the order they were opened.
+        surtax: Surtax still to withhold, at most one per component and
+            tax year of the conguaglio that determined it, oldest first.
     """
 
     recoveries: tuple[RecoveryObligation, ...] = ()
+    surtax: tuple[SurtaxObligation, ...] = ()
 
     def __post_init__(self) -> None:
         """Reject two recoveries of the same credit opened in the same year.
 
         Raises:
-            ValueError: When two recoveries share ``tax_year`` and kind.
+            ValueError: When two recoveries share ``tax_year`` and kind, or
+                two surtax obligations share ``tax_year`` and component.
         """
+        surtax = [(o.tax_year, o.component) for o in self.surtax]
+        if len(set(surtax)) != len(surtax):
+            msg = (
+                "EmploymentObligations.surtax holds two obligations of the "
+                f"same component determined in the same tax year: {surtax}"
+            )
+            raise ValueError(msg)
         keys = [(r.tax_year, r.plan.kind) for r in self.recoveries]
         if len(set(keys)) != len(keys):
             msg = (
@@ -146,8 +160,10 @@ class EmploymentObligations:
 
     @property
     def latest_tax_year(self) -> int | None:
-        """Latest origin tax year of any recovery, ``None`` when there is none."""
-        return max((r.tax_year for r in self.recoveries), default=None)
+        """Latest origin tax year of any obligation, ``None`` without one."""
+        years = [r.tax_year for r in self.recoveries]
+        years.extend(o.tax_year for o in self.surtax)
+        return max(years, default=None)
 
     def recovery_of(self, tax_year: int, kind: str) -> RecoveryPlan | None:
         """Return the plan of credit ``kind`` opened in ``tax_year``, if any.

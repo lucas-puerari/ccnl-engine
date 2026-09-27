@@ -1,5 +1,51 @@
 # Migration guide
 
+## Surtax withheld the year after the conguaglio
+
+The regional and municipal surtax of a tax year is now determined by its
+conguaglio and withheld on the payslips of the next year: the regional
+surtax and the municipal saldo in up to eleven installments from January
+to November, the municipal acconto of the next year in up to nine from
+March to November (D.Lgs. 446/1997 art. 50 c. 4; D.Lgs. 360/1998 art. 1
+cc. 4-5). The last run of the employment withholds everything at once. It
+replaces the equal split of the projected annual surtax over the slots of
+the same year. See
+[Fiscal: when the surtax is withheld](engine/fiscal.md#when-the-surtax-is-withheld).
+
+**This changes net pay.** An employment the engine computes from January
+2026 withholds no surtax in 2026 unless the surtax the 2025 conguaglio
+determined is imported: the 2026 surtax is deferred to 2027. For a worker
+employed in 2025, import the 2025 regional surtax, the 2025 municipal
+saldo and the 2026 acconto with `OpeningBalances.surtax_obligations`,
+otherwise the payslips of 2026 under-withhold what the law requires.
+
+Commercio L4 resident in Sassari (`IT-88`, `I452`: Sardegna 1.23%, Sassari
+0.8% above a 15,000 EUR threshold, both checked against the MEF tables),
+bundled 2026 rules, 2027 on the same rules:
+
+| | Before | After, nothing imported | After, 2025 surtax imported |
+|---|---|---|---|
+| 2026 surtax withheld | 333.64 (23.81 to 23.91 on each of 14 runs) | 0.00 | 462.29 (37.05 in January and February, 43.12 March to October, 43.23 in November, 0 in December and the extra months) |
+| 2026 annual net | 20,589.83 | 20,923.47 | 20,461.18 |
+| 2027 surtax withheld | 346.29 | 516.94 (2026 saldi 280.11 + 182.18, 2027 acconto 54.65) | |
+| 2027 annual net | 21,134.80 | 20,964.15 | |
+
+The imported column assumes 2025 amounts equal to the 2026 ones (regional
+280.11, municipal saldo 127.53, acconto 54.65). The annual surtax is higher
+than before because the engine used to withhold only the 30% acconto of
+the municipal surtax and never its saldo.
+
+| Change | What to do |
+|---|---|
+| `SurtaxObligation`, `SurtaxComponent` added to the public API; `EmploymentObligations.surtax` holds the surtax still to withhold | Persist it with the state; import the previous provider's amounts with `OpeningBalances.surtax_obligations` |
+| `OpeningBalances.municipal_advance_withheld` and `TaxYtd.municipal_advance`: acconto withheld in the year | State it when taking over mid-year: the conguaglio deducts it from the municipal surtax |
+| Surtax lines are `surtax_{component}_{reference year}_{run}` (`regional_balance`, `municipal_balance`, `municipal_advance`), coded 3802, 3848, 3847; `surtax_regional_{run}` and `surtax_municipal_{run}` are gone | Match the new ids or read the remittance summary |
+| `AccountKind.SURTAX_REFUNDS` added: surtax withheld above what the conguaglio finds due (usually the acconto), given back on `surtax_refund_{run}` | Net = ... + `SURTAX_REFUNDS`; `TaxYtd.surtax` is `SURTAX` less `SURTAX_REFUNDS` |
+| `TaxYtd.regional_settled`, `TaxYtd.municipal_settled`: surtax of the year a conguaglio on the last run of the employment withheld | A later termination run in the same year withholds only the difference |
+| Surtax reason codes: `advance_applied` removed; `determined_at_conguaglio` on every run before the conguaglio; `prior_year_rates_applied` (provisional, issue `municipal_surtax_prior_year_rates`) while the bundled municipal table holds the rates of the year before; component decisions `deferred_to_installments`, `withheld_at_termination`, `surtax_refunded` and installment reasons | Handle them where reason codes are matched; select the annual decision as the one without `inputs["component"]` |
+| The conguaglio of 2026 is `provisional` for a municipality: the bundled table has the 2025 rates | Check the municipal amounts against the 2026 deliberation |
+| `PeriodState.SCHEMA_VERSION` is 4 | A persisted state of version 3 has no surtax obligations and no acconto withheld; add them before reuse |
+
 ## Credit offsets split from the IRPEF withholding
 
 The ledger now keeps IRPEF withheld, credits paid, credits recovered and

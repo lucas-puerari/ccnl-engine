@@ -24,17 +24,17 @@ from ccnl_engine.payroll.application.period._run_decisions import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._irpef import _Irpef
+    from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
     from ccnl_engine.payroll.application.amounts._taxable import _PdrSplit
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
-    from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome
 
 
 def _decisions(
-    inp: _AmountsInput, pdr: _PdrSplit, irpef: _Irpef, surtax: SurtaxOutcome
+    inp: _AmountsInput, pdr: _PdrSplit, irpef: _Irpef, surtax: RunSurtax
 ) -> tuple[CalculationDecision, ...]:
     """Return the tax decisions of the run, the surtax ones last.
 
@@ -53,7 +53,7 @@ def _decisions(
                 inp.rules.year,
             ),
             *irpef.tax.decisions,
-            *surtax.decisions,
+            *surtax.all_decisions,
         )
         if d is not None
     )
@@ -87,7 +87,7 @@ def _compute_amounts(
     taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr, pension)
     irpef = withhold_irpef(inp, taxable, breakdown.employee)
     tax_comp = irpef.tax.computation
-    surtax, period_surtax = run_surtax(inp, taxable.projected, irpef.tax.irpef_net)
+    surtax = run_surtax(inp, taxable.projected, irpef.tax.irpef_net)
     amounts = _PeriodAmounts(
         monthly_gross=inp.monthly_gross,
         inps_employee=breakdown.employee,
@@ -95,7 +95,7 @@ def _compute_amounts(
         tfr=tfr,
         period_irpef=tax_comp.ordinary_tax,
         period_tratt=tax_comp.trattamento_integrativo,
-        period_surtax=period_surtax,
+        period_surtax=surtax.due,
         period_taxable=taxable.period,
         period_substitute_tax=pdr.substitute_tax,
         pdr_eligible=pdr.eligible,

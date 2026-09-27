@@ -34,6 +34,7 @@ from ccnl_engine import (
     WeeklyHours,
     YearInput,
 )
+from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 engine = PayrollEngine.bundled()
 
@@ -138,18 +139,14 @@ def test_tredicesima_commercio_level4() -> None:
 
 
 def test_addizionali_emilia_romagna_modena() -> None:
-    """Regional (IT-45) and municipal (Modena F257) surtax reduces net vs. no-surtax.
+    """January withholds the first installments of the 2025 surtax.
 
-    Hand derivation on the projected annual taxable income of 25,394.73
-    (regional table 2026 is ``source_type: estimated``, unverified):
-
-    - regional, Emilia-Romagna 1.23% up to 28,000: 25,394.73 x 0.0123 = 312.36;
-    - municipal, Modena 0.8% above the 15,000 exemption, advance 30%:
-      25,394.73 x 0.008 = 203.16, x 0.30 = 60.95;
-    - 373.31 over 13 withholding slots = 28.72; 1,751.35 - 28.72 = 1,722.63.
-
-    Before region codes were resolved, ``"ER"`` matched no regional row and
-    only the municipal advance was withheld (net 1,746.66).
+    The 2025 conguaglio determined 330.00 of regional surtax and 110.00 of
+    municipal saldo (imported, stated by the test), each withheld in eleven
+    installments from January (D.Lgs. 446/1997 art. 50 c. 4, D.Lgs.
+    360/1998 art. 1 c. 5): 30.00 + 10.00 = 40.00 in January.  The 2026
+    acconto (45.00) starts in March, and the 2026 surtax is determined at
+    the conguaglio, so 1,751.35 - 40.00 = 1,711.35.
     """
     result_no_surtax = engine.calculate_period(
         PeriodInput(
@@ -170,12 +167,12 @@ def test_addizionali_emilia_romagna_modena() -> None:
             ),
             employer=EmployerProfile(headcount=Headcount(100)),
             facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),
+            opening_state=opening_with_2025_surtax("IT-45", "F257"),
         )
     )
     assert result_no_surtax.period_net == Decimal("1751.35")
-    assert result_surtax.period_net == Decimal("1722.63")
+    assert result_surtax.period_net == Decimal("1711.35")
     assert result_surtax.status is CalculationStatus.FINAL
-    assert result_surtax.period_net < result_no_surtax.period_net
 
 
 # ---------------------------------------------------------------------------
@@ -400,9 +397,10 @@ def test_family_deductions_increase_net() -> None:
             ),
         )
     )
-    # Emilia-Romagna 1.23% on the projected 22,677.53 = 278.93 a year, over
-    # 14 slots = 19.92: 1,489.92 without regional surtax - 19.92 = 1,470.00.
-    assert result_single.period_net == Decimal("1470.00")
+    # The 2026 regional surtax is determined at the conguaglio and withheld
+    # in 2027 (D.Lgs. 446/1997 art. 50 c. 4); with no 2025 surtax to carry,
+    # January withholds none: the net is the one without surtax, 1,489.92.
+    assert result_single.period_net == Decimal("1489.92")
     assert result_family.period_net > result_single.period_net
 
 

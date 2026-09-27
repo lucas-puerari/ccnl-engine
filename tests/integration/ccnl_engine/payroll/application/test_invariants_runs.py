@@ -47,6 +47,7 @@ from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, WithholdingShortfall
 from ccnl_engine.shared.domain.errors import DataIntegrityError, OutOfScopeError
+from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 from tests.helpers import year_input
 
@@ -304,17 +305,19 @@ class TestYtdContinuity:
 
     def test_real_run_passes(self) -> None:
         """A real run with surtax advances every accumulator."""
-        result = _run(regione="IT-25", comune_belfiore="F205")
+        opening = opening_with_2025_surtax()
+        result = _run(opening=opening, regione="IT-25", comune_belfiore="F205")
         assert result.closing_state.ytd.tax.surtax > 0
-        assert check_ytd_continuity(result, _OPENING) == []
+        assert check_ytd_continuity(result, opening) == []
 
     def test_wrong_surtax_is_reported(self) -> None:
         """A surtax YTD that ignores the SURTAX posting is a violation."""
-        result = _run(regione="IT-25", comune_belfiore="F205")
+        opening = opening_with_2025_surtax()
+        result = _run(opening=opening, regione="IT-25", comune_belfiore="F205")
         tax = result.closing_state.ytd.tax
         bad = _with_ytd(result, tax=replace(tax, surtax=Decimal(0)))
 
-        (violation,) = check_ytd_continuity(bad, _OPENING)
+        (violation,) = check_ytd_continuity(bad, opening)
         assert violation.invariant_id == "ytd_continuity"
         assert "surtax_ytd" in violation.message
 

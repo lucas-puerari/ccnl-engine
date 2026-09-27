@@ -1,48 +1,60 @@
-"""Regional and municipal surtax: declare regione and comune_belfiore."""
+"""Regional and municipal surtax: withheld the year after the conguaglio."""
 
 from datetime import date
+from decimal import Decimal
 
 from ccnl_engine import (
     EmployerProfile,
     Employment,
     Headcount,
+    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+    SurtaxComponent,
+    SurtaxObligation,
 )
 
 engine = PayrollEngine.bundled()
 
+# The 2025 conguaglio, run by the previous provider, determined the 2025
+# regional surtax and municipal saldo and the 2026 municipal acconto.
+opening = OpeningBalances(
+    tax_year=2026,
+    surtax_obligations=(
+        SurtaxObligation.open(
+            SurtaxComponent.REGIONAL_BALANCE, 2025, "IT-45", Decimal("330.00")
+        ),
+        SurtaxObligation.open(
+            SurtaxComponent.MUNICIPAL_BALANCE, 2025, "F257", Decimal("110.00")
+        ),
+        SurtaxObligation.open(
+            SurtaxComponent.MUNICIPAL_ADVANCE, 2025, "F257", Decimal("45.00")
+        ),
+    ),
+).to_state()
 
-def january(facts: PeriodFacts) -> PeriodInput:
-    """Build a Metalmeccanico C3 run for January 2026.
 
-    Returns:
-        The period input with ``facts``.
-    """
-    return PeriodInput(
-        run=PayrollRun.regular(year=2026, month=1),
-        payment_date=date(2026, 1, 28),
+result = engine.calculate_period(
+    PeriodInput(
+        run=PayrollRun.regular(year=2026, month=3),
+        payment_date=date(2026, 3, 27),
         employment=Employment(
             ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
         ),
         employer=EmployerProfile(headcount=Headcount(100)),
-        facts=facts,
+        facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),  # Modena
+        opening_state=opening,
     )
-
-
-# No surtax (default)
-result_no_surtax = engine.calculate_period(january(PeriodFacts()))
-
-# Emilia-Romagna region + Modena municipality
-result_surtax = engine.calculate_period(
-    january(PeriodFacts(regione="IT-45", comune_belfiore="F257"))  # Modena
 )
 
-print(f"Net (no surtax):   {result_no_surtax.period_net}")
-print(f"Net (IT-45 Modena): {result_surtax.period_net}")
-print(f"Surtax withheld:   {result_no_surtax.period_net - result_surtax.period_net}")
-print(f"Status:            {result_surtax.status}")  # final: both tables known
-for decision in result_surtax.decisions:
-    print(f"  {decision.capability}: {decision.reason_code} {decision.amount}")
+# March withholds one installment of each 2025 saldo and the first one
+# of the 2026 acconto: 30.00 (3802) + 10.00 (3848) + 5.00 (3847).
+for line in result.remittance_summary():
+    if line.account == "surtax":
+        print(f"  {line.remittance_code}: {line.amount}")
+print(f"Status: {result.status}")  # final: both tables known
+# The 2026 surtax is determined by the conguaglio and withheld in 2027.
+for obligation in result.closing_state.obligations.surtax:
+    print(f"  {obligation.component}: residual {obligation.plan.residual}")

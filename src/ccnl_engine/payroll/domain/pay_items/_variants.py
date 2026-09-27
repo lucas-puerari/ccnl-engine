@@ -217,7 +217,7 @@ class TaxCreditItem(_PayItemBase):
 
 
 class TaxRefundItem(_PayItemBase):
-    """Conguaglio IRPEF credit returned to the worker."""
+    """Tax returned to the worker by the conguaglio: IRPEF or surtax."""
 
     kind: Literal["tax_refund_item"] = "tax_refund_item"
 

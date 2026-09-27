@@ -93,8 +93,8 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         the current tax year running after the run: trattamento integrativo
         first, then somma esente, then the ulteriore detrazione, whose
         installments are posted by the adjustment runs of the tax year and
-        the runs of the next one.  After the last run of the employment no
-        recovery is left.
+        the runs of the next one; then the surtax still to withhold.  After
+        the last run of the employment no recovery and no surtax is left.
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
@@ -120,7 +120,32 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
     )
     return PeriodState(
         ytd=ytd,
-        obligations=EmploymentObligations(recoveries=outcome.carried + current),
+        obligations=EmploymentObligations(
+            recoveries=outcome.carried + current,
+            surtax=outcome.amounts.surtax.obligations,
+        ),
+    )
+
+
+def _closing_tax(op: TaxYearState, outcome: RunOutcome) -> TaxYtd:
+    """Return the tax withheld YTD after the run.
+
+    The surtax refunded by the conguaglio lowers the surtax withheld, and
+    the acconto or saldo it was taken from.
+
+    Returns:
+        The IRPEF, surtax and municipal acconto withheld after the run.
+    """
+    amounts = outcome.amounts
+    surtax = amounts.surtax
+    settled = surtax.conguaglio
+    advance = surtax.advance_withheld(amounts.period_surtax, outcome.tax_year)
+    return TaxYtd(
+        irpef=op.tax.irpef + amounts.period_irpef,
+        surtax=op.tax.surtax + amounts.period_surtax - surtax.refund,
+        municipal_advance=op.tax.municipal_advance + advance - settled.advance_refunded,
+        regional_settled=op.tax.regional_settled + settled.regional_settled,
+        municipal_settled=op.tax.municipal_settled + settled.municipal_settled,
     )
 
 
@@ -157,10 +182,7 @@ def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
             taxed=op.fringe.taxed + events.fringe_irpef,
             pdr=op.fringe.pdr + amounts.pdr_eligible,
         ),
-        tax=TaxYtd(
-            irpef=op.tax.irpef + amounts.period_irpef,
-            surtax=op.tax.surtax + amounts.period_surtax,
-        ),
+        tax=_closing_tax(op, outcome),
         trattamento=op.trattamento.after(
             amounts.period_tratt,
             None if tratt is None else tratt.amount,

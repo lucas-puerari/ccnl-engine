@@ -67,6 +67,8 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
+    "SurtaxComponent",
+    "SurtaxObligation",
     "WeeklyHours",
     "WelfareEvent",
     "WorkCalendar",
