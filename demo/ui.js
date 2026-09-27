@@ -789,7 +789,7 @@ function renderSources(provenanceList, rulesetVersion) {
   for (const p of provenanceList) {
     const docKey = (p.title || "") + "|" + (p.url || "");
     if (!groups.has(docKey)) {
-      groups.set(docKey, { title: p.title, url: p.url, authority: p.authority, entries: [] });
+      groups.set(docKey, { title: p.title, url: p.url, entries: [] });
     }
     groups.get(docKey).entries.push(p);
   }
@@ -807,10 +807,6 @@ function renderSources(provenanceList, rulesetVersion) {
   };
 
   for (const [, doc] of groups) {
-    const authCls = doc.authority === "official" ? "auth-official"
-                  : doc.authority === "derived"  ? "auth-derived"
-                  : "auth-secondary";
-    const authLabel = (doc.authority || "").charAt(0).toUpperCase() + (doc.authority || "").slice(1);
     const hasUrl = doc.url && doc.url !== "unavailable";
     const titleHtml = hasUrl
       ? `<a href="${esc(doc.url)}" target="_blank" rel="noopener" style="overflow-wrap:anywhere">${esc(doc.title)}</a>`
@@ -836,7 +832,6 @@ function renderSources(provenanceList, rulesetVersion) {
     const div = document.createElement("div");
     div.className = "source-item";
     div.innerHTML = `
-      <span class="authority-badge ${authCls}">${esc(authLabel)}</span>
       <div class="source-info">
         <div class="source-title">${titleHtml}</div>
         ${entriesHtml}
