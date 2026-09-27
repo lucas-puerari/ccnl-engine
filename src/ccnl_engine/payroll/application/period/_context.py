@@ -51,7 +51,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
-    from ccnl_engine.payroll.service.types import MonthlyPayChain
+    from ccnl_engine.payroll.service.types import (
+        ApprenticeshipScaling,
+        MonthlyPayChain,
+    )
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
 
@@ -85,6 +88,8 @@ class RunContext:
         withholding_schedule: Withholding slots of the tax year.
         worker_category: Canonical category of the worker.
         chain: Pay chain of the run, adjusted for an extra month.
+        apprenticeship: Percentage scaling of a percentage apprenticeship,
+            ``None`` for any other contract or track.
         closed_run_id: Identifier of the run the calculation closes.
         upcoming_gross: Recurring gross of the slots still to come.
         accrual: Rateo an extra-month run pays, ``None`` for a regular run.
@@ -100,6 +105,7 @@ class RunContext:
     withholding_schedule: WithholdingSchedule
     worker_category: WorkerCategory | None
     chain: MonthlyPayChain
+    apprenticeship: ApprenticeshipScaling | None
     closed_run_id: PayrollRunId
     upcoming_gross: Decimal
     accrual: ExtraMonthAccrual | None
@@ -176,11 +182,12 @@ def _base_chain(
     request: PeriodCalculationRequest,
     contract: _Contract,
     worker_category: WorkerCategory | None,
-) -> MonthlyPayChain:
+) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the pay chain of a regular month for the worker.
 
     Returns:
-        The chain before any extra-month adjustment.
+        The chain before any extra-month adjustment, and the apprenticeship
+        scaling applied to it.
     """
     return _resolve_chain(
         contract.ccnl,
@@ -218,7 +225,7 @@ def build_context(
         request.category,
         seniority=request.seniority_months,
     )
-    chain = _base_chain(request, contract, worker_category)
+    chain, apprenticeship = _base_chain(request, contract, worker_category)
     closed_run_id = resolve_run_id(request)
     opening = request.opening_state
     upcoming_gross = upcoming_recurring_gross(
@@ -237,6 +244,7 @@ def build_context(
         withholding_schedule=schedule,
         worker_category=worker_category,
         chain=chain,
+        apprenticeship=apprenticeship,
         closed_run_id=closed_run_id,
         upcoming_gross=upcoming_gross,
         accrual=accrual,

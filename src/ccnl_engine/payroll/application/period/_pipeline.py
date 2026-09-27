@@ -211,6 +211,7 @@ def run_decisions(
             request.seniority_months,
             ctx.chain.seniority,
             contract.tctx.competence.year,
+            ctx.apprenticeship,
         )
         + totals.decisions
         + amounts.decisions

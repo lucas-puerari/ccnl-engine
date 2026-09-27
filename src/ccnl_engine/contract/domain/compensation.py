@@ -20,9 +20,11 @@ class Allowance(BaseModel):
     relevance flags exclude the allowance from the TFR base, the contribution
     base, or the apprenticeship-percentage base respectively.
     ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
-    value even for percentage-based apprentices (e.g. EDR per Art. 3 L.
-    297/1982, which Italian CCNL commonly exempt from apprenticeship
-    percentage reductions).
+    value even for percentage-based apprentices (e.g. the EDR, which Italian
+    CCNL commonly leave out of the elements the apprenticeship percentage
+    applies to).  The default ``True`` reduces the allowance by the
+    percentage together with the base salary; a CCNL that lists the reduced
+    elements exempts every allowance it does not list.
 
     ``service_months_threshold`` makes the allowance conditional: it is
     included only when ``Scenario.seniority_months`` is provided and is at

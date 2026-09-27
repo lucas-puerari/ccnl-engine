@@ -252,7 +252,8 @@ The engine applies rules in a fixed sequence:
 ```
 1. Resolve time-series values (base salary, seniority amounts, hourly divisor)
    ↓
-2. Apply part-time coefficient and apprenticeship percentage
+2. Apply apprenticeship percentage (base, seniority and allowances flagged
+   apprenticeship_pct_relevant), then part-time coefficient
    ↓
 3. Add fixed allowances
    ↓
