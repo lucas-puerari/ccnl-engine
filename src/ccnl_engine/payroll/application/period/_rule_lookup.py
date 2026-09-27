@@ -200,9 +200,46 @@ def _family_rules(ctx: RunContext) -> tuple[Rule, ...]:
     )
 
 
+def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
+    """Return the fund rates and the statutory pension rules of the run.
+
+    Only called when the worker is enrolled: the fund was resolved by the
+    run.  A rate period without its own record takes the one of its fund.
+
+    Returns:
+        The employer rate and employee minimum in force, then the deduction
+        cap and solidarity rate of the tax year.
+    """
+    ccnl = ctx.contract.ccnl
+    code = ctx.request.pension_fund.fund_code if ctx.request.pension_fund else ""
+    fund = next(f for f in ccnl.parameters.employer_funds if f.code == code)
+    day = ctx.contract.tctx.competence
+    prefix = f"{_name(ccnl.ruleset, f'ccnl/{ccnl.meta.ccnl_id}')}:employer_funds"
+    rules: list[Rule] = [
+        (
+            f"{prefix}[{code}].{key}[{period.valid_from}]",
+            period.provenance or fund.provenance,
+        )
+        for key, series in (
+            ("rate", fund.rate),
+            ("employee_min_rate", fund.employee_min_rate),
+        )
+        if series is not None
+        for period in _in_force(series.period_at(day))
+    ]
+    year_rules = ctx.contract.year_rules
+    tax_name = _name(year_rules.ruleset, f"tax/{year_rules.year}")
+    rules.append((
+        f"{tax_name}:complementary_pension",
+        _provenance(year_rules.complementary_pension),
+    ))
+    return tuple(rules)
+
+
 #: Capabilities whose rules need a load, done only when the capability ran.
 LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "addizionale_regionale": partial(_surtax_rules, regional=True),
     "addizionale_comunale": partial(_surtax_rules, regional=False),
     "family_deductions": _family_rules,
+    "pension_fund_contribution": _pension_rules,
 }

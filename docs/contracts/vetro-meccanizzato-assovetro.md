@@ -106,7 +106,7 @@ These are deliberate modelling approximations. Read them before using this contr
     
     SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods).
     
-    FONCHIM: employer contribution 1.5% (2023-2025 contract) increased to 2.0% from Jan 2026 per the April 2026 renewal (source: Assovetro/Filctem-CGIL press releases).
+    FONCHIM: employer contribution 1.5%, raised by 0.5% to 2.0% from 1 January 2027 by the renewal of 9 April 2026 (source: Confindustria Toscana Centro e Costa summary of the ipotesi di accordo). No employee minimum is bundled.
     
 
 ## Raw data

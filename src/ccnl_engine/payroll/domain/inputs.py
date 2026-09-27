@@ -189,6 +189,7 @@ class PeriodInput:
             roles=employment.roles,
             category=employment.category,
             sector=employment.sector,
+            pension_fund=employment.pension_fund,
             prior_year=self.prior_year,
             extra_month_accrual=extra_month_accrual,
             extra_month_settlements=extra_month_settlements,

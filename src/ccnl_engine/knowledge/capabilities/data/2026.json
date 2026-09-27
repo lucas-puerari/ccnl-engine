@@ -44,6 +44,7 @@
     {"feature": "bonus_pdr", "status": "computed", "description": "Premio di risultato PDR (informativo)"},
     {"feature": "rinnovo_substitute_tax", "status": "partially_computed", "description": "Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 (reddito precedente dichiarato)"},
     {"feature": "notte_festivi_turni_substitute_tax", "status": "partially_computed", "description": "Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 (reddito precedente dichiarato)"},
-    {"feature": "bilateral_funds", "status": "computed", "description": "Fondi bilaterali (informativo)"}
+    {"feature": "bilateral_funds", "status": "computed", "description": "Fondi bilaterali (informativo)"},
+    {"feature": "pension_fund_contribution", "status": "partially_computed", "description": "Previdenza complementare CCNL su adesione (misure compensative D.Lgs. 252/2005 art. 10 non calcolate)"}
   ]
 }

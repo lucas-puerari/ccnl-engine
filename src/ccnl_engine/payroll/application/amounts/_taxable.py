@@ -9,12 +9,17 @@ from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.amounts._contributions import (
     recurring_employee_inps,
 )
+from ccnl_engine.payroll.application.amounts._pension import (
+    projected_adjustment,
+    recurring_adjustment,
+)
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
+    from ccnl_engine.payroll.service.pension_fund import PensionContribution
 
 
 @dataclass(frozen=True)
@@ -72,12 +77,17 @@ def taxable_income(
     inps_employee: Decimal,
     employee_rate: Decimal,
     pdr: _PdrSplit,
+    pension: PensionContribution | None = None,
 ) -> _Taxable:
     """Return the taxable income of the run and its annual projection.
 
     The run enters with its actual employee INPS (IVS ceiling and 1%
     addizionale included); only the slots still to come are projected at
     the current rate, so the last slot settles on the final taxable income.
+    Pension fund contributions change the taxable of the run by their
+    :attr:`~ccnl_engine.payroll.service.pension_fund.PensionContribution\
+.taxable_adjustment`, and the projection by the same change on the slots
+    still to come, within the deduction cap left.
 
     Returns:
         The run and projected annual taxable income.
@@ -85,12 +95,15 @@ def taxable_income(
     # Excess PdR beyond the cap is taxed ordinarily; add it back to the IRPEF base.
     irpef_base = inp.event_irpef_base + pdr.excess
     period_taxable = money(inp.monthly_gross - inps_employee + irpef_base)
+    if pension is not None:
+        period_taxable += pension.taxable_adjustment
     upcoming_inps = money(inp.upcoming_gross * employee_rate)
     projected = (
         inp.opening.earnings.taxable
         + period_taxable
         + inp.upcoming_gross
         - upcoming_inps
+        + projected_adjustment(inp, pension)
     )
     return _Taxable(irpef_base=irpef_base, period=period_taxable, projected=projected)
 
@@ -110,4 +123,5 @@ def one_off_taxable(
         return _ZERO
     recurring_inps = recurring_employee_inps(inp, inps_employee)
     recurring_taxable = money(inp.monthly_gross - recurring_inps)
+    recurring_taxable += recurring_adjustment(inp)
     return max(_ZERO, taxable.period - recurring_taxable)

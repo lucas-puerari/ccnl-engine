@@ -212,6 +212,29 @@
               "value": "0.0150"
             }
           ]
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "tabacco-apti-rinnovo-2025",
+              "title": "CCNL Tabacco Lavorazione foglia 2025-2028 — Accordo 02/07/2025",
+              "kind": "altro",
+              "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf"
+            },
+            "section": "Art. 47 - Previdenza complementare volontaria",
+            "quote": "l'1,50% a decorrere dal 1° luglio 2025 a carico dell'azienda; una quota non inferiore all'1% a carico del lavoratore"
+          },
+          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The engine applies the rate to the INPS contribution base, as the schema defines it."
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
         }
       }
     ]
@@ -1937,6 +1960,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "85f94b6cb6822c970fc95ec88b0bed89ce5a380819b24a6058cbe6c95d419146"
+    "source_hash": "b2ed4ab3c4dba83179a9e35054c5b29c55a08dc66bb3c353e6f1b8081c03396d"
   }
 }

@@ -70,6 +70,14 @@ Pass the months of service as `Employment.seniority_months`; the category select
 --8<-- "docs/examples/05_seniority.py"
 ```
 
+### Pension fund (previdenza complementare)
+
+Declare the enrolment in the CCNL fund as `Employment.pension_fund`; without it no fund contribution is posted. See [Pension funds](engine/pay-components.md#pension-funds-previdenza-complementare).
+
+```python
+--8<-- "docs/examples/13_pension_fund.py"
+```
+
 ### Year-to-date chaining
 
 Pass the `closing_state` of one run as the `opening_state` of the next, so progressive IRPEF and the year-to-date totals carry forward.

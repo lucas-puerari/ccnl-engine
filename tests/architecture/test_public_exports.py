@@ -50,6 +50,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "PeriodFacts",
     "PeriodInput",
     "PeriodResult",
+    "PensionFundEnrolment",
     "PeriodState",
     "Permanent",
     "PriorYearTaxFacts",

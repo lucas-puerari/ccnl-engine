@@ -69,7 +69,8 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
 
     Returns:
         Cash earnings, TFR settled and credits, less the employee
-        contributions, bilateral fund, deductions and every tax withheld.
+        contributions, bilateral and pension fund contributions, deductions
+        and every tax withheld.
     """
     return (
         _sum_ledger(entries, AccountKind.CASH_EARNINGS)
@@ -77,6 +78,7 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
         + _sum_ledger(entries, AccountKind.CREDITS)
         - _sum_ledger(entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)
         - _sum_ledger(entries, AccountKind.BILATERAL_FUND_EMPLOYEE)
+        - _sum_ledger(entries, AccountKind.PENSION_FUND_EMPLOYEE)
         - _sum_ledger(entries, AccountKind.EMPLOYEE_DEDUCTIONS)
         - _sum_ledger(entries, AccountKind.SUBSTITUTE_TAX)
         - _sum_ledger(entries, AccountKind.ORDINARY_TAX)

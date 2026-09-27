@@ -67,6 +67,8 @@ class OpeningBalances:
         taxable: IRPEF taxable income.
         inps_base: INPS contribution base.
         inps_employee: Employee INPS contributions withheld.
+        pension_deducted: Pension fund contributions already deducted from
+            the taxable income (D.Lgs. 252/2005 art. 8 c. 4).
         irpef_withheld: IRPEF withheld.
         surtax_withheld: Regional and municipal surtax withheld.
         fringe_value: Fringe benefit value granted (Art. 51 c. 3 TUIR).
@@ -105,6 +107,7 @@ class OpeningBalances:
     taxable: Decimal = _ZERO
     inps_base: Decimal = _ZERO
     inps_employee: Decimal = _ZERO
+    pension_deducted: Decimal = _ZERO
     irpef_withheld: Decimal = _ZERO
     surtax_withheld: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
@@ -162,6 +165,7 @@ class OpeningBalances:
                 inps_base=self.inps_base,
                 taxable=self.taxable,
                 inps_employee=self.inps_employee,
+                pension_deducted=self.pension_deducted,
             ),
             fringe=FringeYtd(
                 value=self.fringe_value, taxed=self.fringe_taxed, pdr=self.pdr

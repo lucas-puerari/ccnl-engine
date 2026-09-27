@@ -79,7 +79,7 @@ def check_net_identity(
     """Check the net identity.
 
     CASH_EARNINGS + CREDITS + TFR_SETTLEMENT
-    - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
+    - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE
     - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX
     - ORDINARY_TAX - SURTAX - SEPARATE_TAX
     = period_net.
@@ -92,6 +92,7 @@ def check_net_identity(
     tfr_settle = _sum_account(result, AccountKind.TFR_SETTLEMENT)
     contributions = _sum_account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS)
     bilateral_emp = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYEE)
+    pension_emp = _sum_account(result, AccountKind.PENSION_FUND_EMPLOYEE)
     emp_deductions = _sum_account(result, AccountKind.EMPLOYEE_DEDUCTIONS)
     sub_tax = _sum_account(result, AccountKind.SUBSTITUTE_TAX)
     taxes = _sum_account(result, AccountKind.ORDINARY_TAX)
@@ -103,6 +104,7 @@ def check_net_identity(
         + tfr_settle
         - contributions
         - bilateral_emp
+        - pension_emp
         - emp_deductions
         - sub_tax
         - taxes
@@ -158,7 +160,8 @@ def check_employer_cost_identity(
 
     CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS
     + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER
-    + TFR_ACCRUAL = period_employer_cost.
+    + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR
+    = period_employer_cost.
 
     Returns:
         A violation when the derived employer cost diverges from
@@ -170,7 +173,10 @@ def check_employer_cost_identity(
     employer = _sum_account(result, AccountKind.EMPLOYER_CONTRIBUTIONS)
     bilateral_er = _sum_account(result, AccountKind.BILATERAL_FUND_EMPLOYER)
     tfr = _sum_account(result, AccountKind.TFR_ACCRUAL)
-    derived = cash - deductions + ncb + employer + bilateral_er + tfr
+    pension = _sum_account(result, AccountKind.PENSION_FUND_EMPLOYER) + _sum_account(
+        result, AccountKind.PENSION_FUND_TFR
+    )
+    derived = cash - deductions + ncb + employer + bilateral_er + tfr + pension
     if derived != result.period_employer_cost:
         return [
             ReconciliationViolation(

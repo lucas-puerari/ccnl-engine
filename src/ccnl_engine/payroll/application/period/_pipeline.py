@@ -21,6 +21,9 @@ from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_r
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
+from ccnl_engine.payroll.application.period._pension_decision import (
+    pension_decision,
+)
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     settle_extra_months,
@@ -30,6 +33,7 @@ from ccnl_engine.payroll.domain.obligations import (
     ULTERIORE_RECOVERY,
 )
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
+from ccnl_engine.payroll.service.pension_fund import resolve_terms
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
@@ -41,6 +45,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
+    from ccnl_engine.payroll.service.pension_fund import PensionFundTerms
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
 
@@ -119,6 +124,25 @@ def run_events(ctx: RunContext) -> RunEvents:
     )
 
 
+def _pension_terms(ctx: RunContext) -> PensionFundTerms | None:
+    """Return the rates of the fund the worker is enrolled in.
+
+    Returns:
+        ``None`` when the worker is not enrolled.
+    """
+    enrolment = ctx.request.pension_fund
+    if enrolment is None:
+        return None
+    contract = ctx.contract
+    return resolve_terms(
+        contract.ccnl,
+        enrolment,
+        ctx.worker_category,
+        contract.tctx.competence,
+        contract.year_rules.complementary_pension,
+    )
+
+
 def _amounts_input(
     ctx: RunContext,
     totals: _EventTotals,
@@ -171,6 +195,7 @@ def _amounts_input(
         ),
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
+        pension=_pension_terms(ctx),
     )
 
 
@@ -208,6 +233,8 @@ def run_decisions(
         The contract decisions, then those of the events and of the amounts.
     """
     request, contract = ctx.request, ctx.contract
+    year = contract.tctx.competence.year
+    pension = pension_decision(contract.ccnl, amounts.pension, year)
     return (
         contract_decisions(
             contract.ccnl,
@@ -219,6 +246,7 @@ def run_decisions(
             contract.tctx.competence.year,
             ctx.apprenticeship,
         )
+        + ((pension,) if pension is not None else ())
         + totals.decisions
         + amounts.decisions
     )

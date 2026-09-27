@@ -1200,25 +1200,51 @@
               "url": "https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/"
             },
             "section": "Fonchim — contribuzione datoriale"
-          },
-          "extraction": {
-            "method": "manual",
-            "extraction_timestamp": "2026-09-17T00:00:00",
-            "verification_status": "verified",
-            "effective_from": "2026-01-01"
           }
         },
         "rate": {
           "periods": [
             {
               "valid_from": "2023-03-01",
-              "valid_until": "2026-01-01",
-              "value": "0.0150"
+              "valid_until": "2027-01-01",
+              "value": "0.0150",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "assovetro-rinnovo-2026-04-09",
+                    "title": "Accordo di rinnovo CCNL Vetro Industrie 2026-2028 — Assovetro/Filctem-CGIL",
+                    "kind": "altro",
+                    "url": "https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/"
+                  },
+                  "section": "Fonchim — contribuzione datoriale"
+                },
+                "transformation": "2.0% less the 0.5% increase of 1 January 2027 stated by the source; the source does not state the 1.5% rate itself."
+              }
             },
             {
-              "valid_from": "2026-01-01",
+              "valid_from": "2027-01-01",
               "valid_until": null,
-              "value": "0.0200"
+              "value": "0.0200",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "assovetro-rinnovo-2026-04-09",
+                    "title": "Accordo di rinnovo CCNL Vetro Industrie 2026-2028 — Assovetro/Filctem-CGIL",
+                    "kind": "altro",
+                    "url": "https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/"
+                  },
+                  "section": "Fonchim — contribuzione datoriale"
+                },
+                "extraction": {
+                  "method": "manual",
+                  "extraction_timestamp": "2026-09-17T00:00:00",
+                  "verification_status": "verified",
+                  "effective_from": "2027-01-01"
+                },
+                "note": "The source raises the employer contribution by 0.5% from 1 January 2027. An earlier record dated the 2.0% rate from 2026-01-01, against its cited source."
+              }
             }
           ]
         }
@@ -1257,7 +1283,7 @@
       },
       {
         "kind": "info",
-        "text": "FONCHIM: employer contribution 1.5% (2023-2025 contract) increased to 2.0% from Jan 2026 per the April 2026 renewal (source: Assovetro/Filctem-CGIL press releases)."
+        "text": "FONCHIM: employer contribution 1.5%, raised by 0.5% to 2.0% from 1 January 2027 by the renewal of 9 April 2026 (source: Confindustria Toscana Centro e Costa summary of the ipotesi di accordo). No employee minimum is bundled."
       }
     ]
   },
@@ -1276,6 +1302,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "2d79247d30796b1580b3cfce619ee58ca886b8b3fec86f52ee8e3b315021e828"
+    "source_hash": "c4a4c38c7447e512f9b19d70a911353a484a8ebb3c08fcb5a189d0b9d850435c"
   }
 }

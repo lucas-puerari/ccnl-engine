@@ -1,23 +1,25 @@
 """Inventory of the payable rules in the bundled knowledge data.
 
 A payable rule is a bundled value that the payroll run reads to compute a
-posted amount: CCNL salary tables, fixed allowances, seniority increments
-and extra-month entitlements; INPS contribution rates (ordinary,
-apprentice, domestic, fixed-term addizionale); IRPEF brackets, the Art. 13
-work deduction and its sterilizzazione; the trattamento integrativo, the
-ulteriore detrazione and the somma esente; the TFR divisor; the regional
-and municipal surtax tables; the Art. 12 family deductions; the
-fringe-benefit thresholds and the PdR limits; the parameters of the
-substitute-tax regimes.
+posted amount: CCNL salary tables, fixed allowances, seniority increments,
+extra-month entitlements and employer pension fund rates; INPS
+contribution rates (ordinary, apprentice, domestic, fixed-term
+addizionale); IRPEF brackets, the Art. 13 work deduction and its
+sterilizzazione; the trattamento integrativo, the ulteriore detrazione and
+the somma esente; the TFR divisor; the regional and municipal surtax
+tables; the Art. 12 family deductions; the complementary pension deduction
+cap and solidarity rate; the fringe-benefit thresholds and the PdR limits;
+the parameters of the substitute-tax regimes.
 
 Bundled values the run does not read are not payable: CCNL work rules
 (overtime bands, absence, leave, sickness), apprenticeship tracks, the
 Art. 15 deductions and the INPS sick-pay bands.
 
 Each payable rule must carry a provenance record.  CCNL rules carry one per
-rule (salary period, allowance, seniority block, additional-months period);
-a salary period or an allowance without its own record inherits the one of
-its level.  Fiscal files carry one per data block: the block object holds
+rule (salary period, allowance, seniority block, additional-months period,
+employer fund); a salary period or an allowance without its own record
+inherits the one of its level, a fund rate period the one of its fund.
+Fiscal files carry one per data block: the block object holds
 ``provenance``, except the IRPEF bracket list and the fixed-term scalar,
 whose record sits in the sibling ``<block>_provenance`` key, the surtax
 tables, whose record is the file-level ``provenance``, and the substitute
@@ -59,6 +61,7 @@ _TAX_BLOCKS: Final[_Blocks] = (
     ("trattamento_integrativo", ("trattamento_integrativo",), False),
     ("ulteriore_detrazione", ("ulteriore_detrazione_lavoro",), False),
     ("somma_esente", ("somma_esente",), False),
+    ("complementary_pension", ("pension_fund_contribution",), False),
 )
 _INPS_BLOCKS: Final[_Blocks] = (
     ("inps", _INPS, False),
@@ -163,8 +166,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         data: Decoded CCNL JSON.
 
     Yields:
-        One rule per salary period, allowance, seniority block and
-        additional-months period.
+        One rule per salary period, allowance, seniority block,
+        additional-months period and employer fund rate period.
     """
     levels = data.get("levels")
     for level in levels if isinstance(levels, list) else []:
@@ -180,6 +183,27 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         yield PayableRule(
             file, path, ("base_salary",), _status(period.get("provenance"))
         )
+    yield from _fund_rules(file, params.get("employer_funds"))
+
+
+def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
+    """Yield the rate periods of the employer pension funds of a CCNL.
+
+    Yields:
+        One rule per non-gap period of each fund rate and employee minimum.
+    """
+    for fund in funds if isinstance(funds, list) else []:
+        inherited = fund.get("provenance")
+        for key in ("rate", "employee_min_rate"):
+            for period in _periods(fund.get(key)):
+                path = (
+                    f"employer_funds[{fund.get('code')}].{key}"
+                    f"[{period.get('valid_from')}]"
+                )
+                record = period.get("provenance") or inherited
+                yield PayableRule(
+                    file, path, ("pension_fund_contribution",), _status(record)
+                )
 
 
 def _block_rules(

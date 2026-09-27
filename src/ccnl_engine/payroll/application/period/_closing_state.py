@@ -149,6 +149,8 @@ def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
             taxable=op.earnings.taxable + amounts.period_taxable,
             inps_employee=op.earnings.inps_employee
             + _sum_ledger(entries, AccountKind.EMPLOYEE_CONTRIBUTIONS),
+            pension_deducted=op.earnings.pension_deducted
+            + (_ZERO if amounts.pension is None else amounts.pension.deductible),
         ),
         fringe=FringeYtd(
             value=op.fringe.value + events.fringe_value,

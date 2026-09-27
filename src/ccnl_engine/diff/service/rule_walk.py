@@ -85,6 +85,13 @@ def dated_rules(ccnl: CCNL) -> Iterator[DatedRule]:
             "%",
             fund.rate,
         )
+        if fund.employee_min_rate is not None:
+            yield DatedRule(
+                f"parameters.employer_funds[{fund.code}].employee_min_rate",
+                f"Employer fund {fund.code} - employee minimum rate",
+                "%",
+                fund.employee_min_rate,
+            )
     work_rules = ccnl.work_rules
     if work_rules is not None and work_rules.time_supplements is not None:
         for band in work_rules.time_supplements.overtime_bands:

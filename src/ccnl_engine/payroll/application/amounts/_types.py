@@ -19,6 +19,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+    from ccnl_engine.payroll.service.pension_fund import (
+        PensionContribution,
+        PensionFundTerms,
+    )
     from ccnl_engine.payroll.service.ulteriore_recovery import UlterioreSettlement
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
@@ -40,6 +44,8 @@ class _AmountsInput:
     settles every running plan, or an adjustment run.
     ``withholding_agent`` is false for an employer that withholds no tax
     (see :mod:`~ccnl_engine.payroll.service.withholding_agent`).
+    ``pension`` holds the rates of the pension fund the worker is enrolled
+    in, ``None`` when not enrolled.
     """
 
     monthly_gross: Decimal
@@ -68,6 +74,7 @@ class _AmountsInput:
     ulteriore_plan: RecoveryPlan | None = None
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
     withholding_agent: bool = True
+    pension: PensionFundTerms | None = None
 
 
 @dataclass(frozen=True)
@@ -81,6 +88,8 @@ class _PeriodAmounts:
     ``projected_taxable`` is the annual taxable income the IRPEF of the run
     was computed on; ``None`` when not recorded.  ``ulteriore`` is what
     the run recognized or recovered of the ulteriore detrazione.
+    ``pension`` holds the pension fund contributions of the run, ``None``
+    when the worker is not enrolled.
     """
 
     monthly_gross: Decimal
@@ -97,3 +106,4 @@ class _PeriodAmounts:
     decisions: tuple[CalculationDecision, ...] = ()
     projected_taxable: Decimal | None = None
     ulteriore: UlterioreSettlement | None = None
+    pension: PensionContribution | None = None

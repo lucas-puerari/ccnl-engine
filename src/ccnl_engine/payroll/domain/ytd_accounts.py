@@ -62,12 +62,16 @@ class EarningsYtd:
             enforce the IVS massimale ceiling across periods.
         taxable: Total IRPEF taxable income accumulated YTD.
         inps_employee: Employee INPS contributions withheld YTD.
+        pension_deducted: Employee and employer pension fund contributions
+            already deducted from the taxable income YTD, against the annual
+            cap of D.Lgs. 252/2005 art. 8 c. 4.
     """
 
     gross: Decimal = _ZERO
     inps_base: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_employee: Decimal = _ZERO
+    pension_deducted: Decimal = _ZERO
 
     def __post_init__(self) -> None:
         """Validate that every total is non-negative.
