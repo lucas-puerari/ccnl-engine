@@ -123,10 +123,22 @@ class ExtraMonthEarning(_PayItemBase):
 
 
 class FringeBenefitItem(_PayItemBase):
-    """Non-cash fringe benefit (auto aziendale, polizza, ecc.)."""
+    """Non-cash fringe benefit (auto aziendale, polizza, ecc.).
+
+    Attributes:
+        threshold_annual: Annual exemption threshold applied to the worker
+            (L. 207/2024 art. 1 c. 390: 1,000 EUR, 2,000 EUR with a
+            declared fiscally dependent child).
+        ytd_total: Fringe value of the tax year including this benefit.
+        taxable_amount: Amount this benefit makes taxable for IRPEF and
+            INPS.  Zero while ``ytd_total`` stays within the threshold.  On
+            the benefit that crosses it the earlier exempt amounts of the
+            year become taxable too, so it can exceed ``amount``.
+    """
 
     kind: Literal["fringe_benefit_item"] = "fringe_benefit_item"
     threshold_annual: Decimal = Field(default=Decimal(0), ge=Decimal(0))
+    ytd_total: Decimal = Field(default=Decimal(0), ge=Decimal(0))
     taxable_amount: Decimal = Field(default=Decimal(0), ge=Decimal(0))
 
 

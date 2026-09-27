@@ -19,6 +19,7 @@ from ccnl_engine.payroll.application.allocate_events import (
 from ccnl_engine.payroll.application.amounts._compute import _compute_amounts
 from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_rate
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
+from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
 from ccnl_engine.payroll.application.withholding._cap import ends_in_year
@@ -63,7 +64,7 @@ class RunAmounts:
 
 def _variable_events(ctx: RunContext) -> RunEvents:
     request, opening = ctx.request, ctx.opening
-    fringe_rules = ctx.var_pay_rules.fringe_benefit
+    var_pay = ctx.var_pay_rules
     totals, items, entries = _process_events(
         request.events,
         ctx.cp,
@@ -72,10 +73,10 @@ def _variable_events(ctx: RunContext) -> RunEvents:
         ctx.contract.date_ctx,
         ctx.resolver,
         ctx.policy_context,
-        fringe_threshold=(
-            fringe_rules.threshold_with_children
-            if request.has_dependent_children
-            else fringe_rules.threshold_standard
+        fringe_threshold_of(
+            var_pay.fringe_benefit,
+            var_pay.year,
+            with_children=request.has_dependent_children,
         ),
         opening_fringe_ytd=opening.ytd.fringe.value,
         opening_fringe_taxed=opening.ytd.fringe.taxed,

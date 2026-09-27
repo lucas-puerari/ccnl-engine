@@ -32,6 +32,7 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 if TYPE_CHECKING:
     from datetime import date
 
+    from ccnl_engine.payroll.application.handlers._context import FringeThreshold
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.tax.domain.preferential_regime import (
@@ -117,7 +118,7 @@ def _process_events(
     date_ctx: EffectiveDateContext,
     resolver: PolicyResolver,
     context: PolicyContext,
-    fringe_threshold: Decimal = _ZERO,
+    fringe_threshold: FringeThreshold,
     opening_fringe_ytd: Decimal = _ZERO,
     opening_fringe_taxed: Decimal = _ZERO,
     pdr_income_ceiling: Decimal | None = None,

@@ -21,9 +21,32 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
     from ccnl_engine.payroll.domain.treatment import EventTreatment
+    from ccnl_engine.provenance.domain.source import SourceLocation
     from ccnl_engine.tax.domain.preferential_regime import (
         PreferentialTaxRegime,
     )
+
+
+@dataclass(frozen=True)
+class FringeThreshold:
+    """Annual fringe-benefit threshold applied in a run, with its rule.
+
+    Attributes:
+        amount: Annual exemption threshold in EUR.
+        with_children: Whether the worker declared a fiscally dependent
+            child, which selects the higher threshold.
+        tax_year: Tax year the threshold belongs to.
+        rule: Identifier of the rule the threshold comes from.
+        rule_version: Version of that rule.
+        source: Normative source of the threshold, when recorded.
+    """
+
+    amount: Decimal
+    with_children: bool
+    tax_year: int
+    rule: str
+    rule_version: str
+    source: SourceLocation | None = None
 
 
 @dataclass(frozen=True)
@@ -43,7 +66,7 @@ class _EventHandlerCtx:
     payment_date: date
     resolver: PolicyResolver
     context: PolicyContext
-    fringe_threshold: Decimal
+    fringe_threshold: FringeThreshold
     cumulative_fringe: Decimal
     cumulative_taxed: Decimal
     pdr_income_ceiling: Decimal | None = None

@@ -209,7 +209,7 @@ def test_domestic_inps_non_convivente() -> None:
 
 
 def test_fringe_below_threshold_no_tax() -> None:
-    """Fringe benefit within Art. 51 c. 3 annual threshold (580 EUR) is not taxed."""
+    """Fringe benefit within the 2026 annual threshold (1,000 EUR) is not taxed."""
     result_base = engine.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=3),

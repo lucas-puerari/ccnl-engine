@@ -9,13 +9,14 @@
       "status": "derived",
       "location": {
         "source_document": {
-          "document_id": "dpr-917-1986",
-          "title": "D.P.R. 22 dicembre 1986 n. 917 (TUIR)",
-          "kind": "dpr"
+          "document_id": "l-207-2024",
+          "title": "L. 207/2024, legge di bilancio 2025",
+          "kind": "legge"
         },
-        "section": "art. 51 c. 3"
+        "section": "art. 1 cc. 390-391",
+        "quote": "Per i periodi d'imposta 2025, 2026 e 2027, in deroga a quanto previsto dall'articolo 51, comma 3, prima parte del terzo periodo, del testo unico delle imposte sui redditi [...] non concorrono a formare il reddito, entro il limite complessivo di 1.000 euro, il valore dei beni ceduti e dei servizi prestati ai lavoratori dipendenti [...] Il limite di cui al primo periodo è elevato a 2.000 euro per i lavoratori dipendenti con figli [...] che si trovano nelle condizioni previste dall'articolo 12, comma 2"
       },
-      "note": "Thresholds per L. 207/2024 art. 1 c. 390."
+      "note": "Derogates TUIR art. 51 c. 3 (258,23 EUR) for 2025-2027. Text of cc. 390-391 as reproduced in AdE circolare 4/E of 16 May 2025, par. 2.7, which also states that exceeding the limit makes the whole amount taxable, not only the excess. The 2,000 EUR limit applies when the worker declares the right to it with the children's tax codes (c. 391)."
     }
   },
   "pdr": {
@@ -103,7 +104,7 @@
     "published_at": "2026-09-08",
     "source": "TUIR art. 51 c. 3; L. 207/2024 art. 1 c. 390; L. 208/2015 art. 1 cc. 182-190; L. 199/2025 art. 1 cc. 7, 10-11",
     "verification_status": "unverified",
-    "source_hash": "3c07846bef425dca31325b6643c29653798676ea4e90e0c84dcabe46c4086ff6",
+    "source_hash": "d91c80514548a3009f47528b2558b9a42e452ac96306ec98be8c7aae284915a5",
     "source_type": "official_primary"
   }
 }
