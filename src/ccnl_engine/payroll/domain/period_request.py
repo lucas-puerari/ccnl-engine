@@ -21,6 +21,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
+from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
@@ -121,6 +122,8 @@ class PeriodCalculationRequest:
             not known.  Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
+        pension_fund: Enrolment in a pension fund of the CCNL, ``None``
+            when the worker is not enrolled.
     """
 
     period_id: PeriodId
@@ -149,6 +152,7 @@ class PeriodCalculationRequest:
     withholding_schedule: WithholdingSchedule | None = None
     sector: EmploymentSector | None = None
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
+    pension_fund: PensionFundEnrolment | None = None
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
@@ -235,4 +239,5 @@ class PeriodCalculationRequest:
             ("seniority_months", self.seniority_months, SeniorityMonths, True),
             ("sector", self.sector, EmploymentSector, True),
             ("prior_year", self.prior_year, PriorYearTaxFacts, False),
+            ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
         )

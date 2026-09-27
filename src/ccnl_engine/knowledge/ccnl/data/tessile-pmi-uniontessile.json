@@ -246,6 +246,10 @@
               "value": "0.0200"
             }
           ]
+        },
+        "provenance": {
+          "status": "assumed",
+          "note": "Rates read from the contract file; no clause of the CCNL is cited for them."
         }
       }
     ]
@@ -1458,6 +1462,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "f1ac6f3111d673c4537eadaf8a046da4665ee73d14947d528964e0d71be37621"
+    "source_hash": "0de34735d6544923548698788e8a5f587bc94b7b9448b0fe423119aebc022662"
   }
 }

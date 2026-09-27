@@ -106,11 +106,62 @@ def _earning_lines(chain: MonthlyPayChain) -> list[_BaseLine]:
     return lines
 
 
+def _pension_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
+    """Return the pension fund lines of a run whose worker is enrolled.
+
+    The employee contribution is withheld from the pay, the employer
+    contribution goes to the fund and its INPS solidarity contribution to
+    the employer contributions.
+
+    Returns:
+        The three lines, none when the worker is not enrolled.
+    """
+    pension = amounts.pension
+    if pension is None:
+        return []
+    return [
+        _BaseLine(
+            "pension_fund_employee",
+            _WITHHOLDING,
+            AccountKind.PENSION_FUND_EMPLOYEE,
+            pension.employee,
+            EmployeeWithholdingItem,
+        ),
+        _BaseLine(
+            "pension_fund_employer",
+            "employer_contribution_item",
+            AccountKind.PENSION_FUND_EMPLOYER,
+            pension.employer,
+            EmployerContributionItem,
+        ),
+        _BaseLine(
+            "pension_solidarity",
+            "employer_contribution_item",
+            AccountKind.EMPLOYER_CONTRIBUTIONS,
+            pension.solidarity,
+            EmployerContributionItem,
+        ),
+    ]
+
+
+def _tfr_account(amounts: _PeriodAmounts) -> AccountKind:
+    """Return the account of the TFR accrued on the run.
+
+    Returns:
+        ``PENSION_FUND_TFR`` when the TFR is paid to the fund, else
+        ``TFR_ACCRUAL``.
+    """
+    pension = amounts.pension
+    if pension is not None and pension.terms.tfr_to_fund:
+        return AccountKind.PENSION_FUND_TFR
+    return AccountKind.TFR_ACCRUAL
+
+
 def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
     """Return the INPS employee, INPS employer and TFR lines of a run.
 
     Returns:
-        The three lines, posted even when zero.
+        The three lines, posted even when zero, then the pension fund lines.
     """
     return [
         _BaseLine(
@@ -130,10 +181,11 @@ def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
         _BaseLine(
             "tfr",
             "tfr_accrual_item",
-            AccountKind.TFR_ACCRUAL,
+            _tfr_account(amounts),
             amounts.tfr,
             TfrAccrualItem,
         ),
+        *_pension_lines(amounts),
     ]
 
 

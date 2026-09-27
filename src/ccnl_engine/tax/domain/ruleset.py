@@ -25,6 +25,7 @@ from ccnl_engine.tax.domain.irpef_rules import (
     SterilizzazioneDetrazioniRules,
     WorkDeductionRules,
 )
+from ccnl_engine.tax.domain.pension_rules import ComplementaryPensionRules
 from ccnl_engine.tax.domain.tfr_rules import TfrRules
 
 
@@ -59,6 +60,7 @@ class YearRulesRaw(BaseModel):
     somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
+    complementary_pension: ComplementaryPensionRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None
@@ -121,6 +123,7 @@ class YearRules(BaseModel):
     somma_esente: SommaEsenteRules | None = None
     sterilizzazione_detrazioni: SterilizzazioneDetrazioniRules | None = None
     work_deduction: WorkDeductionRules = Field(default_factory=WorkDeductionRules)
+    complementary_pension: ComplementaryPensionRules | None = None
     notes: list[str] = Field(default_factory=list)
     sources: list[SourceDocument] = Field(default_factory=list)
     extraction: ExtractionTrace | None = None

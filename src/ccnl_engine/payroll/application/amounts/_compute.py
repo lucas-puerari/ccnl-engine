@@ -9,6 +9,7 @@ from ccnl_engine.payroll.application.amounts._contributions import (
     tfr_accrual,
 )
 from ccnl_engine.payroll.application.amounts._irpef import withhold_irpef
+from ccnl_engine.payroll.application.amounts._pension import run_pension
 from ccnl_engine.payroll.application.amounts._surtax import run_surtax
 from ccnl_engine.payroll.application.amounts._taxable import (
     pdr_split,
@@ -78,11 +79,12 @@ def _compute_amounts(
     """
     breakdown, employee_rate = run_contributions(inp)
     tfr = tfr_accrual(inp)
+    pension = run_pension(inp)
     if not inp.withholding_agent:
-        untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr)
+        untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr, pension)
         return untaxed, breakdown, no_tax, None
     pdr = pdr_split(inp)
-    taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr)
+    taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr, pension)
     irpef = withhold_irpef(inp, taxable, breakdown.employee)
     tax_comp = irpef.tax.computation
     surtax, period_surtax = run_surtax(inp, taxable.projected, irpef.tax.irpef_net)
@@ -101,5 +103,6 @@ def _compute_amounts(
         surtax=surtax,
         ulteriore=irpef.tax.ulteriore,
         decisions=_decisions(inp, pdr, irpef, surtax),
+        pension=pension,
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

@@ -100,9 +100,9 @@ class TestAccountKind:
 class TestAccountKindShape:
     """AccountKind is a closed string enumeration."""
 
-    def test_fourteen_members(self) -> None:
-        """AccountKind has exactly fourteen members."""
-        assert len(AccountKind) == 14
+    def test_seventeen_members(self) -> None:
+        """AccountKind has exactly seventeen members."""
+        assert len(AccountKind) == 17
 
     def test_is_str(self) -> None:
         """AccountKind members are strings (StrEnum)."""

@@ -80,10 +80,11 @@ artigianato).
 ## Bilateral funds (*fondi bilaterali*)
 
 Many CCNLs require contributions to sector bilateral bodies (health funds,
-training funds, supplementary pension). The engine does not derive them from
-the CCNL: pass the amounts due in the period as a `BilateralFundEvent`. The
-employee portion reduces net pay; the employer portion increases employer
-cost.
+training funds). The engine does not derive them from the CCNL: pass the
+amounts due in the period as a `BilateralFundEvent`. The employee portion
+reduces net pay; the employer portion increases employer cost. For the
+pension fund of the CCNL use the enrolment described in
+[Pension funds](#pension-funds-previdenza-complementare) instead.
 
 ```python
 from datetime import date
@@ -122,6 +123,64 @@ result = engine.calculate_period(
     )
 )
 print(result.period_net, result.period_employer_cost)
+```
+
+## Pension funds (*previdenza complementare*)
+
+Enrolment in a complementary pension fund is voluntary (D.Lgs. 252/2005
+art. 1 c. 2), so the engine never assumes it. Declare it on the employment
+as `Employment.pension_fund`, a `PensionFundEnrolment`:
+
+- `fund_code`: a fund of the CCNL, e.g. `"ALIFOND"` for Tabacco or
+  `"FONCHIM"` for Vetro meccanizzato. A code the CCNL does not declare
+  raises `InvalidInputError`.
+- `employee_rate`: the contribution the worker chose. It cannot be below
+  the CCNL minimum when the bundle records one (ALIFOND: 1%).
+- `tfr_to_fund`: whether the TFR accrued is paid to the fund. Required,
+  with no default.
+
+`pension_fund=None` means not enrolled: no fund line is posted. On a CCNL
+that has a fund, the `pension_fund_contribution` decision records the
+reason `not_enrolled` and the capability is not applicable.
+
+When enrolled, each run posts:
+
+| Line | Account | Amount | Effect |
+|---|---|---|---|
+| Employer contribution | `pension_fund_employer` | CCNL rate x INPS base of the run | employer cost |
+| Solidarity contribution | `employer_contributions` | 10% of the employer contribution | employer cost |
+| Employee contribution | `pension_fund_employee` | chosen rate x INPS base | withheld from net |
+| TFR to the fund | `pension_fund_tfr` instead of `tfr_accrual` | TFR of the run | none: the cost does not change |
+
+The rules behind it:
+
+- **Base.** The bundle stores each fund rate as a fraction of the INPS
+  contribution base of the run, events included
+  (`CCNL.parameters.employer_funds`). A fund whose statute uses another
+  base (e.g. the TFR base) must be converted to it in the data.
+- **Deduction.** Employee and employer contributions are deductible from
+  the taxable income up to 5 300.00 EUR a year from tax year 2026
+  (D.Lgs. 252/2005 art. 8 c. 4 as amended by L. 199/2025; TUIR art. 10
+  c. 1 lett. e-bis and art. 51 c. 2 lett. h). Within the cap the taxable
+  falls by the employee part; beyond it the employer part is taxable
+  income. The TFR paid to the fund does not count. The amount already
+  deducted is tracked in `closing_state.ytd.earnings.pension_deducted`
+  (`OpeningBalances.pension_deducted` when importing a year in progress).
+- **Solidarity.** The employer contributions, the TFR excluded, stay
+  outside the INPS base and bear the 10% solidarity contribution to INPS
+  (D.Lgs. 252/2005 art. 16 c. 1; art. 9-bis D.L. 103/1991, conv. L.
+  166/1991). It is posted to `employer_contributions` in the ledger but
+  is not a component of `contribution_breakdown`, which holds the INPS
+  contributions on the pay only.
+
+Not modelled: the compensatory measures for employers whose TFR goes to a
+fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
+employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
+conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
+to six months).
+
+```python
+--8<-- "docs/examples/13_pension_fund.py"
 ```
 
 **API reference:** [`Employment`](../api/engine.md),

@@ -14,7 +14,8 @@ Implemented invariants:
         IRPEF refund uses the CREDITS account (``tax_refund_item`` policy).
     employee_contribution_non_negative and
     employer_contribution_non_negative: every EMPLOYEE_CONTRIBUTIONS and
-        EMPLOYER_CONTRIBUTIONS entry is ``>= 0``; a correction of past
+        EMPLOYER_CONTRIBUTIONS entry is ``>= 0``, and so is every entry of
+        the three PENSION_FUND accounts; a correction of past
         contributions is a distinct movement, not a negative contribution.
     net_pay_non_negative: ``period_net >= 0``.  A run whose unpaid absences
         leave less pay than the withholdings due is rejected as invalid
@@ -53,6 +54,15 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
         AccountKind.EMPLOYER_CONTRIBUTIONS,
         InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE,
     ),
+    (
+        AccountKind.PENSION_FUND_EMPLOYEE,
+        InvariantCode.EMPLOYEE_CONTRIBUTION_NON_NEGATIVE,
+    ),
+    (
+        AccountKind.PENSION_FUND_EMPLOYER,
+        InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE,
+    ),
+    (AccountKind.PENSION_FUND_TFR, InvariantCode.EMPLOYER_CONTRIBUTION_NON_NEGATIVE),
 )
 
 

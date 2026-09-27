@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/docs/gen_capability_matrix.py -->
 
-<!-- generated: 2026-09-26 -->
+<!-- generated: 2026-09-27 -->
 
 # Capability Matrix
 
@@ -71,6 +71,7 @@ formulas or caller-declared amounts.
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
 | `bilateral_funds` | Fondi bilaterali (informativo) | computed | implemented | none bundled |
+| `pension_fund_contribution` | Previdenza complementare CCNL su adesione (misure compensative D.Lgs. 252/2005 art. 10 non calcolate) | partially_computed | simplified | 0 / 12 / 2 / 0 |
 
 ## CCNL coverage
 

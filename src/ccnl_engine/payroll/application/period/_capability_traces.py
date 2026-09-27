@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
+from ccnl_engine.payroll.service.pension_fund import NOT_ENROLLED
 from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
@@ -41,7 +42,11 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "bonus_pdr": TraceState.SKIPPED,
     "rinnovo_substitute_tax": TraceState.NOT_APPLICABLE,
     "notte_festivi_turni_substitute_tax": TraceState.NOT_APPLICABLE,
+    "pension_fund_contribution": TraceState.NOT_APPLICABLE,
 }
+
+#: Reasons of a decision that leaves its capability not applicable.
+_NOT_APPLICABLE_REASONS = frozenset({NOT_WITHHOLDING_AGENT, NOT_ENROLLED})
 
 _STATE_OF_STATUS: dict[CalculationStatus, TraceState] = {
     CalculationStatus.FINAL: TraceState.COMPUTED,
@@ -56,9 +61,11 @@ def _worst_state_by_capability(
 ) -> dict[str, TraceState]:
     """Return the state each capability decided, in decision order.
 
-    A capability whose every decision is :data:`NOT_WITHHOLDING_AGENT` is
-    not applicable: the employer does not compute it.  Otherwise the worst
-    status of its decisions gives the state.
+    A capability whose every decision has a not-applicable reason is not
+    applicable: the employer does not compute it
+    (:data:`NOT_WITHHOLDING_AGENT`) or the worker is not enrolled in a
+    pension fund (:data:`NOT_ENROLLED`).  Otherwise the worst status of its
+    decisions gives the state.
 
     Returns:
         Mapping of capability to its trace state.
@@ -70,7 +77,7 @@ def _worst_state_by_capability(
         capability = decision.capability
         previous = worst.get(capability, CalculationStatus.FINAL)
         worst[capability] = CalculationStatus.worst((previous, decision.status))
-        if decision.reason_code == NOT_WITHHOLDING_AGENT:
+        if decision.reason_code in _NOT_APPLICABLE_REASONS:
             skipped.add(capability)
         else:
             applied.add(capability)

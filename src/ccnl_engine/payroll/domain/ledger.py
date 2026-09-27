@@ -1,7 +1,7 @@
 """Payroll ledger entries with logical accounts per pay-item type.
 
 The ledger records every monetary event in a pay period as a ``LedgerEntry``
-posted to one of the eleven ``AccountKind`` buckets.  Net and employer cost
+posted to one of the ``AccountKind`` buckets.  Net and employer cost
 are derived from the posted component balances; they are not recorded as
 dedicated summary entries.
 
@@ -30,7 +30,13 @@ type Money = Decimal
 
 
 class AccountKind(StrEnum):
-    """The fourteen logical accounts that partition a payroll pay period."""
+    """The seventeen logical accounts that partition a payroll pay period.
+
+    The three ``PENSION_FUND`` accounts hold what is paid to a complementary
+    pension fund: the employee contribution withheld, the employer
+    contribution and the TFR paid to the fund instead of accruing in the
+    company.
+    """
 
     CASH_EARNINGS = "cash_earnings"
     NON_CASH_BENEFITS = "non_cash_benefits"
@@ -46,6 +52,9 @@ class AccountKind(StrEnum):
     CREDITS = "credits"
     TFR_ACCRUAL = "tfr_accrual"
     TFR_SETTLEMENT = "tfr_settlement"
+    PENSION_FUND_EMPLOYEE = "pension_fund_employee"
+    PENSION_FUND_EMPLOYER = "pension_fund_employer"
+    PENSION_FUND_TFR = "pension_fund_tfr"
 
 
 class LedgerEntry(BaseModel):

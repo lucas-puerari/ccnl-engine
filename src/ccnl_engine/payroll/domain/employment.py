@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     WeeklyHours,
     check_within_full_time,
 )
+from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.request_checks import type_error
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
@@ -105,6 +106,10 @@ class Employment:
             regimes are then ``unknown`` and the result provisional.  It is
             not derived from the CCNL: a public employer may apply a private
             CCNL.
+        pension_fund: Enrolment in a complementary pension fund of the CCNL.
+            ``None`` means not enrolled: no fund contribution is computed,
+            and on a CCNL that has funds the ``pension_fund_contribution``
+            capability records the reason ``not_enrolled``.
 
     Raises:
         InvalidInputError: When a field is not of its type, when
@@ -123,6 +128,7 @@ class Employment:
     roles: frozenset[str] = frozenset()
     ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
     sector: EmploymentSector | None = None
+    pension_fund: PensionFundEnrolment | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         problem = type_error((
@@ -140,6 +146,7 @@ class Employment:
             ("seniority_months", self.seniority_months, SeniorityMonths, True),
             ("roles", self.roles, frozenset, False),
             ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
+            ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
         ))
         if problem is not None:
             raise InvalidInputError(problem, feature=FEATURE)

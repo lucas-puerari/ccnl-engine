@@ -102,6 +102,7 @@ from ccnl_engine.payroll.domain.family import (
 )
 from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
+from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import (
@@ -164,6 +165,7 @@ __all__ = [
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",
+    "PensionFundEnrolment",
     "PeriodFacts",
     "PeriodInput",
     "PeriodResult",

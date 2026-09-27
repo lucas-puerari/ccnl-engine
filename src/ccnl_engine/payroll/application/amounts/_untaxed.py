@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.service.pension_fund import PensionContribution
 
 #: No IRPEF computed: no withholding, credit or conguaglio.
 _NO_TAX = TaxComputation(
@@ -58,6 +59,7 @@ def untaxed_amounts(
     breakdown: ContributionBreakdown,
     employee_rate: Decimal,
     tfr: Decimal,
+    pension: PensionContribution | None = None,
 ) -> tuple[_PeriodAmounts, TaxComputation]:
     """Return the amounts of a run that withholds no tax.
 
@@ -70,7 +72,9 @@ def untaxed_amounts(
     ordinary_pdr = _PdrSplit(
         eligible=_ZERO, excess=inp.event_substitute_base, substitute_tax=_ZERO
     )
-    taxable = taxable_income(inp, breakdown.employee, employee_rate, ordinary_pdr)
+    taxable = taxable_income(
+        inp, breakdown.employee, employee_rate, ordinary_pdr, pension
+    )
     amounts = _PeriodAmounts(
         monthly_gross=inp.monthly_gross,
         inps_employee=breakdown.employee,
@@ -84,5 +88,6 @@ def untaxed_amounts(
         pdr_eligible=_ZERO,
         projected_taxable=taxable.projected,
         decisions=_decisions(inp),
+        pension=pension,
     )
     return amounts, _NO_TAX

@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "c8c09c94101f131da2d9a6439ecf7e992e14e90ed6023c049a8bd40907b8ca01",
+    "source_hash": "a085754a72bf25458f76df903a92fa2d75964a4f40cc81a6dfaf4e1b123ffa52",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -183,6 +183,24 @@
         "kind": "legge"
       },
       "section": "art. 2 c. 28"
+    }
+  },
+  "complementary_pension": {
+    "deduction_cap": "5300.00",
+    "solidarity_rate": "0.10",
+    "provenance": {
+      "status": "derived",
+      "location": {
+        "source_document": {
+          "document_id": "dlgs-252-2005",
+          "title": "D.Lgs. 252/2005, disciplina delle forme pensionistiche complementari",
+          "kind": "legge",
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252"
+        },
+        "section": "art. 8 c. 4, last period (as amended by L. 199/2025); art. 16 c. 1",
+        "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
+      },
+      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR."
     }
   }
 }

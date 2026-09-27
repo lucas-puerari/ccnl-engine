@@ -55,7 +55,7 @@ class Allowance(BaseModel):
 
 
 class EmployerFund(BaseModel):
-    """An employer-side contribution to a contractual fund (e.g. Cassa Edile).
+    """An employer-side contribution to a contractual fund (e.g. a pension fund).
 
     ``rate`` is a fraction of the **INPS contribution base** (gross minus
     contribution-excluded allowances) as computed by the engine.  This is the
@@ -63,8 +63,10 @@ class EmployerFund(BaseModel):
     sector funds (notably Cassa Edile) are conventionally assessed on a
     different base (*imponibile Cassa Edile*); if the fund's official rate is
     expressed on that base, it must be adjusted to the INPS base before being
-    stored here.  ``applies_to_categories`` restricts the fund to levels of the
-    given categories (``None`` = all).
+    stored here.  ``employee_min_rate`` is the minimum employee contribution
+    the CCNL sets on the same base, when the bundle records one.
+    ``applies_to_categories`` restricts the fund to levels of the given
+    categories (``None`` = all).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -72,6 +74,7 @@ class EmployerFund(BaseModel):
     code: str
     description: str
     rate: TimeSeries
+    employee_min_rate: TimeSeries | None = None
     applies_to_categories: tuple[WorkerCategory, ...] | None = None
     provenance: RuleProvenance | None = None
 
