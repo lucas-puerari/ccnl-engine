@@ -42,12 +42,24 @@ _OVERTIME = OvertimeEvent(
 )
 
 
-def test_mapping_copies_every_fact_to_its_request_field() -> None:
-    """Each field of the request comes from its owner in the input."""
-    family = FamilyComposition(
-        dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
-    )
-    employment = Employment(
+#: Request fields copied unchanged from :class:`Employment`.
+_EMPLOYMENT_FIELDS = (
+    "ccnl_slug",
+    "level_code",
+    "contract_type",
+    "category",
+    "employment_period",
+    "weekly_hours",
+    "full_time_weekly_hours",
+    "seniority_months",
+    "roles",
+    "ceiling_status",
+    "sector",
+)
+
+
+def _employment() -> Employment:
+    return Employment(
         ccnl_slug=_METAL,
         level_code="C3",
         contract_type=FixedTerm(),
@@ -60,7 +72,13 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
         ceiling_status=ContributionCeilingStatus.POST_1995,
         sector=EmploymentSector.PRIVATE,
     )
-    facts = PeriodFacts(
+
+
+def _facts() -> PeriodFacts:
+    family = FamilyComposition(
+        dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+    )
+    return PeriodFacts(
         contributable_hours=ContributableHours(Decimal(120)),
         events=(_OVERTIME,),
         regione="IT-45",
@@ -68,6 +86,12 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
         family_composition=family,
         has_dependent_children=True,
     )
+
+
+def test_mapping_copies_every_fact_to_its_request_field() -> None:
+    """Each field of the request comes from its owner in the input."""
+    employment = _employment()
+    facts = _facts()
     prior = PriorYearTaxFacts(employment_income=Decimal(20000))
     opening = PeriodState.zero()
     run = PayrollRun.regular(_YEAR, 6)
@@ -87,19 +111,7 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
     assert request.employer is _EMPLOYER
     assert request.opening_state is opening
     assert request.prior_year is prior
-    for name in (
-        "ccnl_slug",
-        "level_code",
-        "contract_type",
-        "category",
-        "employment_period",
-        "weekly_hours",
-        "full_time_weekly_hours",
-        "seniority_months",
-        "roles",
-        "ceiling_status",
-        "sector",
-    ):
+    for name in _EMPLOYMENT_FIELDS:
         assert getattr(request, name) == getattr(employment, name), name
     for field in fields(PeriodFacts):
         name = field.name

@@ -299,30 +299,23 @@ def _next_salary_event(levels: list[dict[str, Any]]) -> str:
     return min(future) if future else "—"
 
 
-def _coverage_section(
+def _layer_row(label: str, status: str | None) -> str:
+    icon = COVERAGE_ICON.get(status, "—")
+    return f"| **{label}** | {icon} {status or '—'} |"
+
+
+def _coverage_tables(
     coverage: dict[str, Any],
     verification: dict[str, Any],
     meta: dict[str, Any],
     levels: list[dict[str, Any]],
 ) -> list[str]:
-    """Build the 4-axis coverage card.
-
-    Axes: Funzionalità (L1/L2/L3), Verifica (readiness + confidence),
-    Freschezza (renewal date + last human review + next event),
-    Semplificazioni (count of simplification notes).
+    """Build the Funzionalità, Verifica and Freschezza tables.
 
     Returns:
-        List of markdown lines.
+        List of markdown lines, from the section heading to the
+        Semplificazioni heading.
     """
-
-    def layer_row(label: str, status: str | None) -> str:
-        icon = COVERAGE_ICON.get(status, "—")
-        return f"| **{label}** | {icon} {status or '—'} |"
-
-    notes = coverage.get("notes") or []
-    simp_count = sum(1 for n in notes if n.get("kind") == "simplification")
-    missing_count = sum(1 for n in notes if n.get("kind") == "missing")
-
     readiness = verification.get("readiness", "exploratory")
     confidence = verification.get("confidence", "unverified")
     last_reviewed = verification.get("last_reviewed") or "—"
@@ -333,17 +326,16 @@ def _coverage_section(
         or "—"
     )
     next_event = _next_salary_event(levels)
-
-    lines: list[str] = [
+    return [
         "## Coverage",
         "",
         "### Funzionalità",
         "",
         "| Layer | Status |",
         "|---|---|",
-        layer_row("L1 — Gross", coverage.get("gross")),
-        layer_row("L2 — Net", coverage.get("net")),
-        layer_row("L3 — Work rules", coverage.get("work_rules")),
+        _layer_row("L1 — Gross", coverage.get("gross")),
+        _layer_row("L2 — Net", coverage.get("net")),
+        _layer_row("L3 — Work rules", coverage.get("work_rules")),
         "",
         "### Verifica",
         "",
@@ -364,9 +356,20 @@ def _coverage_section(
         "### Semplificazioni note",
         "",
     ]
+
+
+def _simplification_summary(notes: list[dict[str, Any]]) -> list[str]:
+    """Summarise the simplification and missing-feature note counts.
+
+    Returns:
+        List of markdown lines, ending with a blank line.
+    """
+    simp_count = sum(1 for n in notes if n.get("kind") == "simplification")
+    missing_count = sum(1 for n in notes if n.get("kind") == "missing")
     simp_s = "e" if simp_count == 1 else "i"
     simp_a = "a" if simp_count == 1 else "e"
     missing_suffix = f" {missing_count} feature mancanti." if missing_count else ""
+    lines: list[str] = []
     if simp_count:
         lines.extend([
             f"{simp_count} semplificazion{simp_s} documentat{simp_a}.{missing_suffix}",
@@ -378,6 +381,28 @@ def _coverage_section(
             lines.append(f"{missing_count} feature non ancora implementate.")
     lines.append("")
     return lines
+
+
+def _coverage_section(
+    coverage: dict[str, Any],
+    verification: dict[str, Any],
+    meta: dict[str, Any],
+    levels: list[dict[str, Any]],
+) -> list[str]:
+    """Build the 4-axis coverage card.
+
+    Axes: Funzionalità (L1/L2/L3), Verifica (readiness + confidence),
+    Freschezza (renewal date + last human review + next event),
+    Semplificazioni (count of simplification notes).
+
+    Returns:
+        List of markdown lines.
+    """
+    notes = coverage.get("notes") or []
+    return [
+        *_coverage_tables(coverage, verification, meta, levels),
+        *_simplification_summary(notes),
+    ]
 
 
 def _simplification_lines(notes_by_kind: dict[str, list[str]]) -> list[str]:

@@ -1,0 +1,127 @@
+"""Synthetic period results for reconcile() invariant tests.
+
+``ResultBuilder`` assembles a :class:`PeriodResult` field by field so a test
+can break exactly one invariant; ``ledger_entry`` and ``salary_item`` build
+the minimal ledger entries and pay items those scenarios need.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
+from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
+from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning, CompetencePeriod
+from ccnl_engine.payroll.domain.period import PeriodResult
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+
+YEAR = 2026
+COMPETENCE = CompetencePeriod(year=YEAR, month=1)
+PAYMENT_DATE = date(YEAR, 1, 28)
+PERIOD_ID = PeriodId(year=YEAR, month=1)
+
+
+def ledger_entry(
+    pay_item_id: str,
+    account: AccountKind,
+    amount: Decimal,
+) -> LedgerEntry:
+    """Build a minimal LedgerEntry for invariant violation tests.
+
+    Returns:
+        A :class:`LedgerEntry` with the given item id, account and amount.
+    """
+    return LedgerEntry(
+        entry_id=f"e_{pay_item_id}",
+        competence_period=COMPETENCE,
+        payment_date=PAYMENT_DATE,
+        pay_item_id=pay_item_id,
+        pay_item_kind="base_salary_earning",
+        account=account,
+        amount=amount,
+    )
+
+
+def salary_item(item_id: str, amount: Decimal) -> BaseSalaryEarning:
+    """Build a minimal BaseSalaryEarning for coverage tests.
+
+    Returns:
+        A :class:`BaseSalaryEarning` with the given item_id and amount.
+    """
+    return BaseSalaryEarning(
+        item_id=item_id,
+        competence_period=COMPETENCE,
+        payment_date=PAYMENT_DATE,
+        quantity=Decimal(1),
+        amount=amount,
+    )
+
+
+@dataclass
+class ResultBuilder:
+    """Mutable result builder for constructing synthetic violation scenarios."""
+
+    period_gross: Decimal = Decimal("3000.00")
+    period_net: Decimal = Decimal("2000.00")
+    period_employer_cost: Decimal = Decimal("3400.00")
+    closing_months: int = 1
+    closing_irpef: Decimal = Decimal("500.00")
+    closing_inps: Decimal = Decimal("300.00")
+    closing_gross: Decimal = Decimal("3000.00")
+    pay_items: tuple[BaseSalaryEarning, ...] = ()
+    ledger_entries: tuple[LedgerEntry, ...] = ()
+
+    def build(self) -> PeriodResult:
+        """Construct a :class:`PeriodResult` from the builder state.
+
+        Returns:
+            A frozen :class:`PeriodResult`.
+        """
+        return PeriodResult(
+            period_id=PERIOD_ID,
+            payment_date=PAYMENT_DATE,
+            period_gross=self.period_gross,
+            period_net=self.period_net,
+            period_employer_cost=self.period_employer_cost,
+            closing_state=PeriodState(
+                ytd=TaxYearState(
+                    regular_periods_closed=self.closing_months,
+                    tax_withholding_periods_closed=self.closing_months,
+                    tax=TaxYtd(irpef=self.closing_irpef),
+                    earnings=EarningsYtd(
+                        inps_employee=self.closing_inps,
+                        gross=self.closing_gross,
+                    ),
+                )
+            ),
+            pay_items=self.pay_items,
+            ledger_entries=self.ledger_entries,
+            capability_report=CapabilityReport.empty(YEAR),
+            contribution_breakdown=ContributionBreakdown(
+                employee=Decimal(0), employer=Decimal(0), components=()
+            ),
+            tax_computation=TaxComputation(
+                ordinary_tax=Decimal(0),
+                trattamento_integrativo=Decimal(0),
+                withholding_due=Decimal(0),
+                components=(),
+            ),
+            benefit_breakdown=BenefitBreakdown(
+                value=Decimal(0),
+                cash=Decimal(0),
+                irpef_base=Decimal(0),
+                inps_base=Decimal(0),
+                employer_cost=Decimal(0),
+            ),
+        )
+
+
+OPENING = PeriodState.zero()
