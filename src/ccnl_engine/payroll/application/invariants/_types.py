@@ -54,6 +54,7 @@ class InvariantCode(StrEnum):
     IRPEF_ANNUAL_RECONCILIATION = "irpef_annual_reconciliation"
     NON_AGENT_UNTAXED = "non_agent_untaxed"
     REMITTANCE_CODE_CONSISTENT = "remittance_code_consistent"
+    AMOUNT_HAS_DECISION = "amount_has_decision"
 
 
 @dataclass(frozen=True)

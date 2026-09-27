@@ -60,6 +60,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    DecisionOrigin,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employer import (
@@ -153,6 +154,7 @@ __all__ = [
     "ContributableHours",
     "ContributionCeilingStatus",
     "DataIntegrityError",
+    "DecisionOrigin",
     "DeferredShortfall",
     "Dependent",
     "DependentRelationship",

@@ -67,6 +67,10 @@ declared capability (for example INAIL) is not wired into the period run.
 `rule_sources` maps each executed capability that reads bundled rules to the
 weakest provenance status among them. Capabilities computed only from
 caller-declared amounts do not appear.
+`caller_supplied` maps each capability that used a rate or an amount the
+caller supplied in place of a rule (an overtime multiplier, a sickness
+integration rate) to the event fields it took; see
+[Decisions](decisions.md#caller-supplied-values).
 
 ## Using both signals
 

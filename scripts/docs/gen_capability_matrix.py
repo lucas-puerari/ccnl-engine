@@ -33,6 +33,9 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
+from ccnl_engine.payroll.application.period._caller_rules import (
+    CALLER_SUPPLIED_CAPABILITIES,
+)
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityStatus
 from scripts.ci.payable_rules import count_by_capability, inventory
 
@@ -97,6 +100,7 @@ the provenance records of the payable rules and the `coverage` blocks of the
 | Label | Meaning |
 |---|---|
 | verified | Implemented; a named person checked every bundled rule it reads |
+| caller-supplied | Computed from caller rates or amounts that stand in for a rule |
 | implemented | Computed; the bundled rules it reads, if any, cite a source |
 | simplified | Computed partially, or reads an `assumed` or `missing` rule |
 | unavailable | Not computed by the engine |
@@ -134,10 +138,13 @@ def capability_label(entry: CapabilityEntry, counts: Mapping[str, int]) -> str:
         counts: Payable rules the capability reads, by provenance status.
 
     Returns:
-        ``unavailable``, ``simplified``, ``verified`` or ``implemented``.
+        ``unavailable``, ``caller-supplied``, ``simplified``, ``verified`` or
+        ``implemented``, the first that applies.
     """
     if entry.status in _UNAVAILABLE:
         return "unavailable"
+    if entry.feature in CALLER_SUPPLIED_CAPABILITIES:
+        return "caller-supplied"
     if entry.status is CapabilityStatus.PARTIALLY_COMPUTED or any(
         counts.get(status, 0) for status in _WEAK_SOURCES
     ):

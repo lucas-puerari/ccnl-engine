@@ -1,0 +1,264 @@
+"""Decisions of the base stages every run executes.
+
+One decision per stage: the pay chain (``base_salary``), the INPS
+contributions of the worker and of the employer, the TFR accrual and the
+ordinary IRPEF withholding.  Each names the payable rule it read, as listed
+by :mod:`~ccnl_engine.payroll.application.period._rule_lookup`, and its
+source when the rule records one.  The decisions other capabilities take on
+the same amounts (apprenticeship scaling, seniority, credits, surtax, the
+withholding cap) are referenced by capability, not repeated.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from ccnl_engine.payroll.application.period._rule_lookup import (
+    contract_rules,
+    tax_rules,
+)
+from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
+from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
+from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.service._contributions_rates import resolve_rates
+from ccnl_engine.provenance.domain.chain import RuleProvenance
+
+if TYPE_CHECKING:
+    from decimal import Decimal
+
+    from ccnl_engine.payroll.application.handlers._totals import _EventTotals
+    from ccnl_engine.payroll.application.period._context import RunContext
+    from ccnl_engine.payroll.application.period._pipeline import RunAmounts
+    from ccnl_engine.payroll.application.period._rule_lookup import Rule
+    from ccnl_engine.tax.domain.ruleset import YearRules
+
+__all__ = ["base_stage_decisions"]
+
+_NONE = "none"
+
+#: Credit and tax decisions the IRPEF of the run is netted with.
+_IRPEF_REFERENCES = (
+    "family_deductions",
+    "ulteriore_detrazione_lavoro",
+    "trattamento_integrativo",
+    "foreign_tax_credit",
+)
+
+
+def _decision(
+    capability: str,
+    reason_code: str,
+    rule: Rule,
+    version: str,
+    inputs: dict[str, Decimal | str],
+    amount: Decimal,
+) -> CalculationDecision:
+    rule_id, provenance = rule
+    return CalculationDecision(
+        capability=capability,
+        status=CalculationStatus.FINAL,
+        reason_code=reason_code,
+        rule=rule_id,
+        rule_version=version,
+        inputs=inputs,
+        source=(
+            provenance.location if isinstance(provenance, RuleProvenance) else None
+        ),
+        amount=amount,
+    )
+
+
+def _flag(value: bool) -> str:
+    return str(value).lower()
+
+
+def _tax_version(rules: YearRules) -> str:
+    return str(rules.year) if rules.ruleset is None else rules.ruleset.version
+
+
+def _base_salary(ctx: RunContext) -> CalculationDecision:
+    """Return the decision of the pay chain of the run.
+
+    The rule is the base salary period of the level in force on the
+    competence date; the allowances and the additional months the chain
+    also reads are listed with their provenance in the capability report.
+
+    Returns:
+        A decision with reason ``pay_chain_applied`` and the chain gross.
+    """
+    contract, chain = ctx.contract, ctx.chain
+    rules = contract_rules(ctx)["base_salary"]
+    rule = next(
+        (r for r in rules if ".base_salary[" in r[0]),
+        (_ccnl_rule(contract.ccnl, contract.tctx.competence.year)[0], None),
+    )
+    codes = ",".join(allowance.code for allowance, _ in chain.allowances)
+    return _decision(
+        "base_salary",
+        "pay_chain_applied",
+        rule,
+        _ccnl_rule(contract.ccnl, contract.tctx.competence.year)[1],
+        {
+            "level": contract.level.code,
+            "run_kind": ctx.run_kind.value,
+            "minimum": chain.base,
+            "seniority": chain.seniority,
+            "allowances": chain.allowances_total,
+            "allowance_codes": codes or _NONE,
+            "apprenticeship": (
+                _NONE if ctx.apprenticeship is None else "apprenticeship_scaling"
+            ),
+        },
+        ctx.monthly_gross,
+    )
+
+
+def _inps(
+    ctx: RunContext, totals: _EventTotals, amounts: RunAmounts
+) -> tuple[CalculationDecision, CalculationDecision]:
+    """Return the INPS decisions of the worker and of the employer.
+
+    Returns:
+        The ``inps_employee`` and ``inps_employer`` decisions, with reason
+        ``rates_applied`` for the ordinary rates of the contract, or
+        ``domestic_hourly_rates`` for the flat hourly contributions of a
+        domestic CCNL.
+    """
+    year_rules = ctx.contract.year_rules
+    rules = contract_rules(ctx)["inps_employee"]
+    version = (
+        str(year_rules.year)
+        if year_rules.inps_ruleset is None
+        else year_rules.inps_ruleset.version
+    )
+    base = ctx.monthly_gross + totals.inps_base
+    breakdown = amounts.contribution_breakdown
+    if year_rules.inps is None:
+        common: dict[str, Decimal | str] = {"base": base}
+        return (
+            _decision(
+                "inps_employee",
+                "domestic_hourly_rates",
+                rules[1],
+                version,
+                common,
+                breakdown.employee,
+            ),
+            _decision(
+                "inps_employer",
+                "domestic_hourly_rates",
+                rules[1],
+                version,
+                common,
+                breakdown.employer,
+            ),
+        )
+    rates = resolve_rates(year_rules, ctx.request.contract_type, ctx.worker_category)
+    common = {
+        "base": base,
+        "ytd_base": ctx.opening.ytd.earnings.inps_base,
+        "ivs_ceiling_applies": _flag(ctx.ivs_ceiling_applies),
+    }
+    return (
+        _decision(
+            "inps_employee",
+            "rates_applied",
+            rules[0],
+            version,
+            {**common, "rate": rates.employee_rate},
+            breakdown.employee,
+        ),
+        _decision(
+            "inps_employer",
+            "rates_applied",
+            rules[0],
+            version,
+            {**common, "rate": rates.employer_rate},
+            breakdown.employer,
+        ),
+    )
+
+
+def _tfr(
+    ctx: RunContext, totals: _EventTotals, amounts: RunAmounts
+) -> CalculationDecision:
+    """Return the decision of the TFR accrued on the run.
+
+    Returns:
+        A decision with reason ``accrued`` and the account the TFR goes
+        to: the company accrual or the pension fund.
+    """
+    year_rules = ctx.contract.year_rules
+    pension = amounts.amounts.pension
+    to_fund = pension is not None and pension.terms.tfr_to_fund
+    account = AccountKind.PENSION_FUND_TFR if to_fund else AccountKind.TFR_ACCRUAL
+    return _decision(
+        "tfr",
+        "accrued",
+        tax_rules(ctx)["tfr"][0],
+        _tax_version(year_rules),
+        {
+            "base": ctx.monthly_gross + totals.tfr_base,
+            "accrual_divisor": year_rules.tfr.accrual_divisor,
+            "account": account.value,
+        },
+        amounts.amounts.tfr,
+    )
+
+
+def _irpef(ctx: RunContext, amounts: RunAmounts) -> CalculationDecision:
+    """Return the decision of the ordinary IRPEF of the run.
+
+    The amount is the withholding the conguaglio YTD computed for the run,
+    before the pay cap: a ``withholding_shortfall`` decision records what
+    the cap carried to the next runs.  A negative amount is a refund.
+
+    Returns:
+        A decision with reason ``withheld``, ``refunded`` or ``nothing_due``,
+        the annual components of the tax and the credit decisions it is
+        netted with.
+    """
+    computation = amounts.tax_computation
+    ordinary = computation.ordinary_tax
+    reason = "withheld" if ordinary > 0 else "refunded" if ordinary < 0 else ""
+    taken = {d.capability for d in amounts.amounts.decisions}
+    references = ",".join(c for c in _IRPEF_REFERENCES if c in taken)
+    projected = amounts.amounts.projected_taxable
+    inputs: dict[str, Decimal | str] = {
+        "projected_taxable": _NONE if projected is None else projected,
+        **{component.name: component.amount for component in computation.components},
+        "withholding_due": computation.withholding_due,
+        "withholding_slots": str(ctx.withholding_schedule.run_count.value),
+        "decisions": references or _NONE,
+    }
+    return _decision(
+        "irpef",
+        reason or "nothing_due",
+        tax_rules(ctx)["irpef"][0],
+        _tax_version(ctx.contract.year_rules),
+        inputs,
+        ordinary,
+    )
+
+
+def base_stage_decisions(
+    ctx: RunContext, totals: _EventTotals, amounts: RunAmounts
+) -> tuple[CalculationDecision, ...]:
+    """Return the decisions of the base stages of the run.
+
+    An employer that is not a withholding agent computes no IRPEF: its
+    ``irpef`` capability keeps the not-applicable decision of
+    :mod:`~ccnl_engine.payroll.service.withholding_agent`.
+
+    Returns:
+        The ``base_salary``, ``inps_employee``, ``inps_employer`` and
+        ``tfr`` decisions, then ``irpef`` for a withholding agent.
+    """
+    decisions = (
+        _base_salary(ctx),
+        *_inps(ctx, totals, amounts),
+        _tfr(ctx, totals, amounts),
+    )
+    if not ctx.withholding_agent:
+        return decisions
+    return (*decisions, _irpef(ctx, amounts))

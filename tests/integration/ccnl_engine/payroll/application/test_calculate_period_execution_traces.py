@@ -293,4 +293,6 @@ class TestYearDecisions:
         )
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
-        assert len(year.decisions) == 3 * len(runs)
+        # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
+        # and three credits (ulteriore detrazione, trattamento, somma esente).
+        assert len(year.decisions) == 8 * len(runs)

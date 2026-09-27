@@ -16,6 +16,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    DecisionOrigin,
 )
 from ccnl_engine.provenance.domain.source import (
     SourceDocument,
@@ -175,6 +176,14 @@ class TestCalculationDecision:
         assert decision.inputs == {}
         assert decision.source is None
         assert decision.amount is None
+        assert decision.origin is DecisionOrigin.ENGINE
+
+    def test_caller_supplied_decision_cites_no_source(self) -> None:
+        """A value the caller gave in place of a rule has no bundled source."""
+        caller = DecisionOrigin.CALLER_SUPPLIED
+        assert _decision(origin=caller).origin is caller
+        with pytest.raises(ValueError, match="cannot cite a source"):
+            _decision(origin=caller, source=_SOURCE)
 
     def test_inputs_are_frozen(self) -> None:
         """The inputs mapping cannot be mutated in place."""

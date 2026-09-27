@@ -21,6 +21,12 @@ from ccnl_engine.payroll.application.amounts._compute import _compute_amounts
 from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_rate
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
+from ccnl_engine.payroll.application.period._base_decisions import (
+    base_stage_decisions,
+)
+from ccnl_engine.payroll.application.period._caller_rules import (
+    caller_supplied_decisions,
+)
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
 from ccnl_engine.payroll.application.period._pension_decision import (
     pension_decision,
@@ -243,18 +249,22 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
 
 
 def run_decisions(
-    ctx: RunContext, totals: _EventTotals, amounts: _PeriodAmounts
+    ctx: RunContext, totals: _EventTotals, run: RunAmounts
 ) -> tuple[CalculationDecision, ...]:
-    """Return the contract, event and tax decisions of the run.
+    """Return the base stage, contract, event and tax decisions of the run.
 
     Returns:
-        The contract decisions, then those of the events and of the amounts.
+        The base stage decisions, the contract decisions, then those of the
+        events and of the amounts, and last the caller-supplied values of
+        the events.
     """
     request, contract = ctx.request, ctx.contract
+    amounts = run.amounts
     year = contract.tctx.competence.year
     pension = pension_decision(contract.ccnl, amounts.pension, year)
     return (
-        contract_decisions(
+        base_stage_decisions(ctx, totals, run)
+        + contract_decisions(
             contract.ccnl,
             contract.level,
             request.category,
@@ -267,4 +277,5 @@ def run_decisions(
         + ((pension,) if pension is not None else ())
         + totals.decisions
         + amounts.decisions
+        + caller_supplied_decisions(request.events, contract.ccnl)
     )

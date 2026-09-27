@@ -3,7 +3,9 @@
 A trace never looks at the request: a capability is computed only when it
 took a :class:`~ccnl_engine.payroll.domain.decisions.CalculationDecision`
 (a zero amount with its reason counts) or, for an event feature, when an
-event handler had an effect.
+event handler had an effect.  A caller-supplied decision records the value
+the caller gave in place of a rule; it is reported apart and does not trace
+its capability.
 """
 
 from __future__ import annotations
@@ -11,8 +13,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
+from ccnl_engine.payroll.application.period._caller_rules import (
+    CALLER_DECLARED_AMOUNT,
+)
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
-from ccnl_engine.payroll.domain.decisions import CalculationStatus
+from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 from ccnl_engine.payroll.service.pension_fund import NOT_ENROLLED
 from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
@@ -67,7 +72,7 @@ def _worst_state_by_capability(
     applicable: the employer does not compute it
     (:data:`NOT_WITHHOLDING_AGENT`) or the worker is not enrolled in a
     pension fund (:data:`NOT_ENROLLED`).  Otherwise the worst status of its
-    decisions gives the state.
+    decisions gives the state.  Caller-supplied decisions are left out.
 
     Returns:
         Mapping of capability to its trace state.
@@ -76,6 +81,8 @@ def _worst_state_by_capability(
     skipped: set[str] = set()
     applied: set[str] = set()
     for decision in decisions:
+        if decision.origin is DecisionOrigin.CALLER_SUPPLIED:
+            continue
         capability = decision.capability
         previous = worst.get(capability, CalculationStatus.FINAL)
         worst[capability] = CalculationStatus.worst((previous, decision.status))
@@ -155,6 +162,31 @@ def traces_to_observed(traces: tuple[DecisionTrace, ...]) -> dict[str, str]:
     return {t.feature: t.state for t in traces}
 
 
+def caller_supplied_fields(
+    decisions: Iterable[CalculationDecision],
+) -> dict[str, tuple[str, ...]]:
+    """Return the event fields each capability took from the caller for a rule.
+
+    A declared amount (a bonus, a welfare benefit) is a fact of the run, not
+    a rule, and is left out.
+
+    Returns:
+        Capability to the sorted names of the fields listed in the
+        ``fields`` input of its caller-supplied decisions.
+    """
+    fields: dict[str, set[str]] = {}
+    for decision in decisions:
+        if (
+            decision.origin is DecisionOrigin.CALLER_SUPPLIED
+            and decision.reason_code != CALLER_DECLARED_AMOUNT
+        ):
+            names = str(decision.inputs.get("fields", ""))
+            fields.setdefault(decision.capability, set()).update(
+                name for name in names.split(",") if name
+            )
+    return {capability: tuple(sorted(names)) for capability, names in fields.items()}
+
+
 def capability_report(
     catalog: CapabilityCatalog,
     decisions: Iterable[CalculationDecision],
@@ -172,11 +204,14 @@ def capability_report(
         rule_sources: Weakest provenance status per executed capability.
 
     Returns:
-        The capability report of the run for ``year``.
+        The capability report of the run for ``year``, with the fields
+        each capability took from the caller.
     """
+    decisions = tuple(decisions)
     observed = traces_to_observed(build_traces(decisions, executed_features))
     return CapabilityReport(
         catalog_year=year,
         gaps=catalog.gaps(observed, detect_absent=True, year=year),
         rule_sources=rule_sources or {},
+        caller_supplied=caller_supplied_fields(decisions),
     )
