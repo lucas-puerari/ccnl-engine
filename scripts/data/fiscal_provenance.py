@@ -312,7 +312,10 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         "pdr": _derived(
             L_208_2015,
             "art. 1 cc. 182-190",
-            note="Substitute rate 1% per L. 207/2024 art. 1 c. 385.",
+            note=(
+                "Substitute rate 1% within 5,000 EUR for 2026 per L. 199/2025 "
+                "art. 1 c. 9."
+            ),
         ),
         "rinnovo": {"status": "derived"},
         "notte_festivi_turni": {"status": "derived"},

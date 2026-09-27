@@ -13,6 +13,10 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service.irpef_credits import somma_esente
 from ccnl_engine.payroll.service.ulteriore_recovery import ulteriore_items
+from ccnl_engine.payroll.service.withholding_law import (
+    WithholdingTopic,
+    withholding_rule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -81,12 +85,13 @@ def annual_items(
             )
         )
     if annual.foreign_credit > _ZERO:
+        law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
         components.append(
             TaxLineItem(
                 name="foreign_tax_credit",
                 amount=annual.foreign_credit,
                 rule_id="tuir-art165-c1",
-                fonte="Art. 165 TUIR; art. 23 c. 3 DPR 600/1973",
+                fonte=f"Art. 165 TUIR; {law.citation}",
             )
         )
     return components, decisions

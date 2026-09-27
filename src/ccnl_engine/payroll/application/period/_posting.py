@@ -31,6 +31,10 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import TaxCreditItem
+from ccnl_engine.payroll.service.withholding_law import (
+    WithholdingTopic,
+    withholding_rule,
+)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
@@ -89,10 +93,11 @@ def _no_credits(ctx: RunContext) -> RunCredits:
         obligations.recoveries or obligations.surtax or obligations.deferred_shortfall
     )
     if carried or ytd.shortfall.total or ytd.tax.irpef or ytd.tax.surtax:
+        law = withholding_rule(WithholdingTopic.AGENTS, ctx.fiscal_year)
         msg = (
-            "the employer is not a withholding agent (art. 23 c. 1 D.P.R. "
-            "600/1973): the opening state cannot carry credit recoveries, "
-            "surtax to withhold, a withholding shortfall or tax withheld"
+            f"the employer is not a withholding agent ({law.citation}): the "
+            "opening state cannot carry credit recoveries, surtax to "
+            "withhold, a withholding shortfall or tax withheld"
         )
         raise InvalidInputError(msg, feature="withholding_agent")
     return RunCredits(SommaEsenteOutcome(), CarriedRecoveries())

@@ -1,8 +1,8 @@
 """IRPEF and surtax withheld up to the pay left, the shortfall carried.
 
-Art. 33 c. 4 D.Lgs. 33/2025 (ex art. 23 c. 3 DPR 600/1973): the conguaglio
-settles the tax on the whole year; what the pay cannot cover on the last
-slot is communicated to the worker.
+Art. 23 c. 3 DPR 600/1973 (art. 33 c. 4 D.Lgs. 33/2025 from 2027): the
+conguaglio settles the tax on the whole year; what the pay cannot cover on
+the last slot is communicated to the worker.
 
 The Metalmeccanico C3 case: 160 absence hours at 12.50 EUR deduct 2,000 EUR
 of the 2,158.26 EUR January pay.  The expectation is derived by hand:

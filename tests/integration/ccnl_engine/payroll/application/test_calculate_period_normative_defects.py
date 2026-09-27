@@ -161,15 +161,16 @@ def test_calculate_year_extra_months() -> None:
 # YTD taxable income, not only on the projected annual figure.  When
 # taxable_ytd differs between two otherwise identical December requests the
 # resulting IRPEF must differ.
-# Source: TUIR art. 23 — ritenuta per conguaglio
+# Source: art. 23 c. 3 DPR 600/1973, ritenuta per conguaglio
 # ---------------------------------------------------------------------------
 
 
 def test_taxable_ytd_affects_conguaglio() -> None:
     """Different taxable_ytd must produce different IRPEF in the conguaglio.
 
-    Source: TUIR art. 23.  Two December calculations, one with taxable_ytd=0
-    and one with taxable_ytd=5,000, must produce different ordinary_tax.
+    Source: art. 23 c. 3 DPR 600/1973.  Two December calculations, one with
+    taxable_ytd=0 and one with taxable_ytd=5,000, must produce different
+    ordinary_tax.
     """
     opening_zero = PeriodState(
         ytd=TaxYearState(

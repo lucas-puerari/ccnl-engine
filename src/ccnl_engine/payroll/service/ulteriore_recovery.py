@@ -213,7 +213,8 @@ def settle_ulteriore(
         defer: Whether a payslip follows the conguaglio.  False when the
             employment ends in the tax year: the conguaglio at the
             cessation keeps the whole excess, and what the pay cannot cover
-            is left to the worker (art. 33 c. 4 D.Lgs. 33/2025).
+            is left to the worker (art. 23 c. 3 DPR 600/1973; art. 33 c. 4
+            D.Lgs. 33/2025 from 2027).
 
     Returns:
         The signed change of the account; on the last slot an excess above

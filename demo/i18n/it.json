@@ -155,7 +155,7 @@
   "breakdown.welfare": "Welfare (esente fiscale)",
   "breakdown.bonus": "Bonus",
   "breakdown.bonus_pdr": "↳ Imposta sostitutiva PdR",
-  "breakdown.irpef_note_domestic": "Il datore di lavoro domestico non è sostituto d'imposta (art. 23 c. 1 D.P.R. 600/1973): in busta niente IRPEF, addizionali o crediti (trattamento integrativo, somma esente, ulteriore detrazione). Il lavoratore dichiara il reddito e paga direttamente l'imposta.",
+  "breakdown.irpef_note_domestic": "Il datore di lavoro domestico non è sostituto d'imposta (art. 23 c. 1 D.P.R. 600/1973; art. 33 c. 1 D.Lgs. 33/2025 dal 2027): in busta niente IRPEF, addizionali o crediti (trattamento integrativo, somma esente, ulteriore detrazione). Il lavoratore dichiara il reddito e paga direttamente l'imposta.",
   "footer.covers": "Copre lordo (L1), netto (L2), costo azienda e regole orarie L3 (straordinari, assenza, ferie, malattia, welfare, bonus) · I valori L3 sono informativi e non modificano il netto",
   "footer.disclaimer": "Valori indicativi per il 2026 · Non è una consulenza fiscale o finanziaria",
   "footer.api_docs": "Docs API",

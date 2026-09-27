@@ -155,7 +155,7 @@
   "breakdown.welfare": "Welfare (tax-exempt)",
   "breakdown.bonus": "Bonus",
   "breakdown.bonus_pdr": "↳ PdR flat tax (imposta sostitutiva)",
-  "breakdown.irpef_note_domestic": "A household employer is not a tax withholding agent (art. 23 c. 1 D.P.R. 600/1973): no IRPEF, surtax or tax credit (trattamento integrativo, somma esente, ulteriore detrazione) on the payslip. The worker declares the income and pays the tax directly.",
+  "breakdown.irpef_note_domestic": "A household employer is not a tax withholding agent (art. 23 c. 1 D.P.R. 600/1973; art. 33 c. 1 D.Lgs. 33/2025 from 2027): no IRPEF, surtax or tax credit (trattamento integrativo, somma esente, ulteriore detrazione) on the payslip. The worker declares the income and pays the tax directly.",
   "footer.covers": "Covers gross pay (L1), net income (L2), employer cost, and L3 work rules (overtime, absence, leave, sick pay, welfare, bonus) · L3 figures are informational and do not affect net pay",
   "footer.disclaimer": "Indicative figures for 2026 · Not financial or tax advice",
   "footer.api_docs": "API docs",

@@ -252,8 +252,8 @@ def test_absence_leaving_less_than_withholdings_caps_the_irpef() -> None:
     160 hours at 12.50 EUR deduct 2,000 EUR of 2,158.26 EUR of pay; the
     IRPEF due (162.33 EUR) exceeds the 143.25 EUR left after INPS, which
     gave a net pay of -19.08 EUR.  The IRPEF is withheld up to the pay left
-    and the 19.08 EUR are carried to the next run (art. 33 c. 4 D.Lgs.
-    33/2025); the derivation is in ``withholding/test_cap``.
+    and the 19.08 EUR are carried to the next run (art. 23 c. 3 DPR
+    600/1973); the derivation is in ``withholding/test_cap``.
     """
     absence = AbsenceEvent(
         event_date=date(_YEAR, 1, 15),
