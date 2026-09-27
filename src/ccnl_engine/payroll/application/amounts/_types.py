@@ -35,6 +35,8 @@ class _AmountsInput:
     ``recovery_plan`` is the installment recovery opened in this tax year,
     if one is running.  ``later_payslips`` is false when the employment ends
     in the tax year: the conguaglio then defers nothing.
+    ``withholding_agent`` is false for an employer that withholds no tax
+    (see :mod:`~ccnl_engine.payroll.service.withholding_agent`).
     """
 
     monthly_gross: Decimal
@@ -61,6 +63,7 @@ class _AmountsInput:
     eligible_work_days: int = DAYS_IN_YEAR
     recovery_plan: RecoveryPlan | None = None
     later_payslips: bool = True
+    withholding_agent: bool = True
 
 
 @dataclass(frozen=True)

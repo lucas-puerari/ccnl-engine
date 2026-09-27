@@ -51,6 +51,7 @@ class InvariantCode(StrEnum):
     EXTRA_MONTH_ACCRUAL_LIMIT = "extra_month_accrual_limit"
     CONTRIBUTION_CEILING = "contribution_ceiling"
     IRPEF_ANNUAL_RECONCILIATION = "irpef_annual_reconciliation"
+    NON_AGENT_UNTAXED = "non_agent_untaxed"
 
 
 @dataclass(frozen=True)
@@ -90,6 +91,8 @@ class RunFacts:
             extra-month run and the ratei settled at termination.
         projected_taxable: Annual taxable income the IRPEF of the run was
             computed on, ``None`` when not known.
+        withholding_agent: Whether the employer withholds tax; false for a
+            household employer.
     """
 
     employment_period: EmploymentPeriod | None = None
@@ -97,6 +100,7 @@ class RunFacts:
     pdr_cap: Decimal | None = None
     accruals: tuple[ExtraMonthAccrual, ...] = ()
     projected_taxable: Decimal | None = None
+    withholding_agent: bool = True
 
 
 def _sum_account(

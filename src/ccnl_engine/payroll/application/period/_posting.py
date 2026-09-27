@@ -11,23 +11,20 @@ from ccnl_engine.payroll.application.post_ledger import (
 )
 from ccnl_engine.payroll.application.withholding._cap import cap_withholding
 from ccnl_engine.payroll.application.withholding._carried_recovery import (
+    CarriedRecoveries,
     post_carried_recoveries,
 )
 from ccnl_engine.payroll.application.withholding._somma_esente import (
+    SommaEsenteOutcome,
     SommaEsentePosting,
     resolve_somma_esente,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
     from ccnl_engine.payroll.application.period._context import RunContext
     from ccnl_engine.payroll.application.withholding._cap import CappedWithholding
-    from ccnl_engine.payroll.application.withholding._carried_recovery import (
-        CarriedRecoveries,
-    )
-    from ccnl_engine.payroll.application.withholding._somma_esente import (
-        SommaEsenteOutcome,
-    )
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.tax import TaxComputation
@@ -55,12 +52,46 @@ class RunPostings:
     capped: CappedWithholding
 
 
+def _no_credits(ctx: RunContext) -> RunCredits:
+    """Return the credits of an employer that is not a withholding agent.
+
+    Such an employer never recognizes a credit or withholds a tax, so an
+    opening state carrying a recovery, a withholding shortfall or tax
+    withheld cannot come from its payslips.
+
+    Returns:
+        No somma esente and no carried recovery.
+
+    Raises:
+        InvalidInputError: When the opening state carries a recovery, a
+            withholding shortfall or IRPEF or surtax withheld.
+    """
+    opening = ctx.opening
+    ytd = opening.ytd
+    if (
+        opening.obligations.recoveries
+        or ytd.shortfall.total
+        or ytd.tax.irpef
+        or ytd.tax.surtax
+    ):
+        msg = (
+            "the employer is not a withholding agent (art. 23 c. 1 D.P.R. "
+            "600/1973): the opening state cannot carry credit recoveries, a "
+            "withholding shortfall or tax withheld"
+        )
+        raise InvalidInputError(msg, feature="withholding_agent")
+    return RunCredits(SommaEsenteOutcome(), CarriedRecoveries())
+
+
 def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
     """Settle the somma esente and post the recoveries carried into the year.
 
     Returns:
-        The somma esente outcome and the carried recoveries of the run.
+        The somma esente outcome and the carried recoveries of the run;
+        none for an employer that is not a withholding agent.
     """
+    if not ctx.withholding_agent:
+        return _no_credits(ctx)
     request, contract = ctx.request, ctx.contract
     somma = resolve_somma_esente(
         tax_computation,

@@ -30,6 +30,7 @@ Invariants, by module:
   ``extra_month_accrual_limit``.
 - ``withholding_invariants``: ``contribution_ceiling``,
   ``irpef_annual_reconciliation``.
+- ``untaxed``: ``non_agent_untaxed``.
 """
 
 from __future__ import annotations
@@ -66,6 +67,9 @@ from ccnl_engine.payroll.application.invariants.state import (
     check_credit_recovery_bounds,
     check_run_counters,
     check_ytd_continuity,
+)
+from ccnl_engine.payroll.application.invariants.untaxed import (
+    check_non_agent_untaxed,
 )
 from ccnl_engine.payroll.application.invariants.withholding import (
     check_contribution_ceiling,
@@ -147,6 +151,7 @@ def reconcile(
     violations.extend(check_extra_month_accrual_limit(run_facts))
     violations.extend(check_contribution_ceiling(result, opening, run_facts))
     violations.extend(check_irpef_annual_reconciliation(result, opening, run_facts))
+    violations.extend(check_non_agent_untaxed(result, run_facts))
     return ReconciliationResult(violations=tuple(violations))
 
 

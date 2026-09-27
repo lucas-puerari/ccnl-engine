@@ -119,12 +119,14 @@ def run_facts(
     pdr_cap: Decimal,
     accrual: ExtraMonthAccrual | None,
     projected_taxable: Decimal | None,
+    withholding_agent: bool,
 ) -> RunFacts:
     """Return the facts of the run the reconciliation invariants need.
 
     Returns:
         The employment, the massimale when it applies, the PdR limit, the
-        ratei paid on the run and the taxable income its IRPEF used.
+        ratei paid on the run, the taxable income its IRPEF used and
+        whether the employer withholds tax.
     """
     inps = year_rules.inps
     ceiling = inps.ceiling if inps is not None and ivs_ceiling_applies else None
@@ -137,4 +139,5 @@ def run_facts(
         pdr_cap=pdr_cap,
         accruals=accruals,
         projected_taxable=projected_taxable,
+        withholding_agent=withholding_agent,
     )

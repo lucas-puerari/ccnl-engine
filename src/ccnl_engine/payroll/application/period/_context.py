@@ -134,6 +134,15 @@ class RunContext:
         return money(chain.base + chain.seniority + chain.allowances_total)
 
     @property
+    def withholding_agent(self) -> bool:
+        """Whether the employer withholds tax: false for a household employer.
+
+        The only place a run reads it from the CCNL; see
+        :mod:`~ccnl_engine.payroll.service.withholding_agent`.
+        """
+        return self.contract.ccnl.meta.withholding_agent
+
+    @property
     def ivs_ceiling_applies(self) -> bool:
         """Whether the IVS contribution ceiling applies to the worker."""
         return self.request.ceiling_status in _IVS_CEILING_STATUSES

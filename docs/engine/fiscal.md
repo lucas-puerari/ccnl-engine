@@ -87,7 +87,7 @@ take most of the month. The engine then:
 
 The cumulative conguaglio settles the tax on the whole year (art. 33 c. 4
 D.Lgs. 33/2025, which replaces art. 23 c. 3 DPR 600/1973 from 1 January
-2026, art. 243). For what is left at year end the same comma says: "L'importo
+2027, art. 243 as amended by D.L. 200/2025 art. 4). For what is left at year end the same comma says: "L'importo
 che al termine del periodo d'imposta non è stato trattenuto per cessazione del
 rapporto di lavoro o per incapienza delle retribuzioni deve essere comunicato
 all'interessato che deve provvedere al versamento entro il 15 gennaio
@@ -107,6 +107,16 @@ carried on top of its share.
 A run whose other deductions (INPS, substitute tax, recovery installments)
 exceed the pay left by unpaid absences is still rejected
 (`OutOfScopeError`, reason `withholding_shortfall`).
+
+## Employers that are not withholding agents
+
+Everything above is done by the employer as *sostituto d'imposta*. A
+household employer is not one (art. 23 c. 1 DPR 600/1973; art. 33 c. 1
+D.Lgs. 33/2025 from 2027), so for the domestic CCNLs the engine withholds no
+IRPEF or surcharge, runs no conguaglio, pays no trattamento integrativo, somma
+esente or ulteriore detrazione and applies no substitute tax. Each of these
+capabilities records a `not_withholding_agent` decision. See
+[Domestic work](domestic-work.md#no-withholding-on-the-payslip).
 
 ## Regional and municipal surcharges
 

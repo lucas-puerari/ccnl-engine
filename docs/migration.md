@@ -1,5 +1,22 @@
 # Migration guide
 
+## Household employers withhold no tax
+
+A household employer is not a withholding agent (art. 23 c. 1 DPR 600/1973;
+art. 33 c. 1 D.Lgs. 33/2025 from 2027). The domestic CCNLs now withhold no
+IRPEF or surtax and pay no tax credit: see
+[Domestic work](engine/domestic-work.md#no-withholding-on-the-payslip).
+
+| Change | What to do |
+|---|---|
+| `CCNLMeta.withholding_exempt` removed | Read `CCNLMeta.withholding_agent`, derived from `tax_sector`; drop `"withholding_exempt"` from custom CCNL JSON, which now rejects it |
+| Domestic payslips: no `ordinary_tax`, `surtax`, `substitute_tax` or `credits` entries, empty `tax_computation` | Net is gross less employee contributions; do not expect IRPEF lines |
+| Reason code `not_withholding_agent` on the skipped capabilities | Handle it where reason codes are matched; the traces are `not_applicable` |
+| Invariant `non_agent_untaxed` | Handle it where invariant codes are matched |
+| Opening state with recoveries, shortfall or tax withheld rejected for a domestic CCNL | Start household employments from a zero tax state |
+
+Amounts change only for the two domestic CCNLs.
+
 ## Provenance status required on every rule record
 
 Every `provenance` record now declares a `status`: `verified`, `derived`,

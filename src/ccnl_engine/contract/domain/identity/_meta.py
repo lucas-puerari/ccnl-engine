@@ -78,11 +78,6 @@ class CCNLMeta(BaseModel):
         agreement_date: Date of the most recent renewal agreement, ISO 8601 string.
             ``None`` if not yet modelled.
         validity: Contractual validity window. ``None`` if not specified.
-        withholding_exempt: ``True`` for sectors where the employer is not a
-            *sostituto d'imposta* for IRPEF (e.g. lavoro domestico, exempt under
-            Art. 4 D.P.R. 600/1973). When ``True``, the engine still computes IRPEF
-            figures but sets ``irpef_net`` to zero and marks
-            ``AnnualEstimate.employer_withholds_irpef`` as ``False``.
         workers_estimate: Approximate number of workers covered by this agreement,
             as a human-readable string (e.g. ``"~800k"``). Based on CNEL and INPS
             estimates. Empty string when unknown.
@@ -100,8 +95,23 @@ class CCNLMeta(BaseModel):
     extraction: ExtractionTrace
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
-    withholding_exempt: bool = False
     workers_estimate: str = ""
+
+    @property
+    def withholding_agent(self) -> bool:
+        """Whether the employers of this CCNL withhold IRPEF (sostituto d'imposta).
+
+        The withholding agents are listed by art. 23 c. 1 D.P.R. 600/1973
+        (in force until 31 December 2026) and, from 1 January 2027, by
+        art. 33 c. 1 of the testo unico of D.Lgs. 33/2025 (art. 243 as
+        amended by D.L. 200/2025 art. 4): entities, companies, partnerships,
+        individuals running a business or a profession, and the condominium.
+        A household employer (datore di lavoro domestico) is a private
+        individual outside that list, so a domestic worker declares the
+        income personally.  Derived from :attr:`tax_sector` so that no data
+        file can contradict it.
+        """
+        return self.tax_sector is not TaxSector.LAVORO_DOMESTICO
 
     @model_validator(mode="before")
     @classmethod

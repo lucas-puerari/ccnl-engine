@@ -104,7 +104,7 @@ These are deliberate modelling approximations. Read them before using this contr
 ??? note "Coverage notes"
     SALARY MODEL: conglobated retribuzione globale (TABELLA C — Lavoratori Non Conviventi, Art. 14 Co.2 lett. b CCNL). Hourly rates from official Domina salary table PDF (TABELLA-minimi-retributivi-2026.pdf, effective 01/01/2026). Monthly base_salary = hourly_rate × 173. Source is signatory employer association — primary source.
     
-    TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973.
+    TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026. A household employer is not a withholding agent: it is not among the sostituti d'imposta of art. 23 c. 1 D.P.R. 600/1973 (art. 33 c. 1 D.Lgs. 33/2025 from 2027), so the engine withholds no IRPEF or surtax and pays no trattamento integrativo, ulteriore detrazione or somma esente.
     
     HOURLY DIVISOR: 173, derived from 40 h/week (Art. 14 Co.2 CCNL). Formula: 40 × 52 / 12 = 173.33, rounded to 173. Convivente and non-convivente are independent pay scales (different tables, different hourly divisors).
     

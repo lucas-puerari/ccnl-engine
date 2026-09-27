@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "283ef205fe01b97897bb96e722f2571f50e8374c507205e4d6a48203a5bdf901",
+    "source_hash": "6f7cf42074777aaba01ce4993728ab1009c800967c160e86b5a5524a437d9577",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -124,7 +124,7 @@
     "INFO: Domestic sector uses flat per-hour contributions (domestic_contributions); the standard 'inps' and 'apprentice' blocks are absent.",
     "INFO: fixed_term_additional_rate retained for informational purposes; the addizionale NASpI is pre-baked into employer_per_hour_fixed_term in domestic_contributions.",
     "SIMPLIFICATION: CUAF variant (senza CUAF) not modelled; 'con CUAF' amounts used throughout.",
-    "SIMPLIFICATION: IRPEF figures are informational only — family employers are not sostituti d'imposta (Art. 4 D.P.R. 600/1973). Set withholding_exempt: true in the CCNL JSON to zero irpef_net.",
+    "INFO: household employers are not sostituti d'imposta (art. 23 c. 1 D.P.R. 600/1973; art. 33 c. 1 D.Lgs. 33/2025 from 2027): the engine withholds no IRPEF or surtax for this sector and ignores the IRPEF rules below.",
     "Sterilizzazione detrazioni: Art. 1 c. 3-4 L. 199/2025 — for reddito complessivo > EUR 200 000, total detrazioni (Art. 12 + Art. 13 TUIR) reduced by EUR 440 (clawback of the 35% -> 33% bracket benefit on the 28 000-50 000 slice).",
     "Somma esente (L. 207/2024): band cut points 8 500 EUR and 15 000 EUR are reconstructions from worked examples — not verified against primary source. Rates 7.1%/5.3%/4.8% and ceiling 20 000 EUR are from AdE guidance."
   ],

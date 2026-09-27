@@ -179,6 +179,7 @@ def assemble_result(
         pdr_cap=ctx.var_pay_rules.pdr.max_amount,
         accrual=ctx.accrual,
         projected_taxable=posted.amounts.projected_taxable,
+        withholding_agent=ctx.withholding_agent,
     )
     check_period(result, ctx.opening, facts)
     return result

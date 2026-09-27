@@ -6,7 +6,6 @@
     "cnel_code": "A011",
     "sector": "agricoltura",
     "tax_sector": "agricoltura",
-    "withholding_exempt": false,
     "signatories": [
       "Coldiretti — Confederazione Nazionale Coldiretti",
       "Confagricoltura — Confederazione Generale dell'Agricoltura Italiana",
@@ -613,7 +612,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "5e5aa41e84bedcd6d91bf233d37d354bb1a86ce4df5db1d1770f297af5a7cddf",
+    "source_hash": "d775f0e9303d2908f727f21647e78bfea0561f9a0c3c024088e581d33c452f26",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

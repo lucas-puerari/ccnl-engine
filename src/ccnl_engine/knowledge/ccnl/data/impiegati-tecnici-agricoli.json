@@ -6,7 +6,6 @@
     "cnel_code": "A021",
     "sector": "agricoltura",
     "tax_sector": "agricoltura",
-    "withholding_exempt": false,
     "signatories": [
       "Confagricoltura — Confederazione Generale dell'Agricoltura Italiana",
       "CIA — Confederazione Italiana Agricoltori",
@@ -620,7 +619,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "a5eeb85e95da61b2d8fc414852eff8654d6c4f0c01c3f3c919ee416252f2e19a",
+    "source_hash": "a78106509f3e070e670581dd789ce4993a6bd33bc81894435c8fc215a35552a6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

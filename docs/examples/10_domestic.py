@@ -1,4 +1,4 @@
-"""Domestic work (CCNL colf): flat per-hour INPS contributions."""
+"""Domestic work (CCNL colf): flat per-hour INPS and no tax withholding."""
 
 from datetime import date
 from decimal import Decimal
@@ -39,3 +39,9 @@ print(f"Period employer cost: {result.period_employer_cost}")
 cb = result.contribution_breakdown
 print(f"Employee INPS:        {cb.employee}")
 print(f"Employer INPS:        {cb.employer}")
+
+# A household employer is not a withholding agent: net = gross - employee INPS
+skipped = [
+    d.capability for d in result.decisions if d.reason_code == "not_withholding_agent"
+]
+print(f"Not withheld:         {', '.join(skipped)}")

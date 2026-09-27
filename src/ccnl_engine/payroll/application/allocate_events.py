@@ -43,8 +43,15 @@ _NO_FACTS = RegimeFacts()
 _MAX_MONTHLY_HOURS = Decimal(240)
 
 
-def worker_facts_of(request: PeriodCalculationRequest) -> RegimeFacts:
+def worker_facts_of(
+    request: PeriodCalculationRequest, *, withholding_agent: bool
+) -> RegimeFacts:
     """Return the worker facts the regimes of a run are checked against.
+
+    Args:
+        request: The period calculation request.
+        withholding_agent: Whether the employer withholds tax; the regimes
+            are applied only by a withholding agent.
 
     Returns:
         The prior-year income and waivers, the sector of the employment and
@@ -55,6 +62,7 @@ def worker_facts_of(request: PeriodCalculationRequest) -> RegimeFacts:
         sector=request.sector,
         activity=request.employer.activity,
         waived_regimes=frozenset(request.prior_year.waived_regimes),
+        withholding_agent=withholding_agent,
     )
 
 

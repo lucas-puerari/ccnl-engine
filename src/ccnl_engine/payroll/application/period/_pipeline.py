@@ -83,7 +83,7 @@ def _variable_events(ctx: RunContext) -> RunEvents:
         rinnovo_regime=ctx.var_pay_rules.rinnovo,
         work_time_regime=ctx.var_pay_rules.notte_festivi_turni,
         opening_work_time_cap=opening.ytd.work_time_regime,
-        worker_facts=worker_facts_of(request),
+        worker_facts=worker_facts_of(request, withholding_agent=ctx.withholding_agent),
     )
     return RunEvents(totals, items, entries)
 
@@ -164,24 +164,29 @@ def _amounts_input(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
         later_payslips=not ends_in_year(request.employment_period, fiscal_year),
+        withholding_agent=ctx.withholding_agent,
     )
 
 
 def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
     """Compute contributions, taxable income, IRPEF and surtax of the run.
 
-    The surtax and family deduction rules are loaded only when the request
-    declares a residence or a family composition.
+    The surtax and family deduction rules are loaded only when the employer
+    is a withholding agent and the request declares a residence or a family
+    composition.
 
     Returns:
         The amounts of the run and their computations.
     """
     request, fiscal_year = ctx.request, ctx.fiscal_year
-    needs_surtax = request.regione is not None or request.comune_belfiore is not None
+    withholds = ctx.withholding_agent
+    needs_surtax = withholds and (
+        request.regione is not None or request.comune_belfiore is not None
+    )
     surtax_rules = ctx.repo.load_surtax_rules(fiscal_year) if needs_surtax else None
     family_rules = (
         ctx.repo.load_family_deduction_rules(fiscal_year)
-        if request.family_composition is not None
+        if withholds and request.family_composition is not None
         else None
     )
     computed = _compute_amounts(_amounts_input(ctx, totals, surtax_rules, family_rules))

@@ -6,7 +6,6 @@
     "cnel_code": "H501",
     "sector": "lavoro domestico",
     "tax_sector": "lavoro-domestico",
-    "withholding_exempt": true,
     "signatories": [
       "DOMINA — Associazione Nazionale Famiglie Datori di Lavoro Domestico",
       "FIDALDO — Federazione Italiana Datori di Lavoro Domestico",
@@ -39,7 +38,7 @@
       },
       {
         "kind": "info",
-        "text": "TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026; withholding_exempt=true per Art. 4 D.P.R. 600/1973 (family employers are not sostituti d'imposta)."
+        "text": "TAX SECTOR: lavoro-domestico (TaxSector.LAVORO_DOMESTICO). Flat per-hour INPS contributions from INPS Circ. 9/2026. A household employer is not a withholding agent: it is not among the sostituti d'imposta of art. 23 c. 1 D.P.R. 600/1973 (art. 33 c. 1 D.Lgs. 33/2025 from 2027), so the engine withholds no IRPEF or surtax and pays no trattamento integrativo, ulteriore detrazione or somma esente."
       },
       {
         "kind": "info",
@@ -701,7 +700,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "5a3c82dc2a72c115203eb4658e3bd079d58f9b83462b281075c5ec18f0c19e29",
+    "source_hash": "c223d80819bc8b6ffac8a55b8ca6a1a550a01719da3daeaf0ec039270da8a247",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
