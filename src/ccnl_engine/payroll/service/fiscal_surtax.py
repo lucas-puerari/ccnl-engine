@@ -6,10 +6,10 @@ surtax of the year is determined only by its conguaglio; any other run
 takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
 ``table_unknown`` for an unknown one.  On the conguaglio:
 
-- ``no_irpef_due`` (final, amount 0): the IRPEF net of its deductions is
-  zero, so no surtax is due (D.Lgs. 446/1997 art. 50 c. 2 for the regional,
-  D.Lgs. 360/1998 art. 1 c. 4 for the municipal; the foreign tax credit
-  they also net, art. 165 TUIR, is not modelled);
+- ``no_irpef_due`` (final, amount 0): the IRPEF net of its deductions and
+  of the foreign tax credit (art. 165 TUIR) is zero, so no surtax is due
+  (D.Lgs. 446/1997 art. 50 c. 2 for the regional, D.Lgs. 360/1998 art. 1
+  c. 4 for the municipal);
 - ``below_exemption_threshold`` (final, amount 0): the regional or
   municipal exemption threshold covers the taxable income;
 - ``table_applied`` (final): the bundled table of the tax year was
@@ -213,8 +213,8 @@ def compute_surtax(
         surtax: Bundled surtax tables of the tax year.
         regione: Well-formed region code, or ``None`` to skip.
         comune_belfiore: Well-formed Belfiore code, or ``None`` to skip.
-        irpef_due: Net annual IRPEF, gross less the deductions; no surtax
-            is due when it is zero.
+        irpef_due: Net annual IRPEF, gross less the deductions and the
+            foreign tax credit; no surtax is due when it is zero.
         at_conguaglio: Whether the run is the conguaglio of the tax year.
             On any other run the surtax is not determined: a known table
             yields ``determined_at_conguaglio`` with amount 0, an unknown

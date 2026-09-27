@@ -54,6 +54,8 @@ class NetIrpef:
         ulteriore_effect: IRPEF the ulteriore detrazione actually removes:
             the net without it less the net with it.  Below the deduction
             when the net is floored at zero.
+        foreign_credit: Credit for foreign taxes (art. 165 TUIR) deducted
+            from the imposta netta, at most :attr:`net_before_credit`.
     """
 
     gross: Decimal
@@ -62,6 +64,7 @@ class NetIrpef:
     ulteriore: CreditOutcome | None
     effective_deductions: Decimal
     ulteriore_effect: Decimal = _ZERO
+    foreign_credit: Decimal = _ZERO
 
     @property
     def total_deductions(self) -> Decimal:
@@ -70,9 +73,14 @@ class NetIrpef:
         return self.work_deduction + self.family_deductions + ulteriore
 
     @property
-    def net(self) -> Decimal:
+    def net_before_credit(self) -> Decimal:
         """Imposta netta: gross less the effective deductions, at least zero."""
         return max(_ZERO, self.gross - self.effective_deductions)
+
+    @property
+    def net(self) -> Decimal:
+        """Net IRPEF due: the imposta netta less the foreign tax credit."""
+        return self.net_before_credit - self.foreign_credit
 
 
 def net_irpef(

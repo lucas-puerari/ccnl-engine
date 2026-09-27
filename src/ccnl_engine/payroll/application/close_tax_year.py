@@ -21,7 +21,10 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     payslips of N+1 without entering the N+1 trattamento integrativo
     account.  The surtax the conguaglio of N determined is carried the same
     way and withheld on the regular payslips of N+1
-    (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`).
+    (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`).  The IRPEF
+    the conguaglio of N deferred on the worker's written request is carried
+    too and withheld with its interest on the payslips of N+1 from March
+    (:mod:`~ccnl_engine.payroll.domain.shortfall_deferral`).
 
     Year-end rule: ``closing`` must be bound to a tax year and every
     withholding slot of that year must be closed

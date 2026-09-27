@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+    from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 
 _ZERO = Decimal(0)
 _TRATTAMENTO = "trattamento_integrativo"
@@ -68,6 +69,8 @@ class RunOutcome:
             after the run, if any.
         carried: Recoveries of earlier tax years still running after it.
         shortfall: IRPEF and surtax not yet withheld after the run.
+        deferred: IRPEF of conguagli deferred on written request, still to
+            withhold after the run.
     """
 
     tax_year: int
@@ -82,6 +85,7 @@ class RunOutcome:
     recovery_plan: RecoveryPlan | None
     carried: tuple[RecoveryObligation, ...]
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
+    deferred: tuple[DeferredShortfall, ...] = ()
 
 
 def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
@@ -93,8 +97,9 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         the current tax year running after the run: trattamento integrativo
         first, then somma esente, then the ulteriore detrazione, whose
         installments are posted by the adjustment runs of the tax year and
-        the runs of the next one; then the surtax still to withhold.  After
-        the last run of the employment no recovery and no surtax is left.
+        the runs of the next one; then the surtax still to withhold and the
+        IRPEF deferred on written request.  After the last run of the
+        employment no recovery, no surtax and no deferral is left.
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
@@ -123,6 +128,7 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         obligations=EmploymentObligations(
             recoveries=outcome.carried + current,
             surtax=outcome.amounts.surtax.obligations,
+            deferred_shortfall=outcome.deferred,
         ),
     )
 

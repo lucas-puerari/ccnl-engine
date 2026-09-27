@@ -4,8 +4,8 @@ A run can owe more IRPEF and surtax than the pay it leaves after the
 contributions and the other deductions, e.g. when unpaid absences take most
 of the monthly pay.  The withholding agent withholds what the pay covers and
 takes the rest on the next runs of the tax year: the cumulative method of the
-conguaglio settles the tax on the whole year (art. 33 c. 4 D.Lgs. 33/2025,
-ex art. 23 c. 3 DPR 600/1973, in force from 1 January 2026 by art. 243).
+conguaglio settles the tax on the whole year (art. 23 c. 3 DPR 600/1973,
+in force for 2026; art. 33 c. 4 D.Lgs. 33/2025 from 1 January 2027).
 The credit recoveries of the run (``CREDIT_RECOVERIES`` lines) are taken
 first, then the IRPEF and the surtax from what is left.  The carried
 amount is withheld in full on the next run, before any new share.  A
@@ -18,9 +18,10 @@ withheld (``CREDIT_RECOVERY_SHORTFALL``), or withholds a part carried in
 
 What is still not withheld on the last withholding slot "deve essere
 comunicato all'interessato che deve provvedere al versamento entro il 15
-gennaio dell'anno successivo" (art. 33 c. 4).  The engine reports it as a
-provisional issue; the written request of the worker to defer it on the
-next pay periods, with interest at 0.50 per cent a month, is not modelled.
+gennaio dell'anno successivo" (art. 23 c. 3).  The engine reports it as a
+provisional issue.  When the worker asked in writing to defer it, the IRPEF
+part is withheld on the payslips of the next year instead
+(:mod:`~ccnl_engine.payroll.application.withholding._deferral`).
 """
 
 from __future__ import annotations
@@ -44,11 +45,17 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.tax.domain.ruleset import YearRules
 
-__all__ = ["CappedWithholding", "cap_withholding", "ends_in_year", "run_net"]
+__all__ = [
+    "CappedWithholding",
+    "cap_withholding",
+    "ends_in_year",
+    "run_net",
+    "unrecovered_issue",
+]
 
 _ZERO = Decimal(0)
 CAPABILITY = "withholding_shortfall"
-_RULE = "dlgs33-2025-art33-c4"
+_RULE = "dpr600-1973-art23-c3"
 
 
 def ends_in_year(period: EmploymentPeriod | None, tax_year: int) -> bool:
@@ -117,16 +124,21 @@ class CappedWithholding:
     recovery_adjustment: Decimal = _ZERO
 
 
-def _unrecovered_issue(shortfall: WithholdingShortfall) -> CalculationIssue:
+def unrecovered_issue(shortfall: WithholdingShortfall) -> CalculationIssue:
+    """Return the provisional issue of a shortfall left after the last slot.
+
+    Returns:
+        The ``withholding_shortfall_unrecovered`` issue.
+    """
     return CalculationIssue(
         code="withholding_shortfall_unrecovered",
         message=(
             f"withholding_shortfall: {shortfall.irpef} IRPEF, "
             f"{shortfall.surtax} surtax and {shortfall.credit_recovery} credit "
             "recovery of the tax year were not withheld for lack of pay; "
-            "art. 33 c. 4 D.Lgs. 33/2025 requires the "
-            "amount to be communicated to the worker, who pays it by 15 "
-            "January of the next year unless a written deferral is agreed"
+            "art. 23 c. 3 DPR 600/1973 requires the amount to be "
+            "communicated to the worker, who pays it by 15 January of the "
+            "next year unless a written deferral is agreed"
         ),
         status=CalculationStatus.PROVISIONAL,
     )
@@ -198,5 +210,5 @@ def cap_withholding(
         },
         amount=shortfall.total,
     )
-    issues = (_unrecovered_issue(shortfall),) if last_slot and shortfall.total else ()
+    issues = (unrecovered_issue(shortfall),) if last_slot and shortfall.total else ()
     return CappedWithholding(capped, shortfall, (decision,), issues, adjustment)

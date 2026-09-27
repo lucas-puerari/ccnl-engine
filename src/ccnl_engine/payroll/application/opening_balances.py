@@ -24,6 +24,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
+from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 from ccnl_engine.payroll.domain.ytd_accounts import (
@@ -108,6 +109,9 @@ class OpeningBalances:
             employed in the previous year, import them: the engine
             withholds no surtax the previous provider determined unless it
             is stated here.
+        deferred_shortfall: IRPEF the conguaglio of ``tax_year - 1``
+            deferred on the worker's written request (art. 23 c. 3 DPR
+            600/1973) and not yet withheld, ``None`` without one.
     """
 
     tax_year: int
@@ -142,6 +146,7 @@ class OpeningBalances:
     work_time_regime_used: Decimal = _ZERO
     recoveries: tuple[RecoveryObligation, ...] = ()
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
+    deferred_shortfall: DeferredShortfall | None = None
 
     def __post_init__(self) -> None:
         """Validate every amount and the consistency of the totals.
@@ -151,8 +156,16 @@ class OpeningBalances:
                 (e.g. a negative amount, more recovered than recognized, a
                 closed run out of order, a recovery opened after
                 ``tax_year``, surtax determined by the conguaglio of
-                ``tax_year`` or later) or an amount is finer than a cent.
+                ``tax_year`` or later, a deferral of a conguaglio other than
+                that of ``tax_year - 1``) or an amount is finer than a cent.
         """
+        deferred = self.deferred_shortfall
+        if deferred is not None and deferred.tax_year != self.tax_year - 1:
+            msg = (
+                "OpeningBalances.deferred_shortfall must be deferred by the "
+                f"conguaglio of {self.tax_year - 1}; got {deferred.tax_year}"
+            )
+            raise InvalidInputError(msg, feature=_FEATURE)
         late = [o for o in self.surtax_obligations if o.tax_year >= self.tax_year]
         if late:
             msg = (
@@ -175,8 +188,8 @@ class OpeningBalances:
 
         Returns:
             A :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` bound
-            to :attr:`tax_year`, carrying :attr:`recoveries`
-            and :attr:`surtax_obligations`.
+            to :attr:`tax_year`, carrying :attr:`recoveries`,
+            :attr:`surtax_obligations` and :attr:`deferred_shortfall`.
         """
         ytd = TaxYearState(
             tax_year=self.tax_year,
@@ -224,7 +237,13 @@ class OpeningBalances:
         return PeriodState(
             ytd=ytd,
             obligations=EmploymentObligations(
-                recoveries=self.recoveries, surtax=self.surtax_obligations
+                recoveries=self.recoveries,
+                surtax=self.surtax_obligations,
+                deferred_shortfall=(
+                    ()
+                    if self.deferred_shortfall is None
+                    else (self.deferred_shortfall,)
+                ),
             ),
         )
 

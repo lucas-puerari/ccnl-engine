@@ -37,6 +37,8 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "trattamento_integrativo": TraceState.NOT_APPLICABLE,
     "somma_esente": TraceState.NOT_APPLICABLE,
     "withholding_shortfall": TraceState.NOT_APPLICABLE,
+    "shortfall_deferral": TraceState.NOT_APPLICABLE,
+    "foreign_tax_credit": TraceState.NOT_APPLICABLE,
     "addizionale_regionale": TraceState.NOT_APPLICABLE,
     "addizionale_comunale": TraceState.NOT_APPLICABLE,
     "bonus_pdr": TraceState.SKIPPED,

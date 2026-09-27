@@ -106,12 +106,15 @@ from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import (
+    ForeignTaxPaid,
     PriorYearTaxFacts,
+    ShortfallDeferralRequest,
     SubstituteTaxRegime,
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
+from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
@@ -150,6 +153,7 @@ __all__ = [
     "ContributableHours",
     "ContributionCeilingStatus",
     "DataIntegrityError",
+    "DeferredShortfall",
     "Dependent",
     "DependentRelationship",
     "EmployerActivity",
@@ -159,6 +163,7 @@ __all__ = [
     "EmploymentSector",
     "FamilyComposition",
     "FixedTerm",
+    "ForeignTaxPaid",
     "FringeEvent",
     "Headcount",
     "HolidayWorkEvent",
@@ -183,6 +188,7 @@ __all__ = [
     "RemittanceLine",
     "SeniorityMonths",
     "ShiftWorkEvent",
+    "ShortfallDeferralRequest",
     "SickLeaveEvent",
     "SicknessCaseEvent",
     "SubstituteTaxRegime",

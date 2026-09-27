@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
@@ -10,12 +11,11 @@ from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
     from ccnl_engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
@@ -51,6 +51,10 @@ class _AmountsInput:
     employment.  ``surtax_obligations`` is the surtax determined by an
     earlier conguaglio still to withhold; ``run_month`` and
     ``regular_run`` place the run in the installment windows.
+    ``foreign_taxes`` are credited on the conguaglio only.
+    ``deferred_irpef`` is the IRPEF a conguaglio of this tax year deferred
+    on written request: it counts as withheld when the balance is settled
+    again.
     """
 
     monthly_gross: Decimal
@@ -84,6 +88,8 @@ class _AmountsInput:
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
     run_month: int = 1
     regular_run: bool = True
+    foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
+    deferred_irpef: Decimal = Decimal(0)
 
 
 @dataclass(frozen=True)

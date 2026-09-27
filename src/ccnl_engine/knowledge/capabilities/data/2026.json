@@ -28,6 +28,8 @@
     {"feature": "ulteriore_detrazione_lavoro", "status": "computed", "description": "Ulteriore detrazione lavoro dipendente"},
     {"feature": "somma_esente", "status": "computed", "description": "Somma esente L. 207/2024 art. 1 c. 4"},
     {"feature": "withholding_shortfall", "status": "computed", "description": "Ritenute non capienti riportate ai cedolini successivi"},
+    {"feature": "shortfall_deferral", "status": "computed", "description": "Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973)"},
+    {"feature": "foreign_tax_credit", "status": "partially_computed", "description": "Credito imposte estere art. 165 TUIR al conguaglio (imposta estera dichiarata; riporti e redditi di anni precedenti non calcolati)"},
     {"feature": "addizionale_regionale", "status": "computed", "description": "Addizionale regionale IRPEF"},
     {"feature": "addizionale_comunale", "status": "computed", "description": "Addizionale comunale IRPEF"},
     {"feature": "family_deductions", "status": "computed", "description": "Detrazioni familiari a carico"},

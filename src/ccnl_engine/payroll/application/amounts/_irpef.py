@@ -97,7 +97,7 @@ def withhold_irpef(
     tax = compute_tax(
         projected,
         inp.rules,
-        opening_irpef_withheld=opening.tax.irpef,
+        opening_irpef_withheld=opening.tax.irpef + inp.deferred_irpef,
         opening_tratt_ytd=net_credit_ytd,
         withholding_schedule=inp.withholding_schedule,
         slots_closed=opening.tax_withholding_periods_closed,
@@ -112,5 +112,6 @@ def withhold_irpef(
         ),
         run=inp.installment_run,
         ulteriore_plan=inp.ulteriore_plan,
+        foreign_taxes=inp.foreign_taxes if inp.conguaglio else (),
     )
     return _Irpef(tax=tax, family_deductions=fam_ded, family_rules=family_rules)

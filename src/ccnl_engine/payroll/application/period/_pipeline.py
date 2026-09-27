@@ -9,6 +9,7 @@ and the outputs of the steps before it.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _int_value
@@ -201,7 +202,19 @@ def _amounts_input(
         surtax_obligations=ctx.opening.obligations.surtax,
         run_month=request.period_id.month,
         regular_run=ctx.run_kind is RunKind.REGULAR,
+        foreign_taxes=request.prior_year.foreign_taxes,
+        deferred_irpef=_deferred_irpef(ctx),
     )
+
+
+def _deferred_irpef(ctx: RunContext) -> Decimal:
+    """Return the IRPEF a conguaglio of the run's tax year deferred.
+
+    Returns:
+        Zero without a deferral of the tax year.
+    """
+    deferred = ctx.opening.obligations.deferred_of(ctx.fiscal_year)
+    return Decimal(0) if deferred is None else deferred.irpef
 
 
 def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:

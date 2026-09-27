@@ -85,19 +85,22 @@ take most of the month. The engine then:
 - on the last withholding slot, reports what is still not withheld as a
   provisional `withholding_shortfall_unrecovered` issue.
 
-The cumulative conguaglio settles the tax on the whole year (art. 33 c. 4
-D.Lgs. 33/2025, which replaces art. 23 c. 3 DPR 600/1973 from 1 January
-2027, art. 243 as amended by D.L. 200/2025 art. 4). For what is left at year end the same comma says: "L'importo
+The cumulative conguaglio settles the tax on the whole year (art. 23 c. 3
+DPR 600/1973, in force for 2026: Normattiva gives it "in vigore dal
+21-5-2022 al 31-12-2026"; the same text is art. 33 c. 4 D.Lgs. 33/2025, in
+force from 1 January 2027 by art. 243 as amended by D.L. 200/2025 art. 4).
+For what is left at year end the same comma says: "L'importo
 che al termine del periodo d'imposta non è stato trattenuto per cessazione del
 rapporto di lavoro o per incapienza delle retribuzioni deve essere comunicato
 all'interessato che deve provvedere al versamento entro il 15 gennaio
-dell'anno successivo". The written request of the worker to have it
-withheld on later pay periods, with interest at 0.50% a month, is not
-modelled; the shortfall does not survive the year change. The statute does
+dell'anno successivo". The worker can instead ask in writing to have it
+withheld on the next pay periods (see
+[Written deferral of the year-end shortfall](#written-deferral-of-the-year-end-shortfall)).
+The statute does
 not state how a shortfall found before the conguaglio is spread: taking it
-on the next run is the engine's choice. Art. 33 c. 1, which makes the worker
-pay the withholding that finds no cash, is written for values in kind and
-is not used here.
+on the next run is the engine's choice. Art. 33 c. 1, which makes the
+worker pay the withholding that finds no cash, is written for values in
+kind and is not used here.
 
 Metalmeccanico C3, 160 absence hours at 12.50 EUR in January 2026: the pay
 left after INPS is 143.25 EUR, the IRPEF share is 162.33 EUR; January
@@ -117,6 +120,131 @@ della retribuzione".
 A run whose other deductions (INPS, substitute tax) exceed the pay left by
 unpaid absences is still rejected (`OutOfScopeError`, reason
 `withholding_shortfall`).
+
+### Written deferral of the year-end shortfall
+
+Art. 23 c. 3 DPR 600/1973, second and third sentences (identical in art. 33
+c. 4 D.Lgs. 33/2025 from 2027):
+
+> In caso di incapienza delle retribuzioni a subire il prelievo delle
+> imposte dovute in sede di conguaglio di fine anno entro il 28 febbraio
+> dell'anno successivo, il sostituito può dichiarare per iscritto al
+> sostituto di volergli versare l'importo corrispondente alle ritenute
+> ancora dovute, ovvero, di autorizzarlo a effettuare il prelievo sulle
+> retribuzioni dei periodi di paga successivi al secondo dello stesso
+> periodo di imposta. Sugli importi di cui è differito il pagamento si
+> applica l'interesse in ragione dello 0,50 per cento mensile, che è
+> trattenuto e versato nei termini e con le modalità previste per le somme
+> cui si riferisce.
+
+The request is `PriorYearTaxFacts.shortfall_deferral`, a
+`ShortfallDeferralRequest(signed_on=...)` signed between 1 January of the
+tax year and the end of February of the next one (the deadline of the
+conguaglio); another date raises `InvalidInputError`. Without it nothing
+changes: the shortfall is communicated to the worker with the provisional
+issue above. With it, on the conguaglio of year N:
+
+- the IRPEF the pay cannot cover becomes a `DeferredShortfall` in
+  `state.obligations.deferred_shortfall`, with the date of the request and
+  the pay period of the conguaglio; `state.ytd.shortfall.irpef` is zero and
+  a `shortfall_deferral` decision `shortfall_deferred` records the amount.
+  `close_tax_year` carries it into N+1;
+- only the IRPEF is deferred, the tax the norm names; surtax and credit
+  recoveries the pay cannot cover keep the provisional issue;
+- when the conguaglio is the last run of the employment no payslip follows:
+  the decision is `deferral_not_possible` and the issue stays.
+
+On the payslips of N+1 the engine reads "successivi al secondo" as from the
+March pay period (January and February are the two pay periods on which
+the conguaglio of N can still be made), and "dello stesso periodo di
+imposta" as within N+1. The norm fixes no installments: every run from
+March, adjustment runs excepted, withholds from its net pay, after every
+other line, the largest principal whose interest still fits, until the
+amount is exhausted. The interest is simple: 0.50% for each whole month
+from the pay period of the conguaglio to the pay period of the run, on the
+principal the run withholds. The norm does not say when the count starts;
+this is the engine's reading, and each `deferred_shortfall_withheld`
+decision records the principal, the interest, the months and the rate.
+
+Both amounts are posted to `ORDINARY_TAX` on the lines
+`deferred_irpef_{N}_{run_id}` and `deferred_irpef_{N}_interest_{run_id}`,
+coded **1066** "Ritenute [...] operate dopo il relativo conguaglio di fine
+anno", instituted by ris. AdE 6/E/2021 for the withholding of art. 23 c. 3
+second sentence, with N as the reference year. The interest takes the code
+of the IRPEF it refers to because the norm remits it "con le modalità
+previste per le somme cui si riferisce"; no act gives it a code of its own.
+Neither amount enters the IRPEF withheld of N+1 (`state.ytd.tax.irpef`).
+
+What the conguaglio of N+1 or the last run of the employment still leaves
+is dropped with a provisional `deferred_shortfall_unrecovered` issue and
+decision: it is communicated to the worker as any other shortfall.
+
+A later run of N that settles the balance again (an adjustment run) counts
+the deferred IRPEF as withheld, so it withholds only the tax of its own
+pay. Such a run cannot refund IRPEF while the deferral is open: lowering
+the deferral by the refund is not modelled and raises `OutOfScopeError`
+(reason `shortfall_deferral_refund`). A termination run of N after the
+conguaglio drops the deferral with the same provisional issue, since no
+payslip of N+1 follows.
+
+A 300.00 EUR deferral of the December 2025 conguaglio, withheld on the
+March 2026 payslip: 3 months, interest 300.00 × 0.50% × 3 = 4.50 EUR, net
+pay 304.50 EUR lower, F24 code 1066 for 304.50 EUR. When March absences
+leave no pay, April withholds it with 4 months: 6.00 EUR.
+
+### Foreign tax credit at the conguaglio
+
+Art. 23 c. 3 DPR 600/1973, last sentences (art. 33 c. 4 D.Lgs. 33/2025 from
+2027): "Se alla formazione del reddito di lavoro dipendente concorrono somme
+o valori prodotti all'estero le imposte ivi pagate a titolo definitivo sono
+ammesse in detrazione fino a concorrenza dell'imposta relativa ai predetti
+redditi prodotti all'estero. [...] Se concorrono redditi prodotti in più
+Stati esteri la detrazione si applica separatamente per ciascuno Stato." The
+withholding agent applies the credit of art. 165 TUIR itself, at the
+conguaglio.
+
+The input is `PriorYearTaxFacts.foreign_taxes`: one `ForeignTaxPaid(country,
+income, tax)` per State, with the foreign-source employment income as it
+entered the Italian taxable income of the year (the conventional pay when
+art. 51 c. 8-bis TUIR applies) and the foreign tax paid "a titolo
+definitivo", within the treaty rate. When the income entered the taxable
+income only in part (the conventional pay), pass the tax already reduced
+as art. 165 c. 10 TUIR requires (circ. AdE 9/E/2015 par. 5). Two entries
+of one State are rejected.
+
+On the conguaglio only (the last withholding slot or the last run of the
+employment; the runs before it withhold on the art. 12 and 13 deductions
+alone, art. 23 c. 2), per State:
+
+    quota  = imposta lorda × min(1, income / taxable income)   (to the cent)
+    credit = min(foreign tax, quota)
+
+and the credits of all States together at most the imposta netta (art. 165
+c. 1 TUIR; circ. AdE 9/E/2015 par. 3.1, LIMITE 1 and LIMITE 2). The quota
+is on the imposta lorda as in the Redditi PF 2026 instructions (fascicolo
+3, quadro CE, sezione I-A): the credit "spetta fino a concorrenza della
+quota d'imposta lorda italiana corrispondente al rapporto tra il reddito
+prodotto all'estero ed il reddito complessivo [...] e sempre comunque nel
+limite dell'imposta netta italiana", with the ratio brought back to 1. The withholding agent
+knows only the income it pays, so the reddito complessivo is the annual
+taxable income of the conguaglio. The credit is a `foreign_tax_credit`
+component of the tax computation, deducted from the net IRPEF of the year,
+and a `foreign_tax_credit` decision (`credit_applied`, or
+`limited_to_net_tax` when the imposta netta caps it) with the income, tax,
+quota and credit of each State in its inputs.
+
+Metalmeccanico C3 2026, 10,000 EUR earned in France and 500 EUR of French
+tax: taxable income 25,779.81 EUR, imposta lorda 23% of it, quota
+5,929.36 × 10,000 / 25,779.81 = 2,300.00 EUR, credit 500 EUR; the IRPEF of
+the year is 2,751.23 − 500 = 2,251.23 EUR. With the whole income taxed in
+France at 20,000 EUR the quota is the whole imposta lorda, the credit the
+imposta netta: no IRPEF and no surtax is due, and the conguaglio refunds
+what was withheld.
+
+Not modelled, left to the tax return: foreign income taxed in Italy in an
+earlier year (art. 165 c. 7 TUIR, which the art. 23 rule also allows at the
+conguaglio), the carry-over of the excess foreign tax (art. 165 c. 6) and a
+credit above the imposta netta (art. 11 c. 4 TUIR).
 
 ## Employers that are not withholding agents
 
@@ -268,14 +396,12 @@ owes neither.
 #### Foreign tax credit
 
 Both articles take the IRPEF net of the deductions **and of the credit for
-taxes paid abroad** (art. 165 TUIR); art. 33 c. 4 D.Lgs. 33/2025 also lets
-the employer deduct at the conguaglio the foreign taxes paid on employment
-income produced abroad. The engine has no input for foreign income or
-foreign taxes: the net IRPEF it withholds, and the one that decides whether
-the surtax is due, never subtract that credit. For a worker with income
-taxed abroad the IRPEF withheld can be too high and a surtax can be
-withheld where the credit would bring the net IRPEF to zero; compute such
-cases outside the engine.
+taxes paid abroad**: art. 50 c. 2 D.Lgs. 446/1997 names the "crediti di cui
+agli articoli 14 e 15" of the TUIR in its former numbering (art. 15 is now
+art. 165), art. 1 c. 4 D.Lgs. 360/1998 the "credito di cui all'articolo 165".
+See [Foreign tax credit at the conguaglio](#foreign-tax-credit-at-the-conguaglio):
+when the credit brings the net IRPEF to zero, both surtax decisions are
+`no_irpef_due`.
 
 #### Regional rates of 2026
 

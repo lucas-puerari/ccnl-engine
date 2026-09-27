@@ -1,5 +1,27 @@
 # Migration guide
 
+## Year-end shortfall deferral and foreign tax credit
+
+`PriorYearTaxFacts` takes two inputs read on the conguaglio: the worker's
+written request to defer the IRPEF the pay cannot cover (art. 23 c. 3 DPR
+600/1973) and the foreign taxes paid on employment income of the year
+(art. 165 TUIR). Without them every result is unchanged. See
+[Fiscal: written deferral](engine/fiscal.md#written-deferral-of-the-year-end-shortfall)
+and [Fiscal: foreign tax credit](engine/fiscal.md#foreign-tax-credit-at-the-conguaglio).
+
+| Change | What to do |
+|---|---|
+| `PriorYearTaxFacts.shortfall_deferral` (`ShortfallDeferralRequest(signed_on)`) added | Pass it when the worker signed the request; a date outside the tax year and the next January and February raises `InvalidInputError` on the conguaglio |
+| `EmploymentObligations.deferred_shortfall` (`DeferredShortfall`) holds the IRPEF a conguaglio deferred; `obligations.deferred_of(year)` | Persist it with the state; import a previous provider's deferral with `OpeningBalances.deferred_shortfall` |
+| Lines `deferred_irpef_{year}_{run}` and `deferred_irpef_{year}_interest_{run}` on `ORDINARY_TAX`, coded 1066 | Remit them under 1066 with the tax year of the conguaglio as reference year; they are not in `TaxYtd.irpef` |
+| A later run of the year of an open deferral counts it as withheld; one that would refund IRPEF raises `OutOfScopeError` (reason `shortfall_deferral_refund`) | Lower the deferral by the refund and settle that run manually |
+| `ORDINARY_TAX` admits 1066 besides 1001 | Custom checks of the code of `ORDINARY_TAX` entries must accept it |
+| Capability `shortfall_deferral`, reasons `shortfall_deferred`, `deferral_not_possible`, `deferred_shortfall_withheld`, `deferred_shortfall_unrecovered` (provisional, issue of the same code) | Handle them where reason codes are matched |
+| `PriorYearTaxFacts.foreign_taxes` (`ForeignTaxPaid(country, income, tax)`, one per State) added | Pass the foreign income that entered the taxable income and the foreign tax paid on it, reduced for art. 165 c. 10 TUIR when needed |
+| Tax computation component and capability `foreign_tax_credit`, reasons `credit_applied`, `limited_to_net_tax` | The net IRPEF of the conguaglio and the test of the surtax are after the credit |
+| The withholding shortfall decision cites `dpr600-1973-art23-c3` instead of `dlgs33-2025-art33-c4` | Art. 23 DPR 600/1973 is in force until 31 December 2026 |
+| `PeriodState.SCHEMA_VERSION` is 5 | A persisted state of version 4 has no deferred shortfall; it reads as none |
+
 ## Surtax tables of 2026 rebuilt from the MEF data
 
 `regionale-2026.json` held rows under the wrong region (for example the
