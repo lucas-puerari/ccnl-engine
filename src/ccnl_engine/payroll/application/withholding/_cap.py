@@ -69,7 +69,8 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
     """Return the net pay of the ledger ``entries`` of a run.
 
     Returns:
-        Cash earnings, TFR settled, credits paid, IRPEF refunded and credit
+        Cash earnings, TFR settled, credits paid, IRPEF and surtax refunded
+        and credit
         recoveries given back, less the credits recovered, the employee
         contributions, bilateral and pension fund contributions, deductions
         and every tax withheld.
@@ -79,6 +80,7 @@ def run_net(entries: tuple[LedgerEntry, ...]) -> Decimal:
         + _sum_ledger(entries, AccountKind.TFR_SETTLEMENT)
         + _sum_ledger(entries, AccountKind.CREDITS)
         + _sum_ledger(entries, AccountKind.TAX_REFUNDS)
+        + _sum_ledger(entries, AccountKind.SURTAX_REFUNDS)
         + _sum_ledger(entries, AccountKind.CREDIT_RECOVERY_SHORTFALL)
         - _sum_ledger(entries, AccountKind.CREDIT_RECOVERIES)
         - _sum_ledger(entries, AccountKind.EMPLOYEE_CONTRIBUTIONS)

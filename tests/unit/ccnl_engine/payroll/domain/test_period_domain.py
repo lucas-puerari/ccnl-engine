@@ -172,9 +172,9 @@ class TestPeriodState:
                 )
             )
 
-    def test_schema_version_is_three(self) -> None:
-        """SCHEMA_VERSION is 3 since typed run ids and uniform credit accounts."""
-        assert PeriodState.SCHEMA_VERSION == 3
+    def test_schema_version_is_four(self) -> None:
+        """SCHEMA_VERSION is 4 since surtax obligations and acconto withheld."""
+        assert PeriodState.SCHEMA_VERSION == 4
 
     def test_tax_year_defaults_to_none(self) -> None:
         """tax_year defaults to None on manual construction."""

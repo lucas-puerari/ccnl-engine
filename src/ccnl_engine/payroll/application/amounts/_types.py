@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.amounts._surtax import RunSurtax
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
-from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+    from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
     from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
     from ccnl_engine.payroll.service.pension_fund import (
         PensionContribution,
@@ -45,7 +46,11 @@ class _AmountsInput:
     ``withholding_agent`` is false for an employer that withholds no tax
     (see :mod:`~ccnl_engine.payroll.service.withholding_agent`).
     ``pension`` holds the rates of the pension fund the worker is enrolled
-    in, ``None`` when not enrolled.
+    in, ``None`` when not enrolled.  ``conguaglio`` is true on the run that
+    settles the tax year: its last withholding slot, or the last run of the
+    employment.  ``surtax_obligations`` is the surtax determined by an
+    earlier conguaglio still to withhold; ``run_month`` and
+    ``regular_run`` place the run in the installment windows.
     """
 
     monthly_gross: Decimal
@@ -75,6 +80,10 @@ class _AmountsInput:
     installment_run: InstallmentRun = field(default_factory=InstallmentRun)
     withholding_agent: bool = True
     pension: PensionFundTerms | None = None
+    conguaglio: bool = False
+    surtax_obligations: tuple[SurtaxObligation, ...] = ()
+    run_month: int = 1
+    regular_run: bool = True
 
 
 @dataclass(frozen=True)
@@ -83,7 +92,9 @@ class _PeriodAmounts:
 
     Does not include period_gross, period_net or period_employer_cost: those
     are derived from the ledger after all entries are posted.  ``surtax``
-    carries the annual surtax decisions and issues behind ``period_surtax``;
+    carries what the run withholds and determines of the surtax, whose
+    total before the pay cap is ``surtax.due`` and after it
+    ``period_surtax``;
     ``decisions`` holds every tax decision of the run, the surtax ones last.
     ``projected_taxable`` is the annual taxable income the IRPEF of the run
     was computed on; ``None`` when not recorded.  ``ulteriore`` is what
@@ -102,7 +113,7 @@ class _PeriodAmounts:
     period_taxable: Decimal
     period_substitute_tax: Decimal
     pdr_eligible: Decimal
-    surtax: SurtaxOutcome = field(default_factory=SurtaxOutcome)
+    surtax: RunSurtax = field(default_factory=RunSurtax)
     decisions: tuple[CalculationDecision, ...] = ()
     projected_taxable: Decimal | None = None
     ulteriore: UlterioreSettlement | None = None

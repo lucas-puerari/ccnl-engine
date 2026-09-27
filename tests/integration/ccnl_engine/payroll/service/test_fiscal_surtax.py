@@ -74,7 +74,6 @@ def test_no_jurisdiction_takes_no_decision() -> None:
     outcome = _compute(None, None)
 
     assert outcome == SurtaxOutcome()
-    assert outcome.total == _D(0)
 
 
 def test_known_tables_are_applied_and_final() -> None:
@@ -97,7 +96,7 @@ def test_known_tables_are_applied_and_final() -> None:
     )
     assert municipal.amount == _D("240.00")
     assert municipal.inputs["table"] == "Roma"
-    assert outcome.total == _D("609.00")
+    assert outcome.regional + outcome.municipal == _D("609.00")
     assert outcome.issues == ()
 
 
@@ -110,18 +109,47 @@ def test_ruleset_identity_is_recorded_as_rule() -> None:
     }
 
 
-def test_advance_rates_apply_the_advance_fraction() -> None:
-    """Prior-year municipal rates give only the 30% advance."""
+def test_prior_year_rates_give_the_full_surtax_as_provisional() -> None:
+    """A table of the year before: full surtax, provisional, issue named.
+
+    30,000 x 0.8% = 240.00, the whole municipal surtax of the year (the
+    acconto and saldo are split by the conguaglio, not here).  The rates
+    are those of 2025, so the decision and its issue are provisional.
+    """
     outcome = _compute(None, "H501", rules=_rules(advance=True))
 
     (municipal,) = outcome.decisions
-    assert municipal.reason_code == "advance_applied"
-    assert municipal.amount == _D("72.00")
-    assert municipal.inputs["advance_fraction"] == _D("0.30")
-    assert municipal.inputs["balance"] == "not_modelled"
-    assert municipal.status is CalculationStatus.FINAL
-    assert outcome.regional == _D(0)
-    assert outcome.municipal == _D("72.00")
+    assert municipal.reason_code == "prior_year_rates_applied"
+    assert municipal.amount == _D("240.00")
+    assert municipal.inputs["rates_year"] == "2025"
+    assert municipal.status is CalculationStatus.PROVISIONAL
+    assert outcome.municipal == _D("240.00")
+    (issue,) = outcome.issues
+    assert issue.code == "municipal_surtax_prior_year_rates"
+    assert issue.status is CalculationStatus.PROVISIONAL
+
+
+def test_runs_before_the_conguaglio_determine_nothing() -> None:
+    """Before the conguaglio a known table gives 0 and an unknown one fails.
+
+    The surtax of the year is determined only by its conguaglio (D.Lgs.
+    446/1997 art. 50 c. 4, D.Lgs. 360/1998 art. 1 c. 5); an unknown table
+    is reported on every run, so the result is not paid as final.
+    """
+    outcome = compute_surtax(
+        _TAXABLE,
+        _rules(),
+        regione="IT-25",
+        comune_belfiore="Z999",
+        irpef_due=_IRPEF,
+        at_conguaglio=False,
+    )
+
+    assert [(d.reason_code, d.amount) for d in outcome.decisions] == [
+        ("determined_at_conguaglio", _D(0)),
+        ("table_unknown", None),
+    ]
+    assert [i.code for i in outcome.issues] == ["municipal_surtax_unknown"]
 
 
 def test_income_below_exemption_is_not_due() -> None:
@@ -168,7 +196,7 @@ def test_unknown_table_is_incomplete(
     assert decision.status is CalculationStatus.INCOMPLETE
     assert decision.amount is None
     assert decision.inputs["table"] == "unknown"
-    assert outcome.total == _D(0)
+    assert outcome.regional == outcome.municipal == _D(0)
     (issue,) = outcome.issues
     assert issue.code == issue_code
     assert issue.status is CalculationStatus.INCOMPLETE

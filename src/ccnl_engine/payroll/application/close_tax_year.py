@@ -19,7 +19,9 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     run, until the last one, or at once on the last run of the employment.
     Those installments are deducted on the
     payslips of N+1 without entering the N+1 trattamento integrativo
-    account.
+    account.  The surtax the conguaglio of N determined is carried the same
+    way and withheld on the regular payslips of N+1
+    (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`).
 
     Year-end rule: ``closing`` must be bound to a tax year and every
     withholding slot of that year must be closed

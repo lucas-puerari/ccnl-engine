@@ -63,28 +63,30 @@ def _no_credits(ctx: RunContext) -> RunCredits:
     """Return the credits of an employer that is not a withholding agent.
 
     Such an employer never recognizes a credit or withholds a tax, so an
-    opening state carrying a recovery, a withholding shortfall or tax
-    withheld cannot come from its payslips.
+    opening state carrying a recovery, surtax to withhold, a withholding
+    shortfall or tax withheld cannot come from its payslips.
 
     Returns:
         No somma esente and no carried recovery.
 
     Raises:
-        InvalidInputError: When the opening state carries a recovery, a
-            withholding shortfall or IRPEF or surtax withheld.
+        InvalidInputError: When the opening state carries a recovery,
+            surtax to withhold, a withholding shortfall or IRPEF or surtax
+            withheld.
     """
     opening = ctx.opening
     ytd = opening.ytd
     if (
         opening.obligations.recoveries
+        or opening.obligations.surtax
         or ytd.shortfall.total
         or ytd.tax.irpef
         or ytd.tax.surtax
     ):
         msg = (
             "the employer is not a withholding agent (art. 23 c. 1 D.P.R. "
-            "600/1973): the opening state cannot carry credit recoveries, a "
-            "withholding shortfall or tax withheld"
+            "600/1973): the opening state cannot carry credit recoveries, "
+            "surtax to withhold, a withholding shortfall or tax withheld"
         )
         raise InvalidInputError(msg, feature="withholding_agent")
     return RunCredits(SommaEsenteOutcome(), CarriedRecoveries())
@@ -203,16 +205,11 @@ def post_run(
     """
     request, opening = ctx.request, ctx.opening
     ledger_entries = _base_ledger(ctx, amounts)
-    slots_closed = opening.ytd.tax_withholding_periods_closed
     capped = cap_withholding(
         amounts,
         ledger_entries + other_entries,
         opening.ytd.shortfall,
-        last_slot=ctx.installment_run.final
-        or (
-            ctx.run_kind.consumes_withholding_slot
-            and ctx.withholding_schedule.remaining(slots_closed) == 1
-        ),
+        last_slot=ctx.conguaglio,
         rules=ctx.contract.year_rules,
     )
     if capped.amounts is not amounts:

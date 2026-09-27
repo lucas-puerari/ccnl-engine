@@ -21,6 +21,7 @@ from tests.acceptance.legal_scenarios._support import (
     ENGINE,
     regular_period,
 )
+from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 _COMMERCIO_4 = Employment(ccnl_slug=COMMERCIO, level_code="4")
 
@@ -63,19 +64,28 @@ def test_empty_calendar_that_drops_extra_months_is_rejected() -> None:
 
 
 def test_known_surtax_tables_are_withheld() -> None:
-    """Control: Emilia-Romagna and Modena (F257) tables exist for 2026."""
-    result = regular_period(regione="IT-45", comune_belfiore="F257")
+    """Control: Emilia-Romagna and Modena (F257) tables exist for 2026.
 
-    assert result.closing_state.ytd.tax.surtax > Decimal(0)
+    January withholds the first installment of the 2025 surtax (30.00
+    regional, 10.00 municipal saldo, imported); the 2026 surtax waits for
+    the conguaglio, so both tables are only checked: final, amount 0.
+    """
+    result = regular_period(
+        regione="IT-45",
+        comune_belfiore="F257",
+        opening_state=opening_with_2025_surtax("IT-45", "F257"),
+    )
+
+    assert result.closing_state.ytd.tax.surtax == Decimal("40.00")
     assert result.status is CalculationStatus.FINAL
     reasons = {
         d.capability: d.reason_code
         for d in result.decisions
-        if d.capability.startswith("addizionale_")
+        if d.capability.startswith("addizionale_") and "component" not in d.inputs
     }
     assert reasons == {
-        "addizionale_regionale": "table_applied",
-        "addizionale_comunale": "advance_applied",
+        "addizionale_regionale": "determined_at_conguaglio",
+        "addizionale_comunale": "determined_at_conguaglio",
     }
 
 

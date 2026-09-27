@@ -26,6 +26,7 @@ from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -98,10 +99,11 @@ def _tfr_settle(result: PeriodResult) -> Decimal:
 
 
 def _req_surtax(*events: object) -> PeriodCalculationRequest:
-    """Request with Lombardia region and comune A001 for surtax computation.
+    """Request with Lombardia region, comune A001 and the 2025 surtax.
 
     Returns:
-        A :class:`PeriodCalculationRequest` with Lombardia region and comune A001.
+        A :class:`PeriodCalculationRequest` with Lombardia region and comune
+        A001, opening with the 2025 surtax still to withhold.
     """
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(50)),
@@ -109,7 +111,7 @@ def _req_surtax(*events: object) -> PeriodCalculationRequest:
         payment_date=_PAYMENT,
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
-        opening_state=PeriodState.zero(),
+        opening_state=opening_with_2025_surtax("IT-25", "A001"),
         events=tuple(events),  # type: ignore[arg-type]
         regione="IT-25",
         comune_belfiore="A001",
@@ -337,20 +339,24 @@ class TestSurtaxAccounting:
         assert base_irpef == surtax_irpef
 
     def test_surtax_pay_items_present(self) -> None:
-        """One regional and one municipal surtax item appear when both are due."""
+        """One item per surtax component due on the run."""
         result = calculate_period(_req_surtax())
         surtax_items = {
             pi.item_id.rsplit("_", 1)[0]: pi.amount
             for pi in result.pay_items
             if "surtax" in pi.item_id
         }
-        assert set(surtax_items) == {"surtax_regional", "surtax_municipal"}
+        assert set(surtax_items) >= {
+            "surtax_regional_balance_2025",
+            "surtax_municipal_balance_2025",
+        }
         assert sum(surtax_items.values()) == _surtax(result)
 
     def test_reconcile_passes(self) -> None:
         """All reconciliation invariants hold when addizionali are computed."""
-        result = calculate_period(_req_surtax())
-        r = reconcile(result, PeriodState.zero())
+        request = _req_surtax()
+        result = calculate_period(request)
+        r = reconcile(result, request.opening_state)
         assert r.ok, r.violations
 
 

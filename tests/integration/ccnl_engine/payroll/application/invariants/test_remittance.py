@@ -14,7 +14,7 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-from ccnl_engine.payroll.domain.period_state import PeriodState
+from tests.fixtures.imported_surtax import opening_with_2025_surtax
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -30,7 +30,7 @@ def _result() -> PeriodResult:
             payment_date=date(2026, 9, 28),
             ccnl_slug="commercio-confcommercio.json",
             level_code="4",
-            opening_state=PeriodState.zero(),
+            opening_state=opening_with_2025_surtax("IT-25", "A001"),
             regione="IT-25",
             comune_belfiore="A001",
         )
@@ -52,13 +52,12 @@ def _recode(
 
 
 def test_engine_run_holds() -> None:
-    """IRPEF under 1001, regional surtax under 3802, municipal uncoded."""
+    """IRPEF under 1001; regional 3802, municipal saldo 3848, acconto 3847."""
     result = _result()
 
     codes = {(e.account, e.remittance_code) for e in result.ledger_entries}
     assert (AccountKind.ORDINARY_TAX, "1001") in codes
-    assert (AccountKind.SURTAX, "3802") in codes
-    assert (AccountKind.SURTAX, None) in codes
+    assert {c for a, c in codes if a is AccountKind.SURTAX} == {"3802", "3847", "3848"}
     assert check_remittance_code_consistent(result) == []
 
 
@@ -78,4 +77,4 @@ def test_code_of_another_account_is_reported() -> None:
     violations = check_remittance_code_consistent(result)
     assert {v.invariant_id for v in violations} == {_INVARIANT}
     assert all("carries codice tributo 1701" in v.message for v in violations)
-    assert len(violations) == 2
+    assert len(violations) == 3

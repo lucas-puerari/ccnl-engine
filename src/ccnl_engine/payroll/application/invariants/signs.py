@@ -13,7 +13,8 @@ Implemented invariants:
     ordinary_tax_non_negative: every ORDINARY_TAX entry is ``>= 0``; an
         IRPEF refund uses the TAX_REFUNDS account (``tax_refund_item``).
     credit_non_negative: every CREDITS, CREDIT_RECOVERIES,
-        CREDIT_RECOVERY_SHORTFALL and TAX_REFUNDS entry is ``>= 0``: a
+        CREDIT_RECOVERY_SHORTFALL, TAX_REFUNDS and SURTAX_REFUNDS entry is
+        ``>= 0``: a
         credit taken back is a recovery, not a negative credit.
     employee_contribution_non_negative and
     employer_contribution_non_negative: every EMPLOYEE_CONTRIBUTIONS and
@@ -70,6 +71,7 @@ _NON_NEGATIVE_ACCOUNTS: tuple[tuple[AccountKind, InvariantCode], ...] = (
     (AccountKind.CREDIT_RECOVERIES, InvariantCode.CREDIT_NON_NEGATIVE),
     (AccountKind.CREDIT_RECOVERY_SHORTFALL, InvariantCode.CREDIT_NON_NEGATIVE),
     (AccountKind.TAX_REFUNDS, InvariantCode.CREDIT_NON_NEGATIVE),
+    (AccountKind.SURTAX_REFUNDS, InvariantCode.CREDIT_NON_NEGATIVE),
 )
 
 

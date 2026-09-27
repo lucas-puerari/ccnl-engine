@@ -36,6 +36,8 @@ from ccnl_engine import (
     OpeningBalances,
     RecoveryObligation,
     RecoveryPlan,
+    SurtaxObligation,
+    SurtaxComponent,
     # Employment, employer and prior-year facts
     Employment,
     EmploymentPeriod,

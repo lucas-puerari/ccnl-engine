@@ -5,8 +5,8 @@ Every run opens with a `PeriodState` and returns the next one as
 
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
-| `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld, trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
-| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) |
+| `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
+| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) and surtax a conguaglio determined, still to withhold (`surtax`) |
 
 `state.tax_year` is a shortcut for `state.ytd.tax_year`.
 
@@ -171,7 +171,10 @@ last run of year N and returns the opening state of N+1:
 - `obligations` is carried unchanged. A recovery keeps the tax year that
   opened it; its remaining installments are due from the first run of N+1,
   one per run, until the last one, or at once on the last run of the
-  employment.
+  employment. The surtax the conguaglio of N determined (regional surtax
+  and municipal saldo of N, municipal acconto of N+1) is withheld on the
+  regular payslips of N+1, see
+  [Surtax carried into the next year](#surtax-carried-into-the-next-year).
 
 The input must be a year-end state: bound to a tax year, with every
 withholding slot of the year closed. The state after December but before the
@@ -234,6 +237,36 @@ employment that ends recovers the residual in full on its last run.
 At most one recovery per credit and origin year is held. The recovery opened
 by the conguaglio of the current year runs inside the conguaglio, as before.
 
+## Surtax carried into the next year
+
+The conguaglio of N determines the surtax of N and the municipal acconto
+of N+1 and stores them in `obligations.surtax`, one `SurtaxObligation` per
+component (`SurtaxComponent.REGIONAL_BALANCE`, `MUNICIPAL_BALANCE`,
+`MUNICIPAL_ADVANCE`), with the tax year of the conguaglio, the region or
+municipality it is due to and a `RecoveryPlan` of its installments:
+
+- regional surtax and municipal saldo: eleven installments, January to
+  November of N+1 (D.Lgs. 446/1997 art. 50 c. 4, D.Lgs. 360/1998 art. 1
+  c. 5);
+- municipal acconto of N+1: nine installments, March to November
+  (art. 1 c. 5).
+
+Each regular payslip of the window withholds one installment, the November
+one the residual; extra-month, December and adjustment payslips withhold
+none; the last run of the employment withholds every residual. The payslip
+lines are `surtax_{component}_{reference year}_{run_id}` on `SURTAX`, coded
+3802, 3848 or 3847. `TaxYtd.municipal_advance` counts the acconto withheld
+in the year, which the conguaglio deducts from the municipal surtax; an
+acconto above the surtax due is refunded on `SURTAX_REFUNDS`
+(`surtax_refund_{run_id}`). A termination run after the last withholding
+slot is a second conguaglio of the year: it drops the obligations the
+first one deferred and withholds the surtax of the year less what an
+earlier conguaglio of the year already withheld (`TaxYtd.regional_settled`,
+`TaxYtd.municipal_settled`). At most one obligation per component and
+conguaglio year is held. See
+[Fiscal: when the surtax is withheld](fiscal.md#when-the-surtax-is-withheld)
+for the rules and the decisions.
+
 ## Ledger accounts and F24 remittance
 
 The withholding agent remits the tax it withholds and offsets the credits
@@ -245,8 +278,11 @@ run can be read from it:
 |---|---|---|
 | `ORDINARY_TAX` | IRPEF withheld, before any credit is offset | 1001 |
 | `TAX_REFUNDS` | IRPEF refunded by the conguaglio | none |
-| `SURTAX` | regional surtax (`surtax_regional_{run}`) | 3802 |
-| `SURTAX` | municipal surtax (`surtax_municipal_{run}`) | none |
+| `SURTAX` | regional surtax (`surtax_regional_balance_{year}_{run}`) | 3802 |
+| `SURTAX` | municipal saldo (`surtax_municipal_balance_{year}_{run}`) | 3848 |
+| `SURTAX` | municipal acconto (`surtax_municipal_advance_{year}_{run}`) | 3847 |
+| `SURTAX` | surtax carried from an earlier run for lack of pay (`surtax_{run}`) | none |
+| `SURTAX_REFUNDS` | municipal acconto refunded by the conguaglio | none |
 | `SUBSTITUTE_TAX` | PdR, rinnovo, notte, festivi e turni | 1053, 1075, 1076 |
 | `SEPARATE_TAX` | arrears, TFR | 1002, 1012 |
 | `CREDITS` | trattamento integrativo, somma esente paid | 1701, 1704 (credit column) |
@@ -255,7 +291,8 @@ run can be read from it:
 | `CREDIT_RECOVERY_SHORTFALL` | recovery the pay could not cover, given back and carried | none |
 
 Sources: Allegato 1 to the AdE provvedimento of 31 January 2025 (1001,
-1002, 1012, 1053, 1701, 1704, 3802), ris. 35/E/2020 (1701), ris. 9/E/2025
+1002, 1012, 1053, 1701, 1704, 3802, 3847 and 3848, the last two instituted
+by ris. 368/E/2007), ris. 35/E/2020 (1701), ris. 9/E/2025
 (1704, "importi a credito compensati" for the amount paid and "importi a
 debito versati" for the amount "già erogata e poi recuperata"), ris.
 3/E/2026 (1075) and 2/E/2026 (1076). The codes live in
@@ -264,8 +301,8 @@ debito versati" for the amount "già erogata e poi recuperata"), ris.
 
 A code that cannot be verified is left out rather than guessed:
 
-- municipal surtax is 3847 (acconto) or 3848 (saldo), and the engine does
-  not split the two yet;
+- surtax carried from an earlier run for lack of pay is not tracked by
+  component;
 - ris. 35/E/2020 gives 1701 for the credit column only, so a trattamento
   integrativo recovered from the worker has no code;
 - the ulteriore detrazione recovered in the next tax year is IRPEF of the
@@ -273,10 +310,10 @@ A code that cannot be verified is left out rather than guessed:
 - the national codes are used: the variants for Sicily, Sardinia and Valle
   d'Aosta are not selected.
 
-The surtax withheld on a run is split in the ratio of the annual regional
-and municipal surtax; the municipal line takes the rounding residual. A
-surtax carried in when no annual surtax is left posts one uncoded
-`surtax_{run}` line. The recovery shortfall is not tracked by credit, so a
+When the pay does not cover the surtax due, the run withholds the surtax
+carried in from an earlier run first (uncoded `surtax_{run}` line), then
+the components in order (regional, municipal saldo, municipal acconto);
+the rest is carried to the next run. The recovery shortfall is not tracked by credit, so a
 somma esente recovery under 1704 can be partly given back on the uncoded
 shortfall line of the same run.
 
@@ -289,7 +326,7 @@ The net identity reads the accounts with their direction:
 
 ```text
 period_net = CASH_EARNINGS + TFR_SETTLEMENT + CREDITS + TAX_REFUNDS
-           + CREDIT_RECOVERY_SHORTFALL - CREDIT_RECOVERIES
+           + SURTAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL - CREDIT_RECOVERIES
            - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE
            - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS
            - ORDINARY_TAX - SURTAX - SUBSTITUTE_TAX - SEPARATE_TAX
@@ -308,7 +345,10 @@ them with the rules of the state the engine produces: every amount
 non-negative with at most two decimals, credit recovered not above
 recognized (`trattamento_*`, `somma_esente_*`), taxed fringe not above fringe
 value, closed runs (`closed_run_ids`, a tuple of `PayrollRunId`) of the tax
-year and in order, no recovery opened after the tax year. A violation raises
+year and in order, no recovery opened after the tax year, surtax
+obligations (`surtax_obligations`) determined by the conguaglio of an
+earlier year and an acconto withheld (`municipal_advance_withheld`) not
+above the surtax withheld. A violation raises
 `InvalidInputError` with feature `opening_balances`. `to_state()` returns the `PeriodState`
 for the first run the engine computes.
 

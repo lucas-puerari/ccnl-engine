@@ -123,18 +123,40 @@ class TaxYtd:
     Attributes:
         irpef: IRPEF already withheld this tax year.
         surtax: Cumulative regional and municipal surtax (addizionale
-            regionale/comunale) withheld this tax year.
+            regionale/comunale) withheld this tax year, less the surtax
+            refunded: the installments of the surtax determined by the
+            previous conguaglio, the acconto of this year and what a
+            termination withholds at once.
+        municipal_advance: Part of ``surtax`` withheld as the municipal
+            acconto of this tax year, deducted from the municipal surtax
+            due by its conguaglio.
+        regional_settled: Regional surtax of this tax year a conguaglio on
+            the last run of the employment already withheld, deducted by a
+            later conguaglio of the same year.
+        municipal_settled: Municipal saldo of this tax year withheld the
+            same way.
     """
 
     irpef: Decimal = _ZERO
     surtax: Decimal = _ZERO
+    municipal_advance: Decimal = _ZERO
+    regional_settled: Decimal = _ZERO
+    municipal_settled: Decimal = _ZERO
 
     def __post_init__(self) -> None:
-        """Validate that both totals are non-negative.
+        """Validate that the totals are non-negative and consistent.
 
-        A negative or non-finite total raises ``ValueError``.
+        Raises:
+            ValueError: When a total is negative or not finite, or
+                ``municipal_advance`` exceeds ``surtax``.
         """
         check_non_negative(self)
+        if self.municipal_advance > self.surtax:
+            msg = (
+                f"TaxYtd.municipal_advance ({self.municipal_advance}) must be "
+                f"<= TaxYtd.surtax ({self.surtax})"
+            )
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True)

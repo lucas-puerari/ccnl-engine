@@ -100,9 +100,9 @@ class TestAccountKind:
 class TestAccountKindShape:
     """AccountKind is a closed string enumeration."""
 
-    def test_twenty_members(self) -> None:
-        """AccountKind has exactly twenty members."""
-        assert len(AccountKind) == 20
+    def test_twenty_one_members(self) -> None:
+        """AccountKind has exactly twenty-one members."""
+        assert len(AccountKind) == 21
 
     @pytest.mark.parametrize(
         ("account", "value"),

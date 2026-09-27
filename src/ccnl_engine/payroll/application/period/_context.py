@@ -148,6 +148,19 @@ class RunContext:
         return InstallmentRun(final=final, adjustment=kind is RunKind.ADJUSTMENT)
 
     @property
+    def conguaglio(self) -> bool:
+        """Whether the run settles the tax year.
+
+        It does when it takes the last withholding slot of the year or is
+        the last run of the employment (:attr:`installment_run`).
+        """
+        slots_closed = self.opening.ytd.tax_withholding_periods_closed
+        return self.installment_run.final or (
+            self.run_kind.consumes_withholding_slot
+            and self.withholding_schedule.remaining(slots_closed) == 1
+        )
+
+    @property
     def opening(self) -> PeriodState:
         """State the run opens with."""
         return self.request.opening_state

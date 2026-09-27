@@ -176,9 +176,12 @@ the credit in force.
 
 The `CalculationDecision` of the regional or municipal surtax
 (`addizionale_regionale`, `addizionale_comunale`) for a jurisdiction named in
-the request.  It separates a surtax not due by rule (`no_irpef_due`,
+the request.  It separates a surtax not yet determined
+(`determined_at_conguaglio`: final, amount 0, any run before the
+conguaglio), a surtax not due by rule (`no_irpef_due`,
 `below_exemption_threshold`: final, amount 0), a table applied
-(`table_applied`, `advance_applied`: final) and a well-formed code without a
+(`table_applied`: final; `prior_year_rates_applied`: provisional) and a
+well-formed code without a
 table row (`table_unknown`: incomplete, amount `None`, issue
 `regional_surtax_unknown` or `municipal_surtax_unknown`).  The region is the
 ISO 3166-2:IT code (`IT-45`), with `IT-BZ` / `IT-TN` for the autonomous
@@ -261,10 +264,14 @@ What a run owes or is owed beyond the tax year that created it, carried from
 run to run until settled.  Today: installment recoveries of trattamento
 integrativo (D.L. 3/2020 art. 1 c. 3) and of somma esente (L. 207/2024
 art. 1 c. 7), each bound to the credit and the tax year whose conguaglio
-opened it.  Installments posted in a later year do not enter the
-credit account of that year.
+opened it, and the surtax a conguaglio determined (regional surtax and
+municipal saldo of the year, municipal acconto of the next), withheld by
+installments in the next year (D.Lgs. 446/1997 art. 50 c. 4, D.Lgs.
+360/1998 art. 1 c. 5).  Installments posted in a later year do not enter
+the credit account of that year.
 
-`EmploymentObligations`, `RecoveryObligation`, `PeriodState.obligations`
+`EmploymentObligations`, `RecoveryObligation`, `SurtaxObligation`,
+`PeriodState.obligations`
 
 ### year close (chiusura dell'anno fiscale)
 
@@ -310,7 +317,7 @@ The code is stable and is the `invariant_id` of the violation.
 |---|---|
 | `pay_item_posted` | every pay item has at least one ledger entry |
 | `earning_contribution_exclusive` | no pay item posts to both `CASH_EARNINGS` and `EMPLOYEE_CONTRIBUTIONS` |
-| `net_identity` | `CASH_EARNINGS + CREDITS + TAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX - ORDINARY_TAX - SURTAX - SEPARATE_TAX = period_net` |
+| `net_identity` | `CASH_EARNINGS + CREDITS + TAX_REFUNDS + SURTAX_REFUNDS + CREDIT_RECOVERY_SHORTFALL + TFR_SETTLEMENT - CREDIT_RECOVERIES - EMPLOYEE_CONTRIBUTIONS - BILATERAL_FUND_EMPLOYEE - PENSION_FUND_EMPLOYEE - EMPLOYEE_DEDUCTIONS - SUBSTITUTE_TAX - ORDINARY_TAX - SURTAX - SEPARATE_TAX = period_net` |
 | `employer_cost_identity` | `CASH_EARNINGS - EMPLOYEE_DEDUCTIONS + NON_CASH_BENEFITS + EMPLOYER_CONTRIBUTIONS + BILATERAL_FUND_EMPLOYER + TFR_ACCRUAL + PENSION_FUND_EMPLOYER + PENSION_FUND_TFR = period_employer_cost` |
 | `gross_identity` | `CASH_EARNINGS = period_gross` |
 | `ledger_entry_unique` | ledger entry ids of a run are unique |
@@ -319,10 +326,10 @@ The code is stable and is the `invariant_id` of the violation.
 | `employee_deduction_non_negative` | every `EMPLOYEE_DEDUCTIONS` entry `>= 0` |
 | `substitute_tax_non_negative`, `ordinary_tax_non_negative` | every `SUBSTITUTE_TAX` and `ORDINARY_TAX` entry `>= 0`; refunds use `TAX_REFUNDS` |
 | `employee_contribution_non_negative`, `employer_contribution_non_negative` | every `EMPLOYEE_CONTRIBUTIONS` and `EMPLOYER_CONTRIBUTIONS` entry `>= 0`; corrections are a distinct movement |
-| `credit_non_negative` | every `CREDITS`, `CREDIT_RECOVERIES`, `CREDIT_RECOVERY_SHORTFALL` and `TAX_REFUNDS` entry `>= 0`: a credit taken back is a recovery |
+| `credit_non_negative` | every `CREDITS`, `CREDIT_RECOVERIES`, `CREDIT_RECOVERY_SHORTFALL`, `TAX_REFUNDS` and `SURTAX_REFUNDS` entry `>= 0`: a credit taken back is a recovery |
 | `net_pay_non_negative` | `period_net >= 0` |
 | `run_counters_advance` | regular and withholding-slot counters advance by the run; the run id enters `closed_run_ids` |
-| `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries less their `CREDIT_RECOVERIES` entries) |
+| `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX` less `SURTAX_REFUNDS`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries less their `CREDIT_RECOVERIES` entries) |
 | `credit_recovery_bounds` | each credit account recovers between zero and what it recognized |
 | `carried_recovery_advance` | each recovery carried from an earlier tax year posts its next installment and advances one step, or posts its whole residual on the last run of the employment |
 | `substitute_tax_plafond` | the work-time regime cap account advances by the eligible amounts, stays within the annual cap and agrees with the `cap_available` of each decision; the PdR eligible YTD advances by the `bonus_pdr` decision and stays within the PdR limit |

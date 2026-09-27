@@ -98,3 +98,10 @@ class TestCreditAccount:
         """Each account names the recovery plan kind of its credit."""
         assert TrattamentoAccount.KIND == "trattamento_integrativo"
         assert SommaEsenteAccount.KIND == "somma_esente"
+
+
+def test_municipal_advance_is_part_of_the_surtax_withheld() -> None:
+    """The acconto withheld is a part of the surtax total, never more."""
+    assert TaxYtd(surtax=Decimal(50), municipal_advance=Decimal(20))
+    with pytest.raises(ValueError, match="municipal_advance"):
+        TaxYtd(surtax=Decimal(10), municipal_advance=Decimal(20))

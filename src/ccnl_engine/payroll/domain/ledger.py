@@ -30,7 +30,7 @@ type Money = Decimal
 
 
 class AccountKind(StrEnum):
-    """The twenty logical accounts that partition a payroll pay period.
+    """The twenty-one logical accounts that partition a payroll pay period.
 
     The three ``PENSION_FUND`` accounts hold what is paid to a complementary
     pension fund: the employee contribution withheld, the employer
@@ -42,6 +42,9 @@ class AccountKind(StrEnum):
 
     - ``ORDINARY_TAX``: IRPEF withheld, before any credit is offset;
     - ``TAX_REFUNDS``: IRPEF refunded to the worker by the conguaglio;
+    - ``SURTAX``: regional and municipal surtax withheld;
+    - ``SURTAX_REFUNDS``: surtax withheld above what the conguaglio finds
+      due (usually the municipal acconto), given back;
     - ``CREDITS``: amounts paid to the worker that the withholding agent
       recovers as an F24 credit (trattamento integrativo, somma esente);
     - ``CREDIT_RECOVERIES``: those amounts, or an ulteriore detrazione of
@@ -65,6 +68,7 @@ class AccountKind(StrEnum):
     CREDIT_RECOVERIES = "credit_recoveries"
     CREDIT_RECOVERY_SHORTFALL = "credit_recovery_shortfall"
     TAX_REFUNDS = "tax_refunds"
+    SURTAX_REFUNDS = "surtax_refunds"
     TFR_ACCRUAL = "tfr_accrual"
     TFR_SETTLEMENT = "tfr_settlement"
     PENSION_FUND_EMPLOYEE = "pension_fund_employee"

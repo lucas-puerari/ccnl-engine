@@ -25,10 +25,10 @@ class PeriodState:
             restart every tax year.
         obligations: Obligations that survive the change of tax year, such
             as an installment recovery of trattamento integrativo or somma
-            esente.
+            esente, or the surtax a conguaglio determined.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 3
+    SCHEMA_VERSION: ClassVar[int] = 4
 
     ytd: TaxYearState = field(default_factory=TaxYearState)
     obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
@@ -37,13 +37,13 @@ class PeriodState:
         """Reject an obligation opened after the tax year of the state.
 
         Raises:
-            ValueError: When a recovery originates in a year later than
-                ``ytd.tax_year``.
+            ValueError: When a recovery or surtax obligation originates in a
+                year later than ``ytd.tax_year``.
         """
         latest = self.obligations.latest_tax_year
         if self.tax_year is not None and latest is not None and latest > self.tax_year:
             msg = (
-                f"obligations include a recovery opened in {latest}, after the "
+                f"obligations include one opened in {latest}, after the "
                 f"tax year of the state ({self.tax_year})"
             )
             raise ValueError(msg)
