@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.invariants._types import (
     _sum_account,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.remittance import POST_CONGUAGLIO_WITHHOLDING
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -137,13 +138,28 @@ def check_irpef_withheld_continuity(
 ) -> list[ReconciliationViolation]:
     """Check that IRPEF withheld YTD advances by the net IRPEF of the ledger.
 
+    The IRPEF of an earlier conguaglio deferred on written request (coded
+    1066) is withheld on the run but belongs to the earlier year, so it is
+    left out.
+
     Returns:
         A violation when the closing-minus-opening IRPEF delta diverges from
         ``ORDINARY_TAX`` less ``TAX_REFUNDS``.
     """
     delta = result.closing_state.ytd.tax.irpef - opening.ytd.tax.irpef
-    net_withholding = _sum_account(result, AccountKind.ORDINARY_TAX) - _sum_account(
-        result, AccountKind.TAX_REFUNDS
+    deferred = sum(
+        (
+            e.amount
+            for e in result.ledger_entries
+            if e.account == AccountKind.ORDINARY_TAX
+            and e.remittance_code == POST_CONGUAGLIO_WITHHOLDING
+        ),
+        _ZERO,
+    )
+    net_withholding = (
+        _sum_account(result, AccountKind.ORDINARY_TAX)
+        - deferred
+        - _sum_account(result, AccountKind.TAX_REFUNDS)
     )
     if delta != net_withholding:
         return [

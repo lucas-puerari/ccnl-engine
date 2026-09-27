@@ -6,7 +6,7 @@ Every run opens with a `PeriodState` and returns the next one as
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
 | `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
-| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) and surtax a conguaglio determined, still to withhold (`surtax`) |
+| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) surtax a conguaglio determined, still to withhold (`surtax`), and IRPEF of a conguaglio deferred on the worker's written request (`deferred_shortfall`, art. 23 c. 3 DPR 600/1973) |
 
 `state.tax_year` is a shortcut for `state.ytd.tax_year`.
 
@@ -175,6 +175,9 @@ last run of year N and returns the opening state of N+1:
   and municipal saldo of N, municipal acconto of N+1) is withheld on the
   regular payslips of N+1, see
   [Surtax carried into the next year](#surtax-carried-into-the-next-year).
+  The IRPEF the conguaglio of N deferred on the worker's written request
+  is withheld from March of N+1, see
+  [Deferred shortfall carried into the next year](#deferred-shortfall-carried-into-the-next-year).
 
 The input must be a year-end state: bound to a tax year, with every
 withholding slot of the year closed. The state after December but before the
@@ -267,6 +270,29 @@ conguaglio year is held. See
 [Fiscal: when the surtax is withheld](fiscal.md#when-the-surtax-is-withheld)
 for the rules and the decisions.
 
+## Deferred shortfall carried into the next year
+
+When `PriorYearTaxFacts.shortfall_deferral` holds the worker's written
+request, the conguaglio of N moves the IRPEF its pay cannot cover from
+`ytd.shortfall.irpef` to `obligations.deferred_shortfall`: one
+`DeferredShortfall(tax_year=N, signed_on, deferred_from, irpef)` per
+conguaglio, `deferred_from` being the first day of the pay period of the
+conguaglio (`obligations.deferred_of(N)`). Without the request the
+shortfall stays in `ytd.shortfall` and ends with the year, as before.
+
+`close_tax_year` carries it. From the March pay period of N+1 every run
+other than an adjustment withholds from its net pay, after every other
+line, the largest principal whose interest (0.50% a month since
+`deferred_from`) still fits, on `deferred_irpef_{N}_{run_id}` and
+`deferred_irpef_{N}_interest_{run_id}` (`ORDINARY_TAX`, code 1066), and
+keeps the rest. The conguaglio of N+1 and the last run of the employment
+drop what is left with a provisional `deferred_shortfall_unrecovered`
+issue. These lines do not enter `ytd.tax.irpef` of N+1: the invariant
+`irpef_withheld_continuity` leaves out the entries coded 1066, and
+`irpef_annual_reconciliation` of N counts the deferred IRPEF with the
+withheld one. See
+[Fiscal: written deferral](fiscal.md#written-deferral-of-the-year-end-shortfall).
+
 ## Ledger accounts and F24 remittance
 
 The withholding agent remits the tax it withholds and offsets the credits
@@ -277,6 +303,7 @@ run can be read from it:
 | Account | What it holds | Codice tributo |
 |---|---|---|
 | `ORDINARY_TAX` | IRPEF withheld, before any credit is offset | 1001 |
+| `ORDINARY_TAX` | IRPEF of an earlier conguaglio deferred on written request, and its interest (`deferred_irpef_{year}_{run}`, `deferred_irpef_{year}_interest_{run}`) | 1066 |
 | `TAX_REFUNDS` | IRPEF refunded by the conguaglio | none |
 | `SURTAX` | regional surtax (`surtax_regional_balance_{year}_{run}`) | 3802 |
 | `SURTAX` | municipal saldo (`surtax_municipal_balance_{year}_{run}`) | 3848 |
@@ -292,7 +319,7 @@ run can be read from it:
 
 Sources: Allegato 1 to the AdE provvedimento of 31 January 2025 (1001,
 1002, 1012, 1053, 1701, 1704, 3802, 3847 and 3848, the last two instituted
-by ris. 368/E/2007), ris. 35/E/2020 (1701), ris. 9/E/2025
+by ris. 368/E/2007), ris. 35/E/2020 (1701), ris. 6/E/2021 (1066), ris. 9/E/2025
 (1704, "importi a credito compensati" for the amount paid and "importi a
 debito versati" for the amount "già erogata e poi recuperata"), ris.
 3/E/2026 (1075) and 2/E/2026 (1076). The codes live in
@@ -347,8 +374,9 @@ recognized (`trattamento_*`, `somma_esente_*`), taxed fringe not above fringe
 value, closed runs (`closed_run_ids`, a tuple of `PayrollRunId`) of the tax
 year and in order, no recovery opened after the tax year, surtax
 obligations (`surtax_obligations`) determined by the conguaglio of an
-earlier year and an acconto withheld (`municipal_advance_withheld`) not
-above the surtax withheld. A violation raises
+earlier year, an acconto withheld (`municipal_advance_withheld`) not
+above the surtax withheld, and IRPEF deferred on written request
+(`deferred_shortfall`) by the conguaglio of `tax_year - 1` only. A violation raises
 `InvalidInputError` with feature `opening_balances`. `to_state()` returns the `PeriodState`
 for the first run the engine computes.
 

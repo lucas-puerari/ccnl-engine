@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -13,6 +14,7 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
@@ -171,3 +173,26 @@ def test_rejects_surtax_of_the_conguaglio_of_the_tax_year() -> None:
     )
     with pytest.raises(InvalidInputError, match="year before 2026"):
         OpeningBalances(tax_year=2026, surtax_obligations=(late,))
+
+
+def _deferred(tax_year: int) -> DeferredShortfall:
+    return DeferredShortfall(
+        tax_year=tax_year,
+        signed_on=date(tax_year, 12, 10),
+        deferred_from=date(tax_year, 12, 1),
+        irpef=Decimal("300.00"),
+    )
+
+
+def test_imports_the_deferral_of_the_previous_conguaglio() -> None:
+    """The IRPEF the 2025 conguaglio deferred opens 2026."""
+    deferred = _deferred(2025)
+    state = OpeningBalances(tax_year=2026, deferred_shortfall=deferred).to_state()
+    assert state.obligations.deferred_shortfall == (deferred,)
+
+
+@pytest.mark.parametrize("tax_year", [2024, 2026])
+def test_rejects_a_deferral_of_another_conguaglio(tax_year: int) -> None:
+    """Only the conguaglio of 2025 defers IRPEF to 2026."""
+    with pytest.raises(InvalidInputError, match="deferred_shortfall"):
+        OpeningBalances(tax_year=2026, deferred_shortfall=_deferred(tax_year))

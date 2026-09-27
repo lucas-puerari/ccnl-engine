@@ -8,10 +8,11 @@ Implemented invariants:
         the massimale.
     irpef_annual_reconciliation: on the run that closes the last
         withholding slot of the tax year, the IRPEF withheld YTD plus the
-        IRPEF the pay could not cover (still carried as a shortfall) and
-        the ulteriore detrazione deferred to installments equals
-        the net annual IRPEF of the tax computation, rebuilt from its
-        components (gross IRPEF less the deductions, floored at zero),
+        IRPEF the pay could not cover (still carried as a shortfall, or
+        deferred to the next year on written request) and the ulteriore
+        detrazione deferred to installments equals the net annual IRPEF of
+        the tax computation, rebuilt from its components (gross IRPEF less
+        the deductions, floored at zero, less the foreign tax credit),
         within one cent;
         and the taxable income that computation used equals the final
         taxable income YTD, within two cents of rounding (the projection
@@ -51,6 +52,8 @@ _DEDUCTIONS = frozenset({
     "ulteriore_detrazione",
     "sterilizzazione_detrazioni",
 })
+#: Component of the art. 165 TUIR credit, deducted from the net IRPEF.
+_FOREIGN_CREDIT = "foreign_tax_credit"
 
 
 def check_contribution_ceiling(
@@ -84,16 +87,20 @@ def net_annual_irpef(computation: TaxComputation) -> Decimal:
     """Return the net annual IRPEF the components of ``computation`` give.
 
     Returns:
-        ``max(0, irpef_gross - deductions)``, zero without ``irpef_gross``.
+        ``max(0, irpef_gross - deductions) - foreign_tax_credit``, zero
+        without ``irpef_gross``.
     """
     gross = _ZERO
     deductions = _ZERO
+    credit = _ZERO
     for component in computation.components:
         if component.name == "irpef_gross":
             gross += component.amount
         elif component.name in _DEDUCTIONS:
             deductions += component.amount
-    return max(_ZERO, gross - deductions)
+        elif component.name == _FOREIGN_CREDIT:
+            credit += component.amount
+    return max(_ZERO, gross - deductions) - credit
 
 
 def _closes_last_slot(result: PeriodResult, opening: PeriodState) -> bool:
@@ -122,13 +129,14 @@ def check_irpef_annual_reconciliation(
     violations: list[ReconciliationViolation] = []
     due = net_annual_irpef(result.tax_computation)
     ytd = result.closing_state.ytd
-    deferred = result.closing_state.obligations.recovery_of(
-        ytd.tax_year or 0, ULTERIORE_RECOVERY
-    )
+    obligations = result.closing_state.obligations
+    deferred = obligations.recovery_of(ytd.tax_year or 0, ULTERIORE_RECOVERY)
+    postponed = obligations.deferred_of(ytd.tax_year or 0)
     withheld = (
         ytd.tax.irpef
         + ytd.shortfall.irpef
         + (_ZERO if deferred is None else deferred.residual)
+        + (_ZERO if postponed is None else postponed.irpef)
     )
     if abs(withheld - due) > _CENT:
         violations.append(

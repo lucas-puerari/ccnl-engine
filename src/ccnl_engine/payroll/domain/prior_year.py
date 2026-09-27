@@ -5,17 +5,28 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from ccnl_engine.payroll.domain.foreign_tax import (
+    ForeignTaxPaid,
+    check_one_per_state,
+)
+from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
+from ccnl_engine.payroll.domain.shortfall_deferral import ShortfallDeferralRequest
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.preferential_regime import SubstituteTaxRegime
 
-__all__ = ["PriorYearTaxFacts", "SubstituteTaxRegime"]
+__all__ = [
+    "ForeignTaxPaid",
+    "PriorYearTaxFacts",
+    "ShortfallDeferralRequest",
+    "SubstituteTaxRegime",
+]
 
 _FEATURE = "prior_year_tax_facts"
 
 
 @dataclass(frozen=True, slots=True)
 class PriorYearTaxFacts:
-    """Prior-year income and written waivers, read by every tax regime.
+    """Prior-year income, written waivers and requests of the tax year.
 
     The single source of the requirements the preferential regimes check:
     the premio di risultato (L. 208/2015 art. 1 c. 182, prior-year income
@@ -34,14 +45,27 @@ class PriorYearTaxFacts:
         waived_regimes: Regimes the worker renounced in writing; their
             amounts are taxed as ordinary income.  String values are
             accepted and normalized.
+        shortfall_deferral: The worker's written request to have the IRPEF
+            the conguaglio cannot withhold for lack of pay withheld on the
+            payslips of the next year, with interest (art. 23 c. 3 DPR
+            600/1973).  ``None``: what is not withheld is communicated to
+            the worker.  Read on the conguaglio only.
+        foreign_taxes: Foreign tax paid on employment income of the tax
+            year, one entry per State, credited at the conguaglio (art. 165
+            TUIR, art. 23 c. 3 DPR 600/1973).  A list is accepted and
+            stored as a tuple.
 
     Raises:
         InvalidInputError: When ``employment_income`` is not a finite,
-            non-negative ``Decimal`` or a waiver names no regime.
+            non-negative ``Decimal``, a waiver names no regime,
+            ``shortfall_deferral`` is not a request, or two foreign taxes
+            name the same State.
     """
 
     employment_income: Decimal | None = None
     waived_regimes: frozenset[SubstituteTaxRegime] = frozenset()
+    shortfall_deferral: ShortfallDeferralRequest | None = None
+    foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         income = self.employment_income
@@ -55,6 +79,21 @@ class PriorYearTaxFacts:
             raise InvalidInputError(msg, feature=_FEATURE)
         waived = frozenset(_regime(r) for r in _frozenset(self.waived_regimes))
         object.__setattr__(self, "waived_regimes", waived)
+        raise_on(
+            type_error((
+                (
+                    "shortfall_deferral",
+                    self.shortfall_deferral,
+                    ShortfallDeferralRequest,
+                    True,
+                ),
+                ("foreign_taxes", self.foreign_taxes, (tuple, list), False),
+            )),
+            _FEATURE,
+        )
+        taxes = tuple(self.foreign_taxes)
+        check_one_per_state(taxes)
+        object.__setattr__(self, "foreign_taxes", taxes)
 
 
 def _frozenset(value: object) -> frozenset[object]:

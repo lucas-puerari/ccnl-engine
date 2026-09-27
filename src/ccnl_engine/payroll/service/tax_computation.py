@@ -7,12 +7,13 @@ euro of tax to its statutory basis.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.tax import TaxComputation
+from ccnl_engine.payroll.service.foreign_tax_credit import foreign_tax_credit
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_net import net_irpef
 from ccnl_engine.payroll.service.irpef_trace import annual_items, somma_esente_items
@@ -25,6 +26,7 @@ from ccnl_engine.payroll.service.ulteriore_recovery import (
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxLineItem
@@ -48,7 +50,8 @@ class TaxResolution:
             year: ``ulteriore_detrazione_lavoro`` then
             ``trattamento_integrativo``.
         irpef_net: Net annual IRPEF: gross less the deductions, at least
-            zero.  The surtax is due only when it is positive.
+            zero, less the foreign tax credit of the conguaglio.  The surtax
+            is due only when it is positive.
         ulteriore: What the run recognized or recovered of the ulteriore
             detrazione, ``None`` when it is not tracked.
     """
@@ -77,18 +80,20 @@ def compute_tax(
     ulteriore_without_one_off: Decimal = _ZERO,
     run: InstallmentRun = _ORDINARY_RUN,
     ulteriore_plan: RecoveryPlan | None = None,
+    foreign_taxes: tuple[ForeignTaxPaid, ...] = (),
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
     Applies in order:
 
-    1. ``irpef_gross`` — Art. 11 TUIR marginal brackets.
-    2. ``work_deduction`` — Art. 13 co. 1 TUIR (work-income deduction).
-    3. ``family_deductions`` — Art. 12 TUIR (passed in; computed separately).
-    4. ``ulteriore_detrazione`` — Art. 1 c. 6 L. 207/2024 (if configured).
-    5. ``sterilizzazione`` — Art. 1 c. 3-4 L. 199/2025 (if configured).
-    6. ``trattamento_integrativo`` — Art. 1 D.L. 3/2020 / L. 207/2024.
-    7. ``somma_esente`` — L. 207/2024 low-income bonus (if configured).
+    1. ``irpef_gross``: Art. 11 TUIR marginal brackets.
+    2. ``work_deduction``: Art. 13 co. 1 TUIR (work-income deduction).
+    3. ``family_deductions``: Art. 12 TUIR (passed in; computed separately).
+    4. ``ulteriore_detrazione``: Art. 1 c. 6 L. 207/2024 (if configured).
+    5. ``sterilizzazione``: Art. 1 c. 3-4 L. 199/2025 (if configured).
+    6. ``foreign_tax_credit``: Art. 165 TUIR, from the imposta netta.
+    7. ``trattamento_integrativo``: Art. 1 D.L. 3/2020 / L. 207/2024.
+    8. ``somma_esente``: L. 207/2024 low-income bonus (if configured).
 
     The period withholding (``ordinary_tax``) is
     :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: the tax
@@ -134,6 +139,9 @@ def compute_tax(
             settled; an adjustment run posts the next installment.
         ulteriore_plan: Ulteriore detrazione plan opened by a conguaglio of
             this tax year, whose next installment the run posts.
+        foreign_taxes: Foreign taxes paid, credited on the annual IRPEF
+            (:mod:`~ccnl_engine.payroll.service.foreign_tax_credit`).  The
+            caller passes them on the conguaglio only.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -143,11 +151,8 @@ def compute_tax(
         or not (e.g. ``income_above_upper_threshold``).
     """
     days = min(eligible_work_days, DAYS_IN_YEAR)
-    annual = net_irpef(
-        taxable, rules, family_deductions=family_deductions, eligible_work_days=days
-    )
-    components, decisions = annual_items(
-        annual, rules, taxable, family_deductions, days
+    annual, components, decisions = _annual(
+        taxable, rules, family_deductions, days, foreign_taxes
     )
     remaining = withholding_schedule.remaining(slots_closed)
     ordinary_tax, ulteriore = withhold_with_ulteriore(
@@ -184,6 +189,33 @@ def compute_tax(
         irpef_net=annual.net,
         ulteriore=ulteriore,
     )
+
+
+def _annual(
+    taxable: Decimal,
+    rules: YearRules,
+    family_deductions: Decimal,
+    days: int,
+    foreign_taxes: tuple[ForeignTaxPaid, ...],
+) -> tuple[NetIrpef, list[TaxLineItem], list[CalculationDecision]]:
+    """Return the net annual IRPEF after the foreign tax credit, with its trace.
+
+    Returns:
+        The net IRPEF, its components and the decisions of the ulteriore
+        detrazione and of the foreign tax credit, each when it applies.
+    """
+    annual = net_irpef(
+        taxable, rules, family_deductions=family_deductions, eligible_work_days=days
+    )
+    credit = foreign_tax_credit(foreign_taxes, taxable, annual, rules)
+    if credit is not None:
+        annual = replace(annual, foreign_credit=credit.amount)
+    components, decisions = annual_items(
+        annual, rules, taxable, family_deductions, days
+    )
+    if credit is not None:
+        decisions.append(credit.decision)
+    return annual, components, decisions
 
 
 def _trattamento(

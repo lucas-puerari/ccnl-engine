@@ -35,7 +35,8 @@ def annual_items(
 
     Returns:
         The components gross IRPEF, work deduction, family deductions,
-        ulteriore detrazione and sterilizzazione, each only when it applies,
+        ulteriore detrazione, sterilizzazione and foreign tax credit, each
+        only when it applies,
         and the decision on the ulteriore detrazione when it is in force.
     """
     components = [
@@ -77,6 +78,15 @@ def annual_items(
                 amount=annual.effective_deductions - annual.total_deductions,
                 rule_id="l199-2025-art1-c3-c4",
                 fonte="Art. 1 c. 3-4 L. 199/2025",
+            )
+        )
+    if annual.foreign_credit > _ZERO:
+        components.append(
+            TaxLineItem(
+                name="foreign_tax_credit",
+                amount=annual.foreign_credit,
+                rule_id="tuir-art165-c1",
+                fonte="Art. 165 TUIR; art. 23 c. 3 DPR 600/1973",
             )
         )
     return components, decisions

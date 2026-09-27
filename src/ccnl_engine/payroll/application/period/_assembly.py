@@ -87,6 +87,7 @@ def _closing(
             recovery_plan=amounts.recovery_plan,
             carried=recoveries.carried.remaining,
             shortfall=posted.capped.shortfall,
+            deferred=posted.deferred.remaining,
         ),
     )
 
@@ -120,7 +121,13 @@ def _result(
     entries = posted.entries
     somma, carried, capped = recoveries.somma, recoveries.carried, posted.capped
     closing = _closing(ctx, events, amounts, recoveries, posted)
-    all_decisions = decisions + somma.decisions + carried.decisions + capped.decisions
+    all_decisions = (
+        decisions
+        + somma.decisions
+        + carried.decisions
+        + capped.decisions
+        + posted.deferred.decisions
+    )
     executed = events.totals.executed_features
     sources = run_rule_sources(ctx, all_decisions, executed)
     return PeriodResult(
@@ -149,6 +156,7 @@ def _result(
         + posted.amounts.surtax.issues
         + somma.issues
         + capped.issues
+        + posted.deferred.issues
         + _rule_issues(ctx)
         + missing_source_issues(sources),
         decisions=all_decisions,

@@ -9,7 +9,9 @@ detrazione).  On the last run of the employment the whole residual is
 recovered instead (:meth:`~ccnl_engine.payroll.domain.recovery_plan\
 .RecoveryPlan.post`), so no recovery outlives the employment.  The surtax a
 conguaglio of year N determines is withheld the same way on the payslips of
-N+1 (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`).
+N+1 (:mod:`~ccnl_engine.payroll.domain.surtax_obligations`), and so is the
+IRPEF of a conguaglio the worker asked in writing to defer
+(:mod:`~ccnl_engine.payroll.domain.shortfall_deferral`).
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ if TYPE_CHECKING:
         InstallmentRun,
         PostedInstallment,
     )
+    from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
     from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 
 __all__ = [
@@ -131,18 +134,29 @@ class EmploymentObligations:
             kind and origin tax year, in the order they were opened.
         surtax: Surtax still to withhold, at most one per component and
             tax year of the conguaglio that determined it, oldest first.
+        deferred_shortfall: IRPEF of a conguaglio deferred on the worker's
+            written request, at most one per tax year of the conguaglio.
     """
 
     recoveries: tuple[RecoveryObligation, ...] = ()
     surtax: tuple[SurtaxObligation, ...] = ()
+    deferred_shortfall: tuple[DeferredShortfall, ...] = ()
 
     def __post_init__(self) -> None:
         """Reject two recoveries of the same credit opened in the same year.
 
         Raises:
-            ValueError: When two recoveries share ``tax_year`` and kind, or
-                two surtax obligations share ``tax_year`` and component.
+            ValueError: When two recoveries share ``tax_year`` and kind, two
+                surtax obligations share ``tax_year`` and component, or two
+                deferred shortfalls share ``tax_year``.
         """
+        deferred = [d.tax_year for d in self.deferred_shortfall]
+        if len(set(deferred)) != len(deferred):
+            msg = (
+                "EmploymentObligations.deferred_shortfall holds two deferrals "
+                f"of the same tax year: {deferred}"
+            )
+            raise ValueError(msg)
         surtax = [(o.tax_year, o.component) for o in self.surtax]
         if len(set(surtax)) != len(surtax):
             msg = (
@@ -163,7 +177,18 @@ class EmploymentObligations:
         """Latest origin tax year of any obligation, ``None`` without one."""
         years = [r.tax_year for r in self.recoveries]
         years.extend(o.tax_year for o in self.surtax)
+        years.extend(d.tax_year for d in self.deferred_shortfall)
         return max(years, default=None)
+
+    def deferred_of(self, tax_year: int) -> DeferredShortfall | None:
+        """Return the IRPEF deferred by the conguaglio of ``tax_year``.
+
+        Returns:
+            The deferred shortfall, or ``None``.
+        """
+        return next(
+            (d for d in self.deferred_shortfall if d.tax_year == tax_year), None
+        )
 
     def recovery_of(self, tax_year: int, kind: str) -> RecoveryPlan | None:
         """Return the plan of credit ``kind`` opened in ``tax_year``, if any.

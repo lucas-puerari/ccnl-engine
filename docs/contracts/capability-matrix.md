@@ -54,6 +54,8 @@ formulas or caller-declared amounts.
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | computed | implemented | 0 / 8 / 0 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | computed | simplified | 0 / 0 / 8 / 0 |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | computed | implemented | none bundled |
+| `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | computed | implemented | none bundled |
+| `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio (imposta estera dichiarata; riporti e redditi di anni precedenti non calcolati) | partially_computed | simplified | none bundled |
 | `addizionale_regionale` | Addizionale regionale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `family_deductions` | Detrazioni familiari a carico | computed | implemented | 0 / 3 / 0 / 0 |

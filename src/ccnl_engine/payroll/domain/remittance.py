@@ -11,8 +11,11 @@ lists it:
   3847, 3848, at
   https://www.agenziaentrate.gov.it/portale/documents/20143/8647956/allegato+1+-+codici+tributo.pdf/c30b8847-5d55-4a04-7664-9d726e706c61
   ;
-- ris. 35/E of 26 June 2020 (1701), ris. 9/E of 31 January 2025 (1704),
-  ris. 2/E (1076) and 3/E (1075) of 29 January 2026.
+- ris. 35/E of 26 June 2020 (1701), ris. 6/E of 28 January 2021 (1066),
+  ris. 9/E of 31 January 2025 (1704), ris. 2/E (1076) and 3/E (1075) of
+  29 January 2026.  Ris. 6/E/2021 is at
+  https://www.agenziaentrate.gov.it/portale/documents/20143/3057149/codici+F24+ritenute+post+conguaglio+.pdf/3b930114-6599-a163-0d15-4e5d3a8bf6ec
+  .
 
 Only the national codes are used: the variants for tax due in or remitted
 from Sicily, Sardinia and Valle d'Aosta (e.g. 1301, 1609, 1610) are not
@@ -45,6 +48,7 @@ __all__ = [
     "MUNICIPAL_SURTAX_ADVANCE",
     "MUNICIPAL_SURTAX_BALANCE",
     "PDR_SUBSTITUTE_TAX",
+    "POST_CONGUAGLIO_WITHHOLDING",
     "REGIME_CODES",
     "REGIONAL_SURTAX",
     "REMITTANCE_ACCOUNTS",
@@ -59,6 +63,11 @@ __all__ = [
 #: "RITENUTE SU RETRIBUZIONI PENSIONI TRASFERTE MENSILITA' AGGIUNTIVE E
 #: RELATIVO CONGUAGLIO" (Allegato 1, provv. 31/01/2025).
 IRPEF_WITHHOLDING = "1001"
+#: "Ritenute sui trattamenti pensionistici e redditi da lavoro dipendente e
+#: assimilati, operate dopo il relativo conguaglio di fine anno" (ris. AdE
+#: 6/E/2021, instituted for the withholding of art. 23 c. 3 second sentence
+#: DPR 600/1973): the IRPEF of a conguaglio deferred on written request.
+POST_CONGUAGLIO_WITHHOLDING = "1066"
 #: "RITENUTE SU EMOLUMENTI ARRETRATI" (Allegato 1, provv. 31/01/2025).
 ARREARS_WITHHOLDING = "1002"
 #: "RITENUTE SU INDENNITA' PER CESSAZIONE DI RAPPORTO DI LAVORO E
@@ -127,7 +136,10 @@ REMITTANCE_ACCOUNTS: tuple[AccountKind, ...] = tuple(_COLUMNS)
 #: Codes an entry of each account may carry.  An account not listed is
 #: never coded.
 ACCOUNT_CODES: Mapping[AccountKind, frozenset[str]] = MappingProxyType({
-    AccountKind.ORDINARY_TAX: frozenset({IRPEF_WITHHOLDING}),
+    AccountKind.ORDINARY_TAX: frozenset({
+        IRPEF_WITHHOLDING,
+        POST_CONGUAGLIO_WITHHOLDING,
+    }),
     AccountKind.SURTAX: frozenset({
         REGIONAL_SURTAX,
         MUNICIPAL_SURTAX_ADVANCE,
