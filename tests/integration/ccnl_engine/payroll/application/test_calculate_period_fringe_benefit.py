@@ -6,8 +6,10 @@ complessivo di 1.000 euro" per tax year for 2025, 2026 and 2027, raised to
 2.000 euro for a worker with a fiscally dependent child (art. 12 c. 2 TUIR)
 who declares it to the employer (c. 391).  AdE circolare 4/E of 16 May 2025,
 par. 2.7: exceeding the limit "comporta la concorrenza dell'intero
-ammontare, e non soltanto della quota parte eccedente".  The same value
-enters the INPS base (D.Lgs. 314/1997 art. 6, aligning it to art. 51 TUIR).
+ammontare, e non soltanto della quota parte eccedente".  The engine puts
+the same taxable value in the INPS base, as it did before (art. 12 L.
+153/1969 aligns the contribution base to art. 51 TUIR); that alignment is
+existing behaviour, not re-verified by these tests.
 
 Every expected value below follows from that rule by hand: the year total
 is compared with the threshold; within it nothing is taxable, above it the
