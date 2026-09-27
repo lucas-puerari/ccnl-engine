@@ -29,7 +29,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Catalog | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | computed | simplified | 0 / 5129 / 466 / 0 |
+| `base_salary` | Paga base contrattuale | computed | simplified | 0 / 5129 / 506 / 85 |
 | `seniority` | Scatti di anzianità | computed | simplified | 0 / 119 / 6 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | computed | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | computed | simplified | 0 / 12 / 3 / 0 |
@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 | `addizionale_comunale` | Addizionale comunale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `family_deductions` | Detrazioni familiari a carico | computed | implemented | 0 / 3 / 0 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 (interessi mutuo e oneri) | partially_computed | simplified | none bundled |
-| `overtime` | Lavoro straordinario e supplementare | computed | caller-supplied | none bundled |
+| `overtime` | Lavoro straordinario e supplementare | computed | caller-supplied | 0 / 369 / 12 / 0 |
 | `night_work` | Lavoro notturno | computed | caller-supplied | none bundled |
 | `holiday_work` | Lavoro festivo | computed | caller-supplied | none bundled |
 | `shift_work` | Lavoro a turni | computed | caller-supplied | none bundled |

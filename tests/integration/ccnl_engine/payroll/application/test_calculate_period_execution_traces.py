@@ -109,7 +109,9 @@ class TestEventExecution:
         """A posted welfare event computes its feature and only that one."""
         executed = _executed(
             WelfareEvent(event_date=_DATE, amount=_D(0)),
-            OvertimeEvent(event_date=_DATE, hours=_D(2), hourly_rate=_D(15)),
+            OvertimeEvent(
+                event_date=_DATE, hours=_D(2), hourly_rate=_D(15), multiplier=_D(1)
+            ),
         )
         assert executed == frozenset({"overtime"})
 
@@ -294,5 +296,6 @@ class TestYearDecisions:
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
         # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
-        # and three credits (ulteriore detrazione, trattamento, somma esente).
-        assert len(year.decisions) == 8 * len(runs)
+        # and three credits (ulteriore detrazione, trattamento, somma esente),
+        # plus the ratei counted by the tredicesima run.
+        assert len(year.decisions) == 8 * len(runs) + 1

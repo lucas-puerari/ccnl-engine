@@ -247,6 +247,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "unigec-unimatica-2021",
+            "title": "CCNL CONFAPI UNIGEC-UNIMATICA 9 marzo 2021",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf",
+            "published_on": "2021-03-09"
+          },
+          "page": "123",
+          "section": "Art. 80, Tredicesima mensilità (impiegati); Art. 72 (operai)",
+          "quote": "La frazione di mese non superiore ai 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-01-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1377,7 +1404,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "3b2618b3b39fbad4ab724f28d2618fb035197f0ec87ac53eacf056571a493016",
+    "source_hash": "9424fc8ea1551d04c9fbe4579a2a74b39b44ce2d6198e2aba1f098c9ffd04bf2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

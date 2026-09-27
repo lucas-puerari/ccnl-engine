@@ -229,6 +229,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "federbeton-cemento-2025",
+            "title": "CCNL Cemento, calce e gesso 8 maggio 2025",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "published_on": "2025-05-08"
+          },
+          "page": "141",
+          "section": "Art. 49, Tredicesima mensilità",
+          "quote": "la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-12-31"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -2516,7 +2543,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "76c7e46a69d008e8a6e5ca2a01be81fef787aa00c94deb0d29e9ced0e7173898",
+    "source_hash": "3bceb0529793868cfc8d4f258e5296e3e9552ac7a34884596d50c40e004818fb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

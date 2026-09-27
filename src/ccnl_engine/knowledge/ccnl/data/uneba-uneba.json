@@ -229,6 +229,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "uneba-ccnl-2010-2012",
+            "title": "CCNL UNEBA 2010-2012",
+            "kind": "associazione",
+            "url": "https://www.uneba.org/wp-content/uploads/2016/09/CCNL-UNEBA-2010-2012.pdf"
+          },
+          "page": "44",
+          "section": "Art. 44, Tredicesima mensilità",
+          "quote": "Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-10-01"
+        },
+        "note": "Clause read in the 2010-2012 full text; the 2025 renewal rewrites the quattordicesima and refers to the tredicesima for its computation. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1443,7 +1469,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "f5cc4294ba192e16b78ff28f392cf3ea54d892f78d26299a043cb99157622d24",
+    "source_hash": "00b673d3f284037150bf6c1a59259236bc57a621bf327c2aa5254a64c4816637",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

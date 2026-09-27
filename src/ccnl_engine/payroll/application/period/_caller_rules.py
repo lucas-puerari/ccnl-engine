@@ -1,16 +1,15 @@
 """Decisions of the values a run takes from the caller in place of a rule.
 
 Some events carry a rate or an amount the engine applies as given: the
-overtime multiplier and hourly rate, the sickness integration rates, the
-hourly rate of an absence, a flat night or holiday supplement, a separate
-tax rate.  The bundle could provide a rule for several of them (the CCNL
-overtime bands, the hourly divisor, the sickness integration), but the run
-uses the caller's value.  Each such event records one decision with origin
+overtime hourly rate and an explicit multiplier, the sickness integration
+rates, the hourly rate of an absence, a flat supplement, a separate tax
+rate.  Each such event records one decision with origin
 :attr:`~ccnl_engine.payroll.domain.decisions.DecisionOrigin.CALLER_SUPPLIED`:
 the fields it took from the caller, their values and, where the bundle has
-a comparable value, that value for comparison.  The amounts do not change.
-
-A fringe benefit records its own ``fringe_benefit`` decision and none here.
+a comparable value (a CCNL band, the hourly divisor, the sickness
+integration), that value for comparison.  The amounts do not change.  An
+overtime multiplier derived from the CCNL band is an engine decision of the
+handler, not listed here.  A fringe benefit records its own decision.
 """
 
 from __future__ import annotations
@@ -20,6 +19,10 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.working_time import TimeSupplementKind, WorkKind
+from ccnl_engine.payroll.application.handlers._overtime_rate import (
+    CCNLOvertimeBands,
+    resolve_overtime_rate,
+)
 from ccnl_engine.payroll.application.handlers._standard_event import (
     _standard_event_gross,
 )
@@ -138,9 +141,9 @@ _CASH_EVENTS = (
     BonusEvent,
 )
 
-#: Work kind whose CCNL bands a supplement event stands in for.
+#: Work kind whose CCNL bands a supplement event stands in for; an
+#: overtime event declares its own.
 _BAND_KINDS: dict[type, WorkKind] = {
-    OvertimeEvent: WorkKind.WEEKDAY,
     NightShiftEvent: WorkKind.NIGHT,
     HolidayWorkEvent: WorkKind.HOLIDAY,
 }
@@ -150,8 +153,7 @@ def bundle_value(series: TimeSeries, day: date) -> Decimal | str:
     """Return the value of ``series`` in force on ``day``.
 
     Returns:
-        The value, or ``"not_in_bundle"`` before the series starts or in a
-        gap period.
+        The value, or ``"not_in_bundle"`` before the series or in a gap.
     """
     period = series.period_at(day)
     if period is None or period.value is None:
@@ -171,7 +173,9 @@ def _stands_for(band: OvertimeBand, kind: WorkKind | None) -> bool:
     return kind in band.applies_to_kinds
 
 
-def _band_inputs(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
+def _band_inputs(
+    ccnl: CCNL, event: WorkEvent, kind: WorkKind | None
+) -> dict[str, Decimal | str]:
     """Return the CCNL time-supplement bands a supplement event stands in for.
 
     Overtime, night and holiday events compare with the bands of their work
@@ -185,7 +189,6 @@ def _band_inputs(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands = () if supplements is None else supplements.overtime_bands
-    kind = _BAND_KINDS.get(type(event))
     inputs: dict[str, Decimal | str] = {
         f"bundle_band[{band.code}]": bundle_value(band.rate, event.event_date)
         for band in bands
@@ -205,13 +208,18 @@ def _comparable(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
     rules = ccnl.work_rules
     divisor = bundle_value(ccnl.parameters.hourly_divisor, event.event_date)
     if isinstance(event, OvertimeEvent):
+        caller: dict[str, Decimal | str] = (
+            {}
+            if event.multiplier is None
+            else {"caller_supplement": event.multiplier - 1}
+        )
         return {
-            **_band_inputs(ccnl, event),
-            "caller_supplement": event.multiplier - 1,
+            **_band_inputs(ccnl, event, WorkKind(event.kind.value)),
+            **caller,
             "bundle_hourly_divisor": divisor,
         }
     if isinstance(event, (NightShiftEvent, HolidayWorkEvent, ShiftWorkEvent)):
-        return _band_inputs(ccnl, event)
+        return _band_inputs(ccnl, event, _BAND_KINDS.get(type(event)))
     if isinstance(event, AbsenceEvent):
         return {"bundle_hourly_divisor": divisor}
     if isinstance(event, SicknessCaseEvent):
@@ -251,6 +259,11 @@ def _decision(
     index: int, event: WorkEvent, rule: _CallerRule, ccnl: CCNL
 ) -> CalculationDecision:
     source = event.case if isinstance(event, SicknessCaseEvent) else event
+    fields, paid = rule.fields, event
+    if isinstance(event, OvertimeEvent):
+        bands = CCNLOvertimeBands.of(ccnl, event.event_date.year)
+        paid = resolve_overtime_rate(event, bands).paid(event)
+        fields = fields if event.multiplier is not None else ("hourly_rate",)
     return CalculationDecision(
         capability=rule.capability,
         status=CalculationStatus.FINAL,
@@ -258,11 +271,11 @@ def _decision(
         rule=f"request:events[{index}].{type(event).__name__}",
         rule_version="request",
         inputs={
-            "fields": ",".join(rule.fields),
-            **{name: _value(getattr(source, name)) for name in rule.fields},
+            "fields": ",".join(fields),
+            **{name: _value(getattr(source, name)) for name in fields},
             **_comparable(ccnl, event),
         },
-        amount=_amount(event),
+        amount=_amount(paid),
         origin=DecisionOrigin.CALLER_SUPPLIED,
     )
 

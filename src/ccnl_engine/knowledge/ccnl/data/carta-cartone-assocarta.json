@@ -248,6 +248,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "carta-ccnl-2021",
+            "title": "CCNL Carta e cartone industria",
+            "kind": "altro",
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf"
+          },
+          "page": "65",
+          "section": "Art. 67 (operai) e art. 86 (impiegati), Tredicesima mensilità",
+          "quote": "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate, mentre saranno considerate come mese intero le frazioni superiori ai 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        },
+        "note": "Database printout of the text hosted by a company. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -2208,7 +2234,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "0fb82c78406cecd60262b935c3badba3718eda26718ab491736a95db5330b44b",
+    "source_hash": "9dc48e0189ffedbb83c2ead80876e0592dcd423ded16de3804dd8659d79453c4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

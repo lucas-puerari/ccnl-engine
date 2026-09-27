@@ -12,6 +12,11 @@ from ccnl_engine.payroll.application.handlers._context import (
     _EventHandlerCtx,
     _treatment_deltas,
 )
+from ccnl_engine.payroll.application.handlers._overtime_rate import (
+    band_decision,
+    overtime_issues,
+    resolve_overtime_rate,
+)
 from ccnl_engine.payroll.application.handlers._preferential_regime import (
     apply_preferential_regime,
 )
@@ -75,9 +80,23 @@ def _handle_standard(
 ) -> EventEffect:
     """Handle standard work-time and bonus events.
 
+    An overtime event is paid with its multiplier or, without one, with the
+    CCNL band of its kind (see
+    :mod:`~ccnl_engine.payroll.application.handlers._overtime_rate`).
+
     Returns:
         Handler result with pay item, ledger entry, and INPS/TFR/IRPEF deltas.
     """
+    decisions: list[CalculationDecision] = []
+    issues: list[CalculationIssue] = []
+    if isinstance(event, OvertimeEvent):
+        rate = resolve_overtime_rate(event, ctx.overtime_bands)
+        event = rate.paid(event)
+        issues.extend(overtime_issues(event, rate))
+        decision = band_decision(
+            event, rate, ctx.overtime_bands, _standard_event_gross(event)
+        )
+        decisions.extend(() if decision is None else (decision,))
     gross = _standard_event_gross(event)
     item, kind = _standard_event_item(
         event, gross, ctx.evt_id, ctx.cp, ctx.payment_date
@@ -93,8 +112,6 @@ def _handle_standard(
         _make_standard_event_intent(event, gross, ctx.evt_id, kind, resolution)
     ]
     substitute_delta = _ZERO
-    decisions: list[CalculationDecision] = []
-    issues: list[CalculationIssue] = []
 
     cap_used = _ZERO
     regime = apply_preferential_regime(

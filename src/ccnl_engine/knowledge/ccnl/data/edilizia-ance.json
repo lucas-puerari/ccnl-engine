@@ -193,6 +193,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-ance-2010-04-19",
+            "title": "CCNL 19 aprile 2010 imprese edili ed affini, testo completo",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19"
+          },
+          "page": "77",
+          "section": "Artt. 63 e 64, Tredicesima mensilità e premio annuo (impiegati)",
+          "quote": "La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-02-01"
+        },
+        "note": "Clause of the impiegati; operai accrue the gratifica natalizia by the hour through the Cassa Edile. Later verbali read by OCR do not amend it. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -934,7 +961,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "6877c8eda0061de8c37602e02c994c3d73167750b80bac79dff599cfdac0601b",
+    "source_hash": "0dcaad01b122d2e653982d73e135861ff6e1e3106a19d6b4a81a00f4bfc8cced",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

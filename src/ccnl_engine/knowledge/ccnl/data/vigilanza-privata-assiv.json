@@ -205,6 +205,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ipotesi-vigilanza-privata-2024-02-16",
+            "title": "Ipotesi di accordo Vigilanza Privata e Servizi di Sicurezza 16 febbraio 2024",
+            "kind": "associazione",
+            "url": "https://www.assiv.it/wp-content/uploads/2024/07/Accordo-Integrativo-Vigilanza-privata-e-Servizi-di-Sicurezza-Filcams-Fisascat-e-UILTuCS-.pdf",
+            "published_on": "2024-02-16"
+          },
+          "page": "3",
+          "section": "Art. 26 as rewritten from 1 January 2024, Tredicesima e quattordicesima mensilità",
+          "quote": "A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-06-01"
+        },
+        "note": "Hypothesis of agreement, ratification not found; art. 117 of the CCNL 8 aprile 2013 has the same wording. Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1400,7 +1427,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "8cfaf323715b7a6fbf87fb9fd38ccc3f13aa324b179c04a603a581fb1b64303f",
+    "source_hash": "06a93e6a788df03877379a39b89c5f5fd38c383a5020f7d1957e8c6507cfc80e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

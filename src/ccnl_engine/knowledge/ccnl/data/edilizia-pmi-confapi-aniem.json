@@ -189,6 +189,33 @@
           ]
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "aniem-confapi-edilizia-2025",
+            "title": "CCNL Edilizia ANIEM-CONFAPI, testo armonizzato 15 aprile 2025",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "published_on": "2025-04-15"
+          },
+          "page": "95",
+          "section": "Artt. 63 e 64, Tredicesima mensilità e premio annuo (impiegati)",
+          "quote": "La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-04-01"
+        },
+        "note": "Clause of the impiegati; operai receive the gratifica through the Cassa Edile accrual. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1388,7 +1415,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "16e666f895b1607fea5d2979a808da271fd532f4853b1298cdfa7f8f0a675a08",
+    "source_hash": "40c80079272fff3933386aa79f74903c85d6b301918b32f09f65d93ead076061",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

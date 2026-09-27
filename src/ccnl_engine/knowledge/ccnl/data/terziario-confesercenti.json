@@ -158,6 +158,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-terziario-confesercenti-testo-unico-2019",
+            "title": "CCNL Terziario, Distribuzione e Servizi Confesercenti, Testo unico 12 dicembre 2019",
+            "kind": "associazione",
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "published_on": "2019-12-12"
+          },
+          "page": "152",
+          "section": "Art. 204, referred to by artt. 220 e 221",
+          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-04-01"
+        },
+        "note": "Artt. 220 and 221 refer to art. 204 in a footnote; the 2024 renewal, read by OCR, does not amend them. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1779,7 +1806,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "0ec6b0d40fbba55dec6a16c11630daa7453bdf1bfce9751fc4bdedaf9ab7478c",
+    "source_hash": "49789a757342fa1b37a247d2c28952e4d89564c2f20dd06bed7e185ab111915e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

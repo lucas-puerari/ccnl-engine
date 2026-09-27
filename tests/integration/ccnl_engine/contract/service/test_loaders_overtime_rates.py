@@ -1,9 +1,9 @@
 """Overtime supplement rates read from the bundle match the signed CCNL articles.
 
 The rates were checked by hand against the cited articles when the
-reference cases that first carried them were written; the payroll pipeline
-takes the hourly rate and multiplier from the caller, so the bundle is the
-only place these values live and this is their owner.
+reference cases that first carried them were written; the Federmeccanica
+rates were corrected against the signed 2021 text.  An overtime event
+without a multiplier is paid with these bands, so this is their owner.
 """
 
 from __future__ import annotations
@@ -23,10 +23,15 @@ _SIF_OPERAI = "sistemazioni-idraulico-forestali-operai.json"
 @pytest.mark.parametrize(
     ("slug", "code", "rate"),
     [
-        # CCNL Federmeccanica-Assistal 12/06/2025, art. 14.
-        (_METAL, "OT_DIURNO", "0.15"),
-        (_METAL, "OT_NOTTURNO", "0.20"),
-        (_METAL, "OT_FESTIVO", "0.30"),
+        # CCNL Federmeccanica-Assistal 5 febbraio 2021, sez. quarta, titolo
+        # III, art. 7, lavoro non a turni: straordinario prime due ore 25%,
+        # ore successive 30%, straordinario notturno 50%, straordinario
+        # festivo 55%, straordinario notturno festivo 75%.
+        (_METAL, "OT_DIURNO", "0.25"),
+        (_METAL, "OT_DIURNO_EXTRA", "0.30"),
+        (_METAL, "OT_NOTTURNO", "0.50"),
+        (_METAL, "OT_FESTIVO", "0.55"),
+        (_METAL, "OT_NOTTURNO_FESTIVO", "0.75"),
         # CCNL Sistemazioni Idraulico-Forestali 2023, impiegati art. 37 a).
         (_SIF_IMPIEGATI, "OT_DIURNO", "0.30"),
         # CCNL Sistemazioni Idraulico-Forestali 2023, operai art. 50 (1).

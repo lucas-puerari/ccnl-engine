@@ -68,8 +68,8 @@ declared capability (for example INAIL) is not wired into the period run.
 weakest provenance status among them. Capabilities computed only from
 caller-declared amounts do not appear.
 `caller_supplied` maps each capability that used a rate or an amount the
-caller supplied in place of a rule (an overtime multiplier, a sickness
-integration rate) to the event fields it took; see
+caller supplied in place of a rule (an overtime hourly rate or explicit
+multiplier, a sickness integration rate) to the event fields it took; see
 [Decisions](decisions.md#caller-supplied-values).
 
 ## Using both signals

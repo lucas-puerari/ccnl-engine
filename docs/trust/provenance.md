@@ -17,6 +17,8 @@ posted amount.
 | Fixed allowance | `ccnl/data/*.json`: `levels[].fixed_allowances[]` | Per allowance, or inherited from the level |
 | Seniority increments | `ccnl/data/*.json`: `parameters.seniority_increments` | Per block |
 | Extra-month entitlement | `ccnl/data/*.json`: `parameters.additional_months.periods[]` | Per period |
+| Extra-month accrual threshold | `ccnl/data/*.json`: `parameters.accrual_rule` | Per rule; a CCNL without the field is listed as `missing` (the engine default applies) |
+| First-tier overtime bands | `ccnl/data/*.json`: `work_rules.time_supplements.overtime_bands[]` with code `OT_*`, kind `percentage`, no hour threshold and no context condition | Per band |
 | IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
 | Art. 13 work deduction, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `sterilizzazione_detrazioni` | Per block |
 | Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
@@ -38,8 +40,9 @@ reconstructions, sit next to the IRPEF brackets of the law). The surtax
 tables come from one MEF publication each, so they carry one record per
 table instead of one per municipality.
 
-Bundled values the run does not read are not payable: CCNL work rules
-(overtime bands, absence, leave, sickness), apprenticeship tracks, the
+Bundled values the run does not read are not payable: the other CCNL work
+rules (overtime bands beyond an hour threshold, conditional or paid per hour
+or per shift, absence, leave, sickness), apprenticeship tracks, the
 Art. 15 deductions and the INPS sick-pay bands.
 
 ## The provenance record
@@ -116,11 +119,14 @@ The script is idempotent and rehashes the files it changes.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 248 | 75 | 5 323 |
-| `assumed` | 472 | 13 | 485 |
-| `missing` | 0 | 0 | 0 |
+| `derived` | 5 621 | 84 | 5 705 |
+| `assumed` | 526 | 12 | 538 |
+| `missing` | 85 | 0 | 85 |
 
-`assumed` covers AI-extracted CCNL values, extra-month counts with no
+The 85 `missing` rules are the extra-month accrual thresholds of the CCNLs
+whose signed clause is not in the bundle. `assumed` covers AI-extracted
+CCNL values (including the 40 accrual thresholds read from signed texts,
+each with its article and quote), extra-month counts with no
 located clause, the somma esente cut points, the artigianato and edilizia
 INPS proxies, the PA apprentice placeholder, the PA fixed-term exemption and
 the regional surtax table. `python scripts/ci/check_provenance.py --rules`

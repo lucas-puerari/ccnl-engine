@@ -251,6 +251,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "anec-ccnl-2023-2026",
+            "title": "CCNL Esercizi cinematografici 2023-2026",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf"
+          },
+          "page": "27",
+          "section": "Artt. 20 e 21, Tredicesima e quattordicesima mensilità",
+          "quote": "La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1773,7 +1799,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c171c777a367fdd7450f7f03a51f91348ae2df147c88726f0aa710a01048dc24",
+    "source_hash": "bc4e4be5898096660954728ef666f9da8967378928bc7d95a403b507838efc49",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

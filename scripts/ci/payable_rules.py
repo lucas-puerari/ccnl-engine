@@ -2,7 +2,8 @@
 
 A payable rule is a bundled value that the payroll run reads to compute a
 posted amount: CCNL salary tables, fixed allowances, seniority increments,
-extra-month entitlements and employer pension fund rates; INPS
+extra-month entitlements, the extra-month accrual threshold, the first-tier
+overtime bands and employer pension fund rates; INPS
 contribution rates (ordinary, apprentice, domestic, fixed-term
 addizionale); IRPEF brackets, the Art. 13 work deduction and its
 sterilizzazione; the trattamento integrativo, the ulteriore detrazione and
@@ -11,14 +12,18 @@ tables; the Art. 12 family deductions; the complementary pension deduction
 cap and solidarity rate; the fringe-benefit thresholds and the PdR limits;
 the parameters of the substitute-tax regimes.
 
-Bundled values the run does not read are not payable: CCNL work rules
-(overtime bands, absence, leave, sickness), apprenticeship tracks, the
-Art. 15 deductions and the INPS sick-pay bands.
+Bundled values the run does not read are not payable: the other CCNL work
+rules (overtime bands beyond an hour threshold or conditional on another
+work kind, bands paid per hour or per shift, absence, leave, sickness),
+apprenticeship tracks, the Art. 15 deductions and the INPS sick-pay bands.
 
 Each payable rule must carry a provenance record.  CCNL rules carry one per
 rule (salary period, allowance, seniority block, additional-months period,
-employer fund); a salary period or an allowance without its own record
-inherits the one of its level, a fund rate period the one of its fund.
+accrual rule, overtime band, employer fund); a salary period or an
+allowance without its own record inherits the one of its level, a fund rate
+period the one of its fund.  A CCNL without ``parameters.accrual_rule``
+runs on the engine default threshold, which no CCNL source backs: the
+inventory lists it as ``missing``.
 Fiscal files carry one per data block: the block object holds
 ``provenance``, except the IRPEF bracket list and the fixed-term scalar,
 whose record sits in the sibling ``<block>_provenance`` key, the surtax
@@ -44,6 +49,8 @@ KNOWLEDGE_DIR: Final = (
     Path(__file__).resolve().parents[2] / "src" / "ccnl_engine" / "knowledge"
 )
 STATUSES: Final = ("verified", "derived", "assumed", "missing")
+#: Code prefix of the overtime bands; other bands are ordinary work supplements.
+OVERTIME_PREFIX: Final = "OT_"
 
 _INPS = ("inps_employee", "inps_employer")
 
@@ -167,7 +174,8 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
 
     Yields:
         One rule per salary period, allowance, seniority block,
-        additional-months period and employer fund rate period.
+        additional-months period, the accrual rule, one per first-tier
+        overtime band and one per employer fund rate period.
     """
     levels = data.get("levels")
     for level in levels if isinstance(levels, list) else []:
@@ -183,7 +191,49 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         yield PayableRule(
             file, path, ("base_salary",), _status(period.get("provenance"))
         )
+    accrual = params.get("accrual_rule")
+    yield PayableRule(
+        file,
+        "accrual_rule",
+        ("base_salary",),
+        _status(accrual.get("provenance")) if isinstance(accrual, dict) else "missing",
+    )
+    yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
+
+
+def _is_first_tier(band: dict[str, object]) -> bool:
+    """Return whether ``band`` can give the multiplier of an overtime event.
+
+    Returns:
+        ``True`` for an ``OT_*`` percentage band with no hour threshold and
+        no context condition.
+    """
+    return (
+        str(band.get("code", "")).startswith(OVERTIME_PREFIX)
+        and band.get("kind") == "percentage"
+        and band.get("hour_threshold_per_day") is None
+        and band.get("hour_threshold_per_week") is None
+        and not band.get("required_context_kinds")
+    )
+
+
+def _overtime_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
+    """Yield the first-tier overtime bands of a CCNL.
+
+    Yields:
+        One ``overtime`` rule per band an event without a multiplier can be
+        paid with.
+    """
+    rules = work_rules if isinstance(work_rules, dict) else {}
+    supplements = rules.get("time_supplements")
+    bands = supplements.get("overtime_bands") if isinstance(supplements, dict) else []
+    for band in bands if isinstance(bands, list) else []:
+        if isinstance(band, dict) and _is_first_tier(band):
+            path = f"overtime_bands[{band.get('code')}]"
+            yield PayableRule(
+                file, path, ("overtime",), _status(band.get("provenance"))
+            )
 
 
 def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:

@@ -15,6 +15,7 @@ from ccnl_engine.payroll.domain.events import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
+    OvertimeKind,
     ShiftWorkEvent,
     SickLeaveEvent,
     WelfareEvent,
@@ -40,10 +41,11 @@ class TestOvertimeEvent:
         assert evt.hourly_rate == Decimal("12.50")
         assert evt.multiplier == Decimal("1.25")
 
-    def test_default_multiplier(self) -> None:
-        """Multiplier defaults to 1.25."""
+    def test_default_multiplier_is_left_to_the_ccnl(self) -> None:
+        """No multiplier by default: the run derives it from the CCNL band."""
         evt = OvertimeEvent(event_date=_DATE, hours=Decimal(2), hourly_rate=Decimal(10))
-        assert evt.multiplier == Decimal("1.25")
+        assert evt.multiplier is None
+        assert evt.kind is OvertimeKind.WEEKDAY
 
     def test_frozen(self) -> None:
         """OvertimeEvent is immutable."""

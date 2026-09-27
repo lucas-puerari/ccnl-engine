@@ -1,7 +1,7 @@
 """Values the caller supplies in place of a rule are flagged, not sourced.
 
-Metalmeccanico (bundled work rules): weekday overtime band OT_DIURNO 15%,
-night band OT_NOTTURNO 20%, holiday band OT_FESTIVO 30%, hourly divisor
+Metalmeccanico (bundled work rules): weekday overtime band OT_DIURNO 25%,
+night band OT_NOTTURNO 50%, holiday band OT_FESTIVO 55%, hourly divisor
 173, sickness integration 100% with carenza covered at 100%.
 """
 
@@ -97,7 +97,7 @@ class TestOvertimeRun:
     def test_bundle_band_is_listed_for_comparison(self) -> None:
         """The CCNL weekday band (15%) is shown next to the caller's 25%."""
         (decision,) = (d for d in self.result.decisions if d.capability == "overtime")
-        assert decision.inputs["bundle_band[OT_DIURNO]"] == Decimal("0.15")
+        assert decision.inputs["bundle_band[OT_DIURNO]"] == Decimal("0.25")
         assert decision.inputs["caller_supplement"] == Decimal("0.25")
         assert decision.inputs["bundle_hourly_divisor"] == Decimal(173)
 
@@ -226,8 +226,8 @@ def test_supplement_bands_match_their_work_kind() -> None:
     night = _only((NightShiftEvent(_DAY, Decimal(30)),))
     holiday = _only((HolidayWorkEvent(_DAY, Decimal(30)),))
     shift = _only((ShiftWorkEvent(_DAY, Decimal(12)),))
-    assert night.inputs["bundle_band[OT_NOTTURNO]"] == Decimal("0.20")
-    assert holiday.inputs["bundle_band[OT_FESTIVO]"] == Decimal("0.30")
+    assert night.inputs["bundle_band[OT_NOTTURNO]"] == Decimal("0.50")
+    assert holiday.inputs["bundle_band[OT_FESTIVO]"] == Decimal("0.55")
     assert shift.inputs["bundle_band"] == NOT_IN_BUNDLE
 
 

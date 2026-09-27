@@ -133,6 +133,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "poste-italiane-ccnl-2024",
+            "title": "CCNL Poste Italiane 23 luglio 2024",
+            "kind": "associazione",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "published_on": "2024-07-23"
+          },
+          "page": "141",
+          "section": "Artt. 67 e 68, Tredicesima e quattordicesima mensilità",
+          "quote": "computando come mese intero la frazione di mese pari o superiore a 15 giorni"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-23"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1520,7 +1547,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "762c2255949cff891e016f429fbf505e466f3a5f657a87260fcd2e8e513b9af9",
+    "source_hash": "817f3900e9060e7c1385a7aa1cc24868008fa587d3bb02349177b96c9c74aa57",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

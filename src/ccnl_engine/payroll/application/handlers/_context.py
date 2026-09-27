@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
+from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.domain.ledger import PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
@@ -58,7 +59,8 @@ class _EventHandlerCtx:
     the work-time regime cap account, which grows after each eligible
     night, holiday or shift supplement.  ``worker_facts`` carries the
     prior-year income, the waivers, the sector and the employer activity
-    every regime and the PdR read.
+    every regime and the PdR read.  ``overtime_bands`` are the CCNL bands an
+    overtime event without a multiplier is paid with.
     """
 
     evt_id: str
@@ -74,6 +76,7 @@ class _EventHandlerCtx:
     work_time_regime: PreferentialTaxRegime | None = None
     work_time_cap: RegimeCapAccount = field(default_factory=RegimeCapAccount)
     worker_facts: RegimeFacts = field(default_factory=RegimeFacts)
+    overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
 
 
 @dataclass

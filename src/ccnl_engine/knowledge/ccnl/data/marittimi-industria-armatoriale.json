@@ -201,6 +201,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "armatoriale-sezione-terra-2024",
+            "title": "CCNL Industria armatoriale, sezione personale di terra",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "published_on": "2024-07-11"
+          },
+          "page": "15",
+          "section": "Art. 17, Tredicesima e quattordicesima mensilità",
+          "quote": "calcolando come mese intero la frazione di mese uguale o superiore a 15 giorni e trascurando invece quella inferiore a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-07-01"
+        },
+        "note": "Shore-staff section only. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1393,7 +1420,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "06831a7b3ecc57fc3fec972ed01bfaddc86d1011dd40ebfa32f82dc4d3a0638c",
+    "source_hash": "5cce42fe3c1b84ab2aeff1b5d398a13e70db7a7de8f5ed667b8ea7555ccd9245",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

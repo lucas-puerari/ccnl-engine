@@ -91,6 +91,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "aiop-aris-non-medico-2020",
+            "title": "CCNL AIOP-ARIS personale non medico 8 ottobre 2020",
+            "kind": "altro",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "published_on": "2020-10-08"
+          },
+          "page": "96",
+          "section": "Art. 66, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2020-07-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1601,7 +1628,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "e098587f8cbe509fb5d448b6b6b040a255e8f405be42168eb16d50017966f78f",
+    "source_hash": "734813b48245d1df2d7ec93375e9e17060d4c6c461a864e81decee8cd696ad45",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

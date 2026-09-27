@@ -204,6 +204,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "asstel-ccnl-tlc-2020",
+            "title": "CCNL TLC 12 novembre 2020",
+            "kind": "associazione",
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "published_on": "2020-11-12"
+          },
+          "page": "83",
+          "section": "Art. 42, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore a quindici giorni va considerata a questi effetti come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-01-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1390,7 +1417,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "c114e263f19465a2cdf7b2f222d97bef76e30c99c13207cfe860dbf6cd66e294",
+    "source_hash": "ebf3916f2ca3011e7823f646a49c6d2a9bbda6e3ab9ff016c130a8e8bf219552",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

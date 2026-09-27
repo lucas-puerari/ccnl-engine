@@ -216,6 +216,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "aiop-rsa-2012",
+            "title": "CCNL AIOP RSA 22 marzo 2012",
+            "kind": "altro",
+            "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+            "published_on": "2012-03-22"
+          },
+          "page": "27",
+          "section": "Art. 54, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore a 15 giorni va considerata, a questi effetti, come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2012-04-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1140,7 +1167,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "35ead51b850218744efc85ab07e12ab0578dcb4f10ef5221ade5a66aa0a5407e",
+    "source_hash": "8a15c6d01bb1e1998ca92e04a4015b0df5f408717ac093f57c675b1d5fe32529",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

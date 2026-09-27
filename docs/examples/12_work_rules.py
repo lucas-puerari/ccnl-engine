@@ -23,11 +23,14 @@ from ccnl_engine import (
 engine = PayrollEngine.bundled()
 
 events = (
+    # No multiplier: the CCNL weekday band gives it (metalmeccanico
+    # OT_DIURNO 25% for the first two hours, so 4 h x 16.50 EUR x 1.25 =
+    # 82.50 EUR; the run is provisional because the 30% tier beyond two
+    # hours needs an explicit multiplier).
     OvertimeEvent(
         event_date=date(2026, 3, 5),
         hours=Decimal(4),
         hourly_rate=Decimal("16.50"),
-        multiplier=Decimal("1.25"),
     ),
     AbsenceEvent(
         event_date=date(2026, 3, 10),

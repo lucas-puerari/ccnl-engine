@@ -92,6 +92,7 @@ def test_entry_without_its_decision_is_reported() -> None:
     assert violation.invariant_id == _INVARIANT
     assert "overtime_earning" in violation.message
     assert "has no decision of overtime" in violation.message
+    # 4 h x 15.00 EUR x (1 + 0.25), the OT_DIURNO band of the CCNL.
     assert violation.actual == Decimal("75.00")
 
 

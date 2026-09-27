@@ -222,6 +222,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-distribuzione-cooperativa-2011",
+            "title": "CCNL distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "published_on": "2011-01-01"
+          },
+          "page": "202",
+          "section": "Art. 190, Tredicesima e quattordicesima mensilità",
+          "quote": "per quanti sono i mesi interi di servizio prestati nella cooperativa intendendosi per tali le frazioni di mese superiori ai 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2025-05-01"
+        },
+        "note": "The quattordicesima follows the same rules (art. 190 c. 4); later hypotheses read by OCR do not amend it. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1952,7 +1979,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016",
     "verification_status": "unverified",
-    "source_hash": "2e48fdc9446da1a584495fa3b44b57ff7235d36fe4ab17a40ec1505b6ac3ac8c",
+    "source_hash": "98032e499085577c969a918580018b979d905a9efd865a8a9b8342f4d2901ada",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

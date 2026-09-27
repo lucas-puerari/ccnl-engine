@@ -191,6 +191,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "aninsei-ccnl-2024-2027",
+            "title": "CCNL ANINSEI 2024-2027",
+            "kind": "altro",
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf"
+          },
+          "page": "51",
+          "section": "Art. 21, Tredicesima mensilità",
+          "quote": "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-06-15"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1321,7 +1347,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d8d9803bca793d6f0920548b6fad596fd1d61d7f84a5efcb316a7d3f62c2637",
+    "source_hash": "601573c75b8f590602cac32fc4063396fe3d84353ac135aa44769fad9f7afb0f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

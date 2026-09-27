@@ -211,6 +211,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "federorafi-ccnl-2017",
+            "title": "CCNL Orafi argentieri industria 18 maggio 2017",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "published_on": "2017-05-18"
+          },
+          "page": "85",
+          "section": "Parte prima art. 12 (operai), parte terza art. 8 (impiegati), Tredicesima mensilità",
+          "quote": "La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-06-01"
+        },
+        "note": "Clause read in the 2017 text; later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1281,7 +1308,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1e62433e589d07a69db2a25d470b60f4b0944cd7e002d004bd8afbef9ae48a7",
+    "source_hash": "45a45881c3ec307af4c6cfd55c9e61fb200c49bb56a1f65c5f516ed24a2ea115",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

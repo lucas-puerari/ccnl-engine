@@ -1243,6 +1243,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "anas-ccnl-2025-2027",
+            "title": "CCNL Gruppo ANAS 2025-2027",
+            "kind": "altro",
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "published_on": "2025-12-18"
+          },
+          "page": "149",
+          "section": "Art. 106, Tredicesima mensilità",
+          "quote": "computando come mese intero la frazione di mese pari o superiore a 15 giorni"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2026-03-01"
+        },
+        "note": "Scanned text read by OCR; one OCR character corrected. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1285,7 +1312,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "d7f56b529078611ddb14a1ab3216c6e4f8d64a497581bc24260c05070fe93959",
+    "source_hash": "2995abde27a0ff75ee240f28d036f6d62970d93be093ffd3accd2cc4f4e4d4da",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

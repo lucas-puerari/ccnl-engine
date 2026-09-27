@@ -21,6 +21,7 @@ from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
 )
+from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     run_accrual,
     run_fraction,
@@ -265,6 +266,7 @@ def build_context(
         schedule,
         opening.ytd.tax_withholding_periods_closed,
         request.employment_period,
+        month_accrual_rule(contract.ccnl),
     )
     accrual = run_accrual(request, contract.ccnl, competence)
     chain = _apply_extra_month_policy(chain, closed_run_id.kind, run_fraction(accrual))

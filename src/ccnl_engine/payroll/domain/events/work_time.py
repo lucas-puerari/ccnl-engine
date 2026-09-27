@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
+from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -11,7 +12,34 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 if TYPE_CHECKING:
     from datetime import date
 
-__all__ = ["HolidayWorkEvent", "NightShiftEvent", "OvertimeEvent", "ShiftWorkEvent"]
+__all__ = [
+    "HolidayWorkEvent",
+    "NightShiftEvent",
+    "OvertimeEvent",
+    "OvertimeKind",
+    "ShiftWorkEvent",
+]
+
+
+class OvertimeKind(StrEnum):
+    """When overtime hours were worked, selecting the CCNL overtime band.
+
+    The values match the work kinds the CCNL ``time_supplements`` bands
+    apply to.
+
+    Attributes:
+        WEEKDAY: Daytime overtime on a working day (straordinario diurno).
+        NIGHT: Night overtime (straordinario notturno).
+        HOLIDAY: Overtime on a public holiday or rest day (straordinario
+            festivo).
+        NIGHT_HOLIDAY: Night overtime on a public holiday (straordinario
+            festivo notturno).
+    """
+
+    WEEKDAY = "weekday"
+    NIGHT = "night"
+    HOLIDAY = "holiday"
+    NIGHT_HOLIDAY = "night_holiday"
 
 
 @dataclass(frozen=True)
@@ -23,13 +51,19 @@ class OvertimeEvent:
         hours: Number of overtime hours.  Must be > 0.
         hourly_rate: Base hourly rate in EUR.  Must be > 0.
         multiplier: Overtime multiplier applied to the hourly rate (e.g.
-            ``1.25`` for 25% supplement).  Must be > 0.
+            ``1.25`` for 25% supplement).  Must be > 0.  ``None`` (the
+            default) derives it from the CCNL band of ``kind`` as
+            ``1 + band``; the run is rejected when the CCNL has no single
+            percentage band for it.  An explicit value prevails over the
+            CCNL band.
+        kind: When the hours were worked, selecting the CCNL band.
     """
 
     event_date: date
     hours: Decimal
     hourly_rate: Decimal
-    multiplier: Decimal = Decimal("1.25")
+    multiplier: Decimal | None = None
+    kind: OvertimeKind = OvertimeKind.WEEKDAY
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.hours <= 0:
@@ -38,7 +72,7 @@ class OvertimeEvent:
         if self.hourly_rate <= 0:
             msg = f"OvertimeEvent.hourly_rate must be > 0; got {self.hourly_rate}"
             raise InvalidInputError(msg, feature="overtime")
-        if self.multiplier <= 0:
+        if self.multiplier is not None and self.multiplier <= 0:
             msg = f"OvertimeEvent.multiplier must be > 0; got {self.multiplier}"
             raise InvalidInputError(msg, feature="overtime")
 

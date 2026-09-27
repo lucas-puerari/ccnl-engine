@@ -20,7 +20,11 @@ from ccnl_engine.payroll.application.allocate_events import (
 from ccnl_engine.payroll.application.amounts._compute import _compute_amounts
 from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_rate
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
+from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
+from ccnl_engine.payroll.application.period._accrual_decisions import (
+    accrual_decisions,
+)
 from ccnl_engine.payroll.application.period._base_decisions import (
     base_stage_decisions,
 )
@@ -100,6 +104,9 @@ def _variable_events(ctx: RunContext) -> RunEvents:
         work_time_regime=ctx.var_pay_rules.notte_festivi_turni,
         opening_work_time_cap=opening.ytd.work_time_regime,
         worker_facts=worker_facts_of(request, withholding_agent=ctx.withholding_agent),
+        overtime_bands=CCNLOvertimeBands.of(
+            ctx.contract.ccnl, ctx.contract.tctx.competence.year
+        ),
     )
     return RunEvents(totals, items, entries)
 
@@ -254,7 +261,8 @@ def run_decisions(
     """Return the base stage, contract, event and tax decisions of the run.
 
     Returns:
-        The base stage decisions, the contract decisions, then those of the
+        The base stage decisions, the extra-month ratei counted, the
+        contract decisions, then those of the
         events and of the amounts, and last the caller-supplied values of
         the events.
     """
@@ -264,6 +272,7 @@ def run_decisions(
     pension = pension_decision(contract.ccnl, amounts.pension, year)
     return (
         base_stage_decisions(ctx, totals, run)
+        + accrual_decisions(ctx)
         + contract_decisions(
             contract.ccnl,
             contract.level,
