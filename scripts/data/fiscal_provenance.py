@@ -63,12 +63,20 @@ ADE_4E_2025: Final = _doc(
     "amministrazione",
 )
 MEF_COMUNALE: Final = _doc(
-    "mef-addizionale-comunale-2026",
+    "mef-addizionale-comunale-elenco-2026",
     "MEF, Dipartimento delle Finanze: addizionale comunale all'IRPEF, elenco "
-    "aggiornato al 26 gennaio 2026",
+    "generale 2026 (CSV, retrieved 2026-09-27)",
     "amministrazione",
     "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
-    "fiscalitalocale/addirpef_newDF/download/tabella.htm",
+    "fiscalitalocale/addirpef_newDF/download/download.php?anno=2026",
+)
+MEF_REGIONALE: Final = _doc(
+    "mef-addregirpef-2026",
+    "MEF, Dipartimento delle Finanze: addizionale regionale all'IRPEF, "
+    "aliquote applicabili 2026",
+    "amministrazione",
+    "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/"
+    "fiscalitalocale/addregirpef/sceltaregione.htm",
 )
 _KITECH_URL = "https://www.kitech.it/Contributi-previdenziali.aspx?p="
 
@@ -266,19 +274,23 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         "apprentice": _APPRENTICE,
     },
     "surtax/data/regionale-2026.json": {
-        "*": _record(
-            "assumed",
+        "*": _derived(
+            MEF_REGIONALE,
+            "one page per region, anno 2026",
             note=(
-                "The notes name the MEF Dipartimento delle Finanze as source; no "
-                "document, date or table is recorded."
+                "Retrieved on 2026-09-27; every row carries the URL of its page. "
+                "Not checked by a named reviewer."
             ),
         ),
     },
     "surtax/data/comunale-2026.json": {
         "*": _derived(
             MEF_COMUNALE,
-            "rates deliberated for 2025, basis of the 2026 advance",
-            note="L. 207/2024 art. 1 c. 751 for the advance on prior-year rates.",
+            "elenco generale 2026",
+            note=(
+                "Rows without a 2026 delibera carry their own assumed record and "
+                "the 2025 rates."
+            ),
         ),
     },
     "tax/data/family-deductions-2026.json": {

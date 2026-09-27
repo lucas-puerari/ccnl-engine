@@ -91,7 +91,12 @@ class TestBundledRun:
         assert result.capability_report.confidence == "low"
 
     def test_surtax_and_family_rules_are_reported_when_computed(self) -> None:
-        """Tables loaded for the run report their record."""
+        """Tables loaded for the run report their record.
+
+        The regional table is taken from the MEF pages (``derived``); Modena
+        (F257) published no 2026 delibera, so its row carries the 2025 rates
+        with its own ``assumed`` record.
+        """
         family = FamilyComposition(
             dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
         )
@@ -99,8 +104,8 @@ class TestBundledRun:
             regione="IT-45", comune_belfiore="F257", family_composition=family
         )
         sources = result.capability_report.rule_sources
-        assert sources["addizionale_regionale"] is ProvenanceStatus.ASSUMED
-        assert sources["addizionale_comunale"] is ProvenanceStatus.DERIVED
+        assert sources["addizionale_regionale"] is ProvenanceStatus.DERIVED
+        assert sources["addizionale_comunale"] is ProvenanceStatus.ASSUMED
         assert sources["family_deductions"] is ProvenanceStatus.DERIVED
 
 

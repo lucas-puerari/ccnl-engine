@@ -10,16 +10,24 @@ takes ``determined_at_conguaglio`` (final, amount 0) for a known table and
   zero, so no surtax is due (D.Lgs. 446/1997 art. 50 c. 2 for the regional,
   D.Lgs. 360/1998 art. 1 c. 4 for the municipal; the foreign tax credit
   they also net, art. 165 TUIR, is not modelled);
-- ``below_exemption_threshold`` (final, amount 0): the municipal exemption
-  threshold covers the taxable income;
+- ``below_exemption_threshold`` (final, amount 0): the regional or
+  municipal exemption threshold covers the taxable income;
 - ``table_applied`` (final): the bundled table of the tax year was
-  applied;
-- ``prior_year_rates_applied`` (provisional): the bundled municipal table
-  holds the rates of the year before (the ones the acconto of the tax year
-  is computed with, D.Lgs. 360/1998 art. 1 c. 4), not those of the tax
-  year the conguaglio needs; they are applied and a provisional
+  applied; for a regional row this includes its whole-income rate and its
+  income-only deductions;
+- ``dependent_provisions_not_applied`` (provisional): the regional row has
+  provisions for dependents or disability the engine does not apply, and
+  the worker declares a child or a disabled dependent; the surtax without
+  them is applied and a provisional issue quotes the provisions;
+- ``prior_year_rates_applied`` (provisional): the municipal row holds the
+  rates of an earlier year (no delibera of the tax year published, or a
+  table of advance rates, D.Lgs. 360/1998 art. 1 c. 4), not those of the
+  tax year the conguaglio needs; they are applied and a provisional
   :class:`~ccnl_engine.payroll.domain.decisions.CalculationIssue` names
-  the missing table;
+  the rates year;
+- ``specific_exemptions_not_applied`` (provisional): the municipal row
+  has exemptions for a category of income only, which the engine does not
+  apply; a provisional issue quotes them;
 - ``table_unknown`` (incomplete, amount ``None``): the code is well formed
   but the tax year table has no row for it.  The amount withheld is zero
   and a :class:`~ccnl_engine.payroll.domain.decisions.CalculationIssue`
@@ -43,9 +51,16 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
 from ccnl_engine.payroll.service import irpef as _irpef
+from ccnl_engine.payroll.service.surtax_table import (
+    DEPENDENT_PROVISIONS_ISSUE,
+    SPECIFIC_EXEMPTIONS_ISSUE,
+    SurtaxTable,
+    has_dependent_child_or_disability,
+    regional_surtax_amount,
+)
 
 if TYPE_CHECKING:
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.tax.domain.surtax_rules import (
         ComunaleEntry,
         RegionaleEntry,
@@ -54,7 +69,6 @@ if TYPE_CHECKING:
 
 __all__ = [
     "MUNICIPAL_SURTAX",
-    "PRIOR_YEAR_RATES_ISSUE",
     "REGIONAL_SURTAX",
     "SurtaxOutcome",
     "compute_surtax",
@@ -66,9 +80,6 @@ _ZERO = Decimal(0)
 REGIONAL_SURTAX = "addizionale_regionale"
 #: Capability of the municipal surtax decision, as named in the catalog.
 MUNICIPAL_SURTAX = "addizionale_comunale"
-
-#: Issue of a municipal surtax computed on the rates of the year before.
-PRIOR_YEAR_RATES_ISSUE = "municipal_surtax_prior_year_rates"
 
 _UNKNOWN_ISSUE_CODES = {
     REGIONAL_SURTAX: "regional_surtax_unknown",
@@ -93,111 +104,96 @@ class SurtaxOutcome:
     issues: tuple[CalculationIssue, ...] = ()
 
 
-@dataclass(frozen=True, slots=True)
-class _Table:
-    """The bundled table of one jurisdiction, as looked up for a code."""
-
-    capability: str
-    code: str
-    name: str | None
-    ruleset: RulesetIdentity | None
-    tax_year: int
-    taxable_income: Decimal
-
-    def decide(
-        self,
-        reason_code: str,
-        amount: Decimal | None,
-        status: CalculationStatus = CalculationStatus.FINAL,
-        **extra: Decimal | str,
-    ) -> CalculationDecision:
-        default_rule = f"surtax/{self.tax_year}/{self.capability}"
-        return CalculationDecision(
-            capability=self.capability,
-            status=status if amount is not None else CalculationStatus.INCOMPLETE,
-            reason_code=reason_code,
-            rule=default_rule if self.ruleset is None else self.ruleset.id,
-            rule_version=(
-                str(self.tax_year) if self.ruleset is None else self.ruleset.version
-            ),
-            inputs={
-                "code": self.code,
-                "table": "unknown" if self.name is None else self.name,
-                "tax_year": str(self.tax_year),
-                "taxable_income": self.taxable_income,
-                **extra,
-            },
-            amount=amount,
-        )
-
-    def issues_of(self, decision: CalculationDecision) -> tuple[CalculationIssue, ...]:
-        if decision.reason_code == "prior_year_rates_applied":
-            issue = CalculationIssue(
-                code=PRIOR_YEAR_RATES_ISSUE,
-                message=(
-                    f"{self.capability}: the bundled table holds the rates "
-                    f"of {self.tax_year - 1}; the surtax of {self.tax_year} "
-                    f"and the acconto of {self.tax_year + 1} are computed "
-                    "on them until the rates of the tax year are bundled"
-                ),
-                status=CalculationStatus.PROVISIONAL,
-            )
-            return (issue,)
-        if decision.amount is not None:
-            return ()
-        issue = CalculationIssue(
-            code=_UNKNOWN_ISSUE_CODES[self.capability],
-            message=(
-                f"{self.capability}: no {self.tax_year} table for code "
-                f"{self.code!r}; the surtax is not withheld and the result "
-                "must not be paid as is"
-            ),
-            status=CalculationStatus.INCOMPLETE,
-        )
-        return (issue,)
-
-
 def _regional(
-    table: _Table, entry: RegionaleEntry | None, irpef_due: Decimal
-) -> CalculationDecision:
+    table: SurtaxTable,
+    entry: RegionaleEntry | None,
+    irpef_due: Decimal,
+    family: FamilyComposition | None,
+) -> tuple[CalculationDecision, tuple[CalculationIssue, ...]]:
     if irpef_due == _ZERO:
-        return table.decide("no_irpef_due", _ZERO)
-    if entry is None:
-        return table.decide("table_unknown", None)
-    amount = _irpef.surtax_from_brackets(table.taxable_income, entry.brackets)
-    return table.decide("table_applied", amount)
+        decision = table.decide("no_irpef_due", _ZERO)
+    elif entry is None:
+        decision = table.decide("table_unknown", None)
+    elif table.taxable_income <= entry.exemption_threshold:
+        decision = table.decide("below_exemption_threshold", _ZERO)
+    else:
+        amount = regional_surtax_amount(table.taxable_income, entry)
+        if (
+            entry.dependent_provisions is None
+            or amount == _ZERO
+            or not has_dependent_child_or_disability(family)
+        ):
+            decision = table.decide("table_applied", amount)
+        else:
+            decision = table.decide(
+                "dependent_provisions_not_applied",
+                amount,
+                CalculationStatus.PROVISIONAL,
+            )
+            issue = table.provisional_issue(
+                DEPENDENT_PROVISIONS_ISSUE,
+                "the regional provisions for dependents or disability are not "
+                f"applied and may lower the surtax: {entry.dependent_provisions}",
+            )
+            return decision, table.issues_of(decision, issue)
+    return decision, table.issues_of(decision)
 
 
 def _municipal(
-    table: _Table,
+    table: SurtaxTable,
     entry: ComunaleEntry | None,
     surtax: SurtaxRules,
     irpef_due: Decimal,
-) -> CalculationDecision:
+) -> tuple[CalculationDecision, tuple[CalculationIssue, ...]]:
     if irpef_due == _ZERO:
-        return table.decide("no_irpef_due", _ZERO)
+        decision = table.decide("no_irpef_due", _ZERO)
+        return decision, table.issues_of(decision)
     if entry is None:
-        return table.decide("table_unknown", None)
+        decision = table.decide("table_unknown", None)
+        return decision, table.issues_of(decision)
     threshold = entry.exemption_threshold
     if table.taxable_income <= threshold:
-        return table.decide("below_exemption_threshold", _ZERO)
+        decision = table.decide("below_exemption_threshold", _ZERO)
+        return decision, table.issues_of(decision)
     amount = _irpef.surtax_from_brackets(
         table.taxable_income, entry.brackets, threshold
     )
-    if not surtax.comunale_rates_are_advance:
-        return table.decide("table_applied", amount)
-    return table.decide(
-        "prior_year_rates_applied",
-        amount,
-        CalculationStatus.PROVISIONAL,
-        rates_year=str(surtax.year - 1),
-    )
+    extra: tuple[CalculationIssue, ...] = ()
+    if entry.specific_exemptions and amount > _ZERO:
+        extra = (
+            table.provisional_issue(
+                SPECIFIC_EXEMPTIONS_ISSUE,
+                "exemptions for a category of income are not applied and may "
+                "cancel the surtax: " + "; ".join(entry.specific_exemptions),
+            ),
+        )
+    rates_year = entry.rates_year
+    if surtax.comunale_rates_are_advance:
+        rates_year = surtax.year - 1
+    if rates_year is not None and rates_year < surtax.year:
+        decision = table.decide(
+            "prior_year_rates_applied",
+            amount,
+            CalculationStatus.PROVISIONAL,
+            rates_year=str(rates_year),
+        )
+    elif extra:
+        decision = table.decide(
+            "specific_exemptions_not_applied", amount, CalculationStatus.PROVISIONAL
+        )
+    else:
+        decision = table.decide("table_applied", amount)
+    return decision, table.issues_of(decision, *extra)
 
 
-def _deferred(table: _Table, entry: object | None) -> CalculationDecision:
+def _deferred(
+    table: SurtaxTable, entry: object | None
+) -> tuple[CalculationDecision, tuple[CalculationIssue, ...]]:
     if entry is None:
-        return table.decide("table_unknown", None)
-    return table.decide("determined_at_conguaglio", _ZERO)
+        decision = table.decide("table_unknown", None)
+    else:
+        decision = table.decide("determined_at_conguaglio", _ZERO)
+    return decision, table.issues_of(decision)
 
 
 def compute_surtax(
@@ -208,6 +204,7 @@ def compute_surtax(
     comune_belfiore: str | None,
     irpef_due: Decimal,
     at_conguaglio: bool = True,
+    family_composition: FamilyComposition | None = None,
 ) -> SurtaxOutcome:
     """Compute the annual regional and municipal surtax and their decisions.
 
@@ -222,46 +219,54 @@ def compute_surtax(
             On any other run the surtax is not determined: a known table
             yields ``determined_at_conguaglio`` with amount 0, an unknown
             one ``table_unknown`` as at the conguaglio.
+        family_composition: Dependents of the worker; a declared child or
+            disabled dependent makes a regional row with provisions for
+            dependents provisional, since they are not applied.
 
     Returns:
-        The annual amounts, one decision per supplied jurisdiction and one
-        issue per jurisdiction whose table is unknown or of the year before.
+        The annual amounts, one decision per supplied jurisdiction and the
+        issues of each: unknown table, rates of an earlier year, provisions
+        not applied.
     """
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
     if regione is not None:
         name = region_table_name(regione)
         reg_entry = None if name is None else surtax.regionale.get(name)
-        table = _Table(
+        table = SurtaxTable(
             REGIONAL_SURTAX,
+            _UNKNOWN_ISSUE_CODES[REGIONAL_SURTAX],
             regione,
             None if reg_entry is None else name,
             surtax.regional_ruleset,
             surtax.year,
             taxable_income,
         )
-        decisions.append(
-            _regional(table, reg_entry, irpef_due)
+        decision, found = (
+            _regional(table, reg_entry, irpef_due, family_composition)
             if at_conguaglio
             else _deferred(table, reg_entry)
         )
-        issues.extend(table.issues_of(decisions[-1]))
+        decisions.append(decision)
+        issues.extend(found)
     if comune_belfiore is not None:
         com_entry = surtax.comunale.get(comune_belfiore)
-        table = _Table(
+        table = SurtaxTable(
             MUNICIPAL_SURTAX,
+            _UNKNOWN_ISSUE_CODES[MUNICIPAL_SURTAX],
             comune_belfiore,
             None if com_entry is None else com_entry.nome,
             surtax.municipal_ruleset,
             surtax.year,
             taxable_income,
         )
-        decisions.append(
+        decision, found = (
             _municipal(table, com_entry, surtax, irpef_due)
             if at_conguaglio
             else _deferred(table, com_entry)
         )
-        issues.extend(table.issues_of(decisions[-1]))
+        decisions.append(decision)
+        issues.extend(found)
     amounts = {d.capability: d.amount or _ZERO for d in decisions}
     return SurtaxOutcome(
         regional=amounts.get(REGIONAL_SURTAX, _ZERO),
