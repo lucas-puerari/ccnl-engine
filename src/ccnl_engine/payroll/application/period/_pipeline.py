@@ -22,11 +22,13 @@ from ccnl_engine.payroll.application.amounts._types import _AmountsInput
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
-from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     settle_extra_months,
 )
-from ccnl_engine.payroll.domain.obligations import TRATTAMENTO_RECOVERY
+from ccnl_engine.payroll.domain.obligations import (
+    TRATTAMENTO_RECOVERY,
+    ULTERIORE_RECOVERY,
+)
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
@@ -164,7 +166,10 @@ def _amounts_input(
         recovery_plan=ctx.opening.obligations.recovery_of(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
-        later_payslips=not ends_in_year(request.employment_period, fiscal_year),
+        ulteriore_plan=ctx.opening.obligations.recovery_of(
+            fiscal_year, ULTERIORE_RECOVERY
+        ),
+        installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
     )
 

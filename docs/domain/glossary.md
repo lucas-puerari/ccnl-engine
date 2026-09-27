@@ -323,7 +323,7 @@ The code is stable and is the `invariant_id` of the violation.
 | `run_counters_advance` | regular and withholding-slot counters advance by the run; the run id enters `closed_run_ids` |
 | `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries) |
 | `credit_recovery_bounds` | each credit account recovers between zero and what it recognized |
-| `carried_recovery_advance` | each recovery carried from an earlier tax year posts its next installment and advances one step |
+| `carried_recovery_advance` | each recovery carried from an earlier tax year posts its next installment and advances one step, or posts its whole residual on the last run of the employment |
 | `substitute_tax_plafond` | the work-time regime cap account advances by the eligible amounts, stays within the annual cap and agrees with the `cap_available` of each decision; the PdR eligible YTD advances by the `bonus_pdr` decision and stays within the PdR limit |
 | `substitute_tax_eligibility` | `SUBSTITUTE_TAX` posted = substitute tax of the regime and PdR decisions; a decision that is not `eligible` taxes nothing at the substitute rate |
 | `decision_provenance` | every final decision names a rule and a rule version |

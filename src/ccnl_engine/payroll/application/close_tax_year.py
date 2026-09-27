@@ -16,7 +16,8 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     bound to N+1.  The obligations are carried unchanged: an installment
     recovery opened in N (D.L. 3/2020 art. 1 c. 3) keeps its origin year and
     its remaining installments are due from the first run of N+1, one per
-    run, until the last one.  Those installments are deducted on the
+    run, until the last one, or at once on the last run of the employment.
+    Those installments are deducted on the
     payslips of N+1 without entering the N+1 trattamento integrativo
     account.
 

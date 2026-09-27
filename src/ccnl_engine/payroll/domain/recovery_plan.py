@@ -1,4 +1,15 @@
-"""RecoveryPlan: tracks the structured recovery of an over-paid tax credit."""
+"""RecoveryPlan: tracks the structured recovery of an over-paid tax credit.
+
+A plan posts one installment per payslip, except on the last run of the
+employment: there no later pay can carry the installments, so the whole
+residual is recovered on that run.  AdE circ. 29/E/2020 par. 6 (trattamento
+integrativo) and circ. 4/E/2025 par. 1.2 (somma esente and ulteriore
+detrazione): "in caso di cessazione del rapporto di lavoro, il sostituto
+d'imposta, in sede di conguaglio di fine rapporto, è tenuto a recuperare i
+benefici fiscali non spettanti in un'unica soluzione, indipendentemente
+dall'importo, in mancanza di ulteriori retribuzioni sulle quali operare il
+recupero in maniera dilazionata".
+"""
 
 from __future__ import annotations
 
@@ -8,8 +19,51 @@ from decimal import Decimal
 from ccnl_engine.payroll.domain.rounding import money
 
 _ZERO = Decimal(0)
+#: Reason of a recovery settled in full on the last run of the employment.
+SETTLED_AT_TERMINATION = "settled_at_termination"
+#: Reason of an installment posted on an adjustment run.
+ADJUSTMENT_RUN_INSTALLMENT = "installment_posted_adjustment_run"
 
-__all__ = ["RecoveryPlan"]
+__all__ = [
+    "ADJUSTMENT_RUN_INSTALLMENT",
+    "SETTLED_AT_TERMINATION",
+    "InstallmentRun",
+    "PostedInstallment",
+    "RecoveryPlan",
+]
+
+
+@dataclass(frozen=True)
+class InstallmentRun:
+    """The run an installment is posted on, as far as the plan is concerned.
+
+    Attributes:
+        final: Whether the run is the last one of the employment: the
+            employment ends in the tax year and the run closes its last
+            withholding slot, or the run is a termination run.
+        adjustment: Whether the run is an adjustment run.
+    """
+
+    final: bool = False
+    adjustment: bool = False
+
+
+@dataclass(frozen=True)
+class PostedInstallment:
+    """What a run recovers of a plan.
+
+    Attributes:
+        amount: Amount recovered on the run (positive).
+        reason: Reason code: ``installment_posted``,
+            ``last_installment_posted``,
+            ``installment_posted_adjustment_run`` or
+            ``settled_at_termination``.
+        remaining: The plan after the run, ``None`` once it is settled.
+    """
+
+    amount: Decimal
+    reason: str
+    remaining: RecoveryPlan | None
 
 
 @dataclass(frozen=True)
@@ -83,6 +137,29 @@ class RecoveryPlan:
         if self.installments_posted == self.installments_total - 1:
             return self.residual
         return self.installment_amount
+
+    def post(self, run: InstallmentRun) -> PostedInstallment:
+        """Return what ``run`` recovers of the plan.
+
+        The single rule shared by every recovered credit: the next
+        installment on an ordinary or adjustment run, the whole residual on
+        the final run of the employment.
+
+        Args:
+            run: The run the installment is posted on.
+
+        Returns:
+            The amount recovered, its reason and the plan still running.
+        """
+        if run.final:
+            return PostedInstallment(self.residual, SETTLED_AT_TERMINATION, None)
+        last = self.installments_posted == self.installments_total - 1
+        reason = "last_installment_posted" if last else "installment_posted"
+        return PostedInstallment(
+            self.next_installment,
+            ADJUSTMENT_RUN_INSTALLMENT if run.adjustment else reason,
+            None if last else self.advance(),
+        )
 
     def advance(self) -> RecoveryPlan:
         """Return a plan with ``installments_posted`` incremented by one.

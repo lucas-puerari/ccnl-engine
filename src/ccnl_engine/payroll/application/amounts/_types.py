@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.service.fiscal_surtax import SurtaxOutcome
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
@@ -33,8 +34,10 @@ class _AmountsInput:
     to come, zero on the last slot.  ``eligible_work_days`` are the days of
     employment in the tax year the deductions are proportioned to.
     ``recovery_plan`` is the installment recovery opened in this tax year,
-    if one is running.  ``later_payslips`` is false when the employment ends
-    in the tax year: the conguaglio then defers nothing.
+    if one is running, ``ulteriore_plan`` the ulteriore detrazione plan
+    opened by a conguaglio of this tax year.  ``installment_run`` tells
+    whether the run is the last of the employment, which defers nothing and
+    settles every running plan, or an adjustment run.
     ``withholding_agent`` is false for an employer that withholds no tax
     (see :mod:`~ccnl_engine.payroll.service.withholding_agent`).
     """
@@ -62,7 +65,8 @@ class _AmountsInput:
     domestic_hourly_rate: Decimal | None = None
     eligible_work_days: int = DAYS_IN_YEAR
     recovery_plan: RecoveryPlan | None = None
-    later_payslips: bool = True
+    ulteriore_plan: RecoveryPlan | None = None
+    installment_run: InstallmentRun = field(default_factory=InstallmentRun)
     withholding_agent: bool = True
 
 

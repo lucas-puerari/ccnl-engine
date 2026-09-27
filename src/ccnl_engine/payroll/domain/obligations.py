@@ -5,15 +5,23 @@ nothing here restarts on 1 January: an installment recovery opened by the
 conguaglio of year N keeps running on the payslips of year N+1 until its
 last installment (D.L. 3/2020 art. 1 c. 3 for the trattamento integrativo,
 L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
-detrazione).
+detrazione).  On the last run of the employment the whole residual is
+recovered instead (:meth:`~ccnl_engine.payroll.domain.recovery_plan\
+.RecoveryPlan.post`), so no recovery outlives the employment.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.recovery_plan import (
+        InstallmentRun,
+        PostedInstallment,
+    )
 
 __all__ = [
     "RECOVERY_RULES",
@@ -95,17 +103,19 @@ class RecoveryObligation:
             msg = f"RecoveryObligation.tax_year must be >= 2020; got {self.tax_year}"
             raise ValueError(msg)
 
-    def advanced(self) -> RecoveryObligation | None:
-        """Return the obligation after posting one installment.
+    def post(
+        self, run: InstallmentRun
+    ) -> tuple[PostedInstallment, RecoveryObligation | None]:
+        """Return what ``run`` recovers and the obligation after it.
 
         Returns:
-            The obligation one installment further along, or ``None`` when
-            the installment just posted was the last one.
+            :meth:`RecoveryPlan.post` of the plan and the obligation still
+            running, ``None`` once the plan is settled.
         """
-        plan = self.plan
-        if plan.installments_posted == plan.installments_total - 1:
-            return None
-        return RecoveryObligation(tax_year=self.tax_year, plan=plan.advance())
+        posted = self.plan.post(run)
+        if posted.remaining is None:
+            return posted, None
+        return posted, RecoveryObligation(tax_year=self.tax_year, plan=posted.remaining)
 
 
 @final

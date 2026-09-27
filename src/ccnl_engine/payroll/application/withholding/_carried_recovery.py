@@ -5,7 +5,9 @@ art. 1 c. 3 for the trattamento integrativo, L. 207/2024 art. 1 c. 7 for
 the somma esente) keeps running on the runs of N+1.  Those installments
 recover a credit of N: they are deducted on the payslip as a negative tax
 credit line but do not enter the credit account of N+1, whose own
-conguaglio runs as for any other year.
+conguaglio runs as for any other year.  On the last run of the employment
+the whole residual is recovered at once
+(:meth:`~ccnl_engine.payroll.domain.recovery_plan.RecoveryPlan.post`).
 """
 
 from __future__ import annotations
@@ -29,6 +31,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.obligations import EmploymentObligations
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.domain.recovery_plan import (
+        InstallmentRun,
+        PostedInstallment,
+    )
 
 
 @dataclass(frozen=True)
@@ -59,30 +65,33 @@ def recovery_capability(kind: str) -> str:
     return f"{kind}_recovery"
 
 
-def installment_decision(obligation: RecoveryObligation) -> CalculationDecision:
-    """Return the decision recording the next installment of ``obligation``.
+def installment_decision(
+    obligation: RecoveryObligation, posted: PostedInstallment
+) -> CalculationDecision:
+    """Return the decision recording what a run recovers of ``obligation``.
+
+    Args:
+        obligation: The recovery before the run.
+        posted: What the run recovers of it.
 
     Returns:
-        A final decision whose amount is the (negative) installment, with
-        reason ``last_installment_posted`` when it settles the recovery and
-        ``installment_posted`` otherwise.
+        A final decision whose amount is the (negative) amount recovered,
+        with the reason of ``posted``.
     """
     plan = obligation.plan
-    number = plan.installments_posted + 1
-    last = number == plan.installments_total
     return CalculationDecision(
         capability=recovery_capability(plan.kind),
         status=CalculationStatus.FINAL,
-        reason_code="last_installment_posted" if last else "installment_posted",
+        reason_code=posted.reason,
         rule=RECOVERY_RULES[plan.kind].rule,
         rule_version=str(obligation.tax_year),
         inputs={
             "origin_tax_year": str(obligation.tax_year),
-            "installment_number": Decimal(number),
+            "installment_number": Decimal(plan.installments_posted + 1),
             "installments_total": Decimal(plan.installments_total),
             "residual_before": plan.residual,
         },
-        amount=-plan.next_installment,
+        amount=-posted.amount,
     )
 
 
@@ -103,8 +112,11 @@ def post_carried_recoveries(
     competence_period: CompetencePeriod,
     payment_date: date,
     run_id: str,
+    run: InstallmentRun,
 ) -> CarriedRecoveries:
     """Post one installment of every recovery opened before ``tax_year``.
+
+    On the final run of the employment the whole residual is posted.
 
     Returns:
         The postings and the carried recoveries still running; empty when
@@ -119,8 +131,9 @@ def post_carried_recoveries(
     items: list[PayItem] = []
     entries: list[LedgerEntry] = []
     remaining: list[RecoveryObligation] = []
+    decisions: list[CalculationDecision] = []
     for obligation in carried:
-        installment = obligation.plan.next_installment
+        posted, after = obligation.post(run)
         item_id = carried_item_id(obligation, run_id)
         items.append(
             TaxCreditItem(
@@ -128,7 +141,7 @@ def post_carried_recoveries(
                 competence_period=competence_period,
                 payment_date=payment_date,
                 quantity=Decimal(1),
-                amount=-installment,
+                amount=-posted.amount,
             )
         )
         entries.append(
@@ -139,16 +152,16 @@ def post_carried_recoveries(
                 competence_period,
                 payment_date,
                 AccountKind.CREDITS,
-                -installment,
+                -posted.amount,
                 policy_id=policy_id,
             )
         )
-        advanced = obligation.advanced()
-        if advanced is not None:
-            remaining.append(advanced)
+        decisions.append(installment_decision(obligation, posted))
+        if after is not None:
+            remaining.append(after)
     return CarriedRecoveries(
         items=tuple(items),
         entries=tuple(entries),
         remaining=tuple(remaining),
-        decisions=tuple(installment_decision(o) for o in carried),
+        decisions=tuple(decisions),
     )

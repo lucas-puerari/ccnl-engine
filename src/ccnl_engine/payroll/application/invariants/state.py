@@ -26,10 +26,12 @@ from ccnl_engine.payroll.application.withholding._carried_recovery import (
     carried_item_id,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.run import run_identifier
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
+    from ccnl_engine.payroll.domain.obligations import RecoveryObligation
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.run import PayrollRunId
@@ -208,6 +210,24 @@ def check_credit_recovery_bounds(
     ]
 
 
+def _expected_step(
+    obligation: RecoveryObligation, posted: Decimal | None
+) -> tuple[Decimal, RecoveryObligation | None]:
+    """Return the amount ``obligation`` should post and what should remain.
+
+    A run posts the next installment and advances the plan by one, or, on
+    the last run of the employment, posts the whole residual and settles
+    it.  The posted amount tells which one the run did.
+
+    Returns:
+        ``(expected_amount, expected_remaining)``.
+    """
+    if posted == -obligation.plan.residual:
+        return -obligation.plan.residual, None
+    step, after = obligation.post(InstallmentRun())
+    return -step.amount, after
+
+
 def check_carried_recovery_advance(
     result: PeriodResult,
     opening: PeriodState,
@@ -216,7 +236,9 @@ def check_carried_recovery_advance(
 
     Every recovery opened before the tax year of the run must post its next
     installment as a negative ``CREDITS`` entry, and the closing state must
-    carry it one installment further, or no more after its last one.
+    carry it one installment further, or no more after its last one.  On
+    the last run of the employment the recovery may instead post its whole
+    residual and close.
 
     Returns:
         Violations for a missing or wrong installment and for carried
@@ -228,21 +250,26 @@ def check_carried_recovery_advance(
     carried = opening.obligations.carried_into(tax_year)
     run_id = str(run_id_of(result))
     posted = {e.entry_id: e.amount for e in result.ledger_entries}
-    violations = [
-        ReconciliationViolation(
-            invariant_id=InvariantCode.CARRIED_RECOVERY_ADVANCE,
-            message=(
-                f"carried recovery of {o.tax_year} did not post its installment "
-                f"{o.plan.next_installment}"
-            ),
-            expected=-o.plan.next_installment,
-            actual=posted.get(carried_item_id(o, run_id)),
-        )
-        for o in carried
-        if posted.get(carried_item_id(o, run_id)) != -o.plan.next_installment
-    ]
-    expected = tuple(a for a in (o.advanced() for o in carried) if a is not None)
-    if result.closing_state.obligations.carried_into(tax_year) != expected:
+    violations: list[ReconciliationViolation] = []
+    expected: list[RecoveryObligation] = []
+    for o in carried:
+        actual = posted.get(carried_item_id(o, run_id))
+        amount, after = _expected_step(o, actual)
+        if actual != amount:
+            violations.append(
+                ReconciliationViolation(
+                    invariant_id=InvariantCode.CARRIED_RECOVERY_ADVANCE,
+                    message=(
+                        f"carried recovery of {o.tax_year} did not post its "
+                        f"installment {-amount}"
+                    ),
+                    expected=amount,
+                    actual=actual,
+                )
+            )
+        if after is not None:
+            expected.append(after)
+    if result.closing_state.obligations.carried_into(tax_year) != tuple(expected):
         violations.append(
             ReconciliationViolation(
                 invariant_id=InvariantCode.CARRIED_RECOVERY_ADVANCE,

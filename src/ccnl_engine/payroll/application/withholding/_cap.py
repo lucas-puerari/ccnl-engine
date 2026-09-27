@@ -6,8 +6,14 @@ of the monthly pay.  The withholding agent withholds what the pay covers and
 takes the rest on the next runs of the tax year: the cumulative method of the
 conguaglio settles the tax on the whole year (art. 33 c. 4 D.Lgs. 33/2025,
 ex art. 23 c. 3 DPR 600/1973, in force from 1 January 2026 by art. 243).
-IRPEF is withheld first and the surtax from what is left.  The carried
-amount is withheld in full on the next run, before any new share.
+The credit recoveries of the run (negative ``CREDITS`` lines) are taken
+first, then the IRPEF and the surtax from what is left.  The carried
+amount is withheld in full on the next run, before any new share.  A
+credit recovery the pay cannot cover, e.g. the residual of a recovery
+settled at once on the last run of the employment (AdE circ. 29/E/2020
+par. 6 and 4/E/2025 par. 1.2), is carried in the same way: the run posts
+one ``credit_recovery_shortfall`` line that gives back the part not
+withheld, or withholds a part carried in.
 
 What is still not withheld on the last withholding slot "deve essere
 comunicato all'interessato che deve provvedere al versamento entro il 15
@@ -86,29 +92,50 @@ class CappedWithholding:
     Attributes:
         amounts: The amounts of the run with IRPEF and surtax capped; the
             same object when nothing was capped.
-        shortfall: IRPEF and surtax carried after the run.
+        shortfall: IRPEF, surtax and credit recoveries carried after the run.
         decisions: One decision when the run carried a shortfall in or out.
         issues: A provisional issue when a shortfall is left after the last
             withholding slot.
+        recovery_adjustment: Amount of the ``credit_recovery_shortfall``
+            line: positive for a recovery of the run not withheld, negative
+            for a recovery carried in and withheld; zero without one.
     """
 
     amounts: _PeriodAmounts
     shortfall: WithholdingShortfall
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
+    recovery_adjustment: Decimal = _ZERO
 
 
 def _unrecovered_issue(shortfall: WithholdingShortfall) -> CalculationIssue:
     return CalculationIssue(
         code="withholding_shortfall_unrecovered",
         message=(
-            f"withholding_shortfall: {shortfall.irpef} IRPEF and "
-            f"{shortfall.surtax} surtax of the tax year were not withheld "
-            "for lack of pay; art. 33 c. 4 D.Lgs. 33/2025 requires the "
+            f"withholding_shortfall: {shortfall.irpef} IRPEF, "
+            f"{shortfall.surtax} surtax and {shortfall.credit_recovery} credit "
+            "recovery of the tax year were not withheld for lack of pay; "
+            "art. 33 c. 4 D.Lgs. 33/2025 requires the "
             "amount to be communicated to the worker, who pays it by 15 "
             "January of the next year unless a written deferral is agreed"
         ),
         status=CalculationStatus.PROVISIONAL,
+    )
+
+
+def _run_recovery(entries: tuple[LedgerEntry, ...]) -> Decimal:
+    """Return the credit recoveries of the run as a positive amount.
+
+    Returns:
+        Minus the sum of the negative ``CREDITS`` entries.
+    """
+    return -sum(
+        (
+            e.amount
+            for e in entries
+            if e.account == AccountKind.CREDITS and e.amount < 0
+        ),
+        _ZERO,
     )
 
 
@@ -120,37 +147,45 @@ def cap_withholding(
     last_slot: bool,
     rules: YearRules,
 ) -> CappedWithholding:
-    """Cap the IRPEF and surtax of a run at the pay it leaves.
+    """Cap the credit recoveries, IRPEF and surtax of a run at the pay left.
 
     Args:
         amounts: Amounts of the run; their IRPEF and surtax already include
             ``carried_in``.
         entries: Every ledger entry of the run, built from ``amounts``.
         carried_in: Shortfall the run opened with.
-        last_slot: Whether the run closes the last withholding slot.
+        last_slot: Whether no later run of the tax year withholds: the run
+            closes the last withholding slot or ends the employment.
         rules: Year rules, whose version the decision records.
 
     Returns:
-        The capped amounts and the shortfall carried after the run.  A
-        refund (negative IRPEF) is never capped.
+        The capped amounts, the shortfall carried after the run and the
+        adjustment of the credit recoveries.  A refund (negative IRPEF) is
+        never capped.
     """
     irpef_due = max(_ZERO, amounts.period_irpef)
     surtax_due = amounts.period_surtax
-    available = max(_ZERO, run_net(entries) + irpef_due + surtax_due)
-    irpef = min(irpef_due, available)
-    surtax = min(surtax_due, available - irpef)
+    run_recovery = _run_recovery(entries)
+    recovery_due = run_recovery + carried_in.credit_recovery
+    available = max(_ZERO, run_net(entries) + irpef_due + surtax_due + run_recovery)
+    recovered = min(recovery_due, available)
+    irpef = min(irpef_due, available - recovered)
+    surtax = min(surtax_due, available - recovered - irpef)
     shortfall = WithholdingShortfall(
-        irpef=irpef_due - irpef, surtax=surtax_due - surtax
+        irpef=irpef_due - irpef,
+        surtax=surtax_due - surtax,
+        credit_recovery=recovery_due - recovered,
     )
     capped = (
         amounts
-        if shortfall.total == _ZERO
+        if shortfall.irpef == _ZERO and shortfall.surtax == _ZERO
         else replace(
             amounts,
             period_irpef=amounts.period_irpef - shortfall.irpef,
             period_surtax=surtax,
         )
     )
+    adjustment = run_recovery - recovered
     if carried_in.total == _ZERO and shortfall.total == _ZERO:
         return CappedWithholding(capped, shortfall)
     decision = CalculationDecision(
@@ -165,9 +200,10 @@ def cap_withholding(
             "pay_available": available,
             "irpef_due": irpef_due,
             "surtax_due": surtax_due,
+            "credit_recovery_due": recovery_due,
             "carried_in": carried_in.total,
         },
         amount=shortfall.total,
     )
     issues = (_unrecovered_issue(shortfall),) if last_slot and shortfall.total else ()
-    return CappedWithholding(capped, shortfall, (decision,), issues)
+    return CappedWithholding(capped, shortfall, (decision,), issues, adjustment)

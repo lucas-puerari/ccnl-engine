@@ -13,7 +13,7 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
@@ -41,15 +41,44 @@ class TestRecoveryObligation:
         with pytest.raises(ValueError, match="tax_year must be >= 2020"):
             RecoveryObligation(tax_year=2019, plan=_plan())
 
-    def test_advanced_posts_one_installment_and_keeps_the_origin(self) -> None:
-        """Advancing moves the plan on and keeps the origin year."""
-        advanced = RecoveryObligation(tax_year=2026, plan=_plan(2)).advanced()
+    def test_post_moves_one_installment_and_keeps_the_origin(self) -> None:
+        """An ordinary run posts 20 of 160 and keeps the origin year."""
+        posted, after = RecoveryObligation(tax_year=2026, plan=_plan(2)).post(
+            InstallmentRun()
+        )
 
-        assert advanced == RecoveryObligation(tax_year=2026, plan=_plan(3))
+        assert posted.amount == Decimal(20)
+        assert posted.reason == "installment_posted"
+        assert after == RecoveryObligation(tax_year=2026, plan=_plan(3))
 
-    def test_advanced_after_the_last_installment_is_none(self) -> None:
+    def test_post_after_the_last_installment_is_none(self) -> None:
         """The obligation ends with its last installment."""
-        assert RecoveryObligation(tax_year=2026, plan=_plan(7)).advanced() is None
+        posted, after = RecoveryObligation(tax_year=2026, plan=_plan(7)).post(
+            InstallmentRun()
+        )
+
+        assert posted.reason == "last_installment_posted"
+        assert after is None
+
+    def test_final_run_settles_the_residual(self) -> None:
+        """Two of eight posted: the final run recovers 160 - 2 x 20 = 120."""
+        posted, after = RecoveryObligation(tax_year=2026, plan=_plan(2)).post(
+            InstallmentRun(final=True, adjustment=True)
+        )
+
+        assert posted.amount == Decimal(120)
+        assert posted.reason == "settled_at_termination"
+        assert after is None
+
+    def test_adjustment_run_posts_one_installment(self) -> None:
+        """An adjustment run posts the next installment with its own reason."""
+        posted, after = RecoveryObligation(tax_year=2026, plan=_plan(7)).post(
+            InstallmentRun(adjustment=True)
+        )
+
+        assert posted.amount == Decimal(20)
+        assert posted.reason == "installment_posted_adjustment_run"
+        assert after is None
 
 
 class TestEmploymentObligations:

@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.application.period._chain import _resolve_chain
 from ccnl_engine.payroll.application.period._checks import resolve_run_id
+from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
     upcoming_recurring_gross,
@@ -31,7 +32,9 @@ from ccnl_engine.payroll.domain.employment_context import (
 )
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.policy import PolicyContext
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -49,7 +52,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+    from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.service.types import (
         ApprenticeshipScaling,
@@ -127,6 +130,22 @@ class RunContext:
     def run_id(self) -> str:
         """Run identifier as the tag of item and entry ids."""
         return str(self.closed_run_id)
+
+    @property
+    def installment_run(self) -> InstallmentRun:
+        """The run as the credit recoveries see it.
+
+        The run is final when it is a termination run, or when the
+        employment ends in the tax year and the run takes its last
+        withholding slot: no later payslip can carry an installment.
+        """
+        kind = self.run_kind
+        slots_closed = self.opening.ytd.tax_withholding_periods_closed
+        final = kind is RunKind.TERMINATION or (
+            ends_in_year(self.request.employment_period, self.fiscal_year)
+            and self.withholding_schedule.remaining(slots_closed) == 1
+        )
+        return InstallmentRun(final=final, adjustment=kind is RunKind.ADJUSTMENT)
 
     @property
     def opening(self) -> PeriodState:

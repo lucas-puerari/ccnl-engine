@@ -7,11 +7,16 @@ the conguaglio; an amount found not due is recovered there, in full up to
 carries the conguaglio (art. 1 c. 7).  Before the conguaglio a run pays
 its share of the annual amount, capped at what is still due, and never
 recovers: an excess found mid-year waits for the conguaglio.
+
+On the last run of the employment nothing is left to installments: the
+excess, or the residual of a running recovery, is recovered in full (AdE
+circ. 4/E/2025 par. 1.2, "in un'unica soluzione, indipendentemente
+dall'importo, in mancanza di ulteriori retribuzioni").
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -31,7 +36,7 @@ from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
 )
 from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
@@ -64,6 +69,7 @@ class SommaEsentePosting:
         competence_period: Competence period of the run.
         payment_date: Payment date of the run.
         run_id: Identifier of the run, used in the item id.
+        run: The run as a recovery sees it: final or adjustment.
     """
 
     resolver: PolicyResolver
@@ -71,6 +77,7 @@ class SommaEsentePosting:
     competence_period: CompetencePeriod
     payment_date: date
     run_id: str
+    run: InstallmentRun = field(default_factory=InstallmentRun)
 
 
 @dataclass(frozen=True)
@@ -121,40 +128,43 @@ class _Settlement:
     plan: RecoveryPlan | None = None
 
 
-def _installment(plan: RecoveryPlan, reason: str | None = None) -> _Settlement:
-    """Post the next installment of ``plan``.
-
-    Args:
-        plan: The recovery plan.
-        reason: Reason code to record instead of the installment one.
+def _installment(
+    plan: RecoveryPlan, run: InstallmentRun, reason: str | None = None
+) -> _Settlement:
+    """Post what ``run`` recovers of ``plan``.
 
     Returns:
-        The negative installment and the plan still running after it.
+        The negative amount recovered and the plan still running after it;
+        ``reason``, when given, replaces the reason of the installment.
     """
-    last = plan.installments_posted == plan.installments_total - 1
-    posted = "last_installment_posted" if last else "installment_posted"
+    posted = plan.post(run)
     return _Settlement(
-        amount=-plan.next_installment,
-        reason=reason or posted,
-        plan=None if last else plan.advance(),
+        amount=-posted.amount,
+        reason=reason or posted.reason,
+        plan=posted.remaining,
     )
 
 
-def _recover(excess: Decimal) -> _Settlement:
+def _recover(excess: Decimal, run: InstallmentRun) -> _Settlement:
     """Recover an ``excess`` found at the conguaglio (L. 207/2024 art. 1 c. 7).
 
     Returns:
-        The full excess up to 60 EUR, otherwise the first of ten equal
-        installments with the plan of the others.
+        The full excess up to 60 EUR or on the final run of the employment,
+        otherwise the first of ten equal installments with the plan of the
+        others.
     """
     if excess <= _SINGLE_RECOVERY_LIMIT:
         return _Settlement(amount=-excess, reason="overpayment_recovered")
+    if run.final:
+        return _Settlement(
+            amount=-excess, reason="overpayment_recovered_at_termination"
+        )
     plan = RecoveryPlan.create(
         SOMMA_ESENTE_RECOVERY,
         excess,
         RECOVERY_RULES[SOMMA_ESENTE_RECOVERY].installments,
     )
-    return _installment(plan, "overpayment_recovery_opened")
+    return _installment(plan, run, "overpayment_recovery_opened")
 
 
 def _settle(
@@ -163,20 +173,22 @@ def _settle(
     account: SommaEsenteAccount,
     plan: RecoveryPlan | None,
     remaining: int,
+    run: InstallmentRun,
 ) -> _Settlement:
     """Decide the amount of the run.
 
     Returns:
-        The installment of a running recovery; at the conguaglio the balance
-        between the annual due and the net paid, recovered when negative;
-        before it the slot share capped at what is still due.
+        The installment of a running recovery, its residual on the final
+        run; at the conguaglio the balance between the annual due and the
+        net paid, recovered when negative; before it the slot share capped
+        at what is still due.
     """
     if plan is not None:
-        return _installment(plan)
+        return _installment(plan, run)
     balance = money(annual) - account.net
     if remaining == 1:
         if balance < _ZERO:
-            return _recover(-balance)
+            return _recover(-balance, run)
         return _Settlement(amount=balance, reason="settled_at_conguaglio")
     if balance < _ZERO:
         return _Settlement(amount=_ZERO, reason="overpayment_pending_conguaglio")
@@ -219,7 +231,7 @@ def resolve_somma_esente(
     )
     slots_closed = opening.ytd.tax_withholding_periods_closed
     remaining = schedule.remaining(slots_closed)
-    settlement = _settle(annual, schedule, account, plan, remaining)
+    settlement = _settle(annual, schedule, account, plan, remaining, posting.run)
     decision = CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,

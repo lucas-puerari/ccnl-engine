@@ -9,7 +9,7 @@ import pytest
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.irpef_credits import (
     CreditOutcome,
@@ -151,10 +151,14 @@ class TestComputeTaxDecisions:
         tax = compute_tax(
             _D(50000), _RULES, withholding_schedule=_SCHEDULE, recovery_plan=plan
         )
-        trattamento = tax.decisions[-1]
+        trattamento, recovery = tax.decisions[-2:]
         assert trattamento.inputs["recovery_in_progress"] == "true"
         assert trattamento.inputs["period_amount"] == _D(-10)
         assert trattamento.amount == _D(0)
+        assert recovery.capability == "trattamento_integrativo_recovery"
+        assert recovery.reason_code == "installment_posted"
+        assert recovery.amount == _D(-10)
+        assert recovery.inputs["residual_after"] == _D(70)
 
     def test_credits_not_in_force_take_no_decision(self) -> None:
         """Rules without the credits record no decision."""
@@ -169,3 +173,58 @@ class TestComputeTaxDecisions:
         ).decisions
         assert ulteriore.rule_version == "2026"
         assert ulteriore.reason_code == "full_amount"
+
+
+class TestTrattamentoRecovery:
+    """The recovery of the trattamento integrativo (D.L. 3/2020 art. 1 c. 3).
+
+    At 50,000 EUR nothing is due, so what was paid is an excess.
+    """
+
+    @pytest.mark.parametrize(
+        ("paid", "run", "amount", "reason"),
+        [
+            # 40 EUR: recovered at once.
+            ("40", InstallmentRun(), "-40", "overpayment_recovered"),
+            # 200 EUR: first of eight installments of 25.
+            ("200", InstallmentRun(), "-25", "overpayment_recovery_opened"),
+            # 200 EUR on the last run of the employment: all of it.
+            (
+                "200",
+                InstallmentRun(final=True),
+                "-200",
+                "overpayment_recovered_at_termination",
+            ),
+        ],
+    )
+    def test_excess_found_by_the_run(
+        self, paid: str, run: InstallmentRun, amount: str, reason: str
+    ) -> None:
+        """The excess is recovered in full, or its first installment."""
+        tax = compute_tax(
+            _D(50000),
+            _RULES,
+            opening_tratt_ytd=_D(paid),
+            withholding_schedule=_SCHEDULE,
+            run=run,
+        )
+        recovery = tax.decisions[-1]
+        assert recovery.capability == "trattamento_integrativo_recovery"
+        assert recovery.reason_code == reason
+        assert recovery.amount == _D(amount)
+        assert tax.computation.trattamento_integrativo == _D(amount)
+
+    def test_running_plan_is_settled_on_the_last_run(self) -> None:
+        """80 EUR in eight installments of 10, none posted: 80 at once."""
+        plan = RecoveryPlan.create("trattamento_integrativo", _D(80), 8)
+        tax = compute_tax(
+            _D(50000),
+            _RULES,
+            withholding_schedule=_SCHEDULE,
+            recovery_plan=plan,
+            run=InstallmentRun(final=True),
+        )
+        recovery = tax.decisions[-1]
+        assert recovery.reason_code == "settled_at_termination"
+        assert recovery.amount == _D(-80)
+        assert tax.recovery_plan is None

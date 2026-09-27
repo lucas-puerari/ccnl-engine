@@ -104,9 +104,19 @@ left after INPS is 143.25 EUR, the IRPEF share is 162.33 EUR; January
 withholds 143.25 EUR and nets 0.00, February withholds the 19.08 EUR
 carried on top of its share.
 
-A run whose other deductions (INPS, substitute tax, recovery installments)
-exceed the pay left by unpaid absences is still rejected
-(`OutOfScopeError`, reason `withholding_shortfall`).
+Credit recoveries (trattamento integrativo, somma esente, installments of an
+earlier year) are capped in the same way and taken before the IRPEF: the
+part the pay does not cover is given back by a
+`credit_recovery_shortfall_{run_id}` line and carried as
+`shortfall.credit_recovery`, apart from the IRPEF. On the last run of the
+employment it is reported by the same provisional issue; AdE circ.
+29/E/2020 par. 6 and 4/E/2025 par. 1.2 apply art. 23 c. 3 DPR 600/1973 to
+a recovery the conguaglio di fine rapporto cannot make "per incapienza
+della retribuzione".
+
+A run whose other deductions (INPS, substitute tax) exceed the pay left by
+unpaid absences is still rejected (`OutOfScopeError`, reason
+`withholding_shortfall`).
 
 ## Employers that are not withholding agents
 
@@ -240,7 +250,12 @@ that produced the amount:
 
 The trattamento decision also records the signed `period_amount` paid or
 recovered on the run and `recovery_in_progress`, `true` while an installment
-recovery (D.L. 3/2020 art. 1 c. 3) is running.
+recovery (D.L. 3/2020 art. 1 c. 3) is running.  A run that recovers part of it also
+records a decision with capability `trattamento_integrativo_recovery`
+(`overpayment_recovered`, `overpayment_recovery_opened`,
+`overpayment_recovered_at_termination`, `installment_posted`,
+`last_installment_posted`, `installment_posted_adjustment_run` or
+`settled_at_termination`), amount the negative amount of the run.
 
 #### Ulteriore detrazione recognized and recovered
 
@@ -264,8 +279,9 @@ is not spread again. On the last withholding slot:
 - an excess up to 60 EUR stays in the conguaglio IRPEF;
 - above 60 EUR the conguaglio IRPEF keeps the first of ten equal
   installments and the other nine are deferred: they open a recovery
-  obligation of kind `ulteriore_detrazione_lavoro`, posted from the first
-  run of the next tax year as a negative tax credit line
+  obligation of kind `ulteriore_detrazione_lavoro`, posted by the
+  adjustment runs of the year and from the first run of the next tax year
+  as a negative tax credit line
   (`ulteriore_detrazione_lavoro_recovery_{N}_{run_id}`, account `CREDITS`),
   like the other c. 7 recoveries. The ledger does not tell the IRPEF they
   recover apart from an offset credit.
@@ -288,10 +304,22 @@ deferred to 2027.
 When the employment ends in the tax year no payslip follows the
 conguaglio at the cessation: the whole excess stays in its IRPEF
 (`overpayment_recovered_at_termination`), and what the pay cannot cover is
-a shortfall left to the worker (art. 33 c. 4 D.Lgs. 33/2025, see
-[Pay that does not cover the tax](#pay-that-does-not-cover-the-tax)).
-Runs of year N after the conguaglio (adjustments) do not post the
-installments.
+a shortfall left to the worker (see
+[Pay that does not cover the tax](#pay-that-does-not-cover-the-tax)). AdE
+circ. 4/E/2025 par. 1.2: "in caso di cessazione del rapporto di lavoro, si
+precisa che il sostituto d'imposta, in sede di conguaglio di fine rapporto,
+è tenuto a recuperare i benefici fiscali non spettanti in un'unica
+soluzione, indipendentemente dall'importo". The same rule settles the
+somma esente and the trattamento integrativo (circ. 29/E/2020 par. 6) and
+any plan still running, of this or an earlier year
+(see [Payroll state](payroll-state.md#recovery-at-the-end-of-the-employment)).
+
+An adjustment run of year N after the conguaglio posts the next
+installment: it settles the cumulative balance again and withholds it less
+what is still deferred after the installment (decision reason
+`installment_posted_adjustment_run`). If the balance falls below that, the
+plan closes and the balance settles the year
+(`recovery_absorbed_by_conguaglio`).
 
 The other decisions a run can record are `worker_category` (the category
 used and its origin: `declared` on the employment or `fixed_by_level`),

@@ -3,19 +3,25 @@
 The credit of Art. 1 D.L. 3/2020 (as updated by L. 207/2024) is paid run by
 run on the projected income; an excess over the annual entitlement is
 recovered as soon as a run finds it, in eight installments above 60 EUR
-(art. 1 c. 3).
+(art. 1 c. 3).  On the last run of the employment the excess, or the
+residual of a running recovery, is recovered in full (AdE circ. 29/E/2020
+par. 6: "in un'unica soluzione, indipendentemente dall'importo, in mancanza
+di ulteriori retribuzioni sulle quali operare il recupero in maniera
+dilazionata").
 """
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.obligations import (
     RECOVERY_RULES,
     TRATTAMENTO_RECOVERY,
 )
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service import irpef_credits
@@ -23,7 +29,6 @@ from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["resolve_trattamento"]
@@ -35,31 +40,38 @@ _RECOVERY_INSTALLMENTS = RECOVERY_RULES[TRATTAMENTO_RECOVERY].installments
 _TRATTAMENTO_RULE = "dl3-2020-art1"
 
 
-def _advance_plan(plan: RecoveryPlan) -> RecoveryPlan | None:
-    """Return the plan advanced by one installment, or None when fully recovered.
+_RECOVERY_CAPABILITY = f"{TRATTAMENTO_RECOVERY}_recovery"
 
-    Returns:
-        The advanced plan, or ``None`` if this was the last installment.
+
+@dataclass(frozen=True)
+class _Period:
+    """Signed amount of the run, the plan after it and why it recovers.
+
+    ``reason`` is ``None`` when the run pays rather than recovers.
     """
-    is_last = plan.installments_posted == plan.installments_total - 1
-    return None if is_last else plan.advance()
+
+    amount: Decimal
+    plan: RecoveryPlan | None = None
+    reason: str | None = None
 
 
-def _new_recovery(recovery: Decimal) -> tuple[Decimal, RecoveryPlan | None]:
-    """Open a fresh recovery: return (installment_amount, next_plan).
+def _new_recovery(recovery: Decimal, run: InstallmentRun) -> _Period:
+    """Open a fresh recovery of ``recovery``.
 
-    Amounts <= 60 EUR are taken in full immediately (single period).
-    Larger amounts are split into eight equal installments per
-    D.L. 3/2020 art. 1 co. 3.
+    Amounts <= 60 EUR, and any amount on the final run of the employment,
+    are taken in full on the run.  Larger amounts are split into eight
+    equal installments per D.L. 3/2020 art. 1 co. 3.
 
     Returns:
-        ``(installment, next_plan)`` where ``next_plan`` is ``None`` when
-        the recovery is settled in a single period.
+        The negative amount of the run and the plan still running, if any.
     """
     if recovery <= _RECOVERY_INSTALLMENT_THRESHOLD:
-        return money(recovery), None
+        return _Period(-money(recovery), reason="overpayment_recovered")
+    if run.final:
+        return _Period(-money(recovery), reason="overpayment_recovered_at_termination")
     plan = RecoveryPlan.create(TRATTAMENTO_RECOVERY, recovery, _RECOVERY_INSTALLMENTS)
-    return plan.next_installment, _advance_plan(plan)
+    posted = plan.post(run)
+    return _Period(-posted.amount, posted.remaining, "overpayment_recovery_opened")
 
 
 def _period_amount(
@@ -67,25 +79,57 @@ def _period_amount(
     opening_tratt_ytd: Decimal,
     remaining: int,
     existing_plan: RecoveryPlan | None,
-) -> tuple[Decimal, RecoveryPlan | None]:
+    run: InstallmentRun,
+) -> _Period:
     """Return the signed amount of the run and the plan to carry forward.
 
-    A plan in force takes its next installment.  Otherwise the balance still
-    due is spread over the remaining slots, or an excess already paid opens
-    a recovery.
+    A plan in force takes its next installment, or its residual on the
+    final run.  Otherwise the balance still due is spread over the
+    remaining slots, or an excess already paid opens a recovery.
 
     Returns:
-        ``(period_tratt, next_plan)``; ``period_tratt`` is negative for a
-        recovery.
+        The amount, negative for a recovery, with the plan and reason.
     """
     if existing_plan is not None:
-        return -existing_plan.next_installment, _advance_plan(existing_plan)
+        posted = existing_plan.post(run)
+        return _Period(-posted.amount, posted.remaining, posted.reason)
     tratt_due = annual_tratt - opening_tratt_ytd
     if tratt_due >= _ZERO:
         period = money(tratt_due) if remaining == 1 else money(tratt_due / remaining)
-        return period, None
-    installment, next_plan = _new_recovery(-tratt_due)
-    return -installment, next_plan
+        return _Period(period)
+    return _new_recovery(-tratt_due, run)
+
+
+def _recovery_decision(
+    period: _Period, rules: YearRules, opening_tratt_ytd: Decimal
+) -> tuple[CalculationDecision, ...]:
+    """Return the decision recording a recovery of the run, if any.
+
+    Returns:
+        One final decision, capability ``trattamento_integrativo_recovery``,
+        whose amount is the (negative) amount recovered; empty when the run
+        recovers nothing.
+    """
+    if period.reason is None:
+        return ()
+    return (
+        CalculationDecision(
+            capability=_RECOVERY_CAPABILITY,
+            status=CalculationStatus.FINAL,
+            reason_code=period.reason,
+            rule=RECOVERY_RULES[TRATTAMENTO_RECOVERY].rule,
+            rule_version=(
+                str(rules.year) if rules.ruleset is None else rules.ruleset.version
+            ),
+            inputs={
+                "net_paid_before": opening_tratt_ytd,
+                "residual_after": (
+                    _ZERO if period.plan is None else period.plan.residual
+                ),
+            },
+            amount=period.amount,
+        ),
+    )
 
 
 def resolve_trattamento(
@@ -97,32 +141,32 @@ def resolve_trattamento(
     remaining: int,
     existing_plan: RecoveryPlan | None = None,
     eligible_work_days: int = DAYS_IN_YEAR,
+    *,
+    run: InstallmentRun,
 ) -> tuple[
-    Decimal, TaxLineItem | None, RecoveryPlan | None, CalculationDecision | None
+    Decimal, TaxLineItem | None, RecoveryPlan | None, tuple[CalculationDecision, ...]
 ]:
     """Compute the per-period trattamento integrativo via conguaglio.
 
-    When the worker owes back a credit (tratt_due < 0) the recovery is split
-    into eight equal installments if the amount exceeds 60 EUR, or taken in
-    one period otherwise (D.L. 3/2020 art. 1 co. 3).  Once a
-    :class:`~ccnl_engine.payroll.domain.recovery_plan.RecoveryPlan` is in
-    force (``existing_plan`` is not ``None``) the installment amount is frozen
-    for all remaining periods and the last installment absorbs the rounding
-    residual.
+    An excess (tratt_due < 0) is recovered in eight equal installments
+    above 60 EUR, in one period otherwise (D.L. 3/2020 art. 1 co. 3); a
+    plan in force (``existing_plan``) keeps its installment amount.  On the
+    final run of the employment (``run.final``) the excess or the residual
+    is recovered in full.
 
     Returns:
-        ``(period_tratt, component, next_plan, decision)`` where:
+        ``(period_tratt, component, next_plan, decisions)`` where:
         - ``period_tratt`` is the signed per-period amount (negative = recovery);
         - ``component`` is a :class:`TaxLineItem` for the audit trace when the
           annual entitlement is positive, or ``None`` otherwise;
         - ``next_plan`` is the updated :class:`RecoveryPlan` to carry into the
           next period's opening state, or ``None`` when no plan is active;
-        - ``decision`` records the annual entitlement, why it is due or not,
-          and the signed ``period_amount``; ``None`` when the credit is not
-          in force for the year.
+        - ``decisions`` records the annual entitlement, why it is due or
+          not, and the signed ``period_amount``, then the recovery of the
+          run, if any; empty when the credit is not in force for the year.
     """
     if rules.trattamento_integrativo is None:
-        return _ZERO, None, None, None
+        return _ZERO, None, None, ()
     outcome = irpef_credits.trattamento_integrativo_outcome(
         taxable,
         irpef_gross,
@@ -132,9 +176,10 @@ def resolve_trattamento(
         eligible_work_days=eligible_work_days,
     )
     annual_tratt = outcome.amount
-    period_tratt, next_plan = _period_amount(
-        annual_tratt, opening_tratt_ytd, remaining, existing_plan
+    period = _period_amount(
+        annual_tratt, opening_tratt_ytd, remaining, existing_plan, run
     )
+    period_tratt = period.amount
     component = (
         TaxLineItem(
             name="trattamento_integrativo",
@@ -159,4 +204,5 @@ def resolve_trattamento(
             "period_amount": period_tratt,
         },
     )
-    return period_tratt, component, next_plan, decision
+    recovery = _recovery_decision(period, rules, opening_tratt_ytd)
+    return period_tratt, component, period.plan, (decision, *recovery)

@@ -94,13 +94,68 @@ waits for the conguaglio. Every run records a `CalculationDecision` with
 capability `somma_esente`, the signed amount of the run and one of the
 reasons `share_paid`, `not_due`, `overpayment_pending_conguaglio`,
 `settled_at_conguaglio`, `overpayment_recovered`,
-`overpayment_recovery_opened`, `installment_posted`,
-`last_installment_posted`. A recovery posts the line
-`somma_esente_recovery_{run_id}` on account `CREDITS`.
+`overpayment_recovery_opened`, `overpayment_recovered_at_termination`,
+`installment_posted`, `last_installment_posted`,
+`installment_posted_adjustment_run`, `settled_at_termination`. A recovery
+posts the line `somma_esente_recovery_{run_id}` on account `CREDITS`.
 
 The trattamento integrativo follows its own rule: an over-payment is
 recovered as soon as a run finds it, in eight installments above 60 EUR
-(D.L. 3/2020 art. 1 c. 3).
+(D.L. 3/2020 art. 1 c. 3). Every recovery of the trattamento records a
+`CalculationDecision` with capability `trattamento_integrativo_recovery`,
+the negative amount of the run and the residual left after it.
+
+## Recovery at the end of the employment
+
+No installment outlives the employment. AdE circ. 29/E/2020 par. 6
+(trattamento integrativo) and circ. 4/E/2025 par. 1.2 (somma esente and
+ulteriore detrazione) state that at the conguaglio di fine rapporto the
+withholding agent recovers the credits not due "in un'unica soluzione,
+indipendentemente dall'importo, in mancanza di ulteriori retribuzioni sulle
+quali operare il recupero in maniera dilazionata". The laws themselves
+(D.L. 3/2020 art. 1 c. 3, L. 207/2024 art. 1 c. 7) are silent on the
+cessation.
+
+A run is the last one of the employment when it is a `termination` run, or
+when the employment period ends in the tax year and the run takes its last
+withholding slot. For an employment ending on 31 December the last run is
+the tredicesima, not the regular December payslip. On that run the three
+credits follow one rule (`RecoveryPlan.post`):
+
+- an excess found by the conguaglio is recovered in full, above 60 EUR too
+  (`overpayment_recovered_at_termination`);
+- a plan of the current year or carried from an earlier year posts its
+  whole residual (`settled_at_termination`) and closes.
+
+What the pay cannot cover is not lost: the circolari refer to art. 23 c. 3
+DPR 600/1973, the amount is communicated to the worker. The withholding cap
+takes the credit recoveries first, then IRPEF and surtax; the part of a
+recovery the pay leaves uncovered is given back by one
+`credit_recovery_shortfall_{run_id}` line on `CREDITS`, tracked as
+`shortfall.credit_recovery` apart from the IRPEF, and reported by the
+provisional issue `withholding_shortfall_unrecovered`.
+
+Example: a 2025 somma esente plan of 200 EUR in ten installments of 20,
+three posted, with an employment from 1 January to 31 March 2026. January
+and February post 20 EUR each; March posts 200 - 5 x 20 = 100 EUR and the
+closing state carries no recovery.
+
+## Adjustment runs after the conguaglio
+
+An adjustment run paid after the conguaglio of year N is a payslip "alla
+quale si applicano gli effetti del conguaglio", so it posts the next
+installment of every plan the conguaglio opened, with reason
+`installment_posted_adjustment_run`:
+
+- trattamento integrativo and somma esente post the installment as a
+  negative `CREDITS` line;
+- the ulteriore detrazione plan lives inside the IRPEF of N. The adjustment
+  run settles the cumulative balance again, so it withholds the balance
+  less what is still deferred after its installment. When the balance falls
+  below that, e.g. an adjustment that restores the deduction, the plan is
+  closed and the cumulative balance settles the year
+  (`recovery_absorbed_by_conguaglio`). An excess found again while the plan
+  runs is recovered in full on the run, not merged into the plan.
 
 ## Opening the next tax year
 
@@ -111,7 +166,8 @@ last run of year N and returns the opening state of N+1:
   This includes the night, holiday and shift cap account, which is annual.
 - `obligations` is carried unchanged. A recovery keeps the tax year that
   opened it; its remaining installments are due from the first run of N+1,
-  one per run, until the last one.
+  one per run, until the last one, or at once on the last run of the
+  employment.
 
 The input must be a year-end state: bound to a tax year, with every
 withholding slot of the year closed. The state after December but before the
@@ -152,9 +208,8 @@ esente or ulteriore detrazione was not due. Above 60 EUR the recovery runs
 in equal installments from the payslip of the conguaglio (eight for the
 trattamento integrativo, D.L. 3/2020 art. 1 c. 3; ten for the somma esente
 and the ulteriore detrazione, L. 207/2024 art. 1 c. 7), so it often
-continues into N+1. The ulteriore detrazione installments after the first
-start in N+1; an employment that ends in N recovers that excess in full on
-its last run.
+continues into N+1. The adjustment runs of N post installments too; an
+employment that ends recovers the residual in full on its last run.
 
 - Installments posted in N enter `recovered` of the N credit account.
 - Installments posted in N+1 are a negative tax credit line on the payslip
@@ -162,13 +217,15 @@ its last run.
   N+1 credit account, and the N+1 credit is computed as for any other year.
 - The invariant `carried_recovery_advance` checks that each carried
   recovery posts its next installment and closes one installment further
-  along.
+  along, or posts its whole residual and closes on the last run of the
+  employment.
 - Each carried installment records a `CalculationDecision` with capability
   `trattamento_integrativo_recovery` (rule `dl3-2020-art1-c3`) or
   `somma_esente_recovery` (rule `l207-2024-art1-c7`), reason
-  `installment_posted` or `last_installment_posted`, the origin tax year, the
-  installment number and the residual before it, and the negative
-  installment as amount.
+  `installment_posted`, `last_installment_posted`,
+  `installment_posted_adjustment_run` or `settled_at_termination`, the
+  origin tax year, the installment number and the residual before it, and
+  the negative amount posted.
 
 At most one recovery per credit and origin year is held. The recovery opened
 by the conguaglio of the current year runs inside the conguaglio, as before.

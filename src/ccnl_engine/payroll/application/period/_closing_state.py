@@ -92,7 +92,9 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         hold the carried recoveries still running, then the recoveries of
         the current tax year running after the run: trattamento integrativo
         first, then somma esente, then the ulteriore detrazione, whose
-        installments start on the first run of the next tax year.
+        installments are posted by the adjustment runs of the tax year and
+        the runs of the next one.  After the last run of the employment no
+        recovery is left.
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
@@ -107,9 +109,9 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
     somma = outcome.somma_esente
     ulteriore = outcome.amounts.ulteriore
     ulteriore_plan = (
-        ulteriore.plan
-        if ulteriore is not None and ulteriore.plan is not None
-        else opening.obligations.recovery_of(outcome.tax_year, ULTERIORE_RECOVERY)
+        opening.obligations.recovery_of(outcome.tax_year, ULTERIORE_RECOVERY)
+        if ulteriore is None
+        else ulteriore.plan
     )
     current = tuple(
         RecoveryObligation(tax_year=outcome.tax_year, plan=plan)
