@@ -15,6 +15,7 @@ from ccnl_engine.payroll.application.amounts._taxable import (
     taxable_income,
 )
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
+from ccnl_engine.payroll.application.amounts._untaxed import untaxed_amounts
 from ccnl_engine.payroll.application.period._run_decisions import (
     family_deduction_decision,
     pdr_decision,
@@ -72,9 +73,14 @@ def _compute_amounts(
         ``(_PeriodAmounts, ContributionBreakdown, TaxComputation, RecoveryPlan | None)``
         with all rounded monetary quantities, the per-component INPS breakdown,
         the per-rule IRPEF computation, and the updated recovery plan (if any).
+        An employer that is not a withholding agent computes no tax: its
+        amounts carry only contributions, TFR and taxable income.
     """
     breakdown, employee_rate = run_contributions(inp)
     tfr = tfr_accrual(inp)
+    if not inp.withholding_agent:
+        untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr)
+        return untaxed, breakdown, no_tax, None
     pdr = pdr_split(inp)
     taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr)
     irpef = withhold_irpef(inp, taxable, breakdown.employee)

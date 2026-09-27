@@ -28,6 +28,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
     from ccnl_engine.tax.domain.preferential_regime import (
@@ -75,6 +76,10 @@ class RegimeFacts:
         agreement_signed_on: Signing date of the agreement the amount is
             paid under, for a regime with a signing window.  ``None`` when
             not known or not applicable.
+        withholding_agent: Whether the employer is a withholding agent.  A
+            substitute tax is withheld by the sostituto d'imposta, so a
+            household employer applies no regime (art. 23 c. 1 D.P.R.
+            600/1973).
     """
 
     prior_income: Decimal | None = None
@@ -82,6 +87,7 @@ class RegimeFacts:
     activity: EmployerActivity | None = None
     waived_regimes: frozenset[str] = frozenset()
     agreement_signed_on: date | None = None
+    withholding_agent: bool = True
 
     def waived(self, regime: PreferentialTaxRegime) -> bool:
         """Return whether the worker renounced ``regime`` in writing.
@@ -204,6 +210,7 @@ def _ineligibility(
     ceiling = regime.income_ceiling
     required = regime.required_sector
     excluded = (
+        (not facts.withholding_agent, NOT_WITHHOLDING_AGENT),
         (not regime.in_force(tax_year), "regime_not_in_force"),
         (regime.waivable and facts.waived(regime), "waived_by_worker"),
         (

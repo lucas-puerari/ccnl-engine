@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
+from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
@@ -50,22 +51,37 @@ _STATE_OF_STATUS: dict[CalculationStatus, TraceState] = {
 }
 
 
-def _worst_status_by_capability(
+def _worst_state_by_capability(
     decisions: Iterable[CalculationDecision],
-) -> dict[str, CalculationStatus]:
-    """Return the worst status each capability decided, in decision order.
+) -> dict[str, TraceState]:
+    """Return the state each capability decided, in decision order.
+
+    A capability whose every decision is :data:`NOT_WITHHOLDING_AGENT` is
+    not applicable: the employer does not compute it.  Otherwise the worst
+    status of its decisions gives the state.
 
     Returns:
-        Mapping of capability to the most severe status of its decisions.
+        Mapping of capability to its trace state.
     """
     worst: dict[str, CalculationStatus] = {}
+    skipped: set[str] = set()
+    applied: set[str] = set()
     for decision in decisions:
-        previous = worst.get(decision.capability, CalculationStatus.FINAL)
-        worst[decision.capability] = CalculationStatus.worst((
-            previous,
-            decision.status,
-        ))
-    return worst
+        capability = decision.capability
+        previous = worst.get(capability, CalculationStatus.FINAL)
+        worst[capability] = CalculationStatus.worst((previous, decision.status))
+        if decision.reason_code == NOT_WITHHOLDING_AGENT:
+            skipped.add(capability)
+        else:
+            applied.add(capability)
+    return {
+        capability: (
+            TraceState.NOT_APPLICABLE
+            if capability in skipped - applied
+            else _STATE_OF_STATUS[status]
+        )
+        for capability, status in worst.items()
+    }
 
 
 def build_traces(
@@ -74,7 +90,9 @@ def build_traces(
 ) -> tuple[DecisionTrace, ...]:
     """Build one trace per feature from what the run executed.
 
-    The core stages are always computed.  An event feature is computed when
+    The core stages are computed unless their decisions say the employer
+    does not compute them (not a withholding agent, for ``irpef``).  An
+    event feature is computed when
     one of its events had an effect, skipped otherwise.  Every other feature
     follows its decisions: final is computed, provisional is partial,
     incomplete or rejected is unresolved; with no decision it takes its
@@ -90,8 +108,10 @@ def build_traces(
         One :class:`~ccnl_engine.payroll.domain.trace.DecisionTrace` per
         feature.
     """
-    decided = _worst_status_by_capability(decisions)
-    traces = [DecisionTrace(f, TraceState.COMPUTED) for f in _CORE_FEATURES]
+    decided = _worst_state_by_capability(decisions)
+    traces = [
+        DecisionTrace(f, decided.get(f, TraceState.COMPUTED)) for f in _CORE_FEATURES
+    ]
     traces.extend(
         DecisionTrace(
             f,
@@ -100,13 +120,13 @@ def build_traces(
         for f in EVENT_FEATURES.values()
     )
     traces.extend(
-        DecisionTrace(f, _STATE_OF_STATUS[decided[f]] if f in decided else default)
+        DecisionTrace(f, decided.get(f, default))
         for f, default in _DECISION_FEATURES.items()
     )
     traces.extend(
-        DecisionTrace(capability, _STATE_OF_STATUS[status])
-        for capability, status in decided.items()
-        if capability not in _DECISION_FEATURES
+        DecisionTrace(capability, state)
+        for capability, state in decided.items()
+        if capability not in _DECISION_FEATURES and capability not in _CORE_FEATURES
     )
     return tuple(traces)
 

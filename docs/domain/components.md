@@ -192,8 +192,9 @@ lavoro dipendente*, Art. 13 TUIR): a credit that decreases as income rises and
 reaches zero around €50,000.
 
 Workers with taxable income between €8,500 and €28,000 receive the **trattamento
-integrativo** (Art. 1 D.L. 3/2020): €1,200/year, withheld by the employer and
-offset against the tax due.
+integrativo** (Art. 1 D.L. 3/2020): €1,200/year, paid on the payslip by the
+employer as withholding agent (art. 1 c. 3) and offset against the taxes it pays
+over.
 
 ### Addizionale regionale
 
@@ -207,8 +208,13 @@ catastale*. Rates are in the bundled `surtax/data/comunale/` files.
 
 ### Domestic work exception
 
-For domestic workers, the employer is not a *sostituto d'imposta*: IRPEF is not
-withheld at source. Workers declare and pay it directly.
+A household employer is not a *sostituto d'imposta*: it is not among the
+withholding agents of art. 23 c. 1 DPR 600/1973 (art. 33 c. 1 D.Lgs. 33/2025
+from 2027). Its payslips withhold no IRPEF and no surcharges, and pay no
+trattamento integrativo, somma esente or ulteriore detrazione, since those are
+recognized by the withholding agent (D.L. 3/2020 art. 1 c. 3; L. 207/2024
+art. 1 c. 7). The worker declares the income and pays the tax directly. See
+[Engine: Domestic work](../engine/domestic-work.md).
 
 ## 11. TFR (*Trattamento di Fine Rapporto*)
 

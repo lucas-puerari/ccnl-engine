@@ -25,6 +25,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+    PeriodResult,
     Permanent,
     SeniorityMonths,
     WeeklyHours,
@@ -334,6 +335,23 @@ def _build_employment(
     )
 
 
+def _tax_figures(result: PeriodResult) -> dict[str, float]:
+    """Return the annual IRPEF components the demo shows.
+
+    Returns:
+        ``irpef_gross``, ``work_deduction`` and ``ulteriore_detrazione``,
+        zero when the tax computation has no such component (e.g. a
+        household employer, which is not a withholding agent).
+    """
+    figures = dict.fromkeys(
+        ("irpef_gross", "work_deduction", "ulteriore_detrazione"), 0.0
+    )
+    for comp in result.tax_computation.components:
+        if comp.name in figures:
+            figures[comp.name] = float(comp.amount)
+    return figures
+
+
 def compute_salary(
     filename: str,
     level_code: str,
@@ -495,35 +513,9 @@ def compute_salary(
         net_annual = net_monthly * additional_months
         employer_cost_monthly = float(result.period_employer_cost)
 
-        irpef_gross = 0.0
-        work_deduction = 0.0
-        ulteriore_detrazione = 0.0
-        trattamento_integrativo = 0.0
-        if result.tax_computation:
-            trattamento_integrativo = float(
-                result.tax_computation.trattamento_integrativo
-            )
-            for comp in result.tax_computation.components:
-                if comp.name == "irpef_gross":
-                    irpef_gross = float(comp.amount)
-                elif comp.name == "work_deduction":
-                    work_deduction = float(comp.amount)
-                elif comp.name == "ulteriore_detrazione":
-                    ulteriore_detrazione = float(comp.amount)
-
-        inps_employee = 0.0
-        inps_employer = 0.0
-        if result.contribution_breakdown:
-            inps_employee = float(result.contribution_breakdown.employee)
-            inps_employer = float(result.contribution_breakdown.employer)
-
-        irpef_net = irpef_gross - work_deduction - ulteriore_detrazione
-
-        addizionale_regionale = 0.0
-        addizionale_comunale = 0.0
-        irpef_withholding = 0.0
-        if result.tax_computation:
-            irpef_withholding = float(result.tax_computation.ordinary_tax)
+        tax = _tax_figures(result)
+        inps_employee = float(result.contribution_breakdown.employee)
+        inps_employer = float(result.contribution_breakdown.employer)
 
         return json.dumps({
             "ccnl_name": ccnl_name,
@@ -549,13 +541,17 @@ def compute_salary(
             "additional_months": additional_months,
             "inps_employee_annual": inps_employee * additional_months,
             "taxable_income": 0.0,
-            "irpef_gross": irpef_gross,
-            "work_income_deduction": work_deduction,
-            "ulteriore_detrazione_lavoro": ulteriore_detrazione,
-            "irpef_net": irpef_net,
-            "addizionale_regionale_annual": addizionale_regionale,
-            "addizionale_comunale_annual": addizionale_comunale,
-            "trattamento_integrativo": trattamento_integrativo,
+            "irpef_gross": tax["irpef_gross"],
+            "work_income_deduction": tax["work_deduction"],
+            "ulteriore_detrazione_lavoro": tax["ulteriore_detrazione"],
+            "irpef_net": tax["irpef_gross"]
+            - tax["work_deduction"]
+            - tax["ulteriore_detrazione"],
+            "addizionale_regionale_annual": 0.0,
+            "addizionale_comunale_annual": 0.0,
+            "trattamento_integrativo": float(
+                result.tax_computation.trattamento_integrativo
+            ),
             "somma_esente": 0.0,
             "bilateral_employee_annual": 0.0,
             "net_annual": net_annual,
@@ -585,7 +581,7 @@ def compute_salary(
             "welfare_annual": 0.0,
             "bonus_annual": 0.0,
             "bonus_pdr_flat_tax_annual": 0.0,
-            "employer_withholds_irpef": True,
+            "employer_withholds_irpef": ccnl.meta.withholding_agent,
             "fiscal_simplifications": [],
             "trace": {},
             "provenance": [],

@@ -1048,20 +1048,23 @@ function renderBreakdown(r, enteredComune) {
   body.appendChild(bHead(t("breakdown.head.deductions")));
   body.appendChild(bRow(t("breakdown.inps_employee"), null, r.inps_employee_annual));
   body.appendChild(bSub(t("breakdown.taxable_income"), null, r.taxable_income));
-  body.appendChild(bSub(t("breakdown.irpef_gross"), null, r.irpef_gross));
-  if ((r.work_income_deduction || 0) > 0.005)
-    body.appendChild(bSub(t("breakdown.art13"), null, -r.work_income_deduction));
-  if ((r.ulteriore_detrazione_lavoro || 0) > 0.005)
-    body.appendChild(bSub(t("breakdown.ulteriore_detrazione"), null, -r.ulteriore_detrazione_lavoro));
-  body.appendChild(bRow(t("breakdown.irpef_net"), null, r.irpef_net));
-  body.appendChild(noReg
-    ? bNa(t("breakdown.addizionale_regionale_na"))
-    : bRow(t("breakdown.addizionale_regionale"), null, r.addizionale_regionale_annual));
-  body.appendChild(noCom
-    ? bNa(enteredComune
-        ? t("breakdown.addizionale_comunale_na_code_template", { code: esc(enteredComune) })
-        : t("breakdown.addizionale_comunale_na_blank"))
-    : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
+  // A household employer is not a withholding agent: no IRPEF or surtax rows.
+  if (r.employer_withholds_irpef) {
+    body.appendChild(bSub(t("breakdown.irpef_gross"), null, r.irpef_gross));
+    if ((r.work_income_deduction || 0) > 0.005)
+      body.appendChild(bSub(t("breakdown.art13"), null, -r.work_income_deduction));
+    if ((r.ulteriore_detrazione_lavoro || 0) > 0.005)
+      body.appendChild(bSub(t("breakdown.ulteriore_detrazione"), null, -r.ulteriore_detrazione_lavoro));
+    body.appendChild(bRow(t("breakdown.irpef_net"), null, r.irpef_net));
+    body.appendChild(noReg
+      ? bNa(t("breakdown.addizionale_regionale_na"))
+      : bRow(t("breakdown.addizionale_regionale"), null, r.addizionale_regionale_annual));
+    body.appendChild(noCom
+      ? bNa(enteredComune
+          ? t("breakdown.addizionale_comunale_na_code_template", { code: esc(enteredComune) })
+          : t("breakdown.addizionale_comunale_na_blank"))
+      : bRow(t("breakdown.addizionale_comunale"), null, r.addizionale_comunale_annual));
+  }
   if (r.trattamento_integrativo > 0)
     body.appendChild(bRow(t("breakdown.trattamento_integrativo"), null, -r.trattamento_integrativo));
   if ((r.somma_esente || 0) > 0.005)

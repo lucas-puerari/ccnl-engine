@@ -80,15 +80,15 @@ def _coverage_pct(ccnl: CCNL) -> int:
     work_rules defaults to 'not_implemented' for most contracts, so the
     effective maximum is 85 until a contract implements work-rules features.
 
-    If meta.withholding_exempt=True and layer_2='out_of_scope', the employer
-    not withholding IRPEF is by design -- layer_2 is not penalised.
+    If meta.withholding_agent is False and layer_2 is out_of_scope, the employer
+    not withholding IRPEF is by design, so layer_2 is not penalised.
 
     Returns:
         Coverage percentage as an integer in [0, 100].
     """
     l1 = _layer_score(ccnl.coverage.gross)
     l2_status = ccnl.coverage.net
-    if ccnl.meta.withholding_exempt and l2_status == "out_of_scope":
+    if not ccnl.meta.withholding_agent and l2_status == "out_of_scope":
         l2 = 1.0
     else:
         l2 = _layer_score(l2_status)
