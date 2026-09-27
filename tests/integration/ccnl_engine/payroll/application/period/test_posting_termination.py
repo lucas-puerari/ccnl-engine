@@ -2,11 +2,11 @@
 
 AdE circ. 29/E/2020 par. 6 (trattamento integrativo, D.L. 3/2020 art. 1
 c. 3) and circ. 4/E/2025 par. 1.2 (somma esente and ulteriore detrazione,
-L. 207/2024 art. 1 c. 7): "in caso di cessazione del rapporto di lavoro, il
-sostituto d'imposta, in sede di conguaglio di fine rapporto, è tenuto a
-recuperare i benefici fiscali non spettanti in un'unica soluzione,
-indipendentemente dall'importo, in mancanza di ulteriori retribuzioni sulle
-quali operare il recupero in maniera dilazionata".  What the pay cannot
+L. 207/2024 art. 1 c. 7) both state that, when the employment ends, the
+conguaglio di fine rapporto recovers the credits not due "in un'unica
+soluzione, indipendentemente dall'importo, in mancanza di ulteriori
+retribuzioni sulle quali operare il recupero in maniera dilazionata".  What
+the pay cannot
 cover is communicated to the worker (art. 23 c. 3 DPR 600/1973, quoted by
 both circolari).
 

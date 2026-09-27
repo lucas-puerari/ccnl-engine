@@ -306,7 +306,7 @@ conguaglio at the cessation: the whole excess stays in its IRPEF
 (`overpayment_recovered_at_termination`), and what the pay cannot cover is
 a shortfall left to the worker (see
 [Pay that does not cover the tax](#pay-that-does-not-cover-the-tax)). AdE
-circ. 4/E/2025 par. 1.2: "in caso di cessazione del rapporto di lavoro, si
+circ. 4/E/2025 par. 1.2: "In caso di cessazione del rapporto di lavoro, si
 precisa che il sostituto d'imposta, in sede di conguaglio di fine rapporto,
 è tenuto a recuperare i benefici fiscali non spettanti in un'unica
 soluzione, indipendentemente dall'importo". The same rule settles the

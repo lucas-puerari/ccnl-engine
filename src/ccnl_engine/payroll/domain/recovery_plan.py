@@ -4,11 +4,10 @@ A plan posts one installment per payslip, except on the last run of the
 employment: there no later pay can carry the installments, so the whole
 residual is recovered on that run.  AdE circ. 29/E/2020 par. 6 (trattamento
 integrativo) and circ. 4/E/2025 par. 1.2 (somma esente and ulteriore
-detrazione): "in caso di cessazione del rapporto di lavoro, il sostituto
-d'imposta, in sede di conguaglio di fine rapporto, è tenuto a recuperare i
-benefici fiscali non spettanti in un'unica soluzione, indipendentemente
-dall'importo, in mancanza di ulteriori retribuzioni sulle quali operare il
-recupero in maniera dilazionata".
+detrazione) both state that, when the employment ends, the conguaglio di
+fine rapporto recovers the credits not due "in un'unica soluzione,
+indipendentemente dall'importo, in mancanza di ulteriori retribuzioni sulle
+quali operare il recupero in maniera dilazionata".
 """
 
 from __future__ import annotations
