@@ -56,11 +56,67 @@ def _validate_surtax_brackets(brackets: Sequence[SurtaxBracket], label: str) -> 
         raise ValueError(msg)
 
 
+class WholeIncomeRate(BaseModel):
+    """One rate on the whole income for incomes up to a limit.
+
+    Some regions replace the marginal brackets with a single rate on the
+    whole taxable income when that income does not exceed a limit (e.g.
+    Lazio 2026: 1.73% up to 28,000 euro).  Above the limit the marginal
+    brackets of the entry apply.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    income_up_to: Decimal = Field(gt=0)
+    """Largest taxable income the rate applies to, inclusive."""
+    rate: Decimal = Field(ge=0, le=1)
+    """Rate on the whole taxable income, as a decimal (0.0173 = 1.73%)."""
+
+
+class RegionalDeduction(BaseModel):
+    """A detrazione from the regional surtax that depends on income only.
+
+    The deduction is due when ``income_above < taxable income`` and, if
+    ``income_up_to`` is set, ``taxable income <= income_up_to``.  With
+    ``phase_in`` the amount grows linearly from zero at ``income_above`` to
+    ``amount`` at ``income_above + phase_in``.  Deductions never create a
+    credit: the surtax net of them is floored at zero.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    amount: Decimal = Field(gt=0)
+    """Full annual deduction in euro."""
+    income_above: Decimal = Field(default=Decimal(0), ge=0)
+    """Taxable income the deduction starts above, exclusive."""
+    income_up_to: Decimal | None = None
+    """Largest taxable income the deduction applies to, inclusive."""
+    phase_in: Decimal | None = Field(default=None, gt=0)
+    """Income width over which the amount grows from zero to ``amount``."""
+
+    @model_validator(mode="after")
+    def _check_band(self) -> Self:
+        if self.income_up_to is not None and self.income_up_to <= self.income_above:
+            msg = (
+                "RegionalDeduction: income_up_to must exceed income_above, got "
+                f"{self.income_up_to} <= {self.income_above}"
+            )
+            raise ValueError(msg)
+        return self
+
+
 class RegionaleEntry(BaseModel):
     """Addizionale regionale IRPEF for one region/autonomous province.
 
     ``brackets`` always has at least one element. Regions with a single
     flat rate have exactly one bracket with ``up_to=None``.
+
+    The income-only provisions of the regional law are modelled:
+    ``exemption_threshold``, ``whole_income_rate`` and ``deductions``.
+    Provisions that depend on dependents or on disability (per-child
+    deductions, reduced rates for families with a disabled member) are not
+    computed; ``dependent_provisions`` states them so the engine can flag a
+    result whose worker may be entitled to them.
 
     The model is frozen: field values cannot be reassigned after construction.
     ``brackets`` is a tuple so the collection itself is immutable.
@@ -71,6 +127,14 @@ class RegionaleEntry(BaseModel):
     brackets: tuple[SurtaxBracket, ...]
     """Marginal rate brackets, ascending by ``up_to`` with the last entry unbounded."""
 
+    exemption_threshold: Decimal = Field(default=Decimal(0), ge=0)
+    """Exemption threshold: if taxable income <= threshold, the surtax is zero."""
+    whole_income_rate: WholeIncomeRate | None = None
+    """Rate on the whole income that replaces the brackets up to a limit."""
+    deductions: tuple[RegionalDeduction, ...] = ()
+    """Income-only detrazioni, subtracted from the surtax and floored at zero."""
+    dependent_provisions: str | None = None
+    """Provisions for dependents or disability that the engine does not apply."""
     notes: str = ""
     """Free-form note (e.g. reference to the regional law)."""
     provenance: RuleProvenance | None = None
@@ -145,6 +209,16 @@ class ComunaleEntry(BaseModel):
         default_factory=WithholdingCalendar
     )
     """Informational withholding schedule for this municipality."""
+    rates_year: int | None = None
+    """Year of the delibera the rates come from; ``None`` for the table year.
+
+    A year before the table year means no delibera of the table year was
+    published and the rates of that year are carried forward (art. 1 c. 169
+    L. 296/2006).
+    """
+    specific_exemptions: tuple[str, ...] = ()
+    """Exemptions for a category of income only (e.g. lavoro dipendente up
+    to a limit), as published; not computed by the engine."""
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

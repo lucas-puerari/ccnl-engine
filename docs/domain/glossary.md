@@ -180,7 +180,9 @@ the request.  It separates a surtax not yet determined
 (`determined_at_conguaglio`: final, amount 0, any run before the
 conguaglio), a surtax not due by rule (`no_irpef_due`,
 `below_exemption_threshold`: final, amount 0), a table applied
-(`table_applied`: final; `prior_year_rates_applied`: provisional) and a
+(`table_applied`: final; `prior_year_rates_applied`,
+`dependent_provisions_not_applied` and `specific_exemptions_not_applied`:
+provisional) and a
 well-formed code without a
 table row (`table_unknown`: incomplete, amount `None`, issue
 `regional_surtax_unknown` or `municipal_surtax_unknown`).  The region is the

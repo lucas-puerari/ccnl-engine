@@ -54,7 +54,7 @@ formulas or caller-declared amounts.
 | `ulteriore_detrazione_lavoro` | Ulteriore detrazione lavoro dipendente | computed | implemented | 0 / 8 / 0 / 0 |
 | `somma_esente` | Somma esente L. 207/2024 art. 1 c. 4 | computed | simplified | 0 / 0 / 8 / 0 |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | computed | implemented | none bundled |
-| `addizionale_regionale` | Addizionale regionale IRPEF | computed | simplified | 0 / 0 / 1 / 0 |
+| `addizionale_regionale` | Addizionale regionale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `family_deductions` | Detrazioni familiari a carico | computed | implemented | 0 / 3 / 0 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 (interessi mutuo e oneri) | partially_computed | simplified | none bundled |

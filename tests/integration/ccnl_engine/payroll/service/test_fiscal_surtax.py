@@ -104,8 +104,10 @@ def test_ruleset_identity_is_recorded_as_rule() -> None:
     """The bundled ruleset id and version identify the rule applied."""
     outcome = _compute("IT-25", "H501", rules=_rules(ruleset=True))
 
+    identity = load_surtax_rules(2026).regional_ruleset
+    assert identity is not None
     assert {(d.rule, d.rule_version) for d in outcome.decisions} == {
-        ("surtax/2026/regionale", "2026.1")
+        ("surtax/2026/regionale", identity.version)
     }
 
 

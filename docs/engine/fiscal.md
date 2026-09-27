@@ -231,9 +231,11 @@ ruleset.
 | `reason_code` | Status | Amount | Meaning |
 |---|---|---|---|
 | `determined_at_conguaglio` | `final` | 0 | A run before the conguaglio: the table exists, nothing of the year is determined yet. |
-| `table_applied` | `final` | computed | The bundled brackets of the tax year were applied. |
-| `prior_year_rates_applied` | `provisional` | computed | The bundled municipal table holds the rates of the year before; they are applied, issue `municipal_surtax_prior_year_rates`. |
-| `below_exemption_threshold` | `final` | 0 | The municipal exemption threshold covers the taxable income. |
+| `table_applied` | `final` | computed | The bundled row of the tax year was applied: brackets, and for a regional row its whole-income rate and income-only deductions. |
+| `dependent_provisions_not_applied` | `provisional` | computed | The regional row has provisions for dependents or disability that are not applied, and the request declares a child or a disabled dependent; issue `regional_surtax_dependent_provisions_not_applied` quotes them. |
+| `prior_year_rates_applied` | `provisional` | computed | The municipal row holds the rates of an earlier year (`inputs["rates_year"]`): no delibera of the tax year was published when the table was built; issue `municipal_surtax_prior_year_rates`. |
+| `specific_exemptions_not_applied` | `provisional` | computed | The municipal row exempts only a category of income (for example lavoro dipendente up to a limit); issue `municipal_surtax_specific_exemptions_not_applied` quotes the exemptions. |
+| `below_exemption_threshold` | `final` | 0 | The regional or municipal exemption threshold covers the taxable income. |
 | `no_irpef_due` | `final` | 0 | Net IRPEF (gross less the deductions) of the year is zero, so no surtax is due. |
 | `table_unknown` | `incomplete` | `None` | The code is well formed but the tax year table has no row for it. |
 
@@ -275,21 +277,65 @@ taxed abroad the IRPEF withheld can be too high and a surtax can be
 withheld where the credit would bring the net IRPEF to zero; compute such
 cases outside the engine.
 
+#### Regional rates of 2026
+
+`regionale-2026.json` is taken from the MEF Dipartimento delle Finanze
+pages of the addizionale regionale, one per region or autonomous province
+(`addregirpef.php?reg=NN&anno=2026`, retrieved on 27 September 2026). Each
+row records the URL of its page, the MEF publication date and a
+`derived` provenance; no row has been checked by a named reviewer yet.
+Where MEF lists two delibere for 2026 (Molise, Puglia) the later one, which
+raises the rates under art. 1 c. 174 L. 311/2004, is bundled.
+
+The provisions that depend on income only are computed:
+
+| Row | Provision |
+|---|---|
+| Valle d'Aosta | Exempt up to 15,000 euro, then 1.23% on the whole income. |
+| Trento | A 30,000 euro deduction for income up to 30,000 euro, stored as an exemption threshold. |
+| Friuli-Venezia Giulia | 0.70% on the whole income up to 15,000 euro, otherwise 1.23% on the whole income. |
+| Lazio | 1.73% on the whole income up to 28,000 euro; a 60 euro detrazione above 28,000 and up to 30,000 euro. |
+| Umbria | 1.23% on the whole income up to 28,000 euro; a 150 euro detrazione above 28,000 and up to 50,000 euro. |
+| Bolzano | A 430.50 euro detrazione up to 90,000 euro, and up to 125 euro above 50,000 euro (125 x (income - 50,000) / 25,000). |
+
+Regional deductions never create a credit: the surtax is floored at zero.
+Income limits are checked on the IRPEF taxable income of the employment,
+also where the regional law refers to *reddito complessivo* (Valle
+d'Aosta) or adds income taxed separately (Bolzano).
+
+Provisions for dependents or disability are **not** computed: per-child
+detrazioni (Bolzano, Campania, Piemonte, Puglia, Sardegna, Trento) and
+reduced rates for a disabled taxpayer or family member (Marche, Veneto).
+The row states them in `dependent_provisions`. When the request declares a
+child or a disabled dependent in `family_composition`, the regional
+decision is `provisional` with the issue
+`regional_surtax_dependent_provisions_not_applied`; the surtax withheld
+may be too high. The engine has no input for the disability of the worker,
+so the Veneto rate for a disabled taxpayer without dependents is not
+flagged.
+
 #### Municipal rates of the tax year
 
 The acconto of N+1 uses the rate and threshold "nella misura vigente
 nell'anno precedente" (art. 1 c. 4), which at the conguaglio of N are those
-of N; the saldo of N uses them too. The bundled `comunale-2026.json` holds
-the rates deliberated for 2025 (MEF list of 26 January 2026,
-`rates_are_advance: true`), not those of 2026. Until a table of the 2026
-rates is bundled the conguaglio of 2026 applies the 2025 rates and its
-municipal decisions are `provisional`, with the issue
-`municipal_surtax_prior_year_rates`; most municipalities confirm their rate
-from year to year, but the result must be checked against the 2026
-deliberation. Bundling the rates of 2026 as `comunale-2026.json` with
-`rates_are_advance: false` makes them `final` without code changes; a
-`comunale-2027.json` of the 2026 rates flagged as advance would not, since
-the conguaglio of 2026 reads the 2026 file.
+of N; the saldo of N uses them too. `comunale-2026.json` is generated by
+`scripts/data/build_comunale_surtax.py` from the MEF *elenco generale*
+CSV of 2026 and of 2025, downloaded on 27 September 2026 (their sha256 is in
+the file notes). A municipality that published a 2026 delibera has its 2026
+rates (`final`). One that has not yet (`0*` in the list, 4,558 of 7,897 at
+download, Milano, Roma and Torino included) keeps its 2025 rates, which
+stay in force without a new delibera (art. 1 c. 169 L. 296/2006): the row
+has `rates_year: 2025` and an `assumed` record, and its decision is
+`provisional` with the issue `municipal_surtax_prior_year_rates` until the
+table is rebuilt from a later list. A delibera can still be published until
+20 December 2026. Municipalities without a surtax have a zero rate row.
+
+Exemptions for a category of income only (`FLAG_NUOVA` 5 and 6 of the
+list, for example lavoro dipendente up to 12,000 euro) are kept as text in
+`specific_exemptions` and not computed; a row with them is `provisional`
+with the issue `municipal_surtax_specific_exemptions_not_applied`. To
+refresh the table, download both lists and run the script as its docstring
+shows; a row it cannot read stops the build.
 
 ### Tax credit decisions
 

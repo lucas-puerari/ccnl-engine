@@ -23,7 +23,13 @@ recorded as `assumed` are:
 | `inps/data/2026-artigianato.json` | `inps` | Aggregator rates; INPS circular not retrieved |
 | `inps/data/2026-edilizia.json` | `inps` | Proxy values from a 1998 rate structure |
 | `inps/data/2026-pubblica-amministrazione.json` | `apprentice` | Schema placeholder |
-| `surtax/data/regionale-2026.json` | table | Publisher named, no document or date |
+| `surtax/data/comunale-2026.json` | rows with `rates_year: 2025` | No 2026 delibera in the MEF list of 27 September 2026; 2025 rates carried forward |
+| `surtax/data/comunale-2026.json` | A112 Airuno, A785 Bentivoglio | Third band of the MEF list repeats the second; read as 28,000.01-50,000 |
+
+The regional table is `derived` row by row from the MEF 2026 pages (URL and
+publication date per row, retrieved on 27 September 2026); the municipal
+table is `derived` from the MEF 2026 CSV list and is regenerated with
+`scripts/data/build_comunale_surtax.py`.
 
 ---
 
@@ -47,7 +53,10 @@ Primary sources to check against:
 - INPS: the annual INPS circulars per sector (Circ. 6/2026 for the IVS
   ceiling and rates, Circ. 9/2026 for domestic work), D.Lgs. 148/2015 for
   CIGO, CIGS and FIS.
-- Surtax: the MEF tables of the addizionale regionale and comunale.
+- Surtax: the MEF pages of the addizionale regionale
+  (`addregirpef.php?reg=NN&anno=2026`, the URL of each row) and the
+  *elenco generale* CSV of the addizionale comunale
+  (`addirpef_newDF/download/download.php?anno=2026`).
 
 ---
 

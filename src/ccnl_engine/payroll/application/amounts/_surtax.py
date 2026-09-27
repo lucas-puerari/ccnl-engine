@@ -202,6 +202,7 @@ def run_surtax(inp: _AmountsInput, taxable: Decimal, irpef_due: Decimal) -> RunS
         comune_belfiore=inp.comune_belfiore,
         irpef_due=irpef_due,
         at_conguaglio=inp.conguaglio,
+        family_composition=inp.family_composition,
     )
     if not inp.conguaglio:
         return RunSurtax(
