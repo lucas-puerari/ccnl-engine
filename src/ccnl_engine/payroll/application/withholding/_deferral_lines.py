@@ -21,6 +21,10 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import EmployeeWithholdingItem
 from ccnl_engine.payroll.domain.remittance import POST_CONGUAGLIO_WITHHOLDING
 from ccnl_engine.payroll.domain.shortfall_deferral import DEFERRAL_MONTHLY_RATE
+from ccnl_engine.payroll.service.withholding_law import (
+    WithholdingTopic,
+    withholding_rule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.period._context import RunContext
@@ -41,7 +45,6 @@ __all__ = [
 
 CAPABILITY = "shortfall_deferral"
 _WITHHOLDING = "employee_withholding_item"
-_RULE = "dpr600-1973-art23-c3"
 _ZERO = Decimal(0)
 
 
@@ -53,15 +56,17 @@ def deferral_decision(
     status: CalculationStatus = CalculationStatus.FINAL,
 ) -> CalculationDecision:
     rules = ctx.contract.year_rules
+    law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
     return CalculationDecision(
         capability=CAPABILITY,
         status=status,
         reason_code=reason,
-        rule=_RULE,
+        rule=law.rule,
         rule_version=(
             str(rules.year) if rules.ruleset is None else rules.ruleset.version
         ),
         inputs=inputs,
+        source=law.source,
         amount=amount,
     )
 
@@ -117,13 +122,14 @@ def unrecovered_deferral(
         {"origin_tax_year": str(deferred.tax_year)},
         CalculationStatus.PROVISIONAL,
     )
+    law = withholding_rule(WithholdingTopic.CONGUAGLIO, ctx.contract.year_rules.year)
     issue = CalculationIssue(
         code="deferred_shortfall_unrecovered",
         message=(
             f"shortfall_deferral: {deferred.irpef} IRPEF of the conguaglio "
             f"{deferred.tax_year} deferred on written request was not withheld "
-            f"by the end of {deferred.withheld_in} or of the employment; art. "
-            "23 c. 3 DPR 600/1973 requires the amount to be communicated to "
+            f"by the end of {deferred.withheld_in} or of the employment; "
+            f"{law.citation} requires the amount to be communicated to "
             "the worker, who pays it by 15 January of the next year"
         ),
         status=CalculationStatus.PROVISIONAL,

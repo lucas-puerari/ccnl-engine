@@ -34,8 +34,12 @@ def verify_ruleset_hash(payload: dict[str, Any], filename: str = "<unknown>") ->
         raise DataIntegrityError(
             msg,
             remediation=(
-                "Re-run scripts/ci/rehash_ccnl.py to regenerate the "
-                "source_hash for the modified file."
+                "Regenerate the source_hash of the modified file: run "
+                "scripts/docs/rehash_ccnl.py for the CCNL files, "
+                "scripts/data/assign_rule_provenance.py for the fiscal files "
+                "it lists, or set it to "
+                "ccnl_engine.provenance.domain.ruleset_identity.source_hash "
+                "of the payload."
             ),
         )
 

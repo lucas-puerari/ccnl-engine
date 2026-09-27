@@ -9,7 +9,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "c848f92fbe639ad346be350396747a2b31e9267019f4a4e1bf66cf1de9be659e",
+    "source_hash": "0c94777a701362fad912254064fc2039826dc1cf5fa0ad4b60069bb8714aef96",
     "source_type": "estimated"
   },
   "irpef_brackets": [
@@ -189,12 +189,12 @@
           "document_id": "dlgs-252-2005",
           "title": "D.Lgs. 252/2005, disciplina delle forme pensionistiche complementari",
           "kind": "legge",
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252"
+          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8"
         },
-        "section": "art. 8 c. 4, last period (as amended by L. 199/2025); art. 16 c. 1",
+        "section": "art. 8 c. 4, last period (added by L. 199/2025 art. 1 c. 201 lett. a) n. 1); art. 16 c. 1",
         "quote": "A decorrere dal periodo d'imposta 2026, il limite di cui al primo periodo è innalzato a euro 5.300."
       },
-      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR."
+      "note": "deduction_cap: art. 8 c. 4 D.Lgs. 252/2005, via art. 10 c. 1 lett. e-bis and art. 51 c. 2 lett. h TUIR; the TFR paid to the fund does not count. solidarity_rate: art. 16 c. 1 D.Lgs. 252/2005, the 10% contribution of art. 9-bis D.L. 103/1991 (conv. L. 166/1991) on the employer contributions other than the TFR. Quote checked on 2026-09-27 against the Normattiva text of art. 8 in force from 1-1-2026 (https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8), whitespace normalised and the '((' '))' amendment markers removed: identical; the sentence added by the Gazzetta Ufficiale text of L. 199/2025 art. 1 c. 201 lett. a) n. 1 (https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.codiceRedazionale=26A00149&art.dataPubblicazioneGazzetta=2026-01-21&art.flagTipoArticolo=0&art.idArticolo=1&art.idGruppo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.progressivo=3&art.versione=1) is the same except for the accent spelling (e' for è). Not checked by a named reviewer."
     }
   }
 }

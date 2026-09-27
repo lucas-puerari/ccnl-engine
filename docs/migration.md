@@ -1,5 +1,19 @@
 # Migration guide
 
+## Withholding rule cited per tax year
+
+Art. 23 D.P.R. 600/1973 is in force until 31 December 2026; from 1 January
+2027 its rules are art. 33 of the testo unico of D.Lgs. 33/2025 (art. 243 c.
+1 as amended by D.L. 200/2025 art. 4 c. 4), with renumbered commi. The
+decisions and messages that cite it now take the rule of the tax year they
+compute. No amount changes.
+
+| Change | What to do |
+|---|---|
+| `withholding_shortfall` and `shortfall_deferral` decisions carry a `source` (art. 23 c. 3 DPR 600/1973 for 2026, art. 33 c. 4 D.Lgs. 33/2025 from 2027) | Nothing for 2026: the rule id stays `dpr600-1973-art23-c3`; from 2027 it is `dlgs33-2025-art33-c4` |
+| The `withholding_shortfall_unrecovered` and `deferred_shortfall_unrecovered` issues, the household-employer `InvalidInputError` and the `foreign_tax_credit` component `fonte` cite the rule of the tax year | Match on the issue code, not on the message text |
+| The source URL of art. 23 c. 1 DPR 600/1973 pins the version in force until 31 December 2026 (`!vig=2026-12-31`); art. 33 D.Lgs. 33/2025 points to Normattiva | Nothing |
+
 ## Accrual threshold and overtime multiplier from the CCNL data
 
 `OvertimeEvent.multiplier` no longer defaults to `1.25`. Without it the

@@ -98,9 +98,10 @@ withheld on the next pay periods (see
 [Written deferral of the year-end shortfall](#written-deferral-of-the-year-end-shortfall)).
 The statute does
 not state how a shortfall found before the conguaglio is spread: taking it
-on the next run is the engine's choice. Art. 33 c. 1, which makes the
-worker pay the withholding that finds no cash, is written for values in
-kind and is not used here.
+on the next run is the engine's choice. Art. 23 c. 1, second sentence
+(art. 33 c. 1 D.Lgs. 33/2025 from 2027), which makes the worker pay the
+withholding that finds no cash, is written for values in kind and is not
+used here.
 
 Metalmeccanico C3, 160 absence hours at 12.50 EUR in January 2026: the pay
 left after INPS is 143.25 EUR, the IRPEF share is 162.33 EUR; January

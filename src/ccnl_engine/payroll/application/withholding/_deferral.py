@@ -153,7 +153,7 @@ def defer_shortfall(
             capped,
             shortfall=left,
             decisions=(*capped.decisions, decision),
-            issues=(unrecovered_issue(left),) if left.total else (),
+            issues=(unrecovered_issue(left, year),) if left.total else (),
         ),
         deferred,
     )

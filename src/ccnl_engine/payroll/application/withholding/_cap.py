@@ -5,7 +5,8 @@ contributions and the other deductions, e.g. when unpaid absences take most
 of the monthly pay.  The withholding agent withholds what the pay covers and
 takes the rest on the next runs of the tax year: the cumulative method of the
 conguaglio settles the tax on the whole year (art. 23 c. 3 DPR 600/1973,
-in force for 2026; art. 33 c. 4 D.Lgs. 33/2025 from 1 January 2027).
+in force for 2026; art. 33 c. 4 D.Lgs. 33/2025 from 1 January 2027, see
+:mod:`~ccnl_engine.payroll.service.withholding_law`).
 The credit recoveries of the run (``CREDIT_RECOVERIES`` lines) are taken
 first, then the IRPEF and the surtax from what is left.  The carried
 amount is withheld in full on the next run, before any new share.  A
@@ -38,6 +39,10 @@ from ccnl_engine.payroll.domain.decisions import (
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
+from ccnl_engine.payroll.service.withholding_law import (
+    WithholdingTopic,
+    withholding_rule,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
@@ -55,7 +60,6 @@ __all__ = [
 
 _ZERO = Decimal(0)
 CAPABILITY = "withholding_shortfall"
-_RULE = "dpr600-1973-art23-c3"
 
 
 def ends_in_year(period: EmploymentPeriod | None, tax_year: int) -> bool:
@@ -124,19 +128,26 @@ class CappedWithholding:
     recovery_adjustment: Decimal = _ZERO
 
 
-def unrecovered_issue(shortfall: WithholdingShortfall) -> CalculationIssue:
+def unrecovered_issue(
+    shortfall: WithholdingShortfall, tax_year: int
+) -> CalculationIssue:
     """Return the provisional issue of a shortfall left after the last slot.
+
+    Args:
+        shortfall: What the tax year leaves not withheld.
+        tax_year: Tax year of the conguaglio, whose rule the issue cites.
 
     Returns:
         The ``withholding_shortfall_unrecovered`` issue.
     """
+    law = withholding_rule(WithholdingTopic.CONGUAGLIO, tax_year)
     return CalculationIssue(
         code="withholding_shortfall_unrecovered",
         message=(
             f"withholding_shortfall: {shortfall.irpef} IRPEF, "
             f"{shortfall.surtax} surtax and {shortfall.credit_recovery} credit "
             "recovery of the tax year were not withheld for lack of pay; "
-            "art. 23 c. 3 DPR 600/1973 requires the amount to be "
+            f"{law.citation} requires the amount to be "
             "communicated to the worker, who pays it by 15 January of the "
             "next year unless a written deferral is agreed"
         ),
@@ -193,11 +204,12 @@ def cap_withholding(
     adjustment = run_recovery - recovered
     if carried_in.total == _ZERO and shortfall.total == _ZERO:
         return CappedWithholding(capped, shortfall)
+    law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
     decision = CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,
         reason_code=("withholding_capped" if shortfall.total else "shortfall_withheld"),
-        rule=_RULE,
+        rule=law.rule,
         rule_version=(
             str(rules.year) if rules.ruleset is None else rules.ruleset.version
         ),
@@ -208,7 +220,12 @@ def cap_withholding(
             "credit_recovery_due": recovery_due,
             "carried_in": carried_in.total,
         },
+        source=law.source,
         amount=shortfall.total,
     )
-    issues = (unrecovered_issue(shortfall),) if last_slot and shortfall.total else ()
+    issues = (
+        (unrecovered_issue(shortfall, rules.year),)
+        if last_slot and shortfall.total
+        else ()
+    )
     return CappedWithholding(capped, shortfall, (decision,), issues, adjustment)

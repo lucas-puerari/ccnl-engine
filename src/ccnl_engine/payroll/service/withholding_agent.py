@@ -27,10 +27,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
-from ccnl_engine.provenance.domain.source import (
-    SourceDocument,
-    SourceKind,
-    SourceLocation,
+from ccnl_engine.payroll.service.withholding_law import (
+    WithholdingTopic,
+    withholding_rule,
 )
 
 if TYPE_CHECKING:
@@ -57,42 +56,7 @@ PAYROLL_TAX_CAPABILITIES = (
     "addizionale_comunale",
 )
 
-#: First tax year of the testo unico of D.Lgs. 33/2025 (art. 243).
-_TESTO_UNICO_FROM = 2027
 _ZERO = Decimal(0)
-
-_DPR_600 = SourceLocation(
-    source_document=SourceDocument(
-        document_id="dpr-600-1973",
-        title="D.P.R. 29 settembre 1973, n. 600",
-        kind=SourceKind.DPR,
-        url=(
-            "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:"
-            "decreto.del.presidente.della.repubblica:1973-09-29;600~art23"
-        ),
-    ),
-    section="art. 23 c. 1",
-)
-_DLGS_33 = SourceLocation(
-    source_document=SourceDocument(
-        document_id="dlgs-33-2025",
-        title=("D.Lgs. 24 marzo 2025, n. 33, testo unico versamenti e riscossione"),
-        kind=SourceKind.DLGS,
-        url="https://www.gazzettaufficiale.it/eli/id/2025/03/26/25G00044/sg",
-    ),
-    section="art. 33 c. 1",
-)
-
-
-def _rule(tax_year: int) -> tuple[str, SourceLocation]:
-    """Return the rule id and source listing the withholding agents.
-
-    Returns:
-        Art. 33 D.Lgs. 33/2025 from 2027, art. 23 D.P.R. 600/1973 before.
-    """
-    if tax_year >= _TESTO_UNICO_FROM:
-        return "dlgs33-2025-art33-c1", _DLGS_33
-    return "dpr600-1973-art23-c1", _DPR_600
 
 
 def not_withholding_agent_decision(
@@ -111,15 +75,15 @@ def not_withholding_agent_decision(
         A final decision with reason :data:`NOT_WITHHOLDING_AGENT` and a
         nil amount.
     """
-    rule, source = _rule(tax_year)
+    law = withholding_rule(WithholdingTopic.AGENTS, tax_year)
     return CalculationDecision(
         capability=capability,
         status=CalculationStatus.FINAL,
         reason_code=NOT_WITHHOLDING_AGENT,
-        rule=rule,
+        rule=law.rule,
         rule_version=str(tax_year),
         inputs=inputs or {},
-        source=source,
+        source=law.source,
         amount=_ZERO,
     )
 
