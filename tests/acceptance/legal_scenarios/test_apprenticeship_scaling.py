@@ -124,8 +124,9 @@ def test_igiene_ambientale_pays_edr_and_integrativa_in_full() -> None:
     """Igiene Ambientale (Utilitalia) level D1, track ``30m-80-90``, month 0.
 
     The bundled CCNL records Art. 14 punto 8: the indennità integrativa of
-    Art. 32 is paid in full from the first training period; the EDR is
-    treated the same way.
+    Art. 32 is paid in full from the first training period.  Art. 14 does
+    not cite the EDR: its full value rests on the bundled flag, not on a
+    text checked here.
 
     Steps (level D1, March 2026, bundled salary table):
 

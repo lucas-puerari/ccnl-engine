@@ -296,7 +296,9 @@ installments.
 The other decisions a run can record are `worker_category` (the category
 used and its origin: `declared` on the employment or `fixed_by_level`),
 `seniority` (`increments_applied` or `no_increment_due`, only when the
-months of service are given), `family_deductions` (`deductions_applied` or
+months of service are given), `apprenticeship_scaling` (`percentage_applied`
+with the percentage and the scaled and unscaled components, only for a
+percentage apprenticeship track), `family_deductions` (`deductions_applied` or
 `no_deduction_due`, only with a family composition), `bonus_pdr`
 (`substitute_tax_applied` or `annual_limit_reached`, only for a bonus routed
 to the PdR substitute tax) and the substitute tax regimes described in
