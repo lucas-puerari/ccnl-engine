@@ -29,6 +29,7 @@ nav = [
     { "Correctness layers" = "trust/correctness.md" },
     { "Readiness"         = "trust/readiness.md" },
     { "Provenance"        = "trust/provenance.md" },
+    { "Decisions"         = "trust/decisions.md" },
     { "Confidence"        = "trust/confidence.md" },
     { "Data operations"   = "trust/data-operations.md" },
   ]},

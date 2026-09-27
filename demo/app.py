@@ -592,6 +592,7 @@ def compute_salary(
                     "capability": d.capability,
                     "status": str(d.status),
                     "reason_code": d.reason_code,
+                    "origin": str(d.origin),
                 }
                 for d in result.decisions
             ],

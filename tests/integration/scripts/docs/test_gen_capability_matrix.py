@@ -40,6 +40,20 @@ def test_label(status: CapabilityStatus, counts: dict[str, int], label: str) -> 
     assert capability_label(entry, counts) == label
 
 
+@pytest.mark.parametrize(
+    ("status", "label"),
+    [
+        (CapabilityStatus.COMPUTED, "caller-supplied"),
+        (CapabilityStatus.PARTIALLY_COMPUTED, "caller-supplied"),
+        (CapabilityStatus.NOT_COMPUTED, "unavailable"),
+    ],
+)
+def test_caller_supplied_label(status: CapabilityStatus, label: str) -> None:
+    """A capability computed from caller values is labelled so, not verified."""
+    entry = CapabilityEntry("overtime", status)
+    assert capability_label(entry, {"verified": 1}) == label
+
+
 def test_rows_show_rule_counts_by_status() -> None:
     """A row counts the rules by status; no rules reads as none bundled."""
     catalog = load_capability_catalog(latest_catalog_year())

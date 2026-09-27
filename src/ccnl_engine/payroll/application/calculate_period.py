@@ -67,7 +67,7 @@ def calculate_period(
     ctx = build_context(request, repo, resolver)
     events = run_events(ctx)
     amounts = run_amounts(ctx, events.totals)
-    decisions = run_decisions(ctx, events.totals, amounts.amounts)
+    decisions = run_decisions(ctx, events.totals, amounts)
     recoveries = run_credits(ctx, amounts.tax_computation)
     posted = post_run(
         ctx,

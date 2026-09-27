@@ -85,6 +85,11 @@ class CapabilityReport:
             executed capability read.  It does not change :attr:`status`
             or :attr:`confidence`, which describe engine coverage; a
             ``missing`` source is reported as an incomplete result issue.
+        caller_supplied: Capabilities whose amounts rest on values the
+            caller supplied in place of a rule, each with the names of the
+            event fields it took them from.  Such a value has no bundled
+            source, so it is never ``verified`` or ``derived``; like
+            :attr:`rule_sources`, it does not change :attr:`status`.
     """
 
     catalog_year: int
@@ -92,10 +97,16 @@ class CapabilityReport:
     rule_sources: Mapping[str, ProvenanceStatus] = field(
         default_factory=lambda: MappingProxyType({})
     )
+    caller_supplied: Mapping[str, tuple[str, ...]] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
 
     def __post_init__(self) -> None:  # noqa: D105
         object.__setattr__(
             self, "rule_sources", MappingProxyType(dict(self.rule_sources))
+        )
+        object.__setattr__(
+            self, "caller_supplied", MappingProxyType(dict(self.caller_supplied))
         )
 
     @classmethod

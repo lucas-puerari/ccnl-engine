@@ -79,6 +79,10 @@ is not applied and an issue says why. See
 `reason_code`, the normalized `inputs` it read, the rule and rule version
 applied, the normative source and the amount. A capability that ran and found
 nothing due still records a decision with amount 0.
+Every posted amount rests on at least one decision: the base stages (pay
+chain, INPS, TFR, IRPEF) record one each, and a rate or amount the caller
+supplies in place of a rule is recorded with origin `caller_supplied`. See
+[Decisions](decisions.md).
 
 ### 3. Capability report
 

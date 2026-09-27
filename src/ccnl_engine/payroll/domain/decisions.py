@@ -5,7 +5,8 @@ cannot fully decide (an unknown table, a missing fact, an unsupported case)
 records a :class:`CalculationIssue`; the result status is the worst status
 implied by its issues.  A :class:`CalculationDecision` records what one
 capability actually decided, from which normalized inputs and under which
-rule version.
+rule version.  Its :class:`DecisionOrigin` tells a rule the engine applied
+from the bundle or the law from a value the caller supplied in its place.
 """
 
 from __future__ import annotations
@@ -22,7 +23,12 @@ if TYPE_CHECKING:
 
     from ccnl_engine.provenance.domain.source import SourceLocation
 
-__all__ = ["CalculationDecision", "CalculationIssue", "CalculationStatus"]
+__all__ = [
+    "CalculationDecision",
+    "CalculationIssue",
+    "CalculationStatus",
+    "DecisionOrigin",
+]
 
 _CODE_PATTERN = re.compile(r"[a-z][a-z0-9_]*")
 
@@ -65,6 +71,20 @@ class CalculationStatus(StrEnum):
             :attr:`FINAL` when ``statuses`` is empty.
         """
         return max(statuses, key=_SEVERITY.__getitem__, default=cls.FINAL)
+
+
+class DecisionOrigin(StrEnum):
+    """Where the rule behind a decision comes from.
+
+    Attributes:
+        ENGINE: The engine applied a rule of the bundled data or of the law.
+        CALLER_SUPPLIED: The caller supplied a value (a rate, a multiplier,
+            an amount) that stands in for a rule the engine would otherwise
+            apply; no bundled source backs it.
+    """
+
+    ENGINE = "engine"
+    CALLER_SUPPLIED = "caller_supplied"
 
 
 _SEVERITY: dict[CalculationStatus, int] = {
@@ -127,11 +147,14 @@ class CalculationDecision:
         source: Normative source of the rule, when recorded.
         amount: Amount produced by the decision; ``None`` when the decision
             yields no amount or the amount is unknown.
+        origin: Whether the engine applied the rule or the caller supplied
+            it.  A caller-supplied decision cites no source.
 
     Raises:
         ValueError: When ``reason_code`` is not lower snake case, when
-            ``capability``, ``rule`` or ``rule_version`` is empty, or when
-            ``amount`` is not finite.
+            ``capability``, ``rule`` or ``rule_version`` is empty, when
+            ``amount`` is not finite, or when a caller-supplied decision
+            cites a source.
     """
 
     capability: str
@@ -144,6 +167,7 @@ class CalculationDecision:
     )
     source: SourceLocation | None = None
     amount: Decimal | None = None
+    origin: DecisionOrigin = DecisionOrigin.ENGINE
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_text(self.capability, "capability")
@@ -152,5 +176,8 @@ class CalculationDecision:
         _require_text(self.rule_version, "rule_version")
         if self.amount is not None and not self.amount.is_finite():
             msg = f"amount must be finite; got {self.amount}"
+            raise ValueError(msg)
+        if self.origin is DecisionOrigin.CALLER_SUPPLIED and self.source is not None:
+            msg = "a caller-supplied decision cannot cite a source"
             raise ValueError(msg)
         object.__setattr__(self, "inputs", MappingProxyType(dict(self.inputs)))

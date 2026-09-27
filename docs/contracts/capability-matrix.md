@@ -17,6 +17,7 @@ the provenance records of the payable rules and the `coverage` blocks of the
 | Label | Meaning |
 |---|---|
 | verified | Implemented; a named person checked every bundled rule it reads |
+| caller-supplied | Computed from caller rates or amounts that stand in for a rule |
 | implemented | Computed; the bundled rules it reads, if any, cite a source |
 | simplified | Computed partially, or reads an `assumed` or `missing` rule |
 | unavailable | Not computed by the engine |
@@ -39,8 +40,8 @@ formulas or caller-declared amounts.
 | `maternity_leave` | Indennità maternità INPS (caller-declared) | partially_computed | simplified | none bundled |
 | `workplace_injury` | Indennità infortuno INAIL (caller-declared) | partially_computed | simplified | none bundled |
 | `termination_residual_leave` | Monetizzazione ferie residue (caller-declared) | partially_computed | simplified | none bundled |
-| `termination_tfr` | Liquidazione TFR (caller-declared) | partially_computed | simplified | none bundled |
-| `contract_renewal_arrears` | Arretrati rinnovo contratto (caller-declared) | partially_computed | simplified | none bundled |
+| `termination_tfr` | Liquidazione TFR (caller-declared) | partially_computed | caller-supplied | none bundled |
+| `contract_renewal_arrears` | Arretrati rinnovo contratto (caller-declared) | partially_computed | caller-supplied | none bundled |
 | `una_tantum` | Una tantum (caller-declared) | partially_computed | simplified | none bundled |
 | `personal_withholdings` | Ritenute personali (caller-declared) | partially_computed | simplified | none bundled |
 | `additional_irpef_base` | Base aggiuntiva IRPEF (caller-declared) | partially_computed | simplified | none bundled |
@@ -60,19 +61,19 @@ formulas or caller-declared amounts.
 | `addizionale_comunale` | Addizionale comunale IRPEF | computed | implemented | 0 / 1 / 0 / 0 |
 | `family_deductions` | Detrazioni familiari a carico | computed | implemented | 0 / 3 / 0 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 (interessi mutuo e oneri) | partially_computed | simplified | none bundled |
-| `overtime` | Lavoro straordinario e supplementare | computed | implemented | none bundled |
-| `night_work` | Lavoro notturno | computed | implemented | none bundled |
-| `holiday_work` | Lavoro festivo | computed | implemented | none bundled |
-| `shift_work` | Lavoro a turni | computed | implemented | none bundled |
-| `absence` | Assenze ingiustificate | computed | implemented | none bundled |
-| `leave` | Ferie e permessi ROL | computed | implemented | none bundled |
-| `sickness` | Malattia | computed | implemented | none bundled |
+| `overtime` | Lavoro straordinario e supplementare | computed | caller-supplied | none bundled |
+| `night_work` | Lavoro notturno | computed | caller-supplied | none bundled |
+| `holiday_work` | Lavoro festivo | computed | caller-supplied | none bundled |
+| `shift_work` | Lavoro a turni | computed | caller-supplied | none bundled |
+| `absence` | Assenze ingiustificate | computed | caller-supplied | none bundled |
+| `leave` | Ferie e permessi ROL | computed | caller-supplied | none bundled |
+| `sickness` | Malattia | computed | caller-supplied | none bundled |
 | `fringe_benefit` | Fringe benefit (informativo) | computed | implemented | 0 / 1 / 0 / 0 |
 | `welfare` | Welfare aziendale (informativo) | computed | implemented | none bundled |
 | `bonus_pdr` | Premio di risultato PDR (informativo) | computed | implemented | 0 / 1 / 0 / 0 |
 | `rinnovo_substitute_tax` | Imposta sostitutiva aumenti da rinnovo L. 199/2025 art. 1 c. 7 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
 | `notte_festivi_turni_substitute_tax` | Imposta sostitutiva notturno, festivo e turni L. 199/2025 art. 1 cc. 10-11 (reddito precedente dichiarato) | partially_computed | simplified | 0 / 1 / 0 / 0 |
-| `bilateral_funds` | Fondi bilaterali (informativo) | computed | implemented | none bundled |
+| `bilateral_funds` | Fondi bilaterali (informativo) | computed | caller-supplied | none bundled |
 | `pension_fund_contribution` | Previdenza complementare CCNL su adesione (misure compensative D.Lgs. 252/2005 art. 10 non calcolate) | partially_computed | simplified | 0 / 12 / 2 / 0 |
 
 ## CCNL coverage

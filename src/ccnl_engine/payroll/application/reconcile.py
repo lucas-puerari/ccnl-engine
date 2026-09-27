@@ -33,6 +33,7 @@ Invariants, by module:
   ``irpef_annual_reconciliation``.
 - ``untaxed``: ``non_agent_untaxed``.
 - ``remittance``: ``remittance_code_consistent``.
+- ``attribution``: ``amount_has_decision``.
 """
 
 from __future__ import annotations
@@ -44,6 +45,9 @@ from ccnl_engine.payroll.application.invariants._types import (
     InvariantCode,
     ReconciliationViolation,
     RunFacts,
+)
+from ccnl_engine.payroll.application.invariants.attribution import (
+    check_amount_has_decision,
 )
 from ccnl_engine.payroll.application.invariants.decisions import (
     check_decision_provenance,
@@ -158,6 +162,7 @@ def reconcile(
     violations.extend(check_irpef_annual_reconciliation(result, opening, run_facts))
     violations.extend(check_non_agent_untaxed(result, run_facts))
     violations.extend(check_remittance_code_consistent(result))
+    violations.extend(check_amount_has_decision(result))
     return ReconciliationResult(violations=tuple(violations))
 
 

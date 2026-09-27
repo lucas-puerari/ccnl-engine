@@ -27,6 +27,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "ContributableHours",
     "ContributionCeilingStatus",
     "DataIntegrityError",
+    "DecisionOrigin",
     "DeferredShortfall",
     "Dependent",
     "DependentRelationship",
