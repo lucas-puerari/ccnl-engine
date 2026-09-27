@@ -34,7 +34,8 @@ gross of the withholding slots still to come, minus the employee INPS on
 them.  On the last slot the projection is the final taxable income.
 One-off events (overtime, bonuses) are added on their own taxable amount
 after deducting the INPS due on them.  Non-cash benefits may contribute to
-the taxable base when the exempt threshold is exceeded (see `fringe` below).
+the taxable base when the exempt threshold is exceeded (see
+[fringe benefit decision](#fringe-benefit-decision-decisione-sul-fringe-benefit)).
 
 ### withheld (ritenuta)
 
@@ -185,6 +186,25 @@ provinces.  A malformed code is invalid input, not an unknown table.
 
 `CalculationDecision`, `REGION_CODES`, `PeriodCalculationRequest.regione`,
 `PeriodCalculationRequest.comune_belfiore`
+
+### fringe benefit decision (decisione sul fringe benefit)
+
+The `CalculationDecision` (`fringe_benefit`) of one `FringeEvent`.  The
+annual threshold is 1,000 EUR, 2,000 EUR when the worker declared a fiscally
+dependent child (`PeriodFacts.has_dependent_children`), for tax years 2025 to
+2027 (L. 207/2024 art. 1 cc. 390-391, derogating TUIR art. 51 c. 3).  The
+threshold is all or nothing: once the year total exceeds it, the whole
+amount of the year is taxable for IRPEF and INPS, not only the excess (AdE
+circ. 4/E of 16 May 2025, par. 2.7).  Reasons: `within_threshold` (amount
+0), `above_threshold` (this benefit is taxable) and
+`above_threshold_retroactive` (the benefit that crosses the threshold also
+taxes the earlier exempt amounts of the year).  Inputs: `threshold_annual`,
+`dependent_children`, `ytd_before`, `ytd_total`, `taxed_before`,
+`retroactive_amount`; the amount is the taxable amount of the benefit.  The
+`FringeBenefitItem` carries the same `threshold_annual`, `ytd_total` and
+`taxable_amount`.
+
+`CalculationDecision`, `FringeEvent`, `FringeBenefitItem`, `FringeYtd`
 
 ### preferential tax regime (regime di imposta sostitutiva)
 

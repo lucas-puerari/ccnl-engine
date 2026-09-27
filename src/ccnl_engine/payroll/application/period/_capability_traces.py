@@ -92,8 +92,9 @@ def build_traces(
 
     The core stages are computed unless their decisions say the employer
     does not compute them (not a withholding agent, for ``irpef``).  An
-    event feature is computed when
-    one of its events had an effect, skipped otherwise.  Every other feature
+    event feature follows its decisions when it took any (e.g.
+    ``fringe_benefit``); otherwise it is computed when one of its events
+    had an effect, skipped otherwise.  Every other feature
     follows its decisions: final is computed, provisional is partial,
     incomplete or rejected is unresolved; with no decision it takes its
     default (not applicable, or skipped for ``bonus_pdr``).  A capability
@@ -112,21 +113,26 @@ def build_traces(
     traces = [
         DecisionTrace(f, decided.get(f, TraceState.COMPUTED)) for f in _CORE_FEATURES
     ]
+    events = tuple(EVENT_FEATURES.values())
     traces.extend(
         DecisionTrace(
             f,
-            TraceState.COMPUTED if f in executed_features else TraceState.SKIPPED,
+            decided.get(
+                f,
+                TraceState.COMPUTED if f in executed_features else TraceState.SKIPPED,
+            ),
         )
-        for f in EVENT_FEATURES.values()
+        for f in events
     )
     traces.extend(
         DecisionTrace(f, decided.get(f, default))
         for f, default in _DECISION_FEATURES.items()
     )
+    traced = {*_CORE_FEATURES, *events, *_DECISION_FEATURES}
     traces.extend(
         DecisionTrace(capability, state)
         for capability, state in decided.items()
-        if capability not in _DECISION_FEATURES and capability not in _CORE_FEATURES
+        if capability not in traced
     )
     return tuple(traces)
 

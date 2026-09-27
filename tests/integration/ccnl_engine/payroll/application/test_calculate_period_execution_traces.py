@@ -11,6 +11,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.allocate_events import _process_events
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.application.period._run_decisions import (
     worker_category_decision,
@@ -56,6 +57,9 @@ _COMMERCIO = "commercio-confcommercio.json"
 _FISE = "servizi-postali-appalto-fise.json"
 _RESOLVER = load_policy_resolver()
 _PDR = load_variable_pay_rules(_YEAR).pdr
+_FRINGE = fringe_threshold_of(
+    load_variable_pay_rules(_YEAR).fringe_benefit, _YEAR, with_children=False
+)
 
 
 def _run(
@@ -86,6 +90,7 @@ def _executed(*events: WorkEvent) -> frozenset[str]:
         EffectiveDateContext.from_period(_YEAR, 1, _PAYMENT),
         _RESOLVER,
         PolicyContext(year=_YEAR, as_of=date(_YEAR, 1, 1)),
+        _FRINGE,
     )
     return totals.executed_features
 

@@ -33,7 +33,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `AbsenceEvent` | `hours`, `hourly_rate`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
 | `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Employer-paid sick leave, net of the carenza days; INPS and IRPEF, no TFR |
 | `SicknessCaseEvent` | `case` (a `SicknessCase`) | Sickness episode from which the engine derives the absence deduction, INPS indemnity and employer integration |
-| `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); the exemption threshold is applied cumulatively over the year |
+| `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
@@ -59,6 +59,36 @@ the next runs of the tax year
 ([Fiscal](fiscal.md#pay-that-does-not-cover-the-tax)). A run whose other
 deductions (INPS, substitute tax, recovery installments) exceed the pay
 left still raises `OutOfScopeError` with reason `withholding_shortfall`.
+
+### Fringe benefits
+
+For tax years 2025 to 2027 goods and services granted to the worker are
+exempt from IRPEF and INPS up to 1,000 EUR in the year, or 2,000 EUR when the
+worker has a fiscally dependent child (art. 12 c. 2 TUIR) and declares it to
+the employer with the child's tax code (L. 207/2024 art. 1 cc. 390-391,
+derogating TUIR art. 51 c. 3). Set `PeriodFacts.has_dependent_children` on
+every run of the year once the declaration is made; the engine does not
+derive it from `family_composition`.
+
+The threshold is all or nothing (AdE circ. 4/E of 16 May 2025, par. 2.7): an
+amount equal to the threshold is still exempt, but once the year total
+exceeds it the whole amount of the year is taxable, not only the excess. The
+year total comes from `opening_state.ytd.fringe`, so chain the closing state
+of each run into the next. The benefit that crosses the threshold makes the
+earlier exempt amounts of the year taxable in its run. For example, 600 EUR
+in February is exempt; another 600 EUR in March brings the year to 1,200 EUR
+and makes 1,200 EUR taxable in March; a further 300 EUR in April is taxable
+on its own.
+
+Each `FringeEvent` reports:
+
+- on its `FringeBenefitItem`: `threshold_annual`, `ytd_total` (year total
+  including the benefit) and `taxable_amount` (which can exceed `amount` on
+  the crossing benefit);
+- a `fringe_benefit` decision in `result.decisions`, with reason
+  `within_threshold`, `above_threshold` or `above_threshold_retroactive`,
+  the threshold and the children condition, the year totals, the
+  `retroactive_amount` and the taxable amount as `amount`.
 
 ### Substitute-tax regimes
 

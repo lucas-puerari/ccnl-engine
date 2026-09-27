@@ -104,6 +104,7 @@ def load_variable_pay_rules(year: int) -> VariablePayRules:
         fringe_benefit=FringeBenefitRules(
             threshold_standard=Decimal(str(fb_raw["threshold_standard"])),
             threshold_with_children=Decimal(str(fb_raw["threshold_with_children"])),
+            ruleset=_as_ruleset(raw),
             provenance=_provenance_of(fb_raw),
         ),
         pdr=PdRRules(

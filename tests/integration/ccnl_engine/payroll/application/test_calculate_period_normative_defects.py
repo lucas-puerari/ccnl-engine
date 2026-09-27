@@ -18,8 +18,8 @@ Findings:
 Sources:
   L. 199/2025 art. 1 co. 9: PdR substitute rate 1% up to 5,000 EUR
   INPS circ. 4/2026: 2026 IVS massimale 122,295 EUR; 1% threshold 56,224 EUR
-  TUIR art. 51 co. 3-bis: fringe-benefit threshold; entire annual cumulated
-    amount becomes taxable when threshold is crossed
+  L. 207/2024 art. 1 c. 390 (derogating TUIR art. 51 c. 3): fringe-benefit
+    threshold; entire annual cumulated amount becomes taxable when crossed
   L. 160/2019 (as amended): somma_esente credit for reddito ≤ 28,000 EUR
 """
 
@@ -200,7 +200,8 @@ def test_taxable_ytd_affects_conguaglio() -> None:
 # ---------------------------------------------------------------------------
 # cross-period fringe retroactive adjustment missing
 #
-# TUIR art. 51 co. 3-bis: when the annual cumulated fringe benefit exceeds
+# L. 207/2024 art. 1 c. 390 (derogating TUIR art. 51 c. 3; AdE circ. 4/E/2025
+# par. 2.7): when the annual cumulated fringe benefit exceeds
 # the threshold, the ENTIRE annual cumulated amount is subject to INPS and
 # IRPEF — including amounts that were previously exempt.  When fringe_ytd=600
 # (exempt month 1) and a second FringeEvent(600) crosses the 1,000 EUR
@@ -212,7 +213,7 @@ def test_taxable_ytd_affects_conguaglio() -> None:
 def test_fringe_retroactive_on_threshold_crossing() -> None:
     """irpef_base must cover the full cumulative fringe when crossing.
 
-    Source: TUIR art. 51 co. 3-bis.  fringe_ytd=600 + FringeEvent(600) =
+    Source: L. 207/2024 art. 1 c. 390.  fringe_ytd=600 + FringeEvent(600) =
     1,200 > 1,000 threshold → irpef_base must equal 1,200 (full retroactive).
     """
     state_after_m1 = PeriodState(
@@ -227,8 +228,7 @@ def test_fringe_retroactive_on_threshold_crossing() -> None:
 
     assert result.benefit_breakdown.irpef_base == Decimal("1200.00"), (
         "irpef_base after threshold crossing must be 1,200 (full cumulative "
-        f"retroactive); got {result.benefit_breakdown.irpef_base}.  "
-        "Currently only the current-period 600 is taxed."
+        f"retroactive); got {result.benefit_breakdown.irpef_base}."
     )
 
 

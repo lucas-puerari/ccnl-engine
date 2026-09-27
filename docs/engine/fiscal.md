@@ -301,8 +301,10 @@ with the percentage and the scaled and unscaled components, only for a
 percentage apprenticeship track), `family_deductions` (`deductions_applied` or
 `no_deduction_due`, only with a family composition), `bonus_pdr`
 (`substitute_tax_applied` or `annual_limit_reached`, only for a bonus routed
-to the PdR substitute tax) and the substitute tax regimes described in
-[Substitute tax regimes](substitute-tax-regimes.md).
+to the PdR substitute tax), `fringe_benefit` (`within_threshold`,
+`above_threshold` or `above_threshold_retroactive`, one per `FringeEvent`,
+see [Fringe benefits](work-rules.md#fringe-benefits)) and the substitute tax
+regimes described in [Substitute tax regimes](substitute-tax-regimes.md).
 
 ## IVS ceiling
 
