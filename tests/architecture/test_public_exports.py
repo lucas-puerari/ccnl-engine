@@ -47,6 +47,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "OpeningBalances",
     "OutOfScopeError",
     "OvertimeEvent",
+    "OvertimeKind",
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",

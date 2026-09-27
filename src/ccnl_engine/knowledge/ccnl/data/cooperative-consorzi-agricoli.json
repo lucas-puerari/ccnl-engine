@@ -1211,6 +1211,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "coop-agricole-ccnl-stesura-2022",
+            "title": "CCNL Cooperative e consorzi agricoli 2019-2023, stesura 3 agosto 2022",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "published_on": "2022-08-03"
+          },
+          "page": "52",
+          "section": "Art. 34, Tredicesima e quattordicesima mensilità",
+          "quote": "La frazione di mese superiore a 15 giorni viene considerata come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-04-01"
+        },
+        "note": "Clause read in the 2022 stesura; the 2024-2027 renewal was not checked for this clause. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1243,7 +1270,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d442e1bd157a1403c438a6cb24a04f3c66930a30e2f3f77d30a23120cdec259",
+    "source_hash": "53b9cf55a47ca106c48f046d94d818c83ea9dec4b7f69017432ff7ff10fe349d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

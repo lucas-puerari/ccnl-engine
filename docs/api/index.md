@@ -95,6 +95,7 @@ from ccnl_engine import (
     HolidayWorkEvent,
     NightShiftEvent,
     OvertimeEvent,
+    OvertimeKind,
     ShiftWorkEvent,
     SickLeaveEvent,
     SicknessCaseEvent,

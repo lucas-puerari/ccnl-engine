@@ -9,7 +9,11 @@ from ccnl_engine.payroll.application.year._extra_month_accrual import (
     non_accruing_days,
     termination_settlements,
 )
-from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+from ccnl_engine.payroll.domain.accrual import (
+    DEFAULT_MONTH_ACCRUAL_RULE,
+    ExtraMonthAccrual,
+    MonthAccrualRule,
+)
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -124,6 +128,7 @@ class YearPlan:
         non_accruing: Days that accrue no extra-month ratei.
         extra_months: Extra-month schedule by ``(run kind, payment month)``.
         settlements: Ratei paid on a run before the termination, by run id.
+        accrual_rule: Month-qualification rule of the CCNL ratei.
     """
 
     schedule: PayrollSchedule
@@ -131,10 +136,17 @@ class YearPlan:
     non_accruing: frozenset[date]
     extra_months: dict[tuple[str, int], ExtraMonthSchedule]
     settlements: dict[str, tuple[ExtraMonthAccrual, ...]]
+    accrual_rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
 
 
-def plan_year(request: YearInput, year_calendar: WorkCalendar) -> YearPlan:
+def plan_year(
+    request: YearInput,
+    year_calendar: WorkCalendar,
+    accrual_rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
+) -> YearPlan:
     """Select the runs of the year and the ratei their requests carry.
+
+    The ratei are counted with ``accrual_rule``, the CCNL rule of the year.
 
     Returns:
         The plan of the year.
@@ -152,7 +164,10 @@ def plan_year(request: YearInput, year_calendar: WorkCalendar) -> YearPlan:
         extra_months={
             (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
         },
-        settlements=termination_settlements(year_calendar, period, non_accruing),
+        settlements=termination_settlements(
+            year_calendar, period, non_accruing, accrual_rule
+        ),
+        accrual_rule=accrual_rule,
     )
 
 
@@ -179,7 +194,11 @@ def run_request(
     return period_input.calculation_request(
         extra_month_accrual=(
             ExtraMonthAccrual.of(
-                extra_sched, year, period, non_accruing_days=plan.non_accruing
+                extra_sched,
+                year,
+                period,
+                non_accruing_days=plan.non_accruing,
+                rule=plan.accrual_rule,
             )
             if extra_sched is not None
             else None

@@ -8,8 +8,10 @@ from the number of payroll runs already closed:
 - the window starts at the hire date when the worker was hired inside it;
 - it stops at the termination date when the employment ends inside it;
 - days of an absence that suspends accrual are not accruing days;
-- a calendar month qualifies when its accruing days reach
-  :attr:`MonthAccrualRule.min_days`.
+- a calendar month qualifies when its accruing days compare with
+  :attr:`MonthAccrualRule.min_days` as :attr:`MonthAccrualRule.comparison`
+  says: the CCNL clause when the bundle has one, otherwise the engine
+  default (at least 15 days).
 """
 
 from __future__ import annotations
@@ -20,30 +22,39 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.compensation import AccrualComparison
+
 if TYPE_CHECKING:
+    from collections.abc import Iterator
+
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.extra_month_schedule import (
         AccrualWindow,
         ExtraMonthKind,
         ExtraMonthSchedule,
     )
+    from ccnl_engine.provenance.domain.chain import RuleProvenance
 
 __all__ = [
+    "DEFAULT_ACCRUAL_RULE_ID",
     "DEFAULT_MONTH_ACCRUAL_RULE",
     "ExtraMonthAccrual",
     "MonthAccrualRule",
     "absence_days",
+    "partial_months",
 ]
 
 _MONTHS_PER_WINDOW = 12
 _SHORTEST_MONTH_DAYS = 28
 _DEFAULT_MIN_DAYS = 15
+#: Rule identifier of the engine default threshold.
+DEFAULT_ACCRUAL_RULE_ID = "engine:default_month_accrual_rule"
 _DEFAULT_SOURCE = (
     "Engine default, not read from CCNL data: a calendar month with at least "
     "15 accruing days counts as a whole month and a shorter fraction is not "
     "counted. This follows the usual CCNL wording on tredicesima and "
-    "quattordicesima ratei; the bundled CCNL files carry no accrual "
-    "threshold, and CCNLs differ (some count only fractions above 15 days)."
+    "quattordicesima ratei; CCNLs differ (some count only fractions above "
+    "15 days), so a CCNL whose clause is in the bundle uses that clause."
 )
 
 
@@ -52,24 +63,46 @@ class MonthAccrualRule:
     """When a calendar month of an accrual window counts as a whole month.
 
     Attributes:
-        min_days: Accruing calendar days a month needs to count, between 1
-            and 28, so a month worked in full always counts.
-        source: Where the rule comes from.
+        min_days: Threshold in accruing calendar days.
+        comparison: ``at_least`` counts a month whose days reach
+            ``min_days``; ``more_than`` one whose days exceed it.
+        source: Where the rule comes from, in words.
+        rule: Identifier of the rule: ``<ruleset>:parameters.accrual_rule``
+            for a CCNL rule, :data:`DEFAULT_ACCRUAL_RULE_ID` for the default.
+        provenance: Provenance of the rule, ``None`` when the caller built
+            it or it is the bare engine default.
 
     Raises:
-        ValueError: When ``min_days`` is outside ``[1, 28]``.
+        ValueError: When a full 28-day month would not count or the
+            threshold is below one day.
     """
 
     min_days: int = _DEFAULT_MIN_DAYS
     source: str = _DEFAULT_SOURCE
+    comparison: AccrualComparison = AccrualComparison.AT_LEAST
+    rule: str = DEFAULT_ACCRUAL_RULE_ID
+    provenance: RuleProvenance | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        if not 1 <= self.min_days <= _SHORTEST_MONTH_DAYS:
+        more_than = self.comparison is AccrualComparison.MORE_THAN
+        lowest, highest = (0, 27) if more_than else (1, _SHORTEST_MONTH_DAYS)
+        if not lowest <= self.min_days <= highest:
             msg = (
-                f"min_days must be between 1 and {_SHORTEST_MONTH_DAYS}; "
-                f"got {self.min_days}"
+                f"min_days must be between {lowest} and {highest} for "
+                f"{self.comparison.value!r}; got {self.min_days}"
             )
             raise ValueError(msg)
+
+    def counts(self, days: int) -> bool:
+        """Return whether a month with ``days`` accruing days counts.
+
+        Returns:
+            ``days >= min_days`` for ``at_least``, ``days > min_days`` for
+            ``more_than``.
+        """
+        if self.comparison is AccrualComparison.MORE_THAN:
+            return days > self.min_days
+        return days >= self.min_days
 
     def qualifying_months(
         self,
@@ -83,7 +116,7 @@ class MonthAccrualRule:
         Each of the 12 calendar months from ``window.nominal_start`` is
         intersected with ``[window.start, min(window.end, ended_on)]``; the
         days of ``non_accruing_days`` in it are removed, and the month
-        counts when the remaining days reach :attr:`min_days`.
+        counts when the remaining days pass :meth:`counts`.
 
         Args:
             window: The accrual window, its start clipped to the hire date.
@@ -93,16 +126,45 @@ class MonthAccrualRule:
         Returns:
             Qualifying months, from 0 to 12.
         """
-        last_day = window.end if ended_on is None else min(window.end, ended_on)
-        year, month = window.nominal_start.year, window.nominal_start.month
-        count = 0
-        for _ in range(_MONTHS_PER_WINDOW):
-            first = max(date(year, month, 1), window.start)
-            last = min(date(year, month, calendar.monthrange(year, month)[1]), last_day)
-            if _accruing_days(first, last, non_accruing_days) >= self.min_days:
-                count += 1
-            year, month = (year + 1, 1) if month == 12 else (year, month + 1)
-        return count
+        months = _month_days(window, ended_on, non_accruing_days)
+        return sum(1 for days, _ in months if self.counts(days))
+
+
+def _month_days(
+    window: AccrualWindow, ended_on: date | None, excluded: frozenset[date]
+) -> Iterator[tuple[int, int]]:
+    """Yield the accruing days and the length of each month of ``window``.
+
+    Yields:
+        ``(accruing days, calendar days of the month)`` for the 12 months.
+    """
+    last_day = window.end if ended_on is None else min(window.end, ended_on)
+    year, month = window.nominal_start.year, window.nominal_start.month
+    for _ in range(_MONTHS_PER_WINDOW):
+        length = calendar.monthrange(year, month)[1]
+        first = max(date(year, month, 1), window.start)
+        last = min(date(year, month, length), last_day)
+        yield _accruing_days(first, last, excluded), length
+        year, month = (year + 1, 1) if month == 12 else (year, month + 1)
+
+
+def partial_months(
+    window: AccrualWindow,
+    *,
+    ended_on: date | None = None,
+    non_accruing_days: frozenset[date] = frozenset(),
+) -> int:
+    """Return the months of ``window`` accrued for part of their days.
+
+    Only these months depend on the threshold of a :class:`MonthAccrualRule`:
+    a month with every day accruing counts and one with none does not,
+    whatever the rule.
+
+    Returns:
+        Months with at least one accruing day and fewer than all of them.
+    """
+    months = _month_days(window, ended_on, non_accruing_days)
+    return sum(1 for days, length in months if 0 < days < length)
 
 
 def _accruing_days(first: date, last: date, excluded: frozenset[date]) -> int:
@@ -133,6 +195,8 @@ class ExtraMonthAccrual:
         ended_on: Last day of employment when it ends inside the window,
             otherwise ``None``.
         rule: The month-qualification rule the months were counted with.
+        partial_months: Months of the window accrued for part of their
+            days, whose counting the threshold of ``rule`` decided.
 
     Raises:
         ValueError: When ``months`` is outside ``[0, 12]`` or
@@ -145,6 +209,7 @@ class ExtraMonthAccrual:
     max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
     ended_on: date | None = None
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
+    partial_months: int = 0
 
     def __post_init__(self) -> None:  # noqa: D105
         if not 0 <= self.months <= _MONTHS_PER_WINDOW:
@@ -197,6 +262,9 @@ class ExtraMonthAccrual:
             max_fraction=schedule.max_fraction,
             ended_on=ended_on,
             rule=rule,
+            partial_months=partial_months(
+                window, ended_on=ended_on, non_accruing_days=non_accruing_days
+            ),
         )
 
 

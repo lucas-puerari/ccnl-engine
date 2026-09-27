@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import effective_calendar
 from ccnl_engine.payroll.application.year._runs import (
     flag_partial_month,
@@ -204,7 +205,7 @@ def calculate_year(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.employment.ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, request.calendar_override)
-    plan = plan_year(request, year_calendar)
+    plan = plan_year(request, year_calendar, month_accrual_rule(ccnl))
     state = opening_of_year(year, request.opening_state)
     results: list[PeriodResult] = []
     for run in plan.schedule.runs:

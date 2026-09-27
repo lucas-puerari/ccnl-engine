@@ -26,7 +26,10 @@ def _knowledge(root: Path, level: dict[str, object]) -> Path:
     """
     ccnl_dir = root / "ccnl" / "data"
     ccnl_dir.mkdir(parents=True)
-    payload = {"levels": [level], "parameters": {}}
+    payload = {
+        "levels": [level],
+        "parameters": {"accrual_rule": {"provenance": _RECORD}},
+    }
     (ccnl_dir / "x.json").write_text(json.dumps(payload), encoding="utf-8")
     for group in ("tax", "inps", "surtax"):
         (root / group / "data").mkdir(parents=True)
@@ -65,7 +68,7 @@ def test_derived_record_passes(tmp_path: Path) -> None:
     """A rule with a located record passes."""
     root = _knowledge(tmp_path, _level(_RECORD))
     assert check_rules(root)
-    assert [rule.status for rule in inventory(root)] == ["derived"]
+    assert [rule.status for rule in inventory(root)] == ["derived", "derived"]
 
 
 def test_bundle_passes_in_rules_mode() -> None:

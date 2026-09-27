@@ -47,6 +47,8 @@ To add period-specific events (overtime, absences, benefits), pass them in
 the `PeriodFacts` of the run:
 
 ```python
+from decimal import Decimal
+
 from ccnl_engine import OvertimeEvent, PeriodFacts
 
 result = engine.calculate_period(
@@ -59,9 +61,9 @@ result = engine.calculate_period(
             events=(
                 OvertimeEvent(
                     event_date=date(2026, 1, 10),
-                    hours=8,
+                    hours=Decimal(8),
                     hourly_rate=...,
-                    multiplier=...,
+                    # multiplier omitted: 1 + the CCNL weekday band
                 ),
             ),
         ),
@@ -182,18 +184,25 @@ employment dates and never from the runs already closed:
 - the 12-month window ends in the payment month and starts at the hire date
   when the worker was hired inside it (hire on 15 March: the June
   quattordicesima accrues March to June, 4/12);
-- a month qualifies when it has at least 15 accruing calendar days. This is
-  an engine default, not read from the CCNL files, which carry no accrual
-  threshold and no clause text to check it against. CCNLs word it
-  differently: Metalmeccanico industria (Federmeccanica-Assistal), art. 7
-  "Tredicesima mensilità", reads "La frazione di mese superiore a 15 giorni
-  va considerata a questi effetti come mese intero" (text as published by
-  contrattometalmeccanici.it, not the signed agreement), so a month of
-  exactly 15 days does not accrue there and the engine counts it. The
-  default is kept until the threshold is carried per CCNL in the data, with
-  the signed text as source; a caller building the `ExtraMonthAccrual` of a
-  `calculate_period` request can pass `MonthAccrualRule(min_days=16)` for
-  the stricter reading;
+- a month qualifies when its accruing calendar days pass the CCNL accrual
+  rule, `parameters.accrual_rule`: a threshold (`min_days`) and a
+  comparison, `more_than` ("la frazione di mese superiore a 15 giorni va
+  considerata come mese intero", Metalmeccanico Federmeccanica, sez.
+  quarta, titolo IV, art. 7) or `at_least` ("superiori o uguali a 15
+  giorni", Terziario Confcommercio, art. 204). The rule is stored only for
+  the 40 CCNLs whose signed text was read, with the article and the quote
+  (status `assumed` until a named reviewer checks it). The other CCNLs use
+  the engine default, at least 15 days, recorded as a `missing` rule: a run
+  whose window has a partly accrued month then adds `rule_source_missing`
+  and is `incomplete`; a window of whole months does not read the rule.
+  Each rateo paid records a `base_salary` decision `extra_month_ratei_counted`
+  with the months, the partly accrued months, the threshold, the comparison
+  and whether the rule is the CCNL clause (`ccnl`), the default
+  (`engine_default`) or one the caller built (`request`). A caller building
+  the `ExtraMonthAccrual` of a `calculate_period` request can pass its own
+  `MonthAccrualRule(min_days=15, comparison=AccrualComparison.MORE_THAN)`
+  (from `ccnl_engine.payroll.domain.accrual` and
+  `ccnl_engine.contract.domain.compensation`);
 - an `AbsenceEvent` with `suspends_accrual=True` (for example aspettativa non
   retribuita) removes its calendar days from every window. The caller says
   which absences suspend accrual; an ordinary unpaid absence reduces pay,

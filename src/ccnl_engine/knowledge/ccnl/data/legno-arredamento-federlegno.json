@@ -275,6 +275,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-ccnl-2010",
+            "title": "CCNL Legno e arredamento industria 12 maggio 2010",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf",
+            "published_on": "2010-05-12"
+          },
+          "page": "86",
+          "section": "Art. 36, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-07-01"
+        },
+        "note": "Clause read in the 2010 text; later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -3071,7 +3098,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6111cfe66f48aded31e865ba735583a88e81e0316f6023f040b2dfc5d1c4c23",
+    "source_hash": "f6939b507e2fb78d76656dc2f06b373cb094f4eaacb5436ce72366832f8fba89",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

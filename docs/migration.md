@@ -1,5 +1,30 @@
 # Migration guide
 
+## Accrual threshold and overtime multiplier from the CCNL data
+
+`OvertimeEvent.multiplier` no longer defaults to `1.25`. Without it the
+multiplier is `1 + band` of the CCNL overtime band matching the new
+`OvertimeEvent.kind`; a CCNL without such a band rejects the run. The
+extra-month ratei count a partly worked month with the CCNL clause when the
+bundle has the signed text, and with the engine default (at least 15 days)
+otherwise. See [Work rules](engine/work-rules.md#overtime-multiplier) and
+[Employment period](engine/index.md#employment-period).
+
+| Change | What to do |
+|---|---|
+| `OvertimeEvent.multiplier` defaults to `None` instead of `1.25`: the CCNL band gives it | Pass `multiplier=Decimal("1.25")` to keep the old amounts; without it the amount changes wherever the CCNL first-tier band is not 25% (commercio OT_DIURNO 15%: 10 h x 15.00 EUR pays 172.50 instead of 187.50); 81 of the 125 bundled CCNLs have a weekday band other than 25% and 17 have none |
+| `OvertimeEvent.kind` (`OvertimeKind`: `WEEKDAY`, `NIGHT`, `HOLIDAY`, `NIGHT_HOLIDAY`, default `WEEKDAY`) added after `multiplier` | Set it for night and holiday overtime so the matching band is used |
+| An event without a multiplier on a CCNL with no first-tier percentage band of its kind raises `InvalidInputError` (feature `overtime`) | Pass an explicit multiplier |
+| An explicit multiplier matching no CCNL band of its kind makes the run `provisional` with issue `caller_multiplier_differs_from_ccnl` | Check the value, or accept the provisional status: the caller's value is still applied |
+| A derived multiplier on a CCNL with higher tiers beyond an hour threshold makes the run `provisional` with issue `overtime_tier_not_applied` | Pass an explicit multiplier for the hours beyond the threshold |
+| Overtime decision `ccnl_overtime_band_applied` (origin `engine`); the caller-supplied overtime decision lists `hourly_rate` only when the multiplier was derived | Handle the new reason code where reason codes are matched |
+| `CCNLParameters.accrual_rule` (`ExtraMonthAccrualRule`: `min_days`, `comparison` `at_least` or `more_than`, `provenance`) added | Nothing: read by the engine |
+| `MonthAccrualRule.comparison`, `rule` and `provenance` added; `ExtraMonthAccrual.partial_months` added | A caller building its own rule can pass `comparison=AccrualComparison.MORE_THAN` |
+| `base_salary` decision `extra_month_ratei_counted` per rateo an extra-month or termination run pays | Handle the new reason code where reason codes are matched |
+| The engine-default threshold is a payable rule with status `missing`: a run whose rateo includes a partly accrued month on a CCNL without the clause adds `rule_source_missing` and is `incomplete` | Treat such ratei as unconfirmed until the CCNL clause is in the bundle; whole months are not affected |
+| Payable rules add `accrual_rule` for every CCNL and the first-tier overtime bands (capability `overtime`) | Custom provenance reports read the new paths |
+| Metalmeccanico Federmeccanica bands corrected to the signed text (sez. quarta, titolo III, art. 7): `OT_DIURNO` 25% (was 15%), new `OT_DIURNO_EXTRA` 30% beyond two hours a day, `OT_NOTTURNO` 50% (was 20%), `OT_FESTIVO` 55% (was 30%), new `OT_NOTTURNO_FESTIVO` 75%; commercio `OT_NOTTURNO` 50% (was 30%, art. 149) and `OT_NOTTURNO_FESTIVO` removed (the article sets no such rate) | Compare the bands a stored decision recorded; night-holiday overtime on commercio needs an explicit multiplier |
+
 ## Year-end shortfall deferral and foreign tax credit
 
 `PriorYearTaxFacts` takes two inputs read on the conguaglio: the worker's

@@ -273,6 +273,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "legno-lapidei-artigianato-2014",
+            "title": "CCNL Legno e lapidei artigianato 25 marzo 2014",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "published_on": "2014-03-25"
+          },
+          "page": "45",
+          "section": "Artt. 47 e 47 bis, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-03-01"
+        },
+        "note": "Scanned text read by OCR; clause read in the 2014 text, later renewals not checked. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1375,7 +1402,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "0ab2bfaa10af6f34d36d208fd28ed22050d259f69781c2cec6433faf55a1f288",
+    "source_hash": "a39e6f72d424ae09e4f779d13b6030e24020481f7f730e2195c101951c1e30de",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

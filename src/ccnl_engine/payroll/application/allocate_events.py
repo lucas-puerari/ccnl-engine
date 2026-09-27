@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application._posting_service import post as _post
+from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.application.handlers._totals import (
     _EventAccumulator,
     _EventTotals,
@@ -126,12 +127,15 @@ def _process_events(
     work_time_regime: PreferentialTaxRegime | None = None,
     opening_work_time_cap: RegimeCapAccount | None = None,
     worker_facts: RegimeFacts = _NO_FACTS,
+    overtime_bands: CCNLOvertimeBands | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
     The work-time regime cap starts from ``opening_work_time_cap`` and grows
     after each eligible supplement, so later events of the run only get the
-    substitute rate on what is left of the annual cap.
+    substitute rate on what is left of the annual cap.  ``overtime_bands``
+    are the CCNL bands an overtime event without a multiplier is paid with;
+    without them such an event is rejected.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
@@ -154,6 +158,7 @@ def _process_events(
         work_time_regime=work_time_regime,
         work_time_cap=acc.work_time_cap,
         worker_facts=worker_facts,
+        overtime_bands=overtime_bands or CCNLOvertimeBands(),
     )
     for i, event in enumerate(events):
         _check_event_date(event, date_ctx, i)

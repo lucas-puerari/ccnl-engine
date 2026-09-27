@@ -19,8 +19,13 @@ from ccnl_engine.payroll.application._period_utils import (
     _require_resolution,
     _treatment_from_resolution,
 )
+from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
-from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual, absence_days
+from ccnl_engine.payroll.domain.accrual import (
+    DEFAULT_MONTH_ACCRUAL_RULE,
+    ExtraMonthAccrual,
+    absence_days,
+)
 from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
@@ -37,6 +42,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.application.handlers._totals import _EventTotals
+    from ccnl_engine.payroll.domain.accrual import MonthAccrualRule
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.events import WorkEvent
@@ -67,7 +73,8 @@ def run_accrual(
         request: The period request.  Its ``extra_month_accrual`` is used
             when given; otherwise an extra-month run counts its rateo from
             ``employment_period`` over the 12 months ending in the run month,
-            with the CCNL fraction of that extra month.
+            with the CCNL fraction of that extra month and the CCNL
+            month-qualification rule.
         ccnl: The contract, whose standard calendar gives the fraction.
         competence: Date the CCNL entitlement is read at.
 
@@ -86,7 +93,9 @@ def run_accrual(
         Decimal(1),
     )
     schedule = run_schedule(kind, run.month, max_fraction)
-    return ExtraMonthAccrual.of(schedule, run.year, request.employment_period)
+    return ExtraMonthAccrual.of(
+        schedule, run.year, request.employment_period, rule=month_accrual_rule(ccnl)
+    )
 
 
 def run_schedule(
@@ -248,6 +257,7 @@ def termination_settlements(
     calendar: WorkCalendar,
     employment_period: EmploymentPeriod | None,
     non_accruing_days: frozenset[date],
+    rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
 ) -> dict[str, tuple[ExtraMonthAccrual, ...]]:
     """Return the ratei the last run of an employment ending this year pays.
 
@@ -255,7 +265,8 @@ def termination_settlements(
     outside the employment is liquidated on the regular run of the
     termination month.  Its window is the one of that next payment (the
     following year when the payment month precedes the termination month),
-    clipped to the hire date and counted up to the termination date.
+    clipped to the hire date and counted up to the termination date with
+    ``rule``.
 
     Returns:
         The accruals keyed by the ``run_id`` of the termination month's
@@ -272,6 +283,7 @@ def termination_settlements(
             calendar.year + (1 if extra.payment_month < ended_on.month else 0),
             employment_period,
             non_accruing_days=non_accruing_days,
+            rule=rule,
         )
         for extra in calendar.extra_months
         if extra.payment_month != ended_on.month

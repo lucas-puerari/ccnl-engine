@@ -90,7 +90,7 @@ Work events are part of the run: pass them in `PeriodFacts.events` and they
 change gross, net and employer cost according to their treatment. See
 [Work rules](engine/work-rules.md).
 
-- Overtime pay (lavoro straordinario) with caller-supplied rate: `OvertimeEvent`
+- Overtime pay (lavoro straordinario) with the CCNL band or a caller multiplier: `OvertimeEvent`
 - Night, holiday and shift supplements, with the 2026 substitute tax:
   `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent`
 - Unpaid absences and sickness: `AbsenceEvent`, `SickLeaveEvent`, `SicknessCaseEvent`

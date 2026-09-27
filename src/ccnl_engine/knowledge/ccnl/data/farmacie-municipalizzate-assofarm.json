@@ -229,6 +229,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "assofarm-ccnl-2022-2024",
+            "title": "CCNL Assofarm 2022-2024",
+            "kind": "associazione",
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+          },
+          "page": "20",
+          "section": "Art. 20, Tredicesima e quattordicesima mensilità",
+          "quote": "Le frazioni di mese pari o superiori a 15 giorni vengono computate come mese intero e si trascurano quelle inferiori."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-07-01"
+        },
+        "note": "Scanned text read by OCR; one clause for tredicesima and quattordicesima. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1502,7 +1528,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "78c94872b944fba2ebf5cf5d57ce2d67c9482491d908f9dcdecf808f06b115d3",
+    "source_hash": "5e8cf793eb5df5cb0eb98e1521756c4f41fe73d02369c323ba0feb5d4d5f8f0c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

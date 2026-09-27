@@ -289,6 +289,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "federcasa-ccnl-2022-2024",
+            "title": "CCNL Federcasa 2022-2024",
+            "kind": "associazione",
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "published_on": "2024-11-06"
+          },
+          "page": "68",
+          "section": "Art. 76, Tredicesima e quattordicesima mensilità",
+          "quote": "Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-12-01"
+        },
+        "note": "Scanned text read by OCR; one clause for both extra months. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [],
@@ -1117,7 +1144,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8077009bc3cd6f61cae199c86cb829ea4f81b12fd37c342045b54caed08b41f2",
+    "source_hash": "039dc165ea4e4db2db12715afc09568b4129826e34ffe6038135de0826e7e135",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

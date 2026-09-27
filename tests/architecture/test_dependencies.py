@@ -65,6 +65,10 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
     ): "The employment input validates the CCNL worker category.",
     (
         "payroll",
+        "ccnl_engine.contract.domain.compensation",
+    ): "Extra-month ratei compare accruing days as the CCNL accrual rule says.",
+    (
+        "payroll",
         "ccnl_engine.tax.domain.preferential_regime",
     ): "Employment, employer, period and prior-year inputs declare regimes.",
 }

@@ -193,6 +193,33 @@
           ]
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "unasca-ccnl-2021-2023",
+            "title": "CCNL Autoscuole, firmato il 28 febbraio 2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "published_on": "2023-02-28"
+          },
+          "page": "20",
+          "section": "Artt. 18 e 19, Tredicesima e quattordicesima mensilità",
+          "quote": "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate mentre saranno considerate come mese intero se superiori ai 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-02-01"
+        },
+        "note": "Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1308,7 +1335,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "36d735164157938c634831ebca3703a91a48c71cb5c16747d7947d0ef9f01abf",
+    "source_hash": "2950bc01e5ff3e6fb0b20d5a9a79f0d5f913489629ba61bba421687ed023092d",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

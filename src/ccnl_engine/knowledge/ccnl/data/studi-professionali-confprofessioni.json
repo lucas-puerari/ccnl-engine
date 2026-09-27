@@ -194,6 +194,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL dipendenti degli studi e delle attività professionali 16 febbraio 2024",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16"
+          },
+          "page": "68",
+          "section": "Art. 130, referred to by artt. 142 e 143",
+          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiore o uguali a 15 (quindici) giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-02-16"
+        },
+        "note": "Art. 142 on the tredicesima refers to art. 130; art. 143 applies it to the quattordicesima. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1296,7 +1323,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d22255502b1d8052e4f5c8d56cd6a0608f017b19b26cb093638540e9c1666f9",
+    "source_hash": "341e31c6be375550e2a868e0224d4596ccf79539b48344599787a445d424db60",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -181,10 +181,11 @@ def test_level_record_covers_its_periods_and_allowances() -> None:
                     {"valid_from": "2026-01-01", "value": "13", "provenance": _RECORD},
                 ]
             },
+            "accrual_rule": {"provenance": _RECORD},
         },
     }
     rules = tuple(ccnl_rules("ccnl/data/x.json", ccnl))
-    assert [rule.status for rule in rules] == ["derived"] * 4
+    assert [rule.status for rule in rules] == ["derived"] * 5
     assert rule_errors(rules) == []
 
 

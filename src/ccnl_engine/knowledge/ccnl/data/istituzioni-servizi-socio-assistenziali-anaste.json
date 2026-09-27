@@ -225,6 +225,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "anaste-ccnl-2023-2025",
+            "title": "CCNL ANASTE, testo consolidato 3 novembre 2025",
+            "kind": "altro",
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+            "published_on": "2025-11-03"
+          },
+          "page": "57",
+          "section": "Art. 74, Tredicesima mensilità",
+          "quote": "Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-01"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1165,7 +1192,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "8f5fe5b1520814b34570e4112494ff9021c6dbc49ee539fd40aed5cf1d64ea8e",
+    "source_hash": "358811dba9c3f7f3b32fea928d76b6d4dec17b5ab35a63deb96f25b09842e241",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -26,7 +26,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 
 | Event | Fields | Treatment |
 |---|---|---|
-| `OvertimeEvent` | `hours`, `hourly_rate`, `multiplier` (default `1.25`) | Pay `hours × hourly_rate × multiplier`; subject to INPS, IRPEF and TFR |
+| `OvertimeEvent` | `hours`, `hourly_rate`, `multiplier` (default `None`: from the CCNL band), `kind` (`OvertimeKind`, default `WEEKDAY`) | Pay `hours × hourly_rate × multiplier`; subject to INPS, IRPEF and TFR |
 | `NightShiftEvent` | `supplement_amount` | Night-work supplement; INPS and IRPEF |
 | `HolidayWorkEvent` | `supplement_amount` | Public holiday or weekly rest-day supplement; INPS and IRPEF, no TFR |
 | `ShiftWorkEvent` | `supplement_amount` | Shift allowance; INPS and IRPEF, no TFR |
@@ -40,12 +40,51 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears under tassazione separata (art. 17 TUIR) |
 | `TerminationTFREvent` | `amount`, `separate_tax_rate` | TFR settlement at cessazione (art. 19 TUIR) |
 
-### Rates and amounts are caller inputs
+### Overtime multiplier
 
-The engine does not look up the overtime band or the supplement amount for
-the CCNL: `OvertimeEvent.hourly_rate` and `multiplier`, and the
-`supplement_amount` of night, holiday and shift events, come from the caller.
-The same holds for the `separate_tax_rate` of arrears and TFR settlements.
+D.Lgs. 66/2003 art. 5 c. 5 leaves the overtime supplement to the CCNL and
+sets no statutory rate, so the engine has no default multiplier.
+
+| `multiplier` | CCNL band of `kind` | Paid with | Decision and status |
+|---|---|---|---|
+| `None` | present | `1 + band` | `overtime` decision `ccnl_overtime_band_applied`, origin `engine`, citing the band and its source |
+| `None` | absent | nothing: `InvalidInputError` | the run is rejected; pass an explicit multiplier |
+| explicit | equal to a band | the caller's value | `caller_supplied` decision only |
+| explicit | different | the caller's value | `caller_supplied` decision and a `provisional` issue `caller_multiplier_differs_from_ccnl` with both values |
+| explicit | absent | the caller's value | `caller_supplied` decision only |
+
+`kind` selects the band: `WEEKDAY` (straordinario diurno), `NIGHT`,
+`HOLIDAY` or `NIGHT_HOLIDAY`, matched against the `applies_to_kinds` of the
+CCNL `work_rules.time_supplements.overtime_bands`. The band used is the
+first tier: the percentage band with code `OT_*` that has no hour threshold
+and no context condition. When the CCNL also has bands that start beyond a
+daily or weekly hour threshold (commercio: 15% up to 48 weekly hours, 20%
+beyond; metalmeccanico: 25% for the first two hours, 30% beyond), the event does not carry the hours of the week, so the first tier
+is applied to every hour and the run is `provisional` with issue
+`overtime_tier_not_applied`: pass an explicit multiplier for the hours
+beyond the threshold (a multiplier equal to a higher tier raises no
+difference issue). A CCNL whose bands for the kind all start beyond a
+threshold, are paid in EUR per hour, or are not in force on the event date
+gives no multiplier. The derived band is a payable rule of `overtime`: its
+provenance status is reported in `capability_report.rule_sources`.
+
+```python
+from datetime import date
+from decimal import Decimal
+
+from ccnl_engine import OvertimeEvent, OvertimeKind
+
+# Metalmeccanico OT_NOTTURNO 50%: 2 h x 15.00 EUR x 1.50 = 45.00 EUR.
+night = OvertimeEvent(
+    date(2026, 3, 10), Decimal(2), Decimal("15.00"), kind=OvertimeKind.NIGHT
+)
+```
+
+### Other rates and amounts are caller inputs
+
+`OvertimeEvent.hourly_rate`, the `supplement_amount` of night, holiday and
+shift events, and the `separate_tax_rate` of arrears and TFR settlements come
+from the caller.
 
 ### Absences are bounded by the pay of the run
 

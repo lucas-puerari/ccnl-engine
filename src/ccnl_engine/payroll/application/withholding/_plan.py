@@ -14,7 +14,11 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _apply_extra_month_policy
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
 from ccnl_engine.payroll.application.year._extra_month_accrual import run_schedule
-from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+from ccnl_engine.payroll.domain.accrual import (
+    DEFAULT_MONTH_ACCRUAL_RULE,
+    ExtraMonthAccrual,
+    MonthAccrualRule,
+)
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
@@ -61,6 +65,7 @@ def upcoming_recurring_gross(
     schedule: WithholdingSchedule,
     slots_closed: int,
     employment: EmploymentPeriod | None = None,
+    rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
 ) -> Decimal:
     """Project the recurring gross of the slots after the current one.
 
@@ -78,6 +83,7 @@ def upcoming_recurring_gross(
         slots_closed: Withholding slots already closed this tax year.
         employment: Employment period, or ``None`` for a worker employed
             over every accrual window.
+        rule: Month-qualification rule of the CCNL ratei.
 
     Returns:
         Sum of the projected gross of the upcoming slots, zero on the last.
@@ -85,14 +91,14 @@ def upcoming_recurring_gross(
     total = _ZERO
     for slot in schedule.upcoming(slots_closed):
         chain = _apply_extra_month_policy(
-            regular_chain, slot.run.run_kind, _slot_fraction(slot, employment)
+            regular_chain, slot.run.run_kind, _slot_fraction(slot, employment, rule)
         )
         total += money(chain.base + chain.seniority + chain.allowances_total)
     return total
 
 
 def _slot_fraction(
-    slot: WithholdingSlot, employment: EmploymentPeriod | None
+    slot: WithholdingSlot, employment: EmploymentPeriod | None, rule: MonthAccrualRule
 ) -> Decimal:
     """Return the share of a monthly pay the run of ``slot`` will pay.
 
@@ -104,7 +110,7 @@ def _slot_fraction(
     if kind not in {k.value for k in ExtraMonthKind}:
         return slot.pay_fraction
     extra = run_schedule(ExtraMonthKind(kind), slot.run.month, slot.pay_fraction)
-    return ExtraMonthAccrual.of(extra, slot.run.year, employment).fraction
+    return ExtraMonthAccrual.of(extra, slot.run.year, employment, rule=rule).fraction
 
 
 def slot_share(annual: Decimal, schedule: WithholdingSchedule) -> Decimal:

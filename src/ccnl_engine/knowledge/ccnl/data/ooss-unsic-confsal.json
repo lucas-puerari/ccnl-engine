@@ -222,6 +222,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "unsic-ooss-2023-2025",
+            "title": "CCNL OOSS UNSIC-CONFSAL 2023-2025",
+            "kind": "associazione",
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+          },
+          "page": "93",
+          "section": "Art. 52, Tredicesima e quattordicesima mensilità",
+          "quote": "il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-01-19"
+        },
+        "note": "Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -731,7 +757,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "76b4cf852e747b66b0c8c59d7cb1c38285fc48e5e4551c85441d7408eb857611",
+    "source_hash": "18cc38a505871d4dba0ab35e90ec681417fa8b04f9f3c806fd128d49fc8d8199",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

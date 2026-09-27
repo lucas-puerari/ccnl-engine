@@ -1,6 +1,7 @@
 """Compensation, allowance, and level models for CCNL contracts."""
 
 from decimal import Decimal
+from enum import StrEnum
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -8,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.contract.domain.validity import TimeSeries
-from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 
 
 class Allowance(BaseModel):
@@ -79,8 +80,72 @@ class EmployerFund(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class AccrualComparison(StrEnum):
+    """How the accruing days of a month are compared with the threshold.
+
+    Attributes:
+        AT_LEAST: The month counts when its days reach the threshold
+            ("pari o superiore a 15 giorni").
+        MORE_THAN: The month counts when its days exceed the threshold
+            ("frazione superiore a 15 giorni").
+    """
+
+    AT_LEAST = "at_least"
+    MORE_THAN = "more_than"
+
+
+_SHORTEST_MONTH_DAYS = 28
+
+
+class ExtraMonthAccrualRule(BaseModel):
+    """When a month of an extra-month accrual window counts as a whole month.
+
+    The CCNL clause on the ratei of the tredicesima and quattordicesima: a
+    fraction of a month counts as a whole month when its days compare with
+    ``min_days`` as ``comparison`` says.  The field is stored only when the
+    signed text states it; without it the engine applies its default and
+    the provenance inventory reports the rule as ``missing``.
+
+    Attributes:
+        min_days: Threshold in calendar days.
+        comparison: ``at_least`` or ``more_than``.
+        provenance: Source of the clause; ``missing`` is not allowed, a
+            rule without a source is left out of the data instead.
+
+    Raises:
+        ValueError: When a full 28-day month would not count, when the
+            threshold is below one day, or when the provenance is
+            ``missing``.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    min_days: int
+    comparison: AccrualComparison
+    provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _check_threshold(self) -> Self:
+        more_than = self.comparison is AccrualComparison.MORE_THAN
+        lowest, highest = (0, 27) if more_than else (1, _SHORTEST_MONTH_DAYS)
+        if not lowest <= self.min_days <= highest:
+            msg = (
+                f"min_days must be between {lowest} and {highest} for "
+                f"{self.comparison.value!r}; got {self.min_days}"
+            )
+            raise ValueError(msg)
+        if self.provenance.status is ProvenanceStatus.MISSING:
+            msg = "a stored accrual rule needs a source; omit it when missing"
+            raise ValueError(msg)
+        return self
+
+
 class CCNLParameters(BaseModel):
-    """Contract-wide parameters."""
+    """Contract-wide parameters.
+
+    ``accrual_rule`` is the CCNL threshold for counting a month of an
+    extra-month window, ``None`` when the bundle has no sourced clause.
+    """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -88,6 +153,7 @@ class CCNLParameters(BaseModel):
     additional_months: TimeSeries
     seniority_increments: SeniorityIncrements
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
+    accrual_rule: ExtraMonthAccrualRule | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

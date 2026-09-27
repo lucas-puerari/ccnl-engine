@@ -54,7 +54,7 @@ one, the comparable bundled value.
 
 | Event | Capability | Reason | Caller fields | Bundle value for comparison |
 |---|---|---|---|---|
-| `OvertimeEvent` | `overtime` | `caller_supplied_rate` | `hourly_rate`, `multiplier` | Weekday bands `bundle_band[<code>]`, `caller_supplement` (multiplier minus 1), `bundle_hourly_divisor` |
+| `OvertimeEvent` | `overtime` | `caller_supplied_rate` | `hourly_rate`, and `multiplier` when given | Bands of the event's `kind` `bundle_band[<code>]`, `caller_supplement` (multiplier minus 1, when given), `bundle_hourly_divisor` |
 | `NightShiftEvent` | `night_work` | `caller_supplied_amount` | `supplement_amount` | Night bands |
 | `HolidayWorkEvent` | `holiday_work` | `caller_supplied_amount` | `supplement_amount` | Holiday bands |
 | `ShiftWorkEvent` | `shift_work` | `caller_supplied_amount` | `supplement_amount` | Per-shift allowances |
@@ -75,9 +75,13 @@ amount and is not reported as caller-supplied. A fringe benefit keeps its
 own `fringe_benefit` decision.
 
 The amounts always follow the caller's values; the bundled value is shown
-for comparison only. Which value should prevail when they differ is not
-decided yet. `OvertimeEvent.multiplier` defaults to `1.25`, so a decision
-cannot tell an explicit `1.25` from the default.
+for comparison only. For overtime the caller's multiplier prevails over the
+CCNL band; when it matches no band of the event's kind the run is
+`provisional` with issue `caller_multiplier_differs_from_ccnl`. An overtime
+event without a multiplier is paid with the CCNL band: the handler records
+an engine decision `ccnl_overtime_band_applied` citing the band, and the
+caller-supplied decision lists `hourly_rate` only. See
+[Work rules](../engine/work-rules.md#overtime-multiplier).
 
 A caller-supplied decision does not trace its capability: the event traces
 it as before, computed when it had an effect. The capability report lists
@@ -111,7 +115,11 @@ result = engine.calculate_period(
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
         facts=PeriodFacts(
-            events=(OvertimeEvent(date(2026, 3, 10), Decimal(10), Decimal("15.00")),)
+            events=(
+                OvertimeEvent(
+                    date(2026, 3, 10), Decimal(10), Decimal("15.00"), Decimal("1.25")
+                ),
+            )
         ),
     )
 )
@@ -122,8 +130,11 @@ print(result.capability_report.caller_supplied)
 ```
 
 The overtime decision of this run records the caller's multiplier `1.25`
-(`caller_supplement` `0.25`) next to the metalmeccanico weekday band
-`OT_DIURNO` of `0.15`; the overtime paid is 10 * 15.00 * 1.25 = 187.50.
+(`caller_supplement` `0.25`) next to the metalmeccanico weekday bands
+`OT_DIURNO` `0.25` and `OT_DIURNO_EXTRA` `0.30`; the overtime paid is
+10 * 15.00 * 1.25 = 187.50. The multiplier matches a band, so no
+`caller_multiplier_differs_from_ccnl` issue is raised; a multiplier of
+`1.40` would raise it.
 
 ## Attribution invariant
 

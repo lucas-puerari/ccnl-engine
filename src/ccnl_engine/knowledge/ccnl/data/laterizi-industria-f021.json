@@ -219,6 +219,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "laterizi-manufatti-ccnl-2020",
+            "title": "CCNL Laterizi e manufatti cementizi 12 febbraio 2020",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "published_on": "2020-02-12"
+          },
+          "page": "42",
+          "section": "Art. 26, Tredicesima mensilità",
+          "quote": "La frazione di mese superiore ai 15 giorni sarà considerata agli effetti della 13ª mensilità come un mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-04-01"
+        },
+        "note": "Clause read in the 2020 text; later renewals not checked for this clause. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -2833,7 +2860,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "235b577d4b56b623878dd8e7e3d60423874b5e3ff693bc5f9de3d0ae19866131",
+    "source_hash": "1230ce0a724749aab96dc25c19bb922701ff58cda505ef97890d96329047a0ef",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

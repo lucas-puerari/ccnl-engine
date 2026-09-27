@@ -8,7 +8,13 @@ from __future__ import annotations
 from functools import partial
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.handlers._overtime_rate import (
+    CCNLOvertimeBands,
+    resolve_overtime_rate,
+)
+from ccnl_engine.payroll.application.period._accrual_decisions import accrual_rules
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
+from ccnl_engine.payroll.domain.events import OvertimeEvent
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
 
 if TYPE_CHECKING:
@@ -31,8 +37,9 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the salary, allowance and extra-month rules of the run.
 
     Returns:
-        The base salary period, each allowance of the pay chain and the
-        additional-months period in force on the competence date.
+        The base salary period, each allowance of the pay chain, the
+        additional-months period in force on the competence date and the
+        accrual rule when its threshold decided a rateo of the run.
     """
     ccnl, level = ctx.contract.ccnl, ctx.contract.level
     day = ctx.contract.tctx.competence
@@ -56,6 +63,7 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
         (f"{name}:additional_months[{period.valid_from}]", period.provenance)
         for period in _in_force(ccnl.parameters.additional_months.period_at(day))
     )
+    rules.extend(accrual_rules(ctx))
     return tuple(rules)
 
 
@@ -236,8 +244,28 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
     return tuple(rules)
 
 
+def _overtime_rules(ctx: RunContext) -> tuple[Rule, ...]:
+    """Return the CCNL overtime bands the multipliers of the run came from.
+
+    Returns:
+        One entry per distinct band an overtime event without a caller
+        multiplier was paid with; empty when every multiplier is the caller's.
+    """
+    contract = ctx.contract
+    bands = CCNLOvertimeBands.of(contract.ccnl, contract.tctx.competence.year)
+    rules: dict[str, Rule] = {}
+    events = ctx.request.events
+    for event in (e for e in events if isinstance(e, OvertimeEvent)):
+        band = resolve_overtime_rate(event, bands).derived_band
+        if band is not None:
+            rule = bands.rule_of(band)
+            rules.setdefault(rule, (rule, band.provenance))
+    return tuple(rules.values())
+
+
 #: Capabilities whose rules need a load, done only when the capability ran.
 LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
+    "overtime": _overtime_rules,
     "addizionale_regionale": partial(_surtax_rules, regional=True),
     "addizionale_comunale": partial(_surtax_rules, regional=False),
     "family_deductions": _family_rules,

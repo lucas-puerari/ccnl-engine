@@ -187,6 +187,32 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "fism-ccnl-2024-2027",
+            "title": "CCNL FISM 2024-2027",
+            "kind": "associazione",
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf"
+          },
+          "page": "37",
+          "section": "Art. 49, Tredicesima mensilità",
+          "quote": "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-09-01"
+        },
+        "note": "Scanned text read by OCR. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1365,7 +1391,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "fd0075bdf1d2cddc57cc11e7509b418a2f71de57982e1d503ea2ce74d4ee079b",
+    "source_hash": "5949da7f47447d584073197d94b80cd46c5bcfd26c388ebb64a0f4de9d6b1f76",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

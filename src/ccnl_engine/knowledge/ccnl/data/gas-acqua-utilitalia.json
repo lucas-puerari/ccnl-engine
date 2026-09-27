@@ -204,6 +204,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "gas-acqua-ccnl-2022",
+            "title": "CCNL Gas-acqua 30 settembre 2022",
+            "kind": "altro",
+            "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+            "published_on": "2022-09-30"
+          },
+          "page": "118",
+          "section": "Art. 37, Tredicesima e quattordicesima mensilità",
+          "quote": "a tal fine le frazioni di mese non inferiori a 15 giorni vanno computate come mese intero."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2022-10-01"
+        },
+        "note": "Copy published by a member company; comma 4 keeps different company practices. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -1915,7 +1942,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "f2555f778fd50e703c6fafb798020db95674b30722b47bed3811867bc5538d96",
+    "source_hash": "ba7fcd325008605f7aa21ea263dfea97f41ea9b6e6c82ef6a10365074d4ca1a9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -189,6 +189,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "at_least",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29"
+          },
+          "page": "56",
+          "section": "Art. 187, referred to by artt. 204 e 205",
+          "quote": "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi, computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-04-01"
+        },
+        "note": "Artt. 204 and 205 on tredicesima and quattordicesima refer to art. 187 in a footnote; months are those of the civil calendar. Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "levels": [
@@ -2137,7 +2164,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "70c3b33570da5d4051bc3bc160ffb64a8fadc6ddbb6809d1225dab0ddebb4a94",
+    "source_hash": "7b093df259b3bbeafe37d1eb739437cd8d69327a40534e7404d1f2647362132b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -234,6 +234,33 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "assumed",
+        "location": {
+          "source_document": {
+            "document_id": "servizi-postali-appalto-2023",
+            "title": "CCNL Servizi postali in appalto 21 dicembre 2023",
+            "kind": "associazione",
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "published_on": "2023-12-21"
+          },
+          "page": "53",
+          "section": "Artt. 37 e 38, Tredicesima e quattordicesima mensilità",
+          "quote": "saranno calcolate come mese intero le frazioni di mese superiori ai 15 giorni; diversamente tali frazioni non saranno computate."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-09-27T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2023-12-21"
+        },
+        "note": "Quote taken verbatim from the text layer or the OCR of the cited PDF; no human review recorded."
+      }
     }
   },
   "apprenticeship": [
@@ -1599,7 +1626,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "f44ede663068a1091561d160c77b7de5d57e3b3f72e61bba1a067e9068022f1a",
+    "source_hash": "1cf1a1d94e9a59c88c1c5b5c6deda1796d0c09ee27d64a69d8f2a2bebba65321",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
