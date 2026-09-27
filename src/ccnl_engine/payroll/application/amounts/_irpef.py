@@ -110,6 +110,7 @@ def withhold_irpef(
         ulteriore_without_one_off=(
             _ZERO if without_one_off is None else without_one_off.ulteriore_effect
         ),
-        later_payslips=inp.later_payslips,
+        run=inp.installment_run,
+        ulteriore_plan=inp.ulteriore_plan,
     )
     return _Irpef(tax=tax, family_deductions=fam_ded, family_rules=family_rules)

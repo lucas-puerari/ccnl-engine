@@ -144,13 +144,20 @@ class WithholdingShortfall:
     the worker, who pays it (art. 33 c. 4 D.Lgs. 33/2025, ex art. 23 c. 3
     DPR 600/1973).
 
+    A credit recovery (trattamento integrativo, somma esente, installments
+    of an earlier year) the pay cannot cover is tracked the same way, apart
+    from the IRPEF, so that the IRPEF withheld still reconciles with the
+    annual tax.
+
     Attributes:
         irpef: IRPEF not yet withheld.
         surtax: Regional and municipal surtax not yet withheld.
+        credit_recovery: Credit recoveries not yet withheld.
     """
 
     irpef: Decimal = _ZERO
     surtax: Decimal = _ZERO
+    credit_recovery: Decimal = _ZERO
 
     def __post_init__(self) -> None:
         """Validate that both amounts are non-negative.
@@ -161,8 +168,8 @@ class WithholdingShortfall:
 
     @property
     def total(self) -> Decimal:
-        """IRPEF plus surtax not yet withheld."""
-        return self.irpef + self.surtax
+        """IRPEF, surtax and credit recoveries not yet withheld."""
+        return self.irpef + self.surtax + self.credit_recovery
 
 
 @dataclass(frozen=True)

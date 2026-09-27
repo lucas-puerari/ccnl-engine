@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_net import net_irpef
@@ -31,6 +32,8 @@ if TYPE_CHECKING:
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)
+#: A run that is neither the last of the employment nor an adjustment.
+_ORDINARY_RUN = InstallmentRun()
 
 
 @dataclass(frozen=True, slots=True)
@@ -72,7 +75,8 @@ def compute_tax(
     carried_shortfall: Decimal = _ZERO,
     ulteriore_account: CreditAccount | None = None,
     ulteriore_without_one_off: Decimal = _ZERO,
-    later_payslips: bool = True,
+    run: InstallmentRun = _ORDINARY_RUN,
+    ulteriore_plan: RecoveryPlan | None = None,
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -125,8 +129,11 @@ def compute_tax(
             EUR is deferred to ten installments (L. 207/2024 art. 1 c. 7).
         ulteriore_without_one_off: IRPEF the ulteriore detrazione removes
             on the projection without the one-off income of the run.
-        later_payslips: Whether payslips follow the last slot; false when
-            the employment ends in the tax year, so nothing is deferred.
+        run: The run as a recovery sees it.  On the final run of the
+            employment nothing is deferred and every running plan is
+            settled; an adjustment run posts the next installment.
+        ulteriore_plan: Ulteriore detrazione plan opened by a conguaglio of
+            this tax year, whose next installment the run posts.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -151,13 +158,14 @@ def compute_tax(
         carried_shortfall=carried_shortfall,
         ulteriore_account=ulteriore_account,
         ulteriore_without_one_off=ulteriore_without_one_off,
-        later_payslips=later_payslips,
+        run=run,
+        running_plan=ulteriore_plan,
     )
     if ulteriore is not None:
         decisions.extend(ulteriore.decisions(rules))
 
     period_tratt, next_recovery_plan, tratt_items, tratt_decisions = _trattamento(
-        taxable, annual, rules, opening_tratt_ytd, remaining, recovery_plan, days
+        taxable, annual, rules, opening_tratt_ytd, remaining, recovery_plan, days, run
     )
     components.extend(tratt_items)
     decisions.extend(tratt_decisions)
@@ -186,6 +194,7 @@ def _trattamento(
     remaining: int,
     recovery_plan: RecoveryPlan | None,
     eligible_work_days: int,
+    run: InstallmentRun,
 ) -> tuple[
     Decimal,
     RecoveryPlan | None,
@@ -199,7 +208,7 @@ def _trattamento(
         amount of the run, the recovery plan to carry forward, and the line
         item and decision of the credit, each only when there is one.
     """
-    period_tratt, component, next_plan, decision = resolve_trattamento(
+    period_tratt, component, next_plan, decisions = resolve_trattamento(
         taxable,
         annual.gross,
         annual.work_deduction,
@@ -208,10 +217,11 @@ def _trattamento(
         remaining,
         recovery_plan,
         eligible_work_days,
+        run=run,
     )
     return (
         period_tratt,
         next_plan,
         () if component is None else (component,),
-        () if decision is None else (decision,),
+        decisions,
     )

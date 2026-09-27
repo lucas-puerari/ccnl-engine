@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application._period_utils import (
+    _make_entry,
+    _require_resolution,
+)
 from ccnl_engine.payroll.application.post_ledger import (
     _build_pay_items,
     _project_ledger,
@@ -19,6 +24,8 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
     SommaEsentePosting,
     resolve_somma_esente,
 )
+from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.pay_items import TaxCreditItem
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
@@ -93,6 +100,7 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
     if not ctx.withholding_agent:
         return _no_credits(ctx)
     request, contract = ctx.request, ctx.contract
+    run = ctx.installment_run
     somma = resolve_somma_esente(
         tax_computation,
         contract.year_rules,
@@ -100,7 +108,12 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
         ctx.withholding_schedule,
         ctx.fiscal_year,
         SommaEsentePosting(
-            ctx.resolver, ctx.policy_context, ctx.cp, request.payment_date, ctx.run_id
+            ctx.resolver,
+            ctx.policy_context,
+            ctx.cp,
+            request.payment_date,
+            ctx.run_id,
+            run,
         ),
     )
     carried = post_carried_recoveries(
@@ -111,6 +124,7 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
         ctx.cp,
         request.payment_date,
         ctx.run_id,
+        run,
     )
     return RunCredits(somma, carried)
 
@@ -128,6 +142,42 @@ def _base_ledger(ctx: RunContext, amounts: _PeriodAmounts) -> tuple[LedgerEntry,
     )
 
 
+def _recovery_adjustment(
+    ctx: RunContext, amount: Decimal
+) -> tuple[tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
+    """Return the ``credit_recovery_shortfall`` line of ``amount``.
+
+    Returns:
+        Empty tuples for a zero amount; otherwise one tax credit item and
+        its ``CREDITS`` entry.
+    """
+    if amount == Decimal(0):
+        return (), ()
+    item_id = f"credit_recovery_shortfall_{ctx.run_id}"
+    payment_date = ctx.request.payment_date
+    policy_id = _require_resolution(
+        ctx.resolver, "tax_credit_item", ctx.policy_context
+    ).policy_id
+    item = TaxCreditItem(
+        item_id=item_id,
+        competence_period=ctx.cp,
+        payment_date=payment_date,
+        quantity=Decimal(1),
+        amount=amount,
+    )
+    entry = _make_entry(
+        item_id,
+        item_id,
+        "tax_credit_item",
+        ctx.cp,
+        payment_date,
+        AccountKind.CREDITS,
+        amount,
+        policy_id=policy_id,
+    )
+    return (item,), (entry,)
+
+
 def post_run(
     ctx: RunContext,
     amounts: _PeriodAmounts,
@@ -136,7 +186,8 @@ def post_run(
     """Cap the withholding to the pay left and post the base lines of the run.
 
     The base ledger is projected once, and again when the cap lowered the
-    IRPEF or surtax of the run.
+    IRPEF or surtax of the run.  A credit recovery the pay cannot cover is
+    given back by one ``credit_recovery_shortfall`` line.
 
     Returns:
         The capped amounts, the base pay items and every ledger entry.
@@ -148,8 +199,11 @@ def post_run(
         amounts,
         ledger_entries + other_entries,
         opening.ytd.shortfall,
-        last_slot=ctx.run_kind.consumes_withholding_slot
-        and ctx.withholding_schedule.remaining(slots_closed) == 1,
+        last_slot=ctx.installment_run.final
+        or (
+            ctx.run_kind.consumes_withholding_slot
+            and ctx.withholding_schedule.remaining(slots_closed) == 1
+        ),
         rules=ctx.contract.year_rules,
     )
     if capped.amounts is not amounts:
@@ -158,4 +212,10 @@ def post_run(
     pay_items = _build_pay_items(
         amounts, ctx.chain, request.period_id, request.payment_date, run_tag=ctx.run_id
     )
-    return RunPostings(amounts, pay_items, ledger_entries + other_entries, capped)
+    items, entries = _recovery_adjustment(ctx, capped.recovery_adjustment)
+    return RunPostings(
+        amounts,
+        pay_items + items,
+        ledger_entries + other_entries + entries,
+        capped,
+    )

@@ -23,7 +23,7 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
@@ -253,3 +253,41 @@ class TestNotInForce:
 
         assert outcome.amount == Decimal(-30)
         assert outcome.reason == "overpayment_recovered"
+
+
+class TestLastRunOfTheEmployment:
+    """On the last run of the employment nothing is left to installments."""
+
+    def test_recovers_the_whole_excess(self) -> None:
+        """150 EUR in excess are recovered at once, above 60 EUR too."""
+        outcome = _resolve_on(
+            InstallmentRun(final=True),
+            _opening(closed=_SLOTS - 1, recognized=Decimal(650)),
+        )
+
+        assert outcome.amount == Decimal(-150)
+        assert outcome.reason == "overpayment_recovered_at_termination"
+        assert outcome.plan is None
+
+    def test_adjustment_run_posts_the_next_installment(self) -> None:
+        """A plan of 150, 15 per installment, one posted: the run posts 15."""
+        plan = RecoveryPlan.create(SOMMA_ESENTE_RECOVERY, Decimal(150), 10).advance()
+        outcome = _resolve_on(
+            InstallmentRun(adjustment=True),
+            _opening(closed=_SLOTS, recognized=Decimal(650), plan=plan),
+        )
+
+        assert outcome.amount == Decimal("-15.00")
+        assert outcome.reason == "installment_posted_adjustment_run"
+        assert outcome.plan == plan.advance()
+
+
+def _resolve_on(run: InstallmentRun, opening: PeriodState) -> SommaEsenteOutcome:
+    return resolve_somma_esente(
+        _tax(Decimal(500)),
+        _RULES,
+        opening,
+        _SCHEDULE,
+        _YEAR,
+        replace(_POSTING, run=run),
+    )

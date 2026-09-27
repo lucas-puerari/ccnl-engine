@@ -16,6 +16,13 @@ installment) and defers the other nine installments to the next runs as a
 recovery obligation.  A part the withholding already took back before the
 conguaglio, e.g. on the run that paid the income removing the deduction, is
 not an excess found at the conguaglio and is not deferred.
+
+The installments still deferred in the tax year of the conguaglio are posted
+by the adjustment runs of that year, one per run: an adjustment run settles
+the cumulative balance again, so it withholds the balance less what is
+still deferred after its installment.  On the last run of the employment
+nothing is deferred (AdE circ. 4/E/2025 par. 1.2: the conguaglio di fine
+rapporto recovers "in un'unica soluzione, indipendentemente dall'importo").
 """
 
 from __future__ import annotations
@@ -31,9 +38,17 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.tax import TaxLineItem
 from ccnl_engine.payroll.service.credit_decisions import credit_decision
 from ccnl_engine.payroll.service.irpef_net import run_withholding
+from ccnl_engine.payroll.service.ulteriore_running_plan import (
+    AT_TERMINATION,
+    post_running_plan,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
+    from ccnl_engine.payroll.domain.recovery_plan import (
+        InstallmentRun,
+        PostedInstallment,
+    )
     from ccnl_engine.payroll.service.irpef_credits import CreditOutcome
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
@@ -88,9 +103,12 @@ class UlterioreSettlement:
             taken back by the withholding or recovered at the conguaglio.
         due: Part of the annual deduction that lowers the IRPEF.
         reason: Reason code of the run.
-        deferred: Part of the excess not withheld on the conguaglio payslip,
-            left to the installments of :attr:`plan`.
-        plan: Installments still to post after the conguaglio, if any.
+        deferred: Part of the balance not withheld on the run, left to the
+            installments of :attr:`plan`.
+        plan: Installments still to post after the run, if any.
+        installment: What the run posted of a plan opened by an earlier
+            conguaglio of the tax year, ``None`` without one.
+        residual_before: Residual of that plan before the run.
     """
 
     amount: Decimal
@@ -98,30 +116,51 @@ class UlterioreSettlement:
     reason: str
     deferred: Decimal = _ZERO
     plan: RecoveryPlan | None = None
+    installment: PostedInstallment | None = None
+    residual_before: Decimal = _ZERO
 
     def decisions(self, rules: YearRules) -> tuple[CalculationDecision, ...]:
-        """Return the decision of a recovery at the conguaglio, if any.
+        """Return the decisions of the recoveries of the run, if any.
 
         Returns:
-            One final decision, capability
-            ``ulteriore_detrazione_lavoro_recovery``, when the run recovers
-            an excess: its amount is the (negative) excess, its inputs the
-            part deferred to the installments.  Empty otherwise.
+            Final decisions, capability
+            ``ulteriore_detrazione_lavoro_recovery``: one when the run
+            recovers an excess, its amount the (negative) excess and its
+            inputs the part deferred to the installments; one when the run
+            posts an installment of a plan already running, its amount the
+            (negative) installment.  Empty otherwise.
         """
-        if not self.reason.startswith("overpayment"):
-            return ()
-        decision = CalculationDecision(
-            capability=_RECOVERY_CAPABILITY,
-            status=CalculationStatus.FINAL,
-            reason_code=self.reason,
-            rule=RECOVERY_RULES[ULTERIORE_RECOVERY].rule,
-            rule_version=(
-                str(rules.year) if rules.ruleset is None else rules.ruleset.version
-            ),
-            inputs={"annual_due": self.due, "deferred": self.deferred},
-            amount=self.amount,
-        )
-        return (decision,)
+        version = str(rules.year) if rules.ruleset is None else rules.ruleset.version
+        rule = RECOVERY_RULES[ULTERIORE_RECOVERY].rule
+        decisions: list[CalculationDecision] = []
+        if self.reason.startswith("overpayment"):
+            decisions.append(
+                CalculationDecision(
+                    capability=_RECOVERY_CAPABILITY,
+                    status=CalculationStatus.FINAL,
+                    reason_code=self.reason,
+                    rule=rule,
+                    rule_version=version,
+                    inputs={"annual_due": self.due, "deferred": self.deferred},
+                    amount=self.amount,
+                )
+            )
+        if self.installment is not None:
+            decisions.append(
+                CalculationDecision(
+                    capability=_RECOVERY_CAPABILITY,
+                    status=CalculationStatus.FINAL,
+                    reason_code=self.installment.reason,
+                    rule=rule,
+                    rule_version=version,
+                    inputs={
+                        "residual_before": self.residual_before,
+                        "deferred": self.deferred,
+                    },
+                    amount=-self.installment.amount,
+                )
+            )
+        return tuple(decisions)
 
 
 def _recover(
@@ -138,7 +177,7 @@ def _recover(
     if excess <= _SINGLE_RECOVERY_LIMIT:
         return "overpayment_recovered", _ZERO, None
     if not defer:
-        return "overpayment_recovered_at_termination", _ZERO, None
+        return AT_TERMINATION, _ZERO, None
     plan = RecoveryPlan.create(
         ULTERIORE_RECOVERY, excess, RECOVERY_RULES[ULTERIORE_RECOVERY].installments
     )
@@ -203,13 +242,16 @@ def withhold_with_ulteriore(
     carried_shortfall: Decimal,
     ulteriore_account: CreditAccount | None,
     ulteriore_without_one_off: Decimal,
-    later_payslips: bool,
+    run: InstallmentRun,
+    running_plan: RecoveryPlan | None = None,
 ) -> tuple[Decimal, UlterioreSettlement | None]:
     """Return the IRPEF withheld on the run and the ulteriore settlement.
 
     When the ulteriore detrazione is tracked, the withholding is computed
     again without it, and on the last slot an excess above 60 EUR is
-    deferred: the run withholds that much less.
+    deferred: the run withholds that much less.  With ``running_plan``, a
+    plan opened by a conguaglio of the tax year, the run posts its next
+    installment and keeps deferring the rest (:func:`post_running_plan`).
 
     Returns:
         ``(ordinary_tax, ulteriore)``; ``ulteriore`` is ``None`` when the
@@ -239,6 +281,8 @@ def withhold_with_ulteriore(
         annual.ulteriore_effect,
         ulteriore_account,
         last_slot=remaining == 1,
-        defer=later_payslips,
+        defer=not run.final and running_plan is None,
     )
+    if running_plan is not None:
+        ulteriore = post_running_plan(ordinary_tax, ulteriore, running_plan, run)
     return ordinary_tax - ulteriore.deferred, ulteriore
