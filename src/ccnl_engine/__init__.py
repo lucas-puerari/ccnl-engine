@@ -82,7 +82,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
     DecisionOrigin,
 )
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import (
     EmployerActivity,
     EmployerProfile,
@@ -190,7 +190,7 @@ __all__ = [
     "CcnlId",
     "ContractSummary",
     "ContributableHours",
-    "ContributionCeilingStatus",
+    "ContributionHistory",
     "CoverageStatus",
     "DataIntegrityError",
     "DecisionOrigin",

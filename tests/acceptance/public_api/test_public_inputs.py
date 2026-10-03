@@ -18,7 +18,6 @@ from ccnl_engine import (
     CalendarOverride,
     CalendarOverrideReason,
     ContributableHours,
-    ContributionCeilingStatus,
     EmployerActivity,
     EmployerProfile,
     Employment,
@@ -82,7 +81,7 @@ class TestEmployment:
         assert employment.roles == frozenset()
         assert employment.category is None
         assert employment.sector is None
-        assert employment.ceiling_status is ContributionCeilingStatus.UNKNOWN
+        assert employment.contribution_history is None
 
     def test_category_string_value_is_normalized(self) -> None:
         """A category given as its string value is stored as the enum member."""

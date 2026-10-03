@@ -18,7 +18,7 @@ import pytest
 from ccnl_engine import (
     BlockerCode,
     BonusEvent,
-    ContributionCeilingStatus,
+    CalculationStatus,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
@@ -101,32 +101,31 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="unknown IVS ceiling eligibility computes the uncapped branch unflagged",
-)
 def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     """A 200,000 EUR bonus crosses the 2026 IVS massimale of 122,295 EUR.
 
     Whether the massimale applies depends on the first enrolment date
-    (L. 335/1995 art. 2 c. 18): it is a fact, not a default.  With
-    ``UNKNOWN`` the engine computes the uncapped branch, employee INPS
-    20,644.15 as with ``NOT_APPLICABLE`` against 12,506.09 with
-    ``POST_1995``, and names no missing fact.  The result is already not
-    payable for unrelated gaps, so the test asserts the blocker of its own
-    fact.
+    (L. 335/1995 art. 2 c. 18): it is a fact, not a default.  Without the
+    contribution history neither branch is the answer: the eligibility
+    decision is incomplete and the missing fact is named by its own
+    blocker.  The result is already not payable for unrelated gaps, so the
+    test asserts the blocker of its own fact.
     """
-    employment = Employment(
-        ccnl_slug=_METALMECCANICO,
-        level_code="C3",
-        ceiling_status=ContributionCeilingStatus.UNKNOWN,
-    )
+    employment = Employment(ccnl_slug=_METALMECCANICO, level_code="C3")
     bonus = BonusEvent(event_date=date(2026, 1, 15), amount=Decimal(200_000))
 
     result = _january(employment, PeriodFacts(events=(bonus,)))
 
-    assert (BlockerCode.MISSING_FACT, None, "ceiling_status") in _blocker_keys(result)
+    (decision,) = [
+        d for d in result.decisions if d.capability == "ivs_ceiling_eligibility"
+    ]
+    assert decision.reason_code == "required_fact_missing"
+    assert decision.amount is None
+    assert (BlockerCode.MISSING_FACT, None, "contribution_history") in (
+        _blocker_keys(result)
+    )
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+    assert result.is_payable is False
 
 
 @pytest.mark.xfail(

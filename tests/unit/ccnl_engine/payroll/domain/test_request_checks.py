@@ -45,7 +45,7 @@ class TestFieldTypes:
             ("ccnl_slug", 7),
             ("contract_type", "permanent"),
             ("employer", 50),
-            ("ceiling_status", "post_1995"),
+            ("contribution_history", date(1996, 1, 1)),
             ("events", None),
             ("employment_period", date(_YEAR, 1, 1)),
             ("opening_state", None),

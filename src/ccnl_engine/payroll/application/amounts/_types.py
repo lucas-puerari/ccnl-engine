@@ -69,12 +69,12 @@ class _AmountsInput:
     contract_type: Permanent | FixedTerm | Apprentice
     category: WorkerCategory | None
     pdr_rules: PdRRules
+    ivs_ceiling_applies: bool
     surtax_rules: SurtaxRules | None = None
     regione: str | None = None
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
     family_deduction_rules: FamilyDeductionRules | None = None
-    ivs_ceiling_applies: bool = True
     weekly_hours: int | None = None
     contributable_hours: Decimal | None = None
     domestic_hourly_rate: Decimal | None = None

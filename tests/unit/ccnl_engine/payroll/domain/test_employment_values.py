@@ -221,7 +221,7 @@ class TestEmploymentValidation:
             pytest.param({"seniority_months": 36}, id="raw-seniority"),
             pytest.param({"employment_period": _START}, id="raw-period"),
             pytest.param({"roles": {"caposquadra"}}, id="mutable-roles"),
-            pytest.param({"ceiling_status": "post_1995"}, id="raw-ceiling"),
+            pytest.param({"contribution_history": "post_1995"}, id="raw-history"),
             pytest.param({"ccnl_slug": 7}, id="non-str-slug"),
         ],
     )

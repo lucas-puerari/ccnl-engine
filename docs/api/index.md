@@ -44,7 +44,7 @@ from ccnl_engine import (
     WeeklyHours,
     SeniorityMonths,
     ContributableHours,
-    ContributionCeilingStatus,
+    ContributionHistory,
     EmploymentSector,
     Permanent,
     FixedTerm,

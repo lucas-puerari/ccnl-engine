@@ -31,7 +31,7 @@ from ccnl_engine.payroll.application.period._checks import check_net_covered
 from ccnl_engine.payroll.application.reconcile import check_period, reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.events import BonusEvent
@@ -147,7 +147,7 @@ class TestContributionCeiling:
         return _run(
             12,
             self._NEAR_CEILING,
-            ceiling_status=ContributionCeilingStatus.POST_1995,
+            contribution_history=ContributionHistory(date(2001, 9, 1)),
         )
 
     def test_capped_run_passes(self) -> None:

@@ -41,7 +41,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "RulesetReadiness",
     "VerificationStatus",
     "ContributableHours",
-    "ContributionCeilingStatus",
+    "ContributionHistory",
     "DataIntegrityError",
     "DecisionOrigin",
     "DeferredShortfall",

@@ -6,15 +6,42 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
-from ccnl_engine.payroll.service.pension_fund import CAPABILITY, NOT_ENROLLED
+from ccnl_engine.payroll.service.pension_fund import (
+    CAPABILITY,
+    NOT_ENROLLED,
+    resolve_terms,
+)
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.service.pension_fund import PensionContribution
+    from ccnl_engine.payroll.application.period._context import RunContext
+    from ccnl_engine.payroll.service.pension_fund import (
+        PensionContribution,
+        PensionFundTerms,
+    )
 
 _NOT_IN_BUNDLE = "not_in_bundle"
+
+
+def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
+    """Return the rates of the fund the worker is enrolled in.
+
+    Returns:
+        ``None`` when the worker is not enrolled.
+    """
+    enrolment = ctx.request.pension_fund
+    if enrolment is None:
+        return None
+    contract = ctx.contract
+    return resolve_terms(
+        contract.ccnl,
+        enrolment,
+        ctx.worker_category,
+        contract.tctx.competence,
+        contract.year_rules.complementary_pension,
+    )
 
 
 def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:

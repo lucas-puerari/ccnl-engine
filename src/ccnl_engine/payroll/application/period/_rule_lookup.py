@@ -75,8 +75,8 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
     """Return the CCNL and INPS rules of the run by capability.
 
     Returns:
-        Rules of ``base_salary``, ``seniority``, ``inps_employee`` and
-        ``inps_employer``.
+        Rules of ``base_salary``, ``seniority``, ``inps_employee``,
+        ``inps_employer`` and ``ivs_ceiling_eligibility`` (the massimale).
     """
     ccnl = ctx.contract.ccnl
     name = _name(ccnl.ruleset, f"ccnl/{ccnl.meta.ccnl_id}")
@@ -116,6 +116,9 @@ def contract_rules(ctx: RunContext) -> dict[str, tuple[Rule, ...]]:
         ),
         "inps_employee": inps,
         "inps_employer": inps + fixed_term,
+        "ivs_ceiling_eligibility": (
+            (f"{inps_name}:inps.ceiling", _provenance(rules.inps)),
+        ),
     }
 
 

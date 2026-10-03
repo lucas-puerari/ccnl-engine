@@ -12,7 +12,7 @@ from decimal import Decimal
 
 from ccnl_engine import (
     ContributableHours,
-    ContributionCeilingStatus,
+    ContributionHistory,
     Dependent,
     DependentRelationship,
     EmployerProfile,
@@ -53,7 +53,7 @@ _EMPLOYMENT_FIELDS = (
     "full_time_weekly_hours",
     "seniority_months",
     "roles",
-    "ceiling_status",
+    "contribution_history",
     "sector",
 )
 
@@ -69,7 +69,7 @@ def _employment() -> Employment:
         full_time_weekly_hours=WeeklyHours(40),
         seniority_months=SeniorityMonths(24),
         roles=frozenset({"caposquadra"}),
-        ceiling_status=ContributionCeilingStatus.POST_1995,
+        contribution_history=ContributionHistory(date(2001, 9, 1)),
         sector=EmploymentSector.PRIVATE,
     )
 

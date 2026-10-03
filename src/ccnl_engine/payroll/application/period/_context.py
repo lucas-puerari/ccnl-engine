@@ -26,7 +26,6 @@ from ccnl_engine.payroll.application.year._extra_month_accrual import (
     run_accrual,
     run_fraction,
 )
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
 from ccnl_engine.payroll.domain.employment_context import (
     EffectiveDateContext,
     TemporalContext,
@@ -61,11 +60,6 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
-
-_IVS_CEILING_STATUSES = frozenset({
-    ContributionCeilingStatus.POST_1995,
-    ContributionCeilingStatus.OPTED_IN,
-})
 
 
 @dataclass(frozen=True)
@@ -180,11 +174,6 @@ class RunContext:
         :mod:`~ccnl_engine.payroll.service.withholding_agent`.
         """
         return self.contract.ccnl.meta.withholding_agent
-
-    @property
-    def ivs_ceiling_applies(self) -> bool:
-        """Whether the IVS contribution ceiling applies to the worker."""
-        return self.request.ceiling_status in _IVS_CEILING_STATUSES
 
 
 def _load_contract(

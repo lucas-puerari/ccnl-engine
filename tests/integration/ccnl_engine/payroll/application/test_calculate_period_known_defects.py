@@ -26,7 +26,7 @@ import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
@@ -62,7 +62,7 @@ def _req(
     weekly_hours: int | None = None,
     contributable_hours: Decimal | None = None,
     contract_type: object | None = None,
-    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN,
+    contribution_history: ContributionHistory | None = None,
 ) -> PeriodCalculationRequest:
     if opening is None:
         opening = PeriodState.zero()
@@ -82,7 +82,7 @@ def _req(
             else ContributableHours(contributable_hours)
         ),
         contract_type=ct,  # type: ignore[arg-type]
-        ceiling_status=ceiling_status,
+        contribution_history=contribution_history,
     )
 
 
@@ -382,7 +382,7 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
         _req(
             month=12,
             opening=opening,
-            ceiling_status=ContributionCeilingStatus.POST_1995,
+            contribution_history=ContributionHistory(date(2001, 9, 1)),
         )
     )
 

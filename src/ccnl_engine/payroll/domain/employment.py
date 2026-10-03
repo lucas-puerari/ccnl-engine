@@ -11,7 +11,7 @@ from ccnl_engine.contract.domain.category import (
     WorkerCategory,
     parse_worker_category,
 )
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employment_facts import (
     FEATURE,
     EmploymentPeriod,
@@ -99,8 +99,11 @@ class Employment:
         seniority_months: Months of continuous service.  ``None`` applies no
             seniority increment.
         roles: Role codes that unlock role-specific contractual allowances.
-        ceiling_status: Whether the IVS massimale applies.  ``UNKNOWN`` (the
-            default) does not apply it.
+        contribution_history: First enrolment in a mandatory pension scheme
+            and contributory option, from which the engine derives whether
+            the IVS massimale applies.  ``None`` means not known: a run whose
+            INPS base crosses the massimale then has an undetermined
+            contribution and a ``missing_fact`` blocker.
         sector: Private or public sector of the employment, for the regimes
             restricted to one sector.  ``None`` means not known: those
             regimes are then ``unknown`` and the result provisional.  It is
@@ -126,7 +129,7 @@ class Employment:
     full_time_weekly_hours: WeeklyHours | None = None
     seniority_months: SeniorityMonths | None = None
     roles: frozenset[str] = frozenset()
-    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
+    contribution_history: ContributionHistory | None = None
     sector: EmploymentSector | None = None
     pension_fund: PensionFundEnrolment | None = None
 
@@ -145,7 +148,12 @@ class Employment:
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("seniority_months", self.seniority_months, SeniorityMonths, True),
             ("roles", self.roles, frozenset, False),
-            ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
+            (
+                "contribution_history",
+                self.contribution_history,
+                ContributionHistory,
+                True,
+            ),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
         ))
         if problem is not None:
