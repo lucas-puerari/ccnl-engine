@@ -20,7 +20,7 @@ data gap.
 | `bool` accepted where an `int` is expected (`YearInput(year=True)`, `months_dependent=True`) | Rejected |
 | `datetime` accepted where a `date` is expected | Rejected: a `datetime` does not compare with a `date` |
 | `BonusEvent(kind=...)` accepted any string | One of `"bonus"`, `"productivity_bonus"`, `"contract_renewal"` |
-| `CalendarOverride(reason="payment_month")` was rejected | The string value of an enum is accepted and normalised, as for every enum input |
+| `CalendarOverride(reason="payment_month")` was rejected | Accepted and normalised to the member, like the string values of `RunKind`, `SenioritySource`, `DependentRelationship`, `WorkerCategory`, `EmploymentSector`, `EmployerActivity`, `SubstituteTaxRegime`, `SurtaxComponent`, `OvertimeKind` and the engine mode; `ExtraMonthSchedule.kind` still takes an `ExtraMonthKind` member only |
 | `PayrollRun`, `PayrollRunId`, `WorkCalendar`, `ExtraMonthSchedule`, `RecoveryPlan`, `RecoveryObligation`, `SurtaxObligation`, `DeferredShortfall`, `PeriodState` raised `ValueError` | They raise `InvalidInputError` |
 | A seniority recognised after the first run raised on the run | `PeriodInput` and `YearInput` reject it on construction (`field="Employment.seniority"`) |
 | `YearInput(payment_day=...)` checked by the payment date helper | `InvalidInputError` with `field="YearInput.payment_day"` |

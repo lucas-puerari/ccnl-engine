@@ -9,7 +9,7 @@ an internal series lookup error) never does.
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -20,25 +20,39 @@ from hypothesis import strategies as st
 import ccnl_engine
 from ccnl_engine import (
     AbsenceEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
     BonusEvent,
     CcnlEngineError,
+    ContributableHours,
+    Dependent,
+    DependentRelationship,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
+    FamilyComposition,
     FringeEvent,
     Headcount,
+    HolidayWorkEvent,
     InvalidInputError,
     MissingRuleError,
     NightShiftEvent,
     OvertimeEvent,
+    OvertimeKind,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+    PriorYearTaxFacts,
     SeniorityFact,
     SenioritySource,
+    ShiftWorkEvent,
+    SickLeaveEvent,
+    TerminationTFREvent,
+    WeeklyHours,
     WelfareEvent,
     YearInput,
+    YearResult,
 )
 
 if TYPE_CHECKING:
@@ -210,41 +224,170 @@ class TestYearOfContractStartingDuringTheYear:
         assert result.period_results[0].period_id.month == 4
 
 
-_AMOUNTS = st.decimals(min_value=Decimal("0.01"), max_value=Decimal(10_000), places=2)
-_EVENTS = st.lists(
-    st.one_of(
-        st.builds(
-            OvertimeEvent,
-            event_date=st.just(date(_YEAR, 6, 10)),
-            hours=st.decimals(
-                min_value=Decimal("0.5"), max_value=Decimal(80), places=1
+_AMOUNT = st.decimals(min_value=Decimal(0), max_value=Decimal(99_999), places=2)
+_POSITIVE = st.decimals(min_value=Decimal("0.01"), max_value=Decimal(9_999), places=2)
+_RATE = st.decimals(min_value=Decimal(0), max_value=Decimal(1), places=3)
+
+
+def _events(month: int) -> st.SearchStrategy[list[object]]:
+    """Return lists of up to five valid events dated in ``month``.
+
+    Returns:
+        The strategy.
+    """
+    day = st.dates(min_value=date(_YEAR, month, 1), max_value=date(_YEAR, month, 28))
+    return st.lists(
+        st.one_of(
+            st.builds(
+                OvertimeEvent,
+                event_date=day,
+                hours=_POSITIVE,
+                hourly_rate=_POSITIVE,
+                multiplier=st.one_of(st.none(), _POSITIVE),
+                kind=st.sampled_from(list(OvertimeKind)),
             ),
-            hourly_rate=_AMOUNTS,
+            st.builds(NightShiftEvent, event_date=day, supplement_amount=_AMOUNT),
+            st.builds(HolidayWorkEvent, event_date=day, supplement_amount=_AMOUNT),
+            st.builds(ShiftWorkEvent, event_date=day, supplement_amount=_AMOUNT),
+            st.builds(
+                AbsenceEvent,
+                event_date=day,
+                hours=st.decimals(
+                    min_value=Decimal(1), max_value=Decimal(24), places=1
+                ),
+                hourly_rate=_POSITIVE,
+                suspends_accrual=st.booleans(),
+            ),
+            st.builds(
+                SickLeaveEvent,
+                event_date=day,
+                amount=_AMOUNT,
+                sick_days=st.integers(1, 30),
+            ),
+            st.builds(
+                BonusEvent,
+                event_date=day,
+                amount=_AMOUNT,
+                kind=st.sampled_from([
+                    "bonus",
+                    "productivity_bonus",
+                    "contract_renewal",
+                ]),
+            ),
+            st.builds(FringeEvent, event_date=day, amount=_AMOUNT),
+            st.builds(WelfareEvent, event_date=day, amount=_AMOUNT),
+            st.builds(
+                ArrearsEvent, event_date=day, amount=_AMOUNT, separate_tax_rate=_RATE
+            ),
+            st.builds(
+                BilateralFundEvent,
+                event_date=day,
+                employee_amount=_AMOUNT,
+                employer_amount=_AMOUNT,
+            ),
+            st.builds(
+                TerminationTFREvent,
+                event_date=day,
+                amount=_AMOUNT,
+                separate_tax_rate=_RATE,
+            ),
         ),
-        st.builds(
-            NightShiftEvent,
-            event_date=st.just(date(_YEAR, 6, 11)),
-            supplement_amount=_AMOUNTS,
-        ),
-        st.builds(BonusEvent, event_date=st.just(date(_YEAR, 6, 12)), amount=_AMOUNTS),
-        st.builds(FringeEvent, event_date=st.just(date(_YEAR, 6, 13)), amount=_AMOUNTS),
-        st.builds(
-            WelfareEvent, event_date=st.just(date(_YEAR, 6, 14)), amount=_AMOUNTS
-        ),
-        st.builds(
-            AbsenceEvent,
-            event_date=st.just(date(_YEAR, 6, 15)),
-            hours=st.decimals(min_value=Decimal(1), max_value=Decimal(200), places=0),
-            hourly_rate=_AMOUNTS,
-        ),
+        max_size=5,
+    )
+
+
+_CONTRACTS = st.sampled_from([
+    ("metalmeccanico-federmeccanica.json", "C3"),
+    ("commercio-confcommercio.json", "4"),
+    ("lavoro-domestico-non-convivente.json", "BS"),
+])
+_DEPENDENTS = st.lists(
+    st.builds(
+        Dependent,
+        relationship=st.sampled_from([
+            DependentRelationship.CHILD,
+            DependentRelationship.ASCENDANT,
+        ]),
+        own_income=_AMOUNT,
+        months_dependent=st.integers(1, 12),
     ),
-    max_size=4,
+    max_size=3,
 )
 
 
-@settings(max_examples=40, deadline=None)
-@given(events=_EVENTS)
-def test_any_valid_events_give_a_result_or_a_public_error(events: list[object]) -> None:
-    """Large overtime, absences above the pay, bonuses: nothing leaks."""
-    facts = PeriodFacts(events=tuple(events))  # type: ignore[arg-type]
-    _public_outcome(lambda: _ENGINE.calculate_period(_june(_METAL, facts)))
+def _employment(contract: tuple[str, str], weekly_hours: int | None) -> Employment:
+    slug, level = contract
+    hours = None if weekly_hours is None else WeeklyHours(weekly_hours)
+    return Employment(ccnl_slug=slug, level_code=level, weekly_hours=hours)
+
+
+@settings(max_examples=50, deadline=None)
+@given(
+    data=st.data(),
+    month=st.integers(1, 12),
+    paid_after=st.integers(0, 40),
+    contract=_CONTRACTS,
+    weekly_hours=st.one_of(st.none(), st.integers(1, 40)),
+    hours=st.one_of(st.none(), _AMOUNT),
+    dependents=_DEPENDENTS,
+    income=st.one_of(st.none(), _AMOUNT),
+)
+def test_any_period_gives_a_result_or_a_public_error(
+    data: st.DataObject,
+    month: int,
+    paid_after: int,
+    contract: tuple[str, str],
+    weekly_hours: int | None,
+    hours: Decimal | None,
+    dependents: list[Dependent],
+    income: Decimal | None,
+) -> None:
+    """Any valid events, payment date, family and hours: nothing leaks."""
+    events = data.draw(_events(month))
+    facts = PeriodFacts(
+        events=tuple(events),  # type: ignore[arg-type]
+        contributable_hours=None if hours is None else ContributableHours(hours),
+        family_composition=FamilyComposition(dependents=tuple(dependents)),
+        regione="IT-45",
+        comune_belfiore="F257",
+    )
+    request = PeriodInput(
+        run=PayrollRun.regular(_YEAR, month),
+        payment_date=date(_YEAR, month, 1) + timedelta(days=paid_after),
+        employment=_employment(contract, weekly_hours),
+        employer=_EMPLOYER,
+        facts=facts,
+        prior_year=PriorYearTaxFacts(employment_income=income),
+    )
+    _public_outcome(lambda: _ENGINE.calculate_period(request))
+
+
+@settings(max_examples=8, deadline=None)
+@given(
+    data=st.data(),
+    months=st.sets(st.integers(1, 12), max_size=3),
+    contract=_CONTRACTS,
+    weekly_hours=st.one_of(st.none(), st.integers(1, 40)),
+)
+def test_any_year_and_its_closing_give_a_result_or_a_public_error(
+    data: st.DataObject,
+    months: set[int],
+    contract: tuple[str, str],
+    weekly_hours: int | None,
+) -> None:
+    """A year with events in any month, then the opening of the next one."""
+    periods = {month: data.draw(_events(month)) for month in sorted(months)}
+    request = YearInput(
+        year=_YEAR,
+        employment=_employment(contract, weekly_hours),
+        employer=_EMPLOYER,
+        periods={
+            month: PeriodFacts(events=tuple(events))  # type: ignore[arg-type]
+            for month, events in periods.items()
+        },
+    )
+    results: list[YearResult] = []
+    error = _public_outcome(lambda: results.append(_ENGINE.calculate_year(request)))
+    if error is None:
+        closing = results[0].period_results[-1].closing_state
+        _public_outcome(lambda: _ENGINE.close_tax_year(closing))

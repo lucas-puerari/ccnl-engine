@@ -31,6 +31,7 @@ from ccnl_engine import (
     SenioritySource,
     YearInput,
 )
+from ccnl_engine.contract.domain.validity import SeriesGapError
 from ccnl_engine.contract.service.discovery import list_contracts
 from ccnl_engine.contract.service.loaders import load_ccnl
 
@@ -85,6 +86,8 @@ def _outcome(call: Callable[[], object]) -> str | None:
         return None if None not in located else f"unlocated {error!r}"
     except CcnlEngineError:
         return None
+    except SeriesGapError as error:
+        return f"series gap leaked untranslated: {error}"
     except Exception as error:  # noqa: BLE001 - the scan reports any leak
         return f"{type(error).__name__}: {error}"
     return None
