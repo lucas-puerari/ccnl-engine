@@ -133,6 +133,11 @@ Both group the facts by owner and are validated when built:
         - PayrollRun
         - PayrollRunId
 
+::: ccnl_engine.payroll.domain.payment
+    options:
+      members:
+        - PaymentId
+
 ## Errors
 
 Every error the engine raises for an input, a data gap or a bundle defect

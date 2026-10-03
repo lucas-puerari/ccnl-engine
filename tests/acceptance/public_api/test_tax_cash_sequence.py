@@ -35,7 +35,7 @@ def _late_december_then_2027() -> list[Payment]:
         payments.append(Payment(PayrollRun.regular(2027, month), date(2027, month, 27)))
         if month == 7:
             payments.append(Payment(PayrollRun.fourteenth(2027, 7), date(2027, 7, 27)))
-    payments.append(Payment(PayrollRun.thirteenth(2027, 12), date(2027, 12, 18)))
+    payments.append(Payment(PayrollRun.thirteenth(2027, 12), date(2027, 12, 27)))
     return payments
 
 

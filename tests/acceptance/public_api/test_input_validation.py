@@ -44,6 +44,7 @@ from ccnl_engine import (
     NightShiftEvent,
     OpeningBalances,
     OvertimeEvent,
+    PaymentId,
     PayrollRun,
     PayrollRunId,
     PensionFundEnrolment,
@@ -139,6 +140,10 @@ _VALID: dict[type, dict[str, Any]] = {
     PeriodFacts: {},
     PayrollRun: {"run_kind": "regular", "month": 6, "year": _YEAR},
     PayrollRunId: {"year": _YEAR, "month": 6, "kind": "regular"},
+    PaymentId: {
+        "run_id": PayrollRunId.parse(f"{_YEAR}-06-regular"),
+        "payment_date": date(_YEAR, 6, 27),
+    },
     WorkCalendar: {"year": _YEAR},
     CalendarOverride: {
         "calendar": WorkCalendar(year=_YEAR),
