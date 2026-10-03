@@ -12,7 +12,7 @@ the readers in `ccnl_engine.knowledge.service`). See
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `YearInput`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `YearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
+| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `YearInput`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `YearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -65,6 +65,9 @@ from ccnl_engine import (
     ResultAssurance,
     ResultBlocker,
     BlockerCode,
+    ModelLimitation,
+    MonetaryImpact,
+    LimitationStatus,
     CoverageStatus,
     EvidenceStatus,
     Payability,

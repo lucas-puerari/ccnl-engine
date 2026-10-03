@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.service.seniority import _seniority_amount
+from ccnl_engine.payroll.service.seniority import (
+    APPRENTICE_SENIORITY,
+    _seniority_amount,
+)
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
@@ -54,6 +57,22 @@ def _level_chain(
         is_apprentice=is_apprentice,
         seniority_months=seniority_months,
     )
+    # An apprentice with matured increments is paid the apprentice amount;
+    # the run records the simplification when the level pays otherwise.
+    simplified = (
+        is_apprentice
+        and count > 0
+        and seniority
+        != _seniority_amount(
+            seniority_rules,
+            level.code,
+            count,
+            as_of,
+            worker_category=worker_category,
+            is_apprentice=False,
+            seniority_months=seniority_months,
+        )
+    )
     allowances = tuple(
         (a, a.monthly.value_at(as_of))
         for a in level.fixed_allowances
@@ -63,4 +82,5 @@ def _level_chain(
         base=level.base_salary.value_at(as_of),
         seniority=seniority,
         allowances=allowances,
+        limitations=(APPRENTICE_SENIORITY,) if simplified else (),
     )

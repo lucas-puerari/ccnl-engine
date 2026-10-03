@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, una_tantum |
 
 ### Verifica
 
@@ -106,25 +106,54 @@ Destination levels: `V`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "agenti-immobiliari-fiaip/quadri_function_allowance · base_salary · impact yes · open"
     SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 162 Q function allowance (250 EUR x 12) as a role-gated allowance.
+
+!!! warning "agenti-immobiliari-fiaip/ebnaip_qsc_and_flat_quota · bilateral_funds · impact yes · open"
     SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).
 
-!!! warning ""
-    SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-!!! warning ""
+    **Remediation:** Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions.
+
+!!! warning "agenti-immobiliari-fiaip/specialist_apprenticeship_track · base_salary · impact yes · open"
     SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 55 two-year specialist track once its intermediate classification is sourced.
+
+!!! warning "agenti-immobiliari-fiaip/una_tantum_2025_2026 · una_tantum · impact yes · open"
     SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the 01/09/2025 and 01/05/2026 una tantum outside the engine for workers hired before 01/01/2024.
+
+!!! warning "agenti-immobiliari-fiaip/fonte_pension_fund · pension_fund_contribution · impact yes · open"
     SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.
+
+    **Applies when:** `pension_fund_contribution` applies.
+
+    **Remediation:** Add the Fon.Te. employee and employer rates to the CCNL pension fund data.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels.
 
 ## Sources
 

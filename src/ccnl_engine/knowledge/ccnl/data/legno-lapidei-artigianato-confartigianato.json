@@ -86,15 +86,44 @@
       },
       {
         "kind": "simplification",
-        "text": "Only Legno/Arredamento/Mobili sub-sector salary tables modelled. Lapidei (stone/marble) sub-sector uses different salary tables and is not modelled. CNEL code F060 covers both sub-sectors. Workers in Lapidei should verify against the specific Lapidei tables."
+        "text": "Only Legno/Arredamento/Mobili sub-sector salary tables modelled. Lapidei (stone/marble) sub-sector uses different salary tables and is not modelled. CNEL code F060 covers both sub-sectors. Workers in Lapidei should verify against the specific Lapidei tables.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "lapidei_tables_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Lapidei sub-sector salary tables as a separate file."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period."
+        "text": "Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "impiegati_apprenticeship_duration",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "worker_categories": [
+              "impiegato"
+            ]
+          },
+          "remediation": "Model the 3-year impiegati apprenticeship tracks."
+        }
       },
       {
         "kind": "simplification",
-        "text": "LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels."
+        "text": "LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "null_category_operaio_rate",
+          "remediation": "Assign a category per level, or require the worker category, so the impiegato INPS rate applies."
+        }
       },
       {
         "kind": "info",
@@ -1399,7 +1428,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "4bc8b425b5c1f0b50b394ba7a50fdb22db07e3d279ca65c9ca6bdd5a9cef0e74",
+    "source_hash": "84a0258f2d9db4bd7e58011117168f661d5940602d5c80e7abd4da59ab9b3d62",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

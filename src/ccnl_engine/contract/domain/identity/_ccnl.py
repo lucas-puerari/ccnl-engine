@@ -31,6 +31,7 @@ from ccnl_engine.contract.domain.validation import (
     _collect_transition_dates,
 )
 from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 
 class CCNL(BaseModel):
@@ -79,7 +80,17 @@ class CCNL(BaseModel):
         self._assert_salary_order_non_decreasing()
         self._assert_apprenticeship_tracks()
         self._assert_provenance_complete()
+        self._assert_limitation_levels()
         return self
+
+    @property
+    def limitations(self) -> tuple[ModelLimitation, ...]:
+        """Limitations the simplification notes declare, in note order."""
+        source = f"ccnl/{self.meta.ccnl_id}:coverage.notes"
+        found = (
+            n.model_limitation(self.meta.ccnl_id, source) for n in self.coverage.notes
+        )
+        return tuple(limitation for limitation in found if limitation is not None)
 
     def level_by_code(self, level_code: str) -> Level:
         """Return the level with the given code, or raise ``ValueError``.
@@ -203,6 +214,17 @@ class CCNL(BaseModel):
                     f"destination {dest.code!r}, order {dest.order})"
                 )
                 raise ValueError(msg) from None
+
+    def _assert_limitation_levels(self) -> None:
+        existing = {lv.code for lv in self.levels}
+        for note in self.coverage.notes:
+            spec = note.limitation
+            if spec is None or spec.applies_when.levels is None:
+                continue
+            unknown = sorted(spec.applies_when.levels - existing)
+            if unknown:
+                msg = f"limitation {spec.variant!r} names unknown levels {unknown}"
+                raise ValueError(msg)
 
     def _assert_provenance_complete(self) -> None:
         """Verify that every rule in a schema-0.5 file carries provenance.

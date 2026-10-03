@@ -92,27 +92,64 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Valori base_salary livelli 4, 5, 6S, 7 ai periodi non-giugno-2026 derivati via regola proporzionale (stesso aumento percentuale, da edotto.com/fisascat.it). Modello non-compounding: tranche_i = round(pre_rinnovo_livello * pct_i, 2), pct_i = tranche_L6_EUR / L6_pre. Back-solve unico su giugno 2026 confermato per tutti i 9 livelli. Rischio: zero (round-trip verificato)."
+        "text": "SIMPLIFICATION: Valori base_salary livelli 4, 5, 6S, 7 ai periodi non-giugno-2026 derivati via regola proporzionale (stesso aumento percentuale, da edotto.com/fisascat.it). Modello non-compounding: tranche_i = round(pre_rinnovo_livello * pct_i, 2), pct_i = tranche_L6_EUR / L6_pre. Back-solve unico su giugno 2026 confermato per tutti i 9 livelli. Rischio: zero (round-trip verificato).",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Importi scatti anzianità assunti costanti per tutto il periodo 2024-2027. La fonte primaria (kitech.it giugno 2026) non indica data decorrenza; il rinnovo 2024 non menziona modifiche agli scatti."
+        "text": "SIMPLIFICATION: Importi scatti anzianità assunti costanti per tutto il periodo 2024-2027. La fonte primaria (kitech.it giugno 2026) non indica data decorrenza; il rinnovo 2024 non menziona modifiche agli scatti.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_assumed_constant",
+          "remediation": "Source the effective dates of the seniority amounts."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: IND_FUN 154.94 EUR assunta costante dal 2024-01-01 senza adeguamenti. Allowance pre-euro congelata (300.000 lire). Nessuna fonte indica variazioni nel rinnovo 2024."
+        "text": "SIMPLIFICATION: IND_FUN 154.94 EUR assunta costante dal 2024-01-01 senza adeguamenti. Allowance pre-euro congelata (300.000 lire). Nessuna fonte indica variazioni nel rinnovo 2024.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ind_fun_assumed_constant",
+          "applies_when": {
+            "levels": [
+              "Q"
+            ]
+          },
+          "remediation": "Confirm the IND_FUN amount against the 2024 renewal text."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: IND_FUN assunta corrisposta su 14 mensilità (ereditato da additional_months contratto); months_per_year non specificato. Nessuna fonte accessibile indica il numero di mensilità dell'indennità. Impatto: ±154.94 EUR/anno livello Q se la vera risposta è 12 mensilità."
+        "text": "SIMPLIFICATION: IND_FUN assunta corrisposta su 14 mensilità (ereditato da additional_months contratto); months_per_year non specificato. Nessuna fonte accessibile indica il numero di mensilità dell'indennità. Impatto: ±154.94 EUR/anno livello Q se la vera risposta è 12 mensilità.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ind_fun_fourteen_months",
+          "applies_when": {
+            "levels": [
+              "Q"
+            ],
+            "run_kinds": [
+              "fourteenth"
+            ]
+          },
+          "remediation": "Source the number of monthly payments of IND_FUN."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato non modellato (apprenticeship=[]). Il rinnovo 2024 ha modificato la disciplina dell'apprendistato ma il testo consolidato è dietro paywall. Le fonti accessibili (aggregatori) non sono attribuibili con certezza al CCNL Fruitimprese H341 rispetto al CCNL Confsal/Fesica. Rischio: retribuzione apprendistato restituisce zero anziché un importo errato."
+        "text": "SIMPLIFICATION: Apprendistato non modellato (apprenticeship=[]). Il rinnovo 2024 ha modificato la disciplina dell'apprendistato ma il testo consolidato è dietro paywall. Le fonti accessibili (aggregatori) non sono attribuibili con certezza al CCNL Fruitimprese H341 rispetto al CCNL Confsal/Fesica. Rischio: retribuzione apprendistato restituisce zero anziché un importo errato.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia."
+        "text": "SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia.",
+        "capability": "sickness",
+        "monetary_impact": "no"
       },
       {
         "kind": "missing",
@@ -2211,7 +2248,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "706c764e19a0038e2e017668821fe51da3e9f38ad03fc3f9868e1eaa5152ebd7",
+    "source_hash": "9737e0835fe3e8a5ef42ad54c9c1d0f250081719020a7566cea2451b155dc814",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

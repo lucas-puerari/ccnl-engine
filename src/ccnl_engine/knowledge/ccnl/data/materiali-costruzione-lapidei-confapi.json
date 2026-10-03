@@ -60,11 +60,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship not modelled. Art. 3 defines three periods (0-12 months 2 levels below, 12-24 months 1 level below, 24-36 months destination pay) with a special 18-month track for L6 and destination pay in period 3. The engine supports ApprenticeshipUnderClassification with levels_below periods, but L6's shorter duration and period-3 destination-pay override require per-destination customisation not yet extracted from source. Deferred pending dedicated source review."
+        "text": "SIMPLIFICATION: Apprenticeship not modelled. Art. 3 defines three periods (0-12 months 2 levels below, 12-24 months 1 level below, 24-36 months destination pay) with a special 18-month track for L6 and destination pay in period 3. The engine supports ApprenticeshipUnderClassification with levels_below periods, but L6's shorter duration and period-3 destination-pay override require per-destination customisation not yet extracted from source. Deferred pending dedicated source review.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred."
+        "text": "SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred.",
+        "capability": "overtime",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1918,6 +1922,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "9bec70b4303f2db89a1ae1a2d8f03eb589ce7f67403f7d042a0b9c0a154f3241"
+    "source_hash": "547b9d341a018f5c2d6de2e49934454ee9bbbb795abf28819f071137befd9981"
   }
 }

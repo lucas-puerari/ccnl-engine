@@ -98,7 +98,16 @@
       },
       {
         "kind": "simplification",
-        "text": "Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL."
+        "text": "Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pmi_non_artigiane_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the Art. 4 PMI non-artigiane salary tables and a request field to select them."
+        }
       },
       {
         "kind": "info",
@@ -106,19 +115,50 @@
       },
       {
         "kind": "simplification",
-        "text": "Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role)."
+        "text": "Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "switchboard_apprenticeship_duration",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Add the 2-year apprenticeship track for centraliniste."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type."
+        "text": "Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value."
+        "text": "LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.",
+        "capability": "worker_category",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_category_not_declared",
+          "remediation": "Declare the worker category in the request; the levels map to both operai and impiegati."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified."
+        "text": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "function_allowance_constant",
+          "applies_when": {
+            "levels": [
+              "1A"
+            ],
+            "effective_until": "2026-03-01"
+          },
+          "remediation": "Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches."
+        }
       }
     ]
   },
@@ -1340,7 +1380,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "24e353282d10e221c57c8756929b9dcfe5ef113b04901e3ec4b3719d75897639",
+    "source_hash": "f1e1e7b8fc7b163d09f524272beee5b6a6e24a5328585772b31a348231110313",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

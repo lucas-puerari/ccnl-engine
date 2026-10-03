@@ -50,7 +50,19 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule."
+        "text": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "art3_derogation_apprenticeship",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm that the Art. 3 comma 3 derogation follows the 18-month rule."
+        }
       },
       {
         "kind": "info",
@@ -1332,7 +1344,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6060aa3e07b4897860799cdc0ce0285d8e49e6263bcd5aa6d497561a74cd090a",
+    "source_hash": "a22dbc775d526f56afbeb6a6702df4a25bf8f512885c27aac57d907e44cb715a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

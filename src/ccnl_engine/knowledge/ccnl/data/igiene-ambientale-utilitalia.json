@@ -54,7 +54,9 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error."
+        "text": "FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -62,7 +64,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json used as proxy (3 size tiers: ≤15, ≤50, >50 employees — selected via Employer.num_employees). For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015; no sector-specific INPS circular found. The CIGO addizionale (0.60% ≤50 employees, 0.90% >50) is event-driven: charged only when hours are actually in CIG integrazione — correctly excluded from the standing monthly rate. Simplification: industria proxy, not a sector-specific file."
+        "text": "INPS RATES. INDUSTRIA rates from 2026-industria.json used as proxy (3 size tiers: ≤15, ≤50, >50 employees — selected via Employer.num_employees). For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015; no sector-specific INPS circular found. The CIGO addizionale (0.60% ≤50 employees, 0.90% >50) is event-driven: charged only when hours are actually in CIG integrazione — correctly excluded from the standing monthly rate. Simplification: industria proxy, not a sector-specific file.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "industria_rates_proxy",
+          "remediation": "Verify the INPS rates of igiene ambientale against a sector-specific circular."
+        }
       },
       {
         "kind": "info",
@@ -3448,7 +3456,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "d0451458d7dd32176f095cb7e2368b32ca4abec9f5a7c14ba076a8c4282d01cc",
+    "source_hash": "b9045a0a6fe736bce602d602545c195bc26bc7b4cc5da3a83eb7672b61de5490",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

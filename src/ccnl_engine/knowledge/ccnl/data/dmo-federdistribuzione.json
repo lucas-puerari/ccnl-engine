@@ -43,7 +43,16 @@
       },
       {
         "kind": "simplification",
-        "text": "Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope)."
+        "text": "Terzo elemento nazionale (Art. 199): EUR 2.07/month (lire 4,000) for workers in provinces without provincial terzi elementi (Art. 198, frozen since 1973). Modelled as 'edr' fixed allowance for all workers. # SIMPLIFICATION: some provinces have higher provincial elements (second-level bargaining, out of scope).",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_elements_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the provincial terzi elementi of Art. 198 as a territorial supplement."
+        }
       },
       {
         "kind": "info",
@@ -2161,7 +2170,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "40f878c777ebd7197ade371604b220d3cc884861714a83affe547419647e54e3",
+    "source_hash": "2854ec6025376e152be6b0d09cfcbce08fb0bf38db8382bd76d07dc3fc351388",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, worker_category |
 
 ### Verifica
 
@@ -107,22 +107,47 @@ percentage: 0.90
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables · base_salary · impact yes · open"
     Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the Art. 4 PMI non-artigiane salary tables and a request field to select them.
+
+!!! warning "comunicazione-artigianato-confartigianato/switchboard_apprenticeship_duration · base_salary · impact yes · open"
     Centraliniste (switchboard operators) have a 2-year apprenticeship track per the 2024 rinnovo. Modelled as the general 3-year amministrativi track (overstates duration by 1 year for that role).
 
-!!! warning ""
-    Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-!!! warning ""
+    **Remediation:** Add the 2-year apprenticeship track for centraliniste.
+
+!!! warning "comunicazione-artigianato-confartigianato/level_category_not_declared · worker_category · impact unknown · open"
     LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.
 
-!!! warning ""
+    **Applies when:** `worker_category` applies.
+
+    **Remediation:** Declare the worker category in the request; the levels map to both operai and impiegati.
+
+!!! warning "comunicazione-artigianato-confartigianato/function_allowance_constant · base_salary · impact unknown · open"
     Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified.
+
+    **Applies when:** `base_salary` applies; level in 1A; before 2026-03-01.
+
+    **Remediation:** Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    Both apprenticeship tracks (operai_tecnici and amministrativi) are assigned to all 8 destination levels. In practice, the CCNL differentiates by job role, not only by destination level. Firms must select the correct track by role type.
 
 ## Sources
 

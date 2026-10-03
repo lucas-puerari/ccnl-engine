@@ -65,11 +65,19 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text."
+        "text": "APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying."
+        "text": "WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "overtime_bands_from_confapi",
+          "remediation": "Verify the overtime bands against the CONFIMI CCNL text."
+        }
       },
       {
         "kind": "info",
@@ -1429,7 +1437,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "9792193667850a7621c191c257b71e2c896215dd8328664fe62f136a57160e1b",
+    "source_hash": "0c1ea35b6e866e642c7286a1adea099ae7efc6e77d07b1845e57e485756b4ffc",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

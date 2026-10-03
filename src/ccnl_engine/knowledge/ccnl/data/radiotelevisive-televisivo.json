@@ -61,7 +61,9 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS rates reuse existing 2026-industria.json (tax_sector=industria). No bilateral fund substitution for broadcasting sector identified; standard Confindustria INPS rates apply."
+        "text": "INPS rates reuse existing 2026-industria.json (tax_sector=industria). No bilateral fund substitution for broadcasting sector identified; standard Confindustria INPS rates apply.",
+        "capability": "inps_employer",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1821,6 +1823,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "12655581eb2684c97fd8bf27c8df24595e6af2a3056a143a064a425e9fb2deaf"
+    "source_hash": "202fc91eb2c07294fea3c89b94842d57f2f053fbcf1c303fadb984302521618d"
   }
 }

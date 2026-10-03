@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, inps_employer |
 
 ### Verifica
 
@@ -94,10 +94,14 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "ced-assoced/terziario_inps_rates_unverified · inps_employer · impact unknown · open"
     INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the H601 sub-sector INPS rate against the annual INPS circular.
 
 ## Sources
 

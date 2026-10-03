@@ -128,7 +128,8 @@ Whether the amounts of a result can be paid as they are.  It combines the
 calculation, coverage and evidence axes and the rulesets read, and lists the
 blockers: issues, non-final decisions, missing facts, capabilities not
 computed, rules `assumed` or `missing` in the bundle, rules supplied by the
-caller.  A result is payable only when no blocker applies.
+caller, open model limitations with a monetary impact.  A result is payable
+only when no blocker applies.
 
 `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `PeriodResult.is_payable`,
 `YearResult.is_payable`

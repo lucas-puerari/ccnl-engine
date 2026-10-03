@@ -68,7 +68,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES. Terziario proxy used. ASSOFARM entities operate as aziende speciali or società di gestione farmacia (private-law entities under municipal control); the contract is registered CNEL H124 and negotiated by UGL Terziario — standard private-sector INPS regime (terziario) is the expected classification. Note: CCNL text references \"INPS Gestione ex INPDAP\" in benefit provisions, suggesting legacy workers transferred from public-sector management may retain the ex-INPDAP pension regime — contribution rates for those workers differ. No sector-specific INPS circular identified; kitech.it does not list a dedicated contribution table for farmacie municipalizzate. Simplification retained."
+        "text": "INPS RATES. Terziario proxy used. ASSOFARM entities operate as aziende speciali or società di gestione farmacia (private-law entities under municipal control); the contract is registered CNEL H124 and negotiated by UGL Terziario — standard private-sector INPS regime (terziario) is the expected classification. Note: CCNL text references \"INPS Gestione ex INPDAP\" in benefit provisions, suggesting legacy workers transferred from public-sector management may retain the ex-INPDAP pension regime — contribution rates for those workers differ. No sector-specific INPS circular identified; kitech.it does not list a dedicated contribution table for farmacie municipalizzate. Simplification retained.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "terziario_rates_proxy",
+          "remediation": "Verify the INPS classification against a sector circular, including ex-INPDAP legacy workers."
+        }
       },
       {
         "kind": "info",
@@ -1525,7 +1531,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "5cbdaf83dccdbf1ca81df442c29bc0ae803bc0dc1a4da2cac404babb2c3be708",
+    "source_hash": "4cf921569ae04772f6398470c459b4178ae1cd2deb993fb1734919c901376f1c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

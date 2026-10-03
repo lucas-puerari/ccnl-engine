@@ -76,23 +76,74 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità."
+        "text": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ind_fun_months_per_year",
+          "applies_when": {
+            "levels": [
+              "1"
+            ],
+            "run_kinds": [
+              "thirteenth"
+            ]
+          },
+          "remediation": "Source the number of yearly instalments of IND_FUN and set months_per_year."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso."
+        "text": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_percentages_2022",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Verify the apprenticeship percentages against the December 2025 renewal."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese."
+        "text": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_2_seniority_amount",
+          "applies_when": {
+            "levels": [
+              "2"
+            ]
+          },
+          "remediation": "Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual."
+        "text": "SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "artisan_inps_rates_unverified",
+          "remediation": "Verify the 2026 employer INPS rates for artisan cleaning firms against the INPS circular."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno."
+        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "health_and_bilateral_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds."
+        }
       },
       {
         "kind": "info",
@@ -104,11 +155,34 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione)."
+        "text": "SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione).",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial."
+        "text": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.",
+        "capability": "overtime",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "overtime_weekly_threshold",
+          "remediation": "Model the 40-hour weekly threshold and the 200-hour yearly cap of OT_DIURNO, or pass the multiplier on the overtime event."
+        }
+      },
+      {
+        "kind": "missing",
+        "text": "MISSING: Ferie e permessi (leave_rules) non modellati: il file non riporta i giorni di ferie annuali né le ore di permesso retribuito.",
+        "capability": "leave"
+      },
+      {
+        "kind": "missing",
+        "text": "MISSING: Maggiorazione per lavoro notturno ordinario non modellata: il file riporta solo la maggiorazione dello straordinario notturno (OT_NOTTURNO).",
+        "capability": "night_work"
+      },
+      {
+        "kind": "missing",
+        "text": "MISSING: Maggiorazione per lavoro festivo ordinario non modellata: il file riporta solo la maggiorazione dello straordinario festivo (OT_FESTIVO).",
+        "capability": "holiday_work"
       }
     ]
   },
@@ -3497,7 +3571,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "a20529d6e69f262a596939fcaa0273a5b1f921e2be8316e3e81ce30367680ec0",
+    "source_hash": "96d3f3a001517b3e574ad06186e4c1ee9ff228754af8020dcfbf30e73959b956",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -96,7 +96,16 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers."
+        "text": "INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "public_operator_inps_scheme",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the INPS contribution scheme of publicly-owned TPL operators and a request field to select it."
+        }
       },
       {
         "kind": "info",
@@ -5127,7 +5136,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "f1b7cd003bbb5faa88555ed2b7357048c43ad7fd6b2e8d5773785941430c3c4d",
+    "source_hash": "571679e94f87d5df0e1a6d6e5c8a5b3b865046882f0c77729bb522015327c4ec",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

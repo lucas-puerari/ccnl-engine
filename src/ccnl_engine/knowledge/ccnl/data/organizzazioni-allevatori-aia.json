@@ -72,15 +72,40 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01."
+        "text": "SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources."
+        "text": "SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "third_tranche_sep_2026",
+          "applies_when": {
+            "effective_from": "2026-09-01"
+          },
+          "remediation": "Add the September 2026 tranche once the per-level amounts are published."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance."
+        "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_function_allowance",
+          "applies_when": {
+            "levels": [
+              "1/2",
+              "1/3",
+              "1/4",
+              "1/5"
+            ]
+          },
+          "remediation": "Model the area 1 Quadri function allowance (minimum 13%)."
+        }
       }
     ]
   },
@@ -923,7 +948,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "2f94b5fce3cbfad729a36de42fb55bd16ca765d7a3af5e15d1c7d063052794b4",
+    "source_hash": "1520278dc30fb0e8f12c7b249d9a27dbf95cc9e27e221c98e9bd21d0e7a263b0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

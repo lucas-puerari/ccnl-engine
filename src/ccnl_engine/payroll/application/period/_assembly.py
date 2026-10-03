@@ -15,6 +15,7 @@ from ccnl_engine.payroll.application.period._closing_state import (
     RunOutcome,
     closing_state,
 )
+from ccnl_engine.payroll.application.period._limitations import run_limitations
 from ccnl_engine.payroll.application.period._rule_sources import (
     missing_source_issues,
     run_rule_sources,
@@ -132,6 +133,14 @@ def _result(
     )
     executed = events.totals.executed_features
     sources = run_rule_sources(ctx, all_decisions, executed)
+    report = capability_report(
+        ctx.contract.catalog,
+        all_decisions,
+        executed,
+        case_facts(ctx),
+        ctx.fiscal_year,
+        weakest_by_capability(sources),
+    )
     return PeriodResult(
         period_id=ctx.request.period_id,
         payment_date=ctx.request.payment_date,
@@ -142,14 +151,7 @@ def _result(
         closing_state=closing,
         pay_items=posted.pay_items + events.items + somma.items + carried.items,
         ledger_entries=entries,
-        capability_report=capability_report(
-            ctx.contract.catalog,
-            all_decisions,
-            executed,
-            case_facts(ctx),
-            ctx.fiscal_year,
-            weakest_by_capability(sources),
-        ),
+        capability_report=report,
         contribution_breakdown=amounts.contribution_breakdown,
         tax_computation=amounts.tax_computation,
         benefit_breakdown=_benefits(events, entries),
@@ -164,6 +166,7 @@ def _result(
         + missing_source_issues(sources),
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),
+        limitations=run_limitations(ctx, report),
     )
 
 

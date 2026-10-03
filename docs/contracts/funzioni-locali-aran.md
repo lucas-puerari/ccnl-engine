@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, company_supplement |
 
 ### Verifica
 
@@ -79,16 +79,28 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "funzioni-locali-aran/pre_2024_back_calculated · base_salary · impact unknown · open"
     PRE-2024 BACK-CALCULATED. Nov 2022 values derived by back-calculation (2024 values minus Tabella A col.1 increments). 2022-2023 anticipation payments (Art. 47-bis D.Lgs. 165/2001) not modelled as intermediate periods.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; before 2024-01-01.
+
+    **Remediation:** Source the 2022-2023 values and the anticipation payments from the CCNL 2019-2021 tables.
+
+!!! warning "funzioni-locali-aran/indennita_comparto_decentrata_missing · company_supplement · impact yes · open"
     Indennità di comparto post-conglobamento (Tabella C col.4) fully charged to Fondo risorse decentrate — not modelled as a fixed_allowance (varies by administration and is not a universal fixed amount).
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the indennita di comparto charged to the fondo risorse decentrate as an administration-level supplement.
+
+!!! warning "funzioni-locali-aran/renewal_2025_2027_missing · base_salary · impact unknown · open"
     2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file.
+
+    **Applies when:** `base_salary` applies; from 2025-01-01.
+
+    **Remediation:** Add the 2025-2027 per-level amounts once the CCNL is certified and signed.
 
 ## Sources
 

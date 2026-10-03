@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -96,16 +96,26 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: Settore panificazione industriale (7 levels: 1, 3A, 3B, 4, 5, 6, plus viaggiatori) not modeled — separate salary tables; only settore alimentare 9 levels implemented.
-
-!!! warning ""
+!!! warning "alimentari-pmi-unionalimentari/tranches_2027_2028 · base_salary · impact yes · open"
     SIMPLIFICATION: Tranche 3 (01/04/2027) and tranche 4 (01/01/2028) not modeled. The circular text states tranche 3 as EUR 32 at parametro 137 (level 8 equivalent), but the per-level table shows the same 74.09 EUR increment as all other tranches for every level including level 4. Text and table are irreconcilable without a clarification from Unionalimentari. Engine returns Jan 2026 amounts for dates on or after 2026-01-01.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; from 2027-04-01.
+
+    **Remediation:** Add tranche 3 (01/04/2027) and tranche 4 (01/01/2028) once Unionalimentari clarifies the per-level amounts.
+
+!!! warning "alimentari-pmi-unionalimentari/egr_increase_2027 · base_salary · impact yes · open"
     SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table.
+
+    **Applies when:** `base_salary` applies; from 2027-01-01.
+
+    **Remediation:** Add the EGR increase from 01/01/2027 once a confirmed per-level table is available.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Settore panificazione industriale (7 levels: 1, 3A, 3B, 4, 5, 6, plus viaggiatori) not modeled — separate salary tables; only settore alimentare 9 levels implemented.
 
 ## Sources
 

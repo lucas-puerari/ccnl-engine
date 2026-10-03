@@ -252,7 +252,16 @@
       },
       {
         "kind": "simplification",
-        "text": "Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato."
+        "text": "Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "specificita_pre_2025_estimated",
+          "applies_when": {
+            "effective_until": "2024-12-31"
+          },
+          "remediation": "Source the exact Art. 66 amount of the CCNL 23.1.2024 for periods before 31/12/2024."
+        }
       },
       {
         "kind": "info",
@@ -279,7 +288,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "043dcbef8368a2b68c83c533534f179475cb5d346d580aa7b18c0eec0b419d5d",
+    "source_hash": "ede725a764a96a1aa021e6d7ba093c2a50fb5a4934ae37d747c2e5384db4a35a",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

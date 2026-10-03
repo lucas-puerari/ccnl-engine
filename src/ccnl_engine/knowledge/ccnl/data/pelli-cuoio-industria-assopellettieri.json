@@ -36,7 +36,22 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text."
+        "text": "LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_1_apprentice_reference",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "2",
+              "3"
+            ]
+          },
+          "remediation": "Verify the 22/12/2023 agreement for the apprenticeship pay reference of level 1."
+        }
       },
       {
         "kind": "info",
@@ -1166,7 +1181,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "613edc4be5e551a4d12228f3f97ab7e4e91d7dd586d3a4f71f53db2d704c4ea7",
+    "source_hash": "cd91579e1d5fc3de60eb2918b81153a55acc9d1e692fe15943693be3f743984e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

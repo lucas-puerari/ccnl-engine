@@ -8,6 +8,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
+from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
 from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from ccnl_engine.tax.service.tax_optional_loaders import (
@@ -18,6 +19,7 @@ from ccnl_engine.tax.service.tax_optional_loaders import (
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL, TaxSector
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
@@ -70,6 +72,14 @@ class BundledKnowledgeRepository:
             with all declared capabilities for the requested year.
         """
         return load_capability_catalog(year)
+
+    def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:  # noqa: PLR6301
+        """Return the limitations of the engine's shared code paths.
+
+        Returns:
+            The engine limitations of the bundle, in file order.
+        """
+        return load_engine_limitations()
 
     def load_variable_pay_rules(self, year: int) -> VariablePayRules:  # noqa: PLR6301
         """Return the statutory variable-pay rules for *year*.

@@ -16,7 +16,7 @@ Each page replaces the raw JSON dump with a structured layout:
   - Salary table (latest tranche per level)
   - Seniority rules
   - Apprenticeship tracks
-  - Simplification warnings
+  - Known simplifications, generated from the limitation registry
   - Sources with links
   - Collapsed raw JSON (provenance artifact, always present)
   - Usage example snippet
@@ -41,6 +41,7 @@ from scripts.docs.coverage_report import (
     coverage_cells,
     latest_catalog_year,
 )
+from scripts.docs.limitation_report import limitation_lines
 
 ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "ccnl" / "data"
@@ -417,31 +418,6 @@ def _coverage_section(
     ]
 
 
-def _simplification_lines(notes_by_kind: dict[str, list[str]]) -> list[str]:
-    """Render simplification warning blocks.
-
-    Returns:
-        List of markdown lines for the Known simplifications section.
-    """
-    simplifications = notes_by_kind.get("simplification", [])
-    if not simplifications:
-        return []
-    lines: list[str] = [
-        "## Known simplifications",
-        "",
-        (
-            "These are deliberate modelling approximations. "
-            "Read them before using this contract in a sensitive context."
-        ),
-        "",
-    ]
-    for text in simplifications:
-        lines.append('!!! warning ""')
-        lines.extend([f"    {sub}" for sub in text.splitlines()])
-        lines.append("")
-    return lines
-
-
 def _info_notes_lines(notes_by_kind: dict[str, list[str]]) -> list[str]:
     """Render the collapsed coverage-notes block.
 
@@ -459,7 +435,7 @@ def _info_notes_lines(notes_by_kind: dict[str, list[str]]) -> list[str]:
     return lines
 
 
-def _body_sections(data: dict[str, Any]) -> list[str]:
+def _body_sections(data: dict[str, Any], ccnl: CCNL) -> list[str]:
     """Build salary, seniority, apprenticeship, simplifications, sources, notes.
 
     Returns:
@@ -496,7 +472,7 @@ def _body_sections(data: dict[str, Any]) -> list[str]:
             "",
         ])
 
-    lines.extend(_simplification_lines(notes_by_kind))
+    lines.extend(limitation_lines(ccnl))
 
     if sources:
         lines.extend(["## Sources", "", _render_sources(sources), ""])
@@ -555,9 +531,10 @@ def generate_page(json_path: Path, root: Path = ROOT) -> str:
     lines: list[str] = []
     lines.extend(_header_section(data, ccnl_id))
     catalog = load_capability_catalog(latest_catalog_year())
-    cells = coverage_cells(catalog, CCNL.model_validate(data))
+    ccnl = CCNL.model_validate(data)
+    cells = coverage_cells(catalog, ccnl)
     lines.extend(_coverage_section(cells, coverage, verification, meta, levels))
-    lines.extend(_body_sections(data))
+    lines.extend(_body_sections(data, ccnl))
     lines.extend(_tail_section(ccnl_id, root))
 
     return "\n".join(lines)

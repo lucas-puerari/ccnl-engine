@@ -34,6 +34,8 @@ Usage::
         print(blocker.code, blocker.feature, blocker.detail)
     for ruleset in result.rulesets:
         print(ruleset.id, ruleset.kind, ruleset.readiness)
+    for limitation in result.assurance.limitations:
+        print(limitation.id, limitation.monetary_impact, limitation.status)
 
 ``PayrollEngine.bundled(mode="operational")`` also blocks payment from any
 ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
@@ -159,6 +161,11 @@ from ccnl_engine.shared.domain.errors import (
     UnknownLevelError,
     UnsupportedTaxYearError,
 )
+from ccnl_engine.shared.domain.limitation import (
+    LimitationStatus,
+    ModelLimitation,
+    MonetaryImpact,
+)
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.version import __version__ as engine_version
 
@@ -204,6 +211,9 @@ __all__ = [
     "Headcount",
     "HolidayWorkEvent",
     "InvalidInputError",
+    "LimitationStatus",
+    "ModelLimitation",
+    "MonetaryImpact",
     "NightShiftEvent",
     "OpeningBalances",
     "OutOfScopeError",

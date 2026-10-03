@@ -81,11 +81,26 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year."
+        "text": "SIMPLIFICATION: Fondo EST (Art. 46) supplementary health fund not modelled. Contribution: 15 EUR/month employer + 2 EUR/month employee. Not an INPS substitute. employer_cost_annual understated by 180 EUR/year.",
+        "capability": "health_fund_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fondo_est_health_fund",
+          "remediation": "Model the Fondo EST contributions (15 EUR employer, 2 EUR employee per month)."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year."
+        "text": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ente_bilaterale_contribution",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the 2 EUR monthly employer contribution as a bilateral fund event."
+        }
       }
     ]
   },
@@ -1332,7 +1347,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "38f330e0ae5c27f816ddc7d52e5d09ac6e1f0252f29b9acb2aaf3b690213979c",
+    "source_hash": "999523655f866592e8183204e76376ee3b4b4aa2bbefa7033ac46687be0d4d8e",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

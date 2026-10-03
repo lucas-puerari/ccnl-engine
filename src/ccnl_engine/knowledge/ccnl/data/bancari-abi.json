@@ -46,11 +46,33 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification."
+        "text": "Apprenticeship (Art. 35, rinnovo 23-11-2023) targets the 3ª area professionale without naming the level; modelled for destination levels 3A2, 3A3 and 3A4 with 18 months one level below, then the destination level. 3A1 is excluded because the level below (Area Unificata 1ª e 2ª area) is not an apprenticeship classification.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_destination_levels",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "3A2",
+              "3A3",
+              "3A4"
+            ]
+          },
+          "remediation": "Confirm the destination levels of the Art. 35 apprenticeship against the contract text."
+        }
       },
       {
         "kind": "simplification",
-        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular."
+        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); the Fondo di solidarietà del credito (bilateral) is presumed included in the aggregate rate. Verify against the annual INPS circular.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_credit_rate_unverified",
+          "remediation": "Verify the 26.76% employer rate and the solidarity fund share against the annual INPS circular."
+        }
       },
       {
         "kind": "source",
@@ -1319,7 +1341,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "5f4ecab8466ad4537cba32ba10b423b46f3ac9d0d3e694ddcf0ea5e962dc9cc7",
+    "source_hash": "d0727f9cadc9347b9d0169d6bc4e046eb7d79927788dd478cbd3ad3c20325149",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

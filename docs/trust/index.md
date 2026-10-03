@@ -74,6 +74,11 @@ if not result.is_payable:
         print(blocker.code.value, blocker.feature, blocker.detail)
 ```
 
+Known simplifications of the model are part of the answer:
+`result.assurance.limitations` lists the model limitations that apply to the
+run, and an open one that can move an amount is an `open_limitation` blocker
+(see [Model limitations](confidence.md#model-limitations)).
+
 An unknown normative fact never yields a payable result: the rule it drives
 is not applied and an issue says why. See [Assurance](confidence.md) for the
 payability rules, the axes and what the bundle gives today.

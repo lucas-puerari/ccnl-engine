@@ -54,15 +54,28 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled."
+        "text": "SCOPE: tessile/abbigliamento/moda sub-sector only. Calzature, pelli, occhiali, giocattoli have separate salary tables not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "other_subsectors_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the calzature, pelli, occhiali and giocattoli salary tables with a sub-sector input."
+        }
       },
       {
         "kind": "simplification",
-        "text": "VV.PP. (Venditori Viaggiatori e Piazzisti) levels excluded; only Jan-2026 data available from primary sources, historical tranches not found."
+        "text": "VV.PP. (Venditori Viaggiatori e Piazzisti) levels excluded; only Jan-2026 data available from primary sources, historical tranches not found.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: not modelled (set to []). Primary source for post-2024 apprenticeship rules not identified."
+        "text": "APPRENTICESHIP: not modelled (set to []). Primary source for post-2024 apprenticeship rules not identified.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1459,6 +1472,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "1f7b5fd61f6695c12c5c3b6d71594ace15e87216959c20296cf60cbe150ce7fb"
+    "source_hash": "9b80e871a3b1ebafa0887a50168bca2635d734dc83d2f2028506f4708cd6e255"
   }
 }

@@ -68,11 +68,40 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP Gruppo 2 (manicure/pedicure → level 3, max 18 months, 70%/80%/100%), track 'gruppo_2': the three percentages are mapped to 6-month periods (0-6, 6-12, 12-18). Select with Apprentice(track='gruppo_2'); without a track name level 3 is ambiguous."
+        "text": "APPRENTICESHIP Gruppo 2 (manicure/pedicure → level 3, max 18 months, 70%/80%/100%), track 'gruppo_2': the three percentages are mapped to 6-month periods (0-6, 6-12, 12-18). Select with Apprentice(track='gruppo_2'); without a track name level 3 is ambiguous.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "gruppo_2_semester_mapping",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "3"
+            ]
+          },
+          "remediation": "Confirm from the accordo tables that the 70/80/100% steps of Gruppo 2 run on 6-month periods."
+        }
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies."
+        "text": "APPRENTICESHIP DURATION (TAB.3): the 6-month reduction for post-secondary qualification holders (Gruppo 1: 54 months instead of 60) is not modelled; the standard 60-month table applies.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "gruppo_1_reduced_duration",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "3"
+            ]
+          },
+          "remediation": "Add the 54-month Gruppo 1 table for post-secondary qualification holders and a request field to select it."
+        }
       },
       {
         "kind": "info",
@@ -945,7 +974,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc3151fab3cbbb71a288706ae841de2106f9d313f4529dad48b1b6810c5e3216",
+    "source_hash": "72ee7cdcfe5f69e10e8a9ba34dc5bc6406d2dc99ba369d8c009fe8dc4702cc73",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

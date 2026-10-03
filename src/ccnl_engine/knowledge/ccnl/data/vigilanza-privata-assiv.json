@@ -88,7 +88,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS: reuses 2026-terziario.json. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification. At ≤50 employees, delta = 28.98% (TERZIARIO) vs 30.20% (INDUSTRIA), difference ~1.22pp employer contribution rate."
+        "text": "INPS: reuses 2026-terziario.json. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification. At ≤50 employees, delta = 28.98% (TERZIARIO) vs 30.20% (INDUSTRIA), difference ~1.22pp employer contribution rate.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "terziario_tax_sector_unverified",
+          "remediation": "Verify the INPS classification of private security employers against the INPS circular."
+        }
       }
     ]
   },
@@ -1424,7 +1430,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "64c8edf7828858ac918ef66b6b57f3e7927915b44a9651bcb2851cd5de2dd3b8",
+    "source_hash": "219f3ea780ff6cd0ecd760efbe685825af82af84f887177d9b5b18c6cb294e6d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -19,6 +19,9 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 
+#: Engine limitation of an apprentice paid the apprentice seniority amount.
+APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+
 
 def _count_from_tiers(tiers: tuple[SeniorityTier, ...], seniority_months: int) -> int:
     """Sum increments earned across all tiers from service months.
@@ -210,8 +213,9 @@ def _seniority_amount(
     # Excluded categories receive no seniority increment (R18).
     if worker_category in seniority_rules.excluded_categories:
         return _ZERO
-    # SIMPLIFICATION: apprentices accrue only the CCNL apprentice-specific
-    # increment (if any); the level increments start after qualification.
+    # Apprentices accrue only the CCNL apprentice-specific increment (if
+    # any); the level increments start after qualification.  The chain
+    # records the APPRENTICE_SENIORITY engine limitation when it matters.
     if is_apprentice:
         raw = (
             seniority_rules.apprentice_amount.value_at(as_of)

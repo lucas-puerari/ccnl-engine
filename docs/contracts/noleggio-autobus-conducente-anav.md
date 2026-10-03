@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority, una_tantum |
 
 ### Verifica
 
@@ -106,22 +106,47 @@ percentage: 0.95
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "noleggio-autobus-conducente-anav/t0_table_back_calculated · base_salary · impact unknown · open"
     SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; before 2025-07-01.
+
+    **Remediation:** Source the pre-July 2025 salary table from an official ANAV table.
+
+!!! warning "noleggio-autobus-conducente-anav/seniority_from_ic35 · seniority · impact unknown · open"
     SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text.
 
-!!! warning ""
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Verify the seniority amounts against the official ANAV CCNL text.
+
+!!! warning "noleggio-autobus-conducente-anav/una_tantum_2025_2026 · una_tantum · impact yes · open"
     SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element.
 
-!!! warning ""
-    SIMPLIFICATION: Overtime bands not modeled (no standard rates found in public sources; article-specific complexity).
+    **Applies when:** `una_tantum` applies.
 
-!!! warning ""
+    **Remediation:** Pay the 600 EUR una tantum outside the engine or model it as an event.
+
+!!! warning "noleggio-autobus-conducente-anav/salary_tables_from_proxy · base_salary · impact unknown · open"
     SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Verify the salary tables against the official ANAV CCNL text.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Overtime bands not modeled (no standard rates found in public sources; article-specific complexity).
 
 ## Sources
 

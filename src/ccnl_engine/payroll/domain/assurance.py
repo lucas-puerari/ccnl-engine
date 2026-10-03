@@ -12,7 +12,8 @@ already records, never stored beside it:
 - ``rulesets``: the identity, readiness and confidence of each ruleset
   those rules came from;
 - ``mode``: the payability policy of the engine that produced the result;
-- ``blockers``: every reason the amounts cannot be paid.
+- ``blockers``: every reason the amounts cannot be paid;
+- ``limitations``: the known model limitations that concern the run.
 
 The result is payable only when nothing blocks it.  How a run is assessed is
 in :mod:`~ccnl_engine.payroll.domain.assessment`.
@@ -31,6 +32,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.payroll.domain.engine_mode import EngineMode
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 __all__ = [
     "BlockerCode",
@@ -131,6 +133,8 @@ class BlockerCode(StrEnum):
         RULESET_NOT_PRODUCTION: In ``operational`` mode only: a ruleset the
             run read is not ``production``, or no ruleset of the run tracks
             a readiness tier.
+        OPEN_LIMITATION: An open model limitation whose monetary impact is
+            ``yes`` or ``unknown`` concerns the run.
     """
 
     CALCULATION_ISSUE = "calculation_issue"
@@ -139,6 +143,7 @@ class BlockerCode(StrEnum):
     RULE_SOURCE_WEAK = "rule_source_weak"
     CALLER_SUPPLIED_RULE = "caller_supplied_rule"
     RULESET_NOT_PRODUCTION = "ruleset_not_production"
+    OPEN_LIMITATION = "open_limitation"
 
 
 @dataclass(frozen=True, slots=True)
@@ -151,8 +156,9 @@ class ResultBlocker:
             the run as a whole (an issue, a missing fact).
         detail: Machine-readable specifics in lower snake case where the
             source allows: the issue code, the decision reason, the missing
-            fact, the gap kind, the provenance status, the caller fields, or
-            the id of the ruleset short of ``production``.
+            fact, the gap kind, the provenance status, the caller fields,
+            the id of the ruleset short of ``production``, or the id of the
+            open limitation.
         remediation: What removes the blocker, for a human reader.
     """
 
@@ -178,6 +184,9 @@ class ResultAssurance:
             :attr:`blockers` is empty.
         blockers: Every reason the amounts cannot be paid, in the order
             they were found.
+        limitations: Model limitations that concern the run, open or
+            resolved, whatever their monetary impact; those that block
+            are also listed in :attr:`blockers`.
     """
 
     calculation: CalculationStatus
@@ -187,6 +196,7 @@ class ResultAssurance:
     mode: EngineMode
     payability: Payability
     blockers: tuple[ResultBlocker, ...]
+    limitations: tuple[ModelLimitation, ...] = ()
 
     @property
     def is_payable(self) -> bool:
@@ -197,8 +207,8 @@ class ResultAssurance:
     def combine(cls, assurances: Iterable[ResultAssurance]) -> ResultAssurance:
         """Aggregate the assurance of several runs, e.g. those of a year.
 
-        Each axis takes its worst value; rulesets and blockers are listed
-        once each, in the order they first appear.
+        Each axis takes its worst value; rulesets, blockers and limitations
+        are listed once each, in the order they first appear.
 
         Returns:
             The aggregated assurance.
@@ -223,6 +233,9 @@ class ResultAssurance:
             mode=items[0].mode,
             payability=decide_payability(blockers),
             blockers=blockers,
+            limitations=tuple(
+                {lim.id: lim for a in items for lim in a.limitations}.values()
+            ),
         )
 
 

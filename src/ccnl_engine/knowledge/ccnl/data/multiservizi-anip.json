@@ -86,7 +86,16 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, \"Commercio - terziario Imprese appaltatrici servizi pulizia\") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129"
+        "text": "INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, \"Commercio - terziario Imprese appaltatrici servizi pulizia\") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129",
+        "capability": "inps_employee",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cigs_threshold_16_to_50",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the CIGS threshold of more than 15 employees for cleaning firms."
+        }
       },
       {
         "kind": "info",
@@ -4266,7 +4275,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "31b5c40be6138fc4d969153ad0eb980f0991bfae119b5e3c11c515f796747517",
+    "source_hash": "7950bfb6e4ed8ad4887d1f065ede8dbdaf2d16c19ab6ea073a89a4c9869956e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

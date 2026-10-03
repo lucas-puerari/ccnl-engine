@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -106,16 +106,33 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: 2021-2023 previgente salary values not modeled (not publicly available). Modeling starts from the 2024 renewal first tranche (01/09/2024).
-
-!!! warning ""
+!!! warning "agenzie-marittime-i481/level_1_seniority_zero · seniority · impact unknown · open"
     SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text.
 
-!!! warning ""
+    **Applies when:** `seniority` applies; level in 1.
+
+    **Remediation:** Verify against the consolidated CCNL text whether level 1 accrues seniority increments.
+
+!!! warning "agenzie-marittime-i481/function_allowance_on_fourteenth · base_salary · impact unknown · open"
     SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year.
+
+    **Applies when:** `base_salary` applies; level in 7; run kind in fourteenth.
+
+    **Remediation:** Confirm from Art. 5 whether the indennita di funzione is paid in the quattordicesima.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: 2021-2023 previgente salary values not modeled (not publicly available). Modeling starts from the 2024 renewal first tranche (01/09/2024).
 
 ## Sources
 

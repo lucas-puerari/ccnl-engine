@@ -94,9 +94,11 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+### Without monetary impact
+
+!!! note ""
     SIMPLIFICATION: apprenticeship type and percentages not publicly available from any free source (paywalled). Modelled as apprenticeship: [] with no rules defined.
 
 ## Sources

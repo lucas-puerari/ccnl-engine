@@ -2,7 +2,8 @@
 
 The coverage of every capability for a CCNL is the implementation the
 registry declares, lowered to ``partial`` when a ``missing`` note of the
-CCNL names the capability (data the engine supports but the file lacks).
+CCNL names the capability (data the engine supports but the file lacks) or
+an open limitation of the CCNL with a monetary impact limits it.
 A layer (gross, net, work rules) is as covered as its worst capability.
 
 The contracts index, the capability matrix and the contract pages all read
@@ -45,7 +46,8 @@ class CcnlCapability:
         feature: The capability name.
         layer: Payslip layer of the capability.
         implementation: Implementation for this CCNL.
-        limited_by_ccnl: Whether a ``missing`` note of the CCNL names it.
+        limited_by_ccnl: Whether a ``missing`` note or a blocking limitation
+            of the CCNL names it.
     """
 
     feature: str
@@ -70,7 +72,7 @@ def ccnl_capabilities(
         note.capability
         for note in ccnl.coverage.notes
         if note.kind is NoteKind.MISSING and note.capability is not None
-    }
+    } | {limitation.capability for limitation in ccnl.limitations if limitation.blocks}
     unknown = sorted(limited - {entry.feature for entry in catalog.capabilities})
     if unknown:
         msg = (

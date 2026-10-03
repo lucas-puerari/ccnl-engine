@@ -53,7 +53,16 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations."
+        "text": "SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "pre_july_2026_amounts_missing",
+          "applies_when": {
+            "effective_until": "2026-07-01"
+          },
+          "remediation": "Recover the scatto amounts of the previous rinnovo for periods before July 2026."
+        }
       },
       {
         "kind": "info",
@@ -2054,7 +2063,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "bdc88b8bbe0f648ad7f54e1b308f4694f9ae54f224417e0321bfc83649c47929",
+    "source_hash": "b2caa0a5e90e69bbc1cadbb417fe5133b8ff1d5e09f1da49b83b54be07e5edd7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

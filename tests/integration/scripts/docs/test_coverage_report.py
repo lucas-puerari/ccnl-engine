@@ -30,6 +30,9 @@ def test_ccnl_limits_and_sources() -> None:
     """A missing note shows as a limit; sources count the file's rules."""
     year = latest_catalog_year()
     rows = {row.ccnl_id: row for row in build_coverage_report(year).ccnl_rows}
-    assert rows["ortofrutticoli-agrumari"].cells.limits == "leave, sickness"
+    assert (
+        rows["ortofrutticoli-agrumari"].cells.limits
+        == "base_salary, leave, seniority, sickness"
+    )
     assert rows["anas"].cells.limits == "—"
     assert len(rows["anas"].sources.split(" / ")) == 4

@@ -1,5 +1,19 @@
 # Migration guide
 
+## Model limitations
+
+Known simplifications are typed data. A run records the limitations that
+apply to it, and an open one that can move an amount blocks payment.
+
+| Change | What to do |
+|---|---|
+| `ResultAssurance.limitations` added (`tuple[ModelLimitation, ...]`), also on `YearResult.assurance` | Read it to see which simplifications concern the run |
+| `BlockerCode.OPEN_LIMITATION` added (`feature`: capability, `detail`: limitation id) | Branch on it; validate the amount outside the engine or wait for the limitation to be resolved |
+| A `simplification` coverage note must state `monetary_impact` (`yes`, `no`, `unknown`); with `yes` or `unknown` it must name its `capability` and declare a `limitation` (`variant`, `applies_when`, `status`, `remediation`) | Add the fields to the note, or the file does not load |
+| `KnowledgeRepository.load_engine_limitations()` added | Implement it in a custom repository (delegate to the bundled one) |
+| An open limitation with an impact lowers its capability to `partial` in the contracts index and the capability matrix | Nothing |
+| New public names `ModelLimitation`, `MonetaryImpact`, `LimitationStatus` | Import them from `ccnl_engine` |
+
 ## Capability coverage from one registry
 
 The capability catalog of each fiscal year is now the single source of

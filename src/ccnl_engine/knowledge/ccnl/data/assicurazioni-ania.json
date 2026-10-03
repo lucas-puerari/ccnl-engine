@@ -80,11 +80,23 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026."
+        "text": "Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_modal_class_difference",
+          "remediation": "Replace the modal per-class difference with the official Allegato 2/B amounts per class."
+        }
       },
       {
         "kind": "simplification",
-        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular."
+        "text": "INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "inps_credit_rate_unverified",
+          "remediation": "Verify the 26.76% employer rate against the annual INPS circular for the credit and insurance sector."
+        }
       },
       {
         "kind": "source",
@@ -1116,7 +1128,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "3d37435f6fb5c00c1f5b6113975da7c9a981e0d5ceeff629a93432db9bb738a0",
+    "source_hash": "59f3fe6435c0887585e3c8751672f12a99c12ebc420097ffb9f8970823d3a26f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

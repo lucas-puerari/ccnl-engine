@@ -68,23 +68,46 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: EDR 10.32 (PDF Art. 83) vs 10.33 (kitech, statutory). Used 10.33. Impact: EUR 0.01/mese."
+        "text": "SIMPLIFICATION: EDR 10.32 (PDF Art. 83) vs 10.33 (kitech, statutory). Used 10.33. Impact: EUR 0.01/mese.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "edr_rounding_discrepancy",
+          "remediation": "Confirm whether the EDR is 10.32 (PDF Art. 83) or 10.33 (kitech) and align the data."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector='terziario'. Following H05B (Federturismo Confindustria) precedent. Federterme is Confindustria-affiliated; sector uses terziario INPS rates. Not verified against INPS circular. Impact on employer_cost_annual."
+        "text": "SIMPLIFICATION: tax_sector='terziario'. Following H05B (Federturismo Confindustria) precedent. Federterme is Confindustria-affiliated; sector uses terziario INPS rates. Not verified against INPS circular. Impact on employer_cost_annual.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "terziario_inps_rates_unverified",
+          "remediation": "Verify the terziario INPS rates for Federterme employers against the INPS circular."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato."
+        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ebiterme_fontur_funds",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato livelli 1SA, 1SB, 1, 2 non modellati — Art. 13 non specifica durata né trattamento economico per questi livelli."
+        "text": "SIMPLIFICATION: Apprendistato livelli 1SA, 1SB, 1, 2 non modellati — Art. 13 non specifica durata né trattamento economico per questi livelli.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Storia salariale ante 1 ottobre 2024 non modellata. Il precedente CCNL (scaduto 31 dicembre 2019) non è disponibile in formato leggibile."
+        "text": "SIMPLIFICATION: Storia salariale ante 1 ottobre 2024 non modellata. Il precedente CCNL (scaduto 31 dicembre 2019) non è disponibile in formato leggibile.",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -2152,7 +2175,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "4009bfb89f9ff311245c9a42706a52bb7a618b1909c86dfe58bb986e48033593",
+    "source_hash": "61d885da7e157edc4cf40d94b238cace6481d6fdd1011915fc94eeb27aa640a0",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

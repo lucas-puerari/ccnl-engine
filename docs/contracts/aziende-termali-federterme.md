@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer |
 
 ### Verifica
 
@@ -110,21 +110,49 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "aziende-termali-federterme/edr_rounding_discrepancy · base_salary · impact unknown · open"
     SIMPLIFICATION: EDR 10.32 (PDF Art. 83) vs 10.33 (kitech, statutory). Used 10.33. Impact: EUR 0.01/mese.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Confirm whether the EDR is 10.32 (PDF Art. 83) or 10.33 (kitech) and align the data.
+
+!!! warning "aziende-termali-federterme/terziario_inps_rates_unverified · inps_employer · impact unknown · open"
     SIMPLIFICATION: tax_sector='terziario'. Following H05B (Federturismo Confindustria) precedent. Federterme is Confindustria-affiliated; sector uses terziario INPS rates. Not verified against INPS circular. Impact on employer_cost_annual.
 
-!!! warning ""
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the terziario INPS rates for Federterme employers against the INPS circular.
+
+!!! warning "aziende-termali-federterme/ebiterme_fontur_funds · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them.
+
+!!! warning "apprenticeship_midpoint_allowances · base_salary · impact yes · open"
+    In an under-classification apprenticeship period flagged midpoint_to_destination the engine pays the mean of the pay-level and destination base salaries, but the fixed allowances stay those of the pay level. The contract midpoint may cover the whole pay; the run is affected only when the allowances of the two levels differ.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Apply the midpoint to every component the CCNL averages, with the source of the rule, then resolve this limitation.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
     SIMPLIFICATION: Apprendistato livelli 1SA, 1SB, 1, 2 non modellati — Art. 13 non specifica durata né trattamento economico per questi livelli.
 
-!!! warning ""
+!!! note ""
     SIMPLIFICATION: Storia salariale ante 1 ottobre 2024 non modellata. Il precedente CCNL (scaduto 31 dicembre 2019) non è disponibile in formato leggibile.
 
 ## Sources

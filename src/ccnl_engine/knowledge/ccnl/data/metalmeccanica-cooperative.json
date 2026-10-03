@@ -63,7 +63,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: percentages (85/90/95% over 36 months) modelled as C011 Federmeccanica (accordo 20/04/2021). No independent C016-specific source found in 2025 renewal documentation. Checked: ecnews.it (renewal article), dottrinalavoro.it, ilccnl.it (two URL paths), kitech.it CodiceCateg=48. Destination levels D2-B3 mirror C011; D1 and A1 excluded as in C011."
+        "text": "APPRENTICESHIP: percentages (85/90/95% over 36 months) modelled as C011 Federmeccanica (accordo 20/04/2021). No independent C016-specific source found in 2025 renewal documentation. Checked: ecnews.it (renewal article), dottrinalavoro.it, ilccnl.it (two URL paths), kitech.it CodiceCateg=48. Destination levels D2-B3 mirror C011; D1 and A1 excluded as in C011.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_from_federmeccanica",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm the apprenticeship percentages against a C016-specific source."
+        }
       },
       {
         "kind": "info",
@@ -1395,7 +1406,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "ea171e35014d19d177bd1b9c4b19e665d4af9d21d58a95c7708ce008cf4867f7",
+    "source_hash": "73b1c7d9946c193c714e484a83f7330f0e5e748f04ccba38c051f10f4fcc4ea1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

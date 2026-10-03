@@ -66,11 +66,29 @@
       },
       {
         "kind": "simplification",
-        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods)."
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS convivente from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranches_from_2027",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update."
+        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_frozen_at_2026",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Update the seniority amounts with each ISTAT adjustment of the minimum tables."
+        }
       },
       {
         "kind": "info",
@@ -78,11 +96,29 @@
       },
       {
         "kind": "simplification",
-        "text": "This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi."
+        "text": "This file models TABELLA A only — full-time conviventi at 54 h/week (Art. 14 Co.1 lett. a CCNL). TABELLA B (conviventi ad orario ridotto, Art. 14 Co.2: B=702.25, BS=737.39, C=814.60) is out of scope. Callers must use a TABELLA B file (not yet modelled) for reduced-hours conviventi.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tabella_b_reduced_hours",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model TABELLA B for conviventi ad orario ridotto."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file."
+        "text": "Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "hourly_inps_bracket_unvalidated",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table."
+        }
       }
     ]
   },
@@ -697,7 +733,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "095650ef6429a8322061d869b48cd2a5f9aaea0139dab45a70e9573cfd72b642",
+    "source_hash": "93b0ccf308e1eabf2300defd59e5428453743dbac52c63b1474476dfb7e1c665",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipPercentage
 from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.service.chain import _level_chain
+from ccnl_engine.payroll.service.chain import _allowance_active, _level_chain
 from ccnl_engine.shared.domain.errors import OutOfScopeError
 
 if TYPE_CHECKING:
@@ -26,6 +26,9 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.types import MonthlyPayChain, MonthPeriod
 
 _TWO = Decimal(2)
+
+#: Engine limitation of a midpoint period that leaves an allowance unaveraged.
+MIDPOINT_ALLOWANCES = "apprenticeship_midpoint_allowances"
 
 
 def _find_period_index(periods: Sequence[MonthPeriod], months_elapsed: int) -> int:
@@ -173,11 +176,43 @@ def _underclass_track_chain(
         seniority_months=seniority_months,
     )
     if period.midpoint_to_destination:
-        # SIMPLIFICATION: the midpoint applies to the base salary only;
-        # allowances are those of the pay level.
-        dest_base = level.base_salary.value_at(as_of)
-        chain = replace(chain, base=money((chain.base + dest_base) / _TWO))
+        chain = _midpoint_chain(chain, level, roles, as_of, seniority_months)
     return chain, None, pay_level.code
+
+
+def _midpoint_chain(
+    chain: MonthlyPayChain,
+    destination: Level,
+    roles: frozenset[str],
+    as_of: date,
+    seniority_months: int | None,
+) -> MonthlyPayChain:
+    """Average the base salary of *chain* with that of the destination level.
+
+    The midpoint applies to the base salary only; the allowances stay those
+    of the pay level.  When they differ from the destination allowances the
+    chain records the ``apprenticeship_midpoint_allowances`` limitation.
+
+    Returns:
+        The chain with the averaged base salary.
+    """
+    dest_base = destination.base_salary.value_at(as_of)
+    destination_allowances = money(
+        sum(
+            (
+                a.monthly.value_at(as_of)
+                for a in destination.fixed_allowances
+                if _allowance_active(a, roles, seniority_months)
+            ),
+            Decimal(0),
+        )
+    )
+    limitations = chain.limitations
+    if destination_allowances != chain.allowances_total:
+        limitations = (*limitations, MIDPOINT_ALLOWANCES)
+    return replace(
+        chain, base=money((chain.base + dest_base) / _TWO), limitations=limitations
+    )
 
 
 def _apprentice_chain(

@@ -116,7 +116,11 @@ class TestCoverage:
         data["coverage"]["notes"] = [
             {"kind": "source", "text": "example.com"},
             {"kind": "info", "text": "some context"},
-            {"kind": "simplification", "text": "approximation applied"},
+            {
+                "kind": "simplification",
+                "text": "approximation applied",
+                "monetary_impact": "no",
+            },
         ]
         result = _validate(data)
         assert len(result.coverage.notes) == 3

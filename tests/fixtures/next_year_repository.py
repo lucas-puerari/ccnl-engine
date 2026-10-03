@@ -19,6 +19,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL, TaxSector
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
@@ -93,3 +94,11 @@ class NextYearRepository:
         """
         rules = self._bundled.load_family_deduction_rules(self._source(year))
         return rules.model_copy(update={"year": year})
+
+    def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:
+        """Return the bundled engine limitations.
+
+        Returns:
+            The engine limitations of the bundle.
+        """
+        return self._bundled.load_engine_limitations()

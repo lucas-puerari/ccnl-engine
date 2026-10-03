@@ -1,7 +1,7 @@
 """Regenerate the bundle counts quoted in ``docs/trust/``.
 
 Every number the trust pages state about the bundle (ruleset readiness,
-provenance statuses, reference cases) sits between two markers and is
+provenance statuses, reference cases, model limitations) sits between two markers and is
 rendered from the data, never written by hand::
 
     <!-- trust:NAME -->...<!-- /trust:NAME -->
@@ -30,11 +30,14 @@ from typing import TYPE_CHECKING
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from ccnl_engine.contract.domain.identity import NoteKind
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetReadiness,
     VerificationStatus,
 )
+from ccnl_engine.shared.domain.limitation import LimitationTrigger
 from scripts.ci import check_provenance, payable_rules
 
 if TYPE_CHECKING:
@@ -153,6 +156,37 @@ def _reference_case_counts() -> dict[str, str]:
     }
 
 
+def _limitation_counts(ccnls: list[CCNL]) -> dict[str, str]:
+    """Render the simplification notes and the limitation registry counts.
+
+    Returns:
+        Snippets keyed by marker name.
+    """
+    notes = [
+        note
+        for ccnl in ccnls
+        for note in ccnl.coverage.notes
+        if note.kind is NoteKind.SIMPLIFICATION
+    ]
+    impact = Counter(str(note.monetary_impact) for note in notes)
+    registry = [
+        *load_engine_limitations(),
+        *(lim for ccnl in ccnls for lim in ccnl.limitations),
+    ]
+    documented = sum(
+        lim.applies_when.trigger is LimitationTrigger.OUTSIDE_INPUT for lim in registry
+    )
+    return {
+        "simplification-notes": str(len(notes)),
+        "simplification-yes": str(impact["yes"]),
+        "simplification-unknown": str(impact["unknown"]),
+        "simplification-no": str(impact["no"]),
+        "limitations-total": str(len(registry)),
+        "limitations-engine": str(len(load_engine_limitations())),
+        "limitations-outside-input": str(documented),
+    }
+
+
 def bundle_counts() -> dict[str, str]:
     """Render every count the trust pages may quote.
 
@@ -165,6 +199,7 @@ def bundle_counts() -> dict[str, str]:
         **_review_record_counts(ccnls),
         **_provenance_counts(payable_rules.inventory()),
         **_reference_case_counts(),
+        **_limitation_counts(ccnls),
     }
 
 

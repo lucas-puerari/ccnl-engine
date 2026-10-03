@@ -40,7 +40,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -83,25 +83,39 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).
-
-!!! warning ""
-    Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.
-
-!!! warning ""
+!!! warning "istruzione-ricerca-aran/higher_seniority_bands_missing · base_salary · impact yes · open"
     Base salary = fascia 0-8 anni (entry level). Le 6 fasce di anzianità (0-8, 9-14, 15-20, 21-27, 28-34, 35+) non sono scatti automatici ma bande per anzianità di servizio. Fascia superiore non modellata.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; seniority of at least 108 months.
+
+    **Remediation:** Model the six seniority bands (fasce) of the tabellare.
+
+!!! warning "istruzione-ricerca-aran/seniority_bands_not_increments · seniority · impact yes · open"
     seniority maximum_count=0 (fasce non sono scatti automatici nell'accezione del CCNL privato). Per la fascia di anzianità corretta, usare negotiated_ral o livello dedicato.
 
-!!! warning ""
-    DOCENTE_SECONDARIA aggrega secondaria I grado e secondaria II (laurea) che condividono lo stesso tabellare entry. DOCENTE_INFANZIA_PRIMARIA aggrega anche secondaria II (diploma) con stesso tabellare entry.
+    **Applies when:** `seniority` applies; seniority of at least 108 months.
 
-!!! warning ""
+    **Remediation:** Model the seniority bands as band-dependent salary tables instead of maximum_count=0.
+
+!!! warning "istruzione-ricerca-aran/period_1_start_approximated · base_salary · impact unknown · open"
     valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata.
+
+    **Applies when:** `base_salary` applies; before 2024-01-01.
+
+    **Remediation:** Source the signing date of the CCNL 2019-2021 for the start of period 1.
+
+### Without monetary impact
+
+!!! note ""
+    CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).
+
+!!! note ""
+    Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.
+
+!!! note ""
+    DOCENTE_SECONDARIA aggrega secondaria I grado e secondaria II (laurea) che condividono lo stesso tabellare entry. DOCENTE_INFANZIA_PRIMARIA aggrega anche secondaria II (diploma) con stesso tabellare entry.
 
 ## Sources
 

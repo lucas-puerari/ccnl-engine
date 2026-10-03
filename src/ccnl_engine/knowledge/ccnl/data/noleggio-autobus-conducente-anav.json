@@ -45,11 +45,26 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon."
+        "text": "SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "t0_table_back_calculated",
+          "applies_when": {
+            "effective_until": "2025-07-01"
+          },
+          "remediation": "Source the pre-July 2025 salary table from an official ANAV table."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text."
+        "text": "SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_from_ic35",
+          "remediation": "Verify the seniority amounts against the official ANAV CCNL text."
+        }
       },
       {
         "kind": "info",
@@ -61,15 +76,29 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element."
+        "text": "SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "una_tantum_2025_2026",
+          "remediation": "Pay the 600 EUR una tantum outside the engine or model it as an event."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Overtime bands not modeled (no standard rates found in public sources; article-specific complexity)."
+        "text": "SIMPLIFICATION: Overtime bands not modeled (no standard rates found in public sources; article-specific complexity).",
+        "capability": "overtime",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research."
+        "text": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "salary_tables_from_proxy",
+          "remediation": "Verify the salary tables against the official ANAV CCNL text."
+        }
       }
     ]
   },
@@ -3174,7 +3203,7 @@
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "df5d72649e04aa5eb7048d86af733779e38301e112198a8e8b02e6acece1561c",
+    "source_hash": "19f3149c630a272cb1a2684ba553f5bcb49e5b9c322142df55da3a67039c7e27",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

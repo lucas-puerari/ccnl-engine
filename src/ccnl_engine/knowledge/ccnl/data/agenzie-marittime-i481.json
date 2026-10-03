@@ -69,11 +69,23 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: 2021-2023 previgente salary values not modeled (not publicly available). Modeling starts from the 2024 renewal first tranche (01/09/2024)."
+        "text": "SIMPLIFICATION: 2021-2023 previgente salary values not modeled (not publicly available). Modeling starts from the 2024 renewal first tranche (01/09/2024).",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text."
+        "text": "SIMPLIFICATION: Level 1 seniority amount = 0.00. Art. 23 table (primary source) lists levels 2-7 only; level 1 is absent. Interpreted as no entitlement. Verify against consolidated CCNL text.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_1_seniority_zero",
+          "applies_when": {
+            "levels": [
+              "1"
+            ]
+          },
+          "remediation": "Verify against the consolidated CCNL text whether level 1 accrues seniority increments."
+        }
       },
       {
         "kind": "info",
@@ -81,7 +93,21 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year."
+        "text": "SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "function_allowance_on_fourteenth",
+          "applies_when": {
+            "levels": [
+              "7"
+            ],
+            "run_kinds": [
+              "fourteenth"
+            ]
+          },
+          "remediation": "Confirm from Art. 5 whether the indennita di funzione is paid in the quattordicesima."
+        }
       }
     ]
   },
@@ -1164,7 +1190,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b9a24f18ebfd4ca8e79cb4ed765b06e8aab3d08be38cc180327d6beb190514a",
+    "source_hash": "1314d63aabdad6833e8aa9cf1946c7122c1f1f422144b41a99592af6b3d0ddb7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
