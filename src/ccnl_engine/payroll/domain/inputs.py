@@ -185,7 +185,7 @@ class PeriodInput:
             contributable_hours=facts.contributable_hours,
             full_time_weekly_hours=employment.full_time_weekly_hours,
             employment_period=employment.employment_period,
-            seniority_months=employment.seniority_months,
+            seniority=employment.seniority,
             roles=employment.roles,
             category=employment.category,
             sector=employment.sector,

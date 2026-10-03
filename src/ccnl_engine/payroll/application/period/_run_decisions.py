@@ -19,7 +19,6 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.contract.domain.compensation import Level
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
     from ccnl_engine.payroll.service.types import ApprenticeshipScaling
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.variable_pay import PdRRules
@@ -90,35 +89,6 @@ def worker_category_decision(
             "declared": _NONE if declared_category is None else declared_category.value,
             "level": level.code,
         },
-    )
-
-
-def seniority_decision(
-    ccnl: CCNL,
-    months: SeniorityMonths | None,
-    amount: Decimal,
-    year: int,
-) -> CalculationDecision | None:
-    """Return the decision recording the seniority increments of the run.
-
-    Args:
-        ccnl: The applicable CCNL.
-        months: Months of service; increments are resolved only when given.
-        amount: Seniority amount of the run's pay chain.
-        year: Competence year, the rule version when the CCNL has no ruleset.
-
-    Returns:
-        A decision with reason ``increments_applied`` or ``no_increment_due``
-        and the run amount; ``None`` when the months were not given.
-    """
-    if months is None:
-        return None
-    return _final(
-        "seniority",
-        "increments_applied" if amount else "no_increment_due",
-        _ccnl_rule(ccnl, year),
-        {"seniority_months": str(months.value)},
-        amount,
     )
 
 
@@ -221,22 +191,29 @@ def contract_decisions(
     level: Level,
     declared: WorkerCategory | str | None,
     category: WorkerCategory | None,
-    months: SeniorityMonths | None,
-    seniority_amount: Decimal,
+    seniority: CalculationDecision,
     year: int,
     apprenticeship: ApprenticeshipScaling | None = None,
 ) -> tuple[CalculationDecision, ...]:
     """Return the worker category, seniority and apprenticeship decisions.
 
+    Args:
+        ccnl: The applicable CCNL.
+        level: The worker's level within ``ccnl``.
+        declared: Category declared on the employment, or ``None``.
+        category: Category resolved for pay and contributions.
+        seniority: The seniority decision of the run, always taken.
+        year: Competence year, the rule version when the CCNL has no ruleset.
+        apprenticeship: Percentage scaling of a percentage apprenticeship.
+
     Returns:
-        The decisions of :func:`worker_category_decision`,
-        :func:`seniority_decision` and
-        :func:`apprenticeship_scaling_decision` that were taken, in that
+        The decisions of :func:`worker_category_decision`, the seniority
+        and :func:`apprenticeship_scaling_decision` that were taken, in that
         order.
     """
     taken = (
         worker_category_decision(ccnl, level, declared, category, year),
-        seniority_decision(ccnl, months, seniority_amount, year),
+        seniority,
         apprenticeship_scaling_decision(ccnl, apprenticeship, year),
     )
     return tuple(d for d in taken if d is not None)

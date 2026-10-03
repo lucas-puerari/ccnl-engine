@@ -97,7 +97,6 @@ from ccnl_engine.payroll.domain.employment import (
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
-    SeniorityMonths,
     WeeklyHours,
 )
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
@@ -137,6 +136,10 @@ from ccnl_engine.payroll.domain.prior_year import (
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
+from ccnl_engine.payroll.domain.seniority_fact import (
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
@@ -240,7 +243,8 @@ __all__ = [
     "RulesetIdentity",
     "RulesetKind",
     "RulesetReadiness",
-    "SeniorityMonths",
+    "SeniorityFact",
+    "SenioritySource",
     "ShiftWorkEvent",
     "ShortfallDeferralRequest",
     "SickLeaveEvent",

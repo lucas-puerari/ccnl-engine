@@ -18,6 +18,7 @@ from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
 from ccnl_engine.payroll.domain.year_input import YearInput
 from ccnl_engine.tax.domain.ruleset import YearRules
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -340,11 +341,13 @@ def year_input(
 
     Every run takes ``facts``; a run keyed in ``events`` takes ``facts`` with
     those events.  ``employment`` holds the :class:`Employment` fields other
-    than the CCNL and the level.
+    than the CCNL and the level; the seniority defaults to
+    :func:`~tests.fixtures.seniority.new_hire` of ``year``.
 
     Returns:
         The year input.
     """
+    employment.setdefault("seniority", new_hire(year))
     base = facts if facts is not None else PeriodFacts()
     return YearInput(
         year=year,

@@ -15,12 +15,14 @@ from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employment_facts import (
     FEATURE,
     EmploymentPeriod,
-    SeniorityMonths,
     WeeklyHours,
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.request_checks import type_error
+from ccnl_engine.payroll.domain.seniority_fact import (
+    SeniorityFact,
+)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
@@ -96,8 +98,10 @@ class Employment:
             scales the pay for part time.
         full_time_weekly_hours: Full-time weekly hours of the contract.
             ``weekly_hours`` must not exceed it.
-        seniority_months: Months of continuous service.  ``None`` applies no
-            seniority increment.
+        seniority: Recognised seniority, aged by the engine to each run.
+            ``None`` means not known: a run whose level pays seniority
+            increments or service-gated allowances then has a
+            ``missing_fact`` blocker, and its amounts leave them out.
         roles: Role codes that unlock role-specific contractual allowances.
         contribution_history: First enrolment in a mandatory pension scheme
             and contributory option, from which the engine derives whether
@@ -127,7 +131,7 @@ class Employment:
     employment_period: EmploymentPeriod | None = None
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
-    seniority_months: SeniorityMonths | None = None
+    seniority: SeniorityFact | None = None
     roles: frozenset[str] = frozenset()
     contribution_history: ContributionHistory | None = None
     sector: EmploymentSector | None = None
@@ -146,7 +150,7 @@ class Employment:
             ("employment_period", self.employment_period, EmploymentPeriod, True),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
-            ("seniority_months", self.seniority_months, SeniorityMonths, True),
+            ("seniority", self.seniority, SeniorityFact, True),
             ("roles", self.roles, frozenset, False),
             (
                 "contribution_history",

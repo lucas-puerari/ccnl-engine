@@ -22,6 +22,7 @@ from ccnl_engine.payroll.application.period._rule_sources import (
     weakest_by_capability,
 )
 from ccnl_engine.payroll.application.period._rulesets import run_rulesets
+from ccnl_engine.payroll.application.period._seniority import run_seniority
 from ccnl_engine.payroll.application.reconcile import check_period
 from ccnl_engine.payroll.application.withholding._cap import run_net
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
@@ -112,6 +113,11 @@ def _rule_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
     return () if issue is None else (issue,)
 
 
+def _seniority_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
+    issue = run_seniority(ctx).issue()
+    return () if issue is None else (issue,)
+
+
 def _ivs_issues(amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
     ivs = amounts.ivs_ceiling
     issue = None if ivs is None else ivs.issue()
@@ -169,6 +175,7 @@ def _result(
         + capped.issues
         + posted.deferred.issues
         + _rule_issues(ctx)
+        + _seniority_issues(ctx)
         + _ivs_issues(amounts)
         + missing_source_issues(sources),
         decisions=all_decisions,

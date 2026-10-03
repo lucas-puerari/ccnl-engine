@@ -22,13 +22,13 @@ from ccnl_engine.shared.domain.errors import DataIntegrityError
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths, WeeklyHours
+    from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 _ZERO = Decimal(0)
 
 
-def _int_value(fact: WeeklyHours | SeniorityMonths | None) -> int | None:
+def _int_value(fact: WeeklyHours | None) -> int | None:
     return None if fact is None else fact.value
 
 

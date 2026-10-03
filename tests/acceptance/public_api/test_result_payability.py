@@ -31,6 +31,7 @@ from ccnl_engine import (
     WorkerCategory,
     YearInput,
 )
+from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -64,7 +65,12 @@ def test_incomplete_coverage_is_not_payable() -> None:
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(
-        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", employment_period=period)
+        Employment(
+            ccnl_slug=_METALMECCANICO,
+            level_code="C3",
+            employment_period=period,
+            seniority=new_hire(),
+        )
     )
 
     gaps = {gap.feature: gap.kind for gap in result.capability_report.gaps}
@@ -89,7 +95,9 @@ def test_ordinary_month_has_no_coverage_gap() -> None:
     No unsupported capability applies: the coverage is complete and no
     coverage blocker hides the evidence blockers that remain.
     """
-    result = _january(Employment(ccnl_slug=_METALMECCANICO, level_code="C3"))
+    result = _january(
+        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", seniority=new_hire())
+    )
 
     assert result.capability_report.gaps == ()
     assert result.assurance.coverage == "complete"
@@ -128,29 +136,32 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     assert result.is_payable is False
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="unknown seniority is computed as zero seniority and named nowhere",
-)
 def test_unknown_seniority_is_a_missing_fact() -> None:
     """Servizi postali appalto FISE, level 2, operaio, seniority not given.
 
-    The CCNL grants seniority increments: 120 months add 56.66 EUR.  With
-    ``seniority_months=None`` the engine pays 1,724.40 as for zero months
-    and records no seniority decision.  The result is already not payable
-    for unrelated gaps, so the test asserts the blocker of its own fact.
+    The CCNL grants operai one increment of 56.66 EUR after 24 months
+    (Art. 35A): without the recognised seniority the increment is
+    undetermined.  The seniority decision says so and carries no amount,
+    the missing fact is named by its own blocker and the result is not
+    payable.  The amounts shown leave the increment out: 1,650.74 base +
+    63.33 + 10.33 = 1,724.40.
     """
     employment = Employment(
         ccnl_slug=_POSTAL_FISE,
         level_code="2",
         category=WorkerCategory.OPERAIO,
-        seniority_months=None,
+        seniority=None,
     )
 
     result = _january(employment)
 
-    assert (BlockerCode.MISSING_FACT, None, "seniority_months") in _blocker_keys(result)
+    (decision,) = [d for d in result.decisions if d.capability == "seniority"]
+    assert decision.reason_code == "required_fact_missing"
+    assert decision.amount is None
+    assert (BlockerCode.MISSING_FACT, None, "seniority") in _blocker_keys(result)
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+    assert result.period_gross == Decimal("1724.40")
+    assert result.is_payable is False
 
 
 def _march(started_on: date) -> PeriodResult:

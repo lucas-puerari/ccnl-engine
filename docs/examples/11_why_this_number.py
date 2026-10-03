@@ -10,7 +10,8 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
 )
 
 engine = PayrollEngine.bundled()
@@ -22,7 +23,7 @@ result = engine.calculate_period(
         employment=Employment(
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
-            seniority_months=SeniorityMonths(36),
+            seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
         ),
         employer=EmployerProfile(headcount=Headcount(100)),
         facts=PeriodFacts(regione="IT-45", comune_belfiore="F257"),

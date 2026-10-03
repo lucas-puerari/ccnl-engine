@@ -19,7 +19,6 @@ from ccnl_engine.payroll.application.period._run_decisions import (
 from ccnl_engine.payroll.domain.capability_report import CapabilityGapKind
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
-from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
 from ccnl_engine.payroll.domain.events import (
     BonusEvent,
     OvertimeEvent,
@@ -42,6 +41,7 @@ from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from tests.fixtures.seniority import new_hire
 from tests.helpers import year_input
 
 if TYPE_CHECKING:
@@ -153,7 +153,7 @@ class TestWorkerCategoryDecision:
             _FISE,
             "2",
             category=WorkerCategory.IMPIEGATO,
-            seniority_months=SeniorityMonths(60),
+            seniority=new_hire(),
         )
         (decision,) = _decisions(result, "worker_category")
         assert decision.reason_code == "declared"
@@ -183,29 +183,6 @@ class TestWorkerCategoryDecision:
         assert decision is not None
         assert decision.rule == f"ccnl/{ccnl.meta.ccnl_id}"
         assert decision.rule_version == "2026"
-
-
-class TestSeniorityDecision:
-    """Seniority is decided only when the months of service are known."""
-
-    def test_increments_applied(self) -> None:
-        """Months of service with increments due record the run amount."""
-        (decision,) = _decisions(
-            _run(seniority_months=SeniorityMonths(60)), "seniority"
-        )
-        assert decision.reason_code == "increments_applied"
-        assert decision.amount is not None
-        assert decision.amount > 0
-
-    def test_no_increment_due(self) -> None:
-        """Months of service below the first increment decide a zero."""
-        (decision,) = _decisions(_run(seniority_months=SeniorityMonths(0)), "seniority")
-        assert decision.reason_code == "no_increment_due"
-        assert decision.amount == _D(0)
-
-    def test_unknown_months_take_no_decision(self) -> None:
-        """Without months of service nothing is decided."""
-        assert _decisions(_run(), "seniority") == []
 
 
 class TestFamilyDeductionDecision:
@@ -297,6 +274,6 @@ class TestYearDecisions:
         assert year.decisions == tuple(d for r in runs for d in r.decisions)
         # Five base stages (pay chain, INPS worker and employer, TFR, IRPEF)
         # and three credits (ulteriore detrazione, trattamento, somma esente),
-        # the IVS massimale eligibility, plus the ratei counted by the
-        # tredicesima run.
-        assert len(year.decisions) == 9 * len(runs) + 1
+        # the IVS massimale eligibility, the seniority, plus the ratei counted
+        # by the tredicesima run.
+        assert len(year.decisions) == 10 * len(runs) + 1

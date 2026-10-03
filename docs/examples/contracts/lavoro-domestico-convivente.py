@@ -7,7 +7,7 @@ edit the generator, not this file.
 
 Level C (middle of the level list), regular run of September 2026, full-time
 permanent employment, a household employer, worker resident in Milan (region
-IT-25, municipality F205).
+IT-25, municipality F205), seniority recognised from 1 September 2026.
 
 Domestic work: 54 weekly hours and 234 contributable hours in the month; the
 household employer withholds no IRPEF.
@@ -26,11 +26,14 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     Permanent,
+    SeniorityFact,
+    SenioritySource,
     WeeklyHours,
 )
 
 CCNL = "lavoro-domestico-convivente.json"
 LEVEL = "C"
+SENIORITY = SeniorityFact.since(date(2026, 9, 1), SenioritySource.EMPLOYER_RECORDS)
 
 engine = PayrollEngine.bundled()
 result = engine.calculate_period(
@@ -41,6 +44,7 @@ result = engine.calculate_period(
             ccnl_slug=CCNL,
             level_code=LEVEL,
             contract_type=Permanent(),
+            seniority=SENIORITY,
             weekly_hours=WeeklyHours(54),
         ),
         employer=EmployerProfile(headcount=Headcount(1)),

@@ -526,6 +526,10 @@ function loadExample(idx) {
     if (pick) { levelSel.value = pick.value; levelSel.dispatchEvent(new Event("change")); }
 
     document.getElementById("inp-seniority").value = String(ex.seniority_count ?? 0);
+    // Presets give a count of increments, which states no seniority.
+    const countMode = document.querySelector("input[name='sen-mode'][value='count']");
+    countMode.checked = true;
+    countMode.dispatchEvent(new Event("change"));
     document.getElementById("inp-employees").value = String(ex.num_employees ?? 50);
 
     const pct = ex.part_time_pct ?? 100;

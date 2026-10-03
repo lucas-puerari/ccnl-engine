@@ -51,6 +51,7 @@ from tests.acceptance.legal_scenarios._support import (
     remitted,
     substitute_tax,
 )
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult, PeriodState
@@ -92,6 +93,7 @@ def _period(
         employment=Employment(
             ccnl_slug=worker.ccnl_slug,
             level_code=worker.level_code,
+            seniority=new_hire(),
             sector=worker.sector,
         ),
         employer=EmployerProfile(headcount=Headcount(50), activity=worker.activity),

@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._period_utils import _int_value
+from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.domain.capability_report import CapabilityScope
 from ccnl_engine.shared.domain.limitation import LimitationFacts
 
@@ -39,7 +39,9 @@ def limitation_facts(ctx: RunContext, report: CapabilityReport) -> LimitationFac
         level_code=ctx.contract.level.code,
         worker_category=None if category is None else str(category),
         run_kind=str(ctx.run_kind),
-        seniority_months=_int_value(request.seniority_months),
+        seniority_months=seniority_months_at(
+            request.seniority, ctx.contract.tctx.competence
+        ),
         applicable=frozenset(
             feature
             for feature, scope in report.scope.items()

@@ -46,6 +46,7 @@ from tests.fixtures.legal_examples.surtax_2026 import (
     regional_sardegna,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult, YearResult
@@ -63,6 +64,7 @@ def _year(year: int, opening: PeriodState | None, ended_on: date | None) -> Year
     employment = Employment(
         ccnl_slug="commercio-confcommercio.json",
         level_code="4",
+        seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
     )
     return _ENGINE.calculate_year(
@@ -311,6 +313,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
     employment = Employment(
         ccnl_slug=_METALMECCANICO_C3,
         level_code="C3",
+        seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
     )
     year = _ENGINE.calculate_year(
@@ -327,6 +330,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
             employment=Employment(
                 ccnl_slug=_METALMECCANICO_C3,
                 level_code="C3",
+                seniority=new_hire(),
                 employment_period=EmploymentPeriod(
                     date(2020, 1, 1), date(2026, 12, 31)
                 ),

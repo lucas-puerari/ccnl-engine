@@ -1,4 +1,4 @@
-"""Employment fact value objects: hours, seniority, employment period."""
+"""Employment fact value objects: hours and employment period."""
 
 from __future__ import annotations
 
@@ -13,7 +13,12 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 FEATURE = "employment_facts"
 
 
-def _require_int(value: object, name: str) -> None:
+def require_int(value: object, name: str) -> None:
+    """Reject a value that is not an int, a bool included.
+
+    Raises:
+        InvalidInputError: When ``value`` is not an int.
+    """
     if isinstance(value, bool) or not isinstance(value, int):
         msg = f"{name} must be an int; got {value!r}"
         raise InvalidInputError(msg, feature=FEATURE)
@@ -33,29 +38,9 @@ class WeeklyHours:
     value: int
 
     def __post_init__(self) -> None:  # noqa: D105
-        _require_int(self.value, "weekly_hours")
+        require_int(self.value, "weekly_hours")
         if self.value <= 0:
             msg = f"weekly_hours must be > 0; got {self.value}"
-            raise InvalidInputError(msg, feature=FEATURE)
-
-
-@dataclass(frozen=True, slots=True)
-class SeniorityMonths:
-    """Months of continuous service used for seniority increments.
-
-    Attributes:
-        value: Completed months of service, ``>= 0``.
-
-    Raises:
-        InvalidInputError: When ``value`` is not an int or is negative.
-    """
-
-    value: int
-
-    def __post_init__(self) -> None:  # noqa: D105
-        _require_int(self.value, "seniority_months")
-        if self.value < 0:
-            msg = f"seniority_months must be >= 0; got {self.value}"
             raise InvalidInputError(msg, feature=FEATURE)
 
 

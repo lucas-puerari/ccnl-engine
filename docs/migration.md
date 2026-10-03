@@ -1,5 +1,20 @@
 # Migration guide
 
+## Recognised seniority as a dated fact
+
+Unknown seniority is no longer priced as zero seniority. The months of
+service are a fact as of a date, with its source; the engine ages it to
+each run and records a `seniority` decision on every run.
+
+| Change | What to do |
+|---|---|
+| `SeniorityMonths` and `Employment.seniority_months` removed, with `PeriodCalculationRequest.seniority_months` | Pass `Employment(seniority=SeniorityFact(months, as_of, SenioritySource.EMPLOYER_RECORDS))`, or `SeniorityFact.since(recognised_from, source)` from the date the recognised service starts |
+| `seniority_months=None` (the old default, which silently paid no increment) | Leave `seniority=None` only when the level pays no seniority increment or service-gated allowance; otherwise the run has a `missing_fact` blocker for `seniority`, a `seniority_unknown` issue and is not payable |
+| Zero months | `SeniorityFact(0, as_of, source)`: the decision reason is `zero_confirmed` |
+| A constant month count over a year | The fact ages: a `calculate_year` run counts the months completed by the first day of each competence month, so an increment matured during the year is paid from the following month |
+| `seniority` decision only with months, reasons `increments_applied` or `no_increment_due` | Always emitted: `not_applicable_by_contract`, `zero_confirmed`, `increments_applied` or `required_fact_missing` (`provisional`, `amount` `None`) |
+| Capability registry `required_facts`: `employment.seniority_months` | `employment.seniority` |
+
 ## IVS massimale from the contribution history
 
 Whether the IVS massimale applies is no longer a status the caller states:
@@ -315,7 +330,7 @@ Names not listed stay where they were.
 
 | Name | Before | After |
 |---|---|---|
-| `WeeklyHours`, `SeniorityMonths`, `ContributableHours`, `EmploymentPeriod`, `check_within_full_time` | `payroll.domain.employment` | `payroll.domain.employment_facts` |
+| `WeeklyHours`, `SeniorityMonths` (since replaced by `SeniorityFact`), `ContributableHours`, `EmploymentPeriod`, `check_within_full_time` | `payroll.domain.employment` | `payroll.domain.employment_facts` |
 | `PeriodState` | `payroll.domain.period` | `payroll.domain.period_state` |
 | `PeriodCalculationRequest` | `payroll.domain.period` | `payroll.domain.period_request` |
 | `YearInput` | `payroll.domain.inputs` | `payroll.domain.year_input` |
@@ -406,7 +421,7 @@ name in the left column is removed.
 | `PayrollRequest.ccnl_slug`, `level_code` | `Employment.ccnl_slug`, `Employment.level_code` |
 | `EmploymentFacts(...)` | `Employment(...)`, with the CCNL slug and the level |
 | `EmploymentFacts(weekly_hours=25, full_time_weekly_hours=40)` | `Employment(weekly_hours=WeeklyHours(25), full_time_weekly_hours=WeeklyHours(40))` |
-| `EmploymentFacts(seniority_months=60)` | `Employment(seniority_months=SeniorityMonths(60))` |
+| `EmploymentFacts(seniority_months=60)` | `Employment(seniority=SeniorityFact(60, as_of, source))` |
 | `EmploymentFacts(started_on=..., ended_on=...)` | `Employment(employment_period=EmploymentPeriod(started_on, ended_on))` |
 | `EmploymentFacts(contributable_hours=Decimal(108))` | `PeriodFacts(contributable_hours=ContributableHours(Decimal(108)))` |
 | sector derived from the CCNL tax sector | `Employment.sector` (`EmploymentSector.PRIVATE` or `PUBLIC`), `None` means unknown |
@@ -444,7 +459,8 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     PriorYearTaxFacts,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
     YearInput,
 )
 
@@ -452,7 +468,7 @@ engine = PayrollEngine.bundled()
 employment = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json",
     level_code="C3",
-    seniority_months=SeniorityMonths(36),
+    seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
     sector=EmploymentSector.PRIVATE,
 )
 employer = EmployerProfile(headcount=Headcount(100), activity=EmployerActivity.OTHER)

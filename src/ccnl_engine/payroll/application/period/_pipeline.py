@@ -42,6 +42,10 @@ from ccnl_engine.payroll.application.period._pension_decision import (
     pension_terms,
 )
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
+from ccnl_engine.payroll.application.period._seniority import (
+    run_seniority,
+    seniority_decision,
+)
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     settle_extra_months,
 )
@@ -285,8 +289,7 @@ def run_decisions(
             contract.level,
             request.category,
             ctx.worker_category,
-            request.seniority_months,
-            ctx.chain.seniority,
+            seniority_decision(ctx, run_seniority(ctx)),
             contract.tctx.competence.year,
             ctx.apprenticeship,
         )

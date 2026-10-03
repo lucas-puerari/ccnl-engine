@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 import pytest
 
 from ccnl_engine.contract.domain.category import (
@@ -9,13 +11,16 @@ from ccnl_engine.contract.domain.category import (
     parse_worker_category,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
-from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
+from ccnl_engine.payroll.domain.seniority_fact import (
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.payroll.service.category import resolve_worker_category
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _FISE = load_ccnl("servizi-postali-appalto-fise.json")
 _COMMERCIO = load_ccnl("commercio-confcommercio.json")
-_SIXTY_MONTHS = SeniorityMonths(60)
+_SIXTY_MONTHS = SeniorityFact(60, date(2026, 1, 1), SenioritySource.PAYSLIP)
 
 
 class TestParseWorkerCategory:

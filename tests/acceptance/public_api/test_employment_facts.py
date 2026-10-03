@@ -16,13 +16,15 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
     WeeklyHours,
     YearInput,
 )
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
+_new_hire = SeniorityFact(0, date(2026, 1, 1), SenioritySource.PAYSLIP)
 
 
 @pytest.fixture(scope="module")
@@ -58,10 +60,12 @@ def test_part_time_reduces_gross(engine: PayrollEngine) -> None:
     assert half == full * Decimal("0.5")
 
 
-def test_seniority_months_increases_gross(engine: PayrollEngine) -> None:
+def test_seniority_increases_gross(engine: PayrollEngine) -> None:
     """60 months seniority unlocks increments and raises period gross."""
-    base = _run(engine)
-    with_seniority = _run(engine, seniority_months=SeniorityMonths(60))
+    base = _run(engine, seniority=_new_hire)
+    with_seniority = _run(
+        engine, seniority=SeniorityFact(60, date(2026, 1, 1), SenioritySource.PAYSLIP)
+    )
     assert with_seniority > base
 
 

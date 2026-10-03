@@ -56,6 +56,7 @@ from ccnl_engine import (
     WorkEvent,
     YearInput,
 )
+from tests.fixtures.seniority import new_hire
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -150,6 +151,7 @@ def _employment(case: _Case) -> Employment:
     return Employment(
         ccnl_slug=case.ccnl_slug,
         level_code=case.level_code,
+        seniority=new_hire(),
         weekly_hours=WeeklyHours(case.weekly_hours),
     )
 
@@ -231,12 +233,17 @@ def test_skipped_capabilities_are_decided_not_applicable() -> None:
 
 
 def test_skipped_capabilities_read_no_tax_rule() -> None:
-    """Not applicable capabilities report no rule source and no gap."""
+    """Not applicable capabilities report no rule source and no gap.
+
+    The seniority increments are a CCNL rule the run decides on its known
+    seniority, not a tax rule.
+    """
     result = _september(_REPORTED)
 
     report = result.capability_report
     assert set(report.rule_sources) == {
         "base_salary",
+        "seniority",
         "inps_employee",
         "inps_employer",
         "tfr",

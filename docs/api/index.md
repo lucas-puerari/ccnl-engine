@@ -42,7 +42,8 @@ from ccnl_engine import (
     Employment,
     EmploymentPeriod,
     WeeklyHours,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
     ContributableHours,
     ContributionHistory,
     EmploymentSector,
@@ -129,7 +130,7 @@ Every public name, work events included, is exported by the top-level
 | Guide | Relevant API |
 |---|---|
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
-| [Pay components](../engine/pay-components.md) | `Employment.seniority_months`, `Employment.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
+| [Pay components](../engine/pay-components.md) | `Employment.seniority`, `Employment.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
 | [Second level](../engine/second-level.md) | `YearInput`, `CalendarOverride` |
 | [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |
 | [Domestic work](../engine/domestic-work.md) | `Employment.weekly_hours`, `PeriodFacts.contributable_hours` |

@@ -562,8 +562,10 @@ plan closes and the balance settles the year
 
 The other decisions a run can record are `worker_category` (the category
 used and its origin: `declared` on the employment or `fixed_by_level`),
-`seniority` (`increments_applied` or `no_increment_due`, only when the
-months of service are given), `apprenticeship_scaling` (`percentage_applied`
+`seniority` (on every run: `not_applicable_by_contract`, `zero_confirmed`,
+`increments_applied`, or `required_fact_missing` when the level needs the
+recognised seniority and none is given, see
+[Pay components](pay-components.md)), `apprenticeship_scaling` (`percentage_applied`
 with the percentage and the scaled and unscaled components, only for a
 percentage apprenticeship track), `family_deductions` (`deductions_applied` or
 `no_deduction_due`, only with a family composition), `bonus_pdr`

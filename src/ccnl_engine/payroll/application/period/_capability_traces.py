@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.capability_catalog import CapabilityHandler
 from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 from ccnl_engine.payroll.service.pension_fund import NOT_ENROLLED
+from ccnl_engine.payroll.service.seniority import NOT_APPLICABLE_BY_CONTRACT
 from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
@@ -59,7 +60,11 @@ HANDLERS: dict[str, CapabilityHandler] = {
 }
 
 #: Reasons of a decision that leaves its capability not applicable.
-_NOT_APPLICABLE_REASONS = frozenset({NOT_WITHHOLDING_AGENT, NOT_ENROLLED})
+_NOT_APPLICABLE_REASONS = frozenset({
+    NOT_WITHHOLDING_AGENT,
+    NOT_ENROLLED,
+    NOT_APPLICABLE_BY_CONTRACT,
+})
 
 _STATE_OF_STATUS: dict[CalculationStatus, TraceState] = {
     CalculationStatus.FINAL: TraceState.COMPUTED,
@@ -77,7 +82,8 @@ def _worst_state_by_capability(
     A capability whose every decision has a not-applicable reason is not
     applicable: the employer does not compute it
     (:data:`NOT_WITHHOLDING_AGENT`) or the worker is not enrolled in a
-    pension fund (:data:`NOT_ENROLLED`).  Otherwise the worst status of its
+    pension fund (:data:`NOT_ENROLLED`), or the level pays no seniority
+    increment (:data:`NOT_APPLICABLE_BY_CONTRACT`).  Otherwise the worst status of its
     decisions gives the state.  Caller-supplied decisions are left out.
 
     Returns:

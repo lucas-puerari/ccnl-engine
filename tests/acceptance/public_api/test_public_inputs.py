@@ -77,7 +77,7 @@ class TestEmployment:
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
         assert employment.employment_period is None
-        assert employment.seniority_months is None
+        assert employment.seniority is None
         assert employment.roles == frozenset()
         assert employment.category is None
         assert employment.sector is None

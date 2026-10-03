@@ -22,6 +22,10 @@ _ZERO = Decimal(0)
 #: Engine limitation of an apprentice paid the apprentice seniority amount.
 APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
 
+#: Reason of a seniority decision when the level pays the worker no
+#: increment: the capability does not apply to the run.
+NOT_APPLICABLE_BY_CONTRACT = "not_applicable_by_contract"
+
 
 def _count_from_tiers(tiers: tuple[SeniorityTier, ...], seniority_months: int) -> int:
     """Sum increments earned across all tiers from service months.
@@ -118,6 +122,59 @@ def seniority_maximum(
     ):
         return increments.maximum_count_by_category[worker_category]
     return increments.maximum_count_by_level.get(level_code, increments.maximum_count)
+
+
+def increments_apply(
+    increments: SeniorityIncrements,
+    level_code: str,
+    worker_category: WorkerCategory | None,
+    *,
+    apprentice: bool,
+) -> bool:
+    """Return whether the level can pay seniority increments to the worker.
+
+    Read from the shape of the rules, never from a value of their series.
+    An unknown category counts when any category is paid on the level.
+
+    Args:
+        increments: Seniority rules of the CCNL.
+        level_code: Level whose increments are paid.
+        worker_category: Category of the worker, ``None`` when unknown.
+        apprentice: Whether the worker is an apprentice, paid the
+            apprentice amount when the CCNL declares one.
+
+    Returns:
+        ``False`` for an excluded category, a zero maximum or a level
+        without an amount; ``True`` otherwise.
+    """
+    if (
+        worker_category in increments.excluded_categories
+        or seniority_maximum(increments, level_code, worker_category) <= 0
+    ):
+        return False
+    if apprentice and increments.apprentice_amount is not None:
+        return True
+    return _level_has_amount(increments, level_code, worker_category)
+
+
+def _level_has_amount(
+    increments: SeniorityIncrements,
+    level_code: str,
+    worker_category: WorkerCategory | None,
+) -> bool:
+    """Return whether the rules carry an increment amount for the level.
+
+    Returns:
+        Whether a tier, the level table or a category table lists it.
+    """
+    if increments.tiers:
+        return any(level_code in tier.amount_by_level for tier in increments.tiers)
+    by_category = increments.amount_by_level_by_category
+    if worker_category is None:
+        by_category_listed = any(level_code in a for a in by_category.values())
+    else:
+        by_category_listed = level_code in by_category.get(worker_category, {})
+    return level_code in increments.amount_by_level or by_category_listed
 
 
 def seniority_first_cadence(

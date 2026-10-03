@@ -59,7 +59,7 @@ formulas or caller-declared amounts.
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
 | `base_salary` | Paga base contrattuale | gross | native | always | pipeline | — | — | simplified | 0 / 5129 / 506 / 85 |
-| `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority_months` | — | simplified | 0 / 119 / 6 / 0 |
+| `seniority` | Scatti di anzianità | gross | native | decided | decision | `employment.seniority` | — | simplified | 0 / 119 / 6 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | net | native | always | pipeline | — | — | simplified | 0 / 12 / 3 / 0 |
 | `inps_employer` | Contributi INPS a carico azienda | net | native | always | pipeline | — | — | simplified | 0 / 19 / 4 / 0 |

@@ -16,7 +16,6 @@ from ccnl_engine.payroll.domain.employment import (
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
-    SeniorityMonths,
     WeeklyHours,
     check_within_full_time,
 )
@@ -29,6 +28,9 @@ from ccnl_engine.payroll.domain.request_checks import (
     FieldSpec,
     employment_gap,
     type_error,
+)
+from ccnl_engine.payroll.domain.seniority_fact import (
+    SeniorityFact,
 )
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -96,8 +98,10 @@ class PeriodCalculationRequest:
             :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
             uses it to select the runs of the year.  A regular run must fall
             in a month with at least one day of employment.
-        seniority_months: Months of continuous service, non-negative.
-            ``None`` means seniority increments are not applied.
+        seniority: Recognised seniority, aged to the competence month.
+            ``None`` means not known: when the level pays seniority
+            increments or service-gated allowances the run has a
+            ``missing_fact`` blocker.
         roles: Role codes that unlock role-specific contractual allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
@@ -143,7 +147,7 @@ class PeriodCalculationRequest:
     contributable_hours: ContributableHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     employment_period: EmploymentPeriod | None = None
-    seniority_months: SeniorityMonths | None = None
+    seniority: SeniorityFact | None = None
     roles: frozenset[str] = field(default_factory=frozenset)
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
@@ -240,7 +244,7 @@ class PeriodCalculationRequest:
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
-            ("seniority_months", self.seniority_months, SeniorityMonths, True),
+            ("seniority", self.seniority, SeniorityFact, True),
             ("sector", self.sector, EmploymentSector, True),
             ("prior_year", self.prior_year, PriorYearTaxFacts, False),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),

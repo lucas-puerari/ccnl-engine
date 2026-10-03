@@ -27,7 +27,8 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
     Permanent,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
 )
 
 _ENGINE = PayrollEngine.bundled()
@@ -52,9 +53,11 @@ def _run(
                 ccnl_slug=f"{slug}.json",
                 level_code=level,
                 contract_type=contract_type,
-                seniority_months=None
+                seniority=None
                 if seniority is None
-                else SeniorityMonths(seniority),
+                else SeniorityFact(
+                    seniority, date(2026, 6, 1), SenioritySource.PAYSLIP
+                ),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=facts or PeriodFacts(),
@@ -89,9 +92,9 @@ def test_midpoint_limitation_needs_the_midpoint_period(
     assert all(b.detail != _MIDPOINT for b in result.blockers)
 
 
-@pytest.mark.parametrize(("seniority", "recorded"), [(120, True), (None, False)])
+@pytest.mark.parametrize(("seniority", "recorded"), [(120, True), (0, False)])
 def test_apprentice_seniority_needs_matured_increments(
-    seniority: int | None, recorded: bool
+    seniority: int, recorded: bool
 ) -> None:
     """The apprentice seniority simplification matters once increments mature."""
     result = _run(
@@ -101,6 +104,24 @@ def test_apprentice_seniority_needs_matured_increments(
         seniority=seniority,
     )
     assert (_APPRENTICE_SENIORITY in _ids(result)) is recorded
+
+
+def test_apprentice_without_seniority_is_a_missing_fact() -> None:
+    """Without the seniority the simplification cannot be ruled out.
+
+    The level pays increments, so whether the apprentice has matured any
+    is a fact: the run names it as missing instead of hiding the
+    limitation behind a count of zero.
+    """
+    result = _run(
+        "acconciatura-estetica-confartigianato",
+        "3",
+        Apprentice(months_elapsed=1, track="gruppo_1"),
+    )
+    assert (BlockerCode.MISSING_FACT, None, "seniority") in {
+        (b.code, b.feature, b.detail) for b in result.blockers
+    }
+    assert not result.is_payable
 
 
 def test_apprentice_seniority_without_level_series_is_kept() -> None:

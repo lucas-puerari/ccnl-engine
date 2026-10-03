@@ -64,7 +64,7 @@ A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the
 
 ### Seniority increments (scatti di anzianità)
 
-Pass the months of service as `Employment.seniority_months`; the category selects category-specific increments.
+Pass the recognised seniority as `Employment.seniority`, a `SeniorityFact` dated and sourced; unknown seniority is a missing fact, not zero. The category selects category-specific increments.
 
 ```python
 --8<-- "docs/examples/05_seniority.py"

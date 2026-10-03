@@ -35,6 +35,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -58,6 +59,7 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             payment_date=date(2026, 3, 27),
             ccnl_slug=slug,
             level_code=level,
+            seniority=new_hire(),
             events=(event,),
         )
     )

@@ -39,10 +39,17 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
+    SeniorityFact,
+    SenioritySource,
 )
 
 engine = PayrollEngine.bundled()
-employment = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+employment = Employment(
+    ccnl_slug="commercio-confcommercio.json",
+    level_code="4",
+    # Recognised seniority: 36 months on 1 January 2026, read from a payslip.
+    seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
+)
 employer = EmployerProfile(headcount=Headcount(50))
 
 result = engine.calculate_period(
@@ -65,7 +72,8 @@ for ruleset in result.rulesets:
 ```
 
 The inputs group the facts by owner: `Employment` (CCNL, level, contract,
-employment period, hours, seniority, sector), `EmployerProfile` (headcount,
+employment period, hours, recognised seniority as a dated `SeniorityFact`,
+sector), `EmployerProfile` (headcount,
 activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
 every substitute-tax regime) and `PeriodFacts` (events, surtax jurisdiction,
 family, contributable hours of one run). Every input is validated when it is
