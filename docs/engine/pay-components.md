@@ -58,7 +58,10 @@ the completed months of service on a date (`as_of`) and where they were read
 from (`SenioritySource`). `SeniorityFact.since(date, source)` states the date
 the recognised service starts instead. The engine ages the fact to each run:
 a run counts the months completed by the first day of its competence month,
-so an increment matured during a month is paid from the next one. It derives
+so an increment matured during a month is paid from the next one; service
+that starts within the month (a hire on the 15th recognised from that day)
+counts zero months, and a run of a month before the recognised service
+raises `InvalidInputError`. It derives
 the number of matured increments from the CCNL cadence and adds the amount
 the level earns.
 

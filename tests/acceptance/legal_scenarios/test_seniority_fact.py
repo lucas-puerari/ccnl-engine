@@ -31,6 +31,7 @@ from ccnl_engine import (
     BlockerCode,
     CalculationStatus,
     Employment,
+    EmploymentPeriod,
     PayrollRun,
     PeriodResult,
     SeniorityFact,
@@ -155,6 +156,32 @@ def test_seniority_ages_to_each_run_of_the_year() -> None:
     }
 
     assert gross == {6: _FISE_L2, 7: _FISE_L2 + Decimal("56.66")}
+
+
+def test_seniority_from_a_mid_month_hire_counts_zero_in_the_hire_month() -> None:
+    """Hired on 15 March 2026 with seniority recognised from that day.
+
+    The March run counts zero months, not an error: the service starts
+    within the month.  The operaio increment matures after 24 months, so no
+    run of 2026 pays it.
+    """
+    employment = Employment(
+        ccnl_slug=POSTAL_FISE,
+        level_code="2",
+        category=WorkerCategory.OPERAIO,
+        employment_period=EmploymentPeriod(started_on=date(2026, 3, 15)),
+        seniority=SeniorityFact.since(date(2026, 3, 15), SenioritySource.PAYSLIP),
+    )
+    year = ENGINE.calculate_year(
+        YearInput(year=2026, employment=employment, employer=EMPLOYER)
+    )
+    reasons = {
+        (result.period_id.month, _seniority(result)[0])
+        for result in year.period_results
+        if result.run == PayrollRun.regular(2026, result.period_id.month)
+    }
+
+    assert reasons == {(month, "zero_confirmed") for month in range(3, 13)}
 
 
 def test_contract_without_increments_needs_no_seniority() -> None:

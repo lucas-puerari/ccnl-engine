@@ -74,9 +74,12 @@ def seniority_months_at(fact: SeniorityFact | None, competence: date) -> int | N
 
     Returns:
         The months completed by ``competence``, the first day of the
-        competence month; ``None`` when the seniority is not known.
+        competence month, zero when the service starts within the month;
+        ``None`` when the seniority is not known.
     """
-    return None if fact is None else fact.months_at(competence)
+    if fact is None:
+        return None
+    return fact.months_in_month(competence.year, competence.month)
 
 
 @dataclass(frozen=True)
@@ -181,7 +184,7 @@ def seniority_decision(ctx: RunContext, run: RunSeniority) -> CalculationDecisio
     ruleset = ctx.contract.ccnl.ruleset
     fact = run.fact
     inputs: dict[str, Decimal | str] = {
-        "seniority_months": _NONE if fact is None else str(fact.months),
+        "months": _NONE if fact is None else str(fact.months),
         "as_of": _NONE if fact is None else fact.as_of.isoformat(),
         "source": _NONE if fact is None else fact.source.value,
         "months_at_run": _NONE if run.months is None else str(run.months),

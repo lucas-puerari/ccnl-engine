@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import calendar
 from dataclasses import dataclass
 from datetime import date, datetime
 from enum import StrEnum
@@ -10,6 +11,8 @@ from ccnl_engine.payroll.domain.employment_facts import FEATURE, require_int
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = ["SeniorityFact", "SenioritySource"]
+
+_REMEDIATION = "Compute only runs from the start of the recognised service."
 
 
 class SenioritySource(StrEnum):
@@ -34,8 +37,10 @@ class SeniorityFact:
     The seniority is a fact as of a date: the engine ages it to each run.
     The increments and the service-gated allowances of a run use the
     months of service completed by the first day of its competence month,
-    so an increment matured during a month is paid from the next one.
-    A month is complete on the same day of the following month.
+    so an increment matured during a month is paid from the next one, and
+    service starting within the month counts zero months (see
+    :meth:`months_in_month`).  A month is complete on the same day of the
+    following month.
 
     Use :meth:`since` when the caller knows the date the recognised
     seniority starts from instead of a count of months.
@@ -96,22 +101,46 @@ class SeniorityFact:
             InvalidInputError: When ``day`` precedes the start of the
                 recognised service.
         """
+        months = self._aged(day)
+        if months < 0:
+            raise InvalidInputError(
+                self._before_service(day), feature=FEATURE, remediation=_REMEDIATION
+            )
+        return months
+
+    def months_in_month(self, year: int, month: int) -> int:
+        """Return the months of service a run of a month counts.
+
+        A run counts the months completed by the first day of its month.
+        Service that starts within the month counts zero months: the hire
+        month of a worker whose seniority is recognised from the hire date.
+
+        Args:
+            year: Year of the competence month.
+            month: Competence month, 1-12.
+
+        Returns:
+            The completed months on the first day of the month, at least 0.
+
+        Raises:
+            InvalidInputError: When the recognised service starts after the
+                last day of the month.
+        """
+        last = date(year, month, calendar.monthrange(year, month)[1])
+        if self._aged(last) < 0:
+            raise InvalidInputError(
+                self._before_service(last), feature=FEATURE, remediation=_REMEDIATION
+            )
+        return max(0, self._aged(date(year, month, 1)))
+
+    def _aged(self, day: date) -> int:
         elapsed = (day.year - self.as_of.year) * 12 + day.month - self.as_of.month
         if day.day < self.as_of.day:
             elapsed -= 1
-        months = self.months + elapsed
-        if months < 0:
-            msg = (
-                f"seniority of {self.months} months on {self.as_of} starts after {day}"
-            )
-            raise InvalidInputError(
-                msg,
-                feature=FEATURE,
-                remediation=(
-                    "Compute only runs from the start of the recognised service."
-                ),
-            )
-        return months
+        return self.months + elapsed
+
+    def _before_service(self, day: date) -> str:
+        return f"seniority of {self.months} months on {self.as_of} starts after {day}"
 
 
 def _seniority_source(value: object) -> SenioritySource:

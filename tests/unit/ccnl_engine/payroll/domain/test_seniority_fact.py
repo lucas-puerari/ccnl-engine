@@ -92,3 +92,28 @@ class TestMonthsAt:
         fact = SeniorityFact.since(date(2026, 6, 15), _RECORDS)
         with pytest.raises(InvalidInputError, match="starts after 2026-06-01"):
             fact.months_at(date(2026, 6, 1))
+
+
+class TestMonthsInMonth:
+    """A run counts the months completed by the first day of its month."""
+
+    @pytest.mark.parametrize(
+        ("year", "month", "expected"),
+        [
+            pytest.param(2026, 6, 0, id="service-starts-within-the-month"),
+            pytest.param(2026, 7, 0, id="first-month-after-the-start"),
+            pytest.param(2026, 8, 1, id="one-month-complete"),
+        ],
+    )
+    def test_counts_from_a_mid_month_start(
+        self, year: int, month: int, expected: int
+    ) -> None:
+        """Service from 15 June: the hire month and July count zero months."""
+        fact = SeniorityFact.since(date(2026, 6, 15), _RECORDS)
+        assert fact.months_in_month(year, month) == expected
+
+    def test_rejects_a_month_before_the_service(self) -> None:
+        """Service from 1 July cannot be counted by a June run."""
+        fact = SeniorityFact.since(date(2026, 7, 1), _RECORDS)
+        with pytest.raises(InvalidInputError, match="starts after 2026-06-30"):
+            fact.months_in_month(2026, 6)
