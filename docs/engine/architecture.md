@@ -91,7 +91,8 @@ from the tree: review the diff and reject any added entry.
 ## Payroll application layout
 
 `payroll/application/` keeps its entry modules at the top level:
-`calculate_period`, `calculate_year`, `close_tax_year`, `opening_balances`,
+`calculate_period`, `calculate_competence_year`, `calculate_tax_year`,
+`year_result`, `close_tax_year`, `opening_balances`,
 `reconcile`, `allocate_events`, `post_ledger`, `knowledge_repository` and
 `bundled_sources`, plus the shared helpers `_period_utils` and
 `_posting_service`. The steps they call live in subfeature packages, each

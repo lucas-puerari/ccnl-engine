@@ -27,4 +27,4 @@ than the CCNL. The year calculation accepts such a calendar only as a
     needs the prior-year employment income in `PriorYearTaxFacts`; without
     it the bonus is taxed at ordinary rates.
 
-**API reference:** [`YearInput`, `CalendarOverride`](../api/engine.md)
+**API reference:** [`CompetenceYearPlan`, `CalendarOverride`](../api/engine.md)

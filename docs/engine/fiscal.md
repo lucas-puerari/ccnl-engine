@@ -57,10 +57,14 @@ recurring pay of the slots still to come) and withholds on that basis:
   IRPEF without it. A €20,000 bonus paid in November to a Metalmeccanico C3
   withholds about €8,399 on the November payslip instead of spreading it
   over November, December and the tredicesima;
-- the rest of the balance still owed is spread evenly over the remaining
-  slots, the run included;
-- the last slot settles the whole balance on the final income, which can
-  be a refund (art. 23 c. 3).
+- the rest of the balance still owed is spread evenly over the slots of
+  the tax year not yet paid, the run included;
+- the payment that leaves no slot unpaid (the conguaglio) settles the whole
+  balance on the final income, which can be a refund (art. 23 c. 3). The
+  slots are the payments actually made in the tax year, so with December
+  paid on 13 January the conguaglio of the year falls on the tredicesima,
+  and a payment made after the conguaglio settles the year again (see
+  [Payroll state](payroll-state.md#withholding-schedule-of-the-tax-year)).
 
 The projection of a future tredicesima or quattordicesima uses the rateo
 the run will pay on the employment period: a worker hired on 1 July is
@@ -608,7 +612,12 @@ amount; an `ivs_ceiling_eligibility_unknown` issue names the fact
 `contribution_history`, so the result has a `missing_fact` blocker and is not
 payable. The breakdown, the ledger and the net carry the uncapped branch as
 a simulation, never as a payable amount. The massimale runs across all the
-employers of the year: the opening INPS base YTD must include them.
+employers of the year (INPS circ. 237/2016 par. 3.1): import the base of
+the others as `InpsBaseYtd.other_employers` with
+`engine.import_opening_balances`. The base and the massimale are those of
+the competence year of the run: a December paid in January counts toward
+the massimale of its own year (see
+[INPS base by competence](payroll-state.md#inps-base-by-competence)).
 Conditions that lower the reliability of a result are reported in
 `result.issues`, never as free text.
 

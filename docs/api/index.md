@@ -12,7 +12,7 @@ the readers in `ccnl_engine.knowledge.service`). See
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `YearInput`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `YearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
+| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `CompetenceYearPlan`, `TaxYearPlan`, `OpeningBalances`, `InpsBaseYtd`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `CompetenceYearResult`, `TaxYearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -25,7 +25,8 @@ from ccnl_engine import (
     PayrollEngine,
     # Inputs
     PeriodInput,
-    YearInput,
+    CompetenceYearPlan,
+    TaxYearPlan,
     PeriodFacts,
     PayrollRun,
     PayrollRunId,
@@ -35,6 +36,7 @@ from ccnl_engine import (
     WorkCalendar,
     PeriodState,
     OpeningBalances,
+    InpsBaseYtd,
     RecoveryObligation,
     RecoveryPlan,
     SurtaxObligation,
@@ -63,7 +65,8 @@ from ccnl_engine import (
     DependentRelationship,
     # Results and assurance
     PeriodResult,
-    YearResult,
+    CompetenceYearResult,
+    TaxYearResult,
     ResultAssurance,
     ResultBlocker,
     BlockerCode,
@@ -134,6 +137,6 @@ Every public name, work events included, is exported by the top-level
 |---|---|
 | [Employment types](../domain/employment-types.md) | `Permanent`, `FixedTerm`, `Apprentice` |
 | [Pay components](../engine/pay-components.md) | `Employment.seniority`, `Employment.weekly_hours`, `WorkerCategory`, `BilateralFundEvent` |
-| [Second level](../engine/second-level.md) | `YearInput`, `CalendarOverride` |
+| [Second level](../engine/second-level.md) | `CompetenceYearPlan`, `CalendarOverride` |
 | [Fiscal](../engine/fiscal.md) | `CalculationDecision`, `CalculationIssue`, `REGION_CODES` |
 | [Domestic work](../engine/domestic-work.md) | `Employment.weekly_hours`, `PeriodFacts.contributable_hours` |

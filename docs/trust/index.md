@@ -56,7 +56,7 @@ PeriodResult
  └── bundle_version       knowledge-base version of the calculation
 ```
 
-`YearResult` exposes the same assurance for the whole year (each axis the
+`CompetenceYearResult` exposes the same assurance for the whole year (each axis the
 worst of its runs, rulesets and blockers listed once, payable only when every
 run is), the issues of its runs (each once) and their decisions in payment
 order.

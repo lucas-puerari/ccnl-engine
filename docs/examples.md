@@ -104,6 +104,18 @@ Pass `regione` (ISO 3166-2:IT region code, e.g. `IT-45`) and `comune_belfiore` (
 --8<-- "docs/examples/07_addizionali.py"
 ```
 
+### December paid in January (tax year and conguaglio)
+
+A tax year holds the payments made in it (TUIR art. 51 c. 1): December paid
+by 12 January is still income of its year, paid later it opens the next one.
+`calculate_tax_year` computes the payments of one tax year and settles the
+conguaglio on the last; `calculate_competence_year` computes the runs of one
+competence year across the tax years that pay them.
+
+```python
+--8<-- "docs/examples/14_tax_year.py"
+```
+
 ### Domestic work (lavoro domestico)
 
 Flat per-hour INPS contributions; the employer does not withhold IRPEF. `weekly_hours` is required.

@@ -3,7 +3,7 @@
 Variable work data for a payroll run (overtime, absences, sick leave,
 supplements, benefits, bonuses) is passed as work events in
 `PeriodFacts.events`: on `PeriodInput.facts` for one run, or in
-`YearInput.periods` keyed by month or by run id for a year. Events are part
+`CompetenceYearPlan.periods` keyed by month or by run id for a year. Events are part
 of the run and change the
 result according to the treatment in the table below. For example, overtime
 raises `period_gross`; an unpaid absence is reported in

@@ -90,15 +90,25 @@ has 14 runs.
 
 ### withholding schedule (piano delle ritenute)
 
-The ordered IRPEF withholding slots of the year, one per payslip.  The
-annual projection spreads the tax still due over the slots not yet closed,
-and the last slot performs the conguaglio on the final taxable income
-(art. 23 c. 3 DPR 600/1973).  Surtax and somma esente are split per slot;
-the last slot settles the somma esente due and recovers what was paid in
-excess (L. 207/2024 art. 1 c. 7).
-Never derived from the entitlement.
+The IRPEF withholding slots of a tax year, one per payment actually made in
+it, whatever its competence (TUIR art. 51 c. 1).  The annual projection
+spreads the tax still due over the slots not yet paid, read by identity
+from the payments closed, and the payment that leaves no slot unpaid
+performs the conguaglio on the final taxable income (art. 23 c. 3 DPR
+600/1973).  Surtax and somma esente are split per slot; the conguaglio
+settles the somma esente due and recovers what was paid in excess (L.
+207/2024 art. 1 c. 7).  Never derived from the entitlement.
 
-`WithholdingSchedule`, `WithholdingSlot`, `PeriodCalculationRequest.withholding_schedule`
+`WithholdingSchedule`, `WithholdingSlot`, `WithholdingPosition`, `TaxCashState.conguaglio`
+
+### competence year and tax year (anno di competenza e periodo d'imposta)
+
+A competence year generates the runs of its months and extra months; a
+tax year holds the payments made in it.  December paid by 12 January
+belongs to the tax year of its competence (cassa allargata), paid later to
+the next one.  INPS contributions follow competence (INPS circ. 237/2016).
+
+`CompetenceYearPlan`, `TaxYearPlan`, `PaymentId`, `InpsBaseYtd`
 
 ### calendar override (deroga al calendario)
 
@@ -109,7 +119,7 @@ entitlement unchanged; `MORE_FAVOURABLE_TREATMENT`
 records an agreement granting more than the CCNL (art. 2077 c.c.).  No
 reason allows dropping or lowering an extra month the CCNL grants.
 
-`CalendarOverride`, `CalendarOverrideReason`, `YearResult.calendar`
+`CalendarOverride`, `CalendarOverrideReason`, `CompetenceYearResult.calendar`
 
 ### calculation status (stato del calcolo)
 
@@ -132,7 +142,7 @@ caller, open model limitations with a monetary impact.  A result is payable
 only when no blocker applies.
 
 `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `PeriodResult.is_payable`,
-`YearResult.is_payable`
+`CompetenceYearResult.is_payable`
 
 ### calculation issue (anomalia di calcolo)
 
@@ -151,7 +161,7 @@ A capability that ran and found nothing due still decides: amount 0 and a
 reason such as `income_above_upper_threshold`.  The capability trace is
 built from the decisions.
 
-`CalculationDecision`, `PeriodResult.decisions`, `YearResult.decisions`
+`CalculationDecision`, `PeriodResult.decisions`, `CompetenceYearResult.decisions`
 
 ### capability trace (traccia di esecuzione)
 

@@ -69,8 +69,10 @@ if not ruleset.is_production:
 
 ## Inputs
 
-`calculate_period` takes a `PeriodInput`, `calculate_year` a `YearInput`.
-Both group the facts by owner and are validated when built:
+`calculate_period` takes a `PeriodInput`, `calculate_competence_year` a
+`CompetenceYearPlan` and `calculate_tax_year` a `TaxYearPlan` of competence
+years. They group the facts by owner and are validated when built;
+`import_opening_balances` takes the `OpeningBalances` of another provider:
 
 | Model | Holds |
 |---|---|
@@ -85,10 +87,25 @@ Both group the facts by owner and are validated when built:
         - PeriodInput
         - PeriodFacts
 
-::: ccnl_engine.payroll.domain.year_input
+::: ccnl_engine.payroll.domain.competence_year_plan
     options:
       members:
-        - YearInput
+        - CompetenceYearPlan
+
+::: ccnl_engine.payroll.domain.tax_year_plan
+    options:
+      members:
+        - TaxYearPlan
+
+::: ccnl_engine.payroll.application.opening_balances
+    options:
+      members:
+        - OpeningBalances
+
+::: ccnl_engine.payroll.domain.inps_base
+    options:
+      members:
+        - InpsBaseYtd
 
 ::: ccnl_engine.payroll.domain.employment
     options:
@@ -176,7 +193,7 @@ public field to set (`seniority`, `contribution_history`, `sector`,
 
 ## Year calendar
 
-`YearInput` derives the calendar from the CCNL when `calendar_override` is
+`CompetenceYearPlan` derives the calendar from the CCNL when `calendar_override` is
 omitted. A different calendar is accepted only as a validated
 `CalendarOverride`.
 
@@ -279,10 +296,12 @@ blocker, and the report `status` is the coverage axis of the assurance:
       members:
         - PeriodResult
 
-::: ccnl_engine.payroll.application.calculate_year
+::: ccnl_engine.payroll.application.year_result
     options:
       members:
-        - YearResult
+        - PaymentsResult
+        - CompetenceYearResult
+        - TaxYearResult
 
 ::: ccnl_engine.payroll.domain.assurance
     options:
