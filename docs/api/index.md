@@ -12,7 +12,7 @@ the readers in `ccnl_engine.knowledge.service`). See
 
 | Page | Contents |
 |---|---|
-| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `CompetenceYearPlan`, `TaxYearPlan`, `OpeningBalances`, `InpsBaseYtd`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `CompetenceYearResult`, `TaxYearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
+| [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `CompetenceYearPlan`, `TaxYearPlan`, `OpeningBalances`, `InpsBaseYtd`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `CurrentYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `CompetenceYearResult`, `TaxYearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
 | [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
 | [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
@@ -58,6 +58,8 @@ from ccnl_engine import (
     EmployerActivity,
     Headcount,
     PriorYearTaxFacts,
+    CurrentYearTaxFacts,
+    IncomeEstimateQuality,
     SubstituteTaxRegime,
     # Family
     FamilyComposition,

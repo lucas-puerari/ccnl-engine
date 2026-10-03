@@ -319,9 +319,10 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityFact`, roles, `ContributionHistory` and sector; impossible values are rejected on construction |
 | `EmployerProfile` | The employer: its `Headcount` (required, at least 1) selects the INPS rate tier; `activity` feeds the L. 199/2025 c. 18 exclusion |
 | `PriorYearTaxFacts` | Prior-year employment income and written waivers, declared once and read by every substitute-tax regime |
+| `CurrentYearTaxFacts` | Income of the tax year beyond this employment (other employers, other income, main dwelling excluded), its date and quality; read by the Art. 12 family deductions on `PeriodInput.current_year`, `CompetenceYearPlan.current_year` or `TaxYearPlan.current_year` |
 | `PeriodFacts` | Events, contributable hours, region and Belfiore code, family composition of one run |
 | `PayrollRun` | The pay run: year, month, and run kind (regular / thirteenth / fourteenth) |
-| `FamilyComposition` | Dependent spouse and children (Art. 12 TUIR) |
+| `FamilyComposition` | Dependent spouse, children and ascendants (Art. 12 TUIR), each with its dependency interval; `sole_parent` for the first-child rule |
 | `OvertimeEvent` | Overtime hours for a specific date |
 | `AbsenceEvent` | Unpaid absence in the period; `suspends_accrual` also stops the extra-month ratei |
 | `SickLeaveEvent` | Sick-leave calendar days |

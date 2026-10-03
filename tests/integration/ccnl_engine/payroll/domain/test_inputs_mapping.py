@@ -34,6 +34,7 @@ from ccnl_engine import (
     WorkerCategory,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
+from tests.fixtures.current_year import employment_only
 
 _YEAR = 2026
 _METAL = "metalmeccanico-federmeccanica.json"
@@ -94,6 +95,7 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
     employment = _employment()
     facts = _facts()
     prior = PriorYearTaxFacts(employment_income=Decimal(20000))
+    current = employment_only(_YEAR)
     opening = PeriodState.zero()
     run = PayrollRun.regular(_YEAR, 6)
     request = PeriodInput(
@@ -103,6 +105,7 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
         employer=_EMPLOYER,
         facts=facts,
         prior_year=prior,
+        current_year=current,
         opening_state=opening,
     ).calculation_request()
 
@@ -112,6 +115,7 @@ def test_mapping_copies_every_fact_to_its_request_field() -> None:
     assert request.employer is _EMPLOYER
     assert request.opening_state is opening
     assert request.prior_year is prior
+    assert request.current_year is current
     for name in _EMPLOYMENT_FIELDS:
         assert getattr(request, name) == getattr(employment, name), name
     for field in fields(PeriodFacts):
