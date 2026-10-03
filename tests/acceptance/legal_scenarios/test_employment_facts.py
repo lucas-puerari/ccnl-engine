@@ -15,7 +15,8 @@ from ccnl_engine import (
     Employment,
     EmploymentPeriod,
     Headcount,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
     WeeklyHours,
     WorkerCategory,
     YearInput,
@@ -159,6 +160,7 @@ def test_three_month_employment_never_pays_a_full_year(hire_month: int) -> None:
 # extraction marked unverified): operaio first increment after 24 months,
 # at most one, 56.66 EUR; impiegato first increment after 48 months, then
 # every 24, 62.62 EUR.  At 60 months each category has exactly one increment.
+_SIXTY_MONTHS = SeniorityFact(60, date(2026, 1, 1), SenioritySource.PAYSLIP)
 _FISE_BASE_GROSS = Decimal("1724.40")
 
 
@@ -180,7 +182,7 @@ def test_worker_category_selects_the_seniority_increment(
         employment=Employment(
             ccnl_slug=POSTAL_FISE,
             level_code="2",
-            seniority_months=SeniorityMonths(60),
+            seniority=_SIXTY_MONTHS,
             category=category,
         )
     )
@@ -195,7 +197,7 @@ def test_missing_required_worker_category_is_rejected() -> None:
             employment=Employment(
                 ccnl_slug=POSTAL_FISE,
                 level_code="2",
-                seniority_months=SeniorityMonths(60),
+                seniority=_SIXTY_MONTHS,
                 category=None,
             )
         )
@@ -208,7 +210,9 @@ def _negative_headcount() -> None:
 def _negative_seniority() -> None:
     regular_period(
         employment=Employment(
-            ccnl_slug=COMMERCIO, level_code="4", seniority_months=SeniorityMonths(-12)
+            ccnl_slug=COMMERCIO,
+            level_code="4",
+            seniority=SeniorityFact(-12, date(2026, 1, 1), SenioritySource.PAYSLIP),
         )
     )
 

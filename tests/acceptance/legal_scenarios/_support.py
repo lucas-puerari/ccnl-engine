@@ -18,6 +18,7 @@ from ccnl_engine import (
     PeriodState,
     PriorYearTaxFacts,
 )
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult, WorkEvent
@@ -55,7 +56,8 @@ def regular_period(
 ) -> PeriodResult:
     """Compute one regular payroll run through the public facade.
 
-    ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``.
+    ``employment``, when given, replaces ``ccnl_slug`` and ``level_code``;
+    otherwise the worker is a :func:`~tests.fixtures.seniority.new_hire`.
 
     Returns:
         The engine result for the requested run.
@@ -65,7 +67,9 @@ def regular_period(
             run=PayrollRun.regular(year=year, month=month),
             payment_date=payment_date or date(year, month, 27),
             employment=employment
-            or Employment(ccnl_slug=ccnl_slug, level_code=level_code),
+            or Employment(
+                ccnl_slug=ccnl_slug, level_code=level_code, seniority=new_hire(year)
+            ),
             employer=employer,
             facts=PeriodFacts(
                 contributable_hours=contributable_hours,

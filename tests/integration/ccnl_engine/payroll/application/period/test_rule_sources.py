@@ -31,6 +31,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import TaxSector
@@ -65,6 +66,7 @@ def _run(
         payment_date=date(2026, 3, 27),
         ccnl_slug=_METALMECCANICO,
         level_code="C3",
+        seniority=new_hire(),
         employer=EmployerProfile(headcount=Headcount(50)),
         opening_state=PeriodState.zero(),
         **kwargs,  # type: ignore[arg-type]
@@ -82,7 +84,8 @@ class TestBundledRun:
         assert sources["irpef"] is ProvenanceStatus.DERIVED
         assert sources["tfr"] is ProvenanceStatus.DERIVED
         assert sources["somma_esente"] is ProvenanceStatus.ASSUMED
-        assert "seniority" not in sources
+        # A known seniority decides the increments, so their rule is read.
+        assert "seniority" in sources
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
 
     def test_assumed_rules_block_payability_without_an_issue(self) -> None:

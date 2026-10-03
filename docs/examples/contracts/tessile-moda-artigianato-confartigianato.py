@@ -7,10 +7,10 @@ edit the generator, not this file.
 
 Level 4 (middle of the level list), regular run of September 2026, full-time
 permanent employment, 50 employees, worker resident in Milan (region IT-25,
-municipality F205).
+municipality F205), seniority recognised from 1 September 2026.
 
-The worker category is declared (operaio): the INPS employer rate of this
-sector depends on it.
+The worker category is declared (operaio): the INPS employer rate or the
+seniority increments depend on it.
 """
 
 from datetime import date
@@ -24,11 +24,14 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     Permanent,
+    SeniorityFact,
+    SenioritySource,
     WorkerCategory,
 )
 
 CCNL = "tessile-moda-artigianato-confartigianato.json"
 LEVEL = "4"
+SENIORITY = SeniorityFact.since(date(2026, 9, 1), SenioritySource.EMPLOYER_RECORDS)
 
 engine = PayrollEngine.bundled()
 result = engine.calculate_period(
@@ -39,6 +42,7 @@ result = engine.calculate_period(
             ccnl_slug=CCNL,
             level_code=LEVEL,
             contract_type=Permanent(),
+            seniority=SENIORITY,
             category=WorkerCategory.OPERAIO,
         ),
         employer=EmployerProfile(headcount=Headcount(50)),

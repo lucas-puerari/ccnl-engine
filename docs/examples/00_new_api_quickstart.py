@@ -17,11 +17,18 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
+    SeniorityFact,
+    SenioritySource,
     YearInput,
 )
 
 engine = PayrollEngine.bundled()
-employment = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
+employment = Employment(
+    ccnl_slug="commercio-confcommercio.json",
+    level_code="4",
+    # Recognised seniority: 36 months on 1 January 2026, read from a payslip.
+    seniority=SeniorityFact(36, date(2026, 1, 1), SenioritySource.PAYSLIP),
+)
 employer = EmployerProfile(headcount=Headcount(50))
 
 # ── Single-period calculation ────────────────────────────────────────────────

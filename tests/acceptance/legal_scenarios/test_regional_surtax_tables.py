@@ -42,6 +42,7 @@ from ccnl_engine import (
     YearInput,
 )
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
     from ccnl_engine import CalculationDecision, PeriodResult
@@ -84,6 +85,7 @@ def _conguaglio(regione: str, with_child: bool) -> PeriodResult:
             employment=Employment(
                 ccnl_slug="commercio-confcommercio.json",
                 level_code="4",
+                seniority=new_hire(),
                 employment_period=EmploymentPeriod(date(2020, 1, 1), None),
             ),
             employer=EmployerProfile(headcount=Headcount(50)),

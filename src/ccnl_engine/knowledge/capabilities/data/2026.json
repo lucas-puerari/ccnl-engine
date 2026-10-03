@@ -3,7 +3,7 @@
   "schema_version": 2,
   "capabilities": [
     {"feature": "base_salary", "layer": "gross", "implementation": "native", "applies_when": "always", "handler": "pipeline", "evidence": "derived", "variants": [], "required_facts": [], "description": "Paga base contrattuale"},
-    {"feature": "seniority", "layer": "gross", "implementation": "native", "applies_when": "decided", "handler": "decision", "evidence": "derived", "variants": [], "required_facts": ["employment.seniority_months"], "description": "Scatti di anzianità"},
+    {"feature": "seniority", "layer": "gross", "implementation": "native", "applies_when": "decided", "handler": "decision", "evidence": "derived", "variants": [], "required_facts": ["employment.seniority"], "description": "Scatti di anzianità"},
     {"feature": "worker_category", "layer": "gross", "implementation": "native", "applies_when": "decided", "handler": "decision", "evidence": "derived", "variants": [], "required_facts": ["employment.category"], "description": "Categoria lavoratore (dichiarata o fissata dal livello)"},
     {"feature": "inps_employee", "layer": "net", "implementation": "native", "applies_when": "always", "handler": "pipeline", "evidence": "derived", "variants": [], "required_facts": [], "description": "Contributi INPS a carico dipendente"},
     {"feature": "inps_employer", "layer": "net", "implementation": "native", "applies_when": "always", "handler": "pipeline", "evidence": "derived", "variants": [], "required_facts": [], "description": "Contributi INPS a carico azienda"},

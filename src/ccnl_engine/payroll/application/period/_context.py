@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.application.period._chain import _resolve_chain
 from ccnl_engine.payroll.application.period._checks import resolve_run_id
+from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.withholding._plan import (
     resolve_withholding_schedule,
@@ -216,7 +217,9 @@ def _base_chain(
         contract.level,
         request.contract_type,
         contract.tctx.competence,
-        seniority_months=_int_value(request.seniority_months),
+        seniority_months=seniority_months_at(
+            request.seniority, contract.tctx.competence
+        ),
         roles=request.roles,
         worker_category=worker_category,
         weekly_hours=_int_value(request.weekly_hours),
@@ -245,7 +248,7 @@ def build_context(
         contract.ccnl,
         contract.level,
         request.category,
-        seniority=request.seniority_months,
+        seniority=request.seniority,
     )
     chain, apprenticeship = _base_chain(request, contract, worker_category)
     closed_run_id = resolve_run_id(request)

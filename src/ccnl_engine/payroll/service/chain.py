@@ -37,6 +37,23 @@ def _allowance_active(
     return seniority_months is not None and seniority_months >= threshold
 
 
+def service_gated_allowances(
+    level: Level, roles: frozenset[str]
+) -> tuple[Allowance, ...]:
+    """Return the allowances of the level gated by months of service.
+
+    Returns:
+        The allowances with a ``service_months_threshold`` whose role, if
+        any, the worker holds.
+    """
+    return tuple(
+        a
+        for a in level.fixed_allowances
+        if a.service_months_threshold is not None
+        and (a.role is None or a.role in roles)
+    )
+
+
 def _level_seniority(
     ccnl: CCNL,
     level: Level,

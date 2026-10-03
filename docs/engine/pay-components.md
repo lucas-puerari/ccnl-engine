@@ -53,10 +53,31 @@ print("Half time:", gross(WeeklyHours(20)))
 
 ## Seniority increments (*scatti di anzianità*)
 
-Pass the months of continuous service as `Employment.seniority_months`, a
-`SeniorityMonths`.
-The engine derives the number of matured increments from the CCNL cadence and
-adds the amount the level earns.
+Pass the recognised seniority as `Employment.seniority`, a `SeniorityFact`:
+the completed months of service on a date (`as_of`) and where they were read
+from (`SenioritySource`). `SeniorityFact.since(date, source)` states the date
+the recognised service starts instead. The engine ages the fact to each run:
+a run counts the months completed by the first day of its competence month,
+so an increment matured during a month is paid from the next one. It derives
+the number of matured increments from the CCNL cadence and adds the amount
+the level earns.
+
+Every run records a `seniority` decision with one of four reasons:
+
+| Reason | When | Amount |
+|---|---|---|
+| `not_applicable_by_contract` | The level pays no increment to the worker: no amount for the level, a zero maximum or an excluded category (e.g. operai edili, paid through the Cassa Edile) | `0` |
+| `zero_confirmed` | The seniority is known and no increment has matured | `0` |
+| `increments_applied` | The seniority is known and increments are paid | the increments |
+| `required_fact_missing` | `seniority=None` on a level that pays increments, or an allowance gated by months of service | `None` |
+
+The fact is required only when the level pays increments to the worker's
+category (an unknown category counts when any category is paid) or holds an
+allowance gated by months of service for the worker's roles. Without it the
+decision is `provisional`, the `seniority_unknown` issue names the fact, the
+result has a `missing_fact` blocker for `seniority` and is not payable. The
+amounts of such a run leave the increments and the gated allowances out:
+they are what a worker without seniority would earn, not the answer.
 
 ```python
 --8<-- "docs/examples/05_seniority.py"
@@ -74,7 +95,7 @@ artigianato).
 - A level reserved to one category (e.g. a `quadro` level) supplies it when
   you omit it; declaring a different category raises `InvalidInputError`.
 - When increments for the level exist only per category and you pass
-  `seniority_months` without a category, the calculation raises
+  `seniority` without a category, the calculation raises
   `InvalidInputError` instead of silently dropping the increment.
 
 ## Bilateral funds (*fondi bilaterali*)

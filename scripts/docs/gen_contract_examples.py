@@ -17,7 +17,11 @@ Rules of every example:
 - geography: worker resident in Milan (region ``IT-25``, Belfiore ``F205``);
 - worker category: ``operaio`` when the level fixes none and the INPS
   employer rate of the sector depends on the category, so the example does
-  not rest on an assumed rate;
+  not rest on an assumed rate; when the seniority increments of the level
+  exist only per category, ``operaio`` if it is paid them, otherwise the
+  first category that is;
+- seniority: recognised from 1 September 2026, a new hire, so the run
+  states the fact its increments need and no increment is due;
 - domestic CCNLs: weekly hours and contributable hours of a full-time
   month, both derived from the ``hourly_divisor`` of the CCNL.
 
@@ -50,6 +54,7 @@ PACKAGE_INIT = "__init__.py"
 
 YEAR = 2026
 MONTH = 9
+MONTH_NAME = "September"
 PAYMENT_DAY = 25
 HEADCOUNT = 50
 DOMESTIC_HEADCOUNT = 1
@@ -136,6 +141,22 @@ def _latest_divisor(parameters: dict[str, Any]) -> Decimal:
     return Decimal(str(latest["value"]))
 
 
+def _seniority_category(increments: dict[str, Any], level_code: str) -> str | None:
+    """Return the category the seniority increments of a level need.
+
+    Returns:
+        ``None`` when the level has a category-independent amount or no
+        category amount; otherwise ``operaio`` when it is paid on the
+        level, else the first category that is, as a member name.
+    """
+    by_category = increments.get("amount_by_level_by_category", {})
+    paid = [cat for cat, amounts in by_category.items() if level_code in amounts]
+    if level_code in increments.get("amount_by_level", {}) or not paid:
+        return None
+    default = DEFAULT_CATEGORY.lower()
+    return (default if default in paid else paid[0]).upper()
+
+
 def build_spec(path: Path) -> ExampleSpec:
     """Derive the example inputs of the CCNL stored at ``path``.
 
@@ -154,8 +175,13 @@ def build_spec(path: Path) -> ExampleSpec:
     level = levels[len(levels) // 2]
     tax_sector = meta.get("tax_sector", "")
     category = None
-    if level.get("category") is None and _rates_by_category(tax_sector):
-        category = DEFAULT_CATEGORY
+    if level.get("category") is None:
+        category = _seniority_category(
+            data.get("parameters", {}).get("seniority_increments", {}),
+            str(level["code"]),
+        )
+        if category is None and _rates_by_category(tax_sector):
+            category = DEFAULT_CATEGORY
     weekly_hours = contributable_hours = None
     if tax_sector == DOMESTIC_SECTOR:
         divisor = _latest_divisor(data.get("parameters", {}))
@@ -185,7 +211,7 @@ def _docstring(spec: ExampleSpec) -> str:
         f"Level {spec.level_code} (middle of the level list), regular run of "
         f"September {YEAR}, full-time permanent employment, {employer}, "
         f"worker resident in Milan (region {REGION}, municipality "
-        f"{MUNICIPALITY})."
+        f"{MUNICIPALITY}), seniority recognised from 1 {MONTH_NAME} {YEAR}."
     )
     paragraphs = [
         f"{name}.",
@@ -198,7 +224,7 @@ def _docstring(spec: ExampleSpec) -> str:
     if spec.category is not None:
         paragraphs.append(
             f"The worker category is declared ({spec.category.lower()}): the "
-            "INPS employer rate of this sector depends on it."
+            "INPS employer rate or the seniority increments depend on it."
         )
     if spec.domestic:
         paragraphs.append(
@@ -229,6 +255,8 @@ def _imports(spec: ExampleSpec) -> str:
         "PeriodFacts",
         "PeriodInput",
         "Permanent",
+        "SeniorityFact",
+        "SenioritySource",
     }
     if spec.category is not None:
         names.add("WorkerCategory")
@@ -251,6 +279,7 @@ def _call(spec: ExampleSpec) -> str:
         "ccnl_slug=CCNL",
         "level_code=LEVEL",
         "contract_type=Permanent()",
+        "seniority=SENIORITY",
     ]
     facts = [f'regione="{REGION}"', f'comune_belfiore="{MUNICIPALITY}"']
     headcount = HEADCOUNT
@@ -301,7 +330,11 @@ def render_example(spec: ExampleSpec) -> str:
     Returns:
         The full source, ending with a newline.
     """
-    constants = f'CCNL = "{spec.slug}.json"\nLEVEL = "{spec.level_code}"\n'
+    constants = (
+        f'CCNL = "{spec.slug}.json"\nLEVEL = "{spec.level_code}"\n'
+        f"SENIORITY = SeniorityFact.since(date({YEAR}, {MONTH}, 1), "
+        "SenioritySource.EMPLOYER_RECORDS)\n"
+    )
     return "\n".join((
         _docstring(spec),
         _imports(spec),

@@ -27,7 +27,8 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
     Permanent,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
     WeeklyHours,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
@@ -73,6 +74,8 @@ def _latest_bundled_year() -> int:
 
 _DEFAULT_YEAR = _latest_bundled_year()
 _CALC_DATE = date(_DEFAULT_YEAR, 12, 31)
+#: Month of the run the demo computes.
+_RUN_MONTH = 12
 _ENGINE = PayrollEngine.bundled()
 
 
@@ -296,10 +299,18 @@ def _build_employment(
     Returns:
         An :class:`Employment` instance.
     """
-    seniority_months: int | None = None
-    if seniority_value > 0:
-        if seniority_mode == "months":
-            seniority_months = seniority_value
+    # Months of service are a fact as of the first day of the computed
+    # month; the deprecated count mode states no seniority, so a level with
+    # increments names the missing fact.
+    seniority = (
+        SeniorityFact(
+            seniority_value,
+            date(_DEFAULT_YEAR, _RUN_MONTH, 1),
+            SenioritySource.EMPLOYER_RECORDS,
+        )
+        if seniority_mode == "months"
+        else None
+    )
     # The demo asks one question: enrolled from 1996?  Unchecked means not
     # stated, so a run crossing the massimale names the missing fact.
     history = (
@@ -316,9 +327,7 @@ def _build_employment(
         ccnl_slug=filename,
         level_code=level_code,
         contract_type=contract,
-        seniority_months=(
-            SeniorityMonths(seniority_months) if seniority_months is not None else None
-        ),
+        seniority=seniority,
         contribution_history=history,
         weekly_hours=weekly_hours,
     )
@@ -348,7 +357,7 @@ def compute_salary(
     num_employees: int,
     part_time_ratio: float = 1.0,
     seniority_value: int = 0,
-    seniority_mode: str = "count",
+    seniority_mode: str = "months",
     months_elapsed: int = 0,
     regione: str = "",
     comune_belfiore: str = "",
@@ -377,8 +386,10 @@ def compute_salary(
         employment_type: ``"permanent"``, ``"fixed_term"``, or ``"apprentice"``.
         num_employees: Employer headcount (drives INPS rate tier).
         part_time_ratio: Part-time fraction in (0, 1], default full-time.
-        seniority_value: Seniority months of service (seniority_mode="months").
-        seniority_mode: ``"count"`` (deprecated) or ``"months"``.
+        seniority_value: Months of service on the first day of the computed
+            month (seniority_mode="months"); zero is a new hire.
+        seniority_mode: ``"months"``, or ``"count"`` (deprecated), which
+            states no seniority.
         months_elapsed: Months elapsed in apprenticeship (apprentice only).
         regione: ISO 3166-2:IT region code (e.g. ``"IT-45"``) for the
             addizionale regionale.
@@ -462,8 +473,8 @@ def compute_salary(
 
         result = _ENGINE.calculate_period(
             PeriodInput(
-                run=PayrollRun.regular(_DEFAULT_YEAR, 12),
-                payment_date=date(_DEFAULT_YEAR, 12, 28),
+                run=PayrollRun.regular(_DEFAULT_YEAR, _RUN_MONTH),
+                payment_date=date(_DEFAULT_YEAR, _RUN_MONTH, 28),
                 employment=employment,
                 employer=EmployerProfile(headcount=Headcount(num_employees)),
                 facts=PeriodFacts(

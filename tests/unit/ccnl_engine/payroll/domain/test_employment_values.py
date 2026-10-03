@@ -12,15 +12,19 @@ from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.employment_facts import (
     ContributableHours,
     EmploymentPeriod,
-    SeniorityMonths,
     WeeklyHours,
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+from ccnl_engine.payroll.domain.seniority_fact import (
+    SeniorityFact,
+    SenioritySource,
+)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _START = date(2026, 3, 1)
+_SENIORITY = SeniorityFact(36, _START, SenioritySource.PAYSLIP)
 
 
 class TestWeeklyHours:
@@ -41,19 +45,6 @@ class TestWeeklyHours:
         """Bools, floats and strings are not silently coerced."""
         with pytest.raises(InvalidInputError, match="weekly_hours must be an int"):
             WeeklyHours(value)  # type: ignore[arg-type]
-
-
-class TestSeniorityMonths:
-    """Seniority is a non-negative count of months."""
-
-    def test_accepts_zero(self) -> None:
-        """A new hire has zero months of service."""
-        assert SeniorityMonths(0).value == 0
-
-    def test_rejects_negative(self) -> None:
-        """Negative service is impossible."""
-        with pytest.raises(InvalidInputError, match="seniority_months must be >= 0"):
-            SeniorityMonths(-12)
 
 
 class TestContributableHours:
@@ -194,12 +185,12 @@ class TestEmploymentValidation:
             level_code="4",
             weekly_hours=WeeklyHours(20),
             full_time_weekly_hours=WeeklyHours(40),
-            seniority_months=SeniorityMonths(36),
+            seniority=_SENIORITY,
             employment_period=EmploymentPeriod(started_on=_START),
         )
         assert employment.weekly_hours == WeeklyHours(20)
         assert employment.full_time_weekly_hours == WeeklyHours(40)
-        assert employment.seniority_months == SeniorityMonths(36)
+        assert employment.seniority == _SENIORITY
         assert employment.employment_period == EmploymentPeriod(started_on=_START)
 
     def test_optional_facts_default_to_none(self) -> None:
@@ -209,7 +200,7 @@ class TestEmploymentValidation:
         )
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
-        assert employment.seniority_months is None
+        assert employment.seniority is None
         assert employment.employment_period is None
         assert employment.sector is None
 
@@ -218,7 +209,7 @@ class TestEmploymentValidation:
         [
             pytest.param({"weekly_hours": 20}, id="raw-weekly-hours"),
             pytest.param({"full_time_weekly_hours": 40}, id="raw-full-time"),
-            pytest.param({"seniority_months": 36}, id="raw-seniority"),
+            pytest.param({"seniority": 36}, id="raw-seniority"),
             pytest.param({"employment_period": _START}, id="raw-period"),
             pytest.param({"roles": {"caposquadra"}}, id="mutable-roles"),
             pytest.param({"contribution_history": "post_1995"}, id="raw-history"),

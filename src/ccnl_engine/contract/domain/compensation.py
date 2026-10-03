@@ -28,10 +28,11 @@ class Allowance(BaseModel):
     elements exempts every allowance it does not list.
 
     ``service_months_threshold`` makes the allowance conditional: it is
-    included only when ``Scenario.seniority_months`` is provided and is at
-    least this many months. When ``Scenario.seniority_count`` is used instead
-    of ``seniority_months``, threshold-gated allowances are excluded (the
-    engine cannot gate on service time without knowing service time).
+    included only when the recognised seniority (``Employment.seniority``)
+    is known and is at least this many months on the run. When the
+    seniority is unknown, threshold-gated allowances are excluded and the
+    run names the missing fact: the engine cannot gate on service time
+    without knowing service time.
 
     ``part_time_proportionable=False`` marks allowances that must be paid at
     their full contractual value regardless of the worker's part-time fraction

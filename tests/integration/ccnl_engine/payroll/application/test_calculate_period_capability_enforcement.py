@@ -26,6 +26,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
+from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import march_sickness_episode
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -41,6 +42,7 @@ def _req(month: int = 1) -> PeriodCalculationRequest:
         payment_date=date(_YEAR, month, 28),
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
+        seniority=new_hire(),
         opening_state=PeriodState.zero(),
     )
 

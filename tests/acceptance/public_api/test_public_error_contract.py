@@ -27,7 +27,8 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    SeniorityMonths,
+    SeniorityFact,
+    SenioritySource,
 )
 from tests.fixtures.sickness_episode import march_sickness_episode
 
@@ -56,11 +57,11 @@ def _regular(
 )
 @pytest.mark.parametrize(
     "seniority",
-    [None, SeniorityMonths(0)],
+    [None, SeniorityFact(0, date(2026, 6, 1), SenioritySource.PAYSLIP)],
     ids=["seniority_not_given", "zero_seniority"],
 )
 def test_rule_series_not_yet_valid_is_a_typed_error(
-    seniority: SeniorityMonths | None,
+    seniority: SeniorityFact | None,
 ) -> None:
     """Grafica editoria AIEG, level E, June 2026.
 
@@ -72,7 +73,7 @@ def test_rule_series_not_yet_valid_is_a_typed_error(
     employment = Employment(
         ccnl_slug="grafica-editoria-aieg.json",
         level_code="E",
-        seniority_months=seniority,
+        seniority=seniority,
     )
 
     with contextlib.suppress(CcnlEngineError):  # A typed error is the contract.

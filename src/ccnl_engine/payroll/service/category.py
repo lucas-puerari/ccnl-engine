@@ -11,7 +11,9 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.contract.domain.compensation import Level
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths
+    from ccnl_engine.payroll.domain.seniority_fact import (
+        SeniorityFact,
+    )
 
 _FEATURE = "worker_category"
 
@@ -21,7 +23,7 @@ def resolve_worker_category(
     level: Level,
     declared: WorkerCategory | str | None,
     *,
-    seniority: SeniorityMonths | None,
+    seniority: SeniorityFact | None,
 ) -> WorkerCategory | None:
     """Return the worker category used for pay and contributions.
 
@@ -29,7 +31,7 @@ def resolve_worker_category(
         ccnl: The applicable CCNL.
         level: The worker's level within ``ccnl``.
         declared: Category declared on the employment, or ``None``.
-        seniority: Months of service; seniority increments are resolved
+        seniority: Recognised seniority; seniority increments are resolved
             only when given, so only then can they require a category.
 
     Returns:

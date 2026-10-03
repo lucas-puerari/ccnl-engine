@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -24,8 +25,13 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     WeeklyHours,
+    WorkerCategory,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
+from tests.fixtures.seniority import new_hire
+
+if TYPE_CHECKING:
+    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 
 _ENGINE = PayrollEngine.bundled()
 _SLUGS = [f"{info.ccnl_id}.json" for info in PayrollEngine.list_contracts()]
@@ -43,6 +49,24 @@ def test_bundle_lists_contracts() -> None:
     assert len(_SLUGS) > 100
 
 
+def _pricing_category(
+    increments: SeniorityIncrements, level_code: str
+) -> WorkerCategory | None:
+    """Return a category that prices the increments of a level, if needed.
+
+    Returns:
+        The first category with an amount for the level when the level has
+        no category-independent amount, otherwise ``None``.
+    """
+    if not increments.requires_category(level_code):
+        return None
+    return next(
+        category
+        for category, amounts in increments.amount_by_level_by_category.items()
+        if level_code in amounts
+    )
+
+
 @pytest.mark.parametrize("slug", _SLUGS)
 def test_every_level_computes_sane_totals(slug: str) -> None:
     """Gross and net are positive, contributions non-negative, cost covers gross.
@@ -51,7 +75,9 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
     are paid, so only its sign is checked.
     """
     failures: list[str] = []
-    for level in load_ccnl(slug).levels:
+    ccnl = load_ccnl(slug)
+    increments = ccnl.parameters.seniority_increments
+    for level in ccnl.levels:
         result = _ENGINE.calculate_period(
             PeriodInput(
                 run=PayrollRun.regular(year=2026, month=9),
@@ -60,6 +86,8 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     ccnl_slug=slug,
                     level_code=level.code,
                     weekly_hours=WeeklyHours(40) if slug in _DOMESTIC else None,
+                    seniority=new_hire(),
+                    category=_pricing_category(increments, level.code),
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else PeriodFacts(),

@@ -43,8 +43,9 @@ uncapped branch, the INPS decisions are `incomplete` with no amount.
 
 The `apprenticeship` input of `base_salary` names the
 `apprenticeship_scaling` decision when a percentage apprenticeship scaled
-the chain; `seniority` has its own decision when the months of service are
-given. The IRPEF amount is the conguaglio YTD share of the run before the
+the chain; `seniority` has its own decision on every run, with the reason
+`not_applicable_by_contract`, `zero_confirmed`, `increments_applied` or
+`required_fact_missing`. The IRPEF amount is the conguaglio YTD share of the run before the
 pay cap: when the pay does not cover it, a `withholding_shortfall` decision
 records what was carried to the next runs. Its `decisions` input names the
 credit decisions the annual tax was netted with (family deductions,

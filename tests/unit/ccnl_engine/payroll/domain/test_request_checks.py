@@ -39,7 +39,7 @@ class TestFieldTypes:
             ("weekly_hours", 40),
             ("full_time_weekly_hours", 40),
             ("contributable_hours", 120),
-            ("seniority_months", 24),
+            ("seniority", 24),
             ("period_id", (2026, 3)),
             ("payment_date", "2026-03-27"),
             ("ccnl_slug", 7),
