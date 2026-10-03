@@ -74,20 +74,19 @@
       },
       {
         "kind": "missing",
-        "text": "layer_2 partial: apprenticeship tracks cover destinations 2, 3S, 3, 4, 5 only (Art. 22). Levels 1, Q, QDIR are excluded from apprenticeship by the contract text. Level 6 is used as the pay level for L5-destination apprentices but is not itself a destination."
+        "text": "layer_2 partial: apprenticeship tracks cover destinations 2, 3S, 3, 4, 5 only (Art. 22). Levels 1, Q, QDIR are excluded from apprenticeship by the contract text. Level 6 is used as the pay level for L5-destination apprentices but is not itself a destination.",
+        "capability": "base_salary"
       },
       {
         "kind": "missing",
-        "text": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data."
+        "text": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.",
+        "capability": "base_salary"
       },
       {
         "kind": "simplification",
         "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate."
       }
-    ],
-    "gross": "implemented",
-    "net": "partial",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1357,7 +1356,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "a40627f61e59c49e9a2acbd54e1965d4f06f9af3026a8347c5644405fbd05a9c",
+    "source_hash": "aae009e67a11e2ac603d1676129b970a3cea833d1c81654e32d5258b12891687",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

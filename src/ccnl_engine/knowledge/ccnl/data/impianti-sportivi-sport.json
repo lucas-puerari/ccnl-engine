@@ -42,17 +42,6 @@
     "workers_estimate": "35533"
   },
   "coverage": {
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "partial",
-    "work_rules_features": {
-      "overtime": "partial",
-      "night_work": "implemented",
-      "holiday_work": "implemented",
-      "absence": "implemented",
-      "sickness": "partial",
-      "leave": "implemented"
-    },
     "notes": [
       {
         "kind": "info",
@@ -1146,7 +1135,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "7a5146279d7673768ca77ac0b79d556bed0458ac30c9d21f96728a0a7048de44",
+    "source_hash": "253371c3bf1e937944c53014e75cdad6c04de71d48c1e32c3d40cbc0e322869a",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

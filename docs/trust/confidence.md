@@ -26,8 +26,8 @@ one:
 | `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
 | `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
-| `capability_not_computed` | capability | gap kind | The capability catalog promises a capability the run did not compute |
-| `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule without a located source, or no rule of the run carries a record |
+| `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
+| `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
 | `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
@@ -42,10 +42,12 @@ on `code`, `feature` and `detail`, not on the sentence.
 ### What the bundle gives today
 
 For the first level of each CCNL, a regular run of June 2026 with no event,
-no result is payable: every run carries `capability_not_computed` blockers
-(catalog capabilities such as INAIL or health funds that the period run does
-not compute) and a `rule_source_weak` blocker on `somma_esente`, whose cut
-points are reconstructions. Most also read an `assumed` base salary:
+no result is payable. None has a coverage gap: the capabilities the engine
+does not compute (INAIL, health funds, maternity, ...) do not apply to an
+ordinary month or are outside the request (see the
+[capability matrix](../contracts/capability-matrix.md)). Every run carries a
+`rule_source_weak` blocker on `somma_esente`, whose cut points are
+reconstructions. Most also read an `assumed` base salary:
 <!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
 CCNLs cite no clause for their number of monthly payments. The bundle holds
 <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
@@ -91,16 +93,23 @@ Issues that lower the calculation axis include:
 
 ### Coverage
 
-`result.capability_report` compares the capabilities the fiscal-year catalog
-declares as computed or partially computed with what the calculation
-observed. Each mismatch is a `CapabilityGap` and a `capability_not_computed`
-blocker.
+`result.capability_report` compares the capability registry of the fiscal
+year with what the calculation observed. The registry is the single source
+of coverage: the same entries drive the contracts index and the
+[capability matrix](../contracts/capability-matrix.md). Each entry declares
+its implementation (`native`, `caller_supplied`, `partial`, `unsupported`),
+an applicability predicate, the handler that decides and traces it, the
+facts it reads and the weakest evidence its rules may have.
+`capability_report.scope` gives each capability as `applicable`,
+`not_applicable` or `outside_input` for the run. Only an applicable
+capability can leave a `CapabilityGap`, and each gap is a
+`capability_not_computed` blocker.
 
 | `status` | When |
 |---|---|
 | `complete` | No gaps |
-| `partial` | Only gaps where a capability declared computed ran partially |
-| `incomplete` | Any other gap, such as a declared capability that did not run |
+| `partial` | Every gap is a `partial_result` (a capability implemented in full came out partial) or a `partial_implementation` (sickness, family deductions, ... executed) |
+| `incomplete` | Any other gap: an applicable capability is `unsupported` (residual leave on the run that closes the employment) or `unresolved` |
 
 `rule_sources` maps each executed capability that reads bundled rules to the
 weakest provenance status among them. Capabilities computed only from

@@ -71,10 +71,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: dest 3S° and dest 4S° apprenticeship not modelled — Allegato 10 names only ordinal destinations 1°-5°; S-level destinations are unaddressed in the accord text."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1626,7 +1623,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "1cf1a1d94e9a59c88c1c5b5c6deda1796d0c09ee27d64a69d8f2a2bebba65321",
+    "source_hash": "5fcf90f969258924421c13303a457da1f1d5e8032d26f95357e91feef7e2d6b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

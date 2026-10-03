@@ -81,10 +81,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled."
       }
-    ],
-    "gross": "implemented",
-    "net": "out_of_scope",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1273,7 +1270,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "7554a66daeabef04821f576b6c86487d208552c656ffbdf100c0681cb149626d",
+    "source_hash": "1faeefd74d3480b6fd16ed4bffb13b47a6a9dee730a8f5f61d7a950927e2c192",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

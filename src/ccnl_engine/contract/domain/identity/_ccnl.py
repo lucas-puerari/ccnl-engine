@@ -46,7 +46,8 @@ class CCNL(BaseModel):
         levels: Ordered list of classification levels from lowest to highest pay.
         apprenticeship: Apprenticeship tracks modelled for this CCNL. Empty
             when apprenticeship is out of scope or not yet modelled.
-        coverage: Implementation completeness flags and notes for the data file.
+        coverage: Notes on what the data file models; capability coverage
+            derives from the capability registry and these notes.
         verification: Human-review confidence and traceability metadata.
         work_rules: Work-rules data (overtime, leave, sickness, absence). ``None``
             when no work rules are modelled for this CCNL.
@@ -77,7 +78,6 @@ class CCNL(BaseModel):
         self._assert_seniority_level_codes()
         self._assert_salary_order_non_decreasing()
         self._assert_apprenticeship_tracks()
-        self._assert_coverage_consistency()
         self._assert_provenance_complete()
         return self
 
@@ -222,10 +222,3 @@ class CCNL(BaseModel):
                 raise ValueError(msg)
         for level in self.levels:
             _assert_level_provenance(level)
-
-    def _assert_coverage_consistency(self) -> None:
-        has_tracks = bool(self.apprenticeship)
-        status = self.coverage.net
-        if status == "out_of_scope" and has_tracks:
-            msg = "coverage.net is 'out_of_scope' but apprenticeship tracks exist"
-            raise ValueError(msg)

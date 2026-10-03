@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "c61c30c0f48f630a545ff4afc55f1ab17df15cc0094acb79aef0d73ea7010a4e",
+    "source_hash": "5944ae8bea5b30d4b83d68e7720d7d9db17359745bb4a4d0d31987fc3354a3fa",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -2721,14 +2721,6 @@
     }
   },
   "coverage": {
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "partial",
-    "work_rules_features": {
-      "overtime": "implemented",
-      "leave": "implemented",
-      "sickness": "partial"
-    },
     "notes": [
       {
         "kind": "info",

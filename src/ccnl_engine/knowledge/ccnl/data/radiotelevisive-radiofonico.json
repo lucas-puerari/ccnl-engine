@@ -67,10 +67,7 @@
         "kind": "info",
         "text": "Apprenticeship open tail: the final period of each track has months_until=null as required by the engine schema (validate_open_sequence enforces open-ended last period). Radio breve track (L2, max 24 months) ends {18, null, 0.90}; esteso track (L3-L6, max 60 months) ends {36, null, 1.00}."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1159,6 +1156,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "b8bf71766857b9b581c751589d92e90095cf8e9083862b075a98f641fed86e28"
+    "source_hash": "7b4f46ae5d3358d17b35679be56d31db179ff20bdb4f8e87bff4aff724cad045"
   }
 }

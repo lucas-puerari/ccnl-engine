@@ -87,10 +87,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Ente Bilaterale di settore (Art. 7, from 01/09/2021: 2 EUR/month employer) not modelled. employer_cost_annual understated by 24 EUR/year."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1335,7 +1332,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "2950bc01e5ff3e6fb0b20d5a9a79f0d5f913489629ba61bba421687ed023092d",
+    "source_hash": "38f330e0ae5c27f816ddc7d52e5d09ac6e1f0252f29b9acb2aaf3b690213979c",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

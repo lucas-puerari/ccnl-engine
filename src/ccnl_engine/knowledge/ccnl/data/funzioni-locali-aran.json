@@ -528,10 +528,7 @@
         "kind": "simplification",
         "text": "2025-2027 RENEWAL NOT YET MODELLED. ARAN signed an ipotesi di CCNL Funzioni Locali 2025-2027 on 21 July 2026. Retroactive increases from Jan 1, 2025. Pending comitato di settore, Governo, and Corte dei conti certification. Average monthly increase will be around €136.76 from base; exact per-level amounts not yet verified for this file."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/funzioni-locali-aran",
@@ -540,7 +537,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "c745778b22bf10335403bbaf49d2e9b457374619110a1b1cad7de9f42686bb57",
+    "source_hash": "3f9948c4507d944891a10a731e1299f945d2e92677c010fdcad63375d9371366",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -94,10 +94,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP Gruppo 3 (impiegati amministrativi, destination level 2, 3 anni / 6 semestri): 70/70/70/78/85/85 per semester. Source: consulenza.it circolare acconciatura 2024; lexplain.it tabella apprendistato acconciatori (medium-high confidence: two concordant secondary sources; primary accordo tables not online)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -948,7 +945,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "7d0ee8faa00edfe2ffb7e889003c2ed768523a788a17ce6af3f33b5b0e6bc36c",
+    "source_hash": "fc3151fab3cbbb71a288706ae841de2106f9d313f4529dad48b1b6810c5e3216",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

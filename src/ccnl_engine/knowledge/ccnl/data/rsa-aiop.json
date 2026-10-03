@@ -56,10 +56,7 @@
         "kind": "info",
         "text": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; cannot express dynamic under-classification tracks; modelled as 100% passthrough (correct for permanent workers, overstates pay for apprentices). Structural engine limitation."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "additional_months": {
@@ -1167,7 +1164,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "8a15c6d01bb1e1998ca92e04a4015b0df5f408717ac093f57c675b1d5fe32529",
+    "source_hash": "df95a2c00cdfb4ef135c82b2f8e26ae47a74d57e25a0b3f83e79a5b1f39525c9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

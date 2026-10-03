@@ -133,10 +133,7 @@
         "kind": "simplification",
         "text": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -612,7 +609,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "d775f0e9303d2908f727f21647e78bfea0561f9a0c3c024088e581d33c452f26",
+    "source_hash": "716cc6d6317678c1b6adace91d653c26c27114ccef6a2b0a72233213b5a13b23",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

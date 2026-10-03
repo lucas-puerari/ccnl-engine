@@ -12,11 +12,11 @@ from ccnl_engine.payroll.domain.assurance import (
     Payability,
     ResultAssurance,
 )
-from ccnl_engine.payroll.domain.capability_catalog import (
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityImplementation
+from ccnl_engine.payroll.domain.capability_report import (
     CapabilityGap,
     CapabilityGapKind,
     CapabilityReport,
-    CapabilityStatus,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -34,7 +34,6 @@ if TYPE_CHECKING:
 _SIMULATION = EngineMode.SIMULATION
 _DERIVED = {"irpef": ProvenanceStatus.DERIVED}
 _PROVISIONAL = CalculationStatus.PROVISIONAL
-_ABSENT = CapabilityGapKind.FEATURE_ABSENT
 _INCOMPLETE_COVERAGE = CoverageStatus.INCOMPLETE
 
 
@@ -52,7 +51,7 @@ def _report(
 
 
 def _gap(feature: str, kind: CapabilityGapKind) -> CapabilityGap:
-    return CapabilityGap(feature, CapabilityStatus.COMPUTED, "absent", kind)
+    return CapabilityGap(feature, CapabilityImplementation.NATIVE, "absent", kind)
 
 
 def _decision(status: CalculationStatus) -> CalculationDecision:
@@ -129,7 +128,7 @@ class TestAssess:
 
     def test_every_gap_blocks_and_sets_the_coverage(self) -> None:
         """A partial gap gives partial coverage; each gap is a blocker."""
-        partial = _gap("irpef", CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL)
+        partial = _gap("irpef", CapabilityGapKind.PARTIAL_RESULT)
 
         assurance = assess((), (), _report(gaps=(partial,)), (), _SIMULATION)
 
@@ -138,7 +137,7 @@ class TestAssess:
             (
                 BlockerCode.CAPABILITY_NOT_COMPUTED,
                 "irpef",
-                "promised_computed_got_partial",
+                "partial_result",
             )
         ]
 

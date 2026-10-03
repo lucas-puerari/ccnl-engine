@@ -83,10 +83,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Whether indennita' di funzione rides the quattordicesima is unconfirmed. Modeled as a standard fixed_allowance (paid 14 mensilita'). If Art. 5 excludes it from the quattordicesima calculation, the annual figure is overstated by ~51.65 EUR/year."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1167,7 +1164,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "7d75fc62e97fc1180ca01f53632c1df8dcd2b334a39ba9c741a69a9d92f7ae4c",
+    "source_hash": "6b9a24f18ebfd4ca8e79cb4ed765b06e8aab3d08be38cc180327d6beb190514a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -39,9 +39,6 @@
     }
   },
   "coverage": {
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented",
     "notes": [
       {
         "kind": "info",
@@ -1960,6 +1957,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "b2ed4ab3c4dba83179a9e35054c5b29c55a08dc66bb3c353e6f1b8081c03396d"
+    "source_hash": "81cb9fe19b06bfed512d0716e51dd1110073bd21fe1b0bc3e88c71fac0915ddf"
   }
 }

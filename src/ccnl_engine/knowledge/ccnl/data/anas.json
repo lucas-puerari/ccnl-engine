@@ -55,10 +55,7 @@
         "kind": "info",
         "text": "Malattia: 100% mesi 1-12, 50% mesi 13+ — CCNL ANAS 2025-2027 Art. malattia. Modellato con SicknessTier (comporto standard). Periodi a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -1312,7 +1309,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "2995abde27a0ff75ee240f28d036f6d62970d93be093ffd3accd2cc4f4e4d4da",
+    "source_hash": "e17572d29e2196ad14131b279da9499519c0ef2a95989b00e95c581876b91b59",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

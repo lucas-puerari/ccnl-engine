@@ -76,10 +76,7 @@
         "kind": "info",
         "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -3451,7 +3448,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "dc222d3ddca48ffd1e5488955dfb586c20af904ece5eb3c92cb8306685b7f2de",
+    "source_hash": "d0451458d7dd32176f095cb7e2368b32ca4abec9f5a7c14ba076a8c4282d01cc",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -331,7 +331,7 @@ result.unpaid_absence_deduction  # wages withheld for unpaid absences
 result.closing_state        # tax year state and obligations: opening_state of the next run
 result.pay_items            # all pay items produced
 result.ledger_entries       # full accounting ledger
-result.capability_report    # what the run executed against the capability catalog
+result.capability_report    # what the run executed against the capability registry
 ```
 
 `YearResult` sums the runs (`annual_gross`, `annual_net`,

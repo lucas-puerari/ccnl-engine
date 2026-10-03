@@ -513,10 +513,7 @@
         "kind": "simplification",
         "text": "2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/sanita-aran",
@@ -525,7 +522,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "27d910eaa521a4af4b8c6eeb9f0ba59733eb8d2a79d572ffc02347d8d0e164d9",
+    "source_hash": "5430d40e0a3688f9ecfcb69d97538416c05681d23dc754241d08b988aa8277d1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

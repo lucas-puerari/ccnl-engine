@@ -69,10 +69,7 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP (Art. 25): under_classification model — period 1 at 2 levels below target, period 2 at 1 level below target, period 3 (where applicable) at target level pay. The engine under_classification schema requires a fixed pay_level_code per period for all destination levels; expressing the level-relative structure requires per-destination-level entries with 9 separate apprenticeship objects. Modelled as 100% passthrough for all eligible levels (AQ2 and above); correct for permanent workers."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2543,7 +2540,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "3bceb0529793868cfc8d4f258e5296e3e9552ac7a34884596d50c40e004818fb",
+    "source_hash": "e3dc98c87d0164469f115abce73a659f21748c9274cc3bb179ec206b26fcbd53",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

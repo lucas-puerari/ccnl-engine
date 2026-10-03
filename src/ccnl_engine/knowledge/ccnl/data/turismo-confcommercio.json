@@ -72,10 +72,7 @@
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1716,7 +1713,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "d0b868b91f2375f3c5fdd33e1438059ce5c3d5641601f1b239d921b929097f8d",
+    "source_hash": "3fcf41f57bc429a4addd085d5aaf6d00c457c802fda6e94edcd09d80e6ff3d07",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -286,10 +286,7 @@
         "kind": "info",
         "text": "Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
@@ -298,7 +295,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "3f6924a0677539388019b3839fef34ba1f1b105ca24bbbdfe79c2a8b399c65c0",
+    "source_hash": "a9a15840b140c576ca23c4847d0a6b75ca9f6d80b7afb6d70a80bc811b8a66a3",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

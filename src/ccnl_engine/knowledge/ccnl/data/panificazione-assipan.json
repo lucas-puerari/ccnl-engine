@@ -77,10 +77,7 @@
         "kind": "info",
         "text": "HOURLY RATE ENGINE DISCREPANCY. Art. 50 bis defines the official quota oraria as minimo_tabellare/173 (base only). The engine computes hourly_rate = gross_monthly/173 where gross includes the PREMIO_PROD fixed_allowance. For level IIIB Sep 2026: official 2046.31/173 = 11.83 EUR/h; engine computes (2046.31+28.04)/173 = 11.99 EUR/h (diff +0.16). Structural engine limitation shared by all contracts with separate fixed allowances (no per-allowance hourly_relevant flag). Monthly and annual figures are unaffected."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1484,7 +1481,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "19e1d9ffe925a688da3adfe2f89c6feae0465855f659a78f2449a5d44c002fad",
+    "source_hash": "f6bb6b8930cdc58b95488617d9d4e498345a6fe9945356bb66ec907a20e11cfd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -6,7 +6,8 @@ already records, never stored beside it:
 
 - ``calculation``: the worst status of the issues and decisions of the run;
 - ``coverage``: the status of the capability report, the gaps between the
-  catalog and what the run executed;
+  capability registry and what the run executed, for the capabilities that
+  apply to it;
 - ``evidence``: the weakest provenance of the payable rules the run read;
 - ``rulesets``: the identity, readiness and confidence of each ruleset
   those rules came from;
@@ -43,15 +44,16 @@ __all__ = [
 
 
 class CoverageStatus(StrEnum):
-    """How much of the capability catalog the run executed as promised.
+    """How far the run covers the capabilities that apply to it.
 
     Members are listed from the best to the worst coverage.
 
     Attributes:
-        COMPLETE: No gap between the catalog and the run.
-        PARTIAL: Only capabilities promised as computed came out partial.
-        INCOMPLETE: A promised capability was not computed, could not
-            decide or is absent from the run.
+        COMPLETE: Every applicable capability was computed in full.
+        PARTIAL: Every gap is a partial result or a partially implemented
+            capability that executed.
+        INCOMPLETE: An applicable capability is unsupported, untraced or
+            could not decide.
     """
 
     COMPLETE = "complete"

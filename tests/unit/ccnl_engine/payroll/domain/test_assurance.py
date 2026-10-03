@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 _GAP = ResultBlocker(
-    BlockerCode.CAPABILITY_NOT_COMPUTED, "inail", "feature_absent", "compute it"
+    BlockerCode.CAPABILITY_NOT_COMPUTED, "inail", "unsupported", "compute it"
 )
 _FACT = ResultBlocker(BlockerCode.MISSING_FACT, None, "sector", "supply it")
 

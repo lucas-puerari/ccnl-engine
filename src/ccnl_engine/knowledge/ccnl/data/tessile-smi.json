@@ -67,10 +67,7 @@
         "kind": "info",
         "text": "JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1614,7 +1611,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "4f06ae808e1ce55b6a6c115d3c138d3163b150e1997f2c7bd7d40f7b1562d6c7",
+    "source_hash": "f1da6e950503b05502e0d6195f89dfa83c6f7a0d1bda7320db07a0db3dc4a6d7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

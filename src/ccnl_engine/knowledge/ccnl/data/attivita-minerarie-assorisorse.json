@@ -66,10 +66,7 @@
         "kind": "info",
         "text": "COVERAGE: ~3,000 workers, ~70 enterprises (miniere, cave, saline, metallurgia estrattiva non-ferrosa). INPS code B282 active."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1288,7 +1285,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "afd5ed4196fb95bea94e9b0ff27084373fbd51c236bcc6819efddbb5bb55e339",
+    "source_hash": "e2d101bccc0d8fff95f0d914a6da1698d26e43149b251980bb2b9c2130663ca9",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

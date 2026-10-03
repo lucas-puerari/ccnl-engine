@@ -74,10 +74,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Apprentice base per Art. G includes ITS and EVR alongside paga_base + contingenza. Engine covers only paga_base + contingenza; apprentice gross is understated where ITS applies."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1415,7 +1412,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "40c80079272fff3933386aa79f74903c85d6b301918b32f09f65d93ead076061",
+    "source_hash": "d1cb048db30fbffd3b64dce22463445cff797b75b04f1b9e4f7c2501ae23d0b1",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

@@ -71,10 +71,7 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP (Layer 2): apprendistato professionalizzante not modelled. Governed by Allegato 4 of the CCNL (Art. 25). Allegato 4 is not publicly accessible. Part-time and fixed-term (NASpI addizionale) function via generic engine rules without per-contract data. Layer 2 is therefore partial: apprenticeship gap is the only missing component."
       }
-    ],
-    "gross": "implemented",
-    "net": "partial",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1184,7 +1181,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6fff9471a1f9fcda209fc54f3e809f4aa85918873f780d1df690881061bfb8f9",
+    "source_hash": "e12451ca995e3216abca38dc4410bfb585f748d1315bd15806733f0385c97722",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

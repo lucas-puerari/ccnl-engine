@@ -75,10 +75,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: EGR (elemento di garanzia retributiva) increase of EUR 10 at parametro 137 from 01/01/2027 not modeled — amount per level not yet in a confirmed per-level table."
       }
-    ],
-    "gross": "implemented",
-    "net": "out_of_scope",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1453,7 +1450,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "e575d777966dd0152148089980cf9b53ae1c521dc8fbfb24dc3a208898479bd9",
+    "source_hash": "fa2ced3856e73b202ddd4b81f4e2b8bb24c54ab405dbd15193ab739d5956c369",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

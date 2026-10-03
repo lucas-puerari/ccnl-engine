@@ -4,9 +4,10 @@
 one question: *for what use context is this ruleset cleared?*
 
 It is separate from `verification.confidence` (which measures how verified
-individual data values are) and from the coverage percentage (which measures
-how many engine features are implemented). A ruleset can score 100% coverage
-while remaining `exploratory` because all values were extracted by an automated
+individual data values are) and from functional coverage (which capabilities
+of the [capability registry](../contracts/capability-matrix.md) the engine
+computes). A ruleset can have every capability it needs covered while
+remaining `exploratory` because all values were extracted by an automated
 tool and no human has checked them.
 
 ## The three tiers

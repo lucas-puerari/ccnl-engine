@@ -68,8 +68,11 @@ from ccnl_engine.payroll.domain.calendar_override import (
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityCatalog,
     CapabilityEntry,
+    CapabilityImplementation,
+)
+from ccnl_engine.payroll.domain.capability_report import (
     CapabilityGap,
-    CapabilityStatus,
+    CapabilityScope,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -174,7 +177,8 @@ __all__ = [
     "CapabilityCatalog",
     "CapabilityEntry",
     "CapabilityGap",
-    "CapabilityStatus",
+    "CapabilityImplementation",
+    "CapabilityScope",
     "CcnlEngineError",
     "CcnlId",
     "ContractSummary",

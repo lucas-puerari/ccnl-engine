@@ -1,5 +1,28 @@
 # Migration guide
 
+## Capability coverage from one registry
+
+The capability catalog of each fiscal year is now the single source of
+coverage. The runtime capability report, the contracts index and the
+capability matrix derive from it; CCNL files no longer declare coverage
+flags.
+
+| Change | What to do |
+|---|---|
+| `CapabilityStatus` removed; `CapabilityEntry.status` replaced by `implementation` (`CapabilityImplementation`: `native`, `caller_supplied`, `partial`, `unsupported`) | Read `entry.implementation` |
+| `CapabilityEntry` adds `layer`, `applies_when`, `handler`, `evidence`, `variants`, `required_facts` | Nothing, unless you build entries: pass them |
+| `CapabilityCatalog.gaps()` removed | Read `result.capability_report.gaps` |
+| `CapabilityGap.declared` renamed `implementation` | Rename the attribute |
+| Gap kinds: `feature_absent` and `not_computed` replaced by `unsupported`; `promised_computed_got_partial` renamed `partial_result`; `partial_implementation` added | Branch on the new values |
+| `CapabilityReport.scope` added (`CapabilityScope`: `applicable`, `not_applicable`, `outside_input`) | Read it to know which capabilities concern the run |
+| An unsupported capability is a gap only when it applies: an ordinary month has no gap; the run that closes the employment has `termination_residual_leave` | Expect `coverage == "complete"` on ordinary runs; payability still depends on the other blockers |
+| A partial capability that executes (sickness, family deductions, foreign tax credit, pension fund) is a `partial_implementation` gap and blocks payment | Validate those amounts outside the engine |
+| `CapabilityReport.evidence_required` and `weak_sources()` added; `rule_source_weak` follows the evidence of each registry entry (`derived` for all today) | Nothing |
+| CCNL `coverage.gross`, `coverage.net`, `coverage.work_rules`, `coverage.work_rules_features` removed, and `CoverageStatus`, `WorkRuleFeature` removed from `ccnl_engine.contract.domain.identity` | Derive coverage with `ccnl_engine.payroll.service.capability_coverage.ccnl_capabilities` |
+| A `missing` coverage note must name its `capability` | Add `"capability"` to the note |
+| New public names `CapabilityImplementation`, `CapabilityScope` | Import them from `ccnl_engine` |
+| The contracts index drops the coverage percentage; it shows coverage, sources and readiness as separate columns | Nothing |
+
 ## Ruleset readiness and engine modes
 
 Readiness is part of the public API, and the engine takes a mode. Amounts are

@@ -78,10 +78,7 @@
         "kind": "info",
         "text": "Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1528,7 +1525,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "5e8cf793eb5df5cb0eb98e1521756c4f41fe73d02369c323ba0feb5d4d5f8f0c",
+    "source_hash": "5cbdaf83dccdbf1ca81df442c29bc0ae803bc0dc1a4da2cac404babb2c3be708",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

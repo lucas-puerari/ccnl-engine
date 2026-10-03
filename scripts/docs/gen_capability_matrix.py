@@ -1,12 +1,13 @@
 """Generate docs/contracts/capability-matrix.md from knowledge-base JSON files.
 
-The page has two tables:
+The page has two tables, both derived from the capability registry:
 
-- per capability of the fiscal-year catalog: whether it is implemented,
-  verified, simplified or unavailable, from the catalog status and the
-  provenance status of the payable rules it reads;
-- per CCNL: the coverage status of every payroll feature, L1 gross, L2 net
-  and each L3 work-rules sub-feature.
+- per capability: implementation, applicability, handler, facts and
+  variants from the registry, and the provenance of the payable rules it
+  reads;
+- per CCNL: the functional coverage of each layer and the capabilities its
+  data leaves partial, the same cells as the contracts index
+  (:func:`scripts.docs.coverage_report.coverage_cells`).
 
 Run with::
 
@@ -19,7 +20,6 @@ Check for drift without writing (for CI)::
 
 from __future__ import annotations
 
-import importlib.resources
 import re
 import sys
 from datetime import UTC, datetime
@@ -28,16 +28,18 @@ from typing import TYPE_CHECKING
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from ccnl_engine.contract.domain.identity import CoverageStatus, WorkRuleFeature
-from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
-from ccnl_engine.payroll.application.period._caller_rules import (
-    CALLER_SUPPLIED_CAPABILITIES,
-)
-from ccnl_engine.payroll.domain.capability_catalog import CapabilityStatus
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityImplementation
 from scripts.ci.payable_rules import count_by_capability, inventory
+from scripts.docs.coverage_report import (
+    IMPLEMENTATION_LEGEND,
+    bundled_ccnls,
+    coverage_cells,
+    latest_catalog_year,
+    registry_summary,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -47,35 +49,14 @@ if TYPE_CHECKING:
         CapabilityEntry,
     )
 
-# Abbreviated column headers (keep short for table readability).
-_FEATURE_LABELS: dict[WorkRuleFeature, str] = {
-    WorkRuleFeature.OVERTIME: "OT",
-    WorkRuleFeature.NIGHT_WORK: "Night",
-    WorkRuleFeature.HOLIDAY_WORK: "Holiday",
-    WorkRuleFeature.ABSENCE: "Absence",
-    WorkRuleFeature.SICKNESS: "Sick",
-    WorkRuleFeature.LEAVE: "Leave",
-    WorkRuleFeature.BONUS: "Bonus",
-    WorkRuleFeature.BENEFITS: "Benefits",
-    WorkRuleFeature.WELFARE: "Welfare",
-    WorkRuleFeature.FRINGE_BENEFITS: "Fringe",
-    WorkRuleFeature.FAMILY_DEDUCTIONS: "Fam.Ded.",
-    WorkRuleFeature.COMPANY_AGREEMENT: "Co.Agr.",
-    WorkRuleFeature.TERRITORIAL_AGREEMENT: "Terr.Agr.",
-}
+__all__ = [
+    "build_page",
+    "capability_label",
+    "capability_rows",
+    "latest_catalog_year",
+    "main",
+]
 
-_SYMBOL: dict[str, str] = {
-    "implemented": "✅",
-    "partial": "⚠️",
-    "out_of_scope": "🚫",
-    "not_implemented": "🔲",
-}
-
-_UNAVAILABLE = frozenset({
-    CapabilityStatus.NOT_COMPUTED,
-    CapabilityStatus.BLOCKED,
-    CapabilityStatus.NOT_APPLICABLE,
-})
 _WEAK_SOURCES = ("assumed", "missing")
 
 _AUTO_COMMENT = (
@@ -88,21 +69,43 @@ _PREAMBLE = """\
 # Capability Matrix
 
 What the engine computes for fiscal year {year}, and how far the bundled
-data behind it is backed by sources. Generated from the capability catalog,
-the provenance records of the payable rules and the `coverage` blocks of the
-{count} bundled CCNLs.
+data behind it is backed by sources. Generated from the capability registry
+(`knowledge/capabilities/data/{year}.json`), the provenance records of the
+payable rules and the `missing` notes of the {count} bundled CCNLs. The
+runtime capability report of every run, the [CCNL Coverage
+index](index.md) and this page all derive from the same registry.
 
-→ [CCNL Coverage index](index.md) ·
-[Provenance statuses](../trust/provenance.md)
+→ [Provenance statuses](../trust/provenance.md) ·
+[Assurance of a result](../trust/index.md)
 
 ## Capabilities
+
+Each capability declares:
+
+- **Implementation:** `native` (bundled rules and request facts),
+  `caller_supplied` (a caller rate or amount stands in for a rule),
+  `partial` (only the listed variants) or `unsupported`.
+- **Applies when:** `always`; `decided` by its decision owner; `event`
+  (the request declares an event of the capability); `termination_run`
+  (the run closes the employment); `outside_input` (the request has no
+  field for the fact that makes it apply: a case with that fact is outside
+  the engine input).
+- **Handler:** the code that decides and traces it (`pipeline`, `event`,
+  `decision`); an unsupported capability has none.
+- **Facts:** the request facts it reads; for an `outside_input` capability,
+  the fact the request lacks.
+
+A run reports every capability as `applicable`, `not_applicable` or
+`outside_input`. Only an applicable capability can leave a gap: an
+unsupported one blocks payment, a partial one that executed makes the
+coverage partial and blocks payment too.
 
 | Label | Meaning |
 |---|---|
 | verified | Implemented; a named person checked every bundled rule it reads |
 | caller-supplied | Computed from caller rates or amounts that stand in for a rule |
 | implemented | Computed; the bundled rules it reads, if any, cite a source |
-| simplified | Computed partially, or reads an `assumed` or `missing` rule |
+| simplified | Partial, or reads an `assumed` or `missing` rule |
 | unavailable | Not computed by the engine |
 
 Rules counts the payable rules of the bundle each capability reads, by
@@ -114,38 +117,30 @@ formulas or caller-declared amounts.
 _CCNL_PREAMBLE = """
 ## CCNL coverage
 
-| | |
-|---|---|
-| ✅ | Implemented |
-| ⚠️ | Partial, see contract notes |
-| 🚫 | Out of scope |
-| 🔲 | Not yet implemented |
+The same cells as the [CCNL Coverage index](index.md). **Limits** names the
+capabilities a `missing` note of the contract file lowers to partial.
 
-**L1 (gross):** base salary, seniority, fixed allowances, additional months.
-**L2 (net):** INPS contributions, TFR, IRPEF, surtax, family deductions.
-**OT / Night / Holiday / Absence / Sick / Leave / Bonus / Benefits /
-Welfare / Fringe / Fam.Ded. / Co.Agr. / Terr.Agr.:** L3 work-rules
-per-feature status.
-
+{legend}
 """
 
 
 def capability_label(entry: CapabilityEntry, counts: Mapping[str, int]) -> str:
-    """Return the matrix label of one catalog capability.
+    """Return the matrix label of one registry capability.
 
     Args:
-        entry: The catalog entry.
+        entry: The registry entry.
         counts: Payable rules the capability reads, by provenance status.
 
     Returns:
         ``unavailable``, ``caller-supplied``, ``simplified``, ``verified`` or
         ``implemented``, the first that applies.
     """
-    if entry.status in _UNAVAILABLE:
+    implementation = entry.implementation
+    if implementation is CapabilityImplementation.UNSUPPORTED:
         return "unavailable"
-    if entry.feature in CALLER_SUPPLIED_CAPABILITIES:
+    if implementation is CapabilityImplementation.CALLER_SUPPLIED:
         return "caller-supplied"
-    if entry.status is CapabilityStatus.PARTIALLY_COMPUTED or any(
+    if implementation is CapabilityImplementation.PARTIAL or any(
         counts.get(status, 0) for status in _WEAK_SOURCES
     ):
         return "simplified"
@@ -155,65 +150,58 @@ def capability_label(entry: CapabilityEntry, counts: Mapping[str, int]) -> str:
     return "implemented"
 
 
+def _rules(counts: Mapping[str, int]) -> str:
+    if not counts:
+        return "none bundled"
+    return " / ".join(
+        str(counts.get(s, 0)) for s in ("verified", "derived", "assumed", "missing")
+    )
+
+
 def capability_rows(
     catalog: CapabilityCatalog, by_capability: Mapping[str, Mapping[str, int]]
 ) -> list[str]:
     """Return the capability table, header included.
 
     Args:
-        catalog: Capability catalog of the year.
+        catalog: Capability registry of the year.
         by_capability: Payable rules per capability and provenance status.
 
     Returns:
-        Markdown table lines, one row per catalog capability.
+        Markdown table lines, one row per registry capability.
     """
     lines = [
-        "| Capability | Description | Catalog | Label | Rules (v / d / a / m) |",
-        "|---|---|---|---|---|",
+        (
+            "| Capability | Description | Layer | Implementation | Applies when"
+            " | Handler | Facts | Variants | Label | Rules (v / d / a / m) |"
+        ),
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
     for entry in catalog.capabilities:
         counts = by_capability.get(entry.feature, {})
-        rules = (
-            " / ".join(
-                str(counts.get(s, 0))
-                for s in ("verified", "derived", "assumed", "missing")
-            )
-            if counts
-            else "none bundled"
-        )
+        facts = ", ".join(f"`{f}`" for f in entry.required_facts) or "—"
+        variants = ", ".join(entry.variants) or "—"
         lines.append(
-            f"| `{entry.feature}` | {entry.description} | {entry.status.value} "
-            f"| {capability_label(entry, counts)} | {rules} |"
+            f"| `{entry.feature}` | {entry.description} | {entry.layer.value} "
+            f"| {entry.implementation.value} | {entry.applies_when.value} "
+            f"| {entry.handler.value if entry.handler else '—'} | {facts} "
+            f"| {variants} | {capability_label(entry, counts)} | {_rules(counts)} |"
         )
     return lines
 
 
-def _ccnl_rows() -> list[str]:
+def _ccnl_rows(catalog: CapabilityCatalog) -> list[str]:
     """Return the CCNL coverage table, header included.
 
     Returns:
         Markdown table lines, one row per bundled CCNL.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    filenames = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
-    ccnls = sorted([load_ccnl(fn) for fn in filenames], key=lambda c: c.meta.name)
-    features = list(WorkRuleFeature)
-    feature_headers = " | ".join(_FEATURE_LABELS[f] for f in features)
-    sep_cols = " | ".join(":---:" for _ in features)
-    lines = [
-        f"| # | CCNL | L1 | L2 | {feature_headers} |",
-        f"|---|---|:---:|:---:| {sep_cols} |",
-    ]
-    for i, ccnl in enumerate(ccnls, 1):
+    lines = ["| # | CCNL | L1 | L2 | L3 | Limits |", "|---|---|:---:|:---:|:---:|---|"]
+    for i, ccnl in enumerate(bundled_ccnls(), 1):
+        cells = coverage_cells(catalog, ccnl)
+        l1, l2, l3 = cells.layers
         link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
-        feature_cells = " | ".join(
-            _SYMBOL[
-                ccnl.coverage.work_rules_features.get(f, CoverageStatus.NOT_IMPLEMENTED)
-            ]
-            for f in features
-        )
-        l1, l2 = _SYMBOL[ccnl.coverage.gross], _SYMBOL[ccnl.coverage.net]
-        lines.append(f"| {i} | {link} | {l1} | {l2} | {feature_cells} |")
+        lines.append(f"| {i} | {link} | {l1} | {l2} | {l3} | {cells.limits} |")
     return lines
 
 
@@ -221,36 +209,24 @@ def build_page(year: int) -> str:
     """Build the full capability-matrix markdown page.
 
     Args:
-        year: Fiscal year of the capability catalog.
+        year: Fiscal year of the capability registry.
 
     Returns:
         Markdown string for docs/contracts/capability-matrix.md.
     """
     catalog = load_capability_catalog(year)
-    ccnl_rows = _ccnl_rows()
+    ccnl_rows = _ccnl_rows(catalog)
     lines: list[str] = [
         _AUTO_COMMENT,
         f"<!-- generated: {datetime.now(tz=UTC).date()} -->\n",
         _PREAMBLE.format(year=year, count=len(ccnl_rows) - 2),
+        *registry_summary(catalog),
+        "",
         *capability_rows(catalog, count_by_capability(inventory())),
-        _CCNL_PREAMBLE,
+        _CCNL_PREAMBLE.format(legend=IMPLEMENTATION_LEGEND),
         *ccnl_rows,
     ]
     return "\n".join(lines) + "\n"
-
-
-def latest_catalog_year() -> int:
-    """Return the latest fiscal year with a bundled capability catalog.
-
-    Returns:
-        The year of the newest ``capabilities/data/<year>.json``.
-    """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.capabilities.data")
-    return max(
-        int(e.name.split(".")[0])
-        for e in pkg.iterdir()
-        if e.name.split(".")[0].isdigit()
-    )
 
 
 def _strip_date(text: str) -> str:

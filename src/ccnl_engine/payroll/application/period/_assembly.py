@@ -6,8 +6,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
-from ccnl_engine.payroll.application.period._capability_traces import (
+from ccnl_engine.payroll.application.period._capability_registry import (
     capability_report,
+    case_facts,
 )
 from ccnl_engine.payroll.application.period._checks import check_net_covered, run_facts
 from ccnl_engine.payroll.application.period._closing_state import (
@@ -145,6 +146,7 @@ def _result(
             ctx.contract.catalog,
             all_decisions,
             executed,
+            case_facts(ctx),
             ctx.fiscal_year,
             weakest_by_capability(sources),
         ),

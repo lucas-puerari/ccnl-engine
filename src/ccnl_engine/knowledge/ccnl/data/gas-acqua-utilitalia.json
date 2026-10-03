@@ -71,10 +71,7 @@
         "kind": "info",
         "text": "COVERAGE: CCNL covers approximately 50,000 workers in about 600 private gas and water distribution companies (source: filctemcgil.it, 2025 renewal announcement). CNEL code K321."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1942,7 +1939,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "ba7fcd325008605f7aa21ea263dfea97f41ea9b6e6c82ef6a10365074d4ca1a9",
+    "source_hash": "497b9d133c74e7f249aecec5dd653f76da350641f1fa61cdb9a9fc4a312259f8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

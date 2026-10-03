@@ -69,10 +69,7 @@
         "kind": "info",
         "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
       }
-    ],
-    "gross": "implemented",
-    "net": "partial",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -737,7 +734,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "cb3c7792cd8cad9cfe94ba2b7fcea85aa644cab02d0f7a9363c65643cc18a00e",
+    "source_hash": "7a98b23bde90acaabec54621971a53c6a3e47f8b181c6a91f0e02dc213fbda78",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

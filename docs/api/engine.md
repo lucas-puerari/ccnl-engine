@@ -208,7 +208,7 @@ exposes the decisions of its periods in payment order.
 ### Capability report
 
 `result.capability_report` compares what the run executed with the capability
-catalog of the tax year.  Each feature is traced from what actually ran,
+registry of the tax year.  Each feature is traced from what actually ran,
 never from the presence of an input:
 
 - the core stages (base salary, INPS, TFR, IRPEF) run on every period;
@@ -218,12 +218,17 @@ never from the presence of an input:
   amount with its reason counts), `provisional` is partial, `incomplete` or
   `rejected` is unresolved, and no decision is not applicable.
 
-A feature the catalog promises is a gap when it is absent
-(`feature_absent`), not computed (`not_computed`), unresolved (`unresolved`,
-e.g. a surtax without a table), or only partial where the catalog promises
-it computed (`promised_computed_got_partial`). Every gap is a
-`capability_not_computed` blocker, and the report `status` is the coverage
-axis of the assurance.
+Each registry entry declares an applicability predicate, and
+`capability_report.scope` gives the result for the run: `applicable`,
+`not_applicable` (the predicate is false, or the handler ruled it out) or
+`outside_input` (the request has no field for the fact that makes it apply).
+An applicable capability is a gap when it is `unsupported` (the engine does
+not compute it, e.g. residual leave on the run that closes the employment),
+`unresolved` (e.g. a surtax without a table), a `partial_result` of a
+capability implemented in full, or a `partial_implementation` that executed
+(sickness, family deductions). Every gap is a `capability_not_computed`
+blocker, and the report `status` is the coverage axis of the assurance:
+`partial` when every gap is partial, `incomplete` otherwise.
 
 ::: ccnl_engine.payroll.domain.period
     options:

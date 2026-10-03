@@ -75,10 +75,7 @@
         "kind": "info",
         "text": "Apprenticeship destinations limited to levels 1-6. Level 1S excluded: Quadro status per L. 190/1985 is a person-status designation acquired through individual deed, not a contractually defined apprenticeship destination."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1452,7 +1449,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "79cf88cba19b0541921826232562cde961e59a32a752b7fcc5173e53cc721125",
+    "source_hash": "7277ea262fab44e8cc5a71d2ebe54f5ed365cef8c1a4eae4c0df5c753a59d4ca",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

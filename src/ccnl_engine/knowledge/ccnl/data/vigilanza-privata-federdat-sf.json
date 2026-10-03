@@ -47,10 +47,7 @@
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 13 for Jun 2023-Dec 2023 (pre-quattordicesima); 14 from 01/01/2024 onward (quattordicesima introduced by rinnovo July 2023 renewal, per fiscoetasse.com). Level E: entry-level for first 9 months of tenure per contract text — correct by design."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -1246,7 +1243,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4a2f650da73b2b12677b514a8cb7e0f46850d740ee81f497e01dfd79273fead9",
+    "source_hash": "0916dde2333da5c4f25d9ccce4f1637d55772d47a39ca2c0e4111b04a33bc305",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

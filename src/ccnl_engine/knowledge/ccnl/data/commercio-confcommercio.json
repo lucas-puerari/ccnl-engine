@@ -75,10 +75,7 @@
         "kind": "info",
         "text": "CNEL code H011 confirmed by Il Sole 24 Ore / INPS UNIEMENS reference."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2733,7 +2730,7 @@
     "effective_until": null,
     "source": "https://www.confcommercio.it/-/ccnl-terziario-distribuzione-servizi-testo-unico-2019",
     "verification_status": "unverified",
-    "source_hash": "e45a553426c6e23e19a9fcb85c0225c278521a60148a2a46293df17aa4860721",
+    "source_hash": "bd22a1d1f0f785a7f8fd782057701d103888de7b09738f29360626ff1e1d5d32",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

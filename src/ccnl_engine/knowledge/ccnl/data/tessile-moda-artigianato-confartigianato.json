@@ -109,10 +109,7 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1203,7 +1200,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "389f2e38e9e908e7176e49b60760530d97c497a68256ed34c93bea2fa6491306",
+    "source_hash": "8c4a0ebb12a6c9e77b712244ecafb1ad8d1f29e9afdd4d5541943cab98e262d8",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

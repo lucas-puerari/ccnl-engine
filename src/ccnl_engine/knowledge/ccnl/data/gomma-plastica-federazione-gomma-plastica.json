@@ -75,10 +75,7 @@
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2183,7 +2180,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "7191ba0fb35224df774703b2b74dc564b742cb22b452274b21640f03421e66ac",
+    "source_hash": "f1a0d9b0029b044c909784e77f495218ae59e52148a362bd23f64f6e4af960f7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

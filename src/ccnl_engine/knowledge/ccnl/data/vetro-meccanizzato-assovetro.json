@@ -1253,9 +1253,6 @@
   },
   "apprenticeship": [],
   "coverage": {
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented",
     "notes": [
       {
         "kind": "info",
@@ -1302,6 +1299,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "c4a4c38c7447e512f9b19d70a911353a484a8ebb3c08fcb5a189d0b9d850435c"
+    "source_hash": "29c1ce6b6e564385fab6929ec8773c1d05b05704ecd162b6bac53fdc977f30d0"
   }
 }

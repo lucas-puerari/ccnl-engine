@@ -1,26 +1,37 @@
-"""Coverage of the bundled CCNLs: the aggregate agrees with its features.
+"""Coverage of the bundled CCNLs: one derivation, no flag of their own.
 
-``coverage.work_rules`` summarizes the thirteen work-rule features of
-``coverage.work_rules_features``; a feature left out counts as
-``not_implemented``, as in the capability matrix.  The contracts index reads
-the aggregate and the matrix reads the features: when they disagree the two
-pages contradict each other.
+A CCNL file used to declare ``gross``, ``net`` and ``work_rules`` flags
+beside per-feature statuses, and the two disagreed.  Coverage now derives
+from the capability registry, lowered by the ``missing`` notes of the file:
+no file declares a flag, and no layer reads implemented while one of its
+capabilities is not.
 """
 
 from __future__ import annotations
 
 import importlib.resources
+import json
 
 import pytest
 
-from ccnl_engine.contract.domain.identity import CoverageStatus, WorkRuleFeature
 from ccnl_engine.contract.service.loaders import load_ccnl
-
-_FILENAMES = sorted(
-    entry.name
-    for entry in importlib.resources.files("ccnl_engine.knowledge.ccnl.data").iterdir()
-    if entry.name.endswith(".json")
+from ccnl_engine.knowledge.service.capability_catalog_loader import (
+    load_capability_catalog,
 )
+from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityImplementation,
+    CapabilityLayer,
+)
+from ccnl_engine.payroll.service.capability_coverage import (
+    ccnl_capabilities,
+    layer_coverage,
+)
+
+_DATA = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
+_FILENAMES = sorted(
+    entry.name for entry in _DATA.iterdir() if entry.name.endswith(".json")
+)
+_FLAGS = frozenset({"gross", "net", "work_rules", "work_rules_features"})
 
 
 def test_bundle_is_not_empty() -> None:
@@ -28,27 +39,59 @@ def test_bundle_is_not_empty() -> None:
     assert _FILENAMES
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="work rules declared implemented while their features are not",
-)
-def test_implemented_work_rules_have_every_feature_implemented() -> None:
-    """No CCNL declares work rules implemented with a feature not implemented.
+@pytest.mark.parametrize("filename", _FILENAMES)
+def test_no_file_declares_a_coverage_flag(filename: str) -> None:
+    """The coverage block of a file holds notes only."""
+    coverage = json.loads(_DATA.joinpath(filename).read_text(encoding="utf-8"))[
+        "coverage"
+    ]
+    assert not _FLAGS & coverage.keys()
 
-    Today 111 of the 125 bundled CCNLs do.
+
+def _contradictions(filename: str) -> list[str]:
+    """Return the layers of a CCNL that read native over a lesser capability.
+
+    Returns:
+        One ``"<layer>: <capabilities>"`` entry per contradicting layer.
     """
-    contradicting = []
-    for filename in _FILENAMES:
-        coverage = load_ccnl(filename).coverage
-        features = coverage.work_rules_features
-        missing = [
-            feature.value
-            for feature in WorkRuleFeature
-            if features.get(feature, CoverageStatus.NOT_IMPLEMENTED)
-            is CoverageStatus.NOT_IMPLEMENTED
+    capabilities = ccnl_capabilities(load_capability_catalog(2026), load_ccnl(filename))
+    layers = layer_coverage(capabilities)
+    found = []
+    for layer in CapabilityLayer:
+        lacking = [
+            c.feature
+            for c in capabilities
+            if c.layer is layer
+            and c.implementation is not CapabilityImplementation.NATIVE
         ]
-        if coverage.work_rules is CoverageStatus.IMPLEMENTED and missing:
-            contradicting.append(f"{filename}: {', '.join(missing)}")
+        if layers[layer] is CapabilityImplementation.NATIVE and lacking:
+            found.append(f"{layer}: {', '.join(lacking)}")
+    return found
 
-    assert contradicting == []
+
+def test_implemented_work_rules_have_every_feature_implemented() -> None:
+    """No CCNL shows a layer implemented with a capability not implemented.
+
+    The layer status the index and the matrix print is the worst of its
+    capabilities for the CCNL, so a layer reads native only when each of its
+    capabilities is native.
+    """
+    contradicting = {
+        filename: found
+        for filename in _FILENAMES
+        if (found := _contradictions(filename))
+    }
+    assert contradicting == {}
+
+
+def test_layer_is_the_worst_of_its_capabilities() -> None:
+    """The printed layer status is derived from its capabilities, never stored."""
+    catalog = load_capability_catalog(2026)
+    for filename in _FILENAMES:
+        capabilities = ccnl_capabilities(catalog, load_ccnl(filename))
+        assert layer_coverage(capabilities) == {
+            layer: CapabilityImplementation.worst(
+                c.implementation for c in capabilities if c.layer is layer
+            )
+            for layer in CapabilityLayer
+        }

@@ -58,10 +58,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP (Art. 9.7): percentages 85/90/100% over 36 months confirmed from Art. 9.7 of ANINSEI CCNL 2024-2027 PDF. Destination level list not specified in available pages; all nine levels modelled as destinations (conservative assumption — no restriction applied). This may overstate eligible levels but never understates payroll cost."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1347,7 +1344,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "601573c75b8f590602cac32fc4063396fe3d84353ac135aa44769fad9f7afb0f",
+    "source_hash": "cfbee2250a0715dc0cc35c9afc078250e8e289a34da852a166a8de3b49fb6c3a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

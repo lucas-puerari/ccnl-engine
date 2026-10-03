@@ -82,10 +82,7 @@
         "kind": "info",
         "text": "DAILY DIVISOR: Art. 37 specifies 156 ore/month and 5-day week but does not state a daily divisor explicitly. SIMPLIFICATION: by_26 applied as standard for terziario contracts."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1100,7 +1097,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "929cd6c7c83da26170dcc9a7ba7d3958866561e0945fa6ac628bffce18b309f3",
+    "source_hash": "9587d12c33e0e3266aa5944352bc3ed27d160da61bf3dfb665d260cd20c044fd",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },

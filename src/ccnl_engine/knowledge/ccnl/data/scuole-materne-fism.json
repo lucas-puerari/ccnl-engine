@@ -63,10 +63,7 @@
         "kind": "simplification",
         "text": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1391,7 +1388,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "5949da7f47447d584073197d94b80cd46c5bcfd26c388ebb64a0f4de9d6b1f76",
+    "source_hash": "5d8d3f08eddf41d4fae8634c9cc35f18b0027114c287ef141beae9be373fa3de",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

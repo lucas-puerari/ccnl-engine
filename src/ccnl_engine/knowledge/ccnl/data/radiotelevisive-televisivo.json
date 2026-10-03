@@ -67,10 +67,7 @@
         "kind": "info",
         "text": "Apprenticeship open tail: Art. 27 sets 24-month max for L3 (breve track). The final period {18, null, 0.90} cannot be closed to {18, 24, 0.90} because the engine schema requires the last apprenticeship period to be open-ended (validate_open_sequence). A query past month 24 is outside the contract duration and should not arise in normal use."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1824,6 +1821,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "1686d0fc02a1a92feba7b71a783dce11f2f12262fddd65df5763507f497f09ef"
+    "source_hash": "12655581eb2684c97fd8bf27c8df24595e6af2a3056a143a064a425e9fb2deaf"
   }
 }

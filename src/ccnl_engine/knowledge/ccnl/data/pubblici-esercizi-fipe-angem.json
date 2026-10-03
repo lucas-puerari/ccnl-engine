@@ -73,10 +73,7 @@
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (tax_sector terziario, same as commercio-confcommercio and turismo-confcommercio)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1757,7 +1754,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "7ca8308d643b9353500be21a9c7e5c681ddfb14f15a55d78778ad32c3481bc5f",
+    "source_hash": "4696caec62270d32bcf31dc73a3f10ad323db0bbd76827493075258b84eab67e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

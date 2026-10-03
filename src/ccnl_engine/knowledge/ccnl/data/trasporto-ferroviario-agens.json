@@ -102,10 +102,7 @@
         "kind": "simplification",
         "text": "SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1942,7 +1939,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "2d72e09c52c842ac99ff01f64a10e25ad4989fce8280677f5cfeb7ddd5dadd80",
+    "source_hash": "242e1645f93dc9049e4455054130acfb999dc987afc8be8a675b5b68eb4a3c8f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

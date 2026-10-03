@@ -177,3 +177,20 @@ def test_base_that_cannot_validate_is_treated_as_new(
     """A base file invalid even with statuses is not compared."""
     monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: "{}")
     assert report_mod._git_load_ccnl_base("main", "x.json") is None
+
+
+def test_base_with_retired_coverage_flags_is_compared(
+    report_mod: types.ModuleType, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Aggregate coverage flags of an older schema do not hide the rules."""
+    pkg = importlib.resources.files(ccnl_data_pkg)
+    head = json.loads(pkg.joinpath("commercio-confcommercio.json").read_text())
+    head["coverage"] = {
+        "gross": "implemented",
+        "net": "partial",
+        "notes": [{"kind": "missing", "text": "no capability named"}],
+    }
+    monkeypatch.setattr(report_mod, "_git_show", lambda _ref, _path: json.dumps(head))
+    ccnl = report_mod._git_load_ccnl_base("main", "x.json")
+    assert isinstance(ccnl, CCNL)
+    assert ccnl.coverage.notes == ()

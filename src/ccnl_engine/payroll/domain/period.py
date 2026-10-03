@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.remittance import remittance_summary
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.assurance import ResultAssurance, ResultBlocker
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
+    from ccnl_engine.payroll.domain.capability_report import CapabilityReport
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem

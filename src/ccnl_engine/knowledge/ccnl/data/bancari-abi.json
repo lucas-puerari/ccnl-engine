@@ -56,10 +56,7 @@
         "kind": "source",
         "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1322,7 +1319,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "6ee5a99296a3d537035690329026ae9efe241343ef6647cad2f17a4b7d1d2469",
+    "source_hash": "5f4ecab8466ad4537cba32ba10b423b46f3ac9d0d3e694ddcf0ea5e962dc9cc7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

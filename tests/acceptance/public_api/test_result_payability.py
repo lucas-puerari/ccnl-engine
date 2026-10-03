@@ -55,15 +55,19 @@ def _blocker_keys(result: PeriodResult) -> set[tuple[BlockerCode, str | None, st
 
 
 def test_incomplete_coverage_is_not_payable() -> None:
-    """Metalmeccanico C3, January 2026, an ordinary month.
+    """Metalmeccanico C3, last month of an employment ending on 30 January.
 
-    No issue is raised, but the capability report has ``feature_absent``
-    gaps and ``base_salary`` and ``somma_esente`` come from ``assumed``
-    rules: each is a blocker, and the result is not payable.
+    The final payslip must settle the residual leave, a capability the
+    engine does not compute: it applies to this run, so the report has an
+    ``unsupported`` gap and the result is not payable.  ``base_salary`` and
+    ``somma_esente`` come from ``assumed`` rules: each is a blocker too.
     """
-    result = _january(Employment(ccnl_slug=_METALMECCANICO, level_code="C3"))
+    period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
+    result = _january(
+        Employment(ccnl_slug=_METALMECCANICO, level_code="C3", employment_period=period)
+    )
 
-    gaps = {gap.feature for gap in result.capability_report.gaps}
+    gaps = {gap.feature: gap.kind for gap in result.capability_report.gaps}
     blocked = {
         b.feature
         for b in result.blockers
@@ -71,12 +75,30 @@ def test_incomplete_coverage_is_not_payable() -> None:
     }
     assert result.issues == ()
     assert result.is_payable is False
-    assert blocked == gaps
-    assert gaps
+    assert gaps == {"termination_residual_leave": "unsupported"}
+    assert blocked == set(gaps)
     assert {
         (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed"),
         (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed"),
     } <= _blocker_keys(result)
+
+
+def test_ordinary_month_has_no_coverage_gap() -> None:
+    """Metalmeccanico C3, January 2026, an ordinary month.
+
+    No unsupported capability applies: the coverage is complete and no
+    coverage blocker hides the evidence blockers that remain.
+    """
+    result = _january(Employment(ccnl_slug=_METALMECCANICO, level_code="C3"))
+
+    assert result.capability_report.gaps == ()
+    assert result.assurance.coverage == "complete"
+    assert not any(
+        b.code is BlockerCode.CAPABILITY_NOT_COMPUTED for b in result.blockers
+    )
+    assert (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed") in (
+        _blocker_keys(result)
+    )
 
 
 @pytest.mark.xfail(

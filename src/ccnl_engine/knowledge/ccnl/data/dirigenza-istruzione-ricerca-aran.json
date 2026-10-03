@@ -306,10 +306,7 @@
         "kind": "info",
         "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area IR 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/dirigenza-istruzione-ricerca-aran",
@@ -318,7 +315,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "a2c4fada2fe1ebaf7111aab3249303cb33fa74199bd9fa97ae963bc338952fbe",
+    "source_hash": "72da182f4631e122432384743a70d1390a9a8784952432ec6e8e7be04727c8ff",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

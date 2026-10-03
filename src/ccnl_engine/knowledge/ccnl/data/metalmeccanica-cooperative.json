@@ -73,10 +73,7 @@
         "kind": "info",
         "text": "INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1398,7 +1395,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "b1d115f63cd51201b373004be3f821d446046bb331ccb0e0b709f55cca19d780",
+    "source_hash": "ea171e35014d19d177bd1b9c4b19e665d4af9d21d58a95c7708ce008cf4867f7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

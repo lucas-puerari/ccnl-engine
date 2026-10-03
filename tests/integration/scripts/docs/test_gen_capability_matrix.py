@@ -1,4 +1,4 @@
-"""The capability matrix combines catalog status and rule provenance."""
+"""The capability matrix combines the registry with rule provenance."""
 
 from __future__ import annotations
 
@@ -8,9 +8,13 @@ from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityApplicability,
     CapabilityEntry,
-    CapabilityStatus,
+    CapabilityHandler,
+    CapabilityImplementation,
+    CapabilityLayer,
 )
+from scripts.docs.coverage_report import bundled_ccnls, coverage_cells
 from scripts.docs.gen_capability_matrix import (
     build_page,
     capability_label,
@@ -18,58 +22,74 @@ from scripts.docs.gen_capability_matrix import (
     latest_catalog_year,
 )
 
-_COMPUTED = CapabilityEntry("irpef", CapabilityStatus.COMPUTED, "IRPEF")
+_IMPL = CapabilityImplementation
+
+
+def _entry(implementation: CapabilityImplementation) -> CapabilityEntry:
+    unsupported = implementation is _IMPL.UNSUPPORTED
+    return CapabilityEntry(
+        "x",
+        CapabilityLayer.NET,
+        implementation,
+        CapabilityApplicability.OUTSIDE_INPUT
+        if unsupported
+        else CapabilityApplicability.ALWAYS,
+        None if unsupported else CapabilityHandler.PIPELINE,
+    )
 
 
 @pytest.mark.parametrize(
-    ("status", "counts", "label"),
+    ("implementation", "counts", "label"),
     [
-        (CapabilityStatus.NOT_COMPUTED, {"verified": 2}, "unavailable"),
-        (CapabilityStatus.BLOCKED, {}, "unavailable"),
-        (CapabilityStatus.PARTIALLY_COMPUTED, {"verified": 2}, "simplified"),
-        (CapabilityStatus.COMPUTED, {"derived": 3, "assumed": 1}, "simplified"),
-        (CapabilityStatus.COMPUTED, {"missing": 1}, "simplified"),
-        (CapabilityStatus.COMPUTED, {"verified": 2}, "verified"),
-        (CapabilityStatus.COMPUTED, {"verified": 1, "derived": 1}, "implemented"),
-        (CapabilityStatus.COMPUTED, {}, "implemented"),
+        (_IMPL.UNSUPPORTED, {"verified": 2}, "unavailable"),
+        (_IMPL.CALLER_SUPPLIED, {"verified": 1}, "caller-supplied"),
+        (_IMPL.PARTIAL, {"verified": 2}, "simplified"),
+        (_IMPL.NATIVE, {"derived": 3, "assumed": 1}, "simplified"),
+        (_IMPL.NATIVE, {"missing": 1}, "simplified"),
+        (_IMPL.NATIVE, {"verified": 2}, "verified"),
+        (_IMPL.NATIVE, {"verified": 1, "derived": 1}, "implemented"),
+        (_IMPL.NATIVE, {}, "implemented"),
     ],
 )
-def test_label(status: CapabilityStatus, counts: dict[str, int], label: str) -> None:
-    """Unavailable wins, then simplified, then verified, then implemented."""
-    entry = CapabilityEntry("x", status)
-    assert capability_label(entry, counts) == label
+def test_label(
+    implementation: CapabilityImplementation, counts: dict[str, int], label: str
+) -> None:
+    """Unavailable, caller-supplied, simplified, verified, implemented."""
+    assert capability_label(_entry(implementation), counts) == label
 
 
-@pytest.mark.parametrize(
-    ("status", "label"),
-    [
-        (CapabilityStatus.COMPUTED, "caller-supplied"),
-        (CapabilityStatus.PARTIALLY_COMPUTED, "caller-supplied"),
-        (CapabilityStatus.NOT_COMPUTED, "unavailable"),
-    ],
-)
-def test_caller_supplied_label(status: CapabilityStatus, label: str) -> None:
-    """A capability computed from caller values is labelled so, not verified."""
-    entry = CapabilityEntry("overtime", status)
-    assert capability_label(entry, {"verified": 1}) == label
-
-
-def test_rows_show_rule_counts_by_status() -> None:
-    """A row counts the rules by status; no rules reads as none bundled."""
+def test_rows_show_the_registry_and_rule_counts() -> None:
+    """A row shows every registry field and the rules by status."""
     catalog = load_capability_catalog(latest_catalog_year())
     counts = {"irpef": {"verified": 0, "derived": 24, "assumed": 0, "missing": 0}}
     rows = capability_rows(catalog, counts)
     (irpef,) = [row for row in rows if row.startswith("| `irpef` ")]
     (inail,) = [row for row in rows if row.startswith("| `inail` ")]
-    assert irpef.endswith("| computed | implemented | 0 / 24 / 0 / 0 |")
-    assert inail.endswith("| partially_computed | simplified | none bundled |")
+    assert irpef.endswith(
+        "| net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |"
+    )
+    assert inail.endswith(
+        "| unsupported | outside_input | — | `employer.inail_tariff_rate` | — "
+        "| unavailable | none bundled |"
+    )
     assert len(rows) == len(catalog.capabilities) + 2
 
 
 def test_page_holds_both_tables() -> None:
-    """The page lists every catalog capability and every CCNL."""
+    """The page lists every registry capability and every CCNL."""
     page = build_page(latest_catalog_year())
     assert "## Capabilities" in page
     assert "## CCNL coverage" in page
-    assert "| `base_salary` | Paga base contrattuale | computed | simplified |" in page
-    assert "\u2014" not in page.split("## CCNL coverage")[0]
+    assert "| `base_salary` | Paga base contrattuale | gross | native |" in page
+
+
+def test_matrix_rows_are_the_index_cells() -> None:
+    """Each CCNL row of the matrix prints the cells of the contracts index."""
+    year = latest_catalog_year()
+    catalog = load_capability_catalog(year)
+    page = build_page(year)
+    for ccnl in bundled_ccnls():
+        cells = coverage_cells(catalog, ccnl)
+        link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
+        l1, l2, l3 = cells.layers
+        assert f"| {link} | {l1} | {l2} | {l3} | {cells.limits} |" in page

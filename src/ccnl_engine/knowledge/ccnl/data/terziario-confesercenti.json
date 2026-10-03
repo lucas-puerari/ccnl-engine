@@ -1794,10 +1794,7 @@
         "kind": "info",
         "text": "Apprenticeship type b (professionalizzante). Durations: II=36m, III=36m, IV=36m, V=36m, VI=24m. Half-period = 18m (II-V) and 12m (VI)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/terziario-confesercenti",
@@ -1806,7 +1803,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "49789a757342fa1b37a247d2c28952e4d89564c2f20dd06bed7e185ab111915e",
+    "source_hash": "dd53b10229b7cb149f4c86b96e93c823dea84bc43c7acd557111d97d947ef2f8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
