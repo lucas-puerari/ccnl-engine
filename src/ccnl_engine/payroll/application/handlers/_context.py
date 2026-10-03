@@ -99,7 +99,7 @@ class EventEffect:
         regime_cap_used: Part of the annual cap of the work-time regime
             consumed by the event.
         decisions: Decisions taken on the event, e.g. a regime eligibility.
-        issues: Conditions raised by the event that lower the result status.
+        issues: Conditions raised by the event; each blocks payability.
     """
 
     items: list[PayItem] = field(default_factory=list)
