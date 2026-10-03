@@ -68,14 +68,14 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
         )
         gross = result.period_gross
         if not (
-            result.status in _COMPUTED
+            result.assurance.calculation in _COMPUTED
             and gross > 0
             and result.period_net > 0
             and result.contribution_breakdown.employee >= 0
             and result.period_employer_cost >= gross
         ):
             failures.append(
-                f"{level.code}: status={result.status} gross={gross} "
+                f"{level.code}: status={result.assurance.calculation} gross={gross} "
                 f"net={result.period_net} cost={result.period_employer_cost}"
             )
     assert failures == []

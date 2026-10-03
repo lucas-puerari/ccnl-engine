@@ -1,70 +1,102 @@
-# Confidence
+# Assurance
 
-A payroll result carries two independent reliability signals. Neither is set
-by the caller.
+A payroll result answers one question for an integration: can this amount be
+paid as it is? The answer is `result.is_payable`, and `result.blockers` says
+why not. Both come from `result.assurance`, a `ResultAssurance` derived from
+what the run recorded; neither is set by the caller.
 
-| Signal | Answers |
+| Field | Answers |
 |---|---|
-| `result.status` | Can this payslip be paid as computed? |
-| `result.capability_report` | Did every capability the fiscal-year catalog declares actually run, and how well are the rules it read backed by sources? |
+| `result.is_payable` | Can the amounts of this result be paid as computed? |
+| `result.blockers` | What stops them, one `ResultBlocker` per reason |
+| `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets |
+| `result.rulesets` | Which rulesets (CCNL, tax, INPS, variable pay, surtax) the executed rules came from |
 
-Both read the provenance status of the payable rules a run executed (see
-[Provenance](provenance.md)), each in its own way:
+`YearResult` exposes the same four fields for the whole year: each axis is the
+worst of its runs, rulesets and blockers are listed once each, and the year is
+payable only when every run is.
 
-- a rule with status `missing` makes the result `incomplete` through a
-  `rule_source_missing` issue that names the rule;
-- the weakest status of each executed capability (`verified`, `derived`,
-  `assumed` or `missing`) is in `result.capability_report.rule_sources`.
+## Payability rules
 
-An `assumed` rule does not lower `result.status` or the report
-`confidence`. The somma esente cut points are reconstructions, and
+A result is payable only when it has no blocker. Each of the following adds
+one:
+
+| `BlockerCode` | `feature` | `detail` | Raised when |
+|---|---|---|---|
+| `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
+| `calculation_issue` | capability | decision reason | A decision is not `final` |
+| `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
+| `capability_not_computed` | capability | gap kind | The capability catalog promises a capability the run did not compute |
+| `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule without a located source, or no rule of the run carries a record |
+| `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
+
+A `derived` rule (taken from a cited document location, with no recorded
+human check) lowers the evidence axis but does not block on its own. The
+bundle holds no `verified` rule yet, so requiring `verified` would block every
+result; the evidence axis keeps the difference visible instead.
+
+Each blocker also carries a `remediation` sentence for a human reader. Branch
+on `code`, `feature` and `detail`, not on the sentence.
+
+### What the bundle gives today
+
+For the first level of each CCNL, a regular run of June 2026 with no event,
+no result is payable: every run carries `capability_not_computed` blockers
+(catalog capabilities such as INAIL or health funds that the period run does
+not compute) and a `rule_source_weak` blocker on `somma_esente`, whose cut
+points are reconstructions. Most also read an `assumed` base salary:
 <!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
-CCNLs cite no clause for their number of monthly payments, so `assumed`
-rules sit under most results. Making `assumed` provisional, or lowering the
-confidence for it, would mark nearly every result the same way and tell the
-caller nothing; the per-capability status tells which amounts rest on
-assumptions. The bundle holds
+CCNLs cite no clause for their number of monthly payments. The bundle holds
 <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
-(see [Provenance](provenance.md#current-counts)); a run that reads one is
-`incomplete`.
+(see [Provenance](provenance.md#current-counts)); a run that reads one also
+raises a `rule_source_missing` issue and is `incomplete`.
 
-## Calculation status
+Use the amounts for simulation, with the blockers shown; do not pay them
+automatically.
 
-`result.status` is a `CalculationStatus`, derived from `result.issues`: the
-worst status among the issues, or `final` when there are none.
+## Assurance axes
+
+| Axis | Type | Derived from |
+|---|---|---|
+| `calculation` | `CalculationStatus` | Worst status of `result.issues` and `result.decisions`; `final` when there are none |
+| `coverage` | `CoverageStatus` | `result.capability_report.status` |
+| `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules the run read (`verified`, `derived`, `assumed`, `missing`); `missing` when none carries a record |
+| `rulesets` | `tuple[RulesetIdentity, ...]` | Identity, version and hash of each ruleset read |
+| `payability` | `Payability` | `payable` exactly when `blockers` is empty |
+
+### Calculation
 
 | Status | Meaning |
 |---|---|
 | `final` | Every capability decided from known rules and facts. |
 | `provisional` | Computed, but a decision rests on an assumption that may change the amounts. |
-| `incomplete` | At least one amount could not be determined; do not pay as is. |
+| `incomplete` | At least one amount could not be determined. |
 | `rejected` | The inputs cannot produce a meaningful result. |
 
 `result.decisions` records what each capability decided and on which rule, so
-a `final` result can still be explained line by line.
+a result can be explained line by line whatever its status.
 
-Issues that lower the status include:
+Issues that lower the calculation axis include:
 
 | Code | Status | When |
 |---|---|---|
 | `rule_source_missing` | `incomplete` | An executed capability read a payable rule whose provenance status is `missing` |
 | `employer_rate_category_assumed` | `provisional` | The sector sets INPS employer rates by worker category (artigianato: impiegati and quadri 24.71%), the level fixes no category and none was declared, so the general rate (26.93%, the operai rate) applied |
+| `somma_esente_income_assumed` | `provisional` | The reddito complessivo of the somma esente is taken as the employment income of this employer |
+| `withholding_shortfall_unrecovered` | `provisional` | The pay of the run cannot cover the tax due; the worker must be told the amount |
 
-## Capability report
+### Coverage
 
 `result.capability_report` compares the capabilities the fiscal-year catalog
 declares as computed or partially computed with what the calculation
-observed. Each mismatch is a `CapabilityGap`.
+observed. Each mismatch is a `CapabilityGap` and a `capability_not_computed`
+blocker.
 
-| `status` | `confidence` | When |
-|---|---|---|
-| `"complete"` | `"high"` | No gaps |
-| `"partial"` | `"medium"` | Only gaps where a capability declared computed ran partially |
-| `"incomplete"` | `"low"` | Any other gap, such as a declared capability that did not run |
-
-The report describes engine coverage for the year, not the specific payslip:
-a result can be `final` while its capability report is `"low"`, because a
-declared capability (for example INAIL) is not wired into the period run.
+| `status` | When |
+|---|---|
+| `complete` | No gaps |
+| `partial` | Only gaps where a capability declared computed ran partially |
+| `incomplete` | Any other gap, such as a declared capability that did not run |
 
 `rule_sources` maps each executed capability that reads bundled rules to the
 weakest provenance status among them. Capabilities computed only from
@@ -74,13 +106,12 @@ caller supplied in place of a rule (an overtime hourly rate or explicit
 multiplier, a sickness integration rate) to the event fields it took; see
 [Decisions](decisions.md#caller-supplied-values).
 
-## Using both signals
+## Reading the assurance
 
 ```python
 from datetime import date
 
 from ccnl_engine import (
-    CalculationStatus,
     EmployerProfile,
     Employment,
     Headcount,
@@ -101,14 +132,12 @@ result = engine.calculate_period(
     )
 )
 
-if result.status is not CalculationStatus.FINAL:
-    for issue in result.issues:
-        print(issue.code, issue.status, issue.message)
+if not result.is_payable:
+    for blocker in result.blockers:
+        print(blocker.code.value, blocker.feature, blocker.detail)
 
-report = result.capability_report
-print(report.status, report.confidence)
-for gap in report.gaps:
-    print(gap.feature, gap.kind.value)
-for capability, status in report.rule_sources.items():
-    print(capability, status.value)
+assurance = result.assurance
+print(assurance.calculation, assurance.coverage, assurance.evidence)
+for ruleset in result.rulesets:
+    print(ruleset)
 ```

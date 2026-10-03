@@ -134,7 +134,7 @@ def test_default_counts_a_fifteen_day_month() -> None:
     assert (ratei["comparison"], ratei["rule_origin"]) == ("at_least", "engine_default")
     codes = [i.code for i in result.issues]
     assert MISSING_SOURCE_CODE in codes
-    assert result.status is CalculationStatus.INCOMPLETE
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
 
 
 def test_more_than_fifteen_days_leaves_the_month_out() -> None:

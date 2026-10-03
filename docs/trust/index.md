@@ -14,7 +14,7 @@ makes all three explicit:
 |---|---|---|
 | **Software** | Does the engine apply its rules consistently? | 100% branch coverage, mypy strict, reference table cases, legal scenario tests |
 | **Source** | Do the modelled rules match the current authoritative sources? | Ruleset readiness tier |
-| **Case** | Does the user's scenario fall within the modelled scope? | `status`, `issues`, `decisions` and `capability_report` |
+| **Case** | Does the user's scenario fall within the modelled scope? | `is_payable`, `blockers` and `assurance`, with `issues` and `decisions` |
 
 See [Correctness layers](correctness.md) for the full breakdown and a guide to
 reading all three together.
@@ -38,40 +38,41 @@ each tier.
 
 ## Result signals
 
-Every result carries its own reliability signals:
+Every result carries its own assurance:
 
 ```
 PeriodResult
- ├── status               final | provisional | incomplete | rejected
- ├── issues               conditions that lowered the status
+ ├── is_payable           whether the amounts can be paid as computed
+ ├── blockers             every reason they cannot, machine-readable
+ ├── assurance            calculation, coverage, evidence, rulesets, payability
+ ├── rulesets             rulesets the executed rules came from
+ ├── issues               conditions that lowered the calculation axis
  ├── decisions            what each capability decided, from which inputs
  ├── capability_report    catalog features the run did not execute
  └── bundle_version       knowledge-base version of the calculation
 ```
 
-`YearResult` exposes the worst status of its runs, their issues (each once)
-and their decisions in payment order.
+`YearResult` exposes the same assurance for the whole year (each axis the
+worst of its runs, rulesets and blockers listed once, payable only when every
+run is), the issues of its runs (each once) and their decisions in payment
+order.
 
-### 1. Status
+### 1. Payability
 
-| Status | Meaning |
-|---|---|
-| `final` | Every capability decided from known rules and facts. |
-| `provisional` | Computed, but a decision rests on an assumption that may change the amounts, e.g. an unknown prior-year income for a substitute-tax regime. |
-| `incomplete` | At least one amount could not be determined, e.g. a surtax without a table; do not pay as is. |
-| `rejected` | The inputs cannot produce a meaningful result. |
+`result.is_payable` is the only answer to "can this amount be paid?". A result
+is payable only when nothing blocks it; each `ResultBlocker` has a stable
+`code`, the `feature` it concerns, a machine-readable `detail` and a
+`remediation`.
 
 ```python
-from ccnl_engine import CalculationStatus
-
-if result.status is not CalculationStatus.FINAL:
-    for issue in result.issues:
-        print(issue.code, issue.status, issue.message)
+if not result.is_payable:
+    for blocker in result.blockers:
+        print(blocker.code.value, blocker.feature, blocker.detail)
 ```
 
-An unknown normative fact never yields a `final` result: the rule it drives
-is not applied and an issue says why. See
-[Results and calculation status](../api/engine.md#results-and-calculation-status).
+An unknown normative fact never yields a payable result: the rule it drives
+is not applied and an issue says why. See [Assurance](confidence.md) for the
+payability rules, the axes and what the bundle gives today.
 
 ### 2. Decisions
 
@@ -89,9 +90,10 @@ supplies in place of a rule is recorded with origin `caller_supplied`. See
 `result.capability_report` compares what the run executed with the capability
 catalog of the tax year. Each gap names the feature and why it is missing
 (`feature_absent`, `not_computed`, `unresolved`,
-`promised_computed_got_partial`). Its `confidence` summarises the gaps, and
-`rule_sources` gives the weakest provenance status of the rules each
-executed capability read; see [Confidence](confidence.md).
+`promised_computed_got_partial`) and blocks payability. Its `status` is the
+coverage axis of the assurance, and `rule_sources` gives the weakest
+provenance status of the rules each executed capability read; see
+[Assurance](confidence.md).
 
 ## Provenance {#provenance}
 
@@ -106,7 +108,8 @@ divisor, surtax tables, substitute-tax regime parameters) carries a
 - **extraction**: method, validity and reviewer, when recorded
 - **transformation**: how the source text became the stored value
 
-A rule read by a run with status `missing` makes the result `incomplete`.
+A rule read by a run with status `assumed` or `missing` makes the result not
+payable; `missing` also makes it `incomplete`.
 See [Provenance](provenance.md) for the schema, the granularity and the
 current counts.
 

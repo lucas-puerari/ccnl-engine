@@ -7,16 +7,17 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.assessment import assess
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
-    CalculationStatus,
 )
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.remittance import remittance_summary
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.assurance import ResultAssurance, ResultBlocker
     from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
@@ -25,6 +26,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
+    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 
 
 @dataclass(frozen=True)
@@ -56,12 +58,20 @@ class PeriodResult:
             and compliance tracing.
         benefit_breakdown: Per-axis fringe/welfare benefit breakdown for
             audit and cost-centre reporting.
+        capability_report: Gaps between the capability catalog and what
+            the run executed, with the provenance of the rules each
+            capability read and the values the caller supplied.
         issues: Conditions that lower the reliability of this result, in
             the order they were raised.  Empty when every capability
             decided from known rules and facts.
         decisions: What the capabilities that record a decision decided in
             this run, e.g. the eligibility of a pay item for a preferential
             tax regime, in the order they were taken.
+        rulesets: Identities of the rulesets the payable rules of the run
+            were read from.
+
+    Whether the amounts can be paid is :attr:`is_payable`; why not is
+    :attr:`blockers`; both come from :attr:`assurance`.
     """
 
     period_id: PeriodId
@@ -81,11 +91,28 @@ class PeriodResult:
     bundle_version: str | None = None
     issues: tuple[CalculationIssue, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
+    rulesets: tuple[RulesetIdentity, ...] = ()
 
     @property
-    def status(self) -> CalculationStatus:
-        """Worst status implied by :attr:`issues`; final when there are none."""
-        return CalculationStatus.worst(issue.status for issue in self.issues)
+    def assurance(self) -> ResultAssurance:
+        """Assurance derived from the issues, decisions, report and rulesets.
+
+        It is derived on access, so an issue added to the result later
+        (e.g. a partial month of a year) is reflected.
+        """
+        return assess(
+            self.issues, self.decisions, self.capability_report, self.rulesets
+        )
+
+    @property
+    def is_payable(self) -> bool:
+        """Whether nothing blocks the amounts of this result."""
+        return self.assurance.is_payable
+
+    @property
+    def blockers(self) -> tuple[ResultBlocker, ...]:
+        """Every reason the amounts of this result cannot be paid."""
+        return self.assurance.blockers
 
     def remittance_summary(self) -> tuple[RemittanceLine, ...]:
         """Return the tax and credit amounts of the run by F24 codice tributo.

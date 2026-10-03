@@ -585,7 +585,15 @@ def compute_salary(
             "fiscal_simplifications": [],
             "trace": {},
             "provenance": [],
-            "status": str(result.status),
+            "payability": str(result.assurance.payability),
+            "blockers": [
+                {
+                    "code": str(b.code),
+                    "feature": b.feature,
+                    "detail": b.detail,
+                }
+                for b in result.blockers
+            ],
             "warnings": [issue.message for issue in result.issues],
             "decisions": [
                 {

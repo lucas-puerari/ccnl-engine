@@ -53,6 +53,10 @@ sets no statutory rate, so the engine has no default multiplier.
 | explicit | different | the caller's value | `caller_supplied` decision and a `provisional` issue `caller_multiplier_differs_from_ccnl` with both values |
 | explicit | absent | the caller's value | `caller_supplied` decision only |
 
+A caller-supplied multiplier, matching a band or not, is a
+`caller_supplied_rule` blocker: the result is not payable until the value is
+validated outside the engine.
+
 `kind` selects the band: `WEEKDAY` (straordinario diurno), `NIGHT`,
 `HOLIDAY` or `NIGHT_HOLIDAY`, matched against the `applies_to_kinds` of the
 CCNL `work_rules.time_supplements.overtime_bands`. The band used is the
@@ -147,5 +151,5 @@ renewal in `agreement_signed_on`. See
 
 Each event produces pay items and ledger entries on the period result. A
 condition that lowers the reliability of the result (for example an unknown
-prior-year income) is reported in `result.issues` and reflected in
-`result.status`. See [Results and calculation status](../api/engine.md#results-and-calculation-status).
+prior-year income) is reported in `result.issues` and blocks
+`result.is_payable`. See [Results and calculation status](../api/engine.md#results-and-calculation-status).

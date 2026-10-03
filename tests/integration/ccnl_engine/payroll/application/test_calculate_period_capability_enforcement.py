@@ -13,6 +13,7 @@ from datetime import date
 import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.assurance import BlockerCode, CoverageStatus
 from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityGapKind,
     CapabilityReport,
@@ -91,17 +92,25 @@ class TestCapabilityReportGaps:
 
 
 class TestCapabilityReportStatus:
-    """Report status and confidence reflect gap severity."""
+    """Report status reflects gap severity and is the coverage axis."""
 
     def test_status_is_incomplete(self) -> None:
         """The 2026 pipeline is incomplete (many features absent)."""
         result = calculate_period(_req())
         assert result.capability_report.status == "incomplete"
 
-    def test_confidence_is_low(self) -> None:
-        """Low confidence when status is incomplete."""
+    def test_incomplete_coverage_blocks_payability(self) -> None:
+        """Every gap is a blocker; the coverage axis is the report status."""
         result = calculate_period(_req())
-        assert result.capability_report.confidence == "low"
+        gaps = result.capability_report.gaps
+        blocked = [
+            b.feature
+            for b in result.blockers
+            if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
+        ]
+        assert result.assurance.coverage is CoverageStatus.INCOMPLETE
+        assert blocked == [gap.feature for gap in gaps]
+        assert not result.is_payable
 
 
 class TestCapabilityReportImmutable:

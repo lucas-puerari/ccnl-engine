@@ -866,11 +866,9 @@ const FEATURE_LABELS = {
   bonus_pdr:                   "Production/PDR bonus",
 };
 
-const STATUS_LABELS = {
-  final:       { cls: "conf-high",   dot: "dot-green", label: "Final" },
-  provisional: { cls: "conf-medium", dot: "dot-amber", label: "Provisional" },
-  incomplete:  { cls: "conf-low",    dot: "dot-amber", label: "Incomplete" },
-  rejected:    { cls: "conf-low",    dot: "dot-amber", label: "Rejected" },
+const PAYABILITY_LABELS = {
+  payable:     { cls: "conf-high", dot: "dot-green", label: "Payable" },
+  not_payable: { cls: "conf-low",  dot: "dot-amber", label: "Simulation only" },
 };
 
 const SIMP_LABELS = {
@@ -899,12 +897,14 @@ function sanitizeWarning(w) {
     .replace(/_/g, " "); // last-resort: replace underscores in any remaining identifiers
 }
 
-function renderScope(decisions, status, warnings, fiscalSimps) {
-  // Result status pill
-  const conf = STATUS_LABELS[status] || STATUS_LABELS.provisional;
+function renderScope(decisions, payability, blockers, warnings, fiscalSimps) {
+  // Payability pill: the engine says whether the amounts can be paid as is
+  const conf = PAYABILITY_LABELS[payability] || PAYABILITY_LABELS.not_payable;
   const pill = document.getElementById("confidence-pill");
   pill.className = `confidence-pill ${conf.cls}`;
-  pill.innerHTML = `<span class="dot ${conf.dot}"></span>${conf.label}`;
+  const count = (blockers || []).length;
+  const suffix = count > 0 ? ` (${count} blockers)` : "";
+  pill.innerHTML = `<span class="dot ${conf.dot}"></span>${conf.label}${esc(suffix)}`;
 
   // Warnings
   const warnArea = document.getElementById("warnings-area");
@@ -1255,7 +1255,7 @@ function doCompute(pyodide) {
   renderSources(r.provenance || [], r.ruleset_version || {});
 
   // Scope & status
-  renderScope(r.decisions, r.status, r.warnings, r.fiscal_simplifications);
+  renderScope(r.decisions, r.payability, r.blockers, r.warnings, r.fiscal_simplifications);
 
   // Reset all collapsibles to closed
   document.querySelectorAll("#panel-detail details.collapsible-section").forEach(d => d.removeAttribute("open"));

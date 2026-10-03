@@ -127,7 +127,7 @@ def test_renewal_increment_below_income_cap_uses_substitute_tax() -> None:
     assert substitute_tax(result) == Decimal("100.00")
     assert remitted(result, "1075") == Decimal("100.00")
     assert _renewal_decision(result).reason_code == "requirements_met"
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_renewal_increment_at_income_cap_uses_substitute_tax() -> None:
@@ -143,7 +143,7 @@ def test_renewal_increment_above_income_cap_is_ordinary() -> None:
 
     assert substitute_tax(result) == Decimal(0)
     assert _renewal_decision(result).reason_code == "prior_income_above_ceiling"
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_renewal_increment_in_public_sector_is_ordinary() -> None:
@@ -167,7 +167,7 @@ def test_renewal_increment_with_unknown_income_is_ordinary_and_provisional() -> 
     result = _period(_renewal(), worker=_Worker(income=None))
 
     assert substitute_tax(result) == Decimal(0)
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
     assert [issue.code for issue in result.issues] == ["rinnovo_eligibility_unknown"]
 
 
@@ -192,7 +192,7 @@ def test_renewal_with_unknown_sector_is_ordinary_and_provisional() -> None:
 
     assert substitute_tax(result) == Decimal(0)
     assert _renewal_decision(result).reason_code == "sector_unknown"
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
 
 
 @pytest.mark.parametrize("signed_on", [date(2023, 12, 31), date(2027, 1, 1)])
@@ -204,7 +204,7 @@ def test_renewal_signed_outside_the_window_is_ordinary(signed_on: date) -> None:
     decision = _renewal_decision(result)
     assert decision.reason_code == "agreement_signed_outside_window"
     assert decision.inputs["agreement_signed_on"] == signed_on.isoformat()
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_renewal_signed_on_window_bounds_uses_substitute_tax() -> None:
@@ -221,7 +221,7 @@ def test_renewal_with_unknown_signing_date_is_ordinary_and_provisional() -> None
 
     assert substitute_tax(result) == Decimal(0)
     assert _renewal_decision(result).reason_code == "agreement_signing_date_unknown"
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
 
 
 _WORK_TIME = "notte_festivi_turni_substitute_tax"
@@ -251,7 +251,7 @@ def test_night_supplement_above_annual_cap_splits_regime() -> None:
     assert decision.inputs["eligible_amount"] == _CAP
     assert decision.inputs["ordinary_amount"] == Decimal(500)
     assert result.closing_state.ytd.work_time_regime.used == _CAP
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_holiday_supplement_uses_substitute_tax() -> None:
@@ -339,7 +339,7 @@ def test_work_time_supplement_in_comma_18_activity_is_ordinary(
     assert decision.reason_code == "employer_activity_excluded"
     assert decision.inputs["employer_activity"] == activity.value
     assert substitute_tax(result) == Decimal(0)
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
     assert result.closing_state.ytd.work_time_regime.used == Decimal(0)
 
 
@@ -350,7 +350,7 @@ def test_work_time_supplement_with_unknown_activity_is_provisional() -> None:
     (decision,) = _work_time_decisions(result)
     assert decision.reason_code == "activity_unknown"
     assert substitute_tax(result) == Decimal(0)
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
 
 
 def test_work_time_supplement_with_unknown_income_is_provisional() -> None:
@@ -358,7 +358,7 @@ def test_work_time_supplement_with_unknown_income_is_provisional() -> None:
     result = _period(_night(Decimal(500)), worker=_Worker(income=None))
 
     assert substitute_tax(result) == Decimal(0)
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
     assert [issue.code for issue in result.issues] == [
         "notte_festivi_turni_eligibility_unknown"
     ]

@@ -185,7 +185,7 @@ def test_conguaglio_determines_the_saldi_and_the_next_acconto() -> None:
         SurtaxComponent.MUNICIPAL_BALANCE: (municipal, 11),
         SurtaxComponent.MUNICIPAL_ADVANCE: (acconto, 9),
     }
-    assert conguaglio.status is CalculationStatus.PROVISIONAL
+    assert conguaglio.assurance.calculation is CalculationStatus.PROVISIONAL
     assert "municipal_surtax_prior_year_rates" in {i.code for i in conguaglio.issues}
 
 

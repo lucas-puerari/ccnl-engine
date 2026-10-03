@@ -96,11 +96,38 @@ omitted. A different calendar is accepted only as a validated
 
 ## Results and calculation status
 
-Every period result carries `issues` and a derived `status`; the year result
-exposes the worst status of its periods and their issues in payment order,
-each issue once: one repeated on every run (same `code` and `message`) is
-listed at its first run.
-A result is `final` only when no capability raised an issue.
+Every result answers "can these amounts be paid as they are?" with
+`is_payable`, and says why not with `blockers`, one `ResultBlocker` per
+reason, each with a stable `BlockerCode`, the `feature` it concerns, a
+machine-readable `detail` and a `remediation`. Both come from `assurance`, a
+`ResultAssurance` derived from the run:
+
+| Axis | Type | Derived from |
+|---|---|---|
+| `calculation` | `CalculationStatus` | Worst status of the issues and decisions |
+| `coverage` | `CoverageStatus` | The capability report |
+| `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules read |
+| `rulesets` | `RulesetIdentity` tuple | Rulesets the rules were read from, also `result.rulesets` |
+| `payability` | `Payability` | `payable` exactly when there is no blocker |
+
+A result is payable only when it raised no issue, every decision is final,
+the capability report has no gap, no executed rule is `assumed` or `missing`
+and no rule was supplied by the caller. A `derived` rule lowers `evidence`
+but does not block. See [Assurance](../trust/confidence.md) for the rules.
+
+The year result combines the assurance of its runs (each axis the worst,
+rulesets and blockers each once; payable only when every run is) and lists
+their issues in payment order, each issue once: one repeated on every run
+(same `code` and `message`) is listed at its first run.
+
+```python
+result = engine.calculate_period(period_input)
+if not result.is_payable:
+    for blocker in result.blockers:
+        print(blocker.code.value, blocker.feature, blocker.detail)
+```
+
+The calculation axis:
 
 | Status | Meaning |
 |---|---|
@@ -109,22 +136,14 @@ A result is `final` only when no capability raised an issue.
 | `incomplete` | At least one amount could not be determined; do not pay as is. |
 | `rejected` | The inputs cannot produce a meaningful result. |
 
-```python
-from ccnl_engine import CalculationStatus
-
-result = engine.calculate_period(period_input)
-if result.status is not CalculationStatus.FINAL:
-    for issue in result.issues:
-        print(issue.code, issue.status, issue.message)
-```
-
 Compare statuses with `severity` or `CalculationStatus.worst()`: the string
 values do not sort in severity order.
 
 An `incomplete` result still carries amounts, but at least one of them is
 missing, not zero: for example a surtax whose table is unknown is withheld
-as 0 and flagged by the issue `regional_surtax_unknown` or
-`municipal_surtax_unknown`.  `result.decisions` records what each capability
+as 0, flagged by the issue `regional_surtax_unknown` or
+`municipal_surtax_unknown`, recorded by a decision with no amount and
+reported as a blocker, so the result is not payable.  `result.decisions` records what each capability
 decided, e.g. the surtax and tax credit decisions described in
 [Fiscal computation](../engine/fiscal.md#surtax-decisions).  The year result
 exposes the decisions of its periods in payment order.
@@ -145,7 +164,9 @@ never from the presence of an input:
 A feature the catalog promises is a gap when it is absent
 (`feature_absent`), not computed (`not_computed`), unresolved (`unresolved`,
 e.g. a surtax without a table), or only partial where the catalog promises
-it computed (`promised_computed_got_partial`).
+it computed (`promised_computed_got_partial`). Every gap is a
+`capability_not_computed` blocker, and the report `status` is the coverage
+axis of the assurance.
 
 ::: ccnl_engine.payroll.domain.period
     options:
@@ -156,6 +177,16 @@ it computed (`promised_computed_got_partial`).
     options:
       members:
         - YearResult
+
+::: ccnl_engine.payroll.domain.assurance
+    options:
+      members:
+        - ResultAssurance
+        - ResultBlocker
+        - BlockerCode
+        - CoverageStatus
+        - EvidenceStatus
+        - Payability
 
 ::: ccnl_engine.payroll.domain.remittance
     options:

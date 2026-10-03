@@ -49,8 +49,12 @@ for line in result.remittance_summary():
     column = line.column or "-"
     print(f"  {line.account:26s} {code:5s} {column:7s} {line.amount}")
 
-print("\n=== Capability report ===")
-cr = result.capability_report
-print(f"  Overall confidence: {cr.confidence}  status: {cr.status}")
-for gap in cr.gaps:
-    print(f"  gap: {gap.feature:30s} {gap.kind.value}")
+print("\n=== Assurance ===")
+assurance = result.assurance
+print(f"  Payable: {result.is_payable}")
+print(f"  Calculation: {assurance.calculation}  coverage: {assurance.coverage}")
+print(f"  Evidence: {assurance.evidence}")
+for ruleset in result.rulesets:
+    print(f"  ruleset: {ruleset}")
+for blocker in result.blockers:
+    print(f"  blocker: {blocker.code.value:24s} {blocker.feature} {blocker.detail}")

@@ -7,6 +7,8 @@ from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.assurance import CoverageStatus
+
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
@@ -82,14 +84,14 @@ class CapabilityReport:
         catalog_year: The year of the catalog used for verification.
         gaps: All detected gaps, in declaration order.
         rule_sources: Weakest provenance status of the payable rules each
-            executed capability read.  It does not change :attr:`status`
-            or :attr:`confidence`, which describe engine coverage; a
-            ``missing`` source is reported as an incomplete result issue.
+            executed capability read.  It does not change :attr:`status`,
+            which describes engine coverage; it feeds the ``evidence`` axis
+            and the blockers of the result assurance.
         caller_supplied: Capabilities whose amounts rest on values the
             caller supplied in place of a rule, each with the names of the
             event fields it took them from.  Such a value has no bundled
-            source, so it is never ``verified`` or ``derived``; like
-            :attr:`rule_sources`, it does not change :attr:`status`.
+            source, so it is never ``verified`` or ``derived``; each one is
+            a blocker of the result assurance.
     """
 
     catalog_year: int
@@ -114,41 +116,26 @@ class CapabilityReport:
         """Return an empty report (no gaps) for *year*.
 
         Returns:
-            A :class:`CapabilityReport` with no gaps and ``status == "complete"``.
+            A :class:`CapabilityReport` with no gaps and a complete status.
         """
         return cls(catalog_year=year, gaps=())
 
     @property
-    def status(self) -> str:
-        """Derived completeness status.
+    def status(self) -> CoverageStatus:
+        """Coverage of the run, the ``coverage`` axis of its assurance.
 
         Returns:
-            ``"complete"`` when no gaps exist, ``"partial"`` when only
+            :attr:`~CoverageStatus.COMPLETE` when no gap exists,
+            :attr:`~CoverageStatus.PARTIAL` when only
             :attr:`~CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL` gaps
-            exist, or ``"incomplete"`` otherwise.
+            exist, :attr:`~CoverageStatus.INCOMPLETE` otherwise.
         """
         if not self.gaps:
-            return "complete"
+            return CoverageStatus.COMPLETE
         kinds = {g.kind for g in self.gaps}
         if kinds <= {CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL}:
-            return "partial"
-        return "incomplete"
-
-    @property
-    def confidence(self) -> str:
-        """Derived confidence level: ``"high"`` / ``"medium"`` / ``"low"``.
-
-        Returns:
-            ``"high"`` when status is complete, ``"medium"`` when partial,
-            ``"low"`` otherwise.  An ``"unverified"`` (incomplete) status
-            cannot produce ``"high"`` confidence.
-        """
-        s = self.status
-        if s == "complete":
-            return "high"
-        if s == "partial":
-            return "medium"
-        return "low"
+            return CoverageStatus.PARTIAL
+        return CoverageStatus.INCOMPLETE
 
 
 @dataclass(frozen=True)

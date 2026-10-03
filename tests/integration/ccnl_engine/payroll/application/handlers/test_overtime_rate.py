@@ -100,7 +100,7 @@ def test_weekday_first_tier_is_applied_with_the_higher_tier_reported() -> None:
     assert _overtime_paid(result) == Decimal("187.50")
     (issue,) = (i for i in result.issues if i.code == TIER_NOT_APPLIED)
     assert "OT_DIURNO_EXTRA (1.30)" in issue.message
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
 
 
 def test_explicit_multiplier_equal_to_the_band_raises_no_issue() -> None:
@@ -120,7 +120,7 @@ def test_explicit_multiplier_different_from_the_band_prevails() -> None:
     assert "1.40" in issue.message
     assert "OT_DIURNO 1.25" in issue.message
     assert "OT_DIURNO_EXTRA 1.30" in issue.message
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL
 
 
 def test_no_band_and_no_multiplier_is_rejected() -> None:

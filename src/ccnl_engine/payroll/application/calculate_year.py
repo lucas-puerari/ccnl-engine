@@ -15,10 +15,10 @@ from ccnl_engine.payroll.application.year._runs import (
     plan_year,
     run_request,
 )
+from ccnl_engine.payroll.domain.assurance import ResultAssurance
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
-    CalculationStatus,
 )
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -29,11 +29,13 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.domain.assurance import ResultBlocker
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
     from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.year_input import YearInput
+    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 
 __all__ = ["YearResult", "calculate_year"]
 
@@ -68,9 +70,28 @@ class YearResult:
     bundle_version: str | None = None
 
     @property
-    def status(self) -> CalculationStatus:
-        """Worst status across :attr:`period_results`; final when empty."""
-        return CalculationStatus.worst(r.status for r in self.period_results)
+    def assurance(self) -> ResultAssurance:
+        """Assurance of every run of the year, combined.
+
+        Each axis is the worst of the runs; rulesets and blockers are
+        listed once each.  The year is payable only when every run is.
+        """
+        return ResultAssurance.combine(r.assurance for r in self.period_results)
+
+    @property
+    def is_payable(self) -> bool:
+        """Whether every run of the year is payable."""
+        return self.assurance.is_payable
+
+    @property
+    def blockers(self) -> tuple[ResultBlocker, ...]:
+        """Blockers of every run of the year, each listed once."""
+        return self.assurance.blockers
+
+    @property
+    def rulesets(self) -> tuple[RulesetIdentity, ...]:
+        """Rulesets read by any run of the year, each listed once."""
+        return self.assurance.rulesets
 
     @property
     def issues(self) -> tuple[CalculationIssue, ...]:

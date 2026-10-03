@@ -16,6 +16,7 @@ from ccnl_engine.payroll.application.period._rule_sources import (
     missing_source_issues,
     weakest_by_capability,
 )
+from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.family import (
@@ -84,11 +85,18 @@ class TestBundledRun:
         assert "seniority" not in sources
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
 
-    def test_assumed_rules_leave_the_result_final(self) -> None:
-        """An assumed rule is reported, not raised as an issue."""
+    def test_assumed_rules_block_payability_without_an_issue(self) -> None:
+        """An assumed rule is a blocker, not an issue: the calculation is final."""
         result = _run()
-        assert result.status is CalculationStatus.FINAL
-        assert result.capability_report.confidence == "low"
+        weak = {
+            (b.feature, b.detail)
+            for b in result.blockers
+            if b.code is BlockerCode.RULE_SOURCE_WEAK
+        }
+        assert result.assurance.calculation is CalculationStatus.FINAL
+        assert ("somma_esente", "assumed") in weak
+        assert all(detail != "derived" for _, detail in weak)
+        assert not result.is_payable
 
     def test_surtax_and_family_rules_are_reported_when_computed(self) -> None:
         """Tables loaded for the run report their record.
@@ -107,6 +115,10 @@ class TestBundledRun:
         assert sources["addizionale_regionale"] is ProvenanceStatus.DERIVED
         assert sources["addizionale_comunale"] is ProvenanceStatus.ASSUMED
         assert sources["family_deductions"] is ProvenanceStatus.DERIVED
+        ids = [ruleset.id for ruleset in result.rulesets]
+        assert ids == sorted(ids)
+        assert len(ids) == len(set(ids))
+        assert {"tax/2026/family-deductions", "surtax/2026/regionale"} <= set(ids)
 
 
 class TestMissingSource:
@@ -116,7 +128,7 @@ class TestMissingSource:
         """The TFR accrual rests on a value no source backs."""
         result = _run(_MissingTfrSource())
         (issue,) = [i for i in result.issues if i.code == MISSING_SOURCE_CODE]
-        assert result.status is CalculationStatus.INCOMPLETE
+        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
         assert issue.status is CalculationStatus.INCOMPLETE
         assert "tfr: rule tax/2026/industria:tfr has no source" in issue.message
         assert result.capability_report.rule_sources["tfr"] is ProvenanceStatus.MISSING

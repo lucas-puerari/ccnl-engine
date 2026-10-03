@@ -11,6 +11,7 @@ import pytest
 from ccnl_engine.payroll.application import calculate_year as calculate_year_module
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
@@ -191,10 +192,36 @@ class TestEmploymentPeriodRuns:
         )
         march, april = result.period_results[0], result.period_results[1]
         assert [i.code for i in march.issues] == ["partial_month_not_prorated"]
-        assert march.status is CalculationStatus.PROVISIONAL
-        assert april.status is CalculationStatus.FINAL
-        assert result.period_results[-1].status is CalculationStatus.FINAL
-        assert result.status is CalculationStatus.PROVISIONAL
+        assert march.assurance.calculation is CalculationStatus.PROVISIONAL
+        assert april.assurance.calculation is CalculationStatus.FINAL
+        assert (
+            result.period_results[-1].assurance.calculation is CalculationStatus.FINAL
+        )
+        assert result.assurance.calculation is CalculationStatus.PROVISIONAL
+
+    def test_year_assurance_combines_the_runs(self) -> None:
+        """The partial month blocks March and the year, each blocker once.
+
+        The issue is added after the run is assembled, so the assurance of
+        the run reflects it too.
+        """
+        result = calculate_year(
+            year_input(
+                _YEAR,
+                _CCNL,
+                _LEVEL,
+                employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
+            )
+        )
+        march = result.period_results[0]
+        partial = (BlockerCode.CALCULATION_ISSUE, None, "partial_month_not_prorated")
+        keys = [(b.code, b.feature, b.detail) for b in result.blockers]
+
+        assert partial in {(b.code, b.feature, b.detail) for b in march.blockers}
+        assert keys.count(partial) == 1
+        assert len(keys) == len(set(keys))
+        assert not result.is_payable
+        assert result.rulesets == march.rulesets
 
     def test_termination_in_may_has_no_december_tredicesima(self) -> None:
         """Ended 31 May: five regular runs, no extra-month run.
@@ -216,7 +243,7 @@ class TestEmploymentPeriodRuns:
         assert [r.run.run_kind for r in result.period_results if r.run] == [
             RunKind.REGULAR
         ] * 5
-        assert result.status is CalculationStatus.PROVISIONAL
+        assert result.assurance.calculation is CalculationStatus.PROVISIONAL
         assert {i.code for r in result.period_results for i in r.issues} == {
             "somma_esente_income_assumed"
         }
@@ -458,10 +485,10 @@ class TestSurtaxStatus:
             year_input(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(comune_belfiore="Z999"))
         )
 
-        assert {r.status for r in result.period_results} == {
+        assert {r.assurance.calculation for r in result.period_results} == {
             CalculationStatus.INCOMPLETE
         }
-        assert result.status is CalculationStatus.INCOMPLETE
+        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
         assert {i.code for i in result.issues} == {"municipal_surtax_unknown"}
 
     def test_malformed_region_code_is_rejected(self) -> None:

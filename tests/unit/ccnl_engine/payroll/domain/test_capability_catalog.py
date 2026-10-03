@@ -122,15 +122,14 @@ class TestCapabilityGap:
 
 
 class TestCapabilityReport:
-    """CapabilityReport dataclass: empty factory, status, confidence."""
+    """CapabilityReport dataclass: empty factory and coverage status."""
 
     def test_empty_is_complete(self) -> None:
-        """An empty report has status 'complete' and confidence 'high'."""
+        """An empty report has status 'complete'."""
         report = CapabilityReport.empty(2026)
         assert report.catalog_year == 2026
         assert report.gaps == ()
         assert report.status == "complete"
-        assert report.confidence == "high"
 
     def test_only_partial_gaps_is_partial(self) -> None:
         """A report with only PROMISED_COMPUTED_GOT_PARTIAL gaps is 'partial'."""
@@ -142,10 +141,9 @@ class TestCapabilityReport:
         )
         report = CapabilityReport(catalog_year=2026, gaps=(gap,))
         assert report.status == "partial"
-        assert report.confidence == "medium"
 
     def test_feature_absent_gap_is_incomplete(self) -> None:
-        """A report with FEATURE_ABSENT gaps is 'incomplete' / 'low' confidence."""
+        """A report with FEATURE_ABSENT gaps is 'incomplete'."""
         gap = CapabilityGap(
             feature="overtime",
             declared=CapabilityStatus.COMPUTED,
@@ -154,7 +152,6 @@ class TestCapabilityReport:
         )
         report = CapabilityReport(catalog_year=2026, gaps=(gap,))
         assert report.status == "incomplete"
-        assert report.confidence == "low"
 
     def test_mixed_gaps_is_incomplete(self) -> None:
         """Mixed gap kinds result in 'incomplete' status."""

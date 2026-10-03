@@ -46,9 +46,11 @@ result = engine.calculate_period(
 )
 
 issues = ", ".join(sorted(issue.code for issue in result.issues)) or "none"
+blockers = ", ".join(sorted({b.code.value for b in result.blockers})) or "none"
 print(f"Gross:         {result.period_gross} EUR")
 print(f"Contributions: {result.contribution_breakdown.employee} EUR")
 print(f"IRPEF:         {result.tax_computation.ordinary_tax} EUR")
 print(f"Net:           {result.period_net} EUR")
-print(f"Status:        {result.status}")
+print(f"Payable:       {result.is_payable}")
+print(f"Blockers:      {blockers}")
 print(f"Issues:        {issues}")

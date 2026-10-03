@@ -43,22 +43,20 @@ Every result carries three verifiability layers:
    INPS circular, tax schedule) with a URL, section, and verification status.
 2. **Versioning**: `result.bundle_version` records the knowledge-base version,
    so any figure can be reproduced after a CCNL renewal by pinning the package.
-3. **Status and decisions**: `result.status` is `final`, `provisional`,
-   `incomplete` or `rejected`; `result.issues` says what lowered it,
-   `result.decisions` what each capability decided and from which inputs, and
-   `result.capability_report` which catalog features the run did not execute.
-   An unknown normative fact never yields a `final` result.
+3. **Assurance and decisions**: `result.is_payable` says whether the amounts
+   can be paid as computed and `result.blockers` why not (an issue, a missing
+   fact, a capability not computed, a rule without a located source, a
+   caller-supplied rule); `result.assurance` holds the calculation, coverage
+   and evidence axes and `result.rulesets` the rulesets read, and
+   `result.decisions` what each capability decided and from which inputs.
+   An unknown normative fact never yields a payable result.
 
 ```python
-from ccnl_engine import CalculationStatus
-
-if result.status is not CalculationStatus.FINAL:
-    for issue in result.issues:
-        print(issue.code, issue.status, issue.message)
+if not result.is_payable:
+    for blocker in result.blockers:
+        print(blocker.code.value, blocker.feature, blocker.detail)
 for decision in result.decisions:
     print(decision.capability, decision.reason_code, decision.amount)
-for gap in result.capability_report.gaps:
-    print(gap.feature, gap.kind.value)
 ```
 
 See [example 11: Why this number?](examples/11_why_this_number.py) for a

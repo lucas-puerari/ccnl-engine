@@ -138,4 +138,4 @@ def test_veneto_with_a_child_is_provisional() -> None:
     assert "regional_surtax_dependent_provisions_not_applied" in {
         i.code for i in result.issues
     }
-    assert result.status is CalculationStatus.PROVISIONAL
+    assert result.assurance.calculation is CalculationStatus.PROVISIONAL

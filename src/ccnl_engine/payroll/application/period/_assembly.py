@@ -19,6 +19,7 @@ from ccnl_engine.payroll.application.period._rule_sources import (
     run_rule_sources,
     weakest_by_capability,
 )
+from ccnl_engine.payroll.application.period._rulesets import run_rulesets
 from ccnl_engine.payroll.application.reconcile import check_period
 from ccnl_engine.payroll.application.withholding._cap import run_net
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
@@ -160,6 +161,7 @@ def _result(
         + _rule_issues(ctx)
         + missing_source_issues(sources),
         decisions=all_decisions,
+        rulesets=run_rulesets(ctx, sources),
     )
 
 

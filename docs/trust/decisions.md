@@ -86,7 +86,10 @@ caller-supplied decision lists `hourly_rate` only. See
 A caller-supplied decision does not trace its capability: the event traces
 it as before, computed when it had an effect. The capability report lists
 the fields in `caller_supplied`, apart from `rule_sources`, and never
-reports such a capability as `verified` or `derived`. In the
+reports such a capability as `verified` or `derived`. Each capability in
+`caller_supplied` is a `caller_supplied_rule` blocker: the result is not
+payable until the values are validated outside the engine (see
+[Assurance](confidence.md#payability-rules)). In the
 [capability matrix](../contracts/capability-matrix.md) these capabilities
 are labelled `caller-supplied`.
 
@@ -127,6 +130,8 @@ for decision in result.decisions:
     print(decision.capability, decision.origin.value, decision.reason_code)
 print(result.capability_report.caller_supplied)
 # {'overtime': ('hourly_rate', 'multiplier')}
+print([(b.code.value, b.feature) for b in result.blockers if b.feature == "overtime"])
+# [('caller_supplied_rule', 'overtime')]
 ```
 
 The overtime decision of this run records the caller's multiplier `1.25`
