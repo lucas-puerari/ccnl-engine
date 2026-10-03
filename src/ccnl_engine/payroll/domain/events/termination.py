@@ -6,12 +6,15 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_date, require_decimal
 
 if TYPE_CHECKING:
     from datetime import date
 
 __all__ = ["TerminationTFREvent"]
+
+_ZERO = Decimal(0)
+_ONE = Decimal(1)
 
 
 @dataclass(frozen=True)
@@ -32,12 +35,15 @@ class TerminationTFREvent:
     separate_tax_rate: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"TerminationTFREvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="termination_tfr")
-        if not (0 <= self.separate_tax_rate <= 1):
-            msg = (
-                "TerminationTFREvent.separate_tax_rate must be in [0, 1]; "
-                f"got {self.separate_tax_rate}"
-            )
-            raise InvalidInputError(msg, feature="termination_tfr")
+        feature = "termination_tfr"
+        require_date(self.event_date, "TerminationTFREvent.event_date", feature=feature)
+        require_decimal(
+            self.amount, "TerminationTFREvent.amount", feature=feature, minimum=_ZERO
+        )
+        require_decimal(
+            self.separate_tax_rate,
+            "TerminationTFREvent.separate_tax_rate",
+            feature=feature,
+            minimum=_ZERO,
+            maximum=_ONE,
+        )

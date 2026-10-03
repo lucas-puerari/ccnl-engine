@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.events.work_time import (
     ShiftWorkEvent,
 )
 
-__all__ = ["WorkEvent"]
+__all__ = ["WORK_EVENT_TYPES", "WorkEvent"]
 
 WorkEvent = (
     OvertimeEvent
@@ -38,4 +38,21 @@ WorkEvent = (
     | ArrearsEvent
     | BilateralFundEvent
     | TerminationTFREvent
+)
+
+#: The classes of :data:`WorkEvent`, for ``isinstance`` checks.
+WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
+    OvertimeEvent,
+    NightShiftEvent,
+    HolidayWorkEvent,
+    ShiftWorkEvent,
+    AbsenceEvent,
+    SickLeaveEvent,
+    SicknessCaseEvent,
+    BonusEvent,
+    FringeEvent,
+    WelfareEvent,
+    ArrearsEvent,
+    BilateralFundEvent,
+    TerminationTFREvent,
 )

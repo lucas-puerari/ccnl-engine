@@ -46,4 +46,6 @@ def parse_worker_category(value: WorkerCategory | str | None) -> WorkerCategory 
     except ValueError:
         allowed = ", ".join(repr(c.value) for c in WorkerCategory)
         msg = f"unknown worker category {value!r}; expected one of {allowed}"
-        raise InvalidInputError(msg, feature="worker_category") from None
+        raise InvalidInputError(
+            msg, field="Employment.category", feature="worker_category"
+        ) from None

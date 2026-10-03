@@ -7,12 +7,18 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.shared.domain.validation import (
+    require_date,
+    require_decimal,
+    require_int,
+)
 
 if TYPE_CHECKING:
     from datetime import date
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
+_FEATURE = "sickness"
 
 
 @dataclass(frozen=True)
@@ -64,14 +70,20 @@ class SicknessCase:
 
     def __post_init__(self) -> None:  # noqa: D105
         self._check_days()
-        if self.gross_daily < _ZERO:
-            msg = f"SicknessCase.gross_daily must be >= 0; got {self.gross_daily}"
-            raise InvalidInputError(msg, feature="sickness")
+        require_decimal(
+            self.gross_daily,
+            "SicknessCase.gross_daily",
+            feature=_FEATURE,
+            minimum=_ZERO,
+        )
         for name in ("inps_daily_rate", "integration_rate", "carenza_integration_rate"):
-            value = getattr(self, name)
-            if not (_ZERO <= value <= _ONE):
-                msg = f"SicknessCase.{name} must be in [0, 1]; got {value}"
-                raise InvalidInputError(msg, feature="sickness")
+            require_decimal(
+                getattr(self, name),
+                f"SicknessCase.{name}",
+                feature=_FEATURE,
+                minimum=_ZERO,
+                maximum=_ONE,
+            )
         self._check_cumulative_days()
 
     def _check_days(self) -> None:
@@ -81,41 +93,46 @@ class SicknessCase:
             InvalidInputError: When the episode ends before it starts, or the
                 day counts are out of range.
         """
+        require_date(self.episode_start, "SicknessCase.episode_start", feature=_FEATURE)
+        require_date(self.episode_end, "SicknessCase.episode_end", feature=_FEATURE)
+        require_int(
+            self.working_days, "SicknessCase.working_days", feature=_FEATURE, minimum=1
+        )
+        require_int(
+            self.waiting_period_days,
+            "SicknessCase.waiting_period_days",
+            feature=_FEATURE,
+            minimum=0,
+        )
         if self.episode_end < self.episode_start:
             msg = (
                 f"SicknessCase.episode_end ({self.episode_end}) must not precede "
                 f"episode_start ({self.episode_start})"
             )
-            raise InvalidInputError(msg, feature="sickness")
-        if self.working_days < 1:
-            msg = f"SicknessCase.working_days must be >= 1; got {self.working_days}"
-            raise InvalidInputError(msg, feature="sickness")
-        if self.waiting_period_days < 0:
-            msg = (
-                f"SicknessCase.waiting_period_days must be >= 0; "
-                f"got {self.waiting_period_days}"
+            raise InvalidInputError(
+                msg, field="SicknessCase.episode_end", feature=_FEATURE
             )
-            raise InvalidInputError(msg, feature="sickness")
         if self.waiting_period_days > self.working_days:
             msg = (
                 f"SicknessCase.waiting_period_days ({self.waiting_period_days}) "
                 f"must not exceed working_days ({self.working_days})"
             )
-            raise InvalidInputError(msg, feature="sickness")
+            raise InvalidInputError(
+                msg, field="SicknessCase.waiting_period_days", feature=_FEATURE
+            )
 
     def _check_cumulative_days(self) -> None:
         """Validate the sick days of earlier periods; tiers are out of scope.
 
         Raises:
-            InvalidInputError: When ``cumulative_sick_days_ytd`` is negative.
             OutOfScopeError: When it is positive.
         """
-        if self.cumulative_sick_days_ytd < 0:
-            msg = (
-                f"SicknessCase.cumulative_sick_days_ytd must be >= 0; "
-                f"got {self.cumulative_sick_days_ytd}"
-            )
-            raise InvalidInputError(msg, feature="sickness")
+        require_int(
+            self.cumulative_sick_days_ytd,
+            "SicknessCase.cumulative_sick_days_ytd",
+            feature=_FEATURE,
+            minimum=0,
+        )
         if self.cumulative_sick_days_ytd > 0:
             msg = (
                 "Tier-based sickness integration (cumulative_sick_days_ytd > 0) "

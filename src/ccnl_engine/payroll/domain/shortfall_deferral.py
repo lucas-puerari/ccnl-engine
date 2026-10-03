@@ -39,9 +39,14 @@ from datetime import date, timedelta
 from decimal import ROUND_DOWN, Decimal
 from typing import final
 
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    reject,
+    require_date,
+    require_decimal,
+    require_int,
+)
 
 __all__ = [
     "DEFERRAL_MONTHLY_RATE",
@@ -78,7 +83,9 @@ class ShortfallDeferralRequest:
     signed_on: date
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(type_error((("signed_on", self.signed_on, date, False),)), _FEATURE)
+        require_date(
+            self.signed_on, "ShortfallDeferralRequest.signed_on", feature=_FEATURE
+        )
 
     def check_for(self, tax_year: int) -> None:
         """Check that the request can defer the conguaglio of ``tax_year``.
@@ -142,27 +149,29 @@ class DeferredShortfall:
     def __post_init__(self) -> None:
         """Validate the tax year, the dates and the amount.
 
-        Raises:
-            ValueError: When ``tax_year`` is before 2020, ``deferred_from``
-                is not in ``tax_year`` or January and February of the next
-                year, or ``irpef`` is not a positive finite amount.
+        A ``tax_year`` before 2020, a ``deferred_from`` outside ``tax_year``
+        and January and February of the next year, or an ``irpef`` that is
+        not a positive finite amount raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        if self.tax_year < _MIN_TAX_YEAR:
-            msg = f"DeferredShortfall.tax_year must be >= 2020; got {self.tax_year}"
-            raise ValueError(msg)
+        owner = "DeferredShortfall"
+        require_int(
+            self.tax_year, f"{owner}.tax_year", feature=_FEATURE, minimum=_MIN_TAX_YEAR
+        )
+        require_date(self.signed_on, f"{owner}.signed_on", feature=_FEATURE)
+        require_date(self.deferred_from, f"{owner}.deferred_from", feature=_FEATURE)
+        require_decimal(self.irpef, f"{owner}.irpef", feature=_FEATURE, positive=True)
         start = self.deferred_from
         if not (
             start.year == self.tax_year
             or (start.year == self.tax_year + 1 and start.month < FIRST_DEFERRAL_MONTH)
         ):
-            msg = (
-                "DeferredShortfall.deferred_from must be the payment date of "
-                f"the conguaglio {self.tax_year}; got {start.isoformat()}"
+            reject(
+                f"{owner}.deferred_from",
+                f"the payment date of the conguaglio {self.tax_year}",
+                start,
+                feature=_FEATURE,
             )
-            raise ValueError(msg)
-        if not self.irpef.is_finite() or self.irpef <= _ZERO:
-            msg = f"DeferredShortfall.irpef must be positive; got {self.irpef}"
-            raise ValueError(msg)
 
     @property
     def withheld_in(self) -> int:

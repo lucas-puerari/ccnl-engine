@@ -25,6 +25,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import EMPLOYER_50
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -173,7 +174,7 @@ class TestClosingStateTransitions:
         """Re-submitting an already-closed run_id raises ValueError."""
         opening = PeriodState.zero()
         result = calculate_period(_req(opening_state=opening))
-        with pytest.raises(ValueError, match="already processed"):
+        with pytest.raises(InvalidInputError, match="already processed"):
             calculate_period(_req(opening_state=result.closing_state))
 
     def test_gross_ytd_accumulates(self) -> None:

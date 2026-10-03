@@ -6,12 +6,20 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    require_bool,
+    require_date,
+    require_decimal,
+    require_instance,
+    require_int,
+)
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.sickness import SicknessCase
+_ZERO = Decimal(0)
 
 __all__ = ["AbsenceEvent", "SickLeaveEvent", "SicknessCaseEvent"]
 
@@ -43,18 +51,26 @@ class AbsenceEvent:
     suspends_accrual: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.hours <= 0:
-            msg = f"AbsenceEvent.hours must be > 0; got {self.hours}"
-            raise InvalidInputError(msg, feature="absence")
-        if self.hourly_rate <= 0:
-            msg = f"AbsenceEvent.hourly_rate must be > 0; got {self.hourly_rate}"
-            raise InvalidInputError(msg, feature="absence")
+        feature = "absence"
+        require_date(self.event_date, "AbsenceEvent.event_date", feature=feature)
+        require_decimal(
+            self.hours, "AbsenceEvent.hours", feature=feature, positive=True
+        )
+        require_decimal(
+            self.hourly_rate, "AbsenceEvent.hourly_rate", feature=feature, positive=True
+        )
+        require_date(
+            self.end_date, "AbsenceEvent.end_date", feature=feature, optional=True
+        )
+        require_bool(
+            self.suspends_accrual, "AbsenceEvent.suspends_accrual", feature=feature
+        )
         if self.end_date is not None and self.end_date < self.event_date:
             msg = (
                 f"AbsenceEvent.end_date ({self.end_date}) must be "
                 f">= event_date ({self.event_date})"
             )
-            raise InvalidInputError(msg, feature="absence")
+            raise InvalidInputError(msg, field="AbsenceEvent.end_date", feature=feature)
 
 
 @dataclass(frozen=True)
@@ -86,24 +102,28 @@ class SickLeaveEvent:
     waiting_period_days: int = 0
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"SickLeaveEvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="sick_leave")
-        if self.sick_days < 1:
-            msg = f"SickLeaveEvent.sick_days must be >= 1; got {self.sick_days}"
-            raise InvalidInputError(msg, feature="sick_leave")
-        if self.waiting_period_days < 0:
-            msg = (
-                f"SickLeaveEvent.waiting_period_days must be >= 0; "
-                f"got {self.waiting_period_days}"
-            )
-            raise InvalidInputError(msg, feature="sick_leave")
+        feature = "sick_leave"
+        require_date(self.event_date, "SickLeaveEvent.event_date", feature=feature)
+        require_decimal(
+            self.amount, "SickLeaveEvent.amount", feature=feature, minimum=_ZERO
+        )
+        require_int(
+            self.sick_days, "SickLeaveEvent.sick_days", feature=feature, minimum=1
+        )
+        require_int(
+            self.waiting_period_days,
+            "SickLeaveEvent.waiting_period_days",
+            feature=feature,
+            minimum=0,
+        )
         if self.waiting_period_days > self.sick_days:
             msg = (
                 f"SickLeaveEvent.waiting_period_days ({self.waiting_period_days}) "
                 f"must not exceed sick_days ({self.sick_days})"
             )
-            raise InvalidInputError(msg, feature="sick_leave")
+            raise InvalidInputError(
+                msg, field="SickLeaveEvent.waiting_period_days", feature=feature
+            )
 
 
 @dataclass(frozen=True)
@@ -126,9 +146,17 @@ class SicknessCaseEvent:
     case: SicknessCase
 
     def __post_init__(self) -> None:  # noqa: D105
+        require_date(
+            self.event_date, "SicknessCaseEvent.event_date", feature="sickness"
+        )
+        require_instance(
+            self.case, SicknessCase, "SicknessCaseEvent.case", feature="sickness"
+        )
         if self.event_date < self.case.episode_start:
             msg = (
                 f"SicknessCaseEvent.event_date ({self.event_date}) must be >= "
                 f"case.episode_start ({self.case.episode_start})"
             )
-            raise InvalidInputError(msg, feature="sickness")
+            raise InvalidInputError(
+                msg, field="SicknessCaseEvent.event_date", feature="sickness"
+            )

@@ -156,25 +156,37 @@ class DataIntegrityError(CcnlEngineError):
         )
 
 
-class InvalidInputError(ValueError, CcnlEngineError):
+class InvalidInputError(CcnlEngineError):
     """Raised when caller-supplied inputs are invalid or incompatible.
 
-    Subclasses ``ValueError`` for backward compatibility with existing callers
-    that catch ``ValueError``.  New callers should catch ``InvalidInputError``
-    or ``CcnlEngineError`` directly.
+    Not a ``ValueError``: like every public error it is caught as
+    :class:`CcnlEngineError`, so a caller never mistakes a bug of its own
+    (or of the engine) for rejected input.
+
+    Attributes:
+        field: Path of the rejected field within the input that rejected it,
+            e.g. ``"PeriodFacts.events[2]"`` or ``"Employment.roles"``;
+            ``None`` when the input as a whole is rejected.
     """
 
     def __init__(
         self,
         message: str,
         *,
+        field: str | None = None,
         feature: str | None = None,
         ruleset: str | None = None,
         remediation: str | None = None,
     ) -> None:
-        """Initialise with a human-readable message and optional context fields."""
-        CcnlEngineError.__init__(
-            self,
+        """Initialise with a human-readable message and optional context fields.
+
+        A rejected ``field`` without a specific ``remediation`` gets the
+        generic one: correct that field.
+        """
+        self.field = field
+        if remediation is None and field is not None:
+            remediation = f"Correct {field} and build the input again."
+        super().__init__(
             message,
             code="invalid_input",
             feature=feature,

@@ -87,7 +87,9 @@ def check_surtax_codes(regione: str | None, comune_belfiore: str | None) -> None
             "table: use the autonomous province code 'IT-BZ' (Bolzano) or "
             "'IT-TN' (Trento)"
         )
-        raise InvalidInputError(msg, feature="addizionale_regionale")
+        raise InvalidInputError(
+            msg, field="PeriodFacts.regione", feature="addizionale_regionale"
+        )
     if regione is not None and not _REGION_CODE.fullmatch(regione):
         msg = (
             "regione must be an ISO 3166-2:IT region code, 'IT-' and two "
@@ -96,6 +98,7 @@ def check_surtax_codes(regione: str | None, comune_belfiore: str | None) -> None
         )
         raise InvalidInputError(
             msg,
+            field="PeriodFacts.regione",
             feature="addizionale_regionale",
             remediation=f"use one of: {', '.join(sorted(REGION_CODES))}",
         )
@@ -104,7 +107,9 @@ def check_surtax_codes(regione: str | None, comune_belfiore: str | None) -> None
             "comune_belfiore must be a Belfiore code, one upper-case letter "
             f"and three digits (e.g. 'F257' for Modena); got {comune_belfiore!r}"
         )
-        raise InvalidInputError(msg, feature="addizionale_comunale")
+        raise InvalidInputError(
+            msg, field="PeriodFacts.comune_belfiore", feature="addizionale_comunale"
+        )
 
 
 def region_table_name(regione: str) -> str | None:

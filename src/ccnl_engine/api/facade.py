@@ -24,7 +24,14 @@ from ccnl_engine.payroll.application.calculate_year import (
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
 )
-from ccnl_engine.payroll.application.mode_input import parse_mode
+from ccnl_engine.payroll.application.mode_input import (
+    closing_state as _closing_state,
+)
+from ccnl_engine.payroll.application.mode_input import (
+    parse_mode,
+    period_request,
+    year_request,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.service.discovery import ContractSummary
@@ -171,7 +178,7 @@ class PayrollEngine:
             state, pay items, ledger entries and capability report.
         """
         return _calculate_period(
-            request.calculation_request(),
+            period_request(request),
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
@@ -195,7 +202,7 @@ class PayrollEngine:
         :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
         return _calculate_year(
-            request,
+            year_request(request),
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
@@ -216,4 +223,4 @@ class PayrollEngine:
             The opening state of the next tax year: a fresh tax year state
             and the obligations still running.
         """
-        return _close_tax_year(closing_state)
+        return _close_tax_year(_closing_state(closing_state))

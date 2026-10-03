@@ -16,6 +16,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 def _plan(posted: int = 0, kind: str = "trattamento_integrativo") -> RecoveryPlan:
@@ -33,12 +34,12 @@ class TestRecoveryObligation:
 
     def test_rejects_an_unmodelled_credit(self) -> None:
         """Only trattamento integrativo and somma esente recoveries exist."""
-        with pytest.raises(ValueError, match=r"plan\.kind"):
+        with pytest.raises(InvalidInputError, match=r"plan\.kind"):
             RecoveryObligation(tax_year=2026, plan=_plan(kind="bonus"))
 
     def test_rejects_a_tax_year_before_2020(self) -> None:
         """The origin tax year follows the same bound as the tax year state."""
-        with pytest.raises(ValueError, match="tax_year must be >= 2020"):
+        with pytest.raises(InvalidInputError, match="tax_year must be an int >= 2020"):
             RecoveryObligation(tax_year=2019, plan=_plan())
 
     def test_post_moves_one_installment_and_keeps_the_origin(self) -> None:
@@ -155,7 +156,7 @@ class TestPeriodState:
             recoveries=(RecoveryObligation(tax_year=2027, plan=_plan()),)
         )
 
-        with pytest.raises(ValueError, match="opened in 2027"):
+        with pytest.raises(InvalidInputError, match="opened in 2027"):
             PeriodState(ytd=TaxYearState(tax_year=2026), obligations=obligations)
 
     def test_unbound_state_accepts_any_recovery(self) -> None:

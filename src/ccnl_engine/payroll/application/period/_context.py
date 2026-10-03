@@ -41,6 +41,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.service.category import resolve_worker_category
+from ccnl_engine.shared.domain.errors import UnknownLevelError
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -185,13 +186,19 @@ def _load_contract(
 
     Returns:
         The contract of the run.
+
+    Raises:
+        UnknownLevelError: When the CCNL has no level ``request.level_code``.
     """
     period_id = request.period_id
     ccnl = repo.load_ccnl(request.ccnl_slug)
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
-    level = ccnl.level_by_code(request.level_code)
+    try:
+        level = ccnl.level_by_code(request.level_code)
+    except ValueError:
+        raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
     # The base salary of the level is the first rule every run reads.
     with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
         level.base_salary.value_at(tctx.competence)

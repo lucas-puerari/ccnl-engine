@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    require_instance,
+    require_int,
+)
 from ccnl_engine.tax.domain.preferential_regime import EmployerActivity
 
 __all__ = ["EmployerActivity", "EmployerProfile", "Headcount"]
@@ -28,12 +32,7 @@ class Headcount:
     value: int
 
     def __post_init__(self) -> None:  # noqa: D105
-        if isinstance(self.value, bool) or not isinstance(self.value, int):
-            msg = f"headcount must be an int; got {self.value!r}"
-            raise InvalidInputError(msg, feature=_FEATURE)
-        if self.value < 1:
-            msg = f"headcount must be >= 1; got {self.value}"
-            raise InvalidInputError(msg, feature=_FEATURE)
+        require_int(self.value, "Headcount.value", feature=_FEATURE, minimum=1)
 
 
 @dataclass(frozen=True, slots=True)
@@ -61,34 +60,14 @@ class EmployerProfile:
     activity: EmployerActivity | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        _require_headcount(self.headcount)
+        require_instance(
+            self.headcount, Headcount, "EmployerProfile.headcount", feature=_FEATURE
+        )
         if self.activity is not None:
-            object.__setattr__(self, "activity", _activity(self.activity))
-
-
-def _require_headcount(value: object) -> None:
-    """Reject a headcount that is not a :class:`Headcount`.
-
-    Raises:
-        InvalidInputError: When ``value`` is not a :class:`Headcount`.
-    """
-    if not isinstance(value, Headcount):
-        msg = f"headcount must be a Headcount; got {value!r}"
-        raise InvalidInputError(msg, feature=_FEATURE)
-
-
-def _activity(value: object) -> EmployerActivity:
-    """Return ``value`` as an :class:`EmployerActivity`.
-
-    Returns:
-        The activity named by ``value``.
-
-    Raises:
-        InvalidInputError: When ``value`` is not an activity.
-    """
-    try:
-        return EmployerActivity(str(value))
-    except ValueError:
-        valid = [a.value for a in EmployerActivity]
-        msg = f"activity must be one of {valid}; got {value!r}"
-        raise InvalidInputError(msg, feature=_FEATURE) from None
+            activity = parse_enum(
+                self.activity,
+                EmployerActivity,
+                "EmployerProfile.activity",
+                feature=_FEATURE,
+            )
+            object.__setattr__(self, "activity", activity)

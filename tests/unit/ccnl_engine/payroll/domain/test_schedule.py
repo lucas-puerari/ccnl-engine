@@ -16,6 +16,7 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
 )
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 class TestPayrollScheduleFromCalendar:
@@ -123,7 +124,7 @@ class TestExtraMonthScheduleValidation:
 
     def test_invalid_accrual_window_start_raises(self) -> None:
         """accrual_window_start_month outside 1-12 raises ValueError."""
-        with pytest.raises(ValueError, match="accrual_window_start_month"):
+        with pytest.raises(InvalidInputError, match="accrual_window_start_month"):
             ExtraMonthSchedule(
                 kind=ExtraMonthKind.THIRTEENTH,
                 name="tredicesima",
@@ -133,7 +134,7 @@ class TestExtraMonthScheduleValidation:
 
     def test_invalid_max_fraction_raises(self) -> None:
         """max_fraction <= 0 raises ValueError."""
-        with pytest.raises(ValueError, match="max_fraction"):
+        with pytest.raises(InvalidInputError, match="max_fraction"):
             ExtraMonthSchedule(
                 kind=ExtraMonthKind.THIRTEENTH,
                 name="tredicesima",
@@ -161,7 +162,7 @@ class TestWorkCalendarFromAdditionalMonths:
             name="tredicesima",
             payment_month=12,
         )
-        with pytest.raises(ValueError, match="duplicate"):
+        with pytest.raises(InvalidInputError, match="duplicate"):
             WorkCalendar(year=2026, extra_months=(sched, sched))
 
     def test_duplicate_kind_different_payment_months_raises(self) -> None:
@@ -176,7 +177,7 @@ class TestWorkCalendarFromAdditionalMonths:
             name="tredicesima-dec",
             payment_month=12,
         )
-        with pytest.raises(ValueError, match="duplicate"):
+        with pytest.raises(InvalidInputError, match="duplicate"):
             WorkCalendar(year=2026, extra_months=(sched_june, sched_dec))
 
     def test_fourteenth_without_thirteenth_raises(self) -> None:
@@ -186,7 +187,9 @@ class TestWorkCalendarFromAdditionalMonths:
             name="quattordicesima",
             payment_month=6,
         )
-        with pytest.raises(ValueError, match="fourteenth month requires a thirteenth"):
+        with pytest.raises(
+            InvalidInputError, match="fourteenth month requires a thirteenth"
+        ):
             WorkCalendar(year=2026, extra_months=(sched,))
 
 

@@ -9,10 +9,15 @@ pass as ``opening_state`` to the first run computed by the engine.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, fields
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import final
 
+from ccnl_engine.payroll.application.opening_balance_fields import (
+    FEATURE,
+    check_scalar_fields,
+    items,
+)
 from ccnl_engine.payroll.domain.credit_accounts import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -35,12 +40,12 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     WithholdingShortfall,
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_instance
 
 __all__ = ["OpeningBalances"]
 
 _ZERO = Decimal(0)
 _CENT = Decimal("0.01")
-_FEATURE = "opening_balances"
 
 
 @final
@@ -159,13 +164,36 @@ class OpeningBalances:
                 ``tax_year`` or later, a deferral of a conguaglio other than
                 that of ``tax_year - 1``) or an amount is finer than a cent.
         """
+        check_scalar_fields(self)
+        object.__setattr__(
+            self,
+            "closed_run_ids",
+            items(self.closed_run_ids, "closed_run_ids", PayrollRunId),
+        )
+        object.__setattr__(
+            self, "recoveries", items(self.recoveries, "recoveries", RecoveryObligation)
+        )
+        object.__setattr__(
+            self,
+            "surtax_obligations",
+            items(self.surtax_obligations, "surtax_obligations", SurtaxObligation),
+        )
+        require_instance(
+            self.deferred_shortfall,
+            DeferredShortfall,
+            "OpeningBalances.deferred_shortfall",
+            feature=FEATURE,
+            optional=True,
+        )
         deferred = self.deferred_shortfall
         if deferred is not None and deferred.tax_year != self.tax_year - 1:
             msg = (
                 "OpeningBalances.deferred_shortfall must be deferred by the "
                 f"conguaglio of {self.tax_year - 1}; got {deferred.tax_year}"
             )
-            raise InvalidInputError(msg, feature=_FEATURE)
+            raise InvalidInputError(
+                msg, field="OpeningBalances.deferred_shortfall", feature=FEATURE
+            )
         late = [o for o in self.surtax_obligations if o.tax_year >= self.tax_year]
         if late:
             msg = (
@@ -173,15 +201,13 @@ class OpeningBalances:
                 f"the conguaglio of a year before {self.tax_year}; got "
                 f"{[(o.component.value, o.tax_year) for o in late]}"
             )
-            raise InvalidInputError(msg, feature=_FEATURE)
+            raise InvalidInputError(
+                msg, field="OpeningBalances.surtax_obligations", feature=FEATURE
+            )
         try:
             self.to_state()
         except ValueError as exc:
-            raise InvalidInputError(str(exc), feature=_FEATURE) from exc
-        for f in fields(self):
-            value = getattr(self, f.name)
-            if isinstance(value, Decimal):
-                _check_cents(f.name, value)
+            raise InvalidInputError(str(exc), feature=FEATURE) from exc
 
     def to_state(self) -> PeriodState:
         """Return the state to open the next run with.
@@ -246,14 +272,3 @@ class OpeningBalances:
                 ),
             ),
         )
-
-
-def _check_cents(name: str, value: Decimal) -> None:
-    """Reject an amount finer than a cent.
-
-    Raises:
-        InvalidInputError: When ``value`` has more than two decimals.
-    """
-    if value != value.quantize(_CENT):
-        msg = f"OpeningBalances.{name} has more than two decimals; got {value}"
-        raise InvalidInputError(msg, feature=_FEATURE)

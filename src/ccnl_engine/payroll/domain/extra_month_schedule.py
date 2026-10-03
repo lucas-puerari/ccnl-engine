@@ -8,6 +8,13 @@ from datetime import date
 from decimal import Decimal
 from enum import Enum
 
+from ccnl_engine.shared.domain.validation import (
+    reject,
+    require_decimal,
+    require_int,
+    require_str,
+)
+
 __all__ = ["AccrualWindow", "ExtraMonthKind", "ExtraMonthSchedule"]
 
 
@@ -80,27 +87,25 @@ class ExtraMonthSchedule:
     max_fraction: Decimal = field(default_factory=lambda: Decimal(1))
 
     def __post_init__(self) -> None:  # noqa: D105
-        if not self.name:
-            msg = "ExtraMonthSchedule.name must not be empty"
-            raise ValueError(msg)
-        if not 1 <= self.payment_month <= 12:
-            msg = (
-                f"ExtraMonthSchedule.payment_month must be 1-12; "
-                f"got {self.payment_month}"
+        owner, feature = "ExtraMonthSchedule", "calendar"
+        if not isinstance(self.kind, ExtraMonthKind):
+            reject(f"{owner}.kind", "an ExtraMonthKind", self.kind, feature=feature)
+        require_str(self.name, f"{owner}.name", feature=feature, non_blank=True)
+        for name in ("payment_month", "accrual_window_start_month"):
+            require_int(
+                getattr(self, name),
+                f"{owner}.{name}",
+                feature=feature,
+                minimum=1,
+                maximum=12,
             )
-            raise ValueError(msg)
-        if not 1 <= self.accrual_window_start_month <= 12:
-            msg = (
-                f"ExtraMonthSchedule.accrual_window_start_month must be 1-12; "
-                f"got {self.accrual_window_start_month}"
-            )
-            raise ValueError(msg)
-        if not (Decimal(0) < self.max_fraction <= Decimal(1)):
-            msg = (
-                f"ExtraMonthSchedule.max_fraction must be in (0, 1]; "
-                f"got {self.max_fraction}"
-            )
-            raise ValueError(msg)
+        require_decimal(
+            self.max_fraction,
+            f"{owner}.max_fraction",
+            feature=feature,
+            positive=True,
+            maximum=Decimal(1),
+        )
 
     def accrual_window(
         self, year: int, started_on: date | None = None

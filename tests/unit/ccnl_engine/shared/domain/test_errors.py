@@ -228,24 +228,20 @@ class TestInvalidInputError:
         """InvalidInputError is a CcnlEngineError."""
         assert issubclass(InvalidInputError, CcnlEngineError)
 
-    def test_is_value_error(self) -> None:
-        """InvalidInputError is a ValueError for backward compatibility."""
-        assert issubclass(InvalidInputError, ValueError)
+    def test_is_not_a_value_error(self) -> None:
+        """Like every public error it is caught as CcnlEngineError only."""
+        assert not issubclass(InvalidInputError, ValueError)
 
     def test_code_is_invalid_input(self) -> None:
         """Code is always 'invalid_input'."""
         err = InvalidInputError("bad date range")
         assert err.code == "invalid_input"
 
-    def test_caught_as_value_error(self) -> None:
-        """Raising InvalidInputError is caught by except ValueError.
-
-        Raises:
-            InvalidInputError: always (this is the point of the test).
-        """
-        msg = "bad input"
-        with pytest.raises(ValueError, match="bad input"):
-            raise InvalidInputError(msg)
+    def test_stores_the_field(self) -> None:
+        """The path of the rejected field is stored, ``None`` by default."""
+        err = InvalidInputError("bad", field="PeriodFacts.events[0]")
+        assert err.field == "PeriodFacts.events[0]"
+        assert InvalidInputError("bad").field is None
 
     def test_stores_feature_and_remediation(self) -> None:
         """Feature and remediation are stored when provided."""

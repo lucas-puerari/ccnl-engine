@@ -59,7 +59,7 @@ def test_default_mode_is_simulation() -> None:
 
 def test_unknown_mode_is_invalid_input() -> None:
     """A mode typo is rejected when the engine is built, not on a run."""
-    with pytest.raises(InvalidInputError, match="unknown engine mode"):
+    with pytest.raises(InvalidInputError, match=r"PayrollEngine\.mode must be one of"):
         PayrollEngine.bundled(mode="production")  # type: ignore[arg-type]
 
 

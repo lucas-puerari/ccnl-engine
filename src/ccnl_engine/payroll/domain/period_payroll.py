@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from ccnl_engine.shared.domain.validation import require_int
+
 
 @dataclass(frozen=True)
 class PeriodId:
@@ -26,12 +28,10 @@ class PeriodId:
     def __post_init__(self) -> None:
         """Validate year and month ranges.
 
-        Raises:
-            ValueError: When ``month`` is outside 1-12 or ``year`` is zero.
+        A ``month`` outside 1-12 or a ``year`` below 1 raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        if not (1 <= self.month <= 12):
-            msg = f"month must be 1-12, got {self.month}"
-            raise ValueError(msg)
-        if self.year <= 0:
-            msg = f"year must be positive, got {self.year}"
-            raise ValueError(msg)
+        require_int(
+            self.month, "PeriodId.month", feature="payroll_run", minimum=1, maximum=12
+        )
+        require_int(self.year, "PeriodId.year", feature="payroll_run", minimum=1)

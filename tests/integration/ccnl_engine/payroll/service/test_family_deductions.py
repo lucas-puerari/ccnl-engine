@@ -6,7 +6,6 @@ from datetime import date
 from decimal import Decimal
 
 import pytest
-from pydantic import ValidationError
 
 from ccnl_engine.payroll.domain.family import (
     Dependent,
@@ -23,6 +22,7 @@ from ccnl_engine.payroll.service.family_deductions import (
     _spouse_deduction,
     compute_family_deductions,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
 from ccnl_engine.tax.service.tax_optional_loaders import (
     load_family_deduction_rules,
@@ -437,7 +437,7 @@ class TestComputeFamilyDeductions:
 
     def test_two_spouses_raises(self) -> None:
         """FamilyComposition with two spouses raises ValidationError."""
-        with pytest.raises(ValidationError, match="spouse"):
+        with pytest.raises(InvalidInputError, match="spouse"):
             _fam(_dep(_SPOUSE), _dep(_SPOUSE))
 
     def test_spouse_residency_false_yields_zero(self) -> None:

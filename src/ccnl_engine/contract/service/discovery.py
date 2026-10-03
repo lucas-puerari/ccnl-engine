@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, NewType
 from ccnl_engine.contract.domain.identity import CCNLVerification
 from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
+from ccnl_engine.shared.domain.validation import require_str
 
 if TYPE_CHECKING:
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetReadiness
@@ -86,6 +87,7 @@ def get_ccnl(ccnl_id: str) -> ContractSummary:
         UnknownCcnlError: When no CCNL matches *ccnl_id*, with up to five
             similar identifiers attached as suggestions.
     """
+    require_str(ccnl_id, "ccnl_id", feature="catalog")
     for info in _load_all():
         if ccnl_id in {info.ccnl_id, info.cnel_code}:
             return info
@@ -110,6 +112,7 @@ def search_ccnls(query: str) -> tuple[ContractSummary, ...]:
     Returns:
         A tuple of matching :class:`ContractSummary`, in slug order.
     """
+    require_str(query, "query", feature="catalog")
     q = query.lower()
     return tuple(
         info

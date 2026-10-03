@@ -305,5 +305,5 @@ def test_termination_tfr_negative_tax_rate_raises() -> None:
 
 def test_from_additional_months_unsupported_count_raises_explicitly() -> None:
     """from_additional_months(2026, 16) must raise ValueError explicitly."""
-    with pytest.raises(ValueError, match="additional_months"):
+    with pytest.raises(InvalidInputError, match="additional_months"):
         WorkCalendar.from_additional_months(2026, 16)

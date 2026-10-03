@@ -19,14 +19,21 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours
+from ccnl_engine.payroll.domain.events import WORK_EVENT_TYPES
 from ccnl_engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
 from ccnl_engine.payroll.domain.run import PayrollRun
+from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
+from ccnl_engine.shared.domain.validation import (
+    require_bool,
+    require_date,
+    require_instances,
+    require_str,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
@@ -44,7 +51,9 @@ class PeriodFacts:
         contributable_hours: Hours worked and paid in the run that are
             subject to INPS contributions.  Required for domestic CCNLs.
         events: Variable work events of the run (overtime, absences,
-            bonuses, supplements).  A list is accepted and stored as a tuple.
+            bonuses, supplements), each one of the
+            :data:`~ccnl_engine.payroll.domain.events.WorkEvent` types.  A
+            list is accepted and stored as a tuple.
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
             provinces.  ``None`` skips the regional surtax.
@@ -55,8 +64,8 @@ class PeriodFacts:
             child; selects the higher fringe-benefit threshold.
 
     Raises:
-        InvalidInputError: When a field is not of its type or a surtax code
-            is malformed.
+        InvalidInputError: When a field is not of its type, an event is not
+            a work event, or a surtax code is malformed.
     """
 
     contributable_hours: ContributableHours | None = None
@@ -67,28 +76,44 @@ class PeriodFacts:
     has_dependent_children: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(
-            type_error((
+        feature = "period_facts"
+        require_instances(
+            "PeriodFacts",
+            (
                 (
                     "contributable_hours",
                     self.contributable_hours,
                     ContributableHours,
                     True,
                 ),
-                ("events", self.events, (tuple, list), False),
-                ("regione", self.regione, str, True),
-                ("comune_belfiore", self.comune_belfiore, str, True),
                 (
                     "family_composition",
                     self.family_composition,
                     FamilyComposition,
                     True,
                 ),
-                ("has_dependent_children", self.has_dependent_children, bool, False),
-            )),
-            "period_facts",
+            ),
+            feature=feature,
         )
-        object.__setattr__(self, "events", tuple(self.events))
+        require_str(self.regione, "PeriodFacts.regione", feature=feature, optional=True)
+        require_str(
+            self.comune_belfiore,
+            "PeriodFacts.comune_belfiore",
+            feature=feature,
+            optional=True,
+        )
+        require_bool(
+            self.has_dependent_children,
+            "PeriodFacts.has_dependent_children",
+            feature=feature,
+        )
+        events = tuple_of(
+            self.events,
+            "PeriodFacts.events",
+            items_of_type(WORK_EVENT_TYPES, feature=feature, name="a WorkEvent"),
+            feature=feature,
+        )
+        object.__setattr__(self, "events", events)
         check_surtax_codes(self.regione, self.comune_belfiore)
 
 
@@ -128,18 +153,22 @@ class PeriodInput:
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(
-            type_error((
+        require_instances(
+            "PeriodInput",
+            (
                 ("run", self.run, PayrollRun, False),
-                ("payment_date", self.payment_date, date, False),
                 ("employment", self.employment, Employment, False),
                 ("employer", self.employer, EmployerProfile, False),
                 ("facts", self.facts, PeriodFacts, False),
                 ("prior_year", self.prior_year, PriorYearTaxFacts, False),
                 ("opening_state", self.opening_state, PeriodState, False),
-            )),
-            "period_input",
+            ),
+            feature="period_input",
         )
+        require_date(
+            self.payment_date, "PeriodInput.payment_date", feature="period_input"
+        )
+        self.employment.check_seniority_in(self.run.year, self.run.month)
         self.calculation_request()
 
     def calculation_request(

@@ -16,6 +16,11 @@ from enum import StrEnum
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    require_instance,
+    require_str,
+)
 
 __all__ = ["CalendarOverride", "CalendarOverrideReason"]
 
@@ -45,18 +50,6 @@ class CalendarOverrideReason(StrEnum):
 
     PAYMENT_MONTH = "payment_month"
     MORE_FAVOURABLE_TREATMENT = "more_favourable_treatment"
-
-
-def _require_instance(name: str, value: object, expected: type) -> None:
-    if not isinstance(value, expected):
-        msg = f"CalendarOverride.{name} must be a {expected.__name__}; got {value!r}"
-        raise InvalidInputError(msg, feature=_FEATURE)
-
-
-def _require_note(value: object) -> None:
-    if not isinstance(value, str) or not value.strip():
-        msg = "CalendarOverride.note must be a non-blank justification"
-        raise InvalidInputError(msg, feature=_FEATURE)
 
 
 def _fractions(calendar: WorkCalendar) -> dict[ExtraMonthKind, Decimal]:
@@ -102,9 +95,19 @@ class CalendarOverride:
     note: str
 
     def __post_init__(self) -> None:  # noqa: D105
-        _require_instance("calendar", self.calendar, WorkCalendar)
-        _require_instance("reason", self.reason, CalendarOverrideReason)
-        _require_note(self.note)
+        require_instance(
+            self.calendar, WorkCalendar, "CalendarOverride.calendar", feature=_FEATURE
+        )
+        reason = parse_enum(
+            self.reason,
+            CalendarOverrideReason,
+            "CalendarOverride.reason",
+            feature=_FEATURE,
+        )
+        object.__setattr__(self, "reason", reason)
+        require_str(
+            self.note, "CalendarOverride.note", feature=_FEATURE, non_blank=True
+        )
 
     def resolve(self, standard: WorkCalendar) -> WorkCalendar:
         """Validate the override against the standard calendar and return it.

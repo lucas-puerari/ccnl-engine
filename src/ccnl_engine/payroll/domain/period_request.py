@@ -24,16 +24,13 @@ from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.request_checks import (
-    FieldSpec,
-    employment_gap,
-    type_error,
-)
+from ccnl_engine.payroll.domain.request_checks import employment_gap
 from ccnl_engine.payroll.domain.seniority_fact import (
     SeniorityFact,
 )
 from ccnl_engine.payroll.domain.tax_year import TaxYearPolicy
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import FieldSpec, require_instances
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
 if TYPE_CHECKING:
@@ -179,9 +176,9 @@ class PeriodCalculationRequest:
                 ``withholding_schedule`` belongs to another tax year, or
                 when ``regione`` or ``comune_belfiore`` is malformed.
         """
-        problem = type_error(self._field_specs())
-        if problem is not None:
-            raise InvalidInputError(problem, feature="period_request")
+        require_instances(
+            "PeriodCalculationRequest", self._field_specs(), feature="period_request"
+        )
         gap = employment_gap(self.period_id, self.run, self.employment_period)
         if gap is not None:
             raise InvalidInputError(gap, feature="employment_facts")

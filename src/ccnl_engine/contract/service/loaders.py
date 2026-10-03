@@ -10,6 +10,7 @@ from typing import Any
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.loader_utils import verify_ruleset_hash
+from ccnl_engine.shared.domain.errors import UnknownCcnlError
 
 
 @cache
@@ -30,9 +31,15 @@ def load_ccnl(filename: str) -> CCNL:
 
     Returns:
         The validated, immutable CCNL instance.
+
+    Raises:
+        UnknownCcnlError: When the bundle has no file ``filename``.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    raw = read_bundled(pkg, filename)
+    try:
+        raw = read_bundled(pkg, filename)
+    except FileNotFoundError:
+        raise UnknownCcnlError(filename.removesuffix(".json")) from None
     payload = json.loads(raw)
     _verify_ruleset_hash(payload)
     return CCNL.model_validate(payload)

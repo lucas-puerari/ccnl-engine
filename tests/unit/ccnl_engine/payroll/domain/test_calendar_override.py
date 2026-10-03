@@ -49,14 +49,24 @@ class TestConstruction:
                 note="test",
             )
 
-    def test_reason_must_be_an_override_reason(self) -> None:
-        """A plain string is not a reason."""
-        with pytest.raises(InvalidInputError, match="CalendarOverrideReason"):
+    def test_reason_value_is_normalized(self) -> None:
+        """The string value of a reason is accepted as the reason."""
+        override = CalendarOverride(
+            calendar=_months("13"),
+            reason="payment_month",  # type: ignore[arg-type]
+            note="test",
+        )
+        assert override.reason is CalendarOverrideReason.PAYMENT_MONTH
+
+    def test_reason_must_name_an_override_reason(self) -> None:
+        """A string that names no reason is rejected with its field."""
+        with pytest.raises(InvalidInputError, match="one of") as raised:
             CalendarOverride(
                 calendar=_months("13"),
-                reason="payment_month",  # type: ignore[arg-type]
+                reason="bonus",  # type: ignore[arg-type]
                 note="test",
             )
+        assert raised.value.field == "CalendarOverride.reason"
 
     @pytest.mark.parametrize("note", ["", "   ", None])
     def test_note_must_not_be_blank(self, note: str | None) -> None:

@@ -4,11 +4,16 @@ from __future__ import annotations
 
 import calendar
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date
 from enum import StrEnum
 
-from ccnl_engine.payroll.domain.employment_facts import FEATURE, require_int
+from ccnl_engine.payroll.domain.employment_facts import FEATURE
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    require_date,
+    require_int,
+)
 
 __all__ = ["SeniorityFact", "SenioritySource"]
 
@@ -62,14 +67,12 @@ class SeniorityFact:
     source: SenioritySource
 
     def __post_init__(self) -> None:  # noqa: D105
-        require_int(self.months, "seniority.months")
-        if self.months < 0:
-            msg = f"seniority.months must be >= 0; got {self.months}"
-            raise InvalidInputError(msg, feature=FEATURE)
-        if isinstance(self.as_of, datetime) or not isinstance(self.as_of, date):
-            msg = f"seniority.as_of must be a date; got {self.as_of!r}"
-            raise InvalidInputError(msg, feature=FEATURE)
-        object.__setattr__(self, "source", _seniority_source(self.source))
+        require_int(self.months, "SeniorityFact.months", feature=FEATURE, minimum=0)
+        require_date(self.as_of, "SeniorityFact.as_of", feature=FEATURE)
+        source = parse_enum(
+            self.source, SenioritySource, "SeniorityFact.source", feature=FEATURE
+        )
+        object.__setattr__(self, "source", source)
 
     @classmethod
     def since(cls, recognised_from: date, source: SenioritySource) -> SeniorityFact:
@@ -104,7 +107,10 @@ class SeniorityFact:
         months = self._aged(day)
         if months < 0:
             raise InvalidInputError(
-                self._before_service(day), feature=FEATURE, remediation=_REMEDIATION
+                self._before_service(day),
+                field="Employment.seniority",
+                feature=FEATURE,
+                remediation=_REMEDIATION,
             )
         return months
 
@@ -129,7 +135,10 @@ class SeniorityFact:
         last = date(year, month, calendar.monthrange(year, month)[1])
         if self._aged(last) < 0:
             raise InvalidInputError(
-                self._before_service(last), feature=FEATURE, remediation=_REMEDIATION
+                self._before_service(last),
+                field="Employment.seniority",
+                feature=FEATURE,
+                remediation=_REMEDIATION,
             )
         return max(0, self._aged(date(year, month, 1)))
 
@@ -141,20 +150,3 @@ class SeniorityFact:
 
     def _before_service(self, day: date) -> str:
         return f"seniority of {self.months} months on {self.as_of} starts after {day}"
-
-
-def _seniority_source(value: object) -> SenioritySource:
-    """Return ``value`` as a :class:`SenioritySource`.
-
-    Returns:
-        The source named by ``value``.
-
-    Raises:
-        InvalidInputError: When ``value`` names no source.
-    """
-    try:
-        return SenioritySource(str(value))
-    except ValueError:
-        valid = [s.value for s in SenioritySource]
-        msg = f"seniority.source must be one of {valid}; got {value!r}"
-        raise InvalidInputError(msg, feature=FEATURE) from None

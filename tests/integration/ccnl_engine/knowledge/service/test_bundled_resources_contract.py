@@ -24,6 +24,7 @@ import ccnl_engine.contract.service.loaders as contract_loaders
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
+from ccnl_engine.shared.domain.errors import UnknownCcnlError
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -180,10 +181,11 @@ class TestLoadCcnlErrorContracts:
         """Clear the @cache on load_ccnl before each test."""
         load_ccnl.cache_clear()
 
-    def test_nonexistent_file_raises_file_not_found(self) -> None:
-        """load_ccnl with a nonexistent filename raises FileNotFoundError."""
-        with pytest.raises(FileNotFoundError):
+    def test_nonexistent_file_raises_unknown_ccnl(self) -> None:
+        """A filename the bundle does not hold is an unknown CCNL."""
+        with pytest.raises(UnknownCcnlError) as raised:
             load_ccnl("this-ccnl-does-not-exist.json")
+        assert raised.value.ccnl_id == "this-ccnl-does-not-exist"
 
     def test_invalid_json_content_raises_json_decode_error(self) -> None:
         """load_ccnl raises json.JSONDecodeError when content is not valid JSON."""

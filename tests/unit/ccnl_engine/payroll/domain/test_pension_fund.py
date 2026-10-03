@@ -22,13 +22,13 @@ def test_valid_enrolment() -> None:
 @pytest.mark.parametrize(
     ("code", "rate", "tfr", "message"),
     [
-        (1, Decimal("0.01"), True, "fund_code must be str"),
-        ("ALIFOND", 0.01, True, "employee_rate must be Decimal"),
-        ("ALIFOND", Decimal("0.01"), "yes", "tfr_to_fund must be bool"),
-        ("", Decimal("0.01"), True, "must not be empty"),
-        ("ALIFOND", Decimal("-0.01"), True, "in \\[0, 1\\]"),
-        ("ALIFOND", Decimal("1.01"), True, "in \\[0, 1\\]"),
-        ("ALIFOND", Decimal("NaN"), True, "in \\[0, 1\\]"),
+        (1, Decimal("0.01"), True, "fund_code must be a non-blank str"),
+        ("ALIFOND", 0.01, True, "employee_rate must be a finite Decimal"),
+        ("ALIFOND", Decimal("0.01"), "yes", "tfr_to_fund must be a bool"),
+        ("", Decimal("0.01"), True, "must be a non-blank str"),
+        ("ALIFOND", Decimal("-0.01"), True, ">= 0 and <= 1"),
+        ("ALIFOND", Decimal("1.01"), True, ">= 0 and <= 1"),
+        ("ALIFOND", Decimal("NaN"), True, ">= 0 and <= 1"),
     ],
 )
 def test_invalid_enrolment(

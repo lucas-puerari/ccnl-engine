@@ -18,6 +18,7 @@ from decimal import Decimal
 from typing import final
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import reject, require_decimal
 
 __all__ = ["ForeignTaxPaid", "check_one_per_state"]
 
@@ -57,40 +58,32 @@ class ForeignTaxPaid:
             or not _COUNTRY.fullmatch(self.country)
             or self.country == "IT"
         ):
-            msg = (
-                "country must be an ISO 3166-1 alpha-2 code of a foreign State; "
-                f"got {self.country!r}"
+            reject(
+                "ForeignTaxPaid.country",
+                "an ISO 3166-1 alpha-2 code of a foreign State",
+                self.country,
+                feature=_FEATURE,
             )
-            raise InvalidInputError(msg, feature=_FEATURE)
-        for name, value, positive in (
-            ("income", self.income, True),
-            ("tax", self.tax, False),
-        ):
-            if (
-                not isinstance(value, Decimal)
-                or not value.is_finite()
-                or value < 0
-                or (positive and value == 0)
-            ):
-                bound = "> 0" if positive else ">= 0"
-                msg = f"{name} must be a finite Decimal {bound}; got {value!r}"
-                raise InvalidInputError(msg, feature=_FEATURE)
+        require_decimal(
+            self.income, "ForeignTaxPaid.income", feature=_FEATURE, positive=True
+        )
+        require_decimal(
+            self.tax, "ForeignTaxPaid.tax", feature=_FEATURE, minimum=Decimal(0)
+        )
 
 
 def check_one_per_state(taxes: tuple[ForeignTaxPaid, ...]) -> None:
     """Reject two entries of the same State: the credit is per State.
 
     Raises:
-        InvalidInputError: When an entry is not a :class:`ForeignTaxPaid`
-            or two entries share ``country``.
+        InvalidInputError: When two entries share ``country``.
     """
-    if any(not isinstance(t, ForeignTaxPaid) for t in taxes):
-        msg = f"foreign_taxes entries must be ForeignTaxPaid; got {taxes!r}"
-        raise InvalidInputError(msg, feature=_FEATURE)
     countries = [t.country for t in taxes]
     if len(set(countries)) != len(countries):
         msg = (
             "foreign_taxes holds two entries of the same State; sum them: the "
             f"credit is computed per State (art. 165 c. 3 TUIR): {countries}"
         )
-        raise InvalidInputError(msg, feature=_FEATURE)
+        raise InvalidInputError(
+            msg, field="PriorYearTaxFacts.foreign_taxes", feature=_FEATURE
+        )

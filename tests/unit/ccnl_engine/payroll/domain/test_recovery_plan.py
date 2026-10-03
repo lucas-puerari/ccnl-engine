@@ -7,6 +7,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _ZERO = Decimal(0)
 
@@ -16,7 +17,9 @@ class TestRecoveryPlanValidation:
 
     def test_original_amount_zero_raises(self) -> None:
         """original_amount = 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="original_amount must be > 0"):
+        with pytest.raises(
+            InvalidInputError, match="original_amount must be a finite Decimal > 0"
+        ):
             RecoveryPlan(
                 kind="k",
                 original_amount=_ZERO,
@@ -27,7 +30,9 @@ class TestRecoveryPlanValidation:
 
     def test_original_amount_negative_raises(self) -> None:
         """original_amount < 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="original_amount must be > 0"):
+        with pytest.raises(
+            InvalidInputError, match="original_amount must be a finite Decimal > 0"
+        ):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("-1.00"),
@@ -38,7 +43,9 @@ class TestRecoveryPlanValidation:
 
     def test_installment_amount_zero_raises(self) -> None:
         """installment_amount = 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="installment_amount must be > 0"):
+        with pytest.raises(
+            InvalidInputError, match="installment_amount must be a finite Decimal > 0"
+        ):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("80.00"),
@@ -49,7 +56,9 @@ class TestRecoveryPlanValidation:
 
     def test_installment_amount_negative_raises(self) -> None:
         """installment_amount < 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="installment_amount must be > 0"):
+        with pytest.raises(
+            InvalidInputError, match="installment_amount must be a finite Decimal > 0"
+        ):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("80.00"),
@@ -60,7 +69,9 @@ class TestRecoveryPlanValidation:
 
     def test_installments_total_zero_raises(self) -> None:
         """installments_total = 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="installments_total must be >= 1"):
+        with pytest.raises(
+            InvalidInputError, match="installments_total must be an int >= 1"
+        ):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("80.00"),
@@ -71,7 +82,7 @@ class TestRecoveryPlanValidation:
 
     def test_installments_posted_negative_raises(self) -> None:
         """installments_posted < 0 must raise ValueError."""
-        with pytest.raises(ValueError, match="installments_posted must be in"):
+        with pytest.raises(InvalidInputError, match="installments_posted must be"):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("80.00"),
@@ -82,7 +93,7 @@ class TestRecoveryPlanValidation:
 
     def test_installments_posted_equal_total_raises(self) -> None:
         """installments_posted == installments_total must raise ValueError."""
-        with pytest.raises(ValueError, match="installments_posted must be in"):
+        with pytest.raises(InvalidInputError, match="installments_posted must be"):
             RecoveryPlan(
                 kind="k",
                 original_amount=Decimal("80.00"),

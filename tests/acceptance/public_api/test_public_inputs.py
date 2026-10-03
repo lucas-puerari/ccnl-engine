@@ -185,7 +185,9 @@ class TestPriorYearTaxFacts:
 
     def test_unknown_regime_is_rejected(self) -> None:
         """A waiver of a regime that does not exist is invalid input."""
-        with pytest.raises(InvalidInputError, match="waived_regimes entries"):
+        with pytest.raises(
+            InvalidInputError, match=r"waived_regimes\['pdr'\] must be one of"
+        ):
             PriorYearTaxFacts(
                 waived_regimes=frozenset({"pdr"})  # type: ignore[arg-type]
             )
@@ -313,7 +315,10 @@ class TestYearInput:
     )
     def test_bad_keys_are_rejected(self, key: object) -> None:
         """A key that is neither a month nor a run id of the year is rejected."""
-        with pytest.raises(InvalidInputError, match="periods keys must be"):
+        with pytest.raises(
+            InvalidInputError,
+            match=r"YearInput\.periods\[.*\] must be keyed by a month",
+        ):
             _year(periods={key: PeriodFacts()})
 
     def test_same_run_named_twice_is_rejected(self) -> None:
@@ -323,7 +328,7 @@ class TestYearInput:
 
     def test_non_facts_value_is_rejected(self) -> None:
         """A value that is not a PeriodFacts fails at construction."""
-        with pytest.raises(InvalidInputError, match="must be PeriodFacts"):
+        with pytest.raises(InvalidInputError, match="must be a PeriodFacts"):
             _year(periods={6: (_OVERTIME,)})
 
     def test_default_facts_with_events_are_rejected(self) -> None:
@@ -334,7 +339,10 @@ class TestYearInput:
     @pytest.mark.parametrize("payment_day", [0, 29])
     def test_payment_day_out_of_range_is_rejected(self, payment_day: int) -> None:
         """A day some month does not have is rejected."""
-        with pytest.raises(InvalidInputError, match="payment day"):
+        with pytest.raises(
+            InvalidInputError,
+            match=r"YearInput\.payment_day must be an int >= 1 and <= 28",
+        ):
             _year(payment_day=payment_day)
 
     @pytest.mark.parametrize(

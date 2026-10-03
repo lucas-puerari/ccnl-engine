@@ -8,7 +8,7 @@ processed in ``calculate_period``.
 
 from __future__ import annotations
 
-from ccnl_engine.payroll.domain.events._union import WorkEvent
+from ccnl_engine.payroll.domain.events._union import WORK_EVENT_TYPES, WorkEvent
 from ccnl_engine.payroll.domain.events.absence_sickness import (
     AbsenceEvent,
     SickLeaveEvent,
@@ -31,6 +31,7 @@ from ccnl_engine.payroll.domain.events.work_time import (
 )
 
 __all__ = [
+    "WORK_EVENT_TYPES",
     "AbsenceEvent",
     "ArrearsEvent",
     "BilateralFundEvent",

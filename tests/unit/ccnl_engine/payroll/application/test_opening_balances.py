@@ -78,8 +78,10 @@ def test_to_state_maps_every_total() -> None:
     "value", [Decimal(-1), Decimal("NaN"), Decimal("Infinity")], ids=str
 )
 def test_rejects_an_amount_that_is_not_a_non_negative_number(value: Decimal) -> None:
-    """Negative and non-finite amounts are rejected by the state rules."""
-    with pytest.raises(InvalidInputError, match=r"EarningsYtd\.gross") as info:
+    """Negative and non-finite amounts are rejected, naming the field."""
+    with pytest.raises(
+        InvalidInputError, match=r"OpeningBalances\.gross must be a finite Decimal >= 0"
+    ) as info:
         OpeningBalances(tax_year=2026, gross=value)
 
     assert info.value.feature == "opening_balances"
@@ -87,7 +89,7 @@ def test_rejects_an_amount_that_is_not_a_non_negative_number(value: Decimal) -> 
 
 def test_rejects_an_amount_finer_than_a_cent() -> None:
     """Amounts are in EUR with at most two decimals."""
-    with pytest.raises(InvalidInputError, match="more than two decimals"):
+    with pytest.raises(InvalidInputError, match="at most two decimals"):
         OpeningBalances(tax_year=2026, taxable=Decimal("0.001"))
 
 

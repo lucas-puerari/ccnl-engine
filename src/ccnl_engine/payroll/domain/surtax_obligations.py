@@ -45,6 +45,13 @@ from ccnl_engine.payroll.domain.remittance import (
     MUNICIPAL_SURTAX_BALANCE,
     REGIONAL_SURTAX,
 )
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    reject,
+    require_instance,
+    require_int,
+    require_str,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -170,32 +177,37 @@ class SurtaxObligation:
     def __post_init__(self) -> None:
         """Validate the tax year, the jurisdiction and the plan.
 
-        Raises:
-            ValueError: When ``tax_year`` is before 2020, ``jurisdiction``
-                is empty, ``plan.kind`` is not the component value or the
-                plan has more installments than the window.
+        A ``tax_year`` before 2020, an empty ``jurisdiction``, a
+        ``plan.kind`` other than the component value or a plan with more
+        installments than the window raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        component = SurtaxComponent(self.component)
+        owner, feature = "SurtaxObligation", "surtax_recovery"
+        component = parse_enum(
+            self.component, SurtaxComponent, f"{owner}.component", feature=feature
+        )
         object.__setattr__(self, "component", component)
-        if self.tax_year < _MIN_TAX_YEAR:
-            msg = f"SurtaxObligation.tax_year must be >= 2020; got {self.tax_year}"
-            raise ValueError(msg)
-        if not self.jurisdiction:
-            msg = "SurtaxObligation.jurisdiction must not be empty"
-            raise ValueError(msg)
+        require_int(
+            self.tax_year, f"{owner}.tax_year", feature=feature, minimum=_MIN_TAX_YEAR
+        )
+        require_str(
+            self.jurisdiction, f"{owner}.jurisdiction", feature=feature, non_blank=True
+        )
+        require_instance(self.plan, RecoveryPlan, f"{owner}.plan", feature=feature)
         if self.plan.kind != component.value:
-            msg = (
-                f"SurtaxObligation.plan.kind must be {component.value!r}; "
-                f"got {self.plan.kind!r}"
+            reject(
+                f"{owner}.plan.kind",
+                repr(component.value),
+                self.plan.kind,
+                feature=feature,
             )
-            raise ValueError(msg)
         if self.plan.installments_total > self.window.installments:
-            msg = (
-                f"SurtaxObligation.plan has {self.plan.installments_total} "
-                f"installments; {component.value} allows at most "
-                f"{self.window.installments}"
+            reject(
+                f"{owner}.plan.installments_total",
+                f"at most {self.window.installments} for {component.value}",
+                self.plan.installments_total,
+                feature=feature,
             )
-            raise ValueError(msg)
 
     @property
     def window(self) -> InstallmentWindow:

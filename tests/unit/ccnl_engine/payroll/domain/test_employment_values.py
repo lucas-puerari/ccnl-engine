@@ -37,13 +37,17 @@ class TestWeeklyHours:
     @pytest.mark.parametrize("value", [0, -40])
     def test_rejects_non_positive(self, value: int) -> None:
         """Zero or negative weekly hours are impossible."""
-        with pytest.raises(InvalidInputError, match="weekly_hours must be > 0"):
+        with pytest.raises(
+            InvalidInputError, match=r"WeeklyHours\.value must be an int >= 1"
+        ):
             WeeklyHours(value)
 
     @pytest.mark.parametrize("value", [True, 1.5, "3"])
     def test_rejects_non_int(self, value: object) -> None:
         """Bools, floats and strings are not silently coerced."""
-        with pytest.raises(InvalidInputError, match="weekly_hours must be an int"):
+        with pytest.raises(
+            InvalidInputError, match=r"WeeklyHours\.value must be an int"
+        ):
             WeeklyHours(value)  # type: ignore[arg-type]
 
 
@@ -56,7 +60,7 @@ class TestContributableHours:
 
     def test_rejects_negative(self) -> None:
         """Negative hours would produce negative contributions."""
-        with pytest.raises(InvalidInputError, match="must be >= 0"):
+        with pytest.raises(InvalidInputError, match="must be a finite Decimal >= 0"):
             ContributableHours(Decimal(-160))
 
     @pytest.mark.parametrize("value", [160.0, Decimal("NaN"), Decimal("Infinity")])
