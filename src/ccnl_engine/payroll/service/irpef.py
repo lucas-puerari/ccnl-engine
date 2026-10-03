@@ -40,12 +40,14 @@ def _marginal_tax(taxable_income: Decimal, brackets: Sequence[Bracket]) -> Decim
     for bracket in brackets:
         if bracket.up_to is not None:
             bracket_top = bracket.up_to
-            if taxable_income <= prev_limit:
+            # Equivalent as `<`: at equality the bracket adds 0 and the next breaks.
+            if taxable_income <= prev_limit:  # pragma: no mutate
                 break
             taxable_in_bracket = min(taxable_income, bracket_top) - prev_limit
             tax += taxable_in_bracket * bracket.rate
             prev_limit = bracket_top
-        elif taxable_income > prev_limit:
+        # Equivalent as `>=`: at equality the open bracket adds 0 * rate.
+        elif taxable_income > prev_limit:  # pragma: no mutate
             tax += (taxable_income - prev_limit) * bracket.rate
     return money(tax)
 
@@ -56,7 +58,8 @@ def irpef_gross(taxable_income: Decimal, rules: YearRules) -> Decimal:
     Returns:
         The gross IRPEF amount, rounded to two decimal places.
     """
-    if taxable_income <= _ZERO:
+    # Equivalent as `<`: at zero income _marginal_tax also returns zero.
+    if taxable_income <= _ZERO:  # pragma: no mutate
         return _ZERO
     return _marginal_tax(taxable_income, rules.irpef_brackets)
 

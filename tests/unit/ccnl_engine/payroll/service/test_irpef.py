@@ -15,7 +15,10 @@ from ccnl_engine.payroll.service.irpef_deductions import (
     apply_sterilizzazione_detrazioni,
     work_income_deduction,
 )
-from ccnl_engine.tax.domain.irpef_rules import SterilizzazioneDetrazioniRules
+from ccnl_engine.tax.domain.irpef_rules import (
+    SterilizzazioneDetrazioniRules,
+    WorkDeductionRules,
+)
 from ccnl_engine.tax.domain.ruleset import YearRules
 from ccnl_engine.tax.domain.surtax_rules import SurtaxBracket
 from tests.helpers import make_year_rules
@@ -185,6 +188,18 @@ class TestWorkIncomeDeduction:
         # = trunc4(0.681772...) = 0.6817
         # deduction = 1910 * 0.6817 = 1302.047 → 1302.05
         assert work_income_deduction(Decimal(35001)) == Decimal("1302.05")
+
+    def test_year_constants_replace_the_default_schedule(self) -> None:
+        """The constants passed for a year are used instead of the 2026 ones.
+
+        Art. 13 c. 1 lett. a TUIR before D.Lgs. 216/2023 gave EUR 1 880 for
+        RC <= 15 000 (EUR 1 955 from 2024): at RC 10 000 the deduction is
+        1 880.00, not the default 1 955.00.
+        """
+        constants = WorkDeductionRules(detr_flat=Decimal(1880))
+        assert work_income_deduction(Decimal(10000), constants=constants) == Decimal(
+            "1880.00"
+        )
 
 
 # ---------------------------------------------------------------------------

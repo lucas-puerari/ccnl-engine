@@ -106,10 +106,12 @@ def work_income_deduction(
             if c.increment_lo < gross_income <= c.increment_hi
             else _ZERO
         )
-        if gross_income <= c.detr_mid:
+        # Equivalent as `<`: the schedule is continuous at detr_mid (detr_a).
+        if gross_income <= c.detr_mid:  # pragma: no mutate
             ratio = _trunc4((c.detr_mid - gross_income) / c.detr_b_span)
             full_year = c.detr_a + c.detr_b_coeff * ratio + increment
-        elif gross_income <= c.detr_high:
+        # Equivalent as `<`: the schedule is zero at detr_high.
+        elif gross_income <= c.detr_high:  # pragma: no mutate
             ratio = _trunc4((c.detr_high - gross_income) / c.detr_c_span)
             full_year = c.detr_a * ratio + increment
         else:
