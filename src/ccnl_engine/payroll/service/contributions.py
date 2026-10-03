@@ -1,13 +1,14 @@
 """Social security contribution calculations.
 
-IVS ceiling split: when the ceiling applies and the tax file carries a non-null
+IVS ceiling split: when the ceiling applies and the INPS rules carry a non-null
 ``ceiling``, only the IVS portion of each INPS rate is capped at the massimale
-retributivo (Art. 1 c. 18 L. 335/1995); the remainder (NASpI, CUAF, CIG, etc.)
-is applied to the full base.  The ceiling is enforced via ``ytd_inps_base``:
-only the portion of ``period_inps_base`` fitting within the remaining headroom
-attracts IVS contributions.  Defaulting ``ivs_ceiling_applies`` to True
-preserves correct behaviour for post-1995 enrollees; set it to False only for
-workers enrolled before 1 Jan 1996 (Art. 1 c. 18 L. 335/1995).
+annuo della base contributiva (Art. 2 c. 18 L. 335/1995); the remainder
+(NASpI, CUAF, CIG, etc.) is applied to the full base.  The ceiling is enforced
+via ``ytd_inps_base``: only the portion of ``period_inps_base`` fitting within
+the remaining headroom attracts IVS contributions.  Whether it applies is
+derived by the caller from the worker's contribution history (first enrolment
+from 1 Jan 1996, or the contributory option of Art. 1 c. 23); this module
+never assumes it.
 """
 
 from __future__ import annotations
@@ -117,13 +118,13 @@ def resolve_contributions(
     contract_type: Permanent | FixedTerm | Apprentice,
     category: WorkerCategory | None,
     *,
-    ytd_inps_base: Decimal = _ZERO,
-    ivs_ceiling_applies: bool = True,
+    ytd_inps_base: Decimal,
+    ivs_ceiling_applies: bool,
 ) -> ContributionBreakdown:
     """Compute INPS contributions with per-component breakdown and IVS ceiling.
 
     The IVS portion of both employee and employer contributions is capped at
-    the massimale retributivo (Art. 1 c. 18 L. 335/1995) when a ceiling is
+    the massimale (Art. 2 c. 18 L. 335/1995) when it applies and a ceiling is
     configured.  The ceiling is enforced across the year via ``ytd_inps_base``:
     only the portion of ``period_inps_base`` that fits within the remaining
     headroom (``ceiling - ytd_inps_base``) attracts IVS contributions; the
@@ -137,8 +138,8 @@ def resolve_contributions(
         ytd_inps_base: Total INPS base already accumulated this tax year
             (from ``TaxYearState.earnings.inps_base``). Used to enforce the
             annual IVS ceiling across periods.
-        ivs_ceiling_applies: When False the massimale ceiling is bypassed
-            and all contributions are applied to the full base.
+        ivs_ceiling_applies: Whether the massimale applies to the worker.
+            When False all contributions are applied to the full base.
 
     Returns:
         :class:`~ccnl_engine.payroll.domain.contributions.ContributionBreakdown`

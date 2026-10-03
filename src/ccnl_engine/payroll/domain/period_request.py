@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.eligibility import ContributionCeilingStatus
+from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import (
     Apprentice,
@@ -65,11 +65,10 @@ class PeriodCalculationRequest:
         employer: The employer; its headcount resolves INPS rates (some
             rates differ by firm size) and its activity the regimes that
             exclude some activities.
-        ceiling_status: Whether the IVS massimale contribution ceiling
-            applies to this worker.  Use :attr:`ContributionCeilingStatus.POST_1995`
-            for post-1995 workers and :attr:`ContributionCeilingStatus.NOT_APPLICABLE`
-            for pre-1996 enrollment.  ``UNKNOWN`` (the default) does not apply
-            the ceiling to avoid over-deducting contributions.
+        contribution_history: Pension history the IVS massimale eligibility
+            is derived from.  ``None`` means not known: a run whose INPS base
+            crosses the massimale is then incomplete, with a ``missing_fact``
+            blocker for ``contribution_history``.
         events: Variable work events (overtime, absences, bonuses, etc.)
             that occurred in this period. Defaults to no events.
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
@@ -133,7 +132,7 @@ class PeriodCalculationRequest:
     employer: EmployerProfile
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     contract_type: Permanent | Apprentice | FixedTerm = field(default_factory=Permanent)
-    ceiling_status: ContributionCeilingStatus = ContributionCeilingStatus.UNKNOWN
+    contribution_history: ContributionHistory | None = None
     events: tuple[WorkEvent, ...] = field(default_factory=tuple)
     regione: str | None = None
     comune_belfiore: str | None = None
@@ -230,7 +229,12 @@ class PeriodCalculationRequest:
                 False,
             ),
             ("employer", self.employer, EmployerProfile, False),
-            ("ceiling_status", self.ceiling_status, ContributionCeilingStatus, False),
+            (
+                "contribution_history",
+                self.contribution_history,
+                ContributionHistory,
+                True,
+            ),
             ("events", self.events, (tuple, list), False),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),

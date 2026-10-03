@@ -16,7 +16,7 @@ from decimal import Decimal
 from ccnl_engine import (
     Apprentice,
     ContributableHours,
-    ContributionCeilingStatus,
+    ContributionHistory,
     EmployerProfile,
     Employment,
     FixedTerm,
@@ -34,6 +34,9 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 from ccnl_engine.payroll.domain.jurisdiction import REGION_CODES
+
+#: First day of the cohort the IVS massimale applies to (L. 335/1995 art. 2 c. 18).
+_IVS_COHORT_START = date(1996, 1, 1)
 
 
 def _latest_bundled_year() -> int:
@@ -285,7 +288,7 @@ def _build_employment(
     contract: Permanent | FixedTerm | Apprentice,
     seniority_mode: str,
     seniority_value: int,
-    ivs_ceiling_applies: bool,
+    first_enrolled_after_1995: bool,
     weekly_hours_domestic: Decimal | None,
 ) -> Employment:
     """Build the Employment from component inputs.
@@ -297,10 +300,12 @@ def _build_employment(
     if seniority_value > 0:
         if seniority_mode == "months":
             seniority_months = seniority_value
-    ceiling = (
-        ContributionCeilingStatus.OPTED_IN
-        if ivs_ceiling_applies
-        else ContributionCeilingStatus.UNKNOWN
+    # The demo asks one question: enrolled from 1996?  Unchecked means not
+    # stated, so a run crossing the massimale names the missing fact.
+    history = (
+        ContributionHistory(first_enrolled_on=_IVS_COHORT_START)
+        if first_enrolled_after_1995
+        else None
     )
     weekly_hours = (
         WeeklyHours(int(weekly_hours_domestic))
@@ -314,7 +319,7 @@ def _build_employment(
         seniority_months=(
             SeniorityMonths(seniority_months) if seniority_months is not None else None
         ),
-        ceiling_status=ceiling,
+        contribution_history=history,
         weekly_hours=weekly_hours,
     )
 
@@ -347,7 +352,7 @@ def compute_salary(
     months_elapsed: int = 0,
     regione: str = "",
     comune_belfiore: str = "",
-    ivs_ceiling_applies: bool = False,
+    first_enrolled_after_1995: bool = False,
     ad_personam_monthly: float = 0.0,
     ral_override: float = 0.0,
     overtime_weekday_hours: float = 0.0,
@@ -381,9 +386,10 @@ def compute_salary(
         comune_belfiore: Belfiore code (codice catastale) of the worker's
             municipality for addizionale comunale computation. When empty,
             the surtax is not computed.
-        ivs_ceiling_applies: Set to True when the worker's gross exceeds the
-            INPS IVS ceiling and only the IVS-specific contribution rate
-            should apply.
+        first_enrolled_after_1995: Set to True when the worker was first
+            enrolled in a mandatory pension scheme from 1 January 1996: the
+            IVS massimale then caps the contribution base.  False leaves the
+            history unstated.
         ad_personam_monthly: Individual frozen monthly supplement in EUR
             (reserved for future use; not currently applied).
         ral_override: Custom agreed annual gross (RAL) in EUR
@@ -438,7 +444,7 @@ def compute_salary(
             contract=contract,
             seniority_mode=seniority_mode,
             seniority_value=seniority_value,
-            ivs_ceiling_applies=ivs_ceiling_applies,
+            first_enrolled_after_1995=first_enrolled_after_1995,
             weekly_hours_domestic=weekly_hours_domestic,
         )
 

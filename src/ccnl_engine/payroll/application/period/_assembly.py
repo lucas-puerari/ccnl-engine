@@ -112,6 +112,12 @@ def _rule_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
     return () if issue is None else (issue,)
 
 
+def _ivs_issues(amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
+    ivs = amounts.ivs_ceiling
+    issue = None if ivs is None else ivs.issue()
+    return () if issue is None else (issue,)
+
+
 def _result(
     ctx: RunContext,
     events: RunEvents,
@@ -163,6 +169,7 @@ def _result(
         + capped.issues
         + posted.deferred.issues
         + _rule_issues(ctx)
+        + _ivs_issues(amounts)
         + missing_source_issues(sources),
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),
@@ -192,7 +199,9 @@ def assemble_result(
     facts = run_facts(
         ctx.request,
         ctx.contract.year_rules,
-        ivs_ceiling_applies=ctx.ivs_ceiling_applies,
+        ivs_ceiling_applies=(
+            amounts.ivs_ceiling is not None and amounts.ivs_ceiling.applies
+        ),
         pdr_cap=ctx.var_pay_rules.pdr.max_amount,
         accrual=ctx.accrual,
         projected_taxable=posted.amounts.projected_taxable,

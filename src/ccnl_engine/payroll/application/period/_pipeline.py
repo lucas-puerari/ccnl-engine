@@ -32,8 +32,14 @@ from ccnl_engine.payroll.application.period._caller_rules import (
     caller_supplied_decisions,
 )
 from ccnl_engine.payroll.application.period._checks import check_absences_within_pay
+from ccnl_engine.payroll.application.period._ivs_ceiling import (
+    IvsCeiling,
+    ivs_ceiling_decision,
+    run_ivs_ceiling,
+)
 from ccnl_engine.payroll.application.period._pension_decision import (
     pension_decision,
+    pension_terms,
 )
 from ccnl_engine.payroll.application.period._run_decisions import contract_decisions
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
@@ -45,7 +51,6 @@ from ccnl_engine.payroll.domain.obligations import (
 )
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
-from ccnl_engine.payroll.service.pension_fund import resolve_terms
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
@@ -57,7 +62,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
-    from ccnl_engine.payroll.service.pension_fund import PensionFundTerms
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
 
@@ -79,6 +83,7 @@ class RunAmounts:
     contribution_breakdown: ContributionBreakdown
     tax_computation: TaxComputation
     recovery_plan: RecoveryPlan | None
+    ivs_ceiling: IvsCeiling | None
 
 
 def _variable_events(ctx: RunContext) -> RunEvents:
@@ -139,30 +144,13 @@ def run_events(ctx: RunContext) -> RunEvents:
     )
 
 
-def _pension_terms(ctx: RunContext) -> PensionFundTerms | None:
-    """Return the rates of the fund the worker is enrolled in.
-
-    Returns:
-        ``None`` when the worker is not enrolled.
-    """
-    enrolment = ctx.request.pension_fund
-    if enrolment is None:
-        return None
-    contract = ctx.contract
-    return resolve_terms(
-        contract.ccnl,
-        enrolment,
-        ctx.worker_category,
-        contract.tctx.competence,
-        contract.year_rules.complementary_pension,
-    )
-
-
 def _amounts_input(
     ctx: RunContext,
     totals: _EventTotals,
     surtax_rules: SurtaxRules | None,
     family_rules: FamilyDeductionRules | None,
+    *,
+    ivs_ceiling_applies: bool,
 ) -> _AmountsInput:
     request, contract = ctx.request, ctx.contract
     fiscal_year = ctx.fiscal_year
@@ -183,7 +171,7 @@ def _amounts_input(
         comune_belfiore=request.comune_belfiore,
         family_composition=request.family_composition,
         family_deduction_rules=family_rules,
-        ivs_ceiling_applies=ctx.ivs_ceiling_applies,
+        ivs_ceiling_applies=ivs_ceiling_applies,
         pdr_rules=ctx.var_pay_rules.pdr,
         weekly_hours=_int_value(request.weekly_hours),
         contributable_hours=(
@@ -197,11 +185,7 @@ def _amounts_input(
             ctx.monthly_gross,
             contract.tctx.competence,
         ),
-        eligible_work_days=(
-            request.employment_period.days_in_year(fiscal_year)
-            if request.employment_period is not None
-            else DAYS_IN_YEAR
-        ),
+        eligible_work_days=_eligible_work_days(ctx),
         recovery_plan=ctx.opening.obligations.recovery_of(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
@@ -210,7 +194,7 @@ def _amounts_input(
         ),
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
-        pension=_pension_terms(ctx),
+        pension=pension_terms(ctx),
         conguaglio=ctx.conguaglio,
         surtax_obligations=ctx.opening.obligations.surtax,
         run_month=request.period_id.month,
@@ -218,6 +202,17 @@ def _amounts_input(
         foreign_taxes=request.prior_year.foreign_taxes,
         deferred_irpef=_deferred_irpef(ctx),
     )
+
+
+def _eligible_work_days(ctx: RunContext) -> int:
+    """Return the days of employment in the tax year of the run.
+
+    Returns:
+        The days of the employment period in the year, or the whole year
+        when the period is not tracked.
+    """
+    period = ctx.request.employment_period
+    return DAYS_IN_YEAR if period is None else period.days_in_year(ctx.fiscal_year)
 
 
 def _deferred_irpef(ctx: RunContext) -> Decimal:
@@ -251,8 +246,17 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
         if withholds and request.family_composition is not None
         else None
     )
-    computed = _compute_amounts(_amounts_input(ctx, totals, surtax_rules, family_rules))
-    return RunAmounts(*computed)
+    ivs = run_ivs_ceiling(ctx, totals.inps_base)
+    computed = _compute_amounts(
+        _amounts_input(
+            ctx,
+            totals,
+            surtax_rules,
+            family_rules,
+            ivs_ceiling_applies=ivs is not None and ivs.applies,
+        )
+    )
+    return RunAmounts(*computed, ivs_ceiling=ivs)
 
 
 def run_decisions(
@@ -270,8 +274,11 @@ def run_decisions(
     amounts = run.amounts
     year = contract.tctx.competence.year
     pension = pension_decision(contract.ccnl, amounts.pension, year)
+    ivs = run.ivs_ceiling
+    ivs_decision = () if ivs is None else (ivs_ceiling_decision(ctx, ivs),)
     return (
         base_stage_decisions(ctx, totals, run)
+        + ivs_decision
         + accrual_decisions(ctx)
         + contract_decisions(
             contract.ccnl,

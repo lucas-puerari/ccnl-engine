@@ -174,7 +174,7 @@ class PeriodInput:
             employer=self.employer,
             opening_state=self.opening_state,
             contract_type=employment.contract_type,
-            ceiling_status=employment.ceiling_status,
+            contribution_history=employment.contribution_history,
             events=facts.events,
             regione=facts.regione,
             comune_belfiore=facts.comune_belfiore,
