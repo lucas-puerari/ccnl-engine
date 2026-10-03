@@ -7,10 +7,16 @@ from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    require_date,
+    require_decimal,
+)
 
 if TYPE_CHECKING:
     from datetime import date
+
+_ZERO = Decimal(0)
 
 __all__ = [
     "HolidayWorkEvent",
@@ -66,26 +72,38 @@ class OvertimeEvent:
     kind: OvertimeKind = OvertimeKind.WEEKDAY
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.hours <= 0:
-            msg = f"OvertimeEvent.hours must be > 0; got {self.hours}"
-            raise InvalidInputError(msg, feature="overtime")
-        if self.hourly_rate <= 0:
-            msg = f"OvertimeEvent.hourly_rate must be > 0; got {self.hourly_rate}"
-            raise InvalidInputError(msg, feature="overtime")
-        if self.multiplier is not None and self.multiplier <= 0:
-            msg = f"OvertimeEvent.multiplier must be > 0; got {self.multiplier}"
-            raise InvalidInputError(msg, feature="overtime")
+        feature = "overtime"
+        require_date(self.event_date, "OvertimeEvent.event_date", feature=feature)
+        require_decimal(
+            self.hours, "OvertimeEvent.hours", feature=feature, positive=True
+        )
+        require_decimal(
+            self.hourly_rate,
+            "OvertimeEvent.hourly_rate",
+            feature=feature,
+            positive=True,
+        )
+        require_decimal(
+            self.multiplier,
+            "OvertimeEvent.multiplier",
+            feature=feature,
+            positive=True,
+            optional=True,
+        )
+        kind = parse_enum(
+            self.kind, OvertimeKind, "OvertimeEvent.kind", feature=feature
+        )
+        object.__setattr__(self, "kind", kind)
 
 
-def _check_supplement(amount: Decimal, event: str, feature: str) -> None:
-    """Reject a negative supplement amount.
-
-    Raises:
-        InvalidInputError: When ``amount`` is negative.
-    """
-    if amount < 0:
-        msg = f"{event}.supplement_amount must be >= 0; got {amount}"
-        raise InvalidInputError(msg, feature=feature)
+def _check_supplement(
+    event_date: object, amount: object, event: str, feature: str
+) -> None:
+    """Reject a supplement event without a date or with a negative amount."""
+    require_date(event_date, f"{event}.event_date", feature=feature)
+    require_decimal(
+        amount, f"{event}.supplement_amount", feature=feature, minimum=_ZERO
+    )
 
 
 @dataclass(frozen=True)
@@ -106,7 +124,9 @@ class NightShiftEvent:
     supplement_amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_supplement(self.supplement_amount, "NightShiftEvent", "night_shift")
+        _check_supplement(
+            self.event_date, self.supplement_amount, "NightShiftEvent", "night_shift"
+        )
 
 
 @dataclass(frozen=True)
@@ -128,7 +148,9 @@ class HolidayWorkEvent:
     supplement_amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_supplement(self.supplement_amount, "HolidayWorkEvent", "holiday_work")
+        _check_supplement(
+            self.event_date, self.supplement_amount, "HolidayWorkEvent", "holiday_work"
+        )
 
 
 @dataclass(frozen=True)
@@ -148,4 +170,6 @@ class ShiftWorkEvent:
     supplement_amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_supplement(self.supplement_amount, "ShiftWorkEvent", "shift_work")
+        _check_supplement(
+            self.event_date, self.supplement_amount, "ShiftWorkEvent", "shift_work"
+        )

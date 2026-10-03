@@ -18,7 +18,6 @@ substitute rate is never applied to a worker who may turn out ineligible.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date  # noqa: TC003
 from decimal import Decimal
 from enum import StrEnum
 from typing import TYPE_CHECKING
@@ -28,14 +27,14 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
+from ccnl_engine.payroll.service.regime_requirements import (
+    RegimeFacts,
+    ineligibility,
+    missing_fact,
+)
 
 if TYPE_CHECKING:
-    from ccnl_engine.tax.domain.preferential_regime import (
-        EmployerActivity,
-        EmploymentSector,
-        PreferentialTaxRegime,
-    )
+    from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
 
 __all__ = [
     "RegimeAssessment",
@@ -64,41 +63,6 @@ class RegimeEligibility(StrEnum):
 
 
 @dataclass(frozen=True, slots=True)
-class RegimeFacts:
-    """Worker facts the requirements of a regime are checked against.
-
-    Attributes:
-        prior_income: Employment income (reddito di lavoro dipendente) of the
-            year before the tax year, in EUR.  ``None`` when not provided.
-        sector: Sector of the employment.  ``None`` when not known.
-        activity: Activity of the employer.  ``None`` when not known.
-        waived_regimes: Regime ids the worker renounced in writing.
-        agreement_signed_on: Signing date of the agreement the amount is
-            paid under, for a regime with a signing window.  ``None`` when
-            not known or not applicable.
-        withholding_agent: Whether the employer is a withholding agent.  A
-            substitute tax is withheld by the sostituto d'imposta, so a
-            household employer applies no regime (art. 23 c. 1 D.P.R.
-            600/1973).
-    """
-
-    prior_income: Decimal | None = None
-    sector: EmploymentSector | None = None
-    activity: EmployerActivity | None = None
-    waived_regimes: frozenset[str] = frozenset()
-    agreement_signed_on: date | None = None
-    withholding_agent: bool = True
-
-    def waived(self, regime: PreferentialTaxRegime) -> bool:
-        """Return whether the worker renounced ``regime`` in writing.
-
-        Returns:
-            ``True`` when the id of ``regime`` is in :attr:`waived_regimes`.
-        """
-        return regime.regime_id in self.waived_regimes
-
-
-@dataclass(frozen=True, slots=True)
 class RegimeAssessment:
     """Eligibility of one amount for a regime, and how it is split.
 
@@ -113,6 +77,8 @@ class RegimeAssessment:
         ordinary_amount: Part of the amount taxed as ordinary income.
         cap_available: Part of the annual cap not yet used before this
             amount, or ``None`` when the regime has no cap.
+        missing_fact: Public input field of the missing fact, ``None``
+            unless the eligibility is unknown.
     """
 
     regime: PreferentialTaxRegime
@@ -123,6 +89,7 @@ class RegimeAssessment:
     eligible_amount: Decimal
     ordinary_amount: Decimal
     cap_available: Decimal | None = None
+    missing_fact: str | None = None
 
     @property
     def status(self) -> CalculationStatus:
@@ -193,62 +160,8 @@ class RegimeAssessment:
             ),
             status=CalculationStatus.PROVISIONAL,
             source=self.regime.source,
-            fact=self.reason_code.removesuffix("_unknown"),
+            fact=self.missing_fact,
         )
-
-
-def _ineligibility(
-    regime: PreferentialTaxRegime, facts: RegimeFacts, tax_year: int
-) -> str | None:
-    """Return the reason a known fact excludes the worker.
-
-    Returns:
-        The reason code, or ``None`` when no known fact excludes the worker.
-    """
-    signed = facts.agreement_signed_on
-    income = facts.prior_income
-    ceiling = regime.income_ceiling
-    required = regime.required_sector
-    excluded = (
-        (not facts.withholding_agent, NOT_WITHHOLDING_AGENT),
-        (not regime.in_force(tax_year), "regime_not_in_force"),
-        (regime.waivable and facts.waived(regime), "waived_by_worker"),
-        (
-            required is not None and facts.sector not in {None, required},
-            "sector_not_eligible",
-        ),
-        (facts.activity in regime.excluded_activities, "employer_activity_excluded"),
-        (
-            signed is not None and not regime.signed_within_window(signed),
-            "agreement_signed_outside_window",
-        ),
-        (
-            ceiling is not None and income is not None and income > ceiling,
-            "prior_income_above_ceiling",
-        ),
-    )
-    return next((reason for applies, reason in excluded if applies), None)
-
-
-def _missing_fact(regime: PreferentialTaxRegime, facts: RegimeFacts) -> str | None:
-    """Return the reason a required fact is missing.
-
-    Returns:
-        The reason code, or ``None`` when every required fact is known.
-    """
-    missing = (
-        (regime.required_sector is not None and facts.sector is None, "sector"),
-        (bool(regime.excluded_activities) and facts.activity is None, "activity"),
-        (
-            regime.has_signing_window and facts.agreement_signed_on is None,
-            "agreement_signing_date",
-        ),
-        (
-            regime.income_ceiling is not None and facts.prior_income is None,
-            "prior_income",
-        ),
-    )
-    return next((f"{name}_unknown" for absent, name in missing if absent), None)
 
 
 def assess_regime(
@@ -274,12 +187,12 @@ def assess_regime(
         the excess is ordinary.  An ineligible or unknown amount is wholly
         ordinary.
     """
-    ineligible = _ineligibility(regime, facts, tax_year)
-    missing = _missing_fact(regime, facts) if ineligible is None else None
+    ineligible = ineligibility(regime, facts, tax_year)
+    missing = missing_fact(regime, facts) if ineligible is None else None
     if ineligible is not None:
         eligibility, reason = RegimeEligibility.INELIGIBLE, ineligible
     elif missing is not None:
-        eligibility, reason = RegimeEligibility.UNKNOWN, missing
+        eligibility, reason = RegimeEligibility.UNKNOWN, missing[0]
     else:
         eligibility, reason = RegimeEligibility.ELIGIBLE, "requirements_met"
     eligible = amount if eligibility is RegimeEligibility.ELIGIBLE else _ZERO
@@ -297,4 +210,5 @@ def assess_regime(
         eligible_amount=eligible,
         ordinary_amount=amount - eligible,
         cap_available=available,
+        missing_fact=None if missing is None else missing[1],
     )

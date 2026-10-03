@@ -13,6 +13,12 @@ import re
 from dataclasses import dataclass, field
 from enum import StrEnum
 
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    reject,
+    require_int,
+)
+
 __all__ = ["PayrollRun", "PayrollRunId", "RunKind", "run_identifier"]
 
 _MIN_YEAR = 1970
@@ -62,35 +68,22 @@ _RANK_IN_MONTH: dict[RunKind, int] = {
 }
 
 
-def _check_year_month(year: int, month: int) -> None:
-    """Reject a month outside 1-12 or a year before 1970.
-
-    Raises:
-        ValueError: When ``month`` or ``year`` is out of range.
-    """
-    if not 1 <= month <= 12:
-        msg = f"month must be 1-12; got {month}"
-        raise ValueError(msg)
-    if year < _MIN_YEAR:
-        msg = f"year must be >= {_MIN_YEAR}; got {year}"
-        raise ValueError(msg)
+_FEATURE = "payroll_run"
 
 
-def _run_kind(value: str) -> RunKind:
+def _check_year_month(owner: str, year: object, month: object) -> None:
+    """Reject a month outside 1-12 or a year before 1970."""
+    require_int(month, f"{owner}.month", feature=_FEATURE, minimum=1, maximum=12)
+    require_int(year, f"{owner}.year", feature=_FEATURE, minimum=_MIN_YEAR)
+
+
+def _run_kind(value: object, path: str) -> RunKind:
     """Return ``value`` as a :class:`RunKind`.
 
     Returns:
         The run kind named by ``value``.
-
-    Raises:
-        ValueError: When ``value`` is not a run kind.
     """
-    try:
-        return RunKind(value)
-    except ValueError:
-        valid = [k.value for k in RunKind]
-        msg = f"run_kind must be one of {valid}; got {value!r}"
-        raise ValueError(msg) from None
+    return parse_enum(value, RunKind, path, feature=_FEATURE)
 
 
 @dataclass(frozen=True)
@@ -116,10 +109,11 @@ class PayrollRunId:
         """Normalise ``kind`` and validate the month and the year.
 
         A kind that is not a run kind, a month outside 1-12 or a year
-        before 1970 raises ``ValueError``.
+        before 1970 raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        object.__setattr__(self, "kind", _run_kind(self.kind))
-        _check_year_month(self.year, self.month)
+        object.__setattr__(self, "kind", _run_kind(self.kind, "PayrollRunId.kind"))
+        _check_year_month("PayrollRunId", self.year, self.month)
 
     def __str__(self) -> str:
         """Return the text form.
@@ -137,17 +131,22 @@ class PayrollRunId:
             text: A run id such as ``"2026-06-fourteenth"``.
 
         Returns:
-            The typed identifier.
-
-        Raises:
-            ValueError: When ``text`` is not a well-formed run id.
+            The typed identifier.  A ``text`` that is not a well-formed run
+            id raises
+            :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        match = _RUN_ID_PATTERN.fullmatch(text)
+        match = _RUN_ID_PATTERN.fullmatch(text) if isinstance(text, str) else None
         if match is None:
-            msg = f"run id must look like '2026-01-regular'; got {text!r}"
-            raise ValueError(msg)
+            reject(
+                "PayrollRunId",
+                "a run id such as '2026-01-regular'",
+                text,
+                feature=_FEATURE,
+            )
         year, month, kind = match.groups()
-        return cls(year=int(year), month=int(month), kind=_run_kind(kind))
+        return cls(
+            year=int(year), month=int(month), kind=_run_kind(kind, "PayrollRunId.kind")
+        )
 
     @property
     def order_key(self) -> tuple[int, int, int]:
@@ -183,8 +182,10 @@ class PayrollRun:
     run_id: str = field(init=False, default="")
 
     def __post_init__(self) -> None:  # noqa: D105
-        object.__setattr__(self, "run_kind", _run_kind(self.run_kind))
-        _check_year_month(self.year, self.month)
+        object.__setattr__(
+            self, "run_kind", _run_kind(self.run_kind, "PayrollRun.run_kind")
+        )
+        _check_year_month("PayrollRun", self.year, self.month)
         object.__setattr__(self, "run_id", str(self.identifier))
 
     @property

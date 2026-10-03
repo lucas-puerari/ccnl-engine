@@ -11,6 +11,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
+from ccnl_engine.shared.domain.validation import reject, require_decimal
+
 __all__ = [
     "MAX_ADDITIONAL_MONTHS",
     "MIN_ADDITIONAL_MONTHS",
@@ -23,11 +25,7 @@ MAX_ADDITIONAL_MONTHS = Decimal(14)
 #: The twelve regular months every CCNL pays.
 MIN_ADDITIONAL_MONTHS = Decimal(12)
 
-
-def _require_decimal(value: object) -> None:
-    if not isinstance(value, Decimal):
-        msg = f"additional_months must be a Decimal; got {type(value).__name__}"
-        raise TypeError(msg)
+_FEATURE = "calendar"
 
 
 @dataclass(frozen=True)
@@ -41,26 +39,22 @@ class ExtraMonthEntitlement:
 
     Attributes:
         value: Equivalent months, between 12 and 14 inclusive.
+
+    Raises:
+        InvalidInputError: When ``value`` is not a finite Decimal between
+            12 and 14.
     """
 
     value: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        _require_decimal(self.value)
-        if not self.value.is_finite() or self.value < MIN_ADDITIONAL_MONTHS:
-            msg = (
-                f"additional_months={self.value} is below the minimum "
-                f"of 12; a CCNL must have at least 12 regular months"
-            )
-            raise ValueError(msg)
-        if self.value > MAX_ADDITIONAL_MONTHS:
-            msg = (
-                f"additional_months={self.value} exceeds the maximum "
-                f"supported value of {MAX_ADDITIONAL_MONTHS}; "
-                f"only CCNL contracts with up to {MAX_ADDITIONAL_MONTHS} "
-                f"months are supported"
-            )
-            raise ValueError(msg)
+        require_decimal(
+            self.value,
+            "additional_months",
+            feature=_FEATURE,
+            minimum=MIN_ADDITIONAL_MONTHS,
+            maximum=MAX_ADDITIONAL_MONTHS,
+        )
 
     @classmethod
     def of(cls, value: int | Decimal) -> ExtraMonthEntitlement:
@@ -73,4 +67,6 @@ class ExtraMonthEntitlement:
         Returns:
             The validated :class:`ExtraMonthEntitlement`.
         """
+        if isinstance(value, bool) or not isinstance(value, int | Decimal):
+            reject("additional_months", "an int or a Decimal", value, feature=_FEATURE)
         return cls(Decimal(str(value)))

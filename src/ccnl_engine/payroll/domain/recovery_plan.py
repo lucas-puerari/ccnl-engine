@@ -16,8 +16,15 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.shared.domain.validation import (
+    reject,
+    require_decimal,
+    require_int,
+    require_str,
+)
 
 _ZERO = Decimal(0)
+_FEATURE = "recovery"
 #: Reason of a recovery settled in full on the last run of the employment.
 SETTLED_AT_TERMINATION = "settled_at_termination"
 #: Reason of an installment posted on an adjustment run.
@@ -93,32 +100,36 @@ class RecoveryPlan:
     def __post_init__(self) -> None:
         """Validate field constraints on construction.
 
-        Raises:
-            ValueError: When any field violates its invariant.
+        A field that violates its invariant raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        if self.original_amount <= _ZERO:
-            msg = (
-                f"RecoveryPlan.original_amount must be > 0; got {self.original_amount}"
+        require_str(self.kind, "RecoveryPlan.kind", feature=_FEATURE, non_blank=True)
+        for name in ("original_amount", "installment_amount"):
+            require_decimal(
+                getattr(self, name),
+                f"RecoveryPlan.{name}",
+                feature=_FEATURE,
+                positive=True,
             )
-            raise ValueError(msg)
-        if self.installment_amount <= _ZERO:
-            msg = (
-                f"RecoveryPlan.installment_amount must be > 0; "
-                f"got {self.installment_amount}"
+        require_int(
+            self.installments_total,
+            "RecoveryPlan.installments_total",
+            feature=_FEATURE,
+            minimum=1,
+        )
+        require_int(
+            self.installments_posted,
+            "RecoveryPlan.installments_posted",
+            feature=_FEATURE,
+            minimum=0,
+        )
+        if self.installments_posted >= self.installments_total:
+            reject(
+                "RecoveryPlan.installments_posted",
+                f"below installments_total ({self.installments_total})",
+                self.installments_posted,
+                feature=_FEATURE,
             )
-            raise ValueError(msg)
-        if self.installments_total < 1:
-            msg = (
-                f"RecoveryPlan.installments_total must be >= 1; "
-                f"got {self.installments_total}"
-            )
-            raise ValueError(msg)
-        if not 0 <= self.installments_posted < self.installments_total:
-            msg = (
-                f"RecoveryPlan.installments_posted must be in "
-                f"[0, {self.installments_total}); got {self.installments_posted}"
-            )
-            raise ValueError(msg)
 
     @property
     def residual(self) -> Decimal:

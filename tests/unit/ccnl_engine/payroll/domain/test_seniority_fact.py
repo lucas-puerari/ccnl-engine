@@ -31,9 +31,11 @@ class TestConstruction:
     @pytest.mark.parametrize(
         ("months", "message"),
         [
-            pytest.param(-1, r"seniority\.months must be >= 0", id="negative"),
-            pytest.param(True, r"seniority\.months must be an int", id="bool"),
-            pytest.param(1.5, r"seniority\.months must be an int", id="float"),
+            pytest.param(
+                -1, r"SeniorityFact\.months must be an int >= 0", id="negative"
+            ),
+            pytest.param(True, r"SeniorityFact\.months must be an int", id="bool"),
+            pytest.param(1.5, r"SeniorityFact\.months must be an int", id="float"),
         ],
     )
     def test_rejects_invalid_months(self, months: object, message: str) -> None:
@@ -50,12 +52,16 @@ class TestConstruction:
     )
     def test_rejects_an_as_of_that_is_not_a_date(self, as_of: object) -> None:
         """The months are counted at a calendar date."""
-        with pytest.raises(InvalidInputError, match=r"seniority\.as_of must be a date"):
+        with pytest.raises(
+            InvalidInputError, match=r"SeniorityFact\.as_of must be a date"
+        ):
             SeniorityFact(0, as_of, _RECORDS)  # type: ignore[arg-type]
 
     def test_rejects_an_unknown_source(self) -> None:
         """The source is one of the known sources."""
-        with pytest.raises(InvalidInputError, match=r"seniority\.source must be one"):
+        with pytest.raises(
+            InvalidInputError, match=r"SeniorityFact\.source must be one"
+        ):
             SeniorityFact(0, date(2026, 6, 1), "guess")  # type: ignore[arg-type]
 
     def test_since_starts_from_zero_months(self) -> None:

@@ -11,7 +11,7 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod, WeeklyHours
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-from ccnl_engine.payroll.domain.request_checks import employment_gap, type_error
+from ccnl_engine.payroll.domain.request_checks import employment_gap
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -53,8 +53,11 @@ class TestFieldTypes:
     )
     def test_raw_value_is_invalid_input(self, field: str, value: object) -> None:
         """A raw value where a typed one is expected is a domain error."""
-        with pytest.raises(InvalidInputError, match=rf"^{field} must be"):
+        with pytest.raises(
+            InvalidInputError, match=rf"^PeriodCalculationRequest\.{field} must be"
+        ) as raised:
             _request(**{field: value})
+        assert raised.value.field == f"PeriodCalculationRequest.{field}"
 
     def test_typed_values_are_accepted(self) -> None:
         """Value objects of the declared types construct the request."""
@@ -62,11 +65,6 @@ class TestFieldTypes:
             weekly_hours=WeeklyHours(20), full_time_weekly_hours=WeeklyHours(40)
         )
         assert request.weekly_hours == WeeklyHours(20)
-
-    def test_message_names_every_accepted_type(self) -> None:
-        """A field with several accepted types lists them all."""
-        message = type_error([("x", 1, (str, bytes), False)])
-        assert message == "x must be str or bytes; got int 1"
 
 
 class TestRegularRunInEmployment:

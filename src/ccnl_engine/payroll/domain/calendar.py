@@ -28,6 +28,11 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
+from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_int
+
+_FEATURE = "calendar"
 
 __all__ = ["WorkCalendar"]
 
@@ -40,24 +45,39 @@ class WorkCalendar:
 
     Attributes:
         year: The tax year this calendar applies to.
-        extra_months: Ordered tuple of extra-month payment schedules.
+        extra_months: Ordered tuple of extra-month payment schedules.  A
+            list is accepted and stored as a tuple.
+
+    Raises:
+        InvalidInputError: When ``year`` is not an int from 1970, an extra
+            month is not an :class:`ExtraMonthSchedule`, a kind appears
+            twice, or a fourteenth month comes without a thirteenth.
     """
 
     year: int
     extra_months: tuple[ExtraMonthSchedule, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.year < 1970:
-            msg = f"WorkCalendar.year must be >= 1970; got {self.year}"
-            raise ValueError(msg)
+        require_int(
+            self.year, "WorkCalendar.year", feature=_FEATURE, minimum=1970, maximum=9999
+        )
+        extra_months = tuple_of(
+            self.extra_months,
+            "WorkCalendar.extra_months",
+            items_of_type(ExtraMonthSchedule, feature=_FEATURE),
+            feature=_FEATURE,
+        )
+        object.__setattr__(self, "extra_months", extra_months)
         seen_kinds: set[ExtraMonthKind] = set()
-        for sched in self.extra_months:
+        for sched in extra_months:
             if sched.kind in seen_kinds:
                 msg = (
                     f"duplicate extra-month kind {sched.kind.value!r}: "
                     f"each ExtraMonthKind may appear at most once"
                 )
-                raise ValueError(msg)
+                raise InvalidInputError(
+                    msg, field="WorkCalendar.extra_months", feature=_FEATURE
+                )
             seen_kinds.add(sched.kind)
         if (
             ExtraMonthKind.FOURTEENTH in seen_kinds
@@ -67,7 +87,9 @@ class WorkCalendar:
                 "a fourteenth month requires a thirteenth month: "
                 "add ExtraMonthKind.THIRTEENTH to the calendar first"
             )
-            raise ValueError(msg)
+            raise InvalidInputError(
+                msg, field="WorkCalendar.extra_months", feature=_FEATURE
+            )
 
     @property
     def entitlement(self) -> ExtraMonthEntitlement:
@@ -116,11 +138,16 @@ class WorkCalendar:
             :class:`WorkCalendar` with up to two extra schedules.
 
         Raises:
-            ValueError: When ``additional_months`` is outside the range
-                ``[12, 14]``, or strictly between 12 and 13: a partial
+            InvalidInputError: When ``additional_months`` is outside the
+                range ``[12, 14]``, or strictly between 12 and 13: a partial
                 tredicesima is not a supported calendar and would otherwise
                 be dropped silently.
         """
+        for name, month in (
+            ("thirteenth_payment_month", thirteenth_payment_month),
+            ("fourteenth_payment_month", fourteenth_payment_month),
+        ):
+            require_int(month, name, feature=_FEATURE, minimum=1, maximum=12)
         entitlement = (
             additional_months
             if isinstance(additional_months, ExtraMonthEntitlement)
@@ -132,7 +159,7 @@ class WorkCalendar:
                 f"additional_months={am} grants a partial tredicesima, "
                 f"which is not supported; use 12, 13 or a value up to 14"
             )
-            raise ValueError(msg)
+            raise InvalidInputError(msg, field="additional_months", feature=_FEATURE)
         # Accrual window start for the quattordicesima: the month after the
         # payment month (wrapping at December → January).
         fourteenth_window_start = (fourteenth_payment_month % 12) + 1

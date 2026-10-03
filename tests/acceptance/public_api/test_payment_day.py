@@ -44,7 +44,9 @@ def test_payment_day_moves_every_run_and_keeps_the_tax_year() -> None:
 @pytest.mark.parametrize("payment_day", [0, 29])
 def test_payment_day_outside_every_month_is_rejected(payment_day: int) -> None:
     """A day some month does not have is rejected when the input is built."""
-    with pytest.raises(InvalidInputError, match="payment day"):
+    with pytest.raises(
+        InvalidInputError, match=r"YearInput\.payment_day must be an int >= 1 and <= 28"
+    ):
         YearInput(
             year=2026,
             employment=_EMPLOYMENT,

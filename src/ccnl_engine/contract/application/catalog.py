@@ -16,6 +16,7 @@ from ccnl_engine.contract.service.discovery import (
     list_contracts as _bundled_contracts,
 )
 from ccnl_engine.shared.domain.errors import DataIntegrityError
+from ccnl_engine.shared.domain.validation import require_str
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.service.discovery import ContractSummary
@@ -48,6 +49,7 @@ def inspect_ruleset(repo: KnowledgeRepository, ccnl_id: str) -> RulesetAssurance
     Raises:
         DataIntegrityError: When the CCNL records no ruleset identity.
     """
+    require_str(ccnl_id, "ccnl_id", feature="catalog")
     summary = get_ccnl(ccnl_id)
     ccnl = repo.load_ccnl(f"{summary.ccnl_id}.json")
     assurance = ccnl_ruleset_assurance(ccnl)

@@ -7,7 +7,7 @@ from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
+from ccnl_engine.shared.domain.validation import require_bool, require_date
 
 __all__ = [
     "CONTRIBUTORY_COHORT_START",
@@ -71,12 +71,16 @@ class ContributionHistory:
     contributory_option: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(
-            type_error((
-                ("first_enrolled_on", self.first_enrolled_on, date, False),
-                ("contributory_option", self.contributory_option, bool, False),
-            )),
-            "contribution_history",
+        feature = "contribution_history"
+        require_date(
+            self.first_enrolled_on,
+            "ContributionHistory.first_enrolled_on",
+            feature=feature,
+        )
+        require_bool(
+            self.contributory_option,
+            "ContributionHistory.contributory_option",
+            feature=feature,
         )
 
     @property

@@ -15,6 +15,7 @@ import pytest
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.contract.domain.validity import TimeSeries, ValidityPeriod
 from ccnl_engine.diff.service.compute import diff_ccnl
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import TEST_PROV, make_ccnl_dict
 
 # ---------------------------------------------------------------------------
@@ -149,13 +150,13 @@ class TestDiffCcnlValidation:
     def test_to_before_from_raises(self) -> None:
         """to_date <= from_date raises ValueError."""
         ccnl = CCNL.model_validate(make_ccnl_dict())
-        with pytest.raises(ValueError, match="to_date"):
+        with pytest.raises(InvalidInputError, match="to_date"):
             diff_ccnl(ccnl, date(2026, 1, 1), date(2025, 1, 1))
 
     def test_equal_dates_raise(self) -> None:
         """to_date == from_date raises ValueError."""
         ccnl = CCNL.model_validate(make_ccnl_dict())
-        with pytest.raises(ValueError, match="to_date"):
+        with pytest.raises(InvalidInputError, match="to_date"):
             diff_ccnl(ccnl, date(2026, 1, 1), date(2026, 1, 1))
 
 

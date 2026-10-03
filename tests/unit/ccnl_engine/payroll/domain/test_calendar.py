@@ -9,6 +9,7 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _YEAR = 2026
 
@@ -56,7 +57,7 @@ class TestWorkCalendar:
 
     def test_from_additional_months_below_12_raises(self) -> None:
         """from_additional_months(11) raises ValueError — minimum is 12."""
-        with pytest.raises(ValueError, match="additional_months"):
+        with pytest.raises(InvalidInputError, match="additional_months"):
             WorkCalendar.from_additional_months(_YEAR, 11)
 
     def test_frozen(self) -> None:
@@ -67,7 +68,7 @@ class TestWorkCalendar:
 
     def test_year_below_1970_raises(self) -> None:
         """Year < 1970 raises ValueError."""
-        with pytest.raises(ValueError, match="1970"):
+        with pytest.raises(InvalidInputError, match="1970"):
             WorkCalendar(year=1969)
 
     def test_duplicate_extra_month_raises(self) -> None:
@@ -77,5 +78,5 @@ class TestWorkCalendar:
             name="tredicesima",
             payment_month=12,
         )
-        with pytest.raises(ValueError, match="duplicate"):
+        with pytest.raises(InvalidInputError, match="duplicate"):
             WorkCalendar(year=_YEAR, extra_months=(sched, sched))

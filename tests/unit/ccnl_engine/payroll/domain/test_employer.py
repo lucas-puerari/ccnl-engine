@@ -22,7 +22,9 @@ class TestHeadcount:
     @pytest.mark.parametrize("value", [0, -1])
     def test_rejects_below_one(self, value: int) -> None:
         """Zero or negative headcount is impossible."""
-        with pytest.raises(InvalidInputError, match="headcount must be >= 1"):
+        with pytest.raises(
+            InvalidInputError, match=r"Headcount\.value must be an int >= 1"
+        ):
             Headcount(value)
 
     @pytest.mark.parametrize("value", [True, 1.5, "3"])

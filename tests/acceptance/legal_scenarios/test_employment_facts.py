@@ -15,6 +15,7 @@ from ccnl_engine import (
     Employment,
     EmploymentPeriod,
     Headcount,
+    InvalidInputError,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
@@ -192,7 +193,7 @@ def test_worker_category_selects_the_seniority_increment(
 
 def test_missing_required_worker_category_is_rejected() -> None:
     """FISE increments exist only per category, so no category cannot be priced."""
-    with pytest.raises(ValueError, match="category"):
+    with pytest.raises(InvalidInputError, match="category"):
         regular_period(
             employment=Employment(
                 ccnl_slug=POSTAL_FISE,
@@ -267,5 +268,5 @@ def test_impossible_employment_facts_are_rejected(compute: Callable[[], None]) -
       1,212.73, employee contributions -49.60, employer -148.80, net
       1,274.68 above gross.
     """
-    with pytest.raises(ValueError):  # noqa: PT011
+    with pytest.raises(InvalidInputError):
         compute()

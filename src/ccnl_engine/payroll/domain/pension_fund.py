@@ -5,14 +5,18 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import Decimal
 
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    require_bool,
+    require_decimal,
+    require_str,
+)
 
 __all__ = ["PENSION_FEATURE", "PensionFundEnrolment"]
 
 #: Feature reported by the errors of the pension fund enrolment.
 PENSION_FEATURE = "pension_fund"
 
+_ZERO = Decimal(0)
 _ONE = Decimal(1)
 
 
@@ -44,18 +48,18 @@ class PensionFundEnrolment:
     tfr_to_fund: bool
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(
-            type_error((
-                ("fund_code", self.fund_code, str, False),
-                ("employee_rate", self.employee_rate, Decimal, False),
-                ("tfr_to_fund", self.tfr_to_fund, bool, False),
-            )),
-            PENSION_FEATURE,
+        owner = "PensionFundEnrolment"
+        require_str(
+            self.fund_code,
+            f"{owner}.fund_code",
+            feature=PENSION_FEATURE,
+            non_blank=True,
         )
-        if not self.fund_code:
-            msg = "fund_code must not be empty"
-            raise InvalidInputError(msg, feature=PENSION_FEATURE)
-        rate = self.employee_rate
-        if not rate.is_finite() or not Decimal(0) <= rate <= _ONE:
-            msg = f"employee_rate must be in [0, 1]; got {rate}"
-            raise InvalidInputError(msg, feature=PENSION_FEATURE)
+        require_decimal(
+            self.employee_rate,
+            f"{owner}.employee_rate",
+            feature=PENSION_FEATURE,
+            minimum=_ZERO,
+            maximum=_ONE,
+        )
+        require_bool(self.tfr_to_fund, f"{owner}.tfr_to_fund", feature=PENSION_FEATURE)

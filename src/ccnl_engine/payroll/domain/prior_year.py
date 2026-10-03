@@ -9,9 +9,17 @@ from ccnl_engine.payroll.domain.foreign_tax import (
     ForeignTaxPaid,
     check_one_per_state,
 )
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
 from ccnl_engine.payroll.domain.shortfall_deferral import ShortfallDeferralRequest
-from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.collection_validation import (
+    frozenset_of,
+    items_of_type,
+    tuple_of,
+)
+from ccnl_engine.shared.domain.validation import (
+    parse_enum,
+    require_decimal,
+    require_instance,
+)
 from ccnl_engine.tax.domain.preferential_regime import SubstituteTaxRegime
 
 __all__ = [
@@ -68,61 +76,34 @@ class PriorYearTaxFacts:
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
-        income = self.employment_income
-        if income is not None and (
-            not isinstance(income, Decimal) or not income.is_finite() or income < 0
-        ):
-            msg = (
-                "employment_income must be a finite Decimal >= 0 or None; "
-                f"got {income!r}"
-            )
-            raise InvalidInputError(msg, feature=_FEATURE)
-        waived = frozenset(_regime(r) for r in _frozenset(self.waived_regimes))
-        object.__setattr__(self, "waived_regimes", waived)
-        raise_on(
-            type_error((
-                (
-                    "shortfall_deferral",
-                    self.shortfall_deferral,
-                    ShortfallDeferralRequest,
-                    True,
-                ),
-                ("foreign_taxes", self.foreign_taxes, (tuple, list), False),
-            )),
-            _FEATURE,
+        owner = "PriorYearTaxFacts"
+        require_decimal(
+            self.employment_income,
+            f"{owner}.employment_income",
+            feature=_FEATURE,
+            minimum=Decimal(0),
+            optional=True,
         )
-        taxes = tuple(self.foreign_taxes)
+        waived = frozenset_of(
+            self.waived_regimes, f"{owner}.waived_regimes", _regime, feature=_FEATURE
+        )
+        object.__setattr__(self, "waived_regimes", waived)
+        require_instance(
+            self.shortfall_deferral,
+            ShortfallDeferralRequest,
+            f"{owner}.shortfall_deferral",
+            feature=_FEATURE,
+            optional=True,
+        )
+        taxes = tuple_of(
+            self.foreign_taxes,
+            f"{owner}.foreign_taxes",
+            items_of_type(ForeignTaxPaid, feature=_FEATURE),
+            feature=_FEATURE,
+        )
         check_one_per_state(taxes)
         object.__setattr__(self, "foreign_taxes", taxes)
 
 
-def _frozenset(value: object) -> frozenset[object]:
-    """Return ``value`` when it is a frozenset.
-
-    Returns:
-        ``value``, typed as a frozenset.
-
-    Raises:
-        InvalidInputError: When ``value`` is not a frozenset.
-    """
-    if not isinstance(value, frozenset):
-        msg = f"waived_regimes must be a frozenset; got {value!r}"
-        raise InvalidInputError(msg, feature=_FEATURE)
-    return value
-
-
-def _regime(value: object) -> SubstituteTaxRegime:
-    """Return ``value`` as a :class:`SubstituteTaxRegime`.
-
-    Returns:
-        The regime named by ``value``.
-
-    Raises:
-        InvalidInputError: When ``value`` names no regime.
-    """
-    try:
-        return SubstituteTaxRegime(str(value))
-    except ValueError:
-        valid = [r.value for r in SubstituteTaxRegime]
-        msg = f"waived_regimes entries must be one of {valid}; got {value!r}"
-        raise InvalidInputError(msg, feature=_FEATURE) from None
+def _regime(value: object, path: str) -> SubstituteTaxRegime:
+    return parse_enum(value, SubstituteTaxRegime, path, feature=_FEATURE)

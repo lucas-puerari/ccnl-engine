@@ -12,15 +12,19 @@ from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.request_checks import raise_on, type_error
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId, RunKind
-from ccnl_engine.payroll.domain.tax_year import (
-    DEFAULT_PAYMENT_DAY,
-    monthly_payment_date,
-)
+from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
+from ccnl_engine.shared.domain.collection_validation import items_of_type, mapping_of
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import reject, require_instances, require_int
 
 __all__ = ["YearInput"]
+
+_FEATURE = "year_input"
+
+
+def _any_key(value: object, _path: str) -> object:
+    return value
 
 
 @dataclass(frozen=True)
@@ -81,28 +85,42 @@ class YearInput:
     )
 
     def __post_init__(self) -> None:  # noqa: D105
-        raise_on(
-            type_error((
-                ("year", self.year, int, False),
+        require_int(
+            self.year, "YearInput.year", feature=_FEATURE, minimum=1970, maximum=9999
+        )
+        require_instances(
+            "YearInput",
+            (
                 ("employment", self.employment, Employment, False),
                 ("employer", self.employer, EmployerProfile, False),
                 ("prior_year", self.prior_year, PriorYearTaxFacts, False),
-                ("periods", self.periods, Mapping, False),
                 ("default_facts", self.default_facts, PeriodFacts, False),
                 ("calendar_override", self.calendar_override, CalendarOverride, True),
-                ("payment_day", self.payment_day, int, False),
                 ("opening_state", self.opening_state, PeriodState, True),
-            )),
-            "year_input",
+            ),
+            feature=_FEATURE,
         )
-        monthly_payment_date(self.year, 1, self.payment_day)
+        require_int(
+            self.payment_day,
+            "YearInput.payment_day",
+            feature=_FEATURE,
+            minimum=1,
+            maximum=28,
+        )
         if self.default_facts.events:
             msg = (
                 "default_facts must carry no event: it applies to every run "
                 "without an entry in periods; put events in periods"
             )
-            raise InvalidInputError(msg, feature="year_input")
+            raise InvalidInputError(
+                msg, field="YearInput.default_facts", feature=_FEATURE
+            )
         object.__setattr__(self, "_facts_by_run", self._normalized_periods())
+        period = self.employment.employment_period
+        if period is None or period.started_on.year < self.year:
+            self.employment.check_seniority_in(self.year, 1)
+        elif period.started_on.year == self.year:
+            self.employment.check_seniority_in(self.year, period.started_on.month)
 
     def _normalized_periods(self) -> dict[str, PeriodFacts]:
         """Return :attr:`periods` keyed by run id.
@@ -111,48 +129,51 @@ class YearInput:
             One entry per run, keyed by its run id.
 
         Raises:
-            InvalidInputError: When a key is not a month or a run id of
-                :attr:`year`, two keys name the same run, or a value is not
-                a :class:`PeriodFacts`.
+            InvalidInputError: When :attr:`periods` is not a mapping, a key
+                is not a month or a run id of :attr:`year`, two keys name
+                the same run, or a value is not a :class:`PeriodFacts`.
         """
+        facts = items_of_type(PeriodFacts, feature=_FEATURE)
+        entries = mapping_of(
+            self.periods, "YearInput.periods", _any_key, facts, feature=_FEATURE
+        )
         normalized: dict[str, PeriodFacts] = {}
-        for key, facts in dict(self.periods).items():
+        for key, value in entries.items():
             run_id = self._run_id(key)
-            raise_on(
-                type_error(((f"periods[{key!r}]", facts, PeriodFacts, False),)),
-                "year_input",
-            )
             if run_id in normalized:
                 msg = (
                     f"periods names run {run_id!r} twice (by month and by run "
                     "id); supply its facts once"
                 )
-                raise InvalidInputError(msg, feature="year_input")
-            normalized[run_id] = facts
+                raise InvalidInputError(
+                    msg, field=f"YearInput.periods[{key!r}]", feature=_FEATURE
+                )
+            normalized[run_id] = value
         return normalized
 
     def _run_id(self, key: object) -> str:
         """Return the run id a key of :attr:`periods` names.
 
+        A key that is neither a month 1-12 nor a run id of :attr:`year` is
+        rejected with ``InvalidInputError``.
+
         Returns:
             The run id: the regular run of a month number, or the key itself.
-
-        Raises:
-            InvalidInputError: When ``key`` is neither a month 1-12 nor a
-                run id of :attr:`year`.
         """
         if isinstance(key, int) and not isinstance(key, bool) and 1 <= key <= 12:
             return str(PayrollRunId(year=self.year, month=key, kind=RunKind.REGULAR))
         try:
             run_id = PayrollRunId.parse(key) if isinstance(key, str) else None
-        except ValueError:
+        except InvalidInputError:
             run_id = None
         if run_id is None or run_id.year != self.year:
-            msg = (
-                f"periods keys must be a month 1-12 or a run id of {self.year} "
-                f"such as '{self.year}-12-thirteenth'; got {key!r}"
+            reject(
+                f"YearInput.periods[{key!r}]",
+                f"keyed by a month 1-12 or a run id of {self.year} such as "
+                f"'{self.year}-12-thirteenth'",
+                key,
+                feature=_FEATURE,
             )
-            raise InvalidInputError(msg, feature="year_input")
         return str(run_id)
 
     def facts_for(self, run: PayrollRun) -> PeriodFacts:

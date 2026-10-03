@@ -36,7 +36,11 @@ Each covered pay item gets one of three outcomes, recorded as a
 A definite ineligibility wins over a missing fact: a public-sector worker is
 ineligible whatever the prior-year income. Reason codes are checked in the
 order of the table. An `unknown` outcome also adds a
-`CalculationIssue` coded `<regime_id>_eligibility_unknown`, so the result
+`CalculationIssue` coded `<regime_id>_eligibility_unknown` whose `fact` is
+the public field to set: `sector` (`Employment.sector`), `activity`
+(`EmployerProfile.activity`), `agreement_signed_on`
+(`BonusEvent.agreement_signed_on`) or `employment_income`
+(`PriorYearTaxFacts.employment_income`), so the result
 status becomes `provisional`: the substitute rate is never applied to a worker
 who may turn out ineligible, and the amounts change once the missing fact is
 provided.

@@ -72,7 +72,7 @@ class TestDeferredShortfall:
 
     def test_rejects_a_tax_year_before_2020(self) -> None:
         """The engine models no tax year before 2020."""
-        with pytest.raises(ValueError, match="tax_year"):
+        with pytest.raises(InvalidInputError, match="tax_year"):
             _deferred(tax_year=2019)
 
     @pytest.mark.parametrize(
@@ -80,7 +80,7 @@ class TestDeferredShortfall:
     )
     def test_rejects_a_start_outside_the_conguaglio(self, start: date) -> None:
         """The conguaglio of 2025 is in 2025 or January-February 2026."""
-        with pytest.raises(ValueError, match="deferred_from"):
+        with pytest.raises(InvalidInputError, match="deferred_from"):
             DeferredShortfall(2025, date(2025, 12, 10), start, Decimal(1))
 
     def test_accepts_a_conguaglio_of_february(self) -> None:
@@ -93,7 +93,7 @@ class TestDeferredShortfall:
     @pytest.mark.parametrize("irpef", ["0", "-1", "Infinity"])
     def test_rejects_an_amount_that_is_not_positive(self, irpef: str) -> None:
         """Only a positive finite amount is deferred."""
-        with pytest.raises(ValueError, match="irpef"):
+        with pytest.raises(InvalidInputError, match="irpef"):
             _deferred(irpef)
 
     def test_months_and_window(self) -> None:

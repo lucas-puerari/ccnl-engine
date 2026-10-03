@@ -7,6 +7,8 @@ from typing import ClassVar, final
 
 from ccnl_engine.payroll.domain.obligations import EmploymentObligations
 from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_instances
 
 
 @final
@@ -35,19 +37,30 @@ class PeriodState:
     obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
 
     def __post_init__(self) -> None:
-        """Reject an obligation opened after the tax year of the state.
+        """Reject a field of the wrong type or an obligation opened too late.
 
         Raises:
-            ValueError: When a recovery or surtax obligation originates in a
-                year later than ``ytd.tax_year``.
+            InvalidInputError: When a field is not of its type, or a recovery
+                or surtax obligation originates in a year later than
+                ``ytd.tax_year``.
         """
+        require_instances(
+            "PeriodState",
+            (
+                ("ytd", self.ytd, TaxYearState, False),
+                ("obligations", self.obligations, EmploymentObligations, False),
+            ),
+            feature="period_state",
+        )
         latest = self.obligations.latest_tax_year
         if self.tax_year is not None and latest is not None and latest > self.tax_year:
             msg = (
                 f"obligations include one opened in {latest}, after the "
                 f"tax year of the state ({self.tax_year})"
             )
-            raise ValueError(msg)
+            raise InvalidInputError(
+                msg, field="PeriodState.obligations", feature="period_state"
+            )
 
     @property
     def tax_year(self) -> int | None:

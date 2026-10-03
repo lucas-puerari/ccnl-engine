@@ -140,12 +140,12 @@ class TestCalculationIssue:
             _issue(_INCOMPLETE, code=code)
 
     def test_fact_names_the_missing_input(self) -> None:
-        """A fact is optional and, when given, lower snake case."""
+        """A fact is optional and, when given, a public input field."""
         assert _issue(_PROVISIONAL).fact is None
-        issue = CalculationIssue("x", "unknown", _PROVISIONAL, fact="prior_income")
-        assert issue.fact == "prior_income"
-        with pytest.raises(ValueError, match="fact must be lower snake case"):
-            CalculationIssue("x", "unknown", _PROVISIONAL, fact="Prior income")
+        issue = CalculationIssue("x", "unknown", _PROVISIONAL, fact="employment_income")
+        assert issue.fact == "employment_income"
+        with pytest.raises(ValueError, match="fact must be one of"):
+            CalculationIssue("x", "unknown", _PROVISIONAL, fact="prior_income")
 
     def test_rejects_empty_message(self) -> None:
         """An issue must explain itself."""

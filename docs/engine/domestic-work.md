@@ -37,7 +37,7 @@ to compute contributions.
 Both facts are value objects validated when they are built: `WeeklyHours` must
 be positive (and not above `full_time_weekly_hours` when that is given), and
 `ContributableHours` must be a non-negative `Decimal`. Impossible values raise
-`InvalidInputError` (a `ValueError`) instead of producing negative
+`InvalidInputError` instead of producing negative
 contributions.
 
 ```python

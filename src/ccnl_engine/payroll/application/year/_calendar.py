@@ -45,9 +45,15 @@ def effective_calendar(
         override: Validated replacement of the standard calendar, or ``None``.
 
     Returns:
-        The standard calendar read on 1 January, or the override once
+        The standard calendar read on 1 January, or on the first day of
+        ``additional_months`` when the bundle starts it later in the year,
+        or the override once
         :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`
-        accepts it against that standard calendar.
+        accepts it against that standard calendar.  A CCNL whose data start
+        within the year so computes the runs from that day, and a run before
+        it reports the rule it misses (its base salary), not the calendar.
     """
-    standard = standard_calendar(ccnl, year, date(year, 1, 1))
+    first = ccnl.parameters.additional_months.periods[0].valid_from
+    as_of = first if first.year == year else date(year, 1, 1)
+    standard = standard_calendar(ccnl, year, as_of)
     return standard if override is None else override.resolve(standard)

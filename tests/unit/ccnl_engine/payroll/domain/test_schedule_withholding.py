@@ -19,6 +19,7 @@ from ccnl_engine.payroll.domain.schedule import (
     WithholdingSlot,
 )
 from ccnl_engine.payroll.service.tax_computation import compute_tax
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import make_year_rules
 
 _YEAR = 2026
@@ -41,18 +42,24 @@ class TestExtraMonthEntitlement:
 
     def test_non_decimal_rejected(self) -> None:
         """A float value is rejected instead of being coerced."""
-        with pytest.raises(TypeError, match="Decimal"):
+        with pytest.raises(InvalidInputError, match="Decimal"):
             ExtraMonthEntitlement(13.5)  # type: ignore[arg-type]
+
+    @pytest.mark.parametrize("value", [True, 13.5, "13"], ids=repr)
+    def test_of_rejects_a_value_that_is_not_a_number(self, value: object) -> None:
+        """A bool, a float or a string is not a CCNL months parameter."""
+        with pytest.raises(InvalidInputError, match="an int or a Decimal"):
+            ExtraMonthEntitlement.of(value)  # type: ignore[arg-type]
 
     @pytest.mark.parametrize("value", ["11.99", "NaN", "-Infinity"])
     def test_below_twelve_or_not_finite_rejected(self, value: str) -> None:
-        """Below 12, or not a finite number, raises ValueError."""
-        with pytest.raises(ValueError, match="minimum"):
+        """Below 12, or not a finite number, is rejected."""
+        with pytest.raises(InvalidInputError, match=">= 12 and <= 14"):
             ExtraMonthEntitlement(Decimal(value))
 
     def test_above_fourteen_rejected(self) -> None:
-        """Above 14 raises ValueError."""
-        with pytest.raises(ValueError, match="maximum"):
+        """Above 14 is rejected."""
+        with pytest.raises(InvalidInputError, match=">= 12 and <= 14"):
             ExtraMonthEntitlement(Decimal("14.01"))
 
 
@@ -76,7 +83,7 @@ class TestCalendarEntitlement:
 
     def test_partial_tredicesima_rejected(self) -> None:
         """A value between 12 and 13 is rejected, not silently dropped."""
-        with pytest.raises(ValueError, match="partial tredicesima"):
+        with pytest.raises(InvalidInputError, match="partial tredicesima"):
             WorkCalendar.from_additional_months(_YEAR, Decimal("12.5"))
 
 

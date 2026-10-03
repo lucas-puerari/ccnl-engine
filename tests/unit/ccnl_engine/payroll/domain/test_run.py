@@ -10,6 +10,7 @@ from ccnl_engine.payroll.domain.run import (
     RunKind,
     run_identifier,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
 class TestPayrollRun:
@@ -49,7 +50,7 @@ class TestPayrollRun:
 
     def test_invalid_run_kind_raises(self) -> None:
         """An unrecognised run_kind string raises ValueError at construction."""
-        with pytest.raises(ValueError, match="run_kind"):
+        with pytest.raises(InvalidInputError, match="run_kind"):
             PayrollRun(run_kind="monthly", month=1, year=2026)  # type: ignore[arg-type]
 
     def test_frozen(self) -> None:
@@ -60,17 +61,17 @@ class TestPayrollRun:
 
     def test_month_zero_raises(self) -> None:
         """month=0 raises ValueError."""
-        with pytest.raises(ValueError, match="month"):
+        with pytest.raises(InvalidInputError, match="month"):
             PayrollRun(run_kind=RunKind.REGULAR, month=0, year=2026)
 
     def test_month_thirteen_raises(self) -> None:
         """month=13 raises ValueError."""
-        with pytest.raises(ValueError, match="month"):
+        with pytest.raises(InvalidInputError, match="month"):
             PayrollRun(run_kind=RunKind.REGULAR, month=13, year=2026)
 
     def test_year_too_old_raises(self) -> None:
         """Year < 1970 raises ValueError."""
-        with pytest.raises(ValueError, match="year"):
+        with pytest.raises(InvalidInputError, match="year"):
             PayrollRun(run_kind=RunKind.REGULAR, month=1, year=1969)
 
     def test_equality(self) -> None:
@@ -100,15 +101,15 @@ class TestPayrollRunId:
     @pytest.mark.parametrize(
         ("text", "match"),
         [
-            ("2026_01", "must look like"),
-            ("2026-13-regular", "month must be 1-12"),
-            ("1969-01-regular", "year must be >= 1970"),
-            ("2026-01-bonus", "run_kind must be one of"),
+            ("2026_01", "must be a run id such as"),
+            ("2026-13-regular", "month must be an int >= 1 and <= 12"),
+            ("1969-01-regular", "year must be an int >= 1970"),
+            ("2026-01-bonus", "kind must be one of"),
         ],
     )
     def test_parse_rejects_a_malformed_id(self, text: str, match: str) -> None:
         """Only the engine's run id text is accepted."""
-        with pytest.raises(ValueError, match=match):
+        with pytest.raises(InvalidInputError, match=match):
             PayrollRunId.parse(text)
 
     def test_orders_regular_before_extra_months_and_termination(self) -> None:

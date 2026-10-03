@@ -6,12 +6,28 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING, Literal
 
+from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    require_choice,
+    require_date,
+    require_decimal,
+    require_instance,
+)
 
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.payroll.domain.period_payroll import PeriodId
+_ZERO = Decimal(0)
+_ONE = Decimal(1)
+_BONUS_KINDS = ("bonus", "productivity_bonus", "contract_renewal")
+
+
+def _check_amount(event_date: object, amount: object, event: str, feature: str) -> None:
+    """Reject an event without a date or with a negative amount."""
+    require_date(event_date, f"{event}.event_date", feature=feature)
+    require_decimal(amount, f"{event}.amount", feature=feature, minimum=_ZERO)
+
 
 __all__ = [
     "ArrearsEvent",
@@ -52,15 +68,22 @@ class BonusEvent:
     agreement_signed_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"BonusEvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="bonus")
+        _check_amount(self.event_date, self.amount, "BonusEvent", "bonus")
+        require_choice(self.kind, _BONUS_KINDS, "BonusEvent.kind", feature="bonus")
+        require_date(
+            self.agreement_signed_on,
+            "BonusEvent.agreement_signed_on",
+            feature="bonus",
+            optional=True,
+        )
         if self.agreement_signed_on is not None and self.kind != "contract_renewal":
             msg = (
                 "BonusEvent.agreement_signed_on applies only to "
                 f"kind='contract_renewal'; got kind={self.kind!r}"
             )
-            raise InvalidInputError(msg, feature="bonus")
+            raise InvalidInputError(
+                msg, field="BonusEvent.agreement_signed_on", feature="bonus"
+            )
 
 
 @dataclass(frozen=True)
@@ -81,9 +104,7 @@ class FringeEvent:
     amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"FringeEvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="fringe")
+        _check_amount(self.event_date, self.amount, "FringeEvent", "fringe")
 
 
 @dataclass(frozen=True)
@@ -99,9 +120,7 @@ class WelfareEvent:
     amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"WelfareEvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="welfare")
+        _check_amount(self.event_date, self.amount, "WelfareEvent", "welfare")
 
 
 @dataclass(frozen=True)
@@ -125,15 +144,21 @@ class ArrearsEvent:
     reference_period: PeriodId | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.amount < 0:
-            msg = f"ArrearsEvent.amount must be >= 0; got {self.amount}"
-            raise InvalidInputError(msg, feature="arrears")
-        if not (0 <= self.separate_tax_rate <= 1):
-            msg = (
-                "ArrearsEvent.separate_tax_rate must be in [0, 1]; "
-                f"got {self.separate_tax_rate}"
-            )
-            raise InvalidInputError(msg, feature="arrears")
+        _check_amount(self.event_date, self.amount, "ArrearsEvent", "arrears")
+        require_decimal(
+            self.separate_tax_rate,
+            "ArrearsEvent.separate_tax_rate",
+            feature="arrears",
+            minimum=_ZERO,
+            maximum=_ONE,
+        )
+        require_instance(
+            self.reference_period,
+            PeriodId,
+            "ArrearsEvent.reference_period",
+            feature="arrears",
+            optional=True,
+        )
 
 
 @dataclass(frozen=True)
@@ -155,15 +180,12 @@ class BilateralFundEvent:
     employer_amount: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        if self.employee_amount < 0:
-            msg = (
-                "BilateralFundEvent.employee_amount must be >= 0; "
-                f"got {self.employee_amount}"
+        feature = "bilateral_fund"
+        require_date(self.event_date, "BilateralFundEvent.event_date", feature=feature)
+        for name in ("employee_amount", "employer_amount"):
+            require_decimal(
+                getattr(self, name),
+                f"BilateralFundEvent.{name}",
+                feature=feature,
+                minimum=_ZERO,
             )
-            raise InvalidInputError(msg, feature="bilateral_fund")
-        if self.employer_amount < 0:
-            msg = (
-                "BilateralFundEvent.employer_amount must be >= 0; "
-                f"got {self.employer_amount}"
-            )
-            raise InvalidInputError(msg, feature="bilateral_fund")

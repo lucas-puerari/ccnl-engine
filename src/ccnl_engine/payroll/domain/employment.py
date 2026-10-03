@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
-from typing import Annotated, Literal
-
-from pydantic import BaseModel, ConfigDict, Field
+from typing import Literal
 
 from ccnl_engine.contract.domain.category import (
     WorkerCategory,
@@ -19,55 +18,82 @@ from ccnl_engine.payroll.domain.employment_facts import (
     check_within_full_time,
 )
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
-from ccnl_engine.payroll.domain.request_checks import type_error
-from ccnl_engine.payroll.domain.seniority_fact import (
-    SeniorityFact,
+from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
+from ccnl_engine.shared.domain.collection_validation import frozenset_of
+from ccnl_engine.shared.domain.validation import (
+    FieldSpec,
+    parse_enum,
+    reject,
+    require_instances,
+    require_int,
+    require_str,
 )
-from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
+_CONTRACT_FEATURE = "contract_type"
+#: A CCNL file name of the bundle: no directory, no other extension.
+_SLUG = re.compile(r"[a-z0-9][a-z0-9-]*\.json")
 
-class Permanent(BaseModel):
+
+@dataclass(frozen=True, slots=True)
+class Permanent:
     """Standard open-ended (permanent) employment contract."""
 
-    model_config = ConfigDict(extra="forbid")
-
-    type: Literal["permanent"] = "permanent"
+    type: Literal["permanent"] = field(default="permanent", init=False)
 
 
-class FixedTerm(BaseModel):
+@dataclass(frozen=True, slots=True)
+class FixedTerm:
     """Fixed-term contract; attracts NASpI addizionale on employer INPS."""
 
-    model_config = ConfigDict(extra="forbid")
-
-    type: Literal["fixed_term"] = "fixed_term"
+    type: Literal["fixed_term"] = field(default="fixed_term", init=False)
 
 
-class Apprentice(BaseModel):
+@dataclass(frozen=True, slots=True)
+class Apprentice:
     """Apprenticeship contract; salary is derived from CCNL apprenticeship rules.
 
     Attributes:
-        months_elapsed: Months of apprenticeship service elapsed so far.
-            Used to look up the applicable ``apprenticeship_pct`` in the
-            CCNL percentage track, or the under-classification level in
-            under-classification tracks.
+        months_elapsed: Months of apprenticeship service elapsed so far,
+            ``>= 0``.  Used to look up the applicable ``apprenticeship_pct``
+            in the CCNL percentage track, or the under-classification level
+            in under-classification tracks.
         track: Name of the CCNL apprenticeship track to apply. Required
             only when more than one track covers the destination level;
             ``None`` lets the engine select the unique applicable track.
+
+    Raises:
+        InvalidInputError: When ``months_elapsed`` is not a non-negative
+            int or ``track`` is not a non-blank string.
     """
 
-    model_config = ConfigDict(extra="forbid")
-
-    type: Literal["apprentice"] = "apprentice"
-    months_elapsed: int = Field(ge=0)
+    months_elapsed: int
     track: str | None = None
+    type: Literal["apprentice"] = field(default="apprentice", init=False)
+
+    def __post_init__(self) -> None:  # noqa: D105
+        require_int(
+            self.months_elapsed,
+            "Apprentice.months_elapsed",
+            feature=_CONTRACT_FEATURE,
+            minimum=0,
+        )
+        require_str(
+            self.track,
+            "Apprentice.track",
+            feature=_CONTRACT_FEATURE,
+            non_blank=True,
+            optional=True,
+        )
 
 
-#: Discriminated union of all supported employment contract types.
-Contract = Annotated[
-    Permanent | FixedTerm | Apprentice,
-    Field(discriminator="type"),
-]
+#: Every supported employment contract type.
+type Contract = Permanent | FixedTerm | Apprentice
+
+
+def _role(value: object, path: str) -> str:
+    require_str(value, path, feature=FEATURE, non_blank=True)
+    return str(value)
 
 
 @dataclass(frozen=True)
@@ -76,12 +102,15 @@ class Employment:
 
     Facts are validated on construction: a value of the wrong type or an
     impossible combination raises
-    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError` (a ``ValueError``)
-    instead of producing a payslip.
+    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError` instead of
+    producing a payslip.
 
     Attributes:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
-            ``"metalmeccanico-federmeccanica.json"``.
+            ``"metalmeccanico-federmeccanica.json"``: lower-case letters,
+            digits and hyphens, then ``.json``.  A name the bundle does not
+            hold raises :class:`~ccnl_engine.shared.domain.errors\
+.UnknownCcnlError` when the run loads it.
         level_code: Contractual level code, e.g. ``"C3"``.
         contract_type: :class:`Permanent`, :class:`FixedTerm` or
             :class:`Apprentice`.
@@ -102,7 +131,9 @@ class Employment:
             ``None`` means not known: a run whose level pays seniority
             increments or service-gated allowances then has a
             ``missing_fact`` blocker, and its amounts leave them out.
-        roles: Role codes that unlock role-specific contractual allowances.
+        roles: Role codes that unlock role-specific contractual allowances,
+            each a non-blank string.  A set is accepted and stored as a
+            frozenset.
         contribution_history: First enrolment in a mandatory pension scheme
             and contributory option, from which the engine derives whether
             the IVS massimale applies.  ``None`` means not known: a run whose
@@ -119,9 +150,10 @@ class Employment:
             capability records the reason ``not_enrolled``.
 
     Raises:
-        InvalidInputError: When a field is not of its type, when
-            ``weekly_hours`` exceeds ``full_time_weekly_hours``, or when
-            ``category`` or ``sector`` names no known value.
+        InvalidInputError: When a field is not of its type, a role is not a
+            non-blank string, ``weekly_hours`` exceeds
+            ``full_time_weekly_hours``, or ``category`` or ``sector`` names
+            no known value.
     """
 
     ccnl_slug: str
@@ -138,9 +170,44 @@ class Employment:
     pension_fund: PensionFundEnrolment | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        problem = type_error((
-            ("ccnl_slug", self.ccnl_slug, str, False),
-            ("level_code", self.level_code, str, False),
+        if not isinstance(self.ccnl_slug, str) or not _SLUG.fullmatch(self.ccnl_slug):
+            reject(
+                "Employment.ccnl_slug",
+                "a bundle file name such as 'metalmeccanico-federmeccanica.json'",
+                self.ccnl_slug,
+                feature=FEATURE,
+            )
+        require_str(
+            self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
+        )
+        require_instances("Employment", self._typed_fields(), feature=FEATURE)
+        roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
+        object.__setattr__(self, "roles", roles)
+        object.__setattr__(self, "category", parse_worker_category(self.category))
+        if self.sector is not None:
+            sector = parse_enum(
+                self.sector, EmploymentSector, "Employment.sector", feature=FEATURE
+            )
+            object.__setattr__(self, "sector", sector)
+        check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
+
+    def check_seniority_in(self, year: int, month: int) -> None:
+        """Reject a seniority whose recognised service starts after a month.
+
+        The run of the month ages :attr:`seniority` to it; checking on the
+        input rejects a seniority that cannot be aged to the first run
+        before any calculation, with
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
+
+        Args:
+            year: Year of the competence month of the run.
+            month: Competence month of the run, 1-12.
+        """
+        if self.seniority is not None:
+            self.seniority.months_in_month(year, month)
+
+    def _typed_fields(self) -> tuple[FieldSpec, ...]:
+        return (
             (
                 "contract_type",
                 self.contract_type,
@@ -151,7 +218,6 @@ class Employment:
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("seniority", self.seniority, SeniorityFact, True),
-            ("roles", self.roles, frozenset, False),
             (
                 "contribution_history",
                 self.contribution_history,
@@ -159,28 +225,4 @@ class Employment:
                 True,
             ),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
-        ))
-        if problem is not None:
-            raise InvalidInputError(problem, feature=FEATURE)
-        object.__setattr__(self, "category", parse_worker_category(self.category))
-        object.__setattr__(self, "sector", _sector(self.sector))
-        check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
-
-
-def _sector(value: object) -> EmploymentSector | None:
-    """Return ``value`` as an :class:`EmploymentSector`, or ``None``.
-
-    Returns:
-        The sector named by ``value``; ``None`` when ``value`` is ``None``.
-
-    Raises:
-        InvalidInputError: When ``value`` names no sector.
-    """
-    if value is None:
-        return None
-    try:
-        return EmploymentSector(str(value))
-    except ValueError:
-        valid = [s.value for s in EmploymentSector]
-        msg = f"sector must be one of {valid}; got {value!r}"
-        raise InvalidInputError(msg, feature=FEATURE) from None
+        )

@@ -20,6 +20,11 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
+from ccnl_engine.shared.domain.validation import (
+    reject,
+    require_instance,
+    require_int,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import (
@@ -95,19 +100,27 @@ class RecoveryObligation:
         Only the recoveries of :data:`RECOVERY_RULES` are modelled; a plan of
         another kind is rejected rather than carried without effect.
 
-        Raises:
-            ValueError: When ``tax_year`` is before 2020 or ``plan.kind`` is
-                not a key of :data:`RECOVERY_RULES`.
+        A ``tax_year`` before 2020 or a ``plan.kind`` that is not a key of
+        :data:`RECOVERY_RULES` raises
+        :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
+        feature = "recovery"
+        require_int(
+            self.tax_year,
+            "RecoveryObligation.tax_year",
+            feature=feature,
+            minimum=_MIN_TAX_YEAR,
+        )
+        require_instance(
+            self.plan, RecoveryPlan, "RecoveryObligation.plan", feature=feature
+        )
         if self.plan.kind not in RECOVERY_RULES:
-            msg = (
-                f"RecoveryObligation.plan.kind must be one of "
-                f"{sorted(RECOVERY_RULES)}; got {self.plan.kind!r}"
+            reject(
+                "RecoveryObligation.plan.kind",
+                f"one of {sorted(RECOVERY_RULES)}",
+                self.plan.kind,
+                feature=feature,
             )
-            raise ValueError(msg)
-        if self.tax_year < _MIN_TAX_YEAR:
-            msg = f"RecoveryObligation.tax_year must be >= 2020; got {self.tax_year}"
-            raise ValueError(msg)
 
     def post(
         self, run: InstallmentRun

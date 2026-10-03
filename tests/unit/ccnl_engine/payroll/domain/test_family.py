@@ -13,6 +13,7 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _SPOUSE = DependentRelationship.SPOUSE
 _CHILD = DependentRelationship.CHILD
@@ -34,8 +35,8 @@ class TestDependentDefaults:
         assert dep.residency_eligibility is True
 
     def test_string_relationship_coerced(self) -> None:
-        """StrEnum coerces plain string to DependentRelationship via pydantic."""
-        dep = Dependent.model_validate({"relationship": "child"})
+        """The string value of a relationship is normalized to the member."""
+        dep = Dependent(relationship="child")  # type: ignore[arg-type]
         assert dep.relationship == _CHILD
 
     def test_birth_date_accepted(self) -> None:
@@ -50,27 +51,27 @@ class TestDependentValidation:
 
     def test_negative_own_income_raises(self) -> None:
         """own_income must be >= 0."""
-        with pytest.raises(ValidationError):
+        with pytest.raises(InvalidInputError):
             Dependent(relationship=_SPOUSE, own_income=Decimal(-1))
 
     def test_months_below_one_raises(self) -> None:
         """months_dependent must be >= 1."""
-        with pytest.raises(ValidationError):
+        with pytest.raises(InvalidInputError):
             Dependent(relationship=_CHILD, months_dependent=0)
 
     def test_months_above_twelve_raises(self) -> None:
         """months_dependent must be <= 12."""
-        with pytest.raises(ValidationError):
+        with pytest.raises(InvalidInputError):
             Dependent(relationship=_CHILD, months_dependent=13)
 
     def test_allocation_below_zero_raises(self) -> None:
         """allocation_pct must be >= 0."""
-        with pytest.raises(ValidationError):
+        with pytest.raises(InvalidInputError):
             Dependent(relationship=_CHILD, allocation_pct=Decimal(-1))
 
     def test_allocation_above_hundred_raises(self) -> None:
         """allocation_pct must be <= 100."""
-        with pytest.raises(ValidationError):
+        with pytest.raises(InvalidInputError):
             Dependent(relationship=_CHILD, allocation_pct=Decimal(101))
 
     def test_frozen(self) -> None:

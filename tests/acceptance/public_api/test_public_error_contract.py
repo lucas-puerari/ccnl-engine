@@ -168,30 +168,25 @@ def test_run_before_the_first_tranche_raises_a_typed_error() -> None:
     assert "2026-03-01" in error.remediation
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=pytest.fail.Exception,
-    reason="period facts accept events that are not work events",
-)
 def test_period_facts_reject_an_event_that_is_not_a_work_event() -> None:
-    """Today the facts are built and the run fails with ``AttributeError``."""
-    with pytest.raises(InvalidInputError):
+    """An object that is not a work event is rejected with its position."""
+    with pytest.raises(InvalidInputError) as raised:
         PeriodFacts(events=(object(),))  # type: ignore[arg-type]
 
+    assert raised.value.field == "PeriodFacts.events[0]"
+    assert raised.value.remediation is not None
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=pytest.fail.Exception,
-    reason="employment accepts role codes that are not strings",
-)
+
 def test_employment_rejects_a_role_that_is_not_a_string() -> None:
-    """Today the role is accepted, ignored, and the result is ``final``."""
-    with pytest.raises(InvalidInputError):
+    """A role code that is not a string is rejected, not ignored."""
+    with pytest.raises(InvalidInputError) as raised:
         Employment(
             ccnl_slug="metalmeccanico-federmeccanica.json",
             level_code="C3",
             roles=frozenset({1}),  # type: ignore[arg-type]
         )
+
+    assert raised.value.field == "Employment.roles[1]"
 
 
 @pytest.mark.xfail(

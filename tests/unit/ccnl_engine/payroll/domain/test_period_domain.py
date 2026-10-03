@@ -83,17 +83,17 @@ class TestPeriodId:
 
     def test_month_zero_raises(self) -> None:
         """month=0 raises ValueError."""
-        with pytest.raises(ValueError, match="month"):
+        with pytest.raises(InvalidInputError, match="month"):
             PeriodId(year=2026, month=0)
 
     def test_month_thirteen_raises(self) -> None:
         """month=13 raises ValueError."""
-        with pytest.raises(ValueError, match="month"):
+        with pytest.raises(InvalidInputError, match="month"):
             PeriodId(year=2026, month=13)
 
     def test_year_zero_raises(self) -> None:
         """year=0 raises ValueError."""
-        with pytest.raises(ValueError, match="year"):
+        with pytest.raises(InvalidInputError, match="year"):
             PeriodId(year=0, month=1)
 
 

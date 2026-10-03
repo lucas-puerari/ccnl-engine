@@ -27,6 +27,7 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.service.types import MonthlyPayChain
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _YEAR = 2026
 _COOP_SOCIALI = "cooperative-sociali.json"
@@ -79,7 +80,7 @@ def test_slot_share_divides_by_run_count() -> None:
 
 def test_request_schedule_of_other_year_rejected() -> None:
     """A withholding schedule of another tax year is rejected."""
-    with pytest.raises(ValueError, match=r"withholding_schedule\.year"):
+    with pytest.raises(InvalidInputError, match=r"withholding_schedule\.year"):
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=_YEAR, month=1),

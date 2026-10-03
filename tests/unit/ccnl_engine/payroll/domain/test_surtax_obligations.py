@@ -13,6 +13,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
 )
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _REGIONAL = SurtaxComponent.REGIONAL_BALANCE
 _ADVANCE = SurtaxComponent.MUNICIPAL_ADVANCE
@@ -88,7 +89,7 @@ def test_rejects_an_invalid_obligation(kwargs: dict[str, object], match: str) ->
         "plan": RecoveryPlan.create("regional_balance", Decimal(11), 11),
     }
     fields.update(kwargs)
-    with pytest.raises(ValueError, match=match):
+    with pytest.raises(InvalidInputError, match=match):
         SurtaxObligation(**fields)  # type: ignore[arg-type]
 
 

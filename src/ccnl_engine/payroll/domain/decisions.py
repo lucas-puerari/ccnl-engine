@@ -13,18 +13,20 @@ the law from a value the caller supplied in its place.
 from __future__ import annotations
 
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable, Mapping
+    from collections.abc import Iterable
     from decimal import Decimal
 
     from ccnl_engine.provenance.domain.source import SourceLocation
 
 __all__ = [
+    "PUBLIC_FACTS",
     "CalculationDecision",
     "CalculationIssue",
     "CalculationStatus",
@@ -96,6 +98,18 @@ _SEVERITY: dict[CalculationStatus, int] = {
 }
 
 
+#: Public input field of each fact a missing-fact issue can name: the
+#: field the caller sets to resolve the issue.
+PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
+    "activity": "EmployerProfile.activity",
+    "agreement_signed_on": "BonusEvent.agreement_signed_on",
+    "contribution_history": "Employment.contribution_history",
+    "employment_income": "PriorYearTaxFacts.employment_income",
+    "sector": "Employment.sector",
+    "seniority": "Employment.seniority",
+})
+
+
 def _require_code(value: str, name: str) -> None:
     if not _CODE_PATTERN.fullmatch(value):
         msg = f"{name} must be lower snake case (e.g. 'unknown_table'); got {value!r}"
@@ -118,13 +132,14 @@ class CalculationIssue:
         message: Human-readable explanation for the caller.
         status: Status the issue implies for the result that carries it.
         source: Normative source behind the issue, when one applies.
-        fact: Name of the input fact whose absence raised the issue, in
-            lower snake case, e.g. ``"prior_income"``; ``None`` when the
-            issue is not about a missing fact.
+        fact: Name of the public input field whose absence raised the
+            issue, e.g. ``"employment_income"``; one of
+            :data:`PUBLIC_FACTS`, ``None`` when the issue is not about a
+            missing fact.
 
     Raises:
-        ValueError: When ``code`` or ``fact`` is not lower snake case or
-            ``message`` is empty.
+        ValueError: When ``code`` is not lower snake case, ``fact`` is not
+            one of :data:`PUBLIC_FACTS` or ``message`` is empty.
     """
 
     code: str
@@ -136,8 +151,9 @@ class CalculationIssue:
     def __post_init__(self) -> None:  # noqa: D105
         _require_code(self.code, "code")
         _require_text(self.message, "message")
-        if self.fact is not None:
-            _require_code(self.fact, "fact")
+        if self.fact is not None and self.fact not in PUBLIC_FACTS:
+            msg = f"fact must be one of {sorted(PUBLIC_FACTS)}; got {self.fact!r}"
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True, slots=True)

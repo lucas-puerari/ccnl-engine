@@ -8,20 +8,16 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import (
+    require_date,
+    require_decimal,
+    require_int,
+)
 
 #: Feature reported by the errors of employment facts.
 FEATURE = "employment_facts"
 
-
-def require_int(value: object, name: str) -> None:
-    """Reject a value that is not an int, a bool included.
-
-    Raises:
-        InvalidInputError: When ``value`` is not an int.
-    """
-    if isinstance(value, bool) or not isinstance(value, int):
-        msg = f"{name} must be an int; got {value!r}"
-        raise InvalidInputError(msg, feature=FEATURE)
+_ZERO = Decimal(0)
 
 
 @dataclass(frozen=True, slots=True)
@@ -38,10 +34,7 @@ class WeeklyHours:
     value: int
 
     def __post_init__(self) -> None:  # noqa: D105
-        require_int(self.value, "weekly_hours")
-        if self.value <= 0:
-            msg = f"weekly_hours must be > 0; got {self.value}"
-            raise InvalidInputError(msg, feature=FEATURE)
+        require_int(self.value, "WeeklyHours.value", feature=FEATURE, minimum=1)
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,12 +53,9 @@ class ContributableHours:
     value: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
-        if not isinstance(self.value, Decimal) or not self.value.is_finite():
-            msg = f"contributable_hours must be a finite Decimal; got {self.value!r}"
-            raise InvalidInputError(msg, feature=FEATURE)
-        if self.value < 0:
-            msg = f"contributable_hours must be >= 0; got {self.value}"
-            raise InvalidInputError(msg, feature=FEATURE)
+        require_decimal(
+            self.value, "ContributableHours.value", feature=FEATURE, minimum=_ZERO
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -78,19 +68,26 @@ class EmploymentPeriod:
             relationship.  Must not precede ``started_on``.
 
     Raises:
-        InvalidInputError: When ``ended_on`` is before ``started_on``.
+        InvalidInputError: When a date is not a ``date`` or ``ended_on`` is
+            before ``started_on``.
     """
 
     started_on: date
     ended_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
+        require_date(self.started_on, "EmploymentPeriod.started_on", feature=FEATURE)
+        require_date(
+            self.ended_on, "EmploymentPeriod.ended_on", feature=FEATURE, optional=True
+        )
         if self.ended_on is not None and self.ended_on < self.started_on:
             msg = (
                 f"ended_on ({self.ended_on}) must not precede "
                 f"started_on ({self.started_on})"
             )
-            raise InvalidInputError(msg, feature=FEATURE)
+            raise InvalidInputError(
+                msg, field="EmploymentPeriod.ended_on", feature=FEATURE
+            )
 
     @classmethod
     def from_dates(

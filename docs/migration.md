@@ -1,5 +1,35 @@
 # Migration guide
 
+## Validated public inputs and one error hierarchy
+
+Every public input is a frozen dataclass validated on construction, its
+collections element by element, and every error the engine raises is a
+`CcnlEngineError` exported at the root. No `ValueError`, `TypeError`,
+`AttributeError` or `decimal` signal reaches the caller for an input or a
+data gap.
+
+| Change | What to do |
+|---|---|
+| `InvalidInputError` no longer subclasses `ValueError` | Catch `InvalidInputError` or `CcnlEngineError`; an `except ValueError` no longer catches rejected input |
+| `InvalidInputError.field` | Read the path of the rejected field, e.g. `"PeriodFacts.events[2]"`, `"Employment.roles['x']"`, `"YearInput.periods[6]"`; `remediation` is set whenever `field` is |
+| `PeriodFacts(events=...)` accepted any object | Pass only work events; anything else raises `InvalidInputError` naming its position |
+| `Employment(roles=...)` accepted any element | Roles are non-blank strings in a `frozenset`; a `set` is rejected |
+| `Employment(ccnl_slug=...)` accepted any string | Pass a bundle file name, lower-case letters, digits and hyphens then `.json`; an unknown one raises `UnknownCcnlError` (was `FileNotFoundError`), an unknown level `UnknownLevelError` (was `ValueError`) |
+| `Permanent`, `FixedTerm`, `Apprentice`, `Dependent`, `FamilyComposition` were Pydantic models | They are frozen dataclasses: build them with keyword arguments; `model_validate`, `model_dump` and coercion of strings or ints into `Decimal` are gone. `Dependent(relationship="child")` still normalises the string |
+| Amounts accepted as `int`, `float` or any `Decimal` | Every amount and rate is a finite `Decimal`, below `1E+9` in magnitude; `NaN`, infinities and floats raise `InvalidInputError` |
+| `bool` accepted where an `int` is expected (`YearInput(year=True)`, `months_dependent=True`) | Rejected |
+| `datetime` accepted where a `date` is expected | Rejected: a `datetime` does not compare with a `date` |
+| `BonusEvent(kind=...)` accepted any string | One of `"bonus"`, `"productivity_bonus"`, `"contract_renewal"` |
+| `CalendarOverride(reason="payment_month")` was rejected | Accepted and normalised to the member, like the string values of `RunKind`, `SenioritySource`, `DependentRelationship`, `WorkerCategory`, `EmploymentSector`, `EmployerActivity`, `SubstituteTaxRegime`, `SurtaxComponent`, `OvertimeKind` and the engine mode; `ExtraMonthSchedule.kind` still takes an `ExtraMonthKind` member only |
+| `PayrollRun`, `PayrollRunId`, `WorkCalendar`, `ExtraMonthSchedule`, `RecoveryPlan`, `RecoveryObligation`, `SurtaxObligation`, `DeferredShortfall`, `PeriodState` raised `ValueError` | They raise `InvalidInputError` |
+| A seniority recognised after the first run raised on the run | `PeriodInput` and `YearInput` reject it on construction (`field="Employment.seniority"`) |
+| `YearInput(payment_day=...)` checked by the payment date helper | `InvalidInputError` with `field="YearInput.payment_day"` |
+| `OpeningBalances` reasons accepted any string | A lower snake case code such as `"full_amount"` |
+| A facade method called with a value of the wrong type raised `AttributeError` | `InvalidInputError` with `field="request"` (or `"closing_state"`, `"ccnl_id"`, `"PayrollEngine.mode"`) |
+| `MissingRequiredFactError` was not exported | Import it from `ccnl_engine` |
+| `CalculationIssue.fact` `"prior_income"` and `"agreement_signing_date"` | `"employment_income"` and `"agreement_signed_on"`, the public field names; reason codes are unchanged |
+| `calculate_year` of a CCNL whose data start during the year failed on `additional_months` | The calendar is read on the first day of the data; a run before it fails on `base_salary`, and a worker hired after it is computed |
+
 ## Recognised seniority as a dated fact
 
 Unknown seniority is no longer priced as zero seniority. The months of
@@ -517,7 +547,7 @@ Behaviour that changes with the inputs:
 - A year run takes one prior-year income for every regime and every run:
   the same worker cannot carry different incomes on different events.
 - Naming the same run twice in `periods` (by month and by run id) raises
-  `InvalidInputError`, a `ValueError`, at construction.
+  `InvalidInputError` at construction.
 - `default_facts` must carry no event.
 
 Amounts are unchanged for the same facts: the documentation examples print
@@ -605,8 +635,7 @@ the obligations that survive the year change.
 | bare period run id `"2026_01"` in item ids | `"2026-01-regular"`, the regular run of the month |
 
 - A run already closed, of a year after the tax year, or before a closed run
-  of the tax year raises `InvalidInputError` (feature `payroll_run`), a
-  subclass of `ValueError` as before.
+  of the tax year raises `InvalidInputError` (feature `payroll_run`).
 - Every YTD total rejects a negative amount. A run producing one fails with
   `DataIntegrityError`; an `OpeningBalances` with one raises
   `InvalidInputError` naming the account field (`EarningsYtd.gross`).
