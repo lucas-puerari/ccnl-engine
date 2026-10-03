@@ -15,11 +15,14 @@ from ccnl_engine.payroll.application.bundled_sources import (
     bundled_policies,
     bundled_repository,
 )
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year as _calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import (
     calculate_period as _calculate_period,
 )
-from ccnl_engine.payroll.application.calculate_year import (
-    calculate_year as _calculate_year,
+from ccnl_engine.payroll.application.calculate_tax_year import (
+    calculate_tax_year as _calculate_tax_year,
 )
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
@@ -28,21 +31,28 @@ from ccnl_engine.payroll.application.mode_input import (
     closing_state as _closing_state,
 )
 from ccnl_engine.payroll.application.mode_input import (
+    competence_plan,
+    opening_balances,
     parse_mode,
     period_request,
-    year_request,
+    tax_year_plan,
 )
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.service.discovery import ContractSummary
-    from ccnl_engine.payroll.application.calculate_year import YearResult
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+    from ccnl_engine.payroll.application.year_result import (
+        CompetenceYearResult,
+        TaxYearResult,
+    )
+    from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
     from ccnl_engine.payroll.domain.engine_mode import EngineMode
     from ccnl_engine.payroll.domain.inputs import PeriodInput
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.year_input import YearInput
+    from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 __all__ = ["PayrollEngine"]
@@ -185,24 +195,57 @@ class PayrollEngine:
             mode=self._mode,
         )
 
-    def calculate_year(self, request: YearInput) -> YearResult:
-        """Compute payroll for all runs in a year.
+    def calculate_competence_year(
+        self, plan: CompetenceYearPlan
+    ) -> CompetenceYearResult:
+        """Compute every run of a competence year, in payment order.
+
+        The common case: twelve months and the extra months of the CCNL,
+        each paid on the plan's payment day or date.  The runs paid in the
+        year settle its conguaglio on the last of them; a run paid in the
+        next tax year (December paid after 12 January) opens it.  See
+        :func:`~ccnl_engine.payroll.application.calculate_competence_year\
+.calculate_competence_year`.
 
         Args:
-            request: The year, the employment, the employer, the prior-year
+            plan: The year, the employment, the employer, the prior-year
                 facts, the facts per run, an optional calendar override, the
-                payment day and the opening state.
+                payment day and dates, and the opening state.
 
         Returns:
-            The :class:`~ccnl_engine.payroll.application.calculate_year\
-.YearResult` with one result per run and the annual totals.
+            One result per run and the annual totals;
+            ``next_opening_state`` opens the next competence year.
 
         A calendar override that drops or lowers an extra month the CCNL
         grants, or does not match its reason, raises
         :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
         """
-        return _calculate_year(
-            year_request(request),
+        return _calculate_competence_year(
+            competence_plan(plan),
+            repo=self._repo,
+            resolver=self._resolver,
+            bundle_version=__version__,
+            mode=self._mode,
+        )
+
+    def calculate_tax_year(self, plan: TaxYearPlan) -> TaxYearResult:
+        """Compute every payment cashed in a tax year, in payment order.
+
+        The payments of the competence years of ``plan`` attributed to its
+        tax year, late payments of an earlier competence year included; the
+        conguaglio falls on the last one.  See
+        :func:`~ccnl_engine.payroll.application.calculate_tax_year\
+.calculate_tax_year`.
+
+        Args:
+            plan: The tax year, its competence years and its opening state.
+
+        Returns:
+            One result per payment computed, the payments of the year and
+            the conguaglio; ``next_opening_state`` opens the next tax year.
+        """
+        return _calculate_tax_year(
+            tax_year_plan(plan),
             repo=self._repo,
             resolver=self._resolver,
             bundle_version=__version__,
@@ -224,3 +267,21 @@ class PayrollEngine:
             and the obligations still running.
         """
         return _close_tax_year(_closing_state(closing_state))
+
+    @staticmethod
+    def import_opening_balances(balances: OpeningBalances) -> PeriodState:
+        """Return the state that opens a run after another provider's totals.
+
+        The one way to start from totals the engine did not compute: a
+        mid-year takeover, the INPS base of the worker's other employers of
+        the year, the competence runs of an earlier tax year a late
+        December follows, or recoveries still running.  The totals are
+        verified against the payments that produced them.
+
+        Args:
+            balances: The totals, payments and obligations to import.
+
+        Returns:
+            The opening state, bound to ``balances.tax_year``.
+        """
+        return opening_balances(balances).to_state()

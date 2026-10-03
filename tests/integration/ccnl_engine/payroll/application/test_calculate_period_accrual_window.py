@@ -43,11 +43,7 @@ def _extra_month_req(
         payment_date=date(_YEAR, payment_month, 28),
         ccnl_slug=ccnl,
         level_code=level,
-        opening_state=PeriodState(
-            cash=TaxCashState(
-                withholding_payments_closed=payments_closed,
-            )
-        ),
+        opening_state=PeriodState(cash=TaxCashState()),
         run=run,
         employment_period=employment_period,
     )
@@ -101,11 +97,7 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             payment_date=date(_YEAR, 6, 28),
             ccnl_slug=_CCNL_METALMECCANICO,
             level_code=_LEVEL_C3,
-            opening_state=PeriodState(
-                cash=TaxCashState(
-                    withholding_payments_closed=5,
-                )
-            ),
+            opening_state=PeriodState(cash=TaxCashState()),
         )
     ).period_gross
 
@@ -165,11 +157,7 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             payment_date=date(_YEAR, 6, 28),
             ccnl_slug=_CCNL_COMMERCIO,
             level_code=_LEVEL_4,
-            opening_state=PeriodState(
-                cash=TaxCashState(
-                    withholding_payments_closed=5,
-                )
-            ),
+            opening_state=PeriodState(cash=TaxCashState()),
         )
     ).period_gross
 

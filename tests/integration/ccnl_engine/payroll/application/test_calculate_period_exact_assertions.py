@@ -21,8 +21,10 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
@@ -43,7 +45,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -66,11 +68,12 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     with months_per_year=12.  Those allowances are included in the regular
     December run but excluded from the tredicesima (months_per_year < 13).
 
-    Uses calculate_period directly (not calculate_year) because the D1 salary
-    table starts 2026-02-01, so January would raise a gap error in calculate_year.
+    Uses calculate_period directly (not calculate_competence_year) because the D1 salary
+    table starts 2026-02-01, so January would raise a gap error in a year
+    calculation.
     """
     pid = PeriodId(year=2026, month=12)
-    state = PeriodState(cash=TaxCashState(withholding_payments_closed=11))
+    state = PeriodState(cash=TaxCashState())
     regular = calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
@@ -111,7 +114,7 @@ def test_regular_december_and_tredicesima_have_distinct_ledger_ids() -> None:
     With 13 runs the year produces 65 entries, but only
     60 distinct IDs because the two December runs share entry IDs.
     """
-    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+    result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
 
     all_ids = [e.entry_id for r in result.period_results for e in r.ledger_entries]
     unique_ids = set(all_ids)

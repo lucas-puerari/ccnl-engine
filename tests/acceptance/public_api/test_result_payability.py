@@ -19,6 +19,7 @@ from ccnl_engine import (
     BlockerCode,
     BonusEvent,
     CalculationStatus,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
@@ -29,7 +30,6 @@ from ccnl_engine import (
     PeriodInput,
     PeriodResult,
     WorkerCategory,
-    YearInput,
 )
 from tests.fixtures.seniority import new_hire
 
@@ -62,6 +62,8 @@ def test_incomplete_coverage_is_not_payable() -> None:
     engine does not compute: it applies to this run, so the report has an
     ``unsupported`` gap and the result is not payable.  ``base_salary`` and
     ``somma_esente`` come from ``assumed`` rules: each is a blocker too.
+    January is the only payment of the employment, so the year's income is
+    one month of pay and the somma esente is due on an assumed income.
     """
     period = EmploymentPeriod(started_on=date(2020, 1, 1), ended_on=date(2026, 1, 30))
     result = _january(
@@ -79,7 +81,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
         for b in result.blockers
         if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
     }
-    assert result.issues == ()
+    assert [i.code for i in result.issues] == ["somma_esente_income_assumed"]
     assert result.is_payable is False
     assert gaps == {"termination_residual_leave": "unsupported"}
     assert blocked == set(gaps)
@@ -175,8 +177,8 @@ def _march(started_on: date) -> PeriodResult:
         level_code="C3",
         employment_period=EmploymentPeriod(started_on=started_on),
     )
-    year = _ENGINE.calculate_year(
-        YearInput(year=2026, employment=employment, employer=_EMPLOYER)
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=employment, employer=_EMPLOYER)
     )
     (march,) = [
         result

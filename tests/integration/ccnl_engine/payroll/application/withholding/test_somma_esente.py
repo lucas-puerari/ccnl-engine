@@ -12,7 +12,6 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
     SommaEsentePosting,
     resolve_somma_esente,
 )
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.credit_accounts import SommaEsenteAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.ledger import AccountKind
@@ -25,9 +24,9 @@ from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
+from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
 from tests.helpers import make_year_rules
@@ -38,8 +37,7 @@ if TYPE_CHECKING:
 _ZERO = Decimal(0)
 _YEAR = 2026
 # 12 slots, one per regular month.
-_SCHEDULE = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
-_SLOTS = _SCHEDULE.run_count.value
+_SLOTS = 12
 _RULES = make_year_rules().model_copy(
     update={
         "somma_esente": SommaEsenteRules(
@@ -76,7 +74,6 @@ def _tax(annual: Decimal | None) -> TaxComputation:
 
 def _opening(
     *,
-    closed: int,
     recognized: Decimal = _ZERO,
     recovered: Decimal = _ZERO,
     plan: RecoveryPlan | None = None,
@@ -91,21 +88,36 @@ def _opening(
     return PeriodState(
         cash=TaxCashState(
             tax_year=_YEAR,
-            withholding_payments_closed=closed,
             somma_esente=SommaEsenteAccount(recognized=recognized, recovered=recovered),
             obligations=obligations,
         )
     )
 
 
+def _position(closed: int) -> WithholdingPosition:
+    """Return the position of a run after ``closed`` of the twelve slots.
+
+    Returns:
+        The position, settling the conguaglio on the last slot.
+    """
+    remaining = max(1, _SLOTS - closed)
+    return WithholdingPosition(
+        slots=_SLOTS, remaining=remaining, upcoming=(), settles=remaining == 1
+    )
+
+
 def _resolve(
-    annual: Decimal | None, opening: PeriodState, rules: YearRules = _RULES
+    annual: Decimal | None,
+    opening: PeriodState,
+    rules: YearRules = _RULES,
+    *,
+    closed: int,
 ) -> SommaEsenteOutcome:
     return resolve_somma_esente(
         _tax(annual),
         rules,
         opening,
-        _SCHEDULE,
+        _position(closed),
         _YEAR,
         _POSTING,
     )
@@ -116,7 +128,7 @@ class TestBeforeTheConguaglio:
 
     def test_pays_the_slot_share(self) -> None:
         """1,200 EUR over 12 slots: 100.00 per run."""
-        outcome = _resolve(Decimal(1200), _opening(closed=0))
+        outcome = _resolve(Decimal(1200), _opening(), closed=0)
 
         assert outcome.amount == Decimal("100.00")
         assert outcome.due == Decimal("1200.00")
@@ -128,13 +140,13 @@ class TestBeforeTheConguaglio:
 
     def test_caps_the_share_at_what_is_still_due(self) -> None:
         """1,150 paid of 1,200 due: the run pays the 50 left, not 100."""
-        outcome = _resolve(Decimal(1200), _opening(closed=5, recognized=Decimal(1150)))
+        outcome = _resolve(Decimal(1200), _opening(recognized=Decimal(1150)), closed=5)
 
         assert outcome.amount == Decimal(50)
 
     def test_holds_an_excess_until_the_conguaglio(self) -> None:
         """The due fell below what was paid: nothing paid, nothing recovered."""
-        outcome = _resolve(Decimal(300), _opening(closed=6, recognized=Decimal(600)))
+        outcome = _resolve(Decimal(300), _opening(recognized=Decimal(600)), closed=6)
 
         assert outcome.amount == _ZERO
         assert outcome.reason == "overpayment_pending_conguaglio"
@@ -143,7 +155,7 @@ class TestBeforeTheConguaglio:
 
     def test_not_due_on_income_above_the_bands(self) -> None:
         """No component: zero, with a decision saying so."""
-        outcome = _resolve(None, _opening(closed=0))
+        outcome = _resolve(None, _opening(), closed=0)
 
         assert outcome.amount == _ZERO
         assert outcome.due == _ZERO
@@ -153,7 +165,7 @@ class TestBeforeTheConguaglio:
 
     def test_due_amount_is_provisional_on_the_income_assumed(self) -> None:
         """A due somma esente rests on employment income as reddito complessivo."""
-        outcome = _resolve(Decimal(1200), _opening(closed=0))
+        outcome = _resolve(Decimal(1200), _opening(), closed=0)
 
         (issue,) = outcome.issues
         assert issue.code == "somma_esente_income_assumed"
@@ -167,7 +179,8 @@ class TestAtTheConguaglio:
         """The last slot pays exactly the due not yet paid, cents included."""
         outcome = _resolve(
             Decimal("877.04064"),
-            _opening(closed=_SLOTS - 1, recognized=Decimal("809.52")),
+            _opening(recognized=Decimal("809.52")),
+            closed=_SLOTS - 1,
         )
 
         assert outcome.amount == Decimal("67.52")
@@ -176,7 +189,7 @@ class TestAtTheConguaglio:
     def test_recovers_up_to_60_eur_in_full(self) -> None:
         """40 EUR paid in excess are recovered on the conguaglio payslip."""
         outcome = _resolve(
-            Decimal(500), _opening(closed=_SLOTS - 1, recognized=Decimal(540))
+            Decimal(500), _opening(recognized=Decimal(540)), closed=_SLOTS - 1
         )
 
         assert outcome.amount == Decimal(-40)
@@ -193,7 +206,7 @@ class TestAtTheConguaglio:
     def test_recovers_above_60_eur_in_ten_installments(self) -> None:
         """150 EUR in excess: 15 EUR now, nine installments left."""
         outcome = _resolve(
-            Decimal(500), _opening(closed=_SLOTS - 1, recognized=Decimal(650))
+            Decimal(500), _opening(recognized=Decimal(650)), closed=_SLOTS - 1
         )
 
         assert outcome.amount == Decimal("-15.00")
@@ -210,7 +223,8 @@ class TestAtTheConguaglio:
         """Recovered credit is not recovered twice."""
         outcome = _resolve(
             Decimal(500),
-            _opening(closed=_SLOTS - 1, recognized=Decimal(540), recovered=Decimal(40)),
+            _opening(recognized=Decimal(540), recovered=Decimal(40)),
+            closed=_SLOTS - 1,
         )
 
         assert outcome.amount == _ZERO
@@ -225,7 +239,7 @@ class TestRunningRecovery:
     def test_posts_the_next_installment(self) -> None:
         """The plan, not the projection, sets the amount."""
         plan = self._PLAN.advance()
-        outcome = _resolve(Decimal(500), _opening(closed=_SLOTS, plan=plan))
+        outcome = _resolve(Decimal(500), _opening(plan=plan), closed=_SLOTS)
 
         assert outcome.amount == Decimal("-15.00")
         assert outcome.reason == "installment_posted"
@@ -235,7 +249,7 @@ class TestRunningRecovery:
     def test_last_installment_closes_the_plan(self) -> None:
         """After the last installment no plan is left."""
         plan = replace(self._PLAN, installments_posted=9)
-        outcome = _resolve(Decimal(500), _opening(closed=_SLOTS, plan=plan))
+        outcome = _resolve(Decimal(500), _opening(plan=plan), closed=_SLOTS)
 
         assert outcome.amount == Decimal("-15.00")
         assert outcome.reason == "last_installment_posted"
@@ -249,13 +263,13 @@ class TestNotInForce:
         """No amount, no posting, no decision."""
         rules = _RULES.model_copy(update={"somma_esente": None})
 
-        assert _resolve(None, _opening(closed=0), rules) == SommaEsenteOutcome()
+        assert _resolve(None, _opening(), rules, closed=0) == SommaEsenteOutcome()
 
     def test_still_settles_what_was_paid(self) -> None:
         """Credit paid under rules no longer in force is recovered at conguaglio."""
         rules = _RULES.model_copy(update={"somma_esente": None})
         outcome = _resolve(
-            None, _opening(closed=_SLOTS - 1, recognized=Decimal(30)), rules
+            None, _opening(recognized=Decimal(30)), rules, closed=_SLOTS - 1
         )
 
         assert outcome.amount == Decimal(-30)
@@ -269,7 +283,8 @@ class TestLastRunOfTheEmployment:
         """150 EUR in excess are recovered at once, above 60 EUR too."""
         outcome = _resolve_on(
             InstallmentRun(final=True),
-            _opening(closed=_SLOTS - 1, recognized=Decimal(650)),
+            _opening(recognized=Decimal(650)),
+            closed=_SLOTS - 1,
         )
 
         assert outcome.amount == Decimal(-150)
@@ -281,7 +296,8 @@ class TestLastRunOfTheEmployment:
         plan = RecoveryPlan.create(SOMMA_ESENTE_RECOVERY, Decimal(150), 10).advance()
         outcome = _resolve_on(
             InstallmentRun(adjustment=True),
-            _opening(closed=_SLOTS, recognized=Decimal(650), plan=plan),
+            _opening(recognized=Decimal(650), plan=plan),
+            closed=_SLOTS,
         )
 
         assert outcome.amount == Decimal("-15.00")
@@ -289,12 +305,14 @@ class TestLastRunOfTheEmployment:
         assert outcome.plan == plan.advance()
 
 
-def _resolve_on(run: InstallmentRun, opening: PeriodState) -> SommaEsenteOutcome:
+def _resolve_on(
+    run: InstallmentRun, opening: PeriodState, *, closed: int
+) -> SommaEsenteOutcome:
     return resolve_somma_esente(
         _tax(Decimal(500)),
         _RULES,
         opening,
-        _SCHEDULE,
+        _position(closed),
         _YEAR,
         replace(_POSTING, run=run),
     )

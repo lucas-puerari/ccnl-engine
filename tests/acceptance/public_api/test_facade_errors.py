@@ -24,6 +24,8 @@ from ccnl_engine import (
     BilateralFundEvent,
     BonusEvent,
     CcnlEngineError,
+    CompetenceYearPlan,
+    CompetenceYearResult,
     ContributableHours,
     Dependent,
     DependentRelationship,
@@ -51,8 +53,6 @@ from ccnl_engine import (
     TerminationTFREvent,
     WeeklyHours,
     WelfareEvent,
-    YearInput,
-    YearResult,
 )
 
 if TYPE_CHECKING:
@@ -108,7 +108,7 @@ def _june(employment: Employment, facts: PeriodFacts) -> PeriodInput:
     "call",
     [
         _ENGINE.calculate_period,
-        _ENGINE.calculate_year,
+        _ENGINE.calculate_competence_year,
         _ENGINE.close_tax_year,
         _ENGINE.inspect_ruleset,
         lambda v: PayrollEngine.bundled(mode=v),
@@ -191,9 +191,13 @@ class TestSeniorityOnTheInput:
         )
         if rejected:
             with pytest.raises(InvalidInputError, match="starts after"):
-                YearInput(year=_YEAR, employment=employment, employer=_EMPLOYER)
+                CompetenceYearPlan(
+                    year=_YEAR, employment=employment, employer=_EMPLOYER
+                )
         else:
-            assert YearInput(year=_YEAR, employment=employment, employer=_EMPLOYER)
+            assert CompetenceYearPlan(
+                year=_YEAR, employment=employment, employer=_EMPLOYER
+            )
 
 
 class TestYearOfContractStartingDuringTheYear:
@@ -201,13 +205,13 @@ class TestYearOfContractStartingDuringTheYear:
 
     def test_a_year_from_january_reports_the_missing_base_salary(self) -> None:
         """ANAS pay tables start on 1 March 2026: January has no base salary."""
-        request = YearInput(
+        request = CompetenceYearPlan(
             year=_YEAR,
             employment=Employment(ccnl_slug="anas.json", level_code="C1"),
             employer=_EMPLOYER,
         )
         with pytest.raises(MissingRuleError) as raised:
-            _ENGINE.calculate_year(request)
+            _ENGINE.calculate_competence_year(request)
         assert raised.value.feature == "base_salary"
         assert raised.value.as_of == date(_YEAR, 1, 1)
 
@@ -218,8 +222,8 @@ class TestYearOfContractStartingDuringTheYear:
             level_code="C1",
             employment_period=EmploymentPeriod(started_on=date(_YEAR, 4, 1)),
         )
-        result = _ENGINE.calculate_year(
-            YearInput(year=_YEAR, employment=employment, employer=_EMPLOYER)
+        result = _ENGINE.calculate_competence_year(
+            CompetenceYearPlan(year=_YEAR, employment=employment, employer=_EMPLOYER)
         )
         assert result.period_results[0].period_id.month == 4
 
@@ -377,7 +381,7 @@ def test_any_year_and_its_closing_give_a_result_or_a_public_error(
 ) -> None:
     """A year with events in any month, then the opening of the next one."""
     periods = {month: data.draw(_events(month)) for month in sorted(months)}
-    request = YearInput(
+    request = CompetenceYearPlan(
         year=_YEAR,
         employment=_employment(contract, weekly_hours),
         employer=_EMPLOYER,
@@ -386,8 +390,10 @@ def test_any_year_and_its_closing_give_a_result_or_a_public_error(
             for month, events in periods.items()
         },
     )
-    results: list[YearResult] = []
-    error = _public_outcome(lambda: results.append(_ENGINE.calculate_year(request)))
+    results: list[CompetenceYearResult] = []
+    error = _public_outcome(
+        lambda: results.append(_ENGINE.calculate_competence_year(request))
+    )
     if error is None:
         closing = results[0].period_results[-1].closing_state
         _public_outcome(lambda: _ENGINE.close_tax_year(closing))

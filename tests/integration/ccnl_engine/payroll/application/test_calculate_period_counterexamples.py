@@ -15,6 +15,7 @@ Counterexamples:
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -84,11 +85,13 @@ def test_excess_ytd_produces_refund() -> None:
     """
     high_ytd = PeriodState(
         cash=TaxCashState(
-            withholding_payments_closed=12,
             tax=TaxYtd(irpef=Decimal("5000.00")),
         )
     )
-    result = calculate_period(_req(month=12, opening=high_ytd))
+    # No payment planned after December: it settles the conguaglio.
+    result = calculate_period(
+        replace(_req(month=12, opening=high_ytd), planned_payments=())
+    )
 
     # Refund appears as a positive TAX_REFUNDS entry (tax_refund_item), not as
     # negative ORDINARY_TAX.

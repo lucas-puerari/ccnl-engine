@@ -1,9 +1,8 @@
 """Field checks of the opening balances imported from another provider.
 
 Each scalar field is checked by its annotation: an amount is a finite,
-non-negative ``Decimal`` with at most two decimals, a counter a
-non-negative ``int``, a reason a lower snake case code; each collection holds
-only its element type.
+non-negative ``Decimal`` with at most two decimals, a reason a lower snake
+case code; each collection holds only its element type.
 """
 
 from __future__ import annotations
@@ -14,6 +13,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
+from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
     reject,
     require_code,
@@ -24,7 +24,10 @@ from ccnl_engine.shared.domain.validation import (
 if TYPE_CHECKING:
     from _typeshed import DataclassInstance
 
-__all__ = ["FEATURE", "check_scalar_fields", "items"]
+    from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
+    from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
+
+__all__ = ["FEATURE", "check_carried", "check_scalar_fields", "items"]
 
 #: Feature reported by the errors of the opening balances.
 FEATURE = "opening_balances"
@@ -69,6 +72,39 @@ def items[T](value: object, name: str, item: type[T]) -> tuple[T, ...]:
     )
 
 
+def check_carried(
+    tax_year: int,
+    deferred_shortfall: DeferredShortfall | None,
+    surtax_obligations: tuple[SurtaxObligation, ...],
+) -> None:
+    """Reject obligations not carried from a year before ``tax_year``.
+
+    Raises:
+        InvalidInputError: When the deferral is of a conguaglio other than
+            that of ``tax_year - 1``, or a surtax obligation is determined
+            by the conguaglio of ``tax_year`` or later.
+    """
+    deferred = deferred_shortfall
+    if deferred is not None and deferred.tax_year != tax_year - 1:
+        msg = (
+            "OpeningBalances.deferred_shortfall must be deferred by the "
+            f"conguaglio of {tax_year - 1}; got {deferred.tax_year}"
+        )
+        raise InvalidInputError(
+            msg, field="OpeningBalances.deferred_shortfall", feature=FEATURE
+        )
+    late = [o for o in surtax_obligations if o.tax_year >= tax_year]
+    if late:
+        msg = (
+            f"OpeningBalances.surtax_obligations must be determined by "
+            f"the conguaglio of a year before {tax_year}; got "
+            f"{[(o.component.value, o.tax_year) for o in late]}"
+        )
+        raise InvalidInputError(
+            msg, field="OpeningBalances.surtax_obligations", feature=FEATURE
+        )
+
+
 def _amount(value: object, path: str) -> None:
     """Reject an amount that is not a non-negative Decimal in cents."""
     require_decimal(value, path, feature=FEATURE, minimum=_ZERO)
@@ -83,10 +119,6 @@ def _optional_amount(value: object, path: str) -> None:
         _amount(value, path)
 
 
-def _counter(value: object, path: str) -> None:
-    require_int(value, path, feature=FEATURE, minimum=0)
-
-
 def _reason(value: object, path: str) -> None:
     require_code(value, path, feature=FEATURE, optional=True)
 
@@ -95,6 +127,5 @@ def _reason(value: object, path: str) -> None:
 _FIELD_CHECKS: dict[str, Callable[[object, str], None]] = {
     "Decimal": _amount,
     "Decimal | None": _optional_amount,
-    "int": _counter,
     "str | None": _reason,
 }

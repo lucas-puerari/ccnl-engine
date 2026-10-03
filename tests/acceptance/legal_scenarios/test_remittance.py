@@ -17,7 +17,12 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import Employment, PriorYearTaxFacts, RemittanceColumn, YearInput
+from ccnl_engine import (
+    CompetenceYearPlan,
+    Employment,
+    PriorYearTaxFacts,
+    RemittanceColumn,
+)
 from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
     ENGINE,
@@ -75,8 +80,8 @@ def test_year_offsets_the_whole_trattamento_under_1701() -> None:
     of 13 x 1,148.30 = 14,927.90 EUR, within the 15,000 EUR of c. 1.  The
     year summary is the sum of the run summaries, code by code.
     """
-    year = ENGINE.calculate_year(
-        YearInput(
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(ccnl_slug=_PORTIERI, level_code="B5"),
             employer=EMPLOYER,

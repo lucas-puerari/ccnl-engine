@@ -11,12 +11,12 @@ from dataclasses import replace
 from typing import TYPE_CHECKING, Any
 
 from ccnl_engine.contract.domain.identity import CCNL
+from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
 from ccnl_engine.payroll.domain.tax_year import DEFAULT_PAYMENT_DAY
-from ccnl_engine.payroll.domain.year_input import YearInput
 from ccnl_engine.tax.domain.ruleset import YearRules
 from tests.fixtures.seniority import new_hire
 
@@ -320,7 +320,7 @@ def make_minimal_ccnl(*, app_type: str = "percentage") -> CCNL:
 EMPLOYER_50 = EmployerProfile(headcount=Headcount(50))
 
 
-def year_input(
+def year_plan(
     year: int,
     ccnl_slug: str,
     level_code: str,
@@ -336,8 +336,8 @@ def year_input(
     payment_day: int = DEFAULT_PAYMENT_DAY,
     opening_state: PeriodState | None = None,
     **employment: Any,  # noqa: ANN401
-) -> YearInput:
-    """Build a :class:`YearInput` whose runs share the same facts.
+) -> CompetenceYearPlan:
+    """Build a :class:`CompetenceYearPlan` whose runs share the same facts.
 
     Every run takes ``facts``; a run keyed in ``events`` takes ``facts`` with
     those events.  ``employment`` holds the :class:`Employment` fields other
@@ -349,7 +349,7 @@ def year_input(
     """
     employment.setdefault("seniority", new_hire(year))
     base = facts if facts is not None else PeriodFacts()
-    return YearInput(
+    return CompetenceYearPlan(
         year=year,
         employment=Employment(ccnl_slug=ccnl_slug, level_code=level_code, **employment),
         employer=employer,

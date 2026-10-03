@@ -4,13 +4,12 @@ from __future__ import annotations
 
 from dataclasses import FrozenInstanceError, replace
 from decimal import Decimal
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
@@ -23,7 +22,10 @@ from ccnl_engine.provenance.domain.source import (
     SourceKind,
     SourceLocation,
 )
-from tests.helpers import year_input
+from tests.helpers import year_plan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
 
 _FINAL = CalculationStatus.FINAL
 _PROVISIONAL = CalculationStatus.PROVISIONAL
@@ -60,13 +62,15 @@ def _decision(**overrides: Any) -> CalculationDecision:  # noqa: ANN401
 
 
 @pytest.fixture(scope="module")
-def year_result() -> YearResult:
+def year_result() -> CompetenceYearResult:
     """Compute the standard year (13 runs) through the real pipeline.
 
     Returns:
         The year result of a metalmeccanico C3 worker in 2026.
     """
-    return calculate_year(year_input(2026, "metalmeccanico-federmeccanica.json", "C3"))
+    return calculate_competence_year(
+        year_plan(2026, "metalmeccanico-federmeccanica.json", "C3")
+    )
 
 
 class TestCalculationStatus:
@@ -234,14 +238,16 @@ class TestPeriodResultStatus:
     """Status of a period result is derived from its issues."""
 
     def test_computed_result_is_final_without_issues(
-        self, year_result: YearResult
+        self, year_result: CompetenceYearResult
     ) -> None:
         """No capability raises issues yet: every result is final."""
         period = year_result.period_results[0]
         assert period.issues == ()
         assert period.assurance.calculation is _FINAL
 
-    def test_status_is_worst_issue_status(self, year_result: YearResult) -> None:
+    def test_status_is_worst_issue_status(
+        self, year_result: CompetenceYearResult
+    ) -> None:
         """The period status is the most severe status among its issues."""
         period = replace(
             year_result.period_results[0],
@@ -254,20 +260,24 @@ class TestYearResultStatus:
     """Status and issues of a year result aggregate its periods."""
 
     def test_computed_year_is_final_without_issues(
-        self, year_result: YearResult
+        self, year_result: CompetenceYearResult
     ) -> None:
         """A year of issue-free periods is final."""
         assert year_result.issues == ()
         assert year_result.assurance.calculation is _FINAL
 
-    def test_empty_year_has_no_assurance(self, year_result: YearResult) -> None:
+    def test_empty_year_has_no_assurance(
+        self, year_result: CompetenceYearResult
+    ) -> None:
         """A year without periods has no issues and no assurance to combine."""
         empty = replace(year_result, period_results=())
         assert empty.issues == ()
         with pytest.raises(ValueError, match="no run"):
             _ = empty.assurance
 
-    def test_status_is_worst_period_status(self, year_result: YearResult) -> None:
+    def test_status_is_worst_period_status(
+        self, year_result: CompetenceYearResult
+    ) -> None:
         """The year status is the worst period status; issues keep run order."""
         first_run, *middle_runs, last_run = year_result.period_results
         first = _issue(_PROVISIONAL, code="first")
@@ -285,7 +295,7 @@ class TestYearResultStatus:
         assert year.issues == (first, second, third)
 
 
-def test_year_issues_are_listed_once(year_result: YearResult) -> None:
+def test_year_issues_are_listed_once(year_result: CompetenceYearResult) -> None:
     """An issue repeated on every run is listed once, at its first run.
 
     The same code with another message is a different issue and is kept.

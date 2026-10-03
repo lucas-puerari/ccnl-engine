@@ -40,11 +40,7 @@ class TestExtraMonthRateo:
             payment_date=date(2026, period_month, 28),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
-            opening_state=PeriodState(
-                cash=TaxCashState(
-                    withholding_payments_closed=payments_closed,
-                )
-            ),
+            opening_state=PeriodState(cash=TaxCashState()),
             run=run,
             employment_period=employment_period,
         )
@@ -109,11 +105,7 @@ class TestExtraMonthRateo:
                 payment_date=date(2026, 6, 28),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                opening_state=PeriodState(
-                    cash=TaxCashState(
-                        withholding_payments_closed=5,
-                    )
-                ),
+                opening_state=PeriodState(cash=TaxCashState()),
             )
         ).period_gross
         regular_dec = calculate_period(
@@ -123,11 +115,7 @@ class TestExtraMonthRateo:
                 payment_date=date(2026, 12, 28),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                opening_state=PeriodState(
-                    cash=TaxCashState(
-                        withholding_payments_closed=11,
-                    )
-                ),
+                opening_state=PeriodState(cash=TaxCashState()),
             )
         ).period_gross
         assert jun_thirteenth == regular_june

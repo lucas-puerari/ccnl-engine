@@ -11,11 +11,11 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 from functools import cache
+from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.credit_accounts import UlterioreDetrazioneAccount
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
@@ -33,7 +33,10 @@ from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef
-from tests.helpers import year_input
+from tests.helpers import year_plan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)
@@ -127,7 +130,7 @@ _ABSENCE = AbsenceEvent(
 
 
 @cache
-def _year() -> YearResult:
+def _year() -> CompetenceYearResult:
     """C3 at 33 of 40 hours: about 20,950 EUR of taxable, 1,000 EUR deduction.
 
     144 absence hours on the tredicesima payslip, the conguaglio, bring the
@@ -137,8 +140,8 @@ def _year() -> YearResult:
     Returns:
         The year result.
     """
-    return calculate_year(
-        year_input(
+    return calculate_competence_year(
+        year_plan(
             2026,
             _CCNL,
             "C3",
@@ -204,7 +207,7 @@ def test_excess_is_not_deferred_without_a_later_payslip() -> None:
 
 
 @cache
-def _terminated() -> YearResult:
+def _terminated() -> CompetenceYearResult:
     """C3 at 38 of 40 hours, employed 1 January to 30 November 2026.
 
     About 20,400 EUR of projected taxable income; 144 absence hours in
@@ -226,8 +229,8 @@ def _terminated() -> YearResult:
         )
         for month in (10, 11)
     }
-    return calculate_year(
-        year_input(
+    return calculate_competence_year(
+        year_plan(
             2026,
             _CCNL,
             "C3",
@@ -277,8 +280,10 @@ def test_installments_carried_into_the_next_year() -> None:
     opening = PeriodState(
         cash=TaxCashState(obligations=EmploymentObligations(recoveries=(_carried(7),)))
     )
-    with_plan = calculate_year(year_input(2026, _CCNL, "C3", opening_state=opening))
-    without = calculate_year(year_input(2026, _CCNL, "C3"))
+    with_plan = calculate_competence_year(
+        year_plan(2026, _CCNL, "C3", opening_state=opening)
+    )
+    without = calculate_competence_year(year_plan(2026, _CCNL, "C3"))
     assert without.annual_net - with_plan.annual_net == Decimal("60.00")
     reasons = [
         d.reason_code

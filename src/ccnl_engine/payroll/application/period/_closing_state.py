@@ -57,7 +57,8 @@ class RunOutcome:
 
     Attributes:
         tax_year: Tax year the run is attributed to.
-        withholding_slots: Slots of the withholding schedule of the run.
+        conguaglio: Whether the payment leaves no withholding slot of its
+            tax year unpaid, so it settles the conguaglio.
         payment: The payment the run closes: its run and payment date.
         entries: Every ledger entry of the run.
         period_inps_base: INPS base of the run.
@@ -73,7 +74,7 @@ class RunOutcome:
     """
 
     tax_year: int
-    withholding_slots: int
+    conguaglio: bool
     payment: PaymentId
     entries: tuple[LedgerEntry, ...]
     period_inps_base: Decimal
@@ -139,7 +140,7 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         deferred_shortfall=outcome.deferred,
     )
     return PeriodState(
-        accrual=opening.accrual.after(outcome.payment.run_id),
+        accrual=opening.accrual.after(outcome.payment.run_id, outcome.period_inps_base),
         cash=_closing_cash(opening.cash, outcome, obligations),
     )
 
@@ -183,11 +184,11 @@ def _closing_cash(
     return TaxCashState(
         tax_year=outcome.tax_year,
         payments=(*op.payments, outcome.payment),
-        withholding_payments_closed=op.withholding_payments_closed + int(slot),
-        withholding_slots=outcome.withholding_slots,
+        conguaglio=(
+            outcome.payment if outcome.conguaglio else None if slot else op.conguaglio
+        ),
         earnings=EarningsYtd(
             gross=op.earnings.gross + _sum_ledger(entries, AccountKind.CASH_EARNINGS),
-            inps_base=op.earnings.inps_base + outcome.period_inps_base,
             taxable=op.earnings.taxable + amounts.period_taxable,
             inps_employee=op.earnings.inps_employee
             + _sum_ledger(entries, AccountKind.EMPLOYEE_CONTRIBUTIONS),

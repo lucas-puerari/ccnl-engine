@@ -15,13 +15,13 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     PayrollEngine,
     PeriodFacts,
     WeeklyHours,
-    YearInput,
 )
 from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
 
@@ -41,8 +41,8 @@ def _run(weekly_hours: int) -> PeriodResult:
     Returns:
         The last run of the year, the tredicesima of Metalmeccanico C3.
     """
-    year = _ENGINE.calculate_year(
-        YearInput(
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=_YEAR,
             employment=Employment(
                 ccnl_slug="metalmeccanico-federmeccanica.json",

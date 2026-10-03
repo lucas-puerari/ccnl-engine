@@ -9,8 +9,10 @@ from typing import TYPE_CHECKING
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.allocate_events import _process_events
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.application.period._run_decisions import (
@@ -42,7 +44,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
 from tests.fixtures.seniority import new_hire
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
@@ -267,8 +269,8 @@ class TestYearDecisions:
 
     def test_year_decisions_concatenate_runs(self) -> None:
         """Year decisions are the run decisions in payment order."""
-        year = calculate_year(
-            year_input(_YEAR, _METALMECCANICO, "C3"), resolver=_RESOLVER
+        year = calculate_competence_year(
+            year_plan(_YEAR, _METALMECCANICO, "C3"), resolver=_RESOLVER
         )
         runs = year.period_results
         assert year.decisions == tuple(d for r in runs for d in r.decisions)

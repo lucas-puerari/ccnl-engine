@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
+
 import pytest
 
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -109,3 +112,35 @@ class TestEmploymentAccrualState:
         """Each element is a PayrollRunId."""
         with pytest.raises(InvalidInputError):
             EmploymentAccrualState(competence_runs=runs)  # type: ignore[arg-type]
+
+
+class TestInpsBases:
+    """The INPS base toward the massimale, per competence year."""
+
+    def test_a_run_adds_its_base_to_its_competence_year(self) -> None:
+        """December 2026 adds to 2026 even after January 2027."""
+        state = (
+            EmploymentAccrualState()
+            .after(PayrollRunId.parse("2027-01-regular"), Decimal(10))
+            .after(PayrollRunId.parse("2026-12-regular"), Decimal(20))
+        )
+
+        assert [b.year for b in state.inps_bases] == [2026, 2027]
+        assert state.inps_base(2026).own == Decimal(20)
+        assert state.inps_base(2025) == InpsBaseYtd(2025)
+
+    @pytest.mark.parametrize("years", [(2027, 2026), (2026, 2026)])
+    def test_rejects_bases_out_of_year_order(self, years: tuple[int, int]) -> None:
+        """One base per year, in year order."""
+        bases = tuple(InpsBaseYtd(y) for y in years)
+        with pytest.raises(InvalidInputError, match="one base per year") as info:
+            EmploymentAccrualState(inps_bases=bases)
+
+        assert info.value.field == "EmploymentAccrualState.inps_bases"
+
+    def test_an_extra_month_closes_once_whatever_its_month(self) -> None:
+        """The quattordicesima of 2026 paid in July is the one of June."""
+        state = _state("2026-06-fourteenth")
+
+        with pytest.raises(InvalidInputError, match="already closed as"):
+            state.check_next_run(PayrollRunId.parse("2026-07-fourteenth"))

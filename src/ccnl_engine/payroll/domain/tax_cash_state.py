@@ -13,7 +13,7 @@ is set on them.  The competence months closed are counted by
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from ccnl_engine.payroll.domain.credit_accounts import (
     SommaEsenteAccount,
@@ -37,6 +37,9 @@ from ccnl_engine.shared.domain.validation import (
     require_int,
 )
 
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.run import PayrollRunId
+
 __all__ = ["TaxCashState"]
 
 _FEATURE = "tax_cash_state"
@@ -54,22 +57,18 @@ class TaxCashState:
         tax_year: Tax year of the payments and accounts.  ``None`` on a
             manually built state not yet bound to a year; every state
             produced by a run carries it.
-        payments: Payments closed this tax year, in closing order.  Each
-            belongs to :attr:`tax_year` and pays a different run; their
-            number has no maximum.  Integrations that do not keep payment
-            ids may leave it empty and state only
-            :attr:`withholding_payments_closed`.
-        withholding_payments_closed: Payments of this tax year that took an
-            IRPEF withholding slot (every run kind but adjustment), at
-            least as many as such payments in :attr:`payments`.  The
-            projection and the conguaglio divide the tax still due over
-            the slots of the withholding schedule after these.
-        withholding_slots: Slots of the withholding schedule the last run
-            was computed on: the payments planned for the tax year, the
-            last of which settles the conguaglio.  ``None`` before the
-            first run.
-        earnings: Running totals for earned income and INPS contribution
-            bases (gross, taxable, INPS base, employee INPS).
+        payments: Payments closed this tax year, in payment order: each
+            belongs to :attr:`tax_year`, pays a different run and is dated
+            on or after the payment before it.  Their number has no
+            maximum.  The withholding schedule reads which of its slots are
+            paid from them, by run.
+        conguaglio: The payment that settled the conguaglio of the tax year:
+            the last payment that takes a withholding slot, when it left no
+            slot of its schedule unpaid.  ``None`` until then, and again
+            after a later payment that takes a slot without settling.
+        earnings: Running totals for earned income (gross, taxable,
+            employee INPS, pension deductions).  The INPS base, which
+            follows competence, is in the accrual state.
         fringe: Running totals for fringe benefits and PdR (value, taxed
             base, PdR eligible amount).
         tax: Running totals for tax withheld this year (IRPEF, surtax).
@@ -92,15 +91,15 @@ class TaxCashState:
 
     Raises:
         InvalidInputError: When a field is not of its type, a payment
-            belongs to another tax year or is repeated, the withholding
-            counters are out of range, or an obligation is opened after
+            belongs to another tax year, is repeated or is dated before the
+            payment closed before it, :attr:`conguaglio` is not the last
+            payment that takes a slot, or an obligation is opened after
             :attr:`tax_year`.
     """
 
     tax_year: int | None = None
     payments: tuple[PaymentId, ...] = ()
-    withholding_payments_closed: int = 0
-    withholding_slots: int | None = None
+    conguaglio: PaymentId | None = None
     earnings: EarningsYtd = field(default_factory=EarningsYtd)
     fringe: FringeYtd = field(default_factory=FringeYtd)
     tax: TaxYtd = field(default_factory=TaxYtd)
@@ -120,19 +119,6 @@ class TaxCashState:
             feature=_FEATURE,
             minimum=_MIN_TAX_YEAR,
             maximum=_MAX_TAX_YEAR,
-            optional=True,
-        )
-        require_int(
-            self.withholding_payments_closed,
-            f"{_OWNER}.withholding_payments_closed",
-            feature=_FEATURE,
-            minimum=0,
-        )
-        require_int(
-            self.withholding_slots,
-            f"{_OWNER}.withholding_slots",
-            feature=_FEATURE,
-            minimum=1,
             optional=True,
         )
         require_instances(_OWNER, self._account_specs(), feature=_FEATURE)
@@ -167,6 +153,7 @@ class TaxCashState:
             ("work_time_regime", self.work_time_regime, RegimeCapAccount, False),
             ("shortfall", self.shortfall, WithholdingShortfall, False),
             ("obligations", self.obligations, EmploymentObligations, False),
+            ("conguaglio", self.conguaglio, PaymentId, True),
         )
 
     def _check_payments(self) -> None:
@@ -174,26 +161,23 @@ class TaxCashState:
 
         Raises:
             InvalidInputError: When payments are not bound to a tax year,
-                belong to another one, pay a run twice, or outnumber
-                :attr:`withholding_payments_closed`.
+                belong to another one, pay a run twice or go back in time,
+                or :attr:`conguaglio` is not the last payment that takes a
+                withholding slot.
         """
         path = f"{_OWNER}.payments"
-        if not self.payments:
-            return
-        if self.tax_year is None:
+        if self.payments and self.tax_year is None:
             msg = f"{path} requires a tax_year"
             raise InvalidInputError(msg, field=path, feature=_FEATURE)
-        seen: list[PaymentId] = []
-        for payment in self.payments:
-            _check_payment(tuple(seen), payment, self.tax_year)
-            seen.append(payment)
-        slots = sum(1 for p in self.payments if p.run_id.kind.consumes_withholding_slot)
-        if slots > self.withholding_payments_closed:
+        for index, payment in enumerate(self.payments):
+            _check_payment(self.payments[:index], payment, self.tax_year)
+        slots = [p for p in self.payments if p.run_id.kind.consumes_withholding_slot]
+        if self.conguaglio is not None and (not slots or slots[-1] != self.conguaglio):
             msg = (
-                f"{path} holds {slots} slot-consuming payments but "
-                f"withholding_payments_closed is {self.withholding_payments_closed}"
+                f"conguaglio '{self.conguaglio}' must be the last payment of "
+                "the tax year that takes a withholding slot"
             )
-            raise InvalidInputError(msg, field=path, feature=_FEATURE)
+            raise InvalidInputError(msg, field=f"{_OWNER}.conguaglio", feature=_FEATURE)
 
     def _check_obligations(self) -> None:
         """Reject an obligation opened after :attr:`tax_year`.
@@ -215,10 +199,24 @@ class TaxCashState:
     def check_next_payment(self, payment: PaymentId) -> None:
         """Check that ``payment`` can close next in this tax year.
 
-        A payment of a run already paid this tax year, or of another tax
-        year, raises ``InvalidInputError``.
+        A payment of a run already paid this tax year, of another tax year,
+        or dated before the last payment closed raises
+        ``InvalidInputError``.
         """
         _check_payment(self.payments, payment, self.tax_year)
+
+    @property
+    def withholding_payments_closed(self) -> int:
+        """Payments of the tax year that took a withholding slot.
+
+        Every run kind takes one but an adjustment run.
+        """
+        return sum(1 for p in self.payments if p.run_id.kind.consumes_withholding_slot)
+
+    @property
+    def paid_runs(self) -> frozenset[PayrollRunId]:
+        """Runs paid this tax year: the slots of the schedule already taken."""
+        return frozenset(p.run_id for p in self.payments)
 
     @property
     def prior_competence_payments(self) -> tuple[PaymentId, ...]:
@@ -227,16 +225,8 @@ class TaxCashState:
 
     @property
     def is_complete(self) -> bool:
-        """Whether every withholding slot of the year has been closed.
-
-        Returns:
-            ``True`` when a run has recorded ``withholding_slots`` and
-            ``withholding_payments_closed`` has reached it.
-        """
-        return (
-            self.withholding_slots is not None
-            and self.withholding_payments_closed >= self.withholding_slots
-        )
+        """Whether the last payment that took a slot settled the conguaglio."""
+        return self.conguaglio is not None
 
 
 def _check_payment(
@@ -246,14 +236,23 @@ def _check_payment(
 
     Raises:
         InvalidInputError: When the run of ``payment`` is paid in
-            ``closed`` or ``payment`` is not of ``tax_year``.
+            ``closed``, ``payment`` is not of ``tax_year``, or it is dated
+            before the last payment of ``closed``.
     """
     path = f"{_OWNER}.payments"
-    if any(p.run_id == payment.run_id for p in closed):
+    if any(p.run_id.payment_key == payment.run_id.payment_key for p in closed):
         msg = (
             f"payment '{payment}': run '{payment.run_id}' is already paid in "
             "this tax year; a retry of a payment must open with the state "
             "before it"
+        )
+        raise InvalidInputError(msg, field=path, feature=_FEATURE)
+    if closed and payment.payment_date < closed[-1].payment_date:
+        msg = (
+            f"payment '{payment}' is dated before payment '{closed[-1]}', "
+            "already closed: the payments of a tax year close in payment "
+            "order, because each withholding reads the totals of the "
+            "payments made before it"
         )
         raise InvalidInputError(msg, field=path, feature=_FEATURE)
     if tax_year is not None and payment.tax_year != tax_year:

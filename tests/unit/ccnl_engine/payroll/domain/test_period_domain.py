@@ -21,7 +21,6 @@ from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import (
@@ -29,6 +28,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.withholding import calendar_schedule
 
 _ZERO = Decimal(0)
 _PERIOD = PeriodId(year=2026, month=1)
@@ -44,7 +44,7 @@ def _make_result(**kwargs: object) -> PeriodResult:
         "period_gross": Decimal("2158.26"),
         "period_net": Decimal("1674.42"),
         "period_employer_cost": Decimal("2969.92"),
-        "closing_state": PeriodState(cash=TaxCashState(withholding_payments_closed=1)),
+        "closing_state": PeriodState(cash=TaxCashState()),
         "pay_items": (),
         "ledger_entries": (),
         "capability_report": CapabilityReport.empty(2026),
@@ -101,7 +101,6 @@ class TestPeriodCalculationRequest:
         """All explicitly supplied fields are stored and retrievable."""
         state = PeriodState(
             cash=TaxCashState(
-                withholding_payments_closed=5,
                 tax=TaxYtd(irpef=Decimal("1000.00")),
             )
         )
@@ -158,7 +157,6 @@ class TestPeriodCalculationRequest:
         prior_year_state = PeriodState(
             cash=TaxCashState(
                 tax_year=2025,
-                withholding_payments_closed=12,
             )
         )
         with pytest.raises(InvalidInputError, match="opening_state is for tax year"):
@@ -187,7 +185,6 @@ class TestPeriodCalculationRequest:
         state_2026 = PeriodState(
             cash=TaxCashState(
                 tax_year=2026,
-                withholding_payments_closed=11,
             )
         )
         with pytest.raises(InvalidInputError, match="belongs to tax year 2027") as info:
@@ -206,7 +203,6 @@ class TestPeriodCalculationRequest:
         state_2026 = PeriodState(
             cash=TaxCashState(
                 tax_year=2026,
-                withholding_payments_closed=11,
             )
         )
         req = PeriodCalculationRequest(
@@ -228,9 +224,7 @@ class TestPeriodCalculationRequest:
                 payment_date=date(2027, 1, 13),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                withholding_schedule=WithholdingSchedule.from_calendar(
-                    WorkCalendar(year=2026)
-                ),
+                withholding_schedule=calendar_schedule(WorkCalendar(year=2026)),
             )
 
     def test_year_guard_passes_when_tax_year_none(self) -> None:
@@ -250,7 +244,6 @@ class TestPeriodCalculationRequest:
         current_state = PeriodState(
             cash=TaxCashState(
                 tax_year=2026,
-                withholding_payments_closed=5,
             )
         )
         req = PeriodCalculationRequest(
@@ -280,7 +273,6 @@ class TestPeriodCalculationResult:
         """closing_state is stored by identity."""
         cs = PeriodState(
             cash=TaxCashState(
-                withholding_payments_closed=1,
                 earnings=EarningsYtd(gross=Decimal("2158.26")),
             )
         )

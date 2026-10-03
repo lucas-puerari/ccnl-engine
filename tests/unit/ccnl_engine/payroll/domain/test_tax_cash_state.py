@@ -37,7 +37,7 @@ def _tax_year_2027() -> tuple[PaymentId, ...]:
         payments.append(_paid(f"2027-{month:02d}-regular", date(2027, month, 27)))
         if month == 6:
             payments.append(_paid("2027-06-fourteenth", date(2027, 6, 27)))
-    payments.append(_paid("2027-12-thirteenth", date(2027, 12, 18)))
+    payments.append(_paid("2027-12-thirteenth", date(2027, 12, 27)))
     return tuple(payments)
 
 
@@ -47,14 +47,10 @@ class TestPayments:
     def test_holds_more_than_fourteen_payments(self) -> None:
         """Fifteen payments of two competence years fit in one tax year."""
         payments = _tax_year_2027()
-        state = TaxCashState(
-            tax_year=2027,
-            payments=payments,
-            withholding_payments_closed=15,
-            withholding_slots=15,
-        )
+        state = TaxCashState(tax_year=2027, payments=payments, conguaglio=payments[-1])
 
         assert state.is_complete
+        assert state.withholding_payments_closed == 15
         assert state.prior_competence_payments == payments[:1]
 
     def test_rejects_a_run_paid_twice(self) -> None:
@@ -66,7 +62,6 @@ class TestPayments:
                     _paid("2026-01-regular", date(2026, 1, 27)),
                     _paid("2026-01-regular", date(2026, 1, 28)),
                 ),
-                withholding_payments_closed=2,
             )
 
         assert info.value.field == _PAYMENTS
@@ -77,7 +72,6 @@ class TestPayments:
             TaxCashState(
                 tax_year=2026,
                 payments=(_paid("2026-12-regular", date(2027, 1, 13)),),
-                withholding_payments_closed=1,
             )
 
     def test_rejects_payments_without_a_tax_year(self) -> None:
@@ -85,16 +79,20 @@ class TestPayments:
         with pytest.raises(InvalidInputError, match="requires a tax_year"):
             TaxCashState(
                 payments=(_paid("2026-01-regular", date(2026, 1, 27)),),
-                withholding_payments_closed=1,
             )
 
-    def test_rejects_more_slot_payments_than_the_counter(self) -> None:
-        """The ids never outnumber the slots the counter closed."""
-        with pytest.raises(InvalidInputError, match="slot-consuming payments"):
+    def test_rejects_a_payment_dated_before_the_last_one(self) -> None:
+        """Payments close in payment order: each reads the totals before it."""
+        with pytest.raises(InvalidInputError, match="dated before") as info:
             TaxCashState(
                 tax_year=2026,
-                payments=(_paid("2026-01-regular", date(2026, 1, 27)),),
+                payments=(
+                    _paid("2026-12-thirteenth", date(2026, 12, 15)),
+                    _paid("2026-11-regular", date(2026, 11, 27)),
+                ),
             )
+
+        assert info.value.field == _PAYMENTS
 
     def test_an_adjustment_takes_no_slot(self) -> None:
         """An adjustment payment does not count against the counter."""
@@ -110,7 +108,6 @@ class TestPayments:
         state = TaxCashState(
             tax_year=2026,
             payments=(_paid("2026-03-regular", date(2026, 3, 27)),),
-            withholding_payments_closed=1,
         )
 
         state.check_next_payment(_paid("2026-04-regular", date(2026, 4, 27)))
@@ -122,31 +119,55 @@ class TestPayments:
         TaxCashState().check_next_payment(_paid("2030-01-regular", date(2030, 1, 27)))
 
 
-class TestCounters:
-    """Withholding counter and completion, without any maximum."""
+class TestConguaglio:
+    """The year is complete when its last slot payment settled the conguaglio."""
 
-    @pytest.mark.parametrize(
-        ("closed", "slots", "complete"),
-        [(0, None, False), (12, 13, False), (13, 13, True), (16, 16, True)],
-    )
-    def test_is_complete_when_every_slot_is_closed(
-        self, closed: int, slots: int | None, complete: bool
-    ) -> None:
-        """The year is complete once the last withholding slot is closed."""
+    _NOVEMBER = _paid("2026-11-regular", date(2026, 11, 27))
+    _THIRTEENTH = _paid("2026-12-thirteenth", date(2026, 12, 15))
+
+    def test_incomplete_without_a_conguaglio(self) -> None:
+        """Payments alone do not complete the year."""
+        state = TaxCashState(tax_year=2026, payments=(self._THIRTEENTH,))
+
+        assert not state.is_complete
+
+    def test_complete_on_the_conguaglio(self) -> None:
+        """The tredicesima paid last settled the year."""
         state = TaxCashState(
-            withholding_payments_closed=closed, withholding_slots=slots
+            tax_year=2026,
+            payments=(self._NOVEMBER, self._THIRTEENTH),
+            conguaglio=self._THIRTEENTH,
         )
 
-        assert state.is_complete is complete
+        assert state.is_complete
+
+    @pytest.mark.parametrize(
+        "payments", [(), (_THIRTEENTH, _paid("2026-12-regular", date(2026, 12, 20)))]
+    )
+    def test_rejects_a_conguaglio_that_is_not_the_last_slot_payment(
+        self, payments: tuple[PaymentId, ...]
+    ) -> None:
+        """The conguaglio is the last payment that takes a slot."""
+        with pytest.raises(InvalidInputError, match="last payment") as info:
+            TaxCashState(tax_year=2026, payments=payments, conguaglio=self._THIRTEENTH)
+
+        assert info.value.field == "TaxCashState.conguaglio"
+
+    def test_an_adjustment_after_the_conguaglio_keeps_it(self) -> None:
+        """An adjustment takes no slot: the conguaglio stays the last one."""
+        adjustment = _paid("2026-12-adjustment", date(2026, 12, 30))
+        state = TaxCashState(
+            tax_year=2026,
+            payments=(self._THIRTEENTH, adjustment),
+            conguaglio=self._THIRTEENTH,
+        )
+
+        assert state.paid_runs == {self._THIRTEENTH.run_id, adjustment.run_id}
 
     @pytest.mark.parametrize(
         ("kwargs", "field"),
         [
-            ({"withholding_slots": 0}, "TaxCashState.withholding_slots"),
-            (
-                {"withholding_payments_closed": -1},
-                "TaxCashState.withholding_payments_closed",
-            ),
+            ({"conguaglio": "2026-12-regular"}, "TaxCashState.conguaglio"),
             ({"tax_year": 2019}, "TaxCashState.tax_year"),
             ({"earnings": "0"}, "TaxCashState.earnings"),
             ({"payments": "2026-01-regular@2026-01-27"}, _PAYMENTS),

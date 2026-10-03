@@ -43,7 +43,7 @@ class PeriodState:
             :attr:`cash` settles a run :attr:`accrual` has not closed.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 6
+    SCHEMA_VERSION: ClassVar[int] = 7
 
     accrual: EmploymentAccrualState = field(default_factory=EmploymentAccrualState)
     cash: TaxCashState = field(default_factory=TaxCashState)

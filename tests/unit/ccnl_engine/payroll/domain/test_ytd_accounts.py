@@ -27,7 +27,6 @@ class TestAccumulators:
         ("build", "match"),
         [
             (lambda: EarningsYtd(gross=_NEG), r"EarningsYtd\.gross"),
-            (lambda: EarningsYtd(inps_base=_NEG), r"EarningsYtd\.inps_base"),
             (lambda: EarningsYtd(taxable=_NEG), r"EarningsYtd\.taxable"),
             (lambda: EarningsYtd(inps_employee=_NEG), r"EarningsYtd\.inps_employee"),
             (lambda: TaxYtd(irpef=_NEG), r"TaxYtd\.irpef"),

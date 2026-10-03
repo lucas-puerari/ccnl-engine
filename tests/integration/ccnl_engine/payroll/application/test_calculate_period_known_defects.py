@@ -24,8 +24,11 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import FixedTerm, Permanent
@@ -36,16 +39,15 @@ from ccnl_engine.payroll.domain.events import (
     BonusEvent,
     SickLeaveEvent,
 )
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.shared.domain.errors import (
     InvalidInputError,
     MissingRequiredFactError,
 )
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -89,7 +91,7 @@ def _req(
 # ---------------------------------------------------------------------------
 # Bonus duplicated across extra month run
 #
-# calculate_year maps periods keyed by month number.  When December has two
+# calculate_competence_year maps periods keyed by month number.  When December has two
 # runs (regular + tredicesima), both receive periods[12].  A 100 EUR
 # bonus therefore inflates annual_gross by 200 instead of 100.
 # ---------------------------------------------------------------------------
@@ -104,9 +106,9 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
     """
     bonus = BonusEvent(event_date=date(_YEAR, 12, 15), amount=Decimal("100.00"))
 
-    result_base = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
-    result_with = calculate_year(
-        year_input(_YEAR, _CCNL, _LEVEL, events={12: (bonus,)})
+    result_base = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
+    result_with = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL, events={12: (bonus,)})
     )
 
     diff = result_with.annual_gross - result_base.annual_gross
@@ -114,7 +116,7 @@ def test_bonus_not_duplicated_in_extra_run() -> None:
         f"annual_gross delta from a 100 EUR December bonus must be 100.00; "
         f"got {diff}.  Bonus is currently applied to both the regular and "
         "tredicesima runs in December "
-        "(calculate_year.py: events=effective_events.get(run.month, ()))."
+        "(calculate_competence_year.py: events=effective_events.get(run.month, ()))."
     )
 
 
@@ -370,11 +372,10 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
     where no INPS component (including the +1% addizionale) should apply.
     Expected: addizionale_1pct == 0.
     """
+    # > 122,295 IVS massimale 2026
     opening = PeriodState(
-        cash=TaxCashState(
-            withholding_payments_closed=11,
-            # > 122,295 IVS massimale 2026
-            earnings=EarningsYtd(inps_base=Decimal("130000.00")),
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, Decimal("130000.00")),)
         )
     )
     result = calculate_period(
@@ -395,7 +396,7 @@ def test_addizionale_zero_above_ivs_massimale() -> None:
     )
     assert addizionale == _ZERO, (
         "addizionale_1pct must be 0 when inps_base_ytd "
-        f"({opening.cash.earnings.inps_base}) "
+        f"({opening.accrual.inps_base(2026).total}) "
         f"exceeds the IVS massimale (122,295 EUR, INPS circ. 4/2026); "
         f"got {addizionale}.  The +1% is currently not gated on the massimale."
     )

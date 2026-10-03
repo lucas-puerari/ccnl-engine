@@ -105,8 +105,8 @@ class TestSingleRun:
         base = _run(3)
         result = _run(3, _D(1400))
         grown = (
-            result.closing_state.cash.earnings.inps_base
-            - base.closing_state.cash.earnings.inps_base
+            result.closing_state.accrual.inps_base(2026).own
+            - base.closing_state.accrual.inps_base(2026).own
         )
         assert grown == _D(1400)
 

@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.employment_facts import ContributableHours
 from ccnl_engine.payroll.domain.events import WORK_EVENT_TYPES
 from ccnl_engine.payroll.domain.family import FamilyComposition
 from ccnl_engine.payroll.domain.jurisdiction import check_surtax_codes
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -38,7 +39,7 @@ from ccnl_engine.shared.domain.validation import (
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.events import WorkEvent
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+    from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 __all__ = ["PeriodFacts", "PeriodInput"]
 
@@ -137,6 +138,12 @@ class PeriodInput:
             the first run of an employment, the ``closing_state`` of the
             previous run within a tax year, or ``close_tax_year()`` of the
             last run of the previous year.
+        planned_payments: Payments of the same tax year still planned after
+            this one, in payment order, when they differ from the CCNL
+            standard calendar.  ``()`` makes this payment the conguaglio:
+            pass it on the last payment of a tax year whose December is
+            paid after 12 January.  ``None`` (the default) projects the
+            standard runs that follow this run and are not yet paid.
 
     Raises:
         InvalidInputError: When a field is not of its type, a regular run
@@ -151,6 +158,7 @@ class PeriodInput:
     facts: PeriodFacts = field(default_factory=PeriodFacts)
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
+    planned_payments: tuple[PaymentId, ...] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instances(
@@ -168,6 +176,14 @@ class PeriodInput:
         require_date(
             self.payment_date, "PeriodInput.payment_date", feature="period_input"
         )
+        if self.planned_payments is not None:
+            planned = tuple_of(
+                self.planned_payments,
+                "PeriodInput.planned_payments",
+                items_of_type(PaymentId, feature="period_input"),
+                feature="period_input",
+            )
+            object.__setattr__(self, "planned_payments", planned)
         self.employment.check_seniority_in(self.run.year, self.run.month)
         self.calculation_request()
 
@@ -223,4 +239,5 @@ class PeriodInput:
             extra_month_accrual=extra_month_accrual,
             extra_month_settlements=extra_month_settlements,
             withholding_schedule=withholding_schedule,
+            planned_payments=self.planned_payments,
         )

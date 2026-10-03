@@ -14,19 +14,19 @@ from ccnl_engine import (
     InvalidInputError,
     WorkCalendar,
     PayrollEngine,
-    YearInput,
+    CompetenceYearPlan,
 )
 
 engine = PayrollEngine.bundled()
 
 
-def year_request(calendar: CalendarOverride | None = None) -> YearInput:
+def year_request(calendar: CalendarOverride | None = None) -> CompetenceYearPlan:
     """Build a Commercio level 4 input for 2026.
 
     Returns:
         The year input, with ``calendar`` as the optional override.
     """
-    return YearInput(
+    return CompetenceYearPlan(
         year=2026,
         employment=Employment(ccnl_slug="commercio-confcommercio.json", level_code="4"),
         employer=EmployerProfile(headcount=Headcount(50)),
@@ -35,7 +35,7 @@ def year_request(calendar: CalendarOverride | None = None) -> YearInput:
 
 
 # Standard calendar: tredicesima in December, quattordicesima in June.
-result = engine.calculate_year(year_request())
+result = engine.calculate_competence_year(year_request())
 
 print(f"Annual gross:        {result.annual_gross}")
 print(f"Annual net:          {result.annual_net}")
@@ -52,7 +52,7 @@ july = CalendarOverride(
     reason=CalendarOverrideReason.PAYMENT_MONTH,
     note="quattordicesima paid with the July salary",
 )
-moved = engine.calculate_year(year_request(july))
+moved = engine.calculate_competence_year(year_request(july))
 print(f"Runs with July quattordicesima: {len(moved.period_results)}")
 
 # Dropping the quattordicesima is rejected whatever the reason.
@@ -62,6 +62,6 @@ only_thirteenth = CalendarOverride(
     note="attempt to skip the quattordicesima",
 )
 try:
-    engine.calculate_year(year_request(only_thirteenth))
+    engine.calculate_competence_year(year_request(only_thirteenth))
 except InvalidInputError as exc:
     print(f"Rejected: {exc}")

@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 from ccnl_engine import (
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
@@ -19,7 +20,6 @@ from ccnl_engine import (
     SeniorityFact,
     SenioritySource,
     WeeklyHours,
-    YearInput,
 )
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -77,8 +77,8 @@ def test_roles_forwarded(engine: PayrollEngine) -> None:
 
 def test_employment_dates_select_the_year_runs(engine: PayrollEngine) -> None:
     """Employed 1 March to 31 May: three regular runs and no tredicesima."""
-    year = engine.calculate_year(
-        YearInput(
+    year = engine.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug=_CCNL,

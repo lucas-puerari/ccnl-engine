@@ -4,14 +4,14 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     non_accruing_days,
     termination_settlements,
@@ -23,23 +23,26 @@ from ccnl_engine.payroll.domain.events import AbsenceEvent, OvertimeEvent
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.irpef_deductions import work_income_deduction
 from ccnl_engine.payroll.service.tax_computation import compute_tax
-from tests.helpers import make_year_rules, year_input
+from tests.fixtures.withholding import calendar_schedule
+from tests.helpers import make_year_rules, year_plan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
 
 _COMMERCIO = "commercio-confcommercio.json"
 _METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _YEAR = 2026
 
 
-def _commercio_year(employment: EmploymentPeriod) -> YearResult:
-    return calculate_year(
-        year_input(_YEAR, _COMMERCIO, "4", employment_period=employment)
+def _commercio_year(employment: EmploymentPeriod) -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(_YEAR, _COMMERCIO, "4", employment_period=employment)
     )
 
 
-def _extra_items(result: YearResult) -> dict[str, Decimal]:
+def _extra_items(result: CompetenceYearResult) -> dict[str, Decimal]:
     return {
         item.item_id: item.amount
         for r in result.period_results
@@ -68,7 +71,9 @@ class TestTerminationSettlement:
         }
         assert policies == {"it/earning/extra_month"}
         assert september.period_gross == Decimal("2675.65")
-        assert september.closing_state.cash.earnings.inps_base == Decimal("6243.15")
+        assert september.closing_state.accrual.inps_base(_YEAR).own == Decimal(
+            "6243.15"
+        )
 
     def test_extra_run_in_the_termination_month_is_not_settled_again(self) -> None:
         """Ended 10 June: the June quattordicesima run pays; May closes 13th.
@@ -93,8 +98,8 @@ class TestTerminationSettlement:
 
     def test_thirteen_month_contract_settles_only_the_tredicesima(self) -> None:
         """Metalmeccanico ended 31 May: the May run pays 5/12 of the 13th."""
-        result = calculate_year(
-            year_input(
+        result = calculate_competence_year(
+            year_plan(
                 _YEAR,
                 _METALMECCANICO,
                 "C3",
@@ -125,9 +130,9 @@ class TestSuspendingAbsences:
             end_date=date(_YEAR, 4, 20),
             suspends_accrual=True,
         )
-        full = calculate_year(year_input(_YEAR, _METALMECCANICO, "C3"))
-        reduced = calculate_year(
-            year_input(_YEAR, _METALMECCANICO, "C3", events={4: (absence,)})
+        full = calculate_competence_year(year_plan(_YEAR, _METALMECCANICO, "C3"))
+        reduced = calculate_competence_year(
+            year_plan(_YEAR, _METALMECCANICO, "C3", events={4: (absence,)})
         )
         assert reduced.period_results[-1].period_gross < (
             full.period_results[-1].period_gross
@@ -167,7 +172,7 @@ class TestStandaloneExtraRun:
             level_code=level,
             run=run,
             employment_period=employment,
-            withholding_schedule=WithholdingSchedule.from_calendar(calendar),
+            withholding_schedule=calendar_schedule(calendar),
         )
         return calculate_period(request).period_gross
 
@@ -202,11 +207,8 @@ def test_employment_days_reach_the_work_deduction() -> None:
 def test_employment_days_are_capped_at_365() -> None:
     """A leap year fully employed has 366 days; the deduction uses 365."""
     rules = make_year_rules()
-    schedule = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
     capped = compute_tax(
-        Decimal(20_000), rules, withholding_schedule=schedule, eligible_work_days=366
+        Decimal(20_000), rules, remaining_slots=12, eligible_work_days=366
     ).computation
-    full = compute_tax(
-        Decimal(20_000), rules, withholding_schedule=schedule
-    ).computation
+    full = compute_tax(Decimal(20_000), rules, remaining_slots=12).computation
     assert capped == full

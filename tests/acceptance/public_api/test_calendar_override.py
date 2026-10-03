@@ -7,13 +7,13 @@ import pytest
 from ccnl_engine import (
     CalendarOverride,
     CalendarOverrideReason,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     InvalidInputError,
     PayrollEngine,
     WorkCalendar,
-    YearInput,
 )
 
 _ENGINE = PayrollEngine.bundled()
@@ -23,8 +23,8 @@ _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 
 def test_omitted_calendar_runs_the_ccnl_calendar() -> None:
     """Commercio grants 14 equivalent months: the result reports that calendar."""
-    year = _ENGINE.calculate_year(
-        YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
     assert year.calendar == WorkCalendar.from_additional_months(2026, 14)
@@ -34,7 +34,7 @@ def test_omitted_calendar_runs_the_ccnl_calendar() -> None:
 def test_bare_calendar_is_rejected() -> None:
     """A WorkCalendar without a reason is not accepted by the input."""
     with pytest.raises(InvalidInputError, match="CalendarOverride"):
-        YearInput(
+        CompetenceYearPlan(
             year=2026,
             employment=_EMPLOYMENT,
             employer=_EMPLOYER,
@@ -51,8 +51,8 @@ def test_payment_month_override_is_reported_on_the_result() -> None:
         reason=CalendarOverrideReason.PAYMENT_MONTH,
         note="quattordicesima paid with the July salary",
     )
-    year = _ENGINE.calculate_year(
-        YearInput(
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=_EMPLOYMENT,
             employer=_EMPLOYER,
@@ -61,8 +61,8 @@ def test_payment_month_override_is_reported_on_the_result() -> None:
     )
     run_ids = [r.run.run_id for r in year.period_results if r.run is not None]
 
-    standard = _ENGINE.calculate_year(
-        YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
+    standard = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
     assert run_ids[7] == "2026-07-fourteenth"

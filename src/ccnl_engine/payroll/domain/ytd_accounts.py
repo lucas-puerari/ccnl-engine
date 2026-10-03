@@ -48,18 +48,17 @@ def check_non_negative(totals: DataclassInstance) -> None:
 
 @dataclass(frozen=True)
 class EarningsYtd:
-    """Running totals for earned income and INPS contribution bases.
+    """Running totals for earned income paid in the tax year.
 
     Every total is non-negative.  No relation between them is enforced:
     ``taxable`` can exceed ``gross`` (a fringe benefit above the threshold
-    enters the taxable income but not the cash earnings), and a state
-    imported from another provider may carry an INPS base without gross.
+    enters the taxable income but not the cash earnings).  The INPS base
+    toward the massimale follows competence, not cash: it is in
+    :class:`~ccnl_engine.payroll.domain.accrual_state.EmploymentAccrualState`.
 
     Attributes:
         gross: Sum of contractual gross earnings (CASH_EARNINGS ledger
             entries) closed this tax year.
-        inps_base: Total INPS contribution base accumulated YTD.  Used to
-            enforce the IVS massimale ceiling across periods.
         taxable: Total IRPEF taxable income accumulated YTD.
         inps_employee: Employee INPS contributions withheld YTD.
         pension_deducted: Employee and employer pension fund contributions
@@ -68,7 +67,6 @@ class EarningsYtd:
     """
 
     gross: Decimal = _ZERO
-    inps_base: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_employee: Decimal = _ZERO
     pension_deducted: Decimal = _ZERO

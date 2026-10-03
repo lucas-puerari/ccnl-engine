@@ -156,7 +156,7 @@ def _inps(
     undetermined = ivs is not None and ivs.undetermined
     common = {
         "base": base,
-        "ytd_base": ctx.opening.cash.earnings.inps_base,
+        "ytd_base": ctx.ytd_inps_base,
         "ivs_ceiling": _ivs_ceiling_state(ivs),
     }
     status = CalculationStatus.INCOMPLETE if undetermined else CalculationStatus.FINAL

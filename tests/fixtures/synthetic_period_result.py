@@ -76,7 +76,6 @@ class ResultBuilder:
     period_gross: Decimal = Decimal("3000.00")
     period_net: Decimal = Decimal("2000.00")
     period_employer_cost: Decimal = Decimal("3400.00")
-    closing_months: int = 1
     closing_irpef: Decimal = Decimal("500.00")
     closing_inps: Decimal = Decimal("300.00")
     closing_gross: Decimal = Decimal("3000.00")
@@ -100,7 +99,6 @@ class ResultBuilder:
                 cash=TaxCashState(
                     tax_year=YEAR,
                     payments=(PaymentId(RUN_ID, PAYMENT_DATE),),
-                    withholding_payments_closed=self.closing_months,
                     tax=TaxYtd(irpef=self.closing_irpef),
                     earnings=EarningsYtd(
                         inps_employee=self.closing_inps,

@@ -9,7 +9,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
     _effective_resolver,
@@ -17,6 +16,10 @@ from ccnl_engine.payroll.application._period_utils import (
 )
 from ccnl_engine.payroll.application.period._chain import _resolve_chain
 from ccnl_engine.payroll.application.period._checks import resolve_payment
+from ccnl_engine.payroll.application.period._contract import (
+    RunContract,
+    load_contract,
+)
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.withholding._plan import (
@@ -28,10 +31,6 @@ from ccnl_engine.payroll.application.year._extra_month_accrual import (
     run_accrual,
     run_fraction,
 )
-from ccnl_engine.payroll.domain.employment_context import (
-    EffectiveDateContext,
-    TemporalContext,
-)
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
@@ -41,40 +40,26 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
 from ccnl_engine.payroll.service.category import resolve_worker_category
-from ccnl_engine.shared.domain.errors import UnknownLevelError
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.compensation import Level
-    from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+    from ccnl_engine.payroll.domain.withholding_schedule import (
+        WithholdingPosition,
+        WithholdingSchedule,
+    )
     from ccnl_engine.payroll.service.types import (
         ApprenticeshipScaling,
         MonthlyPayChain,
     )
-    from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
-
-
-@dataclass(frozen=True)
-class _Contract:
-    """CCNL, level, dates and yearly rules of a run."""
-
-    ccnl: CCNL
-    level: Level
-    tctx: TemporalContext
-    date_ctx: EffectiveDateContext
-    year_rules: YearRules
-    catalog: CapabilityCatalog
 
 
 @dataclass(frozen=True)
@@ -87,6 +72,8 @@ class RunContext:
         resolver: Policy resolver of the pay-item kinds.
         contract: CCNL, level, dates and yearly rules.
         withholding_schedule: Withholding slots of the tax year.
+        withholding: Position of the payment in the schedule: the slots it
+            leaves unpaid and whether it settles the conguaglio.
         worker_category: Canonical category of the worker.
         chain: Pay chain of the run, adjusted for an extra month.
         apprenticeship: Percentage scaling of a percentage apprenticeship,
@@ -102,8 +89,9 @@ class RunContext:
     request: PeriodCalculationRequest
     repo: KnowledgeRepository
     resolver: PolicyResolver
-    contract: _Contract
+    contract: RunContract
     withholding_schedule: WithholdingSchedule
+    withholding: WithholdingPosition
     worker_category: WorkerCategory | None
     chain: MonthlyPayChain
     apprenticeship: ApprenticeshipScaling | None
@@ -121,13 +109,17 @@ class RunContext:
 
     @property
     def takes_last_slot(self) -> bool:
-        """Whether the run takes the last withholding slot of the tax year.
+        """Whether the payment leaves no slot of its tax year unpaid.
 
-        The one place the conguaglio position is read from the payments of
-        the tax cash state and the withholding schedule.
+        Read by identity from :attr:`withholding`: the runs the tax cash
+        state has paid against the payments of the schedule.
         """
-        closed = self.opening.cash.withholding_payments_closed
-        return self.withholding_schedule.remaining(closed) == 1
+        return self.withholding.settles
+
+    @property
+    def ytd_inps_base(self) -> Decimal:
+        """INPS base of the competence year before the run, all employers."""
+        return self.opening.accrual.inps_base(self.cp.year).total
 
     @property
     def run_kind(self) -> RunKind:
@@ -186,42 +178,9 @@ class RunContext:
         return self.contract.ccnl.meta.withholding_agent
 
 
-def _load_contract(
-    request: PeriodCalculationRequest, repo: KnowledgeRepository
-) -> _Contract:
-    """Load the CCNL, level and yearly rules of the run.
-
-    Returns:
-        The contract of the run.
-
-    Raises:
-        UnknownLevelError: When the CCNL has no level ``request.level_code``.
-    """
-    period_id = request.period_id
-    ccnl = repo.load_ccnl(request.ccnl_slug)
-    tctx = TemporalContext.from_period(
-        period_id.year, period_id.month, request.payment_date
-    )
-    try:
-        level = ccnl.level_by_code(request.level_code)
-    except ValueError:
-        raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
-    # The base salary of the level is the first rule every run reads.
-    with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
-        level.base_salary.value_at(tctx.competence)
-    date_ctx = EffectiveDateContext.from_period(
-        period_id.year, period_id.month, tctx.payment
-    )
-    year_rules = repo.load_year_rules(
-        tctx.fiscal_year, ccnl.meta.tax_sector, request.employer.headcount.value
-    )
-    catalog = repo.load_capability_catalog(tctx.fiscal_year)
-    return _Contract(ccnl, level, tctx, date_ctx, year_rules, catalog)
-
-
 def _base_chain(
     request: PeriodCalculationRequest,
-    contract: _Contract,
+    contract: RunContract,
     worker_category: WorkerCategory | None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the pay chain of a regular month for the worker.
@@ -257,7 +216,7 @@ def build_context(
     """
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     effective_resolver = _effective_resolver(resolver)
-    contract = _load_contract(request, effective_repo)
+    contract = load_contract(request, effective_repo)
     competence, fiscal_year = contract.tctx.competence, contract.tctx.fiscal_year
     worker_category = resolve_worker_category(
         contract.ccnl, contract.level, request.category, seniority=request.seniority
@@ -266,10 +225,10 @@ def build_context(
     payment = resolve_payment(request)
     schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
+    withholding = schedule.position(payment, opening.cash.paid_runs)
     upcoming_gross = upcoming_recurring_gross(
         chain,
-        schedule,
-        opening.cash.withholding_payments_closed,
+        withholding.upcoming,
         request.employment_period,
         month_accrual_rule(contract.ccnl),
     )
@@ -281,6 +240,7 @@ def build_context(
         resolver=effective_resolver,
         contract=contract,
         withholding_schedule=schedule,
+        withholding=withholding,
         worker_category=worker_category,
         chain=chain,
         apprenticeship=apprenticeship,

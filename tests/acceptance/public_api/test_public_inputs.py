@@ -2,7 +2,7 @@
 
 Covers :class:`Employment`, :class:`EmployerProfile`,
 :class:`PriorYearTaxFacts`, :class:`PeriodFacts`, :class:`PeriodInput` and
-:class:`YearInput`, and the public entry points of :class:`PayrollEngine`.
+:class:`CompetenceYearPlan`, and the public entry points of :class:`PayrollEngine`.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ import pytest
 from ccnl_engine import (
     CalendarOverride,
     CalendarOverrideReason,
+    CompetenceYearPlan,
     ContributableHours,
     EmployerActivity,
     EmployerProfile,
@@ -35,7 +36,6 @@ from ccnl_engine import (
     WeeklyHours,
     WorkCalendar,
     WorkerCategory,
-    YearInput,
 )
 
 _ENGINE = PayrollEngine.bundled()
@@ -64,8 +64,10 @@ def _period(
     )
 
 
-def _year(**kwargs: Any) -> YearInput:  # noqa: ANN401
-    return YearInput(year=_YEAR, employment=_EMPLOYMENT, employer=_EMPLOYER, **kwargs)
+def _year(**kwargs: Any) -> CompetenceYearPlan:  # noqa: ANN401
+    return CompetenceYearPlan(
+        year=_YEAR, employment=_EMPLOYMENT, employer=_EMPLOYER, **kwargs
+    )
 
 
 class TestEmployment:
@@ -317,7 +319,7 @@ class TestYearInput:
         """A key that is neither a month nor a run id of the year is rejected."""
         with pytest.raises(
             InvalidInputError,
-            match=r"YearInput\.periods\[.*\] must be keyed by a month",
+            match=r"CompetenceYearPlan\.periods\[.*\] must be keyed by a month",
         ):
             _year(periods={key: PeriodFacts()})
 
@@ -341,7 +343,7 @@ class TestYearInput:
         """A day some month does not have is rejected."""
         with pytest.raises(
             InvalidInputError,
-            match=r"YearInput\.payment_day must be an int >= 1 and <= 28",
+            match=r"CompetenceYearPlan\.payment_day must be an int >= 1 and <= 28",
         ):
             _year(payment_day=payment_day)
 
@@ -375,5 +377,5 @@ class TestYearInput:
 
 def test_year_result_closing_state_is_the_last_run_state() -> None:
     """The closing state of the year is the one of its last run."""
-    year = _ENGINE.calculate_year(_year())
+    year = _ENGINE.calculate_competence_year(_year())
     assert year.closing_state is year.period_results[-1].closing_state

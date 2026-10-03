@@ -34,7 +34,6 @@ from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -44,6 +43,7 @@ from ccnl_engine.provenance.domain.source import (
     SourceKind,
     SourceLocation,
 )
+from tests.fixtures.withholding import calendar_schedule
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
@@ -100,7 +100,7 @@ def _tredicesima(
         level_code="4",
         run=PayrollRun.thirteenth(_YEAR, 12),
         employment_period=employment,
-        withholding_schedule=WithholdingSchedule.from_calendar(calendar),
+        withholding_schedule=calendar_schedule(calendar),
     )
     return calculate_period(request, repo=_Repo(rule))
 
@@ -168,7 +168,7 @@ def test_accrual_built_by_the_caller_is_reported_as_request() -> None:
         level_code="4",
         run=PayrollRun.thirteenth(_YEAR, 12),
         extra_month_accrual=accrual,
-        withholding_schedule=WithholdingSchedule.from_calendar(calendar),
+        withholding_schedule=calendar_schedule(calendar),
     )
     result = calculate_period(request)
     assert _ratei(result)["rule_origin"] == "request"

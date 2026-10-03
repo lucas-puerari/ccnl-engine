@@ -11,16 +11,25 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.year_input import YearInput
+from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.shared.domain.validation import parse_enum, reject
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 
-__all__ = ["closing_state", "parse_mode", "period_request", "year_request"]
+__all__ = [
+    "closing_state",
+    "competence_plan",
+    "opening_balances",
+    "parse_mode",
+    "period_request",
+    "tax_year_plan",
+]
 
 _FEATURE = "payroll_engine"
 
@@ -49,15 +58,37 @@ def period_request(request: object) -> PeriodCalculationRequest:
     return request.calculation_request()
 
 
-def year_request(request: object) -> YearInput:
-    """Return ``request`` checked to be a :class:`YearInput`.
+def competence_plan(plan: object) -> CompetenceYearPlan:
+    """Return ``plan`` checked to be a :class:`CompetenceYearPlan`.
 
     Returns:
-        The input; anything else is rejected.
+        The plan; anything else is rejected.
     """
-    if not isinstance(request, YearInput):
-        reject("request", "a YearInput", request, feature=_FEATURE)
-    return request
+    if not isinstance(plan, CompetenceYearPlan):
+        reject("plan", "a CompetenceYearPlan", plan, feature=_FEATURE)
+    return plan
+
+
+def opening_balances(balances: object) -> OpeningBalances:
+    """Return ``balances`` checked to be :class:`OpeningBalances`.
+
+    Returns:
+        The balances; anything else is rejected.
+    """
+    if not isinstance(balances, OpeningBalances):
+        reject("balances", "OpeningBalances", balances, feature=_FEATURE)
+    return balances
+
+
+def tax_year_plan(plan: object) -> TaxYearPlan:
+    """Return ``plan`` checked to be a :class:`TaxYearPlan`.
+
+    Returns:
+        The plan; anything else is rejected.
+    """
+    if not isinstance(plan, TaxYearPlan):
+        reject("plan", "a TaxYearPlan", plan, feature=_FEATURE)
+    return plan
 
 
 def closing_state(state: object) -> PeriodState:

@@ -81,7 +81,6 @@ class TestPayItemPosted:
         b = ResultBuilder(
             pay_items=(orphan,),
             ledger_entries=(),
-            closing_months=1,
         )
         r = reconcile(b.build(), OPENING)
         found = [v for v in r.violations if v.invariant_id == "pay_item_posted"]
@@ -158,15 +157,6 @@ class TestStateTransition:
             v for v in r.violations if v.invariant_id == "run_counters_advance"
         ] == []
 
-    def test_violation_when_withholding_payments_wrong(self) -> None:
-        """run_counters_advance violation for a wrong withholding counter."""
-        b = ResultBuilder(closing_months=2)  # expected 1 for the first period
-        r = reconcile(b.build(), OPENING)
-        found = [v for v in r.violations if v.invariant_id == "run_counters_advance"]
-        assert [v.message for v in found] == [
-            "withholding_payments_closed not correctly incremented"
-        ]
-
     def test_violation_when_the_run_is_not_closed(self) -> None:
         """A closing state that forgets the run and its payment is reported."""
         result = ResultBuilder().build()
@@ -176,7 +166,6 @@ class TestStateTransition:
         assert [v.message for v in found] == [
             "competence run '2026-01-regular' not closed once",
             "payment of run '2026-01-regular' not closed once",
-            "withholding_payments_closed not correctly incremented",
         ]
 
     def test_violation_when_gross_ytd_wrong(self) -> None:

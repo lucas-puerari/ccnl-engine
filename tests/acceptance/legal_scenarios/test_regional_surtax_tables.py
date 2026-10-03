@@ -30,6 +30,7 @@ import pytest
 
 from ccnl_engine import (
     CalculationStatus,
+    CompetenceYearPlan,
     Dependent,
     DependentRelationship,
     EmployerProfile,
@@ -39,7 +40,6 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PeriodFacts,
-    YearInput,
 )
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 from tests.fixtures.seniority import new_hire
@@ -79,8 +79,8 @@ def _marginal(
 
 @cache
 def _conguaglio(regione: str, with_child: bool) -> PeriodResult:
-    result = _ENGINE.calculate_year(
-        YearInput(
+    result = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug="commercio-confcommercio.json",

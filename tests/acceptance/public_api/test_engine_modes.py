@@ -15,6 +15,7 @@ import pytest
 
 from ccnl_engine import (
     BlockerCode,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     EngineMode,
@@ -26,7 +27,6 @@ from ccnl_engine import (
     PeriodResult,
     RulesetKind,
     RulesetReadiness,
-    YearInput,
 )
 
 _SIMULATION = PayrollEngine.bundled()
@@ -107,8 +107,8 @@ def test_tax_and_inps_readiness_is_not_tracked() -> None:
 
 def test_an_operational_year_is_blocked_on_every_run() -> None:
     """Each run of an operational year carries the readiness blocker."""
-    year = _OPERATIONAL.calculate_year(
-        YearInput(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
+    year = _OPERATIONAL.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=_EMPLOYER)
     )
 
     assert year.assurance.mode is EngineMode.OPERATIONAL

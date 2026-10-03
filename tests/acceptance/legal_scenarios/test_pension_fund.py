@@ -35,16 +35,17 @@ import pytest
 
 from ccnl_engine import (
     BonusEvent,
+    CompetenceYearPlan,
     Employment,
     InvalidInputError,
     OpeningBalances,
+    PaymentId,
     PensionFundEnrolment,
-    YearInput,
 )
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
-    from ccnl_engine import CalculationDecision, PeriodResult, YearResult
+    from ccnl_engine import CalculationDecision, CompetenceYearResult, PeriodResult
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -64,9 +65,9 @@ def _tabacco(pension: PensionFundEnrolment | None = _ALIFOND) -> Employment:
     return Employment(ccnl_slug=_TABACCO, level_code="4A", pension_fund=pension)
 
 
-def _year(employment: Employment) -> YearResult:
-    return ENGINE.calculate_year(
-        YearInput(year=2026, employment=employment, employer=EMPLOYER)
+def _year(employment: Employment) -> CompetenceYearResult:
+    return ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=employment, employer=EMPLOYER)
     )
 
 
@@ -199,10 +200,14 @@ class TestDeductionCap:
 
     def _taxable_change(self, deducted: str) -> tuple[Decimal, PeriodResult]:
         opening = OpeningBalances(
-            tax_year=2026, pension_deducted=Decimal(deducted)
+            tax_year=2026,
+            payments=(PaymentId.parse("2026-01-regular@2026-01-27"),),
+            pension_deducted=Decimal(deducted),
         ).to_state()
-        enrolled = regular_period(employment=_tabacco(), opening_state=opening)
-        plain = regular_period(employment=_tabacco(None), opening_state=opening)
+        enrolled = regular_period(employment=_tabacco(), month=2, opening_state=opening)
+        plain = regular_period(
+            employment=_tabacco(None), month=2, opening_state=opening
+        )
         change = (
             enrolled.closing_state.cash.earnings.taxable
             - plain.closing_state.cash.earnings.taxable

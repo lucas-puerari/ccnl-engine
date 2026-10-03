@@ -7,10 +7,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.contract.domain.identity import TaxSector
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.irpef_credits import (
     CreditOutcome,
     trattamento_integrativo_outcome,
@@ -43,7 +41,6 @@ _UD_RAW = {
     "max_amount": "1000",
 }
 _RULES = load_year_rules(2026, TaxSector.TERZIARIO, 50)
-_SCHEDULE = WithholdingSchedule.from_calendar(WorkCalendar(year=2026))
 
 
 class TestTrattamentoOutcome:
@@ -123,7 +120,7 @@ class TestComputeTaxDecisions:
 
     def test_low_income_decisions(self) -> None:
         """A low income gets the trattamento and no ulteriore detrazione."""
-        tax = compute_tax(_D(12000), _RULES, withholding_schedule=_SCHEDULE)
+        tax = compute_tax(_D(12000), _RULES, remaining_slots=12)
         ulteriore, trattamento = tax.decisions
         assert ulteriore.capability == "ulteriore_detrazione_lavoro"
         assert ulteriore.reason_code == "income_not_above_lower_threshold"
@@ -139,7 +136,7 @@ class TestComputeTaxDecisions:
 
     def test_income_above_thresholds_is_decided_not_omitted(self) -> None:
         """A credit not due is a zero decision with its reason."""
-        tax = compute_tax(_D(50000), _RULES, withholding_schedule=_SCHEDULE)
+        tax = compute_tax(_D(50000), _RULES, remaining_slots=12)
         assert [(d.reason_code, d.amount) for d in tax.decisions] == [
             ("income_above_upper_threshold", _D(0)),
             ("income_above_upper_threshold", _D(0)),
@@ -148,9 +145,7 @@ class TestComputeTaxDecisions:
     def test_recovery_in_progress_is_recorded(self) -> None:
         """An installment recovery records the negative period amount."""
         plan = RecoveryPlan.create("trattamento_integrativo", _D(80), 8)
-        tax = compute_tax(
-            _D(50000), _RULES, withholding_schedule=_SCHEDULE, recovery_plan=plan
-        )
+        tax = compute_tax(_D(50000), _RULES, remaining_slots=12, recovery_plan=plan)
         trattamento, recovery = tax.decisions[-2:]
         assert trattamento.inputs["recovery_in_progress"] == "true"
         assert trattamento.inputs["period_amount"] == _D(-10)
@@ -162,15 +157,13 @@ class TestComputeTaxDecisions:
 
     def test_credits_not_in_force_take_no_decision(self) -> None:
         """Rules without the credits record no decision."""
-        tax = compute_tax(_D(12000), make_year_rules(), withholding_schedule=_SCHEDULE)
+        tax = compute_tax(_D(12000), make_year_rules(), remaining_slots=12)
         assert tax.decisions == ()
 
     def test_rule_version_falls_back_to_year(self) -> None:
         """Rules without a ruleset identity are versioned by their year."""
         rules = make_year_rules(ulteriore_detrazione=_UD_RAW, ruleset=None)
-        (ulteriore,) = compute_tax(
-            _D(25000), rules, withholding_schedule=_SCHEDULE
-        ).decisions
+        (ulteriore,) = compute_tax(_D(25000), rules, remaining_slots=12).decisions
         assert ulteriore.rule_version == "2026"
         assert ulteriore.reason_code == "full_amount"
 
@@ -205,7 +198,7 @@ class TestTrattamentoRecovery:
             _D(50000),
             _RULES,
             opening_tratt_ytd=_D(paid),
-            withholding_schedule=_SCHEDULE,
+            remaining_slots=12,
             run=run,
         )
         recovery = tax.decisions[-1]
@@ -220,7 +213,7 @@ class TestTrattamentoRecovery:
         tax = compute_tax(
             _D(50000),
             _RULES,
-            withholding_schedule=_SCHEDULE,
+            remaining_slots=12,
             recovery_plan=plan,
             run=InstallmentRun(final=True),
         )

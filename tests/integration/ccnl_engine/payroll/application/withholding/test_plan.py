@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -23,7 +24,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.schedule import PayrollRunCount, WithholdingSchedule
+from ccnl_engine.payroll.domain.schedule import PayrollRunCount
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
@@ -31,10 +32,16 @@ from ccnl_engine.payroll.service.bundled_knowledge_repository import (
 )
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.withholding import calendar_schedule, paid_before, paid_on_day
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.withholding_schedule import (
+        WithholdingSchedule,
+    )
 
 _YEAR = 2026
 _COOP_SOCIALI = "cooperative-sociali.json"
-_HALF_FOURTEENTH = WithholdingSchedule.from_calendar(
+_HALF_FOURTEENTH = calendar_schedule(
     WorkCalendar.from_additional_months(_YEAR, Decimal("13.5"))
 )
 
@@ -48,6 +55,7 @@ def _request(
     paid_on: date,
     opening: PeriodState | None = None,
     schedule: WithholdingSchedule | None = None,
+    planned: tuple[PaymentId, ...] | None = None,
 ) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
         employer=EmployerProfile(headcount=Headcount(50)),
@@ -58,6 +66,7 @@ def _request(
         opening_state=opening or PeriodState.zero(),
         run=run,
         withholding_schedule=schedule,
+        planned_payments=planned,
     )
 
 
@@ -69,6 +78,22 @@ def _resolve(request: PeriodCalculationRequest) -> WithholdingSchedule:
 
 
 _LATE_DECEMBER = PayrollRun.regular(_YEAR, 12)
+
+
+def _paid(payments: tuple[PaymentId, ...]) -> PeriodState:
+    """Return the state after ``payments`` of 2026, with no amount.
+
+    Returns:
+        A state whose accrual and cash parts close ``payments``.
+    """
+    return PeriodState(
+        accrual=EmploymentAccrualState(
+            competence_runs=tuple(p.run_id for p in payments)
+        ),
+        cash=TaxCashState(tax_year=_YEAR, payments=payments),
+    )
+
+
 _PAID_LATE = date(_YEAR + 1, 1, 13)
 
 
@@ -77,7 +102,7 @@ class TestResolveWithholdingSchedule:
 
     def test_requested_schedule_wins(self) -> None:
         """A schedule passed with the request is used unchanged."""
-        requested = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
+        requested = calendar_schedule(WorkCalendar(year=_YEAR))
         request = _request(PayrollRun.regular(_YEAR, 1), date(_YEAR, 1, 28))
         resolved = _resolve(replace(request, withholding_schedule=requested))
         assert resolved is requested
@@ -101,9 +126,7 @@ class TestResolveWithholdingSchedule:
         december = PaymentId(_LATE_DECEMBER.identifier, _PAID_LATE)
         opening = PeriodState(
             accrual=EmploymentAccrualState(competence_runs=(december.run_id,)),
-            cash=TaxCashState(
-                tax_year=_YEAR + 1, payments=(december,), withholding_payments_closed=1
-            ),
+            cash=TaxCashState(tax_year=_YEAR + 1, payments=(december,)),
         )
         january = PayrollRun.regular(_YEAR + 1, 1)
 
@@ -112,23 +135,93 @@ class TestResolveWithholdingSchedule:
         assert [s.run for s in resolved.slots[:2]] == [_LATE_DECEMBER, january]
         assert resolved.run_count == PayrollRunCount(15)
 
+    def test_a_tredicesima_before_december_leaves_december_projected(self) -> None:
+        """Without a plan, the standard December salary is still to come."""
+        thirteenth = PayrollRun.thirteenth(_YEAR, 12)
+        opening = _paid(paid_before(_LATE_DECEMBER, Decimal("13.5")))
+        payment = paid_on_day(thirteenth, 15)
+
+        resolved = _resolve(_request(thirteenth, payment.payment_date, opening))
+        position = resolved.position(payment, opening.cash.paid_runs)
+
+        assert resolved.conguaglio.run_id == _LATE_DECEMBER.identifier
+        assert (position.remaining, position.settles) == (2, False)
+
+    def test_no_planned_payment_makes_the_tredicesima_the_conguaglio(self) -> None:
+        """December paid on 13 January: the tredicesima is the last of 2026."""
+        thirteenth = PayrollRun.thirteenth(_YEAR, 12)
+        opening = _paid(paid_before(_LATE_DECEMBER, Decimal("13.5")))
+        payment = paid_on_day(thirteenth, 15)
+        request = _request(thirteenth, payment.payment_date, opening, planned=())
+
+        resolved = _resolve(request)
+
+        assert resolved.conguaglio == payment
+        assert resolved.position(payment, opening.cash.paid_runs).settles
+
+    def test_planned_payments_replace_the_projection(self) -> None:
+        """A December paid on 12 January keeps the tredicesima from settling."""
+        thirteenth = PayrollRun.thirteenth(_YEAR, 12)
+        december = PaymentId(_LATE_DECEMBER.identifier, date(_YEAR + 1, 1, 12))
+        request = _request(thirteenth, date(_YEAR, 12, 15), planned=(december,))
+
+        resolved = _resolve(request)
+
+        assert resolved.conguaglio == december
+        assert resolved.year == _YEAR
+
+    @pytest.mark.parametrize(
+        "planned",
+        [
+            PaymentId(_LATE_DECEMBER.identifier, _PAID_LATE),
+            paid_on_day(PayrollRun.thirteenth(_YEAR, 12), 15),
+        ],
+        ids=["another tax year", "the run itself"],
+    )
+    def test_rejects_a_planned_payment_that_cannot_follow(
+        self, planned: PaymentId
+    ) -> None:
+        """A planned payment is of the tax year and of another run."""
+        thirteenth = PayrollRun.thirteenth(_YEAR, 12)
+        request = _request(thirteenth, date(_YEAR, 12, 15), planned=(planned,))
+
+        with pytest.raises(InvalidInputError, match="cannot follow") as info:
+            _resolve(request)
+
+        assert info.value.field == "PeriodInput.planned_payments"
+
+    def test_rejects_a_planned_payment_already_paid(self) -> None:
+        """A run already paid is not planned again."""
+        november = paid_on_day(PayrollRun.regular(_YEAR, 11))
+        opening = PeriodState(
+            accrual=EmploymentAccrualState(competence_runs=(november.run_id,)),
+            cash=TaxCashState(tax_year=_YEAR, payments=(november,)),
+        )
+        thirteenth = PayrollRun.thirteenth(_YEAR, 12)
+        request = _request(
+            thirteenth, date(_YEAR, 12, 15), opening, planned=(november,)
+        )
+
+        with pytest.raises(InvalidInputError, match="cannot follow"):
+            _resolve(request)
+
 
 class TestUpcomingRecurringGross:
     """Upcoming slots are valued at the pay their run kind carries."""
 
     def test_first_slot_projects_the_rest_of_the_year(self) -> None:
         """11 regular months, half a fourteenth and a full thirteenth."""
-        gross = upcoming_recurring_gross(_chain(), _HALF_FOURTEENTH, 0)
+        gross = upcoming_recurring_gross(_chain(), _HALF_FOURTEENTH.slots[1:])
         assert gross == Decimal(11 * 1000 + 500 + 1000)
 
     def test_last_slot_has_nothing_upcoming(self) -> None:
         """On the last slot the projection adds nothing."""
-        assert upcoming_recurring_gross(_chain(), _HALF_FOURTEENTH, 13) == 0
+        assert upcoming_recurring_gross(_chain(), ()) == 0
 
 
 def test_slot_share_divides_by_run_count() -> None:
     """An annual amount is split over the 14 payslips, not over 13.5."""
-    assert slot_share(Decimal(1400), _HALF_FOURTEENTH) == Decimal(100)
+    assert slot_share(Decimal(1400), _HALF_FOURTEENTH.run_count.value) == Decimal(100)
 
 
 def test_request_schedule_of_other_year_rejected() -> None:
@@ -140,24 +233,20 @@ def test_request_schedule_of_other_year_rejected() -> None:
             payment_date=date(_YEAR, 1, 28),
             ccnl_slug=_COOP_SOCIALI,
             level_code="D2",
-            withholding_schedule=WithholdingSchedule.from_calendar(
-                WorkCalendar(year=_YEAR + 1)
-            ),
+            withholding_schedule=calendar_schedule(WorkCalendar(year=_YEAR + 1)),
         )
 
 
 def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None:
     """Without a schedule, December regular still leaves the tredicesima slot.
 
-    Thirteen slots closed out of fourteen would settle; twelve closed must
-    split the balance over the December payslip and the tredicesima.
+    With the twelve earlier payments identified, December splits the
+    balance over its own payslip and the tredicesima.
     """
-    opening = PeriodState(
-        cash=TaxCashState(
-            tax_year=_YEAR,
-            withholding_payments_closed=12,
-            earnings=EarningsYtd(taxable=Decimal("18043.97")),
-        )
+    paid = _paid(paid_before(PayrollRun.regular(_YEAR, 12), Decimal("13.5")))
+    opening = replace(
+        paid,
+        cash=replace(paid.cash, earnings=EarningsYtd(taxable=Decimal("18043.97"))),
     )
     result = calculate_period(
         PeriodCalculationRequest(

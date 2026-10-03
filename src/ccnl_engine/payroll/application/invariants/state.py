@@ -50,17 +50,6 @@ def run_id_of(result: PeriodResult) -> PayrollRunId:
     return run_identifier(result.run, result.period_id.year, result.period_id.month)
 
 
-def _counter_violation(
-    name: str, expected: int, actual: int
-) -> ReconciliationViolation:
-    return ReconciliationViolation(
-        invariant_id=InvariantCode.RUN_COUNTERS_ADVANCE,
-        message=f"{name} not correctly incremented",
-        expected=Decimal(expected),
-        actual=Decimal(actual),
-    )
-
-
 def check_run_counters(
     result: PeriodResult,
     opening: PeriodState,
@@ -69,9 +58,7 @@ def check_run_counters(
 
     Returns:
         Violations when the accrual state does not append exactly the run,
-        the tax cash state does not append exactly its payment, or the
-        withholding payments do not advance by one when the run takes a
-        withholding slot.
+        or the tax cash state does not append exactly its payment.
     """
     violations: list[ReconciliationViolation] = []
     run_id = run_id_of(result)
@@ -92,17 +79,6 @@ def check_run_counters(
             ReconciliationViolation(
                 invariant_id=InvariantCode.RUN_COUNTERS_ADVANCE,
                 message=f"payment of run '{run_id}' not closed once",
-            )
-        )
-    expected_slots = opening.cash.withholding_payments_closed + (
-        1 if run_id.kind.consumes_withholding_slot else 0
-    )
-    if closing.cash.withholding_payments_closed != expected_slots:
-        violations.append(
-            _counter_violation(
-                "withholding_payments_closed",
-                expected_slots,
-                closing.cash.withholding_payments_closed,
             )
         )
     return violations

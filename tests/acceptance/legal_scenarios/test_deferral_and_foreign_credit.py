@@ -21,6 +21,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
+    CompetenceYearPlan,
+    CompetenceYearResult,
     DeferredShortfall,
     Employment,
     ForeignTaxPaid,
@@ -29,8 +31,6 @@ from ccnl_engine import (
     PeriodFacts,
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
-    YearInput,
-    YearResult,
 )
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE
 
@@ -45,9 +45,9 @@ def _year(
     prior_year: PriorYearTaxFacts,
     periods: dict[int, PeriodFacts] | None = None,
     opening: OpeningBalances | None = None,
-) -> YearResult:
-    return ENGINE.calculate_year(
-        YearInput(
+) -> CompetenceYearResult:
+    return ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=_EMPLOYMENT,
             employer=EMPLOYER,

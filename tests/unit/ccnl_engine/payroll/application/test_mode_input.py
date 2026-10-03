@@ -8,9 +8,11 @@ import pytest
 
 from ccnl_engine.payroll.application.mode_input import (
     closing_state,
+    competence_plan,
+    opening_balances,
     parse_mode,
     period_request,
-    year_request,
+    tax_year_plan,
 )
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -39,7 +41,9 @@ def test_unknown_mode_is_invalid_input() -> None:
     ("check", "field"),
     [
         (period_request, "request"),
-        (year_request, "request"),
+        (competence_plan, "plan"),
+        (tax_year_plan, "plan"),
+        (opening_balances, "balances"),
         (closing_state, "closing_state"),
     ],
 )

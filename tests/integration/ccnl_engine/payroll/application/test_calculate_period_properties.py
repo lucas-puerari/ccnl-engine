@@ -52,7 +52,6 @@ def _req(
         level_code=_LEVEL,
         opening_state=PeriodState(
             cash=TaxCashState(
-                withholding_payments_closed=payments_closed,
                 tax=TaxYtd(irpef=irpef_ytd),
             )
         ),
@@ -154,7 +153,6 @@ class TestOpeningPlusMovementsEqualsClosing:
         opening_gross = Decimal("1000.00") * months_closed
         opening = PeriodState(
             cash=TaxCashState(
-                withholding_payments_closed=months_closed,
                 earnings=EarningsYtd(gross=opening_gross),
             )
         )

@@ -21,14 +21,14 @@ from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from functools import cache
+from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 from ccnl_engine.payroll.domain.inputs import PeriodInput
 from ccnl_engine.payroll.domain.ledger import AccountKind
@@ -42,9 +42,16 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule, WithholdingSlot
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from tests.helpers import EMPLOYER_50, year_input
+from ccnl_engine.payroll.domain.withholding_schedule import (
+    WithholdingSchedule,
+    WithholdingSlot,
+)
+from tests.fixtures.withholding import paid_on_day
+from tests.helpers import EMPLOYER_50, year_plan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)
@@ -75,24 +82,24 @@ def _carried(plan: RecoveryPlan) -> PeriodState:
 
 def _year(
     opening: PeriodState | None = None, period: EmploymentPeriod = _Q1
-) -> YearResult:
-    return calculate_year(
-        year_input(2026, _CCNL, "C3", employment_period=period, opening_state=opening)
+) -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(2026, _CCNL, "C3", employment_period=period, opening_state=opening)
     )
 
 
 @cache
-def _q1_without_plan() -> YearResult:
+def _q1_without_plan() -> CompetenceYearResult:
     return _year()
 
 
-def _recovery_reasons(result: YearResult, kind: str) -> list[str]:
+def _recovery_reasons(result: CompetenceYearResult, kind: str) -> list[str]:
     return [
         d.reason_code for d in result.decisions if d.capability == f"{kind}_recovery"
     ]
 
 
-def _recovery_line(result: YearResult, run: int, item_prefix: str) -> Decimal:
+def _recovery_line(result: CompetenceYearResult, run: int, item_prefix: str) -> Decimal:
     period = result.period_results[run]
     return sum(
         (
@@ -176,12 +183,14 @@ class TestCarriedPlanAtTermination:
 def _schedule() -> WithholdingSchedule:
     return WithholdingSchedule(
         year=2026,
-        slots=tuple(WithholdingSlot(PayrollRun.regular(2026, m)) for m in (1, 2, 3)),
+        slots=tuple(
+            WithholdingSlot(paid_on_day(PayrollRun.regular(2026, m))) for m in (1, 2, 3)
+        ),
     )
 
 
 def _march(opening: PeriodState) -> PeriodInput:
-    employment = year_input(2026, _CCNL, "C3", employment_period=_Q1).employment
+    employment = year_plan(2026, _CCNL, "C3", employment_period=_Q1).employment
     return PeriodInput(
         run=PayrollRun.regular(2026, 3),
         payment_date=date(2026, 3, 28),

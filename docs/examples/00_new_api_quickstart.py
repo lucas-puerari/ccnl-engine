@@ -1,7 +1,7 @@
 """Quickstart: one payroll run and one full year with PayrollEngine.
 
 The engine takes a :class:`PeriodInput` for a single cedolino and a
-:class:`YearInput` for every run of a tax year.  Both group the facts by
+:class:`CompetenceYearPlan` for every run of a tax year.  Both group the facts by
 owner: :class:`Employment` for the contract and the worker,
 :class:`EmployerProfile` for the employer and :class:`PeriodFacts` for what
 holds in one run.  ``mode="operational"`` keeps the amounts and also blocks
@@ -19,7 +19,7 @@ from ccnl_engine import (
     PeriodInput,
     SeniorityFact,
     SenioritySource,
-    YearInput,
+    CompetenceYearPlan,
 )
 
 engine = PayrollEngine.bundled()
@@ -61,8 +61,8 @@ print(f"Reviewed CCNLs: {len(reviewed)} of {len(strict.list_contracts())}")
 
 # The calendar is derived from the CCNL: Commercio grants tredicesima and
 # quattordicesima, so the year has 14 runs.
-year_result = engine.calculate_year(
-    YearInput(year=2026, employment=employment, employer=employer)
+year_result = engine.calculate_competence_year(
+    CompetenceYearPlan(year=2026, employment=employment, employer=employer)
 )
 
 print(f"\nAnnual gross:   {year_result.annual_gross} EUR")

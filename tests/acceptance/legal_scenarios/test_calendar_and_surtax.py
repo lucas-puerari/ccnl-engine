@@ -10,10 +10,10 @@ from ccnl_engine import (
     CalculationStatus,
     CalendarOverride,
     CalendarOverrideReason,
+    CompetenceYearPlan,
     Employment,
     InvalidInputError,
     WorkCalendar,
-    YearInput,
 )
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -34,8 +34,8 @@ def test_commercio_standard_calendar_pays_fourteen_runs() -> None:
     12 regular runs plus 2 extra-month runs = 14 runs, derived from the CCNL
     without passing a calendar.
     """
-    year = ENGINE.calculate_year(
-        YearInput(year=2026, employment=_COMMERCIO_4, employer=EMPLOYER)
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=_COMMERCIO_4, employer=EMPLOYER)
     )
 
     assert len(year.period_results) == 14
@@ -53,8 +53,8 @@ def test_empty_calendar_that_drops_extra_months_is_rejected() -> None:
         note="no extra months",
     )
     with pytest.raises(InvalidInputError, match="drops or lowers the thirteenth"):
-        ENGINE.calculate_year(
-            YearInput(
+        ENGINE.calculate_competence_year(
+            CompetenceYearPlan(
                 year=2026,
                 employment=_COMMERCIO_4,
                 employer=EMPLOYER,

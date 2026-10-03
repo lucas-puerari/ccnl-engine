@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
+    CompetenceYearPlan,
     ContributableHours,
     EmployerProfile,
     Employment,
@@ -20,7 +21,6 @@ from ccnl_engine import (
     SenioritySource,
     WeeklyHours,
     WorkerCategory,
-    YearInput,
 )
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -34,14 +34,14 @@ from tests.acceptance.legal_scenarios._support import (
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from ccnl_engine import YearResult
+    from ccnl_engine import CompetenceYearResult
 
 pytestmark = pytest.mark.legal_scenario
 
 
-def _commercio_year(period: EmploymentPeriod) -> YearResult:
-    return ENGINE.calculate_year(
-        YearInput(
+def _commercio_year(period: EmploymentPeriod) -> CompetenceYearResult:
+    return ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug=COMMERCIO, level_code="4", employment_period=period
@@ -51,7 +51,7 @@ def _commercio_year(period: EmploymentPeriod) -> YearResult:
     )
 
 
-def _three_month_year() -> YearResult:
+def _three_month_year() -> CompetenceYearResult:
     return _commercio_year(EmploymentPeriod(date(2026, 7, 1), date(2026, 9, 30)))
 
 

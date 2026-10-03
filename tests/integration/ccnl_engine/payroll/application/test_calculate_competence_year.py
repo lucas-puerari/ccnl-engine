@@ -1,4 +1,4 @@
-"""Unit tests for calculate_year() and WorkCalendar."""
+"""Unit tests for calculate_competence_year() and WorkCalendar."""
 
 from __future__ import annotations
 
@@ -8,9 +8,11 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.application import calculate_year as calculate_year_module
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.application.year import _sequence as sequence_module
 from ccnl_engine.payroll.domain.assurance import BlockerCode
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
@@ -20,11 +22,10 @@ from ccnl_engine.payroll.domain.calendar_override import (
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employment import Permanent
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
-from ccnl_engine.payroll.domain.events import AbsenceEvent, WorkEvent
-from ccnl_engine.payroll.domain.inputs import PeriodFacts
+from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -36,17 +37,17 @@ _YEAR = 2026
 
 
 class TestYearResult:
-    """YearResult stores period results and aggregated totals."""
+    """CompetenceYearResult stores period results and aggregated totals."""
 
     def test_frozen(self) -> None:
-        """YearResult is immutable."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        """CompetenceYearResult is immutable."""
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         with pytest.raises(AttributeError):
             result.year = 2025  # type: ignore[misc]
 
     def test_year_stored(self) -> None:
         """Year matches the requested year."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         assert result.year == _YEAR
 
     def test_calendar_year_mismatch_raises(self) -> None:
@@ -57,32 +58,34 @@ class TestYearResult:
             note="wrong year",
         )
         with pytest.raises(InvalidInputError, match="year 2025"):
-            calculate_year(year_input(_YEAR, _CCNL, _LEVEL, calendar_override=override))
+            calculate_competence_year(
+                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
+            )
 
 
 class TestCalculateYear:
-    """calculate_year() chains calculate_period across all runs of the year."""
+    """calculate_competence_year() chains calculate_period across every run."""
 
     def test_produces_13_period_results(self) -> None:
         """Metalmeccanico grants a tredicesima: 12 regular runs plus one."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         assert len(result.period_results) == 13
 
     def test_annual_gross_equals_sum_of_periods(self) -> None:
         """annual_gross is the exact sum of all period_gross values."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         expected = sum((r.period_gross for r in result.period_results), Decimal(0))
         assert result.annual_gross == expected
 
     def test_annual_net_equals_sum_of_periods(self) -> None:
         """annual_net is the exact sum of all period_net values."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         expected = sum((r.period_net for r in result.period_results), Decimal(0))
         assert result.annual_net == expected
 
     def test_annual_employer_cost_equals_sum_of_periods(self) -> None:
         """annual_employer_cost is the exact sum of all period_employer_cost values."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         expected = sum(
             (r.period_employer_cost for r in result.period_results), Decimal(0)
         )
@@ -90,7 +93,7 @@ class TestCalculateYear:
 
     def test_state_threaded_across_periods(self) -> None:
         """Closing state of period N is the opening state of period N+1."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         for i in range(1, 12):
             prev = result.period_results[i - 1]
             curr = result.period_results[i]
@@ -100,12 +103,14 @@ class TestCalculateYear:
 
     def test_regular_months_reach_12(self) -> None:
         """After the year twelve regular months are closed, extra runs aside."""
-        closing = calculate_year(year_input(_YEAR, _CCNL, _LEVEL)).closing_state
+        closing = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL)
+        ).closing_state
         assert closing.accrual.regular_months(_YEAR) == 12
 
     def test_period_ids_are_in_order(self) -> None:
         """Regular period results are ordered January to December."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         regular = [
             r
             for r in result.period_results
@@ -117,8 +122,8 @@ class TestCalculateYear:
 
     def test_explicit_contract_type(self) -> None:
         """An explicitly supplied contract_type is used instead of the default."""
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, contract_type=Permanent())
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL, contract_type=Permanent())
         )
         assert len(result.period_results) == 13
 
@@ -129,8 +134,8 @@ class TestCalculateYear:
             hours=Decimal(8),
             hourly_rate=Decimal("13.00"),
         )
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={3: (absence,)})
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL, events={3: (absence,)})
         )
         # March net must be lower than January net (absence in EMPLOYEE_DEDUCTIONS)
         jan_net = result.period_results[0].period_net
@@ -139,13 +144,13 @@ class TestCalculateYear:
 
     def test_all_period_gross_values_positive(self) -> None:
         """With no events every period_gross value is positive."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         for r in result.period_results:
             assert r.period_gross > Decimal(0)
 
     def test_gross_ytd_accumulates_correctly(self) -> None:
         """gross_ytd in the last closing state equals annual_gross."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         dec_state = result.period_results[-1].closing_state
         assert dec_state.cash.earnings.gross == result.annual_gross
 
@@ -155,7 +160,7 @@ class TestCalculateYear:
         metalmeccanico-federmeccanica has additional_months=13: one
         tredicesima paid in December.
         """
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+        result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
         assert result.calendar == WorkCalendar.from_additional_months(_YEAR, 13)
         assert result.calendar_override is None
 
@@ -165,8 +170,8 @@ class TestEmploymentPeriodRuns:
 
     def test_mid_month_hire_starts_in_the_hire_month(self) -> None:
         """Hired 15 March, open-ended: March to December plus the tredicesima."""
-        result = calculate_year(
-            year_input(
+        result = calculate_competence_year(
+            year_plan(
                 _YEAR,
                 _CCNL,
                 _LEVEL,
@@ -182,8 +187,8 @@ class TestEmploymentPeriodRuns:
 
     def test_partial_month_is_provisional_and_whole_months_final(self) -> None:
         """Only the partly employed month carries the provisional issue."""
-        result = calculate_year(
-            year_input(
+        result = calculate_competence_year(
+            year_plan(
                 _YEAR,
                 _CCNL,
                 _LEVEL,
@@ -205,8 +210,8 @@ class TestEmploymentPeriodRuns:
         The issue is added after the run is assembled, so the assurance of
         the run reflects it too.
         """
-        result = calculate_year(
-            year_input(
+        result = calculate_competence_year(
+            year_plan(
                 _YEAR,
                 _CCNL,
                 _LEVEL,
@@ -230,8 +235,8 @@ class TestEmploymentPeriodRuns:
         somma esente, which rests on the employment income standing for the
         reddito complessivo: the result is provisional for that alone.
         """
-        result = calculate_year(
-            year_input(
+        result = calculate_competence_year(
+            year_plan(
                 _YEAR,
                 _CCNL,
                 _LEVEL,
@@ -251,8 +256,8 @@ class TestEmploymentPeriodRuns:
     def test_employment_outside_the_year_is_rejected(self) -> None:
         """An employment ended in 2025 has nothing to compute in 2026."""
         with pytest.raises(InvalidInputError, match="no day in 2026"):
-            calculate_year(
-                year_input(
+            calculate_competence_year(
+                year_plan(
                     _YEAR,
                     _CCNL,
                     _LEVEL,
@@ -277,9 +282,9 @@ class TestEmploymentPeriodRuns:
             requests.append(req)
             return calculate_period(req, **kwargs)  # type: ignore[arg-type]
 
-        monkeypatch.setattr(calculate_year_module, "calculate_period", _spy)
-        calculate_year(
-            year_input(
+        monkeypatch.setattr(sequence_module, "calculate_period", _spy)
+        calculate_competence_year(
+            year_plan(
                 _YEAR,
                 "commercio-confcommercio.json",
                 "4",
@@ -320,9 +325,9 @@ class TestCalendarOverride:
             reason=CalendarOverrideReason.PAYMENT_MONTH,
             note="quattordicesima paid with the July salary",
         )
-        standard = calculate_year(year_input(_YEAR, commercio, "4"))
-        moved = calculate_year(
-            year_input(_YEAR, commercio, "4", calendar_override=override)
+        standard = calculate_competence_year(year_plan(_YEAR, commercio, "4"))
+        moved = calculate_competence_year(
+            year_plan(_YEAR, commercio, "4", calendar_override=override)
         )
         run_ids = [r.run.run_id for r in moved.period_results if r.run is not None]
         assert run_ids[7] == f"{_YEAR}-07-fourteenth"
@@ -337,8 +342,8 @@ class TestCalendarOverride:
             reason=CalendarOverrideReason.MORE_FAVOURABLE_TREATMENT,
             note="company agreement grants a quattordicesima",
         )
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, calendar_override=override)
+        result = calculate_competence_year(
+            year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
         )
         assert len(result.period_results) == 14
         last = result.period_results[-1].closing_state
@@ -352,148 +357,6 @@ class TestCalendarOverride:
             note="no tredicesima",
         )
         with pytest.raises(InvalidInputError, match="thirteenth"):
-            calculate_year(year_input(_YEAR, _CCNL, _LEVEL, calendar_override=override))
-
-
-class TestPerRunEventAllocation:
-    """Periods keyed by run id reach that specific run."""
-
-    def test_run_id_keyed_events_applied_to_correct_run(self) -> None:
-        """Events keyed by run id reach the named run and no other run."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 5, 10),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        run_id = f"{_YEAR}-05-regular"
-        result_no_event = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
-        result_with_event = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)})
-        )
-        may_no = result_no_event.period_results[4].period_net
-        may_with = result_with_event.period_results[4].period_net
-        assert may_with < may_no
-
-    def test_run_id_keyed_events_do_not_leak_to_other_runs(self) -> None:
-        """Events allocated by run_id do not appear in other runs."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 5, 10),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        run_id = f"{_YEAR}-05-regular"
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={run_id: (absence,)})
-        )
-        may_gross = result.period_results[4].period_gross
-        for i, pr in enumerate(result.period_results):
-            if i != 4:
-                assert pr.period_gross >= may_gross or i >= 5
-
-    def test_extra_month_run_accepts_run_id_keyed_events(self) -> None:
-        """A run id key allocates events to an extra-month run."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 12, 15),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        thirteenth_run_id = f"{_YEAR}-12-thirteenth"
-        result_no = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
-        result_with = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)})
-        )
-        thirteenth_no = next(
-            r
-            for r in result_no.period_results
-            if r.period_id.month == 12
-            and r.run is not None
-            and r.run.run_kind == "thirteenth"
-        )
-        thirteenth_with = next(
-            r
-            for r in result_with.period_results
-            if r.period_id.month == 12
-            and r.run is not None
-            and r.run.run_kind == "thirteenth"
-        )
-        assert thirteenth_with.period_net < thirteenth_no.period_net
-
-    def test_extra_month_run_events_do_not_appear_in_regular_run(self) -> None:
-        """Events allocated to thirteenth run are not applied to regular December."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 12, 15),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        thirteenth_run_id = f"{_YEAR}-12-thirteenth"
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={thirteenth_run_id: (absence,)})
-        )
-        regular_dec = next(
-            r
-            for r in result.period_results
-            if r.period_id.month == 12
-            and (r.run is None or r.run.run_kind == "regular")
-        )
-        result_no = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
-        regular_dec_no = next(
-            r
-            for r in result_no.period_results
-            if r.period_id.month == 12
-            and (r.run is None or r.run.run_kind == "regular")
-        )
-        assert regular_dec.period_gross == regular_dec_no.period_gross
-
-    def test_duplicate_allocation_raises(self) -> None:
-        """Supplying the same run by month and by run id raises."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 3, 10),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        run_id = f"{_YEAR}-03-regular"
-        events: dict[int | str, tuple[WorkEvent, ...]] = {
-            3: (absence,),
-            run_id: (absence,),
-        }
-        with pytest.raises(InvalidInputError, match=r"names run .* twice"):
-            calculate_year(year_input(_YEAR, _CCNL, _LEVEL, events=events))
-
-    def test_month_keyed_events_work_alone(self) -> None:
-        """Month keys work without any run id key."""
-        absence = AbsenceEvent(
-            event_date=date(_YEAR, 6, 10),
-            hours=Decimal(8),
-            hourly_rate=Decimal("13.00"),
-        )
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, events={6: (absence,)})
-        )
-        jun_net = result.period_results[5].period_net
-        jan_net = result.period_results[0].period_net
-        assert jun_net < jan_net
-
-
-class TestSurtaxStatus:
-    """Surtax decisions set the status of every run and of the year."""
-
-    def test_unknown_municipality_makes_every_run_and_the_year_incomplete(
-        self,
-    ) -> None:
-        """A Belfiore code without a table leaves the whole year incomplete."""
-        result = calculate_year(
-            year_input(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(comune_belfiore="Z999"))
-        )
-
-        assert {r.assurance.calculation for r in result.period_results} == {
-            CalculationStatus.INCOMPLETE
-        }
-        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
-        assert {i.code for i in result.issues} == {"municipal_surtax_unknown"}
-
-    def test_malformed_region_code_is_rejected(self) -> None:
-        """A region name instead of a region code is invalid input."""
-        with pytest.raises(InvalidInputError, match="ISO 3166-2:IT"):
-            calculate_year(
-                year_input(_YEAR, _CCNL, _LEVEL, facts=PeriodFacts(regione="Lombardia"))
+            calculate_competence_year(
+                year_plan(_YEAR, _CCNL, _LEVEL, calendar_override=override)
             )
