@@ -110,18 +110,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "partial",
-    "work_rules_features": {
-      "overtime": "implemented",
-      "night_work": "partial",
-      "holiday_work": "partial",
-      "absence": "implemented",
-      "sickness": "partial",
-      "leave": "not_implemented"
-    }
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -3508,7 +3497,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "9b1f024179b7d1aa6a1c9b84df6bcb0ff4b5ba87a33511a800c32bffa87da538",
+    "source_hash": "a20529d6e69f262a596939fcaa0273a5b1f921e2be8316e3e81ce30367680ec0",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

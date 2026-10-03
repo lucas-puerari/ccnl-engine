@@ -16,18 +16,16 @@ from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_DECLARED_AMOUNT,
 )
-from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
+from ccnl_engine.payroll.domain.capability_catalog import CapabilityHandler
 from ccnl_engine.payroll.domain.decisions import CalculationStatus, DecisionOrigin
 from ccnl_engine.payroll.domain.trace import DecisionTrace, TraceState
 from ccnl_engine.payroll.service.pension_fund import NOT_ENROLLED
 from ccnl_engine.payroll.service.withholding_agent import NOT_WITHHOLDING_AGENT
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable, Mapping
+    from collections.abc import Iterable
 
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
-    from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 
 # Pipeline stages every run executes unconditionally.
 _CORE_FEATURES = ("base_salary", "inps_employee", "inps_employer", "tfr", "irpef")
@@ -50,6 +48,14 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "rinnovo_substitute_tax": TraceState.NOT_APPLICABLE,
     "notte_festivi_turni_substitute_tax": TraceState.NOT_APPLICABLE,
     "pension_fund_contribution": TraceState.NOT_APPLICABLE,
+}
+
+#: Capabilities a handler of the engine decides and traces: the registry
+#: entry of each names the same kind of handler.
+HANDLERS: dict[str, CapabilityHandler] = {
+    **dict.fromkeys(_CORE_FEATURES, CapabilityHandler.PIPELINE),
+    **dict.fromkeys(EVENT_FEATURES.values(), CapabilityHandler.EVENT),
+    **dict.fromkeys(_DECISION_FEATURES, CapabilityHandler.DECISION),
 }
 
 #: Reasons of a decision that leaves its capability not applicable.
@@ -185,33 +191,3 @@ def caller_supplied_fields(
                 name for name in names.split(",") if name
             )
     return {capability: tuple(sorted(names)) for capability, names in fields.items()}
-
-
-def capability_report(
-    catalog: CapabilityCatalog,
-    decisions: Iterable[CalculationDecision],
-    executed_features: frozenset[str],
-    year: int,
-    rule_sources: Mapping[str, ProvenanceStatus] | None = None,
-) -> CapabilityReport:
-    """Return the gaps between the catalog and what the run executed.
-
-    Args:
-        catalog: Capability catalog of ``year``.
-        decisions: Every decision of the run.
-        executed_features: Event features whose handler had an effect.
-        year: Tax year of the run.
-        rule_sources: Weakest provenance status per executed capability.
-
-    Returns:
-        The capability report of the run for ``year``, with the fields
-        each capability took from the caller.
-    """
-    decisions = tuple(decisions)
-    observed = traces_to_observed(build_traces(decisions, executed_features))
-    return CapabilityReport(
-        catalog_year=year,
-        gaps=catalog.gaps(observed, detect_absent=True, year=year),
-        rule_sources=rule_sources or {},
-        caller_supplied=caller_supplied_fields(decisions),
-    )

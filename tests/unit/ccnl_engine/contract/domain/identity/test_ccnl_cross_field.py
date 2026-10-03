@@ -83,7 +83,7 @@ class TestCCNLApprenticeshipTracks:
 
 
 class TestCoverage:
-    """CoverageNote kind, MISSING rule and layer_2 <-> tracks consistency."""
+    """CoverageNote kind and the capability a MISSING note names."""
 
     def test_note_invalid_kind_raises(self) -> None:
         """A note with an unknown kind must be rejected."""
@@ -99,15 +99,15 @@ class TestCoverage:
         with pytest.raises(ValidationError):
             _validate(data)
 
-    def test_missing_note_requires_partial(self) -> None:
-        """A 'missing' note is only allowed while a layer is partial."""
+    def test_missing_note_names_its_capability(self) -> None:
+        """A 'missing' note must name the capability it leaves partial."""
         data = make_ccnl_dict()
         data["coverage"]["notes"] = [{"kind": "missing", "text": "Jan 2027 tranche."}]
-        with pytest.raises(ValidationError, match="'missing' notes but neither"):
+        with pytest.raises(ValidationError, match="must name the capability"):
             _validate(data)
-        data["coverage"]["gross"] = "partial"
+        data["coverage"]["notes"][0]["capability"] = "base_salary"
         result = _validate(data)
-        assert result.coverage.gross == "partial"
+        assert result.coverage.notes[0].capability == "base_salary"
         assert result.coverage.notes[0].kind.value == "missing"
 
     def test_all_note_kinds_accepted(self) -> None:
@@ -121,26 +121,14 @@ class TestCoverage:
         result = _validate(data)
         assert len(result.coverage.notes) == 3
 
-    def test_implemented_without_tracks_allowed(self) -> None:
-        """layer_2 implemented is valid even with no apprenticeship tracks.
-
-        Some sectors (e.g. PA/ARAN) correctly have no apprenticeship tracks;
-        layer_2=implemented still models part-time and fixed-term correctly.
-        """
-        data = make_ccnl_dict(app_type="none")
-        data["coverage"] = {
-            "gross": "implemented",
-            "net": "implemented",
-            "notes": [],
-        }
-        result = _validate(data)
-        assert result.coverage.net == "implemented"
-
-    def test_out_of_scope_with_tracks_raises(self) -> None:
-        """layer_2 out_of_scope is inconsistent with apprenticeship tracks."""
+    @pytest.mark.parametrize(
+        "flag", ["gross", "net", "work_rules", "work_rules_features"]
+    )
+    def test_coverage_flags_are_rejected(self, flag: str) -> None:
+        """Coverage derives from the registry: a file cannot declare a flag."""
         data = make_ccnl_dict()
-        data["coverage"]["net"] = "out_of_scope"
-        with pytest.raises(ValidationError, match="but apprenticeship tracks exist"):
+        data["coverage"][flag] = "implemented"
+        with pytest.raises(ValidationError, match="Extra inputs are not permitted"):
             _validate(data)
 
 

@@ -1,8 +1,9 @@
-"""Tests for the capability catalog loader: bundled catalog and error branches."""
+"""Capability registry loader: the bundled registry and the rejected documents."""
 
 from __future__ import annotations
 
 import json
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -10,75 +11,85 @@ import pytest
 import ccnl_engine.knowledge.service.capability_catalog_loader as _catalog_mod
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
+    parse_capability_catalog,
 )
+from ccnl_engine.payroll.domain.assurance import EvidenceStatus
 from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityApplicability,
     CapabilityCatalog,
-    CapabilityStatus,
+    CapabilityHandler,
+    CapabilityImplementation,
+    CapabilityLayer,
 )
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 
-# ---------------------------------------------------------------------------
-# load_capability_catalog (loader) — happy path
-# ---------------------------------------------------------------------------
+_IRPEF: dict[str, Any] = {
+    "feature": "irpef",
+    "layer": "net",
+    "implementation": "native",
+    "applies_when": "always",
+    "handler": "pipeline",
+    "evidence": "derived",
+}
+
+#: The capabilities no 2026 run computes, each with its predicate.
+_UNSUPPORTED_2026 = {
+    "inail": "outside_input",
+    "contribution_exemption": "outside_input",
+    "fiscal_adjustment": "outside_input",
+    "maternity_leave": "outside_input",
+    "workplace_injury": "outside_input",
+    "termination_residual_leave": "termination_run",
+    "una_tantum": "outside_input",
+    "personal_withholdings": "outside_input",
+    "additional_irpef_base": "outside_input",
+    "health_fund_employee": "outside_input",
+    "health_fund_employer": "outside_input",
+    "territorial_supplement": "outside_input",
+    "company_supplement": "outside_input",
+    "art15_deductions": "outside_input",
+}
 
 
-def _raw(capabilities: list[dict]) -> str:  # type: ignore[type-arg]
-    return json.dumps({"year": 2026, "schema_version": 1, "capabilities": capabilities})
+def _doc(*entries: object, schema_version: int = 2) -> dict[str, object]:
+    return {"year": 2026, "schema_version": schema_version, "capabilities": [*entries]}
 
 
-class TestLoadCapabilityCatalog:
-    """Happy path: 2026 catalog loads and parses correctly."""
+class TestBundledRegistry:
+    """The 2026 registry loads with every field of an entry."""
 
-    def test_loads_2026(self) -> None:
-        """The 2026 catalog is present in the bundle and parses without error."""
-        cat = load_capability_catalog(2026)
-        assert cat.year == 2026
-        assert len(cat.capabilities) > 0
-        entry = cat.by_feature("base_salary")
+    def test_entry_fields(self) -> None:
+        """An entry carries layer, implementation, predicate and handler."""
+        entry = load_capability_catalog(2026).by_feature("family_deductions")
         assert entry is not None
-        assert entry.status == CapabilityStatus.COMPUTED
+        assert entry.layer is CapabilityLayer.NET
+        assert entry.implementation is CapabilityImplementation.PARTIAL
+        assert entry.applies_when is CapabilityApplicability.DECIDED
+        assert entry.handler is CapabilityHandler.DECISION
+        assert entry.evidence is EvidenceStatus.DERIVED
+        assert entry.required_facts == ("facts.family_composition",)
+        assert "spouse_flat_band" in entry.variants
 
-    def test_2026_has_all_fiscal_features(self) -> None:
-        """The 2026 catalog covers every feature emitted by scope.py."""
-        cat = load_capability_catalog(2026)
-        expected = {
-            "base_salary",
-            "seniority",
-            "inps_employee",
-            "inps_employer",
-            "tfr",
-            "irpef",
-            "trattamento_integrativo",
-            "ulteriore_detrazione_lavoro",
-            "addizionale_regionale",
-            "addizionale_comunale",
-            "family_deductions",
-            "art15_deductions",
-            "overtime",
-            "night_work",
-            "holiday_work",
-            "absence",
-            "leave",
-            "sickness",
-            "fringe_benefit",
-            "welfare",
-            "bonus_pdr",
-            "bilateral_funds",
+    def test_unsupported_capabilities_and_predicates(self) -> None:
+        """The fourteen unsupported capabilities name when they apply."""
+        catalog = load_capability_catalog(2026)
+        unsupported = {
+            e.feature: e.applies_when.value
+            for e in catalog.capabilities
+            if e.implementation is CapabilityImplementation.UNSUPPORTED
         }
-        found = {e.feature for e in cat.capabilities}
-        assert expected <= found
+        assert unsupported == _UNSUPPORTED_2026
+
+    @pytest.mark.parametrize("feature", ["sickness", "family_deductions"])
+    def test_partial_capabilities(self, feature: str) -> None:
+        """Sickness and family deductions are computed for some variants only."""
+        entry = load_capability_catalog(2026).by_feature(feature)
+        assert entry is not None
+        assert entry.implementation is CapabilityImplementation.PARTIAL
 
     def test_cached_returns_same_object(self) -> None:
         """Repeated calls for the same year return the identical object."""
-        a = load_capability_catalog(2026)
-        b = load_capability_catalog(2026)
-        assert a is b
-
-
-# ---------------------------------------------------------------------------
-# load_capability_catalog (loader) — error branches
-# Bypass @cache using __wrapped__ (set by functools.lru_cache via functools.wraps)
-# ---------------------------------------------------------------------------
+        assert load_capability_catalog(2026) is load_capability_catalog(2026)
 
 
 def _call_uncached(raw: str, year: int = 9999) -> CapabilityCatalog:
@@ -90,69 +101,64 @@ def _call_uncached(raw: str, year: int = 9999) -> CapabilityCatalog:
         return _catalog_mod._load_cached.__wrapped__(year)
 
 
-def _call_uncached_file_not_found(year: int = 8888) -> None:
-    with (
-        patch.object(_catalog_mod, "importlib") as mock_importlib,
-        patch.object(_catalog_mod, "read_bundled", side_effect=FileNotFoundError),
-    ):
-        mock_importlib.resources.files.return_value = MagicMock()
-        _catalog_mod._load_cached.__wrapped__(year)
-
-
-class TestLoadCapabilityCatalogErrors:
-    """Error branches in the loader."""
+class TestReadErrors:
+    """A missing or unreadable file is a data integrity error."""
 
     def test_missing_file_raises(self) -> None:
         """FileNotFoundError from read_bundled is wrapped in DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="not found"):
-            _call_uncached_file_not_found()
+        with (
+            patch.object(_catalog_mod, "importlib") as mock_importlib,
+            patch.object(_catalog_mod, "read_bundled", side_effect=FileNotFoundError),
+        ):
+            mock_importlib.resources.files.return_value = MagicMock()
+            with pytest.raises(DataIntegrityError, match="not found"):
+                _catalog_mod._load_cached.__wrapped__(8888)
 
     def test_invalid_json_raises(self) -> None:
         """Invalid JSON content raises DataIntegrityError."""
         with pytest.raises(DataIntegrityError, match="not valid JSON"):
             _call_uncached("NOT JSON{{")
 
-    def test_non_dict_raises(self) -> None:
-        """A JSON array at the top level raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="expected object"):
-            _call_uncached("[1, 2]")
+    def test_valid_document_loads(self) -> None:
+        """A valid document read from the bundle becomes a catalog."""
+        catalog = _call_uncached(json.dumps(_doc(_IRPEF)))
+        assert catalog.year == 9999
+        assert not catalog.capabilities[0].description
 
-    def test_missing_capabilities_key_raises(self) -> None:
-        """Missing 'capabilities' key raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="'capabilities' must be a list"):
-            _call_uncached(json.dumps({"year": 9999}))
 
-    def test_capabilities_not_list_raises(self) -> None:
-        """Non-list 'capabilities' value raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="'capabilities' must be a list"):
-            _call_uncached(json.dumps({"capabilities": "oops"}))
+class TestRejectedDocuments:
+    """The loader rejects a malformed or contradictory registry."""
 
-    def test_entry_not_dict_raises(self) -> None:
-        """A capabilities entry that is not a dict raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="not an object"):
-            _call_uncached(_raw(["not-a-dict"]))  # type: ignore[list-item]
+    @pytest.mark.parametrize(
+        ("data", "match"),
+        [
+            ([1, 2], "expected object"),
+            (_doc(schema_version=1), "schema_version must be 2"),
+            ({"schema_version": 2, "capabilities": "oops"}, "must be a list"),
+            (_doc("not-a-dict"), "not an object"),
+            (_doc({"layer": "net"}), "missing 'feature'"),
+            (_doc({**_IRPEF, "feature": ""}), "missing 'feature'"),
+            (_doc({**_IRPEF, "implementation": "computed"}), "irpef"),
+            (_doc({**_IRPEF, "applies_when": "sometimes"}), "irpef"),
+            (_doc({k: v for k, v in _IRPEF.items() if k != "handler"}), "handler"),
+            (_doc({**_IRPEF, "variants": "all"}), "list of strings"),
+            (_doc({**_IRPEF, "required_facts": [1]}), "list of strings"),
+            (_doc(_IRPEF, _IRPEF), "duplicate features"),
+        ],
+    )
+    def test_malformed(self, data: object, match: str) -> None:
+        """Each malformation names what is wrong."""
+        with pytest.raises(DataIntegrityError, match=match):
+            parse_capability_catalog(2026, data)
 
-    def test_entry_missing_feature_raises(self) -> None:
-        """A capabilities entry without 'feature' raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="missing 'feature'"):
-            _call_uncached(_raw([{"status": "computed"}]))
+    def test_unsupported_with_handler(self) -> None:
+        """A handler would claim a decision the engine does not take."""
+        entry = {**_IRPEF, "implementation": "unsupported"}
+        with pytest.raises(DataIntegrityError, match="unsupported capability"):
+            parse_capability_catalog(2026, _doc(entry))
 
-    def test_entry_empty_feature_raises(self) -> None:
-        """An empty 'feature' string raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="missing 'feature'"):
-            _call_uncached(_raw([{"feature": "", "status": "computed"}]))
-
-    def test_unknown_status_raises(self) -> None:
-        """An unrecognised string status value raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="unknown status"):
-            _call_uncached(_raw([{"feature": "irpef", "status": "totally_unknown"}]))
-
-    def test_non_string_status_raises(self) -> None:
-        """A non-string status value raises DataIntegrityError."""
-        with pytest.raises(DataIntegrityError, match="unknown status"):
-            _call_uncached(_raw([{"feature": "irpef", "status": 42}]))
-
-    def test_valid_entry_no_description(self) -> None:
-        """An entry without 'description' defaults to empty string."""
-        cat = _call_uncached(_raw([{"feature": "irpef", "status": "computed"}]))
-        assert not cat.capabilities[0].description
+    def test_computed_without_handler(self) -> None:
+        """A computed capability without a handler is rejected at load."""
+        entry = {**_IRPEF, "handler": None}
+        with pytest.raises(DataIntegrityError, match="every other one has one"):
+            parse_capability_catalog(2026, _doc(entry))

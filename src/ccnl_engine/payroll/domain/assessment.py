@@ -7,8 +7,9 @@ Each recorded condition is one :class:`~ccnl_engine.payroll.domain.assurance\
   names the fact;
 - a decision that is not final;
 - a gap of the capability report;
-- an executed capability whose weakest rule is ``assumed`` or ``missing``,
-  or a run whose rules carry no provenance record;
+- an executed capability whose weakest rule is weaker than the evidence
+  its registry entry accepts (``derived`` for every capability today), or
+  a run whose rules carry no provenance record;
 - a capability that took a caller value in place of a rule;
 - in ``operational`` mode only, a ruleset that tracks a readiness tier and
   is not ``production``, or a run where no ruleset tracks one (the CCNL
@@ -37,7 +38,7 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.engine_mode import EngineMode
 
 if TYPE_CHECKING:
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
+    from ccnl_engine.payroll.domain.capability_report import CapabilityReport
     from ccnl_engine.payroll.domain.decisions import (
         CalculationDecision,
         CalculationIssue,
@@ -98,16 +99,12 @@ def assess(
     )
 
 
-_WEAK = frozenset({EvidenceStatus.ASSUMED, EvidenceStatus.MISSING})
-
-
 def _evidence_blockers(report: CapabilityReport) -> tuple[ResultBlocker, ...]:
     if not report.rule_sources:
         return (_blocker(BlockerCode.RULE_SOURCE_WEAK, None, EvidenceStatus.MISSING),)
     return tuple(
         _blocker(BlockerCode.RULE_SOURCE_WEAK, feature, status)
-        for feature, status in report.rule_sources.items()
-        if EvidenceStatus(status) in _WEAK
+        for feature, status in report.weak_sources().items()
     )
 
 

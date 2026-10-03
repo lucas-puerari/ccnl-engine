@@ -78,10 +78,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP (Art. 92 CCNL, as reformed by CNCE notice n.660 of 04/04/2019): percentage type, single scheme for all levels 2-7 (level 1 excluded). 6 semesters = 36 months: 72%/72%/78%/78%/85%/90% then 100%. The old under-classification system was explicitly abolished from 01/04/2019. Craft/artistic figures: 48 months (8 semesters, semesters 7-8 at 90%); not modelled separately (no specific level code available). Structure confirmed unchanged in the 21/02/2025 renewal. Source: CNCE notice n.660/2019 (cassaedilevarese.it); cassaedilesavona.com Art.92; BibLus/ANCE dossier."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -961,7 +958,7 @@
     "effective_until": null,
     "source": "https://www.idealista.it/news/finanza/lavoro/2025/07/10/251640-ccnl-edilizia-livelli-inquadramento-2025-e-tutte-le-novita",
     "verification_status": "unverified",
-    "source_hash": "0dcaad01b122d2e653982d73e135861ff6e1e3106a19d6b4a81a00f4bfc8cced",
+    "source_hash": "0934ad0c820456f433c63a13c2aff5bc6ce6ded0adcc2b00bcb555388290bfe0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

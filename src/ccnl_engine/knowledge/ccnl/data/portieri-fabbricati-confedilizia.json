@@ -75,10 +75,7 @@
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio and turismo-confcommercio)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1341,7 +1338,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "99ab1acaac16a658aedf8356699187af391155a2a44c20bd6d63efbd5ca13c71",
+    "source_hash": "28927d820fe61d8459a0beddf619985ba14b41454f21eda2dcfd502090eae403",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

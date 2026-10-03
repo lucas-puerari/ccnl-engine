@@ -80,10 +80,7 @@
         "kind": "info",
         "text": "Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -632,7 +629,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "5bc382cc6d682eb885e83cd788516e8c3da1452f0d27ddeb4e1561b62ca7a798",
+    "source_hash": "b7a4735083ad726d6eb47e14ddbaa4645253b9b4153287f7e17c1df586d4803e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

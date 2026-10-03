@@ -77,10 +77,7 @@
         "kind": "info",
         "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1420,7 +1417,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "5cce42fe3c1b84ab2aeff1b5d398a13e70db7a7de8f5ed667b8ea7555ccd9245",
+    "source_hash": "3ce80a90d23d12d021327f74edc7953f7263966ecbab5d37af59a73aadb322e0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -67,7 +67,8 @@
       },
       {
         "kind": "missing",
-        "text": "Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled."
+        "text": "Indennità economica funzionari (Allegato 2/D) — L7 only, six sub-grade variants (Ex 3°/2°/1° Grado, Funz. Senior, Funz. Business, Ass. ex F2) with distinct amounts. Monthly amounts not found in publicly accessible sources (Allegato 2/D not published). Not modelled.",
+        "capability": "base_salary"
       },
       {
         "kind": "info",
@@ -97,10 +98,7 @@
         "kind": "source",
         "text": "Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
       }
-    ],
-    "gross": "partial",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1118,7 +1116,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "ed47849153e3758181fb9288faa4014d7066024fc67b4033769b669ab04c00d2",
+    "source_hash": "3d37435f6fb5c00c1f5b6113975da7c9a981e0d5ceeff629a93432db9bb738a0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

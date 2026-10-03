@@ -81,8 +81,7 @@ def _select_track(
         eligible = _eligible_destination_levels(ccnl)
         msg = (
             f"CCNL '{ccnl.meta.ccnl_id}' has no apprenticeship track for destination "
-            f"level {level.code!r} (coverage.net is {ccnl.coverage.net}; "
-            f"eligible destination levels: {eligible})"
+            f"level {level.code!r} (eligible destination levels: {eligible})"
         )
         raise OutOfScopeError(
             msg,

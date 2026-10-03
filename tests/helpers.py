@@ -271,12 +271,16 @@ def make_ccnl_dict(*, app_type: str = "percentage") -> dict[str, Any]:
             },
         },
         "coverage": {
-            "gross": "implemented",
-            "net": "implemented" if tracks else "partial",
             "notes": (
                 []
                 if tracks
-                else [{"kind": "missing", "text": "apprenticeship not modelled."}]
+                else [
+                    {
+                        "kind": "missing",
+                        "text": "apprenticeship not modelled.",
+                        "capability": "base_salary",
+                    }
+                ]
             ),
         },
         "parameters": {

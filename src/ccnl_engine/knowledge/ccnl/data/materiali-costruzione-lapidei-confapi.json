@@ -66,10 +66,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1921,6 +1918,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "e1aeb37b4d752e9bd4b7c9f25222e51aaf8300ddb24842e6e62cb2f381148e50"
+    "source_hash": "9bec70b4303f2db89a1ae1a2d8f03eb589ce7f67403f7d042a0b9c0a154f3241"
   }
 }

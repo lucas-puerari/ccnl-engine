@@ -140,7 +140,9 @@ private and public sectors (individual contracts may cover overlapping populatio
   Pass `OvertimeHours.weeks` (a `WeeklyOvertimeHours` per calendar week) for CCNLs
   with per-week band thresholds to get accurate band partitioning.
 
-Coverage % = (L1 × 50% + L2 × 35% + L3 × 15%) − 5% per missing data note (max −20%).
+Functional coverage, source quality and readiness are separate axes, never
+blended into one percentage. Coverage derives from one capability registry,
+the same that drives the capability report of every run.
 
 [**CCNL coverage table**](https://lucas-puerari.github.io/ccnl-engine/docs/contracts/index.html): per-contract coverage, verification status, and feature breakdown
 

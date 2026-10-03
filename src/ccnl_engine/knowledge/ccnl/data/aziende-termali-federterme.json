@@ -86,10 +86,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Storia salariale ante 1 ottobre 2024 non modellata. Il precedente CCNL (scaduto 31 dicembre 2019) non è disponibile in formato leggibile."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2155,7 +2152,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "5494b9c91857d6877bf7b4c11ec0653070d5acf5c968cb7a755f562534da0d21",
+    "source_hash": "4009bfb89f9ff311245c9a42706a52bb7a618b1909c86dfe58bb986e48033593",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },

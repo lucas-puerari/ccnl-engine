@@ -87,10 +87,7 @@
         "kind": "info",
         "text": "INPS: uses 2026-industria.json. Standard industry rates."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1432,7 +1429,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "9bccbde4b95bffd2fc316cec3ddc3fc734c7ec1e8f8d7cbaff9ce6dd70bde028",
+    "source_hash": "9792193667850a7621c191c257b71e2c896215dd8328664fe62f136a57160e1b",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

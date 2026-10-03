@@ -55,10 +55,7 @@
         "kind": "info",
         "text": "Apprenticeship: CCNL provides under-classification 2 levels below (engine schema requires static pay_level_code). Modeled as 100% passthrough."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -4136,7 +4133,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "a047fab10d9ce289ce18dda11bd7eb6713d29b7cbd4ef3a592faa34def0fbf9d",
+    "source_hash": "2b9596fd81e588313b78299d0cb948502df2481fc71b92b89d062746105de925",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

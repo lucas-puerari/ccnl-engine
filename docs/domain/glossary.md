@@ -154,13 +154,14 @@ built from the decisions.
 
 ### capability trace (traccia di esecuzione)
 
-The state of each catalog feature in one run, derived from what executed and
+The state of each registry capability in one run, derived from what executed and
 never from the request: computed, partial, unresolved, skipped or not
 applicable.  A feature decided by a `final` decision is computed, by a
 `provisional` one partial, by an `incomplete` or `rejected` one unresolved;
 an event feature is computed only when an event handler posted a non-zero
-amount or took a decision.  The capability report lists the features the
-catalog promises whose trace falls short, an unresolved one included.
+amount or took a decision.  The capability report lists the applicable
+capabilities of the registry whose trace falls short: unsupported,
+unresolved, a partial result or a partial implementation that executed.
 
 `DecisionTrace`, `TraceState`, `CapabilityReport`, `CapabilityGapKind`
 

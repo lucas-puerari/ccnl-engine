@@ -24,11 +24,21 @@
 
 ### Funzionalità
 
+Derived from the capability registry, as in the [capability matrix](capability-matrix.md).
+
+| | Functional coverage of a layer: its weakest capability |
+|---|---|
+| ✅ | Every capability native: computed from bundled rules and request facts |
+| 📝 | At best caller-supplied: a capability takes a caller rate or amount |
+| ⚠️ | A capability is partial: some variants only, or data the file lacks |
+| 🔲 | A capability is unsupported: the engine does not compute it |
+
 | Layer | Status |
 |---|---|
-| **L1 — Gross** | ✅ implemented |
-| **L2 — Net** | ✅ implemented |
-| **L3 — Work rules** | ✅ implemented |
+| **L1 — Gross** | 🔲 |
+| **L2 — Net** | 🔲 |
+| **L3 — Work rules** | 🔲 |
+| **Limits of this contract** | — |
 
 ### Verifica
 

@@ -94,10 +94,7 @@
         "kind": "info",
         "text": "Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1952,7 +1949,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "ce18ab24f5a2aab69b9e95d4ffdc4ab3c92bf23b3b98edf86f9c7a85d8eed154",
+    "source_hash": "5a6c3c7e273bfef1db459f2ce73e9babb2ae176de538c6dd6af17bab8a808629",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

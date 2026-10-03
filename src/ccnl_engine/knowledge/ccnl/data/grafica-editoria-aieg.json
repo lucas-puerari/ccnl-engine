@@ -71,10 +71,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP (Art. 26e, Type 2, CCNL 19/01/2021, p.42; confirmed in force in the 20.12.2024 renewal): 'triennale' track (groups C,B,A,Q → levels C2,C1,B3,B2,B1,B1S,A,AS,Q): 36 months / 6 semesters, 70/75/80/85/90/95% then 100%. 'biennale' track (group D → levels D2,D1): 24 months / 6 four-month periods (4 months each), 70/75/80/85/90/95% then 100%. Level E not listed as an apprenticeship destination. EDITORI sector not modelled in this JSON. Source: fistelcisl.it PDF CCNL grafici-editoriali.pdf (p. 41-42)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2057,7 +2054,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "d4607dbafba0ef8d05ceea396be449450d9a16c7b33df6e38aa6b97e48d0ea9f",
+    "source_hash": "bdc88b8bbe0f648ad7f54e1b308f4694f9ae54f224417e0321bfc83649c47929",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

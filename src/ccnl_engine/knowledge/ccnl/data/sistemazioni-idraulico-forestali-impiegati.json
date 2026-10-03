@@ -73,10 +73,7 @@
         "kind": "info",
         "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
       }
-    ],
-    "gross": "implemented",
-    "net": "partial",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -988,7 +985,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "50479fd3652ad96c3a08f7e4a6de882e1c592391300a6a3bc285ac4aae9731b3",
+    "source_hash": "ec9f45c3879c749d9ec1d7d9fc2963f850b5b74672862ae683aa212d0f5723a2",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

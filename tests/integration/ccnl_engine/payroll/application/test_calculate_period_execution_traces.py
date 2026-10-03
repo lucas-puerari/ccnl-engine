@@ -16,7 +16,7 @@ from ccnl_engine.payroll.application.period._capability_traces import build_trac
 from ccnl_engine.payroll.application.period._run_decisions import (
     worker_category_decision,
 )
-from ccnl_engine.payroll.domain.capability_catalog import CapabilityGapKind
+from ccnl_engine.payroll.domain.capability_report import CapabilityGapKind
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_context import EffectiveDateContext
 from ccnl_engine.payroll.domain.employment_facts import SeniorityMonths

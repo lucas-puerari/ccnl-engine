@@ -29,16 +29,22 @@ import sys
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from ccnl_engine.contract.domain.identity import CCNL
+from ccnl_engine.knowledge.service.capability_catalog_loader import (
+    load_capability_catalog,
+)
+from scripts.docs.coverage_report import (
+    IMPLEMENTATION_LEGEND,
+    CoverageCells,
+    coverage_cells,
+    latest_catalog_year,
+)
+
 ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "ccnl" / "data"
 OUT_DIR = ROOT / "docs" / "contracts"
-
-COVERAGE_ICON: dict[str | None, str] = {
-    "implemented": "✅",
-    "partial": "⚠️",
-    "not_implemented": "🔲",
-    None: "—",
-}
 
 VERIFICATION_BADGE: dict[str, str] = {
     "verified": "🟢 Verified",
@@ -302,13 +308,8 @@ def _latest_salary_tranche(levels: list[dict[str, Any]]) -> str:
     return max(starts) if starts else "—"
 
 
-def _layer_row(label: str, status: str | None) -> str:
-    icon = COVERAGE_ICON.get(status, "—")
-    return f"| **{label}** | {icon} {status or '—'} |"
-
-
 def _coverage_tables(
-    coverage: dict[str, Any],
+    cells: CoverageCells,
     verification: dict[str, Any],
     meta: dict[str, Any],
     levels: list[dict[str, Any]],
@@ -334,11 +335,18 @@ def _coverage_tables(
         "",
         "### Funzionalità",
         "",
+        (
+            "Derived from the capability registry, as in the"
+            " [capability matrix](capability-matrix.md)."
+        ),
+        "",
+        IMPLEMENTATION_LEGEND,
         "| Layer | Status |",
         "|---|---|",
-        _layer_row("L1 — Gross", coverage.get("gross")),
-        _layer_row("L2 — Net", coverage.get("net")),
-        _layer_row("L3 — Work rules", coverage.get("work_rules")),
+        f"| **L1 — Gross** | {cells.layers[0]} |",
+        f"| **L2 — Net** | {cells.layers[1]} |",
+        f"| **L3 — Work rules** | {cells.layers[2]} |",
+        f"| **Limits of this contract** | {cells.limits} |",
         "",
         "### Verifica",
         "",
@@ -387,6 +395,7 @@ def _simplification_summary(notes: list[dict[str, Any]]) -> list[str]:
 
 
 def _coverage_section(
+    cells: CoverageCells,
     coverage: dict[str, Any],
     verification: dict[str, Any],
     meta: dict[str, Any],
@@ -403,7 +412,7 @@ def _coverage_section(
     """
     notes = coverage.get("notes") or []
     return [
-        *_coverage_tables(coverage, verification, meta, levels),
+        *_coverage_tables(cells, verification, meta, levels),
         *_simplification_summary(notes),
     ]
 
@@ -545,7 +554,9 @@ def generate_page(json_path: Path, root: Path = ROOT) -> str:
 
     lines: list[str] = []
     lines.extend(_header_section(data, ccnl_id))
-    lines.extend(_coverage_section(coverage, verification, meta, levels))
+    catalog = load_capability_catalog(latest_catalog_year())
+    cells = coverage_cells(catalog, CCNL.model_validate(data))
+    lines.extend(_coverage_section(cells, coverage, verification, meta, levels))
     lines.extend(_body_sections(data))
     lines.extend(_tail_section(ccnl_id, root))
 

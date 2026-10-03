@@ -66,10 +66,7 @@
         "kind": "simplification",
         "text": "ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2406,7 +2403,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca04720679f663190e93b3a5db0e6e1ba90fd20d7e8a02c4a7c819b7225b3bec",
+    "source_hash": "929e0ef0213bd1d9b5589e748393b340084485616c30467124ef4cc7aa0ec997",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

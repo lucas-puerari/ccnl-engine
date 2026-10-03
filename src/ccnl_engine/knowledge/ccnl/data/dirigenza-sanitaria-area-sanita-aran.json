@@ -270,10 +270,7 @@
         "kind": "info",
         "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
@@ -282,7 +279,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "f56d2de7f2b83318cacd5f6e15e879ae5666f8169e0a5c87fb5de730f8748b12",
+    "source_hash": "043dcbef8368a2b68c83c533534f179475cb5d346d580aa7b18c0eec0b419d5d",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

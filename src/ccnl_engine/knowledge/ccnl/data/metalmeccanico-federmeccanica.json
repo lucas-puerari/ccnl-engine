@@ -80,15 +80,7 @@
         "kind": "info",
         "text": "OVERTIME/NIGHT/HOLIDAY (L3): percentages modelled per Art. 14 CCNL Federmeccanica 2021 (straordinario diurno 15%, lavoro notturno 20%, lavoro festivo 30%). Source: testo contrattuale Art. 14. NOTE: the 2025-11-22 renewal (CCNL 2025-2028) is expected to update these percentages; a dedicated data correction PR will add time-versioned 2025 rates once the official text is available in machine-readable form."
       }
-    ],
-    "work_rules": "implemented",
-    "work_rules_features": {
-      "overtime": "implemented",
-      "night_work": "implemented",
-      "holiday_work": "implemented"
-    },
-    "gross": "implemented",
-    "net": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1851,7 +1843,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/metalmeccanici/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "9776836f5ee22a3da3bfbcd2052bf58cebe4e5d036b1f8b1e6a249940cc07e49",
+    "source_hash": "471ade24084bea489f8aed02a9609d3a0cb22fba4ad214c88c049f8597238383",
     "published_at": "2026-09-08",
     "source_type": "commercial_secondary"
   },

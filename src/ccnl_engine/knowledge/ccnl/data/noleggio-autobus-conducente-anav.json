@@ -71,10 +71,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "partial"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -3177,7 +3174,7 @@
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "d22a820bc0e3ce597e168e973e3511537907c13ebb61be0552740a7c2e269b2a",
+    "source_hash": "df5d72649e04aa5eb7048d86af733779e38301e112198a8e8b02e6acece1561c",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

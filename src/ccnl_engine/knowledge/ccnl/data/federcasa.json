@@ -93,10 +93,7 @@
         "kind": "info",
         "text": "CCNL expired 31/12/2024. Art. 4 B.5-8 mandates IVC (Indennità Vacanza Contrattuale) at 30% of IPCA (~Mar 2025) and 50% (~Sep 2025) during the renewal gap. Engine models tabellare only; IVC during the gap is not included. This is a structural out-of-scope element (ultrattività compensation, not a tabellare change)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1144,7 +1141,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "039dc165ea4e4db2db12715afc09568b4129826e34ffe6038135de0826e7e135",
+    "source_hash": "fde8c810080d47fe41f193068f5be52797da343b3c8784cecaf0405de7d66858",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

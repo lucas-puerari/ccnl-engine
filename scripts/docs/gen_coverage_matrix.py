@@ -17,11 +17,11 @@ import re
 import sys
 from pathlib import Path
 
-# scripts/docs/ — add this directory to sys.path for the sibling import
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from coverage_report import (
+from scripts.docs.coverage_report import (
     build_coverage_report,
+    latest_catalog_year,
     render_contracts_index,
 )
 
@@ -33,10 +33,11 @@ def _strip_date(text: str) -> str:
 
 
 check_mode = "--check" in sys.argv
-report = build_coverage_report()
+year = latest_catalog_year()
+report = build_coverage_report(year)
 root = Path(__file__).parent.parent.parent
 contracts_index = root / "docs" / "contracts" / "index.md"
-generated = render_contracts_index(report)
+generated = render_contracts_index(report, year)
 
 if check_mode:
     committed = contracts_index.read_text(encoding="utf-8")

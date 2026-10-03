@@ -93,10 +93,7 @@
         "kind": "info",
         "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "not_implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1161,6 +1158,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "8fd4341fb9382dbf35872398c8f7b514345373c271b2fddd38ee7c9c221efe1b"
+    "source_hash": "df316248c2556f51b02ef7a14f1c1793b8d0e286718e7808d2fa89243a01a466"
   }
 }

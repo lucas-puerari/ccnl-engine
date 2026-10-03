@@ -99,10 +99,7 @@
         "kind": "info",
         "text": "CREA CONSTANCY: CREA amounts assumed constant throughout 2025-2027 (no source indicates time variation). Values from kitech Jul 2026. CREA is a fixed contractual element (Compenso per Risultato Aziendale Aggiuntivo) set at contract-level; constancy is standard for this type of element."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -5254,7 +5251,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "60869ec7e65a9140cb0fd6fe5a87d6d38bd7574ac49edd66d66c7123fd3282f7",
+    "source_hash": "228d346db02a23f185fd59a3080d6810027a28d6bee257099ba23efe53920dc1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

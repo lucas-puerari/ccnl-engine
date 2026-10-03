@@ -81,7 +81,8 @@ from ccnl_engine import (
     CapabilityCatalog,
     CapabilityEntry,
     CapabilityGap,
-    CapabilityStatus,
+    CapabilityImplementation,
+    CapabilityScope,
     # CCNL discovery
     CcnlId,
     ContractSummary,

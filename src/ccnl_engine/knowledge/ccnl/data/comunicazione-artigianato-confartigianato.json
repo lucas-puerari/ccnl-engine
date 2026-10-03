@@ -120,10 +120,7 @@
         "kind": "simplification",
         "text": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1343,7 +1340,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "2921e7c9ba9d20e7c4d9c09aadcf413f71aa5f82643300b468606829d8659543",
+    "source_hash": "24e353282d10e221c57c8756929b9dcfe5ef113b04901e3ec4b3719d75897639",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -122,19 +122,6 @@ class TestSeniorityMappings:
         assert isinstance(si.maximum_count_by_level, FrozenDict)
 
 
-class TestCoverageMapping:
-    """CCNLCoverage.work_rules_features must be a FrozenDict."""
-
-    def test_work_rules_features_is_frozen(self, metalmeccanico: CCNL) -> None:
-        """work_rules_features is a FrozenDict."""
-        assert isinstance(metalmeccanico.coverage.work_rules_features, FrozenDict)
-
-    def test_work_rules_features_no_update(self, metalmeccanico: CCNL) -> None:
-        """FrozenDict.update() raises TypeError."""
-        with pytest.raises(_IMMUTABLE):
-            metalmeccanico.coverage.work_rules_features.update({})  # type: ignore[attr-defined]
-
-
 class TestCoverageNotes:
     """CCNLCoverage.notes must be a read-only tuple."""
 

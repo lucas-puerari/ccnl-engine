@@ -61,10 +61,7 @@
         "kind": "simplification",
         "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -2179,7 +2176,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "1a3ccae1639f5f20178e889a9be38b49349f3d28db5fbf4f23945fbcab10c0ee",
+    "source_hash": "70f3c206141d43b8e1cb23793de9a4b23dfb3c9c088629f2278d91f548808774",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

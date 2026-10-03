@@ -83,10 +83,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Apprenticeship article numbers from 2019 CCNL may have changed in the current consolidated text (Art. numbering in 2025 verbale differs from 2019 PDF). The 85/90/95 percentage structure is from the 2019 source and is assumed unchanged."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2888,7 +2885,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "a3a68e75e557645f79b923801d63352a72923626758798ec9b3de8d7088df77c",
+    "source_hash": "dfe9f715e4b1a626b1c83f4f2cb87191fbb838d629f10033fa76a5f470d53b94",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -86,10 +86,7 @@
         "kind": "info",
         "text": "ARCO FUND: employer complementary pension contribution from 01/07/2026 = 1.90%, from 01/01/2028 = 2.00% (2025 renewal Art. 55). The ARCO base is: paga tabellare + contingenza + EDR + indennita funzione quadri (where applicable). Not modelled in employer_funds (TFR-based bilateral fund, not captured by the current engine schema)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2860,7 +2857,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "1230ce0a724749aab96dc25c19bb922701ff58cda505ef97890d96329047a0ef",
+    "source_hash": "e8f085372f2f328320f2cb6354ed6fc953d3f18b06e43f241fbd2cfbced57a3c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -98,6 +98,19 @@ def test_coverage_axis_is_the_report_status(
         assert blocked == gaps
 
 
+def test_ordinary_runs_have_no_coverage_gap(
+    results: dict[str, PeriodResult],
+) -> None:
+    """No unsupported capability applies to an ordinary month of any CCNL."""
+    gapped = {
+        ccnl_id: [gap.feature for gap in result.capability_report.gaps]
+        for ccnl_id, result in results.items()
+        if result.capability_report.gaps
+    }
+    assert gapped == {}
+    assert all(r.assurance.coverage == "complete" for r in results.values())
+
+
 def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> None:
     """The CCNL, tax and INPS rulesets of the year are always read."""
     repo = BundledKnowledgeRepository()

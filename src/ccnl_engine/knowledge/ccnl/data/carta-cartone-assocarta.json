@@ -79,10 +79,7 @@
         "kind": "info",
         "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). Assocarta is a Confindustria federation; CIGO applicable per D.Lgs. 148/2015."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2234,7 +2231,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-carta-industria-anno-2024-e-precedenti/",
     "verification_status": "unverified",
-    "source_hash": "9dc48e0189ffedbb83c2ead80876e0592dcd423ded16de3804dd8659d79453c4",
+    "source_hash": "f4411fadae585ad3c60bfe33dd1a8f9c442a54c32e68a2791698b49777bef8bf",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

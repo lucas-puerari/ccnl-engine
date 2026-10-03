@@ -7,10 +7,8 @@ from ccnl_engine.contract.domain.identity._coverage import (
     CoverageNote,
 )
 from ccnl_engine.contract.domain.identity._enums import (
-    CoverageStatus,
     NoteKind,
     TaxSector,
-    WorkRuleFeature,
 )
 from ccnl_engine.contract.domain.identity._meta import (
     CCNLMeta,
@@ -26,8 +24,6 @@ __all__ = [
     "CCNLVerification",
     "CCNLWorkRules",
     "CoverageNote",
-    "CoverageStatus",
     "NoteKind",
     "TaxSector",
-    "WorkRuleFeature",
 ]

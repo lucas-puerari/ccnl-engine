@@ -92,10 +92,7 @@
         "kind": "info",
         "text": "Workers covered: ~403,000 per INPS-UNIEMENS 2025 data; largest uncovered CCNL at time of implementation."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -4269,7 +4266,7 @@
     "effective_until": null,
     "source": "https://www.oristanoservizi.it/wp-content/uploads/2021/11/CCNL-Multiservizi-scadenza-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb874298fb2ec633108faece742e7b1ae522ee867691f9b00b5d1b0464098399",
+    "source_hash": "31b5c40be6138fc4d969153ad0eb980f0991bfae119b5e3c11c515f796747517",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -70,10 +70,7 @@
         "kind": "info",
         "text": "CNEL code H442: confirmed from the CNEL archive 'Studi Professionali — Confprofessioni'. Workers covered: 317,554 (UNIEMENS 2022)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1323,7 +1320,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "341e31c6be375550e2a868e0224d4596ccf79539b48344599787a445d424db60",
+    "source_hash": "82e079fe2a1018197e526665984d77df2cd081020004cc8cf56549c0b0085331",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

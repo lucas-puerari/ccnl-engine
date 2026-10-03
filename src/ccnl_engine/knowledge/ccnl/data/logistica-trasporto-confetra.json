@@ -92,10 +92,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP: percentage type from TABELLA A consolidated text September 2025. 75% year 1 (m1-12), 85% year 2 (m13-24), 100% from m25. Eligible levels: 1, 2, 3, 3S, 4, 4J, 5, 6 (level Q excluded). Maximum duration 36 months. Source: Art. 106 + TABELLA A consolidated text 09/2025 (contrattotrasporti.it)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1376,7 +1373,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "59cb6666e2e746ea34ecc5c9471216da8677bbfa808e14fd5555fc80041a4f35",
+    "source_hash": "70592f0778e3ae9b0163b373b63019076ee55c0fca4b17aeb6612679b91835a8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

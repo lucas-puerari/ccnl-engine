@@ -52,7 +52,7 @@ PeriodResult
  ├── rulesets             rulesets the executed rules came from
  ├── issues               conditions that lowered the calculation axis
  ├── decisions            what each capability decided, from which inputs
- ├── capability_report    catalog features the run did not execute
+ ├── capability_report    applicable capabilities the run did not cover
  └── bundle_version       knowledge-base version of the calculation
 ```
 
@@ -92,9 +92,13 @@ supplies in place of a rule is recorded with origin `caller_supplied`. See
 ### 3. Capability report
 
 `result.capability_report` compares what the run executed with the capability
-catalog of the tax year. Each gap names the feature and why it is missing
-(`feature_absent`, `not_computed`, `unresolved`,
-`promised_computed_got_partial`) and blocks payability. Its `status` is the
+registry of the tax year, the single source of coverage (see the
+[capability matrix](../contracts/capability-matrix.md)). `scope` says, for
+every capability, whether it is `applicable` to the run, `not_applicable` or
+`outside_input` (the request has no field for the fact that would make it
+apply). Only an applicable capability can leave a gap: `unsupported` (the
+engine does not compute it), `unresolved`, `partial_result` or
+`partial_implementation`. Each gap blocks payability. Its `status` is the
 coverage axis of the assurance, and `rule_sources` gives the weakest
 provenance status of the rules each executed capability read; see
 [Assurance](confidence.md).

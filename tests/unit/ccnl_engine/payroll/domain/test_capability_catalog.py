@@ -1,4 +1,4 @@
-"""Tests for the CapabilityCatalog domain types and gap classification."""
+"""Capability registry entries: implementation, handler and applicability."""
 
 from __future__ import annotations
 
@@ -6,363 +6,127 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
+from ccnl_engine.payroll.domain.assurance import EvidenceStatus
 from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityApplicability,
     CapabilityCatalog,
     CapabilityEntry,
-    CapabilityGap,
-    CapabilityGapKind,
-    CapabilityReport,
-    CapabilityStatus,
+    CapabilityHandler,
+    CapabilityImplementation,
+    CapabilityLayer,
 )
 
-# ---------------------------------------------------------------------------
-# CapabilityStatus enum
-# ---------------------------------------------------------------------------
+_NATIVE = CapabilityImplementation.NATIVE
+_UNSUPPORTED = CapabilityImplementation.UNSUPPORTED
 
 
-class TestCapabilityStatus:
-    """CapabilityStatus StrEnum coverage."""
+def entry(
+    feature: str = "irpef",
+    implementation: CapabilityImplementation = _NATIVE,
+    applies_when: CapabilityApplicability = CapabilityApplicability.ALWAYS,
+    handler: CapabilityHandler | None = CapabilityHandler.PIPELINE,
+) -> CapabilityEntry:
+    """Return a registry entry of the net layer.
 
-    def test_values_are_strings(self) -> None:
-        """All enum members expose their string value via .value."""
-        assert CapabilityStatus.COMPUTED.value == "computed"
-        assert CapabilityStatus.NOT_COMPUTED.value == "not_computed"
-        assert CapabilityStatus.PARTIALLY_COMPUTED.value == "partially_computed"
-        assert CapabilityStatus.NOT_APPLICABLE.value == "not_applicable"
-        assert CapabilityStatus.BLOCKED.value == "blocked"
-
-    def test_from_string(self) -> None:
-        """Constructing from string returns the enum member."""
-        assert CapabilityStatus("computed") is CapabilityStatus.COMPUTED
-
-
-# ---------------------------------------------------------------------------
-# CapabilityEntry
-# ---------------------------------------------------------------------------
-
-
-class TestCapabilityEntry:
-    """CapabilityEntry frozen dataclass."""
-
-    def test_defaults(self) -> None:
-        """Description defaults to empty string."""
-        entry = CapabilityEntry(feature="base_salary", status=CapabilityStatus.COMPUTED)
-        assert not entry.description
-
-    def test_with_description(self) -> None:
-        """All fields are stored correctly."""
-        entry = CapabilityEntry(
-            feature="irpef",
-            status=CapabilityStatus.PARTIALLY_COMPUTED,
-            description="IRPEF sostituto",
-        )
-        assert entry.feature == "irpef"
-        assert entry.status == CapabilityStatus.PARTIALLY_COMPUTED
-        assert entry.description == "IRPEF sostituto"
-
-    def test_frozen(self) -> None:
-        """Assigning to a field raises FrozenInstanceError."""
-        entry = CapabilityEntry(feature="f", status=CapabilityStatus.COMPUTED)
-        with pytest.raises(FrozenInstanceError):
-            entry.feature = "g"  # type: ignore[misc]
-
-
-# ---------------------------------------------------------------------------
-# CapabilityGap
-# ---------------------------------------------------------------------------
-
-
-class TestCapabilityGapKind:
-    """CapabilityGapKind StrEnum coverage."""
-
-    def test_values(self) -> None:
-        """All members expose their string value."""
-        assert CapabilityGapKind.NOT_COMPUTED.value == "not_computed"
-        assert CapabilityGapKind.FEATURE_ABSENT.value == "feature_absent"
-        assert CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL.value == (
-            "promised_computed_got_partial"
-        )
-        assert CapabilityGapKind.WRONG_YEAR.value == "wrong_year"
-        assert CapabilityGapKind.UNRESOLVED.value == "unresolved"
-
-    def test_from_string(self) -> None:
-        """Constructing from string returns the enum member."""
-        assert CapabilityGapKind("feature_absent") is CapabilityGapKind.FEATURE_ABSENT
-
-
-class TestCapabilityGap:
-    """CapabilityGap frozen dataclass."""
-
-    def test_fields(self) -> None:
-        """Gap stores feature, declared, observed, and defaults kind to NOT_COMPUTED."""
-        gap = CapabilityGap(
-            feature="irpef",
-            declared=CapabilityStatus.COMPUTED,
-            observed="not_computed",
-        )
-        assert gap.feature == "irpef"
-        assert gap.declared == CapabilityStatus.COMPUTED
-        assert gap.observed == "not_computed"
-        assert gap.kind == CapabilityGapKind.NOT_COMPUTED
-
-    def test_explicit_kind(self) -> None:
-        """An explicit kind overrides the default."""
-        gap = CapabilityGap(
-            feature="overtime",
-            declared=CapabilityStatus.COMPUTED,
-            observed="absent",
-            kind=CapabilityGapKind.FEATURE_ABSENT,
-        )
-        assert gap.kind == CapabilityGapKind.FEATURE_ABSENT
-
-
-# ---------------------------------------------------------------------------
-# CapabilityReport
-# ---------------------------------------------------------------------------
-
-
-class TestCapabilityReport:
-    """CapabilityReport dataclass: empty factory and coverage status."""
-
-    def test_empty_is_complete(self) -> None:
-        """An empty report has status 'complete'."""
-        report = CapabilityReport.empty(2026)
-        assert report.catalog_year == 2026
-        assert report.gaps == ()
-        assert report.status == "complete"
-
-    def test_only_partial_gaps_is_partial(self) -> None:
-        """A report with only PROMISED_COMPUTED_GOT_PARTIAL gaps is 'partial'."""
-        gap = CapabilityGap(
-            feature="irpef",
-            declared=CapabilityStatus.COMPUTED,
-            observed="partially_computed",
-            kind=CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL,
-        )
-        report = CapabilityReport(catalog_year=2026, gaps=(gap,))
-        assert report.status == "partial"
-
-    def test_feature_absent_gap_is_incomplete(self) -> None:
-        """A report with FEATURE_ABSENT gaps is 'incomplete'."""
-        gap = CapabilityGap(
-            feature="overtime",
-            declared=CapabilityStatus.COMPUTED,
-            observed="absent",
-            kind=CapabilityGapKind.FEATURE_ABSENT,
-        )
-        report = CapabilityReport(catalog_year=2026, gaps=(gap,))
-        assert report.status == "incomplete"
-
-    def test_mixed_gaps_is_incomplete(self) -> None:
-        """Mixed gap kinds result in 'incomplete' status."""
-        gaps = (
-            CapabilityGap(
-                feature="irpef",
-                declared=CapabilityStatus.COMPUTED,
-                observed="partially_computed",
-                kind=CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL,
-            ),
-            CapabilityGap(
-                feature="overtime",
-                declared=CapabilityStatus.COMPUTED,
-                observed="absent",
-                kind=CapabilityGapKind.FEATURE_ABSENT,
-            ),
-        )
-        report = CapabilityReport(catalog_year=2026, gaps=gaps)
-        assert report.status == "incomplete"
-
-    def test_frozen(self) -> None:
-        """CapabilityReport is immutable."""
-        report = CapabilityReport.empty(2026)
-        with pytest.raises(FrozenInstanceError):
-            report.catalog_year = 2027  # type: ignore[misc]
-
-
-# ---------------------------------------------------------------------------
-# CapabilityCatalog
-# ---------------------------------------------------------------------------
-
-
-def _sample_catalog() -> CapabilityCatalog:
-    return CapabilityCatalog(
-        year=2026,
-        capabilities=(
-            CapabilityEntry("base_salary", CapabilityStatus.COMPUTED),
-            CapabilityEntry("irpef", CapabilityStatus.COMPUTED),
-            CapabilityEntry("art15_deductions", CapabilityStatus.PARTIALLY_COMPUTED),
-            CapabilityEntry("bonus_pdr", CapabilityStatus.NOT_APPLICABLE),
-            CapabilityEntry("blocked_feat", CapabilityStatus.BLOCKED),
-        ),
+    Returns:
+        The entry.
+    """
+    return CapabilityEntry(
+        feature, CapabilityLayer.NET, implementation, applies_when, handler
     )
 
 
-class TestCapabilityCatalogLookup:
-    """CapabilityCatalog.by_feature finds entries by feature name."""
+class TestImplementation:
+    """Implementations are ordered from native to unsupported."""
 
-    def test_by_feature_found(self) -> None:
-        """by_feature returns the entry when the feature is present."""
-        cat = _sample_catalog()
-        entry = cat.by_feature("irpef")
-        assert entry is not None
-        assert entry.feature == "irpef"
-
-    def test_by_feature_not_found(self) -> None:
-        """by_feature returns None when the feature is absent."""
-        cat = _sample_catalog()
-        assert cat.by_feature("unknown_feature") is None
-
-
-class TestCapabilityCatalog:
-    """CapabilityCatalog.gaps compares declared and observed statuses."""
-
-    def _make(self) -> CapabilityCatalog:
-        return _sample_catalog()
-
-    def test_gaps_empty_when_all_computed(self) -> None:
-        """No gaps when observed status matches or exceeds declared."""
-        cat = self._make()
-        observed = {"base_salary": "computed", "irpef": "computed"}
-        assert cat.gaps(observed) == ()
-
-    def test_gaps_reports_not_computed(self) -> None:
-        """A computed entry with observed not_computed is a gap."""
-        cat = self._make()
-        observed = {"base_salary": "computed", "irpef": "not_computed"}
-        gaps = cat.gaps(observed)
-        assert len(gaps) == 1
-        assert gaps[0].feature == "irpef"
-        assert gaps[0].declared == CapabilityStatus.COMPUTED
-        assert gaps[0].observed == "not_computed"
-
-    def test_gaps_partially_computed_entry_also_checked(self) -> None:
-        """A partially_computed entry with observed not_computed is a gap."""
-        cat = self._make()
-        observed = {"art15_deductions": "not_computed"}
-        gaps = cat.gaps(observed)
-        assert len(gaps) == 1
-        assert gaps[0].feature == "art15_deductions"
-
-    def test_gaps_skips_not_applicable(self) -> None:
-        """Not_applicable entries are not reported as gaps."""
-        cat = self._make()
-        assert cat.gaps({"bonus_pdr": "not_computed"}) == ()
-
-    def test_gaps_skips_blocked(self) -> None:
-        """Blocked entries are not reported as gaps."""
-        cat = self._make()
-        assert cat.gaps({"blocked_feat": "not_computed"}) == ()
-
-    def test_gaps_feature_absent_from_observed(self) -> None:
-        """A feature absent from observed is not a gap (None != not_computed)."""
-        cat = self._make()
-        assert cat.gaps({}) == ()
-
-    def test_gaps_multiple(self) -> None:
-        """Multiple gaps are returned in declaration order."""
-        cat = self._make()
-        observed = {
-            "base_salary": "not_computed",
-            "irpef": "not_computed",
-            "art15_deductions": "computed",
-        }
-        gaps = cat.gaps(observed)
-        assert len(gaps) == 2
-        assert {g.feature for g in gaps} == {"base_salary", "irpef"}
-
-    def test_gaps_detect_absent_reports_missing_features(self) -> None:
-        """detect_absent=True reports absent features as FEATURE_ABSENT."""
-        cat = self._make()
-        gaps = cat.gaps({}, detect_absent=True)
-        features = {g.feature for g in gaps}
-        assert "base_salary" in features
-        assert "irpef" in features
-        assert "art15_deductions" in features
-        for gap in gaps:
-            assert gap.kind == CapabilityGapKind.FEATURE_ABSENT
-            assert gap.observed == "absent"
-
-    def test_gaps_detect_absent_false_skips_missing(self) -> None:
-        """detect_absent=False (default) does not report absent features."""
-        cat = self._make()
-        assert cat.gaps({}, detect_absent=False) == ()
-
-    def test_gaps_wrong_year_prepended(self) -> None:
-        """Passing a year differing from catalog.year prepends a WRONG_YEAR gap."""
-        cat = self._make()
-        gaps = cat.gaps({}, year=2025)
-        assert len(gaps) >= 1
-        first = gaps[0]
-        assert first.kind == CapabilityGapKind.WRONG_YEAR
-        assert first.feature == "__catalog__"
-        assert first.observed == "2025"
-
-    def test_gaps_matching_year_no_wrong_year_gap(self) -> None:
-        """Passing the correct year does not produce a WRONG_YEAR gap."""
-        cat = self._make()
-        gaps = cat.gaps({"base_salary": "computed", "irpef": "computed"}, year=2026)
-        assert not any(g.kind == CapabilityGapKind.WRONG_YEAR for g in gaps)
-
-    def test_gaps_promised_computed_got_partial(self) -> None:
-        """A computed entry observed as partially_computed gets that gap kind."""
-        cat = self._make()
-        gaps = cat.gaps({"irpef": "partially_computed"})
-        assert len(gaps) == 1
-        assert gaps[0].kind == CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
-        assert gaps[0].observed == "partially_computed"
-
-    def test_gaps_partially_computed_entry_observed_partial_no_gap(self) -> None:
-        """A partially_computed entry observed as partially_computed is not a gap."""
-        cat = self._make()
-        gaps = cat.gaps({"art15_deductions": "partially_computed"})
-        assert gaps == ()
-
-    def test_gaps_not_computed_kind_on_not_computed_observed(self) -> None:
-        """A computed entry observed as not_computed has kind NOT_COMPUTED."""
-        cat = self._make()
-        gaps = cat.gaps({"base_salary": "not_computed"})
-        assert len(gaps) == 1
-        assert gaps[0].kind == CapabilityGapKind.NOT_COMPUTED
-
-
-class TestCapabilityCatalogTraceStates:
-    """Gaps classify the trace states a run reports for each feature."""
-
-    def _make(self) -> CapabilityCatalog:
-        return CapabilityCatalog(
-            year=2026,
-            capabilities=(
-                CapabilityEntry("irpef", CapabilityStatus.COMPUTED),
-                CapabilityEntry(
-                    "art15_deductions", CapabilityStatus.PARTIALLY_COMPUTED
-                ),
-                CapabilityEntry("bonus_pdr", CapabilityStatus.NOT_APPLICABLE),
-            ),
+    def test_worst(self) -> None:
+        """The worst of several implementations is the last in order."""
+        partial = CapabilityImplementation.PARTIAL
+        assert CapabilityImplementation.worst((_NATIVE, partial)) is partial
+        assert CapabilityImplementation.worst(list(CapabilityImplementation)) is (
+            _UNSUPPORTED
         )
 
-    @pytest.mark.parametrize("feature", ["irpef", "art15_deductions"])
-    def test_gaps_unresolved_is_a_gap(self, feature: str) -> None:
-        """A promised feature that ran but could not decide is an UNRESOLVED gap."""
-        (gap,) = self._make().gaps({feature: "unresolved"})
-        assert gap.feature == feature
-        assert gap.kind is CapabilityGapKind.UNRESOLVED
-        assert gap.observed == "unresolved"
+    def test_worst_of_nothing_is_native(self) -> None:
+        """An empty layer has nothing missing."""
+        assert CapabilityImplementation.worst(()) is _NATIVE
 
-    def test_gaps_unresolved_on_not_applicable_entry_no_gap(self) -> None:
-        """A feature the catalog does not promise is never a gap."""
-        assert self._make().gaps({"bonus_pdr": "unresolved"}) == ()
 
-    def test_gaps_trace_partial_is_promised_computed_got_partial(self) -> None:
-        """The trace state ``partial`` breaks a ``computed`` promise."""
-        (gap,) = self._make().gaps({"irpef": "partial"})
-        assert gap.kind is CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
-        assert gap.observed == "partial"
+class TestEntry:
+    """An entry is consistent with its handler and its predicate."""
 
-    def test_gaps_trace_partial_keeps_partially_computed_promise(self) -> None:
-        """The trace state ``partial`` keeps a ``partially_computed`` promise."""
-        assert self._make().gaps({"art15_deductions": "partial"}) == ()
+    def test_defaults(self) -> None:
+        """Evidence defaults to derived; text fields to empty."""
+        native = entry()
+        assert native.evidence is EvidenceStatus.DERIVED
+        assert not native.description
+        assert native.variants == ()
+        assert native.required_facts == ()
 
-    @pytest.mark.parametrize("state", ["skipped", "not_applicable", "computed"])
-    def test_gaps_other_trace_states_are_not_gaps(self, state: str) -> None:
-        """Skipped, not applicable and computed keep the promise."""
-        assert self._make().gaps({"irpef": state}) == ()
+    def test_frozen(self) -> None:
+        """Assigning to a field raises FrozenInstanceError."""
+        with pytest.raises(FrozenInstanceError):
+            entry().feature = "g"  # type: ignore[misc]
+
+    def test_unsupported_without_handler(self) -> None:
+        """An unsupported capability has no handler."""
+        unsupported = entry(
+            "inail", _UNSUPPORTED, CapabilityApplicability.OUTSIDE_INPUT, None
+        )
+        assert unsupported.handler is None
+
+    def test_unsupported_with_handler_is_rejected(self) -> None:
+        """A handler would claim a decision the engine does not take."""
+        with pytest.raises(ValueError, match="unsupported capability has no handler"):
+            entry("inail", _UNSUPPORTED)
+
+    def test_implemented_without_handler_is_rejected(self) -> None:
+        """A computed capability needs a handler that decides it."""
+        with pytest.raises(ValueError, match="every other one has one"):
+            entry(handler=None)
+
+    @pytest.mark.parametrize(
+        ("applies_when", "handler"),
+        [
+            (CapabilityApplicability.ALWAYS, CapabilityHandler.DECISION),
+            (CapabilityApplicability.DECIDED, CapabilityHandler.EVENT),
+            (CapabilityApplicability.EVENT, CapabilityHandler.PIPELINE),
+        ],
+    )
+    def test_predicate_needs_its_handler(
+        self, applies_when: CapabilityApplicability, handler: CapabilityHandler
+    ) -> None:
+        """The predicate reads the trace of the handler kind it names."""
+        with pytest.raises(ValueError, match="is decided by"):
+            entry(applies_when=applies_when, handler=handler)
+
+    def test_termination_predicate_takes_any_handler(self) -> None:
+        """A run fact does not depend on the handler kind."""
+        closing = entry(
+            applies_when=CapabilityApplicability.TERMINATION_RUN,
+            handler=CapabilityHandler.EVENT,
+        )
+        assert closing.handler is CapabilityHandler.EVENT
+
+
+class TestCatalog:
+    """The catalog holds one entry per feature."""
+
+    def test_by_feature(self) -> None:
+        """Lookup by feature returns the entry or None."""
+        catalog = CapabilityCatalog(2026, (entry(),))
+        assert catalog.by_feature("irpef") == entry()
+        assert catalog.by_feature("unknown") is None
+
+    def test_duplicate_features_are_rejected(self) -> None:
+        """Two entries for one feature would contradict each other."""
+        with pytest.raises(ValueError, match=r"duplicate features \['irpef'\]"):
+            CapabilityCatalog(2026, (entry(), entry()))
+
+    def test_implemented_leaves_out_unsupported(self) -> None:
+        """Only the capabilities the engine computes need a handler."""
+        unsupported = entry(
+            "inail", _UNSUPPORTED, CapabilityApplicability.OUTSIDE_INPUT, None
+        )
+        catalog = CapabilityCatalog(2026, (entry(), unsupported))
+        assert catalog.implemented() == (entry(),)

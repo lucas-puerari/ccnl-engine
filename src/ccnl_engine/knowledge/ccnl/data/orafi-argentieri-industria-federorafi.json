@@ -87,10 +87,7 @@
         "kind": "info",
         "text": "COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled in the engine (Layer 3, out of scope)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1308,7 +1305,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "45a45881c3ec307af4c6cfd55c9e61fb200c49bb56a1f65c5f516ed24a2ea115",
+    "source_hash": "a93ddd6b500dab740151ba927d3d0695492e4e97af7877e40b885d2e817da6d5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

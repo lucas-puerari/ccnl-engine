@@ -86,10 +86,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: dest level 5 apprenticeship: lb=2 is structurally impossible (only 1 level below exists). Modelled as lb=1 for full 36mo duration per Art. 15 cap ('non piu di due livelli')."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -757,7 +754,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "18cc38a505871d4dba0ab35e90ec681417fa8b04f9f3c806fd128d49fc8d8199",
+    "source_hash": "e97590bf2c2ba54fdefb1c8b500366bdfcf941d145770e047e4c282223c3725d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

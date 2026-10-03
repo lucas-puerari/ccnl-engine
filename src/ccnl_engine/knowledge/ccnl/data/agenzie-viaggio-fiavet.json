@@ -1919,10 +1919,7 @@
         "kind": "simplification",
         "text": "Layer 3 (overtime, night shifts, public holidays) out of scope."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/agenzie-viaggio-fiavet",
@@ -1931,7 +1928,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "22cb4350c1873db4f24c432d7c8b5ec76c6ea80aa5a85b00d99c7ff22c4fd6b9",
+    "source_hash": "55c91254bd9f865c9ae9079be434cccdacd7199f0a4558e2c3f340049eec2b31",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

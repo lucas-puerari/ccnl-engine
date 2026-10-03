@@ -49,10 +49,7 @@
         "kind": "simplification",
         "text": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough."
       }
-    ],
-    "gross": "implemented",
-    "net": "partial",
-    "work_rules": "implemented"
+    ]
   },
   "levels": [
     {
@@ -1270,7 +1267,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "53b9cf55a47ca106c48f046d94d818c83ea9dec4b7f69017432ff7ff10fe349d",
+    "source_hash": "b6e860ee897e10a2dca6bf6a7b70d4734f0bb4eaa3894a68e79c3f6032da55b1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

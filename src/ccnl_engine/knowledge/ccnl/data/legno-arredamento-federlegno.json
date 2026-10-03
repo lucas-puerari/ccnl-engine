@@ -79,10 +79,7 @@
         "kind": "simplification",
         "text": "INTRA-BAND ORDERING: for levels sharing the same base pay (AE4/AS1, AC1/AS2, AC2/AC3/AS4), the relative order is assigned arbitrarily (ascending within the group) to satisfy the engine's order-uniqueness constraint. The CCNL does not define an internal hierarchy among levels within the same salary band. Functionally irrelevant — the validator only requires salary to be non-decreasing for ascending order."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -3098,7 +3095,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "f6939b507e2fb78d76656dc2f06b373cb094f4eaacb5436ce72366832f8fba89",
+    "source_hash": "54ea3247401e57f4eefc40a2c2fd1dfb58c71b91a151e145dd2789a4bc61aa0e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

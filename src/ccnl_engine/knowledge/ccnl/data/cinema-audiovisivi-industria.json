@@ -62,10 +62,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1798,7 +1795,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "7a903c390833ccdbdd49344886537ad340b536032d34c9f811efd708286d554e",
+    "source_hash": "ea72752a51442e51afcf5091177e7ba3a3b2c93abd6a3c3b065e3039862ed855",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

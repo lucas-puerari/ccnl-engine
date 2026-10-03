@@ -71,10 +71,7 @@
         "kind": "info",
         "text": "INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2475,7 +2472,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/elettrico/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "210ab2ccc89d806a78ace36d95e1dac9cf47394a6999ed55696ad064ec6532d5",
+    "source_hash": "fa43e15c0ad372f7a1a6ea69afab71bebc0c7cad5e4f0d7ec060e40930a89f37",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

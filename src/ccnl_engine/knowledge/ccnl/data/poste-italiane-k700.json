@@ -82,10 +82,7 @@
         "kind": "info",
         "text": "SIMPLIFICATION: Salary tranche 01/07/2024–31/08/2025 covered by one-time 'anticipo sui futuri miglioramenti economici' (lump sum, September 2024). Engine carries paga base at 2024-07-23 level (same as pre-renewal) for that window."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1547,7 +1544,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "817f3900e9060e7c1385a7aa1cc24868008fa587d3bb02349177b96c9c74aa57",
+    "source_hash": "c90d768de73f9bf6dcbcc61a1638eac038e57cbc519ed24c5e483d32868e9cb7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

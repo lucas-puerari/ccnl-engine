@@ -292,10 +292,7 @@
         "kind": "info",
         "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 19 CCNL FC 09/03/2020. Modellato con SicknessTier. Periodi di paga a cavallo di soglia mensile ricevono un unico tasso (engine limitation accettabile)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/dirigenza-funzioni-centrali-aran",
@@ -304,7 +301,7 @@
     "effective_until": "2024-12-31",
     "source": "https://trasparenza.lavoro.gov.it/archiviofile/minlavoro/2025_10_28_CCNL_A_FC_2022-2024_Pubblicazione-1%20vigente.pdf",
     "verification_status": "unverified",
-    "source_hash": "399cc089368f6ca47f0deacea006b0fc4cebf4a0b541d151de632b23007762cb",
+    "source_hash": "9465f10ce6e748b71fe4e10db4d48653731b53955f827c55212a7495155c8798",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

@@ -78,10 +78,7 @@
         "kind": "info",
         "text": "INPS: reuses 2026-terziario.json (TERZIARIO sector). No separate INPS circular rate published for UNEBA; rate is consistent with general terziario sector (same as Commercio and Cooperative Sociali)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1469,7 +1466,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "00b673d3f284037150bf6c1a59259236bc57a621bf327c2aa5254a64c4816637",
+    "source_hash": "d18c47756a512751309d6064d7f9f4d13c595071848d88ae6eed3ed783a9bf76",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

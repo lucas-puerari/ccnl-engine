@@ -12,7 +12,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
-from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
+from ccnl_engine.payroll.domain.capability_report import CapabilityReport
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning, CompetencePeriod

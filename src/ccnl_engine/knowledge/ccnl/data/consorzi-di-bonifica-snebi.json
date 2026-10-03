@@ -80,10 +80,7 @@
         "kind": "info",
         "text": "layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required."
       }
-    ],
-    "gross": "implemented",
-    "net": "out_of_scope",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -2713,7 +2710,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "296a434b11d701c4c2c5663be89c4879fe958f5bfa7e3dfe6906a30af7710e7f",
+    "source_hash": "d68f08edacc67cf0c0c13a9c24efa3561cb91704f69ed62a60079e30ac8e0258",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

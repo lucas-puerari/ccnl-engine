@@ -280,14 +280,14 @@ def test_capability_report_follows_the_surtax_decisions() -> None:
     """A provisional conguaglio is partial; an installment run is computed.
 
     The 2026 conguaglio applies the 2025 municipal rates, so the municipal
-    surtax is partial against the catalog; a 2027 run that only withholds
+    surtax is a partial result against the registry; a 2027 run that only withholds
     installments reports no surtax gap.
     """
     conguaglio = _year_2026().period_results[-1]
     january = _year_2027().period_results[0]
 
     gaps = {g.feature: g.kind for g in conguaglio.capability_report.gaps}
-    assert gaps.get("addizionale_comunale") == "promised_computed_got_partial"
+    assert gaps.get("addizionale_comunale") == "partial_result"
     assert "addizionale_regionale" not in gaps
     assert not {g.feature for g in january.capability_report.gaps} & {
         "addizionale_regionale",

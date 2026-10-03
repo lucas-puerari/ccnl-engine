@@ -62,10 +62,7 @@
         "kind": "info",
         "text": "LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1169,7 +1166,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "35939a39d817fad2722ecd2f2007eee8fa5739e76ac02939c691a7e5247ba5d2",
+    "source_hash": "613edc4be5e551a4d12228f3f97ab7e4e91d7dd586d3a4f71f53db2d704c4ea7",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

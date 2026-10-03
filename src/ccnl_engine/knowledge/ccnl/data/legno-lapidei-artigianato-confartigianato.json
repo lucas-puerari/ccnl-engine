@@ -100,10 +100,7 @@
         "kind": "info",
         "text": "INPS: reuses 2026-artigianato.json (ARTIGIANATO sector)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1402,7 +1399,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/files/ccnl_legno_lapidei_artigianato_2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "a39e6f72d424ae09e4f779d13b6030e24020481f7f730e2195c101951c1e30de",
+    "source_hash": "4bc8b425b5c1f0b50b394ba7a50fdb22db07e3d279ca65c9ca6bdd5a9cef0e74",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

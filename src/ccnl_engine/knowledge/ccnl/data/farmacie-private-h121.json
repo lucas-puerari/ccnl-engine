@@ -78,10 +78,7 @@
         "kind": "info",
         "text": "SIMPLIFICATION: Tabella D groups Q2, Q3, and 1o into a single scatto amount of 25.30 EUR. Q1 uses 25.82 EUR."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1376,7 +1373,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "c450dac92884a29a5675acd743fcfabd7380c1c0289ef9775e4393bbfdc98c5a",
+    "source_hash": "d28f55452dad485e26b53870d0955323fddfc9e981f4fc08d0955e119ce5ed47",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

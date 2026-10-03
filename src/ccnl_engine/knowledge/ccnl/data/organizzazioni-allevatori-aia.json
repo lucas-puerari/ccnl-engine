@@ -82,10 +82,7 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance."
       }
-    ],
-    "gross": "implemented",
-    "net": "out_of_scope",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -926,7 +923,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "1d70527218ff3f438d2997aded957b14a8c1f3e62816083538ece9e4816330e8",
+    "source_hash": "2f94b5fce3cbfad729a36de42fb55bd16ca765d7a3af5e15d1c7d063052794b4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

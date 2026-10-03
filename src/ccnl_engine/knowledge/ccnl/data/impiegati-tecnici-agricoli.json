@@ -96,10 +96,7 @@
         "kind": "simplification",
         "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -619,7 +616,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "a78106509f3e070e670581dd789ce4993a6bd33bc81894435c8fc215a35552a6",
+    "source_hash": "a7d0bce8b1212036ea724f781d689d0c273508a9b9b6dcf677f70a8b5aba80c5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

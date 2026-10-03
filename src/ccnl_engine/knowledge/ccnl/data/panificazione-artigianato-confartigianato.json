@@ -89,10 +89,7 @@
         "kind": "info",
         "text": "APPRENTICESHIP gruppi A2, A3, B1, B2, B3S, B4 added from formazione-apprendistato.com panificazione table (medium-high confidence: secondary aggregator + IPSOA 2024 news confirm 2024 rinnovo structure). Semiannual progressions as per Art. 58 + Allegato apprendistato. Gruppo 1° (dest=A1, primary source UILA PDF) unchanged."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1697,7 +1694,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "94cfd3343fb33c8f22d56d2fdb37d24b49a0532ae5e8a75db84c7c290e48784d",
+    "source_hash": "44b0dedaa52bb044594149f83501d77264b5a73d261caf075a6c820415f563df",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

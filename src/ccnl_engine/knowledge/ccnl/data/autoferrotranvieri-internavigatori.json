@@ -102,10 +102,7 @@
         "kind": "info",
         "text": "LEVELS: 33 parametri from 100 to 250. The CCNL classification assigns one or more job profiles per parametro; this file models one level per parametro as the economic unit. Descriptions are representative summaries; multiple job profiles exist at each parametro."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -5130,7 +5127,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "b7218b8d21ccb8cf33bf951d4ce7ab83e17a9b9d42ec2e1b19499ecde503811e",
+    "source_hash": "f1b7cd003bbb5faa88555ed2b7357048c43ad7fd6b2e8d5773785941430c3c4d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

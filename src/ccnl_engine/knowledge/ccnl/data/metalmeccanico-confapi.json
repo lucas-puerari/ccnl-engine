@@ -80,10 +80,7 @@
         "kind": "info",
         "text": "INPS: uses 2026-industria.json. Standard industry rates; verify whether Confapi PMI provides differentiated contributions compared to Federmeccanica for CIG/FIS."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1337,7 +1334,7 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "8fc95b4ba01b9103b69137627d5bc794e845ac81af853946bedc2c0bda46551c",
+    "source_hash": "c0a008c14094009b8ae0e3e39d5ceec6f7da7555de6adb79c766ca52bf1bd1e9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

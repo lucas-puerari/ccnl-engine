@@ -96,10 +96,7 @@
         "kind": "info",
         "text": "EDR ROLL-UP: rolling EDR (EUR 10.33) into base_salary is safe for G029 because G029 uses under_classification apprenticeship, meaning the apprentice pay is determined by the classified level's base_salary directly. The EDR percentage-of-base exemption (Art. 3 L. 537/1993) does not apply to under_classification."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1404,7 +1401,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "9424fc8ea1551d04c9fbe4579a2a74b39b44ce2d6198e2aba1f098c9ffd04bf2",
+    "source_hash": "9507e504bc556954983685a29b3492382759e159434ddcaad5fa39dee546a64a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

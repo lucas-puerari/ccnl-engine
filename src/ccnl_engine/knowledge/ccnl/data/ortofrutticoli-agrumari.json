@@ -69,17 +69,6 @@
     "workers_estimate": "~60000"
   },
   "coverage": {
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "partial",
-    "work_rules_features": {
-      "overtime": "implemented",
-      "night_work": "implemented",
-      "holiday_work": "implemented",
-      "absence": "implemented",
-      "sickness": "partial",
-      "leave": "not_implemented"
-    },
     "notes": [
       {
         "kind": "source",
@@ -127,11 +116,13 @@
       },
       {
         "kind": "missing",
-        "text": "MISSING: Giorni di ferie (leave_rules). Nessuna fonte accessibile per H341 riporta i giorni di ferie annuali. Testo CCNL non accessibile."
+        "text": "MISSING: Giorni di ferie (leave_rules). Nessuna fonte accessibile per H341 riporta i giorni di ferie annuali. Testo CCNL non accessibile.",
+        "capability": "leave"
       },
       {
         "kind": "missing",
-        "text": "MISSING: Percentuali integrazione malattia (carenza e full-pay). Solo il comporto (180 gg) è confermato. Tassi assunti 100% come SIMPLIFICATION sopra."
+        "text": "MISSING: Percentuali integrazione malattia (carenza e full-pay). Solo il comporto (180 gg) è confermato. Tassi assunti 100% come SIMPLIFICATION sopra.",
+        "capability": "sickness"
       }
     ]
   },
@@ -2220,7 +2211,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "5c8a7ee2186c9ce4204fba4e17a0e8b4e8a7bd391b1bc880bc37a7b84942ffae",
+    "source_hash": "706c764e19a0038e2e017668821fe51da3e9f38ad03fc3f9868e1eaa5152ebd7",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

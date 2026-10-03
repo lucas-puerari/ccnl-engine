@@ -84,10 +84,7 @@
         "kind": "simplification",
         "text": "Dividing TABELLA A monthly base by hourly_divisor 234 yields the cash-only rate (excludes board and lodging in kind). The hourly-wage INPS bracket lookup for weekly_hours <= 24 has not been validated for this file; the wage-bracket path is not exercised by the golden cases shipped with this file."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -700,7 +697,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c223d80819bc8b6ffac8a55b8ca6a1a550a01719da3daeaf0ec039270da8a247",
+    "source_hash": "095650ef6429a8322061d869b48cd2a5f9aaea0139dab45a70e9573cfd72b642",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

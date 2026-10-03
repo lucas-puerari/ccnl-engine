@@ -1,149 +1,190 @@
-"""Versioned catalog of fiscal capabilities declared per year."""
+"""Capability registry of a fiscal year: the single source of coverage.
+
+Every capability the engine knows is one :class:`CapabilityEntry`.  The
+entry says how the engine implements it, when it applies to a run, which
+handler owns its decision and traces it, which variants and facts it needs
+and the evidence its rules must reach.  The runtime capability report, the
+contracts index and the capability matrix all derive from these entries;
+no other flag declares coverage.
+"""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import StrEnum
-from types import MappingProxyType
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.assurance import CoverageStatus
+from ccnl_engine.payroll.domain.assurance import EvidenceStatus
 
 if TYPE_CHECKING:
-    from collections.abc import Mapping
+    from collections.abc import Iterable
 
-    from ccnl_engine.provenance.domain.chain import ProvenanceStatus
-
-
-class CapabilityStatus(StrEnum):
-    """Engine implementation status for a fiscal capability in a given year."""
-
-    NOT_APPLICABLE = "not_applicable"
-    COMPUTED = "computed"
-    PARTIALLY_COMPUTED = "partially_computed"
-    NOT_COMPUTED = "not_computed"
-    BLOCKED = "blocked"
+__all__ = [
+    "CapabilityApplicability",
+    "CapabilityCatalog",
+    "CapabilityEntry",
+    "CapabilityHandler",
+    "CapabilityImplementation",
+    "CapabilityLayer",
+]
 
 
-class CapabilityGapKind(StrEnum):
-    """Classification of a capability gap between declared and observed status.
+class CapabilityImplementation(StrEnum):
+    """How the engine implements a capability, from the best to the worst.
 
     Attributes:
-        NOT_COMPUTED: Feature declared computed or partially_computed, but
-            observed as ``"not_computed"`` in the calculation.
-        FEATURE_ABSENT: Feature declared computed or partially_computed, but
-            absent from the observed map entirely (integration missing).
-        UNRESOLVED: Feature declared computed or partially_computed that
-            ran but could not decide, observed as ``"unresolved"`` (e.g. a
-            surtax without a table for the jurisdiction).
-        PROMISED_COMPUTED_GOT_PARTIAL: Feature declared as ``computed`` but
-            the engine only produced a partial result, observed as
-            ``"partial"`` or ``"partially_computed"``.
-        WRONG_YEAR: Catalog year differs from the requested computation year.
+        NATIVE: Computed from bundled rules and the facts of the request.
+        CALLER_SUPPLIED: Computed from a rate or amount the caller supplies
+            in place of a rule.
+        PARTIAL: Computed for the listed variants only; a run that executes
+            it is partially covered.
+        UNSUPPORTED: Not computed; a run it applies to is not covered.
     """
 
-    NOT_COMPUTED = "not_computed"
-    FEATURE_ABSENT = "feature_absent"
-    UNRESOLVED = "unresolved"
-    PROMISED_COMPUTED_GOT_PARTIAL = "promised_computed_got_partial"
-    WRONG_YEAR = "wrong_year"
+    NATIVE = "native"
+    CALLER_SUPPLIED = "caller_supplied"
+    PARTIAL = "partial"
+    UNSUPPORTED = "unsupported"
+
+    @classmethod
+    def worst(
+        cls, implementations: Iterable[CapabilityImplementation]
+    ) -> CapabilityImplementation:
+        """Return the worst of ``implementations``.
+
+        Returns:
+            The worst implementation, or :attr:`NATIVE` when empty.
+        """
+        order = list(cls)
+        return max(implementations, key=order.index, default=cls.NATIVE)
+
+
+class CapabilityLayer(StrEnum):
+    """Payslip layer a capability belongs to, for grouping in reports.
+
+    Attributes:
+        GROSS: Pay elements (L1).
+        NET: Contributions, taxes and deductions (L2).
+        WORK_RULES: Work-time, absence and benefit events (L3).
+    """
+
+    GROSS = "gross"
+    NET = "net"
+    WORK_RULES = "work_rules"
+
+
+class CapabilityApplicability(StrEnum):
+    """Predicate that says whether a capability applies to a run.
+
+    Attributes:
+        ALWAYS: Every run, unless its handler rules it out (an employer
+            that does not withhold tax).
+        DECIDED: Its decision owner decides: it applies when the run took a
+            decision for it that does not rule it out.
+        EVENT: The request declares an event of the capability.
+        TERMINATION_RUN: The run closes the employment: a termination run,
+            or an employment that ends in the month of the run.
+        OUTSIDE_INPUT: The fact that makes it apply has no field in the
+            request: a case with that fact is outside the engine input.
+    """
+
+    ALWAYS = "always"
+    DECIDED = "decided"
+    EVENT = "event"
+    TERMINATION_RUN = "termination_run"
+    OUTSIDE_INPUT = "outside_input"
+
+
+class CapabilityHandler(StrEnum):
+    """Kind of code that owns the decision of a capability and traces it.
+
+    Attributes:
+        PIPELINE: A stage every run executes.
+        EVENT: The handler of an event type.
+        DECISION: A step that records a decision for the capability.
+    """
+
+    PIPELINE = "pipeline"
+    EVENT = "event"
+    DECISION = "decision"
+
+
+#: Handler each applicability predicate is evaluated from.
+_HANDLER_OF: dict[CapabilityApplicability, CapabilityHandler] = {
+    CapabilityApplicability.ALWAYS: CapabilityHandler.PIPELINE,
+    CapabilityApplicability.DECIDED: CapabilityHandler.DECISION,
+    CapabilityApplicability.EVENT: CapabilityHandler.EVENT,
+}
 
 
 @dataclass(frozen=True)
 class CapabilityEntry:
-    """One feature in the capability catalog."""
+    """One capability of the registry.
+
+    Attributes:
+        feature: Stable capability name, as traced and reported.
+        layer: Payslip layer the capability belongs to.
+        implementation: How the engine implements it.
+        applies_when: Predicate that says whether it applies to a run.
+        handler: Kind of code that decides and traces it; ``None`` exactly
+            when the capability is unsupported.
+        evidence: Weakest provenance its rules may have for a payable run.
+        description: Human-readable description.
+        variants: Variants the engine supports, for a partial capability
+            the only ones it computes.
+        required_facts: Request facts the capability reads; for an
+            ``outside_input`` capability, the fact the request lacks.
+
+    Raises:
+        ValueError: When the handler disagrees with the implementation or
+            with the applicability predicate.
+    """
 
     feature: str
-    status: CapabilityStatus
+    layer: CapabilityLayer
+    implementation: CapabilityImplementation
+    applies_when: CapabilityApplicability
+    handler: CapabilityHandler | None
+    evidence: EvidenceStatus = EvidenceStatus.DERIVED
     description: str = ""
-
-
-@dataclass(frozen=True)
-class CapabilityGap:
-    """A mismatch between declared and observed capability status.
-
-    Attributes:
-        feature: The feature name from the catalog.
-        declared: The :class:`CapabilityStatus` declared in the catalog.
-        observed: The raw observed status string (or ``"absent"`` when missing
-            from the observed map).
-        kind: The :class:`CapabilityGapKind` classifying the mismatch.
-    """
-
-    feature: str
-    declared: CapabilityStatus
-    observed: str
-    kind: CapabilityGapKind = CapabilityGapKind.NOT_COMPUTED
-
-
-@dataclass(frozen=True)
-class CapabilityReport:
-    """Aggregated capability verification result for one period calculation.
-
-    Attributes:
-        catalog_year: The year of the catalog used for verification.
-        gaps: All detected gaps, in declaration order.
-        rule_sources: Weakest provenance status of the payable rules each
-            executed capability read.  It does not change :attr:`status`,
-            which describes engine coverage; it feeds the ``evidence`` axis
-            and the blockers of the result assurance.
-        caller_supplied: Capabilities whose amounts rest on values the
-            caller supplied in place of a rule, each with the names of the
-            event fields it took them from.  Such a value has no bundled
-            source, so it is never ``verified`` or ``derived``; each one is
-            a blocker of the result assurance.
-    """
-
-    catalog_year: int
-    gaps: tuple[CapabilityGap, ...]
-    rule_sources: Mapping[str, ProvenanceStatus] = field(
-        default_factory=lambda: MappingProxyType({})
-    )
-    caller_supplied: Mapping[str, tuple[str, ...]] = field(
-        default_factory=lambda: MappingProxyType({})
-    )
+    variants: tuple[str, ...] = ()
+    required_facts: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
-        object.__setattr__(
-            self, "rule_sources", MappingProxyType(dict(self.rule_sources))
-        )
-        object.__setattr__(
-            self, "caller_supplied", MappingProxyType(dict(self.caller_supplied))
-        )
-
-    @classmethod
-    def empty(cls, year: int) -> CapabilityReport:
-        """Return an empty report (no gaps) for *year*.
-
-        Returns:
-            A :class:`CapabilityReport` with no gaps and a complete status.
-        """
-        return cls(catalog_year=year, gaps=())
-
-    @property
-    def status(self) -> CoverageStatus:
-        """Coverage of the run, the ``coverage`` axis of its assurance.
-
-        Returns:
-            :attr:`~CoverageStatus.COMPLETE` when no gap exists,
-            :attr:`~CoverageStatus.PARTIAL` when only
-            :attr:`~CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL` gaps
-            exist, :attr:`~CoverageStatus.INCOMPLETE` otherwise.
-        """
-        if not self.gaps:
-            return CoverageStatus.COMPLETE
-        kinds = {g.kind for g in self.gaps}
-        if kinds <= {CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL}:
-            return CoverageStatus.PARTIAL
-        return CoverageStatus.INCOMPLETE
+        unsupported = self.implementation is CapabilityImplementation.UNSUPPORTED
+        if unsupported != (self.handler is None):
+            msg = (
+                f"capability {self.feature!r}: an unsupported capability has no "
+                f"handler and every other one has one; got {self.implementation} "
+                f"with handler {self.handler}"
+            )
+            raise ValueError(msg)
+        expected = _HANDLER_OF.get(self.applies_when)
+        if not unsupported and expected is not None and self.handler is not expected:
+            msg = (
+                f"capability {self.feature!r}: applies_when {self.applies_when} "
+                f"is decided by a {expected} handler, not {self.handler}"
+            )
+            raise ValueError(msg)
 
 
 @dataclass(frozen=True)
 class CapabilityCatalog:
-    """Versioned list of fiscal capabilities expected for a given fiscal year."""
+    """Capability registry of one fiscal year.
+
+    Raises:
+        ValueError: When two entries share a feature.
+    """
 
     year: int
     capabilities: tuple[CapabilityEntry, ...]
+
+    def __post_init__(self) -> None:  # noqa: D105
+        features = [entry.feature for entry in self.capabilities]
+        duplicates = sorted({f for f in features if features.count(f) > 1})
+        if duplicates:
+            msg = f"capability catalog {self.year}: duplicate features {duplicates}"
+            raise ValueError(msg)
 
     def by_feature(self, feature: str) -> CapabilityEntry | None:
         """Return the entry for *feature*, or ``None`` when absent.
@@ -156,82 +197,14 @@ class CapabilityCatalog:
                 return cap
         return None
 
-    def gaps(
-        self,
-        observed: Mapping[str, str],
-        *,
-        detect_absent: bool = False,
-        year: int | None = None,
-    ) -> tuple[CapabilityGap, ...]:
-        """Return entries where the observed status is worse than declared.
-
-        The base behavior (``detect_absent=False``, no ``year``) reports
-        features observed as ``"not_computed"`` or ``"unresolved"``, and
-        features declared ``computed`` observed as ``"partial"`` or
-        ``"partially_computed"``.  With
-        ``detect_absent=True``, features absent from *observed* are also
-        reported as :attr:`~CapabilityGapKind.FEATURE_ABSENT` gaps.  When
-        *year* is provided and differs from :attr:`year`, a
-        :attr:`~CapabilityGapKind.WRONG_YEAR` gap is prepended.
-
-        Args:
-            observed: Mapping of feature name to observed calculation status.
-            detect_absent: When ``True``, also report features absent from
-                *observed* as :attr:`~CapabilityGapKind.FEATURE_ABSENT` gaps.
-            year: Computation year to validate against :attr:`year`.  A
-                mismatch adds a :attr:`~CapabilityGapKind.WRONG_YEAR` gap.
+    def implemented(self) -> tuple[CapabilityEntry, ...]:
+        """Return the entries the engine computes, in declaration order.
 
         Returns:
-            Gaps in declaration order (WRONG_YEAR prepended when detected),
-            one per mismatched feature.
+            Every entry that is not unsupported.
         """
-        result: list[CapabilityGap] = []
-        if year is not None and year != self.year:
-            result.append(
-                CapabilityGap(
-                    feature="__catalog__",
-                    declared=CapabilityStatus.COMPUTED,
-                    observed=str(year),
-                    kind=CapabilityGapKind.WRONG_YEAR,
-                )
-            )
-        for entry in self.capabilities:
-            if entry.status not in _PROMISED:
-                continue
-            obs = observed.get(entry.feature)
-            kind = _gap_kind(entry.status, obs, detect_absent=detect_absent)
-            if kind is not None:
-                result.append(
-                    CapabilityGap(
-                        feature=entry.feature,
-                        declared=entry.status,
-                        observed="absent" if obs is None else obs,
-                        kind=kind,
-                    )
-                )
-        return tuple(result)
-
-
-_PROMISED = frozenset({CapabilityStatus.COMPUTED, CapabilityStatus.PARTIALLY_COMPUTED})
-_PARTIAL_OBSERVATIONS = frozenset({"partial", "partially_computed"})
-_OBSERVED_GAPS: dict[str, CapabilityGapKind] = {
-    "not_computed": CapabilityGapKind.NOT_COMPUTED,
-    "unresolved": CapabilityGapKind.UNRESOLVED,
-}
-
-
-def _gap_kind(
-    declared: CapabilityStatus, observed: str | None, *, detect_absent: bool
-) -> CapabilityGapKind | None:
-    """Classify the observation of a feature the catalog promises.
-
-    Returns:
-        The gap kind, or ``None`` when the observation keeps the promise.
-    """
-    if observed is None:
-        return CapabilityGapKind.FEATURE_ABSENT if detect_absent else None
-    if observed in _OBSERVED_GAPS:
-        return _OBSERVED_GAPS[observed]
-    if declared is CapabilityStatus.COMPUTED and observed in _PARTIAL_OBSERVATIONS:
-        return CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL
-    return None
+        return tuple(
+            entry
+            for entry in self.capabilities
+            if entry.implementation is not CapabilityImplementation.UNSUPPORTED
+        )

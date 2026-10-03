@@ -234,10 +234,7 @@
         "kind": "info",
         "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — CCNL Area FL 2022-2024 (stessa disciplina delle altre aree ARAN). Modellato con SicknessTier; periodi a cavallo di soglia ricevono un unico tasso (engine limitation accettabile)."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "ruleset": {
     "id": "ccnl/dirigenza-funzioni-locali-aran",
@@ -246,7 +243,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "e7a3b7981539202892dabd20b8cee8965104d77ea94813afde8101ccc859988f",
+    "source_hash": "5d8ebff07336d0e8fa93ccfdb4f0951161ae66e40b5b287318d14501136a593f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

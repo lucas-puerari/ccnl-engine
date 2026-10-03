@@ -96,10 +96,7 @@
         "kind": "info",
         "text": "SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts."
       }
-    ],
-    "gross": "implemented",
-    "net": "implemented",
-    "work_rules": "implemented"
+    ]
   },
   "parameters": {
     "hourly_divisor": {
@@ -1361,7 +1358,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "d552efa110de810becd33f7e2e046b791fcbaeff22072b05883e146a1b4ce5eb",
+    "source_hash": "f3b501fddbd340044f29a17b082cb6f66554b2e13b6db122cd89bac9ad653e1f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

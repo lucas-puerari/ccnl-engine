@@ -1,10 +1,12 @@
-"""CCNL coverage data for the per-contract index page.
+"""CCNL coverage data for the contracts index and the capability matrix.
 
-Aggregates the coverage blocks and data fields from every bundled CCNL
-JSON file into a per-contract view:
+Every coverage cell comes from one derivation: the capability registry of
+the fiscal year, lowered for a CCNL by the ``missing`` notes of its file
+(``ccnl_engine.payroll.service.capability_coverage``).  The index and the
+matrix render the same :func:`coverage_cells`, so they cannot disagree.
 
-* CNEL code, name (linked), sector, workers estimate, coverage %,
-  L1/L2/L3 symbols, verification emoji.
+Functional coverage, source quality and readiness are three separate axes;
+no percentage blends them.
 
 Not part of the engine API -- documentation tooling only.
 Regenerate output files with::
@@ -15,96 +17,52 @@ Regenerate output files with::
 from __future__ import annotations
 
 import importlib.resources
+from collections import Counter
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
+from typing import TYPE_CHECKING
 
-from ccnl_engine.contract.domain.identity import CCNL, NoteKind
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.knowledge.service.capability_catalog_loader import (
+    load_capability_catalog,
+)
+from ccnl_engine.payroll.domain.capability_catalog import (
+    CapabilityImplementation,
+    CapabilityLayer,
+)
+from ccnl_engine.payroll.service.capability_coverage import (
+    ccnl_capabilities,
+    layer_coverage,
+)
 from ccnl_engine.provenance.domain.extraction import ExtractionMethod
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetReadiness,
     VerificationStatus,
 )
+from scripts.ci.payable_rules import inventory
 
-# Data classes
+if TYPE_CHECKING:
+    from ccnl_engine.contract.domain.identity import CCNL
+    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
 
-
-@dataclass(frozen=True)
-class CCNLCoverageRow:
-    """One row in the per-CCNL coverage table."""
-
-    ccnl_id: str
-    cnel_code: str
-    name: str
-    sector: str
-    workers_estimate: str
-    agreement_year: str
-    """4-digit renewal year, e.g. '2024'. Empty string when not recorded."""
-    coverage_pct: int
-    """0-100 score: L1 x 50% + L2 x 35% + work_rules x 15% - penalty."""
-    verification_label: str
-    readiness: RulesetReadiness
-    gross: str
-    net: str
-    work_rules: str
-
-
-@dataclass(frozen=True)
-class CoverageReport:
-    """Aggregated coverage data for the full CCNL bundle."""
-
-    ccnl_rows: list[CCNLCoverageRow]
-    generated_at: date
-
-
-# Helpers
-
-
-def _layer_score(status: str) -> float:
-    return {
-        "implemented": 1.0,
-        "partial": 0.5,
-        "out_of_scope": 0.0,
-        "not_implemented": 0.0,
-    }[status]
-
-
-def _coverage_pct(ccnl: CCNL) -> int:
-    """0-100 score: L1 x 50% + L2 x 35% + work_rules x 15% - penalty.
-
-    Formula:
-        base = L1 * 0.50 + L2 * 0.35 + work_rules * 0.15
-        penalty = min(missing_note_count * 0.05, 0.20)
-        result = round((base - penalty) * 100)
-
-    work_rules defaults to 'not_implemented' for most contracts, so the
-    effective maximum is 85 until a contract implements work-rules features.
-
-    If meta.withholding_agent is False and layer_2 is out_of_scope, the employer
-    not withholding IRPEF is by design, so layer_2 is not penalised.
-
-    Returns:
-        Coverage percentage as an integer in [0, 100].
-    """
-    l1 = _layer_score(ccnl.coverage.gross)
-    l2_status = ccnl.coverage.net
-    if not ccnl.meta.withholding_agent and l2_status == "out_of_scope":
-        l2 = 1.0
-    else:
-        l2 = _layer_score(l2_status)
-    wr = _layer_score(ccnl.coverage.work_rules)
-    base = l1 * 0.50 + l2 * 0.35 + wr * 0.15
-    missing_count = sum(1 for n in ccnl.coverage.notes if n.kind == NoteKind.MISSING)
-    penalty = min(missing_count * 0.05, 0.20)
-    return round((base - penalty) * 100)
-
-
-_LAYER_SYMBOL = {
-    "implemented": "✅",
-    "partial": "⚠️",
-    "out_of_scope": "🚫",
-    "not_implemented": "🔲",
+#: Symbol of each implementation, shared by the index and the matrix.
+IMPLEMENTATION_SYMBOL: dict[CapabilityImplementation, str] = {
+    CapabilityImplementation.NATIVE: "✅",
+    CapabilityImplementation.CALLER_SUPPLIED: "📝",
+    CapabilityImplementation.PARTIAL: "⚠️",
+    CapabilityImplementation.UNSUPPORTED: "🔲",
 }
+
+IMPLEMENTATION_LEGEND = """\
+| | Functional coverage of a layer: its weakest capability |
+|---|---|
+| ✅ | Every capability native: computed from bundled rules and request facts |
+| 📝 | At best caller-supplied: a capability takes a caller rate or amount |
+| ⚠️ | A capability is partial: some variants only, or data the file lacks |
+| 🔲 | A capability is unsupported: the engine does not compute it |
+"""
+
+_STATUSES = ("verified", "derived", "assumed", "missing")
 
 _VERIFICATION_EMOJI = {
     "Machine extracted": "🤖",
@@ -120,6 +78,104 @@ _READINESS_SYMBOL = {
 }
 
 
+@dataclass(frozen=True)
+class CoverageCells:
+    """Functional coverage of one CCNL as rendered in both pages.
+
+    Attributes:
+        layers: Symbol of the gross, net and work-rules layers.
+        limits: Capabilities a ``missing`` note of the CCNL lowers to
+            partial, comma separated; ``—`` when none.
+    """
+
+    layers: tuple[str, str, str]
+    limits: str
+
+
+def coverage_cells(catalog: CapabilityCatalog, ccnl: CCNL) -> CoverageCells:
+    """Return the functional coverage cells of *ccnl*.
+
+    Returns:
+        The layer symbols and the CCNL-specific limits.
+    """
+    capabilities = ccnl_capabilities(catalog, ccnl)
+    layers = layer_coverage(capabilities)
+    gross, net, work = (
+        IMPLEMENTATION_SYMBOL[layers[layer]] for layer in CapabilityLayer
+    )
+    limits = sorted(c.feature for c in capabilities if c.limited_by_ccnl)
+    return CoverageCells((gross, net, work), ", ".join(limits) or "—")
+
+
+def registry_summary(catalog: CapabilityCatalog) -> list[str]:
+    """Return the per-layer count of registry capabilities by implementation.
+
+    Returns:
+        Markdown table lines, header included.
+    """
+    header = " | ".join(i.value for i in CapabilityImplementation)
+    lines = [f"| Layer | {header} |", "|---|" + "---:|" * len(CapabilityImplementation)]
+    for layer in CapabilityLayer:
+        counts = Counter(
+            e.implementation for e in catalog.capabilities if e.layer is layer
+        )
+        cells = " | ".join(str(counts[i]) for i in CapabilityImplementation)
+        lines.append(f"| {layer.value} | {cells} |")
+    return lines
+
+
+def latest_catalog_year() -> int:
+    """Return the latest fiscal year with a bundled capability registry.
+
+    Returns:
+        The year of the newest ``capabilities/data/<year>.json``.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.capabilities.data")
+    return max(
+        int(e.name.split(".")[0])
+        for e in pkg.iterdir()
+        if e.name.split(".")[0].isdigit()
+    )
+
+
+def bundled_ccnls() -> list[CCNL]:
+    """Return every bundled CCNL, sorted by name.
+
+    Returns:
+        The CCNL models.
+    """
+    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
+    filenames = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
+    return sorted((load_ccnl(fn) for fn in filenames), key=lambda c: c.meta.name)
+
+
+@dataclass(frozen=True)
+class CCNLCoverageRow:
+    """One row in the per-CCNL index table."""
+
+    ccnl_id: str
+    cnel_code: str
+    name: str
+    sector: str
+    workers_estimate: str
+    agreement_year: str
+    """4-digit renewal year, e.g. '2024'. Empty string when not recorded."""
+    cells: CoverageCells
+    sources: str
+    """Payable rules of the file by status: verified / derived / assumed / missing."""
+    verification_label: str
+    readiness: RulesetReadiness
+
+
+@dataclass(frozen=True)
+class CoverageReport:
+    """Aggregated coverage data for the full CCNL bundle."""
+
+    ccnl_rows: list[CCNLCoverageRow]
+    registry: list[str]
+    generated_at: date
+
+
 def _verification_label(ccnl: CCNL) -> str:
     vs = ccnl.verification.confidence
     if vs == VerificationStatus.VERIFIED:
@@ -131,43 +187,45 @@ def _verification_label(ccnl: CCNL) -> str:
     return "Machine extracted"
 
 
-def _make_ccnl_row(ccnl: CCNL) -> CCNLCoverageRow:
-    year = (ccnl.meta.agreement_date or "")[:4]
-    return CCNLCoverageRow(
-        ccnl_id=ccnl.meta.ccnl_id,
-        cnel_code=ccnl.meta.cnel_code,
-        name=ccnl.meta.name,
-        sector=ccnl.meta.sector,
-        workers_estimate=ccnl.meta.workers_estimate,
-        agreement_year=year,
-        coverage_pct=_coverage_pct(ccnl),
-        verification_label=_verification_label(ccnl),
-        readiness=ccnl.verification.readiness,
-        gross=ccnl.coverage.gross,
-        net=ccnl.coverage.net,
-        work_rules=ccnl.coverage.work_rules,
-    )
+def _sources_by_file() -> dict[str, str]:
+    counts: dict[str, Counter[str]] = {}
+    for rule in inventory():
+        counts.setdefault(rule.file, Counter())[rule.status or "missing"] += 1
+    return {
+        file: " / ".join(str(bucket[s]) for s in _STATUSES)
+        for file, bucket in counts.items()
+    }
 
 
-# Public API
-
-
-def build_coverage_report() -> CoverageReport:
-    """Build a coverage report from all bundled CCNL JSON files.
+def build_coverage_report(year: int) -> CoverageReport:
+    """Build the index data of every bundled CCNL for the registry of *year*.
 
     Returns:
         CoverageReport with per-CCNL rows sorted by name.
     """
-    pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    filenames = sorted(e.name for e in pkg.iterdir() if e.name.endswith(".json"))
-    ccnls = [load_ccnl(fn) for fn in filenames]
+    catalog = load_capability_catalog(year)
+    sources = _sources_by_file()
+    rows = [
+        CCNLCoverageRow(
+            ccnl_id=ccnl.meta.ccnl_id,
+            cnel_code=ccnl.meta.cnel_code,
+            name=ccnl.meta.name,
+            sector=ccnl.meta.sector,
+            workers_estimate=ccnl.meta.workers_estimate,
+            agreement_year=(ccnl.meta.agreement_date or "")[:4],
+            cells=coverage_cells(catalog, ccnl),
+            sources=sources.get(f"ccnl/data/{ccnl.meta.ccnl_id}.json", "—"),
+            verification_label=_verification_label(ccnl),
+            readiness=ccnl.verification.readiness,
+        )
+        for ccnl in bundled_ccnls()
+    ]
     return CoverageReport(
-        ccnl_rows=sorted([_make_ccnl_row(c) for c in ccnls], key=lambda r: r.name),
+        ccnl_rows=rows,
+        registry=registry_summary(catalog),
         generated_at=datetime.now(tz=UTC).date(),
     )
 
-
-# Markdown rendering
 
 _CONTRACTS_PREAMBLE_TEMPLATE = """\
 # CCNL Coverage
@@ -177,34 +235,34 @@ across private and public sectors -- including ARAN public-sector agreements (fu
 centrali, locali, sanità, istruzione) and one Presidential Decree (DPR 53/2025[^2]).
 Covers 75+ of the ~99 major private-sector CCNLs (>10,000 workers, CNEL II/2024).
 
-→ [Domain: What is a CCNL](../domain/index.md)
+→ [Domain: What is a CCNL](../domain/index.md) ·
+[Capability matrix](capability-matrix.md)
 
-## Legend
+## Three separate axes
 
-| | |
+No percentage blends them: a contract can be fully covered and still rest
+on unverified sources, or be well sourced and not cleared for production.
+
+- **Coverage (L1, L2, L3):** what the engine computes, derived from the
+  capability registry of {year}. A layer shows its weakest capability; the
+  [capability matrix](capability-matrix.md) lists each one. **Limits**
+  names the capabilities this contract's data leaves partial.
+- **Sources:** payable rules of the contract file by provenance status,
+  verified / derived / assumed / missing.
+- **Readiness:** the review tier of the contract ruleset.
+
+Capabilities of the registry by layer and implementation:
+
+{registry}
+
+{legend}
+| | Readiness and extraction |
 |---|---|
-| ✅ | Implemented |
-| ⚠️ | Partial -- see contract notes |
-| 🚫 | Out of scope |
-| 🔲 | Not yet implemented |
-| 🤖 | Machine extracted |
-| 🧑 | Human reviewed |
 | 🧪 | Exploratory — demo, research, prototyping only |
 | 👁 | Reviewed — key values human-verified; use with disclaimer |
 | 🏭 | Production — full review, reference case, named owner |
-
-**L1 — Gross:** base salary, seniority, fixed allowances,
-additional months, hourly rate.
-
-**L2 — Net:** INPS contributions, TFR, IRPEF, regional/municipal surtax,
-family deductions (Art. 12), mortgage interest deduction (Art. 15).
-
-**L3 — Work rules:** overtime/night/holiday supplements, sick/injury leave,
-leave entitlement, absence deduction.
-
-**Coverage %:** (L1 x 50% + L2 x 35% + work_rules x 15%) - 5% per missing data
-note (max -20%). work_rules status defaults to not_implemented for most contracts
-(data exists but coverage block not yet updated); current maximum is 85%.
+| 🤖 | Machine extracted |
+| 🧑 | Human reviewed |
 
 ## Matrix
 """
@@ -223,7 +281,7 @@ in production.
 """
 
 
-def render_contracts_index(report: CoverageReport) -> str:
+def render_contracts_index(report: CoverageReport, year: int) -> str:
     """Render the contracts/index.md page with per-CCNL data and links.
 
     Returns:
@@ -234,29 +292,31 @@ def render_contracts_index(report: CoverageReport) -> str:
         " -- run: uv run python scripts/docs/gen_coverage_matrix.py -->\n"
         f"<!-- generated: {report.generated_at} -->\n"
     )
-    preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(count=len(report.ccnl_rows))
+    preamble = _CONTRACTS_PREAMBLE_TEMPLATE.format(
+        count=len(report.ccnl_rows),
+        year=year,
+        registry="\n".join(report.registry),
+        legend=IMPLEMENTATION_LEGEND,
+    )
     lines: list[str] = [
         auto_header,
         preamble,
         (
-            "| # | CNEL | CCNL | Sector | Workers (~)[^3]"
-            " | Renewal | Coverage | L1 | L2 | L3 | Readiness | Ext[^4] |"
+            "| # | CNEL | CCNL | Sector | Workers (~)[^3] | Renewal"
+            " | L1 | L2 | L3 | Limits | Sources (v / d / a / m)"
+            " | Readiness | Ext[^4] |"
         ),
-        "|---|---|---|---|---:|:---:|---:|:---:|:---:|:---:|:---:|:---:|",
+        "|---|---|---|---|---:|:---:|:---:|:---:|:---:|---|---|:---:|:---:|",
     ]
     for i, row in enumerate(report.ccnl_rows, 1):
-        l1 = _LAYER_SYMBOL[row.gross]
-        l2 = _LAYER_SYMBOL[row.net]
-        l3 = _LAYER_SYMBOL[row.work_rules]
-        ext = _VERIFICATION_EMOJI[row.verification_label]
-        readiness = _READINESS_SYMBOL[row.readiness]
-        workers = row.workers_estimate or "—"
-        renewal = row.agreement_year or "—"
+        l1, l2, l3 = row.cells.layers
         link = f"[{row.name}]({row.ccnl_id}.md)"
         lines.append(
             f"| {i} | {row.cnel_code} | {link} | {row.sector}"
-            f" | {workers} | {renewal} | {row.coverage_pct}%"
-            f" | {l1} | {l2} | {l3} | {readiness} | {ext} |"
+            f" | {row.workers_estimate or '—'} | {row.agreement_year or '—'}"
+            f" | {l1} | {l2} | {l3} | {row.cells.limits} | {row.sources}"
+            f" | {_READINESS_SYMBOL[row.readiness]}"
+            f" | {_VERIFICATION_EMOJI[row.verification_label]} |"
         )
     lines.append(_CONTRACTS_FOOTER)
     return "\n".join(lines)
