@@ -7,7 +7,7 @@
 | **Tax sector** | `terziario` |
 | **Last renewal** | 2025-05-19 |
 | **Workers (est.)** | — |
-| **Ruleset version** | `—` |
+| **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
@@ -44,7 +44,7 @@
 |---|---|
 | **Last renewal** | 2025-05-19 |
 | **Last verified** | — |
-| **Next salary event** | 2027-01-01 |
+| **Latest salary tranche** | 2027-05-01 |
 
 ### Semplificazioni note
 

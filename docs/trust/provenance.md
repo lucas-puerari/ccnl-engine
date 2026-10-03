@@ -116,6 +116,11 @@ The script is idempotent and rehashes the files it changes.
 
 ### Current counts
 
+Generated from the bundle by `scripts/docs/gen_trust_counts.py`; CI fails
+when they drift.
+
+<!-- trust:provenance-table -->
+
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
@@ -123,14 +128,18 @@ The script is idempotent and rehashes the files it changes.
 | `assumed` | 526 | 12 | 538 |
 | `missing` | 85 | 0 | 85 |
 
-The 85 `missing` rules are the extra-month accrual thresholds of the CCNLs
-whose signed clause is not in the bundle. `assumed` covers AI-extracted
-CCNL values (including the 40 accrual thresholds read from signed texts,
-each with its article and quote), extra-month counts with no
-located clause, the somma esente cut points, the artigianato and edilizia
-INPS proxies, the PA apprentice placeholder, the PA fixed-term exemption and
-the regional surtax table. `python scripts/ci/check_provenance.py --rules`
-prints the current counts.
+<!-- /trust:provenance-table -->
+
+Of the <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing`
+rules, <!-- trust:accrual-missing -->85<!-- /trust:accrual-missing --> are
+extra-month accrual thresholds of CCNLs whose signed clause is not in the
+bundle. `assumed` covers AI-extracted CCNL values (including
+<!-- trust:accrual-assumed -->40<!-- /trust:accrual-assumed --> accrual
+thresholds read from signed texts, each with its article and quote),
+extra-month counts with no located clause, the somma esente cut points, the
+artigianato and edilizia INPS proxies, the PA apprentice placeholder, the PA
+fixed-term exemption and the regional surtax table.
+`python scripts/ci/check_provenance.py --rules` prints the same counts.
 
 ## Enforcement
 

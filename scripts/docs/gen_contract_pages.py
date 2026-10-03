@@ -3,6 +3,13 @@
 Run:
     uv run python scripts/docs/gen_contract_pages.py
 
+Check for drift without writing (for CI)::
+
+    uv run python scripts/docs/gen_contract_pages.py --check
+
+The output depends only on the bundle and the committed usage examples, never
+on the current date, so a committed page stays valid until its data changes.
+
 Each page replaces the raw JSON dump with a structured layout:
   - Header card: CNEL code, sector, renewal, workers, extraction status
   - Coverage badges
@@ -17,15 +24,14 @@ Each page replaces the raw JSON dump with a structured layout:
 
 from __future__ import annotations
 
-import datetime
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = ROOT / "src" / "ccnl_engine" / "knowledge" / "ccnl" / "data"
 OUT_DIR = ROOT / "docs" / "contracts"
-TODAY = datetime.datetime.now(tz=datetime.UTC).date().isoformat()
 
 COVERAGE_ICON: dict[str | None, str] = {
     "implemented": "✅",
@@ -282,21 +288,18 @@ def _header_section(data: dict[str, Any], ccnl_id: str) -> list[str]:
     return lines
 
 
-def _next_salary_event(levels: list[dict[str, Any]]) -> str:
-    """Return the earliest future salary tranche date across all levels.
+def _latest_salary_tranche(levels: list[dict[str, Any]]) -> str:
+    """Return the latest salary tranche start date across all levels.
 
     Returns:
-        ISO-8601 date string, or '—' when no future tranches are recorded.
+        ISO-8601 date string, or '—' when no tranche is recorded.
     """
-    future: list[str] = []
+    starts: list[str] = []
     for level in levels:
         bs = level.get("base_salary") or {}
         periods = bs.get("periods", []) if isinstance(bs, dict) else []
-        for period in periods:
-            vf = period.get("valid_from", "")
-            if vf > TODAY:
-                future.append(vf)
-    return min(future) if future else "—"
+        starts.extend(p["valid_from"] for p in periods if p.get("valid_from"))
+    return max(starts) if starts else "—"
 
 
 def _layer_row(label: str, status: str | None) -> str:
@@ -325,7 +328,7 @@ def _coverage_tables(
         or (sources[0].get("published_on") if sources else None)
         or "—"
     )
-    next_event = _next_salary_event(levels)
+    latest_tranche = _latest_salary_tranche(levels)
     return [
         "## Coverage",
         "",
@@ -351,7 +354,7 @@ def _coverage_tables(
         "|---|---|",
         f"| **Last renewal** | {agreement_date} |",
         f"| **Last verified** | {last_reviewed} |",
-        f"| **Next salary event** | {next_event} |",
+        f"| **Latest salary tranche** | {latest_tranche} |",
         "",
         "### Semplificazioni note",
         "",
@@ -392,7 +395,7 @@ def _coverage_section(
     """Build the 4-axis coverage card.
 
     Axes: Funzionalità (L1/L2/L3), Verifica (readiness + confidence),
-    Freschezza (renewal date + last human review + next event),
+    Freschezza (renewal date + last human review + latest tranche),
     Semplificazioni (count of simplification notes).
 
     Returns:
@@ -494,7 +497,7 @@ def _body_sections(data: dict[str, Any]) -> list[str]:
     return lines
 
 
-def _tail_section(ccnl_id: str) -> list[str]:
+def _tail_section(ccnl_id: str, root: Path) -> list[str]:
     """Build the raw-JSON collapse block and optional usage example.
 
     Returns:
@@ -510,7 +513,7 @@ def _tail_section(ccnl_id: str) -> list[str]:
         "",
     ]
     example_path = f"docs/examples/contracts/{ccnl_id}.py"
-    if (ROOT / example_path).exists():
+    if (root / example_path).exists():
         lines.extend([
             "## Usage example",
             "",
@@ -522,8 +525,12 @@ def _tail_section(ccnl_id: str) -> list[str]:
     return lines
 
 
-def generate_page(json_path: Path) -> str:
+def generate_page(json_path: Path, root: Path = ROOT) -> str:
     """Generate a complete markdown contract page from its JSON data file.
+
+    Args:
+        json_path: CCNL JSON file.
+        root: Repository root, used to find the committed usage example.
 
     Returns:
         Full markdown content as a string.
@@ -540,27 +547,68 @@ def generate_page(json_path: Path) -> str:
     lines.extend(_header_section(data, ccnl_id))
     lines.extend(_coverage_section(coverage, verification, meta, levels))
     lines.extend(_body_sections(data))
-    lines.extend(_tail_section(ccnl_id))
+    lines.extend(_tail_section(ccnl_id, root))
 
     return "\n".join(lines)
 
 
-def main() -> None:
-    """Generate documentation pages for every existing contract markdown file."""
-    json_files = sorted(DATA_DIR.glob("*.json"))
-    count = 0
-    for json_path in json_files:
-        out_path = OUT_DIR / f"{json_path.stem}.md"
-        if not out_path.exists():
-            continue
-        content = generate_page(json_path)
-        out_path.write_text(content, encoding="utf-8")
-        count += 1
-        print(f"  {json_path.stem}")
+def expected_pages(data_dir: Path, root: Path) -> dict[str, str]:
+    """Render the page of every CCNL JSON file in *data_dir*.
 
-    print(f"\nGenerated {count} contract pages.")
-    print(f"<!-- generated: {TODAY} -->")
+    Returns:
+        Mapping of page file name (``<ccnl_id>.md``) to its content.
+    """
+    return {
+        f"{path.stem}.md": generate_page(path, root)
+        for path in sorted(data_dir.glob("*.json"))
+    }
+
+
+def drifted_pages(pages: dict[str, str], out_dir: Path) -> list[str]:
+    """Compare rendered pages with the committed ones without writing.
+
+    Returns:
+        Sorted names of pages that are missing or differ from *pages*.
+    """
+    drifted: list[str] = []
+    for name, content in pages.items():
+        page = out_dir / name
+        if not page.exists() or page.read_text(encoding="utf-8") != content:
+            drifted.append(name)
+    return sorted(drifted)
+
+
+def main(
+    argv: list[str] | None = None,
+    *,
+    data_dir: Path = DATA_DIR,
+    out_dir: Path = OUT_DIR,
+    root: Path = ROOT,
+) -> int:
+    """Write every contract page, or check them for drift with ``--check``.
+
+    Returns:
+        Process exit code: 1 when ``--check`` finds a missing or stale page.
+    """
+    args = sys.argv[1:] if argv is None else argv
+    pages = expected_pages(data_dir, root)
+    if "--check" in args:
+        drifted = drifted_pages(pages, out_dir)
+        if drifted:
+            print("Contract pages out of date:", file=sys.stderr)
+            print("\n".join(f"  {name}" for name in drifted), file=sys.stderr)
+            print(
+                "Run: uv run python scripts/docs/gen_contract_pages.py",
+                file=sys.stderr,
+            )
+            return 1
+        print(f"OK: {len(pages)} contract pages are up to date.")
+        return 0
+    for name, content in pages.items():
+        (out_dir / name).write_text(content, encoding="utf-8")
+    print(f"Generated {len(pages)} contract pages.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

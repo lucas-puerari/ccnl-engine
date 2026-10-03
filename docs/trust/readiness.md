@@ -74,13 +74,34 @@ In addition to the `reviewed` criteria:
 
 ## Current status
 
-The current readiness distribution across the 125 bundled rulesets is visible
-in the [CCNL coverage matrix](../contracts/index.md) under the Readiness column.
+Distribution across the
+<!-- trust:ccnl-total -->125<!-- /trust:ccnl-total --> bundled CCNL rulesets,
+generated from the data by `scripts/docs/gen_trust_counts.py` (CI fails when
+it drifts):
 
-As of the initial introduction of this field (September 2026), all rulesets
-default to `exploratory`. The target is to bring the 15 most-used CCNLs
-(by covered worker population) to `reviewed` status, with at least 5 reaching
-`production`.
+<!-- trust:readiness-table -->
+
+| Readiness | CCNL rulesets |
+|---|---:|
+| `exploratory` | 110 |
+| `reviewed` | 15 |
+| `production` | 0 |
+
+<!-- /trust:readiness-table -->
+
+The <!-- trust:readiness-reviewed -->15<!-- /trust:readiness-reviewed -->
+`reviewed` rulesets: <!-- trust:readiness-reviewed-list -->`commercio-confcommercio`, `cooperative-sociali`, `dmo-federdistribuzione`, `edilizia-ance`, `edilizia-artigianato-cna`, `funzioni-locali-aran`, `istruzione-ricerca-aran`, `lavoro-domestico-convivente`, `lavoro-domestico-non-convivente`, `logistica-trasporto-confetra`, `metalmeccanico-artigianato`, `metalmeccanico-federmeccanica`, `multiservizi-anip`, `operai-agricoli-florovivaisti`, `sanita-aran`<!-- /trust:readiness-reviewed-list -->.
+Each [contract page](../contracts/index.md) shows its own tier.
+
+`reviewed` records a file-level review, not a per-value one. Of the `reviewed`
+rulesets, <!-- trust:reviewed-with-reviewer -->15<!-- /trust:reviewed-with-reviewer -->
+record `verification.human_reviewed_by` and `verification.last_reviewed`, and
+<!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
+set `verification.confidence = "verified"` (step 5 of the criteria above).
+A per-value review is recorded only by the provenance status `verified` of a
+payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
+payable rules of the bundle have it (see
+[Provenance](provenance.md#provenance-status)).
 
 ## Relationship to the result status
 

@@ -47,7 +47,7 @@
 |---|---|
 | **Last renewal** | 2012-03-22 |
 | **Last verified** | — |
-| **Next salary event** | — |
+| **Latest salary tranche** | 2023-10-01 |
 
 ### Semplificazioni note
 

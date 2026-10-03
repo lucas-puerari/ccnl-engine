@@ -50,7 +50,7 @@
 |---|---|
 | **Last renewal** | 2020-10-08 |
 | **Last verified** | — |
-| **Next salary event** | — |
+| **Latest salary tranche** | 2020-07-01 |
 
 ### Semplificazioni note
 
