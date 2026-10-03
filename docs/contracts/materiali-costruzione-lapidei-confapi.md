@@ -7,7 +7,7 @@
 | **Tax sector** | `industria` |
 | **Last renewal** | 2025-09-09 |
 | **Workers (est.)** | ~5000 |
-| **Ruleset version** | `—` |
+| **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
@@ -44,7 +44,7 @@
 |---|---|
 | **Last renewal** | 2025-09-09 |
 | **Last verified** | — |
-| **Next salary event** | — |
+| **Latest salary tranche** | 2025-01-01 |
 
 ### Semplificazioni note
 

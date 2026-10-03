@@ -12,7 +12,7 @@ makes all three explicit:
 
 | Layer | Question | Measured by |
 |---|---|---|
-| **Software** | Does the engine apply its rules consistently? | 100% coverage, mypy strict, reference cases |
+| **Software** | Does the engine apply its rules consistently? | 100% branch coverage, mypy strict, reference table cases, legal scenario tests |
 | **Source** | Do the modelled rules match the current authoritative sources? | Ruleset readiness tier |
 | **Case** | Does the user's scenario fall within the modelled scope? | `status`, `issues`, `decisions` and `capability_report` |
 
@@ -129,15 +129,22 @@ pin the same `ccnl-engine` package version: it ships the knowledge bundle.
 
 ## Quality gates
 
-Every change to the codebase — including JSON data files — must pass all
-four gates before merging:
+Every change to the codebase, including JSON data files, must pass these
+gates; the `CI` workflow runs all of them on every pull request:
 
-| Gate | Tool | Standard |
+| Gate | Command | Standard |
 |---|---|---|
-| Tests (100% branch coverage) | `uv run pytest` | Hard gate — no exceptions |
-| Lint | `uv run ruff check src/ tests/` | Zero errors |
-| Types | `uv run mypy src/ tests/` | Zero errors, strict mode |
-| Complexity | `uv run complexipy src/` | ≤ 15 per function |
+| Tests | `uv run pytest` | 100% branch coverage of `src/ccnl_engine` |
+| Lint | `uv run ruff check src/ tests/ scripts/` | Zero errors |
+| Format | `uv run ruff format --check src/ tests/ scripts/` | No changes |
+| Types | `uv run mypy src/ tests/` and `uv run mypy scripts/ --explicit-package-bases` | Zero errors, strict mode |
+| Structure | `uv run python scripts/ci/check_structure.py` | File, function and class size limits |
+| Provenance | `python scripts/ci/check_provenance.py --all` | Every payable rule and reference case has a provenance record |
+| Contract pages | `uv run python scripts/docs/gen_contract_pages.py --check` | Every page matches its CCNL data |
+| Trust counts | `uv run python scripts/docs/gen_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
+
+Other workflows check the capability matrix, the contracts index, the
+contract examples and the cognitive complexity of `src/`.
 
 JSON changes in `knowledge/*/data/` are treated as code-level changes: they
 alter engine behaviour and carry the same gates as Python source.
@@ -155,8 +162,15 @@ Expected values copied from engine output detect regressions only, never a
 systematic error, so they are not accepted as proof of correctness.
 Reference cases live in `tests/fixtures/expected/` and
 `tests/acceptance/public_api/test_reference_cases.py` runs each one through
-`PayrollEngine`. A case asserts only the values its source states (base
-salary, fixed allowances and period gross from the cited table), to the cent.
+`PayrollEngine`. They are reference table cases, not full payslips: a case
+asserts only the values its source states (base salary, fixed allowances and
+period gross from the cited table), to the cent, and never net pay,
+contributions, taxes or employer cost. Of the
+<!-- trust:reference-cases -->5<!-- /trust:reference-cases --> cases,
+<!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
+are `verified` and
+<!-- trust:reference-cases-source-linked -->5<!-- /trust:reference-cases-source-linked -->
+are `source_linked`.
 
 ### Reference case verification status
 

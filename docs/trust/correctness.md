@@ -15,10 +15,25 @@ whether R is the right rule.
 
 Evidence:
 
-- 100% branch coverage — no reachable path is untested
-- `mypy --strict` — the type system rules out entire classes of logic error
-- Reference cases — byte-identical assertions on real scenarios; a salary table
-  change that shifts any output by even one cent fails a test
+- 100% branch coverage: every branch of `src/ccnl_engine` runs in the test suite
+- `mypy --strict`: the type system rules out entire classes of logic error
+- Reference table cases: <!-- trust:reference-cases -->5<!-- /trust:reference-cases -->
+  cases in `tests/fixtures/expected/`, each running one regular period through
+  `PayrollEngine` and asserting, to the cent, the three values its cited
+  salary table states: base salary, fixed allowances and period gross. They
+  do not check net pay, contributions, taxes or employer cost.
+  <!-- trust:reference-cases-source-linked -->5<!-- /trust:reference-cases-source-linked -->
+  are `source_linked` (they cite the table they model) and
+  <!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
+  are `verified` against an independent payslip or official worked example.
+- Legal scenario tests: selected rules (IRPEF, regional and municipal
+  surtaxes, substitute-tax regimes, apprenticeship scaling, the withholding
+  schedule and others) checked against hand-derived values, mainly in
+  `tests/acceptance/legal_scenarios/`.
+
+No test compares a complete payslip (gross, contributions, taxes, net and
+employer cost) with an independent source. A wrong rule shared by the engine
+and a hand calculation that follows the same reading goes undetected.
 
 Software correctness is a necessary condition for the other layers, not a
 sufficient one. A perfectly correct engine can still return a wrong number if the
@@ -39,13 +54,18 @@ a bug-free implementation of an outdated salary table is source-incorrect.
 | `reviewed` | L1 values (base salary, seniority, additional months) human-verified against primary sources |
 | `production` | All L1+L2 values verified, at least one reference case from an independent source |
 
-Source correctness is ruleset-scoped: each CCNL, tax year, and INPS file has its
-own readiness tier. A `reviewed` CCNL used with `exploratory` INPS rates gives a
-mixed result; the engine does not fold the readiness tier into the result, so
-check it next to `result.status`.
+Source correctness is ruleset-scoped, but today only the CCNL rulesets carry a
+readiness tier: the tax, INPS and surtax files record provenance per rule and
+no tier. The engine does not fold the readiness tier into the result, so check
+it next to `result.status`.
 
-See [Readiness](readiness.md) for promotion criteria and the current tier of each
-contract.
+Bundled CCNL rulesets at `production`:
+<!-- trust:readiness-production -->0<!-- /trust:readiness-production -->.
+Payable rules with provenance status `verified`:
+<!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
+(see [Provenance](provenance.md#current-counts)).
+See [Readiness](readiness.md) for promotion criteria and the current
+distribution.
 
 ---
 

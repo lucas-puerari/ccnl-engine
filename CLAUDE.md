@@ -47,6 +47,9 @@ uv run ruff format --check src/ tests/ scripts/
 uv run mypy src/ tests/          # zero errors, strict mode
 uv run mypy scripts/ --explicit-package-bases
 uv run python scripts/ci/check_structure.py   # size limits, shrink-only baseline
+uv run python scripts/docs/gen_capability_matrix.py --check   # matrix drift
+uv run python scripts/docs/gen_contract_pages.py --check      # contract page drift
+uv run python scripts/docs/gen_trust_counts.py --check        # docs/trust/ counts drift
 ```
 
 `check_structure.py` enforces file, function and class size limits and
@@ -84,7 +87,10 @@ Maximum depth: three directories under `ccnl_engine` before a file
 (`ccnl_engine/<capability>/<layer>/<subfeature>/file.py`); `data/` is exempt.
 
 JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
-behaviour. Reference cases citing a signed source live in `tests/fixtures/expected/`
+behaviour. After one, regenerate the docs that quote the data
+(`gen_contract_pages.py`, `gen_trust_counts.py`) and commit the result; every
+number in `docs/trust/` sits between `<!-- trust:NAME -->` markers and is
+never written by hand. Reference cases citing a signed source live in `tests/fixtures/expected/`
 and run through `PayrollEngine` in `tests/acceptance/public_api/test_reference_cases.py`.
 
 ## Test layout

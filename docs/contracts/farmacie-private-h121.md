@@ -44,7 +44,7 @@
 |---|---|
 | **Last renewal** | 2021-09-07 |
 | **Last verified** | — |
-| **Next salary event** | — |
+| **Latest salary tranche** | 2021-11-01 |
 
 ### Semplificazioni note
 

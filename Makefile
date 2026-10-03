@@ -10,6 +10,7 @@ setup:
 docs:
 	uv run python scripts/docs/gen_coverage_matrix.py
 	uv run python scripts/docs/gen_contract_pages.py
+	uv run python scripts/docs/gen_trust_counts.py
 	@echo "Serving docs at http://127.0.0.1:8000"
 	uv run zensical serve
 

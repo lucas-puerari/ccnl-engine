@@ -7,7 +7,7 @@
 | **Tax sector** | `industria` |
 | **Last renewal** | 2026-01-08 |
 | **Workers (est.)** |  |
-| **Ruleset version** | `—` |
+| **Ruleset version** | `2026.2` |
 | **Extraction** | 🤖 AI-assisted |
 | **Verification** | 🔴 Unverified |
 | **Readiness** | 🧪 Exploratory |
@@ -45,7 +45,7 @@
 |---|---|
 | **Last renewal** | 2026-01-08 |
 | **Last verified** | — |
-| **Next salary event** | 2027-06-01 |
+| **Latest salary tranche** | 2027-06-01 |
 
 ### Semplificazioni note
 

@@ -49,6 +49,12 @@ jobs:
       - name: Structural limits (shrink-only baseline)
         run: uv run python scripts/ci/check_structure.py
 
+      - name: Contract pages drift (check only)
+        run: uv run python scripts/docs/gen_contract_pages.py --check
+
+      - name: Trust counts drift (check only)
+        run: uv run python scripts/docs/gen_trust_counts.py --check
+
       - name: Test (pytest, coverage 100%)
         run: uv run pytest
 

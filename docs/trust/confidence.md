@@ -17,14 +17,16 @@ Both read the provenance status of the payable rules a run executed (see
   `assumed` or `missing`) is in `result.capability_report.rule_sources`.
 
 An `assumed` rule does not lower `result.status` or the report
-`confidence`. Across the 1 126 bundled levels, run for March 2026 with 20
-employees, every run reads at least one `assumed` rule (the somma esente cut
-points are reconstructions, and 121 of 125 CCNLs cite no clause for their
-number of monthly payments). Making `assumed` provisional, or lowering the
-confidence for it, would mark every result the same way and tell the caller
-nothing; the per-capability status tells which amounts rest on assumptions.
-No bundled rule is `missing`, so no bundled result is incomplete for lack of
-a source.
+`confidence`. The somma esente cut points are reconstructions, and
+<!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
+CCNLs cite no clause for their number of monthly payments, so `assumed`
+rules sit under most results. Making `assumed` provisional, or lowering the
+confidence for it, would mark nearly every result the same way and tell the
+caller nothing; the per-capability status tells which amounts rest on
+assumptions. The bundle holds
+<!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
+(see [Provenance](provenance.md#current-counts)); a run that reads one is
+`incomplete`.
 
 ## Calculation status
 

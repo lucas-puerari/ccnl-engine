@@ -48,7 +48,7 @@
 |---|---|
 | **Last renewal** | 2025-12-04 |
 | **Last verified** | — |
-| **Next salary event** | 2027-01-01 |
+| **Latest salary tranche** | 2028-01-01 |
 
 ### Semplificazioni note
 
