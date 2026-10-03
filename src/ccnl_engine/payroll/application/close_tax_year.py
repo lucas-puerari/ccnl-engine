@@ -28,13 +28,15 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
     too and withheld with its interest on the payslips of N+1 from March
     (:mod:`~ccnl_engine.payroll.domain.shortfall_deferral`).
 
-    Year-end rule: ``closing`` must be bound to a tax year and every
-    withholding slot of that year must be closed
-    (:attr:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState.is_complete`),
-    so that the conguaglio has run and any recovery it opened is recorded.
-    A state computed only up to an earlier run, or built by hand without a
-    run, is rejected.  For balances imported from another provider at the
-    turn of the year, build the N+1 state with
+    Year-end rule: ``closing`` must be bound to a tax year whose last
+    payment settled the conguaglio
+    (:attr:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState.is_complete`):
+    the payment that left no slot of its withholding schedule unpaid.  The
+    schedule is the payments actually made in the tax year, so a year whose
+    December is paid after 12 January closes on its tredicesima or on
+    whichever payment came last.  A state computed only up to an earlier
+    payment, or built by hand without a run, is rejected.  For balances
+    imported from another provider at the turn of the year, build the N+1 state with
     :class:`~ccnl_engine.payroll.application.opening_balances.OpeningBalances`.
 
     Args:
@@ -55,9 +57,10 @@ def close_tax_year(closing: PeriodState) -> PeriodState:
         raise InvalidInputError(msg, feature="tax_year")
     if not cash.is_complete:
         msg = (
-            f"tax year {cash.tax_year} is not complete: "
-            f"{cash.withholding_payments_closed} of {cash.withholding_slots} "
-            "withholding slots closed; close the year after its last run"
+            f"tax year {cash.tax_year} is not complete: its last payment "
+            f"({cash.payments[-1] if cash.payments else 'none'}) did not settle "
+            "the conguaglio; close the year after its last payment, or state "
+            "the payments still planned (PeriodInput.planned_payments)"
         )
         raise InvalidInputError(msg, feature="tax_year")
     return PeriodState(

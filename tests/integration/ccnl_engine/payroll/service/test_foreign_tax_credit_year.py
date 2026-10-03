@@ -14,21 +14,27 @@ from __future__ import annotations
 
 from decimal import ROUND_HALF_UP, Decimal
 from functools import cache
+from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application.calculate_year import YearResult, calculate_year
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.prior_year import ForeignTaxPaid, PriorYearTaxFacts
 from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
-from tests.helpers import year_input
+from tests.helpers import year_plan
+
+if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _FACTS = PeriodFacts(regione="IT-25")
 _ZERO = Decimal(0)
 
 
-def _year(*taxes: ForeignTaxPaid) -> YearResult:
-    return calculate_year(
-        year_input(
+def _year(*taxes: ForeignTaxPaid) -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(
             2026,
             _CCNL,
             "C3",
@@ -39,12 +45,12 @@ def _year(*taxes: ForeignTaxPaid) -> YearResult:
 
 
 @cache
-def _plain() -> YearResult:
+def _plain() -> CompetenceYearResult:
     return _year()
 
 
 @cache
-def _partly_abroad() -> YearResult:
+def _partly_abroad() -> CompetenceYearResult:
     """Return the year with 10,000 EUR earned in France, taxed 500 EUR there.
 
     Returns:
@@ -53,7 +59,9 @@ def _partly_abroad() -> YearResult:
     return _year(ForeignTaxPaid("FR", Decimal(10000), Decimal(500)))
 
 
-def _capability(year: YearResult, capability: str) -> list[tuple[str, Decimal]]:
+def _capability(
+    year: CompetenceYearResult, capability: str
+) -> list[tuple[str, Decimal]]:
     last = year.period_results[-1]
     return [
         (d.reason_code, d.amount or _ZERO)

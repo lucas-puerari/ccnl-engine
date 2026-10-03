@@ -20,20 +20,24 @@ engine = PayrollEngine.bundled()
 
 # The 2025 conguaglio, run by the previous provider, determined the 2025
 # regional surtax and municipal saldo and the 2026 municipal acconto.
-opening = OpeningBalances(
-    tax_year=2026,
-    surtax_obligations=(
-        SurtaxObligation.open(
-            SurtaxComponent.REGIONAL_BALANCE, 2025, "IT-45", Decimal("330.00")
+# import_opening_balances is the one entry point for totals the engine did
+# not compute.
+opening = engine.import_opening_balances(
+    OpeningBalances(
+        tax_year=2026,
+        surtax_obligations=(
+            SurtaxObligation.open(
+                SurtaxComponent.REGIONAL_BALANCE, 2025, "IT-45", Decimal("330.00")
+            ),
+            SurtaxObligation.open(
+                SurtaxComponent.MUNICIPAL_BALANCE, 2025, "F257", Decimal("110.00")
+            ),
+            SurtaxObligation.open(
+                SurtaxComponent.MUNICIPAL_ADVANCE, 2025, "F257", Decimal("45.00")
+            ),
         ),
-        SurtaxObligation.open(
-            SurtaxComponent.MUNICIPAL_BALANCE, 2025, "F257", Decimal("110.00")
-        ),
-        SurtaxObligation.open(
-            SurtaxComponent.MUNICIPAL_ADVANCE, 2025, "F257", Decimal("45.00")
-        ),
-    ),
-).to_state()
+    )
+)
 
 
 result = engine.calculate_period(

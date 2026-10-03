@@ -12,7 +12,7 @@ what the run recorded; neither is set by the caller.
 | `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets, mode, limitations |
 | `result.rulesets` | Which rulesets (CCNL, tax, INPS, variable pay, surtax) the run read, each a `RulesetAssurance` with identity, hash, kind and readiness |
 
-`YearResult` exposes the same four fields for the whole year: each axis is the
+`CompetenceYearResult` exposes the same four fields for the whole year: each axis is the
 worst of its runs, rulesets, blockers and limitations are listed once each, and the year is
 payable only when every run is.
 

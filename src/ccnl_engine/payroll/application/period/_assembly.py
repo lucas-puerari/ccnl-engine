@@ -80,7 +80,7 @@ def _closing(
         ctx.opening,
         RunOutcome(
             tax_year=ctx.fiscal_year,
-            withholding_slots=ctx.withholding_schedule.run_count.value,
+            conguaglio=ctx.takes_last_slot,
             payment=ctx.payment,
             entries=posted.entries,
             period_inps_base=ctx.monthly_gross + events.totals.inps_base,

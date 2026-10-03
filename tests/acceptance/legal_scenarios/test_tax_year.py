@@ -28,6 +28,7 @@ from tests.acceptance.legal_scenarios._support import (
     regular_period,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.withholding import paid_before
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult
@@ -75,7 +76,6 @@ def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
     ytd = replace(
         PeriodState.zero().cash,
         tax_year=2026,
-        withholding_payments_closed=11,
     )
     opening = PeriodState(cash=ytd)
 
@@ -105,7 +105,7 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
     """
     opening = OpeningBalances(
         tax_year=2026,
-        withholding_payments_closed=12,
+        payments=paid_before(PayrollRun.regular(2026, 12), 14),
         trattamento_recognized=Decimal(160),
         trattamento_recovered=Decimal(40),
         recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
@@ -175,7 +175,7 @@ def test_close_tax_year_rejects_a_state_before_the_last_run() -> None:
     """The tredicesima is still due: 2026 cannot be closed after December."""
     december, _ = _december_2026()
 
-    with pytest.raises(InvalidInputError, match="13 of 14 withholding slots"):
+    with pytest.raises(InvalidInputError, match="did not settle the conguaglio"):
         ENGINE.close_tax_year(december.closing_state)
 
 

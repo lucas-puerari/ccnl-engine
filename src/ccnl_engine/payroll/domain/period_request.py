@@ -38,8 +38,9 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
+    from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.run import PayrollRun
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
+    from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 
 @dataclass(frozen=True)
@@ -105,10 +106,14 @@ class PeriodCalculationRequest:
             level's category when the level fixes one, and is required when
             seniority increments for the level differ by category.
         withholding_schedule: Withholding slots of the tax year, one per
-            payslip, used by the IRPEF projection and conguaglio.
-            :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
-            passes the schedule of the runs it computes.  ``None`` uses the
-            standard calendar of the CCNL ``additional_months``.
+            payment, used by the IRPEF projection and conguaglio.  A year
+            or tax-year plan passes the schedule of its payments.  ``None``
+            builds it from the payments closed, this one and
+            ``planned_payments``.
+        planned_payments: Payments of the tax year still planned after this
+            one, in payment order; ``()`` makes this payment the
+            conguaglio.  ``None`` projects the runs of the CCNL standard
+            calendar that follow this run.
         extra_month_accrual: Rateo of an extra-month run: its window,
             clipped to the hire date, and the qualifying months.
             :func:`~ccnl_engine.payroll.application.calculate_year.calculate_year`
@@ -150,6 +155,7 @@ class PeriodCalculationRequest:
     extra_month_accrual: ExtraMonthAccrual | None = None
     extra_month_settlements: tuple[ExtraMonthAccrual, ...] = ()
     withholding_schedule: WithholdingSchedule | None = None
+    planned_payments: tuple[PaymentId, ...] | None = None
     sector: EmploymentSector | None = None
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
     pension_fund: PensionFundEnrolment | None = None

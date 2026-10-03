@@ -1,5 +1,43 @@
 # Migration guide
 
+## Competence and tax year plans, conguaglio by payment
+
+A year is now planned two ways: by competence (the runs of one year) and by
+tax year (the payments cashed in one year, late payments of an earlier
+competence year included). The conguaglio is the payment that leaves no
+slot of the tax year unpaid, read from the payments closed, never from a
+count.
+
+| Before | After |
+|---|---|
+| `YearInput` | `CompetenceYearPlan`: same fields and checks (`periods`, `default_facts`, seniority at the first run month, `payment_day` 1-28), plus `payment_dates` (a date per run, keyed like `periods`); field paths read `CompetenceYearPlan.*`, feature `competence_year_plan` |
+| `engine.calculate_year(YearInput(...))` → `YearResult` | `engine.calculate_competence_year(CompetenceYearPlan(...))` → `CompetenceYearResult`; runs paid in the next tax year (December after 12 January) open it after the conguaglio of the year |
+| none | `engine.calculate_tax_year(TaxYearPlan(tax_year, competence_years, opening_state))` → `TaxYearResult` (`payments`, `conguaglio`) |
+| `engine.close_tax_year(year.closing_state)` | Still available; `result.next_opening_state` does it when the year is complete |
+| `TaxCashState.withholding_payments_closed` (stored) and `withholding_slots` | `withholding_payments_closed` is read from `payments`; `withholding_slots` is gone; `TaxCashState.conguaglio` is the payment that settled the year and `is_complete` tests it |
+| `RunContext.takes_last_slot` from `remaining == 1` | The payment settles when no other slot of its schedule is unpaid; `PeriodInput.planned_payments` states the payments still planned (`()` makes the payment the conguaglio) |
+| A standalone run projected the full standard calendar from a count | It projects the standard runs of the tax year not yet paid, in months of the employment |
+| `YearInput.opening_state` had to close no run of the year | A plan resumed on a state that closed some of its payments with the same `PaymentId` skips them; another date is rejected (feature `accrual_state`); totals without payments are rejected |
+| Runs of a competence year closed in order: regular before extra months | Only regular months are ordered; tredicesima and quattordicesima are independent, nothing closes after the termination run; payments of a tax year close in date order |
+| `EarningsYtd.inps_base` | `state.accrual.inps_bases` (`InpsBaseYtd(year, own, other_employers)`, per competence year, kept across tax years); the INPS rules of a run are those of its competence year |
+| `OpeningBalances(withholding_payments_closed=..., inps_base=...)`, `.to_state()` | `engine.import_opening_balances(OpeningBalances(payments=..., competence_runs=..., inps_bases=...))`; new `regional_settled`, `municipal_settled`, `credit_recovery_shortfall`; totals need their `payments` |
+| `WithholdingSchedule` in `payroll.domain.schedule`, positions by count | `payroll.domain.withholding_schedule`, slots of `PaymentId`, `position(payment, paid)` |
+
+- `PeriodState.SCHEMA_VERSION` is 7. The engine ships no migrator: to
+  reuse a persisted state of version 6, move
+  `cash.earnings.inps_base` into `accrual.inps_bases` as the `own` base of
+  the tax year (exact unless a payment of another competence year was
+  made in it), drop `withholding_payments_closed` and `withholding_slots`,
+  and set `cash.conguaglio` to the last slot-consuming payment when
+  `withholding_payments_closed` had reached `withholding_slots`. A state
+  with totals and no payment ids now projects the whole standard calendar
+  of the year: list its payments, or import them with `OpeningBalances`.
+- New public names: `CompetenceYearPlan`, `CompetenceYearResult`,
+  `TaxYearPlan`, `TaxYearResult`, `InpsBaseYtd`. Removed: `YearInput`,
+  `YearResult`.
+- A late December of 2025 paid in 2026 reads the 2025 INPS tables, which
+  the bundle does not hold: it raises `UnsupportedTaxYearError`.
+
 ## Competence accrual state and tax cash state
 
 `PeriodState` splits what is accrued from what is paid. A tax year counts

@@ -7,7 +7,7 @@ engine implementation.
 
 Findings:
   - BonusEvent used for PdR bonus: no substitute-tax regime
-  - calculate_year always 12 periods: extra months ignored
+  - calculate_competence_year always 12 periods: extra months ignored
   - taxable_ytd in PeriodState not used in IRPEF conguaglio
   - cross-period fringe retroactive adjustment missing
   - somma_esente computed but never posted to CREDITS ledger
@@ -32,8 +32,11 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours, WeeklyHours
 from ccnl_engine.payroll.domain.events import (
@@ -41,15 +44,18 @@ from ccnl_engine.payroll.domain.events import (
     BonusEvent,
     FringeEvent,
 )
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from tests.helpers import year_input
+from tests.fixtures.withholding import identified, paid_before
+from tests.helpers import year_plan
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -130,27 +136,27 @@ def test_pdr_bonus_substitute_tax() -> None:
 
 
 # ---------------------------------------------------------------------------
-# calculate_year always 12 periods — extra months ignored
+# calculate_competence_year always 12 periods — extra months ignored
 #
 # The calendar lists the extra months (tredicesima, quattordicesima), each
-# paid in its own run.  calculate_year must produce one
+# paid in its own run.  calculate_competence_year must produce one
 # PeriodResult per payroll run, not always 12.
 # Source: CCNL calendar, derived from additional_months.
 # ---------------------------------------------------------------------------
 
 
 def test_calculate_year_extra_months() -> None:
-    """calculate_year with one extra month must produce 13 period results.
+    """calculate_competence_year with one extra month must produce 13 period results.
 
     Source: CCNL calendar (additional_months=13).  Expected: 13 periods.
     Fixed in feature/payroll-schedule: PayrollSchedule.from_calendar generates
-    extra runs; calculate_year iterates schedule.runs instead of range(1, 13).
+    extra runs; the year iterates schedule.runs instead of range(1, 13).
     """
-    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+    result = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
     assert len(result.period_results) == 13, (
-        f"calculate_year with tredicesima must produce 13 period results; "
+        f"calculate_competence_year with tredicesima must produce 13 period results; "
         f"got {len(result.period_results)}.  "
-        "calculate_year.py:118 always loops range(1, 13)."
+        "calculate_competence_year.py:118 always loops range(1, 13)."
     )
 
 
@@ -169,29 +175,32 @@ def test_taxable_ytd_affects_conguaglio() -> None:
     """Different taxable_ytd must produce different IRPEF in the conguaglio.
 
     Source: art. 23 c. 3 DPR 600/1973.  Two December calculations, one with
-    taxable_ytd=0 and one with taxable_ytd=5,000, must produce different
+    taxable_ytd=0 and one with taxable_ytd=15,000, must produce different
     ordinary_tax.
     """
-    opening_zero = PeriodState(
-        cash=TaxCashState(
-            withholding_payments_closed=11,
-        )
+    paid = paid_before(PayrollRun.regular(_YEAR, 12), day=28)
+    opening_zero = identified(PeriodState(cash=TaxCashState()), paid)
+    opening_high = identified(
+        PeriodState(
+            cash=TaxCashState(earnings=EarningsYtd(taxable=Decimal("15000.00")))
+        ),
+        paid,
     )
-    opening_high = PeriodState(
-        cash=TaxCashState(
-            withholding_payments_closed=11,
-            earnings=EarningsYtd(taxable=Decimal("5000.00")),
-        )
+    # December is the last payment of the year: it settles the conguaglio.
+    result_zero = calculate_period(
+        replace(_req(month=12, opening=opening_zero), planned_payments=())
     )
-    result_zero = calculate_period(_req(month=12, opening=opening_zero))
-    result_high = calculate_period(_req(month=12, opening=opening_high))
+    result_high = calculate_period(
+        replace(_req(month=12, opening=opening_high), planned_payments=())
+    )
+    assert result_zero.closing_state.cash.conguaglio is not None
 
     tax_zero = result_zero.tax_computation.ordinary_tax
     tax_high = result_high.tax_computation.ordinary_tax
     assert tax_zero != tax_high, (
         "December IRPEF must differ when taxable_ytd differs: "
         f"taxable_ytd=0 -> {tax_zero}, "
-        f"taxable_ytd=5000 -> {tax_high}.  "
+        f"taxable_ytd=15000 -> {tax_high}.  "
         "taxable_ytd is ignored in the current projection (_compute_amounts.py)."
     )
 
@@ -217,7 +226,6 @@ def test_fringe_retroactive_on_threshold_crossing() -> None:
     """
     state_after_m1 = PeriodState(
         cash=TaxCashState(
-            withholding_payments_closed=1,
             fringe=FringeYtd(value=Decimal("600.00")),
         )
     )
@@ -281,9 +289,8 @@ def test_inps_addizionale_1pct_on_threshold_crossing() -> None:
     component with amount > 0 must appear in contribution_breakdown.
     """
     opening = PeriodState(
-        cash=TaxCashState(
-            withholding_payments_closed=5,
-            earnings=EarningsYtd(inps_base=Decimal("56000.00")),
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, Decimal("56000.00")),),
         )
     )
     result = calculate_period(_req(month=6, opening=opening))

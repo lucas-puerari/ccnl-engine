@@ -24,17 +24,17 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationStatus,
 )
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
@@ -53,10 +53,7 @@ _OPTED_IN = ContributionHistory(
 
 def _june(ytd: Decimal, history: ContributionHistory | None) -> PeriodResult:
     opening = PeriodState(
-        cash=TaxCashState(
-            withholding_payments_closed=5,
-            earnings=EarningsYtd(inps_base=ytd),
-        )
+        accrual=EmploymentAccrualState(inps_bases=(InpsBaseYtd(2026, ytd),))
     )
     return calculate_period(
         PeriodCalculationRequest(

@@ -17,6 +17,7 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 
 __all__ = [
     "DEFAULT_PAYMENT_DAY",
+    "LAST_PAYMENT_DAY",
     "TaxYearAttribution",
     "TaxYearBasis",
     "TaxYearPolicy",
@@ -25,7 +26,8 @@ __all__ = [
 
 #: Day of the run month on which a year calculation pays each run.
 DEFAULT_PAYMENT_DAY = 28
-_LAST_DAY_IN_EVERY_MONTH = 28
+#: Last day every month has: the latest day a monthly payment can fall on.
+LAST_PAYMENT_DAY = 28
 
 
 class TaxYearBasis(StrEnum):
@@ -114,9 +116,9 @@ def monthly_payment_date(year: int, month: int, day: int) -> date:
     Raises:
         InvalidInputError: When *day* is outside 1-28.
     """
-    if not 1 <= day <= _LAST_DAY_IN_EVERY_MONTH:
+    if not 1 <= day <= LAST_PAYMENT_DAY:
         msg = (
-            f"payment day must be between 1 and {_LAST_DAY_IN_EVERY_MONTH}, "
+            f"payment day must be between 1 and {LAST_PAYMENT_DAY}, "
             f"so that every month has it; got {day}"
         )
         raise InvalidInputError(msg, feature="payment_date")

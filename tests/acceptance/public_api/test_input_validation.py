@@ -27,6 +27,7 @@ from ccnl_engine import (
     BonusEvent,
     CalendarOverride,
     CalendarOverrideReason,
+    CompetenceYearPlan,
     ContributableHours,
     ContributionHistory,
     DeferredShortfall,
@@ -66,7 +67,6 @@ from ccnl_engine import (
     WeeklyHours,
     WelfareEvent,
     WorkCalendar,
-    YearInput,
 )
 
 if TYPE_CHECKING:
@@ -166,7 +166,11 @@ _VALID: dict[type, dict[str, Any]] = {
         "employment": _EMPLOYMENT,
         "employer": _EMPLOYER,
     },
-    YearInput: {"year": _YEAR, "employment": _EMPLOYMENT, "employer": _EMPLOYER},
+    CompetenceYearPlan: {
+        "year": _YEAR,
+        "employment": _EMPLOYMENT,
+        "employer": _EMPLOYER,
+    },
     DeferredShortfall: {
         "tax_year": _YEAR - 1,
         "signed_on": date(_YEAR, 1, 20),
@@ -322,17 +326,17 @@ def test_an_invalid_opening_recovery_is_rejected_at_any_position(
 
 @given(month=st.integers(min_value=1, max_value=12), bad=_BAD_ELEMENTS)
 def test_invalid_facts_of_any_month_are_rejected(month: int, bad: object) -> None:
-    """A value of :attr:`YearInput.periods` that is not facts names its key."""
+    """A value of :attr:`CompetenceYearPlan.periods` that is not facts names its key."""
     periods: dict[object, object] = dict.fromkeys(range(1, 13), PeriodFacts())
     periods[month] = bad
     with pytest.raises(InvalidInputError) as raised:
-        YearInput(
+        CompetenceYearPlan(
             year=_YEAR,
             employment=_EMPLOYMENT,
             employer=_EMPLOYER,
             periods=periods,  # type: ignore[arg-type]
         )
-    assert raised.value.field == f"YearInput.periods[{month}]"
+    assert raised.value.field == f"CompetenceYearPlan.periods[{month}]"
 
 
 @pytest.mark.parametrize("bad", [1, "", None, True], ids=repr)

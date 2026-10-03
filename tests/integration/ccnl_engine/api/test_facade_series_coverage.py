@@ -19,6 +19,7 @@ import pytest
 
 from ccnl_engine import (
     CcnlEngineError,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
@@ -29,7 +30,6 @@ from ccnl_engine import (
     PeriodInput,
     SeniorityFact,
     SenioritySource,
-    YearInput,
 )
 from ccnl_engine.contract.domain.validity import SeriesGapError
 from ccnl_engine.contract.service.discovery import list_contracts
@@ -131,6 +131,6 @@ def test_the_year_2026_is_computed_or_typed(ccnl: CCNL) -> None:
         level_code=level,
         seniority=SeniorityFact(0, _YEAR_START, SenioritySource.PAYSLIP),
     )
-    request = YearInput(year=2026, employment=employment, employer=_EMPLOYER)
+    request = CompetenceYearPlan(year=2026, employment=employment, employer=_EMPLOYER)
 
-    assert _outcome(lambda: _ENGINE.calculate_year(request)) is None
+    assert _outcome(lambda: _ENGINE.calculate_competence_year(request)) is None

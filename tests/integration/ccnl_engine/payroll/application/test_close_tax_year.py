@@ -9,8 +9,10 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import PayrollEngine
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import calculate_year
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.application.invariants.state import (
     check_carried_recovery_advance,
@@ -29,8 +31,9 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
+from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -65,9 +68,8 @@ class TestCloseTaxYear:
             accrual=accrual,
             cash=TaxCashState(
                 tax_year=2026,
-                withholding_payments_closed=13,
-                withholding_slots=13,
                 payments=(PaymentId(december, date(2026, 12, 27)),),
+                conguaglio=PaymentId(december, date(2026, 12, 27)),
                 trattamento=TrattamentoAccount(
                     recognized=Decimal(160), recovered=Decimal(80)
                 ),
@@ -89,12 +91,12 @@ class TestCloseTaxYear:
 
     def test_rejects_a_state_without_a_run(self) -> None:
         """A state that never ran has no withholding schedule to complete."""
-        with pytest.raises(InvalidInputError, match="0 of None withholding"):
+        with pytest.raises(InvalidInputError, match=r"payment \(none\) did not settle"):
             close_tax_year(PeriodState(cash=TaxCashState(tax_year=2026)))
 
     def test_closes_the_state_of_the_last_run_of_calculate_year(self) -> None:
         """The last run of a year calculation closes every withholding slot."""
-        year = calculate_year(year_input(2026, _CCNL, _LEVEL))
+        year = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
 
         opening = close_tax_year(year.period_results[-1].closing_state)
 
@@ -118,10 +120,10 @@ class TestCarriedRecoveryInAYear:
             cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
         )
 
-        with_plan = calculate_year(
-            year_input(2026, _CCNL, _LEVEL, opening_state=opening)
+        with_plan = calculate_competence_year(
+            year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
         )
-        without_plan = calculate_year(year_input(2026, _CCNL, _LEVEL))
+        without_plan = calculate_competence_year(year_plan(2026, _CCNL, _LEVEL))
 
         assert without_plan.annual_net - with_plan.annual_net == Decimal("60.00")
         posted = [
@@ -147,17 +149,18 @@ class TestCarriedRecoveryInAYear:
         last_without = without_plan.period_results[-1].closing_state.cash
         assert last_with == last_without
 
-    def test_rejects_an_opening_state_with_a_closed_run(self) -> None:
-        """A year calculation computes every run, so none can be closed."""
+    def test_rejects_an_opening_state_with_unidentified_totals(self) -> None:
+        """Totals without their payments cannot tell which runs are paid."""
         opening = PeriodState(
             cash=TaxCashState(
-                tax_year=2026,
-                withholding_payments_closed=1,
+                tax_year=2026, earnings=EarningsYtd(gross=Decimal("1000.00"))
             )
         )
 
-        with pytest.raises(InvalidInputError, match="must close no run"):
-            calculate_year(year_input(2026, _CCNL, _LEVEL, opening_state=opening))
+        with pytest.raises(InvalidInputError, match="identify every payment"):
+            calculate_competence_year(
+                year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
+            )
 
     def test_rejects_a_run_before_the_origin_of_a_recovery(self) -> None:
         """A 2027 recovery cannot be applied to a 2026 run."""
@@ -175,18 +178,20 @@ class TestCarriedRecoveryInAYear:
 
 
 class TestYearRequestOpeningState:
-    """YearInput.opening_state reaches the year calculation."""
+    """CompetenceYearPlan.opening_state reaches the year calculation."""
 
     def test_carried_recovery_through_the_facade(self) -> None:
         """The engine applies the 2025 recovery to the 2026 year it computes."""
         engine = PayrollEngine.bundled()
-        request = year_input(2026, _CCNL, _LEVEL)
+        request = year_plan(2026, _CCNL, _LEVEL)
         opening = PeriodState(
             cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
         )
 
-        with_plan = engine.calculate_year(replace(request, opening_state=opening))
-        without_plan = engine.calculate_year(request)
+        with_plan = engine.calculate_competence_year(
+            replace(request, opening_state=opening)
+        )
+        without_plan = engine.calculate_competence_year(request)
 
         first = with_plan.period_results[0].closing_state.cash.obligations
         assert first == _carrying(_recovery(2025, 6))
@@ -201,7 +206,6 @@ class TestCurrentYearRecovery:
         opening = PeriodState(
             cash=TaxCashState(
                 tax_year=2026,
-                withholding_payments_closed=12,
                 trattamento=TrattamentoAccount(
                     recognized=Decimal(160), recovered=Decimal(140)
                 ),
@@ -217,6 +221,7 @@ class TestCurrentYearRecovery:
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
                 opening_state=opening,
+                planned_payments=(),
             )
         )
 
@@ -233,8 +238,8 @@ class TestCarriedRecoveryInvariant:
         opening = PeriodState(
             cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
         )
-        result = calculate_year(
-            year_input(2026, _CCNL, _LEVEL, opening_state=opening)
+        result = calculate_competence_year(
+            year_plan(2026, _CCNL, _LEVEL, opening_state=opening)
         ).period_results[0]
         tampered = replace(
             result,

@@ -30,6 +30,7 @@ import pytest
 from ccnl_engine import (
     BlockerCode,
     CalculationStatus,
+    CompetenceYearPlan,
     Employment,
     EmploymentPeriod,
     PayrollRun,
@@ -37,7 +38,6 @@ from ccnl_engine import (
     SeniorityFact,
     SenioritySource,
     WorkerCategory,
-    YearInput,
 )
 from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
@@ -146,8 +146,8 @@ def test_seniority_ages_to_each_run_of_the_year() -> None:
         category=WorkerCategory.OPERAIO,
         seniority=SeniorityFact.since(date(2024, 6, 15), SenioritySource.PAYSLIP),
     )
-    year = ENGINE.calculate_year(
-        YearInput(year=2026, employment=employment, employer=EMPLOYER)
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=employment, employer=EMPLOYER)
     )
     gross = {
         result.run.month: result.period_gross
@@ -172,8 +172,8 @@ def test_seniority_from_a_mid_month_hire_counts_zero_in_the_hire_month() -> None
         employment_period=EmploymentPeriod(started_on=date(2026, 3, 15)),
         seniority=SeniorityFact.since(date(2026, 3, 15), SenioritySource.PAYSLIP),
     )
-    year = ENGINE.calculate_year(
-        YearInput(year=2026, employment=employment, employer=EMPLOYER)
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=employment, employer=EMPLOYER)
     )
     reasons = {
         (result.period_id.month, _seniority(result)[0])

@@ -69,6 +69,7 @@ _RANK_IN_MONTH: dict[RunKind, int] = {
 
 
 _FEATURE = "payroll_run"
+_EXTRA_MONTH_KINDS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
 
 def _check_year_month(owner: str, year: object, month: object) -> None:
@@ -152,6 +153,18 @@ class PayrollRunId:
     def order_key(self) -> tuple[int, int, int]:
         """Key ordering the runs as they are paid: year, month, kind rank."""
         return (self.year, self.month, self.kind.rank_in_month)
+
+    @property
+    def payment_key(self) -> tuple[int, int, RunKind]:
+        """Key of what the run pays, closed once per employment.
+
+        A regular, termination or adjustment run pays its month; a
+        tredicesima or quattordicesima pays the extra month of its year,
+        whatever month it is paid in: the quattordicesima of 2027 is the
+        same entitlement paid in June or in July.
+        """
+        month = 0 if self.kind in _EXTRA_MONTH_KINDS else self.month
+        return (self.year, month, self.kind)
 
 
 @dataclass(frozen=True)

@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
+
 import pytest
 
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -53,10 +56,36 @@ class TestEmploymentAccrualState:
 
         assert info.value.field == _FIELD
 
-    def test_rejects_a_run_out_of_order_in_its_year(self) -> None:
-        """The quattordicesima of June cannot close after July."""
+    def test_rejects_a_regular_month_out_of_order_in_its_year(self) -> None:
+        """February cannot close after March."""
         with pytest.raises(InvalidInputError, match="out of order"):
-            _state("2026-07-regular", "2026-06-fourteenth")
+            _state("2026-03-regular", "2026-02-regular")
+
+    @pytest.mark.parametrize(
+        "runs",
+        [
+            ("2026-12-thirteenth", "2026-12-regular"),
+            ("2026-07-fourteenth", "2026-07-regular"),
+            ("2026-08-regular", "2026-06-fourteenth"),
+        ],
+        ids=["december after the tredicesima", "july after the 14th", "late 14th"],
+    )
+    def test_extra_months_are_not_ordered_against_regular_months(
+        self, runs: tuple[str, ...]
+    ) -> None:
+        """An employer paying in arrears closes extra months independently."""
+        state = _state(*runs)
+
+        assert len(state.competence_runs) == 2
+
+    @pytest.mark.parametrize("run", ["2026-05-regular", "2026-12-thirteenth"])
+    def test_nothing_closes_after_the_termination_run(self, run: str) -> None:
+        """The termination run closes the competence year of the employment."""
+        state = _state("2026-04-regular", "2026-04-termination")
+
+        with pytest.raises(InvalidInputError, match="out of order"):
+            state.check_next_run(PayrollRunId.parse(run))
+        state.check_next_run(PayrollRunId.parse("2026-04-adjustment"))
 
     def test_adjustment_runs_are_not_ordered(self) -> None:
         """A correction of March closes after May."""
@@ -83,3 +112,35 @@ class TestEmploymentAccrualState:
         """Each element is a PayrollRunId."""
         with pytest.raises(InvalidInputError):
             EmploymentAccrualState(competence_runs=runs)  # type: ignore[arg-type]
+
+
+class TestInpsBases:
+    """The INPS base toward the massimale, per competence year."""
+
+    def test_a_run_adds_its_base_to_its_competence_year(self) -> None:
+        """December 2026 adds to 2026 even after January 2027."""
+        state = (
+            EmploymentAccrualState()
+            .after(PayrollRunId.parse("2027-01-regular"), Decimal(10))
+            .after(PayrollRunId.parse("2026-12-regular"), Decimal(20))
+        )
+
+        assert [b.year for b in state.inps_bases] == [2026, 2027]
+        assert state.inps_base(2026).own == Decimal(20)
+        assert state.inps_base(2025) == InpsBaseYtd(2025)
+
+    @pytest.mark.parametrize("years", [(2027, 2026), (2026, 2026)])
+    def test_rejects_bases_out_of_year_order(self, years: tuple[int, int]) -> None:
+        """One base per year, in year order."""
+        bases = tuple(InpsBaseYtd(y) for y in years)
+        with pytest.raises(InvalidInputError, match="one base per year") as info:
+            EmploymentAccrualState(inps_bases=bases)
+
+        assert info.value.field == "EmploymentAccrualState.inps_bases"
+
+    def test_an_extra_month_closes_once_whatever_its_month(self) -> None:
+        """The quattordicesima of 2026 paid in July is the one of June."""
+        state = _state("2026-06-fourteenth")
+
+        with pytest.raises(InvalidInputError, match="already closed as"):
+            state.check_next_run(PayrollRunId.parse("2026-07-fourteenth"))

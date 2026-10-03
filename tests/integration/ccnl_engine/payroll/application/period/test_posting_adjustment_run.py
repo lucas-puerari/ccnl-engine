@@ -24,9 +24,8 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
 from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent
@@ -43,9 +42,10 @@ from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
-from tests.helpers import EMPLOYER_50, year_input
+from tests.helpers import EMPLOYER_50, year_plan
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_state import PeriodState
 
@@ -56,7 +56,7 @@ _RECOVERY = f"{ULTERIORE_RECOVERY}_recovery"
 
 
 @cache
-def _bonus_year() -> YearResult:
+def _bonus_year() -> CompetenceYearResult:
     """C3 full time with a 20,000 EUR bonus on the tredicesima, the conguaglio.
 
     About 25,800 EUR of taxable income before the bonus: the ulteriore
@@ -69,14 +69,16 @@ def _bonus_year() -> YearResult:
         The year result.
     """
     bonus = BonusEvent(event_date=date(2026, 12, 15), amount=Decimal(20000))
-    return calculate_year(
-        year_input(2026, _CCNL, "C3", events={"2026-12-thirteenth": (bonus,)})
+    return calculate_competence_year(
+        year_plan(2026, _CCNL, "C3", events={"2026-12-thirteenth": (bonus,)})
     )
 
 
-def _adjustment(year: YearResult, opening: PeriodState | None = None) -> PeriodResult:
+def _adjustment(
+    year: CompetenceYearResult, opening: PeriodState | None = None
+) -> PeriodResult:
     last = year.period_results[-1]
-    employment = year_input(2026, _CCNL, "C3").employment
+    employment = year_plan(2026, _CCNL, "C3").employment
     return PayrollEngine().calculate_period(
         PeriodInput(
             run=_ADJUSTMENT,
@@ -120,7 +122,7 @@ def test_adjustment_posts_the_second_ulteriore_installment() -> None:
 
 
 @cache
-def _absence_year() -> YearResult:
+def _absence_year() -> CompetenceYearResult:
     """C3 at 33 of 40 hours; 144 absence hours on the tredicesima.
 
     The final income of 19,639.09 EUR removes the ulteriore detrazione: the
@@ -133,8 +135,8 @@ def _absence_year() -> YearResult:
     absence = AbsenceEvent(
         event_date=date(2026, 12, 10), hours=Decimal(144), hourly_rate=Decimal("12.50")
     )
-    return calculate_year(
-        year_input(
+    return calculate_competence_year(
+        year_plan(
             2026,
             _CCNL,
             "C3",
@@ -149,7 +151,7 @@ def test_adjustment_restoring_the_deduction_closes_the_plan() -> None:
     """Nothing is left to recover: the cumulative balance settles the year."""
     opened = _plan_of(_absence_year().period_results[-1], ULTERIORE_RECOVERY)
     assert opened is not None
-    employment = year_input(
+    employment = year_plan(
         2026,
         _CCNL,
         "C3",
@@ -172,7 +174,7 @@ def test_adjustment_restoring_the_deduction_closes_the_plan() -> None:
     assert reasons == {"recovery_absorbed_by_conguaglio"}
 
 
-def _with_plan(year: YearResult, plan: RecoveryPlan) -> PeriodState:
+def _with_plan(year: CompetenceYearResult, plan: RecoveryPlan) -> PeriodState:
     """Return the year-end state with a 2026 plan the conguaglio opened.
 
     The account records 300 EUR paid and the first installment recovered,

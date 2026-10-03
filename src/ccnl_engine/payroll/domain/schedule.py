@@ -1,4 +1,4 @@
-"""Payroll schedule, run count and withholding schedule for a payroll year.
+"""Payroll schedule and run count of a payroll year.
 
 A :class:`PayrollSchedule` describes exactly which payroll runs happen during
 a tax year and in what order, including extra months (tredicesima, quattordicesima).
@@ -11,21 +11,20 @@ is fractional (13.5 equivalent months, 14 payslips):
 - :class:`~ccnl_engine.payroll.domain.extra_month_entitlement\
 .ExtraMonthEntitlement`: how many months of pay the year grants;
 - :class:`PayrollRunCount`: how many payslips the year issues;
-- :class:`WithholdingSchedule`: the ordered IRPEF withholding slots that the
-  annual projection and the year-end conguaglio run on: the payments of the
-  tax year, a late payment of an earlier competence year included.
+- :class:`~ccnl_engine.payroll.domain.withholding_schedule\
+.WithholdingSchedule`: the IRPEF withholding slots that the annual
+  projection and the year-end conguaglio run on: the payments of the tax
+  year, a late payment of an earlier competence year included.
 
 When the employment period is known, the schedule keeps only the runs paid in
 a month the employment overlaps: a regular run for each month with at least
 one employed day, an extra-month run only when its payment month is such a
-month.  The withholding schedule is built from those runs, so a short
-employment has fewer slots.
+month.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
@@ -35,14 +34,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.calendar import WorkCalendar
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
 
-__all__ = [
-    "PayrollRunCount",
-    "PayrollSchedule",
-    "WithholdingSchedule",
-    "WithholdingSlot",
-]
-
-_ONE = Decimal(1)
+__all__ = ["PayrollRunCount", "PayrollSchedule"]
 
 
 @dataclass(frozen=True)
@@ -151,143 +143,3 @@ def _extra_run(kind: ExtraMonthKind, year: int, month: int) -> PayrollRun:
     if kind == ExtraMonthKind.FOURTEENTH:
         return PayrollRun.fourteenth(year, month)
     return PayrollRun.thirteenth(year, month)
-
-
-@dataclass(frozen=True)
-class WithholdingSlot:
-    """One IRPEF withholding slot: a run and the share of monthly pay it carries.
-
-    Attributes:
-        run: The payroll run that consumes this slot.
-        pay_fraction: Share of one regular monthly pay the run carries at full
-            accrual: ``1`` for a regular month or a full extra month, the
-            contractual fraction for a partial one (``0.5`` for half a
-            quattordicesima).  Used to project the recurring pay of future
-            slots; never to count them.
-    """
-
-    run: PayrollRun
-    pay_fraction: Decimal = field(default_factory=lambda: _ONE)
-
-    def __post_init__(self) -> None:  # noqa: D105
-        if not self.run.run_kind.consumes_withholding_slot:
-            msg = f"run {self.run.run_id} does not consume a withholding slot"
-            raise ValueError(msg)
-        if not Decimal(0) < self.pay_fraction <= _ONE:
-            msg = f"pay_fraction must be in (0, 1]; got {self.pay_fraction}"
-            raise ValueError(msg)
-
-
-@dataclass(frozen=True)
-class WithholdingSchedule:
-    """Ordered IRPEF withholding slots of a tax year: one per payment.
-
-    The annual IRPEF projection and the year-end conguaglio (art. 23 c. 3
-    DPR 600/1973) run on these slots: the tax still due is spread over the
-    slots not yet closed, and the last slot settles the balance on the final
-    taxable income.  There is one slot per payment of the tax year, so a
-    fractional extra month keeps its own slot and a run of an earlier
-    competence year paid in the tax year (TUIR art. 51 c. 1) takes one too.
-    The number of slots has no maximum.
-
-    Attributes:
-        year: The tax year.
-        slots: Slots in payment order, at least one, each of a different
-            run of competence year ``year`` or earlier.
-    """
-
-    year: int
-    slots: tuple[WithholdingSlot, ...]
-
-    def __post_init__(self) -> None:  # noqa: D105
-        if not self.slots:
-            msg = "WithholdingSchedule needs at least one slot"
-            raise ValueError(msg)
-        seen: set[str] = set()
-        for slot in self.slots:
-            run = slot.run
-            if run.run_id in seen:
-                msg = f"duplicate run_id '{run.run_id}' in WithholdingSchedule"
-                raise ValueError(msg)
-            seen.add(run.run_id)
-            if run.year > self.year:
-                msg = f"run {run.run_id} is of a year after the tax year {self.year}"
-                raise ValueError(msg)
-
-    @classmethod
-    def from_calendar(
-        cls, calendar: WorkCalendar, prior: tuple[PayrollRun, ...] = ()
-    ) -> WithholdingSchedule:
-        """Build the withholding schedule of a full-year calendar.
-
-        Args:
-            calendar: Year-level payroll calendar.
-            prior: Runs of an earlier competence year paid in the tax year.
-
-        Returns:
-            :meth:`for_runs` of every run of
-            :meth:`PayrollSchedule.from_calendar`.
-        """
-        return cls.for_runs(PayrollSchedule.from_calendar(calendar), calendar, prior)
-
-    @classmethod
-    def for_runs(
-        cls,
-        schedule: PayrollSchedule,
-        calendar: WorkCalendar,
-        prior: tuple[PayrollRun, ...] = (),
-    ) -> WithholdingSchedule:
-        """Build the withholding schedule of the runs actually paid.
-
-        Args:
-            schedule: The runs of the year, possibly fewer than the calendar
-                generates when the employment covers part of the year.
-            calendar: Calendar of ``schedule``, which sets the extra-month
-                fractions.
-            prior: Runs of an earlier competence year paid in the tax year,
-                placed before the runs of ``schedule``.
-
-        Returns:
-            One slot per run of ``prior`` and of ``schedule``, with the
-            extra months carrying their ``max_fraction``.  No run at all is
-            rejected by the constructor, which needs at least one slot.
-        """
-        fractions = {e.kind.value: e.max_fraction for e in calendar.extra_months}
-        return cls(
-            year=schedule.year,
-            slots=tuple(
-                WithholdingSlot(run, fractions.get(run.run_kind, _ONE))
-                for run in (*prior, *schedule.runs)
-            ),
-        )
-
-    @property
-    def run_count(self) -> PayrollRunCount:
-        """Number of payments holding a withholding slot."""
-        return PayrollRunCount(len(self.slots))
-
-    def remaining(self, slots_closed: int) -> int:
-        """Return the slots left including the current one, at least 1.
-
-        Once every slot is closed the current run is treated as the last
-        one, so it still settles the balance.
-
-        Args:
-            slots_closed: Withholding slots already closed this tax year.
-
-        Returns:
-            ``max(1, len(slots) - slots_closed)``.
-        """
-        return max(1, len(self.slots) - slots_closed)
-
-    def upcoming(self, slots_closed: int) -> tuple[WithholdingSlot, ...]:
-        """Return the slots after the current one.
-
-        Args:
-            slots_closed: Withholding slots already closed this tax year; the
-                current run takes slot ``slots_closed``.
-
-        Returns:
-            The slots still to come after the current run, possibly empty.
-        """
-        return self.slots[slots_closed + 1 :]

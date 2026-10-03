@@ -6,13 +6,13 @@ from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine import (
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    YearInput,
 )
 
 if TYPE_CHECKING:
@@ -39,8 +39,8 @@ def _period_employer_inps(employer: EmployerProfile) -> Decimal:
 
 
 def _annual_employer_cost(employer: EmployerProfile) -> Decimal:
-    result = _ENGINE.calculate_year(
-        YearInput(year=2026, employment=_EMPLOYMENT, employer=employer)
+    result = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(year=2026, employment=_EMPLOYMENT, employer=employer)
     )
     return result.annual_employer_cost
 

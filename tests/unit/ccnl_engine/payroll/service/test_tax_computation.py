@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
-from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.service.tax_computation import compute_tax
 from ccnl_engine.tax.domain.credit_rules import (
     SommaEsenteBand,
@@ -18,8 +16,6 @@ from tests.helpers import make_year_rules
 
 _ZERO = Decimal(0)
 
-_TWELVE_SLOTS = WithholdingSchedule.from_calendar(WorkCalendar(year=2026))
-
 
 class TestResolveTaxComputation:
     """compute_tax: IRPEF breakdown with rule_id and fonte annotation."""
@@ -31,7 +27,7 @@ class TestResolveTaxComputation:
             Decimal(25000),
             rules,
             opening_irpef_withheld=_ZERO,
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         assert tc.ordinary_tax > _ZERO
         names = [c.name for c in tc.components]
@@ -51,7 +47,7 @@ class TestResolveTaxComputation:
             Decimal(10000),
             rules_with_ti,
             opening_irpef_withheld=_ZERO,
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" in names
@@ -65,7 +61,7 @@ class TestResolveTaxComputation:
             Decimal(10000),
             rules,
             opening_irpef_withheld=_ZERO,
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         names = [c.name for c in tc.components]
         assert "trattamento_integrativo" not in names
@@ -85,7 +81,7 @@ class TestResolveTaxComputation:
         tc = compute_tax(
             Decimal(10000),
             rules_with_ud,
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         names = [c.name for c in tc.components]
         assert "ulteriore_detrazione" not in names
@@ -102,7 +98,7 @@ class TestResolveTaxComputation:
             Decimal(250000),
             rules_with_s,
             family_deductions=Decimal(1000),
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         names = [c.name for c in tc.components]
         assert "sterilizzazione_detrazioni" in names
@@ -117,7 +113,7 @@ class TestResolveTaxComputation:
         tc = compute_tax(
             Decimal(10000),
             rules_with_se,
-            withholding_schedule=_TWELVE_SLOTS,
+            remaining_slots=12,
         ).computation
         names = [c.name for c in tc.components]
         assert "somma_esente" in names

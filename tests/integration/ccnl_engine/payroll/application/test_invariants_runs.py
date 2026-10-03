@@ -10,11 +10,10 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.invariants._types import RunFacts
 from ccnl_engine.payroll.application.invariants.lifecycle import (
     check_extra_month_accrual_limit,
@@ -31,6 +30,7 @@ from ccnl_engine.payroll.application.period import _closing_state
 from ccnl_engine.payroll.application.period._checks import check_net_covered
 from ccnl_engine.payroll.application.reconcile import check_period, reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -40,13 +40,13 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
     AccrualWindow,
     ExtraMonthKind,
 )
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
-from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, WithholdingShortfall
+from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.shared.domain.errors import (
     DataIntegrityError,
     InvalidInputError,
@@ -54,10 +54,12 @@ from ccnl_engine.shared.domain.errors import (
 )
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
     from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -145,7 +147,9 @@ class TestContributionCeiling:
     """The IVS base of a run fits in the massimale headroom."""
 
     _NEAR_CEILING = PeriodState(
-        cash=TaxCashState(earnings=EarningsYtd(inps_base=_CEILING - 1_000))
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, _CEILING - 1_000),)
+        )
     )
 
     def _capped_run(self) -> PeriodResult:
@@ -177,7 +181,7 @@ class TestContributionCeiling:
 
 @cache
 def _last_two() -> tuple[PeriodResult, PeriodResult]:
-    results = calculate_year(year_input(_YEAR, _CCNL, _LEVEL)).period_results
+    results = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL)).period_results
     return results[-2], results[-1]
 
 
@@ -266,8 +270,8 @@ class TestIrpefAnnualReconciliation:
         project its taxable income with the INPS it actually withholds, so
         the conguaglio settles the IRPEF of the final taxable income.
         """
-        results = calculate_year(
-            year_input(_YEAR, "bancari-abi.json", "QD4")
+        results = calculate_competence_year(
+            year_plan(_YEAR, "bancari-abi.json", "QD4")
         ).period_results
         last = results[-1]
         assert last.closing_state.cash.tax.irpef == net_annual_irpef(
@@ -390,16 +394,8 @@ class TestClosingStateRejected:
         with pytest.raises(DataIntegrityError, match="Closing state rejected"):
             _run(1, _OPENING)
 
-    def test_fifteenth_payment_of_a_tax_year_closes(self) -> None:
-        """The cash state counts payments without the old 14-slot maximum."""
-        opening = PeriodState(cash=TaxCashState(withholding_payments_closed=14))
 
-        closing = _run(12, opening).closing_state
-
-        assert closing.cash.withholding_payments_closed == 15
-
-
-def _november_irpef(result: YearResult) -> Decimal:
+def _november_irpef(result: CompetenceYearResult) -> Decimal:
     (november,) = (
         r
         for r in result.period_results
@@ -410,7 +406,7 @@ def _november_irpef(result: YearResult) -> Decimal:
     return november.tax_computation.ordinary_tax
 
 
-def _final_taxable(result: YearResult) -> Decimal:
+def _final_taxable(result: CompetenceYearResult) -> Decimal:
     return result.period_results[-1].closing_state.cash.earnings.taxable
 
 
@@ -423,7 +419,9 @@ def test_large_bonus_leaves_every_net_non_negative() -> None:
     year.
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
-    result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}))
+    result = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
+    )
     assert all(r.period_net >= 0 for r in result.period_results)
 
 
@@ -444,8 +442,10 @@ def test_large_bonus_is_withheld_on_the_payslip_that_pays_it() -> None:
     then 0.09 and 0.10 more on the two later runs).
     """
     bonus = BonusEvent(event_date=date(_YEAR, 11, 10), amount=Decimal(20_000))
-    with_bonus = calculate_year(year_input(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)}))
-    without = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
+    with_bonus = calculate_competence_year(
+        year_plan(_YEAR, _CCNL, _LEVEL, events={11: (bonus,)})
+    )
+    without = calculate_competence_year(year_plan(_YEAR, _CCNL, _LEVEL))
 
     bonus_tax = oracle_net_irpef(_final_taxable(with_bonus)) - oracle_net_irpef(
         _final_taxable(without)

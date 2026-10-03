@@ -16,7 +16,12 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import Employment, EmploymentPeriod, YearInput, YearResult
+from ccnl_engine import (
+    CompetenceYearPlan,
+    CompetenceYearResult,
+    Employment,
+    EmploymentPeriod,
+)
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     COOP_SOCIALI,
@@ -30,9 +35,9 @@ pytestmark = pytest.mark.legal_scenario
 _CENT = Decimal("0.01")
 
 
-def _coop_sociali_d2_year() -> YearResult:
-    return ENGINE.calculate_year(
-        YearInput(
+def _coop_sociali_d2_year() -> CompetenceYearResult:
+    return ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(ccnl_slug=COOP_SOCIALI, level_code="D2"),
             employer=EMPLOYER,
@@ -107,8 +112,8 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     Observed on 26 September 2026 before the days reached the tax
     computation: full-year deductions on a 292-day employment.
     """
-    year = ENGINE.calculate_year(
-        YearInput(
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug=COMMERCIO,
@@ -142,8 +147,8 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
     the runs of July to December projected 14,010.96 EUR instead of
     13,010.20 and withheld 319.57 each, leaving 89.39 for the tredicesima.
     """
-    year = ENGINE.calculate_year(
-        YearInput(
+    year = ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug="metalmeccanico-federmeccanica.json",

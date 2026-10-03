@@ -24,6 +24,7 @@ import pytest
 
 from ccnl_engine import (
     CalculationStatus,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
@@ -34,7 +35,6 @@ from ccnl_engine import (
     PeriodInput,
     PeriodState,
     SurtaxComponent,
-    YearInput,
 )
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 from tests.fixtures.legal_examples.surtax_2026 import (
@@ -49,7 +49,7 @@ from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult, YearResult
+    from ccnl_engine import CompetenceYearResult, PeriodResult
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -60,15 +60,17 @@ _ZERO = Decimal(0)
 _REGIONAL, _SALDO, _ACCONTO = "3802", "3848", "3847"
 
 
-def _year(year: int, opening: PeriodState | None, ended_on: date | None) -> YearResult:
+def _year(
+    year: int, opening: PeriodState | None, ended_on: date | None
+) -> CompetenceYearResult:
     employment = Employment(
         ccnl_slug="commercio-confcommercio.json",
         level_code="4",
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
     )
-    return _ENGINE.calculate_year(
-        YearInput(
+    return _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=year,
             employment=employment,
             employer=_EMPLOYER,
@@ -79,12 +81,12 @@ def _year(year: int, opening: PeriodState | None, ended_on: date | None) -> Year
 
 
 @cache
-def _year_2026() -> YearResult:
+def _year_2026() -> CompetenceYearResult:
     return _year(2026, None, None)
 
 
 @cache
-def _year_2027(ended_on: date | None = None) -> YearResult:
+def _year_2027(ended_on: date | None = None) -> CompetenceYearResult:
     opening = _ENGINE.close_tax_year(_year_2026().period_results[-1].closing_state)
     return _year(2027, opening, ended_on)
 
@@ -316,8 +318,8 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2020, 1, 1), ended_on),
     )
-    year = _ENGINE.calculate_year(
-        YearInput(
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026, employment=employment, employer=_EMPLOYER, default_facts=_FACTS
         )
     )

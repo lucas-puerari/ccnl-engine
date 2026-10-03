@@ -41,6 +41,7 @@ from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
 )
+from tests.fixtures.withholding import paid_before
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -72,7 +73,7 @@ def test_spouse_deduction_follows_increase_bands(
     """
     opening = OpeningBalances(
         tax_year=2026,
-        withholding_payments_closed=12,
+        payments=paid_before(PayrollRun.thirteenth(2026, 12), day=18),
         taxable=income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
     ).to_state()
 

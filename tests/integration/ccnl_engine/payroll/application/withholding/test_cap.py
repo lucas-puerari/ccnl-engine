@@ -25,11 +25,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
-from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.calculate_year import (
-    YearResult,
-    calculate_year,
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
 )
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.withholding._cap import (
     CappedWithholding,
     cap_withholding,
@@ -46,9 +45,10 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
-from tests.helpers import year_input
+from tests.helpers import year_plan
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -80,8 +80,10 @@ def _january() -> PeriodResult:
 
 
 @cache
-def _year() -> YearResult:
-    return calculate_year(year_input(_YEAR, _CCNL, "C3", events={1: (_ABSENCE,)}))
+def _year() -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(_YEAR, _CCNL, "C3", events={1: (_ABSENCE,)})
+    )
 
 
 def _expected_january_share() -> Decimal:

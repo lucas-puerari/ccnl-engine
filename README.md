@@ -22,7 +22,8 @@ Italian payroll is governed by collective agreements (CCNL) that define base sal
 
 ```
 PayrollEngine.calculate_period(PeriodInput) → PeriodResult
-PayrollEngine.calculate_year(YearInput) → YearResult
+PayrollEngine.calculate_competence_year(CompetenceYearPlan) → CompetenceYearResult
+PayrollEngine.calculate_tax_year(TaxYearPlan) → TaxYearResult
 ```
 
 Each result carries a status (`final`, `provisional`, `incomplete` or `rejected`),
@@ -127,10 +128,10 @@ September run also pays the 3/12 of tredicesima and quattordicesima accrued
 until the termination.
 
 ```python
-from ccnl_engine import PeriodFacts, YearInput
+from ccnl_engine import CompetenceYearPlan, PeriodFacts
 
-year = engine.calculate_year(
-    YearInput(
+year = engine.calculate_competence_year(
+    CompetenceYearPlan(
         year=2026,
         employment=employment,
         employer=employer,
@@ -138,17 +139,24 @@ year = engine.calculate_year(
     )
 )
 print(len(year.period_results))  # → 14
-next_year = engine.close_tax_year(year.closing_state)
+next_year = year.next_opening_state  # close_tax_year of the closing state
 ```
 
 The state keeps competence and cash apart: `closing_state.accrual` lists the
-runs closed over the employment, `closing_state.cash` the payments and
-year-to-date totals of the tax year. A December paid after 12 January is a
-payment of the next tax year (TUIR art. 51 c. 1) and takes one more
-withholding slot there; see
+runs closed over the employment and the INPS base of each competence year,
+`closing_state.cash` the payments and year-to-date totals of the tax year.
+A run is paid on `payment_day` of its month unless `payment_dates` names its
+date. A December paid after 12 January is a payment of the next tax year
+(TUIR art. 51 c. 1): `calculate_competence_year` settles the conguaglio of
+the year on its last payment actually made in it and opens the next tax
+year with the late December, and `calculate_tax_year(TaxYearPlan(...))`
+computes every payment cashed in one tax year, late payments of an earlier
+competence year included. Totals of another provider, or the INPS base of
+the worker's other employers of the year, enter through
+`engine.import_opening_balances(OpeningBalances(...))`; see
 [Payroll state and the year change](docs/engine/payroll-state.md).
 
-`YearInput.periods` maps a month (1-12) or a run id such as
+`CompetenceYearPlan.periods` maps a month (1-12) or a run id such as
 `"2026-12-thirteenth"` to the `PeriodFacts` of that run; runs without an entry
 take `default_facts`.
 

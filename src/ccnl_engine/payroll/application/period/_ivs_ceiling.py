@@ -57,7 +57,8 @@ class IvsCeiling:
 
     Attributes:
         ceiling: Massimale of the year from the INPS rules.
-        ytd_base: INPS base of the tax year before the run.
+        ytd_base: INPS base of the competence year before the run, other
+            employers included.
         period_base: INPS base of the run.
         history: Contribution history of the request, if supplied.
         source: Location of the INPS rules the massimale is read from.
@@ -164,7 +165,7 @@ def run_ivs_ceiling(ctx: RunContext, event_inps_base: Decimal) -> IvsCeiling | N
     return resolve_ivs_ceiling(
         ctx.contract.year_rules,
         ctx.request.contribution_history,
-        ytd_base=ctx.opening.cash.earnings.inps_base,
+        ytd_base=ctx.ytd_inps_base,
         period_base=ctx.monthly_gross + event_inps_base,
     )
 

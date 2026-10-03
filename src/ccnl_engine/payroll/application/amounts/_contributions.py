@@ -30,7 +30,7 @@ def _ordinary_breakdown(inp: _AmountsInput, base: Decimal) -> ContributionBreakd
         inp.rules,
         inp.contract_type,
         inp.category,
-        ytd_inps_base=inp.opening.earnings.inps_base,
+        ytd_inps_base=inp.ytd_inps_base,
         ivs_ceiling_applies=inp.ivs_ceiling_applies,
     )
 

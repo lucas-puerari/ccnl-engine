@@ -26,7 +26,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.payroll.application.calculate_year import YearResult, calculate_year
+from ccnl_engine.payroll.application.calculate_competence_year import (
+    calculate_competence_year,
+)
 from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
@@ -50,9 +52,10 @@ from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
-from tests.helpers import EMPLOYER_50, year_input
+from tests.helpers import EMPLOYER_50, year_plan
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.application.year_result import CompetenceYearResult
     from ccnl_engine.payroll.domain.period import PeriodResult
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -66,9 +69,9 @@ _REQUEST = ShortfallDeferralRequest(signed_on=date(_YEAR, 12, 10))
 def _year_n(
     request: ShortfallDeferralRequest | None,
     employment_period: EmploymentPeriod | None = None,
-) -> YearResult:
-    return calculate_year(
-        year_input(
+) -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(
             _YEAR,
             _CCNL,
             "C3",
@@ -80,12 +83,12 @@ def _year_n(
 
 
 @cache
-def _without_request() -> YearResult:
+def _without_request() -> CompetenceYearResult:
     return _year_n(None)
 
 
 @cache
-def _with_request() -> YearResult:
+def _with_request() -> CompetenceYearResult:
     return _year_n(_REQUEST)
 
 
@@ -188,9 +191,9 @@ def _year_n1(
     opening: PeriodState | None,
     events: dict[int, tuple[AbsenceEvent, ...]] | None = None,
     employment_period: EmploymentPeriod | None = None,
-) -> YearResult:
-    return calculate_year(
-        year_input(
+) -> CompetenceYearResult:
+    return calculate_competence_year(
+        year_plan(
             _YEAR,
             _CCNL,
             "C3",
@@ -218,7 +221,7 @@ def _cents(amount: Decimal) -> Decimal:
 
 
 @cache
-def _plain_n1() -> YearResult:
+def _plain_n1() -> CompetenceYearResult:
     return _year_n1(None)
 
 

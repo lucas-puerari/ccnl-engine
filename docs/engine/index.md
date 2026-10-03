@@ -9,7 +9,7 @@ produces the same output.
 ## Entry point: `PayrollEngine`
 
 Construct the engine with `PayrollEngine.bundled()` and call
-`calculate_period()` for a single pay run or `calculate_year()` for a full
+`calculate_period()` for a single pay run or `calculate_competence_year()` for a full
 year:
 
 ```python
@@ -114,31 +114,36 @@ keep selecting the contractual values (salary table, seniority, allowances):
   already closed. See
   [Payroll state and the year change](payroll-state.md).
 
-## Full year: `calculate_year()`
+## Full year: `calculate_competence_year()`
 
-`calculate_year()` runs every payslip of the year. The calendar is derived
-from the CCNL `additional_months`: tredicesima in December and, when granted,
-quattordicesima in June. The run sequence and the IRPEF withholding schedule
-are both built from that calendar.
+`calculate_competence_year()` runs every payslip of a competence year. The
+calendar is derived from the CCNL `additional_months`: tredicesima in
+December and, when granted, quattordicesima in June. The runs follow from
+that calendar; the IRPEF withholding schedule follows from the payments
+actually made in each tax year, so a December paid after 12 January settles
+the conguaglio of the year on its tredicesima and opens the next tax year
+(see [Payroll state](payroll-state.md#competence-and-tax-year-plans)).
+`calculate_tax_year(TaxYearPlan(...))` computes every payment of one tax
+year instead, late payments of an earlier competence year included.
 
 ```python
-from ccnl_engine import YearInput
+from ccnl_engine import CompetenceYearPlan
 
 commercio = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")
-year = engine.calculate_year(
-    YearInput(year=2026, employment=commercio, employer=employer)
+year = engine.calculate_competence_year(
+    CompetenceYearPlan(year=2026, employment=commercio, employer=employer)
 )
 print(len(year.period_results))  # 14: 12 regular runs, tredicesima, quattordicesima
 ```
 
-Each run takes its `PeriodFacts` from `YearInput.periods`, keyed by month
+Each run takes its `PeriodFacts` from `CompetenceYearPlan.periods`, keyed by month
 (1-12, the regular run of that month) or by run id (for example
 `"2026-12-thirteenth"`), and otherwise from `default_facts`. An entry replaces
 `default_facts` for its run, so repeat the region and the family in it, for
 example with `dataclasses.replace(default_facts, events=...)`.
 `default_facts` must carry no event. Naming a run twice (by month and by run
 id) raises `InvalidInputError`. `year.closing_state` is the state after the
-last run: pass it to `engine.close_tax_year()` to open the next year.
+last run; `year.next_opening_state` opens the next competence year.
 
 A different calendar is accepted only as a `CalendarOverride` with a
 `CalendarOverrideReason` and a non-blank note. The override is checked
@@ -158,13 +163,16 @@ the ratei monthly (mensilizzazione) is not supported: the engine does not
 pay ratei inside regular runs. The effective calendar and the override are
 returned on the year result as `calendar` and `calendar_override`.
 
-Every run is paid on `payment_day` of its own month, 28 by default. Any day
-from 1 to 28 is accepted, so every payment falls in the requested year and
-every run belongs to that tax year; another day raises `InvalidInputError`.
+Every run is paid on `payment_day` of its own month, 28 by default; any day
+from 1 to 28 is accepted, another raises `InvalidInputError`.
+`payment_dates` names the date of a run, keyed like `periods`: an employer
+that pays in arrears pays each month on the 10th of the next one and may pay
+the extra months before the salary of their month. A date before the first
+day of its run month, or of a run the year does not compute, is rejected.
 
 ```python
-tenth = engine.calculate_year(
-    YearInput(year=2026, employment=commercio, employer=employer, payment_day=10)
+tenth = engine.calculate_competence_year(
+    CompetenceYearPlan(year=2026, employment=commercio, employer=employer, payment_day=10)
 )
 print(tenth.period_results[0].payment_date)  # 2026-01-10
 ```
@@ -236,8 +244,8 @@ from datetime import date
 
 from ccnl_engine import EmploymentPeriod
 
-short = engine.calculate_year(
-    YearInput(
+short = engine.calculate_competence_year(
+    CompetenceYearPlan(
         year=2026,
         employment=Employment(
             ccnl_slug="commercio-confcommercio.json",
@@ -305,7 +313,9 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | Type | What it describes |
 |---|---|
 | `PeriodInput` | One run: `PayrollRun`, payment date, employment, employer, facts of the run, prior-year facts, opening state |
-| `YearInput` | Every run of a tax year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day, opening state |
+| `CompetenceYearPlan` | Every run of a competence year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day and `payment_dates`, opening state |
+| `TaxYearPlan` | Every payment of a tax year: the competence years whose runs are paid in it and the opening state |
+| `OpeningBalances` | Totals, payments, competence runs and INPS bases of another provider, imported with `engine.import_opening_balances()` |
 | `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityFact`, roles, `ContributionHistory` and sector; impossible values are rejected on construction |
 | `EmployerProfile` | The employer: its `Headcount` (required, at least 1) selects the INPS rate tier; `activity` feeds the L. 199/2025 c. 18 exclusion |
 | `PriorYearTaxFacts` | Prior-year employment income and written waivers, declared once and read by every substitute-tax regime |
@@ -343,11 +353,13 @@ result.ledger_entries       # full accounting ledger
 result.capability_report    # what the run executed against the capability registry
 ```
 
-`YearResult` sums the runs (`annual_gross`, `annual_net`,
-`annual_employer_cost`), keeps every `PeriodResult` in `period_results` and
-exposes the combined `assurance` (and `is_payable`, `blockers`, `rulesets`),
-the `issues` and `decisions` of its runs and the `closing_state` of the last
-run. See [Trust: Assurance](../trust/confidence.md) for how the assurance is
+`CompetenceYearResult` and `TaxYearResult` sum the runs (`annual_gross`,
+`annual_net`, `annual_employer_cost`), keep every `PeriodResult` in
+`period_results` and expose the combined `assurance` (and `is_payable`,
+`blockers`, `rulesets`), the `issues` and `decisions` of their runs, the
+`closing_state` of the last run, the payments that settled a conguaglio
+(`conguagli`) and the `next_opening_state`. `TaxYearResult` also lists the
+`payments` of the tax year and its `conguaglio`. See [Trust: Assurance](../trust/confidence.md) for how the assurance is
 derived.
 
 ## Guides

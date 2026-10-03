@@ -118,7 +118,7 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
         tax_computation,
         contract.year_rules,
         ctx.opening,
-        ctx.withholding_schedule,
+        ctx.withholding,
         ctx.fiscal_year,
         SommaEsentePosting(
             ctx.resolver,

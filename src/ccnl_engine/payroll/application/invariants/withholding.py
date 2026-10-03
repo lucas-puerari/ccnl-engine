@@ -2,10 +2,10 @@
 
 Implemented invariants:
     contribution_ceiling: when the IVS massimale applies to the worker, the
-        IVS base of the run fits in the headroom the YTD INPS base leaves
-        (``max(0, massimale - opening inps_base)``).  The YTD INPS base
-        itself is not capped: it measures the headroom, so it can exceed
-        the massimale.
+        IVS base of the run fits in the headroom the INPS base of its
+        competence year leaves (``max(0, massimale - opening base)``, other
+        employers included).  That base itself is not capped: it measures
+        the headroom, so it can exceed the massimale.
     irpef_annual_reconciliation: on the run that closes the last
         withholding slot of the tax year, the IRPEF withheld YTD plus the
         IRPEF the pay could not cover (still carried as a shortfall, or
@@ -68,7 +68,8 @@ def check_contribution_ceiling(
     ceiling = facts.ivs_ceiling
     if ceiling is None:
         return []
-    headroom = max(_ZERO, ceiling - opening.cash.earnings.inps_base)
+    ytd = opening.accrual.inps_base(result.period_id.year).total
+    headroom = max(_ZERO, ceiling - ytd)
     return [
         ReconciliationViolation(
             invariant_id=InvariantCode.CONTRIBUTION_CEILING,
@@ -103,28 +104,28 @@ def net_annual_irpef(computation: TaxComputation) -> Decimal:
     return max(_ZERO, gross - deductions) - credit
 
 
-def _closes_last_slot(result: PeriodResult, opening: PeriodState) -> bool:
-    slots = result.closing_state.cash.withholding_slots
-    return (
-        slots is not None
-        and run_id_of(result).kind.consumes_withholding_slot
-        and opening.cash.withholding_payments_closed + 1 == slots
-    )
+def _closes_last_slot(result: PeriodResult) -> bool:
+    conguaglio = result.closing_state.cash.conguaglio
+    return conguaglio is not None and conguaglio.run_id == run_id_of(result)
 
 
 def check_irpef_annual_reconciliation(
     result: PeriodResult, opening: PeriodState, facts: RunFacts
 ) -> list[ReconciliationViolation]:
-    """Check that the last withholding slot settles the IRPEF of the year.
+    """Check that the payment settling the conguaglio settles the year's IRPEF.
+
+    A payment after an earlier conguaglio of the year settles it again; a
+    deferral of that conguaglio it drops (the last run of the employment)
+    is communicated to the worker and counts as settled.
 
     Returns:
-        Violations when, on the run closing the last slot, the IRPEF
-        withheld YTD plus the IRPEF shortfall still carried differs from
-        the net annual IRPEF by more than a cent, or the taxable income of
-        the tax computation differs from the final taxable income YTD by
+        Violations when, on the payment that settles the conguaglio, the
+        IRPEF withheld YTD plus the IRPEF shortfall still carried differs
+        from the net annual IRPEF by more than a cent, or the taxable income
+        of the tax computation differs from the final taxable income YTD by
         more than two cents.
     """
-    if not _closes_last_slot(result, opening):
+    if not _closes_last_slot(result):
         return []
     violations: list[ReconciliationViolation] = []
     due = net_annual_irpef(result.tax_computation)
@@ -132,6 +133,8 @@ def check_irpef_annual_reconciliation(
     obligations = result.closing_state.cash.obligations
     deferred = obligations.recovery_of(ytd.tax_year or 0, ULTERIORE_RECOVERY)
     postponed = obligations.deferred_of(ytd.tax_year or 0)
+    if postponed is None:
+        postponed = opening.cash.obligations.deferred_of(ytd.tax_year or 0)
     withheld = (
         ytd.tax.irpef
         + ytd.shortfall.irpef

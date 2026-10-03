@@ -28,7 +28,6 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxLineItem
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
     from ccnl_engine.tax.domain.ruleset import YearRules
@@ -69,8 +68,7 @@ def compute_tax(
     *,
     opening_irpef_withheld: Decimal = _ZERO,
     opening_tratt_ytd: Decimal = _ZERO,
-    withholding_schedule: WithholdingSchedule,
-    slots_closed: int = 0,
+    remaining_slots: int,
     family_deductions: Decimal = _ZERO,
     recovery_plan: RecoveryPlan | None = None,
     eligible_work_days: int = DAYS_IN_YEAR,
@@ -99,8 +97,8 @@ def compute_tax(
     :func:`~ccnl_engine.payroll.service.irpef_net.run_withholding`: the tax
     the one-off income of the run adds, plus the share
     ``max(0, (irpef_net_annual - one_off_tax - ytd_withheld) /
-    remaining_slots)``, where ``remaining_slots`` counts the slots of
-    ``withholding_schedule`` not yet closed, the current one included.  The
+    remaining_slots)``, where ``remaining_slots`` counts the slots of the
+    withholding schedule not yet paid, the current one included.  The
     last slot settles the full balance, which can be negative (a refund).
 
     Args:
@@ -110,9 +108,9 @@ def compute_tax(
         opening_tratt_ytd: Trattamento integrativo already given this year
             (YTD).  Used for the conguaglio so over-payments are recovered
             and the annual entitlement is never exceeded.
-        withholding_schedule: Withholding slots of the year, one per
-            payslip.  Never derived from the equivalent months of pay.
-        slots_closed: Withholding slots already closed this year.
+        remaining_slots: Withholding slots of the tax year not yet paid,
+            the current one included; ``1`` on the conguaglio.  Never
+            derived from the equivalent months of pay.
         family_deductions: Annual Art. 12 family deductions (computed
             separately by :func:`~...compute_family_deductions`).
         recovery_plan: Active installment recovery plan from the previous
@@ -154,7 +152,7 @@ def compute_tax(
     annual, components, decisions = _annual(
         taxable, rules, family_deductions, days, foreign_taxes
     )
-    remaining = withholding_schedule.remaining(slots_closed)
+    remaining = remaining_slots
     ordinary_tax, ulteriore = withhold_with_ulteriore(
         annual,
         remaining,

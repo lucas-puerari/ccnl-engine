@@ -6,8 +6,8 @@ has two parts with different lifetimes:
 
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
-| `state.accrual` | `EmploymentAccrualState` | the employment | competence runs closed (`competence_runs`, a tuple of `PayrollRunId` in closing order): the months and extra months of each competence year already paid |
-| `state.cash` | `TaxCashState` | one tax year | payments of the tax year (`payments`, a tuple of `PaymentId`), withholding payments closed and slots of the schedule, YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
+| `state.accrual` | `EmploymentAccrualState` | the employment | competence runs closed (`competence_runs`, a tuple of `PayrollRunId` in closing order): the months and extra months of each competence year already paid; the INPS base toward the IVS massimale per competence year (`inps_bases`, see [INPS base by competence](#inps-base-by-competence)) |
+| `state.cash` | `TaxCashState` | one tax year | payments of the tax year (`payments`, a tuple of `PaymentId`, in payment order), the payment that settled the conguaglio (`conguaglio`), YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
 | `state.cash.obligations` | `EmploymentObligations` | carried from year to year | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) surtax a conguaglio determined, still to withhold (`surtax`), and IRPEF of a conguaglio deferred on the worker's written request (`deferred_shortfall`, art. 23 c. 3 DPR 600/1973) |
 
 `state.tax_year` is a shortcut for `state.cash.tax_year`.
@@ -39,7 +39,10 @@ competence run and a payment of tax year 2027 (TUIR art. 51 c. 1).
   `cash.prior_competence_payments` are the payments of an earlier
   competence year.
 - `state.cash.withholding_payments_closed` counts the payments that took an
-  IRPEF withholding slot (every run kind but adjustment), with no maximum.
+  IRPEF withholding slot (every run kind but adjustment), with no maximum;
+  it is read from `payments`, not stored.
+- `state.cash.conguaglio` is the payment that settled the conguaglio of the
+  tax year, `None` until then; `cash.is_complete` is true once it is set.
 
 A `PayrollRunId` holds the year and month of the run and its `RunKind`; its
 text form is the `run_id` of `PayrollRun` (`"2026-12-thirteenth"`), and
@@ -52,34 +55,148 @@ when:
 - its competence run is already closed, in this tax year or an earlier
   one: the accrual state is carried across the year change (feature
   `accrual_state`);
-- it is a run of a competence year that comes before one of the same year
-  already closed. Runs close in payment order: by month, and within a month
-  the regular payslip before the tredicesima or quattordicesima, before a
-  termination run. An adjustment run, which corrects a run already closed,
-  is not ordered; runs of different competence years are not ordered
-  against each other (feature `accrual_state`);
-- its payment belongs to another tax year than the state (feature
-  `tax_cash_state` or `tax_year`).
+- it is a regular month of a competence year that comes before a regular
+  month of the same year already closed, or any run but an adjustment of a
+  competence year whose termination run is already closed (feature
+  `accrual_state`). The tredicesima and the quattordicesima are not ordered
+  against the regular months: their ratei are counted from the employment
+  dates, so an employer that pays in arrears may pay the December
+  tredicesima before the December salary, or the quattordicesima before a
+  July salary paid in August. An adjustment run, which corrects a run
+  already closed, is not ordered; runs of different competence years are
+  not ordered against each other;
+- its payment belongs to another tax year than the state, or is dated
+  before the last payment closed in it (feature `tax_cash_state` or
+  `tax_year`).
 
 Closing is idempotent by payment: the same request on the same opening
 state yields the same closing state, and a state that already closed the
 payment rejects it, so a retry never counts competence, gross or
 withholdings twice. A state built by hand follows the same rules: a
 `TaxCashState` needs a `tax_year` when it lists payments, each of that tax
-year and of a different run, and cannot list more slot-consuming payments
-than `withholding_payments_closed`; a `PeriodState` rejects a payment whose
+year and of a different run (an extra month once per year, whatever its
+month), in payment-date order, with a `conguaglio` that is the last
+slot-consuming payment; a `PeriodState` rejects a payment whose
 run the accrual state has not closed.
 
 ## Withholding schedule of the tax year
 
 The IRPEF projection and the conguaglio run on a `WithholdingSchedule`: one
-slot per payment of the tax year, the last of which settles the year. A
-standalone run builds it from the standard calendar of the CCNL, preceded
-by the payments of an earlier competence year in the state and by the run
-itself when it is one. `calculate_year` builds it from the runs of the
-year, preceded by the late payments already closed in its opening state.
-With December 2026 paid on 13 January 2027, every run of 2027 sees fifteen
-slots and the conguaglio falls on the last payment of 2027.
+slot per payment of the tax year, whatever its competence. Positions are
+read by identity, never by count: a slot is paid when `cash.payments` holds
+a payment of its run (an extra month matched by kind and year), and a
+payment settles the conguaglio (art. 23 c. 3 DPR 600/1973) when it leaves no
+other slot unpaid. The tax still due is divided by the slots not yet paid,
+the current one included.
+
+- `calculate_tax_year` and `calculate_competence_year` build the schedule
+  from the payments actually made in the tax year: those already closed in
+  the opening state, then the planned ones in payment-date order. The last
+  is the conguaglio.
+- A standalone `calculate_period` builds it from the payments closed, its
+  own and `PeriodInput.planned_payments` when given; otherwise from every
+  run of the CCNL standard calendar of the tax year not yet paid, in a month
+  of the employment. Pass `planned_payments=()` on the last payment of a
+  year that the standard calendar does not foresee, e.g. the tredicesima of
+  a year whose December salary is paid after 12 January.
+- A payment made after the conguaglio (a late payment the schedule did not
+  plan) settles the year again on the new totals: the conguaglio balance is
+  computed on the YTD taxable and withholdings, so the second settlement
+  corrects the first.
+
+## Competence and tax year plans
+
+`CompetenceYearPlan` lists the runs of one competence year: employment,
+employer, facts per run, calendar override and when each run is paid
+(`payment_day`, or a date per run in `payment_dates`, keyed like
+`periods`). `TaxYearPlan` lists the competence years whose runs are paid in
+one tax year; its payments are those attributed to the tax year by their
+payment date, after the ones already closed in its `opening_state`.
+
+| December 2026 paid on | Tax year 2026 | Conguaglio of 2026 | Tax year 2027 |
+|---|---|---|---|
+| 28 December 2026 | 14 payments | tredicesima (28 December) | 14 payments |
+| 12 January 2027 (cassa allargata) | 14 payments | December salary (12 January 2027) | 14 payments |
+| 13 January 2027 | 13 payments | tredicesima (28 December) | 15 payments, the late December first |
+
+```python
+from datetime import date
+
+from ccnl_engine import CompetenceYearPlan, TaxYearPlan
+
+plan_2026 = CompetenceYearPlan(
+    year=2026, employment=employment, employer=employer,
+    payment_dates={12: date(2027, 1, 13)},
+)
+tax_2026 = engine.calculate_tax_year(
+    TaxYearPlan(tax_year=2026, competence_years=(plan_2026,))
+)
+tax_2026.conguaglio            # 2026-12-thirteenth@2026-12-28
+tax_2027 = engine.calculate_tax_year(
+    TaxYearPlan(
+        tax_year=2027,
+        competence_years=(plan_2026, plan_2027),
+        opening_state=tax_2026.next_opening_state,
+    )
+)
+```
+
+`calculate_competence_year(plan)` is the common case: it computes the runs
+paid in the competence year on the schedule of that tax year, closes it
+with `close_tax_year`, then computes the runs paid in the next tax year on
+a schedule that projects the CCNL standard runs of that year after them.
+`result.next_opening_state` opens the next competence year:
+`close_tax_year()` of the closing state when the last payment settled its
+tax year, else the closing state itself, a state of the next tax year that
+already holds the late December. `result.conguagli` lists the payments that
+settled a conguaglio. Use `calculate_tax_year` instead when a run of the
+year is paid after the first payment of the next tax year (a December paid
+in June, for instance): a competence year computes its late payment alone,
+and the earlier runs of the next year would then be dated before it. The
+late run reads the tax tables of the next year: with the bundled 2026
+tables only, compute 2026 with `calculate_tax_year(TaxYearPlan(tax_year=2026,
+...))`, which leaves the late December to the 2027 tax year.
+
+Ordering: the payments of a tax year close in payment-date order, because
+each withholding reads the totals of the payments before it. Within a
+competence year only the regular months are ordered (by month), and nothing
+closes after the termination run. The tredicesima and the quattordicesima
+are not ordered against the regular months, because their ratei are counted
+from the employment dates: an employer that pays in arrears may pay the
+tredicesima on 15 December and the December salary on 10 January, or the
+quattordicesima in June and the June salary in July.
+
+Retries are idempotent by payment id. A plan resumed on a state that
+already closed some of its payments with the same `PaymentId` skips them:
+resuming after k payments gives the same closing state as one pass, and a
+retry on the final state computes nothing. A run closed with another
+payment (another date, or in another tax year) is rejected
+(`InvalidInputError`, feature `accrual_state`). A plan opening state with
+YTD totals but no payments is rejected: its payments are needed to tell
+which runs not to compute again.
+
+## INPS base by competence
+
+INPS contributions follow competence: the pay of a month is declared in the
+denuncia of that month whatever day it is paid, and the IVS massimale (L.
+335/1995 art. 2 c. 18) caps the base of a calendar year (INPS circ.
+237/2016 par. 2.1 and 3.1). The INPS base therefore lives in the accrual
+state, per competence year (`accrual.inps_bases`, one `InpsBaseYtd(year,
+own, other_employers)` per year), and survives `close_tax_year`. December
+2026 paid on 13 January 2027 is IRPEF income of 2027 and INPS base of 2026,
+contributed at the 2026 rates under the 2026 massimale: a run reads the INPS
+rules of its competence year and the IRPEF rules of its tax year. A late
+December of 2025 therefore needs the 2025 INPS tables, which the bundle
+does not hold (`UnsupportedTaxYearError`).
+
+The massimale is per worker: the base of earlier or simultaneous
+employments of the same year counts toward it (circ. 237/2016 par. 3.1, on
+the CU of the earlier employer or the worker's declaration). Import it in
+`InpsBaseYtd.other_employers`; it caps the IVS base and the 1% additional
+of this employment, and is never contributed by it. The variable elements
+of December that an employer settles with January (DM 7.10.1993) follow the
+January regime for rates and massimale; the engine does not model that
+option and attributes every element of a run to its competence month.
 
 ## Year-to-date totals and credit accounts
 
@@ -225,38 +342,38 @@ last run of year N and returns the opening state of N+1:
   is withheld from March of N+1, see
   [Deferred shortfall carried into the next year](#deferred-shortfall-carried-into-the-next-year).
 
-The input must be a year-end state: bound to a tax year, with every
-withholding slot of the year closed. The state after December but before the
-tredicesima is rejected, and so is a hand-built state that never ran.
+The input must be a year-end state: bound to a tax year whose last payment
+settled the conguaglio (`cash.is_complete`). The state after December but
+before the tredicesima is rejected, and so is a hand-built state that never
+ran. Closing a state already opened for N+1 is rejected too, so a retry
+cannot open a year twice.
 
-Single runs computed with `PayrollEngine.calculate_period()` use the standard
-withholding schedule of the CCNL, with the late payments of an earlier
-competence year in front. For an employment that did not cover the
-whole year that schedule is never completed, so `close_tax_year` rejects the
-state: compute the year with `calculate_year`, whose schedule follows the
-employment, or build the N+1 state with `OpeningBalances`.
+Single runs computed with `PayrollEngine.calculate_period()` project the
+standard calendar after the payments closed; when the last payment of the
+year is not the last of that calendar, pass `planned_payments=()` on it, or
+compute the year with `calculate_tax_year`.
 
 `PeriodState.zero()` is the state of a new employment: used at the year
 change it drops every obligation, which cannot be told apart from a new
 employment.
 
 ```python
-from ccnl_engine import EmployerProfile, Employment, Headcount, PayrollEngine, YearInput
+from ccnl_engine import (
+    CompetenceYearPlan, EmployerProfile, Employment, Headcount, PayrollEngine,
+)
 
 engine = PayrollEngine.bundled()
 employment = Employment(
     ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
 )
 employer = EmployerProfile(headcount=Headcount(50))
-year_2026 = engine.calculate_year(
-    YearInput(year=2026, employment=employment, employer=employer)
+year_2026 = engine.calculate_competence_year(
+    CompetenceYearPlan(year=2026, employment=employment, employer=employer)
 )
-opening_2027 = engine.close_tax_year(year_2026.closing_state)
-# engine.calculate_year(YearInput(year=2027, ..., opening_state=opening_2027))
+opening_2027 = year_2026.next_opening_state  # close_tax_year of the closing state
+# engine.calculate_competence_year(
+#     CompetenceYearPlan(year=2027, ..., opening_state=opening_2027))
 ```
-
-`calculate_year` accepts `opening_state` only when it closes no run of the
-year: `PeriodState.zero()` or the result of `close_tax_year`.
 
 ## Recovery carried into the next year
 
@@ -414,26 +531,34 @@ account does not admit.
 ## Balances from a previous provider
 
 `OpeningBalances` takes the progressive totals of a previous payroll
-provider for one tax year, with the recoveries still running, and validates
-them with the rules of the state the engine produces: every amount
-non-negative with at most two decimals, credit recovered not above
-recognized (`trattamento_*`, `somma_esente_*`), taxed fringe not above fringe
-value, payments (`payments`, a tuple of `PaymentId`) of the tax year, each
-of a different run and in order within its competence year, with
-`withholding_payments_closed` at least the slot-consuming ones, no recovery opened after the tax year, surtax
+provider for one tax year, with the recoveries still running, and
+`PayrollEngine.import_opening_balances(balances)` turns them into the
+`PeriodState` of the first run the engine computes: the one entry point for
+totals the engine did not compute. They are validated with the rules of the
+state the engine produces: every amount non-negative with at most two
+decimals, credit recovered not above recognized (`trattamento_*`,
+`somma_esente_*`), taxed fringe not above fringe value, payments
+(`payments`, a tuple of `PaymentId`) of the tax year in payment order, each
+of a different run, YTD totals only with the payments that produced them,
+competence runs closed in earlier tax years (`competence_runs`, e.g. the
+2026 runs paid in 2026 before a December paid in 2027), the INPS base per
+competence year with the base of other employers (`inps_bases`), the surtax
+already settled at an earlier termination (`regional_settled`,
+`municipal_settled`), the shortfalls not yet withheld (`irpef_shortfall`,
+`surtax_shortfall`, `credit_recovery_shortfall`), no recovery opened after
+the tax year, surtax
 obligations (`surtax_obligations`) determined by the conguaglio of an
 earlier year, an acconto withheld (`municipal_advance_withheld`) not
 above the surtax withheld, and IRPEF deferred on written request
 (`deferred_shortfall`) by the conguaglio of `tax_year - 1` only. A violation raises
-`InvalidInputError` with feature `opening_balances`. `to_state()` returns the `PeriodState`
-for the first run the engine computes.
+`InvalidInputError` with feature `opening_balances`.
 
 ```python
 from decimal import Decimal
 
 from ccnl_engine import OpeningBalances, RecoveryObligation, RecoveryPlan
 
-opening = OpeningBalances(
+opening = engine.import_opening_balances(OpeningBalances(
     tax_year=2027,
     recoveries=(
         RecoveryObligation(
@@ -447,5 +572,5 @@ opening = OpeningBalances(
             ),
         ),
     ),
-).to_state()
+))
 ```

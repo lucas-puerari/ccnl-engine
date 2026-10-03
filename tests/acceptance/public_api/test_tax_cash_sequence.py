@@ -75,8 +75,8 @@ def test_late_december_payment_leaves_room_for_the_next_year() -> None:
     assert closing.accrual.regular_months(2027) == 12
     assert len(closing.accrual.extra_months_paid(2027)) == 2
     assert closing.cash.withholding_payments_closed == 15
-    assert closing.cash.withholding_slots == 15
     assert closing.cash.is_complete
+    assert closing.cash.conguaglio == closing.cash.payments[-1]
     assert [str(p) for p in closing.cash.prior_competence_payments] == [
         "2026-12-regular@2027-01-13"
     ]

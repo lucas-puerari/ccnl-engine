@@ -5,8 +5,10 @@ Public API
 The single entry point is :class:`PayrollEngine`.  Construct it with
 :meth:`~PayrollEngine.bundled` and call
 :meth:`~PayrollEngine.calculate_period` for one cedolino,
-:meth:`~PayrollEngine.calculate_year` for every run of a tax year and
-:meth:`~PayrollEngine.close_tax_year` to open the next tax year.
+:meth:`~PayrollEngine.calculate_competence_year` for every run of a
+competence year, :meth:`~PayrollEngine.calculate_tax_year` for every
+payment cashed in a tax year and :meth:`~PayrollEngine.close_tax_year` to
+open the next tax year.
 
 All types needed to call it and inspect its results are re-exported from
 this module, work events included.
@@ -52,8 +54,11 @@ from ccnl_engine.contract.service.discovery import (
     get_ccnl,
     search_ccnls,
 )
-from ccnl_engine.payroll.application.calculate_year import YearResult
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+from ccnl_engine.payroll.application.year_result import (
+    CompetenceYearResult,
+    TaxYearResult,
+)
 from ccnl_engine.payroll.domain.assurance import (
     BlockerCode,
     CoverageStatus,
@@ -76,6 +81,7 @@ from ccnl_engine.payroll.domain.capability_report import (
     CapabilityGap,
     CapabilityScope,
 )
+from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -122,6 +128,7 @@ from ccnl_engine.payroll.domain.family import (
     DependentRelationship,
     FamilyComposition,
 )
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.payment import PaymentId
@@ -146,7 +153,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxComponent,
     SurtaxObligation,
 )
-from ccnl_engine.payroll.domain.year_input import YearInput
+from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.provenance.domain.ruleset_assurance import (
     RulesetAssurance,
     RulesetKind,
@@ -194,6 +201,8 @@ __all__ = [
     "CapabilityScope",
     "CcnlEngineError",
     "CcnlId",
+    "CompetenceYearPlan",
+    "CompetenceYearResult",
     "ContractSummary",
     "ContributableHours",
     "ContributionHistory",
@@ -216,6 +225,7 @@ __all__ = [
     "FringeEvent",
     "Headcount",
     "HolidayWorkEvent",
+    "InpsBaseYtd",
     "InvalidInputError",
     "LimitationStatus",
     "MissingRequiredFactError",
@@ -258,6 +268,8 @@ __all__ = [
     "SubstituteTaxRegime",
     "SurtaxComponent",
     "SurtaxObligation",
+    "TaxYearPlan",
+    "TaxYearResult",
     "TerminationTFREvent",
     "UnknownCcnlError",
     "UnknownLevelError",
@@ -268,8 +280,6 @@ __all__ = [
     "WorkCalendar",
     "WorkEvent",
     "WorkerCategory",
-    "YearInput",
-    "YearResult",
     "engine_version",
     "get_ccnl",
     "search_ccnls",

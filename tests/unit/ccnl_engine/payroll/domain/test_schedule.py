@@ -15,7 +15,7 @@ from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthSchedule,
 )
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
-from ccnl_engine.payroll.domain.schedule import PayrollSchedule, WithholdingSchedule
+from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 
@@ -230,14 +230,6 @@ class TestScheduleForEmployment:
         """An employment ended in 2025 has no run in 2026."""
         period = EmploymentPeriod(date(2025, 1, 1), date(2025, 12, 31))
         assert PayrollSchedule.from_calendar(self._CALENDAR, period).runs == ()
-
-    def test_withholding_slots_follow_the_selected_runs(self) -> None:
-        """A short employment has one withholding slot per selected run."""
-        period = EmploymentPeriod(date(2026, 5, 1), date(2026, 7, 31))
-        schedule = PayrollSchedule.from_calendar(self._CALENDAR, period)
-        withholding = WithholdingSchedule.for_runs(schedule, self._CALENDAR)
-        assert tuple(s.run for s in withholding.slots) == schedule.runs
-        assert withholding.run_count.value == 4
 
 
 class TestAccrualWindow:

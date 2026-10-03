@@ -20,9 +20,7 @@ _PAID = PaymentId(_JANUARY, date(2026, 1, 27))
 def _paid_january() -> PeriodState:
     return PeriodState(
         accrual=EmploymentAccrualState(competence_runs=(_JANUARY,)),
-        cash=TaxCashState(
-            tax_year=2026, payments=(_PAID,), withholding_payments_closed=1
-        ),
+        cash=TaxCashState(tax_year=2026, payments=(_PAID,)),
     )
 
 
@@ -38,9 +36,9 @@ class TestPeriodState:
         assert state.cash.withholding_payments_closed == 0
         assert state.tax_year is None
 
-    def test_schema_version_is_six(self) -> None:
-        """SCHEMA_VERSION is 6 since the split of accrual and cash state."""
-        assert PeriodState.SCHEMA_VERSION == 6
+    def test_schema_version_is_seven(self) -> None:
+        """SCHEMA_VERSION is 7 since the INPS base moved to the accrual state."""
+        assert PeriodState.SCHEMA_VERSION == 7
 
     def test_tax_year_is_that_of_the_cash_state(self) -> None:
         """The tax year is read from the cash state."""

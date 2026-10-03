@@ -24,7 +24,6 @@ class TestExtraMonthRateo:
 
     def _run_extra_month(
         self,
-        payments_closed: int,
         run: PayrollRun,
         period_month: int,
         employment_period: EmploymentPeriod | None = None,
@@ -40,11 +39,7 @@ class TestExtraMonthRateo:
             payment_date=date(2026, period_month, 28),
             ccnl_slug=_CCNL,
             level_code=_LEVEL,
-            opening_state=PeriodState(
-                cash=TaxCashState(
-                    withholding_payments_closed=payments_closed,
-                )
-            ),
+            opening_state=PeriodState(cash=TaxCashState()),
             run=run,
             employment_period=employment_period,
         )
@@ -53,7 +48,6 @@ class TestExtraMonthRateo:
     def test_december_tredicesima_is_positive(self) -> None:
         """Tredicesima paid in December produces a positive gross."""
         gross = self._run_extra_month(
-            payments_closed=12,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
         )
@@ -68,12 +62,10 @@ class TestExtraMonthRateo:
         salary, so the rateo is the only factor.
         """
         full_year = self._run_extra_month(
-            payments_closed=12,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
         )
         half_year = self._run_extra_month(
-            payments_closed=12,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
             employment_period=EmploymentPeriod(date(2026, 7, 1)),
@@ -91,12 +83,10 @@ class TestExtraMonthRateo:
         the absolute amount.
         """
         jun_thirteenth = self._run_extra_month(
-            payments_closed=12,
             run=PayrollRun.thirteenth(2026, 6),
             period_month=6,
         )
         dec_thirteenth = self._run_extra_month(
-            payments_closed=12,
             run=PayrollRun.thirteenth(2026, 12),
             period_month=12,
         )
@@ -109,11 +99,7 @@ class TestExtraMonthRateo:
                 payment_date=date(2026, 6, 28),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                opening_state=PeriodState(
-                    cash=TaxCashState(
-                        withholding_payments_closed=5,
-                    )
-                ),
+                opening_state=PeriodState(cash=TaxCashState()),
             )
         ).period_gross
         regular_dec = calculate_period(
@@ -123,11 +109,7 @@ class TestExtraMonthRateo:
                 payment_date=date(2026, 12, 28),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                opening_state=PeriodState(
-                    cash=TaxCashState(
-                        withholding_payments_closed=11,
-                    )
-                ),
+                opening_state=PeriodState(cash=TaxCashState()),
             )
         ).period_gross
         assert jun_thirteenth == regular_june

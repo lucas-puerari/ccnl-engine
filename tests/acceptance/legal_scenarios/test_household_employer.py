@@ -36,6 +36,7 @@ import pytest
 from ccnl_engine import (
     BonusEvent,
     CalculationStatus,
+    CompetenceYearPlan,
     ContributableHours,
     EmployerProfile,
     Employment,
@@ -43,6 +44,7 @@ from ccnl_engine import (
     InvalidInputError,
     NightShiftEvent,
     OpeningBalances,
+    PaymentId,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -54,7 +56,6 @@ from ccnl_engine import (
     RecoveryPlan,
     WeeklyHours,
     WorkEvent,
-    YearInput,
 )
 from tests.fixtures.seniority import new_hire
 
@@ -302,12 +303,11 @@ _PLAN = RecoveryPlan(
     [
         OpeningBalances(
             tax_year=2026,
-            withholding_payments_closed=8,
             recoveries=(RecoveryObligation(tax_year=2025, plan=_PLAN),),
         ),
         OpeningBalances(
             tax_year=2026,
-            withholding_payments_closed=8,
+            payments=(PaymentId.parse("2026-08-regular@2026-08-28"),),
             irpef_withheld=Decimal(100),
         ),
     ],
@@ -321,8 +321,8 @@ def test_opening_tax_state_is_rejected(balances: OpeningBalances) -> None:
 
 def test_year_has_no_withholding_and_no_conguaglio() -> None:
     """Every run of 2026, tredicesima and December included, withholds nothing."""
-    year = _ENGINE.calculate_year(
-        YearInput(
+    year = _ENGINE.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=_employment(_REPORTED),
             employer=_HOUSEHOLD,

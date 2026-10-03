@@ -2,8 +2,7 @@
 
 The credits, the withholding cap and the base posting follow in
 :mod:`~ccnl_engine.payroll.application.period._posting`.  Each step reads
-the :class:`~ccnl_engine.payroll.application.period._context.RunContext`
-and the outputs of the steps before it.
+the run context and the outputs of the steps before it.
 """
 
 from __future__ import annotations
@@ -165,7 +164,8 @@ def _amounts_input(
         event_irpef_base=totals.irpef_base,
         event_substitute_base=totals.substitute_base,
         opening=ctx.opening.cash,
-        withholding_schedule=ctx.withholding_schedule,
+        ytd_inps_base=ctx.ytd_inps_base,
+        withholding=ctx.withholding,
         upcoming_gross=ctx.upcoming_gross,
         rules=contract.year_rules,
         contract_type=request.contract_type,

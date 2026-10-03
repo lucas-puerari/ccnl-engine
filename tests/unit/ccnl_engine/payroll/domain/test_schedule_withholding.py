@@ -1,35 +1,18 @@
-"""Unit tests for extra-month entitlement, run count and withholding schedule."""
+"""Unit tests for extra-month entitlement and run count."""
 
 from __future__ import annotations
 
 from decimal import Decimal
 
 import pytest
-from hypothesis import given
-from hypothesis import strategies as st
 
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_entitlement import ExtraMonthEntitlement
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
-from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
-from ccnl_engine.payroll.domain.schedule import (
-    PayrollRunCount,
-    PayrollSchedule,
-    WithholdingSchedule,
-    WithholdingSlot,
-)
-from ccnl_engine.payroll.service.tax_computation import compute_tax
+from ccnl_engine.payroll.domain.schedule import PayrollRunCount, PayrollSchedule
 from ccnl_engine.shared.domain.errors import InvalidInputError
-from tests.helpers import make_year_rules
 
 _YEAR = 2026
-_FRACTIONAL = st.decimals(
-    min_value=Decimal("13.01"),
-    max_value=Decimal("13.99"),
-    places=2,
-    allow_nan=False,
-    allow_infinity=False,
-)
 
 
 class TestExtraMonthEntitlement:
@@ -105,109 +88,3 @@ class TestPayrollRunCount:
         """PayrollSchedule reports its number of runs."""
         cal = WorkCalendar.from_additional_months(_YEAR, Decimal("13.5"))
         assert PayrollSchedule.from_calendar(cal).run_count == PayrollRunCount(14)
-
-
-class TestWithholdingSlot:
-    """A slot belongs to a run that consumes withholding."""
-
-    def test_run_kind_slot_rule(self) -> None:
-        """Only an adjustment run does not consume a slot."""
-        assert not RunKind.ADJUSTMENT.consumes_withholding_slot
-        assert all(
-            k.consumes_withholding_slot for k in RunKind if k is not RunKind.ADJUSTMENT
-        )
-
-    def test_adjustment_run_rejected(self) -> None:
-        """An adjustment run cannot hold a slot."""
-        run = PayrollRun(run_kind=RunKind.ADJUSTMENT, month=12, year=_YEAR)
-        with pytest.raises(ValueError, match="does not consume"):
-            WithholdingSlot(run)
-
-    @pytest.mark.parametrize("fraction", ["0", "1.01"])
-    def test_pay_fraction_out_of_range_rejected(self, fraction: str) -> None:
-        """pay_fraction must be in (0, 1]."""
-        with pytest.raises(ValueError, match="pay_fraction"):
-            WithholdingSlot(PayrollRun.regular(_YEAR, 1), Decimal(fraction))
-
-
-class TestWithholdingSchedule:
-    """WithholdingSchedule: one slot per payslip, in payment order."""
-
-    def test_empty_rejected(self) -> None:
-        """A schedule needs at least one slot."""
-        with pytest.raises(ValueError, match="at least one slot"):
-            WithholdingSchedule(year=_YEAR, slots=())
-
-    def test_run_of_a_later_year_rejected(self) -> None:
-        """A run of a later competence year cannot be paid in the tax year."""
-        slot = WithholdingSlot(PayrollRun.regular(_YEAR + 1, 1))
-        with pytest.raises(ValueError, match="after the tax year"):
-            WithholdingSchedule(year=_YEAR, slots=(slot,))
-
-    def test_late_run_of_the_previous_year_takes_a_slot(self) -> None:
-        """December of the previous year paid late is a payment of the year."""
-        late = PayrollRun.regular(_YEAR - 1, 12)
-        cal = WorkCalendar.from_additional_months(_YEAR, Decimal(14))
-        schedule = WithholdingSchedule.from_calendar(cal, (late,))
-        assert schedule.run_count == PayrollRunCount(15)
-        assert schedule.slots[0].run == late
-        assert schedule.remaining(14) == 1
-
-    def test_duplicate_run_rejected(self) -> None:
-        """A run is paid once."""
-        slot = WithholdingSlot(PayrollRun.regular(_YEAR, 1))
-        with pytest.raises(ValueError, match="duplicate run_id"):
-            WithholdingSchedule(year=_YEAR, slots=(slot, slot))
-
-    def test_half_fourteenth_keeps_its_slot(self) -> None:
-        """13.5 months: 14 slots, the June quattordicesima carrying 0.5."""
-        cal = WorkCalendar.from_additional_months(_YEAR, Decimal("13.5"))
-        schedule = WithholdingSchedule.from_calendar(cal)
-        assert schedule.run_count == PayrollRunCount(14)
-        fourteenth = schedule.slots[6]
-        assert fourteenth.run == PayrollRun.fourteenth(_YEAR, 6)
-        assert fourteenth.pay_fraction == Decimal("0.5")
-        assert schedule.slots[-1].run == PayrollRun.thirteenth(_YEAR, 12)
-        assert schedule.slots[-1].pay_fraction == Decimal(1)
-
-    def test_remaining_and_upcoming(self) -> None:
-        """Remaining slots include the current one; upcoming ones exclude it."""
-        schedule = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
-        assert schedule.remaining(0) == 12
-        assert schedule.remaining(11) == 1
-        assert schedule.remaining(12) == 1
-        assert len(schedule.upcoming(0)) == 11
-        assert schedule.upcoming(11) == ()
-
-
-@given(entitlement=_FRACTIONAL)
-def test_fractional_entitlement_does_not_truncate_withholding_slots(
-    entitlement: Decimal,
-) -> None:
-    """A fractional entitlement does not truncate withholding slots.
-
-    For any entitlement strictly between 13 and 14 the year issues 14
-    payslips, the withholding schedule has one slot per payslip, the
-    fraction survives on the last extra month, and the conguaglio settles
-    the whole balance only on the fourteenth slot.
-    """
-    cal = WorkCalendar.from_additional_months(_YEAR, entitlement)
-    schedule = WithholdingSchedule.from_calendar(cal)
-    runs = PayrollSchedule.from_calendar(cal).runs
-
-    assert schedule.run_count == PayrollRunCount(14)
-    assert tuple(s.run for s in schedule.slots) == runs
-    assert cal.entitlement.value == entitlement
-    fractions = {s.run.run_kind: s.pay_fraction for s in schedule.slots}
-    assert fractions[RunKind.FOURTEENTH] == entitlement - 13
-
-    rules = make_year_rules()
-    taxable = Decimal(25000)
-    last = compute_tax(
-        taxable, rules, withholding_schedule=schedule, slots_closed=13
-    ).computation
-    before_last = compute_tax(
-        taxable, rules, withholding_schedule=schedule, slots_closed=12
-    ).computation
-    assert last.ordinary_tax == last.withholding_due
-    assert before_last.ordinary_tax < before_last.withholding_due

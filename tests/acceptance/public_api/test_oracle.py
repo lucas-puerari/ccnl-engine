@@ -16,6 +16,7 @@ from decimal import Decimal
 from ccnl_engine import (
     BonusEvent,
     CalculationStatus,
+    CompetenceYearPlan,
     ContributableHours,
     Dependent,
     DependentRelationship,
@@ -32,7 +33,6 @@ from ccnl_engine import (
     PriorYearTaxFacts,
     SickLeaveEvent,
     WeeklyHours,
-    YearInput,
 )
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.seniority import new_hire
@@ -115,8 +115,8 @@ def test_tredicesima_commercio_level4() -> None:
     The standard calendar is derived from the CCNL: tredicesima and
     quattordicesima, 14 runs.
     """
-    yr = engine.calculate_year(
-        YearInput(
+    yr = engine.calculate_competence_year(
+        CompetenceYearPlan(
             year=2026,
             employment=Employment(
                 ccnl_slug="commercio-confcommercio.json",

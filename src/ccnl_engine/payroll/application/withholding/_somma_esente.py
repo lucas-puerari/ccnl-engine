@@ -47,8 +47,8 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.tax import TaxComputation
+    from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = ["SommaEsenteOutcome", "SommaEsentePosting", "resolve_somma_esente"]
@@ -170,10 +170,9 @@ def _recover(excess: Decimal, run: InstallmentRun) -> _Settlement:
 
 def _settle(
     annual: Decimal,
-    schedule: WithholdingSchedule,
+    withholding: WithholdingPosition,
     account: SommaEsenteAccount,
     plan: RecoveryPlan | None,
-    remaining: int,
     run: InstallmentRun,
 ) -> _Settlement:
     """Decide the amount of the run.
@@ -187,13 +186,13 @@ def _settle(
     if plan is not None:
         return _installment(plan, run)
     balance = money(annual) - account.net
-    if remaining == 1:
+    if withholding.remaining == 1:
         if balance < _ZERO:
             return _recover(-balance, run)
         return _Settlement(amount=balance, reason="settled_at_conguaglio")
     if balance < _ZERO:
         return _Settlement(amount=_ZERO, reason="overpayment_pending_conguaglio")
-    share = min(slot_share(annual, schedule), balance)
+    share = min(slot_share(annual, withholding.slots), balance)
     return _Settlement(amount=share, reason="share_paid" if share else "not_due")
 
 
@@ -201,7 +200,7 @@ def resolve_somma_esente(
     tax_computation: TaxComputation,
     rules: YearRules,
     opening: PeriodState,
-    schedule: WithholdingSchedule,
+    withholding: WithholdingPosition,
     tax_year: int,
     posting: SommaEsentePosting,
 ) -> SommaEsenteOutcome:
@@ -214,7 +213,7 @@ def resolve_somma_esente(
         rules: Year rules; the credit is in force when they configure it.
         opening: State the run opens with: the YTD account and any recovery
             of the credit opened this tax year.
-        schedule: Withholding schedule of the year.
+        withholding: Position of the payment in the withholding schedule.
         tax_year: Tax year of the run.
         posting: Where the amount is posted.
 
@@ -230,9 +229,8 @@ def resolve_somma_esente(
         (c.amount for c in tax_computation.components if c.name == "somma_esente"),
         _ZERO,
     )
-    slots_closed = opening.cash.withholding_payments_closed
-    remaining = schedule.remaining(slots_closed)
-    settlement = _settle(annual, schedule, account, plan, remaining, posting.run)
+    remaining = withholding.remaining
+    settlement = _settle(annual, withholding, account, plan, posting.run)
     decision = CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,

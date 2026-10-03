@@ -2,9 +2,11 @@
 
 An integration that takes over an employment mid-year, or at the start of
 a year with a recovery still running, states the progressive totals of the
-previous provider here.  :meth:`OpeningBalances.to_state` validates them
-and returns the :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` to
-pass as ``opening_state`` to the first run computed by the engine.
+previous provider here and imports them with
+:meth:`~ccnl_engine.api.facade.PayrollEngine.import_opening_balances`, the
+one way to build a state the engine did not compute.  The totals are
+verified against the payments that produced them: each payment is
+identified, so the engine never computes it again.
 """
 
 from __future__ import annotations
@@ -15,6 +17,7 @@ from typing import final
 
 from ccnl_engine.payroll.application.opening_balance_fields import (
     FEATURE,
+    check_carried,
     check_scalar_fields,
     items,
 )
@@ -24,12 +27,14 @@ from ccnl_engine.payroll.domain.credit_accounts import (
     TrattamentoAccount,
     UlterioreDetrazioneAccount,
 )
+from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
@@ -55,28 +60,32 @@ class OpeningBalances:
     """Progressive totals of a tax year computed outside the engine.
 
     Every amount is in EUR, non-negative and with at most two decimals; an
-    amount left ``None`` (a ``*_due``) is not known.
-    The totals are validated by the same rules as the state the engine
-    produces (:class:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState`
-    and its accounts); a violation is raised as ``InvalidInputError``.
+    amount left ``None`` (a ``*_due``) is not known.  The totals are
+    validated by the same rules as the state the engine produces
+    (:class:`~ccnl_engine.payroll.domain.period_state.PeriodState`); a
+    violation is raised as ``InvalidInputError``.  A tax-year total without
+    the payments that produced it is rejected: it could not be told apart
+    from the payments the engine would compute again.
 
     Attributes:
         tax_year: Tax year of the totals.
-        withholding_payments_closed: Payments of the tax year that already
-            took an IRPEF withholding slot (every run kind but adjustment),
-            whatever their competence year; no maximum.
-        payments: The payments already made this tax year, in payment
-            order, when the integration keeps them
+        payments: The payments already made this tax year, in payment order
             (:meth:`~ccnl_engine.payroll.domain.payment.PaymentId.parse`
-            reads ``"2026-12-regular@2027-01-13"``).  Each must belong to
-            ``tax_year``; its run is closed in the accrual state, so it is
-            rejected if computed again, and a run of the same competence
-            year before it is rejected as out of order.  A late payment of
-            an earlier competence year takes a slot of the withholding
-            schedule of the year.
+            reads ``"2026-12-regular@2027-01-13"``), whatever their
+            competence year.  Each must belong to ``tax_year``; its run is
+            closed, so it is rejected if computed again, and each takes a
+            slot of the withholding schedule of the year but an adjustment.
+        competence_runs: Runs closed in earlier tax years that a run still
+            to compute must follow: with December 2026 paid on 13 January
+            2027, the other 2026 runs paid in 2026.  Payments of
+            ``tax_year`` go in ``payments``, not here.
+        inps_bases: INPS base toward the IVS massimale per competence year:
+            this employment's (``own``) and the worker's other employments
+            of the same year (``other_employers``, from their CU or the
+            worker's declaration; INPS circ. 237/2016 par. 3.1).  Import the
+            year before too when its December is paid in ``tax_year``.
         gross: Contractual gross earnings paid.
         taxable: IRPEF taxable income.
-        inps_base: INPS contribution base.
         inps_employee: Employee INPS contributions withheld.
         pension_deducted: Pension fund contributions already deducted from
             the taxable income (D.Lgs. 252/2005 art. 8 c. 4).
@@ -85,6 +94,10 @@ class OpeningBalances:
         municipal_advance_withheld: Part of ``surtax_withheld`` withheld as
             the municipal acconto of ``tax_year`` (D.Lgs. 360/1998 art. 1
             c. 5); the conguaglio deducts it from the municipal surtax.
+        regional_settled: Regional surtax of ``tax_year`` a conguaglio at
+            the end of an earlier employment of the year already withheld.
+        municipal_settled: Municipal saldo of ``tax_year`` withheld the
+            same way.
         fringe_value: Fringe benefit value granted (Art. 51 c. 3 TUIR).
         fringe_taxed: Part of ``fringe_value`` already taxed.
         pdr: Premio di Risultato taxed at the substitute rate.
@@ -107,6 +120,9 @@ class OpeningBalances:
         irpef_shortfall: IRPEF due on earlier runs and not yet withheld for
             lack of pay.
         surtax_shortfall: Surtax due on earlier runs and not yet withheld.
+        credit_recovery_shortfall: Credit recoveries (trattamento
+            integrativo, somma esente, installments) due on earlier runs
+            and not yet withheld for lack of pay.
         work_time_regime_used: Night, holiday and shift supplements already
             taxed at the substitute rate (L. 199/2025 art. 1 cc. 10-11).
         recoveries: Installment recoveries still running, from this tax
@@ -124,16 +140,18 @@ class OpeningBalances:
     """
 
     tax_year: int
-    withholding_payments_closed: int = 0
     payments: tuple[PaymentId, ...] = ()
+    competence_runs: tuple[PayrollRunId, ...] = ()
+    inps_bases: tuple[InpsBaseYtd, ...] = ()
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
-    inps_base: Decimal = _ZERO
     inps_employee: Decimal = _ZERO
     pension_deducted: Decimal = _ZERO
     irpef_withheld: Decimal = _ZERO
     surtax_withheld: Decimal = _ZERO
     municipal_advance_withheld: Decimal = _ZERO
+    regional_settled: Decimal = _ZERO
+    municipal_settled: Decimal = _ZERO
     fringe_value: Decimal = _ZERO
     fringe_taxed: Decimal = _ZERO
     pdr: Decimal = _ZERO
@@ -151,6 +169,7 @@ class OpeningBalances:
     ulteriore_reason: str | None = None
     irpef_shortfall: Decimal = _ZERO
     surtax_shortfall: Decimal = _ZERO
+    credit_recovery_shortfall: Decimal = _ZERO
     work_time_regime_used: Decimal = _ZERO
     recoveries: tuple[RecoveryObligation, ...] = ()
     surtax_obligations: tuple[SurtaxObligation, ...] = ()
@@ -162,15 +181,19 @@ class OpeningBalances:
         Raises:
             InvalidInputError: When the totals do not form a valid state
                 (e.g. a negative amount, more recovered than recognized, a
-                closed run out of order, a recovery opened after
+                closed run out of order or closed twice, totals without
+                payments, a recovery opened after
                 ``tax_year``, surtax determined by the conguaglio of
                 ``tax_year`` or later, a deferral of a conguaglio other than
                 that of ``tax_year - 1``) or an amount is finer than a cent.
         """
         check_scalar_fields(self)
-        object.__setattr__(
-            self, "payments", items(self.payments, "payments", PaymentId)
-        )
+        for name, item in (
+            ("payments", PaymentId),
+            ("competence_runs", PayrollRunId),
+            ("inps_bases", InpsBaseYtd),
+        ):
+            object.__setattr__(self, name, items(getattr(self, name), name, item))
         object.__setattr__(
             self, "recoveries", items(self.recoveries, "recoveries", RecoveryObligation)
         )
@@ -186,31 +209,23 @@ class OpeningBalances:
             feature=FEATURE,
             optional=True,
         )
-        deferred = self.deferred_shortfall
-        if deferred is not None and deferred.tax_year != self.tax_year - 1:
-            msg = (
-                "OpeningBalances.deferred_shortfall must be deferred by the "
-                f"conguaglio of {self.tax_year - 1}; got {deferred.tax_year}"
-            )
-            raise InvalidInputError(
-                msg, field="OpeningBalances.deferred_shortfall", feature=FEATURE
-            )
-        late = [o for o in self.surtax_obligations if o.tax_year >= self.tax_year]
-        if late:
-            msg = (
-                f"OpeningBalances.surtax_obligations must be determined by "
-                f"the conguaglio of a year before {self.tax_year}; got "
-                f"{[(o.component.value, o.tax_year) for o in late]}"
-            )
-            raise InvalidInputError(
-                msg, field="OpeningBalances.surtax_obligations", feature=FEATURE
-            )
+        check_carried(self.tax_year, self.deferred_shortfall, self.surtax_obligations)
         try:
-            self.to_state()
+            cash = self.to_state().cash
         except (ValueError, InvalidInputError) as exc:
             raise InvalidInputError(
                 str(exc), field=getattr(exc, "field", None), feature=FEATURE
             ) from exc
+        if not self.payments and cash != TaxCashState(
+            tax_year=self.tax_year, obligations=cash.obligations
+        ):
+            msg = (
+                "OpeningBalances totals need the payments that produced them: "
+                "list them in payments"
+            )
+            raise InvalidInputError(
+                msg, field="OpeningBalances.payments", feature=FEATURE
+            )
 
     def to_state(self) -> PeriodState:
         """Return the state to open the next run with.
@@ -223,10 +238,8 @@ class OpeningBalances:
         cash = TaxCashState(
             tax_year=self.tax_year,
             payments=self.payments,
-            withholding_payments_closed=self.withholding_payments_closed,
             earnings=EarningsYtd(
                 gross=self.gross,
-                inps_base=self.inps_base,
                 taxable=self.taxable,
                 inps_employee=self.inps_employee,
                 pension_deducted=self.pension_deducted,
@@ -238,6 +251,8 @@ class OpeningBalances:
                 irpef=self.irpef_withheld,
                 surtax=self.surtax_withheld,
                 municipal_advance=self.municipal_advance_withheld,
+                regional_settled=self.regional_settled,
+                municipal_settled=self.municipal_settled,
             ),
             trattamento=TrattamentoAccount(
                 recognized=self.trattamento_recognized,
@@ -259,7 +274,9 @@ class OpeningBalances:
             ),
             work_time_regime=RegimeCapAccount(used=self.work_time_regime_used),
             shortfall=WithholdingShortfall(
-                irpef=self.irpef_shortfall, surtax=self.surtax_shortfall
+                irpef=self.irpef_shortfall,
+                surtax=self.surtax_shortfall,
+                credit_recovery=self.credit_recovery_shortfall,
             ),
             obligations=EmploymentObligations(
                 recoveries=self.recoveries,
@@ -272,6 +289,7 @@ class OpeningBalances:
             ),
         )
         accrual = EmploymentAccrualState(
-            competence_runs=tuple(p.run_id for p in self.payments)
+            competence_runs=(*self.competence_runs, *(p.run_id for p in self.payments)),
+            inps_bases=self.inps_bases,
         )
         return PeriodState(accrual=accrual, cash=cash)

@@ -17,9 +17,9 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-    from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
     from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
+    from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
     from ccnl_engine.payroll.service.pension_fund import (
         PensionContribution,
         PensionFundTerms,
@@ -63,7 +63,8 @@ class _AmountsInput:
     event_irpef_base: Decimal
     event_substitute_base: Decimal
     opening: TaxCashState
-    withholding_schedule: WithholdingSchedule
+    ytd_inps_base: Decimal
+    withholding: WithholdingPosition
     upcoming_gross: Decimal
     rules: YearRules
     contract_type: Permanent | FixedTerm | Apprentice
