@@ -103,8 +103,8 @@ class PayrollEngine:
 
         Returns:
             The :class:`~ccnl_engine.payroll.domain.period.PeriodResult`:
-            status, issues, decisions, amounts, closing state, pay items,
-            ledger entries and capability report.
+            assurance and payability, issues, decisions, amounts, closing
+            state, pay items, ledger entries and capability report.
         """
         return _calculate_period(
             request.calculation_request(),

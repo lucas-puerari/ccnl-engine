@@ -180,8 +180,7 @@ class RegimeAssessment:
         """Return the provisional issue of an unknown eligibility, if any.
 
         Returns:
-            An issue coded ``"<regime_id>_eligibility_unknown"`` when the
-            eligibility is unknown, else ``None``.
+            An issue coded ``"<regime_id>_eligibility_unknown"``, or ``None``.
         """
         if self.eligibility is not RegimeEligibility.UNKNOWN:
             return None
@@ -194,6 +193,7 @@ class RegimeAssessment:
             ),
             status=CalculationStatus.PROVISIONAL,
             source=self.regime.source,
+            fact=self.reason_code.removesuffix("_unknown"),
         )
 
 

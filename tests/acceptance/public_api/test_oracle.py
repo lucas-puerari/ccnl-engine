@@ -172,7 +172,7 @@ def test_addizionali_emilia_romagna_modena() -> None:
     )
     assert result_no_surtax.period_net == Decimal("1751.35")
     assert result_surtax.period_net == Decimal("1711.35")
-    assert result_surtax.status is CalculationStatus.FINAL
+    assert result_surtax.assurance.calculation is CalculationStatus.FINAL
 
 
 # ---------------------------------------------------------------------------

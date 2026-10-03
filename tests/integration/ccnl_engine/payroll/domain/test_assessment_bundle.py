@@ -1,0 +1,125 @@
+"""Assurance of the bundled CCNLs: the first level of each, June 2026.
+
+Every CCNL of the bundle is run once, for its first level, on a regular run
+of June 2026 with no event.  A run the engine rejects before producing a
+result is left out: it exposes no amount to pay.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+
+import pytest
+
+from ccnl_engine import (
+    BlockerCode,
+    CcnlEngineError,
+    EmployerProfile,
+    Employment,
+    Headcount,
+    PayrollEngine,
+    PayrollRun,
+    PeriodInput,
+    PeriodResult,
+    list_ccnls,
+)
+from ccnl_engine.payroll.service.bundled_knowledge_repository import (
+    BundledKnowledgeRepository,
+)
+
+_WEAK = frozenset({"assumed", "missing"})
+
+
+def _june(engine: PayrollEngine, slug: str, level: str) -> PeriodResult | None:
+    try:
+        return engine.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 6),
+                payment_date=date(2026, 6, 27),
+                employment=Employment(ccnl_slug=slug, level_code=level),
+                employer=EmployerProfile(headcount=Headcount(50)),
+            )
+        )
+    except (CcnlEngineError, ValueError):
+        return None
+
+
+@pytest.fixture(scope="module")
+def results() -> dict[str, PeriodResult]:
+    """Return the June 2026 result of each CCNL that produces one.
+
+    Returns:
+        Results by CCNL id.
+    """
+    engine, repo = PayrollEngine.bundled(), BundledKnowledgeRepository()
+    computed: dict[str, PeriodResult] = {}
+    for info in list_ccnls():
+        slug = f"{info.ccnl_id}.json"
+        result = _june(engine, slug, repo.load_ccnl(slug).levels[0].code)
+        if result is not None:
+            computed[info.ccnl_id] = result
+    return computed
+
+
+def test_most_contracts_produce_a_result(results: dict[str, PeriodResult]) -> None:
+    """The scan is not vacuous."""
+    assert len(results) >= 120
+
+
+def test_no_payable_result_has_an_open_coverage_or_weak_rule(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Payability never contradicts the report, the issues or the sources."""
+    contradictions = [
+        ccnl_id
+        for ccnl_id, result in results.items()
+        if result.is_payable
+        and (
+            result.capability_report.gaps
+            or result.issues
+            or result.capability_report.caller_supplied
+            or _WEAK & set(result.capability_report.rule_sources.values())
+        )
+    ]
+    assert contradictions == []
+
+
+def test_coverage_axis_is_the_report_status(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Every gap of the report is a blocker of the same feature."""
+    for result in results.values():
+        gaps = [gap.feature for gap in result.capability_report.gaps]
+        blocked = [
+            b.feature
+            for b in result.blockers
+            if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
+        ]
+        assert result.assurance.coverage is result.capability_report.status
+        assert blocked == gaps
+
+
+def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> None:
+    """The CCNL, tax and INPS rulesets of the year are always read."""
+    repo = BundledKnowledgeRepository()
+    for ccnl_id, result in results.items():
+        ids = {ruleset.id for ruleset in result.rulesets}
+        assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in result.rulesets
+        assert any(i.startswith("tax/2026/") for i in ids)
+        assert any(i.startswith("inps/2026/") for i in ids)
+
+
+def test_no_bundled_result_is_payable_today(
+    results: dict[str, PeriodResult],
+) -> None:
+    """The somma esente rule is assumed, so every result is blocked by it.
+
+    Documented in the trust pages: amounts are for simulation until the
+    blocked rules are sourced.
+    """
+    somma = (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed")
+    assert not any(result.is_payable for result in results.values())
+    assert all(
+        somma in {(b.code, b.feature, b.detail) for b in result.blockers}
+        for result in results.values()
+    )

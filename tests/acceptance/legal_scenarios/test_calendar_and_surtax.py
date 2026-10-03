@@ -77,7 +77,7 @@ def test_known_surtax_tables_are_withheld() -> None:
     )
 
     assert result.closing_state.ytd.tax.surtax == Decimal("40.00")
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
     reasons = {
         d.capability: d.reason_code
         for d in result.decisions
@@ -99,7 +99,7 @@ def test_unknown_surtax_tables_make_the_result_not_final() -> None:
     """
     result = regular_period(regione="IT-99", comune_belfiore="Z999")
 
-    assert result.status is CalculationStatus.INCOMPLETE
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
     assert result.closing_state.ytd.tax.surtax == Decimal(0)
     assert {issue.code for issue in result.issues} == {
         "regional_surtax_unknown",

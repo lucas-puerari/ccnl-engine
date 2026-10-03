@@ -54,7 +54,7 @@ result = engine.calculate_period(
     )
 )
 
-print(result.status)  # → final
+print(result.is_payable)  # → False: see result.blockers
 print(result.period_gross)  # → Decimal('...')
 print(result.period_net)  # → Decimal('...')
 ```
@@ -65,7 +65,16 @@ activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
 every substitute-tax regime) and `PeriodFacts` (events, surtax jurisdiction,
 family, contributable hours of one run). Every input is validated when it is
 built. A fact left unknown never looks final: the regime it drives is not
-applied and the result is `provisional`.
+applied and the result is `provisional` and not payable.
+
+`result.is_payable` is the one answer to "can this amount be paid as it is?".
+A result is payable only when it has no blocker: no issue, no capability of
+the catalog left uncomputed, no executed rule `assumed` or `missing` in the
+bundle, no rule supplied by the caller. Each `result.blockers` entry has a
+stable `code`, the `feature` it concerns and a `detail`; `result.assurance`
+holds the axes they come from. Today no bundled CCNL gives a payable result:
+the amounts are for simulation. See
+[Assurance](docs/trust/confidence.md).
 
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a

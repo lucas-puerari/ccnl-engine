@@ -29,7 +29,9 @@ Usage::
         ),
         employer=EmployerProfile(headcount=Headcount(50)),
     ))
-    print(result.status, result.period_net)
+    print(result.is_payable, result.period_net)
+    for blocker in result.blockers:
+        print(blocker.code, blocker.feature, blocker.detail)
 """
 
 from __future__ import annotations
@@ -45,6 +47,14 @@ from ccnl_engine.contract.service.discovery import (
 )
 from ccnl_engine.payroll.application.calculate_year import YearResult
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+from ccnl_engine.payroll.domain.assurance import (
+    BlockerCode,
+    CoverageStatus,
+    EvidenceStatus,
+    Payability,
+    ResultAssurance,
+    ResultBlocker,
+)
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.calendar_override import (
     CalendarOverride,
@@ -122,6 +132,7 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxObligation,
 )
 from ccnl_engine.payroll.domain.year_input import YearInput
+from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
 from ccnl_engine.shared.domain.errors import (
     CcnlEngineError,
     DataIntegrityError,
@@ -139,6 +150,7 @@ __all__ = [
     "Apprentice",
     "ArrearsEvent",
     "BilateralFundEvent",
+    "BlockerCode",
     "BonusEvent",
     "CalculationDecision",
     "CalculationIssue",
@@ -154,6 +166,7 @@ __all__ = [
     "CcnlInfo",
     "ContributableHours",
     "ContributionCeilingStatus",
+    "CoverageStatus",
     "DataIntegrityError",
     "DecisionOrigin",
     "DeferredShortfall",
@@ -164,6 +177,7 @@ __all__ = [
     "Employment",
     "EmploymentPeriod",
     "EmploymentSector",
+    "EvidenceStatus",
     "FamilyComposition",
     "FixedTerm",
     "ForeignTaxPaid",
@@ -176,6 +190,7 @@ __all__ = [
     "OutOfScopeError",
     "OvertimeEvent",
     "OvertimeKind",
+    "Payability",
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",
@@ -190,6 +205,9 @@ __all__ = [
     "RecoveryPlan",
     "RemittanceColumn",
     "RemittanceLine",
+    "ResultAssurance",
+    "ResultBlocker",
+    "RulesetIdentity",
     "SeniorityMonths",
     "ShiftWorkEvent",
     "ShortfallDeferralRequest",

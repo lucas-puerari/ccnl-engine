@@ -56,8 +56,8 @@ a bug-free implementation of an outdated salary table is source-incorrect.
 
 Source correctness is ruleset-scoped, but today only the CCNL rulesets carry a
 readiness tier: the tax, INPS and surtax files record provenance per rule and
-no tier. The engine does not fold the readiness tier into the result, so check
-it next to `result.status`.
+no tier. The engine does not fold the readiness tier into the result
+assurance yet, so check it next to `result.is_payable`.
 
 Bundled CCNL rulesets at `production`:
 <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->.
@@ -73,8 +73,8 @@ distribution.
 
 **The user's scenario falls within the engine's modelled scope.**
 
-This is what `result.status`, `result.issues`, `result.decisions` and
-`result.capability_report` communicate. A scenario is case-complete when every
+This is what `result.is_payable`, `result.blockers`, `result.issues`,
+`result.decisions` and `result.capability_report` communicate. A scenario is case-complete when every
 relevant feature is computed from known rules and facts. It is case-incomplete
 when a feature the scenario needs is not modelled in the CCNL data, or when a
 fact it depends on was not supplied.
@@ -91,12 +91,12 @@ for gap in result.capability_report.gaps:
 The distinction between an omitted input and an unknown fact is important:
 
 - an optional input left out on purpose (no region code, no family
-  composition) skips the capability: nothing is withheld and the result stays
-  `final`;
+  composition) skips the capability: nothing is withheld and no blocker is
+  added for it;
 - a fact a rule needs but that is not known (prior-year income, sector,
   employer activity, the signing date of a renewal) makes the rule fall back
-  to ordinary taxation and the result `provisional`, with an issue that names
-  the missing fact.
+  to ordinary taxation and the result `provisional` and not payable, with a
+  `missing_fact` blocker that names the fact.
 
 Case completeness is the user's responsibility: only the caller knows whether
 their scenario requires overtime, family deductions, or second-level agreements.
@@ -110,9 +110,9 @@ The engine's job is to report every gap, not to silently ignore it.
 |---|---|---|
 | Calculation crashes or gives NaN | Software correctness | Open a GitHub issue with a reproduction |
 | Output differs from a real payslip | Source correctness | Check `readiness`, compare to sources |
-| Output missing expected components | Case completeness | Read `status`, `issues` and `capability_report` |
+| Output missing expected components | Case completeness | Read `blockers`, `issues` and `capability_report` |
 | Output slightly off but plausible | Source OR case | Check both readiness and `decisions` |
 
-No single metric collapses all three layers into one. A `final` result has no
-open issue, but it still requires the caller to check the readiness of the
+No single metric collapses all three layers into one. A payable result has no
+blocker, but it still requires the caller to check the readiness of the
 rulesets and case completeness against their scenario.

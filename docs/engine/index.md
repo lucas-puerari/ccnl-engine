@@ -38,7 +38,7 @@ result = engine.calculate_period(
         employer=employer,
     )
 )
-print(result.status)
+print(result.is_payable, [blocker.code.value for blocker in result.blockers])
 print(result.period_gross)
 print(result.period_net)
 ```
@@ -71,7 +71,7 @@ result = engine.calculate_period(
 )
 ```
 
-`calculate_period()` returns a `PeriodResult` with status, issues, decisions,
+`calculate_period()` returns a `PeriodResult` with its assurance, issues, decisions,
 gross, net, pay items, the closing state and a full ledger of every
 accounting entry. See [API: Engine](../api/engine.md).
 
@@ -176,7 +176,7 @@ A month the employment covers only in part (hire on the 15th, end before the
 last day) keeps its run and the full monthly pay: the bundled CCNL data
 define no daily divisor, so the engine does not choose between calendar-day
 and 26ths proration. The run carries a `partial_month_not_prorated` issue and
-its status is `PROVISIONAL`.
+it is `provisional` and not payable.
 
 Extra months accrue per qualifying month of their window, counted from the
 employment dates and never from the runs already closed:
@@ -283,8 +283,8 @@ The engine applies rules in a fixed sequence:
     overtime pay, absence deduction, leave accrual, sick-pay integration,
     fringe benefits, welfare, PdR bonus
     ↓
-11. Assemble PeriodResult: gross, net, employer cost, status, issues,
-    decisions, capability report
+11. Assemble PeriodResult: gross, net, employer cost, issues, decisions,
+    capability report, rulesets; the assurance is derived from them
 ```
 
 Steps 7–9 are fiscal and can be parameterised heavily. See
@@ -317,8 +317,11 @@ Full type reference: [API: Engine](../api/engine.md).
 The result contains every gross, net, and cost component. Key fields:
 
 ```python
-result.status               # final, provisional, incomplete or rejected
-result.issues               # conditions that lowered the status
+result.is_payable           # whether the amounts can be paid as computed
+result.blockers             # every reason they cannot: code, feature, detail
+result.assurance            # calculation, coverage, evidence, rulesets, payability
+result.rulesets             # rulesets the executed rules were read from
+result.issues               # conditions that lowered the calculation axis
 result.decisions            # what each capability decided, with its inputs
 result.period_gross         # gross entitlement for the period (before absence deductions)
 result.period_net           # net pay for this period
@@ -332,9 +335,10 @@ result.capability_report    # what the run executed against the capability catal
 
 `YearResult` sums the runs (`annual_gross`, `annual_net`,
 `annual_employer_cost`), keeps every `PeriodResult` in `period_results` and
-exposes the worst `status`, the `issues` and `decisions` of its runs and the
-`closing_state` of the last run. See [Trust: Confidence](../trust/confidence.md)
-for how the status is derived.
+exposes the combined `assurance` (and `is_payable`, `blockers`, `rulesets`),
+the `issues` and `decisions` of its runs and the `closing_state` of the last
+run. See [Trust: Assurance](../trust/confidence.md) for how the assurance is
+derived.
 
 ## Guides
 

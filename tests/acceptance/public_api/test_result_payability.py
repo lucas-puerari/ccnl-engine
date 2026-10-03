@@ -1,10 +1,11 @@
-"""A result is final only when every amount it exposes can be paid.
+"""A result is payable only when every amount it exposes can be paid.
 
-Today ``CalculationStatus.FINAL`` is the only signal an integration reads to
-pay an amount.  These tests state the contract the engine does not meet yet:
-a result with an unknown fact, an incomplete coverage or a known wrong
-amount must not be final.  Each case is a strict ``xfail`` pinned to the
-assertion it breaks today.
+``result.is_payable`` is the one signal an integration reads to pay an
+amount, and ``result.blockers`` says why not.  A result with an unknown
+fact, an incomplete coverage or a known wrong amount must not be payable,
+and an unknown fact must be named by its own blocker, not hidden behind an
+unrelated one.  The cases the engine does not meet yet are strict ``xfail``
+pinned to the assertion they break today.
 """
 
 from __future__ import annotations
@@ -15,8 +16,8 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
+    BlockerCode,
     BonusEvent,
-    CalculationStatus,
     ContributionCeilingStatus,
     EmployerProfile,
     Employment,
@@ -49,36 +50,50 @@ def _january(employment: Employment, facts: PeriodFacts | None = None) -> Period
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="final status ignores capability gaps and assumed rule sources",
-)
-def test_incomplete_coverage_is_not_final() -> None:
+def _blocker_keys(result: PeriodResult) -> set[tuple[BlockerCode, str | None, str]]:
+    return {(b.code, b.feature, b.detail) for b in result.blockers}
+
+
+def test_incomplete_coverage_is_not_payable() -> None:
     """Metalmeccanico C3, January 2026, an ordinary month.
 
-    The capability report is ``incomplete`` with 14 ``feature_absent`` gaps
-    and ``base_salary`` and ``somma_esente`` come from ``assumed`` rules, yet
-    the result is ``final``.  The engine holds the evidence to block it.
+    No issue is raised, but the capability report has ``feature_absent``
+    gaps and ``base_salary`` and ``somma_esente`` come from ``assumed``
+    rules: each is a blocker, and the result is not payable.
     """
     result = _january(Employment(ccnl_slug=_METALMECCANICO, level_code="C3"))
 
-    assert result.status is not CalculationStatus.FINAL
+    gaps = {gap.feature for gap in result.capability_report.gaps}
+    blocked = {
+        b.feature
+        for b in result.blockers
+        if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
+    }
+    assert result.issues == ()
+    assert result.is_payable is False
+    assert blocked == gaps
+    assert gaps
+    assert {
+        (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed"),
+        (BlockerCode.RULE_SOURCE_WEAK, "somma_esente", "assumed"),
+    } <= _blocker_keys(result)
 
 
 @pytest.mark.xfail(
     strict=True,
     raises=AssertionError,
-    reason="unknown IVS ceiling eligibility computes the uncapped branch as final",
+    reason="unknown IVS ceiling eligibility computes the uncapped branch unflagged",
 )
-def test_unknown_ivs_ceiling_eligibility_is_not_final() -> None:
+def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     """A 200,000 EUR bonus crosses the 2026 IVS massimale of 122,295 EUR.
 
     Whether the massimale applies depends on the first enrolment date
     (L. 335/1995 art. 2 c. 18): it is a fact, not a default.  With
     ``UNKNOWN`` the engine computes the uncapped branch, employee INPS
     20,644.15 as with ``NOT_APPLICABLE`` against 12,506.09 with
-    ``POST_1995``, and marks the result ``final``.
+    ``POST_1995``, and names no missing fact.  The result is already not
+    payable for unrelated gaps, so the test asserts the blocker of its own
+    fact.
     """
     employment = Employment(
         ccnl_slug=_METALMECCANICO,
@@ -89,20 +104,21 @@ def test_unknown_ivs_ceiling_eligibility_is_not_final() -> None:
 
     result = _january(employment, PeriodFacts(events=(bonus,)))
 
-    assert result.status is not CalculationStatus.FINAL
+    assert (BlockerCode.MISSING_FACT, None, "ceiling_status") in _blocker_keys(result)
 
 
 @pytest.mark.xfail(
     strict=True,
     raises=AssertionError,
-    reason="unknown seniority is computed as zero seniority and marked final",
+    reason="unknown seniority is computed as zero seniority and named nowhere",
 )
-def test_unknown_seniority_is_not_final() -> None:
+def test_unknown_seniority_is_a_missing_fact() -> None:
     """Servizi postali appalto FISE, level 2, operaio, seniority not given.
 
     The CCNL grants seniority increments: 120 months add 56.66 EUR.  With
-    ``seniority_months=None`` the engine pays 1,724.40 as for zero months,
-    records no seniority decision and marks the result ``final``.
+    ``seniority_months=None`` the engine pays 1,724.40 as for zero months
+    and records no seniority decision.  The result is already not payable
+    for unrelated gaps, so the test asserts the blocker of its own fact.
     """
     employment = Employment(
         ccnl_slug=_POSTAL_FISE,
@@ -113,7 +129,7 @@ def test_unknown_seniority_is_not_final() -> None:
 
     result = _january(employment)
 
-    assert result.status is not CalculationStatus.FINAL
+    assert (BlockerCode.MISSING_FACT, None, "seniority_months") in _blocker_keys(result)
 
 
 def _march(started_on: date) -> PeriodResult:
@@ -155,3 +171,25 @@ def test_partial_hire_month_does_not_expose_full_month_pay() -> None:
     partial_month = _march(date(2026, 3, 15))
 
     assert partial_month.period_gross != full_month.period_gross
+
+
+def test_unknown_surtax_table_is_not_an_amount() -> None:
+    """A Belfiore code without a 2026 table: the surtax is undetermined.
+
+    The decision carries no amount rather than zero, and the result is not
+    payable for that capability, whatever the other blockers.
+    """
+    employment = Employment(ccnl_slug=_METALMECCANICO, level_code="C3")
+
+    result = _january(employment, PeriodFacts(comune_belfiore="Z999"))
+
+    (decision,) = [
+        d for d in result.decisions if d.capability == "addizionale_comunale"
+    ]
+    assert decision.amount is None
+    assert (
+        BlockerCode.CALCULATION_ISSUE,
+        "addizionale_comunale",
+        decision.reason_code,
+    ) in _blocker_keys(result)
+    assert result.is_payable is False

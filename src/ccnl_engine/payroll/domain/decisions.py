@@ -2,11 +2,12 @@
 
 A result is only as trustworthy as its weakest input.  Each capability that
 cannot fully decide (an unknown table, a missing fact, an unsupported case)
-records a :class:`CalculationIssue`; the result status is the worst status
-implied by its issues.  A :class:`CalculationDecision` records what one
-capability actually decided, from which normalized inputs and under which
-rule version.  Its :class:`DecisionOrigin` tells a rule the engine applied
-from the bundle or the law from a value the caller supplied in its place.
+records a :class:`CalculationIssue`; the calculation axis of the result
+assurance is the worst status implied by its issues and decisions.  A
+:class:`CalculationDecision` records what one capability actually decided,
+from which normalized inputs and under which rule version.  Its
+:class:`DecisionOrigin` tells a rule the engine applied from the bundle or
+the law from a value the caller supplied in its place.
 """
 
 from __future__ import annotations
@@ -34,7 +35,11 @@ _CODE_PATTERN = re.compile(r"[a-z][a-z0-9_]*")
 
 
 class CalculationStatus(StrEnum):
-    """How far a calculation result can be relied upon.
+    """How far the calculation of a result can be relied upon.
+
+    It is the ``calculation`` axis of
+    :class:`~ccnl_engine.payroll.domain.assurance.ResultAssurance`; whether
+    the amounts can be paid is the assurance payability, not this status.
 
     Members are listed from least to most severe.  Compare them with
     :attr:`severity` or combine them with :meth:`worst`; the string values
@@ -44,8 +49,7 @@ class CalculationStatus(StrEnum):
         FINAL: Every capability decided from known rules and facts.
         PROVISIONAL: Computed, but at least one decision rests on an
             assumption that may change the amounts once confirmed.
-        INCOMPLETE: At least one amount could not be determined; the
-            result must not be paid as is.
+        INCOMPLETE: At least one amount could not be determined.
         REJECTED: The inputs cannot produce a meaningful result.
     """
 
@@ -114,20 +118,26 @@ class CalculationIssue:
         message: Human-readable explanation for the caller.
         status: Status the issue implies for the result that carries it.
         source: Normative source behind the issue, when one applies.
+        fact: Name of the input fact whose absence raised the issue, in
+            lower snake case, e.g. ``"prior_income"``; ``None`` when the
+            issue is not about a missing fact.
 
     Raises:
-        ValueError: When ``code`` is not lower snake case or ``message``
-            is empty.
+        ValueError: When ``code`` or ``fact`` is not lower snake case or
+            ``message`` is empty.
     """
 
     code: str
     message: str
     status: CalculationStatus
     source: SourceLocation | None = None
+    fact: str | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         _require_code(self.code, "code")
         _require_text(self.message, "message")
+        if self.fact is not None:
+            _require_code(self.fact, "fact")
 
 
 @dataclass(frozen=True, slots=True)

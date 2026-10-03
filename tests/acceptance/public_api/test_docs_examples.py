@@ -3,9 +3,9 @@
 The numbered examples are the ones the guides embed: each must run and print
 something. The per-contract examples in ``docs/examples/contracts/`` exist
 for every bundled CCNL, exit cleanly and print the gross, the employee
-contributions, the IRPEF, the net, the status and the issue codes of the run.
-The amounts are engine output, so only their shape is checked. A new file in
-either place is picked up with no test edit.
+contributions, the IRPEF, the net, the payability, the blocker codes and the
+issue codes of the run.  The amounts are engine output, so only their shape
+is checked.  A new file in either place is picked up with no test edit.
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine import CalculationStatus
+from ccnl_engine import BlockerCode
 
 _ROOT = Path(__file__).parents[3]
 _EXAMPLES_DIR = _ROOT / "docs" / "examples"
@@ -29,13 +29,14 @@ _CONTRACT_EXAMPLES = sorted(
 )
 _AMOUNT = r"-?\d+(\.\d+)? EUR"
 _CODES = r"none|[a-z0-9_]+(, [a-z0-9_]+)*"
-_STATUSES = "|".join(status.value for status in CalculationStatus)
+_BLOCKERS = "none|({0})(, ({0}))*".format("|".join(code.value for code in BlockerCode))
 _EXPECTED_LINES = (
     ("Gross", _AMOUNT),
     ("Contributions", _AMOUNT),
     ("IRPEF", _AMOUNT),
     ("Net", _AMOUNT),
-    ("Status", _STATUSES),
+    ("Payable", "True|False"),
+    ("Blockers", _BLOCKERS),
     ("Issues", _CODES),
 )
 

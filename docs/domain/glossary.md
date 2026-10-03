@@ -113,17 +113,29 @@ reason allows dropping or lowering an extra month the CCNL grants.
 
 ### calculation status (stato del calcolo)
 
-How far a result can be relied upon, from least to most severe:
-`final`, `provisional`, `incomplete`, `rejected`.  A period status is the
-worst status among its issues (`final` when there are none); a year status is
-the worst status among its periods.  An unknown normative input must never
-yield a `final` result.
+How far the calculation of a result can be relied upon, from least to most
+severe: `final`, `provisional`, `incomplete`, `rejected`.  It is the
+calculation axis of the result assurance: the worst status among the issues
+and decisions of a run (`final` when there are none), and for a year the
+worst among its runs.  An unknown normative input must never yield a `final`
+result.
 
-`CalculationStatus`, `PeriodResult.status`, `YearResult.status`
+`CalculationStatus`, `ResultAssurance.calculation`
+
+### result assurance (affidabilità del risultato)
+
+Whether the amounts of a result can be paid as they are.  It combines the
+calculation, coverage and evidence axes and the rulesets read, and lists the
+blockers: issues, non-final decisions, missing facts, capabilities not
+computed, rules `assumed` or `missing` in the bundle, rules supplied by the
+caller.  A result is payable only when no blocker applies.
+
+`ResultAssurance`, `ResultBlocker`, `BlockerCode`, `PeriodResult.is_payable`,
+`YearResult.is_payable`
 
 ### calculation issue (anomalia di calcolo)
 
-A condition that lowers the status of a result, identified by a stable
+A condition that lowers the calculation status of a result, identified by a stable
 lower snake case `code` (for example `regional_surtax_unknown`), with a message,
 the status it implies and, when one applies, its normative source.
 

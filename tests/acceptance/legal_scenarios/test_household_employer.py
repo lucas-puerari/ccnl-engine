@@ -202,7 +202,7 @@ def test_net_is_gross_less_employee_contributions(case: _Case) -> None:
     assert result.period_net == case.net
     assert result.period_net <= result.period_gross
     assert _tax_postings(result) == []
-    assert result.status is CalculationStatus.FINAL
+    assert result.assurance.calculation is CalculationStatus.FINAL
 
 
 def test_reported_case_without_residence() -> None:

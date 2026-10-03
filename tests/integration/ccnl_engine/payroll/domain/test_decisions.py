@@ -139,6 +139,14 @@ class TestCalculationIssue:
         with pytest.raises(ValueError, match="lower snake case"):
             _issue(_INCOMPLETE, code=code)
 
+    def test_fact_names_the_missing_input(self) -> None:
+        """A fact is optional and, when given, lower snake case."""
+        assert _issue(_PROVISIONAL).fact is None
+        issue = CalculationIssue("x", "unknown", _PROVISIONAL, fact="prior_income")
+        assert issue.fact == "prior_income"
+        with pytest.raises(ValueError, match="fact must be lower snake case"):
+            CalculationIssue("x", "unknown", _PROVISIONAL, fact="Prior income")
+
     def test_rejects_empty_message(self) -> None:
         """An issue must explain itself."""
         with pytest.raises(ValueError, match="message must not be empty"):
@@ -231,7 +239,7 @@ class TestPeriodResultStatus:
         """No capability raises issues yet: every result is final."""
         period = year_result.period_results[0]
         assert period.issues == ()
-        assert period.status is _FINAL
+        assert period.assurance.calculation is _FINAL
 
     def test_status_is_worst_issue_status(self, year_result: YearResult) -> None:
         """The period status is the most severe status among its issues."""
@@ -239,7 +247,7 @@ class TestPeriodResultStatus:
             year_result.period_results[0],
             issues=(_issue(_PROVISIONAL), _issue(_INCOMPLETE), _issue(_PROVISIONAL)),
         )
-        assert period.status is _INCOMPLETE
+        assert period.assurance.calculation is _INCOMPLETE
 
 
 class TestYearResultStatus:
@@ -250,13 +258,14 @@ class TestYearResultStatus:
     ) -> None:
         """A year of issue-free periods is final."""
         assert year_result.issues == ()
-        assert year_result.status is _FINAL
+        assert year_result.assurance.calculation is _FINAL
 
-    def test_empty_year_is_final(self, year_result: YearResult) -> None:
-        """A year without periods has no issues and is final."""
+    def test_empty_year_has_no_assurance(self, year_result: YearResult) -> None:
+        """A year without periods has no issues and no assurance to combine."""
         empty = replace(year_result, period_results=())
         assert empty.issues == ()
-        assert empty.status is _FINAL
+        with pytest.raises(ValueError, match="no run"):
+            _ = empty.assurance
 
     def test_status_is_worst_period_status(self, year_result: YearResult) -> None:
         """The year status is the worst period status; issues keep run order."""
@@ -272,7 +281,7 @@ class TestYearResultStatus:
                 replace(last_run, issues=(second, third)),
             ),
         )
-        assert year.status is _REJECTED
+        assert year.assurance.calculation is _REJECTED
         assert year.issues == (first, second, third)
 
 

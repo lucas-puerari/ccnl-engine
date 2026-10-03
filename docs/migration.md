@@ -1,5 +1,26 @@
 # Migration guide
 
+## Result assurance replaces the result status
+
+`PeriodResult.status` and `YearResult.status` are removed, with no alias. The
+question "can this amount be paid?" now has one answer, `result.is_payable`,
+derived from a `ResultAssurance` that also reads the capability report, the
+provenance of the executed rules and the caller-supplied rules, which the old
+status ignored. See [Assurance](trust/confidence.md).
+
+| Change | What to do |
+|---|---|
+| `PeriodResult.status`, `YearResult.status` removed | Read `result.is_payable` to decide whether to pay, `result.blockers` for why not, `result.assurance.calculation` for the old worst status of the issues (now also of the decisions) |
+| `PeriodResult.assurance`, `is_payable`, `blockers`, `rulesets` and the same on `YearResult` added | A year is payable only when every run is; its blockers and rulesets are listed once |
+| `CapabilityReport.confidence` removed; `CapabilityReport.status` is a `CoverageStatus` | Read `result.assurance.coverage`; the values `complete`, `partial`, `incomplete` are unchanged |
+| `CalculationIssue.fact` added | An issue about a missing fact names it; it becomes a `missing_fact` blocker |
+| New public names `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `CoverageStatus`, `EvidenceStatus`, `Payability`, `RulesetIdentity` | Import them from `ccnl_engine` |
+
+A result that was `final` is not payable when the catalog lists a capability
+the run did not compute, an executed rule is `assumed` or `missing`, or the
+caller supplied a rule: today no bundled CCNL gives a payable result. Amounts
+are unchanged.
+
 ## Withholding rule cited per tax year
 
 Art. 23 D.P.R. 600/1973 is in force until 31 December 2026; from 1 January

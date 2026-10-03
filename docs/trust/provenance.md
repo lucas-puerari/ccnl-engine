@@ -153,8 +153,9 @@ fixed-term exemption and the regional surtax table.
 - **Run time.** A capability that executed and read a `missing` rule adds a
   `rule_source_missing` issue naming the rule, and the result is
   `incomplete`. `result.capability_report.rule_sources` holds, for each
-  executed capability, the weakest status among the rules it read. See
-  [Confidence](confidence.md).
+  executed capability, the weakest status among the rules it read; an
+  `assumed` or `missing` one is a `rule_source_weak` blocker and the result
+  is not payable. See [Assurance](confidence.md).
 
 ## Reading provenance
 
@@ -175,7 +176,8 @@ for level in ccnl.levels:
 ```
 
 A `PeriodResult` links back to its sources through `result.bundle_version`,
-the `rule` and `rule_version` of each decision in `result.decisions`, and the
-per-capability statuses in `result.capability_report.rule_sources`. The full
+the rulesets in `result.rulesets`, the `rule` and `rule_version` of each
+decision in `result.decisions`, and the per-capability statuses in
+`result.capability_report.rule_sources`. The full
 JSON of each contract, provenance included, is shown on its page under
 [Contracts](../contracts/index.md).

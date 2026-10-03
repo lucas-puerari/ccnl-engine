@@ -194,6 +194,7 @@ class TestAssessmentRecords:
         assert issue is not None
         assert issue.code == "rinnovo_eligibility_unknown"
         assert issue.status is CalculationStatus.PROVISIONAL
+        assert issue.fact == "sector"
 
     def test_decision_without_ruleset_uses_regime_and_year(self) -> None:
         """Without provenance the rule is the regime id at the tax year."""

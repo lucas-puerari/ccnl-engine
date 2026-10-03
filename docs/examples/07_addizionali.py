@@ -54,7 +54,7 @@ result = engine.calculate_period(
 for line in result.remittance_summary():
     if line.account == "surtax":
         print(f"  {line.remittance_code}: {line.amount}")
-print(f"Status: {result.status}")  # final: both tables known
+print(f"Calculation: {result.assurance.calculation}")  # final: both tables known
 # The 2026 surtax is determined by the conguaglio and withheld in 2027.
 for obligation in result.closing_state.obligations.surtax:
     print(f"  {obligation.component}: residual {obligation.plan.residual}")

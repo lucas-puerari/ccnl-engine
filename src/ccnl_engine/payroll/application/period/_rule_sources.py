@@ -5,8 +5,9 @@ carries a provenance status (see
 :class:`~ccnl_engine.provenance.domain.chain.ProvenanceStatus`).  A rule
 whose status is ``missing`` makes the result incomplete: an amount rests on
 a value no source backs.  The weakest status of each executed capability is
-reported in the capability report; ``assumed`` and ``derived`` do not change
-the result status.
+reported in the capability report; an ``assumed`` or ``missing`` one blocks
+the payability of the result (see
+:mod:`~ccnl_engine.payroll.domain.assurance`), a ``derived`` one does not.
 
 As in the capability traces, what executed is read from the decisions and
 event effects of the run, never from the request.  A rule without a record

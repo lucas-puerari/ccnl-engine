@@ -103,18 +103,19 @@ payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
-## Relationship to the result status
+## Relationship to the result assurance
 
-`result.status` is a result-level signal derived at compute time from the
-issues of the run. `readiness` is a ruleset-level classification set by a
-human reviewer. They answer different questions:
+`result.is_payable` is a result-level signal derived at compute time from the
+issues, decisions, capability report and rule provenance of the run.
+`readiness` is a ruleset-level classification set by a human reviewer, not yet
+part of the result assurance. They answer different questions:
 
 | Question | Field |
 |---|---|
-| Did this computation rest on known rules and facts? | `result.status` and `result.issues` |
+| Can the amounts of this computation be paid as computed? | `result.is_payable` and `result.blockers` |
 | Is this ruleset cleared for production use? | `ccnl.verification.readiness` |
 | Were the individual values checked against the source? | `ccnl.verification.confidence` |
 
-A result can be `final` while the ruleset is still `readiness =
-"exploratory"`: the status says every rule the run needed was known and
-applied, not that a person checked the values against the source.
+A result could be payable while the ruleset is still `readiness =
+"exploratory"`: payability says every rule the run needed was known, sourced
+and applied, not that a person checked the values against the source.
