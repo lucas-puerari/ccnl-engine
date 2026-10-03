@@ -11,6 +11,7 @@ result is then assembled with its closing YTD state and checked.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._assembly import assemble_result
@@ -21,6 +22,7 @@ from ccnl_engine.payroll.application.period._pipeline import (
     run_events,
 )
 from ccnl_engine.payroll.application.period._posting import post_run, run_credits
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
@@ -35,6 +37,7 @@ def calculate_period(
     repo: KnowledgeRepository | None = None,
     resolver: PolicyResolver | None = None,
     bundle_version: str | None = None,
+    mode: EngineMode = EngineMode.SIMULATION,
 ) -> PeriodResult:
     """Compute payroll for one competence period using the period-first model.
 
@@ -50,6 +53,8 @@ def calculate_period(
             to avoid repeated JSON parsing.
         bundle_version: Knowledge-bundle version string to embed in the result.
             ``None`` when called outside a :class:`PayrollEngine` context.
+        mode: Payability policy recorded on the result; ``operational``
+            blocks every ruleset short of ``production``.
 
     Returns:
         A :class:`~ccnl_engine.payroll.domain.period.PeriodResult`
@@ -74,6 +79,7 @@ def calculate_period(
         amounts.amounts,
         events.entries + recoveries.somma.entries + recoveries.carried.entries,
     )
-    return assemble_result(
+    result = assemble_result(
         ctx, events, amounts, recoveries, posted, decisions, bundle_version
     )
+    return replace(result, mode=mode)

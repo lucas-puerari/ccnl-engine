@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.assessment import assess
@@ -25,33 +24,18 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationStatus,
     DecisionOrigin,
 )
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.provenance.domain.chain import ProvenanceStatus
-from ccnl_engine.provenance.domain.ruleset_identity import (
-    RulesetIdentity,
-    SourceType,
-    VerificationStatus,
-)
+from tests.fixtures.rulesets import tax_ruleset
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
+_SIMULATION = EngineMode.SIMULATION
 _DERIVED = {"irpef": ProvenanceStatus.DERIVED}
 _PROVISIONAL = CalculationStatus.PROVISIONAL
 _ABSENT = CapabilityGapKind.FEATURE_ABSENT
 _INCOMPLETE_COVERAGE = CoverageStatus.INCOMPLETE
-
-
-def _ruleset(ruleset_id: str) -> RulesetIdentity:
-    return RulesetIdentity(
-        id=ruleset_id,
-        version="2026.1",
-        effective_from=date(2026, 1, 1),
-        published_at=date(2026, 1, 1),
-        source="unavailable",
-        source_type=SourceType.DERIVED,
-        source_hash="0" * 64,
-        verification_status=VerificationStatus.UNVERIFIED,
-    )
 
 
 def _report(
@@ -90,12 +74,12 @@ class TestAssess:
 
     def test_derived_rules_alone_are_payable(self) -> None:
         """A derived rule lowers the evidence axis but does not block."""
-        assurance = assess((), (), _report(), (_ruleset("tax/2026"),))
+        assurance = assess((), (), _report(), (tax_ruleset("tax/2026"),), _SIMULATION)
 
         assert assurance.calculation is CalculationStatus.FINAL
         assert assurance.coverage is CoverageStatus.COMPLETE
         assert assurance.evidence is EvidenceStatus.DERIVED
-        assert assurance.rulesets == (_ruleset("tax/2026"),)
+        assert assurance.rulesets == (tax_ruleset("tax/2026"),)
         assert assurance.payability is Payability.PAYABLE
         assert assurance.is_payable
         assert assurance.blockers == ()
@@ -106,7 +90,7 @@ class TestAssess:
             "withholding_shortfall_unrecovered", "tax not withheld", _PROVISIONAL
         )
 
-        assurance = assess((issue,), (), _report(), ())
+        assurance = assess((issue,), (), _report(), (), _SIMULATION)
 
         assert assurance.calculation is _PROVISIONAL
         assert _keys(assurance) == [
@@ -120,7 +104,7 @@ class TestAssess:
             "rinnovo_eligibility_unknown", "sector unknown", _PROVISIONAL, fact="sector"
         )
 
-        (blocker,) = assess((issue,), (), _report(), ()).blockers
+        (blocker,) = assess((issue,), (), _report(), (), _SIMULATION).blockers
 
         assert (blocker.code, blocker.feature, blocker.detail) == (
             BlockerCode.MISSING_FACT,
@@ -136,7 +120,7 @@ class TestAssess:
             _decision(CalculationStatus.INCOMPLETE),
         )
 
-        assurance = assess((), decisions, _report(), ())
+        assurance = assess((), decisions, _report(), (), _SIMULATION)
 
         assert assurance.calculation is CalculationStatus.INCOMPLETE
         assert _keys(assurance) == [
@@ -147,7 +131,7 @@ class TestAssess:
         """A partial gap gives partial coverage; each gap is a blocker."""
         partial = _gap("irpef", CapabilityGapKind.PROMISED_COMPUTED_GOT_PARTIAL)
 
-        assurance = assess((), (), _report(gaps=(partial,)), ())
+        assurance = assess((), (), _report(gaps=(partial,)), (), _SIMULATION)
 
         assert assurance.coverage is CoverageStatus.PARTIAL
         assert _keys(assurance) == [
@@ -167,7 +151,7 @@ class TestAssess:
             "inps_employee": ProvenanceStatus.VERIFIED,
         }
 
-        assurance = assess((), (), _report(rule_sources=sources), ())
+        assurance = assess((), (), _report(rule_sources=sources), (), _SIMULATION)
 
         assert assurance.evidence is EvidenceStatus.MISSING
         assert _keys(assurance) == [
@@ -177,7 +161,7 @@ class TestAssess:
 
     def test_no_recorded_rule_is_missing_evidence(self) -> None:
         """A run whose rules carry no record cannot claim any evidence."""
-        assurance = assess((), (), _report(rule_sources={}), ())
+        assurance = assess((), (), _report(rule_sources={}), (), _SIMULATION)
 
         (blocker,) = assurance.blockers
         assert assurance.evidence is EvidenceStatus.MISSING
@@ -192,7 +176,7 @@ class TestAssess:
         """A value supplied in place of a rule has no source: it blocks."""
         report = _report(caller_supplied={"overtime": ("hourly_rate", "multiplier")})
 
-        (blocker,) = assess((), (), report, ()).blockers
+        (blocker,) = assess((), (), report, (), _SIMULATION).blockers
 
         assert (blocker.code, blocker.feature, blocker.detail) == (
             BlockerCode.CALLER_SUPPLIED_RULE,
@@ -213,4 +197,4 @@ def test_caller_supplied_origin_is_not_a_decision_blocker() -> None:
         origin=DecisionOrigin.CALLER_SUPPLIED,
     )
 
-    assert assess((), (decision,), _report(), ()).is_payable
+    assert assess((), (decision,), _report(), (), _SIMULATION).is_payable

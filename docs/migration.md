@@ -1,5 +1,22 @@
 # Migration guide
 
+## Ruleset readiness and engine modes
+
+Readiness is part of the public API, and the engine takes a mode. Amounts are
+unchanged in both modes.
+
+| Change | What to do |
+|---|---|
+| `CcnlInfo` replaced by `ContractSummary` (adds `readiness`) | Rename the type; read `summary.readiness` |
+| `list_ccnls()` removed | Call `PayrollEngine.list_contracts()` |
+| `engine.inspect_ruleset(ccnl_id)` added | Returns the `RulesetAssurance` of a CCNL, by slug or CNEL code |
+| `result.rulesets` and `assurance.rulesets` hold `RulesetAssurance`, not `RulesetIdentity` | Read `ruleset.identity` for the old value; `id`, `source_hash` and `str()` are unchanged; `kind`, `readiness` and `confidence` are new |
+| The CCNL ruleset is always in `result.rulesets` | Nothing |
+| `PayrollEngine.bundled(mode=...)` and `PayrollEngine(mode=...)` added; `result.mode`, `assurance.mode` | Default `"simulation"` keeps today's payability; `"operational"` adds a `ruleset_not_production` blocker for a CCNL ruleset that is not `production` |
+| `BlockerCode.RULESET_NOT_PRODUCTION` added | Branch on it when running in operational mode |
+| New public names `ContractSummary`, `EngineMode`, `RulesetAssurance`, `RulesetKind`, `RulesetReadiness`, `VerificationStatus` | Import them from `ccnl_engine` |
+| Docs no longer point to `ccnl.verification.readiness` | Use the public fields above |
+
 ## Result assurance replaces the result status
 
 `PeriodResult.status` and `YearResult.status` are removed, with no alias. The

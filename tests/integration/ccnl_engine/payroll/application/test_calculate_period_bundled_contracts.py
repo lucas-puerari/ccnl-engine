@@ -24,12 +24,11 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     WeeklyHours,
-    list_ccnls,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
 
 _ENGINE = PayrollEngine.bundled()
-_SLUGS = [f"{info.ccnl_id}.json" for info in list_ccnls()]
+_SLUGS = [f"{info.ccnl_id}.json" for info in PayrollEngine.list_contracts()]
 #: Domestic contracts need declared weekly and contributable hours for INPS.
 _DOMESTIC = frozenset({
     "lavoro-domestico-convivente.json",

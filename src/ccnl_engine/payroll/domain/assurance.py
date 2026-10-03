@@ -8,7 +8,9 @@ already records, never stored beside it:
 - ``coverage``: the status of the capability report, the gaps between the
   catalog and what the run executed;
 - ``evidence``: the weakest provenance of the payable rules the run read;
-- ``rulesets``: the identities of the rulesets those rules came from;
+- ``rulesets``: the identity, readiness and confidence of each ruleset
+  those rules came from;
+- ``mode``: the payability policy of the engine that produced the result;
 - ``blockers``: every reason the amounts cannot be paid.
 
 The result is payable only when nothing blocks it.  How a run is assessed is
@@ -26,7 +28,8 @@ from ccnl_engine.payroll.domain.decisions import CalculationStatus
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.payroll.domain.engine_mode import EngineMode
+    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 __all__ = [
     "BlockerCode",
@@ -123,6 +126,9 @@ class BlockerCode(StrEnum):
             carries a provenance record.
         CALLER_SUPPLIED_RULE: The caller supplied a value in place of a rule
             of the bundle, so no source backs it.
+        RULESET_NOT_PRODUCTION: In ``operational`` mode only: a ruleset the
+            run read is not ``production``, or no ruleset of the run tracks
+            a readiness tier.
     """
 
     CALCULATION_ISSUE = "calculation_issue"
@@ -130,6 +136,7 @@ class BlockerCode(StrEnum):
     CAPABILITY_NOT_COMPUTED = "capability_not_computed"
     RULE_SOURCE_WEAK = "rule_source_weak"
     CALLER_SUPPLIED_RULE = "caller_supplied_rule"
+    RULESET_NOT_PRODUCTION = "ruleset_not_production"
 
 
 @dataclass(frozen=True, slots=True)
@@ -142,7 +149,8 @@ class ResultBlocker:
             the run as a whole (an issue, a missing fact).
         detail: Machine-readable specifics in lower snake case where the
             source allows: the issue code, the decision reason, the missing
-            fact, the gap kind, the provenance status, or the caller fields.
+            fact, the gap kind, the provenance status, the caller fields, or
+            the id of the ruleset short of ``production``.
         remediation: What removes the blocker, for a human reader.
     """
 
@@ -161,7 +169,9 @@ class ResultAssurance:
         coverage: Status of the capability report.
         evidence: Weakest provenance of the payable rules read;
             ``missing`` when no rule carries a record.
-        rulesets: Identities of the rulesets the rules were read from.
+        rulesets: Assurance of the rulesets the rules were read from:
+            identity, hash, readiness and confidence.
+        mode: Payability policy the blockers were derived under.
         payability: :attr:`Payability.PAYABLE` exactly when
             :attr:`blockers` is empty.
         blockers: Every reason the amounts cannot be paid, in the order
@@ -171,7 +181,8 @@ class ResultAssurance:
     calculation: CalculationStatus
     coverage: CoverageStatus
     evidence: EvidenceStatus
-    rulesets: tuple[RulesetIdentity, ...]
+    rulesets: tuple[RulesetAssurance, ...]
+    mode: EngineMode
     payability: Payability
     blockers: tuple[ResultBlocker, ...]
 
@@ -191,11 +202,15 @@ class ResultAssurance:
             The aggregated assurance.
 
         Raises:
-            ValueError: When ``assurances`` is empty.
+            ValueError: When ``assurances`` is empty, or mixes modes.
         """
         items = tuple(assurances)
         if not items:
             msg = "cannot combine the assurance of no run"
+            raise ValueError(msg)
+        modes = {a.mode for a in items}
+        if len(modes) > 1:
+            msg = f"cannot combine runs of different modes: {sorted(modes)}"
             raise ValueError(msg)
         blockers = tuple(dict.fromkeys(b for a in items for b in a.blockers))
         return cls(
@@ -203,15 +218,16 @@ class ResultAssurance:
             coverage=CoverageStatus.worst(a.coverage for a in items),
             evidence=EvidenceStatus.weakest(a.evidence for a in items),
             rulesets=_unique_rulesets(r for a in items for r in a.rulesets),
+            mode=items[0].mode,
             payability=decide_payability(blockers),
             blockers=blockers,
         )
 
 
 def _unique_rulesets(
-    rulesets: Iterable[RulesetIdentity],
-) -> tuple[RulesetIdentity, ...]:
-    seen: dict[str, RulesetIdentity] = {}
+    rulesets: Iterable[RulesetAssurance],
+) -> tuple[RulesetAssurance, ...]:
+    seen: dict[str, RulesetAssurance] = {}
     for ruleset in rulesets:
         seen.setdefault(str(ruleset), ruleset)
     return tuple(seen.values())
@@ -221,7 +237,9 @@ def decide_payability(blockers: tuple[ResultBlocker, ...]) -> Payability:
     """Apply the payability policy to the blockers of a result.
 
     Every blocker blocks; this is the single place a stricter or looser
-    policy would change the outcome.
+    policy would change the outcome.  The mode acts earlier: ``operational``
+    adds the ``ruleset_not_production`` blockers (see
+    :mod:`~ccnl_engine.payroll.domain.assessment`).
 
     Returns:
         :attr:`Payability.PAYABLE` when there is no blocker.

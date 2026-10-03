@@ -12,6 +12,61 @@ See [Guide: Employment types](../domain/employment-types.md) and
       members:
         - PayrollEngine
 
+## Modes and catalog
+
+`PayrollEngine.bundled(mode=...)` sets the payability policy of every result;
+both modes compute the same amounts:
+
+| Mode | Payable when |
+|---|---|
+| `simulation` (default) | No blocker. Ruleset readiness is reported in `result.rulesets`, not enforced. |
+| `operational` | No blocker, and every ruleset that tracks readiness is `production` with a `verified` confidence. Otherwise the result carries one `ruleset_not_production` blocker per such ruleset (detail: the ruleset id), and the amounts stay inspectable. |
+
+An operational engine returns a result with blockers rather than refusing
+before the calculation: the amounts, the other blockers and the readiness of
+every ruleset remain visible, and a year aggregates its runs as in
+simulation. Readiness is tracked for CCNL rulesets only, so today the
+operational gate is the CCNL tier; tax, INPS and surtax rulesets report
+`readiness = None` and never raise it. A run whose CCNL has no ruleset
+identity fails closed with the detail `no_ruleset_tracks_readiness`.
+
+Before any run, `engine.list_contracts()` returns one `ContractSummary`
+(`ccnl_id`, `name`, `cnel_code`, `readiness`) per bundled CCNL and
+`engine.inspect_ruleset(ccnl_id)` returns the `RulesetAssurance` of one CCNL,
+by slug or CNEL code: the same value the run reports in `result.rulesets`.
+
+```python
+engine = PayrollEngine.bundled(mode="operational")
+ruleset = engine.inspect_ruleset("metalmeccanico-federmeccanica")
+if not ruleset.is_production:
+    print(ruleset.readiness, ruleset.confidence)  # → reviewed unverified
+```
+
+| `RulesetAssurance` field | Meaning |
+|---|---|
+| `identity` | `RulesetIdentity`: id, version, validity, source and `source_hash` |
+| `kind` | `RulesetKind`: `ccnl`, `tax`, `inps` or `surtax`, set by the loader |
+| `readiness` | `RulesetReadiness` for a CCNL; `None` when the kind tracks no tier |
+| `confidence` | `VerificationStatus`: the CCNL `verification.confidence`, or the identity `verification_status` |
+| `confidence_contradicts_readiness` | `True` when a `reviewed` or `production` tier lacks a `verified` confidence |
+| `is_production` | `production` and a confidence that agrees |
+
+::: ccnl_engine.payroll.domain.engine_mode
+    options:
+      members:
+        - EngineMode
+
+::: ccnl_engine.provenance.domain.ruleset_assurance
+    options:
+      members:
+        - RulesetAssurance
+        - RulesetKind
+
+::: ccnl_engine.contract.service.discovery
+    options:
+      members:
+        - ContractSummary
+
 ## Inputs
 
 `calculate_period` takes a `PeriodInput`, `calculate_year` a `YearInput`.
@@ -107,12 +162,14 @@ machine-readable `detail` and a `remediation`. Both come from `assurance`, a
 | `calculation` | `CalculationStatus` | Worst status of the issues and decisions |
 | `coverage` | `CoverageStatus` | The capability report |
 | `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules read |
-| `rulesets` | `RulesetIdentity` tuple | Rulesets the rules were read from, also `result.rulesets` |
+| `rulesets` | `RulesetAssurance` tuple | The CCNL ruleset and every ruleset a payable rule was read from, with readiness; also `result.rulesets` |
+| `mode` | `EngineMode` | The mode of the engine; `operational` adds `ruleset_not_production` blockers |
 | `payability` | `Payability` | `payable` exactly when there is no blocker |
 
 A result is payable only when it raised no issue, every decision is final,
 the capability report has no gap, no executed rule is `assumed` or `missing`
-and no rule was supplied by the caller. A `derived` rule lowers `evidence`
+and no rule was supplied by the caller; in `operational` mode, also only
+when the CCNL ruleset is `production`. A `derived` rule lowers `evidence`
 but does not block. See [Assurance](../trust/confidence.md) for the rules.
 
 The year result combines the assurance of its runs (each axis the worst,

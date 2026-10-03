@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
 )
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.remittance import remittance_summary
@@ -35,7 +36,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.year_input import YearInput
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 __all__ = ["YearResult", "calculate_year"]
 
@@ -89,7 +90,7 @@ class YearResult:
         return self.assurance.blockers
 
     @property
-    def rulesets(self) -> tuple[RulesetIdentity, ...]:
+    def rulesets(self) -> tuple[RulesetAssurance, ...]:
         """Rulesets read by any run of the year, each listed once."""
         return self.assurance.rulesets
 
@@ -169,6 +170,7 @@ def calculate_year(
     repo: KnowledgeRepository | None = None,
     resolver: PolicyResolver | None = None,
     bundle_version: str | None = None,
+    mode: EngineMode = EngineMode.SIMULATION,
 ) -> YearResult:
     """Compute payroll for all runs in a year.
 
@@ -208,6 +210,7 @@ def calculate_year(
         bundle_version: Knowledge-bundle version string propagated to each
             :class:`~ccnl_engine.payroll.domain.period.PeriodResult` and to
             :class:`YearResult`.
+        mode: Payability policy of every run of the year.
 
     Returns:
         :class:`YearResult` with one
@@ -233,7 +236,11 @@ def calculate_year(
         req = run_request(request, plan, run, state)
         result = flag_partial_month(
             calculate_period(
-                req, repo=repo, resolver=resolver, bundle_version=bundle_version
+                req,
+                repo=repo,
+                resolver=resolver,
+                bundle_version=bundle_version,
+                mode=mode,
             ),
             run,
             period,

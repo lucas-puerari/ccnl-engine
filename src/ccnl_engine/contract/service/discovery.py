@@ -1,4 +1,4 @@
-"""CCNL discovery — list, search and resolve CCNL contracts."""
+"""CCNL discovery: list, search and resolve the bundled CCNL contracts."""
 
 from __future__ import annotations
 
@@ -6,17 +6,21 @@ import importlib.resources
 import json
 from dataclasses import dataclass
 from functools import cache
-from typing import NewType
+from typing import TYPE_CHECKING, NewType
 
+from ccnl_engine.contract.domain.identity import CCNLVerification
 from ccnl_engine.knowledge.service.bundled_resources import BundledResourceStore
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
+
+if TYPE_CHECKING:
+    from ccnl_engine.provenance.domain.ruleset_identity import RulesetReadiness
 
 CcnlId = NewType("CcnlId", str)
 
 
-@dataclass(frozen=True)
-class CcnlInfo:
-    """Lightweight descriptor for one CCNL contract.
+@dataclass(frozen=True, slots=True)
+class ContractSummary:
+    """Summary of one bundled CCNL: who it is and how far it is cleared.
 
     Attributes:
         ccnl_id: Human-readable slug
@@ -24,45 +28,51 @@ class CcnlInfo:
         name: Full display name
             (e.g. ``"CCNL Metalmeccanico Federmeccanica"``).
         cnel_code: Official CNEL classification code (e.g. ``"E042"``).
+        readiness: Readiness tier of the CCNL ruleset; only ``production``
+            is payable in ``operational`` mode.
     """
 
     ccnl_id: CcnlId
     name: str
     cnel_code: str
+    readiness: RulesetReadiness
 
 
 @cache
-def _load_all() -> tuple[CcnlInfo, ...]:
-    """Load metadata for every bundled CCNL file (result is cached).
+def _load_all() -> tuple[ContractSummary, ...]:
+    """Load the summary of every bundled CCNL file (result is cached).
 
     Returns:
-        Tuple of :class:`CcnlInfo` sorted by ccnl_id.
+        Tuple of :class:`ContractSummary` sorted by ccnl_id.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
     store = BundledResourceStore(pkg)
-    items: list[CcnlInfo] = []
+    items: list[ContractSummary] = []
     for filename in store.list_json():
-        meta = json.loads(store.read_json(filename)).get("meta", {})
+        raw = json.loads(store.read_json(filename))
+        meta = raw.get("meta", {})
+        verification = CCNLVerification.model_validate(raw.get("verification", {}))
         items.append(
-            CcnlInfo(
+            ContractSummary(
                 ccnl_id=CcnlId(meta["ccnl_id"]),
                 name=meta["name"],
                 cnel_code=meta["cnel_code"],
+                readiness=verification.readiness,
             )
         )
     return tuple(items)
 
 
-def list_ccnls() -> tuple[CcnlInfo, ...]:
-    """Return all available CCNL contracts, sorted by ccnl_id.
+def list_contracts() -> tuple[ContractSummary, ...]:
+    """Return every bundled CCNL contract, sorted by ccnl_id.
 
     Returns:
-        Tuple of :class:`CcnlInfo` for every bundled CCNL.
+        Tuple of :class:`ContractSummary` for every bundled CCNL.
     """
     return _load_all()
 
 
-def get_ccnl(ccnl_id: str) -> CcnlInfo:
+def get_ccnl(ccnl_id: str) -> ContractSummary:
     """Resolve a CCNL by slug or CNEL code.
 
     Args:
@@ -70,7 +80,7 @@ def get_ccnl(ccnl_id: str) -> CcnlInfo:
             code (e.g. ``"E042"``).
 
     Returns:
-        The matching :class:`CcnlInfo`.
+        The matching :class:`ContractSummary`.
 
     Raises:
         UnknownCcnlError: When no CCNL matches *ccnl_id*, with up to five
@@ -88,17 +98,17 @@ def get_ccnl(ccnl_id: str) -> CcnlInfo:
     raise UnknownCcnlError(ccnl_id, suggestions)
 
 
-def search_ccnls(query: str) -> tuple[CcnlInfo, ...]:
+def search_ccnls(query: str) -> tuple[ContractSummary, ...]:
     """Return all CCNLs whose name or slug contains *query*.
 
     The comparison is case-insensitive.
 
     Args:
-        query: Substring to match against :attr:`CcnlInfo.ccnl_id` and
-            :attr:`CcnlInfo.name`.
+        query: Substring to match against :attr:`ContractSummary.ccnl_id` and
+            :attr:`ContractSummary.name`.
 
     Returns:
-        A tuple of matching :class:`CcnlInfo`, in slug order.
+        A tuple of matching :class:`ContractSummary`, in slug order.
     """
     q = query.lower()
     return tuple(

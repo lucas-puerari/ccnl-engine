@@ -12,6 +12,7 @@ from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
 )
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.remittance import remittance_summary
@@ -26,7 +27,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.remittance import RemittanceLine
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 
 @dataclass(frozen=True)
@@ -67,8 +68,12 @@ class PeriodResult:
         decisions: What the capabilities that record a decision decided in
             this run, e.g. the eligibility of a pay item for a preferential
             tax regime, in the order they were taken.
-        rulesets: Identities of the rulesets the payable rules of the run
-            were read from.
+        rulesets: Assurance of the rulesets the run read: the CCNL, and
+            each tax, INPS and surtax ruleset a payable rule came from, with
+            identity, hash, readiness and confidence.
+        mode: Payability policy of the engine that produced the result;
+            ``operational`` adds a blocker for every ruleset short of
+            ``production``.
 
     Whether the amounts can be paid is :attr:`is_payable`; why not is
     :attr:`blockers`; both come from :attr:`assurance`.
@@ -91,17 +96,22 @@ class PeriodResult:
     bundle_version: str | None = None
     issues: tuple[CalculationIssue, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
-    rulesets: tuple[RulesetIdentity, ...] = ()
+    rulesets: tuple[RulesetAssurance, ...] = ()
+    mode: EngineMode = EngineMode.SIMULATION
 
     @property
     def assurance(self) -> ResultAssurance:
-        """Assurance derived from the issues, decisions, report and rulesets.
+        """Assurance derived from the issues, decisions, report, rulesets and mode.
 
         It is derived on access, so an issue added to the result later
         (e.g. a partial month of a year) is reflected.
         """
         return assess(
-            self.issues, self.decisions, self.capability_report, self.rulesets
+            self.issues,
+            self.decisions,
+            self.capability_report,
+            self.rulesets,
+            self.mode,
         )
 
     @property

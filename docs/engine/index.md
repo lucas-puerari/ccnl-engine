@@ -319,8 +319,9 @@ The result contains every gross, net, and cost component. Key fields:
 ```python
 result.is_payable           # whether the amounts can be paid as computed
 result.blockers             # every reason they cannot: code, feature, detail
-result.assurance            # calculation, coverage, evidence, rulesets, payability
-result.rulesets             # rulesets the executed rules were read from
+result.assurance            # calculation, coverage, evidence, rulesets, mode, payability
+result.rulesets             # rulesets read, with id, hash, kind and readiness
+result.mode                 # simulation (default) or operational
 result.issues               # conditions that lowered the calculation axis
 result.decisions            # what each capability decided, with its inputs
 result.period_gross         # gross entitlement for the period (before absence deductions)

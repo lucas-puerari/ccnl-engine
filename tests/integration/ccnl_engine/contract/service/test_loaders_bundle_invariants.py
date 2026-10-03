@@ -12,14 +12,14 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.contract.service.discovery import list_ccnls
+from ccnl_engine.contract.service.discovery import list_contracts
 from ccnl_engine.contract.service.loaders import load_ccnl
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
 
 # Load all CCNLs once at collection time; load_ccnl is cached so this is cheap.
-_ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id + ".json") for ci in list_ccnls()]
+_ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id + ".json") for ci in list_contracts()]
 
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
