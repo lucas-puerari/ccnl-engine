@@ -35,8 +35,10 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
+from tests.fixtures.withholding import identified, paid_before
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -103,15 +105,18 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     threshold, so the annual entitlement drops to 0 and the full 900 EUR must be
     recovered in 8 equal installments of 112.50 EUR.
     """
-    opening = PeriodState(
-        cash=TaxCashState(
-            trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
-            earnings=EarningsYtd(
-                gross=Decimal("20000.00"),
-                taxable=Decimal("18000.00"),
-            ),
-            tax=TaxYtd(irpef=Decimal("2000.00")),
-        )
+    opening = identified(
+        PeriodState(
+            cash=TaxCashState(
+                trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
+                earnings=EarningsYtd(
+                    gross=Decimal("20000.00"),
+                    taxable=Decimal("18000.00"),
+                ),
+                tax=TaxYtd(irpef=Decimal("2000.00")),
+            )
+        ),
+        paid_before(PayrollRun.regular(_YEAR, 10), day=28),
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),
@@ -146,15 +151,18 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
     Scenario: 50 EUR of credit recognized across 9 months, income rises above
     threshold in October.  Recovery = 50 EUR (<= 60): deducted fully in month 10.
     """
-    opening = PeriodState(
-        cash=TaxCashState(
-            trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
-            earnings=EarningsYtd(
-                gross=Decimal("20000.00"),
-                taxable=Decimal("18000.00"),
-            ),
-            tax=TaxYtd(irpef=Decimal("2000.00")),
-        )
+    opening = identified(
+        PeriodState(
+            cash=TaxCashState(
+                trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
+                earnings=EarningsYtd(
+                    gross=Decimal("20000.00"),
+                    taxable=Decimal("18000.00"),
+                ),
+                tax=TaxYtd(irpef=Decimal("2000.00")),
+            )
+        ),
+        paid_before(PayrollRun.regular(_YEAR, 10), day=28),
     )
     bonus = BonusEvent(
         event_date=date(_YEAR, 10, 15),

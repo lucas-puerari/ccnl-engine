@@ -34,7 +34,6 @@ def _extra_month_req(
     level: str,
     payment_month: int,
     run: PayrollRun,
-    payments_closed: int = 12,
     employment_period: EmploymentPeriod | None = None,
 ) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
@@ -118,7 +117,6 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=6,
             run=PayrollRun.thirteenth(_YEAR, 6),
-            payments_closed=6,
             employment_period=six_months,
         )
     ).period_gross
@@ -128,7 +126,6 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=12,
             run=PayrollRun.thirteenth(_YEAR, 12),
-            payments_closed=6,
             employment_period=six_months,
         )
     ).period_gross

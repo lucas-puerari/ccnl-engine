@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 from datetime import date
 from decimal import Decimal
 
@@ -311,3 +312,50 @@ def test_rejects_collections_of_the_wrong_elements(
         OpeningBalances(tax_year=2026, **kwargs)  # type: ignore[arg-type]
 
     assert info.value.field == field
+
+
+def _leaves(value: object, path: str) -> dict[str, object]:
+    """Return the scalar leaves of a dataclass tree, by dotted path.
+
+    Returns:
+        Each leaf value keyed by its path.
+    """
+    if not dataclasses.is_dataclass(value):
+        return {path: value}
+    found: dict[str, object] = {}
+    for f in dataclasses.fields(value):
+        found |= _leaves(getattr(value, f.name), f"{path}.{f.name}")
+    return found
+
+
+def test_every_total_of_the_cash_state_can_be_imported() -> None:
+    """Each YTD leaf of TaxCashState is reached by an OpeningBalances field.
+
+    Every amount is set to a value no default has; a leaf left at its
+    default would be a total no integration could import.
+    """
+    amounts: dict[str, object] = {
+        f.name: Decimal("10.00")
+        for f in dataclasses.fields(OpeningBalances)
+        if f.type in {"Decimal", "Decimal | None"}
+    }
+    amounts |= {"municipal_advance_withheld": Decimal("5.00")}
+    reasons: dict[str, object] = {
+        f.name: "full_amount"
+        for f in dataclasses.fields(OpeningBalances)
+        if f.type == "str | None"
+    }
+    state = OpeningBalances(
+        tax_year=2026,
+        payments=_JUNE,
+        **amounts,  # type: ignore[arg-type]
+        **reasons,  # type: ignore[arg-type]
+    ).to_state()
+
+    skipped = {"cash.tax_year", "cash.payments", "cash.conguaglio", "cash.obligations"}
+    defaults = {
+        path: value
+        for path, value in _leaves(state.cash, "cash").items()
+        if path not in skipped and value in {Decimal(0), None}
+    }
+    assert defaults == {}

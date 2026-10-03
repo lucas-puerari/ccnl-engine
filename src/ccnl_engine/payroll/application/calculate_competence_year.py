@@ -68,7 +68,10 @@ def calculate_competence_year(
     The runs paid in a later tax year (December paid after 12 January)
     open it, on a schedule that projects the CCNL standard runs of that
     year after them.  A run the opening state already closed with the same
-    payment is not computed again.
+    payment is not computed again.  A run paid after the first payment of
+    the next tax year belongs in
+    :func:`~ccnl_engine.payroll.application.calculate_tax_year\
+.calculate_tax_year`, which orders it among the runs of that year.
 
     Args:
         plan: Employment, employer, facts and payment dates of the runs, and

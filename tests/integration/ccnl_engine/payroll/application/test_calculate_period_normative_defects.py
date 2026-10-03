@@ -50,9 +50,11 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.withholding import identified, paid_before
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -173,24 +175,32 @@ def test_taxable_ytd_affects_conguaglio() -> None:
     """Different taxable_ytd must produce different IRPEF in the conguaglio.
 
     Source: art. 23 c. 3 DPR 600/1973.  Two December calculations, one with
-    taxable_ytd=0 and one with taxable_ytd=5,000, must produce different
+    taxable_ytd=0 and one with taxable_ytd=15,000, must produce different
     ordinary_tax.
     """
-    opening_zero = PeriodState(cash=TaxCashState())
-    opening_high = PeriodState(
-        cash=TaxCashState(
-            earnings=EarningsYtd(taxable=Decimal("5000.00")),
-        )
+    paid = paid_before(PayrollRun.regular(_YEAR, 12), day=28)
+    opening_zero = identified(PeriodState(cash=TaxCashState()), paid)
+    opening_high = identified(
+        PeriodState(
+            cash=TaxCashState(earnings=EarningsYtd(taxable=Decimal("15000.00")))
+        ),
+        paid,
     )
-    result_zero = calculate_period(_req(month=12, opening=opening_zero))
-    result_high = calculate_period(_req(month=12, opening=opening_high))
+    # December is the last payment of the year: it settles the conguaglio.
+    result_zero = calculate_period(
+        replace(_req(month=12, opening=opening_zero), planned_payments=())
+    )
+    result_high = calculate_period(
+        replace(_req(month=12, opening=opening_high), planned_payments=())
+    )
+    assert result_zero.closing_state.cash.conguaglio is not None
 
     tax_zero = result_zero.tax_computation.ordinary_tax
     tax_high = result_high.tax_computation.ordinary_tax
     assert tax_zero != tax_high, (
         "December IRPEF must differ when taxable_ytd differs: "
         f"taxable_ytd=0 -> {tax_zero}, "
-        f"taxable_ytd=5000 -> {tax_high}.  "
+        f"taxable_ytd=15000 -> {tax_high}.  "
         "taxable_ytd is ignored in the current projection (_compute_amounts.py)."
     )
 

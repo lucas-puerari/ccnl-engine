@@ -149,7 +149,13 @@ a schedule that projects the CCNL standard runs of that year after them.
 `close_tax_year()` of the closing state when the last payment settled its
 tax year, else the closing state itself, a state of the next tax year that
 already holds the late December. `result.conguagli` lists the payments that
-settled a conguaglio.
+settled a conguaglio. Use `calculate_tax_year` instead when a run of the
+year is paid after the first payment of the next tax year (a December paid
+in June, for instance): a competence year computes its late payment alone,
+and the earlier runs of the next year would then be dated before it. The
+late run reads the tax tables of the next year: with the bundled 2026
+tables only, compute 2026 with `calculate_tax_year(TaxYearPlan(tax_year=2026,
+...))`, which leaves the late December to the 2027 tax year.
 
 Ordering: the payments of a tax year close in payment-date order, because
 each withholding reads the totals of the payments before it. Within a

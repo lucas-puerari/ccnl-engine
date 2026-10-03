@@ -37,7 +37,6 @@ _MONTHS_CLOSED = st.integers(min_value=0, max_value=11)
 def _req(
     month: int,
     irpef_ytd: Decimal = Decimal(0),
-    payments_closed: int = 0,
 ) -> PeriodCalculationRequest:
     """Build a request for ``month`` of 2026 with the given YTD values.
 

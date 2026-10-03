@@ -23,12 +23,15 @@ count.
 | `OpeningBalances(withholding_payments_closed=..., inps_base=...)`, `.to_state()` | `engine.import_opening_balances(OpeningBalances(payments=..., competence_runs=..., inps_bases=...))`; new `regional_settled`, `municipal_settled`, `credit_recovery_shortfall`; totals need their `payments` |
 | `WithholdingSchedule` in `payroll.domain.schedule`, positions by count | `payroll.domain.withholding_schedule`, slots of `PaymentId`, `position(payment, paid)` |
 
-- `PeriodState.SCHEMA_VERSION` is 7. A persisted state of version 6 moves
+- `PeriodState.SCHEMA_VERSION` is 7. The engine ships no migrator: to
+  reuse a persisted state of version 6, move
   `cash.earnings.inps_base` into `accrual.inps_bases` as the `own` base of
   the tax year (exact unless a payment of another competence year was
-  made in it), drops `withholding_payments_closed` and `withholding_slots`,
-  and sets `cash.conguaglio` to the last slot-consuming payment when
-  `withholding_payments_closed` had reached `withholding_slots`.
+  made in it), drop `withholding_payments_closed` and `withholding_slots`,
+  and set `cash.conguaglio` to the last slot-consuming payment when
+  `withholding_payments_closed` had reached `withholding_slots`. A state
+  with totals and no payment ids now projects the whole standard calendar
+  of the year: list its payments, or import them with `OpeningBalances`.
 - New public names: `CompetenceYearPlan`, `CompetenceYearResult`,
   `TaxYearPlan`, `TaxYearResult`, `InpsBaseYtd`. Removed: `YearInput`,
   `YearResult`.

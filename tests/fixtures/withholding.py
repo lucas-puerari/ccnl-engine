@@ -6,6 +6,7 @@ instead of from the payments of a plan.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -16,9 +17,10 @@ from ccnl_engine.payroll.domain.tax_year import monthly_payment_date
 from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.run import PayrollRun
 
-__all__ = ["calendar_schedule", "paid_before", "paid_on_day"]
+__all__ = ["calendar_schedule", "identified", "paid_before", "paid_on_day"]
 
 
 def paid_on_day(run: PayrollRun, day: int = 28) -> PaymentId:
@@ -75,4 +77,23 @@ def paid_before(
         paid_on_day(r, day)
         for r in PayrollSchedule.from_calendar(calendar).runs
         if r.identifier.order_key < key
+    )
+
+
+def identified(state: PeriodState, payments: tuple[PaymentId, ...]) -> PeriodState:
+    """Return ``state`` with ``payments`` closed: the runs its totals came from.
+
+    Args:
+        state: A state with YTD totals and no payment.
+        payments: The payments those totals come from, of one tax year.
+
+    Returns:
+        The state with the runs closed and the payments listed, bound to
+        their tax year.
+    """
+    runs = tuple(p.run_id for p in payments)
+    return replace(
+        state,
+        accrual=replace(state.accrual, competence_runs=runs),
+        cash=replace(state.cash, tax_year=payments[0].tax_year, payments=payments),
     )
