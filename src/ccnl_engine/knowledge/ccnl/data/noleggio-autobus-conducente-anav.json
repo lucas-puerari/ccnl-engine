@@ -477,6 +477,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "29.85",
@@ -731,6 +736,11 @@
           "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
@@ -987,6 +997,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "40.00",
@@ -1241,6 +1256,11 @@
           "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
@@ -1497,6 +1517,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "46.27",
@@ -1751,6 +1776,11 @@
           "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
@@ -2007,6 +2037,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "50.75",
@@ -2261,6 +2296,11 @@
           "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
@@ -2517,6 +2557,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "59.70",
@@ -2771,6 +2816,11 @@
           "description": "EDR rinnovo 2025 (verbale 23/05/2025, art. EDR, 14 mensilita)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
               {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
@@ -3078,6 +3128,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-07-01",
+                "gap_kind": "not_applicable"
+              },
+              {
                 "valid_from": "2025-07-01",
                 "valid_until": null,
                 "value": "59.70",
@@ -3203,7 +3258,7 @@
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "19f3149c630a272cb1a2684ba553f5bcb49e5b9c322142df55da3a67039c7e27",
+    "source_hash": "6ed47d686ab5572ec0e4e067ebe428997a066b14eb818a4b68a380a331983910",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

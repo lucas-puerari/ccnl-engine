@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipPercentage
+from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.chain import _allowance_active, _level_chain
 from ccnl_engine.shared.domain.errors import OutOfScopeError
@@ -196,17 +197,18 @@ def _midpoint_chain(
     Returns:
         The chain with the averaged base salary.
     """
-    dest_base = destination.base_salary.value_at(as_of)
-    destination_allowances = money(
-        sum(
-            (
-                a.monthly.value_at(as_of)
-                for a in destination.fixed_allowances
-                if _allowance_active(a, roles, seniority_months)
-            ),
-            Decimal(0),
+    with rule_scope(feature="base_salary"):
+        dest_base = destination.base_salary.value_at(as_of)
+        destination_allowances = money(
+            sum(
+                (
+                    a.monthly.value_at(as_of)
+                    for a in destination.fixed_allowances
+                    if _allowance_active(a, roles, seniority_months, as_of)
+                ),
+                Decimal(0),
+            )
         )
-    )
     limitations = chain.limitations
     if destination_allowances != chain.allowances_total:
         limitations = (*limitations, MIDPOINT_ALLOWANCES)

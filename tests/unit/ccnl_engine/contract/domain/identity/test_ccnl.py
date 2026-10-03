@@ -64,13 +64,13 @@ class TestLevelSalaryNonDecreasing:
         data = make_ccnl_dict()
         data["levels"][2]["base_salary"]["periods"] = [
             {
-                "valid_from": "2019-01-01",
-                "valid_until": "2020-01-01",
+                "valid_from": "2020-01-01",
+                "valid_until": "2021-01-01",
                 "value": "900.00",
                 "provenance": TEST_PROV,
             },
             {
-                "valid_from": "2020-01-01",
+                "valid_from": "2021-01-01",
                 "valid_until": None,
                 "value": "1000.00",
                 "provenance": TEST_PROV,
@@ -103,18 +103,18 @@ class TestLevelSalaryNonDecreasing:
         data = make_ccnl_dict()
         data["levels"][2]["base_salary"]["periods"] = [
             {
-                "valid_from": "2019-01-01",
-                "valid_until": "2020-01-01",
+                "valid_from": "2020-01-01",
+                "valid_until": "2021-01-01",
                 "value": "900.00",
                 "provenance": TEST_PROV,
             },
             {
-                "valid_from": "2020-01-01",
-                "valid_until": "2021-01-01",
+                "valid_from": "2021-01-01",
+                "valid_until": "2022-01-01",
                 "gap_kind": "missing",
             },
             {
-                "valid_from": "2021-01-01",
+                "valid_from": "2022-01-01",
                 "valid_until": None,
                 "value": "1000.00",
                 "provenance": TEST_PROV,

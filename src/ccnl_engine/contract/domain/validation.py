@@ -5,7 +5,7 @@ from decimal import Decimal
 from typing import Any
 
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
-from ccnl_engine.contract.domain.validity import SalaryGapError
+from ccnl_engine.contract.domain.validity import SeriesGapError
 from ccnl_engine.provenance.domain.source import SourceKind
 
 
@@ -20,9 +20,7 @@ def _check_salary_ordering_at_date(sorted_levels: list[Any], check_date: date) -
     for lv in sorted_levels:
         try:
             value = lv.base_salary.value_at(check_date)
-        except SalaryGapError:
-            continue
-        except ValueError:
+        except SeriesGapError:
             continue
         if prev_value is not None and value < prev_value:
             msg = (

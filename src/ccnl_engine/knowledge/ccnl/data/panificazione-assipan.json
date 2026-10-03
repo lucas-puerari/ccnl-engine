@@ -322,6 +322,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
                 "value": "17.60"
@@ -497,6 +502,11 @@
           "description": "Premio di produzione nazionale livello V (Art. 50 ter, frozen Aug 1995)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
               {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
@@ -674,6 +684,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
                 "value": "23.55"
@@ -849,6 +864,11 @@
           "description": "Premio di produzione nazionale livello IIIB (Art. 50 ter, frozen Aug 1995)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
               {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
@@ -1026,6 +1046,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
                 "value": "30.09"
@@ -1201,6 +1226,11 @@
           "description": "Premio di produzione nazionale livello II (Art. 50 ter, frozen Aug 1995)",
           "monthly": {
             "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
               {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
@@ -1378,6 +1408,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2024-02-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2024-02-01",
                 "valid_until": null,
                 "value": "35.20"
@@ -1481,7 +1516,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "f6bb6b8930cdc58b95488617d9d4e498345a6fe9945356bb66ec907a20e11cfd",
+    "source_hash": "c348ebb429079a65e025869f7cb69b8195e507f92f92768feae60ec5753d658a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

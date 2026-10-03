@@ -53,7 +53,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.",
+        "text": "SENIORITY: 5 scatti biennali (24 months), amounts from kitech.it July 2026. The scatto amounts of the previous rinnovo were not recovered: each amount series declares a 'missing' gap from 2024-03-01 to 2026-07-01. A run before July 2026 with increments due raises MissingRuleError; a run with no increment due does not read the amount.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -113,6 +113,11 @@
         "Q": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "16.01"
@@ -121,6 +126,11 @@
         },
         "AS": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -131,6 +141,11 @@
         "A": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "16.01"
@@ -139,6 +154,11 @@
         },
         "B1S": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -149,6 +169,11 @@
         "B1": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "14.46"
@@ -157,6 +182,11 @@
         },
         "B2": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -167,6 +197,11 @@
         "B3": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "13.43"
@@ -175,6 +210,11 @@
         },
         "C1": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -185,6 +225,11 @@
         "C2": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "12.39"
@@ -193,6 +238,11 @@
         },
         "D1": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -203,6 +253,11 @@
         "D2": {
           "periods": [
             {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2026-07-01",
               "valid_until": null,
               "value": "11.36"
@@ -211,6 +266,11 @@
         },
         "E": {
           "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2026-07-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2026-07-01",
               "valid_until": null,
@@ -2063,7 +2123,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-grafici-editoriali-industria-2024-2026/",
     "verification_status": "unverified",
-    "source_hash": "b2caa0a5e90e69bbc1cadbb417fe5133b8ff1d5e09f1da49b83b54be07e5edd7",
+    "source_hash": "92104d0af7c8cc6fdea6b3f45db6a597a3a8cf8c86fbf4c2761b4e040708c8c1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

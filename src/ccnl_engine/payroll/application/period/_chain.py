@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
 from ccnl_engine.payroll.service.apprenticeship import _apprentice_chain
 from ccnl_engine.payroll.service.chain import _level_chain
@@ -89,6 +90,34 @@ def _resolve_chain(
         apprenticeship scaling applied, ``None`` unless the worker is on a
         percentage apprenticeship track.
     """
+    with rule_scope(ruleset=ccnl.meta.ccnl_id):
+        chain, scaling = _contract_chain(
+            ccnl,
+            level,
+            contract_type,
+            as_of,
+            seniority_months=seniority_months,
+            roles=roles,
+            worker_category=worker_category,
+        )
+    return _part_time(chain, weekly_hours, full_time_weekly_hours), scaling
+
+
+def _contract_chain(
+    ccnl: CCNL,
+    level: Level,
+    contract_type: Permanent | FixedTerm | Apprentice,
+    as_of: date,
+    *,
+    seniority_months: int | None,
+    roles: frozenset[str],
+    worker_category: WorkerCategory | None,
+) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
+    """Return the level or apprentice chain of the contract, full time.
+
+    Returns:
+        The chain and the apprenticeship scaling, as :func:`_resolve_chain`.
+    """
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice):
@@ -116,4 +145,4 @@ def _resolve_chain(
             worker_category=worker_category,
             seniority_months=seniority_months,
         )
-    return _part_time(chain, weekly_hours, full_time_weekly_hours), scaling
+    return chain, scaling

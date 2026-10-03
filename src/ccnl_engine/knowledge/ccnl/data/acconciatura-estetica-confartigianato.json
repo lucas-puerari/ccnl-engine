@@ -193,6 +193,11 @@
       "apprentice_amount": {
         "periods": [
           {
+            "valid_from": "2023-02-01",
+            "valid_until": "2024-10-01",
+            "gap_kind": "missing"
+          },
+          {
             "valid_from": "2024-10-01",
             "valid_until": null,
             "value": "6.00"
@@ -974,7 +979,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "72ee7cdcfe5f69e10e8a9ba34dc5bc6406d2dc99ba369d8c009fe8dc4702cc73",
+    "source_hash": "634ef718721b8d7555e64d4a6da0a8b2060cab2357e3998e95315d4139894e63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

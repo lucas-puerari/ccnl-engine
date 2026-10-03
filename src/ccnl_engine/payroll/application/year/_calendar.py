@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.extra_month_entitlement import ExtraMonthEntitlement
 
@@ -27,9 +28,9 @@ def standard_calendar(ccnl: CCNL, year: int, as_of: date) -> WorkCalendar:
         :meth:`WorkCalendar.from_additional_months` of the CCNL entitlement,
         with the default payment months.
     """
-    entitlement = ExtraMonthEntitlement.of(
-        ccnl.parameters.additional_months.value_at(as_of)
-    )
+    with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="additional_months"):
+        months = ccnl.parameters.additional_months.value_at(as_of)
+    entitlement = ExtraMonthEntitlement.of(months)
     return WorkCalendar.from_additional_months(year, entitlement)
 
 

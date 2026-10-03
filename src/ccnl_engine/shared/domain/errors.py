@@ -11,6 +11,11 @@ domain layer must keep raising ``ValueError`` so Pydantic wraps them in
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from datetime import date
+
 
 class CcnlEngineError(Exception):
     """Base class for all ccnl-engine public errors.
@@ -205,6 +210,43 @@ class MissingRequiredFactError(CcnlEngineError):
         )
 
 
+class MissingRuleError(CcnlEngineError):
+    """Raised when the knowledge bundle has no rule value on a date a run needs.
+
+    The date precedes the first value of the rule, or falls in a gap the
+    bundle declares (see :class:`~ccnl_engine.contract.domain.validity\
+.SalaryGapKind`).
+
+    Attributes:
+        as_of: Date the rule was read on.
+        gap_kind: Kind of the declared gap, ``None`` before the rule starts.
+        detail: Why the rule has no value on ``as_of``.
+    """
+
+    def __init__(
+        self,
+        detail: str,
+        *,
+        as_of: date,
+        gap_kind: str | None = None,
+        feature: str | None = None,
+        ruleset: str | None = None,
+        remediation: str | None = None,
+    ) -> None:
+        """Initialise with the reason, the date and the rule's context."""
+        self.as_of = as_of
+        self.gap_kind = gap_kind
+        self.detail = detail
+        scope = "" if ruleset is None else f" of {ruleset}"
+        super().__init__(
+            f"no {feature or 'rule'} value{scope} on {as_of}: {detail}",
+            code="missing_rule",
+            feature=feature,
+            ruleset=ruleset,
+            remediation=remediation,
+        )
+
+
 class UnsupportedTaxYearError(CcnlEngineError):
     """Raised when the knowledge bundle has no tax tables for a tax year.
 
@@ -242,4 +284,5 @@ PUBLIC_ERROR_CODES: frozenset[str] = frozenset({
     "invalid_input",
     "missing_required_fact",
     "unsupported_tax_year",
+    "missing_rule",
 })

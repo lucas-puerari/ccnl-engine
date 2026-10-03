@@ -6,16 +6,17 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.service.seniority_tiers import (
+    count_from_tiers,
+    resolve_tier_amount,
+)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.contract.domain.seniority import (
-        SeniorityIncrements,
-        SeniorityTier,
-    )
+    from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 
 _ZERO = Decimal(0)
 
@@ -25,80 +26,6 @@ APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
 #: Reason of a seniority decision when the level pays the worker no
 #: increment: the capability does not apply to the run.
 NOT_APPLICABLE_BY_CONTRACT = "not_applicable_by_contract"
-
-
-def _count_from_tiers(tiers: tuple[SeniorityTier, ...], seniority_months: int) -> int:
-    """Sum increments earned across all tiers from service months.
-
-    Tiers are consumed in order. Each tier's full capacity
-    (``cadence_months * maximum_count``) of service months is exhausted
-    before advancing to the next tier.
-
-    Returns:
-        Total increment count across all tiers.
-    """
-    remaining = seniority_months
-    total = 0
-    for tier in tiers:
-        count = min(remaining // tier.cadence_months, tier.maximum_count)
-        total += count
-        # Consume the tier's full capacity (not just the months used) so the
-        # remainder correctly reflects when the worker has passed the tier
-        # boundary and entered the next one.  After the break, `remaining` is
-        # negative and intentionally ignored — only `total` is returned.
-        remaining -= tier.maximum_count * tier.cadence_months
-        if remaining < 0:
-            break
-    return total
-
-
-def _resolve_tier_amount(
-    tiers: tuple[SeniorityTier, ...],
-    level_code: str,
-    as_of: date,
-    *,
-    seniority_months: int | None = None,
-    count_override: int | None = None,
-) -> Decimal:
-    """Compute total seniority amount from tiered rules.
-
-    Dispatches to count-based distribution when ``count_override`` is given,
-    otherwise uses month-based distribution from ``seniority_months``.
-
-    Returns:
-        Rounded total monthly seniority amount for the level.
-
-    Raises:
-        InvalidInputError: If both ``seniority_months`` and ``count_override``
-            are ``None``.
-    """
-    if count_override is not None:
-        remaining = count_override
-        total = _ZERO
-        for tier in tiers:
-            if remaining <= 0:
-                break
-            amount_ts = tier.amount_by_level.get(level_code)
-            amount = amount_ts.value_at(as_of) if amount_ts is not None else _ZERO
-            tier_count = min(remaining, tier.maximum_count)
-            total += amount * Decimal(tier_count)
-            remaining -= tier_count
-        return money(total)
-    # month-based path
-    if seniority_months is None:
-        msg = "seniority_months is required when count_override is not given"
-        raise InvalidInputError(msg, feature="seniority")
-    remaining_m = seniority_months
-    total = _ZERO
-    for tier in tiers:
-        amount_ts = tier.amount_by_level.get(level_code)
-        amount = amount_ts.value_at(as_of) if amount_ts is not None else _ZERO
-        count = min(remaining_m // tier.cadence_months, tier.maximum_count)
-        total += amount * Decimal(count)
-        remaining_m -= tier.maximum_count * tier.cadence_months
-        if remaining_m < 0:
-            break
-    return money(total)
 
 
 def seniority_maximum(
@@ -221,7 +148,7 @@ def _resolve_seniority_count(
     maximum = seniority_maximum(seniority_rules, level_code, worker_category)
     if seniority_months is not None:
         if seniority_rules.tiers:
-            count = _count_from_tiers(seniority_rules.tiers, seniority_months)
+            count = count_from_tiers(seniority_rules.tiers, seniority_months)
         else:
             first = seniority_first_cadence(
                 seniority_rules, level_code, worker_category
@@ -267,8 +194,9 @@ def _seniority_amount(
     Returns:
         Rounded monthly seniority amount in EUR.
     """
-    # Excluded categories receive no seniority increment (R18).
-    if worker_category in seniority_rules.excluded_categories:
+    # No increment due, or an excluded category: no amount is read, so a
+    # series not yet in force on ``as_of`` does not matter.
+    if count <= 0 or worker_category in seniority_rules.excluded_categories:
         return _ZERO
     # Apprentices accrue only the CCNL apprentice-specific increment (if
     # any); the level increments start after qualification.  The chain
@@ -282,7 +210,7 @@ def _seniority_amount(
         return money(raw * count)
     if seniority_rules.tiers:
         # Use months-based distribution when available; fall back to count.
-        return _resolve_tier_amount(
+        return resolve_tier_amount(
             seniority_rules.tiers,
             level_code,
             as_of,

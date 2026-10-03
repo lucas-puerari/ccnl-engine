@@ -10,17 +10,20 @@ refused as out of scope.
 
 from __future__ import annotations
 
-import contextlib
 from datetime import date
+from decimal import Decimal
 
 import pytest
 
 from ccnl_engine import (
+    BlockerCode,
+    CalculationDecision,
     CcnlEngineError,
     EmployerProfile,
     Employment,
     Headcount,
     InvalidInputError,
+    MissingRuleError,
     OutOfScopeError,
     PayrollEngine,
     PayrollRun,
@@ -50,34 +53,119 @@ def _regular(
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=ValueError,
-    reason="a rule series not yet valid escapes as a bare ValueError",
-)
-@pytest.mark.parametrize(
-    "seniority",
-    [None, SeniorityFact(0, date(2026, 6, 1), SenioritySource.PAYSLIP)],
-    ids=["seniority_not_given", "zero_seniority"],
-)
-def test_rule_series_not_yet_valid_is_a_typed_error(
-    seniority: SeniorityFact | None,
-) -> None:
-    """Grafica editoria AIEG, level E, June 2026.
+def _grafica_e(month: int, months_of_service: int | None) -> Employment:
+    """Grafica editoria AIEG, level E, seniority known on the run month.
 
-    The base pay of June exists; the seniority amount series starts on
-    1 July 2026.  Today the run reads the series before multiplying by the
-    increment count and raises ``ValueError: no value for 2026-06-01``,
-    even with zero increments due.
+    The base pay of every month of 2026 is in the bundle; the seniority
+    amount series starts on 1 July 2026 and the months before are a gap
+    the data declares ``missing``.
+
+    Returns:
+        The employment, with ``months_of_service`` as of the run month.
     """
-    employment = Employment(
+    return Employment(
         ccnl_slug="grafica-editoria-aieg.json",
         level_code="E",
-        seniority=seniority,
+        seniority=(
+            None
+            if months_of_service is None
+            else SeniorityFact(
+                months_of_service, date(2026, month, 1), SenioritySource.PAYSLIP
+            )
+        ),
     )
 
-    with contextlib.suppress(CcnlEngineError):  # A typed error is the contract.
-        _regular(employment, month=6)
+
+def _seniority_decision(result: PeriodResult) -> CalculationDecision:
+    (decision,) = [d for d in result.decisions if d.capability == "seniority"]
+    return decision
+
+
+def test_rule_series_not_yet_valid_without_seniority_is_a_missing_fact() -> None:
+    """Level E in June 2026, seniority not given.
+
+    No increment is counted without the fact, so the missing amount series
+    is never read: the run returns a result whose seniority is a missing
+    fact, not payable.
+    """
+    result = _regular(_grafica_e(6, None), month=6)
+
+    decision = _seniority_decision(result)
+    assert decision.reason_code == "required_fact_missing"
+    assert decision.amount is None
+    assert (BlockerCode.MISSING_FACT, None, "seniority") in {
+        (b.code, b.feature, b.detail) for b in result.blockers
+    }
+    assert result.is_payable is False
+
+
+def test_rule_series_not_yet_valid_with_zero_increments_is_computed() -> None:
+    """Level E in June 2026, no month of service: no increment is due.
+
+    Zero increments pay zero whatever the amount of one increment, so the
+    run does not read the series and confirms a zero seniority.
+    """
+    result = _regular(_grafica_e(6, 0), month=6)
+
+    decision = _seniority_decision(result)
+    assert decision.reason_code == "zero_confirmed"
+    assert decision.amount == Decimal(0)
+
+
+def test_increments_due_where_the_series_is_missing_raise_a_typed_error() -> None:
+    """Level E in June 2026, ten years of service: five increments due.
+
+    Their amount before July 2026 is not in the bundle: the run raises
+    :class:`MissingRuleError` naming the CCNL, the feature, the date, the
+    declared gap and the first date the amount is known.
+    """
+    with pytest.raises(MissingRuleError) as raised:
+        _regular(_grafica_e(6, 120), month=6)
+
+    error = raised.value
+    assert isinstance(error, CcnlEngineError)
+    assert error.code == "missing_rule"
+    assert error.ruleset == "grafica-editoria-aieg"
+    assert error.feature == "seniority"
+    assert error.as_of == date(2026, 6, 1)
+    assert error.gap_kind == "missing"
+    assert error.remediation is not None
+    assert "2026-07-01" in error.remediation
+
+
+def test_increments_on_the_first_date_of_the_series_are_paid() -> None:
+    """Level E in July 2026, ten years of service: five increments.
+
+    Source: kitech.it, Grafici July 2026 breakdown, scatto of level E
+    10.33 EUR, at most five biennial increments.  Ten years (120 months)
+    mature 1 + (120 - 24) // 24 = 5 increments: 5 x 10.33 = 51.65 EUR.
+    """
+    result = _regular(_grafica_e(7, 120), month=7)
+
+    decision = _seniority_decision(result)
+    assert decision.reason_code == "increments_applied"
+    assert decision.amount == Decimal("51.65")
+
+
+def test_run_before_the_first_tranche_raises_a_typed_error() -> None:
+    """ANAS, first level, January 2026.
+
+    The bundle has the ANAS pay tables from 1 March 2026: a run of January
+    has no base salary and raises :class:`MissingRuleError`, not a bare
+    ``ValueError``.
+    """
+    employment = Employment(ccnl_slug="anas.json", level_code="C1", seniority=None)
+
+    with pytest.raises(MissingRuleError) as raised:
+        _regular(employment, month=1)
+
+    error = raised.value
+    assert error.ruleset == "anas"
+    assert error.feature == "base_salary"
+    assert error.as_of == date(2026, 1, 1)
+    assert error.gap_kind is None
+    assert error.remediation is not None
+    assert "2026-03-01" in error.remediation
 
 
 @pytest.mark.xfail(

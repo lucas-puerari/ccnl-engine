@@ -11,11 +11,13 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.contract.domain.validity import (
-    SalaryGapError,
     SalaryGapKind,
+    SeriesGapError,
     TimeSeries,
     ValidityPeriod,
+    rule_scope,
 )
+from ccnl_engine.shared.domain.errors import MissingRuleError
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -152,7 +154,7 @@ class TestTimeSeriesValueAt:
     def test_before_start_raises(self) -> None:
         """value_at raises ValueError for a day before the first period."""
         ts = _series(_period("2025-01-01", None))
-        with pytest.raises(ValueError, match="series starts"):
+        with pytest.raises(ValueError, match="rule starts"):
             ts.value_at(date(2024, 12, 31))
 
     def test_single_period_on_start(self) -> None:
@@ -194,7 +196,7 @@ class TestTimeSeriesValueAt:
         p0 = _period("2024-01-01", "2025-01-01", "100.00")
         p1 = _period("2025-01-01", None, "120.00")
         ts = _series(p0, p1)
-        with pytest.raises(ValueError, match="series starts"):
+        with pytest.raises(ValueError, match="rule starts"):
             ts.value_at(date(2023, 12, 31))
 
 
@@ -255,40 +257,40 @@ class TestValidityPeriodGap:
 
 
 class TestTimeSeriesValueAtGap:
-    """value_at raises SalaryGapError when the active period is a gap."""
+    """value_at raises SeriesGapError when the active period is a gap."""
 
     def test_single_gap_period_raises_salary_gap_error(self) -> None:
-        """value_at on a date within a single gap period raises SalaryGapError."""
+        """value_at on a date within a single gap period raises SeriesGapError."""
         p = _gap_period("2024-01-01", None, SalaryGapKind.MISSING)
         ts = _series(p)
-        with pytest.raises(SalaryGapError):
+        with pytest.raises(SeriesGapError):
             ts.value_at(date(2024, 6, 1))
 
     def test_gap_error_carries_gap_kind(self) -> None:
-        """SalaryGapError.gap_kind equals the period's gap_kind."""
+        """SeriesGapError.gap_kind equals the period's gap_kind."""
         p = _gap_period("2024-01-01", None, SalaryGapKind.NOT_APPLICABLE)
         ts = _series(p)
-        with pytest.raises(SalaryGapError) as exc_info:
+        with pytest.raises(SeriesGapError) as exc_info:
             ts.value_at(date(2025, 1, 1))
         assert exc_info.value.gap_kind == SalaryGapKind.NOT_APPLICABLE
 
     def test_gap_error_is_value_error(self) -> None:
-        """SalaryGapError is a subclass of ValueError."""
+        """SeriesGapError is a subclass of ValueError."""
         p = _gap_period("2024-01-01", None, SalaryGapKind.UNKNOWN)
         ts = _series(p)
-        with pytest.raises(ValueError, match="explicit gap"):
+        with pytest.raises(ValueError, match="unknown gap"):
             ts.value_at(date(2024, 3, 1))
 
     def test_gap_in_middle_raises_for_gap_date(self) -> None:
-        """value_at on the gap range raises SalaryGapError; flanking periods work."""
+        """value_at on the gap range raises SeriesGapError; flanking periods work."""
         p0 = _period("2023-01-01", "2024-01-01", "1000.00")
         gap = _gap_period("2024-01-01", "2025-01-01", SalaryGapKind.MISSING)
         p1 = _period("2025-01-01", None, "1100.00")
         ts = _series(p0, gap, p1)
         # Before gap: normal value
         assert ts.value_at(date(2023, 6, 1)) == Decimal("1000.00")
-        # Inside gap: SalaryGapError
-        with pytest.raises(SalaryGapError) as exc_info:
+        # Inside gap: SeriesGapError
+        with pytest.raises(SeriesGapError) as exc_info:
             ts.value_at(date(2024, 6, 1))
         assert exc_info.value.gap_kind == SalaryGapKind.MISSING
         # After gap: normal value
@@ -302,3 +304,99 @@ class TestTimeSeriesValueAtGap:
         assert p is not None
         assert p.is_gap
         assert p.gap_kind == SalaryGapKind.NOT_APPLICABLE
+
+
+# ---------------------------------------------------------------------------
+# SeriesGapError and rule_scope
+# ---------------------------------------------------------------------------
+
+
+class TestSeriesGapError:
+    """The reason and remediation of a date without a value."""
+
+    def test_before_start_names_the_first_date(self) -> None:
+        """Before the series the error names the date it starts on."""
+        ts = _series(_period("2026-07-01", None))
+        with pytest.raises(SeriesGapError) as raised:
+            ts.value_at(date(2026, 6, 1))
+        gap = raised.value
+        assert (gap.day, gap.gap_kind, gap.resumes_on) == (
+            date(2026, 6, 1),
+            None,
+            date(2026, 7, 1),
+        )
+        assert "Compute a period from 2026-07-01" in gap.remediation
+
+    def test_open_ended_gap_has_no_next_date(self) -> None:
+        """An open-ended gap asks for a bundle update."""
+        ts = _series(_gap_period("2024-01-01", None, SalaryGapKind.UNKNOWN))
+        with pytest.raises(SeriesGapError) as raised:
+            ts.value_at(date(2026, 6, 1))
+        gap = raised.value
+        assert gap.detail == "the bundle declares a unknown gap until further notice"
+        assert gap.remediation == (
+            "Update the knowledge bundle with the values of this period."
+        )
+
+
+class TestAppliesOn:
+    """A rule is out of force only in a ``not_applicable`` gap."""
+
+    def test_applies_on(self) -> None:
+        """Value, missing gap and before start count as in force."""
+        ts = _series(
+            _gap_period("2024-01-01", "2025-01-01", SalaryGapKind.NOT_APPLICABLE),
+            _gap_period("2025-01-01", "2026-01-01", SalaryGapKind.MISSING),
+            _period("2026-01-01", None),
+        )
+        assert ts.applies_on(date(2023, 6, 1)) is True
+        assert ts.applies_on(date(2024, 6, 1)) is False
+        assert ts.applies_on(date(2025, 6, 1)) is True
+        assert ts.applies_on(date(2026, 6, 1)) is True
+
+
+class TestRuleScope:
+    """rule_scope turns a series gap into a located MissingRuleError."""
+
+    def test_translates_a_gap(self) -> None:
+        """A gap met within the scope is raised as MissingRuleError."""
+        ts = _series(
+            _gap_period("2024-01-01", "2026-07-01", SalaryGapKind.MISSING),
+            _period("2026-07-01", None),
+        )
+        with (
+            pytest.raises(MissingRuleError) as raised,
+            rule_scope(ruleset="ccnl-x", feature="seniority"),
+        ):
+            ts.value_at(date(2026, 6, 1))
+        error = raised.value
+        assert (error.ruleset, error.feature, error.gap_kind, error.as_of) == (
+            "ccnl-x",
+            "seniority",
+            "missing",
+            date(2026, 6, 1),
+        )
+        assert isinstance(error.__cause__, SeriesGapError)
+
+    def test_nested_scopes_keep_the_inner_feature(self) -> None:
+        """The inner scope names the feature, the outer one the ruleset."""
+        ts = _series(_period("2026-07-01", None))
+        with (
+            pytest.raises(MissingRuleError) as raised,
+            rule_scope(ruleset="ccnl-x", feature="base_salary"),
+            rule_scope(feature="seniority"),
+        ):
+            ts.value_at(date(2026, 6, 1))
+        error = raised.value
+        assert (error.ruleset, error.feature, error.gap_kind) == (
+            "ccnl-x",
+            "seniority",
+            None,
+        )
+        assert error.remediation is not None
+
+    def test_no_gap_passes_through(self) -> None:
+        """A value read within the scope is returned unchanged."""
+        with rule_scope(feature="seniority"):
+            value = _series(_period("2026-01-01", None, "5")).value_at(date(2026, 6, 1))
+        assert value == Decimal(5)

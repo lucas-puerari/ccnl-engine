@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 import pytest
 
 from ccnl_engine.shared.domain.errors import (
@@ -9,6 +11,7 @@ from ccnl_engine.shared.domain.errors import (
     CcnlEngineError,
     DataIntegrityError,
     InvalidInputError,
+    MissingRuleError,
     OutOfScopeError,
     UnknownCcnlError,
     UnknownLevelError,
@@ -271,6 +274,41 @@ class TestUnsupportedTaxYearError:
         assert err.remediation is not None
 
 
+class TestMissingRuleError:
+    """MissingRuleError names the rule, the date and the declared gap."""
+
+    def test_without_context(self) -> None:
+        """Without a feature or ruleset the message names a rule."""
+        err = MissingRuleError("the rule starts on 2026-07-01", as_of=date(2026, 6, 1))
+        assert isinstance(err, CcnlEngineError)
+        assert not isinstance(err, ValueError)
+        assert err.code == "missing_rule"
+        assert err.as_of == date(2026, 6, 1)
+        assert err.gap_kind is None
+        assert err.detail == "the rule starts on 2026-07-01"
+        assert str(err) == "no rule value on 2026-06-01: the rule starts on 2026-07-01"
+
+    def test_with_context(self) -> None:
+        """The feature and ruleset are named in the message and stored."""
+        err = MissingRuleError(
+            "a gap",
+            as_of=date(2026, 6, 1),
+            gap_kind="missing",
+            feature="seniority",
+            ruleset="grafica-editoria-aieg",
+            remediation="fix it",
+        )
+        assert str(err) == (
+            "no seniority value of grafica-editoria-aieg on 2026-06-01: a gap"
+        )
+        assert (err.feature, err.ruleset, err.gap_kind, err.remediation) == (
+            "seniority",
+            "grafica-editoria-aieg",
+            "missing",
+            "fix it",
+        )
+
+
 class TestPublicErrorCodes:
     """PUBLIC_ERROR_CODES is a stable contract."""
 
@@ -282,6 +320,7 @@ class TestPublicErrorCodes:
         "invalid_input",
         "missing_required_fact",
         "unsupported_tax_year",
+        "missing_rule",
     })
 
     def test_exact_set(self) -> None:
@@ -301,6 +340,7 @@ class TestPublicErrorCodes:
             DataIntegrityError("x"),
             InvalidInputError("x"),
             UnsupportedTaxYearError(2027),
+            MissingRuleError("x", as_of=date(2026, 6, 1)),
         ]
         for err in instances:
             assert err.code in PUBLIC_ERROR_CODES, (

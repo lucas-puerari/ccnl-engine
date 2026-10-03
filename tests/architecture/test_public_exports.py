@@ -20,6 +20,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "Payability",
     "ResultAssurance",
     "LimitationStatus",
+    "MissingRuleError",
     "ModelLimitation",
     "MonetaryImpact",
     "ResultBlocker",

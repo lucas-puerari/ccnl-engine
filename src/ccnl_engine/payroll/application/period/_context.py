@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.application._period_utils import (
     _apply_extra_month_policy,
     _effective_resolver,
@@ -191,6 +192,9 @@ def _load_contract(
         period_id.year, period_id.month, request.payment_date
     )
     level = ccnl.level_by_code(request.level_code)
+    # The base salary of the level is the first rule every run reads.
+    with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
+        level.base_salary.value_at(tctx.competence)
     date_ctx = EffectiveDateContext.from_period(
         period_id.year, period_id.month, tctx.payment
     )

@@ -20,6 +20,9 @@ from ccnl_engine.contract.domain.identity._meta import (
     CCNLMeta,
     CCNLVerification,
 )
+from ccnl_engine.contract.domain.identity._series_coverage import (
+    assert_series_coverage,
+)
 from ccnl_engine.contract.domain.seniority import SeniorityIncrements
 from ccnl_engine.contract.domain.validation import (
     _assert_level_provenance,
@@ -81,6 +84,7 @@ class CCNL(BaseModel):
         self._assert_apprenticeship_tracks()
         self._assert_provenance_complete()
         self._assert_limitation_levels()
+        assert_series_coverage(self.levels, self.parameters)
         return self
 
     @property
