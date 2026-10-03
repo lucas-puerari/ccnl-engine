@@ -76,7 +76,7 @@ take most of the month. The engine then:
 - withholds IRPEF first, up to the pay left, and the surtax from what
   remains, so the net pay is never negative because of the taxes; a
   conguaglio refund is never capped;
-- carries what it could not withhold in `state.ytd.shortfall` (`irpef`,
+- carries what it could not withhold in `state.cash.shortfall` (`irpef`,
   `surtax`) and withholds it in full on the next run, before the share of
   the rest of the balance;
 - records a `withholding_shortfall` decision (`withholding_capped` when it
@@ -146,8 +146,8 @@ changes: the shortfall is communicated to the worker with the provisional
 issue above. With it, on the conguaglio of year N:
 
 - the IRPEF the pay cannot cover becomes a `DeferredShortfall` in
-  `state.obligations.deferred_shortfall`, with the date of the request and
-  the pay period of the conguaglio; `state.ytd.shortfall.irpef` is zero and
+  `state.cash.obligations.deferred_shortfall`, with the date of the request and
+  the pay period of the conguaglio; `state.cash.shortfall.irpef` is zero and
   a `shortfall_deferral` decision `shortfall_deferred` records the amount.
   `close_tax_year` carries it into N+1;
 - only the IRPEF is deferred, the tax the norm names; surtax and credit
@@ -174,7 +174,7 @@ anno", instituted by ris. AdE 6/E/2021 for the withholding of art. 23 c. 3
 second sentence, with N as the reference year. The interest takes the code
 of the IRPEF it refers to because the norm remits it "con le modalità
 previste per le somme cui si riferisce"; no act gives it a code of its own.
-Neither amount enters the IRPEF withheld of N+1 (`state.ytd.tax.irpef`).
+Neither amount enters the IRPEF withheld of N+1 (`state.cash.tax.irpef`).
 
 What the conguaglio of N+1 or the last run of the employment still leaves
 is dropped with a provisional `deferred_shortfall_unrecovered` issue and
@@ -508,7 +508,7 @@ conguaglio".
 The deduction lowers the IRPEF withheld, so what a run recognizes is how
 much lower its withholding is than the withholding without the deduction,
 on the same projection. It accumulates in
-`state.ytd.ulteriore_detrazione` (a `CreditAccount`). A run that takes part
+`state.cash.ulteriore_detrazione` (a `CreditAccount`). A run that takes part
 of it back before the conguaglio (a bonus above the band) records it as
 recovered by the withholding: that part is not found at the conguaglio and
 is not spread again. On the last withholding slot:

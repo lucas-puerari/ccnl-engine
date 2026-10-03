@@ -109,8 +109,9 @@ keep selecting the contractual values (salary table, seniority, allowances):
   December 2026 run paid on 13 January 2027 does not close into the 2026
   state and raises `InvalidInputError`. Open the new year with
   `PayrollEngine.close_tax_year()` on the closing state of the last run of
-  the previous year: it resets the year-to-date state and carries the
-  obligations, such as an installment recovery. See
+  the previous year: it resets the tax cash state and carries the
+  obligations, such as an installment recovery, and the competence runs
+  already closed. See
   [Payroll state and the year change](payroll-state.md).
 
 ## Full year: `calculate_year()`
@@ -336,7 +337,7 @@ result.period_gross         # gross entitlement for the period (before absence d
 result.period_net           # net pay for this period
 result.period_employer_cost # total employer cost (gross + contributions + TFR accrual)
 result.unpaid_absence_deduction  # wages withheld for unpaid absences
-result.closing_state        # tax year state and obligations: opening_state of the next run
+result.closing_state        # accrual and tax cash state: opening_state of the next run
 result.pay_items            # all pay items produced
 result.ledger_entries       # full accounting ledger
 result.capability_report    # what the run executed against the capability registry

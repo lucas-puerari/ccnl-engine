@@ -179,7 +179,7 @@ holiday = HolidayWorkEvent(event_date=date(2026, 3, 1), supplement_amount=Decima
 ### Annual cap account
 
 The used part of the cap is a year-to-date account of the tax year state,
-`PeriodState.ytd.work_time_regime` (`RegimeCapAccount.used`). It restarts
+`PeriodState.cash.work_time_regime` (`RegimeCapAccount.used`). It restarts
 at zero when `close_tax_year()` opens the next tax year. Each supplement
 gets the substitute rate only on `min(amount, cap - used)`; the rest is
 ordinary. The account grows by the eligible amount after every supplement,

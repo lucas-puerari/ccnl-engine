@@ -1,43 +1,85 @@
 # Payroll state and the year change
 
 Every run opens with a `PeriodState` and returns the next one as
-`result.closing_state`. The state has two parts with different lifetimes:
+`result.closing_state`. Competence and cash are two clocks, so the state
+has two parts with different lifetimes:
 
 | Part | Type | Lifetime | Holds |
 |---|---|---|---|
-| `state.ytd` | `TaxYearState` | one tax year | run counters, withholding slots, closed run ids, YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
-| `state.obligations` | `EmploymentObligations` | the employment | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) surtax a conguaglio determined, still to withhold (`surtax`), and IRPEF of a conguaglio deferred on the worker's written request (`deferred_shortfall`, art. 23 c. 3 DPR 600/1973) |
+| `state.accrual` | `EmploymentAccrualState` | the employment | competence runs closed (`competence_runs`, a tuple of `PayrollRunId` in closing order): the months and extra months of each competence year already paid |
+| `state.cash` | `TaxCashState` | one tax year | payments of the tax year (`payments`, a tuple of `PaymentId`), withholding payments closed and slots of the schedule, YTD earnings, fringe, tax withheld (with the municipal acconto withheld), trattamento integrativo, somma esente, night/holiday/shift cap, IRPEF and surtax not yet withheld (`shortfall`) |
+| `state.cash.obligations` | `EmploymentObligations` | carried from year to year | installment recoveries still running (trattamento integrativo, D.L. 3/2020 art. 1 c. 3; somma esente and ulteriore detrazione, L. 207/2024 art. 1 c. 7) surtax a conguaglio determined, still to withhold (`surtax`), and IRPEF of a conguaglio deferred on the worker's written request (`deferred_shortfall`, art. 23 c. 3 DPR 600/1973) |
 
-`state.tax_year` is a shortcut for `state.ytd.tax_year`.
+`state.tax_year` is a shortcut for `state.cash.tax_year`.
 
 ## Within a tax year
 
-Pass the `closing_state` of a run as the `opening_state` of the next run of
-the same tax year. `PeriodState.zero()` opens the first run of a new
-employment. A run attributed to another tax year
-(see [tax year attribution](index.md)) is rejected with `InvalidInputError`.
+Pass the `closing_state` of a run as the `opening_state` of the next run.
+`PeriodState.zero()` opens the first run of a new employment. A run whose
+payment is attributed to another tax year than the state
+(see [tax year attribution](index.md)) is rejected with
+`InvalidInputError`.
 
-## Closed runs
+## Competence runs and payments
 
-`state.ytd.closed_run_ids` is a tuple of `PayrollRunId` in closing order.
+A run is the competence of a month or an extra month; a payment is the cash
+event that settles it. December 2026 paid on 13 January 2027 is a 2026
+competence run and a payment of tax year 2027 (TUIR art. 51 c. 1).
+
+- `state.accrual.competence_runs` lists the runs closed over the whole
+  employment. `accrual.regular_months(year)` counts the regular months of a
+  competence year, at most 12 because a run closes once;
+  `accrual.extra_months_paid(year)` lists its tredicesima and
+  quattordicesima runs.
+- `state.cash.payments` lists the payments of the tax year as `PaymentId`
+  (`run_id` and `payment_date`; text form `"2026-12-regular@2027-01-13"`,
+  read back with `PaymentId.parse()`). Their number has no maximum: a tax
+  year with a late December holds fifteen payments on a CCNL with
+  tredicesima and quattordicesima.
+  `cash.prior_competence_payments` are the payments of an earlier
+  competence year.
+- `state.cash.withholding_payments_closed` counts the payments that took an
+  IRPEF withholding slot (every run kind but adjustment), with no maximum.
+
 A `PayrollRunId` holds the year and month of the run and its `RunKind`; its
 text form is the `run_id` of `PayrollRun` (`"2026-12-thirteenth"`), and
 `PayrollRunId.parse()` reads it back. A period computed without a `run`
 closes the regular run of its month.
 
-A run is rejected with `InvalidInputError` (feature `payroll_run`) when:
+A run is rejected with `InvalidInputError` before any amount is computed
+when:
 
-- it was already closed in the tax year;
-- its year is after the tax year of the state;
-- it is a run of the tax year that comes before one already closed. Runs
-  close in payment order: by month, and within a month the regular payslip
-  before the tredicesima or quattordicesima, before a termination run.
+- its competence run is already closed, in this tax year or an earlier
+  one: the accrual state is carried across the year change (feature
+  `accrual_state`);
+- it is a run of a competence year that comes before one of the same year
+  already closed. Runs close in payment order: by month, and within a month
+  the regular payslip before the tredicesima or quattordicesima, before a
+  termination run. An adjustment run, which corrects a run already closed,
+  is not ordered; runs of different competence years are not ordered
+  against each other (feature `accrual_state`);
+- its payment belongs to another tax year than the state (feature
+  `tax_cash_state` or `tax_year`).
 
-Two runs are not ordered: an adjustment run, which corrects a run already
-closed, and a run of an earlier year paid late, which belongs to the tax
-year of its payment (TUIR art. 51 c. 1). A `TaxYearState` built by hand
-follows the same rules, needs a `tax_year` when it lists closed runs, and
-cannot list more regular or slot-consuming runs than its counters.
+Closing is idempotent by payment: the same request on the same opening
+state yields the same closing state, and a state that already closed the
+payment rejects it, so a retry never counts competence, gross or
+withholdings twice. A state built by hand follows the same rules: a
+`TaxCashState` needs a `tax_year` when it lists payments, each of that tax
+year and of a different run, and cannot list more slot-consuming payments
+than `withholding_payments_closed`; a `PeriodState` rejects a payment whose
+run the accrual state has not closed.
+
+## Withholding schedule of the tax year
+
+The IRPEF projection and the conguaglio run on a `WithholdingSchedule`: one
+slot per payment of the tax year, the last of which settles the year. A
+standalone run builds it from the standard calendar of the CCNL, preceded
+by the payments of an earlier competence year in the state and by the run
+itself when it is one. `calculate_year` builds it from the runs of the
+year, preceded by the late payments already closed in its opening state.
+With December 2026 paid on 13 January 2027, every run of 2027 sees fifteen
+slots and the conguaglio falls on the last payment of 2027.
 
 ## Year-to-date totals and credit accounts
 
@@ -64,8 +106,9 @@ share one account schema, `CreditAccount` (`TrattamentoAccount`,
 | `residual` | over-payment still to recover, `max(net - due, 0)` |
 
 The recovery plan is not in the account: it can outlast the tax year, so
-it lives in `state.obligations`, one per credit and origin year
-(`obligations.recovery_of(tax_year, kind)`).
+it lives in `state.cash.obligations`, one per credit and origin year
+(`obligations.recovery_of(tax_year, kind)`), carried across the year
+change.
 
 ## Somma esente
 
@@ -166,9 +209,12 @@ installment of every plan the conguaglio opened, with reason
 `PayrollEngine.close_tax_year(closing_state)` takes the closing state of the
 last run of year N and returns the opening state of N+1:
 
-- `ytd` restarts: no run closed, every YTD account at zero, bound to N+1.
-  This includes the night, holiday and shift cap account, which is annual.
-- `obligations` is carried unchanged. A recovery keeps the tax year that
+- `cash` restarts: no payment closed, every YTD account at zero, bound to
+  N+1. This includes the night, holiday and shift cap account, which is
+  annual.
+- `accrual` is carried unchanged: a competence run closed in N cannot be
+  paid again in N+1.
+- `cash.obligations` is carried unchanged. A recovery keeps the tax year that
   opened it; its remaining installments are due from the first run of N+1,
   one per run, until the last one, or at once on the last run of the
   employment. The surtax the conguaglio of N determined (regional surtax
@@ -184,7 +230,8 @@ withholding slot of the year closed. The state after December but before the
 tredicesima is rejected, and so is a hand-built state that never ran.
 
 Single runs computed with `PayrollEngine.calculate_period()` use the standard
-withholding schedule of the CCNL. For an employment that did not cover the
+withholding schedule of the CCNL, with the late payments of an earlier
+competence year in front. For an employment that did not cover the
 whole year that schedule is never completed, so `close_tax_year` rejects the
 state: compute the year with `calculate_year`, whose schedule follows the
 employment, or build the N+1 state with `OpeningBalances`.
@@ -243,7 +290,7 @@ by the conguaglio of the current year runs inside the conguaglio, as before.
 ## Surtax carried into the next year
 
 The conguaglio of N determines the surtax of N and the municipal acconto
-of N+1 and stores them in `obligations.surtax`, one `SurtaxObligation` per
+of N+1 and stores them in `cash.obligations.surtax`, one `SurtaxObligation` per
 component (`SurtaxComponent.REGIONAL_BALANCE`, `MUNICIPAL_BALANCE`,
 `MUNICIPAL_ADVANCE`), with the tax year of the conguaglio, the region or
 municipality it is due to and a `RecoveryPlan` of its installments:
@@ -274,11 +321,11 @@ for the rules and the decisions.
 
 When `PriorYearTaxFacts.shortfall_deferral` holds the worker's written
 request, the conguaglio of N moves the IRPEF its pay cannot cover from
-`ytd.shortfall.irpef` to `obligations.deferred_shortfall`: one
+`cash.shortfall.irpef` to `cash.obligations.deferred_shortfall`: one
 `DeferredShortfall(tax_year=N, signed_on, deferred_from, irpef)` per
 conguaglio, `deferred_from` being the first day of the pay period of the
 conguaglio (`obligations.deferred_of(N)`). Without the request the
-shortfall stays in `ytd.shortfall` and ends with the year, as before.
+shortfall stays in `cash.shortfall` and ends with the year, as before.
 
 `close_tax_year` carries it. From the March pay period of N+1 every run
 other than an adjustment withholds from its net pay, after every other
@@ -287,7 +334,7 @@ line, the largest principal whose interest (0.50% a month since
 `deferred_irpef_{N}_interest_{run_id}` (`ORDINARY_TAX`, code 1066), and
 keeps the rest. The conguaglio of N+1 and the last run of the employment
 drop what is left with a provisional `deferred_shortfall_unrecovered`
-issue. These lines do not enter `ytd.tax.irpef` of N+1: the invariant
+issue. These lines do not enter `cash.tax.irpef` of N+1: the invariant
 `irpef_withheld_continuity` leaves out the entries coded 1066, and
 `irpef_annual_reconciliation` of N counts the deferred IRPEF with the
 withheld one. See
@@ -371,8 +418,9 @@ provider for one tax year, with the recoveries still running, and validates
 them with the rules of the state the engine produces: every amount
 non-negative with at most two decimals, credit recovered not above
 recognized (`trattamento_*`, `somma_esente_*`), taxed fringe not above fringe
-value, closed runs (`closed_run_ids`, a tuple of `PayrollRunId`) of the tax
-year and in order, no recovery opened after the tax year, surtax
+value, payments (`payments`, a tuple of `PaymentId`) of the tax year, each
+of a different run and in order within its competence year, with
+`withholding_payments_closed` at least the slot-consuming ones, no recovery opened after the tax year, surtax
 obligations (`surtax_obligations`) determined by the conguaglio of an
 earlier year, an acconto withheld (`municipal_advance_withheld`) not
 above the surtax withheld, and IRPEF deferred on written request

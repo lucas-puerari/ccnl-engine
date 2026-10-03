@@ -141,6 +141,13 @@ print(len(year.period_results))  # → 14
 next_year = engine.close_tax_year(year.closing_state)
 ```
 
+The state keeps competence and cash apart: `closing_state.accrual` lists the
+runs closed over the employment, `closing_state.cash` the payments and
+year-to-date totals of the tax year. A December paid after 12 January is a
+payment of the next tax year (TUIR art. 51 c. 1) and takes one more
+withholding slot there; see
+[Payroll state and the year change](docs/engine/payroll-state.md).
+
 `YearInput.periods` maps a month (1-12) or a run id such as
 `"2026-12-thirteenth"` to the `PeriodFacts` of that run; runs without an entry
 take `default_facts`.

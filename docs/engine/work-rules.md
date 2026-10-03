@@ -116,7 +116,7 @@ derive it from `family_composition`.
 The threshold is all or nothing (AdE circ. 4/E of 16 May 2025, par. 2.7): an
 amount equal to the threshold is still exempt, but once the year total
 exceeds it the whole amount of the year is taxable, not only the excess. The
-year total comes from `opening_state.ytd.fringe`, so chain the closing state
+year total comes from `opening_state.cash.fringe`, so chain the closing state
 of each run into the next. The benefit that crosses the threshold makes the
 earlier exempt amounts of the year taxable in its run. For example, 600 EUR
 in February is exempt; another 600 EUR in March brings the year to 1,200 EUR
