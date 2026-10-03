@@ -85,7 +85,9 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP LEVEL 6: percentages not found in any consulted source (previdenza-professionisti.it lists only tracks for levels 2-3, 4, 5). Level 6-0 omitted from apprenticeship tracks."
+        "text": "APPRENTICESHIP LEVEL 6: percentages not found in any consulted source (previdenza-professionisti.it lists only tracks for levels 2-3, 4, 5). Level 6-0 omitted from apprenticeship tracks.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -5251,7 +5253,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "228d346db02a23f185fd59a3080d6810027a28d6bee257099ba23efe53920dc1",
+    "source_hash": "f9b3a7b7ea292b9e5a71ac9ced4051fb66febc5c4e3780aeb5b277cbb3424cd2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

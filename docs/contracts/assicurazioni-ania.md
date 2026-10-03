@@ -40,7 +40,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
 ### Verifica
 
@@ -108,13 +108,28 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "assicurazioni-ania/seniority_modal_class_difference · seniority · impact yes · open"
     Seniority increment = modal per-class difference in the 1/14 monthly table (Allegato 2/B); classes above CL01 may differ from the official table by ±0.02. Source: Allegato 2/B, Rinnovo 13/05/2026.
 
-!!! warning ""
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Replace the modal per-class difference with the official Allegato 2/B amounts per class.
+
+!!! warning "assicurazioni-ania/inps_credit_rate_unverified · inps_employer · impact unknown · open"
     INPS employer_rate 26.76% flat from kitech.it (Credito e Assicurazioni 2026); reuses 2026-credito.json. Verify against the annual INPS circular.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the 26.76% employer rate against the annual INPS circular for the credit and insurance sector.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

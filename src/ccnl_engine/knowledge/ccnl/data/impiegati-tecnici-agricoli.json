@@ -86,7 +86,16 @@
       },
       {
         "kind": "simplification",
-        "text": "TWO TRANCHES NOT FULLY MODELLED. The CCNL A021 (signed 18/06/2024) establishes two tranches: +5% retroactive to 01/04/2024 and +1,9% from 01/01/2025 (source: dottrinalavoro.it; FLAI PDF; ilccnl.it). The file models only the first tranche (valid_from 2024-07-01, which likely reflects the 01/04/2024 increase with the official CNEL deposit date). The 01/01/2025 tranche is missing: approximate values are L1~1718.81 (1686.76×1.019) but exact official amounts not yet retrieved. Update valid_from to 2024-04-01 and add 2025-01-01 periods when confirmed from official source."
+        "text": "TWO TRANCHES NOT FULLY MODELLED. The CCNL A021 (signed 18/06/2024) establishes two tranches: +5% retroactive to 01/04/2024 and +1,9% from 01/01/2025 (source: dottrinalavoro.it; FLAI PDF; ilccnl.it). The file models only the first tranche (valid_from 2024-07-01, which likely reflects the 01/04/2024 increase with the official CNEL deposit date). The 01/01/2025 tranche is missing: approximate values are L1~1718.81 (1686.76×1.019) but exact official amounts not yet retrieved. Update valid_from to 2024-04-01 and add 2025-01-01 periods when confirmed from official source.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranche_2025_01_missing",
+          "applies_when": {
+            "effective_from": "2025-01-01"
+          },
+          "remediation": "Add the 01/01/2025 tranche (+1.9%) from the official table and move the first tranche to 2024-04-01."
+        }
       },
       {
         "kind": "info",
@@ -94,7 +103,16 @@
       },
       {
         "kind": "simplification",
-        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled."
+        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and Agrifondo (supplementary pension) bilateral contributions are not modelled.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "eban_agrifondo_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the EBAN and Agrifondo contributions as bilateral fund events, or model them."
+        }
       }
     ]
   },
@@ -616,7 +634,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.contratticcnl.it/ccnl/a021/",
     "verification_status": "unverified",
-    "source_hash": "a7d0bce8b1212036ea724f781d689d0c273508a9b9b6dcf677f70a8b5aba80c5",
+    "source_hash": "4f7e49bd8d6e83b7d5ebd61ec2eaec5ae4c744392e8f82d1c55a8ebcb7d7f1d0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

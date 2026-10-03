@@ -64,7 +64,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled."
+        "text": "APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "equal_apprenticeship_bands",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm the length of the three Art. 22 apprenticeship bands."
+        }
       },
       {
         "kind": "info",
@@ -1466,7 +1477,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "d18c47756a512751309d6064d7f9f4d13c595071848d88ae6eed3ed783a9bf76",
+    "source_hash": "1edb87750b223ff34a60e2338485000a06509a0ae241827bbd3f92a3934628af",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -51,23 +51,58 @@
       },
       {
         "kind": "simplification",
-        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted."
+        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables."
+        "text": "Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "derived_tranche_rounding",
+          "applies_when": {
+            "levels": [
+              "I4",
+              "I5",
+              "I6"
+            ],
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Replace the parameter-derived 2027 and 2028 tranches with the rounded CCNL tables."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported."
+        "text": "Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only)."
+        "text": "IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ind_funzione_transition_date",
+          "applies_when": {
+            "levels": [
+              "I6Q"
+            ]
+          },
+          "remediation": "Confirm the date IND_FUNZIONE moved from 103.00 to 120.00 EUR."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification."
+        "text": "Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "structural_rules_from_2021_text",
+          "remediation": "Verify the structural rules against the 2025 renewal text."
+        }
       },
       {
         "kind": "info",
@@ -985,7 +1020,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "ec9f45c3879c749d9ec1d7d9fc2963f850b5b74672862ae683aa212d0f5723a2",
+    "source_hash": "be0a0a9fc235198780178e026028694e61d1e30846077a902bdc6dcb4d1f98be",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

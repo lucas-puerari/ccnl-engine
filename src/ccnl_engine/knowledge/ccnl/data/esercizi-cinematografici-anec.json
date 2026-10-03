@@ -58,7 +58,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file."
+        "text": "SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "fpls_rates_approximated",
+          "remediation": "Add a dedicated FPLS contribution ruleset for cinema exhibition employees."
+        }
       },
       {
         "kind": "info",
@@ -1796,7 +1802,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "638131eee523d21fb9b4a1a8987c4b50377cce158226ded9267e4aa280b6123a",
+    "source_hash": "231f92f37fda824078da979818a0d8ca40ac201446018ddf86c9f654ff7a8841",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

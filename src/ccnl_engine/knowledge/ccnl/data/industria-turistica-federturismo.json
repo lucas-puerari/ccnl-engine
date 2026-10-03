@@ -49,7 +49,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed)."
+        "text": "SENIORITY CADENCE: file uses 36 months. Search for H05B 2025 suggests 'ogni due anni di servizio' (24 months) for this contract (lavoro-economia.it H05B, adapt.it). Contrasts with Confcommercio turismo (H05A) which changed from 36 to 48 in 2024 renewal. Cadence needs confirmation from primary CCNL H05B text; if 24 months, file needs correction. Maximum scatti: 6 (confirmed).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_cadence_unconfirmed",
+          "remediation": "Confirm the seniority cadence (36 or 24 months) against the H05B text."
+        }
       },
       {
         "kind": "info",
@@ -1366,7 +1372,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
     "verification_status": "unverified",
-    "source_hash": "d6e1f0846bf5c283a239589d1e73a2ddbd66b043453e48b450fd470da8c95f92",
+    "source_hash": "10fb56546ec6c91c2db71c6a96f504eb94e53e092b56e24869bf179c296dc74c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

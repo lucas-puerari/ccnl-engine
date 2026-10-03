@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -100,18 +100,35 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "servizi-postali-appalto-fise/conditional_integrative_allowance · base_salary · impact unknown · open"
     SIMPLIFICATION: indennità integrativa Art. 34 modelled as unconditional fixed allowance. Art. 34 restricts it to companies without second-level bargaining that don't pay other economic treatments verified over 4 years. Kitech totals confirm its inclusion in the national contractual floor.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 34 condition on second-level bargaining with an employer input.
+
+!!! warning "servizi-postali-appalto-fise/level_4s_seniority_amount · seniority · impact unknown · open"
     SIMPLIFICATION: L4S impiegati seniority amount (52.44) sourced from kitech.it proxy; the corresponding cell in the primary source PDF (p.85) is partially obscured by an adhesive note in the scan.
 
-!!! warning ""
+    **Applies when:** `seniority` applies; level in 4S.
+
+    **Remediation:** Confirm the level 4S seniority amount against a legible copy of the primary source.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
     SIMPLIFICATION: dest 5° apprenticeship not modelled — Allegato 10 places dest 5° apprentices at level 5 for the full 24-month duration (zero salary reduction; no structural levels_below > 0 is applicable).
 
-!!! warning ""
+!!! note ""
     SIMPLIFICATION: dest 3S° and dest 4S° apprenticeship not modelled — Allegato 10 names only ordinal destinations 1°-5°; S-level destinations are unaddressed in the accord text.
 
 ## Sources

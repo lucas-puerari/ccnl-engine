@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -105,16 +105,26 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01.
-
-!!! warning ""
+!!! warning "organizzazioni-allevatori-aia/third_tranche_sep_2026 · base_salary · impact yes · open"
     SIMPLIFICATION: Third tranche (Sep 2026) not modeled; per-level amounts not yet published in primary sources.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; from 2026-09-01.
+
+    **Remediation:** Add the September 2026 tranche once the per-level amounts are published.
+
+!!! warning "organizzazioni-allevatori-aia/quadri_function_allowance · base_salary · impact yes · open"
     SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.
+
+    **Applies when:** `base_salary` applies; level in 1/2, 1/3, 1/4, 1/5.
+
+    **Remediation:** Model the area 1 Quadri function allowance (minimum 13%).
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01.
 
 ## Sources
 

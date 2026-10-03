@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | una_tantum |
 
 ### Verifica
 
@@ -104,15 +104,28 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "terziario-confesercenti/lump_sum_2024_2025 · una_tantum · impact yes · open"
     One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase.
 
-!!! warning ""
+    **Applies when:** `una_tantum` applies; level in IV.
+
+    **Remediation:** Model the EUR 350 lump sum as a una tantum payment.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
     Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI.
 
-!!! warning ""
+!!! note ""
     Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII.
 
 ## Sources

@@ -56,15 +56,44 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission."
+        "text": "LEVEL 9 SENIORITY. Art. G23 seniority table lists amounts for levels 1S through 8 only. Level 9 is absent. Modelled as 0.00; not confirmed whether intentional exclusion or typographical omission.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_9_seniority_zero",
+          "applies_when": {
+            "levels": [
+              "9"
+            ]
+          },
+          "remediation": "Confirm whether level 9 is excluded from Art. G23 seniority increments."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments."
+        "text": "SUPPLEMENTARY ALLOWANCES. Role-conditional allowances (turno, campo, maneggio denaro, DPI) and the una tantum of EUR 500 (Art. G20, October 2025) are not modelled. All are attendance- or role-conditional or one-time payments.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "role_conditional_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the role- and attendance-conditional allowances as roles, and the una tantum as a una tantum payment."
+        }
       },
       {
         "kind": "simplification",
-        "text": "ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check."
+        "text": "ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "art_g6_reclassification",
+          "applies_when": {
+            "effective_from": "2026-03-01"
+          },
+          "remediation": "Retrieve the 23 March 2026 agreement and apply its effect on levels and salary tables."
+        }
       }
     ]
   },
@@ -2403,7 +2432,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "929e0ef0213bd1d9b5589e748393b340084485616c30467124ef4cc7aa0ec997",
+    "source_hash": "010d6707510ddc4b31a054a5b8e836e9285a565e06ffc56b1e9980f6a8d2c40d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

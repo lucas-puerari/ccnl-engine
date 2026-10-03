@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | worker_category |
 
 ### Verifica
 
@@ -105,12 +105,25 @@ percentage: 0.95
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "turismo-federalberghi/indicative_level_category · worker_category · impact unknown · open"
     The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction.
 
-!!! warning ""
+    **Applies when:** `worker_category` applies.
+
+    **Remediation:** Confirm the category of each level, or require the category in the request.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
     Layer 3 (overtime, night work, public holidays) out of scope.
 
 ## Sources

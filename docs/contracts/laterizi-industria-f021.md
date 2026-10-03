@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -111,13 +111,28 @@ Destination levels: `E`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "laterizi-industria-f021/level_e_first_period_one_below · base_salary · impact yes · open"
     APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; contract type in apprentice; level in E.
+
+    **Remediation:** Confirm the level E first period against Art. 9 and model it once a level two below exists.
+
+!!! warning "laterizi-industria-f021/asq_seniority_from_as · seniority · impact unknown · open"
     ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio).
+
+    **Applies when:** `seniority` applies; level in ASQ.
+
+    **Remediation:** Source the ASQ scatto amount from the official seniority table.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

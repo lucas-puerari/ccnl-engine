@@ -1272,11 +1272,22 @@
       },
       {
         "kind": "simplification",
-        "text": "TRANCHE 2026-2028: Only the Jan 2026 tranche is modelled (retroactive from renewal 2026-04-09). Remaining tranches at D1: +15 EUR Oct 2026, +30 EUR Jan 2027, +25 EUR Jun 2027, +75 EUR Jul 2028. Per-level amounts confirmed proportional (A:D=1.5, F:D=0.7462) but official per-level tables not publicly available at extraction date 2026-09-17."
+        "text": "TRANCHE 2026-2028: Only the Jan 2026 tranche is modelled (retroactive from renewal 2026-04-09). Remaining tranches at D1: +15 EUR Oct 2026, +30 EUR Jan 2027, +25 EUR Jun 2027, +75 EUR Jul 2028. Per-level amounts confirmed proportional (A:D=1.5, F:D=0.7462) but official per-level tables not publicly available at extraction date 2026-09-17.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranches_from_october_2026",
+          "applies_when": {
+            "effective_from": "2026-10-01"
+          },
+          "remediation": "Add the October 2026 to July 2028 tranches once the per-level tables are published."
+        }
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: not modelled. Under-classification type confirmed (first half: 2 levels below; second half: 1 level below). Total duration not verified from post-2026 source."
+        "text": "APPRENTICESHIP: not modelled. Under-classification type confirmed (first half: 2 levels below; second half: 1 level below). Total duration not verified from post-2026 source.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1299,6 +1310,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "29c1ce6b6e564385fab6929ec8773c1d05b05704ecd162b6bac53fdc977f30d0"
+    "source_hash": "04e9fcda98fcaf46e9843a5949ccca473c1213d2789879fe73127f4415b4aa86"
   }
 }

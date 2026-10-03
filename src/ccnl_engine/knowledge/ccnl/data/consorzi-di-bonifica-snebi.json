@@ -62,11 +62,34 @@
       },
       {
         "kind": "simplification",
-        "text": "Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table."
+        "text": "Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_2000_cohort_table_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the lower salary table for workers hired by 15-07-2000 behind a hire-date fact."
+        }
       },
       {
         "kind": "simplification",
-        "text": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73)."
+        "text": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ex_sublevel_scatto_mapping",
+          "applies_when": {
+            "levels": [
+              "B128",
+              "B128_ex52",
+              "B132",
+              "B132_ex51"
+            ]
+          },
+          "remediation": "Verify which ex-classification sub-level carries each scatto amount against the CCNL text."
+        }
       },
       {
         "kind": "info",
@@ -2710,7 +2733,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "d68f08edacc67cf0c0c13a9c24efa3561cb91704f69ed62a60079e30ac8e0258",
+    "source_hash": "e1be51ce5e9e325063e17eba4d605790a500bbbfc381efe40fdfa5ee5c868352",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -54,11 +54,22 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: under_classification for destinations 2, 3A, 3B, 4A, 4B (36-month, 10/12/14 periods) and level 1 (36-month, 10/10/16 periods). Destination 5 (24-month exception, Article 6) not modeled. Level 1S is not an apprenticeship destination."
+        "text": "APPRENTICESHIP: under_classification for destinations 2, 3A, 3B, 4A, 4B (36-month, 10/12/14 periods) and level 1 (36-month, 10/10/16 periods). Destination 5 (24-month exception, Article 6) not modeled. Level 1S is not an apprenticeship destination.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled."
+        "text": "ALIFOND employer contribution (1.50%) modeled from 01/07/2025 (renewal Art. 47). Pre-July-2025 ALIFOND contribution not modeled.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "alifond_before_july_2025",
+          "applies_when": {
+            "effective_until": "2025-07-01"
+          },
+          "remediation": "Model the ALIFOND employer rate in force before 1 July 2025."
+        }
       }
     ]
   },
@@ -1957,6 +1968,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "81cb9fe19b06bfed512d0716e51dd1110073bd21fe1b0bc3e88c71fac0915ddf"
+    "source_hash": "385a95088a12e549bc9785812c5ce9f4efbb3f76c13be9c7eb2a6e9157c8841e"
   }
 }

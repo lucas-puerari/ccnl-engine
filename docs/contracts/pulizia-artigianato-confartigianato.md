@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority |
 
 ### Verifica
 
@@ -61,7 +61,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 
 ### Semplificazioni note
 
-7 semplificazioni documentate.
+7 semplificazioni documentate. 3 feature mancanti.
 Vedi [Known simplifications](#known-simplifications) per i dettagli.
 
 ## Salary table
@@ -113,28 +113,61 @@ percentage: 0.90
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · open"
     SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; level in 1; run kind in thirteenth.
+
+    **Remediation:** Source the number of yearly instalments of IND_FUN and set months_per_year.
+
+!!! warning "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022 · base_salary · impact unknown · open"
     SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Verify the apprenticeship percentages against the December 2025 renewal.
+
+!!! warning "pulizia-artigianato-confartigianato/level_2_seniority_amount · seniority · impact unknown · open"
     SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.
 
-!!! warning ""
+    **Applies when:** `seniority` applies; level in 2.
+
+    **Remediation:** Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table.
+
+!!! warning "pulizia-artigianato-confartigianato/artisan_inps_rates_unverified · inps_employer · impact unknown · open"
     SIMPLIFICATION: tax_sector='terziario'. Aliquote INPS artigiane (datoriali) non verificate per 2026. Impatto su employer_cost_annual.
 
-!!! warning ""
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the 2026 employer INPS rates for artisan cleaning firms against the INPS circular.
+
+!!! warning "pulizia-artigianato-confartigianato/health_and_bilateral_funds · bilateral_funds · impact yes · open"
     SIMPLIFICATION: Fondi bilaterali non modellati (Fondo sanitario EUR 10.42*12 + bilateralità EUR 11.65*12). employer_cost_annual sottostimato di ~EUR 267/anno.
 
-!!! warning ""
-    SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione).
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-!!! warning ""
+    **Remediation:** Pass the health-fund and bilateral contributions as a bilateral fund event, or model the funds.
+
+!!! warning "pulizia-artigianato-confartigianato/overtime_weekly_threshold · overtime · impact unknown · open"
     SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.
+
+    **Applies when:** `overtime` applies.
+
+    **Remediation:** Model the 40-hour weekly threshold and the 200-hour yearly cap of OT_DIURNO, or pass the multiplier on the overtime event.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Apprendistato — livelli con doppia appartenenza a gruppi diversi (L5: gruppi 1 e 3; L4: gruppi 3 e 4; L3: gruppi 2 e 4). Il contratto distingue per contenuto professionale, non per livello. Engine usa first-match in ordine di dichiarazione: L5 -> gruppo 1 (70/80/90/100, 4 anni), L4 -> gruppo 3 (65/80/90, 18 mesi), L3 -> gruppo 2 (70/80/90, 3 anni). Rischio: basso (usato solo per scenari apprendistato, non per il test di integrazione).
 
 ## Sources
 

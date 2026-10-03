@@ -68,11 +68,36 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months."
+        "text": "APPRENTICESHIP — level E period 1: the CCNL Art. 9 prescribes 2 levels below destination for period 1 in all tracks. For destination E (order=2), 2 below would reach order=0 which does not exist. Engine level_by_order raises ValueError for missing orders. SIMPLIFICATION: E track period 1 uses levels_below=1 (pay at level F, order=1), the lowest available level below E. Duration: 6+6 months.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_e_first_period_one_below",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "E"
+            ]
+          },
+          "remediation": "Confirm the level E first period against Art. 9 and model it once a level two below exists."
+        }
       },
       {
         "kind": "simplification",
-        "text": "ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio)."
+        "text": "ASQ SENIORITY: thaler.it seniority table lists AS, A, B, CS, C, D, E, F amounts but not ASQ separately. SIMPLIFICATION: ASQ uses the same scatto amount as AS (14.72 EUR/biennio).",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "asq_seniority_from_as",
+          "applies_when": {
+            "levels": [
+              "ASQ"
+            ]
+          },
+          "remediation": "Source the ASQ scatto amount from the official seniority table."
+        }
       },
       {
         "kind": "info",
@@ -2857,7 +2882,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "e8f085372f2f328320f2cb6354ed6fc953d3f18b06e43f241fbd2cfbced57a3c",
+    "source_hash": "3c4ebd4074363ecc6917bcd8961da04fa9c44b7255ced03bfef52716b2107091",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

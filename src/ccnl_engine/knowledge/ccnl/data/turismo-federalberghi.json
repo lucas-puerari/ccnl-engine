@@ -1929,11 +1929,19 @@
       },
       {
         "kind": "simplification",
-        "text": "The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction."
+        "text": "The level category (quadro/impiegato/operaio) is indicative. The CCNL 2010 uses numeric levels 1-6 plus A, B, 6s, 7 with no formal contractual category distinction.",
+        "capability": "worker_category",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "indicative_level_category",
+          "remediation": "Confirm the category of each level, or require the category in the request."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Layer 3 (overtime, night work, public holidays) out of scope."
+        "text": "Layer 3 (overtime, night work, public holidays) out of scope.",
+        "capability": "overtime",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1944,7 +1952,7 @@
     "effective_until": null,
     "source": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
     "verification_status": "unverified",
-    "source_hash": "3d4c59beb53b58719566cf54a9070355b28362a576b11a8707d9218f19755282",
+    "source_hash": "b6a15e1946328ab89d6b491f07608dd4dae46bd93b018bbac02706511b49ad29",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

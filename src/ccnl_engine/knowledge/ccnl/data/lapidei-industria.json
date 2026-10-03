@@ -69,11 +69,24 @@
       },
       {
         "kind": "simplification",
-        "text": "PRE-31/12/2022 HISTORY: the 2022-2025 CCNL is retroactively valid from 01/04/2022. Values for April 2022 through November 2022 are not modelled (data not retrieved from public sources). Engine history starts at 31/12/2022."
+        "text": "PRE-31/12/2022 HISTORY: the 2022-2025 CCNL is retroactively valid from 01/04/2022. Values for April 2022 through November 2022 are not modelled (data not retrieved from public sources). Engine history starts at 31/12/2022.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values."
+        "text": "APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_passthrough",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Extract the post-2022 percentage table and model the percentage track."
+        }
       }
     ]
   },
@@ -2262,7 +2275,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "77561b2ac0670a5de423ce7ca40269e4214f574c3351303bd1150328d21ee2df",
+    "source_hash": "e05dc3de1ef61e4f3d1d67bbd236619f927f48ecc7a67778b33ff02925f5122e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -97,13 +97,21 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "lavoro-domestico-non-convivente/tranches_from_2027 · base_salary · impact yes · open"
     SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; from 2027-01-01.
+
+    **Remediation:** Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.
+
+!!! warning "lavoro-domestico-non-convivente/seniority_frozen_at_2026 · seniority · impact unknown · open"
     Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update.
+
+    **Applies when:** `seniority` applies; from 2027-01-01.
+
+    **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
 
 ## Sources
 

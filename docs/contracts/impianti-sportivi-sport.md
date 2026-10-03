@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, overtime |
 
 ### Verifica
 
@@ -95,31 +95,57 @@ Destination levels: `VI`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "impianti-sportivi-sport/pre_2015_superminimo_missing · base_salary · impact yes · open"
     SIMPLIFICATION: Seniority. Il CCNL 2024 non contiene disposizioni su scatti di anzianita (parola 'scatti' assente dall'intero PDF). Regime transitorio: i lavoratori in forza al 22/12/2015 conservano un superminimo personale decrescente fino al 31/10/2029 (Art. 116 norma transitoria). Non modellato: dimensione hire-date non disponibile. Gli importi kitech (EUR 21.69-28.92) si riferiscono agli scatti ante-2015. Modellato: maximum_count=0.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the decreasing personal superminimo of Art. 116 behind a hire-date fact.
+
+!!! warning "impianti-sportivi-sport/level_v_first_semester_overpaid · base_salary · impact yes · open"
     SIMPLIFICATION: Apprendistato livello V (Art. 30). Il livello V ha ordine 2 e il livello a ordine 0 non esiste; il primo semestre a 2 livelli sotto non e applicabile. SEMPLIFICAZIONE: primo semestre a 1 livello sotto (VI). L'apprendista percepisce piu del previsto contrattualmente nella prima meta. L'intera durata (36 mesi) e al livello VI.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; contract type in apprentice; level in V.
+
+    **Remediation:** Pay the first semester of the level V track at the contractual level once the classification allows it.
+
+!!! warning "impianti-sportivi-sport/level_vi_whole_track_at_destination · base_salary · impact yes · open"
     SIMPLIFICATION: Apprendistato livello VI (Art. 30 + Art. 37). Art. 30 prevedeva il primo semestre al VII livello, che il rinnovo 2024 ha eliminato. SEMPLIFICAZIONE: l'intera durata apprendistato VI (24 mesi) e al livello di destinazione VI (levels_below=0). L'apprendista percepisce piu del previsto contrattualmente.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; contract type in apprentice; level in VI.
+
+    **Remediation:** Confirm the level VI track after the 2024 renewal and model its first semester.
+
+!!! warning "impianti-sportivi-sport/overtime_over_48h_band_missing · overtime · impact yes · open"
     SIMPLIFICATION: Straordinario diurno. Art. 83 prevede 15% per ore 41-48 e 20% per ore oltre 48 settimanali. Modellato solo il 15% (caso dominante). Banda 20% (oltre 48h) non modellata.
 
-!!! warning ""
-    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve.
+    **Applies when:** `overtime` applies.
 
-!!! warning ""
-    SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.
+    **Remediation:** Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event.
 
-!!! warning ""
+!!! warning "impianti-sportivi-sport/night_overtime_cumulation · overtime · impact unknown · open"
     SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.
 
-!!! warning ""
+    **Applies when:** `overtime` applies.
+
+    **Remediation:** Confirm with the parties whether the 50% night overtime band includes the 10% night supplement of Art. 84.
+
+!!! warning "impianti-sportivi-sport/pre_2015_fourteenth_missing · base_salary · impact yes · open"
     SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the residual quattordicesima of Art. 116 behind a hire-date fact.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve.
+
+!!! note ""
+    SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.
 
 ## Sources
 

@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL, TaxSector
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
@@ -38,6 +39,10 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_capability_catalog(self, year: int) -> CapabilityCatalog:
         """Load and return the capability catalog for *year*."""
+        ...
+
+    def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:
+        """Load and return the limitations of the engine's shared code paths."""
         ...
 
     def load_variable_pay_rules(self, year: int) -> VariablePayRules:

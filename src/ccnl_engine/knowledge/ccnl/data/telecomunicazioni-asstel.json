@@ -65,11 +65,19 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP professionalizzante, under_classification (Art. 20 CCNL 12/11/2020): 36 months, first 18 months two levels below the destination, next 18 months one level below, then the destination. Track covers destinations B1, B2, C1, C2, C3; A1/A2 (no level two steps below), C4 and D1 (funzioni direttive/Quadri) are not destinations."
+        "text": "APPRENTICESHIP professionalizzante, under_classification (Art. 20 CCNL 12/11/2020): 36 months, first 18 months two levels below the destination, next 18 months one level below, then the destination. Track covers destinations B1, B2, C1, C2, C3; A1/A2 (no level two steps below), C4 and D1 (funzioni direttive/Quadri) are not destinations.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. If TERZIARIO rates apply instead, employer contribution at ≤50 employees would be 28.98% vs. 30.20% modelled here (difference ~1.2 pp). The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case."
+        "text": "INPS: reuses 2026-industria.json (Confindustria/CIGO). SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. If TERZIARIO rates apply instead, employer contribution at ≤50 employees would be 28.98% vs. 30.20% modelled here (difference ~1.2 pp). The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "industria_tax_sector_unverified",
+          "remediation": "Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC."
+        }
       }
     ]
   },
@@ -1414,7 +1422,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "e4c0f9a532f26fca1ac7c1e2e005c6a48bb138c3a361926da147c7dced93bb86",
+    "source_hash": "d01eb105a7eece0107e659d84feed6cce2f81f784ca1d22184bfee3342b9f617",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

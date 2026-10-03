@@ -66,7 +66,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP under-classification (Art. 10 consolidated CCNL text 26/05/2021): graded two levels below destination in the 1st period (0-12 months), one level below in the 2nd (12-24), at destination from the 25th month; 'professionalizzante' track for destinations from level 3 to level 9 (36-month duration assumed for all destinations)."
+        "text": "APPRENTICESHIP under-classification (Art. 10 consolidated CCNL text 26/05/2021): graded two levels below destination in the 1st period (0-12 months), one level below in the 2nd (12-24), at destination from the 25th month; 'professionalizzante' track for destinations from level 3 to level 9 (36-month duration assumed for all destinations).",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_36_months_assumed",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprenticeship duration per destination level from Art. 10."
+        }
       },
       {
         "kind": "info",
@@ -1334,7 +1345,7 @@
     "effective_until": null,
     "source": "https://www.studiotuscano.it/news/nuovi-minimi-retributivi-per-il-ccnl-metalmeccanica-piccola-industria-confapi",
     "verification_status": "unverified",
-    "source_hash": "c0a008c14094009b8ae0e3e39d5ceec6f7da7555de6adb79c766ca52bf1bd1e9",
+    "source_hash": "ac9741c64285600938668fb9b62f9cccbe696f45fd96ae428e0ec89cda0e145e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

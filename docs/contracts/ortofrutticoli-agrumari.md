@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | leave, sickness |
+| **Limits of this contract** | base_salary, leave, seniority, sickness |
 
 ### Verifica
 
@@ -96,24 +96,38 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: Valori base_salary livelli 4, 5, 6S, 7 ai periodi non-giugno-2026 derivati via regola proporzionale (stesso aumento percentuale, da edotto.com/fisascat.it). Modello non-compounding: tranche_i = round(pre_rinnovo_livello * pct_i, 2), pct_i = tranche_L6_EUR / L6_pre. Back-solve unico su giugno 2026 confermato per tutti i 9 livelli. Rischio: zero (round-trip verificato).
-
-!!! warning ""
+!!! warning "ortofrutticoli-agrumari/seniority_assumed_constant · seniority · impact unknown · open"
     SIMPLIFICATION: Importi scatti anzianità assunti costanti per tutto il periodo 2024-2027. La fonte primaria (kitech.it giugno 2026) non indica data decorrenza; il rinnovo 2024 non menziona modifiche agli scatti.
 
-!!! warning ""
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Source the effective dates of the seniority amounts.
+
+!!! warning "ortofrutticoli-agrumari/ind_fun_assumed_constant · base_salary · impact unknown · open"
     SIMPLIFICATION: IND_FUN 154.94 EUR assunta costante dal 2024-01-01 senza adeguamenti. Allowance pre-euro congelata (300.000 lire). Nessuna fonte indica variazioni nel rinnovo 2024.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; level in Q.
+
+    **Remediation:** Confirm the IND_FUN amount against the 2024 renewal text.
+
+!!! warning "ortofrutticoli-agrumari/ind_fun_fourteen_months · base_salary · impact unknown · open"
     SIMPLIFICATION: IND_FUN assunta corrisposta su 14 mensilità (ereditato da additional_months contratto); months_per_year non specificato. Nessuna fonte accessibile indica il numero di mensilità dell'indennità. Impatto: ±154.94 EUR/anno livello Q se la vera risposta è 12 mensilità.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; level in Q; run kind in fourteenth.
+
+    **Remediation:** Source the number of monthly payments of IND_FUN.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Valori base_salary livelli 4, 5, 6S, 7 ai periodi non-giugno-2026 derivati via regola proporzionale (stesso aumento percentuale, da edotto.com/fisascat.it). Modello non-compounding: tranche_i = round(pre_rinnovo_livello * pct_i, 2), pct_i = tranche_L6_EUR / L6_pre. Back-solve unico su giugno 2026 confermato per tutti i 9 livelli. Rischio: zero (round-trip verificato).
+
+!!! note ""
     SIMPLIFICATION: Apprendistato non modellato (apprenticeship=[]). Il rinnovo 2024 ha modificato la disciplina dell'apprendistato ma il testo consolidato è dietro paywall. Le fonti accessibili (aggregatori) non sono attribuibili con certezza al CCNL Fruitimprese H341 rispetto al CCNL Confsal/Fesica. Rischio: retribuzione apprendistato restituisce zero anziché un importo errato.
 
-!!! warning ""
+!!! note ""
     SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia.
 
 ## Sources

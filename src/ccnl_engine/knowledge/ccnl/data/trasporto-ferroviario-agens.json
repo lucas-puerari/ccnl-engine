@@ -92,7 +92,16 @@
       },
       {
         "kind": "simplification",
-        "text": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. Engine queries with as_of before Jun 2025 will return the Jun 2025 values, which overstate actual pay for that window."
+        "text": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. Engine queries with as_of before Jun 2025 will return the Jun 2025 values, which overstate actual pay for that window.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "pre_june_2025_tables",
+          "applies_when": {
+            "effective_until": "2025-06-01"
+          },
+          "remediation": "Model the pre-June 2025 salary tables, or reject dates before 1 June 2025."
+        }
       },
       {
         "kind": "info",
@@ -100,7 +109,16 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025."
+        "text": "SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_amounts_before_june_2026",
+          "applies_when": {
+            "effective_until": "2026-06-01"
+          },
+          "remediation": "Confirm the seniority amounts of the June 2025 and November 2025 tranches."
+        }
       }
     ]
   },
@@ -1939,7 +1957,7 @@
     "effective_until": "2026-12-31",
     "source": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive",
     "verification_status": "unverified",
-    "source_hash": "242e1645f93dc9049e4455054130acfb999dc987afc8be8a675b5b68eb4a3c8f",
+    "source_hash": "81b52021cfafbca1eb227a2d5936f4f675ce1cb65653375e26c89c76cfc4db72",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

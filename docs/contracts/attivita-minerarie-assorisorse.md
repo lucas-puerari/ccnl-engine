@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, seniority |
 
 ### Verifica
 
@@ -90,15 +90,25 @@ percentage: 0.95
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "attivita-minerarie-assorisorse/seniority_not_modelled · seniority · impact yes · open"
     SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.
 
-!!! warning ""
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Source the seniority article and add the increments to the CCNL file.
+
+!!! warning "attivita-minerarie-assorisorse/ocr_salary_values · base_salary · impact unknown · open"
     SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Check the OCR-extracted salary values against a text source of the renewal protocol.
+
+### Without monetary impact
+
+!!! note ""
     SIMPLIFICATION: Work rules (overtime rates, leave, sickness) not modeled — source document is a renewal protocol covering salary increases and HSE provisions, not the full CCNL text.
 
 ## Sources

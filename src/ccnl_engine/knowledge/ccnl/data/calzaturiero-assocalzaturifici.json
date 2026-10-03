@@ -53,7 +53,13 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table."
+        "text": "Seniority cadence is triennale (36 months) for all levels; maximum 5 scatti. Scatto amounts derived from businessonline.it article (2025) cross-checked with kitech.it current table.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_secondary_source",
+          "remediation": "Verify the seniority cadence and amounts against the primary CCNL text."
+        }
       },
       {
         "kind": "info",
@@ -1290,7 +1296,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "3716417256aa6615b1f7ab46a5b241ebaadd000c946aa32390c2ea202171c18b",
+    "source_hash": "8fe733eaef50b0c455bb4cbc3a67b5c4f182ef072b9be28e66fa5b896716387f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

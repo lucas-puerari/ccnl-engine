@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement |
 
 ### Verifica
 
@@ -92,37 +92,78 @@ Destination levels: `Area1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "operai-agricoli-florovivaisti/provincial_supplement · territorial_supplement · impact yes · open"
     NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the provincial (CPL) supplement outside the engine.
+
+!!! warning "operai-agricoli-florovivaisti/otd_terzo_elemento · base_salary · impact yes · open"
     OTI ONLY. OTD (Operai a Tempo Determinato / seasonal) workers are not modelled. OTD workers receive a Terzo Elemento of 30.44% (festività 5.45% + ferie 8.33% + tredicesima 8.33% + quattordicesima 8.33%) in lieu of accruals; the engine cannot represent this structure. OTD represent a large share of agricultural workers.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; contract type in fixed_term.
+
+    **Remediation:** Model the OTD terzo elemento structure for fixed-term agricultural workers.
+
+!!! warning "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · open"
     FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the OTF salary tables as a separate file.
+
+!!! warning "operai-agricoli-florovivaisti/inps_on_actual_not_conventional_pay · inps_employee · impact yes · open"
     INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.
 
-!!! warning ""
+    **Applies when:** `inps_employee` applies.
+
+    **Remediation:** Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree.
+
+!!! warning "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · open"
     INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.
 
-!!! warning ""
-    CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-!!! warning ""
+    **Remediation:** Model the INAIL agricultural premium.
+
+!!! warning "operai-agricoli-florovivaisti/seniority_amounts_unconfirmed · seniority · impact unknown · open"
     SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values.
 
-!!! warning ""
-    APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.
+    **Applies when:** `seniority` applies.
 
-!!! warning ""
+    **Remediation:** Confirm the Art. 54 seniority amounts against the 2026 renewal text.
+
+!!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
+
+!!! warning "operai-agricoli-florovivaisti/mountain_zone_reductions · inps_employer · impact yes · open"
     TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the INPS reductions for mountain and disadvantaged zones.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse.
+
+!!! note ""
+    APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.
 
 ## Sources
 

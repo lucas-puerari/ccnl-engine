@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | bilateral_funds |
 
 ### Verifica
 
@@ -100,13 +100,19 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: Apprenticeship provisions not modeled (primary CCNL text not publicly available). Field left empty.
-
-!!! warning ""
+!!! warning "cinema-audiovisivi-industria/bilateral_funds_not_modelled · bilateral_funds · impact unknown · open"
     SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Apprenticeship provisions not modeled (primary CCNL text not publicly available). Field left empty.
 
 ## Sources
 

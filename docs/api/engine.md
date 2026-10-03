@@ -165,15 +165,17 @@ machine-readable `detail` and a `remediation`. Both come from `assurance`, a
 | `rulesets` | `RulesetAssurance` tuple | The CCNL ruleset and every ruleset a payable rule was read from, with readiness; also `result.rulesets` |
 | `mode` | `EngineMode` | The mode of the engine; `operational` adds `ruleset_not_production` blockers |
 | `payability` | `Payability` | `payable` exactly when there is no blocker |
+| `limitations` | `ModelLimitation` tuple | The known model simplifications that apply to the run; an open one with monetary impact `yes` or `unknown` is also an `open_limitation` blocker |
 
 A result is payable only when it raised no issue, every decision is final,
 the capability report has no gap, no executed rule is `assumed` or `missing`
-and no rule was supplied by the caller; in `operational` mode, also only
+no rule was supplied by the caller and no open model limitation with a
+monetary impact applies; in `operational` mode, also only
 when the CCNL ruleset is `production`. A `derived` rule lowers `evidence`
 but does not block. See [Assurance](../trust/confidence.md) for the rules.
 
 The year result combines the assurance of its runs (each axis the worst,
-rulesets and blockers each once; payable only when every run is) and lists
+rulesets, blockers and limitations each once; payable only when every run is) and lists
 their issues in payment order, each issue once: one repeated on every run
 (same `code` and `message`) is listed at its first run.
 
@@ -249,6 +251,13 @@ blocker, and the report `status` is the coverage axis of the assurance:
         - CoverageStatus
         - EvidenceStatus
         - Payability
+
+::: ccnl_engine.shared.domain.limitation
+    options:
+      members:
+        - ModelLimitation
+        - MonetaryImpact
+        - LimitationStatus
 
 ::: ccnl_engine.payroll.domain.remittance
     options:

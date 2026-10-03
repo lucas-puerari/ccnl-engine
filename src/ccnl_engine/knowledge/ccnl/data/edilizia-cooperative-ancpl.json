@@ -71,7 +71,9 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship provisions for Q levels (7Q, 8Q) are not modelled; quadri are not typically hired as apprentices in the cooperative construction sector."
+        "text": "SIMPLIFICATION: Apprenticeship provisions for Q levels (7Q, 8Q) are not modelled; quadri are not typically hired as apprentices in the cooperative construction sector.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1937,7 +1939,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "e07df67b6d6cf7591bf861a115e71d64e1b9ce1c4f721b2e6ececb99ae8151be",
+    "source_hash": "1af1271e846310b1386ffeab85c68076420733d95a8281df888496623a4249e7",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

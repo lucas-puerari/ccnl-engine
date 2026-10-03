@@ -47,7 +47,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | inps_employer |
 
 ### Verifica
 
@@ -105,15 +105,21 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    cnel_code = 'N/A' — il CNEL non assegna codici agli accordi DPR-based (questo comparto è escluso dalla contrattazione collettiva ordinaria ex D.Lgs. 195/1995 e resta in regime di diritto pubblico). Il CNEL medesimo non include questo comparto nel proprio archivio contratti.
-
-!!! warning ""
+!!! warning "forze-polizia-ordinamento-civile/ctps_rates_proxy · inps_employer · impact unknown · open"
     aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).
 
-!!! warning ""
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the CTPS rates against the annual INPS circular.
+
+### Without monetary impact
+
+!!! note ""
+    cnel_code = 'N/A' — il CNEL non assegna codici agli accordi DPR-based (questo comparto è escluso dalla contrattazione collettiva ordinaria ex D.Lgs. 195/1995 e resta in regime di diritto pubblico). Il CNEL medesimo non include questo comparto nel proprio archivio contratti.
+
+!!! note ""
     valori mensili arrotondati col metodo a due passi (annual = round(param × punto, 2); monthly = round(annual / 12, 2)) per allineamento con le tavole dell'ipotesi di accordo 18/12/2024. Differenza massima da calcolo diretto: 1 centesimo.
 
 ## Sources

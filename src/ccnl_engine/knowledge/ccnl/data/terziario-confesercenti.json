@@ -1780,15 +1780,30 @@
       },
       {
         "kind": "simplification",
-        "text": "One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase."
+        "text": "One-off lump sum of EUR 350 at grade IV (paid 175+175 in July 2024/2025) not modelled in base_salary — it is not a structural increase.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "lump_sum_2024_2025",
+          "applies_when": {
+            "levels": [
+              "IV"
+            ]
+          },
+          "remediation": "Model the EUR 350 lump sum as a una tantum payment."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI."
+        "text": "Grade I not included as an apprenticeship destination: Art. 64 lists only II-VI.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII."
+        "text": "Track sesto-livello: Art. 53 exception — first half at grade VII since two levels below VI is not possible; second half 1 level below VI = VII. Both halves at grade VII.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1803,7 +1818,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd53b10229b7cb149f4c86b96e93c823dea84bc43c7acd557111d97d947ef2f8",
+    "source_hash": "c2c40ed88b39469685b215f8bddf42fe1193a5a65488a4b98d072df267646026",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

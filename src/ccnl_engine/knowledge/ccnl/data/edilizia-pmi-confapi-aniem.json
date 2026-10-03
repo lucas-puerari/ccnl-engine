@@ -68,11 +68,36 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship destination conflicts. Art. G defines 4 operai groups and 3 impiegati bands. Engine tracks use disjoint destination_levels: level '2' -> gruppo_4 (36m); level '3' -> gruppo_3 (48m, ref=L2); levels '4'/'5' -> gruppo_2 (51m, ref=L3); levels '6'/'7' -> gruppo_1 (60m, ref=L3). Level '1' has no apprenticeship track (manual labor). Operai gruppo_3 (also exits at level '2', 48m) not modelled separately."
+        "text": "SIMPLIFICATION: Apprenticeship destination conflicts. Art. G defines 4 operai groups and 3 impiegati bands. Engine tracks use disjoint destination_levels: level '2' -> gruppo_4 (36m); level '3' -> gruppo_3 (48m, ref=L2); levels '4'/'5' -> gruppo_2 (51m, ref=L3); levels '6'/'7' -> gruppo_1 (60m, ref=L3). Level '1' has no apprenticeship track (manual labor). Operai gruppo_3 (also exits at level '2', 48m) not modelled separately.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "operai_gruppo_3_track_merged",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "2"
+            ]
+          },
+          "remediation": "Model the operai gruppo 3 track (48 months, exit at level 2) separately and select it by track name."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprentice base per Art. G includes ITS and EVR alongside paga_base + contingenza. Engine covers only paga_base + contingenza; apprentice gross is understated where ITS applies."
+        "text": "SIMPLIFICATION: Apprentice base per Art. G includes ITS and EVR alongside paga_base + contingenza. Engine covers only paga_base + contingenza; apprentice gross is understated where ITS applies.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_its_evr_missing",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Add ITS and EVR to the apprentice base of Art. G."
+        }
       }
     ]
   },
@@ -1412,7 +1437,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "d1cb048db30fbffd3b64dce22463445cff797b75b04f1b9e4f7c2501ae23d0b1",
+    "source_hash": "da55a6158866243955d3550a9b186097369256b2399321707fa06b14408f443a",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

@@ -71,7 +71,8 @@ _PREAMBLE = """\
 What the engine computes for fiscal year {year}, and how far the bundled
 data behind it is backed by sources. Generated from the capability registry
 (`knowledge/capabilities/data/{year}.json`), the provenance records of the
-payable rules and the `missing` notes of the {count} bundled CCNLs. The
+payable rules, the `missing` notes and the model limitations of the {count}
+bundled CCNLs. The
 runtime capability report of every run, the [CCNL Coverage
 index](index.md) and this page all derive from the same registry.
 
@@ -118,7 +119,8 @@ _CCNL_PREAMBLE = """
 ## CCNL coverage
 
 The same cells as the [CCNL Coverage index](index.md). **Limits** names the
-capabilities a `missing` note of the contract file lowers to partial.
+capabilities a `missing` note or a model limitation with a monetary impact
+of the contract file lowers to partial.
 
 {legend}
 """

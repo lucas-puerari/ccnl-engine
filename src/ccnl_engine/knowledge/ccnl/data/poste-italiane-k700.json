@@ -60,7 +60,16 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: EDR (elemento distintivo della retribuzione) omitted. Art. 65 I qualifies it as 'ove spettante'; amount not stated in Allegato 9 or CCNL body. Legacy entitlement for pre-privatization workers only."
+        "text": "SIMPLIFICATION: EDR (elemento distintivo della retribuzione) omitted. Art. 65 I qualifies it as 'ove spettante'; amount not stated in Allegato 9 or CCNL body. Legacy entitlement for pre-privatization workers only.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edr_pre_privatization",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the EDR for pre-privatization workers once its amount is sourced."
+        }
       },
       {
         "kind": "info",
@@ -68,7 +77,13 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane employees are enrolled in the Fondo Quiescenza Poste (INPS special fund, Art. 7 L. 335/1995; merged from IPOST 2012). Correct rates differ from standard industria rates. Verify against INPS Fondo Quiescenza Poste documentation. Verified 2026-09-09: INPS website confirms Fondo Quiescenza Poste exists for Poste Italiane SpA but specific aliquote not publicly listed on INPS portal in machine-readable form."
+        "text": "SIMPLIFICATION: INPS industria rates applied. Poste Italiane employees are enrolled in the Fondo Quiescenza Poste (INPS special fund, Art. 7 L. 335/1995; merged from IPOST 2012). Correct rates differ from standard industria rates. Verify against INPS Fondo Quiescenza Poste documentation. Verified 2026-09-09: INPS website confirms Fondo Quiescenza Poste exists for Poste Italiane SpA but specific aliquote not publicly listed on INPS portal in machine-readable form.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "fondo_quiescenza_poste_rates",
+          "remediation": "Source the Fondo Quiescenza Poste rates and apply them in place of the industria rates."
+        }
       },
       {
         "kind": "info",
@@ -1544,7 +1559,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "c90d768de73f9bf6dcbcc61a1638eac038e57cbc519ed24c5e483d32868e9cb7",
+    "source_hash": "57449d1e2685e108001d5d7c969321a64a830efb5dbcf46b48a7dff0b6b8caf0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

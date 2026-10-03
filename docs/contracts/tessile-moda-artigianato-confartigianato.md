@@ -46,7 +46,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, inps_employer, seniority |
 
 ### Verifica
 
@@ -114,16 +114,35 @@ percentage: 1.00
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors · base_salary · impact yes · open"
     Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the chimica-ceramica salary tables with a sub-sector input.
+
+!!! warning "tessile-moda-artigianato-confartigianato/apprentice_seniority_hire_date · seniority · impact yes · open"
     APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 5.16 EUR apprentice increment for workers hired before 17 July 2024 with a hire-date input.
+
+!!! warning "tessile-moda-artigianato-confartigianato/level_category_unconfirmed · inps_employer · impact unknown · open"
     LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text.
+
+    **Applies when:** `inps_employer` applies; level in 5, 6, 6S.
+
+    **Remediation:** Confirm the operaio/impiegato category of each level from the CCNL text.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

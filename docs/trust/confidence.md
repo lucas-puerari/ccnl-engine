@@ -9,11 +9,11 @@ what the run recorded; neither is set by the caller.
 |---|---|
 | `result.is_payable` | Can the amounts of this result be paid as computed? |
 | `result.blockers` | What stops them, one `ResultBlocker` per reason |
-| `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets, mode |
+| `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets, mode, limitations |
 | `result.rulesets` | Which rulesets (CCNL, tax, INPS, variable pay, surtax) the run read, each a `RulesetAssurance` with identity, hash, kind and readiness |
 
 `YearResult` exposes the same four fields for the whole year: each axis is the
-worst of its runs, rulesets and blockers are listed once each, and the year is
+worst of its runs, rulesets, blockers and limitations are listed once each, and the year is
 payable only when every run is.
 
 ## Payability rules
@@ -29,6 +29,7 @@ one:
 | `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
+| `open_limitation` | capability | limitation id | An open [model limitation](#model-limitations) with monetary impact `yes` or `unknown` applies to the run |
 | `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
@@ -54,10 +55,60 @@ CCNLs cite no clause for their number of monthly payments. The bundle holds
 (see [Provenance](provenance.md#current-counts)); a run that reads one also
 raises a `rule_source_missing` issue and is `incomplete`.
 
+A minority of these runs also carry an `open_limitation` blocker: the
+limitations that concern every ordinary month of their CCNL (an INPS rate
+reused from another sector, a salary table read from a proxy source).
+
 Use the amounts for simulation, with the blockers shown; do not pay them
 automatically. In `operational` mode every one of these runs also carries a
 `ruleset_not_production` blocker: no bundled CCNL is `production` (see
 [Readiness](readiness.md#simulation-and-operational-modes)).
+
+## Model limitations
+
+A known simplification of the model is data, not a comment. The registry has
+<!-- trust:limitations-total -->154<!-- /trust:limitations-total --> `ModelLimitation`
+entries: one per `simplification` note of a CCNL file that can move an
+amount, and <!-- trust:limitations-engine -->2<!-- /trust:limitations-engine -->
+engine limitations of code paths several CCNLs share
+(`knowledge/limitations/data/engine.json`: the apprenticeship midpoint that
+averages the base salary but not the allowances, and the apprentice seniority
+increment). Each entry has a stable `id`, the `capability` and `variant` it
+limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
+`no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
+`remediation`.
+
+The <!-- trust:simplification-notes -->224<!-- /trust:simplification-notes -->
+simplification notes of the bundle each state their impact on what the engine
+computes from the bundle:
+<!-- trust:simplification-yes -->69<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->83<!-- /trust:simplification-unknown --> `unknown`
+and <!-- trust:simplification-no -->72<!-- /trust:simplification-no --> `no` (the
+engine refuses the case, or takes the value from the caller). A file whose
+note can move an amount without declaring a limitation does not load, so the
+bundle build fails on an unmapped note.
+
+A limitation applies to a run only when its predicate holds, never because
+the run uses its CCNL:
+
+- the capability it limits applies to the run (an overtime limitation needs an
+  overtime event);
+- the run date, contract type, level, worker category, run kind and seniority
+  fall within its `applies_when` scope (an unknown category or seniority does
+  not rule a run out);
+- an engine limitation applies only when the run takes its code path, and the
+  run records the traversal (an apprentice in a midpoint period whose
+  allowances differ from those of the destination level);
+- <!-- trust:limitations-outside-input -->41<!-- /trust:limitations-outside-input -->
+  limitations depend on a fact the request cannot express (a hire date before
+  a transitional regime, a fund the worker joins, a sector section): they are
+  documented on the contract page and never recorded on a run.
+
+Every applicable limitation is listed in `result.assurance.limitations`; an
+open one with impact `yes` or `unknown` adds an `open_limitation` blocker.
+Open limitations with an impact also lower the capability they limit to
+`partial` in the [capability matrix](../contracts/capability-matrix.md), and
+each contract page lists its limitations under "Known simplifications".
 
 ## Assurance axes
 
@@ -69,6 +120,7 @@ automatically. In `operational` mode every one of these runs also carries a
 | `rulesets` | `tuple[RulesetAssurance, ...]` | Identity, version, hash, kind, readiness and confidence of the CCNL ruleset and of each ruleset a payable rule was read from |
 | `mode` | `EngineMode` | `simulation` (default) or `operational`, from the engine |
 | `payability` | `Payability` | `payable` exactly when `blockers` is empty |
+| `limitations` | `tuple[ModelLimitation, ...]` | The model limitations that apply to the run, open or resolved, whatever their impact |
 
 ### Calculation
 

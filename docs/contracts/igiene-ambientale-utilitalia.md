@@ -43,7 +43,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | inps_employer |
 
 ### Verifica
 
@@ -129,13 +129,26 @@ percentage: 0.95
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error.
-
-!!! warning ""
+!!! warning "igiene-ambientale-utilitalia/industria_rates_proxy · inps_employer · impact unknown · open"
     INPS RATES. INDUSTRIA rates from 2026-industria.json used as proxy (3 size tiers: ≤15, ≤50, >50 employees — selected via Employer.num_employees). For K540 (igiene ambientale), the applicable CIGO regime is standard industria (CIGO ordinaria) under D.Lgs. 148/2015; no sector-specific INPS circular found. The CIGO addizionale (0.60% ≤50 employees, 0.90% >50) is event-driven: charged only when hours are actually in CIG integrazione — correctly excluded from the standing monthly rate. Simplification: industria proxy, not a sector-specific file.
+
+    **Applies when:** `inps_employer` applies.
+
+    **Remediation:** Verify the INPS rates of igiene ambientale against a sector-specific circular.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    FIRST SALARY PERIOD. The 16-level classification (Q, A1, A2s, A2, B1s, B1, B2s, B2, C1s, C1, C2s, C2, D1s, D1, D2s, D2) took effect on 01/02/2026. The preceding period (01/01/2025-31/01/2026) used a different level structure. Only the post-reclassification system is modelled; queries for as_of dates before 2026-02-01 will return an out-of-range error.
 
 ## Sources
 

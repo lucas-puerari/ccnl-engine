@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | seniority |
 
 ### Verifica
 
@@ -108,10 +108,21 @@ percentage: 0.95
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "ceramica-industria-confindustria/apprentice_seniority_amount · seniority · impact unknown · open"
     APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable.
+
+    **Applies when:** `seniority` applies; contract type in apprentice.
+
+    **Remediation:** Verify Arts. 80-82 of the July 2024 rinnovo for the apprentice seniority amount.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

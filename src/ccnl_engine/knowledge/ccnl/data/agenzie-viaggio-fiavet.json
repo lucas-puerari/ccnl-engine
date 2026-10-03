@@ -1913,11 +1913,14 @@
       },
       {
         "kind": "simplification",
-        "text": "Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law)."
+        "text": "Levels QA and QB (Quadri) excluded from the apprenticeship track (apprenticeship not applicable to Quadri by law).",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope."
+        "text": "Layer 3 (overtime, night shifts, public holidays) out of scope.",
+        "capability": "overtime",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1928,7 +1931,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "55c91254bd9f865c9ae9079be434cccdacd7199f0a4558e2c3f340049eec2b31",
+    "source_hash": "422ba82f4a86e7d64b107b917996897b352d0da21cc01626678a1feedb87d295",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

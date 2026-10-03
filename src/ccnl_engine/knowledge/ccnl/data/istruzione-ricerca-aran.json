@@ -598,27 +598,59 @@
       },
       {
         "kind": "simplification",
-        "text": "CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM)."
+        "text": "CNEL S305 confermato per comparto, include tutte le sezioni (scuola, università, ricerca, AFAM).",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo."
+        "text": "Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.",
+        "capability": "overtime",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Base salary = fascia 0-8 anni (entry level). Le 6 fasce di anzianità (0-8, 9-14, 15-20, 21-27, 28-34, 35+) non sono scatti automatici ma bande per anzianità di servizio. Fascia superiore non modellata."
+        "text": "Base salary = fascia 0-8 anni (entry level). Le 6 fasce di anzianità (0-8, 9-14, 15-20, 21-27, 28-34, 35+) non sono scatti automatici ma bande per anzianità di servizio. Fascia superiore non modellata.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "higher_seniority_bands_missing",
+          "applies_when": {
+            "seniority_months_from": 108
+          },
+          "remediation": "Model the six seniority bands (fasce) of the tabellare."
+        }
       },
       {
         "kind": "simplification",
-        "text": "seniority maximum_count=0 (fasce non sono scatti automatici nell'accezione del CCNL privato). Per la fascia di anzianità corretta, usare negotiated_ral o livello dedicato."
+        "text": "seniority maximum_count=0 (fasce non sono scatti automatici nell'accezione del CCNL privato). Per la fascia di anzianità corretta, usare negotiated_ral o livello dedicato.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_bands_not_increments",
+          "applies_when": {
+            "seniority_months_from": 108
+          },
+          "remediation": "Model the seniority bands as band-dependent salary tables instead of maximum_count=0."
+        }
       },
       {
         "kind": "simplification",
-        "text": "DOCENTE_SECONDARIA aggrega secondaria I grado e secondaria II (laurea) che condividono lo stesso tabellare entry. DOCENTE_INFANZIA_PRIMARIA aggrega anche secondaria II (diploma) con stesso tabellare entry."
+        "text": "DOCENTE_SECONDARIA aggrega secondaria I grado e secondaria II (laurea) che condividono lo stesso tabellare entry. DOCENTE_INFANZIA_PRIMARIA aggrega anche secondaria II (diploma) con stesso tabellare entry.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata."
+        "text": "valid_from period 1 = 2022-01-01 (inizio validità del triennio). Il previgente CCNL 2019-2021 aveva stabilito i valori pre-2024; la data esatta di firma del CCNL 2019-2021 non è disponibile dalla fonte e viene approssimata.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "period_1_start_approximated",
+          "applies_when": {
+            "effective_until": "2024-01-01"
+          },
+          "remediation": "Source the signing date of the CCNL 2019-2021 for the start of period 1."
+        }
       }
     ]
   },
@@ -629,7 +661,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "f383d10c114488204a27e999a843798ead6b096fff9a314f94037bf5fbf109fc",
+    "source_hash": "04568a7a4d2db3c23b13db395d5e592a157f8923a8d1b8f4b87c804c9c6019ab",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

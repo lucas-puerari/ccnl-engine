@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -109,12 +109,25 @@ Destination levels: `8`, `9`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "informatica-pmi-unimatica/apprenticeship_duration_by_agreement · base_salary · impact unknown · open"
     APPRENTICESHIP GENERAL TRACK DURATION: the CCNL offers three duration options (36/30/24 months) by agreement between the parties; no per-destination-level assignment was found in the available text. The 36-month track (12+12+12) is used as representative for destination levels 1, 2, 3, 4, 5, 6, 7. Real durations may be shorter by agreement.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 30 and 24-month durations as separate tracks selectable by name.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
     APPRENTICESHIP — QUADRO (Q) NOT MODELLED AS DESTINATION: Art. 52 and Art. 64 contain no affirmative listing of Q as an apprendistato professionalizzante destination. Following repo precedent (telecomunicazioni-asstel, gomma-plastica) where Quadri are excluded from apprenticeship destinations when no explicit contractual text lists them, Q is omitted from destination_levels of the general track.
 
 ## Sources

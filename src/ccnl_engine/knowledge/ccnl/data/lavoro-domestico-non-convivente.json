@@ -70,11 +70,29 @@
       },
       {
         "kind": "simplification",
-        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods)."
+        "text": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranches_from_2027",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update."
+        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_frozen_at_2026",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Update the seniority amounts with each ISTAT adjustment of the minimum tables."
+        }
       },
       {
         "kind": "info",
@@ -629,7 +647,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "b7a4735083ad726d6eb47e14ddbaa4645253b9b4153287f7e17c1df586d4803e",
+    "source_hash": "64b38390e46791815d1818e5b6b7902a0711d522989466be8032416de5eb2f48",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

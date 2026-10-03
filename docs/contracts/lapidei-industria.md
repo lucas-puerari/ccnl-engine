@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -101,13 +101,26 @@ percentage: 1.00
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    PRE-31/12/2022 HISTORY: the 2022-2025 CCNL is retroactively valid from 01/04/2022. Values for April 2022 through November 2022 are not modelled (data not retrieved from public sources). Engine history starts at 31/12/2022.
-
-!!! warning ""
+!!! warning "lapidei-industria/apprenticeship_passthrough · base_salary · impact unknown · open"
     APPRENTICESHIP: 2022 CCNL Art. 3d changed system from sotto-inquadramento to percentage ('calcolate in percentuale...come da allegata tabella'). Pre-2022 system confirmed from full CCNL 2008 text (integrating Accordo 15/03/2006): 2 levels below destination for first half of apprenticeship, 1 level below for second half, no seniority increments accrued. Post-2022 percentage values from scanned allegata tabella not extractable (OCR-confirmed: image-only PDF). 2025-2028 rinnovo (12-page OCR) does not modify apprenticeship. Modelled as 1.00 passthrough pending actual 2022+ percentage values.
+
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Extract the post-2022 percentage table and model the percentage track.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    PRE-31/12/2022 HISTORY: the 2022-2025 CCNL is retroactively valid from 01/04/2022. Values for April 2022 through November 2022 are not modelled (data not retrieved from public sources). Engine history starts at 31/12/2022.
 
 ## Sources
 

@@ -39,7 +39,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | seniority |
 
 ### Verifica
 
@@ -113,10 +113,21 @@ percentage: 1.00
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "grafica-editoria-aieg/pre_july_2026_amounts_missing · seniority · impact unknown · open"
     SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.
+
+    **Applies when:** `seniority` applies; before 2026-07-01.
+
+    **Remediation:** Recover the scatto amounts of the previous rinnovo for periods before July 2026.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

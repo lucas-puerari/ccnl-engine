@@ -67,27 +67,76 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees."
+        "text": "SIMPLIFICATION: Q indennità di funzione (Art. 162 footnote) not modelled. Amount: 250 EUR/month × 12 mensilità, for quadri with responsibility over operational or local units ('nei casi di responsabilità di unità operative o di unità locali'). Excluded because: (1) conditional on role attribute, not universal for level Q; (2) 12 mensilità conflicts with additional_months=14; (3) conglobated model requires fixed_allowances: []. employer_cost_annual may be understated by up to 3000 EUR/year for qualifying Q employees.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_function_allowance",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "Q"
+            ]
+          },
+          "remediation": "Model the Art. 162 Q function allowance (250 EUR x 12) as a role-gated allowance."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year)."
+        "text": "SIMPLIFICATION: QSC and Quota Forfettaria (Art. 11) not modelled. QSC: 1.90% of monthly retribuzione × 14 mensilità (0.30% employee + 1.60% employer), paid to EBNAIP. Quota Forfettaria: 12 EUR/month × 12 mensilità, employer only. Both go to the bilateral entity; the QSC constitutes retribuzione ordinaria for TFR purposes (Art. 11). Modelling would require percentage-based bilateral fund logic not yet implemented. employer_cost_annual understated by (QSC employer portion + 144 EUR/year).",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ebnaip_qsc_and_flat_quota",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the QSC and the quota forfettaria as a bilateral fund event, or model percentage-based bilateral contributions."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels."
+        "text": "SIMPLIFICATION: CatA and CatB (Art. 164) not modelled as levels. These are special mixed-salary categories for agencies with ≤15 employees where workers receive commission income, modelled at 90% of level II and III respectively with mandatory commission minimum and 2% guarantee. Conditional on employer size and pay structure; not standard classification levels.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks."
+        "text": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "specialist_apprenticeship_track",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Model the Art. 55 two-year specialist track once its intermediate classification is sourced."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione."
+        "text": "SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.",
+        "capability": "una_tantum",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "una_tantum_2025_2026",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pay the 01/09/2025 and 01/05/2026 una tantum outside the engine for workers hired before 01/01/2024."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents."
+        "text": "SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "fonte_pension_fund",
+          "remediation": "Add the Fon.Te. employee and employer rates to the CCNL pension fund data."
+        }
       },
       {
         "kind": "info",
@@ -1158,6 +1207,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "df316248c2556f51b02ef7a14f1c1793b8d0e286718e7808d2fa89243a01a466"
+    "source_hash": "e6a6ea3f55c32d3336f212aa9608143f15ca40ee368f1415e6af407ce00dd07f"
   }
 }

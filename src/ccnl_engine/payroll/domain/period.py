@@ -28,6 +28,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.tax import TaxComputation
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 
 @dataclass(frozen=True)
@@ -74,6 +75,9 @@ class PeriodResult:
         mode: Payability policy of the engine that produced the result;
             ``operational`` adds a blocker for every ruleset short of
             ``production``.
+        limitations: Model limitations that concern the run (see
+            :class:`~ccnl_engine.shared.domain.limitation.ModelLimitation`);
+            an open one with a monetary impact blocks the amounts.
 
     Whether the amounts can be paid is :attr:`is_payable`; why not is
     :attr:`blockers`; both come from :attr:`assurance`.
@@ -98,10 +102,11 @@ class PeriodResult:
     decisions: tuple[CalculationDecision, ...] = ()
     rulesets: tuple[RulesetAssurance, ...] = ()
     mode: EngineMode = EngineMode.SIMULATION
+    limitations: tuple[ModelLimitation, ...] = ()
 
     @property
     def assurance(self) -> ResultAssurance:
-        """Assurance derived from the issues, decisions, report, rulesets and mode.
+        """Assurance derived from what the run recorded and the mode.
 
         It is derived on access, so an issue added to the result later
         (e.g. a partial month of a year) is reflected.
@@ -112,6 +117,7 @@ class PeriodResult:
             self.capability_report,
             self.rulesets,
             self.mode,
+            self.limitations,
         )
 
     @property

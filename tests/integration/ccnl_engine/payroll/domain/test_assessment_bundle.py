@@ -136,3 +136,23 @@ def test_no_bundled_result_is_payable_today(
         somma in {(b.code, b.feature, b.detail) for b in result.blockers}
         for result in results.values()
     )
+
+
+def test_open_limitations_block_where_they_apply(
+    results: dict[str, PeriodResult],
+) -> None:
+    """Each blocking limitation of a run is one blocker; most runs have none.
+
+    An ordinary month executes no work-rule capability and no apprenticeship
+    path, so only the limitations of every run of a CCNL (an unverified
+    INPS rate, a salary table from a proxy) are recorded: a minority.
+    """
+    limited = 0
+    for result in results.values():
+        blocking = [lim.id for lim in result.assurance.limitations if lim.blocks]
+        blocked = [
+            b.detail for b in result.blockers if b.code is BlockerCode.OPEN_LIMITATION
+        ]
+        assert blocked == blocking
+        limited += bool(blocking)
+    assert 0 < limited < len(results) // 3

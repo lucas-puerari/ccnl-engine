@@ -42,7 +42,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | inps_employee |
 
 ### Verifica
 
@@ -110,10 +110,21 @@ Destination levels: `4`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "multiservizi-anip/cigs_threshold_16_to_50 · inps_employee · impact yes · open"
     INPS RATES PROXY. Terziario sector confirmed for multiservizi/pulizie: kitech.it (p=4_129, "Commercio - terziario Imprese appaltatrici servizi pulizia") lists rates matching 2026-terziario.json. Simplification: the CIGS threshold for imprese di pulizia is >15 dipendenti (not >50 as in the general terziario tier); for 16-50 employee companies the modeled employee rate (9.19%) understates the actual 9.49%. FIS (Fondo Integrazione Salariale) may also apply for non-CIGS-eligible firms. Source: kitech.it/Contributi-previdenziali.aspx?p=4_129
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the CIGS threshold of more than 15 employees for cleaning firms.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

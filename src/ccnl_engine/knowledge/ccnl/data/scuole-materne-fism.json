@@ -57,11 +57,31 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (Arts. 44-46): periodic scatti (Arts. 35 CCNL 2006-2009) were frozen at 31/12/2015 and consolidated by CCNL 2016-2018. Salario di anzianita (Art. 46): 15 EUR/month (livelli I-II-III-IV) or 20 EUR/month (livelli V-VI-VII-VIII) as at 01/09/2025. Engine seniority model cannot express the milestone/hire-date nature; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers."
+        "text": "SENIORITY (Arts. 44-46): periodic scatti (Arts. 35 CCNL 2006-2009) were frozen at 31/12/2015 and consolidated by CCNL 2016-2018. Salario di anzianita (Art. 46): 15 EUR/month (livelli I-II-III-IV) or 20 EUR/month (livelli V-VI-VII-VIII) as at 01/09/2025. Engine seniority model cannot express the milestone/hire-date nature; maximum_count=0 models new-hire case correctly but understates cost for long-tenure workers.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "salario_di_anzianita",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 46 salario di anzianita with a hire-date or milestone input."
+        }
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff."
+        "text": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_identity_track",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the apprenticeship clause and replace the 100% identity track."
+        }
       }
     ]
   },
@@ -1388,7 +1408,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "5d8d3f08eddf41d4fae8634c9cc35f18b0027114c287ef141beae9be373fa3de",
+    "source_hash": "97d9f1f7b45e4431505731b5abf953af6e26c5db48458ba9814c38c4ad33a584",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

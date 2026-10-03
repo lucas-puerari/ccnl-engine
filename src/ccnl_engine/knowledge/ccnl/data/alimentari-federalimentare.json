@@ -71,7 +71,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'."
+        "text": "APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_period_boundaries",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm the 10 and 22 month period boundaries against the Art. 21 contract text."
+        }
       },
       {
         "kind": "info",
@@ -2254,7 +2265,7 @@
     "effective_until": null,
     "source": "https://flaiveneto.it/rinnovato-il-ccnl-industria-alimentare/",
     "verification_status": "unverified",
-    "source_hash": "2d2408944c01adaf271495ced25d5e16feb3913efcdc2c358e6c2068a4def1ec",
+    "source_hash": "3211042c1899809e7235d007cbce6897238d5ac8263c3821586507083cadd13d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

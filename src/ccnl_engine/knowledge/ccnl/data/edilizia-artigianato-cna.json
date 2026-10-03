@@ -72,11 +72,29 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it."
+        "text": "Seniority increment cadence (24 months) and maximum count (5) taken from general CCNL Edilizia Artigianato provisions; F015-specific text not independently confirmed. Level 1 scatto = EUR 0.00 as published in kitech.it.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_cadence_unconfirmed",
+          "remediation": "Confirm the 24-month cadence, the 5-scatti maximum and the level 1 amount against the F015 text."
+        }
       },
       {
         "kind": "simplification",
-        "text": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented."
+        "text": "For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cassa_edile_accruals_missing",
+          "applies_when": {
+            "trigger": "outside_input",
+            "worker_categories": [
+              "operaio"
+            ]
+          },
+          "remediation": "Pass the Cassa Edile contributions as a bilateral fund event, or model the Cassa Edile system."
+        }
       },
       {
         "kind": "info",
@@ -1949,7 +1967,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "5a6c3c7e273bfef1db459f2ce73e9babb2ae176de538c6dd6af17bab8a808629",
+    "source_hash": "30c9fd4f594e41bff9a74377d88c138abe45301c6026bd1484abe64b4e7a3a8a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

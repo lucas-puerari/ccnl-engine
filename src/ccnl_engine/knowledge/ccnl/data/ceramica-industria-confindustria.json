@@ -47,7 +47,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable."
+        "text": "APPRENTICE INCREMENT: apprentice_amount=null. No confirmation from any accessible primary source for B122 industria. The EUR 6 value is confirmed only for CCNL Ceramica Artigianato (V751), not B122. Italian CCNLs frequently exclude apprentices from seniority accrual during the training period (D.Lgs 81/2015 Art. 47), so null may be the correct answer rather than a gap. Verification requires full CCNL text (Arts. 80-82 of the July 2024 rinnovo), which is not publicly machine-readable.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority_amount",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Verify Arts. 80-82 of the July 2024 rinnovo for the apprentice seniority amount."
+        }
       },
       {
         "kind": "info",
@@ -1971,7 +1982,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "a1ac5eff5482c56cebe24a3871efb432cf0c3c26f2ee7adac06496087c0b91cc",
+    "source_hash": "b707c5389142cc176038381cf7aa77a52b1d36a2acd8d1a48313ad472d7dfa0e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -99,7 +99,10 @@ print(ruleset.readiness, ruleset.confidence)  # → reviewed unverified
 `simulation` reports readiness; `operational` also adds a
 `ruleset_not_production` blocker when the CCNL ruleset is not `production`.
 No bundled CCNL is `production` yet, so nothing is payable in operational
-mode. See [Readiness](docs/trust/readiness.md).
+mode. See [Readiness](docs/trust/readiness.md). Known simplifications of the
+model are typed limitations: `result.assurance.limitations` lists those that
+apply to the run, and an open one that can move an amount adds an
+`open_limitation` blocker (see [Assurance](docs/trust/confidence.md#model-limitations)).
 
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a

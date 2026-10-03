@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "5944ae8bea5b30d4b83d68e7720d7d9db17359745bb4a4d0d31987fc3354a3fa",
+    "source_hash": "b035fc5438148c8d7fdfce0474f3dcb474cfa5d04de4ee699ee5ee85fcd65f90",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -2748,19 +2748,31 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME: 6 bands in contract (diurno fino 48h 15%, diurno oltre 48h prima ora 25%, oltre 48h successive 35%, notturno prima ora 61%, notturno successive 76%, festivo 71%). Engine supports one rate per applies_to_kinds; modeled as 15% diurno, 61% notturno, 71% festivo. Higher overtime bands omitted."
+        "text": "OVERTIME: 6 bands in contract (diurno fino 48h 15%, diurno oltre 48h prima ora 25%, oltre 48h successive 35%, notturno prima ora 61%, notturno successive 76%, festivo 71%). Engine supports one rate per applies_to_kinds; modeled as 15% diurno, 61% notturno, 71% festivo. Higher overtime bands omitted.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "higher_overtime_bands",
+          "remediation": "Model the 25% and 35% bands over 48 weekly hours and the 76% night band, or pass the multiplier on the overtime event."
+        }
       },
       {
         "kind": "simplification",
-        "text": "DAILY DIVISOR: contract states quota giornaliera = 25 giorni/mese. DailyDivisorMethod has no by_25; by_26 used. Error: gross_daily overstated by ~3.8% for absence deductions."
+        "text": "DAILY DIVISOR: contract states quota giornaliera = 25 giorni/mese. DailyDivisorMethod has no by_25; by_26 used. Error: gross_daily overstated by ~3.8% for absence deductions.",
+        "capability": "absence",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS: Art. 60 (2024 renewal) — 3 seniority tiers: comporto 8/10/12 mesi, full-pay 3/4/5 mesi, half-pay 5/6/7 mesi. Modeled as base tier (0-5 years): 100% months 1-3, 50% months 4-8, max 240 days. Higher tiers not modeled — SicknessRules has no seniority-gated comporto."
+        "text": "SICKNESS: Art. 60 (2024 renewal) — 3 seniority tiers: comporto 8/10/12 mesi, full-pay 3/4/5 mesi, half-pay 5/6/7 mesi. Modeled as base tier (0-5 years): 100% months 1-3, 50% months 4-8, max 240 days. Higher tiers not modeled — SicknessRules has no seniority-gated comporto.",
+        "capability": "sickness",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "LEAVE: 20 gg up to 10 years; +2 gg from 11th year (132 months); +3 gg from 16th year over base (not over the 11-year tier; 192 months = 23 gg); 5 settimane (25 gg) from 18th year (216 months). Source: MySolution sintesi 2017 p. 4. ROL 68 ore/anno not modeled."
+        "text": "LEAVE: 20 gg up to 10 years; +2 gg from 11th year (132 months); +3 gg from 16th year over base (not over the 11-year tier; 192 months = 23 gg); 5 settimane (25 gg) from 18th year (216 months). Source: MySolution sintesi 2017 p. 4. ROL 68 ore/anno not modeled.",
+        "capability": "leave",
+        "monetary_impact": "no"
       }
     ]
   }

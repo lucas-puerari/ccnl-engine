@@ -41,7 +41,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -107,18 +107,35 @@ percentage: 1.00
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027).
-
-!!! warning ""
+!!! warning "pubblici-esercizi-fipe-angem/contract_catering_tranche_dates · base_salary · impact yes · open"
     CONTRACT CATERING: collective catering companies apply the 2nd and 3rd tranche one month later (Sep-25 instead of Jun-25, Sep-26 instead of Jun-26). Only the main sub-sector (public establishments / commercial catering / tourism) is modelled with Jun-25 and Jun-26 dates. Impact: negligible on an annual basis for collective catering companies.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the contract-catering sub-sector with its September tranche dates.
+
+!!! warning "pubblici-esercizi-fipe-angem/small_company_pay_reduction · base_salary · impact yes · open"
     SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to micro-enterprises under paragraph II Art. 1. Maximum impact: €5.68/month for Qa.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027).
+
+!!! note ""
     APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% confirmed by lexplain.it (CCNL 2024-2027 tables). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.
 
 ## Sources

@@ -11,6 +11,8 @@ Each recorded condition is one :class:`~ccnl_engine.payroll.domain.assurance\
   its registry entry accepts (``derived`` for every capability today), or
   a run whose rules carry no provenance record;
 - a capability that took a caller value in place of a rule;
+- an open model limitation with a monetary impact (``yes`` or
+  ``unknown``) that concerns the run;
 - in ``operational`` mode only, a ruleset that tracks a readiness tier and
   is not ``production``, or a run where no ruleset tracks one (the CCNL
   identity is missing): the run fails closed.
@@ -44,6 +46,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
+    from ccnl_engine.shared.domain.limitation import ModelLimitation
 
 __all__ = ["assess"]
 
@@ -54,6 +57,7 @@ def assess(
     report: CapabilityReport,
     rulesets: tuple[RulesetAssurance, ...],
     mode: EngineMode,
+    limitations: tuple[ModelLimitation, ...] = (),
 ) -> ResultAssurance:
     """Derive the assurance of one run from what the run recorded.
 
@@ -63,6 +67,7 @@ def assess(
         report: Capability report of the run.
         rulesets: Rulesets the payable rules of the run came from.
         mode: Payability policy of the engine.
+        limitations: Model limitations that concern the run.
 
     Returns:
         The assurance of the run.
@@ -84,6 +89,11 @@ def assess(
             for feature, fields in report.caller_supplied.items()
         ),
         *_readiness_blockers(rulesets, mode),
+        *(
+            _blocker(BlockerCode.OPEN_LIMITATION, lim.capability, lim.id)
+            for lim in limitations
+            if lim.blocks
+        ),
     )
     return ResultAssurance(
         calculation=CalculationStatus.worst((
@@ -96,6 +106,7 @@ def assess(
         mode=mode,
         payability=decide_payability(blockers),
         blockers=blockers,
+        limitations=limitations,
     )
 
 
@@ -151,6 +162,10 @@ _REMEDIATION: dict[BlockerCode, str] = {
     BlockerCode.CALLER_SUPPLIED_RULE: (
         "{feature} used caller values ({detail}) in place of a bundled rule: "
         "validate them outside the engine"
+    ),
+    BlockerCode.OPEN_LIMITATION: (
+        "{feature} is computed under the open limitation {detail}: check the "
+        "amount outside the engine or resolve the limitation"
     ),
     BlockerCode.RULESET_NOT_PRODUCTION: (
         "{detail} is not cleared as production (or no ruleset of the run tracks "

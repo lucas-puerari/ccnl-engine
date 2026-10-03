@@ -55,11 +55,23 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels."
+        "text": "Apprenticeship rules involve per-level classification reduction not fully resolvable from available sources. Modeled as 100% passthrough for all levels.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_full_pay_passthrough",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the per-level apprenticeship under-classification and model it as a track."
+        }
       },
       {
         "kind": "simplification",
-        "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented."
+        "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented.",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -2176,7 +2188,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "70f3c206141d43b8e1cb23793de9a4b23dfb3c9c088629f2278d91f548808774",
+    "source_hash": "0c6e47f560d0385641fd5fef333f9185184aa0e5cf798857f6bed81b217f3788",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

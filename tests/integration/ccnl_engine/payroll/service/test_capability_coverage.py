@@ -62,8 +62,8 @@ def test_missing_note_lowers_its_capability() -> None:
     assert rows["irpef"] == (_IMPL.NATIVE, False)
 
 
-def test_bundled_missing_notes() -> None:
-    """The bundle's missing notes name the capabilities they limit."""
+def test_bundled_missing_notes_and_limitations() -> None:
+    """Missing notes and blocking limitations name the capabilities they limit."""
     limited = {
         filename: sorted(
             f for f, (_, named) in _by_feature(load_ccnl(filename)).items() if named
@@ -75,10 +75,35 @@ def test_bundled_missing_notes() -> None:
         )
     }
     assert limited == {
-        "assicurazioni-ania.json": ["base_salary"],
-        "ced-assoced.json": ["base_salary"],
-        "ortofrutticoli-agrumari.json": ["leave", "sickness"],
+        "assicurazioni-ania.json": ["base_salary", "inps_employer", "seniority"],
+        "ced-assoced.json": ["base_salary", "inps_employer"],
+        "ortofrutticoli-agrumari.json": [
+            "base_salary",
+            "leave",
+            "seniority",
+            "sickness",
+        ],
     }
+
+
+@pytest.mark.parametrize(
+    ("filename", "features"),
+    [
+        ("impianti-sportivi-sport.json", ("overtime", "sickness")),
+        ("concia-unic.json", ("overtime", "sickness")),
+        ("ortofrutticoli-agrumari.json", ("leave", "sickness")),
+        (
+            "pulizia-artigianato-confartigianato.json",
+            ("holiday_work", "leave", "night_work", "sickness"),
+        ),
+    ],
+)
+def test_work_rules_partials_are_derived(
+    filename: str, features: tuple[str, ...]
+) -> None:
+    """The work-rule gaps these files once declared as flags are partial."""
+    rows = _by_feature(load_ccnl(filename))
+    assert all(rows[feature][0] is _IMPL.PARTIAL for feature in features)
 
 
 def test_unknown_capability_is_rejected() -> None:

@@ -65,7 +65,26 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica; rule from contratticcnl.it: the apprentice cannot be classified more than two levels below the destination). Track 'professionalizzante' for destinations G, F, E, D, C, B: 0-12 months two levels below, 12-24 one level below, then destination. The 12/12 boundaries are an approximation (no public monthly table). H (only one level below exists), I, A and Q are not modelled as destinations."
+        "text": "APPRENTICESHIP under_classification (art. apprendistato professionalizzante CCNL Gomma e Plastica; rule from contratticcnl.it: the apprentice cannot be classified more than two levels below the destination). Track 'professionalizzante' for destinations G, F, E, D, C, B: 0-12 months two levels below, 12-24 one level below, then destination. The 12/12 boundaries are an approximation (no public monthly table). H (only one level below exists), I, A and Q are not modelled as destinations.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprenticeship_period_boundaries",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "B",
+              "C",
+              "D",
+              "E",
+              "F",
+              "G"
+            ]
+          },
+          "remediation": "Source the monthly apprenticeship table and correct the 12/12 period boundaries."
+        }
       },
       {
         "kind": "info",
@@ -2180,7 +2199,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "f1a0d9b0029b044c909784e77f495218ae59e52148a362bd23f64f6e4af960f7",
+    "source_hash": "b4060ae1edf9c40ad8847ed1b6aed8d8ed1794cbafb5eee094c15b982fac4407",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

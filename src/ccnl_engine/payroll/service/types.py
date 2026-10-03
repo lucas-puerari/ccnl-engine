@@ -23,11 +23,16 @@ class MonthPeriod(Protocol):
 
 @dataclass(frozen=True)
 class MonthlyPayChain:
-    """Full-time monthly pay components of one level on one date."""
+    """Full-time monthly pay components of one level on one date.
+
+    ``limitations`` holds the ids of the engine limitations whose code path
+    built the chain; every derived chain keeps them.
+    """
 
     base: Decimal
     seniority: Decimal
     allowances: tuple[tuple[Allowance, Decimal], ...]
+    limitations: tuple[str, ...] = ()
 
     def scaled(self, factor: Decimal) -> MonthlyPayChain:
         """Scale all components by ``factor``.
@@ -39,6 +44,7 @@ class MonthlyPayChain:
             base=money(self.base * factor),
             seniority=money(self.seniority * factor),
             allowances=tuple((a, money(v * factor)) for a, v in self.allowances),
+            limitations=self.limitations,
         )
 
     def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
@@ -59,6 +65,7 @@ class MonthlyPayChain:
                 (a, money(v * percentage) if a.apprenticeship_pct_relevant else v)
                 for a, v in self.allowances
             ),
+            limitations=self.limitations,
         )
 
     def scaled_for_part_time(self, factor: Decimal) -> MonthlyPayChain:
@@ -79,6 +86,7 @@ class MonthlyPayChain:
                 (a, money(v * factor) if a.part_time_proportionable else v)
                 for a, v in self.allowances
             ),
+            limitations=self.limitations,
         )
 
     def for_extra_month(self, months_threshold: int) -> MonthlyPayChain:
@@ -107,6 +115,7 @@ class MonthlyPayChain:
             base=self.base,
             seniority=self.seniority,
             allowances=eligible,
+            limitations=self.limitations,
         )
 
     @property

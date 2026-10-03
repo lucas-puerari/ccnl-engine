@@ -43,19 +43,41 @@
       },
       {
         "kind": "simplification",
-        "text": "SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027)."
+        "text": "SALARY MODEL: the contractual pay structure provides for a separate national base pay and contingenza. For engine purposes they are consolidated into base_salary (monthly total per tranche). The total values match the official FIPE pay tables (Tabelle retributive 2024, fipe.it). fixed_allowances models the function allowance for quadri: Qa=75 EUR and Qb=70 EUR, confirmed by lexplain.it (CCNL 2024-2027).",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "CONTRACT CATERING: collective catering companies apply the 2nd and 3rd tranche one month later (Sep-25 instead of Jun-25, Sep-26 instead of Jun-26). Only the main sub-sector (public establishments / commercial catering / tourism) is modelled with Jun-25 and Jun-26 dates. Impact: negligible on an annual basis for collective catering companies."
+        "text": "CONTRACT CATERING: collective catering companies apply the 2nd and 3rd tranche one month later (Sep-25 instead of Jun-25, Sep-26 instead of Jun-26). Only the main sub-sector (public establishments / commercial catering / tourism) is modelled with Jun-25 and Jun-26 dates. Impact: negligible on an annual basis for collective catering companies.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "contract_catering_tranche_dates",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the contract-catering sub-sector with its September tranche dates."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to micro-enterprises under paragraph II Art. 1. Maximum impact: €5.68/month for Qa."
+        "text": "SMALLER COMPANIES: Art. 162 provides for a reduction in base pay for smaller companies (from €2.58 to €5.68 per level). Not modelled — applicable only to micro-enterprises under paragraph II Art. 1. Maximum impact: €5.68/month for Qa.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "small_company_pay_reduction",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 162 base-pay reduction for micro-enterprises with an employer-size input."
+        }
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% confirmed by lexplain.it (CCNL 2024-2027 tables). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope."
+        "text": "APPRENTICESHIP (Art. 68): professionalizzante apprenticeship 36 months, percentages 80%/85%/90% confirmed by lexplain.it (CCNL 2024-2027 tables). Destination levels modelled as 1-6s and 6 (Qa/Qb excluded per D.Lgs. 81/2015 art. 41; level 7 excluded per tertiary CCNL convention, not verified against Art. 68 — fipe.it full text PDF not parseable: scanned without OCR). Art. 75 (apprenticeship for qualification/diploma) out of scope.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1754,7 +1776,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "4696caec62270d32bcf31dc73a3f10ad323db0bbd76827493075258b84eab67e",
+    "source_hash": "6f2bb11c080d45d37e52d2ad616f9471cced20a4af6ca74add25896350ed537f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

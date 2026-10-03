@@ -84,7 +84,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate."
+        "text": "INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "terziario_inps_rates_unverified",
+          "remediation": "Verify the H601 sub-sector INPS rate against the annual INPS circular."
+        }
       }
     ]
   },
@@ -1356,7 +1362,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "aae009e67a11e2ac603d1676129b970a3cea833d1c81654e32d5258b12891687",
+    "source_hash": "5a750d0608b1ffe4ecb6e9e8bb7df72ae32d34c21b8b5ee9419beee7cb89781f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

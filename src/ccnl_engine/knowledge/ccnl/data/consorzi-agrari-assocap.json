@@ -67,19 +67,44 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Jan 2024 tranche (first of four per 12/12/2023 accord) not modeled; no per-level table found in public sources. Engine returns no result for as_of before 2025-01-01."
+        "text": "SIMPLIFICATION: Jan 2024 tranche (first of four per 12/12/2023 accord) not modeled; no per-level table found in public sources. Engine returns no result for as_of before 2025-01-01.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled."
+        "text": "SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "tranche_2027_01_missing",
+          "applies_when": {
+            "effective_from": "2027-01-01"
+          },
+          "remediation": "Add the January 2027 tranche per level once the official table is published."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers."
+        "text": "SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "cashier_allowance_missing",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the 55 EUR/month indennita di cassa as a role-gated allowance for cashiers."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled."
+        "text": "SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.",
+        "capability": "health_fund_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "filcoop_health_fund_missing",
+          "remediation": "Model the FILCOOP SANITARIO contributions once health funds enter the engine input."
+        }
       }
     ]
   },
@@ -1270,7 +1295,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "1faeefd74d3480b6fd16ed4bffb13b47a6a9dee730a8f5f61d7a950927e2c192",
+    "source_hash": "08aa145d2dcd85f95949433b056da23d59003c6774c261a6b8e7cbedbe4f4a1e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

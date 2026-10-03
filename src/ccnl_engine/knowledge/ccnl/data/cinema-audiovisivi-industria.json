@@ -56,11 +56,21 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprenticeship provisions not modeled (primary CCNL text not publicly available). Field left empty."
+        "text": "SIMPLIFICATION: Apprenticeship provisions not modeled (primary CCNL text not publicly available). Field left empty.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies."
+        "text": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "bilateral_funds_not_modelled",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event."
+        }
       }
     ]
   },
@@ -1795,7 +1805,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "ea72752a51442e51afcf5091177e7ba3a3b2c93abd6a3c3b065e3039862ed855",
+    "source_hash": "d216b6023548af948f958d546dd15c2261390e8106d04e091cbc209d82c46801",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },

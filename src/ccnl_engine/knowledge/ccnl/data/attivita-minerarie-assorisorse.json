@@ -52,15 +52,28 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown."
+        "text": "SIMPLIFICATION: Seniority increments (scatti di anzianita) not modeled — Art. anzianita not found in scanned PDF pages available (OCR coverage pages 1-10, table on page 9). Seniority amounts are unknown.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_not_modelled",
+          "remediation": "Source the seniority article and add the increments to the CCNL file."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency."
+        "text": "SIMPLIFICATION: Source PDF is scanned (image-based, CCITT compression). Salary values extracted via OCR (Ghostscript + Tesseract). Amounts verified by cross-checking parametrale ratios and incremental consistency.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ocr_salary_values",
+          "remediation": "Check the OCR-extracted salary values against a text source of the renewal protocol."
+        }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Work rules (overtime rates, leave, sickness) not modeled — source document is a renewal protocol covering salary increases and HSE provisions, not the full CCNL text."
+        "text": "SIMPLIFICATION: Work rules (overtime rates, leave, sickness) not modeled — source document is a renewal protocol covering salary increases and HSE provisions, not the full CCNL text.",
+        "monetary_impact": "no"
       },
       {
         "kind": "info",
@@ -1285,7 +1298,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e2d101bccc0d8fff95f0d914a6da1698d26e43149b251980bb2b9c2130663ca9",
+    "source_hash": "2170739f2aee7e8b8af5d84d2d56651321649f14dbba9669c8c4d1272fe6981e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

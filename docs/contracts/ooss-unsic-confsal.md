@@ -45,7 +45,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -111,13 +111,28 @@ under-level: `1`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "ooss-unsic-confsal/salary_2026_from_proxy · base_salary · impact unknown · open"
     SIMPLIFICATION: 2026 salary values (L1=2788.00, L2=2331.75, L3=2096.38, L4=1863.44, L5=1735.04, L6=1588.78) sourced from proxy (kitech.it) for the 2026-2028 renewal. Primary source PDF covers 2023-2025 only.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; from 2026-01-01.
+
+    **Remediation:** Verify the 2026-2028 salary values against the primary renewal text.
+
+!!! warning "ooss-unsic-confsal/level_5_apprentice_one_level_below · base_salary · impact unknown · open"
     SIMPLIFICATION: dest level 5 apprenticeship: lb=2 is structurally impossible (only 1 level below exists). Modelled as lb=1 for full 36mo duration per Art. 15 cap ('non piu di due livelli').
+
+    **Applies when:** `base_salary` applies; contract type in apprentice; level in 5.
+
+    **Remediation:** Confirm the level 5 apprenticeship classification against Art. 15.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

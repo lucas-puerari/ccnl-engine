@@ -37,7 +37,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | overtime |
 
 ### Verifica
 
@@ -97,13 +97,19 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text.
-
-!!! warning ""
+!!! warning "metalmeccanico-confimi-pmi/overtime_bands_from_confapi · overtime · impact unknown · open"
     WORK RULES: overtime bands and absence rules modelled on the standard industry framework consistent with the CONFAPI PMI metalmeccanica CCNL (C018), which shares the same legislative base. Verify specific CONFIMI provisions before applying.
+
+    **Applies when:** `overtime` applies.
+
+    **Remediation:** Verify the overtime bands against the CONFIMI CCNL text.
+
+### Without monetary impact
+
+!!! note ""
+    APPRENTICESHIP OMITTED: Art. 10 CCNL (2022-01-01 update) provides an under_classification model where the destination cat.3 requires initial classification at 90% of cat.2 salary (a hybrid percentage+under_classification mechanism not directly supported). Apprenticeship omitted from this model; affected employers should refer to the CCNL text.
 
 ## Sources
 

@@ -42,7 +42,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -107,22 +107,43 @@ Destination levels: `I5`, `I6`, `I6Q`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted.
-
-!!! warning ""
+!!! warning "sistemazioni-idraulico-forestali-impiegati/derived_tranche_rounding · base_salary · impact yes · open"
     Tranches 01/01/2027 and 01/01/2028 for impiegati derived from confirmed Art. 35 parametri (L1=100, L2=108, L3=115, L4=122, L5=133, L6=152) applied to 01/01/2026 base. Rounding wobble up to 0.15 EUR on L4-L6 compared to rounded CCNL tables.
 
-!!! warning ""
-    Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported.
+    **Applies when:** `base_salary` applies; level in I4, I5, I6; from 2027-01-01.
 
-!!! warning ""
+    **Remediation:** Replace the parameter-derived 2027 and 2028 tranches with the rounded CCNL tables.
+
+!!! warning "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · open"
     IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; level in I6Q.
+
+    **Remediation:** Confirm the date IND_FUNZIONE moved from 103.00 to 120.00 EUR.
+
+!!! warning "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text · base_salary · impact unknown · open"
     Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Verify the structural rules against the 2025 renewal text.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
+
+### Without monetary impact
+
+!!! note ""
+    Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted.
+
+!!! note ""
+    Apprendistato: livelli I1 e I2 esclusi da destination_levels (engine requires at least 2 levels below minimum; I2 at order=2 cannot go 2 below). Only I3, I4, I5, I6, I6Q supported.
 
 ## Sources
 

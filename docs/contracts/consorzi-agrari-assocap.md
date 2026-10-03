@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary, health_fund_employer |
 
 ### Verifica
 
@@ -96,19 +96,33 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
-    SIMPLIFICATION: Jan 2024 tranche (first of four per 12/12/2023 accord) not modeled; no per-level table found in public sources. Engine returns no result for as_of before 2025-01-01.
-
-!!! warning ""
+!!! warning "consorzi-agrari-assocap/tranche_2027_01_missing · base_salary · impact yes · open"
     SIMPLIFICATION: Jan 2027 tranche not yet published per-level; not modeled.
 
-!!! warning ""
+    **Applies when:** `base_salary` applies; from 2027-01-01.
+
+    **Remediation:** Add the January 2027 tranche per level once the official table is published.
+
+!!! warning "consorzi-agrari-assocap/cashier_allowance_missing · base_salary · impact yes · open"
     SIMPLIFICATION: Indennita di cassa (EUR 55.00/month, cashiers only) not modeled — applies only to a subset of workers.
 
-!!! warning ""
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 55 EUR/month indennita di cassa as a role-gated allowance for cashiers.
+
+!!! warning "consorzi-agrari-assocap/filcoop_health_fund_missing · health_fund_employer · impact yes · open"
     SIMPLIFICATION: FILCOOP SANITARIO bilateral health fund not modeled.
+
+    **Applies when:** `health_fund_employer` applies.
+
+    **Remediation:** Model the FILCOOP SANITARIO contributions once health funds enter the engine input.
+
+### Without monetary impact
+
+!!! note ""
+    SIMPLIFICATION: Jan 2024 tranche (first of four per 12/12/2023 accord) not modeled; no per-level table found in public sources. Engine returns no result for as_of before 2025-01-01.
 
 ## Sources
 

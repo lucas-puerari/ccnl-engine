@@ -87,31 +87,82 @@
       },
       {
         "kind": "simplification",
-        "text": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement."
+        "text": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
+        "capability": "territorial_supplement",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_supplement",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the provincial (CPL) supplement outside the engine."
+        }
       },
       {
         "kind": "simplification",
-        "text": "OTI ONLY. OTD (Operai a Tempo Determinato / seasonal) workers are not modelled. OTD workers receive a Terzo Elemento of 30.44% (festività 5.45% + ferie 8.33% + tredicesima 8.33% + quattordicesima 8.33%) in lieu of accruals; the engine cannot represent this structure. OTD represent a large share of agricultural workers."
+        "text": "OTI ONLY. OTD (Operai a Tempo Determinato / seasonal) workers are not modelled. OTD workers receive a Terzo Elemento of 30.44% (festività 5.45% + ferie 8.33% + tredicesima 8.33% + quattordicesima 8.33%) in lieu of accruals; the engine cannot represent this structure. OTD represent a large share of agricultural workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "otd_terzo_elemento",
+          "applies_when": {
+            "contract_types": [
+              "fixed_term"
+            ]
+          },
+          "remediation": "Model the OTD terzo elemento structure for fixed-term agricultural workers."
+        }
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers."
+        "text": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "florovivaisti_tables",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the OTF salary tables as a separate file."
+        }
       },
       {
         "kind": "simplification",
-        "text": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only."
+        "text": "INPS CONTRIBUTION BASE. Agricultural OTI INPS contributions are legally computed on the 'retribuzione convenzionale' (set annually by INPS decree per DL 338/1989 Art. 1), NOT on the actual contractual salary. This engine applies rates to actual gross salary. The net INPS amounts will differ from statutory computations. Figures are indicative only.",
+        "capability": "inps_employee",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "inps_on_actual_not_conventional_pay",
+          "remediation": "Compute agricultural INPS contributions on the retribuzione convenzionale set by INPS decree."
+        }
       },
       {
         "kind": "simplification",
-        "text": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL."
+        "text": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
+        "capability": "inail",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "inail_agricultural_premium",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the INAIL agricultural premium."
+        }
       },
       {
         "kind": "simplification",
-        "text": "CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse."
+        "text": "CNEL CODE A011 sourced from ilccnl.it and contratticcnl.it; unverified against CNEL archive (archive returned 404 at time of extraction). Code A014 belongs to a separate expired minority CCNL (ASNALI/FAGRI) — do not confuse.",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values."
+        "text": "SENIORITY AMOUNTS. Art. 54 scatti di anzianità amounts (Area1=11.36, Area2=10.33, Area3=8.99) sourced from 2022-2025 CCNL via aggregators (contratticcnl.it). The 2026 renewal text has not been confirmed to have changed these amounts; INPS Circ. 94/2024 reports a different 5-level structure (L1=9.89, L2=11.36, L3=11.93, L4=12.50, L5=12.78) which may reflect a different classification schema. Update if the renewed Art. 54 specifies different area-based values.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seniority_amounts_unconfirmed",
+          "remediation": "Confirm the Art. 54 seniority amounts against the 2026 renewal text."
+        }
       },
       {
         "kind": "info",
@@ -123,15 +174,35 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled."
+        "text": "APPRENTICESHIP — AREA1 DESTINATION ONLY. Area2 destination under-classification would require 2 levels below Area2, which is below the national floor (Area3), and cannot be modelled in a 3-level system. Area3 destination apprenticeship has no lower level to start from. Only Area1 destination (0-12m at Area3, 12-24m at Area2, 24-36m at Area1) is modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted."
+        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.",
+        "capability": "bilateral_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "eban_fisa_agrifondo",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events."
+        }
       },
       {
         "kind": "simplification",
-        "text": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled."
+        "text": "TERRITORIAL REDUCTIONS. INPS reductions for mountain/disadvantaged zones (75%/68%) are not modelled.",
+        "capability": "inps_employer",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "mountain_zone_reductions",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the INPS reductions for mountain and disadvantaged zones."
+        }
       }
     ]
   },
@@ -609,7 +680,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "716cc6d6317678c1b6adace91d653c26c27114ccef6a2b0a72233213b5a13b23",
+    "source_hash": "1192285b5f0446b1f6536086f9b1be944fce7be13c1a409b5d50258292cba670",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

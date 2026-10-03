@@ -65,7 +65,9 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: apprenticeship type and percentages not publicly available from any free source (paywalled). Modelled as apprenticeship: [] with no rules defined."
+        "text": "SIMPLIFICATION: apprenticeship type and percentages not publicly available from any free source (paywalled). Modelled as apprenticeship: [] with no rules defined.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1416,7 +1418,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "53f5476ee31ea22267f5ce0050551aeafe93f561e2c2b408099ccd13296d0208",
+    "source_hash": "3d4da8bf5966508ccf6ce54cf43d30be94f1f68b7fa087c2cdb965395da6cfe0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

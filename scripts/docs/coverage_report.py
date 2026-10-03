@@ -246,7 +246,8 @@ on unverified sources, or be well sourced and not cleared for production.
 - **Coverage (L1, L2, L3):** what the engine computes, derived from the
   capability registry of {year}. A layer shows its weakest capability; the
   [capability matrix](capability-matrix.md) lists each one. **Limits**
-  names the capabilities this contract's data leaves partial.
+  names the capabilities this contract's data leaves partial: a `missing`
+  note, or a model limitation with a monetary impact.
 - **Sources:** payable rules of the contract file by provenance status,
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.

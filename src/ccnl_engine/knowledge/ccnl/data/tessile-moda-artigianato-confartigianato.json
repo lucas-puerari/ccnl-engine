@@ -95,15 +95,50 @@
       },
       {
         "kind": "simplification",
-        "text": "Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors."
+        "text": "Only tessile-abbigliamento sub-sector modelled. Chimica-ceramica sub-sectors (different salary tables) are not modelled. CNEL code V751 covers all three sub-sectors.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "chimica_ceramica_subsectors",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the chimica-ceramica salary tables with a sub-sector input."
+        }
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct."
+        "text": "APPRENTICE SENIORITY treated as uniform 6.00 EUR from 2025-01-01 regardless of hire date. Strictly, only workers hired after 17 Jul 2024 get 6.00 from Jan 2025; workers hired before that date remain at 5.16. For new hires this model is correct.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_seniority_hire_date",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ],
+            "effective_from": "2025-01-01"
+          },
+          "remediation": "Model the 5.16 EUR apprentice increment for workers hired before 17 July 2024 with a hire-date input."
+        }
       },
       {
         "kind": "simplification",
-        "text": "LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text."
+        "text": "LEVEL CATEGORY: all levels left null (no primary-source text confirming operaio/impiegato split). The 2026-artigianato.json tier applies the impiegato rate (0.2471) for category='impiegato'/'quadro' vs. default 0.2693. Employer cost for higher levels (5, 6, 6S) may be slightly overestimated until categories are confirmed from primary CCNL text.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "level_category_unconfirmed",
+          "applies_when": {
+            "levels": [
+              "5",
+              "6",
+              "6S"
+            ]
+          },
+          "remediation": "Confirm the operaio/impiegato category of each level from the CCNL text."
+        }
       },
       {
         "kind": "info",
@@ -1200,7 +1235,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/ccnl/tessile-abbigliamento-artigianato",
     "verification_status": "unverified",
-    "source_hash": "8c4a0ebb12a6c9e77b712244ecafb1ad8d1f29e9afdd4d5541943cab98e262d8",
+    "source_hash": "1a576aea4acb7ab356f3139cdb14d5be9486f85016e3a15545f83644bd617d90",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

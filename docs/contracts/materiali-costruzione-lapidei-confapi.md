@@ -94,12 +94,14 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+### Without monetary impact
+
+!!! note ""
     SIMPLIFICATION: Apprenticeship not modelled. Art. 3 defines three periods (0-12 months 2 levels below, 12-24 months 1 level below, 24-36 months destination pay) with a special 18-month track for L6 and destination pay in period 3. The engine supports ApprenticeshipUnderClassification with levels_below periods, but L6's shorter duration and period-3 destination-pay override require per-destination customisation not yet extracted from source. Deferred pending dedicated source review.
 
-!!! warning ""
+!!! note ""
     SIMPLIFICATION: Work rules (overtime, leave, sickness) not modelled. Discipline lapidei spans multiple articles; scope deferred.
 
 ## Sources

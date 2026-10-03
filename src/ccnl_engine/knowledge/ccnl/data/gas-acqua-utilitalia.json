@@ -65,7 +65,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy."
+        "text": "INPS: reuses 2026-industria.json. Gas and water utilities (aziende private del settore gas-acqua) are classified under 'attività industriali' for INPS contribution purposes. Employer associations Utilitalia and Proxigas are Confindustria-aligned. SIMPLIFICATION: exact INPS circular for this sector not verified; 2026-industria.json rates used as proxy.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "industria_rates_proxy",
+          "remediation": "Verify the INPS rates of the gas-water sector against the annual INPS circular."
+        }
       },
       {
         "kind": "info",
@@ -1939,7 +1945,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "497b9d133c74e7f249aecec5dd653f76da350641f1fa61cdb9a9fc4a312259f8",
+    "source_hash": "5c1571de1ac9355e8bc2aa6773c01d6f3b8150a8054fa26337e5e9679d807455",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

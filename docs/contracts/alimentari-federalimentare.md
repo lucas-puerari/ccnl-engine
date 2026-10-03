@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | — |
+| **Limits of this contract** | base_salary |
 
 ### Verifica
 
@@ -102,10 +102,21 @@ Destination levels: `5`
 
 ## Known simplifications
 
-These are deliberate modelling approximations. Read them before using this contract in a sensitive context.
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning ""
+!!! warning "alimentari-federalimentare/apprenticeship_period_boundaries · base_salary · impact unknown · open"
     APPRENTICESHIP under_classification (Art. 21 CCNL, renewal 01/03/2024; period structure from afi-ipl.org): 36-month track for destinations 4, 3, 3A, 2, 1 (0-10 months two levels below, 10-22 one level below, then destination); 24-month track for destination 5 (0-10 months at level 6, then level 5). Level 6 and 1S are not apprenticeship destinations. The 10/22-month boundaries are as reported by the source; the contract text refers to 'first/second/third period'.
+
+    **Applies when:** `base_salary` applies; contract type in apprentice.
+
+    **Remediation:** Confirm the 10 and 22 month period boundaries against the Art. 21 contract text.
+
+!!! warning "apprentice_seniority_simplified · seniority · impact unknown · open"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation.
 
 ## Sources
 

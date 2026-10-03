@@ -693,7 +693,13 @@
       },
       {
         "kind": "simplification",
-        "text": "aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti."
+        "text": "aliquote INPS CTPS (ex-INPDAP) — dipendente 8,80%, datore 24,20% — da proxy kitech.it 2026; verificare circolare INPS annuale per valori esatti.",
+        "capability": "inps_employer",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "ctps_rates_proxy",
+          "remediation": "Verify the CTPS rates against the annual INPS circular."
+        }
       },
       {
         "kind": "info",
@@ -720,7 +726,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "7335c6e66215ecff42256aa1690e686f6c79d6b16a6007ea7805856696ce917e",
+    "source_hash": "eb4b545b11369c3aa9dd8b26908d6632f4ff2def2686c01d1d60dbc77d463cc6",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

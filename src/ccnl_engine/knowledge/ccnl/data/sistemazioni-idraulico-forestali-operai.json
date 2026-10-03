@@ -51,15 +51,25 @@
       },
       {
         "kind": "simplification",
-        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted."
+        "text": "Serie retributiva starts 01/01/2026 (first tranche with primary-source data). Retroactive 2025 tabella not available in machine-readable form; pre-2026 amounts omitted.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Apprendistato: livelli O1 e O2 esclusi da destination_levels (engine requires at least 2 levels below minimum; O2 at order=2 cannot go 2 below). Only O3, O4, O5 supported."
+        "text": "Apprendistato: livelli O1 e O2 esclusi da destination_levels (engine requires at least 2 levels below minimum; O2 at order=2 cannot go 2 below). Only O3, O4, O5 supported.",
+        "capability": "base_salary",
+        "monetary_impact": "no"
       },
       {
         "kind": "simplification",
-        "text": "Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification."
+        "text": "Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "structural_rules_from_2021_text",
+          "remediation": "Verify the structural rules against the 2025 renewal text."
+        }
       },
       {
         "kind": "info",
@@ -734,7 +744,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "7a98b23bde90acaabec54621971a53c6a3e47f8b181c6a91f0e02dc213fbda78",
+    "source_hash": "36e3ccf4467f90c4ef07c75009e176a29482529d911d6eda5cd6c4bebb596e11",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

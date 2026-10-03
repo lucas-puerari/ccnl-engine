@@ -60,7 +60,18 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP percentage (Allegato B Table 3 CCNL 2024): 70% months 1-12, 85% months 13-24, 93% from month 25, applied to all eligible destinations (4, 4S, 3, 3S, 2, 1); level V is excluded from professional apprenticeship (Art. 30B) and Quadri are not a destination. The same percentage table is assumed for all destination levels."
+        "text": "APPRENTICESHIP percentage (Allegato B Table 3 CCNL 2024): 70% months 1-12, 85% months 13-24, 93% from month 25, applied to all eligible destinations (4, 4S, 3, 3S, 2, 1); level V is excluded from professional apprenticeship (Art. 30B) and Quadri are not a destination. The same percentage table is assumed for all destination levels.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "uniform_apprenticeship_percentages",
+          "applies_when": {
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Confirm that Allegato B Table 3 applies to every destination level."
+        }
       },
       {
         "kind": "info",
@@ -1320,7 +1331,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "82e079fe2a1018197e526665984d77df2cd081020004cc8cf56549c0b0085331",
+    "source_hash": "03dea689f16aa013f4b50f58fee89b4ced507073ac86539cdd6dc6ac5af2eb99",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
