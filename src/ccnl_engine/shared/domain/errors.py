@@ -65,7 +65,9 @@ class UnknownCcnlError(CcnlEngineError):
         super().__init__(
             " ".join(parts),
             code="unknown_ccnl",
-            remediation="Call list_ccnl() to retrieve the valid CCNL identifiers.",
+            remediation=(
+                "Call PayrollEngine.list_contracts() for the valid CCNL identifiers."
+            ),
         )
 
 

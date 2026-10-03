@@ -110,35 +110,19 @@ def list_comuni() -> str:
 def list_ccnls() -> str:
     """Return JSON list of all available CCNLs, sorted by name.
 
-    Works for both editable installs (plain ``.json``) and installed wheels
-    (compressed ``.json.gz``): iterates the data package, normalises the name,
-    then reads via :func:`~ccnl_engine.knowledge.service.bundled.read_bundled`.
-
     Returns:
-        JSON-encoded list of ``{file, id, name, tax_sector}`` dicts.
+        JSON-encoded list of ``{file, id, name, readiness}`` dicts, one per
+        bundled CCNL, from :meth:`PayrollEngine.list_contracts`.
     """
-    data_pkg = importlib.resources.files("ccnl_engine.knowledge.ccnl.data")
-    result: list[dict[str, str]] = []
-    seen: set[str] = set()
-    for entry in data_pkg.iterdir():
-        name = entry.name
-        if name.endswith(".json.gz"):
-            json_name = name[:-3]  # strip .gz
-        elif name.endswith(".json"):
-            json_name = name
-        else:
-            continue
-        if json_name in seen:
-            continue
-        seen.add(json_name)
-        raw = json.loads(read_bundled(data_pkg, json_name))
-        meta = raw["meta"]
-        result.append({
-            "file": json_name,
-            "id": meta["ccnl_id"],
-            "name": meta["name"],
-            "tax_sector": meta["tax_sector"],
-        })
+    result = [
+        {
+            "file": f"{c.ccnl_id}.json",
+            "id": c.ccnl_id,
+            "name": c.name,
+            "readiness": str(c.readiness),
+        }
+        for c in PayrollEngine.list_contracts()
+    ]
     result.sort(key=operator.itemgetter("name"))
     return json.dumps(result)
 
@@ -525,7 +509,10 @@ def compute_salary(
             "as_of": _CALC_DATE.isoformat(),
             "part_time_ratio": part_time_ratio,
             "engine_version": result.bundle_version or "",
-            "ruleset_version": {},
+            "ruleset_version": {
+                r.id: f"{r.identity.version} · {r.readiness or 'not tracked'}"
+                for r in result.rulesets
+            },
             "base_monthly": base_monthly,
             "seniority_monthly": seniority_monthly_val or None,
             "allowances_monthly": allowances_monthly,

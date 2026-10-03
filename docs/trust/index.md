@@ -30,8 +30,12 @@ classification that tells you whether a CCNL is cleared for a given use context.
 | `reviewed` | 👁 | Key L1 values human-verified against primary sources | Product simulations with explicit disclaimer |
 | `production` | 🏭 | Full review, reference case, named owner, update policy | Operational flows |
 
-The `readiness` tier is exposed on every CCNL through `ccnl.verification.readiness`
-and shown in the [CCNL coverage matrix](../contracts/index.md).
+The `readiness` tier of every CCNL is public: `engine.list_contracts()` lists it
+on each `ContractSummary`, `engine.inspect_ruleset(ccnl_id)` returns the full
+`RulesetAssurance`, and every result reports it in `result.rulesets`. It is
+also shown in the [CCNL coverage matrix](../contracts/index.md). An engine
+built with `mode="operational"` blocks payment from any CCNL that is not
+`production`.
 
 See [Readiness](readiness.md) for promotion criteria and the current status of
 each tier.

@@ -57,6 +57,11 @@ result = engine.calculate_period(
 print(result.is_payable)  # → False: see result.blockers
 print(result.period_gross)  # → Decimal('...')
 print(result.period_net)  # → Decimal('...')
+for ruleset in result.rulesets:
+    print(ruleset.id, ruleset.kind, ruleset.readiness)
+# → ccnl/commercio-confcommercio ccnl reviewed
+# → inps/2026/terziario inps None   (readiness tracked for CCNLs only)
+# → tax/2026/terziario tax None
 ```
 
 The inputs group the facts by owner: `Employment` (CCNL, level, contract,
@@ -75,6 +80,26 @@ stable `code`, the `feature` it concerns and a `detail`; `result.assurance`
 holds the axes they come from. Today no bundled CCNL gives a payable result:
 the amounts are for simulation. See
 [Assurance](docs/trust/confidence.md).
+
+`result.rulesets` names every ruleset the run read, with its identity, hash
+and readiness. Readiness (`exploratory`, `reviewed`, `production`) is tracked
+for CCNL rulesets only; tax, INPS and surtax rulesets report `None`. The
+engine has two modes, with the same amounts:
+
+```python
+engine = PayrollEngine.bundled()  # mode="simulation", the default
+strict = PayrollEngine.bundled(mode="operational")
+
+for contract in engine.list_contracts():  # ContractSummary, with readiness
+    print(contract.ccnl_id, contract.readiness)
+ruleset = engine.inspect_ruleset("commercio-confcommercio")  # RulesetAssurance
+print(ruleset.readiness, ruleset.confidence)  # → reviewed unverified
+```
+
+`simulation` reports readiness; `operational` also adds a
+`ruleset_not_production` blocker when the CCNL ruleset is not `production`.
+No bundled CCNL is `production` yet, so nothing is payable in operational
+mode. See [Readiness](docs/trust/readiness.md).
 
 A full year derives its calendar from the CCNL: Commercio grants tredicesima
 and quattordicesima, so the year has 14 runs. A different calendar needs a

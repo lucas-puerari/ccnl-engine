@@ -4,7 +4,8 @@ The engine takes a :class:`PeriodInput` for a single cedolino and a
 :class:`YearInput` for every run of a tax year.  Both group the facts by
 owner: :class:`Employment` for the contract and the worker,
 :class:`EmployerProfile` for the employer and :class:`PeriodFacts` for what
-holds in one run.
+holds in one run.  ``mode="operational"`` keeps the amounts and also blocks
+payment from any CCNL ruleset that is not ``production``.
 """
 
 from datetime import date
@@ -37,6 +38,17 @@ result = engine.calculate_period(
 print(f"Period gross:   {result.period_gross} EUR")
 print(f"Period net:     {result.period_net} EUR")
 print(f"Employer cost:  {result.period_employer_cost} EUR")
+print(f"Payable:        {result.is_payable}")
+for ruleset in result.rulesets:
+    print(f"Ruleset:        {ruleset.id} ({ruleset.kind}, {ruleset.readiness})")
+
+# ── Operational mode ─────────────────────────────────────────────────────────
+
+# Same amounts; a CCNL ruleset short of production adds a
+# ruleset_not_production blocker, so only production CCNLs can be payable.
+strict = PayrollEngine.bundled(mode="operational")
+reviewed = [c.ccnl_id for c in strict.list_contracts() if c.readiness == "reviewed"]
+print(f"Reviewed CCNLs: {len(reviewed)} of {len(strict.list_contracts())}")
 
 # ── Full-year calculation ────────────────────────────────────────────────────
 

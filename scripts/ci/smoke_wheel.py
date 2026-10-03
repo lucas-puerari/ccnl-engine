@@ -19,7 +19,6 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
     get_ccnl,
-    list_ccnls,
 )
 
 
@@ -52,9 +51,9 @@ def main() -> int:
 
     print(f"OK: period_net={net}")
 
-    ccnls = list_ccnls()
+    ccnls = engine.list_contracts()
     if len(ccnls) != 125:
-        print(f"FAIL: list_ccnls() returned {len(ccnls)} items, expected 125")
+        print(f"FAIL: list_contracts() returned {len(ccnls)} items, expected 125")
         return 1
 
     slug = ccnls[0].ccnl_id
@@ -64,7 +63,12 @@ def main() -> int:
         print("FAIL: get_ccnl by slug and by CNEL code returned different results")
         return 1
 
-    print(f"OK: list_ccnls()={len(ccnls)}, get_ccnl resolved '{slug}' and CNEL code")
+    ruleset = engine.inspect_ruleset(slug)
+    if ruleset.readiness is not by_slug.readiness:
+        print("FAIL: inspect_ruleset and list_contracts disagree on readiness")
+        return 1
+
+    print(f"OK: list_contracts()={len(ccnls)}, '{slug}' is {ruleset.readiness}")
     return 0
 
 

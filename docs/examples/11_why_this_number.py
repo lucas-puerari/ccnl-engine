@@ -55,6 +55,7 @@ print(f"  Payable: {result.is_payable}")
 print(f"  Calculation: {assurance.calculation}  coverage: {assurance.coverage}")
 print(f"  Evidence: {assurance.evidence}")
 for ruleset in result.rulesets:
-    print(f"  ruleset: {ruleset}")
+    readiness = ruleset.readiness or "not tracked"
+    print(f"  ruleset: {ruleset}  {ruleset.kind}  readiness: {readiness}")
 for blocker in result.blockers:
     print(f"  blocker: {blocker.code.value:24s} {blocker.feature} {blocker.detail}")

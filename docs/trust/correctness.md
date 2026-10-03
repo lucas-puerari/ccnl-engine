@@ -56,8 +56,10 @@ a bug-free implementation of an outdated salary table is source-incorrect.
 
 Source correctness is ruleset-scoped, but today only the CCNL rulesets carry a
 readiness tier: the tax, INPS and surtax files record provenance per rule and
-no tier. The engine does not fold the readiness tier into the result
-assurance yet, so check it next to `result.is_payable`.
+no tier, and report `readiness = None` in `result.rulesets`. In the default
+`simulation` mode the tier is reported next to `result.is_payable`, not
+enforced; in `operational` mode a CCNL that is not `production` adds a
+`ruleset_not_production` blocker.
 
 Bundled CCNL rulesets at `production`:
 <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->.
@@ -109,10 +111,11 @@ The engine's job is to report every gap, not to silently ignore it.
 | Situation | Likely layer | Signal to check |
 |---|---|---|
 | Calculation crashes or gives NaN | Software correctness | Open a GitHub issue with a reproduction |
-| Output differs from a real payslip | Source correctness | Check `readiness`, compare to sources |
+| Output differs from a real payslip | Source correctness | Check `result.rulesets` readiness, compare to sources |
 | Output missing expected components | Case completeness | Read `blockers`, `issues` and `capability_report` |
 | Output slightly off but plausible | Source OR case | Check both readiness and `decisions` |
 
 No single metric collapses all three layers into one. A payable result has no
-blocker, but it still requires the caller to check the readiness of the
-rulesets and case completeness against their scenario.
+blocker, but in `simulation` mode it still requires the caller to check the
+readiness of the rulesets, and in either mode case completeness against their
+scenario.

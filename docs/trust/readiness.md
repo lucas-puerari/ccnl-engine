@@ -103,19 +103,42 @@ payable rule, and <!-- trust:rules-verified -->0<!-- /trust:rules-verified -->
 payable rules of the bundle have it (see
 [Provenance](provenance.md#provenance-status)).
 
-## Relationship to the result assurance
+## Readiness in the public API
 
-`result.is_payable` is a result-level signal derived at compute time from the
-issues, decisions, capability report and rule provenance of the run.
-`readiness` is a ruleset-level classification set by a human reviewer, not yet
-part of the result assurance. They answer different questions:
+Readiness is part of the public contract, before and after a run:
 
 | Question | Field |
 |---|---|
+| Which contracts exist, and how far is each cleared? | `engine.list_contracts()`: `ContractSummary.readiness` |
+| What exactly is the ruleset of one CCNL? | `engine.inspect_ruleset(ccnl_id)`: `RulesetAssurance` (identity, `source_hash`, `readiness`, `confidence`) |
+| Which rulesets did this result read? | `result.rulesets`, one `RulesetAssurance` each |
 | Can the amounts of this computation be paid as computed? | `result.is_payable` and `result.blockers` |
-| Is this ruleset cleared for production use? | `ccnl.verification.readiness` |
-| Were the individual values checked against the source? | `ccnl.verification.confidence` |
 
-A result could be payable while the ruleset is still `readiness =
-"exploratory"`: payability says every rule the run needed was known, sourced
-and applied, not that a person checked the values against the source.
+Only CCNL rulesets carry a tier. Tax, INPS and surtax rulesets report
+`readiness = None` (not tracked) and the `verification_status` of their
+identity as `confidence`; their evidence is the provenance of each rule (see
+[Provenance](provenance.md#provenance-status)).
+
+`RulesetAssurance.confidence_contradicts_readiness` is `True` when a
+`reviewed` or `production` tier is not backed by
+`verification.confidence = "verified"` (step 5 of the criteria above). Of the
+<!-- trust:readiness-reviewed -->15<!-- /trust:readiness-reviewed --> `reviewed`
+rulesets, <!-- trust:reviewed-confidence-verified -->0<!-- /trust:reviewed-confidence-verified -->
+record a `verified` confidence; the flag is `True` for all the others. `RulesetAssurance.is_production` requires both the
+`production` tier and a confidence that agrees.
+
+## Simulation and operational modes
+
+`PayrollEngine.bundled(mode=...)` chooses how readiness acts on payability.
+Both modes compute the same amounts.
+
+| Mode | Readiness |
+|---|---|
+| `simulation` (default) | Reported in `result.rulesets`, not enforced. A result can be payable while its CCNL is `exploratory`: payability says every rule the run needed was known, sourced and applied, not that a person checked the values. |
+| `operational` | Enforced: each ruleset that tracks a tier and is not `is_production` adds a `ruleset_not_production` blocker naming its id. A run whose CCNL has no ruleset identity fails closed. |
+
+An operational engine returns the result with its blockers instead of
+refusing before the calculation, so the amounts and every other blocker stay
+inspectable. With <!-- trust:readiness-production -->0<!-- /trust:readiness-production -->
+`production` rulesets, no bundled CCNL is payable in operational mode: the
+gate opens one CCNL at a time, as each is promoted.

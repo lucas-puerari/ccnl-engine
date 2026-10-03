@@ -32,6 +32,12 @@ Usage::
     print(result.is_payable, result.period_net)
     for blocker in result.blockers:
         print(blocker.code, blocker.feature, blocker.detail)
+    for ruleset in result.rulesets:
+        print(ruleset.id, ruleset.kind, ruleset.readiness)
+
+``PayrollEngine.bundled(mode="operational")`` also blocks payment from any
+ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
+:meth:`~PayrollEngine.inspect_ruleset` report readiness before any run.
 """
 
 from __future__ import annotations
@@ -40,9 +46,8 @@ from ccnl_engine.api.facade import PayrollEngine
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.service.discovery import (
     CcnlId,
-    CcnlInfo,
+    ContractSummary,
     get_ccnl,
-    list_ccnls,
     search_ccnls,
 )
 from ccnl_engine.payroll.application.calculate_year import YearResult
@@ -90,6 +95,7 @@ from ccnl_engine.payroll.domain.employment_facts import (
     SeniorityMonths,
     WeeklyHours,
 )
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
     ArrearsEvent,
@@ -132,7 +138,15 @@ from ccnl_engine.payroll.domain.surtax_obligations import (
     SurtaxObligation,
 )
 from ccnl_engine.payroll.domain.year_input import YearInput
-from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+from ccnl_engine.provenance.domain.ruleset_assurance import (
+    RulesetAssurance,
+    RulesetKind,
+)
+from ccnl_engine.provenance.domain.ruleset_identity import (
+    RulesetIdentity,
+    RulesetReadiness,
+    VerificationStatus,
+)
 from ccnl_engine.shared.domain.errors import (
     CcnlEngineError,
     DataIntegrityError,
@@ -163,7 +177,7 @@ __all__ = [
     "CapabilityStatus",
     "CcnlEngineError",
     "CcnlId",
-    "CcnlInfo",
+    "ContractSummary",
     "ContributableHours",
     "ContributionCeilingStatus",
     "CoverageStatus",
@@ -177,6 +191,7 @@ __all__ = [
     "Employment",
     "EmploymentPeriod",
     "EmploymentSector",
+    "EngineMode",
     "EvidenceStatus",
     "FamilyComposition",
     "FixedTerm",
@@ -207,7 +222,10 @@ __all__ = [
     "RemittanceLine",
     "ResultAssurance",
     "ResultBlocker",
+    "RulesetAssurance",
     "RulesetIdentity",
+    "RulesetKind",
+    "RulesetReadiness",
     "SeniorityMonths",
     "ShiftWorkEvent",
     "ShortfallDeferralRequest",
@@ -220,6 +238,7 @@ __all__ = [
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
+    "VerificationStatus",
     "WeeklyHours",
     "WelfareEvent",
     "WorkCalendar",
@@ -229,6 +248,5 @@ __all__ = [
     "YearResult",
     "engine_version",
     "get_ccnl",
-    "list_ccnls",
     "search_ccnls",
 ]

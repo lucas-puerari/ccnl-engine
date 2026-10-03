@@ -46,10 +46,11 @@ Every result carries three verifiability layers:
 3. **Assurance and decisions**: `result.is_payable` says whether the amounts
    can be paid as computed and `result.blockers` why not (an issue, a missing
    fact, a capability not computed, a rule without a located source, a
-   caller-supplied rule); `result.assurance` holds the calculation, coverage
-   and evidence axes and `result.rulesets` the rulesets read, and
-   `result.decisions` what each capability decided and from which inputs.
-   An unknown normative fact never yields a payable result.
+   caller-supplied rule, and in `operational` mode a CCNL ruleset that is not
+   `production`); `result.assurance` holds the calculation, coverage and
+   evidence axes, `result.rulesets` the rulesets read with their readiness,
+   and `result.decisions` what each capability decided and from which
+   inputs. An unknown normative fact never yields a payable result.
 
 ```python
 if not result.is_payable:

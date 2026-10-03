@@ -21,7 +21,6 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
     PeriodResult,
-    list_ccnls,
 )
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -53,7 +52,7 @@ def results() -> dict[str, PeriodResult]:
     """
     engine, repo = PayrollEngine.bundled(), BundledKnowledgeRepository()
     computed: dict[str, PeriodResult] = {}
-    for info in list_ccnls():
+    for info in PayrollEngine.list_contracts():
         slug = f"{info.ccnl_id}.json"
         result = _june(engine, slug, repo.load_ccnl(slug).levels[0].code)
         if result is not None:
@@ -104,7 +103,8 @@ def test_every_result_names_its_rulesets(results: dict[str, PeriodResult]) -> No
     repo = BundledKnowledgeRepository()
     for ccnl_id, result in results.items():
         ids = {ruleset.id for ruleset in result.rulesets}
-        assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in result.rulesets
+        identities = [ruleset.identity for ruleset in result.rulesets]
+        assert repo.load_ccnl(f"{ccnl_id}.json").ruleset in identities
         assert any(i.startswith("tax/2026/") for i in ids)
         assert any(i.startswith("inps/2026/") for i in ids)
 

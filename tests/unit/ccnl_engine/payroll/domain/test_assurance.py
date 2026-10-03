@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -16,11 +16,11 @@ from ccnl_engine.payroll.domain.assurance import (
     decide_payability,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
-from ccnl_engine.provenance.domain.ruleset_identity import (
-    RulesetIdentity,
-    SourceType,
-    VerificationStatus,
-)
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
+from tests.fixtures.rulesets import tax_ruleset
+
+if TYPE_CHECKING:
+    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 _GAP = ResultBlocker(
     BlockerCode.CAPABILITY_NOT_COMPUTED, "inail", "feature_absent", "compute it"
@@ -28,31 +28,20 @@ _GAP = ResultBlocker(
 _FACT = ResultBlocker(BlockerCode.MISSING_FACT, None, "sector", "supply it")
 
 
-def _ruleset(ruleset_id: str) -> RulesetIdentity:
-    return RulesetIdentity(
-        id=ruleset_id,
-        version="2026.1",
-        effective_from=date(2026, 1, 1),
-        published_at=date(2026, 1, 1),
-        source="unavailable",
-        source_type=SourceType.DERIVED,
-        source_hash="0" * 64,
-        verification_status=VerificationStatus.UNVERIFIED,
-    )
-
-
 def _assurance(
     *blockers: ResultBlocker,
     calculation: CalculationStatus = CalculationStatus.FINAL,
     coverage: CoverageStatus = CoverageStatus.COMPLETE,
     evidence: EvidenceStatus = EvidenceStatus.DERIVED,
-    rulesets: tuple[RulesetIdentity, ...] = (),
+    rulesets: tuple[RulesetAssurance, ...] = (),
+    mode: EngineMode = EngineMode.SIMULATION,
 ) -> ResultAssurance:
     return ResultAssurance(
         calculation=calculation,
         coverage=coverage,
         evidence=evidence,
         rulesets=rulesets,
+        mode=mode,
         payability=decide_payability(blockers),
         blockers=blockers,
     )
@@ -63,7 +52,7 @@ class TestCombine:
 
     def test_axes_take_the_worst_and_lists_are_unique(self) -> None:
         """Blockers and rulesets appear once, in order of first appearance."""
-        tax, ccnl = _ruleset("tax/2026"), _ruleset("ccnl/x")
+        tax, ccnl = tax_ruleset("tax/2026"), tax_ruleset("ccnl/x")
         clean = _assurance(rulesets=(tax,))
         flagged = _assurance(
             _FACT,
@@ -90,6 +79,21 @@ class TestCombine:
 
         assert year.is_payable
         assert year.blockers == ()
+
+    def test_mode_is_kept(self) -> None:
+        """A year of operational runs is operational."""
+        operational = _assurance(mode=EngineMode.OPERATIONAL)
+
+        year = ResultAssurance.combine((operational, operational))
+
+        assert year.mode is EngineMode.OPERATIONAL
+
+    def test_runs_of_different_modes_cannot_be_combined(self) -> None:
+        """One policy per aggregate: mixing modes is a programming error."""
+        mixed = (_assurance(), _assurance(mode=EngineMode.OPERATIONAL))
+
+        with pytest.raises(ValueError, match="different modes"):
+            ResultAssurance.combine(mixed)
 
     def test_no_run_cannot_be_combined(self) -> None:
         """A year without a run has no assurance."""

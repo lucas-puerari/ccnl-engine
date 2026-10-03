@@ -9,11 +9,17 @@ Each recorded condition is one :class:`~ccnl_engine.payroll.domain.assurance\
 - a gap of the capability report;
 - an executed capability whose weakest rule is ``assumed`` or ``missing``,
   or a run whose rules carry no provenance record;
-- a capability that took a caller value in place of a rule.
+- a capability that took a caller value in place of a rule;
+- in ``operational`` mode only, a ruleset that tracks a readiness tier and
+  is not ``production``, or a run where no ruleset tracks one (the CCNL
+  identity is missing): the run fails closed.
 
 A ``derived`` rule lowers the evidence axis but does not block on its own:
 the bundle holds no ``verified`` rule yet, so requiring one would block every
-result without telling them apart.
+result without telling them apart.  For the same reason ``simulation`` mode
+reports readiness without enforcing it.  Rulesets that track no tier (tax,
+INPS, surtax) never raise a readiness blocker: their evidence is the
+provenance of each rule.
 """
 
 from __future__ import annotations
@@ -28,6 +34,7 @@ from ccnl_engine.payroll.domain.assurance import (
     decide_payability,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
+from ccnl_engine.payroll.domain.engine_mode import EngineMode
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityReport
@@ -35,7 +42,7 @@ if TYPE_CHECKING:
         CalculationDecision,
         CalculationIssue,
     )
-    from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
+    from ccnl_engine.provenance.domain.ruleset_assurance import RulesetAssurance
 
 __all__ = ["assess"]
 
@@ -44,7 +51,8 @@ def assess(
     issues: tuple[CalculationIssue, ...],
     decisions: tuple[CalculationDecision, ...],
     report: CapabilityReport,
-    rulesets: tuple[RulesetIdentity, ...],
+    rulesets: tuple[RulesetAssurance, ...],
+    mode: EngineMode,
 ) -> ResultAssurance:
     """Derive the assurance of one run from what the run recorded.
 
@@ -53,6 +61,7 @@ def assess(
         decisions: Decisions of the run.
         report: Capability report of the run.
         rulesets: Rulesets the payable rules of the run came from.
+        mode: Payability policy of the engine.
 
     Returns:
         The assurance of the run.
@@ -73,6 +82,7 @@ def assess(
             _blocker(BlockerCode.CALLER_SUPPLIED_RULE, feature, ",".join(fields))
             for feature, fields in report.caller_supplied.items()
         ),
+        *_readiness_blockers(rulesets, mode),
     )
     return ResultAssurance(
         calculation=CalculationStatus.worst((
@@ -82,6 +92,7 @@ def assess(
         coverage=report.status,
         evidence=EvidenceStatus.weakest(report.rule_sources.values()),
         rulesets=rulesets,
+        mode=mode,
         payability=decide_payability(blockers),
         blockers=blockers,
     )
@@ -97,6 +108,27 @@ def _evidence_blockers(report: CapabilityReport) -> tuple[ResultBlocker, ...]:
         _blocker(BlockerCode.RULE_SOURCE_WEAK, feature, status)
         for feature, status in report.rule_sources.items()
         if EvidenceStatus(status) in _WEAK
+    )
+
+
+#: Detail of the blocker of a run where no ruleset tracks a readiness tier.
+NO_TRACKED_READINESS = "no_ruleset_tracks_readiness"
+
+
+def _readiness_blockers(
+    rulesets: tuple[RulesetAssurance, ...], mode: EngineMode
+) -> tuple[ResultBlocker, ...]:
+    if mode is EngineMode.SIMULATION:
+        return ()
+    tracked = tuple(r for r in rulesets if r.readiness_tracked)
+    if not tracked:
+        return (
+            _blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, NO_TRACKED_READINESS),
+        )
+    return tuple(
+        _blocker(BlockerCode.RULESET_NOT_PRODUCTION, None, r.id)
+        for r in tracked
+        if not r.is_production
     )
 
 
@@ -122,6 +154,11 @@ _REMEDIATION: dict[BlockerCode, str] = {
     BlockerCode.CALLER_SUPPLIED_RULE: (
         "{feature} used caller values ({detail}) in place of a bundled rule: "
         "validate them outside the engine"
+    ),
+    BlockerCode.RULESET_NOT_PRODUCTION: (
+        "{detail} is not cleared as production (or no ruleset of the run tracks "
+        "readiness): promote it under the readiness criteria, or calculate in "
+        "simulation mode"
     ),
 }
 

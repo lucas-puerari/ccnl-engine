@@ -9,8 +9,8 @@ what the run recorded; neither is set by the caller.
 |---|---|
 | `result.is_payable` | Can the amounts of this result be paid as computed? |
 | `result.blockers` | What stops them, one `ResultBlocker` per reason |
-| `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets |
-| `result.rulesets` | Which rulesets (CCNL, tax, INPS, variable pay, surtax) the executed rules came from |
+| `result.assurance` | The axes the answer is derived from: calculation, coverage, evidence, rulesets, mode |
+| `result.rulesets` | Which rulesets (CCNL, tax, INPS, variable pay, surtax) the run read, each a `RulesetAssurance` with identity, hash, kind and readiness |
 
 `YearResult` exposes the same four fields for the whole year: each axis is the
 worst of its runs, rulesets and blockers are listed once each, and the year is
@@ -29,6 +29,7 @@ one:
 | `capability_not_computed` | capability | gap kind | The capability catalog promises a capability the run did not compute |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule without a located source, or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
+| `ruleset_not_production` | `None` | ruleset id | `operational` mode only: a ruleset that tracks readiness (today, the CCNL) is not `production` with a `verified` confidence; `no_ruleset_tracks_readiness` when the CCNL has no ruleset identity |
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. The
@@ -52,7 +53,9 @@ CCNLs cite no clause for their number of monthly payments. The bundle holds
 raises a `rule_source_missing` issue and is `incomplete`.
 
 Use the amounts for simulation, with the blockers shown; do not pay them
-automatically.
+automatically. In `operational` mode every one of these runs also carries a
+`ruleset_not_production` blocker: no bundled CCNL is `production` (see
+[Readiness](readiness.md#simulation-and-operational-modes)).
 
 ## Assurance axes
 
@@ -61,7 +64,8 @@ automatically.
 | `calculation` | `CalculationStatus` | Worst status of `result.issues` and `result.decisions`; `final` when there are none |
 | `coverage` | `CoverageStatus` | `result.capability_report.status` |
 | `evidence` | `EvidenceStatus` | Weakest provenance of the payable rules the run read (`verified`, `derived`, `assumed`, `missing`); `missing` when none carries a record |
-| `rulesets` | `tuple[RulesetIdentity, ...]` | Identity, version and hash of each ruleset read |
+| `rulesets` | `tuple[RulesetAssurance, ...]` | Identity, version, hash, kind, readiness and confidence of the CCNL ruleset and of each ruleset a payable rule was read from |
+| `mode` | `EngineMode` | `simulation` (default) or `operational`, from the engine |
 | `payability` | `Payability` | `payable` exactly when `blockers` is empty |
 
 ### Calculation
@@ -139,5 +143,5 @@ if not result.is_payable:
 assurance = result.assurance
 print(assurance.calculation, assurance.coverage, assurance.evidence)
 for ruleset in result.rulesets:
-    print(ruleset)
+    print(ruleset.id, ruleset.kind, ruleset.readiness, ruleset.source_hash[:12])
 ```

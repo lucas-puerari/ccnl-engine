@@ -17,6 +17,15 @@ payroll.
 --8<-- "docs/examples/01_quickstart.py"
 ```
 
+Every result says whether its amounts can be paid as computed
+(`result.is_payable`, `result.blockers`) and which rulesets it read, with
+their readiness (`result.rulesets`). `engine.list_contracts()` and
+`engine.inspect_ruleset(ccnl_id)` report readiness before any run.
+`PayrollEngine.bundled()` simulates; `PayrollEngine.bundled(mode="operational")`
+computes the same amounts but blocks payment unless the CCNL ruleset is
+`production`, which no bundled CCNL is yet. See
+[Readiness](../trust/readiness.md#simulation-and-operational-modes).
+
 ## Supported CCNLs
 
 The library bundles 125 contract configurations covering an estimated 16 million

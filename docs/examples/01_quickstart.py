@@ -22,6 +22,11 @@ result = engine.calculate_period(
     )
 )
 
-print(f"Gross:  {result.period_gross} EUR")
-print(f"Net:    {result.period_net} EUR")
-print(f"Cost:   {result.period_employer_cost} EUR")
+print(f"Gross:   {result.period_gross} EUR")
+print(f"Net:     {result.period_net} EUR")
+print(f"Cost:    {result.period_employer_cost} EUR")
+print(f"Payable: {result.is_payable} ({len(result.blockers)} blockers)")
+
+# Readiness of the CCNL ruleset: the same before a run and in the result.
+ruleset = engine.inspect_ruleset("commercio-confcommercio")
+print(f"CCNL:    {ruleset.id} is {ruleset.readiness}")

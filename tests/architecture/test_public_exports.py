@@ -30,7 +30,12 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "CapabilityStatus",
     "CcnlEngineError",
     "CcnlId",
-    "CcnlInfo",
+    "ContractSummary",
+    "EngineMode",
+    "RulesetAssurance",
+    "RulesetKind",
+    "RulesetReadiness",
+    "VerificationStatus",
     "ContributableHours",
     "ContributionCeilingStatus",
     "DataIntegrityError",
@@ -90,7 +95,6 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "YearResult",
     "engine_version",
     "get_ccnl",
-    "list_ccnls",
     "search_ccnls",
 })
 
