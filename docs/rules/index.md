@@ -92,16 +92,43 @@ fact. See [Trust: Provenance](../trust/provenance.md).
 ### `coverage.notes`
 
 Coverage notes explain what is modelled, what is simplified, and what is
-absent. Three `kind` values:
+absent. Four `kind` values:
 
 | Kind | Meaning |
 |---|---|
 | `source` | Records which source document was used and why |
 | `info` | Documents a modelling decision or derivation (e.g. hourly divisor formula) |
 | `simplification` | Marks a deliberate approximation — something real that the model gets slightly wrong |
+| `missing` | Data the engine supports but the file lacks; names the `capability` it leaves partial |
 
 `simplification` notes are the most important for callers: they are the
-known errors. Each one appears on the contract's documentation page.
+known errors. Each one states its `monetary_impact` on what the engine
+computes from the bundle (`yes`, `no`, `unknown`). One that can move an
+amount (`yes` or `unknown`) names its `capability` and declares the
+`limitation` the engine records on the runs it concerns; a file that leaves
+one unmapped does not load:
+
+```json
+{
+  "kind": "simplification",
+  "text": "Overtime bands over 48 weekly hours are not modelled.",
+  "capability": "overtime",
+  "monetary_impact": "yes",
+  "limitation": {
+    "variant": "higher_overtime_bands",
+    "applies_when": {"levels": ["C1"], "effective_from": "2026-01-01"},
+    "remediation": "Model the bands over 48 weekly hours."
+  }
+}
+```
+
+`applies_when` narrows the runs: `trigger` (`run`, or `outside_input` when
+the fact has no request field), `contract_types`, `levels`,
+`worker_categories`, `run_kinds`, `seniority_months_from`, `effective_from`,
+`effective_until`. The limitation id is `<ccnl id>/<variant>`; see
+[Model limitations](../trust/confidence.md#model-limitations). Every
+simplification appears on the contract's documentation page, under "Known
+simplifications".
 
 ## Tax rules
 

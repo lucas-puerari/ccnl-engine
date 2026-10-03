@@ -181,6 +181,12 @@ Provide a summary of what you found:
 
 Do not proceed to Step 3 until the advisor has confirmed the research is sound.
 
+Every `simplification` note is typed (see `docs/rules/index.md`, `coverage.notes`):
+state `monetary_impact` (`yes`, `no`, `unknown`); with `yes` or `unknown` also name the
+`capability` and declare a `limitation` with a `variant`, an `applies_when` scope as narrow
+as the note allows (levels, contract types, dates, run kinds) and a `remediation`. A file
+with an unmapped monetary note does not load.
+
 ---
 
 ## Step 3 — Set up the branch

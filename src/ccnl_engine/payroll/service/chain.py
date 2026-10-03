@@ -12,6 +12,7 @@ from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
     from datetime import date
+    from decimal import Decimal
 
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.contract.domain.compensation import Allowance, Level
@@ -36,6 +37,37 @@ def _allowance_active(
     return seniority_months is not None and seniority_months >= threshold
 
 
+def _level_seniority(
+    ccnl: CCNL,
+    level: Level,
+    count: int,
+    as_of: date,
+    worker_category: WorkerCategory | None,
+    seniority_months: int | None,
+) -> Decimal | None:
+    """Return the seniority the level pays a qualified worker, if readable.
+
+    An apprentice with matured increments is paid the apprentice amount;
+    the run records the simplification when the level pays otherwise.
+
+    Returns:
+        The level amount, ``None`` when its rule has no value at *as_of*:
+        the amounts cannot be shown equal, so the simplification is kept.
+    """
+    try:
+        return _seniority_amount(
+            ccnl.parameters.seniority_increments,
+            level.code,
+            count,
+            as_of,
+            worker_category=worker_category,
+            is_apprentice=False,
+            seniority_months=seniority_months,
+        )
+    except ValueError:
+        return None
+
+
 def _level_chain(
     ccnl: CCNL,
     level: Level,
@@ -57,20 +89,12 @@ def _level_chain(
         is_apprentice=is_apprentice,
         seniority_months=seniority_months,
     )
-    # An apprentice with matured increments is paid the apprentice amount;
-    # the run records the simplification when the level pays otherwise.
     simplified = (
         is_apprentice
         and count > 0
         and seniority
-        != _seniority_amount(
-            seniority_rules,
-            level.code,
-            count,
-            as_of,
-            worker_category=worker_category,
-            is_apprentice=False,
-            seniority_months=seniority_months,
+        != _level_seniority(
+            ccnl, level, count, as_of, worker_category, seniority_months
         )
     )
     allowances = tuple(

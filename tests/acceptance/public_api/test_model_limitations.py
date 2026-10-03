@@ -103,6 +103,17 @@ def test_apprentice_seniority_needs_matured_increments(
     assert (_APPRENTICE_SENIORITY in _ids(result)) is recorded
 
 
+def test_apprentice_seniority_without_level_series_is_kept() -> None:
+    """A level series with no value at the date cannot show the amounts equal."""
+    result = _run(
+        "grafica-editoria-aieg",
+        "C2",
+        Apprentice(months_elapsed=0, track="triennale"),
+        seniority=120,
+    )
+    assert _APPRENTICE_SENIORITY in _ids(result)
+
+
 def test_overtime_limitation_needs_overtime() -> None:
     """A work-rule limitation concerns only the runs that execute the capability."""
     ordinary = _run("concia-unic", "C1", Permanent())
