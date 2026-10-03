@@ -83,7 +83,7 @@ class CapabilityApplicability(StrEnum):
             decision for it that does not rule it out.
         EVENT: The request declares an event of the capability.
         TERMINATION_RUN: The run closes the employment: a termination run,
-            or an employment that ends in the month of the run.
+            or the regular run of the month the employment ends in.
         OUTSIDE_INPUT: The fact that makes it apply has no field in the
             request: a case with that fact is outside the engine input.
     """

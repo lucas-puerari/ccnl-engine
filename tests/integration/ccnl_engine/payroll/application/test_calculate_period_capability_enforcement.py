@@ -110,6 +110,15 @@ class TestClosingRun:
         request = replace(_req(month=3), employment_period=period)
         assert _gap_kinds(request) == {_RESIDUAL_LEAVE: CapabilityGapKind.UNSUPPORTED}
 
+    def test_extra_month_run_does_not_close_it(self) -> None:
+        """The tredicesima paid in the last month leaves the closing to the payslip."""
+        period = EmploymentPeriod(
+            started_on=date(2020, 1, 1), ended_on=date(2026, 3, 15)
+        )
+        run = PayrollRun(run_kind=RunKind.THIRTEENTH, month=3, year=2026)
+        request = replace(_req(month=3), employment_period=period, run=run)
+        assert _RESIDUAL_LEAVE not in _gap_kinds(request)
+
     def test_employment_ending_later_does_not(self) -> None:
         """An end date in a later month leaves the run ordinary."""
         period = EmploymentPeriod(

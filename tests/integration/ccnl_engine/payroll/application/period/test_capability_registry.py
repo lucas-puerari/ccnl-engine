@@ -7,12 +7,14 @@ rejected before any report is built from it.
 from __future__ import annotations
 
 from dataclasses import replace
+from unittest.mock import patch
 
 import pytest
 
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
+from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
@@ -126,3 +128,15 @@ def test_untraced_capability_is_rejected() -> None:
     assert "ghost: handler not observable in the run trace" in errors
     with pytest.raises(DataIntegrityError, match="ghost: native without a registered"):
         capability_report(catalog, (), frozenset(), CaseFacts(), 2026)
+
+
+class _UntracedEvent:
+    """An event type a handler would post without any trace."""
+
+
+def test_untraced_event_handler_is_rejected() -> None:
+    """An event handler without a traced capability posts unobserved amounts."""
+    handler = _HANDLER_REGISTRY[next(iter(_HANDLER_REGISTRY))]
+    with patch.dict(_HANDLER_REGISTRY, {_UntracedEvent: handler}):
+        errors = registry_errors(_BUNDLED)
+    assert errors == ["_UntracedEvent: event handler not observable in the run trace"]

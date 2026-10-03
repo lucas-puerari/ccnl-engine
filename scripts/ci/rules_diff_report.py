@@ -112,6 +112,9 @@ def _git_load_ccnl_base(base_ref: str, file_path: str) -> CCNL | None:
     if raw is None:
         return None
     data = json.loads(raw)
+    # The report compares rules only: a coverage block of an older schema
+    # (aggregate flags, notes without a capability) must not hide them.
+    data["coverage"] = {"notes": []}
     try:
         return CCNL.model_validate(data)
     except ValidationError:

@@ -5,7 +5,8 @@ rejects a registry the engine cannot honour:
 
 - an implemented capability without a registered handler of its kind;
 - a registered handler without an implemented registry entry;
-- a handler whose capability the run trace does not show;
+- a handler whose capability the run trace does not show, an event handler
+  without a traced capability included;
 - a capability that takes caller values for a rule but is declared native
   or unsupported, or one declared caller-supplied that takes none.
 
@@ -19,6 +20,7 @@ from functools import cache
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.handlers._totals import EVENT_FEATURES
+from ccnl_engine.payroll.application.handlers.registry import _HANDLER_REGISTRY
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_SUPPLIED_CAPABILITIES,
 )
@@ -34,6 +36,7 @@ from ccnl_engine.payroll.domain.capability_report import (
     CaseFacts,
     compare_with_catalog,
 )
+from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 
@@ -41,11 +44,18 @@ if TYPE_CHECKING:
     from collections.abc import Iterable, Mapping
 
     from ccnl_engine.payroll.application.period._context import RunContext
-    from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.payroll.domain.capability_catalog import (
+        CapabilityCatalog,
+        CapabilityEntry,
+    )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.provenance.domain.chain import ProvenanceStatus
 
 __all__ = ["capability_report", "case_facts", "registry_errors", "validate_registry"]
+
+#: Event types whose handler is traced through a decision, not an event
+#: capability: a bonus is traced by the ``bonus_pdr`` decision of the run.
+_TRACED_BY_DECISION = frozenset({BonusEvent})
 
 _TAKES_CALLER_VALUES = frozenset({
     CapabilityImplementation.CALLER_SUPPLIED,
@@ -53,14 +63,13 @@ _TAKES_CALLER_VALUES = frozenset({
 })
 
 
-def registry_errors(catalog: CapabilityCatalog) -> list[str]:
-    """Return every way *catalog* contradicts the handlers of the engine.
+def _handler_errors(implemented: Mapping[str, CapabilityEntry]) -> list[str]:
+    """Return the entries and handlers that do not match one another.
 
     Returns:
-        One message per contradiction, empty when the registry holds.
+        One message per implemented entry without a handler of its kind,
+        and per handler without an implemented entry.
     """
-    implemented = {entry.feature: entry for entry in catalog.implemented()}
-    traced = {trace.feature for trace in build_traces((), frozenset())}
     errors = [
         f"{feature}: {entry.implementation} without a registered "
         f"{entry.handler} handler"
@@ -72,25 +81,64 @@ def registry_errors(catalog: CapabilityCatalog) -> list[str]:
         for feature in HANDLERS
         if feature not in implemented
     )
-    errors.extend(
+    return errors
+
+
+def _trace_errors(implemented: Mapping[str, CapabilityEntry]) -> list[str]:
+    """Return the handlers whose capability a run trace would not show.
+
+    Returns:
+        One message per untraced capability and per event handler whose
+        event type has no traced capability.
+    """
+    traced = {trace.feature for trace in build_traces((), frozenset())}
+    errors = [
         f"{feature}: handler not observable in the run trace"
         for feature in implemented
         if feature not in traced
-    )
+    ]
     errors.extend(
+        f"{event.__name__}: event handler not observable in the run trace"
+        for event in _HANDLER_REGISTRY
+        if event not in EVENT_FEATURES and event not in _TRACED_BY_DECISION
+    )
+    return errors
+
+
+def _caller_errors(implemented: Mapping[str, CapabilityEntry]) -> list[str]:
+    """Return the entries whose implementation hides or invents caller values.
+
+    Returns:
+        One message per contradicting entry.
+    """
+    takes = CALLER_SUPPLIED_CAPABILITIES
+    errors = [
         f"{feature}: takes caller values in place of a rule but is "
         f"{entry.implementation}"
         for feature, entry in implemented.items()
-        if feature in CALLER_SUPPLIED_CAPABILITIES
-        and entry.implementation not in _TAKES_CALLER_VALUES
-    )
+        if feature in takes and entry.implementation not in _TAKES_CALLER_VALUES
+    ]
     errors.extend(
         f"{feature}: declared caller_supplied but takes no caller value"
         for feature, entry in implemented.items()
         if entry.implementation is CapabilityImplementation.CALLER_SUPPLIED
-        and feature not in CALLER_SUPPLIED_CAPABILITIES
+        and feature not in takes
     )
     return errors
+
+
+def registry_errors(catalog: CapabilityCatalog) -> list[str]:
+    """Return every way *catalog* contradicts the handlers of the engine.
+
+    Returns:
+        One message per contradiction, empty when the registry holds.
+    """
+    implemented = {entry.feature: entry for entry in catalog.implemented()}
+    return [
+        *_handler_errors(implemented),
+        *_trace_errors(implemented),
+        *_caller_errors(implemented),
+    ]
 
 
 @cache
@@ -111,14 +159,18 @@ def case_facts(ctx: RunContext) -> CaseFacts:
 
     Returns:
         The capabilities of the declared events, and whether the run is a
-        termination run or the employment ends in the month of the run.
+        termination run or the regular run of the month the employment ends
+        in; an extra-month or adjustment run of that month does not close it.
     """
     request = ctx.request
     period = request.employment_period
     ended = None if period is None else period.ended_on
     month = request.period_id
-    closes = ctx.run_kind is RunKind.TERMINATION or (
-        ended is not None and (ended.year, ended.month) == (month.year, month.month)
+    kind = ctx.run_kind
+    closes = kind is RunKind.TERMINATION or (
+        kind is RunKind.REGULAR
+        and ended is not None
+        and (ended.year, ended.month) == (month.year, month.month)
     )
     return CaseFacts(
         event_features=frozenset(
