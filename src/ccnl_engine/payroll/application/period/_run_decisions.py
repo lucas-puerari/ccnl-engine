@@ -20,7 +20,6 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.compensation import Level
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.service.types import ApprenticeshipScaling
-    from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.variable_pay import PdRRules
 
 _NONE = "none"
@@ -120,31 +119,6 @@ def apprenticeship_scaling_decision(
             "scaled": ",".join(scaling.scaled),
             "unscaled": ",".join(scaling.unscaled) or _NONE,
         },
-    )
-
-
-def family_deduction_decision(
-    total: Decimal, rules: FamilyDeductionRules | None
-) -> CalculationDecision | None:
-    """Return the decision recording the annual Art. 12 TUIR deductions.
-
-    Args:
-        total: Annual family deductions computed for the run.
-        rules: Family deduction rules, ``None`` when no family composition
-            was given and the deductions were not computed.
-
-    Returns:
-        A decision with reason ``deductions_applied`` or ``no_deduction_due``
-        and the annual amount; ``None`` when the deductions were not computed.
-    """
-    if rules is None:
-        return None
-    return _final(
-        "family_deductions",
-        "deductions_applied" if total else "no_deduction_due",
-        ("art12-tuir", str(rules.year)),
-        {},
-        total,
     )
 
 

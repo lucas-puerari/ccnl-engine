@@ -7,6 +7,7 @@ from datetime import date
 import pytest
 
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -70,6 +71,7 @@ def test_rejects_competence_years_that_cannot_be_paid_in_the_year(
     [
         ({"tax_year": "2027"}, "TaxYearPlan.tax_year"),
         ({"opening_state": "zero"}, "TaxYearPlan.opening_state"),
+        ({"current_year": 2027}, "TaxYearPlan.current_year"),
     ],
 )
 def test_rejects_fields_of_the_wrong_type(
@@ -81,3 +83,22 @@ def test_rejects_fields_of_the_wrong_type(
         TaxYearPlan(**(fields | kwargs))  # type: ignore[arg-type]
 
     assert info.value.field == field
+
+
+def test_current_year_facts_must_be_of_the_tax_year() -> None:
+    """Facts of 2026 do not describe tax year 2027."""
+    facts = CurrentYearTaxFacts.employment_only(2026, date(2026, 1, 1))
+    with pytest.raises(InvalidInputError, match="tax year 2026") as info:
+        TaxYearPlan(tax_year=2027, competence_years=(_year(2027),), current_year=facts)
+
+    assert info.value.field == "TaxYearPlan.current_year"
+
+
+def test_current_year_facts_of_the_tax_year_are_kept() -> None:
+    """Facts of the tax year are accepted as given."""
+    facts = CurrentYearTaxFacts.employment_only(2027, date(2027, 1, 1))
+    plan = TaxYearPlan(
+        tax_year=2027, competence_years=(_year(2027),), current_year=facts
+    )
+
+    assert plan.current_year is facts

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.eligibility import ContributionHistory
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import (
@@ -127,6 +128,8 @@ class PeriodCalculationRequest:
             not known.  Read by the regimes restricted to one sector.
         prior_year: Prior-year income and written waivers, read by every
             preferential tax regime.
+        current_year: Income of the tax year beyond this employment, read
+            by the family deductions; ``None`` when not known.
         pension_fund: Enrolment in a pension fund of the CCNL, ``None``
             when the worker is not enrolled.
     """
@@ -158,6 +161,7 @@ class PeriodCalculationRequest:
     planned_payments: tuple[PaymentId, ...] | None = None
     sector: EmploymentSector | None = None
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
+    current_year: CurrentYearTaxFacts | None = None
     pension_fund: PensionFundEnrolment | None = None
 
     def __post_init__(self) -> None:
@@ -250,5 +254,6 @@ class PeriodCalculationRequest:
             ("seniority", self.seniority, SeniorityFact, True),
             ("sector", self.sector, EmploymentSector, True),
             ("prior_year", self.prior_year, PriorYearTaxFacts, False),
+            ("current_year", self.current_year, CurrentYearTaxFacts, True),
             ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
         )

@@ -21,9 +21,7 @@ from ccnl_engine.payroll.application.amounts._domestic import _domestic_hourly_r
 from ccnl_engine.payroll.application.amounts._types import _AmountsInput
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
 from ccnl_engine.payroll.application.handlers.benefits import fringe_threshold_of
-from ccnl_engine.payroll.application.period._accrual_decisions import (
-    accrual_decisions,
-)
+from ccnl_engine.payroll.application.period._accrual_decisions import accrual_decisions
 from ccnl_engine.payroll.application.period._base_decisions import (
     base_stage_decisions,
 )
@@ -175,6 +173,7 @@ def _amounts_input(
         comune_belfiore=request.comune_belfiore,
         family_composition=request.family_composition,
         family_deduction_rules=family_rules,
+        current_year=request.current_year,
         ivs_ceiling_applies=ivs_ceiling_applies,
         pdr_rules=ctx.var_pay_rules.pdr,
         weekly_hours=_int_value(request.weekly_hours),

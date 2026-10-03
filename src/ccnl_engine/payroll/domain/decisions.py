@@ -104,6 +104,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "activity": "EmployerProfile.activity",
     "agreement_signed_on": "BonusEvent.agreement_signed_on",
     "contribution_history": "Employment.contribution_history",
+    "current_year": "PeriodInput.current_year",
     "employment_income": "PriorYearTaxFacts.employment_income",
     "sector": "Employment.sector",
     "seniority": "Employment.seniority",

@@ -16,6 +16,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.employment_facts import ContributableHours
@@ -133,6 +134,11 @@ class PeriodInput:
             surtax jurisdiction.
         prior_year: Prior-year income and waivers.  Defaults to unknown
             income and no waiver.
+        current_year: Income of the tax year beyond this employment, which
+            the family deductions add to the employment income of the year
+            to get the reddito complessivo.  ``None`` means not known: with
+            a dependent that gives right to a deduction the result is not
+            payable.
         opening_state: State entering the run.  Use
             :meth:`~ccnl_engine.payroll.domain.period_state.PeriodState.zero` for
             the first run of an employment, the ``closing_state`` of the
@@ -157,6 +163,7 @@ class PeriodInput:
     employer: EmployerProfile
     facts: PeriodFacts = field(default_factory=PeriodFacts)
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
+    current_year: CurrentYearTaxFacts | None = None
     opening_state: PeriodState = field(default_factory=PeriodState.zero)
     planned_payments: tuple[PaymentId, ...] | None = None
 
@@ -169,6 +176,7 @@ class PeriodInput:
                 ("employer", self.employer, EmployerProfile, False),
                 ("facts", self.facts, PeriodFacts, False),
                 ("prior_year", self.prior_year, PriorYearTaxFacts, False),
+                ("current_year", self.current_year, CurrentYearTaxFacts, True),
                 ("opening_state", self.opening_state, PeriodState, False),
             ),
             feature="period_input",
@@ -236,6 +244,7 @@ class PeriodInput:
             sector=employment.sector,
             pension_fund=employment.pension_fund,
             prior_year=self.prior_year,
+            current_year=self.current_year,
             extra_month_accrual=extra_month_accrual,
             extra_month_settlements=extra_month_settlements,
             withholding_schedule=withholding_schedule,

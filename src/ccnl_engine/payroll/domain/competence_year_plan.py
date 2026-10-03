@@ -8,6 +8,7 @@ from datetime import date, datetime
 from types import MappingProxyType
 
 from ccnl_engine.payroll.domain.calendar_override import CalendarOverride
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.employer import EmployerProfile
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
@@ -69,6 +70,9 @@ class CompetenceYearPlan:
             rate tier.
         prior_year: Prior-year income and waivers.  Defaults to unknown
             income and no waiver.
+        current_year: Income beyond this employment of the tax year of the
+            runs, read by the family deductions; runs paid in another tax
+            year ignore it.  ``None`` means not known.
         periods: Facts per run, keyed by run id (``"2026-12-thirteenth"``,
             any run kind) or by month number (1-12, the regular run of the
             month).  :attr:`facts_by_run` holds them keyed by run id.  An
@@ -109,6 +113,7 @@ class CompetenceYearPlan:
     employment: Employment
     employer: EmployerProfile
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
+    current_year: CurrentYearTaxFacts | None = None
     periods: RunKeyed[PeriodFacts] = field(default_factory=dict)
     default_facts: PeriodFacts = field(default_factory=PeriodFacts)
     calendar_override: CalendarOverride | None = None
@@ -132,6 +137,7 @@ class CompetenceYearPlan:
                 ("employment", self.employment, Employment, False),
                 ("employer", self.employer, EmployerProfile, False),
                 ("prior_year", self.prior_year, PriorYearTaxFacts, False),
+                ("current_year", self.current_year, CurrentYearTaxFacts, True),
                 ("default_facts", self.default_facts, PeriodFacts, False),
                 ("calendar_override", self.calendar_override, CalendarOverride, True),
                 ("opening_state", self.opening_state, PeriodState, True),

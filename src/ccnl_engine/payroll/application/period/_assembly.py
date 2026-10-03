@@ -170,6 +170,7 @@ def _result(
         bundle_version=bundle_version,
         issues=events.totals.issues
         + posted.amounts.surtax.issues
+        + posted.amounts.issues
         + somma.issues
         + capped.issues
         + posted.deferred.issues

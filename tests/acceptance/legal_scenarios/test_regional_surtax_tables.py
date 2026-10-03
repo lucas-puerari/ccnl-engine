@@ -59,7 +59,11 @@ _LOMBARDIA = (
 )
 _VENETO_RATE = Decimal("0.0123")
 _CHILD = FamilyComposition(
-    dependents=(Dependent(relationship=DependentRelationship.CHILD),)
+    dependents=(
+        Dependent(
+            relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
+        ),
+    )
 )
 
 

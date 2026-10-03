@@ -30,6 +30,7 @@ from ccnl_engine import (
     CompetenceYearPlan,
     ContributableHours,
     ContributionHistory,
+    CurrentYearTaxFacts,
     DeferredShortfall,
     Dependent,
     DependentRelationship,
@@ -80,7 +81,9 @@ _EMPLOYMENT = Employment(
 )
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
 _OVERTIME = OvertimeEvent(event_date=_DAY, hours=_ONE, hourly_rate=Decimal(15))
-_CHILD = Dependent(relationship=DependentRelationship.CHILD)
+_CHILD = Dependent(
+    relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
+)
 _RECOVERY = RecoveryObligation(
     tax_year=_YEAR - 1,
     plan=RecoveryPlan.create("trattamento_integrativo", Decimal(80), 8),
@@ -132,11 +135,19 @@ _VALID: dict[type, dict[str, Any]] = {
         "employee_rate": Decimal("0.01"),
         "tfr_to_fund": True,
     },
-    Dependent: {"relationship": DependentRelationship.CHILD},
+    Dependent: {"relationship": DependentRelationship.SPOUSE},
     FamilyComposition: {},
     ForeignTaxPaid: {"country": "FR", "income": _ONE, "tax": _ONE},
     ShortfallDeferralRequest: {"signed_on": _DAY},
     PriorYearTaxFacts: {},
+    CurrentYearTaxFacts: {
+        "tax_year": _YEAR,
+        "other_employment_income": _ONE,
+        "other_income": _ONE,
+        "main_dwelling_income": _ONE,
+        "estimated_on": _DAY,
+        "quality": "declared",
+    },
     PeriodFacts: {},
     PayrollRun: {"run_kind": "regular", "month": 6, "year": _YEAR},
     PayrollRunId: {"year": _YEAR, "month": 6, "kind": "regular"},

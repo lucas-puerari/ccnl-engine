@@ -64,32 +64,8 @@ class TestLoadFamilyDeductionRules:
         assert rules.other_dependents.amount > 0
 
     def test_year_mismatch_raises(self) -> None:
-        """A tampered file where year != filename year raises ValueError."""
-        # Simulate a hand-edited JSON where the year field was changed.
-        tampered_raw = {
-            "year": 9999,
-            "description": "tampered",
-            "spouse": {
-                "dependent_income_threshold": "2840.51",
-                "breakpoints": [
-                    {"income_up_to": None, "deduction": "0.00"},
-                ],
-                "notes": "",
-            },
-            "children": {
-                "auu_age_cutoff": 21,
-                "base_amount": "950.00",
-                "income_ceiling": "95000.00",
-                "income_ceiling_increment_per_child": "15000.00",
-                "notes": "",
-            },
-            "other_dependents": {
-                "dependent_income_threshold": "2840.51",
-                "amount": "750.00",
-                "income_ceiling": "80000.00",
-                "notes": "",
-            },
-        }
+        """A tampered file where year != filename year raises."""
+        tampered_raw = {"year": 9999, "description": "tampered"}
         with (
             patch(
                 "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
@@ -98,6 +74,28 @@ class TestLoadFamilyDeductionRules:
             pytest.raises(DataIntegrityError, match="does not match requested year"),
         ):
             load_family_deduction_rules(2026)
+
+    def test_invalid_table_raises(self) -> None:
+        """A table that does not validate is a data integrity error."""
+        with (
+            patch(
+                "ccnl_engine.tax.service.tax_optional_loaders.read_year_json",
+                return_value={"year": 2026, "spouse": {}},
+            ),
+            pytest.raises(DataIntegrityError, match="not a valid family deduction"),
+        ):
+            load_family_deduction_rules(2026)
+
+    def test_spouse_increases_are_the_five_bands_of_lett_b(self) -> None:
+        """Art. 12 c. 1 lett. b, read on Normattiva on 3 October 2026."""
+        bands = load_family_deduction_rules(2026).spouse_increases.bands
+        assert [(b.above, b.up_to, b.amount) for b in bands] == [
+            (Decimal(29000), Decimal(29200), Decimal(10)),
+            (Decimal(29200), Decimal(34700), Decimal(20)),
+            (Decimal(34700), Decimal(35000), Decimal(30)),
+            (Decimal(35000), Decimal(35100), Decimal(20)),
+            (Decimal(35100), Decimal(35200), Decimal(10)),
+        ]
 
 
 class TestTryRuleset:

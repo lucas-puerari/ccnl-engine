@@ -17,10 +17,7 @@ from ccnl_engine.payroll.application.amounts._taxable import (
 )
 from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
 from ccnl_engine.payroll.application.amounts._untaxed import untaxed_amounts
-from ccnl_engine.payroll.application.period._run_decisions import (
-    family_deduction_decision,
-    pdr_decision,
-)
+from ccnl_engine.payroll.application.period._run_decisions import pdr_decision
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._irpef import _Irpef
@@ -28,7 +25,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._taxable import _PdrSplit
     from ccnl_engine.payroll.application.amounts._types import _AmountsInput
     from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
-    from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.decisions import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
 
@@ -44,7 +44,7 @@ def _decisions(
     return tuple(
         d
         for d in (
-            family_deduction_decision(irpef.family_deductions, irpef.family_rules),
+            None if irpef.family is None else irpef.family.decision(),
             pdr_decision(
                 inp.event_substitute_base,
                 pdr.eligible,
@@ -57,6 +57,11 @@ def _decisions(
         )
         if d is not None
     )
+
+
+def _issues(irpef: _Irpef) -> tuple[CalculationIssue, ...]:
+    issue = None if irpef.family is None else irpef.family.issue()
+    return () if issue is None else (issue,)
 
 
 def _compute_amounts(
@@ -104,5 +109,6 @@ def _compute_amounts(
         ulteriore=irpef.tax.ulteriore,
         decisions=_decisions(inp, pdr, irpef, surtax),
         pension=pension,
+        issues=_issues(irpef),
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

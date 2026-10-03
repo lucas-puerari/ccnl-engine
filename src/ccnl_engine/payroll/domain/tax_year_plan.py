@@ -14,6 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -50,16 +51,21 @@ class TaxYearPlan:
             new employment, ``close_tax_year()`` of the previous tax year,
             or a state of :attr:`tax_year` that already closed some of the
             payments; those are not computed again (resume after a retry).
+        current_year: Income of :attr:`tax_year` beyond this employment,
+            read by the family deductions of every payment in place of the
+            ``current_year`` of the competence years.  ``None`` keeps theirs.
 
     Raises:
         InvalidInputError: When a field is not of its type, there is no
             competence year, two plans share a year, a plan is of a year
-            after :attr:`tax_year` or carries an opening state.
+            after :attr:`tax_year` or carries an opening state, or
+            :attr:`current_year` is of another tax year.
     """
 
     tax_year: int
     competence_years: tuple[CompetenceYearPlan, ...]
     opening_state: PeriodState | None = field(default=None)
+    current_year: CurrentYearTaxFacts | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(
@@ -76,6 +82,7 @@ class TaxYearPlan:
             feature=_FEATURE,
             optional=True,
         )
+        self._check_current_year()
         path = f"{_OWNER}.competence_years"
         plans = tuple_of(
             self.competence_years,
@@ -104,3 +111,22 @@ class TaxYearPlan:
                 raise InvalidInputError(
                     msg, field=f"{entry}.opening_state", feature=_FEATURE
                 )
+
+    def _check_current_year(self) -> None:
+        path = f"{_OWNER}.current_year"
+        require_instance(
+            self.current_year,
+            CurrentYearTaxFacts,
+            path,
+            feature=_FEATURE,
+            optional=True,
+        )
+        if (
+            self.current_year is not None
+            and self.current_year.tax_year != self.tax_year
+        ):
+            msg = (
+                f"current_year is of tax year {self.current_year.tax_year}, "
+                f"not {self.tax_year}"
+            )
+            raise InvalidInputError(msg, field=path, feature=_FEATURE)

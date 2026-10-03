@@ -78,6 +78,7 @@ _INPS_BLOCKS: Final[_Blocks] = (
 _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
     "tax/data/family-deductions-": (
         ("spouse", ("family_deductions",), False),
+        ("spouse_increases", ("family_deductions",), False),
         ("children", ("family_deductions",), False),
         ("other_dependents", ("family_deductions",), False),
     ),

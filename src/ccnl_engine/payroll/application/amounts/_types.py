@@ -12,7 +12,11 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.category import WorkerCategory
-    from ccnl_engine.payroll.domain.decisions import CalculationDecision
+    from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
+    from ccnl_engine.payroll.domain.decisions import (
+        CalculationDecision,
+        CalculationIssue,
+    )
     from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm, Permanent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.foreign_tax import ForeignTaxPaid
@@ -76,6 +80,7 @@ class _AmountsInput:
     comune_belfiore: str | None = None
     family_composition: FamilyComposition | None = None
     family_deduction_rules: FamilyDeductionRules | None = None
+    current_year: CurrentYearTaxFacts | None = None
     weekly_hours: int | None = None
     contributable_hours: Decimal | None = None
     domestic_hourly_rate: Decimal | None = None
@@ -107,7 +112,8 @@ class _PeriodAmounts:
     was computed on; ``None`` when not recorded.  ``ulteriore`` is what
     the run recognized or recovered of the ulteriore detrazione.
     ``pension`` holds the pension fund contributions of the run, ``None``
-    when the worker is not enrolled.
+    when the worker is not enrolled.  ``issues`` are those of the tax
+    capabilities of the run (the family deductions).
     """
 
     monthly_gross: Decimal
@@ -125,3 +131,4 @@ class _PeriodAmounts:
     projected_taxable: Decimal | None = None
     ulteriore: UlterioreSettlement | None = None
     pension: PensionContribution | None = None
+    issues: tuple[CalculationIssue, ...] = ()
