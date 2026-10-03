@@ -77,8 +77,14 @@ sector), `EmployerProfile` (headcount,
 activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
 every substitute-tax regime) and `PeriodFacts` (events, surtax jurisdiction,
 family, contributable hours of one run). Every input is validated when it is
-built. A fact left unknown never looks final: the regime it drives is not
-applied and the result is `provisional` and not payable.
+built, its collections element by element: a value of the wrong type, `NaN`
+or an infinity, a `bool` given as a number, a `datetime` given as a date or
+an object in `events` that is not a work event raises `InvalidInputError`
+naming the field (`error.field`, e.g. `"PeriodFacts.events[2]"`) with a
+`remediation`. Every error the engine raises is a `CcnlEngineError` exported
+at the root, with a stable `code`; none is a bare `ValueError`, `TypeError`
+or `AttributeError`. A fact left unknown never looks final: the regime it
+drives is not applied and the result is `provisional` and not payable.
 
 `result.is_payable` is the one answer to "can this amount be paid as it is?".
 A result is payable only when it has no blocker: no issue, no capability of
