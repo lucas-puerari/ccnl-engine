@@ -74,7 +74,7 @@ Both group the facts by owner and are validated when built:
 
 | Model | Holds |
 |---|---|
-| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, weekly and full-time `WeeklyHours`, `SeniorityMonths`, roles, IVS ceiling status, sector (`None` means unknown), `PensionFundEnrolment` (`None` means not enrolled) |
+| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, weekly and full-time `WeeklyHours`, `SeniorityMonths`, roles, `ContributionHistory` (IVS massimale eligibility), sector (`None` means unknown), `PensionFundEnrolment` (`None` means not enrolled) |
 | `EmployerProfile` | `Headcount` (required, no size is assumed) and activity (`None` means unknown) |
 | `PriorYearTaxFacts` | prior-year employment income and the regimes waived in writing, read by every substitute-tax regime and the PdR |
 | `PeriodFacts` | events, contributable hours, region and Belfiore code, family composition, dependent children of one run |

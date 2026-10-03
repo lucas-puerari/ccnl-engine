@@ -297,7 +297,7 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 |---|---|
 | `PeriodInput` | One run: `PayrollRun`, payment date, employment, employer, facts of the run, prior-year facts, opening state |
 | `YearInput` | Every run of a tax year: employment, employer, prior-year facts, `periods` and `default_facts`, calendar override, payment day, opening state |
-| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityMonths`, roles, IVS ceiling status and sector; impossible values are rejected on construction |
+| `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, `WeeklyHours`, `SeniorityMonths`, roles, `ContributionHistory` and sector; impossible values are rejected on construction |
 | `EmployerProfile` | The employer: its `Headcount` (required, at least 1) selects the INPS rate tier; `activity` feeds the L. 199/2025 c. 18 exclusion |
 | `PriorYearTaxFacts` | Prior-year employment income and written waivers, declared once and read by every substitute-tax regime |
 | `PeriodFacts` | Events, contributable hours, region and Belfiore code, family composition of one run |

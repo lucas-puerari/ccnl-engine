@@ -575,12 +575,37 @@ regimes described in [Substitute tax regimes](substitute-tax-regimes.md).
 
 ## IVS ceiling
 
-The *massimale IVS* applies according to `Employment.ceiling_status`
-(`ContributionCeilingStatus`): `POST_1995` and `OPTED_IN` apply it,
-`NOT_APPLICABLE` does not, and `UNKNOWN` (the default) does not apply it to
-avoid over-deducting contributions for workers enrolled before 1996. Declare
-the status for workers first enrolled from 1996. Conditions that lower the
-reliability of a result are reported in `result.issues`, never as free text.
+The *massimale IVS* caps the IVS contribution base (and the 1% addizionale)
+of workers without contributions before 1 January 1996 and of those who
+opted for the contributory system (L. 335/1995 art. 2 c. 18 and art. 1
+c. 23). Its value is data of the INPS rules of the year with their provenance
+(EUR 122,295 for 2026, INPS Circ. 6/2026). The engine derives the
+eligibility from `Employment.contribution_history`
+(`ContributionHistory`): the date of the first contribution credited to a
+mandatory pension scheme, including pre-1996 periods credited later on
+request (L. 208/2015 art. 1 c. 280), and the contributory option.
+
+Every run whose INPS rules carry a massimale records an
+`ivs_ceiling_eligibility` decision:
+
+| Reason | When | Massimale |
+|---|---|---|
+| `first_enrolment_after_1995` | first contribution on or after 1 January 1996 | applied |
+| `contributory_option` | the worker opted for the contributory system | applied |
+| `enrolled_before_1996` | earlier contributions, no option | not applied |
+| `ceiling_not_reached` | no history, and the YTD INPS base plus the run stays within the massimale: both branches give the same contributions | irrelevant |
+| `required_fact_missing` | no history, and the run crosses the massimale | undetermined |
+
+With `required_fact_missing` the decision is `incomplete` and lists the
+employee and employer contributions of both branches in its inputs; the
+`inps_employee` and `inps_employer` decisions are `incomplete` with no
+amount; an `ivs_ceiling_eligibility_unknown` issue names the fact
+`contribution_history`, so the result has a `missing_fact` blocker and is not
+payable. The breakdown, the ledger and the net carry the uncapped branch as
+a simulation, never as a payable amount. The massimale runs across all the
+employers of the year: the opening INPS base YTD must include them.
+Conditions that lower the reliability of a result are reported in
+`result.issues`, never as free text.
 
 **API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
 [`REGION_CODES`](../api/models.md#fiscal),
