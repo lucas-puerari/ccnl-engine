@@ -96,6 +96,7 @@ from ccnl_engine import (
     CcnlEngineError,
     DataIntegrityError,
     InvalidInputError,
+    MissingRuleError,
     OutOfScopeError,
     UnknownCcnlError,
     UnknownLevelError,

@@ -1,5 +1,7 @@
 """Validity period and time series primitives."""
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from datetime import date
 from decimal import Decimal
 from enum import StrEnum
@@ -8,6 +10,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.provenance.domain.chain import RuleProvenance
+from ccnl_engine.shared.domain.errors import MissingRuleError
 from ccnl_engine.shared.domain.primitives import validate_open_sequence
 
 
@@ -31,26 +34,94 @@ class SalaryGapKind(StrEnum):
     UNKNOWN = "unknown"
 
 
-class SalaryGapError(ValueError):
-    """Raised by :meth:`TimeSeries.value_at` when the active period is a gap.
+class SeriesGapError(ValueError):
+    """Raised by :meth:`TimeSeries.value_at` on a date the series has no value.
 
-    Subclasses :class:`ValueError` so that existing broad ``except ValueError``
-    callers continue to work.  Callers that need to distinguish a gap from a
-    truly absent series can catch ``SalaryGapError`` specifically.
+    The date precedes the first period, or falls in a gap period.  It stays
+    a ``ValueError`` so that Pydantic validators reading a series keep
+    working; a run translates it into
+    :class:`~ccnl_engine.shared.domain.errors.MissingRuleError` with
+    :func:`rule_scope`.
 
     Attributes:
-        gap_kind: The :class:`SalaryGapKind` declared on the active period.
+        day: The date that was queried.
+        gap_kind: Kind of the gap period, ``None`` before the series starts.
+        resumes_on: First date with a value after ``day``, ``None`` when the
+            gap is open-ended.
     """
 
-    def __init__(self, gap_kind: SalaryGapKind, day: date) -> None:
-        """Initialise with the gap kind and the queried date.
-
-        Args:
-            gap_kind: The :class:`SalaryGapKind` on the active period.
-            day: The date that was queried via :meth:`TimeSeries.value_at`.
-        """
+    def __init__(
+        self, day: date, gap_kind: SalaryGapKind | None, resumes_on: date | None
+    ) -> None:
+        """Initialise with the queried date, the gap kind and the next value."""
+        self.day = day
         self.gap_kind = gap_kind
-        super().__init__(f"period at {day} is an explicit gap ({gap_kind.value})")
+        self.resumes_on = resumes_on
+        super().__init__(self.detail)
+
+    @property
+    def detail(self) -> str:
+        """Why the series has no value on :attr:`day`."""
+        if self.gap_kind is None:
+            return f"the rule starts on {self.resumes_on}"
+        until = "further notice" if self.resumes_on is None else self.resumes_on
+        return f"the bundle declares a {self.gap_kind.value} gap until {until}"
+
+    @property
+    def remediation(self) -> str:
+        """What the caller can do about the missing value."""
+        if self.resumes_on is None:
+            return "Update the knowledge bundle with the values of this period."
+        return (
+            f"Compute a period from {self.resumes_on}, or update the knowledge "
+            "bundle with the values before that date."
+        )
+
+    def missing_rule(
+        self, *, ruleset: str | None, feature: str | None
+    ) -> MissingRuleError:
+        """Return the public error of the gap for the rule of a run.
+
+        Returns:
+            A :class:`MissingRuleError` carrying the date, the gap kind, the
+            ruleset, the feature and the remediation.
+        """
+        return MissingRuleError(
+            self.detail,
+            as_of=self.day,
+            gap_kind=None if self.gap_kind is None else self.gap_kind.value,
+            feature=feature,
+            ruleset=ruleset,
+            remediation=self.remediation,
+        )
+
+
+@contextmanager
+def rule_scope(
+    *, ruleset: str | None = None, feature: str | None = None
+) -> Iterator[None]:
+    """Raise a series gap met within as a :class:`MissingRuleError`.
+
+    Scopes nest: an inner scope names the feature, an outer one the
+    ruleset; a value already set by an inner scope is kept.
+
+    Raises:
+        MissingRuleError: When a :class:`SeriesGapError` or a
+            ``MissingRuleError`` is raised within the scope.
+    """
+    try:
+        yield
+    except SeriesGapError as gap:
+        raise gap.missing_rule(ruleset=ruleset, feature=feature) from gap
+    except MissingRuleError as error:
+        raise MissingRuleError(
+            error.detail,
+            as_of=error.as_of,
+            gap_kind=error.gap_kind,
+            feature=error.feature or feature,
+            ruleset=error.ruleset or ruleset,
+            remediation=error.remediation,
+        ) from error
 
 
 class ValidityPeriod(BaseModel):
@@ -138,23 +209,21 @@ class TimeSeries(BaseModel):
             The Decimal value in effect on the given date.
 
         Raises:
-            SalaryGapError: If the active period is an explicit gap period.
-                Subclass of ``ValueError``; callers that only need to skip the
-                date can catch ``ValueError`` generically.
-            ValueError: If the date precedes the start of the series.
-            RuntimeError: If the XOR invariant is violated (gap_kind and
-                value are both None — indicates a data corruption bug).
+            SeriesGapError: If the date precedes the series or falls in a gap
+                period.
         """
-        for period in self.periods:
-            if period.valid_from <= day and (
-                period.valid_until is None or day < period.valid_until
-            ):
-                if period.gap_kind is not None:
-                    raise SalaryGapError(period.gap_kind, day)
-                # XOR invariant: gap_kind is None iff value is not None.
-                if period.value is None:  # pragma: no cover
-                    msg = "XOR invariant: gap_kind is None but value is also None"
-                    raise RuntimeError(msg)
-                return period.value
-        msg = f"no value for {day}: series starts on {self.periods[0].valid_from}"
-        raise ValueError(msg)
+        period = self.period_at(day)
+        if period is None:
+            raise SeriesGapError(day, None, self.periods[0].valid_from)
+        if period.value is None:
+            raise SeriesGapError(day, period.gap_kind, period.valid_until)
+        return period.value
+
+    def applies_on(self, day: date) -> bool:
+        """Return whether the rule of the series is in force on day.
+
+        Returns:
+            ``False`` in a ``not_applicable`` gap period, ``True`` otherwise.
+        """
+        period = self.period_at(day)
+        return period is None or period.gap_kind is not SalaryGapKind.NOT_APPLICABLE

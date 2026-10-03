@@ -229,6 +229,11 @@
       "apprentice_amount": {
         "periods": [
           {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-01-01",
+            "gap_kind": "missing"
+          },
+          {
             "valid_from": "2025-01-01",
             "valid_until": null,
             "value": "10.00"
@@ -1710,7 +1715,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c94e75d877cc0c223a8e1d03ba6aa45bad6d7879910ea16cac0c9e9eadbf07d2",
+    "source_hash": "447d0273dcf4f444acdc69c6ae1d1b7dc3db8ceffadc1b0d32d7c4c1078159f8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

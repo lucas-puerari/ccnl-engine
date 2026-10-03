@@ -2,10 +2,19 @@
 
 from __future__ import annotations
 
+from datetime import date
+from decimal import Decimal
+
 from ccnl_engine.contract.domain.compensation import Allowance
-from ccnl_engine.contract.domain.validity import TimeSeries
+from ccnl_engine.contract.domain.validity import (
+    SalaryGapKind,
+    TimeSeries,
+    ValidityPeriod,
+)
 from ccnl_engine.payroll.service.chain import _allowance_active
 from tests.helpers import _series
+
+_DAY = date(2026, 6, 1)
 
 
 def _time_series(value: str) -> TimeSeries:
@@ -47,19 +56,37 @@ class TestAllowanceActive:
     def test_role_not_in_roles_returns_false(self) -> None:
         """Returns False when the allowance has a role not present in roles."""
         a = _allowance(role="manager")
-        assert _allowance_active(a, frozenset({"driver"}), None) is False
+        assert _allowance_active(a, frozenset({"driver"}), None, _DAY) is False
 
     def test_no_role_no_threshold_returns_true(self) -> None:
         """Returns True when role is None and threshold is None."""
         a = _allowance(role=None, service_months_threshold=None)
-        assert _allowance_active(a, frozenset(), None) is True
+        assert _allowance_active(a, frozenset(), None, _DAY) is True
 
     def test_threshold_met(self) -> None:
         """Returns True when seniority_months >= service_months_threshold."""
         a = _allowance(service_months_threshold=12)
-        assert _allowance_active(a, frozenset(), 24) is True
+        assert _allowance_active(a, frozenset(), 24, _DAY) is True
 
     def test_threshold_not_met(self) -> None:
         """Returns False when seniority_months < service_months_threshold."""
         a = _allowance(service_months_threshold=24)
-        assert _allowance_active(a, frozenset(), 12) is False
+        assert _allowance_active(a, frozenset(), 12, _DAY) is False
+
+    def test_not_in_force_returns_false(self) -> None:
+        """Returns False in a ``not_applicable`` gap, before the rule exists."""
+        monthly = TimeSeries(
+            periods=(
+                ValidityPeriod(
+                    valid_from=date(2024, 1, 1),
+                    valid_until=date(2025, 7, 1),
+                    gap_kind=SalaryGapKind.NOT_APPLICABLE,
+                ),
+                ValidityPeriod(
+                    valid_from=date(2025, 7, 1), valid_until=None, value=Decimal(30)
+                ),
+            )
+        )
+        a = _allowance().model_copy(update={"monthly": monthly})
+        assert _allowance_active(a, frozenset(), None, date(2025, 6, 1)) is False
+        assert _allowance_active(a, frozenset(), None, date(2025, 7, 1)) is True

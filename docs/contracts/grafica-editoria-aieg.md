@@ -116,7 +116,7 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "grafica-editoria-aieg/pre_july_2026_amounts_missing · seniority · impact unknown · open"
-    SENIORITY: 5 scatti biennali (24 months), valid from kitech.it July 2026. SIMPLIFICATION: pre-July 2026 scatto amounts not modelled (prior rinnovo values not recovered). The engine uses July 2026 amounts for all periods — impact negligible for current-date calculations.
+    SENIORITY: 5 scatti biennali (24 months), amounts from kitech.it July 2026. The scatto amounts of the previous rinnovo were not recovered: each amount series declares a 'missing' gap from 2024-03-01 to 2026-07-01. A run before July 2026 with increments due raises MissingRuleError; a run with no increment due does not read the amount.
 
     **Applies when:** `seniority` applies; before 2026-07-01.
 

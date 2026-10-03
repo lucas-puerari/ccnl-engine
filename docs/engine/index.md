@@ -97,6 +97,14 @@ keep selecting the contractual values (salary table, seniority, allowances):
   of the attributed tax year. A year the bundle does not ship (2027 today)
   raises `UnsupportedTaxYearError` with the year, instead of computing the
   run with the rules of another year.
+- A CCNL rule the run needs with no value on the competence date (the date
+  precedes the first tranche of the bundle, or falls in a gap the data
+  declares, such as the seniority amounts of `grafica-editoria-aieg` before
+  July 2026) raises `MissingRuleError` with the CCNL (`ruleset`), the
+  `feature`, the date (`as_of`), the declared `gap_kind` and a
+  `remediation`. A rule is read only when it pays something: a worker with
+  no seniority increment due is computed even where the increment amounts
+  are missing.
 - `opening_state.tax_year`, when set, must match the attributed tax year: a
   December 2026 run paid on 13 January 2027 does not close into the 2026
   state and raises `InvalidInputError`. Open the new year with

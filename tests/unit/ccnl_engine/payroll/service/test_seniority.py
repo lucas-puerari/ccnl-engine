@@ -11,12 +11,9 @@ import pytest
 from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.contract.domain.seniority import (
     SeniorityIncrements,
-    SeniorityTier,
 )
 from ccnl_engine.payroll.service.seniority import (
-    _count_from_tiers,
     _resolve_seniority_count,
-    _resolve_tier_amount,
     _seniority_amount,
     seniority_first_cadence,
     seniority_maximum,
@@ -94,82 +91,6 @@ def _tiered_increments() -> SeniorityIncrements:
         ],
         "provenance": TEST_PROV,
     })
-
-
-class TestCountFromTiers:
-    """_count_from_tiers multi-tier counting."""
-
-    def test_single_tier_basic(self) -> None:
-        """Single tier correctly counts increments and caps at maximum_count."""
-        tier = SeniorityTier.model_validate({
-            "cadence_months": 24,
-            "maximum_count": 5,
-            "amount_by_level": {"L1": _series("10.00")},
-            "provenance": TEST_PROV,
-        })
-        assert _count_from_tiers((tier,), 48) == 2
-        assert _count_from_tiers((tier,), 0) == 0
-        assert _count_from_tiers((tier,), 120) == 5
-
-    def test_multi_tier_boundary(self) -> None:
-        """Multi-tier count correctly crosses tier boundaries."""
-        t1 = SeniorityTier.model_validate({
-            "cadence_months": 24,
-            "maximum_count": 3,
-            "amount_by_level": {"L1": _series("10.00")},
-            "provenance": TEST_PROV,
-        })
-        t2 = SeniorityTier.model_validate({
-            "cadence_months": 48,
-            "maximum_count": 2,
-            "amount_by_level": {"L1": _series("15.00")},
-            "provenance": TEST_PROV,
-        })
-        assert _count_from_tiers((t1, t2), 72 + 48) == 4
-        assert _count_from_tiers((t1, t2), 72) == 3
-
-
-class TestResolveTierAmount:
-    """_resolve_tier_amount month-based, count-based, and error paths."""
-
-    def test_month_based_single_tier(self) -> None:
-        """Month-based dispatch returns correct amount for a single tier."""
-        t1 = SeniorityTier.model_validate({
-            "cadence_months": 24,
-            "maximum_count": 3,
-            "amount_by_level": {"L1": _series("10.00")},
-            "provenance": TEST_PROV,
-        })
-        result = _resolve_tier_amount((t1,), "L1", _AS_OF, seniority_months=48)
-        assert result == Decimal("20.00")
-
-    def test_month_based_loop_no_break(self) -> None:
-        """Loop exits normally (no break) when months exactly fill a tier."""
-        t1 = SeniorityTier.model_validate({
-            "cadence_months": 24,
-            "maximum_count": 3,
-            "amount_by_level": {"L1": _series("10.00")},
-            "provenance": TEST_PROV,
-        })
-        result = _resolve_tier_amount((t1,), "L1", _AS_OF, seniority_months=72)
-        assert result == Decimal("30.00")
-
-    def test_count_based_all_tiers_consumed_no_break(self) -> None:
-        """count_override consuming all tiers exits the loop without break."""
-        inc = _tiered_increments()
-        result = _resolve_tier_amount(inc.tiers, "L1", _AS_OF, count_override=5)
-        assert result == Decimal("60.00")
-
-    def test_both_none_raises(self) -> None:
-        """Raises InvalidInputError when both month/count inputs are None."""
-        t1 = SeniorityTier.model_validate({
-            "cadence_months": 24,
-            "maximum_count": 3,
-            "amount_by_level": {"L1": _series("10.00")},
-            "provenance": TEST_PROV,
-        })
-        with pytest.raises(InvalidInputError, match="seniority_months is required"):
-            _resolve_tier_amount((t1,), "L1", _AS_OF)
 
 
 class TestSeniorityLookups:

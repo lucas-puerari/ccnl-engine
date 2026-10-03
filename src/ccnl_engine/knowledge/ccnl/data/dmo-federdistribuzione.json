@@ -107,6 +107,11 @@
         "Q": {
           "periods": [
             {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "25.46"
@@ -115,6 +120,11 @@
         },
         "I": {
           "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2024-04-23",
               "valid_until": null,
@@ -125,6 +135,11 @@
         "II": {
           "periods": [
             {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "22.83"
@@ -133,6 +148,11 @@
         },
         "III": {
           "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2024-04-23",
               "valid_until": null,
@@ -143,6 +163,11 @@
         "IV": {
           "periods": [
             {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "20.66"
@@ -151,6 +176,11 @@
         },
         "V": {
           "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2024-04-23",
               "valid_until": null,
@@ -161,6 +191,11 @@
         "VI": {
           "periods": [
             {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2024-04-23",
               "valid_until": null,
               "value": "19.73"
@@ -169,6 +204,11 @@
         },
         "VII": {
           "periods": [
+            {
+              "valid_from": "2023-04-01",
+              "valid_until": "2024-04-23",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2024-04-23",
               "valid_until": null,
@@ -2170,7 +2210,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/wp-content/uploads/2025/01/CCNL-DMO-Testo-Unico-29.09.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "2854ec6025376e152be6b0d09cfcbce08fb0bf38db8382bd76d07dc3fc351388",
+    "source_hash": "ad74410c5b5f952d42d4e7ec62933188a13b16a30db696bc161002d582583938",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

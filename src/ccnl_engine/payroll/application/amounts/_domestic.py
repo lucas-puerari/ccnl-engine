@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.validity import rule_scope
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.domain.contributions import (
     ContributionBreakdown,
@@ -134,5 +135,6 @@ def _domestic_hourly_rate(
     """
     if year_rules.domestic_contributions is None:
         return None
-    hourly_divisor = Decimal(str(ccnl.parameters.hourly_divisor.value_at(as_of)))
+    with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="inps_employee"):
+        hourly_divisor = ccnl.parameters.hourly_divisor.value_at(as_of)
     return money(monthly_gross / hourly_divisor) if monthly_gross > _ZERO else _ZERO

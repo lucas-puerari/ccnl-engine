@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.contract.domain.validity import SeriesGapError, rule_scope
 from ccnl_engine.payroll.service.seniority import (
     APPRENTICE_SENIORITY,
     _seniority_amount,
@@ -23,12 +24,16 @@ def _allowance_active(
     allowance: Allowance,
     roles: frozenset[str],
     seniority_months: int | None,
+    as_of: date,
 ) -> bool:
     """Return whether an allowance is active for the given roles and service time.
 
     Returns:
-        True when the allowance's role and service-months conditions are met.
+        True when the allowance is in force on ``as_of`` and its role and
+        service-months conditions are met.
     """
+    if not allowance.monthly.applies_on(as_of):
+        return False
     if allowance.role is not None and allowance.role not in roles:
         return False
     threshold = allowance.service_months_threshold
@@ -81,7 +86,7 @@ def _level_seniority(
             is_apprentice=False,
             seniority_months=seniority_months,
         )
-    except ValueError:
+    except SeriesGapError:
         return None
 
 
@@ -96,16 +101,16 @@ def _level_chain(
     is_apprentice: bool,
     seniority_months: int | None = None,
 ) -> MonthlyPayChain:
-    seniority_rules = ccnl.parameters.seniority_increments
-    seniority = _seniority_amount(
-        seniority_rules,
-        level.code,
-        count,
-        as_of,
-        worker_category=worker_category,
-        is_apprentice=is_apprentice,
-        seniority_months=seniority_months,
-    )
+    with rule_scope(feature="seniority"):
+        seniority = _seniority_amount(
+            ccnl.parameters.seniority_increments,
+            level.code,
+            count,
+            as_of,
+            worker_category=worker_category,
+            is_apprentice=is_apprentice,
+            seniority_months=seniority_months,
+        )
     simplified = (
         is_apprentice
         and count > 0
@@ -114,13 +119,15 @@ def _level_chain(
             ccnl, level, count, as_of, worker_category, seniority_months
         )
     )
-    allowances = tuple(
-        (a, a.monthly.value_at(as_of))
-        for a in level.fixed_allowances
-        if _allowance_active(a, roles, seniority_months)
-    )
+    with rule_scope(feature="base_salary"):
+        allowances = tuple(
+            (a, a.monthly.value_at(as_of))
+            for a in level.fixed_allowances
+            if _allowance_active(a, roles, seniority_months, as_of)
+        )
+        base = level.base_salary.value_at(as_of)
     return MonthlyPayChain(
-        base=level.base_salary.value_at(as_of),
+        base=base,
         seniority=seniority,
         allowances=allowances,
         limitations=(APPRENTICE_SENIORITY,) if simplified else (),
