@@ -53,10 +53,36 @@ class TestEmploymentAccrualState:
 
         assert info.value.field == _FIELD
 
-    def test_rejects_a_run_out_of_order_in_its_year(self) -> None:
-        """The quattordicesima of June cannot close after July."""
+    def test_rejects_a_regular_month_out_of_order_in_its_year(self) -> None:
+        """February cannot close after March."""
         with pytest.raises(InvalidInputError, match="out of order"):
-            _state("2026-07-regular", "2026-06-fourteenth")
+            _state("2026-03-regular", "2026-02-regular")
+
+    @pytest.mark.parametrize(
+        "runs",
+        [
+            ("2026-12-thirteenth", "2026-12-regular"),
+            ("2026-07-fourteenth", "2026-07-regular"),
+            ("2026-08-regular", "2026-06-fourteenth"),
+        ],
+        ids=["december after the tredicesima", "july after the 14th", "late 14th"],
+    )
+    def test_extra_months_are_not_ordered_against_regular_months(
+        self, runs: tuple[str, ...]
+    ) -> None:
+        """An employer paying in arrears closes extra months independently."""
+        state = _state(*runs)
+
+        assert len(state.competence_runs) == 2
+
+    @pytest.mark.parametrize("run", ["2026-05-regular", "2026-12-thirteenth"])
+    def test_nothing_closes_after_the_termination_run(self, run: str) -> None:
+        """The termination run closes the competence year of the employment."""
+        state = _state("2026-04-regular", "2026-04-termination")
+
+        with pytest.raises(InvalidInputError, match="out of order"):
+            state.check_next_run(PayrollRunId.parse(run))
+        state.check_next_run(PayrollRunId.parse("2026-04-adjustment"))
 
     def test_adjustment_runs_are_not_ordered(self) -> None:
         """A correction of March closes after May."""

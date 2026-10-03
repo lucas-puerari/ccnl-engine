@@ -52,12 +52,16 @@ when:
 - its competence run is already closed, in this tax year or an earlier
   one: the accrual state is carried across the year change (feature
   `accrual_state`);
-- it is a run of a competence year that comes before one of the same year
-  already closed. Runs close in payment order: by month, and within a month
-  the regular payslip before the tredicesima or quattordicesima, before a
-  termination run. An adjustment run, which corrects a run already closed,
-  is not ordered; runs of different competence years are not ordered
-  against each other (feature `accrual_state`);
+- it is a regular month of a competence year that comes before a regular
+  month of the same year already closed, or any run but an adjustment of a
+  competence year whose termination run is already closed (feature
+  `accrual_state`). The tredicesima and the quattordicesima are not ordered
+  against the regular months: their ratei are counted from the employment
+  dates, so an employer that pays in arrears may pay the December
+  tredicesima before the December salary, or the quattordicesima before a
+  July salary paid in August. An adjustment run, which corrects a run
+  already closed, is not ordered; runs of different competence years are
+  not ordered against each other;
 - its payment belongs to another tax year than the state (feature
   `tax_cash_state` or `tax_year`).
 

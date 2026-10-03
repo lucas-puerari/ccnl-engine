@@ -36,11 +36,17 @@ class EmploymentAccrualState:
     """Competence runs closed over the employment, in closing order.
 
     Invariants: a run closes once, so a competence year has at most twelve
-    regular months and one run per extra month; within one competence year
-    the runs close in payment order (month, then regular before extra
-    months before termination), adjustment runs excepted.  Runs of
-    different competence years are not ordered against each other: a late
-    December of one year may be paid after January of the next.
+    regular months and one run per extra month.  Within one competence year
+    the regular months close in month order and nothing closes after the
+    termination run.  Extra months and adjustment runs are not ordered
+    against the regular months: the ratei of a tredicesima or a
+    quattordicesima are counted from the employment dates, not from the
+    regular runs closed, so an employer may pay the tredicesima before the
+    December salary, or the quattordicesima before a July salary paid in
+    August.  The order of the payments themselves is a cash matter, kept by
+    :class:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState`.  Runs
+    of different competence years are not ordered against each other: a
+    late December of one year may be paid after January of the next.
 
     Attributes:
         competence_runs: Identifiers of the runs closed, in closing order.
@@ -48,7 +54,8 @@ class EmploymentAccrualState:
     Raises:
         InvalidInputError: When a run id is not a
             :class:`~ccnl_engine.payroll.domain.run.PayrollRunId`, is
-            repeated, or closes out of order within its competence year.
+            repeated, is a regular month closing after a later regular month
+            of its competence year, or closes after its termination run.
     """
 
     competence_runs: tuple[PayrollRunId, ...] = ()
@@ -67,8 +74,9 @@ class EmploymentAccrualState:
     def check_next_run(self, run_id: PayrollRunId) -> None:
         """Check that ``run_id`` can close next.
 
-        A run already closed, or before a closed run of its competence year
-        (adjustment runs excepted), raises ``InvalidInputError``.
+        A run already closed, a regular month before a closed regular month
+        of its competence year, or a run after its termination run raises
+        ``InvalidInputError``.
         """
         _check_next(self.competence_runs, run_id)
 
@@ -110,25 +118,25 @@ def _check_next(closed: tuple[PayrollRunId, ...], run_id: PayrollRunId) -> None:
     """Check that ``run_id`` can close after the runs ``closed``.
 
     Raises:
-        InvalidInputError: When ``run_id`` is in ``closed``, or is not an
-            adjustment run and a run of its competence year after it (other
-            than an adjustment) is in ``closed``.
+        InvalidInputError: When ``run_id`` is in ``closed``; when it is a
+            regular month and a later regular month of its competence year
+            is in ``closed``; or when a termination run of its competence
+            year is in ``closed`` and ``run_id`` is not an adjustment.
     """
     if run_id in closed:
         msg = f"run '{run_id}' is already closed: a run closes once"
         raise InvalidInputError(msg, field=_FIELD, feature=_FEATURE)
+    same_year = [r for r in closed if r.year == run_id.year]
+    blocking = [r for r in same_year if r.kind is RunKind.TERMINATION]
     if run_id.kind is RunKind.ADJUSTMENT:
         return
-    later = [
-        r
-        for r in closed
-        if r.year == run_id.year
-        and r.kind is not RunKind.ADJUSTMENT
-        and r.order_key > run_id.order_key
-    ]
-    if later:
+    if run_id.kind is RunKind.REGULAR:
+        blocking += [
+            r for r in same_year if r.kind is RunKind.REGULAR and r.month > run_id.month
+        ]
+    if blocking:
         msg = (
-            f"run '{run_id}' is out of order: run '{later[0]}' of competence "
+            f"run '{run_id}' is out of order: run '{blocking[0]}' of competence "
             f"year {run_id.year} is already closed"
         )
         raise InvalidInputError(msg, field=_FIELD, feature=_FEATURE)
