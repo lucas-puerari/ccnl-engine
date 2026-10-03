@@ -3,12 +3,14 @@
 The reddito complessivo is the employment income of the year this run
 projects plus the income of :class:`~ccnl_engine.payroll.domain\
 .current_year.CurrentYearTaxFacts`.  When no dependent gives right to a
-deduction in any month, the deductions are zero whatever the income and the
+deduction in any month, or this employment alone takes every deduction past
+its phase-out, the deductions are zero whatever the other income and the
 facts are not needed.  Otherwise, without facts of the tax year, the run
-computes the deductions on its own income as a simulation, the decision
-carries no amount and an incomplete issue names the missing fact, so the
-result is not payable.  An estimated income on the conguaglio leaves the
-decision provisional: the conguaglio settles the year on final figures.
+computes the deductions on its own income as a simulation, the provisional
+decision carries no amount and an incomplete issue names the missing fact,
+so the result is incomplete and not payable.  An estimated income on the
+conguaglio leaves the decision provisional: the conguaglio settles the year
+on final figures.
 """
 
 from __future__ import annotations
@@ -95,8 +97,15 @@ class RunFamily:
 
     @property
     def undetermined(self) -> bool:
-        """Whether the deductions depend on income the run does not know."""
-        return self.usable_facts is None and self.deductions.entitled
+        """Whether the deductions depend on income the run does not know.
+
+        Above zero, a deduction is zero only past its phase-out, where more
+        income keeps it zero: when this employment alone exhausts every
+        deduction, the other income cannot change them.
+        """
+        deductions = self.deductions
+        exhausted = self.own_income > 0 and not deductions.total
+        return self.usable_facts is None and deductions.entitled and not exhausted
 
     @property
     def estimated_at_conguaglio(self) -> bool:
@@ -146,8 +155,11 @@ class RunFamily:
         deductions = self.deductions
         total = deductions.total
         if self.undetermined:
+            # Provisional, not incomplete, like the IVS and seniority
+            # decisions: the run read the rules for its simulation, so they
+            # stay in its rulesets; the incomplete issue blocks payment.
             status, reason, amount = (
-                CalculationStatus.INCOMPLETE,
+                CalculationStatus.PROVISIONAL,
                 REQUIRED_FACT_MISSING,
                 None,
             )

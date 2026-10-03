@@ -203,7 +203,7 @@ class TestUnknownIncome:
         """The decision has no amount and names the missing fact."""
         result = _conguaglio(_D(30000), _SPOUSE, None)
         decision = _family_decision(result)
-        assert decision.status is CalculationStatus.INCOMPLETE
+        assert decision.status is CalculationStatus.PROVISIONAL
         assert decision.reason_code == "required_fact_missing"
         assert decision.amount is None
         assert decision.inputs["simulated_amount"] == _D(710)
@@ -212,6 +212,10 @@ class TestUnknownIncome:
         assert issue.fact == "current_year"
         assert "current_year" in _missing_facts(result)
         assert not result.is_payable
+        assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+        # The simulation read the table: its ruleset and source stay listed.
+        assert "tax/2026/family-deductions" in [r.id for r in result.rulesets]
+        assert "family_deductions" in result.capability_report.rule_sources
 
     def test_facts_of_another_tax_year_are_not_used(self) -> None:
         """Facts of 2025 say nothing about the reddito complessivo of 2026."""
@@ -230,6 +234,20 @@ class TestUnknownIncome:
         assert decision.reason_code == "no_deduction_due"
         assert decision.amount == _D(0)
         assert "current_year" not in _missing_facts(result)
+
+    def test_income_past_every_phase_out_needs_no_more_income(self) -> None:
+        """80,000.01 here: the spouse deduction is zero whatever comes on top."""
+        result = _conguaglio(_D("80000.01"), _SPOUSE, None)
+        decision = _family_decision(result)
+        assert decision.status is CalculationStatus.FINAL
+        assert decision.amount == _D(0)
+        assert "current_year" not in _missing_facts(result)
+
+    def test_income_just_inside_the_phase_out_needs_the_facts(self) -> None:
+        """At 79,000 the spouse still has 690 x 0.025 = 17.25: facts needed."""
+        result = _conguaglio(_D(79000), _SPOUSE, None)
+        assert _family_decision(result).inputs["simulated_amount"] == _D("17.25")
+        assert "current_year" in _missing_facts(result)
 
 
 class TestEstimateQuality:

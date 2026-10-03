@@ -99,19 +99,23 @@ def children_deductions(
     """
     child_rules = rules.children
     months = [child_months(child, child_rules, rules.year) for child in children]
-    entitled = [child for child, m in zip(children, months, strict=True) if m]
+    entitled = [index for index, m in enumerate(months) if m]
     ceiling = child_rules.income_ceiling + (
         max(len(entitled) - 1, 0) * child_rules.income_ceiling_increment_per_child
     )
     annual = phase_out(
         child_rules.base_amount, ceiling, ceiling, income, rules.ratio_decimals
     )
-    first = min(entitled, key=_birth) if sole_parent and entitled else None
+    first = (
+        min(entitled, key=lambda index: _birth(children[index]))
+        if sole_parent and entitled
+        else None
+    )
     return tuple(
         prorate(
             child,
             m,
-            max(annual, spouse_annual(income, rules)) if child is first else annual,
+            max(annual, spouse_annual(income, rules)) if index == first else annual,
         )
-        for child, m in zip(children, months, strict=True)
+        for index, (child, m) in enumerate(zip(children, months, strict=True))
     )

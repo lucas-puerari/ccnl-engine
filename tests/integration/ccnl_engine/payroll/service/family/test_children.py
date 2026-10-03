@@ -162,6 +162,15 @@ class TestSoleParent:
         assert first.amount == _D("690.84")
         assert second.amount == _D(710)
 
+    def test_twins_given_as_one_value_take_it_once(self) -> None:
+        """The same declared child twice: one takes 710, the other 690.84."""
+        twin = _child(date(2001, 3, 1))
+        first, second = children_deductions(
+            [twin, twin], _D(30000), _RULES, sole_parent=True
+        )
+        assert first.amount == _D(710)
+        assert second.amount == _D("690.84")
+
     def test_child_deduction_kept_when_better(self) -> None:
         """R 1,000: child 950 x 0.9894 = 939.93, spouse 800 - 110 x 0.0666."""
         (deduction,) = children_deductions(

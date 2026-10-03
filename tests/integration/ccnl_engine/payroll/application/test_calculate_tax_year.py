@@ -172,4 +172,4 @@ class TestCurrentYearFacts:
         plan = TaxYearPlan(
             tax_year=2027, competence_years=(_plan(family=self._SPOUSE),)
         )
-        assert self._december_decision(plan) is CalculationStatus.INCOMPLETE
+        assert self._december_decision(plan) is CalculationStatus.PROVISIONAL

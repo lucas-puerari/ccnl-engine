@@ -618,8 +618,8 @@ dependent and the amount per relationship. Its reason:
 
 | Reason | Status | When |
 |---|---|---|
-| `deductions_applied` / `no_deduction_due` | `final` | The reddito complessivo is known, or no dependent gives right to a deduction in any month (then no income is needed) |
-| `required_fact_missing` | `incomplete` | A dependent gives right to a deduction and `current_year` is missing or of another tax year. The decision has no amount; `inputs["simulated_amount"]` holds the deductions on this employment alone, which the IRPEF of the run uses; issue `family_income_unknown` (`fact="current_year"`), blocker `missing_fact`; the result is not payable |
+| `deductions_applied` / `no_deduction_due` | `final` | The reddito complessivo is known; or no income is needed: no dependent gives right to a deduction in any month, or this employment alone takes every deduction past its phase-out (zero whatever the other income) |
+| `required_fact_missing` | `provisional` | A dependent gives right to a deduction and `current_year` is missing or of another tax year. The decision has no amount; `inputs["simulated_amount"]` holds the deductions on this employment alone, which the IRPEF of the run uses (as for the IVS massimale and the seniority); issue `family_income_unknown` (`incomplete`, `fact="current_year"`), blocker `missing_fact`: the result is `incomplete` and not payable |
 | `estimated_income_at_conguaglio` | `provisional` | The conguaglio rests on a `current_year` of quality `estimated`: state `declared` or `certified` figures to settle the year |
 
 Missing income is never taken as zero: a worker whose only income is this

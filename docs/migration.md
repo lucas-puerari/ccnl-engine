@@ -15,7 +15,7 @@ of the year instead of the income of this employment alone.
 | Spouse deduction 690 flat from 15,000 to 40,000 | 690 plus 10-30 in the five bands from 29,000 to 35,200 (lett. b) |
 | Ratios not truncated; spouse with no income 800 | Ratios truncated to four decimals; no deduction with no income (c. 4) |
 | Under-24 own-income limit of 4,000 for children under 24 | For children who turn at most 24 in the year |
-| `family_deductions` decision always `final`, rule `art12-tuir` | `final`, `incomplete` (`required_fact_missing`, issue `family_income_unknown`, `fact="current_year"`, no amount) or `provisional` (`estimated_income_at_conguaglio`); rule `tax/<year>/family-deductions` |
+| `family_deductions` decision always `final`, rule `art12-tuir` | `final`, or `provisional` with `required_fact_missing` (no amount; incomplete issue `family_income_unknown`, `fact="current_year"`) or `estimated_income_at_conguaglio`; rule `tax/<year>/family-deductions` |
 | `family_deductions` capability `partial` (a `partial_implementation` gap) | `native` |
 | `compute_family_deductions(...)` returned a 4-tuple, from `payroll.service.family_deductions` | `payroll.service.family.deductions.compute_family_deductions` returns `FamilyDeductions` (one `DependentDeduction` per dependent); spouse, children and ascendants in `payroll.service.family.{spouse,children,ascendants}` |
 | `SpouseDeductionRules.breakpoints`, `DeductionBreakpoint` | Statutory parameters on `SpouseDeductionRules`, the bands in `FamilyDeductionRules.spouse_increases`, `ratio_decimals` |
