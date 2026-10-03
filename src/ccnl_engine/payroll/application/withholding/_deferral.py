@@ -91,7 +91,7 @@ def _reject_refund_while_deferred(ctx: RunContext, capped: CappedWithholding) ->
         OutOfScopeError: When the run refunds IRPEF and a deferral of its
             tax year is open.
     """
-    deferred = ctx.opening.obligations.deferred_of(ctx.fiscal_year)
+    deferred = ctx.opening.cash.obligations.deferred_of(ctx.fiscal_year)
     if deferred is None or capped.amounts.period_irpef >= _ZERO:
         return
     msg = (
@@ -179,7 +179,7 @@ def post_deferred(
         by ``opened``.
     """
     postings = DeferredPostings()
-    for deferred in ctx.opening.obligations.deferred_shortfall:
+    for deferred in ctx.opening.cash.obligations.deferred_shortfall:
         one = _post_one(ctx, deferred, available)
         available -= sum((e.amount for e in one.entries), _ZERO)
         postings = _join(postings, one)

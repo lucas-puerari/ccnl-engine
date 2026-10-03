@@ -138,11 +138,26 @@ class TestWithholdingSchedule:
         with pytest.raises(ValueError, match="at least one slot"):
             WithholdingSchedule(year=_YEAR, slots=())
 
-    def test_run_of_other_year_rejected(self) -> None:
-        """Every slot run must belong to the schedule year."""
+    def test_run_of_a_later_year_rejected(self) -> None:
+        """A run of a later competence year cannot be paid in the tax year."""
         slot = WithholdingSlot(PayrollRun.regular(_YEAR + 1, 1))
-        with pytest.raises(ValueError, match="belongs to year"):
+        with pytest.raises(ValueError, match="after the tax year"):
             WithholdingSchedule(year=_YEAR, slots=(slot,))
+
+    def test_late_run_of_the_previous_year_takes_a_slot(self) -> None:
+        """December of the previous year paid late is a payment of the year."""
+        late = PayrollRun.regular(_YEAR - 1, 12)
+        cal = WorkCalendar.from_additional_months(_YEAR, Decimal(14))
+        schedule = WithholdingSchedule.from_calendar(cal, (late,))
+        assert schedule.run_count == PayrollRunCount(15)
+        assert schedule.slots[0].run == late
+        assert schedule.remaining(14) == 1
+
+    def test_duplicate_run_rejected(self) -> None:
+        """A run is paid once."""
+        slot = WithholdingSlot(PayrollRun.regular(_YEAR, 1))
+        with pytest.raises(ValueError, match="duplicate run_id"):
+            WithholdingSchedule(year=_YEAR, slots=(slot, slot))
 
     def test_half_fourteenth_keeps_its_slot(self) -> None:
         """13.5 months: 14 slots, the June quattordicesima carrying 0.5."""

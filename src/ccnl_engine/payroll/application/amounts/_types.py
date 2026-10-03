@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
-    from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+    from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
     from ccnl_engine.payroll.service.pension_fund import (
         PensionContribution,
         PensionFundTerms,
@@ -62,7 +62,7 @@ class _AmountsInput:
     event_tfr_base: Decimal
     event_irpef_base: Decimal
     event_substitute_base: Decimal
-    opening: TaxYearState
+    opening: TaxCashState
     withholding_schedule: WithholdingSchedule
     upcoming_gross: Decimal
     rules: YearRules

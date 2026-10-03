@@ -12,6 +12,7 @@ from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
@@ -35,9 +36,8 @@ def test_to_state_maps_every_total() -> None:
     recovery = RecoveryObligation(tax_year=2025, plan=_PLAN)
     state = OpeningBalances(
         tax_year=2026,
-        regular_periods_closed=6,
-        tax_withholding_periods_closed=7,
-        closed_run_ids=(PayrollRunId.parse("2026-06-regular"),),
+        withholding_payments_closed=7,
+        payments=(PaymentId.parse("2026-06-regular@2026-06-27"),),
         gross=Decimal("15000.00"),
         taxable=Decimal("13600.00"),
         inps_base=Decimal("15000.00"),
@@ -55,11 +55,12 @@ def test_to_state_maps_every_total() -> None:
         recoveries=(recovery,),
     ).to_state()
 
-    ytd = state.ytd
+    ytd = state.cash
     assert ytd.tax_year == 2026
-    assert ytd.regular_periods_closed == 6
-    assert ytd.tax_withholding_periods_closed == 7
-    assert ytd.closed_run_ids == (PayrollRunId(2026, 6, RunKind.REGULAR),)
+    assert ytd.withholding_payments_closed == 7
+    june = PayrollRunId(2026, 6, RunKind.REGULAR)
+    assert ytd.payments == (PaymentId(june, date(2026, 6, 27)),)
+    assert state.accrual.competence_runs == (june,)
     assert ytd.withholding_slots is None
     assert ytd.earnings.taxable == Decimal("13600.00")
     assert ytd.earnings.inps_employee == Decimal("1377.00")
@@ -71,7 +72,7 @@ def test_to_state_maps_every_total() -> None:
     assert ytd.somma_esente.recognized == Decimal("300.00")
     assert ytd.somma_esente.recovered == Decimal("40.00")
     assert ytd.work_time_regime.used == Decimal("500.00")
-    assert state.obligations == EmploymentObligations(recoveries=(recovery,))
+    assert state.cash.obligations == EmploymentObligations(recoveries=(recovery,))
 
 
 @pytest.mark.parametrize(
@@ -127,7 +128,7 @@ def test_to_state_maps_due_reason_and_shortfall() -> None:
             surtax_shortfall=Decimal("2.10"),
         )
         .to_state()
-        .ytd
+        .cash
     )
 
     assert ytd.trattamento.due == Decimal("1200.00")
@@ -149,7 +150,7 @@ def test_rejects_a_reason_that_is_not_a_code() -> None:
 def test_unknown_due_is_accepted() -> None:
     """A due left ``None`` is not checked for cents."""
     state = OpeningBalances(tax_year=2026, ulteriore_due=None).to_state()
-    assert state.ytd.ulteriore_detrazione.due is None
+    assert state.cash.ulteriore_detrazione.due is None
 
 
 def test_imports_the_surtax_of_the_previous_conguaglio() -> None:
@@ -164,8 +165,8 @@ def test_imports_the_surtax_of_the_previous_conguaglio() -> None:
         surtax_obligations=(saldo,),
     ).to_state()
 
-    assert state.obligations.surtax == (saldo,)
-    assert state.ytd.tax.municipal_advance == Decimal(12)
+    assert state.cash.obligations.surtax == (saldo,)
+    assert state.cash.tax.municipal_advance == Decimal(12)
 
 
 def test_rejects_surtax_of_the_conguaglio_of_the_tax_year() -> None:
@@ -190,7 +191,7 @@ def test_imports_the_deferral_of_the_previous_conguaglio() -> None:
     """The IRPEF the 2025 conguaglio deferred opens 2026."""
     deferred = _deferred(2025)
     state = OpeningBalances(tax_year=2026, deferred_shortfall=deferred).to_state()
-    assert state.obligations.deferred_shortfall == (deferred,)
+    assert state.cash.obligations.deferred_shortfall == (deferred,)
 
 
 @pytest.mark.parametrize("tax_year", [2024, 2026])
@@ -198,3 +199,42 @@ def test_rejects_a_deferral_of_another_conguaglio(tax_year: int) -> None:
     """Only the conguaglio of 2025 defers IRPEF to 2026."""
     with pytest.raises(InvalidInputError, match="deferred_shortfall"):
         OpeningBalances(tax_year=2026, deferred_shortfall=_deferred(tax_year))
+
+
+@pytest.mark.parametrize(
+    ("payments", "field"),
+    [
+        (("2026-06-regular@2026-06-27",), "OpeningBalances.payments[0]"),
+        (
+            (
+                PaymentId.parse("2026-06-regular@2026-06-27"),
+                PaymentId.parse("2026-06-regular@2026-06-28"),
+            ),
+            "TaxCashState.payments",
+        ),
+        (
+            (PaymentId.parse("2026-12-regular@2027-01-13"),),
+            "TaxCashState.payments",
+        ),
+    ],
+)
+def test_rejects_payments_that_do_not_fit_the_tax_year(
+    payments: tuple[object, ...], field: str
+) -> None:
+    """A payment id is typed, paid once and of the tax year of the totals."""
+    with pytest.raises(InvalidInputError) as info:
+        OpeningBalances(
+            tax_year=2026,
+            withholding_payments_closed=2,
+            payments=payments,  # type: ignore[arg-type]
+        )
+
+    assert info.value.field == field
+    assert info.value.feature == "opening_balances"
+
+
+def test_accepts_more_than_fourteen_payments() -> None:
+    """A tax year with a late December has fifteen payments: no maximum."""
+    state = OpeningBalances(tax_year=2027, withholding_payments_closed=15).to_state()
+
+    assert state.cash.withholding_payments_closed == 15

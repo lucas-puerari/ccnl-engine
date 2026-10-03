@@ -140,7 +140,7 @@ def _by_code(result: PeriodResult) -> dict[str | None, Decimal]:
 def _deferred(result: PeriodResult) -> dict[SurtaxComponent, tuple[Decimal, int]]:
     return {
         o.component: (o.plan.original_amount, o.plan.installments_total)
-        for o in result.closing_state.obligations.surtax
+        for o in result.closing_state.cash.obligations.surtax
     }
 
 
@@ -222,7 +222,7 @@ def test_next_conguaglio_deducts_the_acconto_withheld() -> None:
     _, _, acconto = _saldi_2026()
     regional, municipal = _oracle(conguaglio)
 
-    assert conguaglio.closing_state.ytd.tax.municipal_advance == acconto
+    assert conguaglio.closing_state.cash.tax.municipal_advance == acconto
     assert _deferred(conguaglio) == {
         SurtaxComponent.REGIONAL_BALANCE: (regional, 11),
         SurtaxComponent.MUNICIPAL_BALANCE: (municipal - acconto, 11),
@@ -256,7 +256,7 @@ def test_termination_withholds_every_residual_at_once() -> None:
         _REGIONAL: regional_26 - sum(before.values()) + regional,
         _SALDO: municipal_26 - saldo_before + municipal - withheld_acconto,
     }
-    assert last.closing_state.obligations.surtax == ()
+    assert last.closing_state.cash.obligations.surtax == ()
 
 
 def test_termination_refunds_an_acconto_above_the_surtax_due() -> None:
@@ -274,8 +274,8 @@ def test_termination_refunds_an_acconto_above_the_surtax_due() -> None:
     assert municipal_sassari(_taxable(last), Decimal(1)) == _ZERO
     refunds = [e for e in last.ledger_entries if e.account == "surtax_refunds"]
     assert [e.amount for e in refunds] == [withheld]
-    assert last.closing_state.ytd.tax.municipal_advance == _ZERO
-    assert last.closing_state.obligations.surtax == ()
+    assert last.closing_state.cash.tax.municipal_advance == _ZERO
+    assert last.closing_state.cash.obligations.surtax == ()
 
 
 def test_capability_report_follows_the_surtax_decisions() -> None:
@@ -360,7 +360,7 @@ def test_second_conguaglio_withholds_only_the_difference() -> None:
         _REGIONAL: regional_2 - regional_1,
         _SALDO: municipal_2 - municipal_1,
     }
-    assert termination.closing_state.obligations.surtax == ()
+    assert termination.closing_state.cash.obligations.surtax == ()
 
 
 def test_termination_after_an_ordinary_conguaglio_replaces_its_deferral() -> None:
@@ -374,6 +374,6 @@ def test_termination_after_an_ordinary_conguaglio_replaces_its_deferral() -> Non
     thirteenth, termination = _termination_after(None)
     regional, municipal = _oracle(termination)
 
-    assert len(thirteenth.closing_state.obligations.surtax) == 3
+    assert len(thirteenth.closing_state.cash.obligations.surtax) == 3
     assert _by_code(termination) == {_REGIONAL: regional, _SALDO: municipal}
-    assert termination.closing_state.obligations.surtax == ()
+    assert termination.closing_state.cash.obligations.surtax == ()

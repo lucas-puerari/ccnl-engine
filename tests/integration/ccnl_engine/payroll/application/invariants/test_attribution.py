@@ -66,7 +66,7 @@ def test_carried_surtax_rests_on_the_cap_decision() -> None:
     """
     opening = PeriodState.zero()
     carried = WithholdingShortfall(surtax=Decimal("40.00"))
-    opening = replace(opening, ytd=replace(opening.ytd, shortfall=carried))
+    opening = replace(opening, cash=replace(opening.cash, shortfall=carried))
     result = calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),

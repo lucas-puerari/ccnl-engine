@@ -94,14 +94,14 @@ class TestCalculateYear:
         for i in range(1, 12):
             prev = result.period_results[i - 1]
             curr = result.period_results[i]
-            assert curr.closing_state.ytd.regular_periods_closed == (
-                prev.closing_state.ytd.regular_periods_closed + 1
+            assert curr.closing_state.accrual.regular_months(_YEAR) == (
+                prev.closing_state.accrual.regular_months(_YEAR) + 1
             )
 
-    def test_regular_periods_closed_reaches_12(self) -> None:
-        """After the year regular_periods_closed equals 12, extra runs aside."""
-        result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
-        assert result.period_results[-1].closing_state.ytd.regular_periods_closed == 12
+    def test_regular_months_reach_12(self) -> None:
+        """After the year twelve regular months are closed, extra runs aside."""
+        closing = calculate_year(year_input(_YEAR, _CCNL, _LEVEL)).closing_state
+        assert closing.accrual.regular_months(_YEAR) == 12
 
     def test_period_ids_are_in_order(self) -> None:
         """Regular period results are ordered January to December."""
@@ -147,7 +147,7 @@ class TestCalculateYear:
         """gross_ytd in the last closing state equals annual_gross."""
         result = calculate_year(year_input(_YEAR, _CCNL, _LEVEL))
         dec_state = result.period_results[-1].closing_state
-        assert dec_state.ytd.earnings.gross == result.annual_gross
+        assert dec_state.cash.earnings.gross == result.annual_gross
 
     def test_calendar_none_auto_derives_from_ccnl(self) -> None:
         """Without an override the CCNL additional_months sets the calendar.
@@ -342,7 +342,7 @@ class TestCalendarOverride:
         )
         assert len(result.period_results) == 14
         last = result.period_results[-1].closing_state
-        assert last.ytd.tax_withholding_periods_closed == 14
+        assert last.cash.withholding_payments_closed == 14
 
     def test_override_that_drops_the_ccnl_extra_month_is_rejected(self) -> None:
         """No reason lets an override remove the tredicesima the CCNL grants."""

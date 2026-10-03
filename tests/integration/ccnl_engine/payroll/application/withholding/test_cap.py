@@ -114,7 +114,7 @@ class TestAbsenceShortfall:
     def test_shortfall_is_carried(self) -> None:
         """The 19.08 EUR not withheld is carried in the tax year state."""
         assert _expected_january_share() == Decimal("162.33")
-        shortfall = _january().closing_state.ytd.shortfall
+        shortfall = _january().closing_state.cash.shortfall
         assert shortfall.irpef == _expected_january_share() - Decimal("143.25")
         assert shortfall.irpef == Decimal("19.08")
         assert shortfall.surtax == _ZERO
@@ -148,11 +148,11 @@ class TestAbsenceShortfall:
         """
         opening = _january().closing_state
         february = _run(2, opening)
-        plain_ytd = replace(opening.ytd, shortfall=WithholdingShortfall())
-        plain = _run(2, replace(opening, ytd=plain_ytd))
+        plain_ytd = replace(opening.cash, shortfall=WithholdingShortfall())
+        plain = _run(2, replace(opening, cash=plain_ytd))
         difference = _ordinary_tax(february) - _ordinary_tax(plain)
         assert abs(difference - Decimal("17.49")) <= Decimal("0.01")
-        assert february.closing_state.ytd.shortfall.total == _ZERO
+        assert february.closing_state.cash.shortfall.total == _ZERO
         (decision,) = (
             d for d in february.decisions if d.capability == "withholding_shortfall"
         )
@@ -162,7 +162,7 @@ class TestAbsenceShortfall:
     def test_year_withholds_the_oracle_irpef(self) -> None:
         """Over the year the IRPEF withheld is the net IRPEF of the oracle."""
         year = _year()
-        final = year.period_results[-1].closing_state.ytd
+        final = year.period_results[-1].closing_state.cash
         withheld = sum((_ordinary_tax(r) for r in year.period_results), _ZERO)
         assert withheld == final.tax.irpef
         assert abs(withheld - net_irpef(final.earnings.taxable)) <= Decimal("0.01")

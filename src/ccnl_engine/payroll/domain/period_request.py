@@ -196,7 +196,7 @@ class PeriodCalculationRequest:
                 "on the closing state of the last run of the previous year"
             )
             raise InvalidInputError(msg, feature="tax_year")
-        latest = self.opening_state.obligations.latest_tax_year
+        latest = self.opening_state.cash.obligations.latest_tax_year
         if latest is not None and latest > tax_year:
             msg = (
                 f"opening_state carries an obligation opened in {latest}, after "

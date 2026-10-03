@@ -27,6 +27,7 @@ from ccnl_engine.payroll.application.invariants.withholding import (
     check_irpef_annual_reconciliation,
     net_annual_irpef,
 )
+from ccnl_engine.payroll.application.period import _closing_state
 from ccnl_engine.payroll.application.period._checks import check_net_covered
 from ccnl_engine.payroll.application.reconcile import check_period, reconcile
 from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
@@ -44,9 +45,13 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, WithholdingShortfall
-from ccnl_engine.shared.domain.errors import DataIntegrityError, OutOfScopeError
+from ccnl_engine.shared.domain.errors import (
+    DataIntegrityError,
+    InvalidInputError,
+    OutOfScopeError,
+)
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
 from tests.helpers import year_input
@@ -81,7 +86,7 @@ def _run(
 
 def _with_ytd(result: PeriodResult, **ytd: object) -> PeriodResult:
     state = result.closing_state
-    closing = replace(state, ytd=replace(state.ytd, **ytd))  # type: ignore[arg-type]
+    closing = replace(state, cash=replace(state.cash, **ytd))  # type: ignore[arg-type]
     return replace(result, closing_state=closing)
 
 
@@ -140,7 +145,7 @@ class TestContributionCeiling:
     """The IVS base of a run fits in the massimale headroom."""
 
     _NEAR_CEILING = PeriodState(
-        ytd=TaxYearState(earnings=EarningsYtd(inps_base=_CEILING - 1_000))
+        cash=TaxCashState(earnings=EarningsYtd(inps_base=_CEILING - 1_000))
     )
 
     def _capped_run(self) -> PeriodResult:
@@ -182,7 +187,7 @@ class TestIrpefAnnualReconciliation:
     def test_real_year_passes(self) -> None:
         """The conguaglio of a real year settles the net annual IRPEF."""
         previous, last = _last_two()
-        assert last.closing_state.ytd.is_complete
+        assert last.closing_state.cash.is_complete
         assert (
             check_irpef_annual_reconciliation(last, previous.closing_state, RunFacts())
             == []
@@ -191,7 +196,7 @@ class TestIrpefAnnualReconciliation:
     def test_withheld_off_by_more_than_a_cent_is_reported(self) -> None:
         """IRPEF withheld one euro above the annual IRPEF is a violation."""
         previous, last = _last_two()
-        tax = last.closing_state.ytd.tax
+        tax = last.closing_state.cash.tax
         bad = _with_ytd(last, tax=replace(tax, irpef=tax.irpef + 1))
 
         (violation,) = check_irpef_annual_reconciliation(
@@ -203,7 +208,7 @@ class TestIrpefAnnualReconciliation:
     def test_shortfall_left_counts_as_due(self) -> None:
         """IRPEF the pay did not cover still settles the year with it."""
         previous, last = _last_two()
-        tax = last.closing_state.ytd.tax
+        tax = last.closing_state.cash.tax
         short = _with_ytd(
             last,
             tax=replace(tax, irpef=tax.irpef - 30),
@@ -217,7 +222,7 @@ class TestIrpefAnnualReconciliation:
     def test_one_cent_is_within_rounding(self) -> None:
         """A one-cent difference is rounding, not a violation."""
         previous, last = _last_two()
-        tax = last.closing_state.ytd.tax
+        tax = last.closing_state.cash.tax
         bad = _with_ytd(last, tax=replace(tax, irpef=tax.irpef + Decimal("0.01")))
         assert (
             check_irpef_annual_reconciliation(bad, previous.closing_state, RunFacts())
@@ -227,14 +232,14 @@ class TestIrpefAnnualReconciliation:
     def test_earlier_slot_is_not_checked(self) -> None:
         """A run before the last slot is not reconciled."""
         result = _run()
-        tax = result.closing_state.ytd.tax
+        tax = result.closing_state.cash.tax
         bad = _with_ytd(result, tax=replace(tax, irpef=tax.irpef + 1))
         assert check_irpef_annual_reconciliation(bad, _OPENING, RunFacts()) == []
 
     def test_projected_taxable_off_final_is_reported(self) -> None:
         """IRPEF settled on a taxable other than the final one is a violation."""
         previous, last = _last_two()
-        final = last.closing_state.ytd.earnings.taxable
+        final = last.closing_state.cash.earnings.taxable
         facts = RunFacts(projected_taxable=final + Decimal("22.11"))
 
         (violation,) = check_irpef_annual_reconciliation(
@@ -247,7 +252,7 @@ class TestIrpefAnnualReconciliation:
     def test_two_cents_of_taxable_are_rounding(self) -> None:
         """A two-cent taxable difference is rounding, not a violation."""
         previous, last = _last_two()
-        final = last.closing_state.ytd.earnings.taxable
+        final = last.closing_state.cash.earnings.taxable
         facts = RunFacts(projected_taxable=final - Decimal("0.02"))
         assert (
             check_irpef_annual_reconciliation(last, previous.closing_state, facts) == []
@@ -265,7 +270,7 @@ class TestIrpefAnnualReconciliation:
             year_input(_YEAR, "bancari-abi.json", "QD4")
         ).period_results
         last = results[-1]
-        assert last.closing_state.ytd.tax.irpef == net_annual_irpef(
+        assert last.closing_state.cash.tax.irpef == net_annual_irpef(
             last.tax_computation
         )
 
@@ -307,14 +312,14 @@ class TestYtdContinuity:
         """A real run with surtax advances every accumulator."""
         opening = opening_with_2025_surtax()
         result = _run(opening=opening, regione="IT-25", comune_belfiore="F205")
-        assert result.closing_state.ytd.tax.surtax > 0
+        assert result.closing_state.cash.tax.surtax > 0
         assert check_ytd_continuity(result, opening) == []
 
     def test_wrong_surtax_is_reported(self) -> None:
         """A surtax YTD that ignores the SURTAX posting is a violation."""
         opening = opening_with_2025_surtax()
         result = _run(opening=opening, regione="IT-25", comune_belfiore="F205")
-        tax = result.closing_state.ytd.tax
+        tax = result.closing_state.cash.tax
         bad = _with_ytd(result, tax=replace(tax, surtax=Decimal(0)))
 
         (violation,) = check_ytd_continuity(bad, opening)
@@ -364,17 +369,34 @@ class TestNetPayNonNegative:
 
 
 class TestClosingStateRejected:
-    """A closing state that breaks the tax year state is an engine error."""
+    """A closing state that breaks the state invariants is an engine error."""
 
-    def test_thirteenth_regular_run_is_rejected(self) -> None:
-        """A 13th regular run cannot close: the counter is capped at 12."""
-        opening = PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=12, tax_withholding_periods_closed=12
-            )
-        )
+    @pytest.mark.parametrize(
+        "error",
+        [
+            ValueError("negative YTD"),
+            InvalidInputError("payment of another tax year", field="x"),
+        ],
+    )
+    def test_invalid_closing_state_is_a_data_integrity_error(
+        self, monkeypatch: pytest.MonkeyPatch, error: Exception
+    ) -> None:
+        """The opening state was validated, so a broken closing is not input."""
+
+        def broken(*_: object) -> TaxCashState:
+            raise error
+
+        monkeypatch.setattr(_closing_state, "_closing_cash", broken)
         with pytest.raises(DataIntegrityError, match="Closing state rejected"):
-            _run(12, opening)
+            _run(1, _OPENING)
+
+    def test_fifteenth_payment_of_a_tax_year_closes(self) -> None:
+        """The cash state counts payments without the old 14-slot maximum."""
+        opening = PeriodState(cash=TaxCashState(withholding_payments_closed=14))
+
+        closing = _run(12, opening).closing_state
+
+        assert closing.cash.withholding_payments_closed == 15
 
 
 def _november_irpef(result: YearResult) -> Decimal:
@@ -389,7 +411,7 @@ def _november_irpef(result: YearResult) -> Decimal:
 
 
 def _final_taxable(result: YearResult) -> Decimal:
-    return result.period_results[-1].closing_state.ytd.earnings.taxable
+    return result.period_results[-1].closing_state.cash.earnings.taxable
 
 
 def test_large_bonus_leaves_every_net_non_negative() -> None:

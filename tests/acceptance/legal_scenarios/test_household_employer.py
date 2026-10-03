@@ -302,14 +302,12 @@ _PLAN = RecoveryPlan(
     [
         OpeningBalances(
             tax_year=2026,
-            regular_periods_closed=8,
-            tax_withholding_periods_closed=8,
+            withholding_payments_closed=8,
             recoveries=(RecoveryObligation(tax_year=2025, plan=_PLAN),),
         ),
         OpeningBalances(
             tax_year=2026,
-            regular_periods_closed=8,
-            tax_withholding_periods_closed=8,
+            withholding_payments_closed=8,
             irpef_withheld=Decimal(100),
         ),
     ],
@@ -339,7 +337,7 @@ def test_year_has_no_withholding_and_no_conguaglio() -> None:
         assert result.period_net == (
             result.period_gross - result.contribution_breakdown.employee
         )
-    closing = results[-1].closing_state.ytd
+    closing = results[-1].closing_state.cash
     assert closing.tax.irpef == _ZERO
     assert closing.tax.surtax == _ZERO
     assert closing.trattamento.recognized == _ZERO

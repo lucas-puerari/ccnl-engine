@@ -100,7 +100,7 @@ def withhold_irpef(
         opening_irpef_withheld=opening.tax.irpef + inp.deferred_irpef,
         opening_tratt_ytd=net_credit_ytd,
         withholding_schedule=inp.withholding_schedule,
-        slots_closed=opening.tax_withholding_periods_closed,
+        slots_closed=opening.withholding_payments_closed,
         family_deductions=fam_ded,
         recovery_plan=inp.recovery_plan,
         eligible_work_days=inp.eligible_work_days,

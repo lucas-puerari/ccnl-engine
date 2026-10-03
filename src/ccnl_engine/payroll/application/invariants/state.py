@@ -1,7 +1,8 @@
 """State-transition reconciliation invariants.
 
 These invariants verify that the closing PeriodState advances correctly
-from the opening state: the run counters, every YTD accumulator that the
+from the opening state: the competence run and the payment closed once,
+the withholding counter, every YTD accumulator that the
 ledger of the run determines, the credit accounts within their bounds, and
 the recoveries carried from an earlier tax year.
 
@@ -64,42 +65,44 @@ def check_run_counters(
     result: PeriodResult,
     opening: PeriodState,
 ) -> list[ReconciliationViolation]:
-    """Check that the run counters and the closed run ids advance by the run.
+    """Check that the run closes its competence run and its payment once.
 
     Returns:
-        Violations for a counter that does not advance by one when the run
-        counts for it, and for a run id missing from ``closed_run_ids``.
+        Violations when the accrual state does not append exactly the run,
+        the tax cash state does not append exactly its payment, or the
+        withholding payments do not advance by one when the run takes a
+        withholding slot.
     """
     violations: list[ReconciliationViolation] = []
     run_id = run_id_of(result)
-    closing = result.closing_state.ytd
-    expected_regular = opening.ytd.regular_periods_closed + (
-        1 if run_id.kind == "regular" else 0
-    )
-    if closing.regular_periods_closed != expected_regular:
-        violations.append(
-            _counter_violation(
-                "regular_periods_closed",
-                expected_regular,
-                closing.regular_periods_closed,
-            )
-        )
-    expected_slots = opening.ytd.tax_withholding_periods_closed + (
-        1 if run_id.kind.consumes_withholding_slot else 0
-    )
-    if closing.tax_withholding_periods_closed != expected_slots:
-        violations.append(
-            _counter_violation(
-                "tax_withholding_periods_closed",
-                expected_slots,
-                closing.tax_withholding_periods_closed,
-            )
-        )
-    if run_id not in closing.closed_run_ids:
+    closing = result.closing_state
+    if closing.accrual.competence_runs != (*opening.accrual.competence_runs, run_id):
         violations.append(
             ReconciliationViolation(
                 invariant_id=InvariantCode.RUN_COUNTERS_ADVANCE,
-                message=f"run_id '{run_id}' not added to closed_run_ids",
+                message=f"competence run '{run_id}' not closed once",
+            )
+        )
+    payments = closing.cash.payments
+    closed = [p.run_id for p in payments[len(opening.cash.payments) :]]
+    if payments[: len(opening.cash.payments)] != opening.cash.payments or closed != [
+        run_id
+    ]:
+        violations.append(
+            ReconciliationViolation(
+                invariant_id=InvariantCode.RUN_COUNTERS_ADVANCE,
+                message=f"payment of run '{run_id}' not closed once",
+            )
+        )
+    expected_slots = opening.cash.withholding_payments_closed + (
+        1 if run_id.kind.consumes_withholding_slot else 0
+    )
+    if closing.cash.withholding_payments_closed != expected_slots:
+        violations.append(
+            _counter_violation(
+                "withholding_payments_closed",
+                expected_slots,
+                closing.cash.withholding_payments_closed,
             )
         )
     return violations
@@ -131,7 +134,7 @@ def check_ytd_continuity(
         One violation per accumulator that does not advance as expected.
     """
     run = str(run_id_of(result))
-    op, closing = opening.ytd, result.closing_state.ytd
+    op, closing = opening.cash, result.closing_state.cash
     checks: tuple[tuple[str, Decimal, Decimal, Decimal], ...] = (
         (
             "gross_ytd",
@@ -193,7 +196,7 @@ def check_credit_recovery_bounds(
     Returns:
         One violation per account that breaches the constraint.
     """
-    ytd = result.closing_state.ytd
+    ytd = result.closing_state.cash
     return [
         ReconciliationViolation(
             invariant_id=InvariantCode.CREDIT_RECOVERY_BOUNDS,
@@ -249,7 +252,7 @@ def check_carried_recovery_advance(
     tax_year = result.closing_state.tax_year
     if tax_year is None:
         return []
-    carried = opening.obligations.carried_into(tax_year)
+    carried = opening.cash.obligations.carried_into(tax_year)
     run_id = str(run_id_of(result))
     posted = {e.entry_id: e.amount for e in result.ledger_entries}
     violations: list[ReconciliationViolation] = []
@@ -271,7 +274,7 @@ def check_carried_recovery_advance(
             )
         if after is not None:
             expected.append(after)
-    if result.closing_state.obligations.carried_into(tax_year) != tuple(expected):
+    if result.closing_state.cash.obligations.carried_into(tax_year) != tuple(expected):
         violations.append(
             ReconciliationViolation(
                 invariant_id=InvariantCode.CARRIED_RECOVERY_ADVANCE,

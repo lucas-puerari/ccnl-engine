@@ -1,10 +1,11 @@
 """Obligations of the employment that survive the change of tax year.
 
-Unlike :class:`~ccnl_engine.payroll.domain.tax_year_state.TaxYearState`,
-nothing here restarts on 1 January: an installment recovery opened by the
-conguaglio of year N keeps running on the payslips of year N+1 until its
-last installment (D.L. 3/2020 art. 1 c. 3 for the trattamento integrativo,
-L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
+Unlike the payments and YTD accounts of
+:class:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState`, which
+carries them, nothing here restarts on 1 January: an installment
+recovery opened by the conguaglio of year N keeps running on the payslips
+of year N+1 until its last installment (D.L. 3/2020 art. 1 c. 3 for the
+trattamento integrativo, L. 207/2024 art. 1 c. 7 for the somma esente and the ulteriore
 detrazione).  On the last run of the employment the whole residual is
 recovered instead (:meth:`~ccnl_engine.payroll.domain.recovery_plan\
 .RecoveryPlan.post`), so no recovery outlives the employment.  The surtax a

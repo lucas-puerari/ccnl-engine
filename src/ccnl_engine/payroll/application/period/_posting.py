@@ -87,8 +87,8 @@ def _no_credits(ctx: RunContext) -> RunCredits:
             withheld.
     """
     opening = ctx.opening
-    ytd = opening.ytd
-    obligations = opening.obligations
+    ytd = opening.cash
+    obligations = opening.cash.obligations
     carried = (
         obligations.recoveries or obligations.surtax or obligations.deferred_shortfall
     )
@@ -130,7 +130,7 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
         ),
     )
     carried = post_carried_recoveries(
-        ctx.opening.obligations,
+        ctx.opening.cash.obligations,
         ctx.fiscal_year,
         ctx.resolver,
         ctx.policy_context,
@@ -222,7 +222,7 @@ def post_run(
     capped = cap_withholding(
         amounts,
         ledger_entries + other_entries,
-        opening.ytd.shortfall,
+        opening.cash.shortfall,
         last_slot=ctx.conguaglio,
         rules=ctx.contract.year_rules,
     )

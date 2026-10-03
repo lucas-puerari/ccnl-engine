@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from decimal import Decimal
 
 import pytest
@@ -12,6 +13,7 @@ from ccnl_engine.payroll.application.reconcile import (
     reconcile,
 )
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
+from ccnl_engine.payroll.domain.period_state import PeriodState
 from tests.fixtures.synthetic_period_result import (
     COMPETENCE,
     OPENING,
@@ -149,13 +151,33 @@ class TestIrpefWithheldContinuity:
 class TestStateTransition:
     """Closing state must advance each counter and YTD field correctly."""
 
-    def test_violation_when_regular_periods_closed_wrong(self) -> None:
-        """run_counters_advance violation for a wrong regular_periods_closed."""
+    def test_no_counter_violation_when_the_run_closes_once(self) -> None:
+        """The run closes its competence run and its payment once."""
+        r = reconcile(ResultBuilder().build(), OPENING)
+        assert [
+            v for v in r.violations if v.invariant_id == "run_counters_advance"
+        ] == []
+
+    def test_violation_when_withholding_payments_wrong(self) -> None:
+        """run_counters_advance violation for a wrong withholding counter."""
         b = ResultBuilder(closing_months=2)  # expected 1 for the first period
         r = reconcile(b.build(), OPENING)
         found = [v for v in r.violations if v.invariant_id == "run_counters_advance"]
-        msgs = [v.message for v in found]
-        assert any("regular_periods_closed" in m for m in msgs)
+        assert [v.message for v in found] == [
+            "withholding_payments_closed not correctly incremented"
+        ]
+
+    def test_violation_when_the_run_is_not_closed(self) -> None:
+        """A closing state that forgets the run and its payment is reported."""
+        result = ResultBuilder().build()
+        unclosed = replace(result, closing_state=PeriodState.zero())
+        r = reconcile(unclosed, OPENING)
+        found = [v for v in r.violations if v.invariant_id == "run_counters_advance"]
+        assert [v.message for v in found] == [
+            "competence run '2026-01-regular' not closed once",
+            "payment of run '2026-01-regular' not closed once",
+            "withholding_payments_closed not correctly incremented",
+        ]
 
     def test_violation_when_gross_ytd_wrong(self) -> None:
         """ytd_continuity violation when gross_ytd is not correctly accumulated."""

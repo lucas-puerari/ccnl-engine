@@ -1,7 +1,7 @@
-"""Typed YTD accumulator sub-containers for TaxYearState.
+"""Typed YTD accumulator sub-containers for TaxCashState.
 
 Each container groups logically related year-to-date running totals.
-``TaxYearState`` holds one instance of each; they are all frozen dataclasses
+``TaxCashState`` holds one instance of each; they are all frozen dataclasses
 with no circular dependencies so they can be tested and serialised in
 isolation.  A running total is a sum of what was paid or withheld this
 tax year, so every one of them is non-negative, even when a single run

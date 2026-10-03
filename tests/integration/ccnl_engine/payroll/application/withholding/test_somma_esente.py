@@ -27,7 +27,7 @@ from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation, TaxLineItem
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
 from tests.helpers import make_year_rules
@@ -89,13 +89,12 @@ def _opening(
         )
     )
     return PeriodState(
-        ytd=TaxYearState(
+        cash=TaxCashState(
             tax_year=_YEAR,
-            regular_periods_closed=min(closed, 12),
-            tax_withholding_periods_closed=closed,
+            withholding_payments_closed=closed,
             somma_esente=SommaEsenteAccount(recognized=recognized, recovered=recovered),
-        ),
-        obligations=obligations,
+            obligations=obligations,
+        )
     )
 
 

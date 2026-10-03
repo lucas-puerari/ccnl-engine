@@ -1,71 +1,87 @@
-"""State entering a payroll run: tax year state and lasting obligations."""
+"""State entering a payroll run: competence state and tax cash state."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import ClassVar, final
 
-from ccnl_engine.payroll.domain.obligations import EmploymentObligations
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
+from ccnl_engine.payroll.domain.payment import PaymentId
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import require_instances
+
+__all__ = ["PeriodState"]
+
+_FEATURE = "period_state"
 
 
 @final
 @dataclass(frozen=True)
 class PeriodState:
-    """State entering a payroll run: the tax year and the lasting obligations.
+    """State entering a payroll run: what is accrued and what is paid.
 
-    Pass :meth:`zero` for the first run of an employment.  Between runs of
-    one tax year, pass the ``closing_state`` of the previous run.  To open
-    the next tax year, pass the closing state of the last run of the year to
+    Pass :meth:`zero` for the first run of an employment.  Between runs,
+    pass the ``closing_state`` of the previous run.  To open the next tax
+    year, pass the closing state of the last run of the year to
     :func:`~ccnl_engine.payroll.application.close_tax_year.close_tax_year`:
-    it resets :attr:`ytd` and carries :attr:`obligations`.
+    it restarts :attr:`cash` with its obligations and keeps :attr:`accrual`.
+
+    A run closes once (its competence run in :attr:`accrual`) and is paid
+    once (its payment in :attr:`cash`).  The same request on the same
+    opening state yields the same closing state; a state that already closed
+    the run rejects it, so a retry never counts a payment twice.
 
     Attributes:
-        ytd: Counters and YTD accounts of the current tax year; they
-            restart every tax year.
-        obligations: Obligations that survive the change of tax year, such
-            as an installment recovery of trattamento integrativo or somma
-            esente, the surtax a conguaglio determined, or the IRPEF of a
-            conguaglio deferred on written request.
+        accrual: Competence runs closed over the employment; carried across
+            tax years.
+        cash: Payments, YTD accounts and carried obligations of the current
+            tax year; the payments and accounts restart every tax year.
+
+    Raises:
+        InvalidInputError: When a field is not of its type, or a payment of
+            :attr:`cash` settles a run :attr:`accrual` has not closed.
     """
 
-    SCHEMA_VERSION: ClassVar[int] = 5
+    SCHEMA_VERSION: ClassVar[int] = 6
 
-    ytd: TaxYearState = field(default_factory=TaxYearState)
-    obligations: EmploymentObligations = field(default_factory=EmploymentObligations)
+    accrual: EmploymentAccrualState = field(default_factory=EmploymentAccrualState)
+    cash: TaxCashState = field(default_factory=TaxCashState)
 
-    def __post_init__(self) -> None:
-        """Reject a field of the wrong type or an obligation opened too late.
-
-        Raises:
-            InvalidInputError: When a field is not of its type, or a recovery
-                or surtax obligation originates in a year later than
-                ``ytd.tax_year``.
-        """
+    def __post_init__(self) -> None:  # noqa: D105
         require_instances(
             "PeriodState",
             (
-                ("ytd", self.ytd, TaxYearState, False),
-                ("obligations", self.obligations, EmploymentObligations, False),
+                ("accrual", self.accrual, EmploymentAccrualState, False),
+                ("cash", self.cash, TaxCashState, False),
             ),
-            feature="period_state",
+            feature=_FEATURE,
         )
-        latest = self.obligations.latest_tax_year
-        if self.tax_year is not None and latest is not None and latest > self.tax_year:
+        closed = set(self.accrual.competence_runs)
+        unclosed = [p for p in self.cash.payments if p.run_id not in closed]
+        if unclosed:
             msg = (
-                f"obligations include one opened in {latest}, after the "
-                f"tax year of the state ({self.tax_year})"
+                f"payment '{unclosed[0]}' settles run '{unclosed[0].run_id}', "
+                "which the accrual state has not closed"
             )
             raise InvalidInputError(
-                msg, field="PeriodState.obligations", feature="period_state"
+                msg, field="PeriodState.cash.payments", feature=_FEATURE
             )
 
     @property
     def tax_year(self) -> int | None:
-        """Tax year of :attr:`ytd`; ``None`` when not yet bound to a year."""
-        return self.ytd.tax_year
+        """Tax year of :attr:`cash`; ``None`` when not yet bound to a year."""
+        return self.cash.tax_year
+
+    def check_next(self, payment: PaymentId) -> None:
+        """Check that ``payment`` and the run it settles can close next.
+
+        A run already closed or out of order in its competence year, or a
+        payment that cannot close in the tax year, raises
+        ``InvalidInputError``.
+        """
+        self.accrual.check_next_run(payment.run_id)
+        self.cash.check_next_payment(payment)
 
     @classmethod
     def zero(cls) -> PeriodState:

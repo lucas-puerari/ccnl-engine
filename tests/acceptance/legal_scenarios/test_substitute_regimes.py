@@ -240,7 +240,7 @@ def _work_time_decisions(result: PeriodResult) -> list[CalculationDecision]:
 
 
 def _taxable(result: PeriodResult) -> Decimal:
-    return result.closing_state.ytd.earnings.taxable
+    return result.closing_state.cash.earnings.taxable
 
 
 def test_night_supplement_above_annual_cap_splits_regime() -> None:
@@ -252,7 +252,7 @@ def test_night_supplement_above_annual_cap_splits_regime() -> None:
     assert decision.reason_code == "requirements_met"
     assert decision.inputs["eligible_amount"] == _CAP
     assert decision.inputs["ordinary_amount"] == Decimal(500)
-    assert result.closing_state.ytd.work_time_regime.used == _CAP
+    assert result.closing_state.cash.work_time_regime.used == _CAP
     assert result.assurance.calculation is CalculationStatus.FINAL
 
 
@@ -266,7 +266,7 @@ def test_holiday_supplement_uses_substitute_tax() -> None:
 
     assert substitute_tax(result) == Decimal("75.00")
     assert remitted(result, "1076") == Decimal("75.00")
-    assert result.closing_state.ytd.work_time_regime.used == Decimal(500)
+    assert result.closing_state.cash.work_time_regime.used == Decimal(500)
 
 
 def test_shift_allowance_uses_substitute_tax() -> None:
@@ -292,7 +292,7 @@ def test_work_time_supplement_above_income_ceiling_is_ordinary() -> None:
     assert substitute_tax(result) == Decimal(0)
     (decision,) = _work_time_decisions(result)
     assert decision.reason_code == "prior_income_above_ceiling"
-    assert result.closing_state.ytd.work_time_regime.used == Decimal(0)
+    assert result.closing_state.cash.work_time_regime.used == Decimal(0)
 
 
 def test_work_time_supplement_waived_in_writing_is_ordinary() -> None:
@@ -342,7 +342,7 @@ def test_work_time_supplement_in_comma_18_activity_is_ordinary(
     assert decision.inputs["employer_activity"] == activity.value
     assert substitute_tax(result) == Decimal(0)
     assert result.assurance.calculation is CalculationStatus.FINAL
-    assert result.closing_state.ytd.work_time_regime.used == Decimal(0)
+    assert result.closing_state.cash.work_time_regime.used == Decimal(0)
 
 
 def test_work_time_supplement_with_unknown_activity_is_provisional() -> None:
@@ -364,7 +364,7 @@ def test_work_time_supplement_with_unknown_income_is_provisional() -> None:
     assert [issue.code for issue in result.issues] == [
         "notte_festivi_turni_eligibility_unknown"
     ]
-    assert result.closing_state.ytd.work_time_regime.used == Decimal(0)
+    assert result.closing_state.cash.work_time_regime.used == Decimal(0)
 
 
 def test_annual_cap_is_shared_by_supplements_of_one_run() -> None:
@@ -394,9 +394,9 @@ def test_annual_cap_is_consumed_across_runs() -> None:
     assert substitute_tax(march) == Decimal("150.00")
     assert substitute_tax(april) == Decimal("75.00")
     assert substitute_tax(may) == Decimal(0)
-    assert march.closing_state.ytd.work_time_regime.used == Decimal(1_000)
-    assert april.closing_state.ytd.work_time_regime.used == _CAP
-    assert may.closing_state.ytd.work_time_regime.used == _CAP
+    assert march.closing_state.cash.work_time_regime.used == Decimal(1_000)
+    assert april.closing_state.cash.work_time_regime.used == _CAP
+    assert may.closing_state.cash.work_time_regime.used == _CAP
     (april_decision,) = _work_time_decisions(april)
     assert april_decision.inputs["ordinary_amount"] == Decimal(500)
     (may_decision,) = _work_time_decisions(may)

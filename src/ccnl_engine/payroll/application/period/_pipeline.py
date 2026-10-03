@@ -106,12 +106,12 @@ def _variable_events(ctx: RunContext) -> RunEvents:
             var_pay.year,
             with_children=request.has_dependent_children,
         ),
-        opening_fringe_ytd=opening.ytd.fringe.value,
-        opening_fringe_taxed=opening.ytd.fringe.taxed,
+        opening_fringe_ytd=opening.cash.fringe.value,
+        opening_fringe_taxed=opening.cash.fringe.taxed,
         pdr_income_ceiling=ctx.var_pay_rules.pdr.income_ceiling,
         rinnovo_regime=ctx.var_pay_rules.rinnovo,
         work_time_regime=ctx.var_pay_rules.notte_festivi_turni,
-        opening_work_time_cap=opening.ytd.work_time_regime,
+        opening_work_time_cap=opening.cash.work_time_regime,
         worker_facts=worker_facts_of(request, withholding_agent=ctx.withholding_agent),
         overtime_bands=CCNLOvertimeBands.of(
             ctx.contract.ccnl, ctx.contract.tctx.competence.year
@@ -164,7 +164,7 @@ def _amounts_input(
         event_tfr_base=totals.tfr_base,
         event_irpef_base=totals.irpef_base,
         event_substitute_base=totals.substitute_base,
-        opening=ctx.opening.ytd,
+        opening=ctx.opening.cash,
         withholding_schedule=ctx.withholding_schedule,
         upcoming_gross=ctx.upcoming_gross,
         rules=contract.year_rules,
@@ -190,17 +190,17 @@ def _amounts_input(
             contract.tctx.competence,
         ),
         eligible_work_days=_eligible_work_days(ctx),
-        recovery_plan=ctx.opening.obligations.recovery_of(
+        recovery_plan=ctx.opening.cash.obligations.recovery_of(
             fiscal_year, TRATTAMENTO_RECOVERY
         ),
-        ulteriore_plan=ctx.opening.obligations.recovery_of(
+        ulteriore_plan=ctx.opening.cash.obligations.recovery_of(
             fiscal_year, ULTERIORE_RECOVERY
         ),
         installment_run=ctx.installment_run,
         withholding_agent=ctx.withholding_agent,
         pension=pension_terms(ctx),
         conguaglio=ctx.conguaglio,
-        surtax_obligations=ctx.opening.obligations.surtax,
+        surtax_obligations=ctx.opening.cash.obligations.surtax,
         run_month=request.period_id.month,
         regular_run=ctx.run_kind is RunKind.REGULAR,
         foreign_taxes=request.prior_year.foreign_taxes,
@@ -225,7 +225,7 @@ def _deferred_irpef(ctx: RunContext) -> Decimal:
     Returns:
         Zero without a deferral of the tax year.
     """
-    deferred = ctx.opening.obligations.deferred_of(ctx.fiscal_year)
+    deferred = ctx.opening.cash.obligations.deferred_of(ctx.fiscal_year)
     return Decimal(0) if deferred is None else deferred.irpef
 
 

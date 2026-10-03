@@ -109,8 +109,8 @@ class TestTabaccoAlifond:
         the employee part: 617.40 deducted in the year.
         """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(None))
-        closing = enrolled.period_results[-1].closing_state.ytd.earnings
-        base = not_enrolled.period_results[-1].closing_state.ytd.earnings
+        closing = enrolled.period_results[-1].closing_state.cash.earnings
+        base = not_enrolled.period_results[-1].closing_state.cash.earnings
         assert base.taxable - closing.taxable == Decimal("246.96")
         assert closing.pension_deducted == Decimal("617.40")
 
@@ -123,8 +123,8 @@ class TestTabaccoAlifond:
         """
         enrolled, not_enrolled = _year(_tabacco()), _year(_tabacco(None))
         irpef = (
-            not_enrolled.period_results[-1].closing_state.ytd.tax.irpef
-            - enrolled.period_results[-1].closing_state.ytd.tax.irpef
+            not_enrolled.period_results[-1].closing_state.cash.tax.irpef
+            - enrolled.period_results[-1].closing_state.cash.tax.irpef
         )
         assert abs(irpef - Decimal("79.41")) <= Decimal("0.02")
         assert enrolled.annual_net - not_enrolled.annual_net == irpef - Decimal(
@@ -204,8 +204,8 @@ class TestDeductionCap:
         enrolled = regular_period(employment=_tabacco(), opening_state=opening)
         plain = regular_period(employment=_tabacco(None), opening_state=opening)
         change = (
-            enrolled.closing_state.ytd.earnings.taxable
-            - plain.closing_state.ytd.earnings.taxable
+            enrolled.closing_state.cash.earnings.taxable
+            - plain.closing_state.cash.earnings.taxable
         )
         return change, enrolled
 
@@ -213,7 +213,7 @@ class TestDeductionCap:
         """10.00 of cap left: taxable + 26.46 - 10.00 = +16.46."""
         change, enrolled = self._taxable_change("5290.00")
         assert change == Decimal("16.46")
-        assert enrolled.closing_state.ytd.earnings.pension_deducted == Decimal(
+        assert enrolled.closing_state.cash.earnings.pension_deducted == Decimal(
             "5300.00"
         )
 

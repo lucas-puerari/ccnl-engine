@@ -132,16 +132,16 @@ class TestPdrPlafond:
         """A real PdR bonus advances fringe.pdr by its eligible amount."""
         result = _run(_PDR_BONUS, income=_PDR_INCOME)
         facts = RunFacts(pdr_cap=Decimal(5_000))
-        assert result.closing_state.ytd.fringe.pdr == Decimal(1_000)
+        assert result.closing_state.cash.fringe.pdr == Decimal(1_000)
         assert check_substitute_tax_plafond(result, _OPENING, facts) == []
 
     def test_wrong_advance_is_reported(self) -> None:
         """A closing fringe.pdr that ignores the decision is a violation."""
         result = _run(_PDR_BONUS, income=_PDR_INCOME)
-        ytd = result.closing_state.ytd
+        ytd = result.closing_state.cash
         closing = replace(
             result.closing_state,
-            ytd=replace(ytd, fringe=replace(ytd.fringe, pdr=Decimal(0))),
+            cash=replace(ytd, fringe=replace(ytd.fringe, pdr=Decimal(0))),
         )
         bad = replace(result, closing_state=closing)
 
@@ -163,7 +163,7 @@ class TestPdrPlafond:
         """The advance starts from the opening PdR YTD."""
         result = _run(_PDR_BONUS, income=_PDR_INCOME)
         opening = PeriodState(
-            ytd=replace(_OPENING.ytd, fringe=FringeYtd(pdr=Decimal(100)))
+            cash=replace(_OPENING.cash, fringe=FringeYtd(pdr=Decimal(100)))
         )
         (violation,) = check_substitute_tax_plafond(result, opening, RunFacts())
         assert violation.expected == Decimal(1_100)

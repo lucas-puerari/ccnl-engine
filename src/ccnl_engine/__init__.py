@@ -124,6 +124,7 @@ from ccnl_engine.payroll.domain.family import (
 )
 from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -227,6 +228,7 @@ __all__ = [
     "OvertimeEvent",
     "OvertimeKind",
     "Payability",
+    "PaymentId",
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",

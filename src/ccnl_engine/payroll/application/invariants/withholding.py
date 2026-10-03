@@ -68,7 +68,7 @@ def check_contribution_ceiling(
     ceiling = facts.ivs_ceiling
     if ceiling is None:
         return []
-    headroom = max(_ZERO, ceiling - opening.ytd.earnings.inps_base)
+    headroom = max(_ZERO, ceiling - opening.cash.earnings.inps_base)
     return [
         ReconciliationViolation(
             invariant_id=InvariantCode.CONTRIBUTION_CEILING,
@@ -104,11 +104,11 @@ def net_annual_irpef(computation: TaxComputation) -> Decimal:
 
 
 def _closes_last_slot(result: PeriodResult, opening: PeriodState) -> bool:
-    slots = result.closing_state.ytd.withholding_slots
+    slots = result.closing_state.cash.withholding_slots
     return (
         slots is not None
         and run_id_of(result).kind.consumes_withholding_slot
-        and opening.ytd.tax_withholding_periods_closed + 1 == slots
+        and opening.cash.withholding_payments_closed + 1 == slots
     )
 
 
@@ -128,8 +128,8 @@ def check_irpef_annual_reconciliation(
         return []
     violations: list[ReconciliationViolation] = []
     due = net_annual_irpef(result.tax_computation)
-    ytd = result.closing_state.ytd
-    obligations = result.closing_state.obligations
+    ytd = result.closing_state.cash
+    obligations = result.closing_state.cash.obligations
     deferred = obligations.recovery_of(ytd.tax_year or 0, ULTERIORE_RECOVERY)
     postponed = obligations.deferred_of(ytd.tax_year or 0)
     withheld = (
@@ -150,7 +150,7 @@ def check_irpef_annual_reconciliation(
             )
         )
     projected = facts.projected_taxable
-    final = result.closing_state.ytd.earnings.taxable
+    final = result.closing_state.cash.earnings.taxable
     if projected is not None and abs(projected - final) > _TAXABLE_TOLERANCE:
         violations.append(
             ReconciliationViolation(

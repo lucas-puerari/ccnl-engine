@@ -73,12 +73,11 @@ def test_run_of_unbundled_tax_year_raises_domain_error(
 def test_run_of_next_tax_year_is_not_added_to_current_year_state() -> None:
     """December 2026 paid on 13 January 2027 cannot close into the 2026 state."""
     ytd = replace(
-        PeriodState.zero().ytd,
+        PeriodState.zero().cash,
         tax_year=2026,
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=11,
+        withholding_payments_closed=11,
     )
-    opening = PeriodState(ytd=ytd)
+    opening = PeriodState(cash=ytd)
 
     with pytest.raises(InvalidInputError, match="belongs to tax year 2027"):
         regular_period(month=12, payment_date=date(2027, 1, 13), opening_state=opening)
@@ -106,8 +105,7 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
     """
     opening = OpeningBalances(
         tax_year=2026,
-        regular_periods_closed=11,
-        tax_withholding_periods_closed=12,
+        withholding_payments_closed=12,
         trattamento_recognized=Decimal(160),
         trattamento_recovered=Decimal(40),
         recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
@@ -142,6 +140,15 @@ def _january_2027(opening: PeriodState) -> PeriodResult:
     )
 
 
+def _without_obligations(state: PeriodState) -> object:
+    """Return the tax cash state of ``state`` with no obligation carried.
+
+    Returns:
+        ``state.cash`` with the obligations of a new employment.
+    """
+    return replace(state.cash, obligations=PeriodState.zero().cash.obligations)
+
+
 def test_installment_recovery_survives_the_year_change() -> None:
     """D.L. 3/2020 art. 1 c. 3: recovery above 60 EUR runs in 8 installments.
 
@@ -154,11 +161,14 @@ def test_installment_recovery_survives_the_year_change() -> None:
 
     next_year = ENGINE.close_tax_year(thirteenth.closing_state)
 
-    (carried,) = next_year.obligations.recoveries
+    (carried,) = next_year.cash.obligations.recoveries
     assert carried.tax_year == 2026
     assert carried.plan.installments_posted == 4
     assert carried.plan.residual == Decimal("80.00")
-    assert next_year.ytd == replace(PeriodState.zero().ytd, tax_year=2027)
+    assert _without_obligations(next_year) == replace(
+        PeriodState.zero().cash, tax_year=2027
+    )
+    assert next_year.accrual == thirteenth.closing_state.accrual
 
 
 def test_close_tax_year_rejects_a_state_before_the_last_run() -> None:
@@ -181,13 +191,20 @@ def test_carried_installment_is_deducted_in_the_next_year() -> None:
     opening = ENGINE.close_tax_year(thirteenth.closing_state)
 
     with_plan = _january_2027(opening)
-    without_plan = _january_2027(PeriodState(ytd=opening.ytd))
+    without_plan = _january_2027(
+        replace(
+            opening,
+            cash=replace(opening.cash, obligations=PeriodState.zero().cash.obligations),
+        )
+    )
 
     assert without_plan.period_net - with_plan.period_net == Decimal("20.00")
-    (carried,) = with_plan.closing_state.obligations.recoveries
+    (carried,) = with_plan.closing_state.cash.obligations.recoveries
     assert carried.plan.installments_posted == 5
     assert carried.plan.residual == Decimal("60.00")
-    assert with_plan.closing_state.ytd == without_plan.closing_state.ytd
+    assert _without_obligations(with_plan.closing_state) == _without_obligations(
+        without_plan.closing_state
+    )
     recovery = [
         item
         for item in with_plan.pay_items

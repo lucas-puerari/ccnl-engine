@@ -1,4 +1,4 @@
-"""Closing state of a run: advance the tax year state and the obligations."""
+"""Closing state of a run: advance the accrual state and the tax cash state."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from ccnl_engine.payroll.domain.obligations import (
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -22,7 +22,7 @@ from ccnl_engine.payroll.domain.ytd_accounts import (
     TaxYtd,
     WithholdingShortfall,
 )
-from ccnl_engine.shared.domain.errors import DataIntegrityError
+from ccnl_engine.shared.domain.errors import DataIntegrityError, InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.amounts._types import _PeriodAmounts
@@ -32,8 +32,8 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
+    from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-    from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
     from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 
 _ZERO = Decimal(0)
@@ -58,8 +58,7 @@ class RunOutcome:
     Attributes:
         tax_year: Tax year the run is attributed to.
         withholding_slots: Slots of the withholding schedule of the run.
-        run_id: Identifier of the run.
-        run_kind: Kind of the run.
+        payment: The payment the run closes: its run and payment date.
         entries: Every ledger entry of the run.
         period_inps_base: INPS base of the run.
         amounts: Monetary amounts of the run.
@@ -75,8 +74,7 @@ class RunOutcome:
 
     tax_year: int
     withholding_slots: int
-    run_id: PayrollRunId
-    run_kind: RunKind
+    payment: PaymentId
     entries: tuple[LedgerEntry, ...]
     period_inps_base: Decimal
     amounts: _PeriodAmounts
@@ -92,7 +90,9 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
     """Return the state after the run described by ``outcome``.
 
     Returns:
-        The opening tax year state advanced by the run.  The obligations
+        The opening state advanced by the run: its competence run closed in
+        the accrual state, its payment and amounts added to the tax cash
+        state.  The obligations
         hold the carried recoveries still running, then the recoveries of
         the current tax year running after the run: trattamento integrativo
         first, then somma esente, then the ulteriore detrazione, whose
@@ -103,18 +103,28 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
 
     Raises:
         DataIntegrityError: When the advanced state breaks an invariant of
-            the tax year state, e.g. a negative YTD total: the run produced
-            amounts no payslip can carry.
+            the accrual or tax cash state, e.g. a negative YTD total or a
+            run closed twice: the run produced a state no payslip can
+            carry.  The opening state was validated before the run, so
+            this is an engine fault, not a caller input error.
     """
     try:
-        ytd = _closing_ytd(opening.ytd, outcome)
-    except ValueError as exc:
+        return _advance(opening, outcome)
+    except (ValueError, InvalidInputError) as exc:
         msg = f"Closing state rejected: {exc}"
         raise DataIntegrityError(msg) from exc
+
+
+def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
+    """Return ``opening`` advanced by ``outcome``; see :func:`closing_state`.
+
+    Returns:
+        The advanced state; its constructors validate it.
+    """
     somma = outcome.somma_esente
     ulteriore = outcome.amounts.ulteriore
     ulteriore_plan = (
-        opening.obligations.recovery_of(outcome.tax_year, ULTERIORE_RECOVERY)
+        opening.cash.obligations.recovery_of(outcome.tax_year, ULTERIORE_RECOVERY)
         if ulteriore is None
         else ulteriore.plan
     )
@@ -123,17 +133,18 @@ def closing_state(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         for plan in (outcome.recovery_plan, somma.plan, ulteriore_plan)
         if plan is not None
     )
+    obligations = EmploymentObligations(
+        recoveries=outcome.carried + current,
+        surtax=outcome.amounts.surtax.obligations,
+        deferred_shortfall=outcome.deferred,
+    )
     return PeriodState(
-        ytd=ytd,
-        obligations=EmploymentObligations(
-            recoveries=outcome.carried + current,
-            surtax=outcome.amounts.surtax.obligations,
-            deferred_shortfall=outcome.deferred,
-        ),
+        accrual=opening.accrual.after(outcome.payment.run_id),
+        cash=_closing_cash(opening.cash, outcome, obligations),
     )
 
 
-def _closing_tax(op: TaxYearState, outcome: RunOutcome) -> TaxYtd:
+def _closing_tax(op: TaxCashState, outcome: RunOutcome) -> TaxYtd:
     """Return the tax withheld YTD after the run.
 
     The surtax refunded by the conguaglio lowers the surtax withheld, and
@@ -155,8 +166,10 @@ def _closing_tax(op: TaxYearState, outcome: RunOutcome) -> TaxYtd:
     )
 
 
-def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
-    """Return the tax year state ``op`` advanced by the run ``outcome``.
+def _closing_cash(
+    op: TaxCashState, outcome: RunOutcome, obligations: EmploymentObligations
+) -> TaxCashState:
+    """Return the tax cash state ``op`` advanced by the payment ``outcome``.
 
     Returns:
         The advanced state; its constructors validate it.
@@ -166,14 +179,12 @@ def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
     entries = outcome.entries
     somma = outcome.somma_esente
     tratt = _decision_of(amounts.decisions, _TRATTAMENTO)
-    return TaxYearState(
+    slot = outcome.payment.run_id.kind.consumes_withholding_slot
+    return TaxCashState(
         tax_year=outcome.tax_year,
-        regular_periods_closed=op.regular_periods_closed
-        + (1 if outcome.run_kind == "regular" else 0),
-        tax_withholding_periods_closed=op.tax_withholding_periods_closed
-        + (1 if outcome.run_kind.consumes_withholding_slot else 0),
+        payments=(*op.payments, outcome.payment),
+        withholding_payments_closed=op.withholding_payments_closed + int(slot),
         withholding_slots=outcome.withholding_slots,
-        closed_run_ids=(*op.closed_run_ids, outcome.run_id),
         earnings=EarningsYtd(
             gross=op.earnings.gross + _sum_ledger(entries, AccountKind.CASH_EARNINGS),
             inps_base=op.earnings.inps_base + outcome.period_inps_base,
@@ -208,4 +219,5 @@ def _closing_ytd(op: TaxYearState, outcome: RunOutcome) -> TaxYearState:
             used=op.work_time_regime.used + events.work_time_cap_used
         ),
         shortfall=outcome.shortfall,
+        obligations=obligations,
     )

@@ -11,19 +11,21 @@ import pytest
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.calculate_year import calculate_year
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
     EmploymentObligations,
     RecoveryObligation,
 )
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
@@ -70,9 +72,9 @@ def _over_paid(extra: Decimal) -> PeriodState:
         The closing state of December with the inflated account.
     """
     opening = _YEAR_RESULT.period_results[-2].closing_state
-    account = opening.ytd.somma_esente
+    account = opening.cash.somma_esente
     inflated = replace(account, recognized=account.recognized + extra)
-    return replace(opening, ytd=replace(opening.ytd, somma_esente=inflated))
+    return replace(opening, cash=replace(opening.cash, somma_esente=inflated))
 
 
 class TestYear:
@@ -89,7 +91,7 @@ class TestYear:
         total = sum((_somma(r) for r in _YEAR_RESULT.period_results), Decimal(0))
 
         assert total == money(annual)
-        account = last.closing_state.ytd.somma_esente
+        account = last.closing_state.cash.somma_esente
         assert account.recognized == total
         assert account.due == money(annual)
         assert account.residual == Decimal(0)
@@ -111,13 +113,13 @@ class TestOverPaymentAtConguaglio:
         result = _last_run(_over_paid(base + Decimal(40)))
 
         assert _somma(result) == Decimal(-40)
-        account = result.closing_state.ytd.somma_esente
+        account = result.closing_state.cash.somma_esente
         assert account.recovered == Decimal(40)
         assert account.residual == Decimal(0)
         decision = next(d for d in result.decisions if d.capability == "somma_esente")
         assert decision.reason_code == "overpayment_recovered"
         assert decision.amount == Decimal(-40)
-        assert result.closing_state.obligations == EmploymentObligations()
+        assert result.closing_state.cash.obligations == EmploymentObligations()
 
     def test_excess_above_60_eur_opens_ten_installments(self) -> None:
         """150 EUR over: 15 EUR now, nine installments carried to next year."""
@@ -125,7 +127,7 @@ class TestOverPaymentAtConguaglio:
         result = _last_run(_over_paid(base + Decimal(150)))
 
         assert _somma(result) == Decimal("-15.00")
-        assert result.closing_state.obligations == EmploymentObligations(
+        assert result.closing_state.cash.obligations == EmploymentObligations(
             recoveries=(
                 RecoveryObligation(
                     tax_year=_YEAR,
@@ -139,10 +141,10 @@ class TestOverPaymentAtConguaglio:
                 ),
             )
         )
-        account = result.closing_state.ytd.somma_esente
+        account = result.closing_state.cash.somma_esente
         assert account.recovered == Decimal("15.00")
         assert account.residual == Decimal("135.00")
-        assert result.closing_state.ytd.is_complete
+        assert result.closing_state.cash.is_complete
 
 
 class TestCarriedSommaEsenteRecovery:
@@ -158,8 +160,10 @@ class TestCarriedSommaEsenteRecovery:
             installments_posted=7,
         )
         opening = PeriodState(
-            obligations=EmploymentObligations(
-                recoveries=(RecoveryObligation(tax_year=2025, plan=plan),)
+            cash=TaxCashState(
+                obligations=EmploymentObligations(
+                    recoveries=(RecoveryObligation(tax_year=2025, plan=plan),)
+                )
             )
         )
 
@@ -177,8 +181,8 @@ class TestCarriedSommaEsenteRecovery:
             "last_installment_posted",
         ]
         assert {d.rule for d in decisions} == {"l207-2024-art1-c7"}
-        last_with = with_plan.period_results[-1].closing_state.ytd
-        assert last_with == _YEAR_RESULT.period_results[-1].closing_state.ytd
+        last_with = with_plan.period_results[-1].closing_state.cash
+        assert last_with == _YEAR_RESULT.period_results[-1].closing_state.cash
 
 
 class TestClosedRuns:
@@ -197,41 +201,44 @@ class TestClosedRuns:
 
     def test_run_out_of_order_is_rejected(self) -> None:
         """February cannot close after March."""
+        march = PayrollRunId.parse("2026-03-regular")
         opening = PeriodState(
-            ytd=TaxYearState(
+            accrual=EmploymentAccrualState(competence_runs=(march,)),
+            cash=TaxCashState(
                 tax_year=_YEAR,
-                regular_periods_closed=1,
-                tax_withholding_periods_closed=1,
-                closed_run_ids=(PayrollRunId.parse("2026-03-regular"),),
-            )
+                withholding_payments_closed=1,
+                payments=(PaymentId(march, date(_YEAR, 3, 28)),),
+            ),
         )
 
         with pytest.raises(InvalidInputError, match="out of order") as info:
             calculate_period(self._request(2, opening))
 
-        assert info.value.feature == "payroll_run"
+        assert info.value.feature == "accrual_state"
 
     def test_run_already_closed_is_rejected(self) -> None:
         """March cannot close twice."""
         opening = _YEAR_RESULT.period_results[2].closing_state
 
-        with pytest.raises(InvalidInputError, match="already processed"):
+        with pytest.raises(InvalidInputError, match="already closed"):
             calculate_period(self._request(3, opening))
 
     def test_closed_runs_are_recorded_in_payment_order(self) -> None:
-        """The year closes its runs as typed ids, the tredicesima last."""
-        closed = _YEAR_RESULT.period_results[-1].closing_state.ytd.closed_run_ids
+        """The year closes its runs and payments, the tredicesima last."""
+        closing = _YEAR_RESULT.period_results[-1].closing_state
+        runs = closing.accrual.competence_runs
 
-        assert closed[0] == PayrollRunId.parse("2026-01-regular")
-        assert closed[-1] == PayrollRunId.parse("2026-12-thirteenth")
-        assert len(closed) == len(_YEAR_RESULT.period_results)
+        assert runs[0] == PayrollRunId.parse("2026-01-regular")
+        assert runs[-1] == PayrollRunId.parse("2026-12-thirteenth")
+        assert len(runs) == len(_YEAR_RESULT.period_results)
+        assert [p.run_id for p in closing.cash.payments] == list(runs)
 
-    def test_state_with_a_run_of_a_later_year_is_rejected(self) -> None:
-        """A 2027 run cannot be closed in tax year 2026."""
-        with pytest.raises(ValueError, match="after the tax year 2026"):
-            TaxYearState(
+    def test_state_with_a_payment_of_a_later_year_is_rejected(self) -> None:
+        """A payment of 2027 cannot be closed in tax year 2026."""
+        january = PayrollRunId.parse("2027-01-regular")
+        with pytest.raises(InvalidInputError, match="belongs to tax year 2027"):
+            TaxCashState(
                 tax_year=_YEAR,
-                regular_periods_closed=1,
-                tax_withholding_periods_closed=1,
-                closed_run_ids=(PayrollRunId.parse("2027-01-regular"),),
+                withholding_payments_closed=1,
+                payments=(PaymentId(january, date(2027, 1, 28)),),
             )

@@ -222,15 +222,15 @@ def resolve_somma_esente(
         The outcome; empty when the credit is not in force and nothing of
         it was paid or is being recovered this tax year.
     """
-    account = opening.ytd.somma_esente
-    plan = opening.obligations.recovery_of(tax_year, SOMMA_ESENTE_RECOVERY)
+    account = opening.cash.somma_esente
+    plan = opening.cash.obligations.recovery_of(tax_year, SOMMA_ESENTE_RECOVERY)
     if rules.somma_esente is None and plan is None and account.net == _ZERO:
         return SommaEsenteOutcome()
     annual = next(
         (c.amount for c in tax_computation.components if c.name == "somma_esente"),
         _ZERO,
     )
-    slots_closed = opening.ytd.tax_withholding_periods_closed
+    slots_closed = opening.cash.withholding_payments_closed
     remaining = schedule.remaining(slots_closed)
     settlement = _settle(annual, schedule, account, plan, remaining, posting.run)
     decision = CalculationDecision(

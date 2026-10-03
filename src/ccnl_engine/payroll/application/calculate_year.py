@@ -229,8 +229,8 @@ def calculate_year(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.employment.ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, request.calendar_override)
-    plan = plan_year(request, year_calendar, month_accrual_rule(ccnl))
     state = opening_of_year(year, request.opening_state)
+    plan = plan_year(request, year_calendar, state, month_accrual_rule(ccnl))
     results: list[PeriodResult] = []
     for run in plan.schedule.runs:
         req = run_request(request, plan, run, state)

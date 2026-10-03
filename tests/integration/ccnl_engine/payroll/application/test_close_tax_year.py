@@ -15,18 +15,20 @@ from ccnl_engine.payroll.application.close_tax_year import close_tax_year
 from ccnl_engine.payroll.application.invariants.state import (
     check_carried_recovery_advance,
 )
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRunId
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
@@ -57,24 +59,27 @@ class TestCloseTaxYear:
     def test_resets_the_tax_year_and_carries_the_obligations(self) -> None:
         """Every YTD account restarts; the recovery keeps its origin year."""
         obligations = _carrying(_recovery(2026, 4))
+        december = PayrollRunId.parse("2026-12-regular")
+        accrual = EmploymentAccrualState(competence_runs=(december,))
         closing = PeriodState(
-            ytd=TaxYearState(
+            accrual=accrual,
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=12,
-                tax_withholding_periods_closed=13,
+                withholding_payments_closed=13,
                 withholding_slots=13,
-                closed_run_ids=(PayrollRunId.parse("2026-12-regular"),),
+                payments=(PaymentId(december, date(2026, 12, 27)),),
                 trattamento=TrattamentoAccount(
                     recognized=Decimal(160), recovered=Decimal(80)
                 ),
+                obligations=obligations,
             ),
-            obligations=obligations,
         )
 
         opening = close_tax_year(closing)
 
         assert opening == PeriodState(
-            ytd=TaxYearState(tax_year=2027), obligations=obligations
+            accrual=accrual,
+            cash=TaxCashState(tax_year=2027, obligations=obligations),
         )
 
     def test_rejects_a_state_bound_to_no_tax_year(self) -> None:
@@ -85,7 +90,7 @@ class TestCloseTaxYear:
     def test_rejects_a_state_without_a_run(self) -> None:
         """A state that never ran has no withholding schedule to complete."""
         with pytest.raises(InvalidInputError, match="0 of None withholding"):
-            close_tax_year(PeriodState(ytd=TaxYearState(tax_year=2026)))
+            close_tax_year(PeriodState(cash=TaxCashState(tax_year=2026)))
 
     def test_closes_the_state_of_the_last_run_of_calculate_year(self) -> None:
         """The last run of a year calculation closes every withholding slot."""
@@ -93,7 +98,10 @@ class TestCloseTaxYear:
 
         opening = close_tax_year(year.period_results[-1].closing_state)
 
-        assert opening == PeriodState(ytd=TaxYearState(tax_year=2027))
+        assert opening == PeriodState(
+            accrual=year.closing_state.accrual, cash=TaxCashState(tax_year=2027)
+        )
+        assert opening.accrual.regular_months(2026) == 12
 
 
 class TestCarriedRecoveryInAYear:
@@ -106,7 +114,9 @@ class TestCarriedRecoveryInAYear:
         March 2026 post the last three; the 2026 YTD accounts match a year
         without the plan.
         """
-        opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
+        opening = PeriodState(
+            cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
+        )
 
         with_plan = calculate_year(
             year_input(2026, _CCNL, _LEVEL, opening_state=opening)
@@ -115,7 +125,8 @@ class TestCarriedRecoveryInAYear:
 
         assert without_plan.annual_net - with_plan.annual_net == Decimal("60.00")
         posted = [
-            r.closing_state.obligations.recoveries for r in with_plan.period_results[:3]
+            r.closing_state.cash.obligations.recoveries
+            for r in with_plan.period_results[:3]
         ]
         assert posted == [
             (_recovery(2025, 6),),
@@ -132,17 +143,16 @@ class TestCarriedRecoveryInAYear:
             "installment_posted",
             "last_installment_posted",
         ]
-        last_with = with_plan.period_results[-1].closing_state.ytd
-        last_without = without_plan.period_results[-1].closing_state.ytd
+        last_with = with_plan.period_results[-1].closing_state.cash
+        last_without = without_plan.period_results[-1].closing_state.cash
         assert last_with == last_without
 
     def test_rejects_an_opening_state_with_a_closed_run(self) -> None:
         """A year calculation computes every run, so none can be closed."""
         opening = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=1,
-                tax_withholding_periods_closed=1,
+                withholding_payments_closed=1,
             )
         )
 
@@ -158,7 +168,9 @@ class TestCarriedRecoveryInAYear:
                 payment_date=date(2026, 1, 28),
                 ccnl_slug=_CCNL,
                 level_code=_LEVEL,
-                opening_state=PeriodState(obligations=_carrying(_recovery(2027, 0))),
+                opening_state=PeriodState(
+                    cash=TaxCashState(obligations=_carrying(_recovery(2027, 0)))
+                ),
             )
 
 
@@ -169,12 +181,14 @@ class TestYearRequestOpeningState:
         """The engine applies the 2025 recovery to the 2026 year it computes."""
         engine = PayrollEngine.bundled()
         request = year_input(2026, _CCNL, _LEVEL)
-        opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
+        opening = PeriodState(
+            cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
+        )
 
         with_plan = engine.calculate_year(replace(request, opening_state=opening))
         without_plan = engine.calculate_year(request)
 
-        first = with_plan.period_results[0].closing_state.obligations
+        first = with_plan.period_results[0].closing_state.cash.obligations
         assert first == _carrying(_recovery(2025, 6))
         assert without_plan.annual_net - with_plan.annual_net == Decimal("60.00")
 
@@ -185,15 +199,14 @@ class TestCurrentYearRecovery:
     def test_last_installment_in_december_carries_nothing(self) -> None:
         """A plan that ends in December leaves no obligation for 2027."""
         opening = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=11,
-                tax_withholding_periods_closed=12,
+                withholding_payments_closed=12,
                 trattamento=TrattamentoAccount(
                     recognized=Decimal(160), recovered=Decimal(140)
                 ),
-            ),
-            obligations=_carrying(_recovery(2026, 7)),
+                obligations=_carrying(_recovery(2026, 7)),
+            )
         )
 
         result = calculate_period(
@@ -207,9 +220,9 @@ class TestCurrentYearRecovery:
             )
         )
 
-        assert result.closing_state.obligations == EmploymentObligations()
-        assert result.closing_state.ytd.trattamento.recovered == Decimal(160)
-        assert close_tax_year(result.closing_state).obligations.recoveries == ()
+        assert result.closing_state.cash.obligations == EmploymentObligations()
+        assert result.closing_state.cash.trattamento.recovered == Decimal(160)
+        assert close_tax_year(result.closing_state).cash.obligations.recoveries == ()
 
 
 class TestCarriedRecoveryInvariant:
@@ -217,7 +230,9 @@ class TestCarriedRecoveryInvariant:
 
     def test_reports_a_missing_installment_and_a_plan_not_advanced(self) -> None:
         """Dropping the posting and the advance yields two violations."""
-        opening = PeriodState(obligations=_carrying(_recovery(2025, 5)))
+        opening = PeriodState(
+            cash=TaxCashState(obligations=_carrying(_recovery(2025, 5)))
+        )
         result = calculate_year(
             year_input(2026, _CCNL, _LEVEL, opening_state=opening)
         ).period_results[0]
@@ -227,7 +242,10 @@ class TestCarriedRecoveryInvariant:
                 e for e in result.ledger_entries if "_recovery_" not in e.entry_id
             ),
             closing_state=replace(
-                result.closing_state, obligations=opening.obligations
+                result.closing_state,
+                cash=replace(
+                    result.closing_state.cash, obligations=opening.cash.obligations
+                ),
             ),
         )
 

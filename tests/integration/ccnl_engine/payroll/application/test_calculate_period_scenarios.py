@@ -21,7 +21,7 @@ from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 
 if TYPE_CHECKING:
@@ -108,15 +108,15 @@ class TestMultiPeriodChain:
         feb_irpef = sum(
             e.amount for e in r2.ledger_entries if e.account == AccountKind.ORDINARY_TAX
         )
-        assert r2.closing_state.ytd.tax.irpef == jan_irpef + feb_irpef
+        assert r2.closing_state.cash.tax.irpef == jan_irpef + feb_irpef
 
-    def test_regular_periods_closed_increments_through_chain(self) -> None:
-        """regular_periods_closed advances by 1 per regular period through a chain."""
+    def test_regular_months_increment_through_chain(self) -> None:
+        """The regular months closed advance by 1 per regular period."""
         opening = PeriodState.zero()
         for expected_months in range(1, 4):
             month = expected_months
             result = calculate_period(_req(month=month, opening=opening))
-            assert result.closing_state.ytd.regular_periods_closed == expected_months
+            assert result.closing_state.accrual.regular_months(_YEAR) == expected_months
             opening = result.closing_state
 
 
@@ -210,7 +210,7 @@ class TestOpeningStateSensitivity:
         r_high_gross = calculate_period(
             _req(
                 opening=PeriodState(
-                    ytd=TaxYearState(earnings=EarningsYtd(gross=Decimal("50000.00")))
+                    cash=TaxCashState(earnings=EarningsYtd(gross=Decimal("50000.00")))
                 )
             )
         )
@@ -222,7 +222,7 @@ class TestOpeningStateSensitivity:
         r_high_inps = calculate_period(
             _req(
                 opening=PeriodState(
-                    ytd=TaxYearState(
+                    cash=TaxCashState(
                         earnings=EarningsYtd(inps_employee=Decimal("5000.00"))
                     )
                 )
