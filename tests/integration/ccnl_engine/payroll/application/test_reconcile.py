@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -13,7 +14,6 @@ from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -176,20 +176,9 @@ class TestCreditRecoveryBounds:
             period_gross=result.period_gross,
             period_net=result.period_net,
             period_employer_cost=result.period_employer_cost,
-            closing_state=PeriodState(
-                ytd=TaxYearState(
-                    tax_year=result.closing_state.ytd.tax_year,
-                    regular_periods_closed=result.closing_state.ytd.regular_periods_closed,
-                    tax_withholding_periods_closed=(
-                        result.closing_state.ytd.tax_withholding_periods_closed
-                    ),
-                    closed_run_ids=result.closing_state.ytd.closed_run_ids,
-                    earnings=result.closing_state.ytd.earnings,
-                    fringe=result.closing_state.ytd.fringe,
-                    tax=result.closing_state.ytd.tax,
-                    trattamento=neg_tratt,
-                    somma_esente=result.closing_state.ytd.somma_esente,
-                )
+            closing_state=replace(
+                result.closing_state,
+                cash=replace(result.closing_state.cash, trattamento=neg_tratt),
             ),
             pay_items=result.pay_items,
             ledger_entries=result.ledger_entries,

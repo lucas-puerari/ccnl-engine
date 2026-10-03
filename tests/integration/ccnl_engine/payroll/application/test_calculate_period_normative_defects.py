@@ -46,7 +46,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, FringeYtd
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
@@ -173,15 +173,13 @@ def test_taxable_ytd_affects_conguaglio() -> None:
     ordinary_tax.
     """
     opening_zero = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=11,
-            tax_withholding_periods_closed=11,
+        cash=TaxCashState(
+            withholding_payments_closed=11,
         )
     )
     opening_high = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=11,
-            tax_withholding_periods_closed=11,
+        cash=TaxCashState(
+            withholding_payments_closed=11,
             earnings=EarningsYtd(taxable=Decimal("5000.00")),
         )
     )
@@ -218,9 +216,8 @@ def test_fringe_retroactive_on_threshold_crossing() -> None:
     1,200 > 1,000 threshold → irpef_base must equal 1,200 (full retroactive).
     """
     state_after_m1 = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=1,
-            tax_withholding_periods_closed=1,
+        cash=TaxCashState(
+            withholding_payments_closed=1,
             fringe=FringeYtd(value=Decimal("600.00")),
         )
     )
@@ -284,9 +281,8 @@ def test_inps_addizionale_1pct_on_threshold_crossing() -> None:
     component with amount > 0 must appear in contribution_breakdown.
     """
     opening = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=5,
-            tax_withholding_periods_closed=5,
+        cash=TaxCashState(
+            withholding_payments_closed=5,
             earnings=EarningsYtd(inps_base=Decimal("56000.00")),
         )
     )

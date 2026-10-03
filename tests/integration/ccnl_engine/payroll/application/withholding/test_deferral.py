@@ -48,7 +48,7 @@ from ccnl_engine.payroll.domain.prior_year import (
 from ccnl_engine.payroll.domain.remittance import remittance_summary
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 from tests.helpers import EMPLOYER_50, year_input
 
@@ -117,29 +117,29 @@ class TestConguaglioOfYearN:
         last = _without_request().period_results[-1]
         shortfall = _conguaglio_shortfall(last)
         assert shortfall > _ZERO
-        assert last.closing_state.ytd.shortfall.irpef == shortfall
-        assert last.closing_state.obligations.deferred_shortfall == ()
+        assert last.closing_state.cash.shortfall.irpef == shortfall
+        assert last.closing_state.cash.obligations.deferred_shortfall == ()
         assert "withholding_shortfall_unrecovered" in {i.code for i in last.issues}
 
     def test_with_request_the_irpef_is_deferred(self) -> None:
         """The request turns the IRPEF left into an obligation of N+1."""
         last = _with_request().period_results[-1]
         shortfall = _conguaglio_shortfall(last)
-        (deferred,) = last.closing_state.obligations.deferred_shortfall
+        (deferred,) = last.closing_state.cash.obligations.deferred_shortfall
         assert deferred == DeferredShortfall(
             tax_year=_YEAR,
             signed_on=_REQUEST.signed_on,
             deferred_from=date(_YEAR, 12, 1),
             irpef=shortfall,
         )
-        assert last.closing_state.ytd.shortfall.total == _ZERO
+        assert last.closing_state.cash.shortfall.total == _ZERO
         assert not [i for i in last.issues if i.code.endswith("_unrecovered")]
         assert _decision(last, "shortfall_deferral", "shortfall_deferred") == shortfall
 
     def test_the_same_irpef_is_withheld_in_n(self) -> None:
         """The deferral changes nothing that N withholds."""
-        plain = _without_request().period_results[-1].closing_state.ytd
-        deferred = _with_request().period_results[-1].closing_state.ytd
+        plain = _without_request().period_results[-1].closing_state.cash
+        deferred = _with_request().period_results[-1].closing_state.cash
         assert deferred.tax.irpef == plain.tax.irpef
 
     def test_close_tax_year_carries_the_deferral(self) -> None:
@@ -147,8 +147,8 @@ class TestConguaglioOfYearN:
         closing = _with_request().period_results[-1].closing_state
         opened = close_tax_year(closing)
         assert opened.tax_year == _YEAR + 1
-        assert opened.obligations.deferred_shortfall == (
-            closing.obligations.deferred_shortfall
+        assert opened.cash.obligations.deferred_shortfall == (
+            closing.cash.obligations.deferred_shortfall
         )
 
     def test_termination_in_n_keeps_the_issue(self) -> None:
@@ -158,7 +158,7 @@ class TestConguaglioOfYearN:
             employment_period=EmploymentPeriod(date(2020, 1, 1), date(_YEAR, 12, 31)),
         )
         last = year.period_results[-1]
-        assert last.closing_state.obligations.deferred_shortfall == ()
+        assert last.closing_state.cash.obligations.deferred_shortfall == ()
         assert _decision(last, "shortfall_deferral", "deferral_not_possible") == 0
         assert "withholding_shortfall_unrecovered" in {i.code for i in last.issues}
 
@@ -177,8 +177,10 @@ def _opening(irpef: str) -> PeriodState:
         irpef=Decimal(irpef),
     )
     return PeriodState(
-        ytd=TaxYearState(tax_year=_YEAR),
-        obligations=EmploymentObligations(deferred_shortfall=(deferred,)),
+        cash=TaxCashState(
+            tax_year=_YEAR,
+            obligations=EmploymentObligations(deferred_shortfall=(deferred,)),
+        )
     )
 
 
@@ -232,7 +234,7 @@ class TestWithholdingInYearN1:
         plain = _plain_n1()
         runs = year.period_results
         assert all(_deferred_lines(r) == [] for r in runs[:2])
-        assert runs[1].closing_state.obligations.deferred_shortfall != ()
+        assert runs[1].closing_state.cash.obligations.deferred_shortfall != ()
         march = runs[2]
         assert _deferred_lines(march) == [
             ("deferred_irpef_2025_2026-03-regular", Decimal("300.00")),
@@ -241,9 +243,10 @@ class TestWithholdingInYearN1:
         assert march.period_net == plain.period_results[2].period_net - Decimal(
             "304.50"
         )
-        assert march.closing_state.obligations.deferred_shortfall == ()
+        assert march.closing_state.cash.obligations.deferred_shortfall == ()
         assert (
-            march.closing_state.ytd.tax == plain.period_results[2].closing_state.ytd.tax
+            march.closing_state.cash.tax
+            == plain.period_results[2].closing_state.cash.tax
         )
         assert _decision(
             march, "shortfall_deferral", "deferred_shortfall_withheld"
@@ -319,7 +322,7 @@ class TestWithholdingInYearN1:
         assert issue.status == CalculationStatus.PROVISIONAL
         left = _decision(last, "shortfall_deferral", "deferred_shortfall_unrecovered")
         assert withheld + left == Decimal("100000.00")
-        assert last.closing_state.obligations.deferred_shortfall == ()
+        assert last.closing_state.cash.obligations.deferred_shortfall == ()
 
     def test_termination_before_march_communicates_it(self) -> None:
         """An employment ending in February withholds nothing of it."""
@@ -330,7 +333,7 @@ class TestWithholdingInYearN1:
         last = year.period_results[-1]
         assert all(_deferred_lines(r) == [] for r in year.period_results)
         assert "deferred_shortfall_unrecovered" in {i.code for i in last.issues}
-        assert last.closing_state.obligations.deferred_shortfall == ()
+        assert last.closing_state.cash.obligations.deferred_shortfall == ()
 
 
 def _adjustment(
@@ -378,18 +381,18 @@ class TestOtherRuns:
         """
         plain = _adjustment(12, _without_request().period_results[-1].closing_state)
         closing = _with_request().period_results[-1].closing_state
-        (deferred,) = closing.obligations.deferred_shortfall
+        (deferred,) = closing.cash.obligations.deferred_shortfall
         result = _adjustment(12, closing)
-        owed = _ordinary_1001(plain) + plain.closing_state.ytd.shortfall.irpef
+        owed = _ordinary_1001(plain) + plain.closing_state.cash.shortfall.irpef
         assert _ordinary_1001(result) == owed - deferred.irpef
-        assert result.closing_state.ytd.shortfall.irpef == _ZERO
-        assert result.closing_state.obligations.deferred_shortfall == (deferred,)
+        assert result.closing_state.cash.shortfall.irpef == _ZERO
+        assert result.closing_state.cash.obligations.deferred_shortfall == (deferred,)
 
     def test_refund_while_deferred_is_rejected(self) -> None:
         """A refund of the year of an open deferral is not modelled."""
         closing = _with_request().period_results[-1].closing_state
-        tax = replace(closing.ytd.tax, irpef=closing.ytd.tax.irpef + 10000)
-        opening = replace(closing, ytd=replace(closing.ytd, tax=tax))
+        tax = replace(closing.cash.tax, irpef=closing.cash.tax.irpef + 10000)
+        opening = replace(closing, cash=replace(closing.cash, tax=tax))
         with pytest.raises(OutOfScopeError, match="deferred on written request"):
             _adjustment(12, opening)
 
@@ -397,7 +400,7 @@ class TestOtherRuns:
         """The last run of the employment in N leaves no payslip for it."""
         closing = _with_request().period_results[-1].closing_state
         result = _adjustment(12, closing, RunKind.TERMINATION)
-        assert result.closing_state.obligations.deferred_shortfall == ()
+        assert result.closing_state.cash.obligations.deferred_shortfall == ()
         assert "deferred_shortfall_unrecovered" in {i.code for i in result.issues}
 
     def test_adjustment_of_n1_does_not_withhold(self) -> None:
@@ -405,8 +408,8 @@ class TestOtherRuns:
         february = _year_n1(_opening("300.00")).period_results[1].closing_state
         result = _adjustment(3, february)
         assert _deferred_lines(result) == []
-        assert result.closing_state.obligations.deferred_shortfall == (
-            february.obligations.deferred_shortfall
+        assert result.closing_state.cash.obligations.deferred_shortfall == (
+            february.cash.obligations.deferred_shortfall
         )
 
     def test_deferral_of_an_older_year_is_communicated(self) -> None:
@@ -418,13 +421,15 @@ class TestOtherRuns:
             irpef=Decimal("50.00"),
         )
         opening = PeriodState(
-            ytd=TaxYearState(tax_year=_YEAR),
-            obligations=EmploymentObligations(deferred_shortfall=(stale,)),
+            cash=TaxCashState(
+                tax_year=_YEAR,
+                obligations=EmploymentObligations(deferred_shortfall=(stale,)),
+            )
         )
         january = _year_n1(opening).period_results[0]
         assert _deferred_lines(january) == []
         assert "deferred_shortfall_unrecovered" in {i.code for i in january.issues}
-        assert january.closing_state.obligations.deferred_shortfall == ()
+        assert january.closing_state.cash.obligations.deferred_shortfall == ()
 
     def test_one_cent_has_no_interest_line(self) -> None:
         """0.01 EUR at 1.50% rounds to no interest: only the principal."""

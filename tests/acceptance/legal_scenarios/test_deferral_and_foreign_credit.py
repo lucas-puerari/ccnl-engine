@@ -68,7 +68,7 @@ def test_request_defers_the_shortfall_to_the_next_year() -> None:
     request = ShortfallDeferralRequest(signed_on=date(2026, 12, 10))
     year = _year(PriorYearTaxFacts(shortfall_deferral=request), {12: fringe})
     opening_2027 = ENGINE.close_tax_year(year.period_results[-1].closing_state)
-    (deferred,) = opening_2027.obligations.deferred_shortfall
+    (deferred,) = opening_2027.cash.obligations.deferred_shortfall
     assert deferred.tax_year == 2026
     assert deferred.irpef > Decimal(0)
     assert not [i for i in year.issues if i.code.endswith("shortfall_unrecovered")]
@@ -112,6 +112,6 @@ def test_foreign_tax_lowers_the_irpef_of_the_year() -> None:
             foreign_taxes=(ForeignTaxPaid("FR", Decimal(10000), Decimal(500)),)
         )
     )
-    withheld = plain.period_results[-1].closing_state.ytd.tax.irpef
-    credited = abroad.period_results[-1].closing_state.ytd.tax.irpef
+    withheld = plain.period_results[-1].closing_state.cash.tax.irpef
+    credited = abroad.period_results[-1].closing_state.cash.tax.irpef
     assert withheld - credited == Decimal(500)

@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -37,7 +37,7 @@ _MONTHS_CLOSED = st.integers(min_value=0, max_value=11)
 def _req(
     month: int,
     irpef_ytd: Decimal = Decimal(0),
-    regular_periods_closed: int = 0,
+    payments_closed: int = 0,
 ) -> PeriodCalculationRequest:
     """Build a request for ``month`` of 2026 with the given YTD values.
 
@@ -51,9 +51,8 @@ def _req(
         ccnl_slug=_CCNL,
         level_code=_LEVEL,
         opening_state=PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=regular_periods_closed,
-                tax_withholding_periods_closed=regular_periods_closed,
+            cash=TaxCashState(
+                withholding_payments_closed=payments_closed,
                 tax=TaxYtd(irpef=irpef_ytd),
             )
         ),
@@ -78,7 +77,7 @@ class TestReconcilePassesUnderHypothesis:
         self, month: int, irpef_ytd: Decimal
     ) -> None:
         """Any non-negative irpef_withheld_ytd opening value passes reconcile."""
-        opening = PeriodState(ytd=TaxYearState(tax=TaxYtd(irpef=irpef_ytd)))
+        opening = PeriodState(cash=TaxCashState(tax=TaxYtd(irpef=irpef_ytd)))
         result = calculate_period(_req(month=month, irpef_ytd=irpef_ytd))
         r = reconcile(result, opening)
         assert r.ok, f"Month {month}, ytd={irpef_ytd}: {r.violations}"
@@ -140,7 +139,7 @@ class TestSerializationLossless:
             for e in result.ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
         )
-        assert result.closing_state.ytd.tax.irpef == irpef_from_ledger
+        assert result.closing_state.cash.tax.irpef == irpef_from_ledger
 
 
 class TestOpeningPlusMovementsEqualsClosing:
@@ -154,9 +153,8 @@ class TestOpeningPlusMovementsEqualsClosing:
         """gross_ytd closing = opening.gross_ytd + CASH_EARNINGS for any month."""
         opening_gross = Decimal("1000.00") * months_closed
         opening = PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=months_closed,
-                tax_withholding_periods_closed=months_closed,
+            cash=TaxCashState(
+                withholding_payments_closed=months_closed,
                 earnings=EarningsYtd(gross=opening_gross),
             )
         )
@@ -174,4 +172,4 @@ class TestOpeningPlusMovementsEqualsClosing:
             for e in result.ledger_entries
             if e.account == AccountKind.CASH_EARNINGS
         )
-        assert result.closing_state.ytd.earnings.gross == opening_gross + cash
+        assert result.closing_state.cash.earnings.gross == opening_gross + cash

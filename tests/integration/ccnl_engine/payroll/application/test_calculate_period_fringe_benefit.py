@@ -105,8 +105,8 @@ class TestSingleRun:
         base = _run(3)
         result = _run(3, _D(1400))
         grown = (
-            result.closing_state.ytd.earnings.inps_base
-            - base.closing_state.ytd.earnings.inps_base
+            result.closing_state.cash.earnings.inps_base
+            - base.closing_state.cash.earnings.inps_base
         )
         assert grown == _D(1400)
 
@@ -152,8 +152,8 @@ class TestCrossingInLaterRun:
         assert decision.inputs["ytd_before"] == _D(600)
         assert decision.inputs["retroactive_amount"] == _D(600)
         assert march.benefit_breakdown.irpef_base == _D(1200)
-        assert march.closing_state.ytd.fringe.value == _D(1200)
-        assert march.closing_state.ytd.fringe.taxed == _D(1200)
+        assert march.closing_state.cash.fringe.value == _D(1200)
+        assert march.closing_state.cash.fringe.taxed == _D(1200)
 
     def test_after_crossing_only_new_amount_taxable(self) -> None:
         """April 300 after 1.200 already taxed: only the 300 is taxable."""

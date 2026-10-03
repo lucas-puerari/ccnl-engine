@@ -18,6 +18,7 @@ from ccnl_engine.payroll.application.opening_balance_fields import (
     check_scalar_fields,
     items,
 )
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.credit_accounts import (
     SommaEsenteAccount,
     TrattamentoAccount,
@@ -27,11 +28,11 @@ from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
     FringeYtd,
@@ -56,20 +57,23 @@ class OpeningBalances:
     Every amount is in EUR, non-negative and with at most two decimals; an
     amount left ``None`` (a ``*_due``) is not known.
     The totals are validated by the same rules as the state the engine
-    produces (:class:`~ccnl_engine.payroll.domain.tax_year_state.TaxYearState`
+    produces (:class:`~ccnl_engine.payroll.domain.tax_cash_state.TaxCashState`
     and its accounts); a violation is raised as ``InvalidInputError``.
 
     Attributes:
         tax_year: Tax year of the totals.
-        regular_periods_closed: Regular runs already paid this tax year.
-        tax_withholding_periods_closed: Runs that already consumed an IRPEF
-            withholding slot this tax year (regular and extra months).
-        closed_run_ids: Identifiers of the runs already paid, in payment
+        withholding_payments_closed: Payments of the tax year that already
+            took an IRPEF withholding slot (every run kind but adjustment),
+            whatever their competence year; no maximum.
+        payments: The payments already made this tax year, in payment
             order, when the integration keeps them
-            (:meth:`~ccnl_engine.payroll.domain.run.PayrollRunId.parse`
-            reads the engine's ``run_id`` text); they are rejected if
-            computed again, and a run of the tax year before the last one
-            is rejected as out of order.
+            (:meth:`~ccnl_engine.payroll.domain.payment.PaymentId.parse`
+            reads ``"2026-12-regular@2027-01-13"``).  Each must belong to
+            ``tax_year``; its run is closed in the accrual state, so it is
+            rejected if computed again, and a run of the same competence
+            year before it is rejected as out of order.  A late payment of
+            an earlier competence year takes a slot of the withholding
+            schedule of the year.
         gross: Contractual gross earnings paid.
         taxable: IRPEF taxable income.
         inps_base: INPS contribution base.
@@ -120,9 +124,8 @@ class OpeningBalances:
     """
 
     tax_year: int
-    regular_periods_closed: int = 0
-    tax_withholding_periods_closed: int = 0
-    closed_run_ids: tuple[PayrollRunId, ...] = ()
+    withholding_payments_closed: int = 0
+    payments: tuple[PaymentId, ...] = ()
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_base: Decimal = _ZERO
@@ -166,9 +169,7 @@ class OpeningBalances:
         """
         check_scalar_fields(self)
         object.__setattr__(
-            self,
-            "closed_run_ids",
-            items(self.closed_run_ids, "closed_run_ids", PayrollRunId),
+            self, "payments", items(self.payments, "payments", PaymentId)
         )
         object.__setattr__(
             self, "recoveries", items(self.recoveries, "recoveries", RecoveryObligation)
@@ -206,8 +207,10 @@ class OpeningBalances:
             )
         try:
             self.to_state()
-        except ValueError as exc:
-            raise InvalidInputError(str(exc), feature=FEATURE) from exc
+        except (ValueError, InvalidInputError) as exc:
+            raise InvalidInputError(
+                str(exc), field=getattr(exc, "field", None), feature=FEATURE
+            ) from exc
 
     def to_state(self) -> PeriodState:
         """Return the state to open the next run with.
@@ -217,11 +220,10 @@ class OpeningBalances:
             to :attr:`tax_year`, carrying :attr:`recoveries`,
             :attr:`surtax_obligations` and :attr:`deferred_shortfall`.
         """
-        ytd = TaxYearState(
+        cash = TaxCashState(
             tax_year=self.tax_year,
-            regular_periods_closed=self.regular_periods_closed,
-            tax_withholding_periods_closed=self.tax_withholding_periods_closed,
-            closed_run_ids=self.closed_run_ids,
+            payments=self.payments,
+            withholding_payments_closed=self.withholding_payments_closed,
             earnings=EarningsYtd(
                 gross=self.gross,
                 inps_base=self.inps_base,
@@ -259,9 +261,6 @@ class OpeningBalances:
             shortfall=WithholdingShortfall(
                 irpef=self.irpef_shortfall, surtax=self.surtax_shortfall
             ),
-        )
-        return PeriodState(
-            ytd=ytd,
             obligations=EmploymentObligations(
                 recoveries=self.recoveries,
                 surtax=self.surtax_obligations,
@@ -272,3 +271,7 @@ class OpeningBalances:
                 ),
             ),
         )
+        accrual = EmploymentAccrualState(
+            competence_runs=tuple(p.run_id for p in self.payments)
+        )
+        return PeriodState(accrual=accrual, cash=cash)

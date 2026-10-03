@@ -65,7 +65,7 @@ def _capability(year: YearResult, capability: str) -> list[tuple[str, Decimal]]:
 def test_credit_below_the_quota_is_deducted() -> None:
     """500 EUR is below the quota of the 10,000 EUR: all of it is credited."""
     year = _partly_abroad()
-    ytd = year.period_results[-1].closing_state.ytd
+    ytd = year.period_results[-1].closing_state.cash
     taxable = ytd.earnings.taxable
     quota = (gross_irpef(taxable) * Decimal(10000) / taxable).quantize(
         Decimal("0.01"), ROUND_HALF_UP
@@ -86,7 +86,7 @@ def test_credit_only_on_the_conguaglio() -> None:
     plain = _plain().period_results
     runs = _partly_abroad().period_results
     for before, run in zip(plain[:-1], runs[:-1], strict=True):
-        assert run.closing_state.ytd.tax == before.closing_state.ytd.tax
+        assert run.closing_state.cash.tax == before.closing_state.cash.tax
         assert not [d for d in run.decisions if d.capability == "foreign_tax_credit"]
 
 
@@ -99,10 +99,10 @@ def test_credit_above_the_netta_cancels_irpef_and_surtax() -> None:
     """
     year = _year(ForeignTaxPaid("FR", Decimal(40000), Decimal(20000)))
     last = year.period_results[-1]
-    taxable = last.closing_state.ytd.earnings.taxable
+    taxable = last.closing_state.cash.earnings.taxable
     assert _capability(year, "foreign_tax_credit") == [
         ("limited_to_net_tax", net_irpef(taxable))
     ]
-    assert last.closing_state.ytd.tax.irpef == _ZERO
+    assert last.closing_state.cash.tax.irpef == _ZERO
     assert _capability(year, "addizionale_regionale")[0] == ("no_irpef_due", _ZERO)
-    assert last.closing_state.obligations.surtax == ()
+    assert last.closing_state.cash.obligations.surtax == ()

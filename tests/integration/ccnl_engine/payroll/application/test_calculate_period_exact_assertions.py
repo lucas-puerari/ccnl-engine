@@ -41,7 +41,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.helpers import year_input
 
@@ -70,9 +70,7 @@ def test_regular_december_and_tredicesima_have_different_gross() -> None:
     table starts 2026-02-01, so January would raise a gap error in calculate_year.
     """
     pid = PeriodId(year=2026, month=12)
-    state = PeriodState(
-        ytd=TaxYearState(regular_periods_closed=11, tax_withholding_periods_closed=11)
-    )
+    state = PeriodState(cash=TaxCashState(withholding_payments_closed=11))
     regular = calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),

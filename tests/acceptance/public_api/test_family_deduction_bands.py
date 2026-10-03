@@ -72,8 +72,7 @@ def test_spouse_deduction_follows_increase_bands(
     """
     opening = OpeningBalances(
         tax_year=2026,
-        regular_periods_closed=12,
-        tax_withholding_periods_closed=12,
+        withholding_payments_closed=12,
         taxable=income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
     ).to_state()
 
@@ -90,7 +89,7 @@ def test_spouse_deduction_follows_increase_bands(
         )
     )
 
-    annual_taxable = result.closing_state.ytd.earnings.taxable
+    annual_taxable = result.closing_state.cash.earnings.taxable
     if not band.contains(annual_taxable):
         pytest.fail(f"annual taxable {annual_taxable} is outside the band {band}")
     (decision,) = [d for d in result.decisions if d.capability == "family_deductions"]

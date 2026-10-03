@@ -16,7 +16,7 @@ from ccnl_engine.payroll.application._period_utils import (
     _int_value,
 )
 from ccnl_engine.payroll.application.period._chain import _resolve_chain
-from ccnl_engine.payroll.application.period._checks import resolve_run_id
+from ccnl_engine.payroll.application.period._checks import resolve_payment
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.withholding._plan import (
@@ -52,10 +52,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.capability_catalog import CapabilityCatalog
+    from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.policy import PolicyResolver
-    from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
     from ccnl_engine.payroll.service.types import (
         ApprenticeshipScaling,
@@ -91,7 +91,7 @@ class RunContext:
         chain: Pay chain of the run, adjusted for an extra month.
         apprenticeship: Percentage scaling of a percentage apprenticeship,
             ``None`` for any other contract or track.
-        closed_run_id: Identifier of the run the calculation closes.
+        payment: The payment the calculation closes: its run and date.
         upcoming_gross: Recurring gross of the slots still to come.
         accrual: Rateo an extra-month run pays, ``None`` for a regular run.
         var_pay_rules: Variable pay rules of the tax year.
@@ -107,7 +107,7 @@ class RunContext:
     worker_category: WorkerCategory | None
     chain: MonthlyPayChain
     apprenticeship: ApprenticeshipScaling | None
-    closed_run_id: PayrollRunId
+    payment: PaymentId
     upcoming_gross: Decimal
     accrual: ExtraMonthAccrual | None
     var_pay_rules: VariablePayRules
@@ -120,14 +120,24 @@ class RunContext:
         return self.contract.tctx.fiscal_year
 
     @property
+    def takes_last_slot(self) -> bool:
+        """Whether the run takes the last withholding slot of the tax year.
+
+        The one place the conguaglio position is read from the payments of
+        the tax cash state and the withholding schedule.
+        """
+        closed = self.opening.cash.withholding_payments_closed
+        return self.withholding_schedule.remaining(closed) == 1
+
+    @property
     def run_kind(self) -> RunKind:
         """Kind of the run."""
-        return self.closed_run_id.kind
+        return self.payment.run_id.kind
 
     @property
     def run_id(self) -> str:
         """Run identifier as the tag of item and entry ids."""
-        return str(self.closed_run_id)
+        return str(self.payment.run_id)
 
     @property
     def installment_run(self) -> InstallmentRun:
@@ -138,10 +148,9 @@ class RunContext:
         withholding slot: no later payslip can carry an installment.
         """
         kind = self.run_kind
-        slots_closed = self.opening.ytd.tax_withholding_periods_closed
         final = kind is RunKind.TERMINATION or (
             ends_in_year(self.request.employment_period, self.fiscal_year)
-            and self.withholding_schedule.remaining(slots_closed) == 1
+            and self.takes_last_slot
         )
         return InstallmentRun(final=final, adjustment=kind is RunKind.ADJUSTMENT)
 
@@ -152,10 +161,8 @@ class RunContext:
         It does when it takes the last withholding slot of the year or is
         the last run of the employment (:attr:`installment_run`).
         """
-        slots_closed = self.opening.ytd.tax_withholding_periods_closed
         return self.installment_run.final or (
-            self.run_kind.consumes_withholding_slot
-            and self.withholding_schedule.remaining(slots_closed) == 1
+            self.run_kind.consumes_withholding_slot and self.takes_last_slot
         )
 
     @property
@@ -252,27 +259,22 @@ def build_context(
     effective_resolver = _effective_resolver(resolver)
     contract = _load_contract(request, effective_repo)
     competence, fiscal_year = contract.tctx.competence, contract.tctx.fiscal_year
-    schedule = resolve_withholding_schedule(
-        request.withholding_schedule, contract.ccnl, competence, fiscal_year
-    )
     worker_category = resolve_worker_category(
-        contract.ccnl,
-        contract.level,
-        request.category,
-        seniority=request.seniority,
+        contract.ccnl, contract.level, request.category, seniority=request.seniority
     )
     chain, apprenticeship = _base_chain(request, contract, worker_category)
-    closed_run_id = resolve_run_id(request)
+    payment = resolve_payment(request)
+    schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
     opening = request.opening_state
     upcoming_gross = upcoming_recurring_gross(
         chain,
         schedule,
-        opening.ytd.tax_withholding_periods_closed,
+        opening.cash.withholding_payments_closed,
         request.employment_period,
         month_accrual_rule(contract.ccnl),
     )
     accrual = run_accrual(request, contract.ccnl, competence)
-    chain = _apply_extra_month_policy(chain, closed_run_id.kind, run_fraction(accrual))
+    chain = _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     return RunContext(
         request=request,
         repo=effective_repo,
@@ -282,7 +284,7 @@ def build_context(
         worker_category=worker_category,
         chain=chain,
         apprenticeship=apprenticeship,
-        closed_run_id=closed_run_id,
+        payment=payment,
         upcoming_gross=upcoming_gross,
         accrual=accrual,
         var_pay_rules=effective_repo.load_variable_pay_rules(fiscal_year),
@@ -291,7 +293,7 @@ def build_context(
             as_of=competence,
             ccnl_slug=request.ccnl_slug,
             sector=contract.ccnl.meta.tax_sector,
-            gross_ytd=opening.ytd.earnings.gross,
+            gross_ytd=opening.cash.earnings.gross,
         ),
         cp=CompetencePeriod(year=request.period_id.year, month=request.period_id.month),
     )

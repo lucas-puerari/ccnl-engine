@@ -11,22 +11,26 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.benefit import BenefitBreakdown
 from ccnl_engine.payroll.domain.capability_report import CapabilityReport
 from ccnl_engine.payroll.domain.contributions import ContributionBreakdown
 from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import BaseSalaryEarning, CompetencePeriod
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period import PeriodResult
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
 from ccnl_engine.payroll.domain.tax import TaxComputation
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 YEAR = 2026
 COMPETENCE = CompetencePeriod(year=YEAR, month=1)
 PAYMENT_DATE = date(YEAR, 1, 28)
 PERIOD_ID = PeriodId(year=YEAR, month=1)
+RUN_ID = PayrollRunId(year=YEAR, month=1, kind=RunKind.REGULAR)
 
 
 def ledger_entry(
@@ -92,15 +96,17 @@ class ResultBuilder:
             period_net=self.period_net,
             period_employer_cost=self.period_employer_cost,
             closing_state=PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=self.closing_months,
-                    tax_withholding_periods_closed=self.closing_months,
+                accrual=EmploymentAccrualState(competence_runs=(RUN_ID,)),
+                cash=TaxCashState(
+                    tax_year=YEAR,
+                    payments=(PaymentId(RUN_ID, PAYMENT_DATE),),
+                    withholding_payments_closed=self.closing_months,
                     tax=TaxYtd(irpef=self.closing_irpef),
                     earnings=EarningsYtd(
                         inps_employee=self.closing_inps,
                         gross=self.closing_gross,
                     ),
-                )
+                ),
             ),
             pay_items=self.pay_items,
             ledger_entries=self.ledger_entries,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -13,15 +14,17 @@ from ccnl_engine.payroll.application.withholding._plan import (
     slot_share,
     upcoming_recurring_gross,
 )
+from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import PayrollRunCount, WithholdingSchedule
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -40,24 +43,74 @@ def _chain() -> MonthlyPayChain:
     return MonthlyPayChain(base=Decimal(1000), seniority=Decimal(0), allowances=())
 
 
+def _request(
+    run: PayrollRun,
+    paid_on: date,
+    opening: PeriodState | None = None,
+    schedule: WithholdingSchedule | None = None,
+) -> PeriodCalculationRequest:
+    return PeriodCalculationRequest(
+        employer=EmployerProfile(headcount=Headcount(50)),
+        period_id=PeriodId(year=run.year, month=run.month),
+        payment_date=paid_on,
+        ccnl_slug=_COOP_SOCIALI,
+        level_code="D2",
+        opening_state=opening or PeriodState.zero(),
+        run=run,
+        withholding_schedule=schedule,
+    )
+
+
+def _resolve(request: PeriodCalculationRequest) -> WithholdingSchedule:
+    ccnl = BundledKnowledgeRepository().load_ccnl(_COOP_SOCIALI)
+    payment = PaymentId(request.run.identifier, request.payment_date)  # type: ignore[union-attr]
+    competence = date(request.period_id.year, request.period_id.month, 1)
+    return resolve_withholding_schedule(request, payment, ccnl, competence)
+
+
+_LATE_DECEMBER = PayrollRun.regular(_YEAR, 12)
+_PAID_LATE = date(_YEAR + 1, 1, 13)
+
+
 class TestResolveWithholdingSchedule:
-    """The period uses the requested schedule, else the CCNL standard one."""
+    """The period uses the requested schedule, else the payments of its year."""
 
     def test_requested_schedule_wins(self) -> None:
         """A schedule passed with the request is used unchanged."""
-        ccnl = BundledKnowledgeRepository().load_ccnl(_COOP_SOCIALI)
         requested = WithholdingSchedule.from_calendar(WorkCalendar(year=_YEAR))
-        resolved = resolve_withholding_schedule(
-            requested, ccnl, date(_YEAR, 1, 1), _YEAR
-        )
+        request = _request(PayrollRun.regular(_YEAR, 1), date(_YEAR, 1, 28))
+        resolved = _resolve(replace(request, withholding_schedule=requested))
         assert resolved is requested
 
     def test_fractional_ccnl_default_has_one_slot_per_payslip(self) -> None:
         """Cooperative Sociali (13.5 months) defaults to 14 slots, not 13."""
-        ccnl = BundledKnowledgeRepository().load_ccnl(_COOP_SOCIALI)
-        resolved = resolve_withholding_schedule(None, ccnl, date(_YEAR, 1, 1), _YEAR)
+        resolved = _resolve(_request(PayrollRun.regular(_YEAR, 1), date(_YEAR, 1, 28)))
         assert resolved == _HALF_FOURTEENTH
         assert resolved.run_count == PayrollRunCount(14)
+
+    def test_late_december_takes_the_first_slot_of_the_next_year(self) -> None:
+        """December 2026 paid on 13 January 2027 is the first of 15 payments."""
+        resolved = _resolve(_request(_LATE_DECEMBER, _PAID_LATE))
+
+        assert resolved.year == _YEAR + 1
+        assert resolved.run_count == PayrollRunCount(15)
+        assert resolved.slots[0].run == _LATE_DECEMBER
+
+    def test_late_payment_already_closed_keeps_its_slot(self) -> None:
+        """January 2027 sees the late December among the payments of 2027."""
+        december = PaymentId(_LATE_DECEMBER.identifier, _PAID_LATE)
+        opening = PeriodState(
+            accrual=EmploymentAccrualState(competence_runs=(december.run_id,)),
+            cash=TaxCashState(
+                tax_year=_YEAR + 1, payments=(december,), withholding_payments_closed=1
+            ),
+        )
+        january = PayrollRun.regular(_YEAR + 1, 1)
+
+        resolved = _resolve(_request(january, date(_YEAR + 1, 1, 27), opening))
+
+        assert [s.run for s in resolved.slots[:2]] == [_LATE_DECEMBER, january]
+        assert resolved.run_count == PayrollRunCount(15)
 
 
 class TestUpcomingRecurringGross:
@@ -100,10 +153,9 @@ def test_standalone_december_is_not_the_last_slot_with_half_fourteenth() -> None
     split the balance over the December payslip and the tredicesima.
     """
     opening = PeriodState(
-        ytd=TaxYearState(
+        cash=TaxCashState(
             tax_year=_YEAR,
-            regular_periods_closed=11,
-            tax_withholding_periods_closed=12,
+            withholding_payments_closed=12,
             earnings=EarningsYtd(taxable=Decimal("18043.97")),
         )
     )

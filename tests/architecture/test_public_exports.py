@@ -76,6 +76,7 @@ EXPECTED_PUBLIC: frozenset[str] = frozenset({
     "PayrollEngine",
     "PayrollRun",
     "PayrollRunId",
+    "PaymentId",
     "PeriodFacts",
     "PeriodInput",
     "PeriodResult",

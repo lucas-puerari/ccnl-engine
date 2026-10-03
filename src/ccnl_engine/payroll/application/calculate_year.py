@@ -183,8 +183,10 @@ def calculate_year(
     :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` of each run passed
     as the opening state of the next.  Every run receives the same
     :class:`~ccnl_engine.payroll.domain.schedule.WithholdingSchedule`, one
-    slot per computed run, so the IRPEF conguaglio settles on the last run
-    even when an extra month is fractional.  Each run is mapped to its
+    slot per payment of the tax year: the late payments of an earlier
+    competence year already closed in the opening state, then one per
+    computed run, so the IRPEF conguaglio settles on the last run even when
+    an extra month is fractional or a December was paid late.  Each run is mapped to its
     request by :meth:`~ccnl_engine.payroll.domain.inputs.PeriodInput\
 .calculation_request`, with the facts of
     :meth:`~ccnl_engine.payroll.domain.year_input.YearInput.facts_for`.
@@ -222,15 +224,15 @@ def calculate_year(
     override rejected by
     :meth:`~ccnl_engine.payroll.domain.calendar_override.CalendarOverride.resolve`,
     an employment period with no day in the year or an ``opening_state``
-    with a run of the year closed.
+    with a run of the year closed or YTD amounts of unidentified payments.
     """
     year = request.year
     period = request.employment.employment_period
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     ccnl = effective_repo.load_ccnl(request.employment.ccnl_slug)
     year_calendar = effective_calendar(ccnl, year, request.calendar_override)
-    plan = plan_year(request, year_calendar, month_accrual_rule(ccnl))
     state = opening_of_year(year, request.opening_state)
+    plan = plan_year(request, year_calendar, state, month_accrual_rule(ccnl))
     results: list[PeriodResult] = []
     for run in plan.schedule.runs:
         req = run_request(request, plan, run, state)

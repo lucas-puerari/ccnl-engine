@@ -109,8 +109,8 @@ def _check_regime_cap(
         broken chain of ``cap_available``.
     """
     capped = _capped(result)
-    used = result.closing_state.ytd.work_time_regime.used
-    opening_used = opening.ytd.work_time_regime.used
+    used = result.closing_state.cash.work_time_regime.used
+    opening_used = opening.cash.work_time_regime.used
     expected = opening_used + sum((_input(d, "eligible_amount") for d in capped), _ZERO)
     violations: list[ReconciliationViolation] = []
     if used != expected:
@@ -145,11 +145,11 @@ def _check_pdr_cap(
     Returns:
         Violations for a wrong advance or a YTD above ``facts.pdr_cap``.
     """
-    pdr = result.closing_state.ytd.fringe.pdr
+    pdr = result.closing_state.cash.fringe.pdr
     eligible = (
         _input(d, "eligible_amount") for d in result.decisions if d.capability == _PDR
     )
-    expected = opening.ytd.fringe.pdr + sum(eligible, _ZERO)
+    expected = opening.cash.fringe.pdr + sum(eligible, _ZERO)
     violations: list[ReconciliationViolation] = []
     if pdr != expected:
         violations.append(

@@ -194,6 +194,15 @@ class PayrollRun:
         return PayrollRunId(year=self.year, month=self.month, kind=self.run_kind)
 
     @classmethod
+    def of(cls, run_id: PayrollRunId) -> PayrollRun:
+        """Return the run ``run_id`` identifies.
+
+        Returns:
+            A :class:`PayrollRun` whose :attr:`identifier` is ``run_id``.
+        """
+        return cls(run_kind=run_id.kind, month=run_id.month, year=run_id.year)
+
+    @classmethod
     def regular(cls, year: int, month: int) -> PayrollRun:
         """Create a regular monthly run for the given year and month.
 

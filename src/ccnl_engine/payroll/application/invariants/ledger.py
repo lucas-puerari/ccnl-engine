@@ -146,7 +146,7 @@ def check_irpef_withheld_continuity(
         A violation when the closing-minus-opening IRPEF delta diverges from
         ``ORDINARY_TAX`` less ``TAX_REFUNDS``.
     """
-    delta = result.closing_state.ytd.tax.irpef - opening.ytd.tax.irpef
+    delta = result.closing_state.cash.tax.irpef - opening.cash.tax.irpef
     deferred = sum(
         (
             e.amount

@@ -86,7 +86,7 @@ the `lavoro-domestico` tax sector. For such a run:
   IRPEF or surtax withheld is rejected with `InvalidInputError`: a household
   employer cannot have produced it.
 
-The taxable income is still accumulated in `state.ytd.earnings.taxable`, since
+The taxable income is still accumulated in `state.cash.earnings.taxable`, since
 the worker declares it.
 
 **API reference:** [`Employment`, `PeriodFacts`](../api/engine.md),

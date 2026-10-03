@@ -58,7 +58,10 @@ class YearInput:
         payment_day: Day of the run month on which every run is paid, 1-28.
         opening_state: State the first run opens with.  ``None`` starts a
             new employment; pass ``close_tax_year()`` of the last run of the
-            previous year to carry its obligations.
+            previous year to carry its obligations and competence runs.  It
+            may also hold payments of an earlier competence year already
+            made in the tax year (December paid after 12 January): they
+            take the first withholding slots of the year.
 
     Raises:
         InvalidInputError: When a field is not of its type, a key of

@@ -21,13 +21,17 @@ from ccnl_engine.payroll.domain.accrual import (
 )
 from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthKind
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
+    from ccnl_engine.payroll.domain.payment import PaymentId
+    from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.schedule import WithholdingSlot
     from ccnl_engine.payroll.service.types import MonthlyPayChain
 
@@ -35,29 +39,50 @@ _ZERO = Decimal(0)
 
 
 def resolve_withholding_schedule(
-    requested: WithholdingSchedule | None,
+    request: PeriodCalculationRequest,
+    payment: PaymentId,
     ccnl: CCNL,
     competence: date,
-    fiscal_year: int,
 ) -> WithholdingSchedule:
     """Return the withholding schedule the period must use.
 
     Args:
-        requested: Schedule supplied with the request (the year orchestrator
-            passes the one it runs), or ``None`` for a standalone period.
+        request: The period request: its schedule, supplied by the year
+            orchestrator, or ``None`` for a standalone period, and its
+            opening state.
+        payment: The payment the run closes.
         ccnl: The contract, whose ``additional_months`` gives the standard
             calendar when no schedule is supplied.
         competence: Competence date used to read ``additional_months``.
-        fiscal_year: Tax year of the period.
 
     Returns:
-        ``requested`` when given; otherwise one slot per payslip of the
-        standard calendar built from the CCNL entitlement.
+        ``request.withholding_schedule`` when given; otherwise one slot per
+        payment of the tax year: the runs of an earlier competence year
+        already paid in it, this run when it is one of them, then every
+        payslip of the standard calendar built from the CCNL entitlement.
     """
-    if requested is not None:
-        return requested
-    calendar = standard_calendar(ccnl, fiscal_year, competence)
-    return WithholdingSchedule.from_calendar(calendar)
+    if request.withholding_schedule is not None:
+        return request.withholding_schedule
+    late = (*request.opening_state.cash.prior_competence_payments, payment)
+    calendar = standard_calendar(ccnl, payment.tax_year, competence)
+    return WithholdingSchedule.from_calendar(calendar, late_runs(late))
+
+
+def late_runs(payments: Iterable[PaymentId]) -> tuple[PayrollRun, ...]:
+    """Return the runs of an earlier competence year that take a slot.
+
+    Args:
+        payments: Payments of the tax year, in payment order.
+
+    Returns:
+        The run of each payment that settles an earlier competence year and
+        consumes a withholding slot, in payment order.
+    """
+    return tuple(
+        PayrollRun.of(p.run_id)
+        for p in payments
+        if p.is_prior_competence and p.run_id.kind.consumes_withholding_slot
+    )
 
 
 def upcoming_recurring_gross(

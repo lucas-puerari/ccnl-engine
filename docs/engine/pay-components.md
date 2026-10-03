@@ -188,7 +188,7 @@ The rules behind it:
   c. 1 lett. e-bis and art. 51 c. 2 lett. h). Within the cap the taxable
   falls by the employee part; beyond it the employer part is taxable
   income. The TFR paid to the fund does not count. The amount already
-  deducted is tracked in `closing_state.ytd.earnings.pension_deducted`
+  deducted is tracked in `closing_state.cash.earnings.pension_deducted`
   (`OpeningBalances.pension_deducted` when importing a year in progress).
 - **Solidarity.** The employer contributions, the TFR excluded, stay
   outside the INPS base and bear the 10% solidarity contribution to INPS

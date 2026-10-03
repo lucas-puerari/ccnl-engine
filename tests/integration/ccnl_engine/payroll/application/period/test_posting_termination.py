@@ -43,6 +43,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule, WithholdingSlot
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from tests.helpers import EMPLOYER_50, year_input
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -64,8 +65,10 @@ def _plan(
 
 def _carried(plan: RecoveryPlan) -> PeriodState:
     return PeriodState(
-        obligations=EmploymentObligations(
-            recoveries=(RecoveryObligation(tax_year=2025, plan=plan),)
+        cash=TaxCashState(
+            obligations=EmploymentObligations(
+                recoveries=(RecoveryObligation(tax_year=2025, plan=plan),)
+            )
         )
     )
 
@@ -142,11 +145,11 @@ class TestCarriedPlanAtTermination:
             for e in r.ledger_entries
             if e.entry_id.startswith(prefix)
         } == {code}
-        assert result.period_results[-1].closing_state.obligations.recoveries == ()
+        assert result.period_results[-1].closing_state.cash.obligations.recoveries == ()
         recovered = 2 * Decimal(installment) + Decimal(residual)
         assert _q1_without_plan().annual_net - result.annual_net == recovered
-        assert result.period_results[-1].closing_state.ytd == (
-            _q1_without_plan().period_results[-1].closing_state.ytd
+        assert result.period_results[-1].closing_state.cash == (
+            _q1_without_plan().period_results[-1].closing_state.cash
         )
 
     def test_december_termination_settles_on_the_thirteenth(self) -> None:
@@ -198,7 +201,7 @@ def _with_current_plan(plan: RecoveryPlan) -> PeriodState:
         The state to open the March run with.
     """
     february = _q1_without_plan().period_results[1].closing_state
-    ytd = february.ytd
+    ytd = february.cash
     posted = plan.installment_amount * plan.installments_posted
     if plan.kind == TRATTAMENTO_RECOVERY:
         ytd = replace(
@@ -218,12 +221,10 @@ def _with_current_plan(plan: RecoveryPlan) -> PeriodState:
                 recovered=ytd.somma_esente.recovered + posted,
             ),
         )
-    return PeriodState(
-        ytd=ytd,
-        obligations=EmploymentObligations(
-            recoveries=(RecoveryObligation(tax_year=2026, plan=plan),)
-        ),
+    obligations = EmploymentObligations(
+        recoveries=(RecoveryObligation(tax_year=2026, plan=plan),)
     )
+    return replace(february, cash=replace(ytd, obligations=obligations))
 
 
 @pytest.mark.parametrize(
@@ -260,7 +261,7 @@ def test_current_year_plan_is_settled_on_the_last_run(
     assert line == residual
     (decision,) = (d for d in result.decisions if d.capability == reason_capability)
     assert decision.reason_code == "settled_at_termination"
-    assert result.closing_state.obligations.recoveries == ()
+    assert result.closing_state.cash.obligations.recoveries == ()
 
 
 def test_residual_above_the_pay_is_left_to_the_worker() -> None:
@@ -277,7 +278,7 @@ def test_residual_above_the_pay_is_left_to_the_worker() -> None:
     march = result.period_results[-1]
     plain = _q1_without_plan().period_results[-1]
     pay_left = plain.period_net + plain.tax_computation.ordinary_tax
-    shortfall = march.closing_state.ytd.shortfall
+    shortfall = march.closing_state.cash.shortfall
     assert march.period_net == _ZERO
     assert shortfall.credit_recovery == Decimal(4000) - pay_left
     assert shortfall.irpef == plain.tax_computation.ordinary_tax
@@ -289,4 +290,4 @@ def test_residual_above_the_pay_is_left_to_the_worker() -> None:
     )
     assert adjustment == shortfall.credit_recovery
     assert "withholding_shortfall_unrecovered" in {i.code for i in march.issues}
-    assert march.closing_state.obligations.recoveries == ()
+    assert march.closing_state.cash.obligations.recoveries == ()

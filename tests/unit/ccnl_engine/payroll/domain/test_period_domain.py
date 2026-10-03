@@ -1,4 +1,4 @@
-"""Unit tests for PeriodState, PeriodCalculationRequest, PeriodResult."""
+"""Unit tests for PeriodId, PeriodCalculationRequest and PeriodResult."""
 
 from __future__ import annotations
 
@@ -23,10 +23,9 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.schedule import WithholdingSchedule
 from ccnl_engine.payroll.domain.tax import TaxComputation
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import (
     EarningsYtd,
-    FringeYtd,
     TaxYtd,
 )
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -45,9 +44,7 @@ def _make_result(**kwargs: object) -> PeriodResult:
         "period_gross": Decimal("2158.26"),
         "period_net": Decimal("1674.42"),
         "period_employer_cost": Decimal("2969.92"),
-        "closing_state": PeriodState(
-            ytd=TaxYearState(regular_periods_closed=1, tax_withholding_periods_closed=1)
-        ),
+        "closing_state": PeriodState(cash=TaxCashState(withholding_payments_closed=1)),
         "pay_items": (),
         "ledger_entries": (),
         "capability_report": CapabilityReport.empty(2026),
@@ -97,109 +94,14 @@ class TestPeriodId:
             PeriodId(year=0, month=1)
 
 
-class TestPeriodState:
-    """PeriodState stores YTD progressives and provides a zero factory."""
-
-    def test_zero_factory(self) -> None:
-        """PeriodState.zero() returns a state with all counters at zero."""
-        s = PeriodState.zero()
-        assert s.ytd.regular_periods_closed == 0
-        assert s.ytd.tax_withholding_periods_closed == 0
-        assert s.ytd.closed_run_ids == ()
-        assert s.ytd.tax.irpef == _ZERO
-        assert s.ytd.earnings.inps_employee == _ZERO
-        assert s.ytd.earnings.gross == _ZERO
-
-    def test_stored_values(self) -> None:
-        """All fields are stored and retrievable after construction."""
-        s = PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=3,
-                tax_withholding_periods_closed=3,
-                tax=TaxYtd(irpef=Decimal("837.06")),
-                earnings=EarningsYtd(
-                    inps_employee=Decimal("614.46"),
-                    gross=Decimal("6474.78"),
-                ),
-            )
-        )
-        assert s.ytd.regular_periods_closed == 3
-        assert s.ytd.tax_withholding_periods_closed == 3
-        assert s.ytd.tax.irpef == Decimal("837.06")
-        assert s.ytd.earnings.inps_employee == Decimal("614.46")
-        assert s.ytd.earnings.gross == Decimal("6474.78")
-
-    def test_frozen(self) -> None:
-        """PeriodState is immutable: attribute assignment raises AttributeError."""
-        s = PeriodState.zero()
-        with pytest.raises(AttributeError):
-            s.ytd.regular_periods_closed = 1  # type: ignore[misc]
-
-    def test_negative_regular_periods_raises(self) -> None:
-        """regular_periods_closed < 0 raises ValueError."""
-        with pytest.raises(ValueError, match="regular_periods_closed"):
-            PeriodState(ytd=TaxYearState(regular_periods_closed=-1))
-
-    def test_tax_withholding_less_than_regular_raises(self) -> None:
-        """tax_withholding_periods_closed < regular_periods_closed raises ValueError."""
-        with pytest.raises(ValueError, match="tax_withholding_periods_closed"):
-            PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=5, tax_withholding_periods_closed=3
-                )
-            )
-
-    def test_fringe_taxed_above_fringe_raises(self) -> None:
-        """FringeYtd.taxed > FringeYtd.value raises ValueError."""
-        with pytest.raises(ValueError, match="taxed"):
-            FringeYtd(value=Decimal("100.00"), taxed=Decimal("200.00"))
-
-    def test_regular_periods_exceeds_twelve_raises(self) -> None:
-        """regular_periods_closed > 12 raises ValueError."""
-        with pytest.raises(ValueError, match="regular_periods_closed"):
-            PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=13, tax_withholding_periods_closed=13
-                )
-            )
-
-    def test_tax_withholding_exceeds_fourteen_raises(self) -> None:
-        """tax_withholding_periods_closed > 14 raises ValueError."""
-        with pytest.raises(ValueError, match="tax_withholding_periods_closed"):
-            PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=12, tax_withholding_periods_closed=15
-                )
-            )
-
-    def test_schema_version_is_five(self) -> None:
-        """SCHEMA_VERSION is 5 since the deferred shortfall obligations."""
-        assert PeriodState.SCHEMA_VERSION == 5
-
-    def test_tax_year_defaults_to_none(self) -> None:
-        """tax_year defaults to None on manual construction."""
-        assert PeriodState.zero().tax_year is None
-
-    def test_tax_year_stored(self) -> None:
-        """tax_year is stored when explicitly set."""
-        s = PeriodState(ytd=TaxYearState(tax_year=2026))
-        assert s.tax_year == 2026
-
-    def test_tax_year_below_2020_raises(self) -> None:
-        """tax_year < 2020 raises ValueError."""
-        with pytest.raises(ValueError, match="tax_year"):
-            PeriodState(ytd=TaxYearState(tax_year=2019))
-
-
 class TestPeriodCalculationRequest:
     """PeriodCalculationRequest stores period, CCNL reference, and YTD state."""
 
     def test_stored_fields(self) -> None:
         """All explicitly supplied fields are stored and retrievable."""
         state = PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=5,
-                tax_withholding_periods_closed=5,
+            cash=TaxCashState(
+                withholding_payments_closed=5,
                 tax=TaxYtd(irpef=Decimal("1000.00")),
             )
         )
@@ -254,10 +156,9 @@ class TestPeriodCalculationRequest:
     def test_year_guard_raises_when_tax_year_mismatch(self) -> None:
         """An opening state of another tax year raises InvalidInputError."""
         prior_year_state = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2025,
-                regular_periods_closed=12,
-                tax_withholding_periods_closed=12,
+                withholding_payments_closed=12,
             )
         )
         with pytest.raises(InvalidInputError, match="opening_state is for tax year"):
@@ -284,10 +185,9 @@ class TestPeriodCalculationRequest:
     def test_run_of_next_tax_year_rejects_current_year_state(self) -> None:
         """December paid on 13 January belongs to 2027, not to a 2026 state."""
         state_2026 = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=11,
-                tax_withholding_periods_closed=11,
+                withholding_payments_closed=11,
             )
         )
         with pytest.raises(InvalidInputError, match="belongs to tax year 2027") as info:
@@ -304,10 +204,9 @@ class TestPeriodCalculationRequest:
     def test_run_paid_by_twelve_january_accepts_current_year_state(self) -> None:
         """December paid on 12 January stays in the 2026 state."""
         state_2026 = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=11,
-                tax_withholding_periods_closed=11,
+                withholding_payments_closed=11,
             )
         )
         req = PeriodCalculationRequest(
@@ -349,10 +248,9 @@ class TestPeriodCalculationRequest:
     def test_year_guard_passes_when_tax_year_matches(self) -> None:
         """opening_state.tax_year == period_id.year is accepted."""
         current_state = PeriodState(
-            ytd=TaxYearState(
+            cash=TaxCashState(
                 tax_year=2026,
-                regular_periods_closed=5,
-                tax_withholding_periods_closed=5,
+                withholding_payments_closed=5,
             )
         )
         req = PeriodCalculationRequest(
@@ -381,9 +279,8 @@ class TestPeriodCalculationResult:
     def test_stored_closing_state(self) -> None:
         """closing_state is stored by identity."""
         cs = PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=1,
-                tax_withholding_periods_closed=1,
+            cash=TaxCashState(
+                withholding_payments_closed=1,
                 earnings=EarningsYtd(gross=Decimal("2158.26")),
             )
         )

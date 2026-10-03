@@ -39,7 +39,6 @@ from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
     RecoveryObligation,
 )
-from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
@@ -48,6 +47,7 @@ from tests.helpers import EMPLOYER_50, year_input
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.payroll.domain.period_state import PeriodState
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)
@@ -89,7 +89,7 @@ def _adjustment(year: YearResult, opening: PeriodState | None = None) -> PeriodR
 
 
 def _plan_of(result: PeriodResult, kind: str) -> RecoveryPlan | None:
-    return result.closing_state.obligations.recovery_of(2026, kind)
+    return result.closing_state.cash.obligations.recovery_of(2026, kind)
 
 
 def test_adjustment_posts_the_second_ulteriore_installment() -> None:
@@ -114,7 +114,7 @@ def test_adjustment_posts_the_second_ulteriore_installment() -> None:
     )
     assert decision.reason_code == "installment_posted_adjustment_run"
     assert decision.amount == -installment
-    ytd = result.closing_state.ytd
+    ytd = result.closing_state.cash
     oracle = net_irpef(ytd.earnings.taxable)
     assert abs(ytd.tax.irpef + after.residual - oracle) <= Decimal("0.01")
 
@@ -166,7 +166,7 @@ def test_adjustment_restoring_the_deduction_closes_the_plan() -> None:
         )
     )
     assert _plan_of(result, ULTERIORE_RECOVERY) is None
-    ytd = result.closing_state.ytd
+    ytd = result.closing_state.cash
     assert ytd.tax.irpef == net_irpef(ytd.earnings.taxable)
     reasons = {d.reason_code for d in result.decisions if d.capability == _RECOVERY}
     assert reasons == {"recovery_absorbed_by_conguaglio"}
@@ -182,7 +182,7 @@ def _with_plan(year: YearResult, plan: RecoveryPlan) -> PeriodState:
         The state to open the adjustment run with.
     """
     closing = year.period_results[-1].closing_state
-    ytd = closing.ytd
+    ytd = closing.cash
     name = "trattamento" if plan.kind == TRATTAMENTO_RECOVERY else "somma_esente"
     account = getattr(ytd, name)
     account = replace(
@@ -190,14 +190,14 @@ def _with_plan(year: YearResult, plan: RecoveryPlan) -> PeriodState:
         recognized=account.recognized + Decimal(300),
         recovered=account.recovered + plan.installment_amount,
     )
-    return PeriodState(
-        ytd=replace(ytd, **{name: account}),
-        obligations=EmploymentObligations(
-            recoveries=(
-                *closing.obligations.recoveries,
-                RecoveryObligation(tax_year=2026, plan=plan),
-            )
-        ),
+    obligations = EmploymentObligations(
+        recoveries=(
+            *closing.cash.obligations.recoveries,
+            RecoveryObligation(tax_year=2026, plan=plan),
+        )
+    )
+    return replace(
+        closing, cash=replace(ytd, **{name: account}, obligations=obligations)
     )
 
 

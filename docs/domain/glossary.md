@@ -245,24 +245,43 @@ and carries over between runs of the tax year; each supplement only gets the
 substitute rate on what is left, the excess is ordinary income.  It restarts
 with the next tax year.
 
-`RegimeCapAccount`, `PeriodState.ytd.work_time_regime`
+`RegimeCapAccount`, `PeriodState.cash.work_time_regime`
 
-### tax year state (progressivi dell'anno fiscale)
+### tax cash state (progressivi di cassa dell'anno fiscale)
 
-Run counters, closed run ids, withholding slots and year-to-date accounts of
-one tax year: earnings, fringe, tax withheld, trattamento integrativo, somma
-esente and the regime cap account.  Every total is non-negative.  It
-restarts at zero when the next tax year opens.
+Payments, withholding counter and slots, year-to-date accounts of one tax
+year (earnings, fringe, tax withheld, trattamento integrativo, somma
+esente, regime cap account) and the obligations carried into it.  A tax
+year counts the payments made in it, whatever their competence, with no
+maximum (TUIR art. 51 c. 1).  Every total is non-negative.  The payments
+and accounts restart at zero when the next tax year opens.
 
-`TaxYearState`, `PeriodState.ytd`
+`TaxCashState`, `PeriodState.cash`
+
+### accrual state (competenze maturate del rapporto)
+
+The competence runs closed over the employment: the months and extra
+months of each competence year already paid, whatever tax year paid them.
+A run closes once, so a competence year has at most twelve regular months.
+Carried unchanged across the year change.
+
+`EmploymentAccrualState`, `PeriodState.accrual`
 
 ### payroll run id (identificativo del cedolino)
 
 Year, month and kind of a payroll run, written `"2026-12-thirteenth"`.  The
-runs of a tax year close once each and in payment order; an adjustment run
-and a late run of an earlier year are not ordered.
+runs of a competence year close once each and in payment order; an
+adjustment run is not ordered, nor are runs of different competence years.
 
-`PayrollRunId`, `PayrollRun.identifier`, `TaxYearState.closed_run_ids`
+`PayrollRunId`, `PayrollRun.identifier`, `EmploymentAccrualState.competence_runs`
+
+### payment id (identificativo del pagamento)
+
+A run and the day it is paid, written `"2026-12-regular@2027-01-13"`.  The
+payment date selects the tax year; a payment closes once, so a retry is
+never counted twice.
+
+`PaymentId`, `TaxCashState.payments`
 
 ### credit account (conto del credito d'imposta)
 
@@ -287,12 +306,12 @@ installments in the next year (D.Lgs. 446/1997 art. 50 c. 4, D.Lgs.
 the credit account of that year.
 
 `EmploymentObligations`, `RecoveryObligation`, `SurtaxObligation`,
-`PeriodState.obligations`
+`TaxCashState.obligations`
 
 ### year close (chiusura dell'anno fiscale)
 
 The transition from the state after the last run of year N to the opening
-state of N+1: fresh tax year state, obligations carried.  Rejected when a
+state of N+1: fresh tax cash state, obligations and accrual state carried.  Rejected when a
 withholding slot of N is still open.
 
 `close_tax_year`, `PayrollEngine.close_tax_year`
@@ -344,7 +363,7 @@ The code is stable and is the `invariant_id` of the violation.
 | `employee_contribution_non_negative`, `employer_contribution_non_negative` | every `EMPLOYEE_CONTRIBUTIONS` and `EMPLOYER_CONTRIBUTIONS` entry `>= 0`; corrections are a distinct movement |
 | `credit_non_negative` | every `CREDITS`, `CREDIT_RECOVERIES`, `CREDIT_RECOVERY_SHORTFALL`, `TAX_REFUNDS` and `SURTAX_REFUNDS` entry `>= 0`: a credit taken back is a recovery |
 | `net_pay_non_negative` | `period_net >= 0` |
-| `run_counters_advance` | regular and withholding-slot counters advance by the run; the run id enters `closed_run_ids` |
+| `run_counters_advance` | the run enters the competence runs and its payment the payments, once each; the withholding counter advances by one when the run takes a slot |
 | `ytd_continuity` | closing = opening + run amount for gross (`CASH_EARNINGS`), employee INPS (`EMPLOYEE_CONTRIBUTIONS`), surtax (`SURTAX` less `SURTAX_REFUNDS`) and the net trattamento integrativo and somma esente credits (their `CREDITS` entries less their `CREDIT_RECOVERIES` entries) |
 | `credit_recovery_bounds` | each credit account recovers between zero and what it recognized |
 | `carried_recovery_advance` | each recovery carried from an earlier tax year posts its next installment and advances one step, or posts its whole residual on the last run of the employment |

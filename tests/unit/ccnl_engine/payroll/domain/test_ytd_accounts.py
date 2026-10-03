@@ -44,6 +44,11 @@ class TestAccumulators:
         with pytest.raises(ValueError, match=match):
             build()
 
+    def test_fringe_taxed_above_the_value_is_rejected(self) -> None:
+        """The taxed part of the fringe benefits never exceeds their value."""
+        with pytest.raises(ValueError, match="taxed"):
+            FringeYtd(value=Decimal("100.00"), taxed=Decimal("200.00"))
+
     def test_taxable_may_exceed_gross(self) -> None:
         """A fringe benefit above the threshold is taxable without cash gross."""
         earnings = EarningsYtd(gross=Decimal(100), taxable=Decimal(400))

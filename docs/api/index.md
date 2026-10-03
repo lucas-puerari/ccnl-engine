@@ -29,6 +29,7 @@ from ccnl_engine import (
     PeriodFacts,
     PayrollRun,
     PayrollRunId,
+    PaymentId,
     CalendarOverride,
     CalendarOverrideReason,
     WorkCalendar,

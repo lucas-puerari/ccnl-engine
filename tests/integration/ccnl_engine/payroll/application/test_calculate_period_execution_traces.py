@@ -36,7 +36,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
@@ -228,7 +228,7 @@ class TestPdrDecision:
 
     def test_annual_limit_reached(self) -> None:
         """A bonus over an exhausted annual limit decides a zero tax."""
-        opening = PeriodState(ytd=TaxYearState(fringe=FringeYtd(pdr=_PDR.max_amount)))
+        opening = PeriodState(cash=TaxCashState(fringe=FringeYtd(pdr=_PDR.max_amount)))
         (decision,) = _decisions(
             _run(events=(self._BONUS,), opening_state=opening, prior_year=self._PRIOR),
             "bonus_pdr",

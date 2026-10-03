@@ -29,6 +29,7 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.service.ulteriore_recovery import settle_ulteriore
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.legal_examples.irpef_2026 import further_deduction, net_irpef
@@ -153,36 +154,36 @@ class TestConguaglioRecovery:
 
     def test_deduction_is_no_longer_due(self) -> None:
         """The oracle gives no deduction on the final income."""
-        final = _year().period_results[-1].closing_state.ytd
+        final = _year().period_results[-1].closing_state.cash
         assert final.earnings.taxable <= Decimal(20_000)
         assert further_deduction(final.earnings.taxable) == _ZERO
 
     def test_twelve_runs_recognized_twelve_thirteenths(self) -> None:
         """Before the conguaglio twelve of 13 slots recognized 12/13 of 1,000."""
-        before = _year().period_results[-2].closing_state.ytd.ulteriore_detrazione
+        before = _year().period_results[-2].closing_state.cash.ulteriore_detrazione
         expected = money(Decimal(1000) * 12 / 13)
         assert abs(before.net - expected) <= Decimal("0.02")
 
     def test_excess_is_recovered_in_ten_installments(self) -> None:
         """The excess opens a ten installment plan, the first one on the payslip."""
         last = _year().period_results[-1]
-        before = _year().period_results[-2].closing_state.ytd.ulteriore_detrazione
+        before = _year().period_results[-2].closing_state.cash.ulteriore_detrazione
         excess = before.net
-        (obligation,) = last.closing_state.obligations.recoveries
+        (obligation,) = last.closing_state.cash.obligations.recoveries
         assert obligation.tax_year == 2026
         assert obligation.plan.kind == ULTERIORE_RECOVERY
         assert obligation.plan.original_amount == excess
         assert obligation.plan.installment_amount == money(excess / 10)
         assert obligation.plan.residual == excess - money(excess / 10)
-        account = last.closing_state.ytd.ulteriore_detrazione
+        account = last.closing_state.cash.ulteriore_detrazione
         assert account.net == _ZERO
         assert account.due == _ZERO
 
     def test_irpef_of_the_year_is_withheld_or_deferred(self) -> None:
         """IRPEF withheld plus the nine deferred installments is the oracle net."""
         last = _year().period_results[-1]
-        final = last.closing_state.ytd
-        (obligation,) = last.closing_state.obligations.recoveries
+        final = last.closing_state.cash
+        (obligation,) = last.closing_state.cash.obligations.recoveries
         settled = final.tax.irpef + obligation.plan.residual
         assert abs(settled - net_irpef(final.earnings.taxable)) <= Decimal("0.01")
 
@@ -243,8 +244,8 @@ def _terminated() -> YearResult:
 def test_termination_recovers_the_excess_in_full() -> None:
     """No installment outlives the employment; the year settles on the oracle."""
     last = _terminated().period_results[-1]
-    ytd = last.closing_state.ytd
-    assert last.closing_state.obligations.recoveries == ()
+    ytd = last.closing_state.cash
+    assert last.closing_state.cash.obligations.recoveries == ()
     assert ytd.ulteriore_detrazione.net == _ZERO
     (recovery,) = (
         d
@@ -273,7 +274,9 @@ def _carried(posted: int) -> RecoveryObligation:
 
 def test_installments_carried_into_the_next_year() -> None:
     """A 2025 plan with 7 of 10 posted costs 60.00 EUR on three 2026 runs."""
-    opening = PeriodState(obligations=EmploymentObligations(recoveries=(_carried(7),)))
+    opening = PeriodState(
+        cash=TaxCashState(obligations=EmploymentObligations(recoveries=(_carried(7),)))
+    )
     with_plan = calculate_year(year_input(2026, _CCNL, "C3", opening_state=opening))
     without = calculate_year(year_input(2026, _CCNL, "C3"))
     assert without.annual_net - with_plan.annual_net == Decimal("60.00")
@@ -287,6 +290,6 @@ def test_installments_carried_into_the_next_year() -> None:
         "installment_posted",
         "last_installment_posted",
     ]
-    assert with_plan.period_results[-1].closing_state.ytd == (
-        without.period_results[-1].closing_state.ytd
+    assert with_plan.period_results[-1].closing_state.cash == (
+        without.period_results[-1].closing_state.cash
     )

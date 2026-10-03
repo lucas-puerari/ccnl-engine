@@ -79,7 +79,7 @@ def _surtax_reasons(result: PeriodResult) -> list[str]:
 
 def _deferred(result: PeriodResult) -> Decimal:
     return sum(
-        (o.plan.original_amount for o in result.closing_state.obligations.surtax),
+        (o.plan.original_amount for o in result.closing_state.cash.obligations.surtax),
         Decimal(0),
     )
 

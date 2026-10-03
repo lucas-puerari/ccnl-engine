@@ -1,5 +1,39 @@
 # Migration guide
 
+## Competence accrual state and tax cash state
+
+`PeriodState` splits what is accrued from what is paid. A tax year counts
+the payments made in it, whatever their competence (TUIR art. 51 c. 1), so
+December paid after 12 January no longer exhausts the counters of the next
+year.
+
+| Before | After |
+|---|---|
+| `state.ytd` (`TaxYearState`) | `state.cash` (`TaxCashState`), same YTD accounts |
+| `state.obligations` | `state.cash.obligations`; `PeriodState(obligations=...)` becomes `PeriodState(cash=TaxCashState(obligations=...))` |
+| `state.ytd.regular_periods_closed` (at most 12 per tax year) | `state.accrual.regular_months(year)`: regular months of a competence year, at most 12 because a run closes once |
+| `state.ytd.tax_withholding_periods_closed` (at most 14) | `state.cash.withholding_payments_closed`, no maximum |
+| `state.ytd.closed_run_ids` (reset every tax year) | `state.accrual.competence_runs` (kept across tax years) and `state.cash.payments` (`PaymentId` of the tax year) |
+| `OpeningBalances(regular_periods_closed=..., tax_withholding_periods_closed=..., closed_run_ids=...)` | `OpeningBalances(withholding_payments_closed=..., payments=(PaymentId.parse("2026-06-regular@2026-06-27"),))` |
+| `close_tax_year` reset the closed run ids | `close_tax_year` keeps `state.accrual`: a run closed in N is rejected in N+1 |
+| `WithholdingSchedule` slots only of runs of its year | A slot per payment of the tax year, a late run of an earlier competence year included |
+| `YearInput.opening_state` closed no run of the tax year | It may hold payments of an earlier competence year already made in the tax year (a late December); they take the first withholding slots |
+
+- `PeriodState.SCHEMA_VERSION` is 6. A persisted state of version 5 maps
+  `ytd` to `cash`, moves `obligations` into `cash`, builds
+  `accrual.competence_runs` from `closed_run_ids` and `cash.payments` from
+  them with their payment dates, and drops `regular_periods_closed`.
+- New public name: `PaymentId` (`run_id`, `payment_date`; text form
+  `"2026-12-regular@2027-01-13"`).
+- A run already closed or out of order in its competence year raises
+  `InvalidInputError` with feature `accrual_state` (was `payroll_run`) and
+  the message "already closed" (was "already processed"). A payment of a
+  run already paid in the tax year raises it with feature
+  `tax_cash_state`.
+- `TaxCashState`, `EmploymentAccrualState` and `PeriodState` raise
+  `InvalidInputError` with the path of the field. A run whose closing state
+  breaks their invariants raises `DataIntegrityError`.
+
 ## Validated public inputs and one error hierarchy
 
 Every public input is a frozen dataclass validated on construction, its

@@ -53,7 +53,7 @@ def test_fractional_extra_months_withhold_the_annual_tax() -> None:
     20,000 threshold of the further deduction.
     """
     year = _coop_sociali_d2_year()
-    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
+    final_taxable = year.period_results[-1].closing_state.cash.earnings.taxable
     withheld = sum(
         (r.tax_computation.ordinary_tax for r in year.period_results), Decimal(0)
     )
@@ -118,7 +118,7 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
             employer=EMPLOYER,
         )
     )
-    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
+    final_taxable = year.period_results[-1].closing_state.cash.earnings.taxable
     withheld = sum(
         (r.tax_computation.ordinary_tax for r in year.period_results), Decimal(0)
     )
@@ -153,7 +153,7 @@ def test_mid_year_hire_projects_the_tredicesima_it_will_accrue() -> None:
             employer=EMPLOYER,
         )
     )
-    final_taxable = year.period_results[-1].closing_state.ytd.earnings.taxable
+    final_taxable = year.period_results[-1].closing_state.cash.earnings.taxable
     share = net_irpef(final_taxable, 184) / 7
 
     assert len(year.period_results) == 7

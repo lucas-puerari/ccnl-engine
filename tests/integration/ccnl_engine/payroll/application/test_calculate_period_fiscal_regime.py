@@ -35,7 +35,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import EarningsYtd, TaxYtd
 
 _CCNL = "metalmeccanico-federmeccanica.json"
@@ -104,9 +104,8 @@ def test_trattamento_integrativo_recovery_uses_eight_installments() -> None:
     recovered in 8 equal installments of 112.50 EUR.
     """
     opening = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=9,
-            tax_withholding_periods_closed=9,
+        cash=TaxCashState(
+            withholding_payments_closed=9,
             trattamento=TrattamentoAccount(recognized=Decimal("900.00")),
             earnings=EarningsYtd(
                 gross=Decimal("20000.00"),
@@ -150,9 +149,8 @@ def test_trattamento_integrativo_small_recovery_taken_in_one_period() -> None:
     threshold in October.  Recovery = 50 EUR (<= 60): deducted fully in month 10.
     """
     opening = PeriodState(
-        ytd=TaxYearState(
-            regular_periods_closed=9,
-            tax_withholding_periods_closed=9,
+        cash=TaxCashState(
+            withholding_payments_closed=9,
             trattamento=TrattamentoAccount(recognized=Decimal("50.00")),
             earnings=EarningsYtd(
                 gross=Decimal("20000.00"),

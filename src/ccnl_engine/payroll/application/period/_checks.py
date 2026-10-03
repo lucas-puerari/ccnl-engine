@@ -1,6 +1,7 @@
 """Checks of a period calculation that reject what no payslip can carry.
 
-The run must be able to close next in its tax year.  Unpaid absences are
+The run must be able to close next in its competence year and its
+payment in its tax year.  Unpaid absences are
 validated against the pay of the run before the run is computed.  IRPEF
 and surtax are withheld only up to the pay left, the rest carried to the
 next runs; a run whose other deductions (contributions, substitute tax,
@@ -17,6 +18,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
 from ccnl_engine.payroll.application.invariants._types import RunFacts
 from ccnl_engine.payroll.domain.ledger import AccountKind
+from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.run import run_identifier
 from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
 
@@ -25,13 +27,12 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-    from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 __all__ = [
     "check_absences_within_pay",
     "check_net_covered",
-    "resolve_run_id",
+    "resolve_payment",
     "run_facts",
 ]
 
@@ -39,24 +40,23 @@ _ZERO = Decimal(0)
 _FEATURE = "absence"
 
 
-def resolve_run_id(request: PeriodCalculationRequest) -> PayrollRunId:
-    """Return the run identifier and raise if the run cannot close next.
+def resolve_payment(request: PeriodCalculationRequest) -> PaymentId:
+    """Return the payment the run closes and raise if it cannot close next.
+
+    A run already closed in the opening state, before a closed run of its
+    competence year, or whose payment cannot close in the tax year of the
+    opening state raises
+    :class:`~ccnl_engine.shared.domain.errors.InvalidInputError`.
 
     Returns:
-        The identifier of the run of this period.
-
-    Raises:
-        InvalidInputError: When the run was already closed in the opening
-            state, is of a later year, or comes before a closed run.
+        The payment of this period: its run and payment date.
     """
     run_id = run_identifier(
         request.run, request.period_id.year, request.period_id.month
     )
-    try:
-        request.opening_state.ytd.check_next_run(run_id)
-    except ValueError as exc:
-        raise InvalidInputError(str(exc), feature="payroll_run") from exc
-    return run_id
+    payment = PaymentId(run_id=run_id, payment_date=request.payment_date)
+    request.opening_state.check_next(payment)
+    return payment
 
 
 def check_absences_within_pay(

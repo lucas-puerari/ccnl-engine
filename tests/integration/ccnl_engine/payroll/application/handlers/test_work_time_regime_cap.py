@@ -25,7 +25,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 
@@ -61,7 +61,7 @@ def _night_run(amount: Decimal, opening: PeriodState) -> PeriodResult:
 def _with_used(result: PeriodResult, used: Decimal) -> PeriodResult:
     state = result.closing_state
     closing = replace(
-        state, ytd=replace(state.ytd, work_time_regime=RegimeCapAccount(used))
+        state, cash=replace(state.cash, work_time_regime=RegimeCapAccount(used))
     )
     return replace(result, closing_state=closing)
 
@@ -71,7 +71,7 @@ class TestRegimeCapAccount:
 
     def test_zero_by_default(self) -> None:
         """A new tax year starts with nothing used."""
-        assert PeriodState.zero().ytd.work_time_regime.used == Decimal(0)
+        assert PeriodState.zero().cash.work_time_regime.used == Decimal(0)
 
     def test_negative_used_is_rejected(self) -> None:
         """A negative used amount cannot be represented."""
@@ -102,7 +102,7 @@ class TestPlafondInvariant:
         opening = PeriodState.zero()
         result = _night_run(Decimal(2_000), opening)
 
-        assert result.closing_state.ytd.work_time_regime.used == _CAP
+        assert result.closing_state.cash.work_time_regime.used == _CAP
         assert check_substitute_tax_plafond(result, opening, RunFacts()) == []
 
     def test_wrong_advance_is_reported(self) -> None:
@@ -122,7 +122,7 @@ class TestPlafondInvariant:
         """An account above the annual cap is a violation even if it adds up."""
         result = _night_run(Decimal(1_500), PeriodState.zero())
         opening = PeriodState(
-            ytd=TaxYearState(work_time_regime=RegimeCapAccount(Decimal(100)))
+            cash=TaxCashState(work_time_regime=RegimeCapAccount(Decimal(100)))
         )
         bad = _with_used(result, Decimal(1_600))
 

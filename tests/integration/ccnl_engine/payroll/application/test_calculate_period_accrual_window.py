@@ -20,7 +20,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRun
-from ccnl_engine.payroll.domain.tax_year_state import TaxYearState
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 
 _CCNL_METALMECCANICO = "metalmeccanico-federmeccanica.json"
 _LEVEL_C3 = "C3"
@@ -34,7 +34,7 @@ def _extra_month_req(
     level: str,
     payment_month: int,
     run: PayrollRun,
-    regular_periods_closed: int = 12,
+    payments_closed: int = 12,
     employment_period: EmploymentPeriod | None = None,
 ) -> PeriodCalculationRequest:
     return PeriodCalculationRequest(
@@ -44,9 +44,8 @@ def _extra_month_req(
         ccnl_slug=ccnl,
         level_code=level,
         opening_state=PeriodState(
-            ytd=TaxYearState(
-                regular_periods_closed=regular_periods_closed,
-                tax_withholding_periods_closed=regular_periods_closed,
+            cash=TaxCashState(
+                withholding_payments_closed=payments_closed,
             )
         ),
         run=run,
@@ -103,9 +102,8 @@ def test_full_year_tredicesima_equals_monthly_gross() -> None:
             ccnl_slug=_CCNL_METALMECCANICO,
             level_code=_LEVEL_C3,
             opening_state=PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=5,
-                    tax_withholding_periods_closed=5,
+                cash=TaxCashState(
+                    withholding_payments_closed=5,
                 )
             ),
         )
@@ -128,7 +126,7 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=6,
             run=PayrollRun.thirteenth(_YEAR, 6),
-            regular_periods_closed=6,
+            payments_closed=6,
             employment_period=six_months,
         )
     ).period_gross
@@ -138,7 +136,7 @@ def test_six_month_employee_same_rateo_june_vs_december() -> None:
             _LEVEL_C3,
             payment_month=12,
             run=PayrollRun.thirteenth(_YEAR, 12),
-            regular_periods_closed=6,
+            payments_closed=6,
             employment_period=six_months,
         )
     ).period_gross
@@ -168,9 +166,8 @@ def test_commercio_level4_quattordicesima_full_year_at_june_rate() -> None:
             ccnl_slug=_CCNL_COMMERCIO,
             level_code=_LEVEL_4,
             opening_state=PeriodState(
-                ytd=TaxYearState(
-                    regular_periods_closed=5,
-                    tax_withholding_periods_closed=5,
+                cash=TaxCashState(
+                    withholding_payments_closed=5,
                 )
             ),
         )
