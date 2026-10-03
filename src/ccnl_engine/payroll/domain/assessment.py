@@ -156,8 +156,9 @@ _REMEDIATION: dict[BlockerCode, str] = {
         "validate them outside the engine"
     ),
     BlockerCode.RULESET_NOT_PRODUCTION: (
-        "{detail}: the run read no ruleset cleared as production; promote the "
-        "ruleset under the readiness criteria, or calculate in simulation mode"
+        "{detail} is not cleared as production (or no ruleset of the run tracks "
+        "readiness): promote it under the readiness criteria, or calculate in "
+        "simulation mode"
     ),
 }
 
