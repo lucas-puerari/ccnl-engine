@@ -8,7 +8,8 @@ Scope (anything outside raises :class:`ValueError`): reddito complessivo
 above 15,000 EUR and not above 40,000 EUR, the flat band of lett. a), where
 no ratio and so no truncation rule is involved.
 
-Text in force, read on Normattiva on 3 October 2026,
+Text in force, read on Normattiva on 3 October 2026 (not yet cross-checked
+against an official worked example),
 https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig=
 
 - art. 12 c. 1 lett. a): "690 euro, se il reddito complessivo è superiore a

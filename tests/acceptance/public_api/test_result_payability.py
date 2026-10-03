@@ -30,9 +30,6 @@ from ccnl_engine import (
     WorkerCategory,
     YearInput,
 )
-from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
-    C3_MINIMUM_FROM_JUNE_2025,
-)
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -119,32 +116,42 @@ def test_unknown_seniority_is_not_final() -> None:
     assert result.status is not CalculationStatus.FINAL
 
 
+def _march(started_on: date) -> PeriodResult:
+    """Return the March 2026 run of a C3 hired on ``started_on``.
+
+    Returns:
+        The regular run of March 2026.
+    """
+    employment = Employment(
+        ccnl_slug=_METALMECCANICO,
+        level_code="C3",
+        employment_period=EmploymentPeriod(started_on=started_on),
+    )
+    year = _ENGINE.calculate_year(
+        YearInput(year=2026, employment=employment, employer=_EMPLOYER)
+    )
+    (march,) = [
+        result
+        for result in year.period_results
+        if result.run == PayrollRun.regular(2026, 3)
+    ]
+    return march
+
+
 @pytest.mark.xfail(
     strict=True,
     raises=AssertionError,
     reason="a month started on the 15th still exposes the full monthly pay",
 )
 def test_partial_hire_month_does_not_expose_full_month_pay() -> None:
-    """Metalmeccanico C3 hired on 15 March 2026.
+    """Metalmeccanico C3 hired on 15 March 2026 against one hired on 1 March.
 
-    The full month pays the minimo tabellare, 2,158.26 EUR.  Seventeen of
-    the thirty-one days of March cannot be paid as a full month: the amount
-    must be prorated by the CCNL rule or left undetermined.  Today the run
-    carries 2,158.26 with a ``partial_month_not_prorated`` issue.
+    Seventeen of the thirty-one days of March cannot be paid as a full
+    month: the amount must be prorated by the CCNL rule or left
+    undetermined.  Differential oracle: today both runs carry 2,158.26, the
+    later one with a ``partial_month_not_prorated`` issue.
     """
-    employment = Employment(
-        ccnl_slug=_METALMECCANICO,
-        level_code="C3",
-        employment_period=EmploymentPeriod(started_on=date(2026, 3, 15)),
-    )
+    full_month = _march(date(2026, 3, 1))
+    partial_month = _march(date(2026, 3, 15))
 
-    year = _ENGINE.calculate_year(
-        YearInput(year=2026, employment=employment, employer=_EMPLOYER)
-    )
-
-    (march,) = [
-        result
-        for result in year.period_results
-        if result.run == PayrollRun.regular(2026, 3)
-    ]
-    assert march.period_gross != C3_MINIMUM_FROM_JUNE_2025
+    assert partial_month.period_gross != full_month.period_gross
