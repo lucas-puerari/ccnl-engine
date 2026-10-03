@@ -20,6 +20,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.period._rule_lookup import contract_rules
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -92,9 +93,15 @@ class IvsCeiling:
 
     @property
     def status(self) -> CalculationStatus:
-        """Incomplete when the contributions depend on the missing history."""
+        """Provisional while the run simulates the uncapped branch.
+
+        The decision read the massimale and found the history missing: the
+        branch it simulates may change once the history is supplied.  The
+        undetermined amounts are on the INPS decisions, which are
+        incomplete, and on the issue, which names the fact.
+        """
         return (
-            CalculationStatus.INCOMPLETE
+            CalculationStatus.PROVISIONAL
             if self.undetermined
             else CalculationStatus.FINAL
         )
@@ -200,6 +207,7 @@ def ivs_ceiling_decision(ctx: RunContext, ivs: IvsCeiling) -> CalculationDecisio
     """
     rules = ctx.contract.year_rules
     ruleset = rules.inps_ruleset
+    ((rule, _provenance),) = contract_rules(ctx)[CAPABILITY]
     history = ivs.history
     inputs: dict[str, Decimal | str] = {
         "first_enrolled_on": (
@@ -217,12 +225,11 @@ def ivs_ceiling_decision(ctx: RunContext, ivs: IvsCeiling) -> CalculationDecisio
     }
     if ivs.undetermined:
         inputs |= _branches(ctx, ivs)
-    inps_name = f"inps/{rules.year}" if ruleset is None else ruleset.id
     return CalculationDecision(
         capability=CAPABILITY,
         status=ivs.status,
         reason_code=ivs.reason,
-        rule=f"{inps_name}:inps.ceiling",
+        rule=rule,
         rule_version=str(rules.year) if ruleset is None else ruleset.version,
         inputs=inputs,
         source=ivs.source,

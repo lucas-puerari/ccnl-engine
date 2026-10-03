@@ -109,7 +109,7 @@ def test_missing_history_around_the_massimale(offset: str, *, missing: bool) -> 
     assert result.contribution_breakdown.employee == _UNCAPPED_EMPLOYEE
     if missing:
         assert decision.reason_code == "required_fact_missing"
-        assert decision.status is CalculationStatus.INCOMPLETE
+        assert decision.status is CalculationStatus.PROVISIONAL
         assert decision.inputs["ceiling_applies"] == "undetermined"
         assert employee.amount is None
         assert employee.status is CalculationStatus.INCOMPLETE
@@ -137,6 +137,7 @@ def test_missing_history_beyond_the_massimale_lists_both_branches() -> None:
     assert employer_gap == Decimal("526.54")
     assert _decision(result, "inps_employer").amount is None
     assert _missing(result)
+    assert "inps/2026/industria" in {r.identity.id for r in result.rulesets}
 
 
 @pytest.mark.parametrize(

@@ -57,7 +57,7 @@ def test_missing_history_matters_only_beyond_the_massimale(
     assert ivs.applies is False
     if reached:
         assert ivs.reason == "required_fact_missing"
-        assert ivs.status is CalculationStatus.INCOMPLETE
+        assert ivs.status is CalculationStatus.PROVISIONAL
     else:
         assert ivs.reason == "ceiling_not_reached"
         assert ivs.status is CalculationStatus.FINAL

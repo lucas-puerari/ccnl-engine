@@ -38,7 +38,8 @@ rules carry a massimale, not on domestic CCNLs: it says why the massimale
 applies or not (L. 335/1995 art. 2 c. 18), with the massimale and its INPS
 source from the bundle. Without a contribution history it is
 `ceiling_not_reached` while both branches coincide, and `required_fact_missing`
-(`incomplete`) once the run crosses the massimale.
+(`provisional`) once the run crosses the massimale: the run simulates the
+uncapped branch, the INPS decisions are `incomplete` with no amount.
 
 The `apprenticeship` input of `base_salary` names the
 `apprenticeship_scaling` decision when a percentage apprenticeship scaled

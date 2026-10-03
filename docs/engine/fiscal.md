@@ -582,8 +582,11 @@ c. 23). Its value is data of the INPS rules of the year with their provenance
 (EUR 122,295 for 2026, INPS Circ. 6/2026). The engine derives the
 eligibility from `Employment.contribution_history`
 (`ContributionHistory`): the date of the first contribution credited to a
-mandatory pension scheme, including pre-1996 periods credited later on
-request (L. 208/2015 art. 1 c. 280), and the contributory option.
+mandatory pension scheme and the contributory option. The history is the one
+in force for the run: pre-1996 periods credited on request lift the
+massimale only from the month after the request (L. 208/2015 art. 1 c. 280)
+and the option from when it is exercised, so for earlier runs supply the
+history as it stood then. The engine models no effective date of a change.
 
 Every run whose INPS rules carry a massimale records an
 `ivs_ceiling_eligibility` decision:
@@ -596,7 +599,7 @@ Every run whose INPS rules carry a massimale records an
 | `ceiling_not_reached` | no history, and the YTD INPS base plus the run stays within the massimale: both branches give the same contributions | irrelevant |
 | `required_fact_missing` | no history, and the run crosses the massimale | undetermined |
 
-With `required_fact_missing` the decision is `incomplete` and lists the
+With `required_fact_missing` the decision is `provisional` and lists the
 employee and employer contributions of both branches in its inputs; the
 `inps_employee` and `inps_employer` decisions are `incomplete` with no
 amount; an `ivs_ceiling_eligibility_unknown` issue names the fact

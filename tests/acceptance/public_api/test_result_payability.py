@@ -18,6 +18,7 @@ import pytest
 from ccnl_engine import (
     BlockerCode,
     BonusEvent,
+    CalculationStatus,
     EmployerProfile,
     Employment,
     EmploymentPeriod,
@@ -123,6 +124,7 @@ def test_unknown_ivs_ceiling_eligibility_is_a_missing_fact() -> None:
     assert (BlockerCode.MISSING_FACT, None, "contribution_history") in (
         _blocker_keys(result)
     )
+    assert result.assurance.calculation is CalculationStatus.INCOMPLETE
     assert result.is_payable is False
 
 

@@ -49,12 +49,17 @@ class ContributionHistory:
     base.  The engine derives the eligibility from these facts; the caller
     never states it.
 
+    The history is the one in force for the run being computed: the engine
+    models no effective date of a change.  Pre-1996 periods credited on
+    request to a worker hired after 1995 lift the massimale only from the
+    month after the request (L. 208/2015 art. 1 c. 280), and the option
+    takes effect from when it is exercised: for the runs before those
+    dates, supply the history as it stood then.
+
     Attributes:
         first_enrolled_on: Date of the first contribution credited to any
             mandatory pension scheme (prima iscrizione), from the worker's
-            contribution statement.  Periods before 1996 credited later on
-            request (riscatto, accredito) count from their own date: they
-            lift the massimale (L. 208/2015 art. 1 c. 280).
+            contribution statement.
         contributory_option: Whether the worker opted for the contributory
             system (L. 335/1995 art. 1 c. 23).  Defaults to ``False``.
 
