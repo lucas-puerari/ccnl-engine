@@ -34,6 +34,7 @@ from ccnl_engine import (
     SickLeaveEvent,
     WeeklyHours,
 )
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.seniority import new_hire
 
@@ -389,6 +390,7 @@ def test_family_deductions_increase_net() -> None:
                     )
                 ),
             ),
+            current_year=employment_only(),
         )
     )
     # The 2026 regional surtax is determined at the conguaglio and withheld
@@ -402,8 +404,9 @@ def test_spouse_deduction_flat_band() -> None:
     """A dependent spouse is worth 690 a year between 15,001 and 29,000 of income.
 
     Art. 12 c. 1 lett. a) n. 2 TUIR: the deduction is a flat 690 for income
-    above 15,000 and up to 40,000; the supplements of the same article start
-    above 29,000. Metalmeccanico C2 projects about 24,300 of taxable income.
+    above 15,000 and up to 40,000; the increases of lett. b) start above
+    29,000. Metalmeccanico C2 projects about 24,300 of taxable income, the
+    only income of the worker.
     """
     result = engine.calculate_period(
         PeriodInput(
@@ -420,6 +423,7 @@ def test_spouse_deduction_flat_band() -> None:
                     dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
                 ),
             ),
+            current_year=employment_only(),
         )
     )
     family = [

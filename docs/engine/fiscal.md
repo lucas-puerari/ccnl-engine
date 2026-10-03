@@ -571,13 +571,62 @@ used and its origin: `declared` on the employment or `fixed_by_level`),
 recognised seniority and none is given, see
 [Pay components](pay-components.md)), `apprenticeship_scaling` (`percentage_applied`
 with the percentage and the scaled and unscaled components, only for a
-percentage apprenticeship track), `family_deductions` (`deductions_applied` or
-`no_deduction_due`, only with a family composition), `bonus_pdr`
+percentage apprenticeship track), `family_deductions` (`deductions_applied`,
+`no_deduction_due`, `required_fact_missing` or
+`estimated_income_at_conguaglio`, only with a family composition, see
+[Family deductions](#family-deductions-art-12-tuir)), `bonus_pdr`
 (`substitute_tax_applied` or `annual_limit_reached`, only for a bonus routed
 to the PdR substitute tax), `fringe_benefit` (`within_threshold`,
 `above_threshold` or `above_threshold_retroactive`, one per `FringeEvent`,
 see [Fringe benefits](work-rules.md#fringe-benefits)) and the substitute tax
 regimes described in [Substitute tax regimes](substitute-tax-regimes.md).
+
+## Family deductions (Art. 12 TUIR)
+
+The deductions of art. 12 TUIR (text in force read on
+[Normattiva](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art12!vig=)
+on 3 October 2026) are computed on the **reddito complessivo** of the year:
+the employment income the run projects for the year plus the income of
+`CurrentYearTaxFacts` (other employers, other income), less the income of the
+main dwelling (c. 4-bis). Amounts and limits are data of
+`tax/data/family-deductions-<year>.json`, each block with its provenance:
+
+| Dependent | Full-year amount, with R the reddito complessivo |
+|---|---|
+| Spouse (lett. a) | `800 − 110 × R/15,000` up to 15,000; 690 up to 40,000; `690 × (80,000 − R)/40,000` up to 80,000 |
+| Spouse increase (lett. b) | +10 above 29,000 up to 29,200; +20 up to 34,700; +30 up to 35,000; +20 up to 35,100; +10 up to 35,200 |
+| Child (lett. c) | `950 × (C − R)/C`, C = 95,000 + 15,000 for each entitled child after the first; from 21 to 29, from 30 only with a disability (art. 3 L. 104/1992) |
+| Ascendant (lett. d) | `750 × (80,000 − R)/80,000`, only if living with the worker |
+
+- **Truncation (c. 4).** Each ratio is taken to four decimals, the rest
+  discarded, before it multiplies the amount; a ratio of zero or less, or
+  of one (no income) for children and ascendants, gives no deduction.
+- **Months (c. 3).** A deduction is due from the month its conditions start
+  to the month they end, both included: `Dependent.dependent_from` and
+  `dependent_until` date the dependency (marriage, separation,
+  cohabitation), and a child counts from the month it turns 21 to the
+  month it turns 30. The full-year amount is multiplied by the months over
+  twelve and by `allocation_pct`, then rounded to the cent once.
+- **Own income (c. 2).** 2,840.51, or 4,000 for a child who turns at most
+  24 in the year (the whole year, as the Agenzia delle Entrate 730
+  instructions read "non superiore a ventiquattro anni").
+- **Sole parent (lett. c, last period).** With `FamilyComposition.sole_parent`
+  the eldest entitled child takes the spouse deduction when it is higher.
+
+The decision `family_deductions` records the income, the months of each
+dependent and the amount per relationship. Its reason:
+
+| Reason | Status | When |
+|---|---|---|
+| `deductions_applied` / `no_deduction_due` | `final` | The reddito complessivo is known; or no income is needed: no dependent gives right to a deduction in any month, or this employment alone takes every deduction past its phase-out (zero whatever the other income) |
+| `required_fact_missing` | `provisional` | A dependent gives right to a deduction and `current_year` is missing or of another tax year. The decision has no amount; `inputs["simulated_amount"]` holds the deductions on this employment alone, which the IRPEF of the run uses (as for the IVS massimale and the seniority); issue `family_income_unknown` (`incomplete`, `fact="current_year"`), blocker `missing_fact`: the result is `incomplete` and not payable |
+| `estimated_income_at_conguaglio` | `provisional` | The conguaglio rests on a `current_year` of quality `estimated`: state `declared` or `certified` figures to settle the year |
+
+Missing income is never taken as zero: a worker whose only income is this
+employment states it with `CurrentYearTaxFacts.employment_only(tax_year,
+estimated_on)`. A `TaxYearPlan.current_year` replaces the facts of its
+competence years, so a December paid in January reads the facts of the year
+it is paid in.
 
 ## IVS ceiling
 

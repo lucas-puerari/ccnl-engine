@@ -200,12 +200,13 @@ def _family_rules(ctx: RunContext) -> tuple[Rule, ...]:
     """Return the Art. 12 TUIR family deduction rules of the run.
 
     Returns:
-        The spouse, children and other-dependent rules.
+        The spouse, spouse increase, children and other-dependent rules.
     """
     rules = ctx.repo.load_family_deduction_rules(ctx.fiscal_year)
     name = _name(rules.ruleset, f"tax/{rules.year}/family-deductions")
     return (
         (f"{name}:spouse", rules.spouse.provenance),
+        (f"{name}:spouse_increases", rules.spouse_increases.provenance),
         (f"{name}:children", rules.children.provenance),
         (f"{name}:other_dependents", rules.other_dependents.provenance),
     )

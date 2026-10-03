@@ -6,19 +6,15 @@ import importlib.resources
 from decimal import Decimal
 from typing import Any
 
+from pydantic import ValidationError
+
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 from ccnl_engine.tax.domain.art15 import (
     Art15DeductionRules,
     MortgageInterestRules,
 )
-from ccnl_engine.tax.domain.family import (
-    ChildrenDeductionRules,
-    FamilyDeductionRules,
-    OtherDependentRules,
-    SpouseDeductionRules,
-)
-from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint
+from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
 from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
 from ccnl_engine.tax.domain.variable_pay import (
@@ -152,54 +148,14 @@ def load_family_deduction_rules(year: int) -> FamilyDeductionRules:
         )
         raise DataIntegrityError(msg)
 
-    sp_raw = raw["spouse"]
-    ch_raw = raw["children"]
-    od_raw = raw["other_dependents"]
-
-    bp_list = [
-        DeductionBreakpoint(
-            income_up_to=(
-                Decimal(str(bp["income_up_to"]))
-                if bp["income_up_to"] is not None
-                else None
-            ),
-            deduction=Decimal(str(bp["deduction"])),
-        )
-        for bp in sp_raw["breakpoints"]
-    ]
-
-    return FamilyDeductionRules(
-        year=int(raw["year"]),
-        description=raw.get("description", ""),
-        ruleset=_try_ruleset(raw),
-        spouse=SpouseDeductionRules(
-            dependent_income_threshold=Decimal(
-                str(sp_raw["dependent_income_threshold"])
-            ),
-            breakpoints=bp_list,
-            notes=sp_raw.get("notes", ""),
-            provenance=_provenance_of(sp_raw),
-        ),
-        children=ChildrenDeductionRules(
-            auu_age_cutoff=int(ch_raw["auu_age_cutoff"]),
-            base_amount=Decimal(str(ch_raw["base_amount"])),
-            income_ceiling=Decimal(str(ch_raw["income_ceiling"])),
-            income_ceiling_increment_per_child=Decimal(
-                str(ch_raw["income_ceiling_increment_per_child"])
-            ),
-            notes=ch_raw.get("notes", ""),
-            provenance=_provenance_of(ch_raw),
-        ),
-        other_dependents=OtherDependentRules(
-            dependent_income_threshold=Decimal(
-                str(od_raw["dependent_income_threshold"])
-            ),
-            amount=Decimal(str(od_raw["amount"])),
-            income_ceiling=Decimal(str(od_raw["income_ceiling"])),
-            notes=od_raw.get("notes", ""),
-            provenance=_provenance_of(od_raw),
-        ),
-    )
+    try:
+        return FamilyDeductionRules.model_validate({
+            **raw,
+            "ruleset": _try_ruleset(raw),
+        })
+    except ValidationError as exc:
+        msg = f"{filename} is not a valid family deduction table: {exc}"
+        raise DataIntegrityError(msg) from exc
 
 
 def load_art15_deduction_rules(year: int) -> Art15DeductionRules:

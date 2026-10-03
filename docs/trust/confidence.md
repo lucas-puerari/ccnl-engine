@@ -160,7 +160,7 @@ capability can leave a `CapabilityGap`, and each gap is a
 | `status` | When |
 |---|---|
 | `complete` | No gaps |
-| `partial` | Every gap is a `partial_result` (a capability implemented in full came out partial) or a `partial_implementation` (sickness, family deductions, ... executed) |
+| `partial` | Every gap is a `partial_result` (a capability implemented in full came out partial) or a `partial_implementation` (sickness, foreign tax credit, ... executed) |
 | `incomplete` | Any other gap: an applicable capability is `unsupported` (residual leave on the run that closes the employment) or `unresolved` |
 
 `rule_sources` maps each executed capability that reads bundled rules to the

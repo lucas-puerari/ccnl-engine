@@ -82,6 +82,10 @@ from ccnl_engine.payroll.domain.capability_report import (
     CapabilityScope,
 )
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
+from ccnl_engine.payroll.domain.current_year import (
+    CurrentYearTaxFacts,
+    IncomeEstimateQuality,
+)
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
@@ -207,6 +211,7 @@ __all__ = [
     "ContributableHours",
     "ContributionHistory",
     "CoverageStatus",
+    "CurrentYearTaxFacts",
     "DataIntegrityError",
     "DecisionOrigin",
     "DeferredShortfall",
@@ -225,6 +230,7 @@ __all__ = [
     "FringeEvent",
     "Headcount",
     "HolidayWorkEvent",
+    "IncomeEstimateQuality",
     "InpsBaseYtd",
     "InvalidInputError",
     "LimitationStatus",

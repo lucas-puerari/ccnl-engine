@@ -79,6 +79,7 @@ years. They group the facts by owner and are validated when built;
 | `Employment` | CCNL slug, level, contract type, category, `EmploymentPeriod`, weekly and full-time `WeeklyHours`, `SeniorityFact`, roles, `ContributionHistory` (IVS massimale eligibility), sector (`None` means unknown), `PensionFundEnrolment` (`None` means not enrolled) |
 | `EmployerProfile` | `Headcount` (required, no size is assumed) and activity (`None` means unknown) |
 | `PriorYearTaxFacts` | prior-year employment income and the regimes waived in writing, read by every substitute-tax regime and the PdR |
+| `CurrentYearTaxFacts` | income of the tax year beyond this employment, the main dwelling excluded, with its date and `IncomeEstimateQuality`; the Art. 12 family deductions add it to the employment income (`None` means unknown, a blocker when a dependent is entitled) |
 | `PeriodFacts` | events, contributable hours, region and Belfiore code, family composition, dependent children of one run |
 
 ::: ccnl_engine.payroll.domain.inputs
@@ -136,6 +137,12 @@ years. They group the facts by owner and are validated when built;
     options:
       members:
         - PriorYearTaxFacts
+
+::: ccnl_engine.payroll.domain.current_year
+    options:
+      members:
+        - CurrentYearTaxFacts
+        - IncomeEstimateQuality
 
 ::: ccnl_engine.tax.domain.preferential_regime
     options:

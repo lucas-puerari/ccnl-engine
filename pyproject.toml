@@ -231,7 +231,7 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/payroll/service/test_irpef.py",
     "tests/unit/ccnl_engine/payroll/service/test_irpef_credit_amounts.py",
     "tests/unit/ccnl_engine/payroll/service/test_irpef_mutation_sentinels.py",
-    "tests/integration/ccnl_engine/payroll/service/test_family_deductions.py",
+    "tests/integration/ccnl_engine/payroll/service/family/",
     "tests/integration/ccnl_engine/payroll/service/test_irpef_normative_oracles.py",
 ]
 pytest_add_cli_args = ["--no-cov"]

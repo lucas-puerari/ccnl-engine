@@ -13,23 +13,6 @@ from ccnl_engine.shared.domain.primitives import Bracket
 IrpefBracket = Bracket
 
 
-class DeductionBreakpoint(BaseModel):
-    """A single breakpoint in a piecewise-linear deduction schedule.
-
-    Reused for Art. 12 TUIR family deductions (spouse, children) whose
-    schedules are tabulated as breakpoint lists in the tax data files.
-
-    Note: Art. 13 TUIR work-income deduction uses statutory piecewise
-    formulas in ``irpef.py`` and no longer stores breakpoints here.
-    """
-
-    model_config = ConfigDict(extra="forbid")
-
-    income_up_to: Decimal | None
-    deduction: Decimal
-    provenance: RuleProvenance | None = None
-
-
 class WorkDeductionRules(BaseModel):
     """Art. 13 co. 1 TUIR work-income deduction constants for a fiscal year.
 

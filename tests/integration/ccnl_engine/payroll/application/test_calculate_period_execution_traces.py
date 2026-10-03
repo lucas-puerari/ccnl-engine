@@ -43,6 +43,7 @@ from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.service.tax_optional_loaders import load_variable_pay_rules
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.seniority import new_hire
 from tests.helpers import year_plan
 
@@ -195,7 +196,10 @@ class TestFamilyDeductionDecision:
         family = FamilyComposition(
             dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
         )
-        (decision,) = _decisions(_run(family_composition=family), "family_deductions")
+        (decision,) = _decisions(
+            _run(family_composition=family, current_year=employment_only()),
+            "family_deductions",
+        )
         assert decision.reason_code == "deductions_applied"
         assert decision.amount is not None
         assert decision.amount > 0

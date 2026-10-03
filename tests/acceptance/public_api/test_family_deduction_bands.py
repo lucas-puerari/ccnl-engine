@@ -8,8 +8,10 @@ year lands on the income of the case:
     opening taxable = income - taxable of the tredicesima (2,001.57)
 
 with the tredicesima taxable from
-:mod:`tests.fixtures.legal_examples.metalmeccanico_c3_2026`.  Employment
-income is the only income, so it is the reddito complessivo.  Expected
+:mod:`tests.fixtures.legal_examples.metalmeccanico_c3_2026`.  The worker
+declares no income beyond this employment
+(:meth:`~ccnl_engine.CurrentYearTaxFacts.employment_only`), so the
+employment income of the year is the reddito complessivo.  Expected
 deductions come from :mod:`tests.fixtures.legal_examples.family_2026`.
 """
 
@@ -21,6 +23,8 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
+    CalculationStatus,
+    CurrentYearTaxFacts,
     Dependent,
     DependentRelationship,
     EmployerProfile,
@@ -54,11 +58,6 @@ _SPOUSE = FamilyComposition(
 )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="the spouse deduction ignores the increase bands from 29,000 to 35,200",
-)
 @pytest.mark.parametrize(
     ("income", "band"),
     SPOUSE_BAND_EXAMPLES,
@@ -67,10 +66,7 @@ _SPOUSE = FamilyComposition(
 def test_spouse_deduction_follows_increase_bands(
     income: Decimal, band: IncomeBand
 ) -> None:
-    """A spouse dependent for twelve months, employment income only.
-
-    Today the engine deducts 690 on every income of the flat band.
-    """
+    """A spouse dependent for twelve months, employment income only."""
     opening = OpeningBalances(
         tax_year=2026,
         payments=paid_before(PayrollRun.thirteenth(2026, 12), day=18),
@@ -86,6 +82,7 @@ def test_spouse_deduction_follows_increase_bands(
             ),
             employer=EmployerProfile(headcount=Headcount(50)),
             facts=PeriodFacts(family_composition=_SPOUSE),
+            current_year=CurrentYearTaxFacts.employment_only(2026, date(2026, 1, 1)),
             opening_state=opening,
         )
     )
@@ -95,3 +92,4 @@ def test_spouse_deduction_follows_increase_bands(
         pytest.fail(f"annual taxable {annual_taxable} is outside the band {band}")
     (decision,) = [d for d in result.decisions if d.capability == "family_deductions"]
     assert decision.amount == spouse_deduction(income)
+    assert decision.status is CalculationStatus.FINAL

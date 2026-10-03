@@ -56,7 +56,7 @@ Percentage track: the apprentice's pay is a % of the destination level, increasi
 
 ### Family deductions
 
-A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the net pay.
+A `FamilyComposition` with dependants raises the Art. 12 TUIR deductions and the net pay. The deductions read the reddito complessivo of the year: state the income beyond this employment with `CurrentYearTaxFacts` (zero included), or the result is not payable. See [Family deductions](engine/fiscal.md#family-deductions-art-12-tuir).
 
 ```python
 --8<-- "docs/examples/04_part_time.py"

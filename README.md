@@ -76,8 +76,10 @@ The inputs group the facts by owner: `Employment` (CCNL, level, contract,
 employment period, hours, recognised seniority as a dated `SeniorityFact`,
 sector), `EmployerProfile` (headcount,
 activity), `PriorYearTaxFacts` (prior-year income and written waivers, read by
-every substitute-tax regime) and `PeriodFacts` (events, surtax jurisdiction,
-family, contributable hours of one run). Every input is validated when it is
+every substitute-tax regime), `CurrentYearTaxFacts` (income of the tax year
+beyond this employment, read by the Art. 12 family deductions) and
+`PeriodFacts` (events, surtax jurisdiction, family, contributable hours of one
+run). Every input is validated when it is
 built, its collections element by element: a value of the wrong type, `NaN`
 or an infinity, a `bool` given as a number, a `datetime` given as a date or
 an object in `events` that is not a work event raises `InvalidInputError`

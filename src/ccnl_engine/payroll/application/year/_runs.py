@@ -177,6 +177,7 @@ def run_request(
         employer=plan.employer,
         facts=plan.facts_for(run),
         prior_year=plan.prior_year,
+        current_year=plan.current_year,
         opening_state=state,
         planned_payments=planned_payments,
     )

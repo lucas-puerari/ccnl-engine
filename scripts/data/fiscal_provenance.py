@@ -294,14 +294,8 @@ FISCAL_RECORDS: Final[dict[str, dict[str, dict[str, Any]]]] = {
         ),
     },
     "tax/data/family-deductions-2026.json": {
-        "spouse": _derived(
-            TUIR,
-            "art. 12 c. 1 lett. a",
-            transformation=(
-                "Sub-band supplements of 10-30 EUR in the 29 001-35 200 EUR range "
-                "are not modelled; 690 EUR flat in 15 001-40 000 EUR."
-            ),
-        ),
+        "spouse": _derived(TUIR, "art. 12 c. 1 lett. a; c. 4"),
+        "spouse_increases": _derived(TUIR, "art. 12 c. 1 lett. b"),
         "children": _derived(TUIR, "art. 12 c. 1 lett. c"),
         "other_dependents": _derived(TUIR, "art. 12 c. 1 lett. d"),
     },

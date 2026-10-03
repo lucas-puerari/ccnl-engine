@@ -5,7 +5,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.irpef_rules import DeductionBreakpoint, IrpefBracket
+from ccnl_engine.tax.domain.irpef_rules import IrpefBracket
 
 
 class TestBracketRateConstraint:
@@ -49,17 +49,3 @@ class TestIrpefBracket:
         """A bracket with up_to=None (unbounded) is accepted."""
         b = IrpefBracket(up_to=None, rate=Decimal("0.43"))
         assert b.up_to is None
-
-
-class TestDeductionBreakpoint:
-    """Unit tests for DeductionBreakpoint construction."""
-
-    def test_finite_breakpoint(self) -> None:
-        """A breakpoint with a finite income_up_to is accepted."""
-        p = DeductionBreakpoint(income_up_to=Decimal(8500), deduction=Decimal(1955))
-        assert p.income_up_to == Decimal(8500)
-
-    def test_open_ended_breakpoint(self) -> None:
-        """A breakpoint with income_up_to=None (open-ended) is accepted."""
-        p = DeductionBreakpoint(income_up_to=None, deduction=Decimal(0))
-        assert p.income_up_to is None

@@ -13,11 +13,19 @@ from ccnl_engine.payroll.application.calculate_competence_year import (
 )
 from ccnl_engine.payroll.application.calculate_tax_year import calculate_tax_year
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
+from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
+from ccnl_engine.payroll.domain.family import (
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+)
+from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
 from ccnl_engine.shared.domain.errors import InvalidInputError
+from tests.fixtures.current_year import employment_only
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:
@@ -34,6 +42,7 @@ def _plan(
     period: EmploymentPeriod | None = None,
     opening: PeriodState | None = None,
     dates: dict[int | str, date] | None = None,
+    family: FamilyComposition | None = None,
 ) -> CompetenceYearPlan:
     return CompetenceYearPlan(
         year=2026,
@@ -45,6 +54,8 @@ def _plan(
         employer=_EMPLOYER,
         payment_dates={12: _LATE} if dates is None else dates,
         opening_state=opening,
+        default_facts=PeriodFacts(family_composition=family),
+        current_year=None if family is None else employment_only(2026),
     )
 
 
@@ -131,3 +142,34 @@ class TestTaxYear:
         assert year.closing_state == closing
         assert [str(p) for p in year.payments] == ["2026-12-regular@2027-01-13"]
         assert year.conguaglio is None
+
+
+class TestCurrentYearFacts:
+    """The family deductions of a payment read the facts of its tax year."""
+
+    _SPOUSE = FamilyComposition(
+        dependents=(Dependent(relationship=DependentRelationship.SPOUSE),)
+    )
+
+    def _december_decision(self, plan: TaxYearPlan) -> CalculationStatus:
+        (result,) = calculate_tax_year(plan, repo=_REPO).period_results
+        (decision,) = [
+            d for d in result.decisions if d.capability == "family_deductions"
+        ]
+        return decision.status
+
+    def test_late_december_reads_the_facts_of_the_tax_year_plan(self) -> None:
+        """December 2026 paid in 2027 uses the 2027 facts of the plan."""
+        plan = TaxYearPlan(
+            tax_year=2027,
+            competence_years=(_plan(family=self._SPOUSE),),
+            current_year=employment_only(2027),
+        )
+        assert self._december_decision(plan) is CalculationStatus.FINAL
+
+    def test_competence_year_facts_of_another_tax_year_are_not_used(self) -> None:
+        """Without 2027 facts the 2026 ones of the competence year do not count."""
+        plan = TaxYearPlan(
+            tax_year=2027, competence_years=(_plan(family=self._SPOUSE),)
+        )
+        assert self._december_decision(plan) is CalculationStatus.PROVISIONAL

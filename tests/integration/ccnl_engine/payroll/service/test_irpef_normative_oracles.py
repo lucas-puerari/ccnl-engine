@@ -11,13 +11,11 @@ Primary sources
 - Art. 13 c. 6 TUIR (4-decimal truncation of intermediate ratios)
 - Art. 1 D.L. 3/2020 (trattamento integrativo): updated by L. 207/2024
 - Art. 1 c. 6 L. 207/2024 (ulteriore detrazione lavoro dipendente)
-- Art. 12 TUIR (family deductions): 2026 parameters
 - Art. 50 TUIR / D.Lgs. 360/1998 (regional/municipal surtax)
 """
 
 from __future__ import annotations
 
-from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any
 
@@ -26,17 +24,6 @@ import pytest
 if TYPE_CHECKING:
     from ccnl_engine.tax.domain.ruleset import YearRules
 
-from ccnl_engine.payroll.domain.family import (
-    Dependent,
-    DependentRelationship,
-    FamilyComposition,
-)
-from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.service.family_deductions import (
-    _children_deduction,
-    _spouse_deduction,
-    compute_family_deductions,
-)
 from ccnl_engine.payroll.service.irpef import irpef_gross, surtax_from_brackets
 from ccnl_engine.payroll.service.irpef_credits import (
     trattamento_integrativo,
@@ -48,9 +35,6 @@ from ccnl_engine.tax.domain.credit_rules import (
     UlterioreDetrazioneRules,
 )
 from ccnl_engine.tax.domain.surtax_rules import SurtaxBracket
-from ccnl_engine.tax.service.tax_optional_loaders import (
-    load_family_deduction_rules,
-)
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------
@@ -83,15 +67,7 @@ _UD_RULES = UlterioreDetrazioneRules(
     max_amount=Decimal(1000),
 )
 
-_FAM_RULES = load_family_deduction_rules(2026)
-
 _D = Decimal
-_SPOUSE = DependentRelationship.SPOUSE
-_CHILD = DependentRelationship.CHILD
-
-
-def _dep(rel: DependentRelationship, **kw: object) -> Dependent:
-    return Dependent(relationship=rel, **kw)  # type: ignore[arg-type]
 
 
 def _bracket(up_to: float | None, rate: str) -> SurtaxBracket:
@@ -401,53 +377,3 @@ class TestSurtaxBracketOracles:
             _bracket(None, "0.0350"),
         ]
         assert surtax_from_brackets(Decimal(60000), bs) == Decimal("1695.90")
-
-
-# ---------------------------------------------------------------------------
-# Art. 12 TUIR - family deduction oracles (2026 statutory rules)
-# ---------------------------------------------------------------------------
-
-
-class TestFamilyDeductionOracles:
-    """Art. 12 TUIR family deductions at canonical income level 26 843.44."""
-
-    def test_spouse_deduction_at_canonical_income(self) -> None:
-        """RC=26 843.44, fiscally dependent spouse: deduction = 690.
-
-        Art. 12 c. 1 lett. a: for RC in [15 001, 40 000] the deduction is EUR 690.
-        Derivation: income 26 843.44 falls in the flat band; result = 690.
-        """
-        sp = _dep(_SPOUSE)
-        result = _spouse_deduction(_D("26843.44"), _FAM_RULES.spouse, sp)
-        assert result == _D("690.00")
-
-    def test_child_deduction_taper_formula(self) -> None:
-        """One eligible child (age 25), RC=26 843.44: taper applied to 950.
-
-        Art. 12 c. 1 lett. c:
-          ceiling = 95 000 (one child)
-          taper   = (95 000 - 26 843.44) / 95 000
-          result  = money(950 * taper), pro-rated 12/12, 100% allocation
-        """
-        ch = _dep(_CHILD, birth_date=date(2001, 1, 1))
-        result = _children_deduction(_D("26843.44"), _FAM_RULES.children, [ch], 2026)
-        taper = max(_D("0"), (_D("95000") - _D("26843.44")) / _D("95000"))
-        expected = money(_D("950") * taper)
-        assert result == expected
-
-    def test_full_family_oracle_spouse_and_one_child(self) -> None:
-        """RC=26 843.44, spouse + 1 eligible child: total = spouse + child.
-
-        Derivation:
-          spouse = 690.00
-          child  = money(950 * taper) where taper = (95000-26843.44)/95000
-          total  = money(spouse + child)
-        """
-        sp_dep = _dep(_SPOUSE)
-        ch_dep = _dep(_CHILD, birth_date=date(2001, 1, 1))
-        fam = FamilyComposition(dependents=(sp_dep, ch_dep))
-        sp, ch, _, total = compute_family_deductions(fam, _D("26843.44"), _FAM_RULES)
-        assert sp == _D("690.00")
-        taper = max(_D("0"), (_D("95000") - _D("26843.44")) / _D("95000"))
-        assert ch == money(_D("950") * taper)
-        assert total == money(sp + ch)

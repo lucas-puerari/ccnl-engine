@@ -63,12 +63,12 @@ class TestBundledRegistry:
         entry = load_capability_catalog(2026).by_feature("family_deductions")
         assert entry is not None
         assert entry.layer is CapabilityLayer.NET
-        assert entry.implementation is CapabilityImplementation.PARTIAL
+        assert entry.implementation is CapabilityImplementation.NATIVE
         assert entry.applies_when is CapabilityApplicability.DECIDED
         assert entry.handler is CapabilityHandler.DECISION
         assert entry.evidence is EvidenceStatus.DERIVED
-        assert entry.required_facts == ("facts.family_composition",)
-        assert "spouse_flat_band" in entry.variants
+        assert entry.required_facts == ("facts.family_composition", "current_year")
+        assert "spouse_increase_bands" in entry.variants
 
     def test_unsupported_capabilities_and_predicates(self) -> None:
         """The fourteen unsupported capabilities name when they apply."""
@@ -80,10 +80,9 @@ class TestBundledRegistry:
         }
         assert unsupported == _UNSUPPORTED_2026
 
-    @pytest.mark.parametrize("feature", ["sickness", "family_deductions"])
-    def test_partial_capabilities(self, feature: str) -> None:
-        """Sickness and family deductions are computed for some variants only."""
-        entry = load_capability_catalog(2026).by_feature(feature)
+    def test_partial_capabilities(self) -> None:
+        """Sickness is computed for some variants only."""
+        entry = load_capability_catalog(2026).by_feature("sickness")
         assert entry is not None
         assert entry.implementation is CapabilityImplementation.PARTIAL
 

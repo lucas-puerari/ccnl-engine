@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -30,7 +31,9 @@ from ccnl_engine.tax.domain.surtax_rules import (
 
 _D = Decimal
 _FLAT = (Bracket(up_to=None, rate=_D("0.01")),)
-_CHILD = Dependent(relationship=DependentRelationship.CHILD)
+_CHILD = Dependent(
+    relationship=DependentRelationship.CHILD, birth_date=date(2015, 1, 1)
+)
 _SPOUSE = Dependent(relationship=DependentRelationship.SPOUSE)
 _DISABLED_PARENT = Dependent(
     relationship=DependentRelationship.ASCENDANT, disabled=True

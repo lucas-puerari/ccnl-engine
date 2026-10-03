@@ -30,7 +30,7 @@ Capabilities of the registry by layer and implementation:
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 14 | 1 | 3 | 8 |
+| net | 15 | 1 | 2 | 8 |
 | work_rules | 2 | 7 | 1 | 2 |
 
 | | Functional coverage of a layer: its weakest capability |

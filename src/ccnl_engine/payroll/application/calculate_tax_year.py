@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.year._payments import (
@@ -20,6 +21,8 @@ from ccnl_engine.shared.domain.errors import InvalidInputError
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
+    from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.policy import PolicyResolver
     from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
@@ -69,7 +72,10 @@ def calculate_tax_year(
     effective_repo = repo if repo is not None else BundledKnowledgeRepository()
     tax_year = plan.tax_year
     opening = check_opening(plan.opening_state, tax_year, "TaxYearPlan.opening_state")
-    years = tuple(prepare_year(p, effective_repo) for p in plan.competence_years)
+    years = tuple(
+        prepare_year(_with_current_year(p, plan.current_year), effective_repo)
+        for p in plan.competence_years
+    )
     pending = tax_year_payments(years, tax_year, opening)
     if not pending and not opening.cash.payments:
         msg = (
@@ -92,3 +98,16 @@ def calculate_tax_year(
         tax_year=tax_year,
         payments=(*opening.cash.payments, *(p.payment for p in pending)),
     )
+
+
+def _with_current_year(
+    plan: CompetenceYearPlan, current_year: CurrentYearTaxFacts | None
+) -> CompetenceYearPlan:
+    """Return ``plan`` reading the current-year facts of the tax year.
+
+    Returns:
+        ``plan`` unchanged when the tax year plan carries no facts.
+    """
+    if current_year is None:
+        return plan
+    return replace(plan, current_year=current_year)

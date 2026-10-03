@@ -196,6 +196,16 @@ the credit in force.
 
 `CalculationDecision`, `CreditOutcome`
 
+### reddito complessivo (current-year income)
+
+The income of the tax year the art. 12 TUIR family deductions are computed
+on: the employment income the run projects for the year plus
+`CurrentYearTaxFacts.external_income` (other employers and other income,
+less the main dwelling, c. 4-bis). Without `CurrentYearTaxFacts` of the tax
+year it is unknown, never zero: the `family_deductions` decision is
+`required_fact_missing` when a dependent gives right to a deduction. See
+[Family deductions](../engine/fiscal.md#family-deductions-art-12-tuir).
+
 ### surtax decision (decisione sulle addizionali)
 
 The `CalculationDecision` of the regional or municipal surtax

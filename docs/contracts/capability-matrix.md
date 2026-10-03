@@ -53,7 +53,7 @@ formulas or caller-declared amounts.
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 14 | 1 | 3 | 8 |
+| net | 15 | 1 | 2 | 8 |
 | work_rules | 2 | 7 | 1 | 2 |
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -88,7 +88,7 @@ formulas or caller-declared amounts.
 | `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio | net | partial | decided | decision | — | declared_foreign_tax_at_conguaglio | simplified | none bundled |
 | `addizionale_regionale` | Addizionale regionale IRPEF | net | native | decided | decision | `facts.regione` | — | implemented | 0 / 1 / 0 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | net | native | decided | decision | `facts.comune_belfiore` | — | implemented | 0 / 1 / 0 / 0 |
-| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | net | partial | decided | decision | `facts.family_composition` | children, other_dependants, spouse_flat_band | simplified | 0 / 3 / 0 / 0 |
+| `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | implemented | 0 / 4 / 0 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 0 / 369 / 12 / 0 |
 | `night_work` | Lavoro notturno | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
