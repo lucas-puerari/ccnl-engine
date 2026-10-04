@@ -39,6 +39,11 @@ class CCNLVerification(BaseModel):
             cross-checked against a reference payslip or official source.
         last_reviewed: ISO date of the most recent human review.
         human_reviewed_by: Identifier (name or email) of the reviewer.
+        owner: Identifier of the person accountable for keeping the
+            ruleset current; required for ``production`` by the CI
+            evidence gate.
+        review_due: ISO date by which the next review is due (the update
+            SLA); required for ``production`` by the CI evidence gate.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -48,6 +53,8 @@ class CCNLVerification(BaseModel):
     verified_cases: int = 0
     last_reviewed: date | None = None
     human_reviewed_by: str | None = None
+    owner: str | None = None
+    review_due: date | None = None
 
 
 class CCNLValidity(BaseModel):

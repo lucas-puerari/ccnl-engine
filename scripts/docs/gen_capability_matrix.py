@@ -32,7 +32,7 @@ from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
 from ccnl_engine.payroll.domain.capability_catalog import CapabilityImplementation
-from scripts.ci.payable_rules import count_by_capability, inventory
+from scripts.ci.payable_rules import count_by_capability, count_by_file, inventory
 from scripts.docs.coverage_report import (
     IMPLEMENTATION_LEGEND,
     bundled_ccnls,
@@ -120,7 +120,11 @@ _CCNL_PREAMBLE = """
 
 The same cells as the [CCNL Coverage index](index.md). **Limits** names the
 capabilities a `missing` note or a model limitation with a monetary impact
-of the contract file lowers to partial.
+of the contract file lowers to partial. **Rules** counts the payable rules
+of the contract file by provenance status: verified / derived / assumed /
+missing. The `assumed` and `missing` ones are listed in the shrink-only
+evidence baseline (`scripts/ci/provenance_baseline.json`), so these counts
+never grow.
 
 {legend}
 """
@@ -192,18 +196,30 @@ def capability_rows(
     return lines
 
 
-def _ccnl_rows(catalog: CapabilityCatalog) -> list[str]:
+def _ccnl_rows(
+    catalog: CapabilityCatalog, by_file: Mapping[str, Mapping[str, int]]
+) -> list[str]:
     """Return the CCNL coverage table, header included.
+
+    Args:
+        catalog: Capability registry of the year.
+        by_file: Payable rules per data file and provenance status.
 
     Returns:
         Markdown table lines, one row per bundled CCNL.
     """
-    lines = ["| # | CCNL | L1 | L2 | L3 | Limits |", "|---|---|:---:|:---:|:---:|---|"]
+    lines = [
+        "| # | CCNL | L1 | L2 | L3 | Limits | Rules (v / d / a / m) |",
+        "|---|---|:---:|:---:|:---:|---|---|",
+    ]
     for i, ccnl in enumerate(bundled_ccnls(), 1):
         cells = coverage_cells(catalog, ccnl)
         l1, l2, l3 = cells.layers
         link = f"[{ccnl.meta.name}]({ccnl.meta.ccnl_id}.md)"
-        lines.append(f"| {i} | {link} | {l1} | {l2} | {l3} | {cells.limits} |")
+        rules = _rules(by_file.get(f"ccnl/data/{ccnl.meta.ccnl_id}.json", {}))
+        lines.append(
+            f"| {i} | {link} | {l1} | {l2} | {l3} | {cells.limits} | {rules} |"
+        )
     return lines
 
 
@@ -217,14 +233,15 @@ def build_page(year: int) -> str:
         Markdown string for docs/contracts/capability-matrix.md.
     """
     catalog = load_capability_catalog(year)
-    ccnl_rows = _ccnl_rows(catalog)
+    rules = inventory()
+    ccnl_rows = _ccnl_rows(catalog, count_by_file(rules))
     lines: list[str] = [
         _AUTO_COMMENT,
         f"<!-- generated: {datetime.now(tz=UTC).date()} -->\n",
         _PREAMBLE.format(year=year, count=len(ccnl_rows) - 2),
         *registry_summary(catalog),
         "",
-        *capability_rows(catalog, count_by_capability(inventory())),
+        *capability_rows(catalog, count_by_capability(rules)),
         _CCNL_PREAMBLE.format(legend=IMPLEMENTATION_LEGEND),
         *ccnl_rows,
     ]

@@ -138,8 +138,14 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Validate payable rule provenance and all reference cases
-        run: python scripts/ci/check_provenance.py --all
+      - name: Schema gate (payable rule records and the evidence they claim)
+        run: python scripts/ci/check_provenance.py --schema
+
+      - name: Evidence gate (no new assumed or missing rule, shrink-only baseline)
+        run: python scripts/ci/check_provenance.py --evidence
+
+      - name: Validate all reference cases
+        run: python scripts/ci/check_provenance.py tests/fixtures/expected/*.json
 
       - name: Reject new reference cases without source
         run: |

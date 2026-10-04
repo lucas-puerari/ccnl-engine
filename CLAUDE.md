@@ -47,6 +47,8 @@ uv run ruff format --check src/ tests/ scripts/
 uv run mypy src/ tests/          # zero errors, strict mode
 uv run mypy scripts/ --explicit-package-bases
 uv run python scripts/ci/check_structure.py   # size limits, shrink-only baseline
+uv run python scripts/ci/check_provenance.py --schema     # provenance records and evidence
+uv run python scripts/ci/check_provenance.py --evidence   # no new assumed/missing, shrink-only
 uv run python scripts/docs/gen_capability_matrix.py --check   # matrix drift
 uv run python scripts/docs/gen_contract_pages.py --check      # contract page drift
 uv run python scripts/docs/gen_trust_counts.py --check        # docs/trust/ counts drift
@@ -55,6 +57,13 @@ uv run python scripts/docs/gen_trust_counts.py --check        # docs/trust/ coun
 `check_structure.py` enforces file, function and class size limits and
 source depth against `scripts/ci/structure_baseline.json`; see
 `docs/engine/architecture.md` for the limits and how to shrink the baseline.
+
+`check_provenance.py --evidence` compares every `assumed`/`missing` payable
+rule, open limitation and readiness contradiction with
+`scripts/ci/provenance_baseline.json`. After sourcing data, shrink it with
+`--update-baseline`; adding an entry needs `--update-baseline --allow-growth`
+and a justification in the PR. Never promote a rule to `verified` without a
+human review; see `docs/trust/provenance.md`.
 
 Run them in this order. Fix coverage first, then lint, then types.
 

@@ -68,10 +68,16 @@ In addition to the `reviewed` criteria:
 2. At least one reference case must exist in `tests/fixtures/expected/`
    sourced from a real payslip (anonymised) or an official regulatory example,
    not a synthetic scenario.
-3. A named owner must be recorded in `verification.human_reviewed_by`.
+3. A named owner must be recorded in `verification.owner`, and the reviewer
+   in `verification.human_reviewed_by`.
 4. An update-policy entry must exist: who monitors CCNL renewals, and within
-   what target window the ruleset is updated after a renewal.
+   what target window the ruleset is updated after a renewal. Record the
+   date the next review is due in `verification.review_due`, after
+   `verification.last_reviewed`.
 5. Set `verification.readiness = "production"` in the CCNL JSON.
+
+The schema gate (`scripts/ci/check_provenance.py --schema`) rejects a
+`production` ruleset without these fields or without `confidence` `verified`.
 
 ## Current status
 

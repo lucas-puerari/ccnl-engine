@@ -1,4 +1,4 @@
-"""The provenance check fails on a payable rule without a provenance record."""
+"""The schema and evidence gates of the provenance check."""
 
 from __future__ import annotations
 
@@ -8,8 +8,15 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from scripts.ci.check_provenance import check_rules
+from scripts.ci.check_provenance import check_evidence, check_rules, update_baseline
 from scripts.ci.payable_rules import inventory
+from scripts.ci.provenance_evidence import (
+    ENGINE_LIMITATIONS,
+    Snapshot,
+    load_baseline,
+    snapshot,
+    write_baseline,
+)
 
 if TYPE_CHECKING:
     import pytest
@@ -81,3 +88,131 @@ def test_bundle_passes_in_rules_mode() -> None:
     )
     assert result.returncode == 0, result.stderr
     assert "Payable rules checked:" in result.stdout
+
+
+def _run(*args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, str(_SCRIPT), *args],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+def _evidence_tree(root: Path, status: str = "assumed") -> Path:
+    """Write a knowledge tree with one rule of ``status`` and no limitation.
+
+    Returns:
+        The knowledge directory.
+    """
+    _knowledge(root, _level({"status": status}))
+    (root / "limitations" / "data").mkdir(parents=True)
+    (root / ENGINE_LIMITATIONS).write_text('{"limitations": []}', encoding="utf-8")
+    return root
+
+
+_EMPTY = Snapshot(weak_rules={}, open_limitations={}, readiness_contradictions=())
+
+
+def test_verified_rule_without_evidence_fails_the_schema_gate(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """A ``verified`` record must name its reviewer, location and hash."""
+    assert not check_rules(_knowledge(tmp_path, _level({"status": "verified"})))
+    err = capsys.readouterr().err
+    assert "record(s) without the evidence they claim" in err
+    assert "verified without location.source_document.sha256" in err
+
+
+def test_evidence_gate_passes_on_the_baseline(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """A bundle equal to its baseline passes and prints the report."""
+    root = _evidence_tree(tmp_path / "k")
+    baseline = tmp_path / "baseline.json"
+    write_baseline(snapshot(root), baseline)
+    assert check_evidence(root, baseline)
+    out = capsys.readouterr().out
+    assert "Rules per capability" in out
+    assert "Weak rules: 1; open limitations: 0; readiness contradictions: 0" in out
+
+
+def test_evidence_gate_fails_on_a_new_weak_rule(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """An ``assumed`` rule the baseline does not list fails."""
+    root = _evidence_tree(tmp_path / "k")
+    baseline = tmp_path / "baseline.json"
+    write_baseline(_EMPTY, baseline)
+    assert not check_evidence(root, baseline)
+    err = capsys.readouterr().err
+    assert "levels[A].base_salary[2026-01-01]: new assumed rule" in err
+    assert "--update-baseline --allow-growth" in err
+
+
+def test_evidence_gate_fails_on_a_stale_entry(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """A rule sourced since the baseline must leave it."""
+    root = _evidence_tree(tmp_path / "k")
+    baseline = tmp_path / "baseline.json"
+    write_baseline(snapshot(root), baseline)
+    _evidence_tree(tmp_path / "fixed", status="derived")
+    assert not check_evidence(tmp_path / "fixed", baseline)
+    err = capsys.readouterr().err
+    assert "no longer assumed" in err
+    assert "Run --update-baseline to shrink the baseline." in err
+
+
+def test_evidence_gate_fails_without_a_baseline(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """An unreadable baseline is an error, never a pass."""
+    root = _evidence_tree(tmp_path / "k")
+    assert not check_evidence(root, tmp_path / "absent.json")
+    assert "cannot read baseline" in capsys.readouterr().err
+
+
+def test_update_refuses_growth_unless_allowed(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    """Growing the baseline needs ``--allow-growth``; shrinking does not."""
+    root = _evidence_tree(tmp_path / "k")
+    baseline = tmp_path / "baseline.json"
+    write_baseline(_EMPTY, baseline)
+    assert not update_baseline(root, baseline)
+    assert "Refusing to grow the baseline" in capsys.readouterr().err
+    assert load_baseline(baseline) == _EMPTY
+    assert update_baseline(root, baseline, allow_growth=True)
+    assert load_baseline(baseline) == snapshot(root)
+    fixed = _evidence_tree(tmp_path / "fixed", status="derived")
+    assert update_baseline(fixed, baseline)
+    assert load_baseline(baseline) == snapshot(fixed)
+
+
+def test_update_needs_growth_to_create_the_baseline(tmp_path: Path) -> None:
+    """Without a baseline every entry is growth."""
+    root = _evidence_tree(tmp_path / "k")
+    baseline = tmp_path / "baseline.json"
+    assert not update_baseline(root, baseline)
+    assert not baseline.exists()
+
+
+def test_bundle_passes_both_gates_from_the_command_line(tmp_path: Path) -> None:
+    """Schema and evidence gates pass on the bundle; the baseline rewrites."""
+    for mode in ("--schema", "--evidence"):
+        result = _run(mode)
+        assert result.returncode == 0, result.stderr
+    baseline = tmp_path / "baseline.json"
+    result = _run("--update-baseline", "--allow-growth", "--baseline", str(baseline))
+    assert result.returncode == 0, result.stderr
+    assert load_baseline(baseline) == load_baseline(
+        _SCRIPT.with_name("provenance_baseline.json")
+    )
+
+
+def test_allow_growth_requires_update_baseline() -> None:
+    """``--allow-growth`` alone is a usage error."""
+    result = _run("--evidence", "--allow-growth")
+    assert result.returncode == 2
+    assert "--allow-growth requires --update-baseline" in result.stderr
