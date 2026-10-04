@@ -68,6 +68,22 @@
       {
         "kind": "info",
         "text": "Apprenticeship open tail: Art. 27 sets 24-month max for L3 (breve track). The final period {18, null, 0.90} cannot be closed to {18, 24, 0.90} because the engine schema requires the last apprenticeship period to be open-ended (validate_open_sequence). A query past month 24 is outside the contract duration and should not arise in normal use."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1823,6 +1839,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "202fc91eb2c07294fea3c89b94842d57f2f053fbcf1c303fadb984302521618d"
+    "source_hash": "37fb309aa32f4e73099a7af153e554f3d613781c141af51e2ab5eba8a9b59911"
   }
 }

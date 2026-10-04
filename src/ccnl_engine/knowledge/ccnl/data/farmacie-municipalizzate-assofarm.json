@@ -83,6 +83,22 @@
       {
         "kind": "info",
         "text": "Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1531,7 +1547,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "4cf921569ae04772f6398470c459b4178ae1cd2deb993fb1734919c901376f1c",
+    "source_hash": "c6ee987770a9b3145bfdca8024e3454bd1a18b101e9538d43d3ac420997f62b8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -82,6 +82,22 @@
         "kind": "simplification",
         "text": "INTRA-BAND ORDERING: for levels sharing the same base pay (AE4/AS1, AC1/AS2, AC2/AC3/AS4), the relative order is assigned arbitrarily (ascending within the group) to satisfy the engine's order-uniqueness constraint. The CCNL does not define an internal hierarchy among levels within the same salary band. Functionally irrelevant — the validator only requires salary to be non-decreasing for ascending order.",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -3099,7 +3115,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "802565eff1b36046bafa57aadd18c8a4d4acc8c0f120604755d8dab0b162921a",
+    "source_hash": "1900707dea3aa6024a075fc8a55dd1becf792a0d9d378b86f3437eaee6061257",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

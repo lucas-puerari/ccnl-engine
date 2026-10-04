@@ -78,6 +78,22 @@
       {
         "kind": "info",
         "text": "OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -744,7 +760,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "36e3ccf4467f90c4ef07c75009e176a29482529d911d6eda5cd6c4bebb596e11",
+    "source_hash": "ab450698fa300a60f8a86b9f3b163b4436d89b4e3e8033b76d35b5e9048a8f1a",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

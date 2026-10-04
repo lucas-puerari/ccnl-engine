@@ -20,8 +20,10 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 
-#: Engine limitation of an apprentice paid the apprentice seniority amount.
-APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+#: Variant of the CCNL limitation of an apprentice whose CCNL declares no
+#: apprentice seniority amount: the engine pays none, and the CCNL text read
+#: for the ruleset does not settle whether the level increments are due.
+APPRENTICE_SENIORITY_VARIANT = "apprentice_seniority"
 
 #: Reason of a seniority decision when the level pays the worker no
 #: increment: the capability does not apply to the run.
@@ -199,8 +201,9 @@ def _seniority_amount(
     if count <= 0 or worker_category in seniority_rules.excluded_categories:
         return _ZERO
     # Apprentices accrue only the CCNL apprentice-specific increment (if
-    # any); the level increments start after qualification.  The chain
-    # records the APPRENTICE_SENIORITY engine limitation when it matters.
+    # any); the level increments start after qualification.  Without an
+    # apprentice amount the chain records the CCNL limitation of the
+    # APPRENTICE_SENIORITY_VARIANT when it matters.
     if is_apprentice:
         raw = (
             seniority_rules.apprentice_amount.value_at(as_of)

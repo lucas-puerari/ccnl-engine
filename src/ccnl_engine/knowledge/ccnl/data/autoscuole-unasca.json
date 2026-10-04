@@ -101,6 +101,22 @@
           },
           "remediation": "Pass the 2 EUR monthly employer contribution as a bilateral fund event."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1347,7 +1363,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "999523655f866592e8183204e76376ee3b4b4aa2bbefa7033ac46687be0d4d8e",
+    "source_hash": "b434976abfcb762dd4b562cbd42b0352a496f2b69aae01d98c2ab12dd9bf2ad2",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },

@@ -78,6 +78,22 @@
           "variant": "industria_tax_sector_unverified",
           "remediation": "Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1422,7 +1438,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "d01eb105a7eece0107e659d84feed6cce2f81f784ca1d22184bfee3342b9f617",
+    "source_hash": "75f8c72b866b17649b42174c4507c0c92b07e47088e8254d719c66bbfcb2db57",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

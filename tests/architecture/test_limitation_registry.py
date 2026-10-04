@@ -29,8 +29,8 @@ from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_ALLOWANCES
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY
-from ccnl_engine.shared.domain.limitation import MonetaryImpact
+from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY_VARIANT
+from ccnl_engine.shared.domain.limitation import LimitationStatus, MonetaryImpact
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
@@ -74,14 +74,25 @@ def test_limitations_name_registry_capabilities(ccnls: tuple[CCNL, ...]) -> None
     assert {lim.capability for lim in limitations} <= features
 
 
+_APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+
+
 def test_engine_limitations_are_raised_by_their_code() -> None:
-    """Each engine limitation id is the one its code path records."""
-    assert {lim.id for lim in load_engine_limitations()} == {
+    """Each open engine limitation id is the one its code path records.
+
+    A resolved one stays in the bundle as the record of what closed it;
+    no code path records it any more.
+    """
+    by_status = {
+        status: {lim.id for lim in load_engine_limitations() if lim.status is status}
+        for status in LimitationStatus
+    }
+    assert by_status[LimitationStatus.OPEN] == {
         MIDPOINT_ALLOWANCES,
-        APPRENTICE_SENIORITY,
         INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
     }
+    assert by_status[LimitationStatus.RESOLVED] == {_APPRENTICE_SENIORITY}
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
@@ -115,6 +126,32 @@ def test_engine_limitation_rulesets_are_derived_from_data(
     assert rulesets[MIDPOINT_ALLOWANCES] == {
         c.meta.ccnl_id for c in ccnls if _has_midpoint(c)
     }
-    assert rulesets[APPRENTICE_SENIORITY] == {
+    assert rulesets[_APPRENTICE_SENIORITY] == {
         c.meta.ccnl_id for c in ccnls if _has_level_seniority_for_apprentices(c)
     }
+
+
+def _apprentice_seniority_notes(ccnl: CCNL) -> list[LimitationStatus]:
+    return [
+        lim.status
+        for lim in ccnl.limitations
+        if lim.variant == APPRENTICE_SENIORITY_VARIANT
+    ]
+
+
+def test_unsourced_apprentice_seniority_is_an_open_limitation(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """A CCNL whose levels pay apprentices increments states the apprentice rule.
+
+    With an apprentice amount the rule is modelled; without one the
+    engine pays none and the CCNL carries an open limitation, which the
+    chain records when the level pays matured increments.
+    """
+    for ccnl in ccnls:
+        unsourced = (
+            _has_level_seniority_for_apprentices(ccnl)
+            and ccnl.parameters.seniority_increments.apprentice_amount is None
+        )
+        expected = [LimitationStatus.OPEN] if unsourced else []
+        assert _apprentice_seniority_notes(ccnl) == expected, ccnl.meta.ccnl_id

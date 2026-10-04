@@ -33,7 +33,7 @@ from ccnl_engine import (
 
 _ENGINE = PayrollEngine.bundled()
 _MIDPOINT = "apprenticeship_midpoint_allowances"
-_APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+_APPRENTICE_SENIORITY = "apprentice_seniority"
 _CONCIA_OVERTIME = "concia-unic/higher_overtime_bands"
 
 
@@ -96,14 +96,29 @@ def test_midpoint_limitation_needs_the_midpoint_period(
 def test_apprentice_seniority_needs_matured_increments(
     seniority: int, recorded: bool
 ) -> None:
-    """The apprentice seniority simplification matters once increments mature."""
+    """The unsourced apprentice seniority matters once increments mature."""
+    result = _run(
+        "turismo-confcommercio",
+        "4",
+        Apprentice(months_elapsed=1, track="professionalizzante_36"),
+        seniority=seniority,
+    )
+    limitation_id = f"turismo-confcommercio/{_APPRENTICE_SENIORITY}"
+    assert (limitation_id in _ids(result)) is recorded
+    blockers = {(b.code, b.feature, b.detail) for b in result.blockers}
+    blocker = (BlockerCode.OPEN_LIMITATION, "seniority", limitation_id)
+    assert (blocker in blockers) is recorded
+
+
+def test_sourced_apprentice_amount_records_no_limitation() -> None:
+    """A CCNL with an apprentice amount has its apprentice rule modelled."""
     result = _run(
         "acconciatura-estetica-confartigianato",
         "3",
         Apprentice(months_elapsed=1, track="gruppo_1"),
-        seniority=seniority,
+        seniority=120,
     )
-    assert (_APPRENTICE_SENIORITY in _ids(result)) is recorded
+    assert not any(i.endswith(_APPRENTICE_SENIORITY) for i in _ids(result))
 
 
 def test_apprentice_without_seniority_is_a_missing_fact() -> None:
@@ -132,7 +147,7 @@ def test_apprentice_seniority_without_level_series_is_kept() -> None:
         Apprentice(months_elapsed=0, track="triennale"),
         seniority=120,
     )
-    assert _APPRENTICE_SENIORITY in _ids(result)
+    assert f"grafica-editoria-aieg/{_APPRENTICE_SENIORITY}" in _ids(result)
 
 
 def test_overtime_limitation_needs_overtime() -> None:

@@ -94,6 +94,22 @@
         "text": "SIMPLIFICATION: dest 3S° and dest 4S° apprenticeship not modelled — Allegato 10 names only ordinal destinations 1°-5°; S-level destinations are unaddressed in the accord text.",
         "capability": "base_salary",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1647,7 +1663,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "56e7498891c284c0abe529d7e1802546f3a44a63a12ccf243f037b10b89c6611",
+    "source_hash": "028565cd79424374a14890a58abfa6276103e0ae2287bbc9a225b15dabc75750",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

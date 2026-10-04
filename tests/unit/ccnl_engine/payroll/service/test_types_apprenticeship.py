@@ -37,14 +37,18 @@ def _chain(seniority: str = "0.00") -> MonthlyPayChain:
 
 
 class TestScaledForApprenticeship:
-    """Only the base, the seniority and the relevant allowances are reduced."""
+    """Only the base and the relevant allowances are reduced."""
 
     def test_exempt_allowance_keeps_full_value(self) -> None:
-        """75% of 1307.47 and 522.19, rounded half up; EDR stays 41.85."""
+        """75% of 1307.47 and 522.19, rounded half up; EDR stays 41.85.
+
+        The seniority is the apprentice amount, already set for
+        apprentices: it stays 20.00 instead of being reduced a second time.
+        """
         result = _chain("20.00").scaled_for_apprenticeship(_D("0.75"))
 
         assert result.base == _D("980.60")
-        assert result.seniority == _D("15.00")
+        assert result.seniority == _D("20.00")
         assert result.allowances == (
             (_CONTINGENZA, _D("391.64")),
             (_EDR, _D("41.85")),
@@ -61,13 +65,13 @@ class TestApprenticeshipScalingOf:
     """The scaling lists the components it reduced and those paid in full."""
 
     def test_lists_scaled_and_unscaled_components(self) -> None:
-        """Seniority is listed only when the chain carries some."""
+        """Seniority, listed when the chain carries some, is paid in full."""
         scaling = ApprenticeshipScaling.of(_chain("20.00"), _D("0.75"))
 
         assert scaling == ApprenticeshipScaling(
             percentage=_D("0.75"),
-            scaled=("base_salary", "seniority", "CONTINGENZA"),
-            unscaled=("EDR",),
+            scaled=("base_salary", "CONTINGENZA"),
+            unscaled=("seniority", "EDR"),
         )
 
     def test_omits_seniority_when_none_is_due(self) -> None:

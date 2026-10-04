@@ -98,6 +98,22 @@
           },
           "remediation": "Add ITS and EVR to the apprentice base of Art. G."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1437,7 +1453,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "da55a6158866243955d3550a9b186097369256b2399321707fa06b14408f443a",
+    "source_hash": "f07267d7d342e5091ae7dd4432fbc5c9d4bbb3f297cb8faccea7a87227714974",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

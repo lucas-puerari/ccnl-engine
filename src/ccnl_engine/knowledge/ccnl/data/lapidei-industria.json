@@ -87,6 +87,22 @@
           },
           "remediation": "Extract the post-2022 percentage table and model the percentage track."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2275,7 +2291,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "e05dc3de1ef61e4f3d1d67bbd236619f927f48ecc7a67778b33ff02925f5122e",
+    "source_hash": "aded1da1c91e220efd80a66e8cb08fb31e1a2df7ddc7778d3b7f3c00393667e5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

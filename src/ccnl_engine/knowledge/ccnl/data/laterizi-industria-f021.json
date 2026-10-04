@@ -110,6 +110,22 @@
       {
         "kind": "info",
         "text": "ARCO FUND: employer complementary pension contribution from 01/07/2026 = 1.90%, from 01/01/2028 = 2.00% (2025 renewal Art. 55). The ARCO base is: paga tabellare + contingenza + EDR + indennita funzione quadri (where applicable). Not modelled in employer_funds (TFR-based bilateral fund, not captured by the current engine schema)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2882,7 +2898,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "3c4ebd4074363ecc6917bcd8961da04fa9c44b7255ced03bfef52716b2107091",
+    "source_hash": "faeb7e1173b0f5a83e939fe539aa3153c1372e699e9719ee5547b5020c431996",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -109,6 +109,22 @@
       {
         "kind": "info",
         "text": "EDR ROLL-UP: rolling EDR (EUR 10.33) into base_salary is safe for G029 because G029 uses under_classification apprenticeship, meaning the apprentice pay is determined by the classified level's base_salary directly. The EDR percentage-of-base exemption (Art. 3 L. 537/1993) does not apply to under_classification."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1415,7 +1431,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "4f6d944ad9f86e989e79d4a06cc5d03cfbed49bd953f1fa2684fbd841af7b268",
+    "source_hash": "1b009e4ea6fd9d1cf6473a1eed7739a347432b0797005218958b2b9ef535ea16",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

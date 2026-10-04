@@ -78,6 +78,22 @@
       {
         "kind": "info",
         "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1419,7 +1435,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "7baaf6ecada0a8e057a82818238db6c4b7d0097fd5848b59ec131ca3444b49f6",
+    "source_hash": "0e4390ec8ee46dd07b47f3536773370f3d6bbcbf9b750f6f04497542f897ef36",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

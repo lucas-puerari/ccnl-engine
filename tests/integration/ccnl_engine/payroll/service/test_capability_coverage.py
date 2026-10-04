@@ -41,7 +41,7 @@ def _by_feature(ccnl: CCNL) -> dict[str, tuple[CapabilityImplementation, bool]]:
 
 def test_without_notes_the_registry_applies() -> None:
     """Every capability keeps the implementation of the registry."""
-    rows = _by_feature(load_ccnl("metalmeccanico-federmeccanica.json"))
+    rows = _by_feature(load_ccnl("chimica-farmaceutica-federchimica.json"))
     assert rows == {e.feature: (e.implementation, False) for e in _CATALOG.capabilities}
 
 

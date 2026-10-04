@@ -99,6 +99,22 @@
           "variant": "salary_tables_from_proxy",
           "remediation": "Verify the salary tables against the official ANAV CCNL text."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -3258,7 +3274,7 @@
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "6ed47d686ab5572ec0e4e067ebe428997a066b14eb818a4b68a380a331983910",
+    "source_hash": "bce32d710a738ffca8e7be051e4a82aa25da8d9259498429557f34b8fd259cc8",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

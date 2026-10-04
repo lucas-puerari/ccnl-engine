@@ -95,6 +95,22 @@
           "variant": "terziario_tax_sector_unverified",
           "remediation": "Verify the INPS classification of private security employers against the INPS circular."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1430,7 +1446,7 @@
     "effective_until": null,
     "source": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
     "verification_status": "unverified",
-    "source_hash": "219f3ea780ff6cd0ecd760efbe685825af82af84f887177d9b5b18c6cb294e6d",
+    "source_hash": "6b6abd59a5b7f477e0e0cad48a65945a63ded1bfa1550df9ca2989caecef7d3a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

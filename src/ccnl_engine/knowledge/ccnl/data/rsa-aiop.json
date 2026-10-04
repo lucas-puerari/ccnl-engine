@@ -55,6 +55,22 @@
       {
         "kind": "info",
         "text": "Apprenticeship: CCNL RSA-AIOP specifies sotto-inquadramento up to 2 levels below destination (levels A-F eligible, 36 months). Engine schema requires a static pay_level_code; cannot express dynamic under-classification tracks; modelled as 100% passthrough (correct for permanent workers, overstates pay for apprentices). Structural engine limitation."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1164,7 +1180,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "df95a2c00cdfb4ef135c82b2f8e26ae47a74d57e25a0b3f83e79a5b1f39525c9",
+    "source_hash": "adc2f24419a92cb69fc689239a6b5005d48cae31a003927c58756523af9e2ba0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

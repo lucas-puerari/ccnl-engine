@@ -93,6 +93,22 @@
       {
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2199,7 +2215,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-gomma-plastica/",
     "verification_status": "unverified",
-    "source_hash": "b4060ae1edf9c40ad8847ed1b6aed8d8ed1794cbafb5eee094c15b982fac4407",
+    "source_hash": "15ce3ea45ceb05c65c93cd601fc38987d6f5053f2be86b6feb2cbe2e47abef38",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

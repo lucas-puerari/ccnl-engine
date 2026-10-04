@@ -46,6 +46,22 @@
       {
         "kind": "info",
         "text": "Level VI salary at 01/06/2024 (1185.44) is anomalously high vs prior tranche (1108.06) — confirmed by source as conventional riallineamento for level VI."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1354,7 +1370,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "1f8c7a468ed9d2f4250fadce0cd8bf2b7aa4feb6869eff67e0d9dcd4f0ac583f",
+    "source_hash": "1d09ee42ebbe9c0c6549332e034f9d439b4454ea9360a37cf795cf7a1224c24b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

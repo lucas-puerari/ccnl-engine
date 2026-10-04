@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contract.domain.validity import SeriesGapError, rule_scope
 from ccnl_engine.payroll.service.seniority import (
-    APPRENTICE_SENIORITY,
+    APPRENTICE_SENIORITY_VARIANT,
     _seniority_amount,
 )
 from ccnl_engine.payroll.service.types import MonthlyPayChain
@@ -70,7 +70,8 @@ def _level_seniority(
     """Return the seniority the level pays a qualified worker, if readable.
 
     An apprentice with matured increments is paid the apprentice amount;
-    the run records the simplification when the level pays otherwise.
+    when the CCNL declares none, the run records the CCNL limitation when
+    the level pays otherwise.
 
     Returns:
         The level amount, ``None`` when its rule has no value at *as_of*:
@@ -111,9 +112,10 @@ def _level_chain(
             is_apprentice=is_apprentice,
             seniority_months=seniority_months,
         )
-    simplified = (
+    unsourced = (
         is_apprentice
         and count > 0
+        and ccnl.parameters.seniority_increments.apprentice_amount is None
         and seniority
         != _level_seniority(
             ccnl, level, count, as_of, worker_category, seniority_months
@@ -130,5 +132,9 @@ def _level_chain(
         base=base,
         seniority=seniority,
         allowances=allowances,
-        limitations=(APPRENTICE_SENIORITY,) if simplified else (),
+        limitations=(
+            (f"{ccnl.meta.ccnl_id}/{APPRENTICE_SENIORITY_VARIANT}",)
+            if unsourced
+            else ()
+        ),
     )

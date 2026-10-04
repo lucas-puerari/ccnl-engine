@@ -108,6 +108,22 @@
           },
           "remediation": "Confirm the level 5 apprenticeship classification against Art. 15."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -777,7 +793,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "022d0b109b3ed646bb37a0c6d102bbace0d14d44d65846fcf4db2a40bbf65231",
+    "source_hash": "771f0497bffed6bfbbf887bbe6eea6a29eb7b524d4f09c44b22dd6e291675aca",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

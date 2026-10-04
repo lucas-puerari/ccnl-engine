@@ -76,6 +76,22 @@
       {
         "kind": "info",
         "text": "LEVEL 6Q: not present in the CCNL table of the CNEL PDF (August 2023). Excluded from the model."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1181,7 +1197,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd91579e1d5fc3de60eb2918b81153a55acc9d1e692fe15943693be3f743984e",
+    "source_hash": "115ed82d500def7ee8b9bcf95b8b08cdb3d78252138281cb1cb39b0b78279d66",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

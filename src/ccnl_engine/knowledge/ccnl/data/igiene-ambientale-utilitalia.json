@@ -83,6 +83,22 @@
       {
         "kind": "info",
         "text": "BILATERAL FUNDS. FASDA healthcare (Fondo Assistenza Sanitaria Dipendenti Aziende di Servizi Ambientali) and Previambiente supplementary pension fund contributions are not modelled."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -3456,7 +3472,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "b9045a0a6fe736bce602d602545c195bc26bc7b4cc5da3a83eb7672b61de5490",
+    "source_hash": "c4710502681bb9c7f4946b51858c4e0f18ecea1eecfd0096ee5ec9ec6cc9a92b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

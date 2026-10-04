@@ -86,6 +86,22 @@
       {
         "kind": "info",
         "text": "COMETA: supplementary pension fund (Art. 44 CCNL 2021 PDF). Employer 2.00% (from Dec 2024), employee 1.20%. Not modelled in the engine (Layer 3, out of scope)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1305,7 +1321,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "a93ddd6b500dab740151ba927d3d0695492e4e97af7877e40b885d2e817da6d5",
+    "source_hash": "64ba9e5251a6d29db8da62d54962ec180311ee663cb6bb7e71482fa94486dad0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

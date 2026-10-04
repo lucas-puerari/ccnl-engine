@@ -203,6 +203,22 @@
           },
           "remediation": "Model the INPS reductions for mountain and disadvantaged zones."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -680,7 +696,7 @@
     "effective_until": null,
     "source": "https://www.contratticcnl.it/agricoltura-florovivaisti/tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "1192285b5f0446b1f6536086f9b1be944fce7be13c1a409b5d50258292cba670",
+    "source_hash": "a018f970d2c80136c3c03301321373c9d05d9c6b9524b919248653c44b6f1c90",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -34,5 +34,6 @@ def test_ccnl_limits_and_sources() -> None:
         rows["ortofrutticoli-agrumari"].cells.limits
         == "base_salary, leave, seniority, sickness"
     )
-    assert rows["anas"].cells.limits == "—"
+    assert rows["anas"].cells.limits == "seniority"
+    assert rows["federcasa"].cells.limits == "—"
     assert len(rows["anas"].sources.split(" / ")) == 4

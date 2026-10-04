@@ -1808,6 +1808,22 @@
       {
         "kind": "info",
         "text": "Apprenticeship type b (professionalizzante). Durations: II=36m, III=36m, IV=36m, V=36m, VI=24m. Half-period = 18m (II-V) and 12m (VI)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1818,7 +1834,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "c2c40ed88b39469685b215f8bddf42fe1193a5a65488a4b98d072df267646026",
+    "source_hash": "edb41ee34c6d829fec686336b1932beff21fa7f550636ee7e5e30dd7eda7e666",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

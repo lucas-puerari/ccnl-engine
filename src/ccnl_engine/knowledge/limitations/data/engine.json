@@ -25,9 +25,9 @@
       "id": "apprentice_seniority_simplified",
       "capability": "seniority",
       "variant": "apprentice_seniority",
-      "summary": "Apprentices accrue only the CCNL apprentice-specific seniority increment (zero when the CCNL declares none); the increments of the level start after qualification. The run is affected when the apprentice has matured increments and the level amount differs from the apprentice amount.",
+      "summary": "Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "agenti-immobiliari-fiaip",
@@ -125,8 +125,8 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.service.seniority (apprentice seniority amount)",
-      "remediation": "Source, for each CCNL, whether apprentices accrue the level increments or an amount of their own, model it, then resolve this limitation."
+      "source": "ccnl_engine.payroll.service.chain and MonthlyPayChain.scaled_for_apprenticeship; apprentice amounts as sourced in the CCNL notes (acconciatura-estetica 2024 renewal Art. 25: 6 EUR; tessile-moda-artigianato 2024 renewal: 6 EUR; panificazione Art. 34-bis 'esclusi gli apprendisti' and 2024 renewal: 10 EUR; comunicazione-artigianato 2024 renewal: 10 EUR; legno-lapidei-artigianato 2024 renewal: 8 EUR); tests/acceptance/legal_scenarios/test_apprentice_seniority.py",
+      "remediation": "Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation."
     },
     {
       "id": "sickness_inps_daily_base",

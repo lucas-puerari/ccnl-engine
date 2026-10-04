@@ -111,6 +111,22 @@
       {
         "kind": "info",
         "text": "Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1967,7 +1983,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "30c9fd4f594e41bff9a74377d88c138abe45301c6026bd1484abe64b4e7a3a8a",
+    "source_hash": "83c5e9cfdcc2358b9ed1f15c709cb12faac6d84ca997804b204d7ee5f2454f48",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

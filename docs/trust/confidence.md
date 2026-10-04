@@ -67,22 +67,25 @@ automatically. In `operational` mode every one of these runs also carries a
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->160<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->244<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->4<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
 (`knowledge/limitations/data/engine.json`: the apprenticeship midpoint that
-averages the base salary but not the allowances, and the apprentice seniority
-increment). Each entry has a stable `id`, the `capability` and `variant` it
+averages the base salary but not the allowances, the apprentice seniority
+increment, now resolved, and two sickness paths). A CCNL that declares no
+apprentice seniority amount carries its own `<ccnl_id>/apprentice_seniority`
+limitation, recorded when an apprentice has matured increments the level
+pays. Each entry has a stable `id`, the `capability` and `variant` it
 limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->224<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->308<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->72<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->84<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->73<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->167<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the

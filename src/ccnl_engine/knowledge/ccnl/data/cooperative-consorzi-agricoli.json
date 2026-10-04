@@ -59,6 +59,22 @@
           },
           "remediation": "Source the apprenticeship rule of the 2024 CCNL and model its track."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1278,7 +1294,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "fc08230ee9d6c39eb57561fb7ef2ebd79d274e82697e4055dc47224354c4aa2d",
+    "source_hash": "887d30e0435c7e25656f6d51fb5b11585c3c89412aa4dac1d8e0e7b01a4b8cfa",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

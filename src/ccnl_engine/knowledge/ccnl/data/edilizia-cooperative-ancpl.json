@@ -74,6 +74,22 @@
         "text": "SIMPLIFICATION: Apprenticeship provisions for Q levels (7Q, 8Q) are not modelled; quadri are not typically hired as apprentices in the cooperative construction sector.",
         "capability": "base_salary",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1939,7 +1955,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "1af1271e846310b1386ffeab85c68076420733d95a8281df888496623a4249e7",
+    "source_hash": "f8c9078b40149ff1aa764d3a2bc0078a969d6f4cff7057a7781e3480b282373e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

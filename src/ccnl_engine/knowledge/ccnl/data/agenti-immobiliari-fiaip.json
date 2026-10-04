@@ -141,6 +141,22 @@
       {
         "kind": "info",
         "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1207,6 +1223,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "e6a6ea3f55c32d3336f212aa9608143f15ca40ee368f1415e6af407ce00dd07f"
+    "source_hash": "1bd2cd8274f7e0813b40af75167bc3f8e9d0a27e80c4ac90b15b25ba297f5d16"
   }
 }

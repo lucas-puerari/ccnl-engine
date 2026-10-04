@@ -66,6 +66,22 @@
       {
         "kind": "info",
         "text": "JANUARY 2027 TRANCHE: +60.96 at L8 basis, proportional to parametri. Values from rinnovo 11/11/2024 (Chapter VI column 'da gennaio 2027'). Source: studiobergonzini.it ipotesi 11/11/2024 PDF."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1611,7 +1627,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "f1da6e950503b05502e0d6195f89dfa83c6f7a0d1bda7320db07a0db3dc4a6d7",
+    "source_hash": "2b367bba4b0d30f762f3559ddea1dc35164ec98505d409941fd3a818642a3fb7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
