@@ -270,7 +270,7 @@ as 0, flagged by the issue `regional_surtax_unknown` or
 `municipal_surtax_unknown`, recorded by a decision with no amount and
 reported as a blocker, so the result is not payable.  `result.decisions` records what each capability
 decided, e.g. the surtax and tax credit decisions described in
-[Fiscal computation](../engine/fiscal.md#surtax-decisions).  The year result
+[Fiscal computation](../engine/surtax.md#surtax-decisions).  The year result
 exposes the decisions of its periods in payment order.
 
 ### Capability report
