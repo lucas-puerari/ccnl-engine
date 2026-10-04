@@ -9,9 +9,9 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PayrollRun,
-    PensionFundEnrolment,
     PeriodInput,
 )
+from ccnl_engine.inputs import PensionFundEnrolment
 
 engine = PayrollEngine.bundled()
 

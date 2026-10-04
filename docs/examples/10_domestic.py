@@ -4,7 +4,6 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    ContributableHours,
     EmployerProfile,
     Employment,
     Headcount,
@@ -12,8 +11,8 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    WeeklyHours,
 )
+from ccnl_engine.inputs import ContributableHours, WeeklyHours
 
 engine = PayrollEngine.bundled()
 

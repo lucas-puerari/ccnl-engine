@@ -18,15 +18,13 @@ from ccnl_engine import (
     CompetenceYearPlan,
     EmployerProfile,
     Headcount,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    PeriodState,
-    WorkerCategory,
 )
+from ccnl_engine.inputs import OpeningBalances, PeriodState, WorkerCategory
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 from tests.fixtures.withholding import paid_before
 

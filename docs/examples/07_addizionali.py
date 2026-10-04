@@ -7,14 +7,12 @@ from ccnl_engine import (
     EmployerProfile,
     Employment,
     Headcount,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    SurtaxComponent,
-    SurtaxObligation,
 )
+from ccnl_engine.inputs import OpeningBalances, SurtaxComponent, SurtaxObligation
 
 engine = PayrollEngine.bundled()
 

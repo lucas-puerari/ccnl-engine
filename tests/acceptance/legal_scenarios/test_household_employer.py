@@ -34,29 +34,29 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    BonusEvent,
-    CalculationStatus,
     CompetenceYearPlan,
-    ContributableHours,
     EmployerProfile,
     Employment,
     Headcount,
     InvalidInputError,
-    NightShiftEvent,
-    OpeningBalances,
-    PaymentId,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
+)
+from ccnl_engine.events import BonusEvent, NightShiftEvent, WorkEvent
+from ccnl_engine.inputs import (
+    ContributableHours,
+    OpeningBalances,
+    PaymentId,
     PeriodState,
     PriorYearTaxFacts,
     RecoveryObligation,
     RecoveryPlan,
     WeeklyHours,
-    WorkEvent,
 )
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.seniority import new_hire
 
 pytestmark = pytest.mark.legal_scenario
@@ -316,7 +316,7 @@ _PLAN = RecoveryPlan(
 def test_opening_tax_state_is_rejected(balances: OpeningBalances) -> None:
     """A household employer never recognized a credit or withheld a tax."""
     with pytest.raises(InvalidInputError, match="not a withholding agent"):
-        _september(_REPORTED, opening=balances.to_state())
+        _september(_REPORTED, opening=PayrollEngine.import_opening_balances(balances))
 
 
 def test_year_has_no_withholding_and_no_conguaglio() -> None:

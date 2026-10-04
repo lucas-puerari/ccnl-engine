@@ -556,7 +556,7 @@ above the surtax withheld, and IRPEF deferred on written request
 ```python
 from decimal import Decimal
 
-from ccnl_engine import OpeningBalances, RecoveryObligation, RecoveryPlan
+from ccnl_engine.inputs import OpeningBalances, RecoveryObligation, RecoveryPlan
 
 opening = engine.import_opening_balances(OpeningBalances(
     tax_year=2027,

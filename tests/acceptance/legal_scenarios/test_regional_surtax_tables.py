@@ -29,23 +29,26 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    CalculationStatus,
     CompetenceYearPlan,
-    Dependent,
-    DependentRelationship,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
-    FamilyComposition,
     Headcount,
     PayrollEngine,
     PeriodFacts,
 )
+from ccnl_engine.inputs import (
+    Dependent,
+    DependentRelationship,
+    EmploymentPeriod,
+    FamilyComposition,
+)
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine import CalculationDecision, PeriodResult
+    from ccnl_engine import PeriodResult
+    from ccnl_engine.results import CalculationDecision
 
 pytestmark = pytest.mark.legal_scenario
 

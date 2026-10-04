@@ -9,6 +9,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.payroll.application.opening_balances import OpeningBalances
+from ccnl_engine.payroll.application.opening_state import opening_state
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import (
     EmploymentObligations,
@@ -34,27 +35,29 @@ _PLAN = RecoveryPlan(
 )
 
 
-def test_to_state_maps_every_total() -> None:
+def test_opening_state_maps_every_total() -> None:
     """Each progressive total lands in its YTD account."""
     recovery = RecoveryObligation(tax_year=2025, plan=_PLAN)
-    state = OpeningBalances(
-        tax_year=2026,
-        payments=(PaymentId.parse("2026-06-regular@2026-06-27"),),
-        gross=Decimal("15000.00"),
-        taxable=Decimal("13600.00"),
-        inps_employee=Decimal("1377.00"),
-        irpef_withheld=Decimal("2100.00"),
-        surtax_withheld=Decimal("150.00"),
-        fringe_value=Decimal("400.00"),
-        fringe_taxed=Decimal("0.00"),
-        pdr=Decimal("1000.00"),
-        trattamento_recognized=Decimal("600.00"),
-        trattamento_recovered=Decimal("0.00"),
-        somma_esente_recognized=Decimal("300.00"),
-        somma_esente_recovered=Decimal("40.00"),
-        work_time_regime_used=Decimal("500.00"),
-        recoveries=(recovery,),
-    ).to_state()
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026,
+            payments=(PaymentId.parse("2026-06-regular@2026-06-27"),),
+            gross=Decimal("15000.00"),
+            taxable=Decimal("13600.00"),
+            inps_employee=Decimal("1377.00"),
+            irpef_withheld=Decimal("2100.00"),
+            surtax_withheld=Decimal("150.00"),
+            fringe_value=Decimal("400.00"),
+            fringe_taxed=Decimal("0.00"),
+            pdr=Decimal("1000.00"),
+            trattamento_recognized=Decimal("600.00"),
+            trattamento_recovered=Decimal("0.00"),
+            somma_esente_recognized=Decimal("300.00"),
+            somma_esente_recovered=Decimal("40.00"),
+            work_time_regime_used=Decimal("500.00"),
+            recoveries=(recovery,),
+        )
+    )
 
     ytd = state.cash
     assert ytd.tax_year == 2026
@@ -112,9 +115,9 @@ def test_rejects_a_recovery_opened_after_the_tax_year() -> None:
         )
 
 
-def test_to_state_maps_due_reason_and_shortfall() -> None:
+def test_opening_state_maps_due_reason_and_shortfall() -> None:
     """The last annual due and reason of a credit and the shortfall carry over."""
-    ytd = (
+    ytd = opening_state(
         OpeningBalances(
             tax_year=2026,
             payments=_JUNE,
@@ -130,9 +133,7 @@ def test_to_state_maps_due_reason_and_shortfall() -> None:
             surtax_shortfall=Decimal("2.10"),
             credit_recovery_shortfall=Decimal("7.50"),
         )
-        .to_state()
-        .cash
-    )
+    ).cash
 
     assert ytd.trattamento.due == Decimal("1200.00")
     assert ytd.trattamento.reason == "full_amount"
@@ -153,7 +154,7 @@ def test_rejects_a_reason_that_is_not_a_code() -> None:
 
 def test_unknown_due_is_accepted() -> None:
     """A due left ``None`` is not checked for cents."""
-    state = OpeningBalances(tax_year=2026, ulteriore_due=None).to_state()
+    state = opening_state(OpeningBalances(tax_year=2026, ulteriore_due=None))
     assert state.cash.ulteriore_detrazione.due is None
 
 
@@ -162,15 +163,17 @@ def test_imports_the_surtax_of_the_previous_conguaglio() -> None:
     saldo = SurtaxObligation.open(
         SurtaxComponent.REGIONAL_BALANCE, 2025, "IT-88", Decimal("110.00")
     )
-    state = OpeningBalances(
-        tax_year=2026,
-        payments=_JUNE,
-        surtax_withheld=Decimal(30),
-        municipal_advance_withheld=Decimal(12),
-        regional_settled=Decimal(5),
-        municipal_settled=Decimal(3),
-        surtax_obligations=(saldo,),
-    ).to_state()
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026,
+            payments=_JUNE,
+            surtax_withheld=Decimal(30),
+            municipal_advance_withheld=Decimal(12),
+            regional_settled=Decimal(5),
+            municipal_settled=Decimal(3),
+            surtax_obligations=(saldo,),
+        )
+    )
 
     assert state.cash.obligations.surtax == (saldo,)
     assert state.cash.tax.municipal_advance == Decimal(12)
@@ -199,7 +202,7 @@ def _deferred(tax_year: int) -> DeferredShortfall:
 def test_imports_the_deferral_of_the_previous_conguaglio() -> None:
     """The IRPEF the 2025 conguaglio deferred opens 2026."""
     deferred = _deferred(2025)
-    state = OpeningBalances(tax_year=2026, deferred_shortfall=deferred).to_state()
+    state = opening_state(OpeningBalances(tax_year=2026, deferred_shortfall=deferred))
     assert state.cash.obligations.deferred_shortfall == (deferred,)
 
 
@@ -252,7 +255,7 @@ def test_accepts_more_than_fourteen_payments() -> None:
             payments.append(PaymentId.parse("2027-07-fourteenth@2027-07-27"))
     payments.append(PaymentId.parse("2027-12-thirteenth@2027-12-27"))
 
-    state = OpeningBalances(tax_year=2027, payments=tuple(payments)).to_state()
+    state = opening_state(OpeningBalances(tax_year=2027, payments=tuple(payments)))
 
     assert state.cash.withholding_payments_closed == 15
 
@@ -268,7 +271,7 @@ def test_rejects_totals_without_the_payments_that_produced_them() -> None:
 def test_obligations_alone_need_no_payment() -> None:
     """A new tax year opens with obligations and no payment."""
     recovery = RecoveryObligation(tax_year=2025, plan=_PLAN)
-    state = OpeningBalances(tax_year=2026, recoveries=(recovery,)).to_state()
+    state = opening_state(OpeningBalances(tax_year=2026, recoveries=(recovery,)))
 
     assert state.cash.payments == ()
 
@@ -276,7 +279,7 @@ def test_obligations_alone_need_no_payment() -> None:
 def test_imports_competence_runs_of_an_earlier_tax_year() -> None:
     """2026 paid in 2026 is closed: December 2026 paid in 2027 may follow it."""
     earlier = tuple(PayrollRunId(2026, m, RunKind.REGULAR) for m in range(1, 12))
-    state = OpeningBalances(tax_year=2027, competence_runs=earlier).to_state()
+    state = opening_state(OpeningBalances(tax_year=2027, competence_runs=earlier))
 
     assert state.accrual.regular_months(2026) == 11
     with pytest.raises(InvalidInputError, match="already closed"):
@@ -287,7 +290,7 @@ def test_imports_competence_runs_of_an_earlier_tax_year() -> None:
 def test_imports_the_inps_base_of_other_employers() -> None:
     """The base of an earlier employment of the year counts toward the massimale."""
     base = InpsBaseYtd(2026, other_employers=Decimal("80000.00"))
-    state = OpeningBalances(tax_year=2026, inps_bases=(base,)).to_state()
+    state = opening_state(OpeningBalances(tax_year=2026, inps_bases=(base,)))
 
     assert state.accrual.inps_base(2026).total == Decimal("80000.00")
     assert state.accrual.inps_base(2026).own == Decimal(0)
@@ -345,12 +348,14 @@ def test_every_total_of_the_cash_state_can_be_imported() -> None:
         for f in dataclasses.fields(OpeningBalances)
         if f.type == "str | None"
     }
-    state = OpeningBalances(
-        tax_year=2026,
-        payments=_JUNE,
-        **amounts,  # type: ignore[arg-type]
-        **reasons,  # type: ignore[arg-type]
-    ).to_state()
+    state = opening_state(
+        OpeningBalances(
+            tax_year=2026,
+            payments=_JUNE,
+            **amounts,  # type: ignore[arg-type]
+            **reasons,  # type: ignore[arg-type]
+        )
+    )
 
     skipped = {"cash.tax_year", "cash.payments", "cash.conguaglio", "cash.obligations"}
     defaults = {

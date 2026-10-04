@@ -9,14 +9,9 @@ import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine import (
-    ContributableHours,
-    EmployerProfile,
-    Employment,
-    Headcount,
-    OvertimeEvent,
-    WeeklyHours,
-)
+from ccnl_engine import EmployerProfile, Employment, Headcount
+from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.inputs import ContributableHours, WeeklyHours
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     DOMESTIC,

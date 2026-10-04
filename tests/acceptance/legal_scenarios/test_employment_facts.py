@@ -11,12 +11,14 @@ import pytest
 
 from ccnl_engine import (
     CompetenceYearPlan,
-    ContributableHours,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
     InvalidInputError,
+)
+from ccnl_engine.inputs import (
+    ContributableHours,
+    EmploymentPeriod,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,

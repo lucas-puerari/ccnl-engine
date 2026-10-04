@@ -112,12 +112,12 @@ from ccnl_engine import (
     EmployerProfile,
     Employment,
     Headcount,
-    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.events import OvertimeEvent
 
 engine = PayrollEngine.bundled()
 result = engine.calculate_period(

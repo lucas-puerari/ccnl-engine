@@ -23,12 +23,15 @@ import pytest
 from ccnl_engine import (
     CompetenceYearPlan,
     CompetenceYearResult,
-    DeferredShortfall,
     Employment,
-    ForeignTaxPaid,
-    FringeEvent,
-    OpeningBalances,
+    PayrollEngine,
     PeriodFacts,
+)
+from ccnl_engine.events import FringeEvent
+from ccnl_engine.inputs import (
+    DeferredShortfall,
+    ForeignTaxPaid,
+    OpeningBalances,
     PriorYearTaxFacts,
     ShortfallDeferralRequest,
 )
@@ -53,7 +56,9 @@ def _year(
             employer=EMPLOYER,
             prior_year=prior_year,
             periods=periods or {},
-            opening_state=None if opening is None else opening.to_state(),
+            opening_state=None
+            if opening is None
+            else PayrollEngine.import_opening_balances(opening),
         )
     )
 

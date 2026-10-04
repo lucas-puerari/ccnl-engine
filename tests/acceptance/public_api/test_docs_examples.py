@@ -16,7 +16,7 @@ from pathlib import Path
 
 import pytest
 
-from ccnl_engine import BlockerCode
+from ccnl_engine.results import BlockerCode
 
 _ROOT = Path(__file__).parents[3]
 _EXAMPLES_DIR = _ROOT / "docs" / "examples"

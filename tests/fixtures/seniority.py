@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from ccnl_engine import SeniorityFact, SenioritySource
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 __all__ = ["new_hire"]
 

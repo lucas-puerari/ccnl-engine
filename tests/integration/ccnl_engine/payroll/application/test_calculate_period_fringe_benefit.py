@@ -24,15 +24,15 @@ from decimal import Decimal
 from ccnl_engine import (
     EmployerProfile,
     Employment,
-    FringeEvent,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    PeriodState,
 )
+from ccnl_engine.events import FringeEvent
+from ccnl_engine.inputs import PeriodState
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem

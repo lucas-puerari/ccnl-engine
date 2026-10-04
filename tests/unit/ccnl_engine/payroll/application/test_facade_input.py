@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine.payroll.application.mode_input import (
+from ccnl_engine.payroll.application.facade_input import (
     closing_state,
     competence_plan,
     opening_balances,

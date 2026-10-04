@@ -5,12 +5,12 @@ from datetime import date
 from ccnl_engine import (
     EmployerProfile,
     Employment,
-    FixedTerm,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import FixedTerm
 
 engine = PayrollEngine.bundled()
 

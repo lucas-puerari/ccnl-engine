@@ -12,7 +12,6 @@ from datetime import date
 import pytest
 
 from ccnl_engine import (
-    BlockerCode,
     CcnlEngineError,
     EmployerProfile,
     Employment,
@@ -25,6 +24,7 @@ from ccnl_engine import (
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.results import BlockerCode
 from tests.fixtures.seniority import new_hire
 
 _WEAK = frozenset({"assumed", "missing"})

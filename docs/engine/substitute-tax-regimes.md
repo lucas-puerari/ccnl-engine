@@ -73,12 +73,10 @@ L. 199/2025 regimes.
 ```python
 from decimal import Decimal
 
-from ccnl_engine import (
+from ccnl_engine import EmployerProfile, Employment, Headcount
+from ccnl_engine.inputs import (
     EmployerActivity,
-    EmployerProfile,
-    Employment,
     EmploymentSector,
-    Headcount,
     PriorYearTaxFacts,
     SubstituteTaxRegime,
 )
@@ -113,7 +111,7 @@ window the data record as `agreements_signed_from` and
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import BonusEvent
+from ccnl_engine.events import BonusEvent
 
 renewal = BonusEvent(
     event_date=date(2026, 3, 10),
@@ -164,7 +162,7 @@ the exclusion depend on it.
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import HolidayWorkEvent, NightShiftEvent
+from ccnl_engine.events import HolidayWorkEvent, NightShiftEvent
 
 night = NightShiftEvent(
     event_date=date(2026, 3, 10), supplement_amount=Decimal(2_000)

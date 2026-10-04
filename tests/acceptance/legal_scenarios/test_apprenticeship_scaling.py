@@ -14,11 +14,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import Apprentice, Employment
+from ccnl_engine import Employment
+from ccnl_engine.inputs import Apprentice
 from tests.acceptance.legal_scenarios._support import COMMERCIO, regular_period
 
 if TYPE_CHECKING:
-    from ccnl_engine import CalculationDecision, PeriodResult
+    from ccnl_engine import PeriodResult
+    from ccnl_engine.results import CalculationDecision
 
 pytestmark = pytest.mark.legal_scenario
 

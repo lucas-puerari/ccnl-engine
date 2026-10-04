@@ -21,19 +21,16 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    Apprentice,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    WeeklyHours,
-    WorkerCategory,
 )
+from ccnl_engine.inputs import Apprentice, EmploymentPeriod, WeeklyHours, WorkerCategory
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import sickness_episode
 

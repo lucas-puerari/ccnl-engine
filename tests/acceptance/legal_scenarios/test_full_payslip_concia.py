@@ -30,14 +30,12 @@ from ccnl_engine import (
     CompetenceYearResult,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
     PayrollEngine,
     PeriodFacts,
     PeriodResult,
-    PriorYearTaxFacts,
-    SurtaxComponent,
 )
+from ccnl_engine.inputs import EmploymentPeriod, PriorYearTaxFacts, SurtaxComponent
 from tests.fixtures.legal_examples.concia_d2_2026 import CONCIA_D2_2026 as ORACLE
 from tests.fixtures.legal_examples.surtax_2026 import (
     ADVANCE_MONTHS,

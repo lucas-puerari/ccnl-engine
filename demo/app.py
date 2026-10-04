@@ -14,18 +14,20 @@ from datetime import UTC, date, datetime
 from decimal import Decimal
 
 from ccnl_engine import (
-    Apprentice,
-    ContributableHours,
-    ContributionHistory,
     EmployerProfile,
     Employment,
-    FixedTerm,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
+)
+from ccnl_engine.inputs import (
+    Apprentice,
+    ContributableHours,
+    ContributionHistory,
+    FixedTerm,
     Permanent,
     SeniorityFact,
     SenioritySource,

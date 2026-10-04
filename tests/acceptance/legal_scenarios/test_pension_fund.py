@@ -33,19 +33,14 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import (
-    BonusEvent,
-    CompetenceYearPlan,
-    Employment,
-    InvalidInputError,
-    OpeningBalances,
-    PaymentId,
-    PensionFundEnrolment,
-)
+from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError, PayrollEngine
+from ccnl_engine.events import BonusEvent
+from ccnl_engine.inputs import OpeningBalances, PaymentId, PensionFundEnrolment
 from tests.acceptance.legal_scenarios._support import EMPLOYER, ENGINE, regular_period
 
 if TYPE_CHECKING:
-    from ccnl_engine import CalculationDecision, CompetenceYearResult, PeriodResult
+    from ccnl_engine import CompetenceYearResult, PeriodResult
+    from ccnl_engine.results import CalculationDecision
 
 pytestmark = pytest.mark.legal_scenario
 
@@ -199,11 +194,13 @@ class TestDeductionCap:
     """Contributions beyond 5 300.00 in the year return to the taxable."""
 
     def _taxable_change(self, deducted: str) -> tuple[Decimal, PeriodResult]:
-        opening = OpeningBalances(
-            tax_year=2026,
-            payments=(PaymentId.parse("2026-01-regular@2026-01-27"),),
-            pension_deducted=Decimal(deducted),
-        ).to_state()
+        opening = PayrollEngine.import_opening_balances(
+            OpeningBalances(
+                tax_year=2026,
+                payments=(PaymentId.parse("2026-01-regular@2026-01-27"),),
+                pension_deducted=Decimal(deducted),
+            )
+        )
         enrolled = regular_period(employment=_tabacco(), month=2, opening_state=opening)
         plain = regular_period(
             employment=_tabacco(None), month=2, opening_state=opening

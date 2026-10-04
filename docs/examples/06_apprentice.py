@@ -3,7 +3,6 @@
 from datetime import date
 
 from ccnl_engine import (
-    Apprentice,
     EmployerProfile,
     Employment,
     Headcount,
@@ -11,6 +10,7 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
 )
+from ccnl_engine.inputs import Apprentice
 
 engine = PayrollEngine.bundled()
 

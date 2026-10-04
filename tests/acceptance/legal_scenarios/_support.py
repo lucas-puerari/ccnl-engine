@@ -7,7 +7,6 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine import (
-    ContributableHours,
     EmployerProfile,
     Employment,
     Headcount,
@@ -15,13 +14,13 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    PeriodState,
-    PriorYearTaxFacts,
 )
+from ccnl_engine.inputs import ContributableHours, PeriodState, PriorYearTaxFacts
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult, WorkEvent
+    from ccnl_engine import PeriodResult
+    from ccnl_engine.events import WorkEvent
 
 ENGINE = PayrollEngine.bundled()
 

@@ -7,7 +7,7 @@ is the opening taxable plus the tredicesima and nothing is projected:
     opening taxable = employment income - taxable of the tredicesima
 
 The reddito complessivo adds the income of
-:class:`~ccnl_engine.CurrentYearTaxFacts`.  Expected deductions are computed
+:class:`~ccnl_engine.inputs.CurrentYearTaxFacts`.  Expected deductions are computed
 by hand from the text quoted in
 :mod:`tests.fixtures.legal_examples.family_2026`.
 """
@@ -20,25 +20,25 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    BlockerCode,
-    CalculationDecision,
-    CalculationStatus,
-    CurrentYearTaxFacts,
-    Dependent,
-    DependentRelationship,
     EmployerProfile,
     Employment,
-    FamilyComposition,
     Headcount,
-    IncomeEstimateQuality,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
+)
+from ccnl_engine.inputs import (
+    CurrentYearTaxFacts,
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+    IncomeEstimateQuality,
+    OpeningBalances,
     PeriodState,
 )
+from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationStatus
 from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
@@ -82,11 +82,13 @@ def _conguaglio(
     family: FamilyComposition,
     current_year: CurrentYearTaxFacts | None,
 ) -> PeriodResult:
-    opening = OpeningBalances(
-        tax_year=2026,
-        payments=paid_before(_RUN, day=18),
-        taxable=employment_income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
-    ).to_state()
+    opening = PayrollEngine.import_opening_balances(
+        OpeningBalances(
+            tax_year=2026,
+            payments=paid_before(_RUN, day=18),
+            taxable=employment_income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
+        )
+    )
     result = _ENGINE.calculate_period(
         PeriodInput(
             run=_RUN,

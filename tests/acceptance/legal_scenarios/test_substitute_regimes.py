@@ -28,22 +28,21 @@ import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from ccnl_engine import (
+from ccnl_engine import EmployerProfile, Employment, Headcount
+from ccnl_engine.events import (
     BonusEvent,
-    CalculationDecision,
-    CalculationStatus,
-    EmployerActivity,
-    EmployerProfile,
-    Employment,
-    EmploymentSector,
-    Headcount,
     HolidayWorkEvent,
     NightShiftEvent,
-    PriorYearTaxFacts,
     ShiftWorkEvent,
-    SubstituteTaxRegime,
     WorkEvent,
 )
+from ccnl_engine.inputs import (
+    EmployerActivity,
+    EmploymentSector,
+    PriorYearTaxFacts,
+    SubstituteTaxRegime,
+)
+from ccnl_engine.results import CalculationDecision, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     PA_FUNZIONI_CENTRALI,
@@ -54,7 +53,8 @@ from tests.acceptance.legal_scenarios._support import (
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:
-    from ccnl_engine import PeriodResult, PeriodState
+    from ccnl_engine import PeriodResult
+    from ccnl_engine.inputs import PeriodState
 
 pytestmark = pytest.mark.legal_scenario
 

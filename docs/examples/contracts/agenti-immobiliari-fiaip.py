@@ -22,6 +22,8 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+)
+from ccnl_engine.inputs import (
     Permanent,
     SeniorityFact,
     SenioritySource,

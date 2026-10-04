@@ -11,16 +11,15 @@ payment from any CCNL ruleset that is not ``production``.
 from datetime import date
 
 from ccnl_engine import (
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    SeniorityFact,
-    SenioritySource,
-    CompetenceYearPlan,
 )
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 engine = PayrollEngine.bundled()
 employment = Employment(

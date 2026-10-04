@@ -14,22 +14,18 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    Apprentice,
-    BlockerCode,
     EmployerProfile,
     Employment,
     Headcount,
-    MonetaryImpact,
-    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    Permanent,
-    SeniorityFact,
-    SenioritySource,
 )
+from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.inputs import Apprentice, Permanent, SeniorityFact, SenioritySource
+from ccnl_engine.results import BlockerCode, MonetaryImpact
 
 _ENGINE = PayrollEngine.bundled()
 _MIDPOINT = "legno-arredamento-federlegno/apprenticeship_midpoint_components"

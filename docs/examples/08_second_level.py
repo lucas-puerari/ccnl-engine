@@ -6,16 +6,14 @@ override that drops or lowers a CCNL extra month raises ``InvalidInputError``.
 """
 
 from ccnl_engine import (
-    CalendarOverride,
-    CalendarOverrideReason,
+    CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     InvalidInputError,
-    WorkCalendar,
     PayrollEngine,
-    CompetenceYearPlan,
 )
+from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
 
 engine = PayrollEngine.bundled()
 
