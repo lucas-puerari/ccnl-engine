@@ -79,7 +79,7 @@ def surtax_from_brackets(
     Args:
         taxable_income: IRPEF taxable base (gross annual minus employee INPS).
         brackets: Ordered sequence of
-            :class:`~ccnl_engine.tax.domain.surtax_rules.SurtaxBracket`
+            :class:`~ccnl_engine.tax.domain.surtax_tables.SurtaxBracket`
             entries; the last entry must have ``up_to=None``.
         exemption_threshold: Full-exemption threshold: if
             ``taxable_income <= exemption_threshold`` the surtax is zero.

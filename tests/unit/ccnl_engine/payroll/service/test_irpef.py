@@ -20,7 +20,7 @@ from ccnl_engine.tax.domain.irpef_rules import (
     WorkDeductionRules,
 )
 from ccnl_engine.tax.domain.ruleset import YearRules
-from ccnl_engine.tax.domain.surtax_rules import SurtaxBracket
+from ccnl_engine.tax.domain.surtax_tables import SurtaxBracket
 from tests.helpers import make_year_rules
 
 # ---------------------------------------------------------------------------

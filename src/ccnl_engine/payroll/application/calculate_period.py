@@ -15,7 +15,7 @@ from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._assembly import assemble_result
-from ccnl_engine.payroll.application.period._context import build_context
+from ccnl_engine.payroll.application.period._context_build import build_context
 from ccnl_engine.payroll.application.period._pipeline import (
     run_amounts,
     run_decisions,

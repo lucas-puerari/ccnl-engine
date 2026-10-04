@@ -16,37 +16,30 @@ dall'importo, in mancanza di ulteriori retribuzioni").
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._period_utils import (
-    _make_entry,
-    _require_resolution,
+from ccnl_engine.payroll.application.withholding._somma_esente_posting import (
+    SommaEsentePosting,
+    postings,
 )
-from ccnl_engine.payroll.application.withholding._plan import slot_share
+from ccnl_engine.payroll.application.withholding._somma_esente_settlement import (
+    settle,
+)
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.obligations import (
-    RECOVERY_RULES,
-    SOMMA_ESENTE_RECOVERY,
-)
-from ccnl_engine.payroll.domain.pay_items import PayItem, TaxCreditItem
-from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun, RecoveryPlan
-from ccnl_engine.payroll.domain.remittance import SOMMA_ESENTE_CREDIT
+from ccnl_engine.payroll.domain.obligations import SOMMA_ESENTE_RECOVERY
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
-    from datetime import date
-
-    from ccnl_engine.payroll.domain.credit_accounts import SommaEsenteAccount
-    from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
+    from ccnl_engine.payroll.domain.ledger import LedgerEntry
+    from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxComputation
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
     from ccnl_engine.tax.domain.ruleset import YearRules
@@ -54,31 +47,8 @@ if TYPE_CHECKING:
 __all__ = ["SommaEsenteOutcome", "SommaEsentePosting", "resolve_somma_esente"]
 
 _ZERO = Decimal(0)
-#: L. 207/2024 art. 1 c. 7: up to 60 EUR the excess is recovered in full.
-_SINGLE_RECOVERY_LIMIT = Decimal(60)
 _RULE = "l207-2024-art1-c4-c7"
 CAPABILITY = "somma_esente"
-
-
-@dataclass(frozen=True)
-class SommaEsentePosting:
-    """Where the somma esente of a run is posted.
-
-    Attributes:
-        resolver: Policy resolver of the run.
-        policy_context: Policy context of the run.
-        competence_period: Competence period of the run.
-        payment_date: Payment date of the run.
-        run_id: Identifier of the run, used in the item id.
-        run: The run as a recovery sees it: final or adjustment.
-    """
-
-    resolver: PolicyResolver
-    policy_context: PolicyContext
-    competence_period: CompetencePeriod
-    payment_date: date
-    run_id: str
-    run: InstallmentRun = field(default_factory=InstallmentRun)
 
 
 @dataclass(frozen=True)
@@ -122,80 +92,6 @@ INCOME_ASSUMED_ISSUE = CalculationIssue(
 )
 
 
-@dataclass(frozen=True)
-class _Settlement:
-    amount: Decimal
-    reason: str
-    plan: RecoveryPlan | None = None
-
-
-def _installment(
-    plan: RecoveryPlan, run: InstallmentRun, reason: str | None = None
-) -> _Settlement:
-    """Post what ``run`` recovers of ``plan``.
-
-    Returns:
-        The negative amount recovered and the plan still running after it;
-        ``reason``, when given, replaces the reason of the installment.
-    """
-    posted = plan.post(run)
-    return _Settlement(
-        amount=-posted.amount,
-        reason=reason or posted.reason,
-        plan=posted.remaining,
-    )
-
-
-def _recover(excess: Decimal, run: InstallmentRun) -> _Settlement:
-    """Recover an ``excess`` found at the conguaglio (L. 207/2024 art. 1 c. 7).
-
-    Returns:
-        The full excess up to 60 EUR or on the final run of the employment,
-        otherwise the first of ten equal installments with the plan of the
-        others.
-    """
-    if excess <= _SINGLE_RECOVERY_LIMIT:
-        return _Settlement(amount=-excess, reason="overpayment_recovered")
-    if run.final:
-        return _Settlement(
-            amount=-excess, reason="overpayment_recovered_at_termination"
-        )
-    plan = RecoveryPlan.create(
-        SOMMA_ESENTE_RECOVERY,
-        excess,
-        RECOVERY_RULES[SOMMA_ESENTE_RECOVERY].installments,
-    )
-    return _installment(plan, run, "overpayment_recovery_opened")
-
-
-def _settle(
-    annual: Decimal,
-    withholding: WithholdingPosition,
-    account: SommaEsenteAccount,
-    plan: RecoveryPlan | None,
-    run: InstallmentRun,
-) -> _Settlement:
-    """Decide the amount of the run.
-
-    Returns:
-        The installment of a running recovery, its residual on the final
-        run; at the conguaglio the balance between the annual due and the
-        net paid, recovered when negative; before it the slot share capped
-        at what is still due.
-    """
-    if plan is not None:
-        return _installment(plan, run)
-    balance = money(annual) - account.net
-    if withholding.remaining == 1:
-        if balance < _ZERO:
-            return _recover(-balance, run)
-        return _Settlement(amount=balance, reason="settled_at_conguaglio")
-    if balance < _ZERO:
-        return _Settlement(amount=_ZERO, reason="overpayment_pending_conguaglio")
-    share = min(slot_share(annual, withholding.slots), balance)
-    return _Settlement(amount=share, reason="share_paid" if share else "not_due")
-
-
 def resolve_somma_esente(
     tax_computation: TaxComputation,
     rules: YearRules,
@@ -230,7 +126,7 @@ def resolve_somma_esente(
         _ZERO,
     )
     remaining = withholding.remaining
-    settlement = _settle(annual, withholding, account, plan, posting.run)
+    settlement = settle(annual, withholding, account, plan, posting.run)
     decision = CalculationDecision(
         capability=CAPABILITY,
         status=CalculationStatus.FINAL,
@@ -247,7 +143,7 @@ def resolve_somma_esente(
         },
         amount=settlement.amount,
     )
-    items, entries = _postings(settlement.amount, posting)
+    items, entries = postings(settlement.amount, posting)
     return SommaEsenteOutcome(
         amount=settlement.amount,
         due=money(annual),
@@ -258,41 +154,3 @@ def resolve_somma_esente(
         decisions=(decision,),
         issues=(INCOME_ASSUMED_ISSUE,) if money(annual) > _ZERO else (),
     )
-
-
-def _postings(
-    amount: Decimal, posting: SommaEsentePosting
-) -> tuple[tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
-    """Return the signed item and the entry of ``amount``, coded 1704.
-
-    Returns:
-        Nothing for a zero amount; else ``somma_esente_{run_id}`` on
-        ``CREDITS`` or ``somma_esente_recovery_{run_id}`` on
-        ``CREDIT_RECOVERIES`` (ris. AdE 9/E/2025).
-    """
-    if amount == _ZERO:
-        return (), ()
-    policy_id = _require_resolution(
-        posting.resolver, "tax_credit_item", posting.policy_context
-    ).policy_id
-    prefix = "somma_esente" if (paid := amount > _ZERO) else "somma_esente_recovery"
-    item_id = f"{prefix}_{posting.run_id}"
-    item = TaxCreditItem(
-        item_id=item_id,
-        competence_period=posting.competence_period,
-        payment_date=posting.payment_date,
-        quantity=Decimal(1),
-        amount=amount,
-    )
-    entry = _make_entry(
-        item_id,
-        item_id,
-        "tax_credit_item",
-        posting.competence_period,
-        posting.payment_date,
-        AccountKind.CREDITS if paid else AccountKind.CREDIT_RECOVERIES,
-        abs(amount),
-        policy_id=policy_id,
-        remittance_code=SOMMA_ESENTE_CREDIT,
-    )
-    return (item,), (entry,)

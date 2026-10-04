@@ -12,7 +12,7 @@ from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.year._extra_month_accrual import (
+from ccnl_engine.payroll.application.year._extra_month_qualification import (
     non_accruing_days,
     termination_settlements,
 )

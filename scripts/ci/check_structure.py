@@ -11,7 +11,13 @@ Rules and hard limits:
 - ``public_methods``: methods of a class whose name has no leading
   underscore (15);
 - ``source_depth``: directories under ``src/ccnl_engine`` before a module
-  (3), ``data`` resource directories exempt.
+  (3), ``data`` resource directories exempt;
+- ``markdown_lines``: physical lines of a hand-written Markdown page (600):
+  the top-level pages and those under ``docs``. The audit notes
+  ``REVIEW.md`` and ``TODO.md`` are excluded, and so are the generated
+  pages under ``docs/contracts`` and the built site under ``docs/_build``:
+  the generators validate those pages against their sources with
+  ``--check``.
 
 Effective lines are lines holding code, from the ``def`` or ``class`` line to
 the end of the body: blank lines, comment-only lines and docstrings do not
@@ -26,11 +32,16 @@ measured value. The check fails when a new offender appears, when an
 offender grows past its baseline value, or when a baseline entry no longer
 offends and must be removed. The baseline can only shrink.
 
+Every rule also has a target at about 80% of its limit (``TARGETS``). The
+target is a report, never a failure: the check prints how many entries sit
+above each target, and ``--targets`` lists them.
+
 The script uses the standard library only.
 
 Usage::
 
     python scripts/ci/check_structure.py
+    python scripts/ci/check_structure.py --targets
     python scripts/ci/check_structure.py --write-baseline
 
 Exit codes:
@@ -52,7 +63,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Final
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator, Sequence
+    from collections.abc import Iterator, Mapping, Sequence
 
 ROOT: Final = Path(__file__).resolve().parents[2]
 BASELINE: Final = Path(__file__).with_name("structure_baseline.json")
@@ -61,6 +72,11 @@ PACKAGE: Final = Path("src") / "ccnl_engine"
 TESTS: Final = Path("tests")
 MEASURED: Final = (Path("src"), TESTS, Path("scripts"))
 RESOURCE_DIRS: Final = frozenset({"data"})
+DOCS: Final = Path("docs")
+#: Top-level audit notes, outside the Markdown limit.
+EXCLUDED_MARKDOWN: Final = frozenset({"REVIEW.md", "TODO.md"})
+#: Directories under ``docs`` written by tools, not by hand.
+GENERATED_DOCS: Final = frozenset({"_build", "contracts"})
 DECLARATIVE_DECORATORS: Final = frozenset({
     "field_validator",
     "model_validator",
@@ -87,6 +103,18 @@ LIMITS: Final[dict[str, int]] = {
     "class_lines": 150,
     "public_methods": 15,
     "source_depth": 3,
+    "markdown_lines": 600,
+}
+
+#: Non-blocking target per rule, about 80% of the hard limit.
+TARGETS: Final[dict[str, int]] = {
+    "production_file_lines": 240,
+    "test_file_lines": 400,
+    "function_lines": 40,
+    "class_lines": 100,
+    "public_methods": 10,
+    "source_depth": 3,
+    "markdown_lines": 450,
 }
 
 #: Offending values per rule, keyed by ``path`` or ``path::qualname``.
@@ -126,6 +154,29 @@ def python_files(root: Path, top: Path) -> list[Path]:
         for path in base.rglob("*.py")
         if not any(_skipped(part) for part in path.relative_to(base).parts)
     )
+
+
+def markdown_files(root: Path) -> list[Path]:
+    """Return the hand-written Markdown pages of the repository at *root*.
+
+    Returns:
+        Top-level pages except the audit notes, and the pages under
+        ``docs`` outside generated and hidden directories; relative to
+        *root*, sorted.
+    """
+    top = [
+        path.relative_to(root)
+        for path in root.glob("*.md")
+        if path.name not in EXCLUDED_MARKDOWN
+    ]
+    docs = root / DOCS
+    pages = [
+        path.relative_to(root)
+        for path in docs.rglob("*.md")
+        if not any(_skipped(part) for part in path.relative_to(docs).parts)
+        and path.relative_to(docs).parts[0] not in GENERATED_DOCS
+    ]
+    return sorted(top + pages)
 
 
 def code_lines(source: str) -> set[int]:
@@ -218,14 +269,28 @@ def public_methods(cls: ast.ClassDef) -> int:
     return sum(1 for method in _methods(cls) if not method.name.startswith("_"))
 
 
-def _record(found: Measurements, rule: str, key: str, value: int) -> None:
-    if value > LIMITS[rule]:
+def _record(
+    found: Measurements,
+    rule: str,
+    key: str,
+    value: int,
+    thresholds: Mapping[str, int] = LIMITS,
+) -> None:
+    if value > thresholds[rule]:
         bucket = found.setdefault(rule, {})
         bucket[key] = max(value, bucket.get(key, 0))
 
 
-def measure_source(path: str, source: str, found: Measurements) -> None:
-    """Record the function and class offenders of one module into *found*."""
+def measure_source(
+    path: str,
+    source: str,
+    found: Measurements,
+    thresholds: Mapping[str, int] = LIMITS,
+) -> None:
+    """Record the function and class offenders of one module into *found*.
+
+    Values above *thresholds*, the hard limits by default, are recorded.
+    """
     tree = ast.parse(source, filename=path)
     effective = code_lines(source) - docstring_lines(tree)
     for qualname, node in _definitions(tree, ""):
@@ -233,36 +298,42 @@ def measure_source(path: str, source: str, found: Measurements) -> None:
         lines = len(effective.intersection(span))
         key = f"{path}::{qualname}"
         if not isinstance(node, ast.ClassDef):
-            _record(found, "function_lines", key, lines)
+            _record(found, "function_lines", key, lines, thresholds)
             continue
-        _record(found, "public_methods", key, public_methods(node))
+        _record(found, "public_methods", key, public_methods(node), thresholds)
         if not is_declarative(node):
-            _record(found, "class_lines", key, lines)
+            _record(found, "class_lines", key, lines, thresholds)
 
 
 def _physical_lines(path: Path) -> int:
     return len(path.read_text(encoding="utf-8").splitlines())
 
 
-def measure_tree(root: Path) -> Measurements:
+def measure_tree(root: Path, thresholds: Mapping[str, int] = LIMITS) -> Measurements:
     """Measure every rule on the repository at *root*.
 
     Returns:
-        The offenders per rule; rules without offenders are omitted.
+        The values above *thresholds* per rule, the hard limits by default;
+        rules without such values are omitted.
     """
     found: Measurements = {}
     for rel in python_files(root, PACKAGE):
         key = rel.as_posix()
-        _record(found, "production_file_lines", key, _physical_lines(root / rel))
+        lines = _physical_lines(root / rel)
+        _record(found, "production_file_lines", key, lines, thresholds)
         dirs = rel.relative_to(PACKAGE).parts[:-1]
         if not RESOURCE_DIRS.intersection(dirs):
-            _record(found, "source_depth", key, len(dirs))
+            _record(found, "source_depth", key, len(dirs), thresholds)
     for rel in python_files(root, TESTS):
-        _record(found, "test_file_lines", rel.as_posix(), _physical_lines(root / rel))
+        lines = _physical_lines(root / rel)
+        _record(found, "test_file_lines", rel.as_posix(), lines, thresholds)
+    for rel in markdown_files(root):
+        lines = _physical_lines(root / rel)
+        _record(found, "markdown_lines", rel.as_posix(), lines, thresholds)
     for top in MEASURED:
         for rel in python_files(root, top):
             text = (root / rel).read_text(encoding="utf-8")
-            measure_source(rel.as_posix(), text, found)
+            measure_source(rel.as_posix(), text, found, thresholds)
     return found
 
 
@@ -343,6 +414,24 @@ def write_baseline(root: Path, baseline_path: Path) -> Measurements:
     return ordered
 
 
+def target_report(above: Measurements) -> list[str]:
+    """Describe the entries above their target, rule by rule.
+
+    Returns:
+        One line per entry, sorted by rule order and key.
+    """
+    return [
+        f"{rule}: {key} is {value} (target {target})"
+        for rule, target in TARGETS.items()
+        for key, value in sorted(above.get(rule, {}).items())
+    ]
+
+
+def _target_summary(above: Measurements) -> str:
+    counts = ", ".join(f"{rule} {len(above.get(rule, {}))}" for rule in TARGETS)
+    return f"above the 80% targets (not blocking): {counts}"
+
+
 def _summary(baseline: Measurements) -> str:
     counts = ", ".join(f"{rule} {len(baseline.get(rule, {}))}" for rule in LIMITS)
     return f"structure baseline entries: {counts}"
@@ -364,6 +453,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="record the current offenders; review that no entry was added",
     )
+    parser.add_argument(
+        "--targets",
+        action="store_true",
+        help="list every entry above its 80%% target; never fails the check",
+    )
     args = parser.parse_args(argv)
     try:
         if args.write_baseline:
@@ -371,6 +465,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 0
         baseline = load_baseline(args.baseline)
         report = compare(measure_tree(args.root), baseline)
+        above = measure_tree(args.root, TARGETS)
     except (OSError, SyntaxError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
@@ -378,7 +473,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"note: {note}")
     for problem in report.problems:
         print(f"FAIL: {problem}", file=sys.stderr)
+    if args.targets:
+        for line in target_report(above):
+            print(f"target: {line}")
     print(_summary(baseline))
+    print(_target_summary(above))
     return 1 if report.problems else 0
 
 

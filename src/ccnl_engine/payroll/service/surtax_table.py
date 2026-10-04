@@ -24,7 +24,7 @@ from ccnl_engine.payroll.service import irpef as _irpef
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.provenance.domain.ruleset_identity import RulesetIdentity
-    from ccnl_engine.tax.domain.surtax_rules import RegionalDeduction, RegionaleEntry
+    from ccnl_engine.tax.domain.surtax_tables import RegionalDeduction, RegionaleEntry
 
 __all__ = [
     "DEPENDENT_PROVISIONS_ISSUE",

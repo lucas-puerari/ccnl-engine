@@ -61,11 +61,8 @@ from ccnl_engine.payroll.service.surtax_table import (
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.family import FamilyComposition
-    from ccnl_engine.tax.domain.surtax_rules import (
-        ComunaleEntry,
-        RegionaleEntry,
-        SurtaxRules,
-    )
+    from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+    from ccnl_engine.tax.domain.surtax_tables import ComunaleEntry, RegionaleEntry
 
 __all__ = [
     "MUNICIPAL_SURTAX",

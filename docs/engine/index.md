@@ -403,6 +403,8 @@ derived.
 |---|---|
 | [Pay components](pay-components.md) | Part-time, seniority, RAL overrides |
 | [Second level](second-level.md) | Second-level agreements: what the engine does not take as input |
-| [Fiscal](fiscal.md) | IRPEF, surtax, family and Art. 15 deductions |
+| [Fiscal](fiscal.md) | IRPEF, family and Art. 15 deductions |
+| [Surtax](surtax.md) | Regional and municipal surcharges, their tables and decisions |
+| [Tax credits](tax-credits.md) | Ulteriore detrazione and trattamento integrativo decisions |
 | [Domestic work](domestic-work.md) | Flat per-hour contributions, non-withholding employer |
 | [Work rules](work-rules.md) | L3: overtime, absence, leave, sickness, bonus, welfare |

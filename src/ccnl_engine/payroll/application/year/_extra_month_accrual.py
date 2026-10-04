@@ -1,67 +1,32 @@
-"""Extra-month ratei of a period: the rateo of an extra run and settlements.
+"""Extra-month rateo of a run: what an extra-month run pays of a monthly pay.
 
-An extra-month run pays its accrued share of a monthly pay.  When the
-employment ends before an extra month's payment month, the ratei accrued up
-to the termination are paid on the last regular run as extra-month earnings
-(``it/earning/extra_month`` policy: ordinary IRPEF, INPS and TFR base).
+An extra-month run pays its accrued share of a monthly pay: the months of
+the 12 ending in the payment month that qualify under the CCNL rule, with
+the CCNL fraction of that extra month.  The ratei paid at termination are
+selected in :mod:`._extra_month_qualification` and paid by
+:mod:`._extra_month_settlement`.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._period_utils import (
-    _ZERO,
-    _apply_extra_month_policy,
-    _make_entry,
-    _require_resolution,
-    _treatment_from_resolution,
-)
 from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
 from ccnl_engine.payroll.application.year._calendar import standard_calendar
-from ccnl_engine.payroll.domain.accrual import (
-    DEFAULT_MONTH_ACCRUAL_RULE,
-    ExtraMonthAccrual,
-    absence_days,
-)
-from ccnl_engine.payroll.domain.events import AbsenceEvent
+from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
 from ccnl_engine.payroll.domain.extra_month_schedule import (
     ExtraMonthKind,
     ExtraMonthSchedule,
 )
-from ccnl_engine.payroll.domain.ledger import AccountKind, LedgerEntry
-from ccnl_engine.payroll.domain.pay_items import ExtraMonthEarning, PayItem
-from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.domain.run import PayrollRun
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.contract.domain.identity import CCNL
-    from ccnl_engine.payroll.application.handlers._totals import _EventTotals
-    from ccnl_engine.payroll.domain.accrual import MonthAccrualRule
-    from ccnl_engine.payroll.domain.calendar import WorkCalendar
-    from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
-    from ccnl_engine.payroll.domain.events import WorkEvent
-    from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
-    from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
-    from ccnl_engine.payroll.service.types import MonthlyPayChain
 
-__all__ = [
-    "ExtraMonthSettlement",
-    "non_accruing_days",
-    "run_accrual",
-    "run_fraction",
-    "run_schedule",
-    "settle_extra_months",
-    "termination_settlements",
-]
-
-_EXTRA_KIND = "extra_month_earning"
+__all__ = ["run_accrual", "run_fraction", "run_schedule"]
 
 
 def run_accrual(
@@ -127,165 +92,3 @@ def run_fraction(accrual: ExtraMonthAccrual | None) -> Decimal:
         ``1`` for a regular run, the accrued fraction for an extra run.
     """
     return Decimal(1) if accrual is None else accrual.fraction
-
-
-@dataclass(frozen=True)
-class ExtraMonthSettlement:
-    """Earnings of the ratei liquidated on a run and the bases they enter.
-
-    Attributes:
-        items: One extra-month earning per settled extra month.
-        entries: Cash-earning ledger entries of the items.
-        inps_base: Amount entering the INPS contribution base.
-        tfr_base: Amount entering the TFR base.
-        irpef_base: Amount entering the ordinary IRPEF base.
-    """
-
-    items: tuple[PayItem, ...] = ()
-    entries: tuple[LedgerEntry, ...] = ()
-    inps_base: Decimal = _ZERO
-    tfr_base: Decimal = _ZERO
-    irpef_base: Decimal = _ZERO
-
-    def added_to(self, totals: _EventTotals) -> _EventTotals:
-        """Return ``totals`` with the settled amounts added to its bases.
-
-        Returns:
-            A copy of ``totals`` with larger INPS, TFR and IRPEF bases.
-        """
-        return replace(
-            totals,
-            inps_base=totals.inps_base + self.inps_base,
-            tfr_base=totals.tfr_base + self.tfr_base,
-            irpef_base=totals.irpef_base + self.irpef_base,
-        )
-
-
-def settle_extra_months(
-    settlements: tuple[ExtraMonthAccrual, ...],
-    chain: MonthlyPayChain,
-    competence_period: CompetencePeriod,
-    payment_date: date,
-    run_id: str,
-    resolver: PolicyResolver,
-    context: PolicyContext,
-) -> ExtraMonthSettlement:
-    """Pay the ratei of ``settlements`` on this run.
-
-    Each extra month pays ``chain`` restricted to the allowances of that
-    extra month, every component scaled by the accrued fraction and rounded
-    to cents.  A settlement with no qualifying month pays nothing.
-
-    Returns:
-        The earnings, their ledger entries and the bases they enter.
-    """
-    due = [
-        (accrual, _gross(chain, accrual))
-        for accrual in settlements
-        if accrual.months > 0
-    ]
-    if not due:
-        return ExtraMonthSettlement()
-    resolution = _require_resolution(resolver, _EXTRA_KIND, context)
-    treatment = _treatment_from_resolution(resolution)
-    items: list[PayItem] = []
-    entries: list[LedgerEntry] = []
-    for accrual, gross in due:
-        item_id = f"extra_month_{accrual.kind.value}_{run_id}"
-        items.append(
-            ExtraMonthEarning(
-                item_id=item_id,
-                competence_period=competence_period,
-                payment_date=payment_date,
-                quantity=accrual.fraction,
-                amount=gross,
-                month_number=14 if accrual.kind is ExtraMonthKind.FOURTEENTH else 13,
-                source=f"ratei at termination: {accrual.months}/12",
-            )
-        )
-        entries.append(
-            _make_entry(
-                item_id,
-                item_id,
-                _EXTRA_KIND,
-                competence_period,
-                payment_date,
-                AccountKind.CASH_EARNINGS,
-                gross,
-                policy_id=resolution.policy_id,
-            )
-        )
-    total = sum((gross for _, gross in due), _ZERO)
-    return ExtraMonthSettlement(
-        items=tuple(items),
-        entries=tuple(entries),
-        inps_base=total if treatment.inps else _ZERO,
-        tfr_base=total if treatment.tfr else _ZERO,
-        irpef_base=total if treatment.irpef else _ZERO,
-    )
-
-
-def _gross(chain: MonthlyPayChain, accrual: ExtraMonthAccrual) -> Decimal:
-    """Return the gross of ``accrual`` on ``chain``.
-
-    Returns:
-        Sum of the scaled extra-month components.
-    """
-    scaled = _apply_extra_month_policy(chain, accrual.kind.value, accrual.fraction)
-    return money(scaled.base + scaled.seniority + scaled.allowances_total)
-
-
-def non_accruing_days(events: Iterable[WorkEvent]) -> frozenset[date]:
-    """Return the days of the year's absences that suspend accrual.
-
-    Args:
-        events: Every event of the year, of any run.
-
-    Returns:
-        Every calendar day of an :class:`AbsenceEvent` with
-        ``suspends_accrual`` set.
-    """
-    days: set[date] = set()
-    for event in events:
-        if isinstance(event, AbsenceEvent) and event.suspends_accrual:
-            last = event.end_date or event.event_date
-            days |= absence_days(event.event_date, last)
-    return frozenset(days)
-
-
-def termination_settlements(
-    calendar: WorkCalendar,
-    employment_period: EmploymentPeriod | None,
-    non_accruing_days: frozenset[date],
-    rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
-) -> dict[str, tuple[ExtraMonthAccrual, ...]]:
-    """Return the ratei the last run of an employment ending this year pays.
-
-    An extra month whose next payment after the termination month falls
-    outside the employment is liquidated on the regular run of the
-    termination month.  Its window is the one of that next payment (the
-    following year when the payment month precedes the termination month),
-    clipped to the hire date and counted up to the termination date with
-    ``rule``.
-
-    Returns:
-        The accruals keyed by the ``run_id`` of the termination month's
-        regular run, empty when the employment does not end in the year.
-    """
-    if employment_period is None or employment_period.ended_on is None:
-        return {}
-    ended_on = employment_period.ended_on
-    if ended_on.year != calendar.year:
-        return {}
-    accruals = tuple(
-        ExtraMonthAccrual.of(
-            extra,
-            calendar.year + (1 if extra.payment_month < ended_on.month else 0),
-            employment_period,
-            non_accruing_days=non_accruing_days,
-            rule=rule,
-        )
-        for extra in calendar.extra_months
-        if extra.payment_month != ended_on.month
-    )
-    return {PayrollRun.regular(calendar.year, ended_on.month).run_id: accruals}

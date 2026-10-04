@@ -211,7 +211,7 @@ The trattamento integrativo, the somma esente and the ulteriore detrazione
 share one account schema, `CreditAccount` (`TrattamentoAccount`,
 `SommaEsenteAccount`, `UlterioreDetrazioneAccount`; for the deduction,
 `recognized` is the part the withholding applied, see
-[Fiscal](fiscal.md#ulteriore-detrazione-recognized-and-recovered)):
+[Fiscal](tax-credits.md#ulteriore-detrazione-recognized-and-recovered)):
 
 | Field | Meaning |
 |---|---|
@@ -431,7 +431,7 @@ first one deferred and withholds the surtax of the year less what an
 earlier conguaglio of the year already withheld (`TaxYtd.regional_settled`,
 `TaxYtd.municipal_settled`). At most one obligation per component and
 conguaglio year is held. See
-[Fiscal: when the surtax is withheld](fiscal.md#when-the-surtax-is-withheld)
+[Fiscal: when the surtax is withheld](surtax.md#when-the-surtax-is-withheld)
 for the rules and the decisions.
 
 ## Deferred shortfall carried into the next year

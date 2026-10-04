@@ -1,7 +1,7 @@
 """Context of one run: the request normalised into rules, chain and schedule.
 
-The loads and resolutions run in a fixed order, so that when several inputs
-are invalid the same error is raised first on every call.
+The context is an immutable record; :mod:`._context_build` resolves it from
+the request and :mod:`._context_facts` derives the facts it exposes.
 """
 
 from __future__ import annotations
@@ -9,52 +9,27 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application._period_utils import (
-    _apply_extra_month_policy,
-    _effective_resolver,
-    _int_value,
+from ccnl_engine.payroll.application.period._context_facts import (
+    chain_gross,
+    installment_run,
+    settles_tax_year,
 )
-from ccnl_engine.payroll.application.period._chain import _resolve_chain
-from ccnl_engine.payroll.application.period._checks import resolve_payment
-from ccnl_engine.payroll.application.period._contract import (
-    RunContract,
-    load_contract,
-)
-from ccnl_engine.payroll.application.period._proration import (
-    RunProration,
-    run_proration,
-)
-from ccnl_engine.payroll.application.period._seniority import seniority_months_at
-from ccnl_engine.payroll.application.withholding._cap import ends_in_year
-from ccnl_engine.payroll.application.withholding._plan import (
-    resolve_withholding_schedule,
-    upcoming_recurring_gross,
-)
-from ccnl_engine.payroll.application.year._accrual_rule import month_accrual_rule
-from ccnl_engine.payroll.application.year._extra_month_accrual import (
-    run_accrual,
-    run_fraction,
-)
-from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
-from ccnl_engine.payroll.domain.policy import PolicyContext
-from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
-from ccnl_engine.payroll.domain.rounding import money
-from ccnl_engine.payroll.domain.run import RunKind
-from ccnl_engine.payroll.service.bundled_knowledge_repository import (
-    BundledKnowledgeRepository,
-)
-from ccnl_engine.payroll.service.category import resolve_worker_category
 
 if TYPE_CHECKING:
     from decimal import Decimal
 
     from ccnl_engine.contract.domain.category import WorkerCategory
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
+    from ccnl_engine.payroll.application.period._contract import RunContract
+    from ccnl_engine.payroll.application.period._proration import RunProration
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
+    from ccnl_engine.payroll.domain.pay_items import CompetencePeriod
     from ccnl_engine.payroll.domain.payment import PaymentId
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
-    from ccnl_engine.payroll.domain.policy import PolicyResolver
+    from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.domain.recovery_plan import InstallmentRun
+    from ccnl_engine.payroll.domain.run import RunKind
     from ccnl_engine.payroll.domain.withholding_schedule import (
         WithholdingPosition,
         WithholdingSchedule,
@@ -149,12 +124,12 @@ class RunContext:
         employment ends in the tax year and the run takes its last
         withholding slot: no later payslip can carry an installment.
         """
-        kind = self.run_kind
-        final = kind is RunKind.TERMINATION or (
-            ends_in_year(self.request.employment_period, self.fiscal_year)
-            and self.takes_last_slot
+        return installment_run(
+            self.run_kind,
+            self.request.employment_period,
+            self.fiscal_year,
+            takes_last_slot=self.takes_last_slot,
         )
-        return InstallmentRun(final=final, adjustment=kind is RunKind.ADJUSTMENT)
 
     @property
     def conguaglio(self) -> bool:
@@ -163,8 +138,8 @@ class RunContext:
         It does when it takes the last withholding slot of the year or is
         the last run of the employment (:attr:`installment_run`).
         """
-        return self.installment_run.final or (
-            self.run_kind.consumes_withholding_slot and self.takes_last_slot
+        return settles_tax_year(
+            self.installment_run, self.run_kind, takes_last_slot=self.takes_last_slot
         )
 
     @property
@@ -175,14 +150,12 @@ class RunContext:
     @property
     def monthly_gross(self) -> Decimal:
         """Gross of the pay chain: base, seniority and allowances."""
-        chain = self.chain
-        return money(chain.base + chain.seniority + chain.allowances_total)
+        return chain_gross(self.chain)
 
     @property
     def regular_gross(self) -> Decimal:
         """Gross of the pay chain of a fully employed regular month."""
-        chain = self.regular_chain
-        return money(chain.base + chain.seniority + chain.allowances_total)
+        return chain_gross(self.regular_chain)
 
     @property
     def withholding_agent(self) -> bool:
@@ -192,90 +165,3 @@ class RunContext:
         :mod:`~ccnl_engine.payroll.service.withholding_agent`.
         """
         return self.contract.ccnl.meta.withholding_agent
-
-
-def _base_chain(
-    request: PeriodCalculationRequest,
-    contract: RunContract,
-    worker_category: WorkerCategory | None,
-) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
-    """Return the pay chain of a regular month for the worker.
-
-    Returns:
-        The chain before any extra-month adjustment, and the apprenticeship
-        scaling applied to it.
-    """
-    return _resolve_chain(
-        contract.ccnl,
-        contract.level,
-        request.contract_type,
-        contract.tctx.competence,
-        seniority_months=seniority_months_at(
-            request.seniority, contract.tctx.competence
-        ),
-        roles=request.roles,
-        worker_category=worker_category,
-        weekly_hours=_int_value(request.weekly_hours),
-        full_time_weekly_hours=_int_value(request.full_time_weekly_hours),
-    )
-
-
-def build_context(
-    request: PeriodCalculationRequest,
-    repo: KnowledgeRepository | None,
-    resolver: PolicyResolver | None,
-) -> RunContext:
-    """Normalise ``request`` into the context of its run.
-
-    Returns:
-        The run context.
-    """
-    effective_repo = repo if repo is not None else BundledKnowledgeRepository()
-    effective_resolver = _effective_resolver(resolver)
-    contract = load_contract(request, effective_repo)
-    competence, fiscal_year = contract.tctx.competence, contract.tctx.fiscal_year
-    worker_category = resolve_worker_category(
-        contract.ccnl, contract.level, request.category, seniority=request.seniority
-    )
-    chain, apprenticeship = _base_chain(request, contract, worker_category)
-    payment = resolve_payment(request)
-    schedule = resolve_withholding_schedule(request, payment, contract.ccnl, competence)
-    opening = request.opening_state
-    withholding = schedule.position(payment, opening.cash.paid_runs)
-    upcoming_gross = upcoming_recurring_gross(
-        chain,
-        withholding.upcoming,
-        request.employment_period,
-        month_accrual_rule(contract.ccnl),
-    )
-    accrual = run_accrual(request, contract.ccnl, competence)
-    regular_chain = chain
-    proration = run_proration(request, contract.ccnl, payment.run_id.kind)
-    chain = proration.apply(
-        _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
-    )
-    return RunContext(
-        request=request,
-        repo=effective_repo,
-        resolver=effective_resolver,
-        contract=contract,
-        withholding_schedule=schedule,
-        withholding=withholding,
-        worker_category=worker_category,
-        chain=chain,
-        apprenticeship=apprenticeship,
-        payment=payment,
-        upcoming_gross=upcoming_gross,
-        accrual=accrual,
-        var_pay_rules=effective_repo.load_variable_pay_rules(fiscal_year),
-        policy_context=PolicyContext(
-            year=fiscal_year,
-            as_of=competence,
-            ccnl_slug=request.ccnl_slug,
-            sector=contract.ccnl.meta.tax_sector,
-            gross_ytd=opening.cash.earnings.gross,
-        ),
-        cp=CompetencePeriod(year=request.period_id.year, month=request.period_id.month),
-        regular_chain=regular_chain,
-        proration=proration,
-    )

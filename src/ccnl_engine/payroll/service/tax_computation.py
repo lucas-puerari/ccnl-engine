@@ -18,10 +18,7 @@ from ccnl_engine.payroll.service.irpef import DAYS_IN_YEAR
 from ccnl_engine.payroll.service.irpef_net import net_irpef
 from ccnl_engine.payroll.service.irpef_trace import annual_items, somma_esente_items
 from ccnl_engine.payroll.service.trattamento_credit import resolve_trattamento
-from ccnl_engine.payroll.service.ulteriore_recovery import (
-    UlterioreSettlement,
-    withhold_with_ulteriore,
-)
+from ccnl_engine.payroll.service.ulteriore_recovery import withhold_with_ulteriore
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.credit_accounts import CreditAccount
@@ -30,6 +27,9 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
     from ccnl_engine.payroll.domain.tax import TaxLineItem
     from ccnl_engine.payroll.service.irpef_net import NetIrpef
+    from ccnl_engine.payroll.service.ulteriore_settlement import (
+        UlterioreSettlement,
+    )
     from ccnl_engine.tax.domain.ruleset import YearRules
 
 _ZERO = Decimal(0)

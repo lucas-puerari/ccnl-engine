@@ -84,12 +84,13 @@ enforces statement count and public methods with the same ceilings.
 
 | Rule | Measured on | Target | Hard limit |
 |---|---|---:|---:|
-| `production_file_lines` | modules under `src/ccnl_engine` | 250 | 300 |
-| `test_file_lines` | modules under `tests` | 350 | 500 |
+| `production_file_lines` | modules under `src/ccnl_engine` | 240 | 300 |
+| `test_file_lines` | modules under `tests` | 400 | 500 |
 | `function_lines` | functions in `src`, `tests`, `scripts` | 40 | 60 |
 | `class_lines` | classes in `src`, `tests`, `scripts` | 100 | 150 |
 | `public_methods` | classes, also Ruff `PLR0904` | 10 | 15 |
-| `source_depth` | directories under `src/ccnl_engine` | | 3 |
+| `source_depth` | directories under `src/ccnl_engine` | 3 | 3 |
+| `markdown_lines` | hand-written Markdown pages | 450 | 600 |
 | statements per function | Ruff `PLR0915` | 30 | 40 |
 | cognitive complexity | complexipy | 10 | 15 |
 
@@ -98,6 +99,17 @@ lines: from the `def` or `class` line to the end of the body, without
 blank lines, comment-only lines and docstrings. A class whose only methods
 are pydantic validators or serializers is declarative and exempt from
 `class_lines`; `data/` directories are exempt from `source_depth`.
+
+`markdown_lines` counts the physical lines of the top-level pages and of the
+pages under `docs`. The audit notes `REVIEW.md` and `TODO.md` are excluded.
+So are the pages generated under `docs/contracts` and the built site under
+`docs/_build`: their generators validate them against the sources with
+`--check` in CI.
+
+The targets sit at about 80% of the hard limits and never fail the check.
+Every run prints how many entries sit above each target;
+`python scripts/ci/check_structure.py --targets` lists them. Bring a file
+under its target when it is touched, before it reaches the hard limit.
 
 Current offenders are listed in `scripts/ci/structure_baseline.json` with
 their measured value. The check fails when:

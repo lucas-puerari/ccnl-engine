@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.application.year._extra_month_accrual import (
+from ccnl_engine.payroll.application.year._extra_month_qualification import (
     non_accruing_days,
     termination_settlements,
 )
