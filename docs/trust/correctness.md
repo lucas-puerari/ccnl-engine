@@ -31,8 +31,8 @@ Evidence:
   schedule and others) checked against hand-derived values, mainly in
   `tests/acceptance/legal_scenarios/`.
 
-Full-payslip oracles are kept apart from the reference table cases, in
-`tests/fixtures/normative_oracles/`, and run in
+Full-payslip oracles are kept apart from the reference table cases and from
+the rule oracles, in `tests/fixtures/normative_oracles/payslips/`, and run in
 `tests/acceptance/legal_scenarios/test_full_payslip_concia.py`. The first oracle
 covers the first candidate group for `production`: CCNL Concia UNIC, level
 D2, a whole 2026 competence year with the industria tax and INPS rulesets
