@@ -7,6 +7,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.provenance.domain.chain import RuleProvenance  # noqa: TC001
 from ccnl_engine.provenance.domain.ruleset_identity import (
     RulesetIdentity,  # noqa: TC001
 )
@@ -97,6 +98,7 @@ class InpsSickPayRates(BaseModel):
         coverage: Which workers INPS pays the indemnity to, first match
             wins; a worker no rule matches is not known to be covered.
         ruleset: Provenance of the statutory source.
+        bands_provenance: Provenance record of the indemnity rates.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -107,6 +109,7 @@ class InpsSickPayRates(BaseModel):
     annual_max_days: int = Field(default=180, ge=1)
     coverage: tuple[SickPayCoverage, ...] = ()
     ruleset: RulesetIdentity | None = None
+    bands_provenance: RuleProvenance | None = None
 
     def covers(
         self, sector: str, category: str | None, contract_type: str

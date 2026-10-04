@@ -1,8 +1,8 @@
-"""The accrual rule and the first-tier overtime bands are payable CCNL rules."""
+"""Accrual, absence, sickness and first-tier overtime rules are payable."""
 
 from __future__ import annotations
 
-from scripts.ci.payable_rules import ccnl_rules
+from scripts.ci.payable_rules import ccnl_rules, fiscal_rules
 
 _RECORD: dict[str, object] = {"status": "derived", "location": {"section": "Art. 1"}}
 
@@ -64,3 +64,35 @@ def test_malformed_work_rules_yield_no_band() -> None:
         }
         (rule,) = ccnl_rules("ccnl/data/x.json", data)
         assert rule.path == "accrual_rule"
+
+
+def test_absence_and_sickness_rules_carry_their_records() -> None:
+    """Each block is one rule; the absence rule feeds proration and sickness."""
+    data = {
+        "parameters": {"accrual_rule": {"provenance": _RECORD}},
+        "work_rules": {
+            "absence_rules": {"provenance": _RECORD},
+            "sickness_rules": {"provenance": {"status": "assumed"}},
+            "leave_rules": {"provenance": _RECORD},
+        },
+    }
+    work = [
+        (r.path, r.capabilities, r.status)
+        for r in ccnl_rules("ccnl/data/x.json", data)
+        if r.path.startswith("work_rules")
+    ]
+    assert work == [
+        ("work_rules.absence_rules", ("base_salary", "sickness"), "derived"),
+        ("work_rules.sickness_rules", ("sickness",), "assumed"),
+    ]
+
+
+def test_sick_pay_bands_read_their_sibling_record() -> None:
+    """The INPS bands record sits in ``bands_provenance``."""
+    data = {"bands": [], "bands_provenance": _RECORD}
+    (rule,) = fiscal_rules("inps/data/sick-pay-rates.json", data)
+    assert (rule.path, rule.capabilities, rule.status) == (
+        "bands",
+        ("sickness",),
+        "derived",
+    )

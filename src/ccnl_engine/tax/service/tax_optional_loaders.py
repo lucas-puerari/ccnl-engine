@@ -57,6 +57,7 @@ def load_sick_pay_rates() -> InpsSickPayRates:
             SickPayCoverage.model_validate(rule) for rule in raw.get("coverage", [])
         ),
         ruleset=_as_ruleset(raw),
+        bands_provenance=_provenance_of({"provenance": raw.get("bands_provenance")}),
     )
 
 

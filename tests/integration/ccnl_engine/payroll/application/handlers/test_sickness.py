@@ -30,6 +30,7 @@ from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.provenance.domain.chain import ProvenanceStatus, RuleProvenance
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from tests.fixtures.seniority import new_hire
 from tests.fixtures.sickness_episode import sickness_episode
@@ -38,6 +39,7 @@ if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
     from ccnl_engine.payroll.domain.decisions import CalculationDecision
     from ccnl_engine.payroll.domain.period import PeriodResult
+    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
 
 _FEB_TO_MAR = sickness_episode("2026-02-20", date(2026, 2, 20), date(2026, 3, 13))
 _MARCH = sickness_episode("2026-03-09", date(2026, 3, 9), date(2026, 3, 13))
@@ -289,3 +291,21 @@ def test_sick_pay_override_is_not_payable() -> None:
         (b.code, b.feature) for b in result.blockers
     }
     assert not result.is_payable
+
+
+def test_indemnity_bands_report_their_provenance() -> None:
+    """The INPS bands record reaches the evidence of the sickness capability."""
+
+    class _AssumedBands(BundledKnowledgeRepository):
+        def load_sick_pay_rates(self) -> InpsSickPayRates:
+            rates = super().load_sick_pay_rates()
+            record = RuleProvenance(status=ProvenanceStatus.ASSUMED)
+            return rates.model_copy(update={"bands_provenance": record})
+
+    bundled = calculate_period(_req(3, _MARCH))
+    result = calculate_period(_req(3, _MARCH), repo=_AssumedBands())
+    sources = result.capability_report.rule_sources
+    assert (
+        bundled.capability_report.rule_sources["sickness"] is ProvenanceStatus.DERIVED
+    )
+    assert sources["sickness"] is ProvenanceStatus.ASSUMED

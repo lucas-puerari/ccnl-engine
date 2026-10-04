@@ -3,7 +3,9 @@
 A payable rule is a bundled value that the payroll run reads to compute a
 posted amount: CCNL salary tables, fixed allowances, seniority increments,
 extra-month entitlements, the extra-month accrual threshold, the first-tier
-overtime bands and employer pension fund rates; INPS
+overtime bands, the absence rule (daily quota of partial months and sick
+days), the sickness rule and employer pension fund rates; the INPS sick-pay
+indemnity bands; INPS
 contribution rates (ordinary, apprentice, domestic, fixed-term
 addizionale); IRPEF brackets, the Art. 13 work deduction and its
 sterilizzazione; the trattamento integrativo, the ulteriore detrazione and
@@ -14,19 +16,21 @@ the parameters of the substitute-tax regimes.
 
 Bundled values the run does not read are not payable: the other CCNL work
 rules (overtime bands beyond an hour threshold or conditional on another
-work kind, bands paid per hour or per shift, absence, leave, sickness),
-apprenticeship tracks, the Art. 15 deductions and the INPS sick-pay bands.
+work kind, bands paid per hour or per shift, leave), apprenticeship tracks
+and the Art. 15 deductions.
 
 Each payable rule must carry a provenance record.  CCNL rules carry one per
 rule (salary period, allowance, seniority block, additional-months period,
-accrual rule, overtime band, employer fund); a salary period or an
+accrual rule, overtime band, absence and sickness rule, employer fund); a
+salary period or an
 allowance without its own record inherits the one of its level, a fund rate
 period the one of its fund.  A CCNL without ``parameters.accrual_rule``
 runs on the engine default threshold, which no CCNL source backs: the
 inventory lists it as ``missing``.
 Fiscal files carry one per data block: the block object holds
 ``provenance``, except the IRPEF bracket list and the fixed-term scalar,
-whose record sits in the sibling ``<block>_provenance`` key, the surtax
+and the sick-pay bands, whose record sits in the sibling
+``<block>_provenance`` key, the surtax
 tables, whose record is the file-level ``provenance``, and the substitute
 tax regimes, whose record is their ``source`` with its ``source_status``.
 
@@ -86,7 +90,13 @@ _NAMED_BLOCKS: Final[dict[str, _Blocks]] = {
         ("fringe_benefit", ("fringe_benefit",), False),
         ("pdr", ("bonus_pdr",), False),
     ),
+    "inps/data/sick-pay-rates": (("bands", ("sickness",), True),),
 }
+#: CCNL work rules read by every run that needs them: key and capabilities.
+_WORK_RULES: Final = (
+    ("absence_rules", ("base_salary", "sickness")),
+    ("sickness_rules", ("sickness",)),
+)
 _REGIMES: Final = {
     "rinnovo": "rinnovo_substitute_tax",
     "notte_festivi_turni": "notte_festivi_turni_substitute_tax",
@@ -175,8 +185,9 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
 
     Yields:
         One rule per salary period, allowance, seniority block,
-        additional-months period, the accrual rule, one per first-tier
-        overtime band and one per employer fund rate period.
+        additional-months period, the accrual rule, the absence and
+        sickness rules, one per first-tier overtime band and one per
+        employer fund rate period.
     """
     levels = data.get("levels")
     for level in levels if isinstance(levels, list) else []:
@@ -199,8 +210,25 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
         ("base_salary",),
         _status(accrual.get("provenance")) if isinstance(accrual, dict) else "missing",
     )
+    yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
+
+
+def _work_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
+    """Yield the absence and sickness rules of a CCNL that holds them.
+
+    Yields:
+        One rule per work rule block present in ``work_rules``.
+    """
+    rules = work_rules if isinstance(work_rules, dict) else {}
+    for key, capabilities in _WORK_RULES:
+        block = rules.get(key)
+        if isinstance(block, dict):
+            path = f"work_rules.{key}"
+            yield PayableRule(
+                file, path, capabilities, _status(block.get("provenance"))
+            )
 
 
 def _is_first_tier(band: dict[str, object]) -> bool:

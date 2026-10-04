@@ -142,5 +142,5 @@ def sickness_rules(ctx: RunContext) -> tuple[Rule, ...]:
             f"{name}:work_rules.absence_rules",
             None if absence is None else absence.provenance,
         ),
-        ("inps/sick-pay-rates:bands", None),
+        ("inps/sick-pay-rates:bands", ctx.repo.load_sick_pay_rates().bands_provenance),
     )

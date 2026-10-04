@@ -19,6 +19,9 @@ posted amount.
 | Extra-month entitlement | `ccnl/data/*.json`: `parameters.additional_months.periods[]` | Per period |
 | Extra-month accrual threshold | `ccnl/data/*.json`: `parameters.accrual_rule` | Per rule; a CCNL without the field is listed as `missing` (the engine default applies) |
 | First-tier overtime bands | `ccnl/data/*.json`: `work_rules.time_supplements.overtime_bands[]` with code `OT_*`, kind `percentage`, no hour threshold and no context condition | Per band |
+| Absence rule (daily quota of partial months and sick days) | `ccnl/data/*.json`: `work_rules.absence_rules` | Per rule |
+| Sickness rule | `ccnl/data/*.json`: `work_rules.sickness_rules` | Per rule |
+| INPS sick-pay indemnity bands | `inps/data/sick-pay-rates.json`: `bands` | Sibling `bands_provenance` |
 | IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
 | Art. 13 work deduction, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `sterilizzazione_detrazioni` | Per block |
 | Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
@@ -42,8 +45,7 @@ table instead of one per municipality.
 
 Bundled values the run does not read are not payable: the other CCNL work
 rules (overtime bands beyond an hour threshold, conditional or paid per hour
-or per shift, absence, leave, sickness), apprenticeship tracks, the
-Art. 15 deductions and the INPS sick-pay bands.
+or per shift, leave), apprenticeship tracks and the Art. 15 deductions.
 
 ## The provenance record
 
@@ -124,8 +126,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 621 | 85 | 5 706 |
-| `assumed` | 526 | 12 | 538 |
+| `derived` | 5 843 | 86 | 5 929 |
+| `assumed` | 530 | 12 | 542 |
 | `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->

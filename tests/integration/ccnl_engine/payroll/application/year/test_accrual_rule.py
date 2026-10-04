@@ -135,6 +135,7 @@ def test_default_counts_a_fifteen_day_month() -> None:
     codes = [i.code for i in result.issues]
     assert MISSING_SOURCE_CODE in codes
     assert result.assurance.calculation is CalculationStatus.INCOMPLETE
+    assert result.is_payable is False
 
 
 def test_more_than_fifteen_days_leaves_the_month_out() -> None:
