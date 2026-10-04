@@ -1,14 +1,23 @@
-"""Proration of the regular run of a partly employed month.
+"""The monthly pay a run posts: once per competence month, prorated.
 
-The regular run of a month the employment covers only in part pays the
-daily quotas of its employed days (:mod:`~ccnl_engine.payroll.domain.proration`),
-read from the unpaid-absence rule of the CCNL
-(``work_rules.absence_rules``) and, for ``by_hourly``, its hourly divisor.
+The monthly pay of a competence month is posted once, by the run that
+closes the month first:
 
-Without that rule the run is never paid as a full month: the pay chain
-posts nothing, the ``base_salary`` decision carries no amount and an
-incomplete issue makes the result not payable.  Every other run, and the
-regular run of a fully employed month, keeps the monthly pay chain.
+- the regular run;
+- a termination run, when the regular run of its month is not closed in
+  the opening state (a termination closes the competence year, so no
+  regular run of the month can follow it); when it is, the termination run
+  posts no monthly pay;
+- never an adjustment run, which corrects a run already closed.
+
+The run that posts it for a month the employment covers only in part pays
+the daily quotas of its employed days
+(:mod:`~ccnl_engine.payroll.domain.proration`), read from the unpaid-absence
+rule of the CCNL (``work_rules.absence_rules``) and, for ``by_hourly``, its
+hourly divisor.  Without that rule the month is never paid in full: the pay
+chain posts nothing, the ``base_salary`` decision carries no amount and an
+incomplete issue makes the result not payable.  Extra-month runs keep their
+own chain, scaled by the ratei.
 """
 
 from __future__ import annotations
@@ -20,7 +29,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.contract.domain.absence import DailyDivisorMethod
 from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.proration import MonthProration
-from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 
 if TYPE_CHECKING:
     from datetime import date
@@ -34,6 +43,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "FULL_MONTH",
+    "POSTED_BY_ANOTHER_RUN",
     "PRORATED",
     "RULE_MISSING",
     "RunProration",
@@ -44,6 +54,10 @@ __all__ = [
 PRORATED = "pay_chain_prorated"
 #: Reason of a ``base_salary`` decision without a partial-month rule.
 RULE_MISSING = "partial_month_rule_missing"
+#: Reason of a ``base_salary`` decision of a run that posts no monthly pay.
+POSTED_BY_ANOTHER_RUN = "monthly_pay_posted_by_another_run"
+#: Who posts the monthly pay of an adjustment run's month.
+_CORRECTED_RUN = "corrected_run"
 _NONE = "none"
 
 
@@ -58,12 +72,16 @@ class RunProration:
             CCNL defines no partial-month rule.
         rules: Rules the proration read, with their provenance.
         source: Location of the absence rule of the CCNL, if recorded.
+        posted_by: Run that posts the monthly pay of the month instead of
+            this one (``corrected_run`` for an adjustment), ``None`` when
+            this run posts it.
     """
 
     span: tuple[date, date] | None
     proration: MonthProration | None = None
     rules: tuple[Rule, ...] = ()
     source: SourceLocation | None = None
+    posted_by: str | None = None
 
     @property
     def partial(self) -> bool:
@@ -78,6 +96,8 @@ class RunProration:
     @property
     def reason(self) -> str | None:
         """Reason of the ``base_salary`` decision, ``None`` for a full month."""
+        if self.posted_by is not None:
+            return POSTED_BY_ANOTHER_RUN
         if not self.partial:
             return None
         return RULE_MISSING if self.missing else PRORATED
@@ -87,8 +107,11 @@ class RunProration:
 
         Returns:
             ``chain`` for a full month or a span worth a monthly pay, the
-            prorated chain for a shorter span, a zero chain without a rule.
+            prorated chain for a shorter span, a zero chain without a rule
+            or when another run posts the monthly pay.
         """
+        if self.posted_by is not None:
+            return chain.scaled(Decimal(0))
         if not self.partial:
             return chain
         proration = self.proration
@@ -102,9 +125,11 @@ class RunProration:
         """Return the decision inputs of a partial run.
 
         Returns:
-            The employed span, the method, payable days and divisor; empty
-            for a full month.
+            The employed span, the method, payable days and divisor; the run
+            that posts the monthly pay instead; empty for a full month.
         """
+        if self.posted_by is not None:
+            return {"monthly_pay_posted_by": self.posted_by}
         if self.span is None:
             return {}
         first, last = self.span
@@ -140,21 +165,40 @@ class RunProration:
 
 #: Proration of a run that pays its whole month.
 FULL_MONTH = RunProration(span=None)
+#: Kinds of run that may post the monthly pay of their month.
+_PAYING_KINDS = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
+
+
+def _posted_by(request: PeriodCalculationRequest, run_kind: RunKind) -> str | None:
+    """Return the run that posts the monthly pay instead of this one.
+
+    Returns:
+        ``corrected_run`` for an adjustment, the regular run of the month
+        for a termination run after it, ``None`` otherwise.
+    """
+    if run_kind is RunKind.ADJUSTMENT:
+        return _CORRECTED_RUN
+    if run_kind is not RunKind.TERMINATION:
+        return None
+    month = request.period_id
+    regular = PayrollRun.regular(month.year, month.month).identifier
+    closed = request.opening_state.accrual.competence_runs
+    return str(regular) if regular in closed else None
 
 
 def _partial_span(
     request: PeriodCalculationRequest, run_kind: RunKind
 ) -> tuple[date, date] | None:
-    """Return the employed span of a regular run's partly employed month.
+    """Return the employed span of a partly employed month the run pays.
 
     Returns:
-        ``None`` for another run kind, an untracked employment or a fully
+        ``None`` for an extra-month run, an untracked employment or a fully
         employed month.
     """
     period: EmploymentPeriod | None = request.employment_period
     month = request.period_id
     if (
-        run_kind is not RunKind.REGULAR
+        run_kind not in _PAYING_KINDS
         or period is None
         or period.covers_month(month.year, month.month)
     ):
@@ -181,9 +225,12 @@ def run_proration(
     """Return the proration of the run of ``request``.
 
     Returns:
-        :data:`FULL_MONTH` unless the run is the regular run of a partly
-        employed month.
+        A proration that posts no monthly pay when another run posts it;
+        :data:`FULL_MONTH` unless the run pays a partly employed month.
     """
+    posted_by = _posted_by(request, run_kind)
+    if posted_by is not None:
+        return RunProration(span=None, posted_by=posted_by)
     span = _partial_span(request, run_kind)
     if span is None:
         return FULL_MONTH

@@ -13,17 +13,19 @@ from ccnl_engine.contract.domain.absence import DailyDivisorMethod
 from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.period._proration import (
     FULL_MONTH,
+    POSTED_BY_ANOTHER_RUN,
     PRORATED,
     RULE_MISSING,
     run_proration,
 )
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
-from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
 from ccnl_engine.payroll.service.types import MonthlyPayChain
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
+    from ccnl_engine.payroll.domain.run import PayrollRunId
 
 _FEDERMECCANICA = "metalmeccanico-federmeccanica.json"
 _VETRO = "vetro-meccanizzato-assovetro.json"
@@ -34,16 +36,21 @@ _CHAIN = MonthlyPayChain(
 
 
 def _request(
-    started_on: date, year: int = 2026, month: int = 3
+    started_on: date,
+    year: int = 2026,
+    month: int = 3,
+    closed: tuple[PayrollRunId, ...] = (),
 ) -> PeriodCalculationRequest:
     """Return the fields of a request the proration reads.
 
     Returns:
-        A request of ``year``-``month`` for an employment from ``started_on``.
+        A request of ``year``-``month`` for an employment from ``started_on``,
+        opening on a state that closed the runs ``closed``.
     """
     fake = SimpleNamespace(
         employment_period=EmploymentPeriod(started_on=started_on),
         period_id=SimpleNamespace(year=year, month=month),
+        opening_state=SimpleNamespace(accrual=SimpleNamespace(competence_runs=closed)),
     )
     return cast("PeriodCalculationRequest", fake)
 
@@ -61,16 +68,50 @@ def test_full_month_keeps_the_monthly_pay() -> None:
     assert proration.apply(_CHAIN) is _CHAIN
 
 
-@pytest.mark.parametrize(
-    "kind", [RunKind.THIRTEENTH, RunKind.TERMINATION, RunKind.ADJUSTMENT]
-)
-def test_only_the_regular_run_is_prorated(kind: RunKind) -> None:
-    """An extra-month, termination or adjustment run keeps its own rule."""
+@pytest.mark.parametrize("kind", [RunKind.THIRTEENTH, RunKind.FOURTEENTH])
+def test_extra_month_runs_keep_their_own_rule(kind: RunKind) -> None:
+    """An extra-month run is scaled by its ratei, not by the month's days."""
     proration = run_proration(
         _request(date(2026, 3, 15)), load_ccnl(_FEDERMECCANICA), kind
     )
 
     assert proration is FULL_MONTH
+
+
+def test_termination_run_closing_the_month_is_prorated() -> None:
+    """Without a closed regular run of March the termination run pays it."""
+    proration = run_proration(
+        _request(date(2026, 3, 15)), load_ccnl(_FEDERMECCANICA), RunKind.TERMINATION
+    )
+
+    assert proration.reason == PRORATED
+    assert proration.apply(_CHAIN).base == Decimal("1162.14")
+
+
+def test_termination_run_after_the_regular_run_posts_no_monthly_pay() -> None:
+    """The regular run of March already posted its 14 daily quotas."""
+    regular = PayrollRun.regular(2026, 3).identifier
+    proration = run_proration(
+        _request(date(2026, 3, 15), closed=(regular,)),
+        load_ccnl(_FEDERMECCANICA),
+        RunKind.TERMINATION,
+    )
+
+    assert proration.reason == POSTED_BY_ANOTHER_RUN
+    assert proration.inputs() == {"monthly_pay_posted_by": "2026-03-regular"}
+    assert proration.apply(_CHAIN).base == Decimal("0.00")
+    assert proration.issue() is None
+
+
+def test_adjustment_run_posts_no_monthly_pay() -> None:
+    """An adjustment corrects a closed run, which posted the monthly pay."""
+    proration = run_proration(
+        _request(date(2020, 1, 1)), load_ccnl(_FEDERMECCANICA), RunKind.ADJUSTMENT
+    )
+
+    assert proration.reason == POSTED_BY_ANOTHER_RUN
+    assert proration.inputs() == {"monthly_pay_posted_by": "corrected_run"}
+    assert proration.apply(_CHAIN).base == Decimal("0.00")
 
 
 def test_untracked_employment_is_a_full_month() -> None:

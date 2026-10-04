@@ -28,8 +28,8 @@ from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.domain.employment_facts import WeeklyHours
-from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent
-from ccnl_engine.payroll.domain.inputs import PeriodInput
+from ccnl_engine.payroll.domain.events import AbsenceEvent, BonusEvent, OvertimeEvent
+from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import (
     SOMMA_ESENTE_RECOVERY,
@@ -53,6 +53,17 @@ _CCNL = "metalmeccanico-federmeccanica.json"
 _ZERO = Decimal(0)
 _ADJUSTMENT = PayrollRun(run_kind=RunKind.ADJUSTMENT, month=12, year=2026)
 _RECOVERY = f"{ULTERIORE_RECOVERY}_recovery"
+#: An adjustment run posts no monthly pay (the run it corrects did): it
+#: pays only its own items, here 40 overtime hours at 15.00 (600.00).
+_ADJUSTMENT_FACTS = PeriodFacts(
+    events=(
+        OvertimeEvent(
+            event_date=date(2026, 12, 29),
+            hours=Decimal(40),
+            hourly_rate=Decimal("15.00"),
+        ),
+    )
+)
 
 
 @cache
@@ -85,6 +96,7 @@ def _adjustment(
             payment_date=date(2026, 12, 30),
             employment=employment,
             employer=EMPLOYER_50,
+            facts=_ADJUSTMENT_FACTS,
             opening_state=last.closing_state if opening is None else opening,
         )
     )
@@ -126,8 +138,9 @@ def _absence_year() -> CompetenceYearResult:
     """C3 at 33 of 40 hours; 144 absence hours on the tredicesima.
 
     The final income of 19,639.09 EUR removes the ulteriore detrazione: the
-    conguaglio opens a plan.  The adjustment run pays one more month and
-    takes the income back above 20,000 EUR, so the deduction is due again.
+    conguaglio opens a plan.  The adjustment run pays 600.00 of overtime
+    and takes the income back above 20,000 EUR, so the deduction is due
+    again.
 
     Returns:
         The year result.
@@ -164,6 +177,7 @@ def test_adjustment_restoring_the_deduction_closes_the_plan() -> None:
             payment_date=date(2026, 12, 30),
             employment=employment,
             employer=EMPLOYER_50,
+            facts=_ADJUSTMENT_FACTS,
             opening_state=_absence_year().period_results[-1].closing_state,
         )
     )

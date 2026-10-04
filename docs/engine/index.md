@@ -206,10 +206,19 @@ ratio, and never above one monthly pay (2 March 2026, a Monday after a
 Sunday 1st, pays the whole of March). The `base_salary` decision has reason
 `pay_chain_prorated` and records `employed_from`, `employed_until`,
 `divisor_method`, `payable_days` and `divisor`; the absence rule and, for
-`by_hourly`, the hourly divisor join the rules of `base_salary`. Only the
-regular run is prorated: extra-month runs follow the accrual rule below,
-and a termination or adjustment run still posts the full monthly pay chain
-(a known defect of those run kinds, not a proration).
+`by_hourly`, the hourly divisor join the rules of `base_salary`.
+
+The monthly pay of a competence month is posted once, by the run that
+closes the month first. The regular run posts it. A termination run posts
+it, prorated the same way, only when the regular run of its month is not
+closed in the opening state (a termination closes the competence year, so
+no regular run of the month can follow it); after the regular run it posts
+no monthly pay, only its own items (events, TFR, the second conguaglio). An
+adjustment run corrects a run already closed and never posts the monthly
+pay. A run that posts none has a `base_salary` decision with reason
+`monthly_pay_posted_by_another_run`, amount 0.00 and input
+`monthly_pay_posted_by` (the regular run id, or `corrected_run`).
+Extra-month runs follow the accrual rule below.
 
 A CCNL whose data define no daily quota (no `absence_rules`, or `by_hourly`
 without `daily_hours` or an hourly divisor in force) never pays the month in

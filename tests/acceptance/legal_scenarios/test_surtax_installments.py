@@ -29,6 +29,7 @@ from ccnl_engine import (
     Employment,
     EmploymentPeriod,
     Headcount,
+    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -300,6 +301,20 @@ def test_capability_report_follows_the_surtax_decisions() -> None:
 
 
 _METALMECCANICO_C3 = "metalmeccanico-federmeccanica.json"
+#: The December pay was posted by the regular run: the termination run pays
+#: only its own items, here 60 overtime hours at 25.00 (1,500.00), enough
+#: net pay for the surtax it withholds.
+_TERMINATION_FACTS = PeriodFacts(
+    regione="IT-88",
+    comune_belfiore="I452",
+    events=(
+        OvertimeEvent(
+            event_date=date(2026, 12, 30),
+            hours=Decimal(60),
+            hourly_rate=Decimal("25.00"),
+        ),
+    ),
+)
 
 
 def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResult]:
@@ -338,7 +353,7 @@ def _termination_after(ended_on: date | None) -> tuple[PeriodResult, PeriodResul
                 ),
             ),
             employer=_EMPLOYER,
-            facts=_FACTS,
+            facts=_TERMINATION_FACTS,
             opening_state=thirteenth.closing_state,
         )
     )

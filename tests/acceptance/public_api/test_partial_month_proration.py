@@ -13,6 +13,7 @@ Calendar: 1 January 2026 is a Thursday, 1 February and 1 March Sundays,
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -288,3 +289,64 @@ def test_ccnl_without_rule_never_pays_a_full_month() -> None:
     assert _base_salary(result) == ("partial_month_rule_missing", None)
     assert "partial_month_rule_missing" in {i.code for i in result.issues}
     assert result.is_payable is False
+
+
+def _closing_run(
+    kind: str, month: int, employment: Employment, opening: PeriodResult | None
+) -> PeriodResult:
+    """Return a termination or adjustment run paid on the 30th of ``month``.
+
+    Returns:
+        The run, opening on the closing state of ``opening`` when given.
+    """
+    request = PeriodInput(
+        # RunKind is not public: the constructor normalises its value.
+        run=PayrollRun(run_kind=kind, month=month, year=2026),  # type: ignore[arg-type]
+        payment_date=date(2026, month, 30),
+        employment=employment,
+        employer=_EMPLOYER,
+    )
+    if opening is not None:
+        request = replace(request, opening_state=opening.closing_state)
+    return _ENGINE.calculate_period(request)
+
+
+_ENDS_15_APRIL = EmploymentPeriod(date(2025, 1, 1), date(2026, 4, 15))
+
+
+def test_termination_run_closing_the_month_pays_its_daily_quotas() -> None:
+    """Ended 15 April, no regular April run: 13 payable days, 1,079.13."""
+    result = _closing_run("termination", 4, _employment(_ENDS_15_APRIL), None)
+
+    assert result.period_gross == Decimal("1079.13")
+    assert _base_salary(result) == ("pay_chain_prorated", Decimal("1079.13"))
+
+
+def test_regular_and_termination_runs_pay_the_month_once() -> None:
+    """The regular April run pays 1,079.13; the termination run after it 0.
+
+    The two runs of April together pay 2,158.26 x 13 / 26 = 1,079.13, not
+    that plus a second monthly pay.
+    """
+    employment = _employment(_ENDS_15_APRIL)
+    regular = _run(4, employment)
+    termination = _closing_run("termination", 4, employment, regular)
+
+    assert regular.period_gross == Decimal("1079.13")
+    assert termination.period_gross == Decimal("0.00")
+    assert _base_salary(termination) == (
+        "monthly_pay_posted_by_another_run",
+        Decimal("0.00"),
+    )
+    assert regular.period_gross + termination.period_gross == Decimal("1079.13")
+
+
+def test_adjustment_run_never_posts_the_monthly_pay_again() -> None:
+    """An adjustment of the hire month after its regular run: 1,162.14 once."""
+    employment = _employment(EmploymentPeriod(date(2026, 3, 15)))
+    regular = _run(3, employment)
+    adjustment = _closing_run("adjustment", 3, employment, regular)
+
+    assert regular.period_gross == Decimal("1162.14")
+    assert adjustment.period_gross == Decimal("0.00")
+    assert _base_salary(adjustment)[0] == "monthly_pay_posted_by_another_run"

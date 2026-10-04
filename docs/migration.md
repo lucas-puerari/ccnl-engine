@@ -13,6 +13,13 @@ is `work_rules.absence_rules.daily_divisor_method` of the CCNL (`by_26`,
 | `base_salary` decision reason `pay_chain_applied` on every run | `pay_chain_prorated` on a prorated run, with `employed_from`, `employed_until`, `divisor_method`, `payable_days`, `divisor` inputs |
 | A CCNL without a daily quota paid the full month | No pay posted; `base_salary` decision `provisional`, reason `partial_month_rule_missing`, no amount; `incomplete` issue `partial_month_rule_missing`; not payable |
 
+- Termination and adjustment runs no longer repeat the monthly pay. A
+  termination run after the regular run of its month, and every adjustment
+  run, post only their own items (`base_salary` reason
+  `monthly_pay_posted_by_another_run`, amount 0.00); a termination run with
+  no regular run of its month before it pays the month, prorated. Callers
+  who relied on the termination or adjustment run carrying a month of pay
+  must declare those amounts as events.
 - A caller who prorated `period_gross` itself must stop: the engine now
   prorates the pay chain, so the TFR, INPS and IRPEF of the run follow.
 - An unpaid absence that deducts more than the prorated pay is rejected
