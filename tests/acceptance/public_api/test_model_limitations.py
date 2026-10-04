@@ -150,6 +150,38 @@ def test_apprentice_seniority_without_level_series_is_kept() -> None:
     assert f"grafica-editoria-aieg/{_APPRENTICE_SENIORITY}" in _ids(result)
 
 
+_PCT_UNDECLARED = "apprenticeship_pct_undeclared_components"
+
+
+def test_undeclared_reduction_flag_blocks_a_percentage_apprentice() -> None:
+    """A defaulted reduction flag on the apprentice's pay is unsourced."""
+    result = _run(
+        "alimentaristi-cooperative-e016",
+        "4",
+        Apprentice(months_elapsed=0),
+        seniority=0,
+    )
+    assert (BlockerCode.OPEN_LIMITATION, "base_salary", _PCT_UNDECLARED) in {
+        (b.code, b.feature, b.detail) for b in result.blockers
+    }
+
+
+@pytest.mark.parametrize(
+    ("slug", "level", "contract_type"),
+    [
+        ("energia-petrolio-confindustria", "4-2", Apprentice(months_elapsed=0)),
+        ("alimentaristi-cooperative-e016", "4", Permanent()),
+    ],
+    ids=["declared-flags", "not-apprentice"],
+)
+def test_declared_flags_record_no_reduction_limitation(
+    slug: str, level: str, contract_type: Apprentice | Permanent
+) -> None:
+    """Declared flags, or a worker who is not an apprentice, are not affected."""
+    result = _run(slug, level, contract_type, seniority=0)
+    assert _PCT_UNDECLARED not in _ids(result)
+
+
 def test_overtime_limitation_needs_overtime() -> None:
     """A work-rule limitation concerns only the runs that execute the capability."""
     ordinary = _run("concia-unic", "C1", Permanent())

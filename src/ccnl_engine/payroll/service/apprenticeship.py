@@ -29,6 +29,11 @@ if TYPE_CHECKING:
 _TWO = Decimal(2)
 _ZERO = Decimal(0)
 
+#: Engine limitation of a percentage apprenticeship that reduces an
+#: allowance whose ``apprenticeship_pct_relevant`` flag the data leaves at
+#: its default.
+PCT_UNDECLARED = "apprenticeship_pct_undeclared_components"
+
 #: Variant of the CCNL limitation of a midpoint period whose components the
 #: CCNL text read for the ruleset does not settle.
 MIDPOINT_VARIANT = "apprenticeship_midpoint_components"
@@ -128,6 +133,10 @@ def _percentage_track_chain(
 ) -> tuple[MonthlyPayChain, Decimal, None]:
     """Build the pay chain for a percentage-based apprenticeship track.
 
+    The chain records :data:`PCT_UNDECLARED` when one of its allowances
+    leaves ``apprenticeship_pct_relevant`` at its default: the engine
+    reduces it, but whether the CCNL does was not sourced.
+
     Returns:
         A tuple of (chain, apprenticeship_pct, None).
     """
@@ -146,6 +155,8 @@ def _percentage_track_chain(
         is_apprentice=True,
         seniority_months=seniority_months,
     )
+    if any(not a.apprenticeship_pct_declared for a, _ in chain.allowances):
+        chain = replace(chain, limitations=(*chain.limitations, PCT_UNDECLARED))
     return chain, track.periods[period_index].percentage, None
 
 

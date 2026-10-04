@@ -129,6 +129,50 @@
       "remediation": "Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation."
     },
     {
+      "id": "apprenticeship_pct_undeclared_components",
+      "capability": "base_salary",
+      "variant": "apprenticeship_pct_components",
+      "summary": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "monetary_impact": "unknown",
+      "status": "open",
+      "rulesets": [
+        "acconciatura-estetica-confartigianato",
+        "alimentaristi-cooperative-e016",
+        "anas",
+        "autoferrotranvieri-internavigatori",
+        "autorimesse-ic35",
+        "autostrade-trafori",
+        "cemento-calce-gesso-industria",
+        "ceramica-industria-confindustria",
+        "comunicazione-artigianato-confartigianato",
+        "cooperative-consorzi-agricoli",
+        "edilizia-artigianato-cna",
+        "edilizia-cooperative-ancpl",
+        "edilizia-pmi-confapi-aniem",
+        "elettrico-elettricita-futura",
+        "gas-acqua-utilitalia",
+        "industria-turistica-federturismo",
+        "istituzioni-servizi-socio-assistenziali-anaste",
+        "lapidei-industria",
+        "marittimi-industria-armatoriale",
+        "metalmeccanica-cooperative",
+        "noleggio-autobus-conducente-anav",
+        "occhiali-occhialeria-industria",
+        "orafi-argentieri-industria-federorafi",
+        "panificazione-assipan",
+        "studi-professionali-confprofessioni",
+        "trasporto-aereo-assaeroporti"
+      ],
+      "applies_when": {
+        "trigger": "path",
+        "contract_types": [
+          "apprentice"
+        ]
+      },
+      "source": "ccnl_engine.payroll.service.apprenticeship (percentage track chain)",
+      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs."
+    },
+    {
       "id": "sickness_inps_daily_base",
       "capability": "sickness",
       "variant": "inps_share_on_ccnl_quota",

@@ -67,12 +67,14 @@ automatically. In `operational` mode every one of these runs also carries a
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->245<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->246<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
-amount, and <!-- trust:limitations-engine -->4<!-- /trust:limitations-engine -->
+amount, and <!-- trust:limitations-engine -->5<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
 (`knowledge/limitations/data/engine.json`: the apprenticeship midpoint and
-the apprentice seniority increment, both resolved, and two sickness paths).
+the apprentice seniority increment, both resolved; a percentage
+apprenticeship reducing an allowance whose `apprenticeship_pct_relevant` flag
+the data leaves at its default; two sickness paths).
 A CCNL whose midpoint components are unsourced carries its own
 `<ccnl_id>/apprenticeship_midpoint_components` limitation. A CCNL that declares no
 apprentice seniority amount carries its own `<ccnl_id>/apprentice_seniority`

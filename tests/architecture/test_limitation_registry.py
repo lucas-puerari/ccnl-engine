@@ -15,7 +15,10 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import PayrollEngine
-from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipUnderClassification
+from ccnl_engine.contract.domain.apprenticeship import (
+    ApprenticeshipPercentage,
+    ApprenticeshipUnderClassification,
+)
 from ccnl_engine.contract.domain.identity import NoteKind
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
@@ -25,7 +28,7 @@ from ccnl_engine.payroll.application.handlers.sickness import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
 )
-from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT
+from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT, PCT_UNDECLARED
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -89,6 +92,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         for status in LimitationStatus
     }
     assert by_status[LimitationStatus.OPEN] == {
+        PCT_UNDECLARED,
         INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
     }
@@ -126,6 +130,30 @@ def test_engine_limitation_rulesets_are_derived_from_data(
     assert rulesets[_MIDPOINT] == {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
     assert rulesets[_APPRENTICE_SENIORITY] == {
         c.meta.ccnl_id for c in ccnls if _has_level_seniority_for_apprentices(c)
+    }
+
+
+def _has_undeclared_reduction_flag(ccnl: CCNL) -> bool:
+    codes = {
+        track.reference_level or code
+        for track in ccnl.apprenticeship
+        if isinstance(track, ApprenticeshipPercentage)
+        for code in track.destination_levels
+    }
+    return any(
+        not allowance.apprenticeship_pct_declared
+        for code in codes
+        for allowance in ccnl.level_by_code(code).fixed_allowances
+    )
+
+
+def test_undeclared_reduction_rulesets_are_derived_from_data(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """The CCNLs whose percentage track can reduce a defaulted allowance."""
+    rulesets = {lim.id: set(lim.rulesets) for lim in load_engine_limitations()}
+    assert rulesets[PCT_UNDECLARED] == {
+        c.meta.ccnl_id for c in ccnls if _has_undeclared_reduction_flag(c)
     }
 
 
