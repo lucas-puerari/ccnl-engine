@@ -14,9 +14,14 @@ the readers in `ccnl_engine.knowledge.service`). See
 | Page | Contents |
 |---|---|
 | [Engine](engine.md) | `PayrollEngine`, `EngineMode`, `ContractSummary`, `RulesetAssurance`, `PeriodInput`, `CompetenceYearPlan`, `TaxYearPlan`, `OpeningBalances`, `InpsBaseYtd`, `PeriodFacts`, `Employment`, `EmployerProfile`, `PriorYearTaxFacts`, `CurrentYearTaxFacts`, `PayrollRun`, `CalendarOverride`, `PeriodResult`, `CompetenceYearResult`, `TaxYearResult`, `ResultAssurance`, `ResultBlocker`, `BlockerCode`, `ModelLimitation`, `MonetaryImpact`, `LimitationStatus`, `CalculationStatus`, `CalculationIssue`, `CalculationDecision` |
-| [Loaders](loaders.md) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
-| [Models](models.md) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
+| [Loaders](loaders.md) (internal) | `load_ccnl()`, `load_year_rules()`, `load_surtax_rules()`, `YearRules`, `InpsRates` |
+| [Models](models.md) (internal) | `CCNL`, `Level`, `Allowance`, employment types, fiscal enums |
 | [Knowledge](knowledge.md) | data layout, `__version__` |
+
+The Engine page documents the public types from the modules that define
+them; import them from the namespaces below. Loaders and Models document
+internal modules, for contributors and tooling such as the demo: they are
+not part of the public API and may change without notice.
 
 ## Public namespaces
 
@@ -31,7 +36,9 @@ exactly one import path: there are no aliases.
 | `ccnl_engine.results` | Assurance, blockers, decisions, issues, model limitations, capability gaps, ledger account kinds and remittance lines |
 | `ccnl_engine.catalog` | Bundled contracts and their discovery, ruleset identity and readiness, the capability catalog |
 
-Any module below these five is internal and may change without notice.
+Any module below these five is internal and may change without notice,
+including the loaders, the CCNL models and `REGION_CODES` named in the
+guides.
 
 ## Quick reference
 
