@@ -35,7 +35,7 @@ from ccnl_engine.payroll.application.period._seniority import (
     run_seniority,
     seniority_decision,
 )
-from ccnl_engine.payroll.application.year._extra_month_accrual import (
+from ccnl_engine.payroll.application.year._extra_month_settlement import (
     settle_extra_months,
 )
 
