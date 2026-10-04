@@ -39,9 +39,9 @@ D2, a whole 2026 competence year with the industria tax and INPS rulesets
 and the Sardegna and Alghero surtaxes. Every expected figure is computed by
 hand in plain Python from a cited source (the signed renewal and its salary
 table, the TUIR, L. 207/2024, L. 199/2025, the INPS rates, the MEF surtax
-tables), never from engine output: salary items, employee INPS and TFR of
-each payment, gross, INPS, taxable, IRPEF and net of the year, the closing
-state, and the surtax balance and acconto left for the next year. Employer
+tables), never from engine output: salary items, employee INPS and TFR
+base of each payment, gross, INPS, taxable, IRPEF and net of the year, the
+closing state, and the surtax balance and acconto left for the next year. Employer
 contributions are not covered: the bundle holds them as one aggregate rate,
 not as primary-sourced components. Some inputs of this oracle (the EDR, the
 number of additional months, the employee IVS rate) are not read from a

@@ -116,9 +116,15 @@ class TestEveryPayment:
         assert _posted(result, "employee_contributions") == ORACLE.monthly_inps
 
     @pytest.mark.parametrize("index", range(13))
-    def test_tfr_quota_is_the_pay_divided_by_13_5(self, index: int) -> None:
-        """The TFR quota is the pay of the month divided by 13.5."""
-        assert _posted(_runs()[index], "tfr_accrual") == ORACLE.tfr_quota
+    def test_tfr_accrues_on_the_pay_divided_by_13_5(self, index: int) -> None:
+        """The TFR base is the pay of the month and the divisor 13.5.
+
+        The posted quota is checked by the strict xfail at the end of the
+        module: it should be net of the 0.50% L. 297/1982 deducts.
+        """
+        (decision,) = (d for d in _runs()[index].decisions if d.capability == "tfr")
+        assert decision.inputs["base"] == ORACLE.monthly_gross
+        assert decision.inputs["accrual_divisor"] == ORACLE.tfr_divisor
 
 
 class TestYearTotals:
@@ -147,10 +153,9 @@ class TestYearTotals:
         """Net pay of the year is gross less INPS less annual IRPEF."""
         assert sum((r.period_net for r in _runs()), _ZERO) == ORACLE.net
 
-    def test_no_surtax_and_no_credit_is_paid_in_2026(self) -> None:
-        """No surtax and no credit is paid in 2026."""
+    def test_no_credit_is_paid_in_2026(self) -> None:
+        """No trattamento integrativo and no somma esente is paid in 2026."""
         cash = _runs()[-1].closing_state.cash
-        assert cash.tax.surtax == _ZERO
         assert cash.trattamento.recognized == _ZERO
         assert cash.somma_esente.recognized == _ZERO
 

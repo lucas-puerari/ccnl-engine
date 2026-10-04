@@ -38,7 +38,9 @@ Sources, each with section and effective date:
   gross is under half of the first pensionable-earnings band of 2025 and
   2026, so the additional 1% (L. 438/1992 art. 3-ter) is not due, and far
   under the IVS massimale; neither the band nor the massimale enters a
-  figure, so the 2026 INPS circular number is not needed.
+  figure.  The 2026 values are in INPS circolare n. 6 of 30 January 2026
+  (massimale 122,295 EUR), as secondary sources (ecnews.it, Ascom Bologna)
+  report it; the circular itself was not fetched.
 - TFR quota: art. 2120 c. 1 c.c., the yearly pay divided by 13.5, accrued
   per month here; L. 297/1982 art. 3 (Normattiva, read on 4 October 2026)
   raises the employer IVS rate by 0.50% and has the employer deduct that
@@ -117,6 +119,7 @@ class ConciaYear:
         edr: Elemento distinto della retribuzione of every payment.
         monthly_gross: Gross of each of the thirteen payments.
         monthly_inps: Employee INPS of each payment.
+        tfr_divisor: Art. 2120 c.c. divisor of the yearly pay.
         tfr_quota: Art. 2120 c.c. TFR quota of each payment.
         tfr_net_of_extra_ivs: The quota less the 0.50% L. 297/1982 deducts.
         payments: Number of payments of the tax year.
@@ -134,6 +137,7 @@ class ConciaYear:
     edr: Decimal
     monthly_gross: Decimal
     monthly_inps: Decimal
+    tfr_divisor: Decimal
     tfr_quota: Decimal
     tfr_net_of_extra_ivs: Decimal
     payments: int
@@ -166,6 +170,7 @@ def _year() -> ConciaYear:
         edr=edr,
         monthly_gross=monthly_gross,
         monthly_inps=monthly_inps,
+        tfr_divisor=_TFR_DIVISOR,
         tfr_quota=tfr_quota,
         tfr_net_of_extra_ivs=tfr_quota - _cents(monthly_gross * _TFR_EXTRA_IVS_RATE),
         payments=_MONTHS_PAID,

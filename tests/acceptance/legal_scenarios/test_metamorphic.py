@@ -156,10 +156,11 @@ class TestUnknownIsNotZero:
         strict=True,
         raises=AssertionError,
         reason=(
-            "the 191 EUR of the 2024 Concia renewal is paid inside the minimo "
-            "and taxed as ordinary income with no decision; L. 199/2025 art. 1 "
-            "c. 7 taxes 2026 renewal increments at 5% up to 33,000 EUR of 2025 "
-            "income, so the engine should apply it or report it"
+            "the increments of the 2024 Concia renewal are paid inside the "
+            "minimo and taxed as ordinary income with no decision; L. 199/2025 "
+            "art. 1 c. 7 taxes 2026 renewal increments at 5% up to 33,000 EUR "
+            "of 2025 income; how much of the minimo counts is a reading to "
+            "settle, so the engine should at least decide or report it"
         ),
     )
     def test_renewal_increments_in_the_minimo_are_not_ignored(self) -> None:
