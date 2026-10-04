@@ -126,6 +126,26 @@ class TestEmploymentPeriodMonths:
         assert self._PERIOD.overlaps_month(2026, month) is overlaps
         assert self._PERIOD.covers_month(2026, month) is covers
 
+    @pytest.mark.parametrize(
+        ("month", "span"),
+        [
+            pytest.param(2, None, id="before-hire"),
+            pytest.param(3, (date(2026, 3, 15), date(2026, 3, 31)), id="hire-month"),
+            pytest.param(6, (date(2026, 6, 1), date(2026, 6, 30)), id="whole-month"),
+            pytest.param(10, None, id="after-end"),
+        ],
+    )
+    def test_span_in_month_clips_to_the_employment(
+        self, month: int, span: tuple[date, date] | None
+    ) -> None:
+        """The employed span of a month starts at hire and stops at the end."""
+        assert self._PERIOD.span_in_month(2026, month) == span
+
+    def test_open_ended_span_runs_to_the_month_end(self) -> None:
+        """Without an end date the span of a later month is the whole month."""
+        period = EmploymentPeriod(started_on=_START)
+        assert period.span_in_month(2028, 2) == (date(2028, 2, 1), date(2028, 2, 29))
+
     def test_end_inside_month_is_partial(self) -> None:
         """An employment ending on 15 May overlaps May without covering it."""
         period = EmploymentPeriod(started_on=_START, ended_on=date(2026, 5, 15))

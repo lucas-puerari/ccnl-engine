@@ -91,8 +91,8 @@ def test_fractional_extra_months_settle_trattamento_integrativo() -> None:
 @pytest.mark.parametrize(
     ("level_code", "expected"),
     [
-        pytest.param("Q", Decimal("5034.22"), id="second-bracket"),
-        pytest.param("3", Decimal("1753.46"), id="first-bracket"),
+        pytest.param("Q", Decimal("4534.24"), id="second-bracket"),
+        pytest.param("3", Decimal("2301.37"), id="first-bracket"),
     ],
 )
 def test_part_year_employment_withholds_the_tax_on_its_days(
@@ -103,11 +103,20 @@ def test_part_year_employment_withholds_the_tax_on_its_days(
     The deductions proportioned to the days (art. 13 c. 1 TUIR, L. 207/2024
     art. 1 c. 6) must reach the conguaglio.  292 / 365 is exactly 0.8.
 
-    - Level Q, final taxable 30,438.68: 5,034.22 (derivation in
-      ``test_irpef_net_oracle.test_part_year_deductions_follow_the_days``).
-    - Level 3, final taxable 20,221.90: gross 4,651.04; ratio 7,778.10 /
-      13,000 truncated 0.5983; deduction (1,910 + 1,190 * 0.5983) * 0.8 =
-      2,621.98 * 0.8 = 2,097.58; further deduction 800.00; net 1,753.46.
+    March pays 14 of 26 daily quotas (16-21, 23-28, 30, 31 March are the
+    Mondays to Saturdays employed), each pay component rounded on its own,
+    so the year loses ``G - G_march`` of gross and that amount less 9.19%
+    INPS of taxable against a full March:
+
+    - Level Q: March 1,608.00 against 2,986.29, 1,378.29 less 126.66 INPS,
+      final taxable 30,438.68 - 1,251.63 = 29,187.05.  Gross tax 6,440.00
+      + 1,187.05 * 33% = 6,831.73; deduction (1,910 * 0.9460 + 65) * 0.8 =
+      1,497.49; further deduction 800.00; net 4,534.24.
+    - Level 3: March 1,068.25 against 1,983.91, 915.66 less 84.15 INPS,
+      final taxable 20,221.90 - 831.51 = 19,390.39.  Gross tax 4,459.79;
+      ratio 8,609.61 / 13,000 truncated 0.6622; deduction (1,910 + 1,190 *
+      0.6622) * 0.8 = 2,698.02 * 0.8 = 2,158.42; no further deduction below
+      20,000; net 2,301.37.
 
     Observed on 26 September 2026 before the days reached the tax
     computation: full-year deductions on a 292-day employment.

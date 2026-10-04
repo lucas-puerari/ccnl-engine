@@ -89,12 +89,17 @@ class TestTerminationSettlement:
         assert list(_extra_items(result)) == ["extra_month_thirteenth_2026-06-regular"]
 
     def test_short_employment_below_the_threshold_settles_nothing(self) -> None:
-        """Employed 20 to 30 September: 11 days, no qualifying month."""
+        """Employed 20 to 30 September: 11 days, no qualifying month.
+
+        The September run pays its daily quotas: 20 September 2026 is a
+        Sunday, 21-26 and 28-30 are 9 Mondays to Saturdays, so
+        1,783.75 x 9 / 26 = 617.45.
+        """
         result = _commercio_year(
             EmploymentPeriod(date(_YEAR, 9, 20), date(_YEAR, 9, 30))
         )
         assert _extra_items(result) == {}
-        assert result.annual_gross == Decimal("1783.75")
+        assert result.annual_gross == Decimal("617.45")
 
     def test_thirteen_month_contract_settles_only_the_tredicesima(self) -> None:
         """Metalmeccanico ended 31 May: the May run pays 5/12 of the 13th."""

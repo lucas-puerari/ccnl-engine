@@ -117,6 +117,11 @@ def _seniority_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
     return () if issue is None else (issue,)
 
 
+def _proration_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
+    issue = ctx.proration.issue()
+    return () if issue is None else (issue,)
+
+
 def _ivs_issues(amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
     ivs = amounts.ivs_ceiling
     issue = None if ivs is None else ivs.issue()
@@ -176,6 +181,7 @@ def _result(
         + posted.deferred.issues
         + _rule_issues(ctx)
         + _seniority_issues(ctx)
+        + _proration_issues(ctx)
         + _ivs_issues(amounts)
         + missing_source_issues(sources),
         decisions=all_decisions,

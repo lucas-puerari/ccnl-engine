@@ -130,7 +130,7 @@ def run_events(ctx: RunContext) -> RunEvents:
     events = _variable_events(ctx)
     settlement = settle_extra_months(
         ctx.request.extra_month_settlements,
-        ctx.chain,
+        ctx.regular_chain,
         ctx.cp,
         ctx.contract.tctx.payment,
         ctx.run_id,
@@ -185,7 +185,7 @@ def _amounts_input(
         domestic_hourly_rate=_domestic_hourly_rate(
             contract.ccnl,
             contract.year_rules,
-            ctx.monthly_gross,
+            ctx.regular_gross,
             contract.tctx.competence,
         ),
         eligible_work_days=_eligible_work_days(ctx),

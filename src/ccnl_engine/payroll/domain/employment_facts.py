@@ -140,6 +140,23 @@ class EmploymentPeriod:
             self.ended_on is None or self.ended_on >= last
         )
 
+    def span_in_month(self, year: int, month: int) -> tuple[date, date] | None:
+        """Return the first and last employed day of a calendar month.
+
+        Args:
+            year: Calendar year of the month.
+            month: Calendar month, 1-12.
+
+        Returns:
+            ``(first, last)`` employed days of the month, inclusive; ``None``
+            when the employment has no day in it.
+        """
+        first, last = _month_bounds(year, month)
+        first = max(first, self.started_on)
+        if self.ended_on is not None:
+            last = min(last, self.ended_on)
+        return None if last < first else (first, last)
+
     def days_in_year(self, year: int) -> int:
         """Return the calendar days of ``year`` the employment covers.
 

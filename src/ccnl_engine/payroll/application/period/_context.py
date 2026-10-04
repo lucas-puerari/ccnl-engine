@@ -20,6 +20,10 @@ from ccnl_engine.payroll.application.period._contract import (
     RunContract,
     load_contract,
 )
+from ccnl_engine.payroll.application.period._proration import (
+    RunProration,
+    run_proration,
+)
 from ccnl_engine.payroll.application.period._seniority import seniority_months_at
 from ccnl_engine.payroll.application.withholding._cap import ends_in_year
 from ccnl_engine.payroll.application.withholding._plan import (
@@ -75,7 +79,8 @@ class RunContext:
         withholding: Position of the payment in the schedule: the slots it
             leaves unpaid and whether it settles the conguaglio.
         worker_category: Canonical category of the worker.
-        chain: Pay chain of the run, adjusted for an extra month.
+        chain: Pay chain of the run, adjusted for an extra month or
+            prorated for a partly employed month.
         apprenticeship: Percentage scaling of a percentage apprenticeship,
             ``None`` for any other contract or track.
         payment: The payment the calculation closes: its run and date.
@@ -84,6 +89,9 @@ class RunContext:
         var_pay_rules: Variable pay rules of the tax year.
         policy_context: Context the pay-item policies are resolved in.
         cp: Competence period of the run.
+        regular_chain: Pay chain of a fully employed regular month, which
+            the extra-month settlements and the domestic hourly rate read.
+        proration: Payable part of the month of a regular run.
     """
 
     request: PeriodCalculationRequest
@@ -101,6 +109,8 @@ class RunContext:
     var_pay_rules: VariablePayRules
     policy_context: PolicyContext
     cp: CompetencePeriod
+    regular_chain: MonthlyPayChain
+    proration: RunProration
 
     @property
     def fiscal_year(self) -> int:
@@ -169,6 +179,12 @@ class RunContext:
         return money(chain.base + chain.seniority + chain.allowances_total)
 
     @property
+    def regular_gross(self) -> Decimal:
+        """Gross of the pay chain of a fully employed regular month."""
+        chain = self.regular_chain
+        return money(chain.base + chain.seniority + chain.allowances_total)
+
+    @property
     def withholding_agent(self) -> bool:
         """Whether the employer withholds tax: false for a household employer.
 
@@ -233,7 +249,11 @@ def build_context(
         month_accrual_rule(contract.ccnl),
     )
     accrual = run_accrual(request, contract.ccnl, competence)
-    chain = _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
+    regular_chain = chain
+    proration = run_proration(request, contract.ccnl, payment.run_id.kind)
+    chain = proration.apply(
+        _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
+    )
     return RunContext(
         request=request,
         repo=effective_repo,
@@ -256,4 +276,6 @@ def build_context(
             gross_ytd=opening.cash.earnings.gross,
         ),
         cp=CompetencePeriod(year=request.period_id.year, month=request.period_id.month),
+        regular_chain=regular_chain,
+        proration=proration,
     )
