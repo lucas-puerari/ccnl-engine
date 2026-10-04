@@ -4,6 +4,18 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Surtax table entries and ulteriore settlement moved
+
+Two internal modules were split. Names exported from `ccnl_engine` and its
+namespaces are unchanged, and so are amounts.
+
+| Before | After |
+|---|---|
+| `ccnl_engine.tax.domain.surtax_rules.RegionaleEntry`, `ComunaleEntry`, `RegionalDeduction`, `ComunaleDeduction`, `WholeIncomeRate`, `WithholdingCalendar`, `SurtaxBracket` | `ccnl_engine.tax.domain.surtax_tables` |
+| `ccnl_engine.payroll.service.ulteriore_recovery.UlterioreSettlement`, `settle_ulteriore` | `ccnl_engine.payroll.service.ulteriore_settlement` |
+
+`SurtaxRules`, `RegionaleRaw` and `ComunaleRaw` stay in `surtax_rules`.
+
 ## Public names grouped in four namespaces
 
 The root `ccnl_engine` keeps the common path only; every other public name
