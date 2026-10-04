@@ -7,7 +7,8 @@
   (or ``_z.py``, or a ``z`` package); ``test_z_<suffix>.py`` is accepted too.
   Integration tests may also mirror ``scripts`` and ``demo``;
 - acceptance tests live in ``public_api`` or ``legal_scenarios`` and import
-  ``ccnl_engine`` only through its root, the public API;
+  ``ccnl_engine`` only through the public API: its root and its public
+  namespaces;
 - ``fixtures`` holds data and helpers, never tests;
 - at most five directories under ``tests`` before a file, ``fixtures`` aside.
 
@@ -20,6 +21,8 @@ import ast
 from pathlib import Path
 
 import pytest
+
+from tests.architecture._imports import PUBLIC_NAMESPACES
 
 _TESTS = Path(__file__).parents[1]
 _REPO = _TESTS.parent
@@ -114,7 +117,7 @@ def _imported_modules(tree: ast.Module) -> list[str]:
 
 
 def internal_import_violations(tests: Path) -> list[str]:
-    """Return acceptance modules importing below the ``ccnl_engine`` root.
+    """Return acceptance modules importing below the public API.
 
     Returns:
         Sorted ``path: module`` entries, one per internal import.
@@ -128,7 +131,7 @@ def internal_import_violations(tests: Path) -> list[str]:
         for name in _imported_modules(
             ast.parse((root / rel).read_text(encoding="utf-8"))
         )
-        if name.startswith("ccnl_engine.")
+        if name.startswith("ccnl_engine.") and name not in PUBLIC_NAMESPACES
     )
 
 
@@ -228,7 +231,7 @@ def test_acceptance_tests_sit_in_known_areas() -> None:
 
 
 def test_acceptance_uses_only_the_public_api() -> None:
-    """Acceptance tests import ``ccnl_engine`` names from the root only."""
+    """Acceptance tests import ``ccnl_engine`` names from the public API only."""
     assert internal_import_violations(_TESTS) == []
 
 
@@ -293,13 +296,14 @@ def test_missing_areas_yield_no_violation(tmp_path: Path) -> None:
 
 
 def test_internal_import_in_acceptance_is_rejected(tmp_path: Path) -> None:
-    """Deep ``ccnl_engine`` imports are flagged; root imports are not."""
+    """Deep ``ccnl_engine`` imports are flagged; public API imports are not."""
     module = tmp_path / "acceptance" / "public_api" / "test_x.py"
     module.parent.mkdir(parents=True)
     module.write_text(
         "import ccnl_engine\n"
         "import ccnl_engine.api\n"
         "from ccnl_engine import PayrollEngine\n"
+        "from ccnl_engine.events import OvertimeEvent\n"
         "from ccnl_engine.payroll.domain.run import RunKind\n",
         encoding="utf-8",
     )

@@ -13,7 +13,6 @@ from datetime import date
 import pytest
 
 from ccnl_engine import (
-    BlockerCode,
     CcnlEngineError,
     EmployerProfile,
     Employment,
@@ -22,11 +21,12 @@ from ccnl_engine import (
     PayrollRun,
     PeriodInput,
     PeriodResult,
-    RulesetKind,
 )
+from ccnl_engine.catalog import RulesetKind
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
+from ccnl_engine.results import BlockerCode
 
 type Pair = tuple[PeriodResult, PeriodResult]
 

@@ -246,7 +246,7 @@ def _imports(spec: ExampleSpec) -> str:
     Returns:
         The import statements, ending with a newline.
     """
-    names = {
+    root = {
         "EmployerProfile",
         "Employment",
         "Headcount",
@@ -254,19 +254,28 @@ def _imports(spec: ExampleSpec) -> str:
         "PayrollRun",
         "PeriodFacts",
         "PeriodInput",
-        "Permanent",
-        "SeniorityFact",
-        "SenioritySource",
     }
+    inputs = {"Permanent", "SeniorityFact", "SenioritySource"}
     if spec.category is not None:
-        names.add("WorkerCategory")
+        inputs.add("WorkerCategory")
     if spec.domestic:
-        names.update({"ContributableHours", "WeeklyHours"})
+        inputs.update({"ContributableHours", "WeeklyHours"})
     stdlib = "from datetime import date\n"
     if spec.domestic:
         stdlib += "from decimal import Decimal\n"
+    return f"{stdlib}\n{_import_block('ccnl_engine', root)}" + _import_block(
+        "ccnl_engine.inputs", inputs
+    )
+
+
+def _import_block(module: str, names: set[str]) -> str:
+    """Build one ``from module import (...)`` statement.
+
+    Returns:
+        The statement, one name per line, ending with a newline.
+    """
     listed = "".join(f"    {name},\n" for name in sorted(names))
-    return f"{stdlib}\nfrom ccnl_engine import (\n{listed})\n"
+    return f"from {module} import (\n{listed})\n"
 
 
 def _call(spec: ExampleSpec) -> str:

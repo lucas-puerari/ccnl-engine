@@ -6,7 +6,9 @@ Imports under ``if TYPE_CHECKING:`` are ignored: they do not run.
 
 Every module is placed on a layer:
 
-- ``root``: the package root ``ccnl_engine/__init__.py``, the public API;
+- ``root``: the package root ``ccnl_engine/__init__.py`` and the public
+  namespaces ``ccnl_engine.inputs``, ``.events``, ``.results`` and
+  ``.catalog``: together, the public API;
 - ``api``: the ``ccnl_engine.api`` capability;
 - ``application``, ``service``, ``domain``: ``ccnl_engine.<capability>.<layer>``;
 - ``metadata``: ``ccnl_engine.version`` and the ``ccnl_engine.knowledge`` data
@@ -45,6 +47,14 @@ ALLOWED_LAYERS: Mapping[str, frozenset[str]] = {
     "metadata": frozenset(),
     "package": frozenset(),
 }
+
+#: Public namespace modules next to the package root, part of the public API.
+PUBLIC_NAMESPACES: frozenset[str] = frozenset({
+    f"{ROOT_PACKAGE}.inputs",
+    f"{ROOT_PACKAGE}.events",
+    f"{ROOT_PACKAGE}.results",
+    f"{ROOT_PACKAGE}.catalog",
+})
 
 _SHARED_CAPABILITY = "shared"
 _METADATA_MODULES = frozenset({f"{ROOT_PACKAGE}.version"})
@@ -154,7 +164,7 @@ def locate(name: str) -> Location | None:
     Returns:
         The location, or None when the module fits no layer.
     """
-    if name == ROOT_PACKAGE:
+    if name == ROOT_PACKAGE or name in PUBLIC_NAMESPACES:
         return Location("", "root")
     if name in _METADATA_MODULES:
         return Location("", "metadata")

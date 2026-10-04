@@ -14,21 +14,19 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    BlockerCode,
-    BonusEvent,
-    CalculationStatus,
     CompetenceYearPlan,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    WorkerCategory,
 )
+from ccnl_engine.events import BonusEvent
+from ccnl_engine.inputs import EmploymentPeriod, WorkerCategory
+from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()

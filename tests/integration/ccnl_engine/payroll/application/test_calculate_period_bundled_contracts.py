@@ -15,8 +15,6 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    CalculationStatus,
-    ContributableHours,
     EmployerProfile,
     Employment,
     Headcount,
@@ -24,10 +22,10 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    WeeklyHours,
-    WorkerCategory,
 )
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.inputs import ContributableHours, WeeklyHours, WorkerCategory
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:

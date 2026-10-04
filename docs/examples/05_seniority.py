@@ -9,10 +9,8 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    SeniorityFact,
-    SenioritySource,
-    WorkerCategory,
 )
+from ccnl_engine.inputs import SeniorityFact, SenioritySource, WorkerCategory
 
 engine = PayrollEngine.bundled()
 run = PayrollRun.regular(year=2026, month=1)

@@ -24,7 +24,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import Apprentice, Employment
+from ccnl_engine import Employment
+from ccnl_engine.inputs import Apprentice
 from tests.acceptance.legal_scenarios._support import regular_period
 from tests.fixtures.seniority import new_hire
 

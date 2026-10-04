@@ -22,23 +22,23 @@ from functools import cache
 import pytest
 
 from ccnl_engine import (
-    BonusEvent,
     CompetenceYearPlan,
     CompetenceYearResult,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
-    OpeningBalances,
-    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
+)
+from ccnl_engine.events import BonusEvent, OvertimeEvent, WorkEvent
+from ccnl_engine.inputs import (
+    EmploymentPeriod,
+    OpeningBalances,
     PeriodState,
     PriorYearTaxFacts,
-    WorkEvent,
 )
 from tests.fixtures.seniority import new_hire
 

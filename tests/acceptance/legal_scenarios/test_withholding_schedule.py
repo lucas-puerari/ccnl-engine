@@ -16,12 +16,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import (
-    CompetenceYearPlan,
-    CompetenceYearResult,
-    Employment,
-    EmploymentPeriod,
-)
+from ccnl_engine import CompetenceYearPlan, CompetenceYearResult, Employment
+from ccnl_engine.inputs import EmploymentPeriod
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     COOP_SOCIALI,

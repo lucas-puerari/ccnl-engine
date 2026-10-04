@@ -10,9 +10,8 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    SeniorityFact,
-    SenioritySource,
 )
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 engine = PayrollEngine.bundled()
 

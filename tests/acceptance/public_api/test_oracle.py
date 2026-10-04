@@ -14,26 +14,26 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    BonusEvent,
-    CalculationStatus,
     CompetenceYearPlan,
-    ContributableHours,
-    Dependent,
-    DependentRelationship,
     EmployerProfile,
     Employment,
-    FamilyComposition,
-    FixedTerm,
-    FringeEvent,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+)
+from ccnl_engine.events import BonusEvent, FringeEvent, SickLeaveEvent
+from ccnl_engine.inputs import (
+    ContributableHours,
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+    FixedTerm,
     PriorYearTaxFacts,
-    SickLeaveEvent,
     WeeklyHours,
 )
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.current_year import employment_only
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
 from tests.fixtures.seniority import new_hire

@@ -76,7 +76,7 @@ provenance status is reported in `capability_report.rule_sources`.
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine import OvertimeEvent, OvertimeKind
+from ccnl_engine.events import OvertimeEvent, OvertimeKind
 
 # Metalmeccanico OT_NOTTURNO 50%: 2 h x 15.00 EUR x 1.50 = 45.00 EUR.
 night = OvertimeEvent(

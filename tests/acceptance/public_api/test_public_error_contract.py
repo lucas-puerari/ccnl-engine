@@ -16,8 +16,6 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    BlockerCode,
-    CalculationDecision,
     CcnlEngineError,
     EmployerProfile,
     Employment,
@@ -29,10 +27,9 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    SeniorityFact,
-    SenioritySource,
-    WorkerCategory,
 )
+from ccnl_engine.inputs import SeniorityFact, SenioritySource, WorkerCategory
+from ccnl_engine.results import BlockerCode, CalculationDecision
 from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 
 _ENGINE = PayrollEngine.bundled()

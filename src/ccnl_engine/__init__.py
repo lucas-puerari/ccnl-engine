@@ -10,8 +10,18 @@ competence year, :meth:`~PayrollEngine.calculate_tax_year` for every
 payment cashed in a tax year and :meth:`~PayrollEngine.close_tax_year` to
 open the next tax year.
 
-All types needed to call it and inspect its results are re-exported from
-this module, work events included.
+The root holds the common path: the facade, the request and plan types and
+what they need, the results the facade returns, every public error and
+:data:`engine_version`.  Every other public name lives in exactly one of four
+namespaces:
+
+- :mod:`ccnl_engine.inputs`: facts beyond the common path (contract types,
+  hours, seniority, family, tax facts, calendar, opening state and balances);
+- :mod:`ccnl_engine.events`: work events of a period;
+- :mod:`ccnl_engine.results`: assurance, blockers, decisions, limitations,
+  capability gaps and remittance lines;
+- :mod:`ccnl_engine.catalog`: bundled contracts, ruleset readiness and the
+  capability catalog.
 
 Usage::
 
@@ -34,10 +44,6 @@ Usage::
     print(result.is_payable, result.period_net)
     for blocker in result.blockers:
         print(blocker.code, blocker.feature, blocker.detail)
-    for ruleset in result.rulesets:
-        print(ruleset.id, ruleset.kind, ruleset.readiness)
-    for limitation in result.assurance.limitations:
-        print(limitation.id, limitation.monetary_impact, limitation.status)
 
 ``PayrollEngine.bundled(mode="operational")`` also blocks payment from any
 ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
@@ -47,126 +53,17 @@ ruleset that is not ``production``; :meth:`~PayrollEngine.list_contracts` and
 from __future__ import annotations
 
 from ccnl_engine.api.facade import PayrollEngine
-from ccnl_engine.contract.domain.category import WorkerCategory
-from ccnl_engine.contract.service.discovery import (
-    CcnlId,
-    ContractSummary,
-    get_ccnl,
-    search_ccnls,
-)
-from ccnl_engine.payroll.application.opening_balances import OpeningBalances
 from ccnl_engine.payroll.application.year_result import (
     CompetenceYearResult,
     TaxYearResult,
 )
-from ccnl_engine.payroll.domain.assurance import (
-    BlockerCode,
-    CoverageStatus,
-    EvidenceStatus,
-    Payability,
-    ResultAssurance,
-    ResultBlocker,
-)
-from ccnl_engine.payroll.domain.calendar import WorkCalendar
-from ccnl_engine.payroll.domain.calendar_override import (
-    CalendarOverride,
-    CalendarOverrideReason,
-)
-from ccnl_engine.payroll.domain.capability_catalog import (
-    CapabilityCatalog,
-    CapabilityEntry,
-    CapabilityImplementation,
-)
-from ccnl_engine.payroll.domain.capability_report import (
-    CapabilityGap,
-    CapabilityScope,
-)
 from ccnl_engine.payroll.domain.competence_year_plan import CompetenceYearPlan
-from ccnl_engine.payroll.domain.current_year import (
-    CurrentYearTaxFacts,
-    IncomeEstimateQuality,
-)
-from ccnl_engine.payroll.domain.decisions import (
-    CalculationDecision,
-    CalculationIssue,
-    CalculationStatus,
-    DecisionOrigin,
-)
-from ccnl_engine.payroll.domain.eligibility import ContributionHistory
-from ccnl_engine.payroll.domain.employer import (
-    EmployerActivity,
-    EmployerProfile,
-    Headcount,
-)
-from ccnl_engine.payroll.domain.employment import (
-    Apprentice,
-    Employment,
-    FixedTerm,
-    Permanent,
-)
-from ccnl_engine.payroll.domain.employment_facts import (
-    ContributableHours,
-    EmploymentPeriod,
-    WeeklyHours,
-)
-from ccnl_engine.payroll.domain.engine_mode import EngineMode
-from ccnl_engine.payroll.domain.events import (
-    AbsenceEvent,
-    ArrearsEvent,
-    BilateralFundEvent,
-    BonusEvent,
-    FringeEvent,
-    HolidayWorkEvent,
-    NightShiftEvent,
-    OvertimeEvent,
-    OvertimeKind,
-    ShiftWorkEvent,
-    SickLeaveEvent,
-    SicknessEpisode,
-    TerminationTFREvent,
-    WelfareEvent,
-    WorkEvent,
-)
-from ccnl_engine.payroll.domain.family import (
-    Dependent,
-    DependentRelationship,
-    FamilyComposition,
-)
-from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
+from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.employment import Employment
 from ccnl_engine.payroll.domain.inputs import PeriodFacts, PeriodInput
-from ccnl_engine.payroll.domain.obligations import RecoveryObligation
-from ccnl_engine.payroll.domain.payment import PaymentId
-from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.domain.period import PeriodResult
-from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.prior_year import (
-    ForeignTaxPaid,
-    PriorYearTaxFacts,
-    ShortfallDeferralRequest,
-    SubstituteTaxRegime,
-)
-from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
-from ccnl_engine.payroll.domain.remittance import RemittanceColumn, RemittanceLine
-from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
-from ccnl_engine.payroll.domain.seniority_fact import (
-    SeniorityFact,
-    SenioritySource,
-)
-from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
-from ccnl_engine.payroll.domain.surtax_obligations import (
-    SurtaxComponent,
-    SurtaxObligation,
-)
+from ccnl_engine.payroll.domain.run import PayrollRun
 from ccnl_engine.payroll.domain.tax_year_plan import TaxYearPlan
-from ccnl_engine.provenance.domain.ruleset_assurance import (
-    RulesetAssurance,
-    RulesetKind,
-)
-from ccnl_engine.provenance.domain.ruleset_identity import (
-    RulesetIdentity,
-    RulesetReadiness,
-    VerificationStatus,
-)
 from ccnl_engine.shared.domain.errors import (
     CcnlEngineError,
     DataIntegrityError,
@@ -178,115 +75,29 @@ from ccnl_engine.shared.domain.errors import (
     UnknownLevelError,
     UnsupportedTaxYearError,
 )
-from ccnl_engine.shared.domain.limitation import (
-    LimitationStatus,
-    ModelLimitation,
-    MonetaryImpact,
-)
-from ccnl_engine.tax.domain.preferential_regime import EmploymentSector
 from ccnl_engine.version import __version__ as engine_version
 
 __all__ = [
-    "AbsenceEvent",
-    "Apprentice",
-    "ArrearsEvent",
-    "BilateralFundEvent",
-    "BlockerCode",
-    "BonusEvent",
-    "CalculationDecision",
-    "CalculationIssue",
-    "CalculationStatus",
-    "CalendarOverride",
-    "CalendarOverrideReason",
-    "CapabilityCatalog",
-    "CapabilityEntry",
-    "CapabilityGap",
-    "CapabilityImplementation",
-    "CapabilityScope",
     "CcnlEngineError",
-    "CcnlId",
     "CompetenceYearPlan",
     "CompetenceYearResult",
-    "ContractSummary",
-    "ContributableHours",
-    "ContributionHistory",
-    "CoverageStatus",
-    "CurrentYearTaxFacts",
     "DataIntegrityError",
-    "DecisionOrigin",
-    "DeferredShortfall",
-    "Dependent",
-    "DependentRelationship",
-    "EmployerActivity",
     "EmployerProfile",
     "Employment",
-    "EmploymentPeriod",
-    "EmploymentSector",
-    "EngineMode",
-    "EvidenceStatus",
-    "FamilyComposition",
-    "FixedTerm",
-    "ForeignTaxPaid",
-    "FringeEvent",
     "Headcount",
-    "HolidayWorkEvent",
-    "IncomeEstimateQuality",
-    "InpsBaseYtd",
     "InvalidInputError",
-    "LimitationStatus",
     "MissingRequiredFactError",
     "MissingRuleError",
-    "ModelLimitation",
-    "MonetaryImpact",
-    "NightShiftEvent",
-    "OpeningBalances",
     "OutOfScopeError",
-    "OvertimeEvent",
-    "OvertimeKind",
-    "Payability",
-    "PaymentId",
     "PayrollEngine",
     "PayrollRun",
-    "PayrollRunId",
-    "PensionFundEnrolment",
     "PeriodFacts",
     "PeriodInput",
     "PeriodResult",
-    "PeriodState",
-    "Permanent",
-    "PriorYearTaxFacts",
-    "RecoveryObligation",
-    "RecoveryPlan",
-    "RemittanceColumn",
-    "RemittanceLine",
-    "ResultAssurance",
-    "ResultBlocker",
-    "RulesetAssurance",
-    "RulesetIdentity",
-    "RulesetKind",
-    "RulesetReadiness",
-    "SeniorityFact",
-    "SenioritySource",
-    "ShiftWorkEvent",
-    "ShortfallDeferralRequest",
-    "SickLeaveEvent",
-    "SicknessEpisode",
-    "SubstituteTaxRegime",
-    "SurtaxComponent",
-    "SurtaxObligation",
     "TaxYearPlan",
     "TaxYearResult",
-    "TerminationTFREvent",
     "UnknownCcnlError",
     "UnknownLevelError",
     "UnsupportedTaxYearError",
-    "VerificationStatus",
-    "WeeklyHours",
-    "WelfareEvent",
-    "WorkCalendar",
-    "WorkEvent",
-    "WorkerCategory",
     "engine_version",
-    "get_ccnl",
-    "search_ccnls",
 ]

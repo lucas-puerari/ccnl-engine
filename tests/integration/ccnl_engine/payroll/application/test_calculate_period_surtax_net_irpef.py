@@ -21,8 +21,8 @@ from ccnl_engine import (
     Headcount,
     PayrollEngine,
     PeriodFacts,
-    WeeklyHours,
 )
+from ccnl_engine.inputs import WeeklyHours
 from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
 
 if TYPE_CHECKING:

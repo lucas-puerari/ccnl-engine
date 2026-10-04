@@ -23,20 +23,18 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    CalculationStatus,
     CompetenceYearPlan,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
-    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    PeriodState,
-    SurtaxComponent,
 )
+from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.inputs import EmploymentPeriod, PeriodState, SurtaxComponent
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.legal_examples.irpef_2026 import net_irpef
 from tests.fixtures.legal_examples.surtax_2026 import (
     ADVANCE_MONTHS,

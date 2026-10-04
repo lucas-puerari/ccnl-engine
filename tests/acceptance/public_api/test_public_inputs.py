@@ -15,22 +15,24 @@ from typing import Any
 import pytest
 
 from ccnl_engine import (
-    CalendarOverride,
-    CalendarOverrideReason,
     CompetenceYearPlan,
-    ContributableHours,
-    EmployerActivity,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
-    EmploymentSector,
     Headcount,
     InvalidInputError,
-    OvertimeEvent,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+)
+from ccnl_engine.events import OvertimeEvent
+from ccnl_engine.inputs import (
+    CalendarOverride,
+    CalendarOverrideReason,
+    ContributableHours,
+    EmployerActivity,
+    EmploymentPeriod,
+    EmploymentSector,
     PriorYearTaxFacts,
     SubstituteTaxRegime,
     WeeklyHours,

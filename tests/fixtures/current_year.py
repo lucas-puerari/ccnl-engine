@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from ccnl_engine import CurrentYearTaxFacts
+from ccnl_engine.inputs import CurrentYearTaxFacts
 
 __all__ = ["employment_only"]
 

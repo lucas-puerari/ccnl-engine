@@ -11,17 +11,19 @@ deduction for the whole of 2026.
 from datetime import date
 
 from ccnl_engine import (
-    CurrentYearTaxFacts,
-    Dependent,
-    DependentRelationship,
     EmployerProfile,
     Employment,
-    FamilyComposition,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
+)
+from ccnl_engine.inputs import (
+    CurrentYearTaxFacts,
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
 )
 
 engine = PayrollEngine.bundled()

@@ -246,6 +246,8 @@ def test_module_outside_layers_is_unclassified(name: str) -> None:
     ("name", "expected"),
     [
         ("ccnl_engine", Location("", "root")),
+        ("ccnl_engine.inputs", Location("", "root")),
+        ("ccnl_engine.catalog", Location("", "root")),
         ("ccnl_engine.version", Location("", "metadata")),
         ("ccnl_engine.api", Location("api", "api")),
         ("ccnl_engine.knowledge", Location("knowledge", "metadata")),

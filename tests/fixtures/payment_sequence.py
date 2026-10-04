@@ -19,8 +19,8 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    PeriodState,
 )
+from ccnl_engine.inputs import PeriodState
 from tests.fixtures.next_year_repository import NextYearRepository
 
 if TYPE_CHECKING:

@@ -28,12 +28,11 @@ from ccnl_engine import (
     PayrollRun,
     PeriodFacts,
     PeriodInput,
-    SeniorityFact,
-    SenioritySource,
 )
 from ccnl_engine.contract.domain.validity import SeriesGapError
 from ccnl_engine.contract.service.discovery import list_contracts
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 if TYPE_CHECKING:
     from collections.abc import Callable

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from datetime import date
 from functools import cache
+from typing import TYPE_CHECKING
 
 import pytest
 
@@ -26,7 +27,6 @@ from ccnl_engine import (
     Employment,
     Headcount,
     InvalidInputError,
-    PaymentId,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
@@ -34,6 +34,9 @@ from ccnl_engine import (
     TaxYearResult,
 )
 from tests.fixtures.next_year_repository import NextYearRepository
+
+if TYPE_CHECKING:
+    from ccnl_engine.inputs import PaymentId
 
 _ENGINE = PayrollEngine(repository=NextYearRepository())
 _COMMERCIO_L4 = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")

@@ -30,19 +30,21 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    ContributionHistory,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
-    InpsBaseYtd,
     InvalidInputError,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
-    PayrollRunId,
     PeriodInput,
     PeriodResult,
+)
+from ccnl_engine.inputs import (
+    ContributionHistory,
+    EmploymentPeriod,
+    InpsBaseYtd,
+    OpeningBalances,
+    PayrollRunId,
     PeriodState,
 )
 from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (

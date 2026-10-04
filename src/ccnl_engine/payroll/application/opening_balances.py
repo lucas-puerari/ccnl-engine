@@ -19,31 +19,17 @@ from ccnl_engine.payroll.application.opening_balance_fields import (
     check_scalar_fields,
     items,
 )
-from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
-from ccnl_engine.payroll.domain.credit_accounts import (
-    SommaEsenteAccount,
-    TrattamentoAccount,
-    UlterioreDetrazioneAccount,
-)
+from ccnl_engine.payroll.application.opening_state import opening_state
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import (
-    EmploymentObligations,
     RecoveryObligation,
 )
 from ccnl_engine.payroll.domain.payment import PaymentId
-from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
 from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
-from ccnl_engine.payroll.domain.ytd_accounts import (
-    EarningsYtd,
-    FringeYtd,
-    RegimeCapAccount,
-    TaxYtd,
-    WithholdingShortfall,
-)
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import require_instance
 
@@ -215,7 +201,7 @@ class OpeningBalances:
         )
         check_carried(self.tax_year, self.deferred_shortfall, self.surtax_obligations)
         try:
-            cash = self.to_state().cash
+            cash = opening_state(self).cash
         except (ValueError, InvalidInputError) as exc:
             raise InvalidInputError(
                 str(exc), field=getattr(exc, "field", None), feature=FEATURE
@@ -230,71 +216,3 @@ class OpeningBalances:
             raise InvalidInputError(
                 msg, field="OpeningBalances.payments", feature=FEATURE
             )
-
-    def to_state(self) -> PeriodState:
-        """Return the state to open the next run with.
-
-        Returns:
-            A :class:`~ccnl_engine.payroll.domain.period_state.PeriodState` bound
-            to :attr:`tax_year`, carrying :attr:`recoveries`,
-            :attr:`surtax_obligations` and :attr:`deferred_shortfall`.
-        """
-        cash = TaxCashState(
-            tax_year=self.tax_year,
-            payments=self.payments,
-            earnings=EarningsYtd(
-                gross=self.gross,
-                taxable=self.taxable,
-                inps_employee=self.inps_employee,
-                pension_deducted=self.pension_deducted,
-            ),
-            fringe=FringeYtd(
-                value=self.fringe_value, taxed=self.fringe_taxed, pdr=self.pdr
-            ),
-            tax=TaxYtd(
-                irpef=self.irpef_withheld,
-                surtax=self.surtax_withheld,
-                municipal_advance=self.municipal_advance_withheld,
-                regional_settled=self.regional_settled,
-                municipal_settled=self.municipal_settled,
-            ),
-            trattamento=TrattamentoAccount(
-                recognized=self.trattamento_recognized,
-                recovered=self.trattamento_recovered,
-                due=self.trattamento_due,
-                reason=self.trattamento_reason,
-            ),
-            somma_esente=SommaEsenteAccount(
-                recognized=self.somma_esente_recognized,
-                recovered=self.somma_esente_recovered,
-                due=self.somma_esente_due,
-                reason=self.somma_esente_reason,
-            ),
-            ulteriore_detrazione=UlterioreDetrazioneAccount(
-                recognized=self.ulteriore_recognized,
-                recovered=self.ulteriore_recovered,
-                due=self.ulteriore_due,
-                reason=self.ulteriore_reason,
-            ),
-            work_time_regime=RegimeCapAccount(used=self.work_time_regime_used),
-            shortfall=WithholdingShortfall(
-                irpef=self.irpef_shortfall,
-                surtax=self.surtax_shortfall,
-                credit_recovery=self.credit_recovery_shortfall,
-            ),
-            obligations=EmploymentObligations(
-                recoveries=self.recoveries,
-                surtax=self.surtax_obligations,
-                deferred_shortfall=(
-                    ()
-                    if self.deferred_shortfall is None
-                    else (self.deferred_shortfall,)
-                ),
-            ),
-        )
-        accrual = EmploymentAccrualState(
-            competence_runs=(*self.competence_runs, *(p.run_id for p in self.payments)),
-            inps_bases=self.inps_bases,
-            sickness_episodes=self.sickness_episodes,
-        )
-        return PeriodState(accrual=accrual, cash=cash)

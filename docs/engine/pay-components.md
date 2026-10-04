@@ -23,8 +23,8 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    WeeklyHours,
 )
+from ccnl_engine.inputs import WeeklyHours
 
 engine = PayrollEngine.bundled()
 
@@ -115,7 +115,6 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine import (
-    BilateralFundEvent,
     EmployerProfile,
     Employment,
     Headcount,
@@ -124,6 +123,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.events import BilateralFundEvent
 
 engine = PayrollEngine.bundled()
 

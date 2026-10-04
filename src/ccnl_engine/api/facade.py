@@ -27,16 +27,17 @@ from ccnl_engine.payroll.application.calculate_tax_year import (
 from ccnl_engine.payroll.application.close_tax_year import (
     close_tax_year as _close_tax_year,
 )
-from ccnl_engine.payroll.application.mode_input import (
+from ccnl_engine.payroll.application.facade_input import (
     closing_state as _closing_state,
 )
-from ccnl_engine.payroll.application.mode_input import (
+from ccnl_engine.payroll.application.facade_input import (
     competence_plan,
     opening_balances,
     parse_mode,
     period_request,
     tax_year_plan,
 )
+from ccnl_engine.payroll.application.opening_state import opening_state
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.service.discovery import ContractSummary
@@ -284,4 +285,4 @@ class PayrollEngine:
         Returns:
             The opening state, bound to ``balances.tax_year``.
         """
-        return opening_balances(balances).to_state()
+        return opening_state(opening_balances(balances))

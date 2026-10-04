@@ -12,11 +12,13 @@ from ccnl_engine import (
     CompetenceYearPlan,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
+)
+from ccnl_engine.inputs import (
+    EmploymentPeriod,
     SeniorityFact,
     SenioritySource,
     WeeklyHours,

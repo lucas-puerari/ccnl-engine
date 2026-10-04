@@ -11,7 +11,13 @@ from __future__ import annotations
 
 from decimal import Decimal
 
-from ccnl_engine import OpeningBalances, PeriodState, SurtaxComponent, SurtaxObligation
+from ccnl_engine import PayrollEngine
+from ccnl_engine.inputs import (
+    OpeningBalances,
+    PeriodState,
+    SurtaxComponent,
+    SurtaxObligation,
+)
 
 __all__ = ["imported_2025_surtax", "opening_with_2025_surtax"]
 
@@ -58,7 +64,9 @@ def opening_with_2025_surtax(
     Returns:
         A zero 2026 state carrying :func:`imported_2025_surtax`.
     """
-    return OpeningBalances(
-        tax_year=2026,
-        surtax_obligations=imported_2025_surtax(regione, comune_belfiore),
-    ).to_state()
+    return PayrollEngine.import_opening_balances(
+        OpeningBalances(
+            tax_year=2026,
+            surtax_obligations=imported_2025_surtax(regione, comune_belfiore),
+        )
+    )

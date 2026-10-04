@@ -18,8 +18,8 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    get_ccnl,
 )
+from ccnl_engine.catalog import get_ccnl
 
 
 def main() -> int:

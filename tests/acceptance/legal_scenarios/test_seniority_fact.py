@@ -27,18 +27,14 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import (
-    BlockerCode,
-    CalculationStatus,
-    CompetenceYearPlan,
-    Employment,
+from ccnl_engine import CompetenceYearPlan, Employment, PayrollRun, PeriodResult
+from ccnl_engine.inputs import (
     EmploymentPeriod,
-    PayrollRun,
-    PeriodResult,
     SeniorityFact,
     SenioritySource,
     WorkerCategory,
 )
+from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
     ENGINE,

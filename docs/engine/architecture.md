@@ -29,12 +29,36 @@ api -> application -> service -> domain
 - `service` never imports `application`.
 - `api` imports `application`, plus metadata such as the bundle version; it
   never reaches loaders such as `knowledge.service` directly.
-- Only the package root `ccnl_engine/__init__.py` imports `api`.
+- Only the root layer (the package root `ccnl_engine/__init__.py` and the
+  public namespaces) may import `api`.
 - The graph of `<capability>.<layer>` nodes has no cycle.
 - Every module belongs to a layer. `ccnl_engine.version` and the
   `knowledge` data bundle outside `knowledge/service` are metadata: any
   layer except `domain` may import them. A capability `__init__.py` stays
   import free.
+
+## Public API
+
+The public API is the package root `ccnl_engine` and four namespace modules
+next to it. They only re-export names defined in the capabilities and sit on
+the root layer.
+
+| Module | Rule |
+|---|---|
+| `ccnl_engine` | The common path: `PayrollEngine`; the types a caller builds for `calculate_period` and the year plans on the common path (`PeriodInput`, `PeriodFacts`, `PayrollRun`, `Employment`, `EmployerProfile`, `Headcount`, `CompetenceYearPlan`, `TaxYearPlan`); what those calls return (`PeriodResult`, `CompetenceYearResult`, `TaxYearResult`); every `CcnlEngineError` subclass, since a caller catches them; `engine_version` |
+| `ccnl_engine.inputs` | Every other fact a caller passes in: optional fields of the root inputs, tax facts, calendar, engine mode, opening state and imported balances |
+| `ccnl_engine.events` | Work events of `PeriodFacts.events` and the types an event needs |
+| `ccnl_engine.results` | Types read from a result: assurance, blockers, decisions, limitations, capability gaps, ledger accounts, remittance |
+| `ccnl_engine.catalog` | What the engine covers before any run: bundled contracts, ruleset identity and readiness, capability catalog |
+
+- A name lives in exactly one of the five modules: no alias, no second
+  import path. A new public name goes to a namespace unless it is needed by
+  the one-request example of the root docstring or is an error.
+- A type reachable from a public type that a caller never builds, matches on
+  or catches (state internals, pay item variants) stays internal.
+- `tests/architecture/test_public_exports.py` pins each `__all__`, keeps the
+  modules disjoint and keeps README, `docs/examples` and the wheel smoke test
+  on these five modules. Acceptance tests import nothing else.
 
 ## Domain purity
 

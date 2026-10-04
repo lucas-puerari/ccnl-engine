@@ -40,9 +40,8 @@ from ccnl_engine import (
     PayrollEngine,
     PayrollRun,
     PeriodInput,
-    SeniorityFact,
-    SenioritySource,
 )
+from ccnl_engine.inputs import SeniorityFact, SenioritySource
 
 engine = PayrollEngine.bundled()
 employment = Employment(
@@ -71,6 +70,13 @@ for ruleset in result.rulesets:
 # → inps/2026/terziario inps None   (readiness tracked for CCNLs only)
 # → tax/2026/terziario tax None
 ```
+
+The root `ccnl_engine` holds this common path: the facade, the request and
+plan types, the results and the errors. Every other public name has one home:
+`ccnl_engine.inputs` (further facts), `ccnl_engine.events` (work events),
+`ccnl_engine.results` (assurance, decisions, limitations) and
+`ccnl_engine.catalog` (contracts and ruleset readiness); see
+[API reference](docs/api/index.md).
 
 The inputs group the facts by owner: `Employment` (CCNL, level, contract,
 employment period, hours, recognised seniority as a dated `SeniorityFact`,

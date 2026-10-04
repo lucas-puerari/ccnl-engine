@@ -5,16 +5,14 @@ from __future__ import annotations
 import pytest
 
 from ccnl_engine import (
-    CalendarOverride,
-    CalendarOverrideReason,
     CompetenceYearPlan,
     EmployerProfile,
     Employment,
     Headcount,
     InvalidInputError,
     PayrollEngine,
-    WorkCalendar,
 )
+from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYMENT = Employment(ccnl_slug="commercio-confcommercio.json", level_code="4")

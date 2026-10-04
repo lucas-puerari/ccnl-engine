@@ -20,22 +20,19 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine import (
-    AbsenceEvent,
     CompetenceYearPlan,
     EmployerProfile,
     Employment,
-    EmploymentPeriod,
     Headcount,
-    HolidayWorkEvent,
     InvalidInputError,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
     PeriodResult,
-    SickLeaveEvent,
-    WeeklyHours,
 )
+from ccnl_engine.events import AbsenceEvent, HolidayWorkEvent, SickLeaveEvent
+from ccnl_engine.inputs import EmploymentPeriod, WeeklyHours
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))

@@ -49,7 +49,8 @@ the `PeriodFacts` of the run:
 ```python
 from decimal import Decimal
 
-from ccnl_engine import OvertimeEvent, PeriodFacts
+from ccnl_engine import PeriodFacts
+from ccnl_engine.events import OvertimeEvent
 
 result = engine.calculate_period(
     PeriodInput(
@@ -273,7 +274,7 @@ cover fails in the salary lookup.
 ```python
 from datetime import date
 
-from ccnl_engine import EmploymentPeriod
+from ccnl_engine.inputs import EmploymentPeriod
 
 short = engine.calculate_competence_year(
     CompetenceYearPlan(
@@ -291,7 +292,7 @@ print(short.annual_gross)  # 6243.15: three months plus 3/12 of each extra month
 ```
 
 ```python
-from ccnl_engine import CalendarOverride, CalendarOverrideReason, WorkCalendar
+from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
 
 july = CalendarOverride(
     calendar=WorkCalendar.from_additional_months(

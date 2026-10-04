@@ -6,15 +6,9 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine import (
-    CalculationStatus,
-    CalendarOverride,
-    CalendarOverrideReason,
-    CompetenceYearPlan,
-    Employment,
-    InvalidInputError,
-    WorkCalendar,
-)
+from ccnl_engine import CompetenceYearPlan, Employment, InvalidInputError
+from ccnl_engine.inputs import CalendarOverride, CalendarOverrideReason, WorkCalendar
+from ccnl_engine.results import CalculationStatus
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
     EMPLOYER,

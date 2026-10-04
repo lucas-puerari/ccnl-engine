@@ -12,14 +12,16 @@ import pytest
 from ccnl_engine import (
     Employment,
     InvalidInputError,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodInput,
+    UnsupportedTaxYearError,
+)
+from ccnl_engine.inputs import (
+    OpeningBalances,
     PeriodState,
     RecoveryObligation,
     RecoveryPlan,
-    UnsupportedTaxYearError,
 )
 from tests.acceptance.legal_scenarios._support import (
     COMMERCIO,
@@ -103,13 +105,15 @@ def _december_2026() -> tuple[PeriodResult, PeriodResult]:
     Returns:
         The December and tredicesima results, in payment order.
     """
-    opening = OpeningBalances(
-        tax_year=2026,
-        payments=paid_before(PayrollRun.regular(2026, 12), 14),
-        trattamento_recognized=Decimal(160),
-        trattamento_recovered=Decimal(40),
-        recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
-    ).to_state()
+    opening = PayrollEngine.import_opening_balances(
+        OpeningBalances(
+            tax_year=2026,
+            payments=paid_before(PayrollRun.regular(2026, 12), 14),
+            trattamento_recognized=Decimal(160),
+            trattamento_recovered=Decimal(40),
+            recoveries=(RecoveryObligation(tax_year=2026, plan=_PLAN),),
+        )
+    )
     december = regular_period(month=12, opening_state=opening)
     thirteenth = ENGINE.calculate_period(
         PeriodInput(

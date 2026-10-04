@@ -17,12 +17,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import (
-    CompetenceYearPlan,
-    Employment,
-    PriorYearTaxFacts,
-    RemittanceColumn,
-)
+from ccnl_engine import CompetenceYearPlan, Employment
+from ccnl_engine.inputs import PriorYearTaxFacts
+from ccnl_engine.results import RemittanceColumn
 from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
     ENGINE,

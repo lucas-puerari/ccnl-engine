@@ -10,8 +10,13 @@ from __future__ import annotations
 
 from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
-from ccnl_engine import Employment, SicknessEpisode, WorkerCategory
+from ccnl_engine import Employment
+from ccnl_engine.events import SicknessEpisode
+
+if TYPE_CHECKING:
+    from ccnl_engine.inputs import WorkerCategory
 
 __all__ = [
     "C3_MONTHLY",

@@ -21,7 +21,8 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from ccnl_engine import Apprentice, Employment, SeniorityFact, SenioritySource
+from ccnl_engine import Employment
+from ccnl_engine.inputs import Apprentice, SeniorityFact, SenioritySource
 from tests.acceptance.legal_scenarios._support import regular_period
 
 if TYPE_CHECKING:

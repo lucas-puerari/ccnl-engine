@@ -10,7 +10,7 @@ year lands on the income of the case:
 with the tredicesima taxable from
 :mod:`tests.fixtures.legal_examples.metalmeccanico_c3_2026`.  The worker
 declares no income beyond this employment
-(:meth:`~ccnl_engine.CurrentYearTaxFacts.employment_only`), so the
+(:meth:`~ccnl_engine.inputs.CurrentYearTaxFacts.employment_only`), so the
 employment income of the year is the reddito complessivo.  Expected
 deductions come from :mod:`tests.fixtures.legal_examples.family_2026`.
 """
@@ -23,20 +23,22 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import (
-    CalculationStatus,
-    CurrentYearTaxFacts,
-    Dependent,
-    DependentRelationship,
     EmployerProfile,
     Employment,
-    FamilyComposition,
     Headcount,
-    OpeningBalances,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.inputs import (
+    CurrentYearTaxFacts,
+    Dependent,
+    DependentRelationship,
+    FamilyComposition,
+    OpeningBalances,
+)
+from ccnl_engine.results import CalculationStatus
 from tests.fixtures.legal_examples.family_2026 import (
     SPOUSE_BAND_EXAMPLES,
     spouse_deduction,
@@ -67,11 +69,13 @@ def test_spouse_deduction_follows_increase_bands(
     income: Decimal, band: IncomeBand
 ) -> None:
     """A spouse dependent for twelve months, employment income only."""
-    opening = OpeningBalances(
-        tax_year=2026,
-        payments=paid_before(PayrollRun.thirteenth(2026, 12), day=18),
-        taxable=income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
-    ).to_state()
+    opening = PayrollEngine.import_opening_balances(
+        OpeningBalances(
+            tax_year=2026,
+            payments=paid_before(PayrollRun.thirteenth(2026, 12), day=18),
+            taxable=income - employee_taxable(C3_MINIMUM_FROM_JUNE_2026),
+        )
+    )
 
     result = _ENGINE.calculate_period(
         PeriodInput(
