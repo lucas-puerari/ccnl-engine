@@ -45,6 +45,7 @@ from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.period_requests import period_request
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:
@@ -273,3 +274,22 @@ class TestCapWithholding:
         )
         assert capped.amounts.period_irpef == _ZERO
         assert capped.shortfall.irpef == Decimal(50)
+
+
+def test_absence_leaving_less_than_withholdings_caps_the_irpef() -> None:
+    """An absence that leaves less pay than the withholdings nets to zero.
+
+    160 hours at 12.50 EUR deduct 2,000 EUR of 2,158.26 EUR of pay; the
+    IRPEF due (162.33 EUR) exceeds the 143.25 EUR left after INPS, which
+    gave a net pay of -19.08 EUR.  The IRPEF is withheld up to the pay left
+    and the 19.08 EUR are carried to the next run (art. 23 c. 3 DPR
+    600/1973); the derivation is in ``withholding/test_cap``.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(160),
+        hourly_rate=Decimal("12.50"),
+    )
+    result = calculate_period(period_request(events=(absence,)))
+    assert result.period_net == Decimal("0.00")
+    assert result.closing_state.cash.shortfall.irpef == Decimal("19.08")

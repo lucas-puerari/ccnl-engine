@@ -7,6 +7,7 @@ from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.withholding._somma_esente import (
     SommaEsenteOutcome,
     SommaEsentePosting,
@@ -29,6 +30,7 @@ from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.withholding_schedule import WithholdingPosition
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.tax.domain.credit_rules import SommaEsenteBand, SommaEsenteRules
+from tests.fixtures.period_requests import account_total, period_request
 from tests.helpers import make_year_rules
 
 if TYPE_CHECKING:
@@ -315,4 +317,39 @@ def _resolve_on(
         _position(closed),
         _YEAR,
         replace(_POSTING, run=run),
+    )
+
+
+# ---------------------------------------------------------------------------
+# somma_esente computed but never posted to CREDITS ledger
+#
+# L. 160/2019 (art. 1 co. 3, as renamed): low-income workers whose reddito
+# does not exceed 28,000 EUR receive a somma_esente credit that reduces IRPEF
+# due.  The credit is computed inside compute_tax (visible in
+# TaxComputation.components) but calculate_period never posts it to the
+# CREDITS ledger account.
+# Normative value for acconciatura-estetica level 3, month 6, 2026:
+#   somma_esente = 834.11520 annual (computed but unposted)
+#   expected CREDITS ≥ 1 EUR (any positive credit would satisfy the gate)
+# ---------------------------------------------------------------------------
+
+
+def test_somma_esente_posted_to_credits() -> None:
+    """low-income worker must have CREDITS > 0 from somma_esente.
+
+    Source: L. 160/2019 art. 1 co. 3.  Worker: acconciatura-estetica level 3,
+    annual reddito ≈ 19,136 EUR < 28,000 EUR threshold.
+    Expected: CREDITS > 0 in any period.
+    """
+    result = calculate_period(
+        period_request(
+            month=6, ccnl="acconciatura-estetica-confartigianato.json", level="3"
+        )
+    )
+    tax_credits = account_total(result, AccountKind.CREDITS)
+    assert tax_credits > _ZERO, (
+        f"CREDITS for a low-income worker (acconciatura-estetica level 3) must "
+        f"be > 0 due to the somma_esente credit (L. 160/2019); got {tax_credits}.  "
+        "calculate_period posts only trattamento_integrativo to CREDITS and "
+        "ignores the somma_esente component from TaxComputation."
     )

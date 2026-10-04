@@ -22,6 +22,7 @@ from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from tests.fixtures.period_requests import period_request
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -267,3 +268,96 @@ class TestAddizionale1Pct:
             if c.name == "non_ivs_employee"
         )
         assert comp.base < non_ivs.base
+
+
+# ---------------------------------------------------------------------------
+# 1% INPS addizionale on income > 56,224 EUR not computed
+#
+# INPS circ. 4/2026: workers whose cumulated INPS contribution base exceeds
+# 56,224 EUR pay an additional 1% on the excess (charged to the employee).
+# The contribution breakdown must include an 'addizionale_1pct' component.
+# Normative threshold 2026: 56,224 EUR (source: INPS circ. 4/2026).
+# ---------------------------------------------------------------------------
+
+
+def test_inps_addizionale_1pct_on_threshold_crossing() -> None:
+    """1% addizionale must appear when INPS base crosses 56,224 EUR.
+
+    Source: INPS circ. 4/2026.  With inps_base_ytd=56,000 and ~2,200 EUR
+    monthly base the cumulative crosses 56,224 EUR; an 'addizionale_1pct'
+    component with amount > 0 must appear in contribution_breakdown.
+    """
+    opening = PeriodState(
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, Decimal("56000.00")),),
+        )
+    )
+    result = calculate_period(period_request(month=6, opening=opening))
+
+    component_names = {c.name for c in result.contribution_breakdown.components}
+    assert "addizionale_1pct" in component_names, (
+        "ContributionBreakdown must include 'addizionale_1pct' when the "
+        "cumulative INPS base crosses 56,224 EUR (INPS circ. 4/2026).  "
+        f"Current components: {sorted(component_names)}."
+    )
+    addizionale = next(
+        (
+            c.amount
+            for c in result.contribution_breakdown.components
+            if c.name == "addizionale_1pct"
+        ),
+        _ZERO,
+    )
+    assert addizionale > _ZERO, (
+        f"'addizionale_1pct' amount must be > 0; got {addizionale}."
+    )
+
+
+# ---------------------------------------------------------------------------
+# Addizionale 1% applied above the IVS massimale ceiling
+#
+# The +1% addizionale threshold (56,224 EUR) and the IVS massimale (122,295 EUR)
+# are distinct limits.  When the YTD INPS base already exceeds the massimale,
+# no IVS and no +1% should apply to the current period income.  The engine
+# currently computes the +1% on the full period base regardless of whether
+# the massimale has been reached.
+# Source: INPS circ. 4/2026.
+# ---------------------------------------------------------------------------
+
+
+def test_addizionale_zero_above_ivs_massimale() -> None:
+    """addizionale_1pct must be 0 when inps_base_ytd exceeds the IVS massimale.
+
+    Source: INPS circ. 4/2026.  massimale IVS 2026 = 122,295 EUR.  With
+    inps_base_ytd=130,000 > 122,295, the period adds income above the ceiling
+    where no INPS component (including the +1% addizionale) should apply.
+    Expected: addizionale_1pct == 0.
+    """
+    # > 122,295 IVS massimale 2026
+    opening = PeriodState(
+        accrual=EmploymentAccrualState(
+            inps_bases=(InpsBaseYtd(2026, Decimal("130000.00")),)
+        )
+    )
+    result = calculate_period(
+        period_request(
+            month=12,
+            opening=opening,
+            contribution_history=ContributionHistory(date(2001, 9, 1)),
+        )
+    )
+
+    addizionale = next(
+        (
+            c.amount
+            for c in result.contribution_breakdown.components
+            if c.name == "addizionale_1pct"
+        ),
+        _ZERO,
+    )
+    assert addizionale == _ZERO, (
+        "addizionale_1pct must be 0 when inps_base_ytd "
+        f"({opening.accrual.inps_base(2026).total}) "
+        f"exceeds the IVS massimale (122,295 EUR, INPS circ. 4/2026); "
+        f"got {addizionale}.  The +1% is currently not gated on the massimale."
+    )
