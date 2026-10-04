@@ -3268,13 +3268,13 @@
     }
   ],
   "ruleset": {
-    "id": "noleggio-autobus-conducente-anav",
+    "id": "ccnl/noleggio-autobus-conducente-anav",
     "version": "1.0.0",
     "effective_from": "2024-01-01",
     "effective_until": "2026-12-31",
     "source": "verbale-accordo-23052025",
     "verification_status": "unverified",
-    "source_hash": "bce32d710a738ffca8e7be051e4a82aa25da8d9259498429557f34b8fd259cc8",
+    "source_hash": "69fc2d67ad681353ed08f0c64e62db25b28bc73c361e93cf676358686635bba5",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

@@ -2968,7 +2968,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     },
     {
       "type": "under_classification",
@@ -2999,7 +3003,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     },
     {
       "type": "under_classification",
@@ -3030,7 +3038,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     },
     {
       "type": "under_classification",
@@ -3061,7 +3073,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     },
     {
       "type": "under_classification",
@@ -3091,7 +3107,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     },
     {
       "type": "under_classification",
@@ -3121,7 +3141,11 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "assumed",
+        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+      }
     }
   ],
   "ruleset": {
@@ -3131,7 +3155,7 @@
     "effective_until": null,
     "source": "https://www.direzionelavoro.it/wp-content/uploads/2023/07/Legno-industria-CNEL-F051.pdf",
     "verification_status": "unverified",
-    "source_hash": "9a6cdede6ac594a55743ee5495103da762301a0f5468032e132f1b8584ade8d0",
+    "source_hash": "3cd9b4226c6d7aa9b6c857c84ef5c750d805719f8918387d1e5cac5089ab4f51",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

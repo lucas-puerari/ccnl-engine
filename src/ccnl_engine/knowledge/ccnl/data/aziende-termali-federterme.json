@@ -2142,7 +2142,28 @@
           "levels_below": 1,
           "midpoint_to_destination": true
         }
-      ]
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "aziende-termali-ccnl-2024-pdf",
+            "title": "CCNL Aziende Termali 2024-2027",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf"
+          },
+          "page": "22",
+          "section": "Art. 13 lett. g",
+          "quote": "maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello"
+        },
+        "transformation": "The second half pays level 6 plus half the gap to level 5, that is the mean of the whole monthly pay (minimo, contingenza, EDR) of the two levels.",
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-09-12T00:00:00",
+          "verification_status": "unverified",
+          "effective_from": "2024-10-01"
+        }
+      }
     },
     {
       "type": "under_classification",
@@ -2191,7 +2212,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "e06d825d80cde681eaf739c60adcb61d0f9d83d5342235b856499019876a0824",
+    "source_hash": "eb2b995630c7ea309434eb7f6327f3efd5f1941fdfab4c7fc66ac57f2eb75f0d",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
