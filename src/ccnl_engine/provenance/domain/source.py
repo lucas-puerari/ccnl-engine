@@ -89,6 +89,10 @@ class SourceDocument(BaseModel):
         pages: Page ranges (e.g. ``["12-14"]``) that hold the cited content.
         published_on: Publication date of the document, when known.
         jurisdiction: Legal jurisdiction (defaults to ``"it"``).
+        sha256: Lowercase hex sha256 of the document file the citation was
+            read from, so a reviewer can tell whether the text changed;
+            required on the location of a ``verified`` rule by the CI
+            evidence gate.
         authority: Computed authority level derived from ``kind``
             (see :class:`SourceAuthority`). Not stored in the JSON.
     """
@@ -102,6 +106,7 @@ class SourceDocument(BaseModel):
     pages: tuple[str, ...] = Field(default=())
     published_on: date | None = None
     jurisdiction: str = "it"
+    sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
 
     @property
     def authority(self) -> SourceAuthority:

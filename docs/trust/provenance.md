@@ -148,16 +148,57 @@ fixed-term exemption and the regional surtax table.
 - **Load time.** A schema-0.5 CCNL without a record on a level, salary
   period, allowance, seniority block or additional-months period does not
   load.
-- **CI.** `scripts/ci/check_provenance.py --all` fails when any payable rule
-  of the bundle has no record or an unknown status, and lists every
-  `missing` record. `tests/architecture/test_data_quality.py` runs the same
-  inventory.
+- **CI, schema gate.** `scripts/ci/check_provenance.py --schema` fails when
+  any payable rule of the bundle has no record or an unknown status, and
+  lists every `missing` record. It also fails when a record lacks the
+  evidence its status or readiness claims (see below) or when a CCNL
+  ruleset id is not `ccnl/<ccnl_id>`.
+  `tests/architecture/test_data_quality.py` runs the same inventory.
+- **CI, evidence gate.** `scripts/ci/check_provenance.py --evidence`
+  compares the bundle with the shrink-only baseline
+  `scripts/ci/provenance_baseline.json`, which lists every `assumed` or
+  `missing` payable rule, every open model limitation and every `reviewed`
+  or `production` CCNL whose `confidence` is not `verified`. It judges each
+  rule, never the weakest status of a capability, and fails on a rule, a
+  limitation or a readiness claim the baseline does not list, on a rule
+  weaker than its baseline status, and on a baseline entry that no longer
+  holds. The counts per capability and per CCNL therefore never grow; the
+  gate prints them, and the [capability matrix](../contracts/capability-matrix.md)
+  shows them for each capability and each CCNL.
 - **Run time.** A capability that executed and read a `missing` rule adds a
   `rule_source_missing` issue naming the rule, and the result is
   `incomplete`. `result.capability_report.rule_sources` holds, for each
   executed capability, the weakest status among the rules it read; an
   `assumed` or `missing` one is a `rule_source_weak` blocker and the result
   is not payable. See [Assurance](confidence.md).
+
+## Evidence for promotion
+
+Promoting a rule to `verified`, or a CCNL to readiness `production`, is a
+human task: no script changes a status. The schema gate requires:
+
+| Claim | Fields |
+|---|---|
+| Rule `verified` | `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from |
+| CCNL readiness `production` | `verification.owner`, `verification.human_reviewed_by`, `verification.last_reviewed`, `verification.review_due` after the last review, and `confidence` `verified` |
+
+## Updating the evidence baseline
+
+After sourcing a rule, resolving a limitation or aligning readiness and
+confidence, shrink the baseline and commit it with the data change:
+
+```bash
+python scripts/ci/check_provenance.py --update-baseline
+```
+
+The command refuses to add an entry. A new `assumed` or `missing` rule (for
+example a new CCNL without `parameters.accrual_rule`, which is listed as
+`missing`) is accepted only with an explicit flag, and the pull request
+must justify the baseline diff:
+
+```bash
+python scripts/ci/check_provenance.py --update-baseline --allow-growth
+```
 
 ## Reading provenance
 

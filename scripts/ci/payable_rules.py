@@ -42,7 +42,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Final
 
@@ -116,12 +116,27 @@ class PayableRule:
         path: Location of the rule inside the file.
         capabilities: Catalog features whose amounts the rule feeds.
         status: Provenance status, or ``None`` when no record exists.
+        record: The raw provenance record, ``None`` when there is none or
+            the status is not read from a record.
     """
 
     file: str
     path: str
     capabilities: tuple[str, ...]
     status: str | None
+    record: Mapping[str, object] | None = field(default=None, compare=False, repr=False)
+
+
+def _rule(
+    file: str, path: str, capabilities: tuple[str, ...], record: object
+) -> PayableRule:
+    """Return the rule at ``path`` with the status of ``record``.
+
+    Returns:
+        The rule, carrying ``record`` when it is a JSON object.
+    """
+    raw = record if isinstance(record, dict) else None
+    return PayableRule(file, path, capabilities, _status(record), raw)
 
 
 def _by_prefix[T](table: Mapping[str, T], file: str) -> T | None:
@@ -168,12 +183,12 @@ def _level_rules(file: str, level: dict[str, object]) -> Iterator[PayableRule]:
     for period in _periods(level.get("base_salary")):
         record = period.get("provenance") or inherited
         path = f"levels[{code}].base_salary[{period.get('valid_from')}]"
-        yield PayableRule(file, path, ("base_salary",), _status(record))
+        yield _rule(file, path, ("base_salary",), record)
     allowances = level.get("fixed_allowances") or []
     for allowance in allowances if isinstance(allowances, list) else []:
         record = allowance.get("provenance") or inherited
         path = f"levels[{code}].fixed_allowances[{allowance.get('code')}]"
-        yield PayableRule(file, path, ("base_salary",), _status(record))
+        yield _rule(file, path, ("base_salary",), record)
 
 
 def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
@@ -197,19 +212,15 @@ def ccnl_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
     seniority = params.get("seniority_increments")
     if isinstance(seniority, dict):
         record = seniority.get("provenance")
-        yield PayableRule(file, "seniority_increments", ("seniority",), _status(record))
+        yield _rule(file, "seniority_increments", ("seniority",), record)
     for period in _periods(params.get("additional_months")):
         path = f"additional_months[{period.get('valid_from')}]"
-        yield PayableRule(
-            file, path, ("base_salary",), _status(period.get("provenance"))
-        )
+        yield _rule(file, path, ("base_salary",), period.get("provenance"))
     accrual = params.get("accrual_rule")
-    yield PayableRule(
-        file,
-        "accrual_rule",
-        ("base_salary",),
-        _status(accrual.get("provenance")) if isinstance(accrual, dict) else "missing",
-    )
+    if isinstance(accrual, dict):
+        yield _rule(file, "accrual_rule", ("base_salary",), accrual.get("provenance"))
+    else:
+        yield PayableRule(file, "accrual_rule", ("base_salary",), "missing")
     yield from _work_rules(file, data.get("work_rules"))
     yield from _overtime_rules(file, data.get("work_rules"))
     yield from _fund_rules(file, params.get("employer_funds"))
@@ -226,9 +237,7 @@ def _work_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
         block = rules.get(key)
         if isinstance(block, dict):
             path = f"work_rules.{key}"
-            yield PayableRule(
-                file, path, capabilities, _status(block.get("provenance"))
-            )
+            yield _rule(file, path, capabilities, block.get("provenance"))
 
 
 def _is_first_tier(band: dict[str, object]) -> bool:
@@ -260,9 +269,7 @@ def _overtime_rules(file: str, work_rules: object) -> Iterator[PayableRule]:
     for band in bands if isinstance(bands, list) else []:
         if isinstance(band, dict) and _is_first_tier(band):
             path = f"overtime_bands[{band.get('code')}]"
-            yield PayableRule(
-                file, path, ("overtime",), _status(band.get("provenance"))
-            )
+            yield _rule(file, path, ("overtime",), band.get("provenance"))
 
 
 def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
@@ -280,9 +287,7 @@ def _fund_rules(file: str, funds: object) -> Iterator[PayableRule]:
                     f"[{period.get('valid_from')}]"
                 )
                 record = period.get("provenance") or inherited
-                yield PayableRule(
-                    file, path, ("pension_fund_contribution",), _status(record)
-                )
+                yield _rule(file, path, ("pension_fund_contribution",), record)
 
 
 def _block_rules(
@@ -304,7 +309,7 @@ def _block_rules(
             if sibling
             else (block.get("provenance") if isinstance(block, dict) else None)
         )
-        yield PayableRule(file, key, capabilities, _status(record))
+        yield _rule(file, key, capabilities, record)
 
 
 def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]:
@@ -320,7 +325,7 @@ def fiscal_rules(file: str, data: Mapping[str, object]) -> Iterator[PayableRule]
     whole_file = _by_prefix(_WHOLE_FILE, file)
     if whole_file is not None:
         key, capability = whole_file
-        yield PayableRule(file, key, (capability,), _status(data.get("provenance")))
+        yield _rule(file, key, (capability,), data.get("provenance"))
         return
     if file.startswith("tax/data/20"):
         yield from _block_rules(file, data, _TAX_BLOCKS)
@@ -399,4 +404,20 @@ def count_by_capability(
     return {
         capability: {status: bucket[status] for status in (*STATUSES, "none")}
         for capability, bucket in counts.items()
+    }
+
+
+def count_by_file(rules: tuple[PayableRule, ...]) -> dict[str, dict[str, int]]:
+    """Count rules per data file and provenance status.
+
+    Returns:
+        File, relative to the knowledge directory, to status counts, in
+        inventory order.
+    """
+    counts: dict[str, Counter[str]] = {}
+    for rule in rules:
+        counts.setdefault(rule.file, Counter())[rule.status or "none"] += 1
+    return {
+        file: {status: bucket[status] for status in (*STATUSES, "none")}
+        for file, bucket in counts.items()
     }

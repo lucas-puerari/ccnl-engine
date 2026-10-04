@@ -49,6 +49,19 @@ class TestSourceDocument:
         assert doc.url == "unavailable"
         assert doc.pages == ()
         assert doc.jurisdiction == "it"
+        assert doc.sha256 is None
+
+    def test_document_hash_is_lowercase_hex_sha256(self) -> None:
+        """The hash of the cited file is 64 lowercase hex characters."""
+        digest = "ab" * 32
+        doc = SourceDocument(
+            document_id="d", title="T", kind=SourceKind.ALTRO, sha256=digest
+        )
+        assert doc.sha256 == digest
+        with pytest.raises(ValueError, match="sha256"):
+            SourceDocument(
+                document_id="d", title="T", kind=SourceKind.ALTRO, sha256="AB" * 32
+            )
 
     @pytest.mark.parametrize(
         ("kind", "expected"),
