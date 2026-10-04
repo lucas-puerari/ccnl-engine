@@ -92,7 +92,7 @@ change gross, net and employer cost according to their treatment. See
 - Overtime pay (lavoro straordinario) with the CCNL band or a caller multiplier: `OvertimeEvent`
 - Night, holiday and shift supplements, with the 2026 substitute tax:
   `NightShiftEvent`, `HolidayWorkEvent`, `ShiftWorkEvent`
-- Unpaid absences and sickness: `AbsenceEvent`, `SickLeaveEvent`, `SicknessCaseEvent`
+- Unpaid absences and sickness: `AbsenceEvent`, `SicknessEpisode`, `SickLeaveEvent` (override)
 - Bonuses (ordinary, *premio di risultato* with its flat tax, renewal
   increments): `BonusEvent`
 - Welfare and fringe benefits: `WelfareEvent`, `FringeEvent`

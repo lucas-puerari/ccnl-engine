@@ -356,7 +356,8 @@ Steps 7–9 are fiscal and can be parameterised heavily. See
 | `FamilyComposition` | Dependent spouse, children and ascendants (Art. 12 TUIR), each with its dependency interval; `sole_parent` for the first-child rule |
 | `OvertimeEvent` | Overtime hours for a specific date |
 | `AbsenceEvent` | Unpaid absence in the period; `suspends_accrual` also stops the extra-month ratei |
-| `SickLeaveEvent` | Sick-leave calendar days |
+| `SicknessEpisode` | Sickness episode; the engine pays its days in each month it touches |
+| `SickLeaveEvent` | Sick pay computed by the caller: an override, never payable |
 | `FringeEvent` | Fringe-benefit value; the annual threshold follows `PeriodFacts.has_dependent_children` |
 | `WelfareEvent` | Welfare benefit annual amount |
 | `BonusEvent` | Bonus amount and kind (ordinary, PdR, contract renewal with its signing date) |

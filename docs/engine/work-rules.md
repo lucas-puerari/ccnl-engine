@@ -31,8 +31,8 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `HolidayWorkEvent` | `supplement_amount` | Public holiday or weekly rest-day supplement; INPS and IRPEF, no TFR |
 | `ShiftWorkEvent` | `supplement_amount` | Shift allowance; INPS and IRPEF, no TFR |
 | `AbsenceEvent` | `hours`, `hourly_rate`, `end_date`, `suspends_accrual` | Unpaid absence deducted from pay; reduces the INPS and TFR base |
-| `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Employer-paid sick leave, net of the carenza days; INPS and IRPEF, no TFR |
-| `SicknessCaseEvent` | `case` (a `SicknessCase`) | Sickness episode from which the engine derives the absence deduction, INPS indemnity and employer integration |
+| `SicknessEpisode` | `episode_id`, `started_on`, `ended_on`, `relapse_of` | Sickness episode; the engine derives the deduction, INPS indemnity, CCNL integration and carenza pay of the days in the run's month; see [Sickness](#sickness) |
+| `SickLeaveEvent` | `amount`, `sick_days`, `waiting_period_days` | Sick pay the caller computed: an override of the engine, never payable; INPS and IRPEF, no TFR |
 | `FringeEvent` | `amount` | Fringe benefit (art. 51 c. 3 TUIR); exempt while the year total stays within the threshold, then the whole year total is taxable; see [Fringe benefits](#fringe-benefits) |
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
@@ -90,10 +90,70 @@ night = OvertimeEvent(
 shift events, and the `separate_tax_rate` of arrears and TFR settlements come
 from the caller.
 
+### Sickness
+
+A `SicknessEpisode` is one illness: a stable `episode_id`, the first and
+last day on the certificates and, for a relapse (*ricaduta*), the
+`relapse_of` id of the episode it continues. Pass the same episode, same id
+and start, to every regular run whose month it touches; a later run may
+extend `ended_on`. Only the run that posts the monthly pay of its month
+(a regular run, or a termination run when the regular run is not closed)
+accepts an episode, so no day is paid twice.
+
+Each calendar day has an index in the episode, counted on from the episode
+it continues for a relapse. The index sets:
+
+| Days | INPS (D.L. 663/1979, conv. L. 33/1980) | Worker receives |
+|---|---|---|
+| 1-3 (carenza) | nothing | CCNL `carenza_integration_rate` |
+| 4-20 | 50% | the higher of the CCNL tier rate and the INPS rate |
+| 21-180 | 66.66% | the same |
+| past `max_duration_days` (comporto) | left out, `incomplete` issue | left out |
+
+INPS pays at most 180 days a calendar year, counted over every recorded
+episode. INPS covers the worker by the rules of
+`knowledge/inps/data/sick-pay-rates.json`: operai of industry, building,
+artisan and terziario sectors, impiegati and quadri of the terziario,
+apprentices; not impiegati and quadri of industry, dirigenti, public
+employees or domestic workers. Without a rule the cover is unknown: the days
+are paid at the CCNL rate only and a `provisional` issue
+`sickness_inps_cover_unknown` names the fact `category` when the level does
+not fix it. The CCNL tier is the one of the month of sickness (30 days) the
+day falls in, so a month that crosses a tier threshold pays each day its own
+rate.
+
+The payable days of each class are counted with the CCNL daily quota of an
+unpaid absence (`work_rules.absence_rules.daily_divisor_method`), the same
+count as a hire or termination month, and never exceed one monthly pay. The
+run deducts the daily pay of the sick days (`absence_deduction`) and pays
+back the INPS share as `sickness_inps_item` (outside the contribution base,
+the days are covered by figurative contributions) and the employer share
+and carenza pay as `sickness_item`. TFR keeps the full monthly pay (art.
+2120 c. 3 c.c.).
+
+The closing state records each episode up to its last processed day
+(`EmploymentAccrualState.sickness_episodes`); `OpeningBalances` takes the
+same records for a worker taken over from another provider. Each episode
+records one `sickness` decision with the classified days in its inputs.
+
+| Missing | Effect |
+|---|---|
+| CCNL `work_rules.sickness_rules` | Nothing posted; `incomplete` issue `sickness_rule_missing` |
+| CCNL daily quota | Nothing posted; `incomplete` issue `sickness_daily_quota_missing` |
+
+Two engine limitations stay open: the INPS share uses the CCNL daily quota
+of the month instead of the INPS daily base of the month before
+(`sickness_inps_daily_base`), and CCNL tiers and comporto count one relapse
+chain, not the CCNL window across episodes (`sickness_cumulation_window`).
+
+`SickLeaveEvent` remains as an explicit override: an amount the caller
+computed. It records a caller-supplied `sickness` decision, so the result is
+never payable.
+
 ### Absences are bounded by the pay of the run
 
-Unpaid absences (`AbsenceEvent`, and the absence part of a
-`SicknessCaseEvent`) that deduct more than the monthly pay of the run raise
+Unpaid absences (`AbsenceEvent`, and the deduction of a
+`SicknessEpisode`) that deduct more than the monthly pay of the run raise
 `InvalidInputError` before any amount is computed: check the hours and the
 hourly rate. Absences below the pay can still leave less than the IRPEF and
 surtax due on the run (the withholding follows the projected annual income).

@@ -277,7 +277,7 @@
       },
       {
         "kind": "info",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile)."
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; ogni giorno di malattia riceve il tasso del mese dell'episodio in cui cade, anche in un periodo di paga a cavallo di una soglia."
       }
     ]
   },
@@ -288,7 +288,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "ede725a764a96a1aa021e6d7ba093c2a50fb5a4934ae37d747c2e5384db4a35a",
+    "source_hash": "e85505cd892a90272426f5c4f0c765f3b7f6313ed5901578d27aba9378fb8cd8",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -122,7 +122,7 @@ from ccnl_engine import (
     OvertimeKind,
     ShiftWorkEvent,
     SickLeaveEvent,
-    SicknessCaseEvent,
+    SicknessEpisode,
     TerminationTFREvent,
     WelfareEvent,
     WorkEvent,

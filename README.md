@@ -173,7 +173,9 @@ private and public sectors (individual contracts may cover overlapping populatio
 - **L1 (Gross):** base salary, seniority, fixed allowances, additional months, hourly rate.
 - **L2 (Net):** INPS contributions, TFR, IRPEF, regional/municipal surtax.
 - **L3 (Work rules):** overtime and night/holiday premiums, absence deduction,
-  leave accrual, sick-pay integration, performance bonuses, welfare/benefits.
+  leave accrual, sickness episodes over several months (carenza, INPS bands
+  and CCNL integration derived from the bundle; pass a `SicknessEpisode` to
+  each run it touches), performance bonuses, welfare/benefits.
   Pass `OvertimeHours.weeks` (a `WeeklyOvertimeHours` per calendar week) for CCNLs
   with per-week band thresholds to get accurate band partitioning.
 

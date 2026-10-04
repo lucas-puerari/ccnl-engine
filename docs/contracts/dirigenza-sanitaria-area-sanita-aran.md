@@ -126,7 +126,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo). La distinzione in due file è una scelta strutturale: le diverse indennità di specificità (Art. 15 c.1 per medici/veterinari vs Art. 15 c.3 per sanitari non medici) giustificano contratti separati nel motore.
     
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile).
+    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; ogni giorno di malattia riceve il tasso del mese dell'episodio in cui cade, anche in un periodo di paga a cavallo di una soglia.
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.
     

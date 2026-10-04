@@ -1,5 +1,29 @@
 # Migration guide
 
+## Sickness episodes computed by the engine
+
+Sickness is a native capability. The engine pays the sick days of an
+episode from the CCNL sickness and absence rules and the INPS rules of the
+bundle, over as many runs as the episode lasts.
+
+| Before | After |
+|---|---|
+| `SicknessCaseEvent(event_date, case=SicknessCase(...))` with caller `gross_daily`, `working_days`, `waiting_period_days`, `inps_daily_rate`, `integration_rate` | `SicknessEpisode(episode_id, started_on, ended_on, relapse_of=None)`: the engine derives the days, carenza, INPS band and CCNL tier |
+| `SicknessCase.cumulative_sick_days_ytd > 0` raised `OutOfScopeError` (`cumulative_tiers_not_implemented`) | Earlier days come from the episode dates and from `EmploymentAccrualState.sickness_episodes`; nothing to pre-compute |
+| INPS indemnity posted as `sickness_item`, inside the contribution base | `sickness_inps_item` (policy `it/indemnity/sickness_inps`), outside the contribution base; employer integration and carenza pay stay `sickness_item` |
+| `SickLeaveEvent` traced as capability `leave`, reason `caller_supplied_amount` | Capability `sickness`, reason `caller_override`: an explicit override, never payable |
+| Capability `sickness` `partial`, `leave` `caller_supplied` | `sickness` `native`; `leave` `unsupported` (`outside_input`: no event computes paid leave) |
+| `PeriodState.SCHEMA_VERSION` 7 | 8: the accrual state carries `sickness_episodes`; `OpeningBalances.sickness_episodes` imports them |
+
+- Pass the same `SicknessEpisode` (same id and start) to every regular run
+  whose month it touches. Adjustment and extra-month runs reject it.
+- A relapse needs `relapse_of` naming an episode an earlier run recorded.
+- A worker whose level does not fix the category gets a `provisional`
+  issue `sickness_inps_cover_unknown` with `fact="category"`: set
+  `Employment.category`. `"category"` is a new entry of `PUBLIC_FACTS`.
+- The INPS second-band rate in the bundle is now 0.6666 (66.66%), with the
+  source D.L. 663/1979, conv. L. 33/1980.
+
 ## Partial hire and termination months prorated by the CCNL daily quota
 
 The regular run of a month the employment covers only in part pays the CCNL
