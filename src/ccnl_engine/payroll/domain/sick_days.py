@@ -235,7 +235,7 @@ def classify_days(
     Returns:
         The segments in day order.
     """
-    history.check(episode)
+    history.check(episode, span[0])
     offset = history.offset(episode)
     inps = _used_before(episode, span[0], history, rules)
     segments: list[SickDaySegment] = []

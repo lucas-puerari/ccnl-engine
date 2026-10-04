@@ -95,6 +95,14 @@ class TestHistory:
             history.check(overlap)
         history.check(SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 20)))
 
+    def test_check_rejects_days_already_paid(self) -> None:
+        """Recorded through 11 February, the episode cannot pay 11 February."""
+        history = SicknessHistory((_A,))
+        longer = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 20))
+        with pytest.raises(InvalidInputError, match="already paid through"):
+            history.check(longer, date(2026, 2, 11))
+        history.check(longer, date(2026, 2, 12))
+
     def test_with_episode_replaces_and_orders(self) -> None:
         """An extended episode replaces its record; episodes stay in order."""
         early = SicknessEpisode("z", date(2026, 1, 5), date(2026, 1, 6))

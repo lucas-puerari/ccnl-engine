@@ -112,10 +112,12 @@ it continues for a relapse. The index sets:
 
 INPS pays at most 180 days a calendar year, counted over every recorded
 episode. INPS covers the worker by the rules of
-`knowledge/inps/data/sick-pay-rates.json`: operai of industry, building,
-artisan and terziario sectors, impiegati and quadri of the terziario,
-apprentices; not impiegati and quadri of industry, dirigenti, public
-employees or domestic workers. Without a rule the cover is unknown: the days
+`knowledge/inps/data/sick-pay-rates.json`: operai of industry and the
+terziario and impiegati of the terziario (secondary source), operai of the
+building and artisan sectors, quadri of the terziario and apprentices
+(unverified); not impiegati and quadri of industry (secondary source),
+dirigenti, public employees or domestic workers (unverified). Each rule
+names its source in the file. Without a rule the cover is unknown: the days
 are paid at the CCNL rate only and a `provisional` issue
 `sickness_inps_cover_unknown` names the fact `category` when the level does
 not fix it. The CCNL tier is the one of the month of sickness (30 days) the

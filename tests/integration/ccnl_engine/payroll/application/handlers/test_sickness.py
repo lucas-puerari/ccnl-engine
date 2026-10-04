@@ -163,6 +163,11 @@ class TestRejectedRuns:
         with pytest.raises(InvalidInputError, match="posts the monthly pay"):
             calculate_period(replace(_req(3, _MARCH), run=run))
 
+    def test_episode_passed_twice_is_rejected(self) -> None:
+        """The same episode twice in one run would pay its days twice."""
+        with pytest.raises(InvalidInputError, match="already paid through"):
+            calculate_period(_req(3, _MARCH, _MARCH))
+
     def test_episode_outside_the_period_is_rejected(self) -> None:
         """An April episode does not touch March."""
         april = sickness_episode("a", date(2026, 4, 1), date(2026, 4, 3))
@@ -215,7 +220,10 @@ class TestMissingRulesAndFacts:
 
 
 def test_hourly_quota_counts_hours() -> None:
-    """Dirigenza sanitaria: by_hourly, 7.6 hours a day, five weekdays = 38."""
+    """Dirigenza sanitaria: by_hourly, 7.6 hours a day.
+
+    Carenza 9-11 March: 3 * 7.6 = 22.8 hours; 12-13 March: 15.2 hours.
+    """
     result = calculate_period(
         _req(
             3,
@@ -228,7 +236,9 @@ def test_hourly_quota_counts_hours() -> None:
     inputs = _decision(result).inputs
     assert inputs["divisor_method"] == "by_hourly"
     assert inputs["inps_cover"] == "false"
-    assert "units=22.8" in str(inputs["segments"])
+    segments = str(inputs["segments"])
+    assert "carenza:index=1:units=22.8:" in segments
+    assert "indemnified:index=4:units=15.2:" in segments
 
 
 def test_hourly_quota_without_daily_hours_is_missing() -> None:

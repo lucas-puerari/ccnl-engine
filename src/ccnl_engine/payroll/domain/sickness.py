@@ -148,12 +148,17 @@ class SicknessHistory:
             raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
         return self.offset(previous) + previous.days
 
-    def check(self, episode: SicknessEpisode) -> None:
+    def check(self, episode: SicknessEpisode, first: date | None = None) -> None:
         """Check ``episode`` against the recorded ones.
+
+        Args:
+            episode: The episode a run is about to pay.
+            first: First day the run pays, when it pays any.
 
         Raises:
             InvalidInputError: When a recorded episode of the same id starts
-                on another day, or another episode overlaps it.
+                on another day or was already paid on or after ``first``, or
+                another episode overlaps it.
         """
         for other in self.episodes:
             same = other.episode_id == episode.episode_id
@@ -164,6 +169,14 @@ class SicknessHistory:
                 )
                 raise InvalidInputError(
                     msg, field=f"{_OWNER}.started_on", feature=_FEATURE
+                )
+            if same and first is not None and other.ended_on >= first:
+                msg = (
+                    f"episode '{episode.episode_id}' was already paid through "
+                    f"{other.ended_on}, on or after {first}"
+                )
+                raise InvalidInputError(
+                    msg, field=f"{_OWNER}.ended_on", feature=_FEATURE
                 )
             if not same and other.within(episode.started_on, episode.ended_on):
                 msg = (
