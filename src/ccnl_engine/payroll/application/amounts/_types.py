@@ -28,7 +28,7 @@ if TYPE_CHECKING:
         PensionContribution,
         PensionFundTerms,
     )
-    from ccnl_engine.payroll.service.ulteriore_recovery import UlterioreSettlement
+    from ccnl_engine.payroll.service.ulteriore_settlement import UlterioreSettlement
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules

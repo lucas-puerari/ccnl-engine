@@ -22,7 +22,7 @@ if TYPE_CHECKING:
         InstallmentRun,
         RecoveryPlan,
     )
-    from ccnl_engine.payroll.service.ulteriore_recovery import UlterioreSettlement
+    from ccnl_engine.payroll.service.ulteriore_settlement import UlterioreSettlement
 
 __all__ = ["AT_TERMINATION", "post_running_plan"]
 
