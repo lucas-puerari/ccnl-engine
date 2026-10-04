@@ -68,8 +68,11 @@ class MonthlyPayChain:
     def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
         """Scale the components a percentage apprenticeship reduces.
 
-        Base salary and seniority are always reduced.  Allowances are
-        reduced only when :attr:`~ccnl_engine.contract.domain.compensation\
+        The base salary is always reduced.  The seniority of an apprentice
+        is the CCNL apprentice amount, already set for apprentices, so it
+        is paid in full: reducing it again would count the apprenticeship
+        twice.  Allowances are reduced only when
+        :attr:`~ccnl_engine.contract.domain.compensation\
 .Allowance.apprenticeship_pct_relevant` is ``True``; the others are paid
         at their full contractual value.
 
@@ -78,7 +81,7 @@ class MonthlyPayChain:
         """
         return MonthlyPayChain(
             base=money(self.base * percentage),
-            seniority=money(self.seniority * percentage),
+            seniority=self.seniority,
             allowances=tuple(
                 (a, money(v * percentage) if a.apprenticeship_pct_relevant else v)
                 for a, v in self.allowances
@@ -149,9 +152,10 @@ class ApprenticeshipScaling:
     Attributes:
         percentage: Share of the reference pay due in the current period.
         scaled: Components reduced to ``percentage``: ``base_salary``,
-            ``seniority`` when due, then the codes of the allowances whose
+            then the codes of the allowances whose
             ``apprenticeship_pct_relevant`` is true.
-        unscaled: Codes of the allowances paid at full value.
+        unscaled: Components paid at full value: ``seniority`` when due
+            (the apprentice amount), then the codes of the other allowances.
     """
 
     percentage: Decimal
@@ -171,11 +175,15 @@ class ApprenticeshipScaling:
         Returns:
             The percentage with the scaled and unscaled component codes.
         """
-        fixed = ("base_salary", "seniority") if chain.seniority else ("base_salary",)
         relevant = tuple(
             a.code for a, _ in chain.allowances if a.apprenticeship_pct_relevant
         )
+        seniority = ("seniority",) if chain.seniority else ()
         exempt = tuple(
             a.code for a, _ in chain.allowances if not a.apprenticeship_pct_relevant
         )
-        return cls(percentage=percentage, scaled=fixed + relevant, unscaled=exempt)
+        return cls(
+            percentage=percentage,
+            scaled=("base_salary", *relevant),
+            unscaled=seniority + exempt,
+        )

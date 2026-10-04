@@ -183,6 +183,22 @@
         "kind": "missing",
         "text": "MISSING: Maggiorazione per lavoro festivo ordinario non modellata: il file riporta solo la maggiorazione dello straordinario festivo (OT_FESTIVO).",
         "capability": "holiday_work"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the December 2025 renewal extends the seniority increments to apprentices from 2026-01-01 (see the seniority note), but the clause and its amounts are not modelled: the engine pays no increment during the apprenticeship. The run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -3571,7 +3587,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "96d3f3a001517b3e574ad06186e4c1ee9ff228754af8020dcfbf30e73959b956",
+    "source_hash": "f53367a2d48d6148042f0c177dd8ac03cf53dd7e2fb5bdc9b59a002cf6f1658e",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

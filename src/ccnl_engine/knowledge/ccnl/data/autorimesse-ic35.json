@@ -97,6 +97,22 @@
           },
           "remediation": "Confirm the 85/90/95% apprenticeship percentages against the current consolidated text."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2900,7 +2916,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b43d02ba9e78b63c1d775b959b6805dd5f9be9328b1914903f925ae5b9e1e3f1",
+    "source_hash": "96c1f2db9102639bfe48e5faa5061383e4784bff9aa0643aeedbc3117179ddc6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

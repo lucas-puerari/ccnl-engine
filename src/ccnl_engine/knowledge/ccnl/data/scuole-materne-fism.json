@@ -82,6 +82,22 @@
           },
           "remediation": "Source the apprenticeship clause and replace the 100% identity track."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1408,7 +1424,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "97d9f1f7b45e4431505731b5abf953af6e26c5db48458ba9814c38c4ad33a584",
+    "source_hash": "f3f8fed7cf8a3a872fb6477270e81ec1dd6846195fdb9fc82586cf1935b29a97",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -226,10 +226,13 @@ known errors: places where the model intentionally diverges from the literal
 contract text. Reading them before using a result in a sensitive context is
 strongly recommended.
 
-Example from CCNL Metalmeccanico:
+Example from CCNL Legno Arredamento Federlegno:
 
 !!! warning "Known simplification"
-    The under-classification apprenticeship track applies a single percentage
-    to the destination level's full salary. In practice, some companies apply
-    the percentage to the base salary only (excluding seniority). The error
-    is bounded by the seniority amount times the apprenticeship discount.
+    The third apprenticeship period pays an intermediate pay between the
+    current and the destination level. The CCNL text listed in the sources
+    is no longer reachable, so whether the intermediate pay covers
+    contingenza and EDR or the minimum table only is unverified. The engine
+    averages the whole monthly pay and records the open limitation
+    `legno-arredamento-federlegno/apprenticeship_midpoint_components`, so the
+    run is not payable.

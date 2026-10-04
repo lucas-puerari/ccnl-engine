@@ -5,12 +5,12 @@ from __future__ import annotations
 import copy
 from datetime import date
 from decimal import Decimal
+from typing import Any
 
 import pytest
 
 from ccnl_engine.contract.domain.identity._ccnl import CCNL
 from ccnl_engine.payroll.domain.employment import Apprentice
-from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.service.apprenticeship import (
     _apprentice_chain,
     _find_period_index,
@@ -92,6 +92,17 @@ class TestSelectTrack:
             _select_track(ccnl, level, employment)
 
 
+def _allowance(level: dict[str, Any], code: str, value: str) -> dict[str, Any]:
+    monthly = copy.deepcopy(level["base_salary"])
+    monthly["periods"][0]["value"] = value
+    return {
+        "code": code,
+        "description": code,
+        "monthly": monthly,
+        "provenance": level["provenance"],
+    }
+
+
 class TestApprenticeChain:
     """_apprentice_chain underclass and percentage track paths."""
 
@@ -113,25 +124,44 @@ class TestApprenticeChain:
         assert chain.base > Decimal(0)
 
     def test_underclass_midpoint_to_destination(self) -> None:
-        """midpoint_to_destination=True sets base to average of pay and dest level."""
+        """The midpoint averages the whole pay of the pay and destination levels.
+
+        Pay level 3: base 800.00, A 10.01, B 5.00 (total 815.01).
+        Destination 4: base 1000.00, A 20.00, C 3.01 (total 1023.01).
+        Mean of the totals: 919.01.  Allowances: A 15.005 -> 15.01,
+        B 5.00 / 2 = 2.50, C 3.01 / 2 = 1.505 -> 1.51.  The base takes the
+        rest: 919.01 - 19.02 = 899.99 (not the rounded 900.00, which would
+        pay one cent over the mean).
+        """
         raw = make_ccnl_dict(app_type="under_classification")
         raw["apprenticeship"][0]["periods"][0]["midpoint_to_destination"] = True
+        levels = {level["code"]: level for level in raw["levels"]}
+        levels["3"]["fixed_allowances"] = [
+            _allowance(levels["3"], "A", "10.01"),
+            _allowance(levels["3"], "B", "5.00"),
+        ]
+        levels["4"]["fixed_allowances"] = [
+            _allowance(levels["4"], "A", "20.00"),
+            _allowance(levels["4"], "C", "3.01"),
+        ]
         ccnl = CCNL.model_validate(raw)
-        level = ccnl.level_by_code("4")
-        employment = Apprentice(months_elapsed=0, track=None)
         chain, _pct, _code = _apprentice_chain(
             ccnl,
-            level,
-            employment,
+            ccnl.level_by_code("4"),
+            Apprentice(months_elapsed=0, track=None),
             count=0,
             roles=frozenset(),
             as_of=_AS_OF,
         )
-        pay_level = ccnl.level_by_code("3")
-        dest_base = level.base_salary.value_at(_AS_OF)
-        pay_base = pay_level.base_salary.value_at(_AS_OF)
-        expected = money((pay_base + dest_base) / Decimal(2))
-        assert chain.base == expected
+        assert chain.base == Decimal("899.99")
+        assert [(a.code, v) for a, v in chain.allowances] == [
+            ("A", Decimal("15.01")),
+            ("B", Decimal("2.50")),
+            ("C", Decimal("1.51")),
+        ]
+        assert chain.limitations == (
+            f"{ccnl.meta.ccnl_id}/apprenticeship_midpoint_components",
+        )
 
     def test_percentage_track(self) -> None:
         """Percentage track sets pct to the period percentage and code=None."""

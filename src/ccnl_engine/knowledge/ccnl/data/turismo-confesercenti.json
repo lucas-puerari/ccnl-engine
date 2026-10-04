@@ -63,6 +63,22 @@
       {
         "kind": "info",
         "text": "Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Engine uses 100% passthrough because schema requires static pay_level_code; the 2-level under-classification cannot be modelled dynamically. Modeled as 100% passthrough pending contract text."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1669,7 +1685,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "1a6a9eb78a352707552d05c9c591b601501b6372e496ee62da3242938638ada7",
+    "source_hash": "93dd5351f72709738772459a79296190e10eab68d2fc90e19df840322efb376f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

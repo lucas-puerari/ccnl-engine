@@ -15,7 +15,10 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import PayrollEngine
-from ccnl_engine.contract.domain.apprenticeship import ApprenticeshipUnderClassification
+from ccnl_engine.contract.domain.apprenticeship import (
+    ApprenticeshipPercentage,
+    ApprenticeshipUnderClassification,
+)
 from ccnl_engine.contract.domain.identity import NoteKind
 from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
@@ -25,12 +28,12 @@ from ccnl_engine.payroll.application.handlers.sickness import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
 )
-from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_ALLOWANCES
+from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT, PCT_UNDECLARED
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY
-from ccnl_engine.shared.domain.limitation import MonetaryImpact
+from ccnl_engine.payroll.service.seniority import APPRENTICE_SENIORITY_VARIANT
+from ccnl_engine.shared.domain.limitation import LimitationStatus, MonetaryImpact
 
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
@@ -74,14 +77,26 @@ def test_limitations_name_registry_capabilities(ccnls: tuple[CCNL, ...]) -> None
     assert {lim.capability for lim in limitations} <= features
 
 
+_APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+_MIDPOINT = "apprenticeship_midpoint_allowances"
+
+
 def test_engine_limitations_are_raised_by_their_code() -> None:
-    """Each engine limitation id is the one its code path records."""
-    assert {lim.id for lim in load_engine_limitations()} == {
-        MIDPOINT_ALLOWANCES,
-        APPRENTICE_SENIORITY,
+    """Each open engine limitation id is the one its code path records.
+
+    A resolved one stays in the bundle as the record of what closed it;
+    no code path records it any more.
+    """
+    by_status = {
+        status: {lim.id for lim in load_engine_limitations() if lim.status is status}
+        for status in LimitationStatus
+    }
+    assert by_status[LimitationStatus.OPEN] == {
+        PCT_UNDECLARED,
         INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
     }
+    assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
@@ -112,9 +127,75 @@ def test_engine_limitation_rulesets_are_derived_from_data(
 ) -> None:
     """The rulesets of an engine limitation are the CCNLs that can take its path."""
     rulesets = {lim.id: set(lim.rulesets) for lim in load_engine_limitations()}
-    assert rulesets[MIDPOINT_ALLOWANCES] == {
-        c.meta.ccnl_id for c in ccnls if _has_midpoint(c)
-    }
-    assert rulesets[APPRENTICE_SENIORITY] == {
+    assert rulesets[_MIDPOINT] == {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
+    assert rulesets[_APPRENTICE_SENIORITY] == {
         c.meta.ccnl_id for c in ccnls if _has_level_seniority_for_apprentices(c)
     }
+
+
+def _has_undeclared_reduction_flag(ccnl: CCNL) -> bool:
+    codes = {
+        track.reference_level or code
+        for track in ccnl.apprenticeship
+        if isinstance(track, ApprenticeshipPercentage)
+        for code in track.destination_levels
+    }
+    return any(
+        not allowance.apprenticeship_pct_declared
+        for code in codes
+        for allowance in ccnl.level_by_code(code).fixed_allowances
+    )
+
+
+def test_undeclared_reduction_rulesets_are_derived_from_data(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """The CCNLs whose percentage track can reduce a defaulted allowance."""
+    rulesets = {lim.id: set(lim.rulesets) for lim in load_engine_limitations()}
+    assert rulesets[PCT_UNDECLARED] == {
+        c.meta.ccnl_id for c in ccnls if _has_undeclared_reduction_flag(c)
+    }
+
+
+def _apprentice_seniority_notes(ccnl: CCNL) -> list[LimitationStatus]:
+    return [
+        lim.status
+        for lim in ccnl.limitations
+        if lim.variant == APPRENTICE_SENIORITY_VARIANT
+    ]
+
+
+def test_unsourced_apprentice_seniority_is_an_open_limitation(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """A CCNL whose levels pay apprentices increments states the apprentice rule.
+
+    With an apprentice amount the rule is modelled; without one the
+    engine pays none and the CCNL carries an open limitation, which the
+    chain records when the level pays matured increments.
+    """
+    for ccnl in ccnls:
+        unsourced = (
+            _has_level_seniority_for_apprentices(ccnl)
+            and ccnl.parameters.seniority_increments.apprentice_amount is None
+        )
+        expected = [LimitationStatus.OPEN] if unsourced else []
+        assert _apprentice_seniority_notes(ccnl) == expected, ccnl.meta.ccnl_id
+
+
+def test_unsourced_midpoint_components_are_an_open_limitation(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """Of the CCNLs with a midpoint period, only Federterme states its components.
+
+    Its Art. 13 lett. g averages the whole pay; the others carry an open
+    limitation the midpoint path records.
+    """
+    unsourced = {
+        ccnl.meta.ccnl_id
+        for ccnl in ccnls
+        for lim in ccnl.limitations
+        if lim.variant == MIDPOINT_VARIANT and lim.status is LimitationStatus.OPEN
+    }
+    midpoint = {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
+    assert unsourced == midpoint - {"aziende-termali-federterme"}

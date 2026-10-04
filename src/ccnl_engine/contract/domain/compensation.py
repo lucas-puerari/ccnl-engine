@@ -55,6 +55,15 @@ class Allowance(BaseModel):
     service_months_threshold: int | None = Field(default=None, ge=0)
     provenance: RuleProvenance | None = None
 
+    @property
+    def apprenticeship_pct_declared(self) -> bool:
+        """Whether the data states ``apprenticeship_pct_relevant``.
+
+        ``False`` when the flag holds its default: whether the CCNL reduces
+        the allowance for percentage apprentices was not sourced.
+        """
+        return "apprenticeship_pct_relevant" in self.model_fields_set
+
 
 class EmployerFund(BaseModel):
     """An employer-side contribution to a contractual fund (e.g. a pension fund).

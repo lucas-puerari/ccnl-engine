@@ -76,6 +76,22 @@
           },
           "remediation": "Model the post-2026 under-classification apprenticeship from a D271 primary source."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2405,7 +2421,7 @@
     "effective_until": null,
     "source": "https://italpaghe.ilccnl.it/ccnl/occhiali---industria/occhiali---industria/tabelleretributive",
     "verification_status": "verified",
-    "source_hash": "51ba26d137b0f4441338efbc37b349b6330e8739c1de4804c369fc612fa70491",
+    "source_hash": "91b506e14ef772f67da002bd881497db9d14ab62e255cb6773b56f995fca4188",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

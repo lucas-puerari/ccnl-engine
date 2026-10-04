@@ -60,6 +60,22 @@
       {
         "kind": "info",
         "text": "APPRENTICESHIP: under_classification 2 levels below destination is a contract-specific rule not representable in the engine schema (single under_levels value, not per-destination-level). Modelled as 100% passthrough by design."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1372,7 +1388,7 @@
     "effective_until": null,
     "source": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H05B",
     "verification_status": "unverified",
-    "source_hash": "10fb56546ec6c91c2db71c6a96f504eb94e53e092b56e24869bf179c296dc74c",
+    "source_hash": "bf511c7f0fb7539bc96742be213e2665189f999b3853d70e763b1e176e382b0a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

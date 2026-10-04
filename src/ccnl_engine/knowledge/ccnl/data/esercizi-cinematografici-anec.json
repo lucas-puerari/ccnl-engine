@@ -69,6 +69,22 @@
       {
         "kind": "info",
         "text": "Workers: 6,427 (ADAPT 18th Report, CNEL aggiornamento 31/12/2023)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1802,7 +1818,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "231f92f37fda824078da979818a0d8ca40ac201446018ddf86c9f654ff7a8841",
+    "source_hash": "ff9136e0e7195375f9ee5f937ed733e7f02da048ffc9078d10e49e3a2247074b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -77,6 +77,22 @@
       {
         "kind": "source",
         "text": "Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1341,7 +1357,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "d0727f9cadc9347b9d0169d6bc4e046eb7d79927788dd478cbd3ad3c20325149",
+    "source_hash": "27215abe800bf2455fde5bd5f000acc79897a117d95e1d71f9418680e6203976",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

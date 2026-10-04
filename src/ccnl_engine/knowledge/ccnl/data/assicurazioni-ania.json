@@ -109,6 +109,22 @@
       {
         "kind": "source",
         "text": "Class cadence: Art. 113 CCNL + column 'Anni serv.' Allegato 2/B."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1128,7 +1144,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "59f3fe6435c0887585e3c8751672f12a99c12ebc420097ffb9f8970823d3a26f",
+    "source_hash": "0fad22a54c38bdebeb60e91caec9bd8fc1c87b5cce062cbd87e5e0fbdef3ea71",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

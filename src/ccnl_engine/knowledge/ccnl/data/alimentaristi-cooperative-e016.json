@@ -72,6 +72,22 @@
         "kind": "simplification",
         "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented.",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -2188,7 +2204,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "0c6e47f560d0385641fd5fef333f9185184aa0e5cf798857f6bed81b217f3788",
+    "source_hash": "983e79ce76b282705782b18e617d1f2dcd000da38a07c6e4ea3525922f602399",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

@@ -29,17 +29,24 @@ _ENTRY: dict[str, Any] = {
 
 
 def test_bundled_engine_limitations_are_path_triggered() -> None:
-    """Every engine limitation is recorded when its code path is taken."""
+    """Every engine limitation is recorded when its code path is taken.
+
+    The open ones block the runs they apply to; a resolved one no longer
+    does.
+    """
     limitations = load_engine_limitations()
-    assert {lim.id for lim in limitations} == {
-        "apprenticeship_midpoint_allowances",
-        "apprentice_seniority_simplified",
+    blocking = {lim.id for lim in limitations if lim.blocks}
+    assert blocking == {
+        "apprenticeship_pct_undeclared_components",
         "sickness_inps_daily_base",
         "sickness_cumulation_window",
     }
+    assert {lim.id for lim in limitations} - blocking == {
+        "apprenticeship_midpoint_allowances",
+        "apprentice_seniority_simplified",
+    }
     assert all(
-        lim.applies_when.trigger is LimitationTrigger.PATH and lim.blocks
-        for lim in limitations
+        lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations
     )
 
 

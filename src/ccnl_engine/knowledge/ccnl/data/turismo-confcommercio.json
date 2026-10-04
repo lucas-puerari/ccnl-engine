@@ -71,6 +71,22 @@
       {
         "kind": "info",
         "text": "INPS: uses 2026-terziario.json (same tax_sector as commercio-confcommercio)."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1713,7 +1729,7 @@
     "effective_until": null,
     "source": "https://www.lexplain.it/tabelle-retributive-ccnl-alberghi-turismo-confcommercio-aumenti-stipendio-2024-2027/",
     "verification_status": "unverified",
-    "source_hash": "3fcf41f57bc429a4addd085d5aaf6d00c457c802fda6e94edcd09d80e6ff3d07",
+    "source_hash": "94709585a40e4155561eea40cb3007f1990885faf0d674063b79dc3519c0fa93",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

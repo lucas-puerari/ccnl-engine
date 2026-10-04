@@ -108,6 +108,22 @@
           },
           "remediation": "Confirm from Art. 5 whether the indennita di funzione is paid in the quattordicesima."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+        }
       }
     ]
   },
@@ -1190,7 +1206,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "1314d63aabdad6833e8aa9cf1946c7122c1f1f422144b41a99592af6b3d0ddb7",
+    "source_hash": "17be95b487d06aa6b07b96c3cc1e52c5c610250f6db57c366c8ed4e6c7f3ad28",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
