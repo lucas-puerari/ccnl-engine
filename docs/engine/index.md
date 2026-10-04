@@ -206,9 +206,10 @@ ratio, and never above one monthly pay (2 March 2026, a Monday after a
 Sunday 1st, pays the whole of March). The `base_salary` decision has reason
 `pay_chain_prorated` and records `employed_from`, `employed_until`,
 `divisor_method`, `payable_days` and `divisor`; the absence rule and, for
-`by_hourly`, the hourly divisor join the rules of `base_salary`. Extra-month,
-termination and adjustment runs are not prorated: the ratei follow the
-accrual rule below.
+`by_hourly`, the hourly divisor join the rules of `base_salary`. Only the
+regular run is prorated: extra-month runs follow the accrual rule below,
+and a termination or adjustment run still posts the full monthly pay chain
+(a known defect of those run kinds, not a proration).
 
 A CCNL whose data define no daily quota (no `absence_rules`, or `by_hourly`
 without `daily_hours` or an hourly divisor in force) never pays the month in
