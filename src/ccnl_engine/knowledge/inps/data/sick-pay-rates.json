@@ -11,19 +11,79 @@
     {
       "day_from": 21,
       "day_to": 180,
-      "rate": "0.6667",
-      "description": "Days 21-180: INPS pays 2/3 of daily reference base"
+      "rate": "0.6666",
+      "description": "Days 21-180: INPS pays 66.66% of daily reference base"
     }
   ],
   "ruleset": {
     "id": "inps/sick-pay-rates",
-    "version": "1.0",
-    "effective_from": "2001-07-26",
+    "version": "1.1",
+    "effective_from": "1980-01-01",
     "effective_until": null,
-    "published_at": "2026-09-08",
-    "source": "D.Lgs. 26 marzo 2001 n. 151, artt. 68-71; D.Lgs. 30 giugno 1995 n. 272",
+    "published_at": "2026-10-04",
+    "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); annual maximum and rates as published by INPS (50% days 4-20, 66.66% days 21-180, 180 days per calendar year)",
     "verification_status": "unverified",
-    "source_hash": "247c10b99aee3d105bbd705a18333f29a3c03f6d5dbb03e1633a40e3cfbdc811",
+    "source_hash": "3c0ee72b6606696ae9c59b1479a81096eb4f2b72a76acde25eebddb3da7333cc",
     "source_type": "official_primary"
-  }
+  },
+  "annual_max_days": 180,
+  "coverage": [
+    {
+      "sectors": [
+        "pubblica-amministrazione",
+        "lavoro-domestico"
+      ],
+      "covered": false,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33): the INPS indemnity covers private-sector workers insured for sickness; public employees are paid by the administration and domestic workers by the employer under their CCNL"
+    },
+    {
+      "categories": [
+        "dirigente"
+      ],
+      "covered": false,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33): dirigenti are not insured with INPS for sickness"
+    },
+    {
+      "contract_types": [
+        "apprentice"
+      ],
+      "covered": true,
+      "source": "L. 27 dicembre 2006 n. 296, art. 1 c. 773: apprentices insured with INPS for sickness from 1 January 2007"
+    },
+    {
+      "sectors": [
+        "industria",
+        "edilizia",
+        "artigianato",
+        "terziario"
+      ],
+      "categories": [
+        "operaio"
+      ],
+      "covered": true,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); Assolombarda, Tutele previdenziali: INPS pays operai of industry"
+    },
+    {
+      "sectors": [
+        "terziario"
+      ],
+      "categories": [
+        "impiegato",
+        "quadro"
+      ],
+      "covered": true,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); Assolombarda, Tutele previdenziali: INPS pays operai and impiegati of the terziario"
+    },
+    {
+      "sectors": [
+        "industria"
+      ],
+      "categories": [
+        "impiegato",
+        "quadro"
+      ],
+      "covered": false,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); Assolombarda, Tutele previdenziali: impiegati of industry are paid by the employer under the CCNL"
+    }
+  ]
 }

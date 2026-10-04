@@ -140,7 +140,11 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         deferred_shortfall=outcome.deferred,
     )
     return PeriodState(
-        accrual=opening.accrual.after(outcome.payment.run_id, outcome.period_inps_base),
+        accrual=opening.accrual.after(
+            outcome.payment.run_id,
+            outcome.period_inps_base,
+            outcome.events.sickness_episodes,
+        ),
         cash=_closing_cash(opening.cash, outcome, obligations),
     )
 

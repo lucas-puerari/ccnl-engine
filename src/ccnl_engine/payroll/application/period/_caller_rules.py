@@ -1,13 +1,13 @@
 """Decisions of the values a run takes from the caller in place of a rule.
 
 Some events carry a rate or an amount the engine applies as given: the
-overtime hourly rate and an explicit multiplier, the sickness integration
-rates, the hourly rate of an absence, a flat supplement, a separate tax
-rate.  Each such event records one decision with origin
+overtime hourly rate and an explicit multiplier, the hourly rate of an
+absence, a flat supplement, a separate tax rate, a sick pay amount that
+overrides the engine.  Each such event records one decision with origin
 :attr:`~ccnl_engine.payroll.domain.decisions.DecisionOrigin.CALLER_SUPPLIED`:
 the fields it took from the caller, their values and, where the bundle has
-a comparable value (a CCNL band, the hourly divisor, the sickness
-integration), that value for comparison.  The amounts do not change.  An
+a comparable value (a CCNL band, the hourly divisor), that value for
+comparison.  The amounts do not change.  An
 overtime multiplier derived from the CCNL band is an engine decision of the
 handler, not listed here.  A fringe benefit records its own decision.
 """
@@ -26,7 +26,6 @@ from ccnl_engine.payroll.application.handlers._overtime_rate import (
 from ccnl_engine.payroll.application.handlers._standard_event import (
     _standard_event_gross,
 )
-from ccnl_engine.payroll.application.handlers.sickness import _case_components
 from ccnl_engine.payroll.domain.decisions import (
     CalculationDecision,
     CalculationStatus,
@@ -42,7 +41,7 @@ from ccnl_engine.payroll.domain.events import (
     OvertimeEvent,
     ShiftWorkEvent,
     SickLeaveEvent,
-    SicknessCaseEvent,
+    SicknessEpisode,
     TerminationTFREvent,
     WelfareEvent,
 )
@@ -57,6 +56,7 @@ if TYPE_CHECKING:
 
 __all__ = [
     "CALLER_DECLARED_AMOUNT",
+    "CALLER_OVERRIDE",
     "CALLER_SUPPLIED_AMOUNT",
     "CALLER_SUPPLIED_CAPABILITIES",
     "CALLER_SUPPLIED_RATE",
@@ -71,6 +71,8 @@ CALLER_SUPPLIED_RATE = "caller_supplied_rate"
 CALLER_SUPPLIED_AMOUNT = "caller_supplied_amount"
 #: The caller declared the amount paid; no rule sets it.
 CALLER_DECLARED_AMOUNT = "caller_declared_amount"
+#: The caller overrode an amount a native capability computes.
+CALLER_OVERRIDE = "caller_override"
 NOT_IN_BUNDLE = "not_in_bundle"
 
 
@@ -97,17 +99,7 @@ _RULES: dict[type, _CallerRule] = {
         "shift_work", CALLER_SUPPLIED_AMOUNT, ("supplement_amount",)
     ),
     AbsenceEvent: _CallerRule("absence", CALLER_SUPPLIED_RATE, ("hourly_rate",)),
-    SickLeaveEvent: _CallerRule("leave", CALLER_SUPPLIED_AMOUNT, ("amount",)),
-    SicknessCaseEvent: _CallerRule(
-        "sickness",
-        CALLER_SUPPLIED_RATE,
-        (
-            "gross_daily",
-            "inps_daily_rate",
-            "integration_rate",
-            "carenza_integration_rate",
-        ),
-    ),
+    SickLeaveEvent: _CallerRule("sickness", CALLER_OVERRIDE, ("amount",)),
     BonusEvent: _CallerRule("bonus", CALLER_DECLARED_AMOUNT, ("amount",)),
     WelfareEvent: _CallerRule("welfare", CALLER_DECLARED_AMOUNT, ("amount",)),
     ArrearsEvent: _CallerRule(
@@ -124,11 +116,12 @@ _RULES: dict[type, _CallerRule] = {
 }
 
 #: Capabilities whose amounts can rest on a caller value that stands in for
-#: a rule; a declared bonus or welfare amount is a fact, not a rule.
+#: a rule; a declared bonus or welfare amount is a fact, not a rule, and an
+#: override replaces what a native capability computes.
 CALLER_SUPPLIED_CAPABILITIES = frozenset(
     rule.capability
     for rule in _RULES.values()
-    if rule.reason_code != CALLER_DECLARED_AMOUNT
+    if rule.reason_code not in {CALLER_DECLARED_AMOUNT, CALLER_OVERRIDE}
 )
 
 _CASH_EVENTS = (
@@ -201,11 +194,9 @@ def _comparable(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
     """Return the bundle values comparable with the caller's, when any.
 
     Returns:
-        The bands of a supplement, the hourly divisor of an hourly rate and
-        the CCNL sickness integration rates; empty when the bundle has no
-        comparable rule.
+        The bands of a supplement and the hourly divisor of an hourly rate;
+        empty when the bundle has no comparable rule.
     """
-    rules = ccnl.work_rules
     divisor = bundle_value(ccnl.parameters.hourly_divisor, event.event_date)
     if isinstance(event, OvertimeEvent):
         caller: dict[str, Decimal | str] = (
@@ -222,14 +213,6 @@ def _comparable(ccnl: CCNL, event: WorkEvent) -> dict[str, Decimal | str]:
         return _band_inputs(ccnl, event, _BAND_KINDS.get(type(event)))
     if isinstance(event, AbsenceEvent):
         return {"bundle_hourly_divisor": divisor}
-    if isinstance(event, SicknessCaseEvent):
-        sickness = None if rules is None else rules.sickness_rules
-        if sickness is None:
-            return {"bundle_integration_rate": NOT_IN_BUNDLE}
-        return {
-            "bundle_integration_rate": sickness.full_pay_integration_rate,
-            "bundle_carenza_integration_rate": sickness.carenza_integration_rate,
-        }
     return {}
 
 
@@ -237,17 +220,15 @@ def _amount(event: WorkEvent) -> Decimal:
     """Return the amount the event posts from the caller's values.
 
     Returns:
-        The gross of a standard event (negative for an absence), the paid
-        components of a sickness case, the total of a bilateral fund event,
-        or the declared amount.
+        The gross of a standard event (negative for an absence), the total
+        of a bilateral fund event, or the declared amount.
     """
-    if isinstance(event, SicknessCaseEvent):
-        _, components = _case_components(event.case, "")
-        return sum((amount for _, amount, _ in components), Decimal(0))
     if isinstance(event, BilateralFundEvent):
         return event.employee_amount + event.employer_amount
     if isinstance(event, _CASH_EVENTS):
         return _standard_event_gross(event)
+    if isinstance(event, SicknessEpisode):  # pragma: no cover - no caller rule
+        return Decimal(0)
     return event.amount
 
 
@@ -258,7 +239,6 @@ def _value(value: object) -> Decimal | str:
 def _decision(
     index: int, event: WorkEvent, rule: _CallerRule, ccnl: CCNL
 ) -> CalculationDecision:
-    source = event.case if isinstance(event, SicknessCaseEvent) else event
     fields, paid = rule.fields, event
     if isinstance(event, OvertimeEvent):
         bands = CCNLOvertimeBands.of(ccnl, event.event_date.year)
@@ -272,7 +252,7 @@ def _decision(
         rule_version="request",
         inputs={
             "fields": ",".join(fields),
-            **{name: _value(getattr(source, name)) for name in fields},
+            **{name: _value(getattr(event, name)) for name in fields},
             **_comparable(ccnl, event),
         },
         amount=_amount(paid),

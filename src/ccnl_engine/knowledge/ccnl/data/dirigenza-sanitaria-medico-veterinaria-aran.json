@@ -301,9 +301,14 @@
       },
       {
         "kind": "simplification",
-        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg.",
+        "text": "Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il motore classifica ogni giorno di malattia con il mese dell'episodio in cui cade, quindi un periodo di paga a cavallo di una soglia mensile applica a ciascun giorno il proprio tasso. Comporto max 18 mesi = 540 gg.",
         "capability": "sickness",
-        "monetary_impact": "no"
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "single_rate_across_tier_threshold",
+          "status": "resolved",
+          "remediation": "Resolved: sick days are classified one by one (ccnl_engine.payroll.domain.sick_days); tested with an episode crossing the threshold of a tier within one month."
+        }
       },
       {
         "kind": "info",
@@ -318,7 +323,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "6f498cd5f52b1864089f110c836517827227631184067520985a8fc98ee49c08",
+    "source_hash": "2c2371ac4d3fce736c3192c7c2296100ea90f6a909863796b084f2c3122c4e7e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

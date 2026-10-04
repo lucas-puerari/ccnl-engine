@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
+from ccnl_engine.payroll.application.handlers._sickness_terms import SicknessTerms
 from ccnl_engine.payroll.domain.ledger import PostingIntent
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
         CalculationIssue,
     )
     from ccnl_engine.payroll.domain.policy import PolicyContext, PolicyResolver
+    from ccnl_engine.payroll.domain.sickness import SicknessEpisode
     from ccnl_engine.payroll.domain.treatment import EventTreatment
     from ccnl_engine.provenance.domain.source import SourceLocation
     from ccnl_engine.tax.domain.preferential_regime import (
@@ -60,7 +62,8 @@ class _EventHandlerCtx:
     night, holiday or shift supplement.  ``worker_facts`` carries the
     prior-year income, the waivers, the sector and the employer activity
     every regime and the PdR read.  ``overtime_bands`` are the CCNL bands an
-    overtime event without a multiplier is paid with.
+    overtime event without a multiplier is paid with; ``sickness`` the rules
+    and the episodes a sickness episode is paid with, updated after each.
     """
 
     evt_id: str
@@ -77,6 +80,7 @@ class _EventHandlerCtx:
     work_time_cap: RegimeCapAccount = field(default_factory=RegimeCapAccount)
     worker_facts: RegimeFacts = field(default_factory=RegimeFacts)
     overtime_bands: CCNLOvertimeBands = field(default_factory=CCNLOvertimeBands)
+    sickness: SicknessTerms = field(default_factory=SicknessTerms)
 
 
 @dataclass
@@ -100,6 +104,9 @@ class EventEffect:
             consumed by the event.
         decisions: Decisions taken on the event, e.g. a regime eligibility.
         issues: Conditions raised by the event; each blocks payability.
+        sickness_episode: Sickness episode the event processed, cut at its
+            last processed day, to record in the accrual state.
+        limitations: Ids of the engine limitations whose path it took.
     """
 
     items: list[PayItem] = field(default_factory=list)
@@ -116,6 +123,8 @@ class EventEffect:
     regime_cap_used: Decimal = _ZERO
     decisions: list[CalculationDecision] = field(default_factory=list)
     issues: list[CalculationIssue] = field(default_factory=list)
+    sickness_episode: SicknessEpisode | None = None
+    limitations: tuple[str, ...] = ()
 
 
 def _treatment_deltas(

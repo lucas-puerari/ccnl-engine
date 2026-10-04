@@ -31,6 +31,7 @@ __all__ = [
     "PayItem",
     "ProductivityBonusEarning",
     "SeniorityEarning",
+    "SicknessInpsItem",
     "SicknessItem",
     "TaxCreditItem",
     "TaxRefundItem",
@@ -168,6 +169,13 @@ class SicknessItem(_PayItemBase):
     sick_days: Decimal = Field(ge=Decimal(0))
 
 
+class SicknessInpsItem(_PayItemBase):
+    """INPS sickness indemnity the employer advances (indennità di malattia)."""
+
+    kind: Literal["sickness_inps_item"] = "sickness_inps_item"
+    sick_days: Decimal = Field(ge=Decimal(0))
+
+
 class MaternityItem(_PayItemBase):
     """Maternity leave indemnity (maternità INPS)."""
 
@@ -238,6 +246,7 @@ PayItem = Annotated[
     | AbsenceDeduction
     | LeaveSettlementItem
     | SicknessItem
+    | SicknessInpsItem
     | MaternityItem
     | WorkInjuryItem
     | EmployeeWithholdingItem

@@ -12,7 +12,6 @@ from ccnl_engine.payroll.domain.events._union import WORK_EVENT_TYPES, WorkEvent
 from ccnl_engine.payroll.domain.events.absence_sickness import (
     AbsenceEvent,
     SickLeaveEvent,
-    SicknessCaseEvent,
 )
 from ccnl_engine.payroll.domain.events.termination import TerminationTFREvent
 from ccnl_engine.payroll.domain.events.variable_pay import (
@@ -29,6 +28,7 @@ from ccnl_engine.payroll.domain.events.work_time import (
     OvertimeKind,
     ShiftWorkEvent,
 )
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 
 __all__ = [
     "WORK_EVENT_TYPES",
@@ -43,7 +43,7 @@ __all__ = [
     "OvertimeKind",
     "ShiftWorkEvent",
     "SickLeaveEvent",
-    "SicknessCaseEvent",
+    "SicknessEpisode",
     "TerminationTFREvent",
     "WelfareEvent",
     "WorkEvent",

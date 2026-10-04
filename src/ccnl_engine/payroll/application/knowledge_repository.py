@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
 
@@ -51,4 +52,8 @@ class KnowledgeRepository(Protocol):  # pragma: no cover
 
     def load_family_deduction_rules(self, year: int) -> FamilyDeductionRules:
         """Load and return the Art. 12 TUIR family deduction rules for *year*."""
+        ...
+
+    def load_sick_pay_rates(self) -> InpsSickPayRates:
+        """Load and return the INPS sickness indemnity rules."""
         ...

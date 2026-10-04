@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 import pytest
@@ -9,6 +10,7 @@ import pytest
 from ccnl_engine.payroll.domain.accrual_state import EmploymentAccrualState
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _FIELD = "EmploymentAccrualState.competence_runs"
@@ -144,3 +146,17 @@ class TestInpsBases:
 
         with pytest.raises(InvalidInputError, match="already closed as"):
             state.check_next_run(PayrollRunId.parse("2026-07-fourteenth"))
+
+
+class TestSicknessEpisodes:
+    """Recorded sickness episodes have distinct ids, in start order."""
+
+    def test_rejects_repeated_or_unordered_episodes(self) -> None:
+        """Two records of one id, or a later episode first, are rejected."""
+        first = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 11))
+        second = SicknessEpisode("b", date(2026, 3, 2), date(2026, 3, 4))
+        for episodes in ((first, first), (second, first)):
+            with pytest.raises(InvalidInputError, match="distinct ids"):
+                EmploymentAccrualState(sickness_episodes=episodes)
+        state = EmploymentAccrualState(sickness_episodes=[first, second])  # type: ignore[arg-type]
+        assert state.sickness_episodes == (first, second)

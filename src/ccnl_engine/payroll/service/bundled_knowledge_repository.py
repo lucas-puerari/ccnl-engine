@@ -13,6 +13,7 @@ from ccnl_engine.tax.service.surtax_loaders import load_surtax_rules
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
 from ccnl_engine.tax.service.tax_optional_loaders import (
     load_family_deduction_rules,
+    load_sick_pay_rates,
     load_variable_pay_rules,
 )
 
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
 
@@ -97,3 +99,11 @@ class BundledKnowledgeRepository:
             A :class:`~ccnl_engine.tax.domain.family.FamilyDeductionRules`.
         """
         return load_family_deduction_rules(year)
+
+    def load_sick_pay_rates(self) -> InpsSickPayRates:  # noqa: PLR6301
+        """Return the INPS sickness indemnity rules.
+
+        Returns:
+            The waiting period, bands, annual maximum and coverage rules.
+        """
+        return load_sick_pay_rates()

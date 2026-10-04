@@ -186,7 +186,7 @@ def _result(
         + missing_source_issues(sources),
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),
-        limitations=run_limitations(ctx, report),
+        limitations=run_limitations(ctx, report, events.totals.limitations),
     )
 
 

@@ -2,7 +2,7 @@
 
 Metalmeccanico (bundled work rules): weekday overtime band OT_DIURNO 25%,
 night band OT_NOTTURNO 50%, holiday band OT_FESTIVO 55%, hourly divisor
-173, sickness integration 100% with carenza covered at 100%.
+173.  A sick pay amount overrides the native sickness capability.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._caller_rules import (
     CALLER_DECLARED_AMOUNT,
+    CALLER_OVERRIDE,
     CALLER_SUPPLIED_AMOUNT,
     CALLER_SUPPLIED_CAPABILITIES,
     CALLER_SUPPLIED_RATE,
@@ -42,7 +43,6 @@ from ccnl_engine.payroll.domain.events import (
     OvertimeEvent,
     ShiftWorkEvent,
     SickLeaveEvent,
-    SicknessCaseEvent,
     TerminationTFREvent,
     WelfareEvent,
 )
@@ -50,7 +50,6 @@ from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.payroll.domain.trace import TraceState
 
 if TYPE_CHECKING:
@@ -156,8 +155,8 @@ class TestOvertimeRun:
         ),
         (
             SickLeaveEvent(_DAY, Decimal("100.00")),
-            "leave",
-            CALLER_SUPPLIED_AMOUNT,
+            "sickness",
+            CALLER_OVERRIDE,
             "amount",
         ),
         (BonusEvent(_DAY, Decimal(500)), "bonus", CALLER_DECLARED_AMOUNT, "amount"),
@@ -195,7 +194,7 @@ def test_each_event_type_is_flagged(
     assert decision.capability == capability
     assert decision.reason_code == reason
     assert decision.inputs["fields"] == fields
-    substitute = reason != CALLER_DECLARED_AMOUNT
+    substitute = reason not in {CALLER_DECLARED_AMOUNT, CALLER_OVERRIDE}
     assert (capability in CALLER_SUPPLIED_CAPABILITIES) is substitute
 
 
@@ -231,42 +230,19 @@ def test_supplement_bands_match_their_work_kind() -> None:
     assert shift.inputs["bundle_band"] == NOT_IN_BUNDLE
 
 
-def _case() -> SicknessCase:
-    """Five working days at 80.00, three of carenza, INPS 50%, CCNL 100%.
-
-    Returns:
-        The case: INPS 80 * 0.5 * 2 = 80.00, integration 80 * 0.5 * 2 =
-        80.00, carenza 80 * 0.5 * 3 = 120.00.
-    """
-    return SicknessCase(
-        episode_start=_DAY,
-        episode_end=date(2026, 3, 14),
-        working_days=5,
-        waiting_period_days=3,
-        gross_daily=Decimal("80.00"),
-        inps_daily_rate=Decimal("0.50"),
-        integration_rate=Decimal("1.00"),
-        carenza_integration_rate=Decimal("0.50"),
-    )
-
-
-def test_sickness_rates_compare_with_the_ccnl_integration() -> None:
-    """The CCNL integration and carenza rates sit next to the caller's."""
-    decision = _only((SicknessCaseEvent(_DAY, _case()),))
-    inputs = decision.inputs
-    assert inputs["integration_rate"] == Decimal("1.00")
-    assert inputs["carenza_integration_rate"] == Decimal("0.50")
-    assert inputs["bundle_integration_rate"] == Decimal(1)
-    assert inputs["bundle_carenza_integration_rate"] == Decimal(1)
-    assert decision.amount == Decimal("280.00")
-
-
 def test_without_work_rules_nothing_is_in_the_bundle() -> None:
-    """A CCNL without work rules offers no band and no sickness rate."""
+    """A CCNL without work rules offers no band."""
     overtime = _only((_OVERTIME,), _BARE)
-    sickness = _only((SicknessCaseEvent(_DAY, _case()),), _BARE)
     assert overtime.inputs["bundle_band"] == NOT_IN_BUNDLE
-    assert sickness.inputs["bundle_integration_rate"] == NOT_IN_BUNDLE
+
+
+def test_sick_pay_override_is_reported_as_a_caller_value() -> None:
+    """The override of the native sickness capability is a caller field."""
+    decisions = caller_supplied_decisions(
+        (SickLeaveEvent(_DAY, Decimal("100.00")),), _CCNL
+    )
+    assert caller_supplied_fields(decisions) == {"sickness": ("amount",)}
+    assert decisions[0].amount == Decimal("100.00")
 
 
 def test_bundle_value_before_the_series_is_not_in_bundle() -> None:

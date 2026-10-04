@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application._period_utils import _ZERO
 from ccnl_engine.payroll.application._posting_service import post as _post
 from ccnl_engine.payroll.application.handlers._overtime_rate import CCNLOvertimeBands
+from ccnl_engine.payroll.application.handlers._sickness_terms import SicknessTerms
 from ccnl_engine.payroll.application.handlers._totals import (
     _EventAccumulator,
     _EventTotals,
@@ -26,6 +27,7 @@ from ccnl_engine.payroll.domain.events import (
 )
 from ccnl_engine.payroll.domain.ledger import LedgerEntry
 from ccnl_engine.payroll.domain.pay_items import CompetencePeriod, PayItem
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.payroll.domain.ytd_accounts import RegimeCapAccount
 from ccnl_engine.payroll.service.regime_eligibility import RegimeFacts
 from ccnl_engine.shared.domain.errors import InvalidInputError
@@ -78,6 +80,15 @@ def _check_event_date(
     """
     if isinstance(event, ArrearsEvent):
         return
+    if isinstance(event, SicknessEpisode):
+        if event.within(date_ctx.period_start, date_ctx.period_end) is None:
+            msg = (
+                f"event {idx} (SicknessEpisode) from {event.started_on} to "
+                f"{event.ended_on} does not touch period "
+                f"[{date_ctx.period_start}, {date_ctx.period_end}]"
+            )
+            raise InvalidInputError(msg)
+        return
     if not date_ctx.contains(event.event_date):
         msg = (
             f"event {idx} ({type(event).__name__}) event_date {event.event_date} "
@@ -128,6 +139,7 @@ def _process_events(
     opening_work_time_cap: RegimeCapAccount | None = None,
     worker_facts: RegimeFacts = _NO_FACTS,
     overtime_bands: CCNLOvertimeBands | None = None,
+    sickness: SicknessTerms | None = None,
 ) -> tuple[_EventTotals, tuple[PayItem, ...], tuple[LedgerEntry, ...]]:
     """Translate variable work events into accounting entries and aggregated totals.
 
@@ -135,15 +147,19 @@ def _process_events(
     after each eligible supplement, so later events of the run only get the
     substitute rate on what is left of the annual cap.  ``overtime_bands``
     are the CCNL bands an overtime event without a multiplier is paid with;
-    without them such an event is rejected.
+    without them such an event is rejected.  ``sickness`` holds the rules
+    and recorded episodes a sickness episode is paid with; each episode is
+    recorded before the next event.
 
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
     """
     opening_cap = opening_work_time_cap or RegimeCapAccount()
+    terms = sickness or SicknessTerms()
     acc = _EventAccumulator(
         opening_fringe_ytd, opening_fringe_taxed, opening_cap, opening_cap
     )
+    acc.sickness = terms.history
     base_ctx = _EventHandlerCtx(
         evt_id="",
         cp=cp,
@@ -159,6 +175,7 @@ def _process_events(
         work_time_cap=acc.work_time_cap,
         worker_facts=worker_facts,
         overtime_bands=overtime_bands or CCNLOvertimeBands(),
+        sickness=terms,
     )
     for i, event in enumerate(events):
         _check_event_date(event, date_ctx, i)
@@ -169,6 +186,7 @@ def _process_events(
             cumulative_fringe=acc.cumulative_fringe,
             cumulative_taxed=acc.cumulative_taxed,
             work_time_cap=acc.work_time_cap,
+            sickness=replace(terms, history=acc.sickness),
         )
         acc.add(event, handler(event, ctx))
     return (

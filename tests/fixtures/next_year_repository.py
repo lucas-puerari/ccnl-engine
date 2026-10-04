@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.shared.domain.limitation import ModelLimitation
     from ccnl_engine.tax.domain.family import FamilyDeductionRules
     from ccnl_engine.tax.domain.ruleset import YearRules
+    from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates
     from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
     from ccnl_engine.tax.domain.variable_pay import VariablePayRules
 
@@ -94,6 +95,14 @@ class NextYearRepository:
         """
         rules = self._bundled.load_family_deduction_rules(self._source(year))
         return rules.model_copy(update={"year": year})
+
+    def load_sick_pay_rates(self) -> InpsSickPayRates:
+        """Return the bundled INPS sickness indemnity rules.
+
+        Returns:
+            The rules, not tied to a year.
+        """
+        return self._bundled.load_sick_pay_rates()
 
     def load_engine_limitations(self) -> tuple[ModelLimitation, ...]:
         """Return the bundled engine limitations.

@@ -1,172 +1,202 @@
-"""SicknessCase domain model: one sick-leave episode for a payroll period."""
+"""Sickness episode: one illness, its interval and the episode it continues.
+
+An episode is a fact of the medical certificates: the first and last day of
+the illness and, for a relapse (*ricaduta*), the episode it continues.  The
+engine derives everything else from the CCNL and the INPS rules
+(:mod:`~ccnl_engine.payroll.domain.sick_days`).
+
+An episode that spans several months is passed, with the same
+:attr:`~SicknessEpisode.episode_id` and start, to every regular run whose
+month it touches; each run pays the days of its own month.  The runs record
+the days they processed in the accrual state, so later episodes see the
+earlier ones whatever run computes them.
+"""
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from decimal import Decimal
-from typing import TYPE_CHECKING
+from dataclasses import dataclass, replace
+from datetime import date, timedelta
 
-from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
-from ccnl_engine.shared.domain.validation import (
-    require_date,
-    require_decimal,
-    require_int,
-)
+from ccnl_engine.shared.domain.errors import InvalidInputError
+from ccnl_engine.shared.domain.validation import require_date, require_str
 
-if TYPE_CHECKING:
-    from datetime import date
+__all__ = ["SicknessEpisode", "SicknessHistory"]
 
-_ZERO = Decimal(0)
-_ONE = Decimal(1)
 _FEATURE = "sickness"
+_OWNER = "SicknessEpisode"
 
 
 @dataclass(frozen=True)
-class SicknessCase:
-    """Full sick-leave episode entering a single period-first payroll calculation.
-
-    The caller supplies the episode interval and per-day rates; the engine
-    derives absence deduction, INPS indemnity, and employer integration.
+class SicknessEpisode:
+    """One sickness episode, a work event of every run whose month it touches.
 
     Attributes:
-        episode_start: First calendar day of the sickness episode.
-            Used to document the episode; may precede the competence period
-            when the illness started in a prior month.
-        episode_end: Last calendar day of the sickness episode.
-            May fall in a later month for multi-period episodes.
-        working_days: Working days within this competence period that are
-            affected by the sick leave.  Must be >= 1.
-        waiting_period_days: Carenza (waiting period) days at the start of
-            the episode.  Must be >= 0 and <= working_days.  Days with
-            carenza receive employer integration only at
-            ``carenza_integration_rate``, not the INPS indemnity path.
-        gross_daily: Gross daily reference salary in EUR.  The absence
-            deduction equals ``gross_daily * working_days``.
-        inps_daily_rate: INPS indemnity rate applied on indemnifiable days
-            (after carenza).  Between 0 and 1 inclusive.  Use ``0`` when
-            INPS does not cover this episode (e.g. domestic workers).
-        integration_rate: Target fraction of ``gross_daily`` the worker should
-            receive during INPS-covered days (CCNL integration rate).  Must
-            be between 0 and 1 inclusive.  The employer pays the difference
-            above the INPS indemnity.
-        carenza_integration_rate: Fraction of ``gross_daily`` the employer
-            covers during carenza days.  Between 0 and 1 inclusive.
-            Defaults to 0 (no employer coverage during carenza).
-        cumulative_sick_days_ytd: Total sick days accumulated in prior
-            periods this tax year.  When > 0, tier-based integration is
-            required; the engine raises :class:`OutOfScopeError` for this
-            case (seniority/tier tracking not yet implemented).
+        episode_id: Stable identifier of the episode, the same in every run
+            (e.g. the protocol number of the first certificate).
+        started_on: First day of illness.
+        ended_on: Last day of illness on the certificates known so far.  A
+            later run may pass a later day when the illness is extended.
+        relapse_of: Identifier of the episode this one continues, when the
+            certificate marks it as a relapse (*ricaduta*): the days of both
+            count as one episode, so no new waiting period applies.
+
+    Raises:
+        InvalidInputError: When the identifier is blank, a day is not a
+            date, the episode ends before it starts or continues itself.
     """
 
-    episode_start: date
-    episode_end: date
-    working_days: int
-    waiting_period_days: int
-    gross_daily: Decimal
-    inps_daily_rate: Decimal
-    integration_rate: Decimal
-    carenza_integration_rate: Decimal = _ZERO
-    cumulative_sick_days_ytd: int = 0
+    episode_id: str
+    started_on: date
+    ended_on: date
+    relapse_of: str | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        self._check_days()
-        require_decimal(
-            self.gross_daily,
-            "SicknessCase.gross_daily",
-            feature=_FEATURE,
-            minimum=_ZERO,
+        require_str(
+            self.episode_id, f"{_OWNER}.episode_id", feature=_FEATURE, non_blank=True
         )
-        for name in ("inps_daily_rate", "integration_rate", "carenza_integration_rate"):
-            require_decimal(
-                getattr(self, name),
-                f"SicknessCase.{name}",
-                feature=_FEATURE,
-                minimum=_ZERO,
-                maximum=_ONE,
+        require_date(self.started_on, f"{_OWNER}.started_on", feature=_FEATURE)
+        require_date(self.ended_on, f"{_OWNER}.ended_on", feature=_FEATURE)
+        require_str(
+            self.relapse_of,
+            f"{_OWNER}.relapse_of",
+            feature=_FEATURE,
+            non_blank=True,
+            optional=True,
+        )
+        if self.ended_on < self.started_on:
+            msg = (
+                f"{_OWNER}.ended_on ({self.ended_on}) must not precede "
+                f"started_on ({self.started_on})"
             )
-        self._check_cumulative_days()
+            raise InvalidInputError(msg, field=f"{_OWNER}.ended_on", feature=_FEATURE)
+        if self.relapse_of == self.episode_id:
+            msg = f"{_OWNER} '{self.episode_id}' cannot be a relapse of itself"
+            raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
 
-    def _check_days(self) -> None:
-        """Validate the episode dates, working days and carenza days.
+    @property
+    def event_date(self) -> date:
+        """First day of the episode: the date of the event."""
+        return self.started_on
+
+    @property
+    def days(self) -> int:
+        """Calendar days from :attr:`started_on` to :attr:`ended_on`."""
+        return (self.ended_on - self.started_on).days + 1
+
+    def within(self, first: date, last: date) -> tuple[date, date] | None:
+        """Return the days of the episode from ``first`` to ``last``.
+
+        Returns:
+            The first and last sick day of the interval, ``None`` when the
+            episode does not touch it.
+        """
+        start, end = max(first, self.started_on), min(last, self.ended_on)
+        return None if end < start else (start, end)
+
+    def through(self, day: date) -> SicknessEpisode:
+        """Return the episode cut at ``day``, the last day processed.
+
+        Returns:
+            The episode ending on ``day`` when it lasts beyond it.
+        """
+        return self if self.ended_on <= day else replace(self, ended_on=day)
+
+    def before(self, day: date) -> SicknessEpisode | None:
+        """Return the part of the episode before ``day``.
+
+        Returns:
+            The episode cut on the day before ``day``, ``None`` when it
+            starts on or after ``day``.
+        """
+        if self.started_on >= day:
+            return None
+        return self.through(day - timedelta(days=1))
+
+
+@dataclass(frozen=True)
+class SicknessHistory:
+    """Episodes processed by earlier runs, as far as they processed them.
+
+    Attributes:
+        episodes: Recorded episodes, each cut at its last processed day.
+    """
+
+    episodes: tuple[SicknessEpisode, ...] = ()
+
+    def _find(self, episode_id: str) -> SicknessEpisode | None:
+        return next((e for e in self.episodes if e.episode_id == episode_id), None)
+
+    def offset(self, episode: SicknessEpisode) -> int:
+        """Return the days counted before ``episode`` in its relapse chain.
+
+        Returns:
+            Zero for a new episode; for a relapse, the days of the episodes
+            it continues.
 
         Raises:
-            InvalidInputError: When the episode ends before it starts, or the
-                day counts are out of range.
+            InvalidInputError: When the episode it continues is not
+                recorded.
         """
-        require_date(self.episode_start, "SicknessCase.episode_start", feature=_FEATURE)
-        require_date(self.episode_end, "SicknessCase.episode_end", feature=_FEATURE)
-        require_int(
-            self.working_days, "SicknessCase.working_days", feature=_FEATURE, minimum=1
-        )
-        require_int(
-            self.waiting_period_days,
-            "SicknessCase.waiting_period_days",
-            feature=_FEATURE,
-            minimum=0,
-        )
-        if self.episode_end < self.episode_start:
+        if episode.relapse_of is None:
+            return 0
+        previous = self._find(episode.relapse_of)
+        if previous is None or previous.started_on >= episode.started_on:
             msg = (
-                f"SicknessCase.episode_end ({self.episode_end}) must not precede "
-                f"episode_start ({self.episode_start})"
+                f"episode '{episode.episode_id}' continues '{episode.relapse_of}', "
+                "which no earlier run recorded"
             )
-            raise InvalidInputError(
-                msg, field="SicknessCase.episode_end", feature=_FEATURE
-            )
-        if self.waiting_period_days > self.working_days:
-            msg = (
-                f"SicknessCase.waiting_period_days ({self.waiting_period_days}) "
-                f"must not exceed working_days ({self.working_days})"
-            )
-            raise InvalidInputError(
-                msg, field="SicknessCase.waiting_period_days", feature=_FEATURE
-            )
+            raise InvalidInputError(msg, field=f"{_OWNER}.relapse_of", feature=_FEATURE)
+        return self.offset(previous) + previous.days
 
-    def _check_cumulative_days(self) -> None:
-        """Validate the sick days of earlier periods; tiers are out of scope.
+    def check(self, episode: SicknessEpisode) -> None:
+        """Check ``episode`` against the recorded ones.
 
         Raises:
-            OutOfScopeError: When it is positive.
+            InvalidInputError: When a recorded episode of the same id starts
+                on another day, or another episode overlaps it.
         """
-        require_int(
-            self.cumulative_sick_days_ytd,
-            "SicknessCase.cumulative_sick_days_ytd",
-            feature=_FEATURE,
-            minimum=0,
-        )
-        if self.cumulative_sick_days_ytd > 0:
-            msg = (
-                "Tier-based sickness integration (cumulative_sick_days_ytd > 0) "
-                "is not yet implemented; compute the integration_rate from the "
-                "applicable CCNL tier and pass cumulative_sick_days_ytd=0."
-            )
-            raise OutOfScopeError(
-                msg,
-                feature="sickness",
-                reason="cumulative_tiers_not_implemented",
-                remediation=(
-                    "Pass the applicable integration_rate directly and set "
-                    "cumulative_sick_days_ytd=0."
+        for other in self.episodes:
+            same = other.episode_id == episode.episode_id
+            if same and other.started_on != episode.started_on:
+                msg = (
+                    f"episode '{episode.episode_id}' was recorded from "
+                    f"{other.started_on}, not {episode.started_on}"
+                )
+                raise InvalidInputError(
+                    msg, field=f"{_OWNER}.started_on", feature=_FEATURE
+                )
+            if not same and other.within(episode.started_on, episode.ended_on):
+                msg = (
+                    f"episode '{episode.episode_id}' overlaps recorded episode "
+                    f"'{other.episode_id}'"
+                )
+                raise InvalidInputError(
+                    msg, field=f"{_OWNER}.started_on", feature=_FEATURE
+                )
+
+    def with_episode(self, episode: SicknessEpisode) -> tuple[SicknessEpisode, ...]:
+        """Return the recorded episodes with ``episode`` recorded or replaced.
+
+        Returns:
+            The episodes in start order.
+        """
+        others = [e for e in self.episodes if e.episode_id != episode.episode_id]
+        return tuple(sorted((*others, episode), key=lambda e: e.started_on))
+
+    def earlier(self, episode: SicknessEpisode) -> tuple[SicknessEpisode, ...]:
+        """Return the recorded episodes other than ``episode``, in start order.
+
+        Returns:
+            The episodes that started before ``episode``.
+        """
+        return tuple(
+            sorted(
+                (
+                    e
+                    for e in self.episodes
+                    if e.episode_id != episode.episode_id
+                    and e.started_on < episode.started_on
                 ),
+                key=lambda e: e.started_on,
             )
-
-    @property
-    def spans_multiple_months(self) -> bool:
-        """True when the episode crosses a calendar-month boundary.
-
-        Returns:
-            Whether ``episode_start`` and ``episode_end`` fall in different
-            months (possibly different years).
-        """
-        return (
-            self.episode_start.year != self.episode_end.year
-            or self.episode_start.month != self.episode_end.month
         )
-
-    @property
-    def indemnifiable_days(self) -> int:
-        """Working days covered by INPS indemnity (after carenza).
-
-        Returns:
-            ``max(0, working_days - waiting_period_days)``.
-        """
-        return max(0, self.working_days - self.waiting_period_days)

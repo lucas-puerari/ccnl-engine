@@ -3,7 +3,7 @@
 An ordinary month covers every capability that applies to it; the
 unsupported ones are not applicable or outside the input.  A run that
 closes the employment makes the unsupported residual-leave capability
-applicable, and a sickness case executes a partial capability.
+applicable, and a sickness episode executes a native capability.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ from datetime import date
 
 import pytest
 
+from ccnl_engine.contract.domain.category import WorkerCategory
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.domain.assurance import BlockerCode, CoverageStatus
 from ccnl_engine.payroll.domain.capability_report import (
@@ -129,18 +130,25 @@ class TestClosingRun:
         assert _gap_kinds(replace(_req(month=3), employment_period=period)) == {}
 
 
-class TestPartialCapability:
-    """A partial capability that executes leaves the run partially covered."""
+class TestNativeSickness:
+    """A sickness episode executes a native capability."""
 
-    def test_sickness_case_is_partial(self) -> None:
-        """Sickness is implemented for some variants only."""
-        request = replace(_req(month=3), events=(march_sickness_episode(0),))
+    def test_sickness_episode_leaves_no_gap(self) -> None:
+        """For an operaio INPS cover is known: sickness opens no gap."""
+        request = replace(
+            _req(month=3),
+            events=(march_sickness_episode(),),
+            category=WorkerCategory.OPERAIO,
+        )
         result = calculate_period(request)
-        assert _gap_kinds(request) == {
-            "sickness": CapabilityGapKind.PARTIAL_IMPLEMENTATION
-        }
+        assert _gap_kinds(request) == {}
         assert result.capability_report.scope["sickness"] is CapabilityScope.APPLICABLE
-        assert result.assurance.coverage is CoverageStatus.PARTIAL
+
+    def test_unknown_cover_leaves_a_partial_result(self) -> None:
+        """Without the category INPS cover is unknown: the result is partial."""
+        request = replace(_req(month=3), events=(march_sickness_episode(),))
+        result = calculate_period(request)
+        assert _gap_kinds(request) == {"sickness": CapabilityGapKind.PARTIAL_RESULT}
         assert not result.is_payable
 
 

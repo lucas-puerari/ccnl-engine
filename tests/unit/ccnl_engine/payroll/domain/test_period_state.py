@@ -37,8 +37,8 @@ class TestPeriodState:
         assert state.tax_year is None
 
     def test_schema_version_is_seven(self) -> None:
-        """SCHEMA_VERSION is 7 since the INPS base moved to the accrual state."""
-        assert PeriodState.SCHEMA_VERSION == 7
+        """SCHEMA_VERSION is 8 since the accrual state records sickness episodes."""
+        assert PeriodState.SCHEMA_VERSION == 8
 
     def test_tax_year_is_that_of_the_cash_state(self) -> None:
         """The tax year is read from the cash state."""

@@ -40,6 +40,46 @@ class SickPayBand(BaseModel):
         return self
 
 
+class SickPayCoverage(BaseModel):
+    """Whether INPS pays the sickness indemnity to a group of workers.
+
+    A restriction left ``None`` matches every worker.  The first rule of
+    :attr:`InpsSickPayRates.coverage` that matches a worker decides.
+
+    Attributes:
+        sectors: INPS tax sectors of the CCNL (``industria``...).
+        categories: Worker categories (``operaio``, ``impiegato``...).
+        contract_types: Contract types (``apprentice``...).
+        covered: Whether INPS pays the indemnity to the matching workers.
+        source: Normative source of the rule.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    sectors: frozenset[str] | None = Field(default=None, min_length=1)
+    categories: frozenset[str] | None = Field(default=None, min_length=1)
+    contract_types: frozenset[str] | None = Field(default=None, min_length=1)
+    covered: bool
+    source: str = Field(min_length=1)
+
+    def matches(self, sector: str, category: str | None, contract_type: str) -> bool:
+        """Return whether the rule concerns the worker.
+
+        An unknown category matches only a rule that does not restrict it.
+
+        Returns:
+            ``True`` when every restriction set matches.
+        """
+        return (
+            (self.sectors is None or sector in self.sectors)
+            and (
+                self.categories is None
+                or (category is not None and category in self.categories)
+            )
+            and (self.contract_types is None or contract_type in self.contract_types)
+        )
+
+
 class InpsSickPayRates(BaseModel):
     """Statutory INPS sick-pay indemnity rates (malattia ordinaria).
 
@@ -53,6 +93,9 @@ class InpsSickPayRates(BaseModel):
     Attributes:
         carenza_days: Number of waiting days before INPS indemnity starts.
         bands: Rate bands ordered by ``day_from`` (non-overlapping).
+        annual_max_days: Days INPS indemnifies at most in a calendar year.
+        coverage: Which workers INPS pays the indemnity to, first match
+            wins; a worker no rule matches is not known to be covered.
         ruleset: Provenance of the statutory source.
     """
 
@@ -61,7 +104,35 @@ class InpsSickPayRates(BaseModel):
     description: str = ""
     carenza_days: int = Field(default=3, ge=0)
     bands: list[SickPayBand] = Field(default_factory=list)
+    annual_max_days: int = Field(default=180, ge=1)
+    coverage: tuple[SickPayCoverage, ...] = ()
     ruleset: RulesetIdentity | None = None
+
+    def covers(
+        self, sector: str, category: str | None, contract_type: str
+    ) -> bool | None:
+        """Return whether INPS pays the sickness indemnity to the worker.
+
+        Returns:
+            The ``covered`` flag of the first matching rule, ``None`` when
+            no rule matches.
+        """
+        rule = next(
+            (r for r in self.coverage if r.matches(sector, category, contract_type)),
+            None,
+        )
+        return None if rule is None else rule.covered
+
+    def band_rate(self, day: int) -> Decimal:
+        """Return the INPS rate of episode day ``day``.
+
+        Returns:
+            The rate of the band holding ``day``, zero outside every band.
+        """
+        return next(
+            (b.rate for b in self.bands if b.day_from <= day <= b.day_to),
+            Decimal(0),
+        )
 
     @model_validator(mode="after")
     def _check_bands(self) -> Self:

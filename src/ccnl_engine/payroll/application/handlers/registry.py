@@ -17,7 +17,9 @@ from ccnl_engine.payroll.application.handlers.benefits import (
     _handle_fringe,
     _handle_welfare,
 )
-from ccnl_engine.payroll.application.handlers.sickness import _handle_sickness_case
+from ccnl_engine.payroll.application.handlers.sickness import (
+    _handle_sickness_episode,
+)
 from ccnl_engine.payroll.application.handlers.termination import (
     _handle_bilateral_fund,
     _handle_termination_tfr,
@@ -35,7 +37,7 @@ from ccnl_engine.payroll.domain.events import (
     OvertimeEvent,
     ShiftWorkEvent,
     SickLeaveEvent,
-    SicknessCaseEvent,
+    SicknessEpisode,
     TerminationTFREvent,
     WelfareEvent,
 )
@@ -57,5 +59,5 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     ArrearsEvent: _handle_arrears,
     BilateralFundEvent: _handle_bilateral_fund,
     TerminationTFREvent: _handle_termination_tfr,
-    SicknessCaseEvent: _handle_sickness_case,
+    SicknessEpisode: _handle_sickness_episode,
 }

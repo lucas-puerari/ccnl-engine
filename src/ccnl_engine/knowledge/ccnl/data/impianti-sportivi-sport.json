@@ -111,7 +111,11 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve.",
         "capability": "sickness",
-        "monetary_impact": "no"
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "integration_75_days_4_20",
+          "remediation": "Express the day-based integration of Art. 103 (75% on days 4-20, 100% from day 21) in the sickness rule, then resolve this limitation."
+        }
       },
       {
         "kind": "simplification",
@@ -1199,7 +1203,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "53e2a4843f86544e607d00cf781a737cf739f37b0719974a676d69eb4e62d9b8",
+    "source_hash": "96b6f1e98c29c8072ffff567f139ef587d117aad91b082cde429b4c42ec0ccf7",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

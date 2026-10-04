@@ -13,6 +13,7 @@ from ccnl_engine.payroll.application.handlers._overtime_rate import (
     resolve_overtime_rate,
 )
 from ccnl_engine.payroll.application.period._accrual_decisions import accrual_rules
+from ccnl_engine.payroll.application.period._sickness import sickness_rules
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.payroll.domain.events import OvertimeEvent
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
@@ -276,4 +277,5 @@ LOADED: dict[str, Callable[[RunContext], tuple[Rule, ...]]] = {
     "addizionale_comunale": partial(_surtax_rules, regional=False),
     "family_deductions": _family_rules,
     "pension_fund_contribution": _pension_rules,
+    "sickness": sickness_rules,
 }
