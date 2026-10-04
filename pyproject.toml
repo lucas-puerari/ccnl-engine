@@ -110,6 +110,7 @@ max-public-methods = 15
 "src/ccnl_engine/payroll/domain/**" = ["TCH"]
 "src/ccnl_engine/payroll/application/**" = ["TCH"]
 "src/ccnl_engine/tax/domain/surtax_rules.py" = ["TCH"]
+"src/ccnl_engine/tax/domain/surtax_tables.py" = ["TCH"]
 "src/ccnl_engine/provenance/domain/ruleset_identity.py" = ["TCH"]
 "src/ccnl_engine/shared/domain/primitives.py" = ["TCH"]
 

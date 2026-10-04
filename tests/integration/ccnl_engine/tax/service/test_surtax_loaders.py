@@ -9,11 +9,8 @@ from pydantic import ValidationError
 
 from ccnl_engine.shared.domain.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.surtax_rules import (
-    ComunaleEntry,
-    RegionaleEntry,
-    SurtaxRules,
-)
+from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+from ccnl_engine.tax.domain.surtax_tables import ComunaleEntry, RegionaleEntry
 from ccnl_engine.tax.service.surtax_loaders import (
     _load_surtax_rules_cached,
     load_surtax_rules,

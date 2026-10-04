@@ -29,8 +29,8 @@ def load_surtax_rules(year: int) -> SurtaxRules:
     Each call returns a new :class:`~ccnl_engine.tax.domain.surtax_rules.SurtaxRules`
     whose ``regionale`` and ``comunale`` dicts are freshly allocated, so callers
     may add or remove keys without affecting subsequent loads. The individual
-    :class:`~ccnl_engine.tax.domain.surtax_rules.RegionaleEntry` and
-    :class:`~ccnl_engine.tax.domain.surtax_rules.ComunaleEntry` values are
+    :class:`~ccnl_engine.tax.domain.surtax_tables.RegionaleEntry` and
+    :class:`~ccnl_engine.tax.domain.surtax_tables.ComunaleEntry` values are
     shared with the internal cache; they are frozen and their ``brackets`` tuples
     are immutable, so in-place mutation is not possible.
 

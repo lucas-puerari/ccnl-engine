@@ -21,11 +21,11 @@ from ccnl_engine.payroll.service.surtax_table import (
     regional_surtax_amount,
 )
 from ccnl_engine.shared.domain.primitives import Bracket
-from ccnl_engine.tax.domain.surtax_rules import (
+from ccnl_engine.tax.domain.surtax_rules import SurtaxRules
+from ccnl_engine.tax.domain.surtax_tables import (
     ComunaleEntry,
     RegionalDeduction,
     RegionaleEntry,
-    SurtaxRules,
     WholeIncomeRate,
 )
 
