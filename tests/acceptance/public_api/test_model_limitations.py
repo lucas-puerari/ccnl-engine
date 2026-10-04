@@ -32,7 +32,7 @@ from ccnl_engine import (
 )
 
 _ENGINE = PayrollEngine.bundled()
-_MIDPOINT = "apprenticeship_midpoint_allowances"
+_MIDPOINT = "legno-arredamento-federlegno/apprenticeship_midpoint_components"
 _APPRENTICE_SENIORITY = "apprentice_seniority"
 _CONCIA_OVERTIME = "concia-unic/higher_overtime_bands"
 

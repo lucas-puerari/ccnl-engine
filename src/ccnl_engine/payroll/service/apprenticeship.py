@@ -27,9 +27,11 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.service.types import MonthlyPayChain, MonthPeriod
 
 _TWO = Decimal(2)
+_ZERO = Decimal(0)
 
-#: Engine limitation of a midpoint period that leaves an allowance unaveraged.
-MIDPOINT_ALLOWANCES = "apprenticeship_midpoint_allowances"
+#: Variant of the CCNL limitation of a midpoint period whose components the
+#: CCNL text read for the ruleset does not settle.
+MIDPOINT_VARIANT = "apprenticeship_midpoint_components"
 
 
 def _find_period_index(periods: Sequence[MonthPeriod], months_elapsed: int) -> int:
@@ -177,43 +179,57 @@ def _underclass_track_chain(
         seniority_months=seniority_months,
     )
     if period.midpoint_to_destination:
-        chain = _midpoint_chain(chain, level, roles, as_of, seniority_months)
+        chain = _midpoint_chain(chain, ccnl, level, roles, as_of, seniority_months)
     return chain, None, pay_level.code
 
 
 def _midpoint_chain(
     chain: MonthlyPayChain,
+    ccnl: CCNL,
     destination: Level,
     roles: frozenset[str],
     as_of: date,
     seniority_months: int | None,
 ) -> MonthlyPayChain:
-    """Average the base salary of *chain* with that of the destination level.
+    """Pay the mean of the pay-level and destination-level monthly pay.
 
-    The midpoint applies to the base salary only; the allowances stay those
-    of the pay level.  When they differ from the destination allowances the
-    chain records the ``apprenticeship_midpoint_allowances`` limitation.
+    The midpoint covers the whole monthly pay of the two levels: base
+    salary and every active fixed allowance.  CCNL Aziende Termali
+    Federterme 2024, Art. 13 lett. g: the pay of the lower level
+    "maggiorato di un importo pari al 50% del differenziale previsto tra
+    il 5° e il 6° livello".  An allowance of one level only counts as
+    zero on the other.  Each allowance is averaged and rounded to the
+    cent; the base takes the rest of the rounded mean of the totals, so
+    the chain adds up to the CCNL amount.  The seniority stays the
+    apprentice amount.  The run records the CCNL limitation of
+    :data:`MIDPOINT_VARIANT`, which a CCNL whose text leaves the
+    components open declares.
 
     Returns:
-        The chain with the averaged base salary.
+        The chain with every pay component averaged.
     """
     with rule_scope(feature="base_salary"):
         dest_base = destination.base_salary.value_at(as_of)
-        destination_allowances = money(
-            sum(
-                (
-                    a.monthly.value_at(as_of)
-                    for a in destination.fixed_allowances
-                    if _allowance_active(a, roles, seniority_months, as_of)
-                ),
-                Decimal(0),
-            )
-        )
-    limitations = chain.limitations
-    if destination_allowances != chain.allowances_total:
-        limitations = (*limitations, MIDPOINT_ALLOWANCES)
+        dest = {
+            a.code: (a, a.monthly.value_at(as_of))
+            for a in destination.fixed_allowances
+            if _allowance_active(a, roles, seniority_months, as_of)
+        }
+    own = {a.code for a, _ in chain.allowances}
+    averaged = (
+        *(
+            (a, money((v + dest[a.code][1] if a.code in dest else v) / _TWO))
+            for a, v in chain.allowances
+        ),
+        *((a, money(v / _TWO)) for a, v in dest.values() if a.code not in own),
+    )
+    dest_total = dest_base + sum((v for _, v in dest.values()), _ZERO)
+    total = money((chain.base + chain.allowances_total + dest_total) / _TWO)
     return replace(
-        chain, base=money((chain.base + dest_base) / _TWO), limitations=limitations
+        chain,
+        base=total - sum((v for _, v in averaged), _ZERO),
+        allowances=averaged,
+        limitations=(*chain.limitations, f"{ccnl.meta.ccnl_id}/{MIDPOINT_VARIANT}"),
     )
 
 

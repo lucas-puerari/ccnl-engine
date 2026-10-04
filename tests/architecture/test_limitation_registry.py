@@ -25,7 +25,7 @@ from ccnl_engine.payroll.application.handlers.sickness import (
     CUMULATION_LIMITATION,
     INPS_DAILY_BASE_LIMITATION,
 )
-from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_ALLOWANCES
+from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_VARIANT
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
 )
@@ -75,6 +75,7 @@ def test_limitations_name_registry_capabilities(ccnls: tuple[CCNL, ...]) -> None
 
 
 _APPRENTICE_SENIORITY = "apprentice_seniority_simplified"
+_MIDPOINT = "apprenticeship_midpoint_allowances"
 
 
 def test_engine_limitations_are_raised_by_their_code() -> None:
@@ -88,11 +89,10 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         for status in LimitationStatus
     }
     assert by_status[LimitationStatus.OPEN] == {
-        MIDPOINT_ALLOWANCES,
         INPS_DAILY_BASE_LIMITATION,
         CUMULATION_LIMITATION,
     }
-    assert by_status[LimitationStatus.RESOLVED] == {_APPRENTICE_SENIORITY}
+    assert by_status[LimitationStatus.RESOLVED] == {_MIDPOINT, _APPRENTICE_SENIORITY}
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
@@ -123,9 +123,7 @@ def test_engine_limitation_rulesets_are_derived_from_data(
 ) -> None:
     """The rulesets of an engine limitation are the CCNLs that can take its path."""
     rulesets = {lim.id: set(lim.rulesets) for lim in load_engine_limitations()}
-    assert rulesets[MIDPOINT_ALLOWANCES] == {
-        c.meta.ccnl_id for c in ccnls if _has_midpoint(c)
-    }
+    assert rulesets[_MIDPOINT] == {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
     assert rulesets[_APPRENTICE_SENIORITY] == {
         c.meta.ccnl_id for c in ccnls if _has_level_seniority_for_apprentices(c)
     }
@@ -155,3 +153,21 @@ def test_unsourced_apprentice_seniority_is_an_open_limitation(
         )
         expected = [LimitationStatus.OPEN] if unsourced else []
         assert _apprentice_seniority_notes(ccnl) == expected, ccnl.meta.ccnl_id
+
+
+def test_unsourced_midpoint_components_are_an_open_limitation(
+    ccnls: tuple[CCNL, ...],
+) -> None:
+    """Of the CCNLs with a midpoint period, only Federterme states its components.
+
+    Its Art. 13 lett. g averages the whole pay; the others carry an open
+    limitation the midpoint path records.
+    """
+    unsourced = {
+        ccnl.meta.ccnl_id
+        for ccnl in ccnls
+        for lim in ccnl.limitations
+        if lim.variant == MIDPOINT_VARIANT and lim.status is LimitationStatus.OPEN
+    }
+    midpoint = {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
+    assert unsourced == midpoint - {"aziende-termali-federterme"}

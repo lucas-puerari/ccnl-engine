@@ -5,9 +5,9 @@
       "id": "apprenticeship_midpoint_allowances",
       "capability": "base_salary",
       "variant": "apprenticeship_midpoint_to_destination",
-      "summary": "In an under-classification apprenticeship period flagged midpoint_to_destination the engine pays the mean of the pay-level and destination base salaries, but the fixed allowances stay those of the pay level. The contract midpoint may cover the whole pay; the run is affected only when the allowances of the two levels differ.",
+      "summary": "A midpoint_to_destination period pays the mean of the whole monthly pay of the pay level and the destination level: base salary and every active fixed allowance (an allowance of one level counts as zero on the other); the base takes the rest of the rounded mean of the totals. A CCNL whose text leaves the averaged components open carries its own limitation <ccnl_id>/apprenticeship_midpoint_components, recorded on the midpoint path.",
       "monetary_impact": "yes",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "aziende-termali-federterme",
         "legno-arredamento-federlegno"
@@ -18,8 +18,8 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.payroll.service.apprenticeship (under-classification pay chain)",
-      "remediation": "Apply the midpoint to every component the CCNL averages, with the source of the rule, then resolve this limitation."
+      "source": "ccnl_engine.payroll.service.apprenticeship._midpoint_chain; CCNL Aziende Termali Federterme 2024-2027 Art. 13 lett. g ('maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello'); tests/acceptance/legal_scenarios/test_apprenticeship_midpoint.py",
+      "remediation": "Resolved: CCNLs whose midpoint components are unsourced are tracked by their own apprenticeship_midpoint_components limitation."
     },
     {
       "id": "apprentice_seniority_simplified",

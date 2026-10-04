@@ -67,13 +67,14 @@ automatically. In `operational` mode every one of these runs also carries a
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->244<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->245<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->4<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
-(`knowledge/limitations/data/engine.json`: the apprenticeship midpoint that
-averages the base salary but not the allowances, the apprentice seniority
-increment, now resolved, and two sickness paths). A CCNL that declares no
+(`knowledge/limitations/data/engine.json`: the apprenticeship midpoint and
+the apprentice seniority increment, both resolved, and two sickness paths).
+A CCNL whose midpoint components are unsourced carries its own
+`<ccnl_id>/apprenticeship_midpoint_components` limitation. A CCNL that declares no
 apprentice seniority amount carries its own `<ccnl_id>/apprentice_seniority`
 limitation, recorded when an apprentice has matured increments the level
 pays. Each entry has a stable `id`, the `capability` and `variant` it
@@ -81,10 +82,10 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->308<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->309<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->73<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-yes -->74<!-- /trust:simplification-yes --> `yes`,
 <!-- trust:simplification-unknown -->167<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->68<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
@@ -100,8 +101,8 @@ the run uses its CCNL:
   fall within its `applies_when` scope (an unknown category or seniority does
   not rule a run out);
 - an engine limitation applies only when the run takes its code path, and the
-  run records the traversal (an apprentice in a midpoint period whose
-  allowances differ from those of the destination level);
+  run records the traversal (an apprentice in a midpoint period of a CCNL
+  whose midpoint components are unsourced);
 - <!-- trust:limitations-outside-input -->41<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
