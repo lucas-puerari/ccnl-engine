@@ -1,4 +1,4 @@
-"""Independent surtax oracle: Sardegna and Sassari, installments and acconto.
+"""Independent surtax oracle: Sardegna, Sassari, Alghero, installments, acconto.
 
 Written from the statutory text and the MEF tables, deliberately without
 importing anything from ``ccnl_engine``.  Given the annual taxable income
@@ -17,6 +17,11 @@ Rates, read on the MEF Dipartimento delle Finanze on 27 September 2026:
   published 20 December 2025); no 2026 row was published.  Above the
   threshold the rate applies to the whole taxable income,
   https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&cm=&pr=SS&cc=I452&r=1
+  .
+- Comune di Alghero (A192), anno d'imposta 2026: "Aliquota unica" 0.8%,
+  no soglia di esenzione (delibera n. 14 of 30 January 2026, published 9
+  February 2026, "conferma"), read on 4 October 2026,
+  https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/nuova_addcomirpef/risultato.htm?anno=9999&cm=&pr=SS&cc=A192&r=1
   .
 
 Rules:
@@ -44,6 +49,7 @@ __all__ = [
     "BALANCE_MONTHS",
     "installments",
     "municipal_advance",
+    "municipal_alghero",
     "municipal_sassari",
     "regional_sardegna",
 ]
@@ -53,6 +59,7 @@ _ZERO = Decimal(0)
 _SARDEGNA_RATE = Decimal("0.0123")
 _SASSARI_RATE = Decimal("0.008")
 _SASSARI_THRESHOLD = Decimal(15_000)
+_ALGHERO_RATE = Decimal("0.008")
 _ADVANCE_SHARE = Decimal("0.30")
 
 #: Months of the eleven balance installments after a December conguaglio.
@@ -86,6 +93,17 @@ def municipal_sassari(taxable: Decimal, net_irpef: Decimal) -> Decimal:
     if net_irpef <= _ZERO or taxable <= _SASSARI_THRESHOLD:
         return _ZERO
     return _cents(taxable * _SASSARI_RATE)
+
+
+def municipal_alghero(taxable: Decimal, net_irpef: Decimal) -> Decimal:
+    """Return the municipal surtax of Alghero on ``taxable``.
+
+    Returns:
+        0.8% of the whole taxable income, zero without net IRPEF due.
+    """
+    if net_irpef <= _ZERO:
+        return _ZERO
+    return _cents(taxable * _ALGHERO_RATE)
 
 
 def municipal_advance(municipal: Decimal) -> Decimal:
