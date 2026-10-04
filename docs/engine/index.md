@@ -190,10 +190,41 @@ print(tenth.period_results[0].payment_date)  # 2026-01-10
 - an employment with no day in the year raises `InvalidInputError`.
 
 A month the employment covers only in part (hire on the 15th, end before the
-last day) keeps its run and the full monthly pay: the bundled CCNL data
-define no daily divisor, so the engine does not choose between calendar-day
-and 26ths proration. The run carries a `partial_month_not_prorated` issue and
-it is `provisional` and not payable.
+last day) keeps its run and pays the daily quotas of its employed days, in
+`calculate_period` and in the year plans alike. The quota is the one the CCNL
+sets for unpaid absences, `work_rules.absence_rules.daily_divisor_method`,
+with its provenance:
+
+- `by_26`: one twenty-sixth per employed Monday to Saturday (Sundays are not
+  paid days, a public holiday on a weekday is);
+- `by_30`: one thirtieth per day of a 30-day commercial month (a span to the
+  month end runs to day 30, day 31 counts as day 30);
+- `by_hourly`: `daily_hours / hourly_divisor` per employed Monday to Friday.
+
+Each pay component is prorated and rounded on its own, after the part-time
+ratio, and never above one monthly pay (2 March 2026, a Monday after a
+Sunday 1st, pays the whole of March). The `base_salary` decision has reason
+`pay_chain_prorated` and records `employed_from`, `employed_until`,
+`divisor_method`, `payable_days` and `divisor`; the absence rule and, for
+`by_hourly`, the hourly divisor join the rules of `base_salary`.
+
+The monthly pay of a competence month is posted once, by the run that
+closes the month first. The regular run posts it. A termination run posts
+it, prorated the same way, only when the regular run of its month is not
+closed in the opening state (a termination closes the competence year, so
+no regular run of the month can follow it); after the regular run it posts
+no monthly pay, only its own items (events, TFR, the second conguaglio). An
+adjustment run corrects a run already closed and never posts the monthly
+pay. A run that posts none has a `base_salary` decision with reason
+`monthly_pay_posted_by_another_run`, amount 0.00 and input
+`monthly_pay_posted_by` (the regular run id, or `corrected_run`).
+Extra-month runs follow the accrual rule below.
+
+A CCNL whose data define no daily quota (no `absence_rules`, or `by_hourly`
+without `daily_hours` or an hourly divisor in force) never pays the month in
+full: the run posts no pay, the `base_salary` decision is `provisional` with
+reason `partial_month_rule_missing` and no amount, and the
+`partial_month_rule_missing` issue (`incomplete`) makes it not payable.
 
 Extra months accrue per qualifying month of their window, counted from the
 employment dates and never from the runs already closed:

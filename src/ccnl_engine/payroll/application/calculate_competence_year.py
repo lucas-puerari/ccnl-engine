@@ -52,12 +52,14 @@ def calculate_competence_year(
     The runs follow from the effective calendar (the CCNL standard one or
     ``plan.calendar_override``) and the employment period: a regular run
     for each month with at least one employed day, an extra-month run only
-    when its payment month is such a month.  A partly employed month keeps
-    the full monthly pay with a provisional ``partial_month_not_prorated``
-    issue.  Extra months accrue per qualifying month of their window; an
-    absence with ``suspends_accrual`` in any entry of ``plan.periods``
-    removes its days from every window, and the ratei of an extra month not
-    paid before the termination are paid on the last regular run.
+    when its payment month is such a month.  A partly employed month pays
+    the daily quotas of its employed days under the CCNL partial-month
+    rule, and is not payable when the CCNL defines none (see
+    :mod:`~ccnl_engine.payroll.domain.proration`).  Extra months accrue per
+    qualifying month of their window; an absence with ``suspends_accrual``
+    in any entry of ``plan.periods`` removes its days from every window,
+    and the ratei of an extra month not paid before the termination are
+    paid on the last regular run.
 
     Each run is paid on its date in the plan, which sets its tax year.  The
     runs paid in the competence year are computed on the schedule of the

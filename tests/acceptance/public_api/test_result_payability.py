@@ -13,8 +13,6 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
-import pytest
-
 from ccnl_engine import (
     BlockerCode,
     BonusEvent,
@@ -188,23 +186,19 @@ def _march(started_on: date) -> PeriodResult:
     return march
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="a month started on the 15th still exposes the full monthly pay",
-)
 def test_partial_hire_month_does_not_expose_full_month_pay() -> None:
     """Metalmeccanico C3 hired on 15 March 2026 against one hired on 1 March.
 
     Seventeen of the thirty-one days of March cannot be paid as a full
-    month: the amount must be prorated by the CCNL rule or left
-    undetermined.  Differential oracle: today both runs carry 2,158.26, the
-    later one with a ``partial_month_not_prorated`` issue.
+    month.  The CCNL daily quota is one twenty-sixth: 15 March 2026 is a
+    Sunday, 16-21, 23-28, 30 and 31 March are 14 payable days, so the run
+    pays 2,158.26 x 14 / 26 = 1,162.14.
     """
     full_month = _march(date(2026, 3, 1))
     partial_month = _march(date(2026, 3, 15))
 
-    assert partial_month.period_gross != full_month.period_gross
+    assert full_month.period_gross == Decimal("2158.26")
+    assert partial_month.period_gross == Decimal("1162.14")
 
 
 def test_unknown_surtax_table_is_not_an_amount() -> None:

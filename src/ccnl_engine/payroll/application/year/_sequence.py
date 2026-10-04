@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.year._runs import flag_partial_month, run_request
+from ccnl_engine.payroll.application.year._runs import run_request
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.application.knowledge_repository import KnowledgeRepository
@@ -56,16 +56,12 @@ def compute_payments(
             state,
             schedule,
         )
-        result = flag_partial_month(
-            calculate_period(
-                request,
-                repo=engine.repo,
-                resolver=engine.resolver,
-                bundle_version=engine.bundle_version,
-                mode=engine.mode,
-            ),
-            planned.run,
-            planned.plan.employment.employment_period,
+        result = calculate_period(
+            request,
+            repo=engine.repo,
+            resolver=engine.resolver,
+            bundle_version=engine.bundle_version,
+            mode=engine.mode,
         )
         results.append(result)
         state = result.closing_state

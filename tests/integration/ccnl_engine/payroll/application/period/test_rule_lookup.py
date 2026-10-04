@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.contract.domain.identity import TaxSector
 from ccnl_engine.contract.service.loaders import load_ccnl
+from ccnl_engine.payroll.application.period._proration import FULL_MONTH
 from ccnl_engine.payroll.application.period._rule_lookup import (
     LOADED,
     contract_rules,
@@ -61,6 +62,7 @@ def _ctx(
             extra_month_settlements=(),
         ),
         accrual=None,
+        proration=FULL_MONTH,
         var_pay_rules=load_variable_pay_rules(_YEAR),
         repo=repo,
         fiscal_year=_YEAR,

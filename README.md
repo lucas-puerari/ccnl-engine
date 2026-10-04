@@ -127,7 +127,10 @@ and quattordicesima, so the year has 14 runs. A different calendar needs a
 month raises `InvalidInputError`. `Employment.employment_period` selects the
 runs: a worker employed from July to September gets three runs, and the
 September run also pays the 3/12 of tredicesima and quattordicesima accrued
-until the termination.
+until the termination. A month employed only in part pays the CCNL daily
+quotas of its employed days (one twenty-sixth per Monday to Saturday for
+most CCNLs); a CCNL whose data define no daily quota leaves that month
+undetermined and not payable, never paid in full.
 
 ```python
 from ccnl_engine import CompetenceYearPlan, PeriodFacts

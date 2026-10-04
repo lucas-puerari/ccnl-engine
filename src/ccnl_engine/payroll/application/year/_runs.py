@@ -1,8 +1,8 @@
-"""Runs of a competence year: selection, requests, partial months."""
+"""Runs of a competence year: selection and requests."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
@@ -14,9 +14,7 @@ from ccnl_engine.payroll.domain.accrual import (
     ExtraMonthAccrual,
     MonthAccrualRule,
 )
-from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.inputs import PeriodInput
-from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.domain.schedule import PayrollSchedule
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -28,13 +26,10 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.extra_month_schedule import ExtraMonthSchedule
     from ccnl_engine.payroll.domain.payment import PaymentId
-    from ccnl_engine.payroll.domain.period import PeriodResult
     from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
     from ccnl_engine.payroll.domain.period_state import PeriodState
     from ccnl_engine.payroll.domain.run import PayrollRun
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
-
-_PARTIAL_MONTH = "partial_month_not_prorated"
 
 
 def select_runs(
@@ -56,38 +51,6 @@ def select_runs(
         )
         raise InvalidInputError(msg, feature="employment_facts")
     return schedule
-
-
-def flag_partial_month(
-    result: PeriodResult,
-    run: PayrollRun,
-    employment_period: EmploymentPeriod | None,
-) -> PeriodResult:
-    """Mark a regular run of a partly employed month as provisional.
-
-    The bundled CCNL data define no daily divisor for a partial month, so
-    the run carries the full monthly pay and a provisional issue.
-
-    Returns:
-        ``result``, with one more issue when the employment covers only part
-        of the run month.
-    """
-    if (
-        employment_period is None
-        or run.run_kind is not RunKind.REGULAR
-        or employment_period.covers_month(run.year, run.month)
-    ):
-        return result
-    issue = CalculationIssue(
-        code=_PARTIAL_MONTH,
-        message=(
-            f"employment covers only part of {run.year}-{run.month:02d}; the "
-            "full monthly pay is computed because the CCNL data define no "
-            "daily divisor for a partial month"
-        ),
-        status=CalculationStatus.PROVISIONAL,
-    )
-    return replace(result, issues=(*result.issues, issue))
 
 
 @dataclass(frozen=True)

@@ -1,5 +1,30 @@
 # Migration guide
 
+## Partial hire and termination months prorated by the CCNL daily quota
+
+The regular run of a month the employment covers only in part pays the CCNL
+daily quotas of its employed days instead of the full monthly pay. The quota
+is `work_rules.absence_rules.daily_divisor_method` of the CCNL (`by_26`,
+`by_30` or `by_hourly`); see the engine guide for how days are counted.
+
+| Before | After |
+|---|---|
+| Full monthly pay with a provisional `partial_month_not_prorated` issue (year plans only; `calculate_period` paid the full month silently) | Prorated pay in `calculate_period` and in both year plans; the issue code is gone |
+| `base_salary` decision reason `pay_chain_applied` on every run | `pay_chain_prorated` on a prorated run, with `employed_from`, `employed_until`, `divisor_method`, `payable_days`, `divisor` inputs |
+| A CCNL without a daily quota paid the full month | No pay posted; `base_salary` decision `provisional`, reason `partial_month_rule_missing`, no amount; `incomplete` issue `partial_month_rule_missing`; not payable |
+
+- Termination and adjustment runs no longer repeat the monthly pay. A
+  termination run after the regular run of its month, and every adjustment
+  run, post only their own items (`base_salary` reason
+  `monthly_pay_posted_by_another_run`, amount 0.00); a termination run with
+  no regular run of its month before it pays the month, prorated. Callers
+  who relied on the termination or adjustment run carrying a month of pay
+  must declare those amounts as events.
+- A caller who prorated `period_gross` itself must stop: the engine now
+  prorates the pay chain, so the TFR, INPS and IRPEF of the run follow.
+- An unpaid absence that deducts more than the prorated pay is rejected
+  (`InvalidInputError`), as on a full month.
+
 ## Art. 12 family deductions on the reddito complessivo
 
 The family deductions follow the text in force of art. 12 TUIR: the spouse

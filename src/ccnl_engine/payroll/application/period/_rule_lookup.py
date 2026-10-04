@@ -38,8 +38,9 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
 
     Returns:
         The base salary period, each allowance of the pay chain, the
-        additional-months period in force on the competence date and the
-        accrual rule when its threshold decided a rateo of the run.
+        additional-months period in force on the competence date, the
+        accrual rule when its threshold decided a rateo of the run and the
+        partial-month rules when the run pays part of its month.
     """
     ccnl, level = ctx.contract.ccnl, ctx.contract.level
     day = ctx.contract.tctx.competence
@@ -64,6 +65,7 @@ def _salary_rules(ctx: RunContext) -> tuple[Rule, ...]:
         for period in _in_force(ccnl.parameters.additional_months.period_at(day))
     )
     rules.extend(accrual_rules(ctx))
+    rules.extend(ctx.proration.rules)
     return tuple(rules)
 
 

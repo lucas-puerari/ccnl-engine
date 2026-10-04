@@ -47,6 +47,24 @@ class MonthlyPayChain:
             limitations=self.limitations,
         )
 
+    def prorated(self, units: Decimal, divisor: Decimal) -> MonthlyPayChain:
+        """Pay ``units`` of the ``divisor`` units of a monthly pay.
+
+        Each component is multiplied by ``units`` before the division, so a
+        quota such as fourteen twenty-sixths is rounded once, to the cent.
+
+        Returns:
+            A new chain with every component worth ``units / divisor`` of it.
+        """
+        return MonthlyPayChain(
+            base=money(self.base * units / divisor),
+            seniority=money(self.seniority * units / divisor),
+            allowances=tuple(
+                (a, money(v * units / divisor)) for a, v in self.allowances
+            ),
+            limitations=self.limitations,
+        )
+
     def scaled_for_apprenticeship(self, percentage: Decimal) -> MonthlyPayChain:
         """Scale the components a percentage apprenticeship reduces.
 

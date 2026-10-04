@@ -59,6 +59,25 @@ class TestMonthlyPayChain:
         assert result.seniority == Decimal("25.00")
         assert result.allowances[0][1] == Decimal("50.00")
 
+    def test_prorated_rounds_each_component_once(self) -> None:
+        """14/26 of 2,158.26, 50.00 and 2.06, each rounded to the cent.
+
+        2,158.26 x 14 / 26 = 1,162.14; 50.00 x 14 / 26 = 26.923 -> 26.92;
+        2.06 x 14 / 26 = 1.109 -> 1.11.
+        """
+        a = _allowance(monthly="2.06")
+        chain = MonthlyPayChain(
+            base=Decimal("2158.26"),
+            seniority=Decimal("50.00"),
+            allowances=((a, Decimal("2.06")),),
+            limitations=("limit",),
+        )
+        result = chain.prorated(Decimal(14), Decimal(26))
+        assert result.base == Decimal("1162.14")
+        assert result.seniority == Decimal("26.92")
+        assert result.allowances[0][1] == Decimal("1.11")
+        assert result.limitations == ("limit",)
+
     def test_for_extra_month_filters_by_months_per_year(self) -> None:
         """for_extra_month excludes allowances paid fewer than threshold times/year."""
         a_all = _allowance(code="ALL", monthly="10.00")

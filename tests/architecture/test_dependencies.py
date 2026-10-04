@@ -69,6 +69,10 @@ DOMAIN_COUPLING: dict[tuple[str, str], str] = {
     ): "Extra-month ratei compare accruing days as the CCNL accrual rule says.",
     (
         "payroll",
+        "ccnl_engine.contract.domain.absence",
+    ): "A partly employed month counts payable days by the CCNL daily divisor.",
+    (
+        "payroll",
         "ccnl_engine.tax.domain.preferential_regime",
     ): "Employment, employer, period and prior-year inputs declare regimes.",
 }

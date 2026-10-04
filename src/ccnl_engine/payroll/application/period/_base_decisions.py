@@ -81,10 +81,15 @@ def _base_salary(ctx: RunContext) -> CalculationDecision:
     competence date; the allowances and the additional months the chain
     also reads are listed with their provenance in the capability report.
 
+    The regular run of a partly employed month records its employed span
+    and payable days; without a CCNL partial-month rule it is provisional
+    and carries no amount.
+
     Returns:
-        A decision with reason ``pay_chain_applied`` and the chain gross.
+        A decision with reason ``pay_chain_applied``, ``pay_chain_prorated``
+        or ``partial_month_rule_missing``, and the chain gross.
     """
-    contract, chain = ctx.contract, ctx.chain
+    contract, chain, proration = ctx.contract, ctx.chain, ctx.proration
     rules = contract_rules(ctx)["base_salary"]
     rule = next(
         (r for r in rules if ".base_salary[" in r[0]),
@@ -93,7 +98,7 @@ def _base_salary(ctx: RunContext) -> CalculationDecision:
     codes = ",".join(allowance.code for allowance, _ in chain.allowances)
     return _decision(
         "base_salary",
-        "pay_chain_applied",
+        proration.reason or "pay_chain_applied",
         rule,
         _ccnl_rule(contract.ccnl, contract.tctx.competence.year)[1],
         {
@@ -106,8 +111,10 @@ def _base_salary(ctx: RunContext) -> CalculationDecision:
             "apprenticeship": (
                 _NONE if ctx.apprenticeship is None else "apprenticeship_scaling"
             ),
+            **proration.inputs(),
         },
-        ctx.monthly_gross,
+        None if proration.missing else ctx.monthly_gross,
+        CalculationStatus.PROVISIONAL if proration.missing else CalculationStatus.FINAL,
     )
 
 

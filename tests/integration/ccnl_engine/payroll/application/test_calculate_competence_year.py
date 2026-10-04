@@ -185,30 +185,12 @@ class TestEmploymentPeriodRuns:
             (12, RunKind.THIRTEENTH)
         ]
 
-    def test_partial_month_is_provisional_and_whole_months_final(self) -> None:
-        """Only the partly employed month carries the provisional issue."""
-        result = calculate_competence_year(
-            year_plan(
-                _YEAR,
-                _CCNL,
-                _LEVEL,
-                employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
-            )
-        )
-        march, april = result.period_results[0], result.period_results[1]
-        assert [i.code for i in march.issues] == ["partial_month_not_prorated"]
-        assert march.assurance.calculation is CalculationStatus.PROVISIONAL
-        assert april.assurance.calculation is CalculationStatus.FINAL
-        assert (
-            result.period_results[-1].assurance.calculation is CalculationStatus.FINAL
-        )
-        assert result.assurance.calculation is CalculationStatus.PROVISIONAL
+    def test_partial_month_is_prorated_and_whole_months_are_not(self) -> None:
+        """Hired 15 March: March pays 14/26 of 2,158.26, April the month.
 
-    def test_year_assurance_combines_the_runs(self) -> None:
-        """The partial month blocks March and the year, each blocker once.
-
-        The issue is added after the run is assembled, so the assurance of
-        the run reflects it too.
+        By hand: 1 March 2026 is a Sunday; 16-21, 23-28, 30 and 31 March
+        are the 14 Mondays to Saturdays employed (15 March is a Sunday), so
+        March pays 2,158.26 x 14 / 26 = 1,162.14.
         """
         result = calculate_competence_year(
             year_plan(
@@ -218,10 +200,31 @@ class TestEmploymentPeriodRuns:
                 employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
             )
         )
+        march, april = result.period_results[0], result.period_results[1]
+        assert march.period_gross == Decimal("1162.14")
+        assert april.period_gross == Decimal("2158.26")
+        assert [i.code for i in march.issues] == []
+        assert march.assurance.calculation is CalculationStatus.FINAL
+
+    def test_year_assurance_combines_the_runs(self) -> None:
+        """A CCNL without a partial-month rule blocks March and the year once.
+
+        The vetro CCNL records no daily divisor: the hire month is not paid
+        as a full month, its blocker reaches the year exactly once.
+        """
+        result = calculate_competence_year(
+            year_plan(
+                _YEAR,
+                "vetro-meccanizzato-assovetro.json",
+                "C",
+                employment_period=EmploymentPeriod(date(_YEAR, 3, 15)),
+            )
+        )
         march = result.period_results[0]
-        partial = (BlockerCode.CALCULATION_ISSUE, None, "partial_month_not_prorated")
+        partial = (BlockerCode.CALCULATION_ISSUE, None, "partial_month_rule_missing")
         keys = [(b.code, b.feature, b.detail) for b in result.blockers]
 
+        assert march.period_gross == Decimal("0.00")
         assert partial in {(b.code, b.feature, b.detail) for b in march.blockers}
         assert keys.count(partial) == 1
         assert len(keys) == len(set(keys))
