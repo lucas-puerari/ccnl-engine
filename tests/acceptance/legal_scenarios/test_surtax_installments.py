@@ -3,7 +3,7 @@
 Commercio L4, resident in Sassari (Sardegna), employed since 2020 and
 computed by the engine from January 2026, with no surtax imported from the
 previous provider.  The expected amounts come from the independent oracle
-:mod:`tests.fixtures.legal_examples.surtax_2026` on the annual taxable
+:mod:`tests.fixtures.normative_oracles.surtax_2026` on the annual taxable
 income each conguaglio reports; the IRPEF oracle confirms that net IRPEF
 is due.
 
@@ -35,8 +35,9 @@ from ccnl_engine import (
 from ccnl_engine.events import OvertimeEvent
 from ccnl_engine.inputs import EmploymentPeriod, PeriodState, SurtaxComponent
 from ccnl_engine.results import CalculationStatus
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
-from tests.fixtures.legal_examples.surtax_2026 import (
+from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.surtax_2026 import (
     ADVANCE_MONTHS,
     BALANCE_MONTHS,
     installments,
@@ -44,7 +45,6 @@ from tests.fixtures.legal_examples.surtax_2026 import (
     municipal_sassari,
     regional_sardegna,
 )
-from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:

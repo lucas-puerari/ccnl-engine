@@ -229,6 +229,8 @@ pytest_add_cli_args_test_selection = [
     "tests/unit/ccnl_engine/payroll/domain/test_rounding.py",
     "tests/unit/ccnl_engine/payroll/domain/test_treatments.py",
     "tests/unit/ccnl_engine/payroll/service/test_contributions.py",
+    "tests/unit/ccnl_engine/payroll/service/test_contributions_ceiling.py",
+    "tests/unit/ccnl_engine/payroll/service/test_contributions_rates.py",
     "tests/unit/ccnl_engine/payroll/service/test_irpef.py",
     "tests/unit/ccnl_engine/payroll/service/test_irpef_credit_amounts.py",
     "tests/unit/ccnl_engine/payroll/service/test_irpef_mutation_sentinels.py",

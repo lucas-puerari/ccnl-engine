@@ -33,9 +33,14 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import FringeEvent
 from ccnl_engine.inputs import PeriodState
+from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.period._capability_traces import build_traces
 from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
+from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.pay_items import FringeBenefitItem
+from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
+from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from tests.fixtures.period_requests import account_total, period_request
 
 engine = PayrollEngine.bundled()
 
@@ -198,3 +203,66 @@ class TestDependentChildren:
         assert item.ytd_total == _D(2100)
         assert item.taxable_amount == _D(2100)
         assert _decisions(march)[0].inputs["retroactive_amount"] == _D(1500)
+
+
+# ---------------------------------------------------------------------------
+# due fringe da 200 con soglia 258,23 — imponibile 0.00 invece di 400.00
+# ---------------------------------------------------------------------------
+
+
+def test_cumulative_fringe_threshold() -> None:
+    """Two fringe events whose cumulative sum exceeds the threshold are taxable.
+
+    Two FringeEvent(600) in the same period: cumulative = 1200, which exceeds
+    the 2026 standard threshold (1000 EUR under L. 207/2024). Both amounts must
+    become taxable, increasing ORDINARY_TAX relative to a no-fringe baseline.
+    """
+    event_date = date(_YEAR, 1, 15)
+    fringe_a = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
+    fringe_b = FringeEvent(event_date=event_date, amount=Decimal("600.00"))
+    result_with_fringe = calculate_period(period_request(events=(fringe_a, fringe_b)))
+    result_without = calculate_period(period_request())
+
+    tax_with = account_total(result_with_fringe, AccountKind.ORDINARY_TAX)
+    tax_without = account_total(result_without, AccountKind.ORDINARY_TAX)
+
+    assert tax_with > tax_without, (
+        f"ORDINARY_TAX with cumulative fringe ({tax_with}) must exceed "
+        f"base case ({tax_without}): two fringe events at 600 (total 1200) "
+        "exceed the 2026 threshold (1000) and must be fully taxable."
+    )
+
+
+# ---------------------------------------------------------------------------
+# cross-period fringe retroactive adjustment missing
+#
+# L. 207/2024 art. 1 c. 390 (derogating TUIR art. 51 c. 3; AdE circ. 4/E/2025
+# par. 2.7): when the annual cumulated fringe benefit exceeds
+# the threshold, the ENTIRE annual cumulated amount is subject to INPS and
+# IRPEF — including amounts that were previously exempt.  When fringe_ytd=600
+# (exempt month 1) and a second FringeEvent(600) crosses the 1,000 EUR
+# threshold in month 2, the engine must retroactively tax the prior 600 and
+# report irpef_base = 1,200 for the combined period.
+# ---------------------------------------------------------------------------
+
+
+def test_fringe_retroactive_on_threshold_crossing() -> None:
+    """irpef_base must cover the full cumulative fringe when crossing.
+
+    Source: L. 207/2024 art. 1 c. 390.  fringe_ytd=600 + FringeEvent(600) =
+    1,200 > 1,000 threshold → irpef_base must equal 1,200 (full retroactive).
+    """
+    state_after_m1 = PeriodState(
+        cash=TaxCashState(
+            fringe=FringeYtd(value=Decimal("600.00")),
+        )
+    )
+    fringe = FringeEvent(event_date=date(_YEAR, 2, 15), amount=Decimal("600.00"))
+    result = calculate_period(
+        period_request(month=2, opening=state_after_m1, events=(fringe,))
+    )
+
+    assert result.benefit_breakdown.irpef_base == Decimal("1200.00"), (
+        "irpef_base after threshold crossing must be 1,200 (full cumulative "
+        f"retroactive); got {result.benefit_breakdown.irpef_base}."
+    )

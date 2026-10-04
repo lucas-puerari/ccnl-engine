@@ -1,7 +1,7 @@
 """Full-year payslip of CCNL Concia D2 against an independent oracle.
 
 The expected figures come from
-:mod:`tests.fixtures.legal_examples.concia_d2_2026`, computed by hand from
+:mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`, computed by hand from
 the signed renewal, the TUIR, L. 207/2024, L. 199/2025, the INPS rates and
 the MEF surtax tables; the module docstring lists each source.  The engine
 runs the whole competence year once; every payment, the annual totals, the
@@ -36,8 +36,10 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.inputs import EmploymentPeriod, PriorYearTaxFacts, SurtaxComponent
-from tests.fixtures.legal_examples.concia_d2_2026 import CONCIA_D2_2026 as ORACLE
-from tests.fixtures.legal_examples.surtax_2026 import (
+from tests.fixtures.normative_oracles.payslips.concia_d2_2026 import (
+    CONCIA_D2_2026 as ORACLE,
+)
+from tests.fixtures.normative_oracles.surtax_2026 import (
     ADVANCE_MONTHS,
     BALANCE_MONTHS,
     installments,

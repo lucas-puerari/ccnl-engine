@@ -43,7 +43,7 @@ from ccnl_engine.inputs import (
     FamilyComposition,
 )
 from ccnl_engine.results import CalculationStatus
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.fixtures.seniority import new_hire
 
 if TYPE_CHECKING:

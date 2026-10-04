@@ -9,7 +9,7 @@ is the opening taxable plus the tredicesima and nothing is projected:
 The reddito complessivo adds the income of
 :class:`~ccnl_engine.inputs.CurrentYearTaxFacts`.  Expected deductions are computed
 by hand from the text quoted in
-:mod:`tests.fixtures.legal_examples.family_2026`.
+:mod:`tests.fixtures.normative_oracles.family_2026`.
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ from ccnl_engine.inputs import (
     PeriodState,
 )
 from ccnl_engine.results import BlockerCode, CalculationDecision, CalculationStatus
-from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
+from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
 )

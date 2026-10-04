@@ -18,7 +18,7 @@ Evidence:
 - 100% branch coverage: every branch of `src/ccnl_engine` runs in the test suite
 - `mypy --strict`: the type system rules out entire classes of logic error
 - Reference table cases: <!-- trust:reference-cases -->5<!-- /trust:reference-cases -->
-  cases in `tests/fixtures/expected/`, each running one regular period through
+  cases in `tests/fixtures/reference_tables/`, each running one regular period through
   `PayrollEngine` and asserting, to the cent, the three values its cited
   salary table states: base salary, fixed allowances and period gross. They
   do not check net pay, contributions, taxes or employer cost.
@@ -31,8 +31,8 @@ Evidence:
   schedule and others) checked against hand-derived values, mainly in
   `tests/acceptance/legal_scenarios/`.
 
-Full-payslip oracles are kept apart from the reference table cases, in
-`tests/fixtures/legal_examples/`, and run in
+Full-payslip oracles are kept apart from the reference table cases and from
+the rule oracles, in `tests/fixtures/normative_oracles/payslips/`, and run in
 `tests/acceptance/legal_scenarios/test_full_payslip_concia.py`. The first oracle
 covers the first candidate group for `production`: CCNL Concia UNIC, level
 D2, a whole 2026 competence year with the industria tax and INPS rulesets
@@ -48,7 +48,7 @@ number of additional months, the employee IVS rate) are not read from a
 fetched primary text; the fixture says which. The oracle is hand-computed,
 not `verified`: no payslip issued by a payroll provider was compared.
 
-Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic.py`
+Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic_concia.py`
 check relations that need no expected amount: an unknown fact is not a known
 zero, a bonus moves only its axes, the order of independent events and the
 split of a year at an exported state change nothing, and the public totals

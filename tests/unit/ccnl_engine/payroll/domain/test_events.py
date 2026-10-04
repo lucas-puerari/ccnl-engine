@@ -23,6 +23,7 @@ from ccnl_engine.payroll.domain.events import (
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _DATE = date(2026, 1, 15)
+_YEAR = 2026
 
 
 class TestOvertimeEvent:
@@ -200,6 +201,34 @@ class TestSickLeaveEvent:
         with pytest.raises(FrozenInstanceError):
             evt.amount = Decimal(300)  # type: ignore[misc]
 
+    def test_sick_leave_zero_days_raises_invalid_input(self) -> None:
+        """SickLeaveEvent with sick_days=0 must raise InvalidInputError.
+
+        sick_days=0 is semantically invalid;
+        the engine must reject it with a structured error before the formula runs.
+        """
+        with pytest.raises(InvalidInputError):
+            SickLeaveEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("500.00"),
+                sick_days=0,
+                waiting_period_days=1,
+            )
+
+    def test_waiting_period_exceeds_sick_days_raises_invalid_input(self) -> None:
+        """SickLeaveEvent with waiting_period_days > sick_days raises InvalidInputError.
+
+        The docstring states this is invalid; the
+        engine must enforce it with a structured domain error.
+        """
+        with pytest.raises(InvalidInputError):
+            SickLeaveEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("500.00"),
+                sick_days=2,
+                waiting_period_days=3,
+            )
+
 
 class TestBonusEvent:
     """BonusEvent stores a one-off gross amount and is frozen."""
@@ -215,6 +244,18 @@ class TestBonusEvent:
         evt = BonusEvent(event_date=_DATE, amount=Decimal(1000))
         with pytest.raises(FrozenInstanceError):
             evt.amount = Decimal(2000)  # type: ignore[misc]
+
+    def test_negative_bonus_raises_invalid_input(self) -> None:
+        """BonusEvent with a negative amount must raise InvalidInputError.
+
+        A -100 EUR bonus reduces gross and taxable
+        income without any explicit deduction record.  Expected: InvalidInputError.
+        """
+        with pytest.raises(InvalidInputError):
+            BonusEvent(
+                event_date=date(_YEAR, 1, 15),
+                amount=Decimal("-100.00"),
+            )
 
 
 class TestFringeEvent:

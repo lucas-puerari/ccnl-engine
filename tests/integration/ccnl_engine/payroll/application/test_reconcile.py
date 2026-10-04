@@ -11,9 +11,11 @@ from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
 from ccnl_engine.payroll.domain.credit_accounts import TrattamentoAccount
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
+from ccnl_engine.payroll.domain.events import WelfareEvent
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
+from tests.fixtures.period_requests import period_request
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -249,3 +251,24 @@ class TestReconcileIntegration:
         r1, _ = _real_result(month=1)
         r2, op2 = _real_result(month=2, opening=r1.closing_state)
         assert reconcile(r2, op2).ok
+
+
+# ---------------------------------------------------------------------------
+# riconciliazione con frazioni di centesimo → ok=False
+# ---------------------------------------------------------------------------
+
+
+def test_sub_cent_event_amount_reconciles() -> None:
+    """Event amounts with sub-cent precision reconcile cleanly.
+
+    period_net is derived from the same ledger entries, so sub-cent amounts
+    on both sides of the I9 identity cancel out and reconcile passes.
+    """
+    welfare_subcent = WelfareEvent(
+        event_date=date(_YEAR, 1, 15), amount=Decimal("100.001")
+    )
+    result = calculate_period(period_request(events=(welfare_subcent,)))
+    opening = PeriodState.zero()
+
+    r = reconcile(result, opening)
+    assert r.ok, f"reconcile must pass even with sub-cent event amount: {r.violations}"

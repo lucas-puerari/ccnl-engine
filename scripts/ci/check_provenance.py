@@ -16,7 +16,7 @@ Two gates judge the payable rules of the bundled knowledge data (see
   It prints the rules per capability and the CCNL files with the most weak
   rules.
 
-Reference cases: every case in ``tests/fixtures/expected/`` declares a
+Reference cases: every case in ``tests/fixtures/reference_tables/`` declares a
 top-level ``verification`` field, ``verified`` or ``source_linked``, and
 carries a non-empty ``source`` object. Expected values produced by the
 engine itself are not a status: they detect no systematic error, so such
@@ -66,7 +66,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.ci import payable_rules, provenance_evidence
 
-CASES_DIR = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "expected"
+CASES_DIR = (
+    Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "reference_tables"
+)
 STATUSES = ("verified", "source_linked")
 
 

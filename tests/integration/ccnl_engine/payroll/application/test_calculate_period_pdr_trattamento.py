@@ -19,6 +19,7 @@ TrattamentoAccount invariant: recovered > recognized raises ValueError
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -35,6 +36,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import PriorYearTaxFacts
+from tests.fixtures.period_requests import account_total, period_request
 
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.period import PeriodResult
@@ -303,3 +305,37 @@ class TestPdREligibilityFailClosed:
             f"productivity_bonus with unknown prior-year income must not receive "
             f"the substitute rate; got SUBSTITUTE_TAX={sub_tax}."
         )
+
+
+# ---------------------------------------------------------------------------
+# BonusEvent posted as PdR bonus → substitute-tax applies
+#
+# L. 199/2025 art. 1 co. 9: PdR bonuses up to 5,000 EUR are subject to a
+# 1% flat substitute tax in place of ordinary IRPEF.  A 1,000 EUR PdR bonus
+# must produce SUBSTITUTE_TAX = 10.00 and MUST NOT increase ORDINARY_TAX.
+# ---------------------------------------------------------------------------
+
+
+def test_pdr_bonus_substitute_tax() -> None:
+    """A 1,000 EUR PdR bonus must post SUBSTITUTE_TAX = 10.00.
+
+    Source: L. 199/2025 art. 1 co. 9 — tassazione sostitutiva 1% on PdR up
+    to 5,000 EUR.  Expected: SUBSTITUTE_TAX = Decimal("10.00").
+    """
+    bonus = BonusEvent(
+        event_date=date(_YEAR, 1, 15),
+        amount=Decimal("1000.00"),
+        kind="productivity_bonus",
+    )
+    result = calculate_period(
+        replace(
+            period_request(events=(bonus,)),
+            prior_year=PriorYearTaxFacts(employment_income=Decimal("25000.00")),
+        )
+    )
+
+    sub_tax = account_total(result, AccountKind.SUBSTITUTE_TAX)
+    assert sub_tax == Decimal("10.00"), (
+        f"SUBSTITUTE_TAX for a 1,000 EUR PdR bonus must be 10.00 (1% flat); "
+        f"got {sub_tax}.  BonusEvent currently has no PdR classification."
+    )

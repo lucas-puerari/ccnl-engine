@@ -21,10 +21,12 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.policy import PolicyContext
 from ccnl_engine.payroll.service.policy_loader import load_policy_resolver
 from ccnl_engine.shared.domain.errors import DataIntegrityError, InvalidInputError
+from tests.fixtures.period_requests import period_request
 from tests.helpers import EMPLOYER_50
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
+_YEAR = 2026
 _ZERO = Decimal(0)
 
 _RESOLVER = load_policy_resolver()
@@ -137,3 +139,70 @@ class TestReconciliationFailureGuard:
         )
         with pytest.raises(DataIntegrityError, match="Period reconciliation failed"):
             calculate_period(req)
+
+
+# ---------------------------------------------------------------------------
+# Large unpaid absences and period_gross
+#
+# Since absences post to EMPLOYEE_DEDUCTIONS (not CASH_EARNINGS), period_gross
+# equals the base salary and is non-negative regardless of absence size.
+# Metalmeccanico C3 gross is 2,158.26 EUR in January 2026.
+# ---------------------------------------------------------------------------
+
+
+def test_large_absence_does_not_produce_negative_gross() -> None:
+    """AbsenceEvent(hours=80) is accepted and period_gross stays positive.
+
+    Absences post to EMPLOYEE_DEDUCTIONS so period_gross reflects base
+    salary only.  80 hours at 12.50 EUR deduct 1,000 EUR, below the monthly
+    pay; the calculation succeeds with a positive gross and net.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(80),
+        hourly_rate=Decimal("12.50"),
+    )
+    result = calculate_period(period_request(events=(absence,)))
+    assert result.period_gross > Decimal(0)
+    assert result.period_net >= Decimal(0)
+
+
+def test_absence_above_monthly_pay_is_invalid_input() -> None:
+    """An absence deduction above the monthly pay is rejected up front.
+
+    240 hours at 12.50 EUR deduct 3,000 EUR from 2,158.26 EUR of pay: the
+    INPS base would turn negative.  The deduction is checked against the
+    pay of the run before any amount is computed.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(240),
+        hourly_rate=Decimal("12.50"),
+    )
+    with pytest.raises(InvalidInputError, match=r"more than the pay of the run"):
+        calculate_period(period_request(events=(absence,)))
+
+
+# ---------------------------------------------------------------------------
+# AbsenceEvent with impossible hours accepted silently
+#
+# A monthly payroll period has at most ~184 working hours (23 days x 8 h).
+# AbsenceEvent(hours=1000) in a single month is physically impossible and
+# must raise InvalidInputError before reaching the computation.
+# Currently the engine accepts it and produces a large negative period_gross.
+# ---------------------------------------------------------------------------
+
+
+def test_absence_event_impossible_hours_raises() -> None:
+    """AbsenceEvent with 1,000 hours must raise InvalidInputError.
+
+    Source: physical constraint — a month has at most ~184 working hours.
+    Fixed in refactor/canonical-domain: _check_event_date validates hours <= 240.
+    """
+    absence = AbsenceEvent(
+        event_date=date(_YEAR, 1, 15),
+        hours=Decimal(1000),
+        hourly_rate=Decimal("12.50"),
+    )
+    with pytest.raises(InvalidInputError):
+        calculate_period(period_request(events=(absence,)))

@@ -81,8 +81,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from decimal import ROUND_HALF_UP, Decimal
 
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
-from tests.fixtures.legal_examples.surtax_2026 import (
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.surtax_2026 import (
     municipal_advance,
     municipal_alghero,
     regional_sardegna,

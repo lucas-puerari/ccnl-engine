@@ -21,7 +21,7 @@ from ccnl_engine.payroll.application.calculate_competence_year import (
 )
 from ccnl_engine.payroll.domain.inputs import PeriodFacts
 from ccnl_engine.payroll.domain.prior_year import ForeignTaxPaid, PriorYearTaxFacts
-from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import gross_irpef, net_irpef
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:

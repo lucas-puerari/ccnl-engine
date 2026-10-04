@@ -20,6 +20,7 @@ from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import FringeYtd
+from tests.fixtures.period_requests import account_total, period_request
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -322,3 +323,32 @@ class TestWelfareEventAccounting:
         result = calculate_period(_req(self._welfare()))
         r = reconcile(result, PeriodState.zero())
         assert r.ok, r.violations
+
+
+# ---------------------------------------------------------------------------
+# welfare da 100 → cash earnings e lordo aumentano di 100
+# ---------------------------------------------------------------------------
+
+
+def test_welfare_does_not_increase_cash_earnings() -> None:
+    """A WelfareEvent must not increase period_gross or CASH_EARNINGS.
+
+    After the fix calculate_period with WelfareEvent(100) must produce the
+    same period_gross and CASH_EARNINGS as a calculation with no events.
+    Currently welfare increases both by 100.
+    """
+    welfare = WelfareEvent(event_date=date(_YEAR, 1, 15), amount=Decimal("100.00"))
+    result_with = calculate_period(period_request(events=(welfare,)))
+    result_without = calculate_period(period_request())
+
+    assert result_with.period_gross == result_without.period_gross, (
+        f"period_gross with welfare ({result_with.period_gross}) must equal "
+        f"period_gross without ({result_without.period_gross})"
+    )
+
+    cash_with = account_total(result_with, AccountKind.CASH_EARNINGS)
+    cash_without = account_total(result_without, AccountKind.CASH_EARNINGS)
+    assert cash_with == cash_without, (
+        f"CASH_EARNINGS with welfare ({cash_with}) must equal "
+        f"CASH_EARNINGS without ({cash_without})"
+    )

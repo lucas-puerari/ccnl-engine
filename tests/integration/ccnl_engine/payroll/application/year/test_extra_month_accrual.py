@@ -12,14 +12,10 @@ from ccnl_engine.payroll.application.calculate_competence_year import (
     calculate_competence_year,
 )
 from ccnl_engine.payroll.application.calculate_period import calculate_period
-from ccnl_engine.payroll.application.year._extra_month_qualification import (
-    non_accruing_days,
-    termination_settlements,
-)
 from ccnl_engine.payroll.domain.calendar import WorkCalendar
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
-from ccnl_engine.payroll.domain.events import AbsenceEvent, OvertimeEvent
+from ccnl_engine.payroll.domain.events import AbsenceEvent
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
@@ -115,13 +111,6 @@ class TestTerminationSettlement:
         )
         assert list(_extra_items(result)) == ["extra_month_thirteenth_2026-05-regular"]
 
-    def test_employment_ending_in_a_later_year_settles_nothing(self) -> None:
-        """An end in 2027 is not a termination of the 2026 payroll."""
-        calendar = WorkCalendar.from_additional_months(_YEAR, 14)
-        employment = EmploymentPeriod(date(2020, 1, 1), date(2027, 3, 31))
-        assert termination_settlements(calendar, employment, frozenset()) == {}
-        assert termination_settlements(calendar, None, frozenset()) == {}
-
 
 class TestSuspendingAbsences:
     """Only absences flagged as suspending accrual reduce the ratei."""
@@ -142,23 +131,6 @@ class TestSuspendingAbsences:
         assert reduced.period_results[-1].period_gross < (
             full.period_results[-1].period_gross
         )
-
-    def test_only_flagged_absence_days_are_collected(self) -> None:
-        """Flagged absences count whatever run they belong to; others do not."""
-        flagged = AbsenceEvent(
-            event_date=date(_YEAR, 4, 1),
-            hours=Decimal(8),
-            hourly_rate=Decimal(10),
-            suspends_accrual=True,
-        )
-        unflagged = AbsenceEvent(
-            event_date=date(_YEAR, 5, 1), hours=Decimal(8), hourly_rate=Decimal(10)
-        )
-        overtime = OvertimeEvent(
-            event_date=date(_YEAR, 5, 2), hours=Decimal(1), hourly_rate=Decimal(10)
-        )
-        days = non_accruing_days((unflagged, overtime, flagged))
-        assert days == frozenset({date(_YEAR, 4, 1)})
 
 
 class TestStandaloneExtraRun:

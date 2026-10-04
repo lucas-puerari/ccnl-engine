@@ -100,12 +100,14 @@ JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
 behaviour. After one, regenerate the docs that quote the data
 (`gen_contract_pages.py`, `gen_trust_counts.py`) and commit the result; every
 number in `docs/trust/` sits between `<!-- trust:NAME -->` markers and is
-never written by hand. Reference cases citing a signed source live in `tests/fixtures/expected/`
-and run through `PayrollEngine` in `tests/acceptance/public_api/test_reference_cases.py`.
+never written by hand. Reference cases citing a signed source live in
+`tests/fixtures/reference_tables/` and run through `PayrollEngine` in
+`tests/acceptance/public_api/test_reference_cases.py`.
 
 ## Test layout
 
-Enforced by `tests/architecture/test_test_layout.py`:
+`tests/README.md` holds the taxonomy, the ownership per level and the
+fixture roles. Enforced by `tests/architecture/test_test_layout.py`:
 
 - `tests/unit/ccnl_engine/...`: pure rules, no filesystem and no real bundle.
   The path mirrors the module: `src/ccnl_engine/x/y/z.py` is tested by
@@ -116,8 +118,13 @@ Enforced by `tests/architecture/test_test_layout.py`:
   `tests/integration/scripts/` and `tests/integration/demo/` mirror tooling.
 - `tests/acceptance/public_api/` and `tests/acceptance/legal_scenarios/`:
   behaviour through `PayrollEngine` only.
-- `tests/architecture/`: dependencies, structure, public exports, data quality.
-- `tests/fixtures/`: data and helpers only (`contracts/`, `expected/`,
-  `legal_examples/`), never tests.
+- `tests/architecture/`: dependencies, structure, public exports, data
+  quality, zero exact duplicate tests.
+- `tests/fixtures/`: data and helpers only, never tests:
+  `reference_tables/` (signed reference cases), `normative_oracles/` (rule
+  oracles, full payslips in `payslips/`), `synthetic_contracts/` (expected
+  values of the loader tests) and shared request and state builders.
 
-At most five directories under `tests` before a file (`fixtures` aside).
+A regression test goes into the test file of the behaviour it protects,
+never into a file collecting past bugs. At most five directories under
+`tests` before a file (`fixtures` aside).

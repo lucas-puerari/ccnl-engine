@@ -4,7 +4,7 @@ Metalmeccanico C3, June 2026, industrial employer with 50 employees.
 Sources, written by hand and not read from the engine:
 
 - gross of the run: minimo C3 from June 2026, 2,211.43
-  (``tests.fixtures.legal_examples.metalmeccanico_c3_2026``);
+  (``tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026``);
 - employee INPS 9.49%, of which IVS 9.19% and CIGS 0.30%; employer IVS
   23.81%; 1% addizionale above 56,224 within the massimale;
 - massimale 2026: 122,295.00 (INPS, L. 335/1995 art. 2 c. 18).
@@ -35,7 +35,7 @@ from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
-from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
+from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
 

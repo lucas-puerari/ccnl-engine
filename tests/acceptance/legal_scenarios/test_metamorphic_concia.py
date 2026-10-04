@@ -5,7 +5,7 @@ either: an unknown fact must not behave like a known zero, a 100 EUR bonus
 moves only the axes a bonus touches, the order of independent events and
 the split of a year at an exported state change nothing, and the public
 totals are the sums of the postings.  The scenario is the one of
-:mod:`tests.fixtures.legal_examples.concia_d2_2026`.
+:mod:`tests.fixtures.normative_oracles.payslips.concia_d2_2026`.
 
 Two properties do not hold today and are strict xfails: an unknown
 residence and the renewal increments paid inside the CCNL minimo are

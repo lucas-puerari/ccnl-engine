@@ -1,7 +1,7 @@
 """Ascendant deduction of art. 12 c. 1 lett. d TUIR on the 2026 bundle.
 
 Expected values computed by hand from the text quoted in
-:mod:`tests.fixtures.legal_examples.family_2026`: 750 x (80,000 - R) /
+:mod:`tests.fixtures.normative_oracles.family_2026`: 750 x (80,000 - R) /
 80,000, the ratio truncated to four decimals (c. 4).
 """
 
@@ -15,7 +15,7 @@ import pytest
 from ccnl_engine.payroll.domain.family import Dependent, DependentRelationship
 from ccnl_engine.payroll.service.family.ascendants import ascendant_deductions
 from ccnl_engine.tax.service.tax_optional_loaders import load_family_deduction_rules
-from tests.fixtures.legal_examples import family_2026
+from tests.fixtures.normative_oracles import family_2026
 
 _D = Decimal
 _RULES = load_family_deduction_rules(2026)

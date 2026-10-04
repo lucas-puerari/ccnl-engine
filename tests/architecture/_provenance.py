@@ -1,6 +1,6 @@
 """Verification status rules for reference case fixtures.
 
-Every JSON file in ``tests/fixtures/expected/`` declares a top-level
+Every JSON file in ``tests/fixtures/reference_tables/`` declares a top-level
 ``verification`` field stating how far its expected values can be trusted:
 
 - ``verified``: expected values checked against an independent source (a real
@@ -19,7 +19,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Final
 
-CASES_DIR: Final = Path(__file__).parents[1] / "fixtures" / "expected"
+CASES_DIR: Final = Path(__file__).parents[1] / "fixtures" / "reference_tables"
 VERIFICATION_STATUSES: Final = ("verified", "source_linked")
 
 

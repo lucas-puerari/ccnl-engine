@@ -155,4 +155,5 @@ private to the application layer:
 `architecture` and `fixtures` (data only). Unit and integration paths mirror
 the module under test, for example `src/ccnl_engine/payroll/domain/calendar.py`
 and `tests/unit/ccnl_engine/payroll/domain/test_calendar.py`. No file sits
-deeper than five directories under `tests`, `fixtures` aside.
+deeper than five directories under `tests`, `fixtures` aside. `tests/README.md`
+holds the ownership of each level and the role of each fixture folder.

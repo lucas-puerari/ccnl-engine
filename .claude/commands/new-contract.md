@@ -283,11 +283,11 @@ result = PayrollEngine.bundled().calculate_period(
 Choose: mid-range level, no seniority, permanent, 50 employees,
 date on the second tranche.
 
-Save to `tests/fixtures/expected/{id}_{level}_{year}.json` with
+Save to `tests/fixtures/reference_tables/{id}_{level}_{year}.json` with
 `"verification": "source_linked"`, a `source` object (document, url, section),
 `inputs` (`ccnl_slug`, `level_code`, `year`, `month`, `headcount`) and `expected`
 (`base_salary`, `fixed_allowances`, `period_gross`). See
-`tests/fixtures/expected/commercio-confcommercio_l4_2026.json`. The case runs in
+`tests/fixtures/reference_tables/commercio-confcommercio_l4_2026.json`. The case runs in
 `tests/acceptance/public_api/test_reference_cases.py`.
 
 ---
