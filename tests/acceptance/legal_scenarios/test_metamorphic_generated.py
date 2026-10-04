@@ -1,4 +1,8 @@
-"""Metamorphic properties that must hold for every valid input."""
+"""Metamorphic properties that must hold for every generated valid input.
+
+Hypothesis draws the inputs; the fixed Concia D2 scenario and its strict
+xfails sit in :mod:`test_metamorphic_concia`.
+"""
 
 from __future__ import annotations
 

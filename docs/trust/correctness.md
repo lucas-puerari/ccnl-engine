@@ -48,7 +48,7 @@ number of additional months, the employee IVS rate) are not read from a
 fetched primary text; the fixture says which. The oracle is hand-computed,
 not `verified`: no payslip issued by a payroll provider was compared.
 
-Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic.py`
+Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic_concia.py`
 check relations that need no expected amount: an unknown fact is not a known
 zero, a bonus moves only its axes, the order of independent events and the
 split of a year at an exported state change nothing, and the public totals
