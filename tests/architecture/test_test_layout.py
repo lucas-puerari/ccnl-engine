@@ -316,13 +316,13 @@ def test_internal_import_in_acceptance_is_rejected(tmp_path: Path) -> None:
 
 def test_test_under_fixtures_is_rejected(tmp_path: Path) -> None:
     """Test modules and conftests under ``fixtures`` are flagged."""
-    _touch(tmp_path, "fixtures/expected/case.json")
+    _touch(tmp_path, "fixtures/reference_tables/case.json")
     _touch(tmp_path, "fixtures/helpers.py")
-    _touch(tmp_path, "fixtures/contracts/test_x.py")
+    _touch(tmp_path, "fixtures/synthetic_contracts/test_x.py")
     _touch(tmp_path, "fixtures/conftest.py")
     assert fixture_violations(tmp_path) == [
         "fixtures/conftest.py",
-        "fixtures/contracts/test_x.py",
+        "fixtures/synthetic_contracts/test_x.py",
     ]
 
 

@@ -53,7 +53,7 @@ from ccnl_engine.shared.domain.errors import (
     OutOfScopeError,
 )
 from tests.fixtures.imported_surtax import opening_with_2025_surtax
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef as oracle_net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef as oracle_net_irpef
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:

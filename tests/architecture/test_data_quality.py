@@ -4,7 +4,7 @@ Every payable rule of the bundled knowledge data carries a provenance record
 with a known status; the inventory lives in :mod:`scripts.ci.payable_rules`,
 shared with ``scripts/ci/check_provenance.py``.
 
-The JSON files in ``tests/fixtures/expected/`` each declare a known
+The JSON files in ``tests/fixtures/reference_tables/`` each declare a known
 ``verification`` status consistent with their ``source`` block, and carry the
 inputs and expected values that
 ``tests/acceptance/public_api/test_reference_cases.py`` executes. The rules

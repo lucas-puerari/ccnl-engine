@@ -1,4 +1,4 @@
-"""Reference cases in ``tests/fixtures/expected/`` run through ``PayrollEngine``.
+"""Reference cases in ``tests/fixtures/reference_tables/`` run through the engine.
 
 Each case pins the salary table components of one regular run to the signed
 table its ``source`` cites: base salary, fixed allowances and period gross.
@@ -27,7 +27,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 
-_CASES_DIR = Path(__file__).parents[2] / "fixtures" / "expected"
+_CASES_DIR = Path(__file__).parents[2] / "fixtures" / "reference_tables"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 _ENGINE = PayrollEngine.bundled()
 

@@ -8,11 +8,11 @@ year lands on the income of the case:
     opening taxable = income - taxable of the tredicesima (2,001.57)
 
 with the tredicesima taxable from
-:mod:`tests.fixtures.legal_examples.metalmeccanico_c3_2026`.  The worker
+:mod:`tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026`.  The worker
 declares no income beyond this employment
 (:meth:`~ccnl_engine.inputs.CurrentYearTaxFacts.employment_only`), so the
 employment income of the year is the reddito complessivo.  Expected
-deductions come from :mod:`tests.fixtures.legal_examples.family_2026`.
+deductions come from :mod:`tests.fixtures.normative_oracles.family_2026`.
 """
 
 from __future__ import annotations
@@ -39,11 +39,11 @@ from ccnl_engine.inputs import (
     OpeningBalances,
 )
 from ccnl_engine.results import CalculationStatus
-from tests.fixtures.legal_examples.family_2026 import (
+from tests.fixtures.normative_oracles.family_2026 import (
     SPOUSE_BAND_EXAMPLES,
     spouse_deduction,
 )
-from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
+from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
     employee_taxable,
 )
@@ -52,7 +52,7 @@ from tests.fixtures.withholding import paid_before
 if TYPE_CHECKING:
     from decimal import Decimal
 
-    from tests.fixtures.legal_examples.family_2026 import IncomeBand
+    from tests.fixtures.normative_oracles.family_2026 import IncomeBand
 
 _ENGINE = PayrollEngine.bundled()
 _SPOUSE = FamilyComposition(

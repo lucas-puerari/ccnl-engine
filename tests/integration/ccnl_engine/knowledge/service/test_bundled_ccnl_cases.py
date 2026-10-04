@@ -1,10 +1,10 @@
 """Data tests: CCNL knowledge values must match the case files exactly.
 
 Level 2 of the three-level test architecture.  Each case file in
-``tests/fixtures/contracts/`` is a JSON document that records the expected values
-for one CCNL's salary table, seniority increments, and apprenticeship
-percentages.  Tests here load the *real* bundled files via ``load_ccnl()``
-and compare field values directly — no ``compute()``, no tax logic.
+``tests/fixtures/synthetic_contracts/`` is a JSON document that records the
+expected values for one CCNL's salary table, seniority increments, and
+apprenticeship percentages.  Tests here load the *real* bundled files via
+``load_ccnl()`` and compare field values directly — no ``compute()``, no tax logic.
 
 The checks are independent so a regression in, say, a salary table entry
 fails here (data layer) rather than only in the reference tests where the
@@ -30,7 +30,7 @@ from ccnl_engine.contract.service.loaders import load_ccnl
 if TYPE_CHECKING:
     from ccnl_engine.contract.domain.identity import CCNL
 
-_CASES_DIR = Path(__file__).parents[4] / "fixtures" / "contracts"
+_CASES_DIR = Path(__file__).parents[4] / "fixtures" / "synthetic_contracts"
 _CASE_FILES = sorted(_CASES_DIR.glob("*.json"))
 
 

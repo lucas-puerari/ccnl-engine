@@ -47,10 +47,10 @@ from ccnl_engine.inputs import (
     PayrollRunId,
     PeriodState,
 )
-from tests.fixtures.legal_examples.metalmeccanico_c3_2026 import (
+from tests.fixtures.next_year_repository import NextYearRepository
+from tests.fixtures.normative_oracles.payslips.metalmeccanico_c3_2026 import (
     C3_MINIMUM_FROM_JUNE_2026,
 )
-from tests.fixtures.next_year_repository import NextYearRepository
 from tests.fixtures.seniority import new_hire
 
 _ENGINE = PayrollEngine.bundled()

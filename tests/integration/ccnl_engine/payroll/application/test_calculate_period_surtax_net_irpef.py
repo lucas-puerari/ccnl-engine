@@ -23,7 +23,7 @@ from ccnl_engine import (
     PeriodFacts,
 )
 from ccnl_engine.inputs import WeeklyHours
-from tests.fixtures.legal_examples.irpef_2026 import gross_irpef, net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import gross_irpef, net_irpef
 
 if TYPE_CHECKING:
     from ccnl_engine import PeriodResult

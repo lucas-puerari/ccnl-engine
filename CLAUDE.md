@@ -100,7 +100,7 @@ JSON changes in `knowledge/*/data/` are code-level changes: they alter engine
 behaviour. After one, regenerate the docs that quote the data
 (`gen_contract_pages.py`, `gen_trust_counts.py`) and commit the result; every
 number in `docs/trust/` sits between `<!-- trust:NAME -->` markers and is
-never written by hand. Reference cases citing a signed source live in `tests/fixtures/expected/`
+never written by hand. Reference cases citing a signed source live in `tests/fixtures/reference_tables/`
 and run through `PayrollEngine` in `tests/acceptance/public_api/test_reference_cases.py`.
 
 ## Test layout
@@ -118,6 +118,6 @@ Enforced by `tests/architecture/test_test_layout.py`:
   behaviour through `PayrollEngine` only.
 - `tests/architecture/`: dependencies, structure, public exports, data quality.
 - `tests/fixtures/`: data and helpers only (`contracts/`, `expected/`,
-  `legal_examples/`), never tests.
+  `normative_oracles/`), never tests.
 
 At most five directories under `tests` before a file (`fixtures` aside).

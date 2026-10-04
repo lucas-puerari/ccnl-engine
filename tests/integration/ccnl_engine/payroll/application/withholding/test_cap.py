@@ -44,7 +44,7 @@ from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.ytd_accounts import WithholdingShortfall
 from ccnl_engine.tax.service.tax_annual_assembler import load_year_rules
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.helpers import year_plan
 
 if TYPE_CHECKING:

@@ -24,7 +24,7 @@ from tests.acceptance.legal_scenarios._support import (
     EMPLOYER,
     ENGINE,
 )
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 
 pytestmark = pytest.mark.legal_scenario
 

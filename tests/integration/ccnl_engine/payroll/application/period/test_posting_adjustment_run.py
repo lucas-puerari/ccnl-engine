@@ -41,7 +41,7 @@ from ccnl_engine.payroll.domain.obligations import (
 from ccnl_engine.payroll.domain.recovery_plan import RecoveryPlan
 from ccnl_engine.payroll.domain.rounding import money
 from ccnl_engine.payroll.domain.run import PayrollRun, RunKind
-from tests.fixtures.legal_examples.irpef_2026 import net_irpef
+from tests.fixtures.normative_oracles.irpef_2026 import net_irpef
 from tests.helpers import EMPLOYER_50, year_plan
 
 if TYPE_CHECKING:

@@ -157,7 +157,7 @@ gates; the `CI` workflow runs all of them on every pull request:
 | Structure | `uv run python scripts/ci/check_structure.py` | File, function, class and Markdown page size limits |
 | Provenance schema | `python scripts/ci/check_provenance.py --schema` | Every payable rule has a record with the evidence its status claims |
 | Provenance evidence | `python scripts/ci/check_provenance.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
-| Reference cases | `python scripts/ci/check_provenance.py tests/fixtures/expected/*.json` | Every reference case has a verification status and a source |
+| Reference cases | `python scripts/ci/check_provenance.py tests/fixtures/reference_tables/*.json` | Every reference case has a verification status and a source |
 | Contract pages | `uv run python scripts/docs/gen_contract_pages.py --check` | Every page matches its CCNL data |
 | Trust counts | `uv run python scripts/docs/gen_trust_counts.py --check` | Every count in `docs/trust/` matches the bundle |
 
@@ -178,7 +178,7 @@ This is a hard rule:
 
 Expected values copied from engine output detect regressions only, never a
 systematic error, so they are not accepted as proof of correctness.
-Reference cases live in `tests/fixtures/expected/` and
+Reference cases live in `tests/fixtures/reference_tables/` and
 `tests/acceptance/public_api/test_reference_cases.py` runs each one through
 `PayrollEngine`. They are reference table cases, not full payslips: a case
 asserts only the values its source states (base salary, fixed allowances and
