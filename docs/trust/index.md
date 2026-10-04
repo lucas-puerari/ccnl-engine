@@ -188,7 +188,9 @@ contributions, taxes or employer cost. Of the
 <!-- trust:reference-cases-verified -->0<!-- /trust:reference-cases-verified -->
 are `verified` and
 <!-- trust:reference-cases-source-linked -->5<!-- /trust:reference-cases-source-linked -->
-are `source_linked`.
+are `source_linked`. Full-payslip oracles, computed by hand from primary
+sources for the whole payslip, are separate fixtures; see
+[Correctness](correctness.md).
 
 ### Reference case verification status
 
