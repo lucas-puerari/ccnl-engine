@@ -1,5 +1,24 @@
 # Migration guide
 
+## Apprenticeship pay components
+
+Apprentice pay now follows the CCNL on every component it touches.
+
+| Before | After |
+|---|---|
+| A percentage track reduced the apprentice seniority amount by the percentage | The apprentice amount (`seniority_increments.apprentice_amount`) is paid in full: it is already the apprentice one. `apprenticeship_scaling` lists `seniority` under `unscaled` |
+| A `midpoint_to_destination` period averaged the base salary only; the allowances stayed those of the pay level | The period pays the mean of the whole monthly pay of the two levels: base salary and every active fixed allowance (one level's allowance counts as zero on the other). Each allowance is rounded to the cent; the base takes the rest, so the total is the rounded mean of the totals |
+| Engine limitations `apprenticeship_midpoint_allowances` and `apprentice_seniority_simplified` open, recorded on every affected run | Both `resolved`. A CCNL whose rule is unsourced carries its own open limitation, recorded on the same path: `<ccnl_id>/apprenticeship_midpoint_components` (Legno Federlegno) and `<ccnl_id>/apprentice_seniority` (CCNLs with level increments and no apprentice amount) |
+| A percentage track reduced every allowance whose `apprenticeship_pct_relevant` flag the data leaves at its default, silently | Same amounts, plus the open engine limitation `apprenticeship_pct_undeclared_components` (`monetary_impact` `unknown`), so the run is not payable until the CCNL flag is sourced. `Allowance.apprenticeship_pct_declared` tells a declared flag from a default |
+
+- Federterme L5 apprentices in the second half of the track now earn the
+  Art. 13 lett. g midpoint of the whole pay (March 2026: 1,405.31 instead of
+  1,404.10).
+- Percentage apprentices of the five Confartigianato CCNLs with an apprentice
+  seniority amount (acconciatura-estetica, comunicazione, legno-lapidei,
+  panificazione, tessile-moda) receive the full amount once increments
+  mature.
+
 ## Sickness episodes computed by the engine
 
 Sickness is a native capability. The engine pays the sick days of an
