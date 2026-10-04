@@ -1,4 +1,4 @@
-"""Work-rule events: overtime, absence, sick leave, fringe benefit, welfare, bonus."""
+"""Work-rule events: overtime, absence, sickness, fringe benefit, welfare, bonus."""
 
 from datetime import date
 from decimal import Decimal
@@ -16,7 +16,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
     PriorYearTaxFacts,
-    SickLeaveEvent,
+    SicknessEpisode,
     WelfareEvent,
 )
 
@@ -37,11 +37,13 @@ events = (
         hours=Decimal(8),
         hourly_rate=Decimal("16.50"),
     ),
-    SickLeaveEvent(
-        event_date=date(2026, 3, 12),
-        amount=Decimal(0),
-        sick_days=3,
-        waiting_period_days=3,
+    # The engine pays the sick days from the CCNL and INPS rules: three
+    # days of carenza, here integrated at 100% by the CCNL.  An episode
+    # that continues into April is passed again, same id, to the April run.
+    SicknessEpisode(
+        episode_id="cert-2026-0316",
+        started_on=date(2026, 3, 16),
+        ended_on=date(2026, 3, 18),
     ),
     FringeEvent(
         event_date=date(2026, 3, 1),

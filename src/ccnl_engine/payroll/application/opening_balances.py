@@ -1,12 +1,10 @@
 """Opening balances imported from a previous payroll provider.
 
-An integration that takes over an employment mid-year, or at the start of
-a year with a recovery still running, states the progressive totals of the
-previous provider here and imports them with
+An integration taking over an employment states the totals of the previous
+provider here and imports them with
 :meth:`~ccnl_engine.api.facade.PayrollEngine.import_opening_balances`, the
-one way to build a state the engine did not compute.  The totals are
-verified against the payments that produced them: each payment is
-identified, so the engine never computes it again.
+one way to build a state the engine did not compute.  Each payment behind
+the totals is identified, so the engine never computes it again.
 """
 
 from __future__ import annotations
@@ -36,6 +34,7 @@ from ccnl_engine.payroll.domain.payment import PaymentId
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.run import PayrollRunId
 from ccnl_engine.payroll.domain.shortfall_deferral import DeferredShortfall
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.payroll.domain.surtax_obligations import SurtaxObligation
 from ccnl_engine.payroll.domain.tax_cash_state import TaxCashState
 from ccnl_engine.payroll.domain.ytd_accounts import (
@@ -84,6 +83,9 @@ class OpeningBalances:
             of the same year (``other_employers``, from their CU or the
             worker's declaration; INPS circ. 237/2016 par. 3.1).  Import the
             year before too when its December is paid in ``tax_year``.
+        sickness_episodes: Sickness episodes of the employment up to the
+            last processed day, in start order: they set the waiting
+            period, INPS days and CCNL tier of later episodes.
         gross: Contractual gross earnings paid.
         taxable: IRPEF taxable income.
         inps_employee: Employee INPS contributions withheld.
@@ -143,6 +145,7 @@ class OpeningBalances:
     payments: tuple[PaymentId, ...] = ()
     competence_runs: tuple[PayrollRunId, ...] = ()
     inps_bases: tuple[InpsBaseYtd, ...] = ()
+    sickness_episodes: tuple[SicknessEpisode, ...] = ()
     gross: Decimal = _ZERO
     taxable: Decimal = _ZERO
     inps_employee: Decimal = _ZERO
@@ -192,6 +195,7 @@ class OpeningBalances:
             ("payments", PaymentId),
             ("competence_runs", PayrollRunId),
             ("inps_bases", InpsBaseYtd),
+            ("sickness_episodes", SicknessEpisode),
         ):
             object.__setattr__(self, name, items(getattr(self, name), name, item))
         object.__setattr__(
@@ -291,5 +295,6 @@ class OpeningBalances:
         accrual = EmploymentAccrualState(
             competence_runs=(*self.competence_runs, *(p.run_id for p in self.payments)),
             inps_bases=self.inps_bases,
+            sickness_episodes=self.sickness_episodes,
         )
         return PeriodState(accrual=accrual, cash=cash)

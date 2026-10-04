@@ -6,13 +6,11 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.payroll.domain.sickness import SicknessCase
 from ccnl_engine.shared.domain.errors import InvalidInputError
 from ccnl_engine.shared.domain.validation import (
     require_bool,
     require_date,
     require_decimal,
-    require_instance,
     require_int,
 )
 
@@ -21,7 +19,7 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 
-__all__ = ["AbsenceEvent", "SickLeaveEvent", "SicknessCaseEvent"]
+__all__ = ["AbsenceEvent", "SickLeaveEvent"]
 
 
 @dataclass(frozen=True)
@@ -75,11 +73,14 @@ class AbsenceEvent:
 
 @dataclass(frozen=True)
 class SickLeaveEvent:
-    """Sick leave — employer-paid portion only.
+    """Sick pay amount set by the caller: an explicit, never payable override.
 
-    The INPS-paid portion (if any) flows outside the payroll run and is
-    not included here.  The employer portion is subject to INPS and IRPEF
-    but not TFR accrual.
+    The engine computes sickness from a
+    :class:`~ccnl_engine.payroll.domain.sickness.SicknessEpisode`.  This
+    event overrides that computation with an employer-paid amount the
+    caller computed; the run records a caller-supplied decision for the
+    ``sickness`` capability, so its result is not payable.  The amount is
+    subject to INPS and IRPEF but not TFR accrual.
 
     The engine deducts the carenza (waiting-period) portion from *amount*:
     ``net = amount - (amount / sick_days * waiting_period_days)``.
@@ -123,40 +124,4 @@ class SickLeaveEvent:
             )
             raise InvalidInputError(
                 msg, field="SickLeaveEvent.waiting_period_days", feature=feature
-            )
-
-
-@dataclass(frozen=True)
-class SicknessCaseEvent:
-    """Structured sick-leave episode with INPS indemnity and employer integration.
-
-    Wraps a :class:`~ccnl_engine.payroll.domain.sickness.SicknessCase` to
-    participate in the event pipeline.  Unlike :class:`SickLeaveEvent`, which
-    requires the caller to pre-compute amounts, this event lets the engine
-    derive the absence deduction, INPS indemnity, and employer integration
-    from the episode details.
-
-    Attributes:
-        event_date: First day of the sick-leave episode (= ``case.episode_start``).
-            Must equal ``case.episode_start``.
-        case: The full sickness episode model.
-    """
-
-    event_date: date
-    case: SicknessCase
-
-    def __post_init__(self) -> None:  # noqa: D105
-        require_date(
-            self.event_date, "SicknessCaseEvent.event_date", feature="sickness"
-        )
-        require_instance(
-            self.case, SicknessCase, "SicknessCaseEvent.case", feature="sickness"
-        )
-        if self.event_date < self.case.episode_start:
-            msg = (
-                f"SicknessCaseEvent.event_date ({self.event_date}) must be >= "
-                f"case.episode_start ({self.case.episode_start})"
-            )
-            raise InvalidInputError(
-                msg, field="SicknessCaseEvent.event_date", feature="sickness"
             )

@@ -89,6 +89,20 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the exact Art. 66 amount of the CCNL 23.1.2024 for periods before 31/12/2024.
 
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -112,7 +126,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Questo file e 'dirigenza-sanitaria-medico-veterinaria-aran.json' derivano dallo stesso CCNL Area Sanità 27.02.2026 (unico testo). La distinzione in due file è una scelta strutturale: le diverse indennità di specificità (Art. 15 c.1 per medici/veterinari vs Art. 15 c.3 per sanitari non medici) giustificano contratti separati nel motore.
     
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; il tasso è selezionato in base ai cumulative_sick_days all'inizio del periodo. Periodi di paga a cavallo di una soglia mensile ricevono un unico tasso (engine limitation accettabile).
+    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13-18, comporto max 18 mesi (540 gg) — Art. 38 CCNL 23.01.2024 Area Sanità. Modellato con SicknessTier; ogni giorno di malattia riceve il tasso del mese dell'episodio in cui cade, anche in un periodo di paga a cavallo di una soglia.
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.
     

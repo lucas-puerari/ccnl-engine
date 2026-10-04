@@ -5,7 +5,7 @@ simplification notes of the CCNL declare.  Each is matched against the
 facts of the run: the CCNL, the competence date the rules were read at,
 the contract type, level, category, run kind and seniority of the request,
 the capabilities the capability report scopes as applicable, and the
-engine limitations whose code path built the pay chain.
+engine limitations whose code path built the pay chain or paid an event.
 """
 
 from __future__ import annotations
@@ -24,7 +24,11 @@ if TYPE_CHECKING:
 __all__ = ["limitation_facts", "run_limitations"]
 
 
-def limitation_facts(ctx: RunContext, report: CapabilityReport) -> LimitationFacts:
+def limitation_facts(
+    ctx: RunContext,
+    report: CapabilityReport,
+    traversed: frozenset[str] = frozenset(),
+) -> LimitationFacts:
     """Return the facts of the run the limitation scopes are matched against.
 
     Returns:
@@ -47,19 +51,27 @@ def limitation_facts(ctx: RunContext, report: CapabilityReport) -> LimitationFac
             for feature, scope in report.scope.items()
             if scope is CapabilityScope.APPLICABLE
         ),
-        traversed=frozenset(ctx.chain.limitations),
+        traversed=frozenset(ctx.chain.limitations) | traversed,
     )
 
 
 def run_limitations(
-    ctx: RunContext, report: CapabilityReport
+    ctx: RunContext,
+    report: CapabilityReport,
+    traversed: frozenset[str] = frozenset(),
 ) -> tuple[ModelLimitation, ...]:
     """Return the limitations that concern the run, engine ones first.
+
+    Args:
+        ctx: Context of the run.
+        report: Capability report of the run.
+        traversed: Engine limitations whose path the events of the run
+            took, besides those of the pay chain.
 
     Returns:
         The applicable limitations, each once.
     """
-    facts = limitation_facts(ctx, report)
+    facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)
     return tuple(
         limitation for limitation in candidates if limitation.applies_to(facts)

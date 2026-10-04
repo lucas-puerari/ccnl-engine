@@ -14,7 +14,9 @@ The extra-month ratei maturati are counted from the employment dates
 ratei liquidati are the extra-month runs closed here.  The INPS base
 toward the IVS massimale follows competence too
 (:mod:`~ccnl_engine.payroll.domain.inps_base`), so it is counted here per
-competence year.
+competence year.  The sickness episodes are counted over the employment
+too: a waiting period, an INPS band or a CCNL tier depends on the sick days
+before the run, whatever tax year paid them.
 """
 
 from __future__ import annotations
@@ -25,6 +27,7 @@ from typing import final
 
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.run import PayrollRunId, RunKind
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode
 from ccnl_engine.shared.domain.collection_validation import items_of_type, tuple_of
 from ccnl_engine.shared.domain.errors import InvalidInputError
 
@@ -33,6 +36,7 @@ __all__ = ["EmploymentAccrualState"]
 _FEATURE = "accrual_state"
 _FIELD = "EmploymentAccrualState.competence_runs"
 _BASES = "EmploymentAccrualState.inps_bases"
+_SICKNESS = "EmploymentAccrualState.sickness_episodes"
 _ZERO = Decimal(0)
 _EXTRA_MONTHS = frozenset({RunKind.THIRTEENTH, RunKind.FOURTEENTH})
 
@@ -59,6 +63,8 @@ class EmploymentAccrualState:
         competence_runs: Identifiers of the runs closed, in closing order.
         inps_bases: INPS base toward the massimale of each competence year
             with a base, one per year, in year order.
+        sickness_episodes: Sickness episodes the runs processed, each cut at
+            its last processed day, in start order.
 
     Raises:
         InvalidInputError: When a run id is not a
@@ -70,6 +76,7 @@ class EmploymentAccrualState:
 
     competence_runs: tuple[PayrollRunId, ...] = ()
     inps_bases: tuple[InpsBaseYtd, ...] = ()
+    sickness_episodes: tuple[SicknessEpisode, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         runs = tuple_of(
@@ -92,6 +99,7 @@ class EmploymentAccrualState:
         if years != sorted(set(years)):
             msg = f"inps_bases must hold one base per year, in year order; got {years}"
             raise InvalidInputError(msg, field=_BASES, feature=_FEATURE)
+        object.__setattr__(self, "sickness_episodes", _episodes(self, _SICKNESS))
 
     def check_next_run(self, run_id: PayrollRunId) -> None:
         """Check that ``run_id`` can close next.
@@ -103,13 +111,18 @@ class EmploymentAccrualState:
         _check_next(self.competence_runs, run_id)
 
     def after(
-        self, run_id: PayrollRunId, inps_base: Decimal = _ZERO
+        self,
+        run_id: PayrollRunId,
+        inps_base: Decimal = _ZERO,
+        sickness_episodes: tuple[SicknessEpisode, ...] | None = None,
     ) -> EmploymentAccrualState:
         """Return the state with ``run_id`` closed and its INPS base added.
 
         Args:
             run_id: The run closed.
             inps_base: INPS base of the run, added to its competence year.
+            sickness_episodes: Sickness episodes after the run, ``None``
+                when the run processed none.
 
         Returns:
             A new state with ``run_id`` appended; it is validated again.
@@ -119,6 +132,11 @@ class EmploymentAccrualState:
         return EmploymentAccrualState(
             competence_runs=(*self.competence_runs, run_id),
             inps_bases=tuple(sorted((*others, base), key=lambda b: b.year)),
+            sickness_episodes=(
+                self.sickness_episodes
+                if sickness_episodes is None
+                else sickness_episodes
+            ),
         )
 
     def inps_base(self, year: int) -> InpsBaseYtd:
@@ -186,3 +204,27 @@ def _check_next(closed: tuple[PayrollRunId, ...], run_id: PayrollRunId) -> None:
             f"year {run_id.year} is already closed"
         )
         raise InvalidInputError(msg, field=_FIELD, feature=_FEATURE)
+
+
+def _episodes(state: EmploymentAccrualState, path: str) -> tuple[SicknessEpisode, ...]:
+    """Return the validated sickness episodes of ``state``.
+
+    Returns:
+        The episodes as a tuple.
+
+    Raises:
+        InvalidInputError: When an item is not a sickness episode, two share
+            an id or they are out of start order.
+    """
+    episodes = tuple_of(
+        state.sickness_episodes,
+        path,
+        items_of_type(SicknessEpisode, feature=_FEATURE),
+        feature=_FEATURE,
+    )
+    ids = [e.episode_id for e in episodes]
+    starts = [e.started_on for e in episodes]
+    if len(set(ids)) != len(ids) or starts != sorted(starts):
+        msg = f"sickness episodes must have distinct ids, in start order; got {ids}"
+        raise InvalidInputError(msg, field=path, feature=_FEATURE)
+    return episodes

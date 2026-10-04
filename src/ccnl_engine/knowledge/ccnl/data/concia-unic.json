@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "b035fc5438148c8d7fdfce0474f3dcb474cfa5d04de4ee699ee5ee85fcd65f90",
+    "source_hash": "b7ecf655108db4ec0f6f851f5ce5fa53765468eb18f144af026484b9c5971616",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -2766,7 +2766,14 @@
         "kind": "simplification",
         "text": "SICKNESS: Art. 60 (2024 renewal) — 3 seniority tiers: comporto 8/10/12 mesi, full-pay 3/4/5 mesi, half-pay 5/6/7 mesi. Modeled as base tier (0-5 years): 100% months 1-3, 50% months 4-8, max 240 days. Higher tiers not modeled — SicknessRules has no seniority-gated comporto.",
         "capability": "sickness",
-        "monetary_impact": "no"
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "seniority_gated_sickness_tiers",
+          "applies_when": {
+            "seniority_months_from": 60
+          },
+          "remediation": "Add the seniority-gated comporto and full-pay months of Art. 60 (4 and 5 months full pay over 10 and 12 months) to the sickness rule, then resolve this limitation."
+        }
       },
       {
         "kind": "simplification",

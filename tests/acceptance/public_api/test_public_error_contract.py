@@ -24,7 +24,6 @@ from ccnl_engine import (
     Headcount,
     InvalidInputError,
     MissingRuleError,
-    OutOfScopeError,
     PayrollEngine,
     PayrollRun,
     PeriodFacts,
@@ -32,8 +31,9 @@ from ccnl_engine import (
     PeriodResult,
     SeniorityFact,
     SenioritySource,
+    WorkerCategory,
 )
-from tests.fixtures.sickness_episode import march_sickness_episode
+from tests.fixtures.sickness_episode import metalmeccanico_c3, sickness_episode
 
 _ENGINE = PayrollEngine.bundled()
 _EMPLOYER = EmployerProfile(headcount=Headcount(50))
@@ -189,25 +189,44 @@ def test_employment_rejects_a_role_that_is_not_a_string() -> None:
     assert raised.value.field == "Employment.roles[1]"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=OutOfScopeError,
-    reason="sickness with earlier sick days in the year is refused as out of scope",
-)
 def test_sickness_after_earlier_sick_days_is_computed() -> None:
-    """The catalog declares sickness computed.
+    """The catalog declares sickness computed, after earlier sick days too.
 
-    An episode after ten sick days in the year needs the cumulative INPS
-    and CCNL tiers.  Today building the episode raises ``OutOfScopeError``
-    with reason ``cumulative_tiers_not_implemented`` and asks the caller to
-    compute the tier.
+    Metalmeccanico C3 operaio, 2158.26 EUR a month, daily quota by 26:
+    83.01 EUR a day.  Ten sick days from Monday 2 February 2026 (eight of
+    them Monday to Saturday); the March episode, Monday 9 to Friday 13, is a
+    relapse of it, so its days are days 11 to 15 of one episode: no waiting
+    period, INPS 50% (days 4-20), CCNL integration to 100%.
+
+    By hand: five days 2158.26 * 5 / 26 = 415.05 deducted and paid back,
+    INPS 415.05 * 0.50 = 207.525 -> 207.53, employer 415.05 - 207.53 =
+    207.52.
     """
-    episode = march_sickness_episode(cumulative_sick_days_ytd=10)
-
-    result = _regular(
-        Employment(ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"),
-        month=3,
-        facts=PeriodFacts(events=(episode,)),
+    employment = metalmeccanico_c3(WorkerCategory.OPERAIO)
+    february = sickness_episode("2026-02-02", date(2026, 2, 2), date(2026, 2, 11))
+    first = _regular(employment, 2, PeriodFacts(events=(february,)))
+    relapse = sickness_episode(
+        "2026-03-09", date(2026, 3, 9), date(2026, 3, 13), relapse_of="2026-02-02"
     )
 
-    assert result.period_gross > 0
+    result = _ENGINE.calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=employment,
+            employer=_EMPLOYER,
+            facts=PeriodFacts(events=(relapse,)),
+            opening_state=first.closing_state,
+        )
+    )
+
+    amounts = {
+        item.kind: item.amount for item in result.pay_items if "_evt" in item.item_id
+    }
+    assert amounts == {
+        "absence_deduction": Decimal("415.05"),
+        "sickness_inps_item": Decimal("207.53"),
+        "sickness_item": Decimal("207.52"),
+    }
+    (decision,) = (d for d in result.decisions if d.capability == "sickness")
+    assert decision.reason_code == "sickness_episode_paid"

@@ -149,7 +149,11 @@
         "kind": "simplification",
         "text": "SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia.",
         "capability": "sickness",
-        "monetary_impact": "no"
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "assumed_sickness_integration_rates",
+          "remediation": "Source the carenza and integration rates of the CCNL and replace the assumed 100%."
+        }
       },
       {
         "kind": "missing",
@@ -2248,7 +2252,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "9737e0835fe3e8a5ef42ad54c9c1d0f250081719020a7566cea2451b155dc814",
+    "source_hash": "352737d6e07514e78e90e6c067269598350f7f9af00bf67b499d9f6a4f9690a4",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

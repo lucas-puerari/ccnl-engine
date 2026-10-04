@@ -96,6 +96,27 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the tabellare of the CCNL 19.12.2019 from the previgente contract text.
 
+!!! note "dirigenza-sanitaria-medico-veterinaria-aran/single_rate_across_tier_threshold · sickness · impact yes · resolved"
+    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il motore classifica ogni giorno di malattia con il mese dell'episodio in cui cade, quindi un periodo di paga a cavallo di una soglia mensile applica a ciascun giorno il proprio tasso. Comporto max 18 mesi = 540 gg.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Resolved: sick days are classified one by one (ccnl_engine.payroll.domain.sick_days); tested with an episode crossing the threshold of a tier within one month.
+
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
 ### Without monetary impact
 
 !!! note ""
@@ -103,9 +124,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 !!! note ""
     Questo file modella solo la componente medico-veterinaria del CCNL Area Sanità 27.02.2026. Il medesimo CCNL copre anche altri dirigenti sanitari (psicologi, farmacisti, biologi, fisici, chimici), modellati in 'dirigenza-sanitaria-area-sanita-aran.json'. Entrambi i file condividono codice CNEL S225.
-
-!!! note ""
-    Malattia: 100% mesi 1-9, 90% mesi 10-12, 50% mesi 13+ modellati con SicknessTier. Il tasso è selezionato in base al cumulative_sick_days all'inizio del periodo; periodi di paga a cavallo di una soglia mensile ricevono un unico tasso. Comporto max 18 mesi = 540 gg.
 
 ## Sources
 

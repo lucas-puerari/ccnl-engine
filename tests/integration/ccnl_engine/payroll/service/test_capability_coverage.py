@@ -91,10 +91,10 @@ def test_bundled_missing_notes_and_limitations() -> None:
     [
         ("impianti-sportivi-sport.json", ("overtime", "sickness")),
         ("concia-unic.json", ("overtime", "sickness")),
-        ("ortofrutticoli-agrumari.json", ("leave", "sickness")),
+        ("ortofrutticoli-agrumari.json", ("sickness",)),
         (
             "pulizia-artigianato-confartigianato.json",
-            ("holiday_work", "leave", "night_work", "sickness"),
+            ("holiday_work", "night_work"),
         ),
     ],
 )
@@ -104,6 +104,12 @@ def test_work_rules_partials_are_derived(
     """The work-rule gaps these files once declared as flags are partial."""
     rows = _by_feature(load_ccnl(filename))
     assert all(rows[feature][0] is _IMPL.PARTIAL for feature in features)
+
+
+def test_leave_without_an_event_stays_unsupported() -> None:
+    """A missing note on leave, which no event computes, keeps it unsupported."""
+    rows = _by_feature(load_ccnl("ortofrutticoli-agrumari.json"))
+    assert rows["leave"] == (_IMPL.UNSUPPORTED, True)
 
 
 def test_unknown_capability_is_rejected() -> None:

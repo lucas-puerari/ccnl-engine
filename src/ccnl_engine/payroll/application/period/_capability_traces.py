@@ -141,7 +141,7 @@ def build_traces(
     traces = [
         DecisionTrace(f, decided.get(f, TraceState.COMPUTED)) for f in _CORE_FEATURES
     ]
-    events = tuple(EVENT_FEATURES.values())
+    events = tuple(dict.fromkeys(EVENT_FEATURES.values()))
     traces.extend(
         DecisionTrace(
             f,

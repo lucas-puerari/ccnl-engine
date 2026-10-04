@@ -21,6 +21,10 @@ from ccnl_engine.knowledge.service.capability_catalog_loader import (
     load_capability_catalog,
 )
 from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
+from ccnl_engine.payroll.application.handlers.sickness import (
+    CUMULATION_LIMITATION,
+    INPS_DAILY_BASE_LIMITATION,
+)
 from ccnl_engine.payroll.service.apprenticeship import MIDPOINT_ALLOWANCES
 from ccnl_engine.payroll.service.bundled_knowledge_repository import (
     BundledKnowledgeRepository,
@@ -75,6 +79,8 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
     assert {lim.id for lim in load_engine_limitations()} == {
         MIDPOINT_ALLOWANCES,
         APPRENTICE_SENIORITY,
+        INPS_DAILY_BASE_LIMITATION,
+        CUMULATION_LIMITATION,
     }
 
 

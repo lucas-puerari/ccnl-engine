@@ -1,8 +1,7 @@
 """Steps of one run: events, amounts and decisions.
 
-The credits, the withholding cap and the base posting follow in
-:mod:`~ccnl_engine.payroll.application.period._posting`.  Each step reads
-the run context and the outputs of the steps before it.
+Each step reads the run context and the outputs of the steps before it;
+the credits and the postings follow in :mod:`.period._posting`.
 """
 
 from __future__ import annotations
@@ -43,6 +42,7 @@ from ccnl_engine.payroll.application.period._seniority import (
     run_seniority,
     seniority_decision,
 )
+from ccnl_engine.payroll.application.period._sickness import sickness_terms
 from ccnl_engine.payroll.application.year._extra_month_accrual import (
     settle_extra_months,
 )
@@ -113,6 +113,7 @@ def _variable_events(ctx: RunContext) -> RunEvents:
         overtime_bands=CCNLOvertimeBands.of(
             ctx.contract.ccnl, ctx.contract.tctx.competence.year
         ),
+        sickness=sickness_terms(ctx),
     )
     return RunEvents(totals, items, entries)
 

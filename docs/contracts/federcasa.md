@@ -108,6 +108,24 @@ Latest effective values per level (monthly gross, EUR).
 | `D1` | € 12.06 |
 | `D2` | € 11.61 |
 
+## Known simplifications
+
+Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
 ## Sources
 
 | Document | Kind | Date | URL |

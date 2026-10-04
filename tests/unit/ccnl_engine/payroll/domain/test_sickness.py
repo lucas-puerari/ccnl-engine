@@ -1,232 +1,113 @@
-"""Unit tests for SicknessCase and SicknessCaseEvent domain types."""
+"""Sickness episodes and the episodes earlier runs recorded."""
 
 from __future__ import annotations
 
-from dataclasses import FrozenInstanceError
-from datetime import date
-from decimal import Decimal
+from datetime import UTC, date, datetime
 
 import pytest
 
-from ccnl_engine.payroll.domain.events import SicknessCaseEvent
-from ccnl_engine.payroll.domain.sickness import SicknessCase
-from ccnl_engine.shared.domain.errors import InvalidInputError, OutOfScopeError
+from ccnl_engine.payroll.domain.sickness import SicknessEpisode, SicknessHistory
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
-_ZERO = Decimal(0)
-_ONE = Decimal(1)
-_START = date(2026, 1, 10)
-_END = date(2026, 1, 15)
+_A = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 11))
 
 
-def _case(**kwargs: object) -> SicknessCase:
-    defaults: dict[str, object] = {
-        "episode_start": _START,
-        "episode_end": _END,
-        "working_days": 5,
-        "waiting_period_days": 3,
-        "gross_daily": Decimal("80.00"),
-        "inps_daily_rate": Decimal("0.50"),
-        "integration_rate": Decimal("1.00"),
-    }
-    defaults.update(kwargs)
-    return SicknessCase(**defaults)  # type: ignore[arg-type]
+class TestEpisode:
+    """An episode is an interval of illness with a stable id."""
 
+    @pytest.mark.parametrize(
+        ("kwargs", "field"),
+        [
+            ({"episode_id": " "}, "SicknessEpisode.episode_id"),
+            (
+                {"started_on": datetime(2026, 2, 2, tzinfo=UTC)},
+                "SicknessEpisode.started_on",
+            ),
+            ({"ended_on": date(2026, 2, 1)}, "SicknessEpisode.ended_on"),
+            ({"relapse_of": "a"}, "SicknessEpisode.relapse_of"),
+            ({"relapse_of": ""}, "SicknessEpisode.relapse_of"),
+        ],
+    )
+    def test_invalid_episode_is_rejected(
+        self, kwargs: dict[str, object], field: str
+    ) -> None:
+        """Blank id, datetime, reversed days or a relapse of itself."""
+        values: dict[str, object] = {
+            "episode_id": "a",
+            "started_on": date(2026, 2, 2),
+            "ended_on": date(2026, 2, 11),
+            **kwargs,
+        }
+        with pytest.raises(InvalidInputError) as raised:
+            SicknessEpisode(**values)  # type: ignore[arg-type]
+        assert raised.value.field == field
 
-class TestSicknessCaseFields:
-    """SicknessCase stores all fields correctly."""
+    def test_days_and_event_date(self) -> None:
+        """2 to 11 February is ten days; the event date is the first."""
+        assert _A.days == 10
+        assert _A.event_date == date(2026, 2, 2)
 
-    def test_fields_stored(self) -> None:
-        """All fields are stored and retrievable."""
-        sc = _case()
-        assert sc.episode_start == _START
-        assert sc.episode_end == _END
-        assert sc.working_days == 5
-        assert sc.waiting_period_days == 3
-        assert sc.gross_daily == Decimal("80.00")
-        assert sc.inps_daily_rate == Decimal("0.50")
-        assert sc.integration_rate == Decimal("1.00")
-        assert sc.carenza_integration_rate == _ZERO
-        assert sc.cumulative_sick_days_ytd == 0
-
-    def test_frozen(self) -> None:
-        """SicknessCase is immutable."""
-        sc = _case()
-        with pytest.raises(FrozenInstanceError):
-            sc.working_days = 10  # type: ignore[misc]
-
-
-class TestSicknessCaseValidation:
-    """SicknessCase.__post_init__ enforces all constraints."""
-
-    def test_episode_end_before_start_raises(self) -> None:
-        """episode_end before episode_start raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(episode_start=date(2026, 1, 20), episode_end=date(2026, 1, 10))
-
-    def test_working_days_zero_raises(self) -> None:
-        """working_days = 0 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(working_days=0)
-
-    def test_waiting_period_negative_raises(self) -> None:
-        """Negative waiting_period_days raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(waiting_period_days=-1)
-
-    def test_waiting_period_exceeds_working_days_raises(self) -> None:
-        """waiting_period_days > working_days raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(working_days=3, waiting_period_days=5)
-
-    def test_gross_daily_negative_raises(self) -> None:
-        """Negative gross_daily raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(gross_daily=Decimal("-0.01"))
-
-    def test_inps_rate_below_zero_raises(self) -> None:
-        """inps_daily_rate below 0 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(inps_daily_rate=Decimal("-0.01"))
-
-    def test_inps_rate_above_one_raises(self) -> None:
-        """inps_daily_rate above 1 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(inps_daily_rate=Decimal("1.01"))
-
-    def test_integration_rate_below_zero_raises(self) -> None:
-        """integration_rate below 0 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(integration_rate=Decimal("-0.01"))
-
-    def test_integration_rate_above_one_raises(self) -> None:
-        """integration_rate above 1 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(integration_rate=Decimal("1.01"))
-
-    def test_carenza_rate_below_zero_raises(self) -> None:
-        """carenza_integration_rate below 0 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(carenza_integration_rate=Decimal("-0.01"))
-
-    def test_carenza_rate_above_one_raises(self) -> None:
-        """carenza_integration_rate above 1 raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(carenza_integration_rate=Decimal("1.01"))
-
-    def test_cumulative_sick_days_negative_raises(self) -> None:
-        """Negative cumulative_sick_days_ytd raises InvalidInputError."""
-        with pytest.raises(InvalidInputError):
-            _case(cumulative_sick_days_ytd=-1)
-
-    def test_cumulative_sick_days_positive_raises_out_of_scope(self) -> None:
-        """cumulative_sick_days_ytd > 0 raises OutOfScopeError.
-
-        Tier-based sickness integration is not yet implemented.
-        """
-        with pytest.raises(OutOfScopeError):
-            _case(cumulative_sick_days_ytd=1)
-
-
-class TestSicknessCaseBoundaries:
-    """SicknessCase accepts values on the edge of each constraint."""
-
-    def test_boundary_inps_rate_zero_accepted(self) -> None:
-        """inps_daily_rate = 0 is accepted."""
-        sc = _case(inps_daily_rate=_ZERO)
-        assert sc.inps_daily_rate == _ZERO
-
-    def test_boundary_inps_rate_one_accepted(self) -> None:
-        """inps_daily_rate = 1 is accepted."""
-        sc = _case(inps_daily_rate=_ONE)
-        assert sc.inps_daily_rate == _ONE
-
-    def test_gross_daily_zero_accepted(self) -> None:
-        """gross_daily = 0 is accepted."""
-        sc = _case(gross_daily=_ZERO)
-        assert sc.gross_daily == _ZERO
-
-
-class TestSicknessCaseProperties:
-    """SicknessCase computed properties."""
-
-    def test_indemnifiable_days_normal(self) -> None:
-        """indemnifiable_days = working_days - waiting_period_days."""
-        sc = _case(working_days=5, waiting_period_days=3)
-        assert sc.indemnifiable_days == 2
-
-    def test_indemnifiable_days_no_carenza(self) -> None:
-        """indemnifiable_days equals working_days when no carenza."""
-        sc = _case(working_days=5, waiting_period_days=0)
-        assert sc.indemnifiable_days == 5
-
-    def test_indemnifiable_days_full_carenza(self) -> None:
-        """indemnifiable_days is 0 when all days are carenza."""
-        sc = _case(working_days=5, waiting_period_days=5)
-        assert sc.indemnifiable_days == 0
-
-    def test_spans_multiple_months_same_month(self) -> None:
-        """spans_multiple_months is False within the same month."""
-        sc = _case(episode_start=date(2026, 1, 10), episode_end=date(2026, 1, 20))
-        assert sc.spans_multiple_months is False
-
-    def test_spans_multiple_months_different_month(self) -> None:
-        """spans_multiple_months is True when crossing a month boundary."""
-        sc = _case(
-            episode_start=date(2026, 1, 25),
-            episode_end=date(2026, 2, 5),
+    def test_within_clips_to_the_interval(self) -> None:
+        """The days of February 2026, and none of March."""
+        assert _A.within(date(2026, 2, 5), date(2026, 2, 28)) == (
+            date(2026, 2, 5),
+            date(2026, 2, 11),
         )
-        assert sc.spans_multiple_months is True
+        assert _A.within(date(2026, 3, 1), date(2026, 3, 31)) is None
 
-    def test_spans_multiple_months_different_year(self) -> None:
-        """spans_multiple_months is True when crossing a year boundary."""
-        sc = _case(
-            episode_start=date(2026, 12, 29),
-            episode_end=date(2027, 1, 3),
-        )
-        assert sc.spans_multiple_months is True
-
-    def test_spans_multiple_months_same_day(self) -> None:
-        """spans_multiple_months is False for a single-day episode."""
-        sc = _case(
-            episode_start=date(2026, 3, 15),
-            episode_end=date(2026, 3, 15),
-            working_days=1,
-            waiting_period_days=0,
-        )
-        assert sc.spans_multiple_months is False
+    def test_through_and_before_cut_the_episode(self) -> None:
+        """Cut at 5 February, before 5 February, before its start."""
+        assert _A.through(date(2026, 2, 5)).ended_on == date(2026, 2, 5)
+        assert _A.through(date(2026, 2, 28)) is _A
+        before = _A.before(date(2026, 2, 5))
+        assert before is not None
+        assert before.ended_on == date(2026, 2, 4)
+        assert _A.before(date(2026, 2, 2)) is None
 
 
-class TestSicknessCaseEvent:
-    """SicknessCaseEvent validation."""
+class TestHistory:
+    """Recorded episodes chain relapses and reject contradictions."""
 
-    def _sickness_case(self) -> SicknessCase:
-        return _case(
-            episode_start=date(2026, 1, 10),
-            episode_end=date(2026, 1, 15),
-        )
+    def test_relapse_offset_is_the_chain_length(self) -> None:
+        """Episode b continues a (10 days), c continues b (3 days): offset 13."""
+        b = SicknessEpisode("b", date(2026, 3, 2), date(2026, 3, 4), "a")
+        c = SicknessEpisode("c", date(2026, 3, 20), date(2026, 3, 21), "b")
+        history = SicknessHistory((_A, b))
+        assert history.offset(_A) == 0
+        assert history.offset(c) == 13
 
-    def test_valid_event(self) -> None:
-        """SicknessCaseEvent is constructed successfully when event_date matches."""
-        case = self._sickness_case()
-        evt = SicknessCaseEvent(event_date=date(2026, 1, 10), case=case)
-        assert evt.event_date == date(2026, 1, 10)
-        assert evt.case is case
+    def test_relapse_of_an_unrecorded_episode_is_rejected(self) -> None:
+        """The episode it continues must be recorded and earlier."""
+        orphan = SicknessEpisode("b", date(2026, 3, 2), date(2026, 3, 4), "z")
+        earlier = SicknessEpisode("b", date(2026, 1, 2), date(2026, 1, 4), "a")
+        for episode in (orphan, earlier):
+            with pytest.raises(InvalidInputError, match="no earlier run recorded"):
+                SicknessHistory((_A,)).offset(episode)
 
-    def test_event_date_before_episode_start_raises(self) -> None:
-        """event_date < case.episode_start raises InvalidInputError."""
-        case = self._sickness_case()
-        with pytest.raises(InvalidInputError):
-            SicknessCaseEvent(event_date=date(2026, 1, 9), case=case)
+    def test_check_rejects_a_moved_start_or_an_overlap(self) -> None:
+        """The same id from another day, or another episode on its days."""
+        history = SicknessHistory((_A,))
+        moved = SicknessEpisode("a", date(2026, 2, 3), date(2026, 2, 11))
+        overlap = SicknessEpisode("b", date(2026, 2, 10), date(2026, 2, 20))
+        with pytest.raises(InvalidInputError, match="was recorded from"):
+            history.check(moved)
+        with pytest.raises(InvalidInputError, match="overlaps"):
+            history.check(overlap)
+        history.check(SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 20)))
 
-    def test_event_date_after_episode_start_accepted(self) -> None:
-        """event_date > case.episode_start is accepted (multi-period episode)."""
-        case = self._sickness_case()
-        evt = SicknessCaseEvent(event_date=date(2026, 1, 11), case=case)
-        assert evt.event_date == date(2026, 1, 11)
+    def test_check_rejects_days_already_paid(self) -> None:
+        """Recorded through 11 February, the episode cannot pay 11 February."""
+        history = SicknessHistory((_A,))
+        longer = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 20))
+        with pytest.raises(InvalidInputError, match="already paid through"):
+            history.check(longer, date(2026, 2, 11))
+        history.check(longer, date(2026, 2, 12))
 
-    def test_frozen(self) -> None:
-        """SicknessCaseEvent is immutable."""
-        case = self._sickness_case()
-        evt = SicknessCaseEvent(event_date=date(2026, 1, 10), case=case)
-        with pytest.raises(FrozenInstanceError):
-            evt.event_date = date(2026, 1, 12)  # type: ignore[misc]
+    def test_with_episode_replaces_and_orders(self) -> None:
+        """An extended episode replaces its record; episodes stay in order."""
+        early = SicknessEpisode("z", date(2026, 1, 5), date(2026, 1, 6))
+        longer = SicknessEpisode("a", date(2026, 2, 2), date(2026, 2, 20))
+        history = SicknessHistory((_A,))
+        assert history.with_episode(longer) == (longer,)
+        assert history.with_episode(early) == (early, _A)
+        assert SicknessHistory((early, _A)).earlier(_A) == (early,)

@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/docs/gen_capability_matrix.py -->
 
-<!-- generated: 2026-10-03 -->
+<!-- generated: 2026-10-04 -->
 
 # Capability Matrix
 
@@ -54,7 +54,7 @@ formulas or caller-declared amounts.
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
 | net | 15 | 1 | 2 | 8 |
-| work_rules | 2 | 7 | 1 | 2 |
+| work_rules | 3 | 6 | 0 | 3 |
 
 | Capability | Description | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|
@@ -95,8 +95,8 @@ formulas or caller-declared amounts.
 | `holiday_work` | Lavoro festivo | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `shift_work` | Lavoro a turni | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `absence` | Assenze ingiustificate | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `leave` | Ferie e permessi ROL | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `sickness` | Malattia: un caso per evento, fascia e aliquote dal chiamante | work_rules | partial | event | event | — | single_case_per_event, tier_and_rates_from_caller | simplified | none bundled |
+| `leave` | Ferie e permessi ROL | work_rules | unsupported | outside_input | — | `facts.events[leave]` | — | unavailable | none bundled |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | implemented | none bundled |
 | `fringe_benefit` | Fringe benefit (informativo) | work_rules | native | event | event | — | — | implemented | 0 / 1 / 0 / 0 |
 | `welfare` | Welfare aziendale (informativo) | work_rules | native | event | event | — | — | implemented | none bundled |
 | `bonus_pdr` | Premio di risultato PDR (informativo) | net | native | decided | decision | — | — | implemented | 0 / 1 / 0 / 0 |
@@ -174,7 +174,7 @@ of the contract file lowers to partial.
 | 51 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | 🔲 | 🔲 | 🔲 | seniority |
 | 52 | [CCNL Gruppo ANAS](anas.md) | 🔲 | 🔲 | 🔲 | — |
 | 53 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | 🔲 | 🔲 | 🔲 | inps_employer |
-| 54 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | 🔲 | 🔲 | 🔲 | base_salary, overtime |
+| 54 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness |
 | 55 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds |
 | 56 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | 🔲 | 🔲 | 🔲 | — |
 | 57 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | 🔲 | 🔲 | 🔲 | seniority |
@@ -236,7 +236,7 @@ of the contract file lowers to partial.
 | 113 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | 🔲 | 🔲 | 🔲 | — |
 | 114 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | 🔲 | 🔲 | 🔲 | base_salary |
 | 115 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | 🔲 | 🔲 | 🔲 | base_salary |
-| 116 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime |
+| 116 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | 🔲 | 🔲 | 🔲 | overtime, sickness |
 | 117 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | 🔲 | 🔲 | 🔲 | — |
 | 118 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | 🔲 | 🔲 | 🔲 | — |
 | 119 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | 🔲 | 🔲 | 🔲 | base_salary |

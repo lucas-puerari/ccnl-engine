@@ -185,6 +185,18 @@
     "legal_basis": "Art. 51 TUIR"
   },
   {
+    "policy_id": "it/indemnity/sickness_inps",
+    "policy_version": "2026.1",
+    "kinds": ["sickness_inps_item"],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "excluded",
+    "tfr": "excluded",
+    "cost": "employee_cash",
+    "legal_basis": "D.L. 663/1979 artt. 1-2 (conv. L. 33/1980): indemnity advanced for INPS, the days are covered by figurative contributions; art. 6 c. 2 TUIR"
+  },
+  {
     "policy_id": "it/indemnity/maternity",
     "policy_version": "2026.1",
     "kinds": ["maternity_item"],

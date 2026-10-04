@@ -16,7 +16,11 @@ from ccnl_engine.tax.domain.art15 import (
 )
 from ccnl_engine.tax.domain.family import FamilyDeductionRules
 from ccnl_engine.tax.domain.preferential_regime import PreferentialTaxRegime
-from ccnl_engine.tax.domain.sick_pay import InpsSickPayRates, SickPayBand
+from ccnl_engine.tax.domain.sick_pay import (
+    InpsSickPayRates,
+    SickPayBand,
+    SickPayCoverage,
+)
 from ccnl_engine.tax.domain.variable_pay import (
     FringeBenefitRules,
     PdRRules,
@@ -34,20 +38,24 @@ def load_sick_pay_rates() -> InpsSickPayRates:
     """Load INPS statutory sick-pay indemnity rates from the bundled data file.
 
     The file ``knowledge/inps/data/sick-pay-rates.json`` is not year- or
-    sector-specific: statutory sick-pay rates are cross-sector and change
-    only by primary legislation (D.Lgs. 151/2001, artt. 68-71).
+    sector-specific: statutory sick-pay rates change only by primary
+    legislation (D.L. 663/1979, artt. 1-2, conv. L. 33/1980).
 
     Returns:
         An :class:`~ccnl_engine.tax.domain.sick_pay.InpsSickPayRates`
-        with the INPS carenza period, indemnity bands, and provenance.
+        with the INPS carenza period, indemnity bands, annual maximum,
+        coverage rules and provenance.
     """
     pkg = importlib.resources.files("ccnl_engine.knowledge.inps.data")
     raw = _read_json(pkg, "sick-pay-rates.json")
-    bands = [SickPayBand(**b) for b in raw.get("bands", [])]
     return InpsSickPayRates(
         description=raw.get("description", ""),
         carenza_days=int(raw.get("carenza_days", 3)),
-        bands=bands,
+        bands=[SickPayBand(**b) for b in raw.get("bands", [])],
+        annual_max_days=int(raw.get("annual_max_days", 180)),
+        coverage=tuple(
+            SickPayCoverage.model_validate(rule) for rule in raw.get("coverage", [])
+        ),
         ruleset=_as_ruleset(raw),
     )
 

@@ -11,19 +11,88 @@
     {
       "day_from": 21,
       "day_to": 180,
-      "rate": "0.6667",
-      "description": "Days 21-180: INPS pays 2/3 of daily reference base"
+      "rate": "0.6666",
+      "description": "Days 21-180: INPS pays 66.66% of daily reference base"
     }
   ],
   "ruleset": {
     "id": "inps/sick-pay-rates",
-    "version": "1.0",
-    "effective_from": "2001-07-26",
+    "version": "1.1",
+    "effective_from": "1980-01-01",
     "effective_until": null,
-    "published_at": "2026-09-08",
-    "source": "D.Lgs. 26 marzo 2001 n. 151, artt. 68-71; D.Lgs. 30 giugno 1995 n. 272",
+    "published_at": "2026-10-04",
+    "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33) for the waiting period and the indemnity; rates, 180-day annual maximum and cover as summarised by Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04); not checked against an INPS circular",
     "verification_status": "unverified",
-    "source_hash": "247c10b99aee3d105bbd705a18333f29a3c03f6d5dbb03e1633a40e3cfbdc811",
-    "source_type": "official_primary"
-  }
+    "source_hash": "ab716bdd88c55f73b36b8d64dad015507b6a4065bb13e35224386e6aa7c236fd",
+    "source_type": "contracting_party"
+  },
+  "annual_max_days": 180,
+  "coverage": [
+    {
+      "sectors": [
+        "pubblica-amministrazione",
+        "lavoro-domestico"
+      ],
+      "covered": false,
+      "source": "Unverified reading: public employees are paid by the administration, domestic workers by the employer under their CCNL; not checked against a primary text"
+    },
+    {
+      "categories": [
+        "dirigente"
+      ],
+      "covered": false,
+      "source": "Unverified reading: dirigenti are not insured with INPS for sickness; not checked against a primary text"
+    },
+    {
+      "contract_types": [
+        "apprentice"
+      ],
+      "covered": true,
+      "source": "L. 27 dicembre 2006 n. 296, art. 1 c. 773 (apprentices insured for sickness from 2007); unverified, text not fetched"
+    },
+    {
+      "sectors": [
+        "industria",
+        "terziario"
+      ],
+      "categories": [
+        "operaio"
+      ],
+      "covered": true,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04): INPS pays operai of industry and operai and impiegati of the terziario"
+    },
+    {
+      "sectors": [
+        "edilizia",
+        "artigianato"
+      ],
+      "categories": [
+        "operaio"
+      ],
+      "covered": true,
+      "source": "Unverified: by analogy with operai of industry; the secondary source read does not name building or artisan operai"
+    },
+    {
+      "sectors": [
+        "terziario"
+      ],
+      "categories": [
+        "impiegato",
+        "quadro"
+      ],
+      "covered": true,
+      "source": "D.L. 30 dicembre 1979 n. 663, artt. 1-2 (conv. L. 29 febbraio 1980 n. 33); Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04): INPS pays impiegati of the terziario (quadri by analogy, unverified)"
+    },
+    {
+      "sectors": [
+        "industria"
+      ],
+      "categories": [
+        "impiegato",
+        "quadro"
+      ],
+      "covered": false,
+      "source": "Assolombarda, Lavoro a tempo indeterminato - Tutele previdenziali (secondary, read 2026-10-04): impiegati of industry are paid by the employer under the CCNL (quadri by analogy, unverified)"
+    }
+  ]
 }

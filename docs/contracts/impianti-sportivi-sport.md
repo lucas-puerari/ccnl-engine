@@ -38,7 +38,7 @@ Derived from the capability registry, as in the [capability matrix](capability-m
 | **L1 — Gross** | 🔲 |
 | **L2 — Net** | 🔲 |
 | **L3 — Work rules** | 🔲 |
-| **Limits of this contract** | base_salary, overtime |
+| **Limits of this contract** | base_salary, overtime, sickness |
 
 ### Verifica
 
@@ -125,6 +125,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the 20% band over 48 weekly hours, or pass the multiplier on the overtime event.
 
+!!! warning "impianti-sportivi-sport/integration_75_days_4_20 · sickness · impact yes · open"
+    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Express the day-based integration of Art. 103 (75% on days 4-20, 100% from day 21) in the sickness rule, then resolve this limitation.
+
 !!! warning "impianti-sportivi-sport/night_overtime_cumulation · overtime · impact unknown · open"
     SIMPLIFICATION: Cumulo notturno. Art. 83 ult. comma: 'Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro' — esclude la cumulabilita tra i soli supplementi interni all'Art. 83 (15%/20%/30%/50%). Il supplemento del 10% di Art. 84 e un articolo separato e non e esplicitamente escluso dalla cumulabilita. Il motore applica entrambi alle ore notturne straordinarie (60% totale). Se le parti intendono il 50% inclusivo del 10%, il motore sovrastima di 10 punti sulle ore OT notturne.
 
@@ -139,10 +146,21 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the residual quattordicesima of Art. 116 behind a hire-date fact.
 
-### Without monetary impact
+!!! warning "sickness_inps_daily_base · sickness · impact unknown · open"
+    The INPS share of a sick day is the INPS rate times the CCNL daily quota of the current month, counted on the CCNL payable days. INPS computes it on its own daily base (retribuzione media globale giornaliera of the month before) and on calendar days. The worker's total for the day is the same; the split between INPS indemnity (outside the contribution base) and employer integration may differ, and with it the contributions.
 
-!!! note ""
-    SIMPLIFICATION: Integrazione malattia (Art. 103). Struttura contrattuale: giorni 1-3 a carico del datore (100%), giorni 4-20 integrazione al 75%, giorni 21+ integrazione al 100%. La granularita 'giorno' non e modellabile nel schema SicknessRules (usa mesi). Modellato: carenza_integration_rate=1.0, full_pay_integration_rate=1.0 (allineato alla fase finale). La finestra al 75% (gg. 4-20) non e modellata; il motore sovrastima la retribuzione per eventi di malattia breve.
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Compute the INPS indemnity on the INPS daily base and calendar days of the INPS rules, with the pay of the month before, then resolve this limitation.
+
+!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
+    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded.
+
+    **Applies when:** `sickness` applies; the run takes the engine code path.
+
+    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+
+### Without monetary impact
 
 !!! note ""
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.

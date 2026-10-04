@@ -48,6 +48,7 @@ _UNSUPPORTED_2026 = {
     "territorial_supplement": "outside_input",
     "company_supplement": "outside_input",
     "art15_deductions": "outside_input",
+    "leave": "outside_input",
 }
 
 
@@ -71,7 +72,7 @@ class TestBundledRegistry:
         assert "spouse_increase_bands" in entry.variants
 
     def test_unsupported_capabilities_and_predicates(self) -> None:
-        """The fourteen unsupported capabilities name when they apply."""
+        """The fifteen unsupported capabilities name when they apply."""
         catalog = load_capability_catalog(2026)
         unsupported = {
             e.feature: e.applies_when.value
@@ -80,11 +81,11 @@ class TestBundledRegistry:
         }
         assert unsupported == _UNSUPPORTED_2026
 
-    def test_partial_capabilities(self) -> None:
-        """Sickness is computed for some variants only."""
+    def test_sickness_is_native(self) -> None:
+        """Sickness episodes are computed from the bundle rules."""
         entry = load_capability_catalog(2026).by_feature("sickness")
         assert entry is not None
-        assert entry.implementation is CapabilityImplementation.PARTIAL
+        assert entry.implementation is CapabilityImplementation.NATIVE
 
     def test_cached_returns_same_object(self) -> None:
         """Repeated calls for the same year return the identical object."""

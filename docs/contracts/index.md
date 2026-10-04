@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/docs/gen_coverage_matrix.py -->
-<!-- generated: 2026-10-03 -->
+<!-- generated: 2026-10-04 -->
 
 # CCNL Coverage
 
@@ -31,7 +31,7 @@ Capabilities of the registry by layer and implementation:
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
 | net | 15 | 1 | 2 | 8 |
-| work_rules | 2 | 7 | 1 | 2 |
+| work_rules | 3 | 6 | 0 | 3 |
 
 | | Functional coverage of a layer: its weakest capability |
 |---|---|
@@ -105,7 +105,7 @@ Capabilities of the registry by layer and implementation:
 | 51 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 65 / 1 / 1 | 🧪 | 🤖 |
 | 52 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | 🔲 | 🔲 | 🔲 | — | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 53 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 104 / 1 / 1 | 🧪 | 🤖 |
-| 54 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | 🔲 | 🔲 | 🔲 | base_salary, overtime | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
+| 54 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | 🔲 | 🔲 | 🔲 | base_salary, overtime, sickness | 0 / 30 / 1 / 1 | 🧪 | 🤖 |
 | 55 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds | 0 / 13 / 1 / 1 | 🧪 | 🤖 |
 | 56 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | 🔲 | 🔲 | 🔲 | — | 0 / 94 / 1 / 1 | 🧪 | 🤖 |
 | 57 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
@@ -167,7 +167,7 @@ Capabilities of the registry by layer and implementation:
 | 113 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | 🔲 | 🔲 | 🔲 | — | 0 / 38 / 2 / 0 | 🧪 | 🤖 |
 | 114 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | 🔲 | 🔲 | 🔲 | base_salary | 0 / 33 / 1 / 1 | 🧪 | 🤖 |
 | 115 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | 🔲 | 🔲 | 🔲 | base_salary | 0 / 69 / 2 / 0 | 🧪 | 🤖 |
-| 116 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 🔲 | 🔲 | 🔲 | overtime | 0 / 55 / 0 / 1 | 🧪 | 🤖 |
+| 116 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | 🔲 | 🔲 | 🔲 | overtime, sickness | 0 / 55 / 0 / 1 | 🧪 | 🤖 |
 | 117 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | 🔲 | 🔲 | 🔲 | — | 0 / 86 / 2 / 0 | 🧪 | 🤖 |
 | 118 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | 🔲 | 🔲 | 🔲 | — | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
 | 119 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | 🔲 | 🔲 | 🔲 | base_salary | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
