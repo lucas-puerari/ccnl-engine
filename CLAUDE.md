@@ -54,8 +54,9 @@ uv run python scripts/docs/gen_contract_pages.py --check      # contract page dr
 uv run python scripts/docs/gen_trust_counts.py --check        # docs/trust/ counts drift
 ```
 
-`check_structure.py` enforces file, function and class size limits and
-source depth against `scripts/ci/structure_baseline.json`; see
+`check_structure.py` enforces file, function, class and Markdown page size
+limits and source depth against `scripts/ci/structure_baseline.json`, and
+reports the non-blocking 80% targets (`--targets` lists them); see
 `docs/engine/architecture.md` for the limits and how to shrink the baseline.
 
 `check_provenance.py --evidence` compares every `assumed`/`missing` payable

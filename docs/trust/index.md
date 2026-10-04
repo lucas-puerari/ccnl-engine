@@ -154,7 +154,7 @@ gates; the `CI` workflow runs all of them on every pull request:
 | Lint | `uv run ruff check src/ tests/ scripts/` | Zero errors |
 | Format | `uv run ruff format --check src/ tests/ scripts/` | No changes |
 | Types | `uv run mypy src/ tests/` and `uv run mypy scripts/ --explicit-package-bases` | Zero errors, strict mode |
-| Structure | `uv run python scripts/ci/check_structure.py` | File, function and class size limits |
+| Structure | `uv run python scripts/ci/check_structure.py` | File, function, class and Markdown page size limits |
 | Provenance schema | `python scripts/ci/check_provenance.py --schema` | Every payable rule has a record with the evidence its status claims |
 | Provenance evidence | `python scripts/ci/check_provenance.py --evidence` | No new `assumed` or `missing` rule, open limitation or readiness claim; the baseline only shrinks |
 | Reference cases | `python scripts/ci/check_provenance.py tests/fixtures/expected/*.json` | Every reference case has a verification status and a source |
