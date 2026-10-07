@@ -17,7 +17,11 @@ from ccnl_engine.payroll.domain.employment_facts import (
     WeeklyHours,
     check_within_full_time,
 )
-from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
+from ccnl_engine.payroll.domain.pension_fund import (
+    PENSION_FUND_TYPES,
+    NoPensionFund,
+    PensionFundEnrolment,
+)
 from ccnl_engine.payroll.domain.seniority_fact import SeniorityFact
 from ccnl_engine.payroll.domain.tfr_fund import TfrFundBalance
 from ccnl_engine.shared.domain.collection_validation import frozenset_of
@@ -134,7 +138,10 @@ class Employment:
             ``missing_fact`` blocker, and its amounts leave them out.
         roles: Role codes that unlock role-specific contractual allowances,
             each a non-blank string.  A set is accepted and stored as a
-            frozenset.
+            frozenset; an empty set states that the worker holds no role.
+            ``None`` means not known: a run whose level has an allowance
+            restricted to a role then has a ``missing_fact`` blocker, and
+            its amounts leave the allowance out.
         contribution_history: First enrolment in a mandatory pension scheme
             and contributory option, from which the engine derives whether
             the IVS massimale applies.  ``None`` means not known: a run whose
@@ -145,10 +152,14 @@ class Employment:
             regimes are then ``unknown`` and the result provisional.  It is
             not derived from the CCNL: a public employer may apply a private
             CCNL.
-        pension_fund: Enrolment in a complementary pension fund of the CCNL.
-            ``None`` means not enrolled: no fund contribution is computed,
-            and on a CCNL that has funds the ``pension_fund_contribution``
-            capability records the reason ``not_enrolled``.
+        pension_fund: Enrolment in a complementary pension fund of the CCNL,
+            or :class:`~ccnl_engine.payroll.domain.pension_fund.NoPensionFund`
+            to state that the worker is not enrolled: no fund contribution is
+            computed, and on a CCNL that has funds the
+            ``pension_fund_contribution`` capability records the reason
+            ``not_enrolled``.  ``None`` means not known: on a CCNL that has
+            funds the contributions are undetermined and the run has a
+            ``missing_fact`` blocker.
         tfr_fund: TFR fund at 31 December of the year before the run, the
             base of the revaluation at 31 December (art. 2120 c. 4 c.c.).
             ``None`` means not known: the December run then has a
@@ -179,10 +190,10 @@ class Employment:
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     seniority: SeniorityFact | None = None
-    roles: frozenset[str] = frozenset()
+    roles: frozenset[str] | None = None
     contribution_history: ContributionHistory | None = None
     sector: EmploymentSector | None = None
-    pension_fund: PensionFundEnrolment | None = None
+    pension_fund: PensionFundEnrolment | NoPensionFund | None = None
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
 
@@ -198,8 +209,9 @@ class Employment:
             self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
         )
         require_instances("Employment", self._typed_fields(), feature=FEATURE)
-        roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
-        object.__setattr__(self, "roles", roles)
+        if self.roles is not None:
+            roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
+            object.__setattr__(self, "roles", roles)
         object.__setattr__(self, "category", parse_worker_category(self.category))
         if self.sector is not None:
             sector = parse_enum(
@@ -241,7 +253,7 @@ class Employment:
                 ContributionHistory,
                 True,
             ),
-            ("pension_fund", self.pension_fund, PensionFundEnrolment, True),
+            ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
         )

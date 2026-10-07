@@ -36,7 +36,7 @@ from ccnl_engine.payroll.domain.family import (
 from ccnl_engine.payroll.domain.inps_base import InpsBaseYtd
 from ccnl_engine.payroll.domain.obligations import RecoveryObligation
 from ccnl_engine.payroll.domain.payment import PaymentId
-from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
+from ccnl_engine.payroll.domain.pension_fund import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.prior_year import (
     ForeignTaxPaid,
@@ -75,6 +75,7 @@ __all__ = [
     "ForeignTaxPaid",
     "IncomeEstimateQuality",
     "InpsBaseYtd",
+    "NoPensionFund",
     "OpeningBalances",
     "PaymentId",
     "PayrollRunId",

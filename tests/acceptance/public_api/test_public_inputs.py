@@ -76,16 +76,17 @@ class TestEmployment:
     """The employment is validated and normalized at construction."""
 
     def test_defaults(self) -> None:
-        """Untracked facts default to ``None``, empty roles and permanent."""
+        """Untracked facts default to ``None`` (not known) and permanent."""
         employment = Employment(ccnl_slug=_METAL, level_code="C3")
         assert employment.weekly_hours is None
         assert employment.full_time_weekly_hours is None
         assert employment.employment_period is None
         assert employment.seniority is None
-        assert employment.roles == frozenset()
+        assert employment.roles is None
         assert employment.category is None
         assert employment.sector is None
         assert employment.contribution_history is None
+        assert employment.pension_fund is None
 
     def test_category_string_value_is_normalized(self) -> None:
         """A category given as its string value is stored as the enum member."""

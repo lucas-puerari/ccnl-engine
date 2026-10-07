@@ -128,6 +128,7 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
             ctx.run_id,
             run,
         ),
+        request.current_year,
     )
     carried = post_carried_recoveries(
         ctx.opening.cash.obligations,

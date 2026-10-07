@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.payroll.application.year._extra_month_qualification import (
     non_accruing_days,
     termination_settlements,
+    unknown_accrual_days,
 )
 from ccnl_engine.payroll.domain.accrual import (
     DEFAULT_MONTH_ACCRUAL_RULE,
@@ -60,6 +61,8 @@ class YearPlan:
     Attributes:
         schedule: Runs of the year the employment overlaps.
         non_accruing: Days that accrue no extra-month ratei.
+        unknown_accrual: Days of absences whose suspension of accrual is
+            not stated.
         extra_months: Extra-month schedule by ``(run kind, payment month)``.
         settlements: Ratei paid on a run before the termination, by run id.
         accrual_rule: Month-qualification rule of the CCNL ratei.
@@ -70,6 +73,7 @@ class YearPlan:
     extra_months: dict[tuple[str, int], ExtraMonthSchedule]
     settlements: dict[str, tuple[ExtraMonthAccrual, ...]]
     accrual_rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
+    unknown_accrual: frozenset[date] = frozenset()
 
 
 def plan_year(
@@ -99,9 +103,11 @@ def plan_year(
         raise InvalidInputError(
             msg, field="CompetenceYearPlan.payment_dates", feature="tax_year"
         )
-    non_accruing = non_accruing_days(
+    events = tuple(
         event for facts in plan.facts_by_run.values() for event in facts.events
     )
+    non_accruing = non_accruing_days(events)
+    unknown_days = unknown_accrual_days(events)
     return YearPlan(
         schedule=schedule,
         non_accruing=non_accruing,
@@ -109,9 +115,10 @@ def plan_year(
             (s.kind.value, s.payment_month): s for s in year_calendar.extra_months
         },
         settlements=termination_settlements(
-            year_calendar, period, non_accruing, accrual_rule
+            year_calendar, period, non_accruing, accrual_rule, unknown_days
         ),
         accrual_rule=accrual_rule,
+        unknown_accrual=unknown_days,
     )
 
 
@@ -154,6 +161,7 @@ def run_request(
                 period,
                 non_accruing_days=year_plan.non_accruing,
                 rule=year_plan.accrual_rule,
+                unknown_days=year_plan.unknown_accrual,
             )
             if extra_sched is not None
             else None

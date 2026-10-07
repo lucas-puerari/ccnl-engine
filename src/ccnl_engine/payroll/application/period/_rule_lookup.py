@@ -22,6 +22,7 @@ from ccnl_engine.payroll.application.period._tfr_rules import (
 from ccnl_engine.payroll.domain.employment import Apprentice, FixedTerm
 from ccnl_engine.payroll.domain.events import OvertimeEvent
 from ccnl_engine.payroll.domain.jurisdiction import region_table_name
+from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -237,7 +238,8 @@ def _pension_rules(ctx: RunContext) -> tuple[Rule, ...]:
         cap and solidarity rate of the tax year.
     """
     ccnl = ctx.contract.ccnl
-    code = ctx.request.pension_fund.fund_code if ctx.request.pension_fund else ""
+    enrolment = ctx.request.pension_fund
+    code = enrolment.fund_code if isinstance(enrolment, PensionFundEnrolment) else ""
     fund = next(f for f in ccnl.parameters.employer_funds if f.code == code)
     day = ctx.contract.tctx.competence
     prefix = f"{_name(ccnl.ruleset, f'ccnl/{ccnl.meta.ccnl_id}')}:employer_funds"

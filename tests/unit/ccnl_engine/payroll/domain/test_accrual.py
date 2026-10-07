@@ -155,3 +155,23 @@ def test_absence_days_spans_the_range_inclusive() -> None:
     """Both ends are absence days; a reversed range is empty."""
     assert len(absence_days(date(2026, 4, 1), date(2026, 4, 20))) == 20
     assert absence_days(date(2026, 4, 2), date(2026, 4, 1)) == frozenset()
+
+
+class TestUnknownSuspension:
+    """Absences whose suspension is not stated count, and may mark the rateo."""
+
+    def test_unknown_days_that_change_the_months_mark_it_undetermined(
+        self,
+    ) -> None:
+        """20 days of April: April counts (30 days), not if they suspended (10)."""
+        days = absence_days(date(2026, 4, 1), date(2026, 4, 20))
+        accrual = ExtraMonthAccrual.of(_THIRTEENTH, 2026, unknown_days=days)
+        assert accrual.months == 12
+        assert accrual.undetermined
+
+    def test_unknown_days_that_cannot_change_the_months_do_not(self) -> None:
+        """5 days of April: 25 accruing days still reach 15 either way."""
+        days = absence_days(date(2026, 4, 1), date(2026, 4, 5))
+        accrual = ExtraMonthAccrual.of(_THIRTEENTH, 2026, unknown_days=days)
+        assert accrual.months == 12
+        assert not accrual.undetermined

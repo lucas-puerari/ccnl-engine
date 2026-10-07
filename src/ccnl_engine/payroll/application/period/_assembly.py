@@ -6,7 +6,10 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
-from ccnl_engine.payroll.application.period._accrual_decisions import run_accruals
+from ccnl_engine.payroll.application.period._accrual_decisions import (
+    accrual_issue,
+    run_accruals,
+)
 from ccnl_engine.payroll.application.period._additional_ivs import (
     additional_ivs_issue,
 )
@@ -19,10 +22,17 @@ from ccnl_engine.payroll.application.period._closing_state import (
     RunOutcome,
     closing_state,
 )
+from ccnl_engine.payroll.application.period._employment_facts import (
+    full_time_issue,
+    roles_issue,
+)
 from ccnl_engine.payroll.application.period._limitations import run_limitations
 from ccnl_engine.payroll.application.period._minimum_base import minimum_base_issue
 from ccnl_engine.payroll.application.period._other_employers import (
     other_employers_issue,
+)
+from ccnl_engine.payroll.application.period._pension_decision import (
+    pension_fund_issue,
 )
 from ccnl_engine.payroll.application.period._rule_sources import (
     missing_source_issues,
@@ -161,10 +171,12 @@ def _input_issues(
     """Return the issues of the facts and rules the run read.
 
     Returns:
-        The issues of the category rates, the seniority, the proration, the
-        minimum INPS base, the IVS massimale, the additional 1% IVS, the
-        opening state, the INPS base of other employments and the TFR
-        revaluation, in that order,
+        The issues of the category rates, the seniority, the full time
+        and the roles of the employment, the pension fund enrolment, the
+        suspension of accrual of the absences, the proration, the minimum
+        INPS base, the IVS massimale, the additional 1% IVS, the opening
+        state, the INPS base of other employments and the TFR revaluation,
+        in that order,
         each only when raised.
     """
     ivs = amounts.ivs_ceiling
@@ -174,6 +186,10 @@ def _input_issues(
             ctx.contract.year_rules, ctx.request.contract_type, ctx.worker_category
         ),
         run_seniority(ctx).issue(),
+        full_time_issue(ctx),
+        roles_issue(ctx),
+        pension_fund_issue(ctx),
+        accrual_issue(ctx),
         ctx.proration.issue(),
         minimum_base_issue(amounts.minimum_base),
         None if ivs is None else ivs.issue(),

@@ -14,6 +14,7 @@ from ccnl_engine.payroll.application.withholding._somma_esente import (
     resolve_somma_esente,
 )
 from ccnl_engine.payroll.domain.credit_accounts import SommaEsenteAccount
+from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
 from ccnl_engine.payroll.domain.decisions import CalculationStatus
 from ccnl_engine.payroll.domain.ledger import AccountKind
 from ccnl_engine.payroll.domain.obligations import (
@@ -47,6 +48,9 @@ _RULES = make_year_rules().model_copy(
         )
     }
 )
+#: No income beyond this employment in 2026: the reddito complessivo of
+#: L. 207/2024 art. 1 c. 4 is the employment income.
+_EMPLOYMENT_ONLY = CurrentYearTaxFacts.employment_only(_YEAR, date(_YEAR, 1, 1))
 _POSTING = SommaEsentePosting(
     resolver=load_policy_resolver(),
     policy_context=PolicyContext(year=_YEAR, as_of=date(_YEAR, 12, 1)),
@@ -114,6 +118,7 @@ def _resolve(
     rules: YearRules = _RULES,
     *,
     closed: int,
+    current_year: CurrentYearTaxFacts | None = _EMPLOYMENT_ONLY,
 ) -> SommaEsenteOutcome:
     return resolve_somma_esente(
         _tax(annual),
@@ -122,6 +127,7 @@ def _resolve(
         _position(closed),
         _YEAR,
         _POSTING,
+        current_year,
     )
 
 
@@ -165,13 +171,43 @@ class TestBeforeTheConguaglio:
         assert outcome.decisions[0].capability == "somma_esente"
         assert outcome.issues == ()
 
-    def test_due_amount_is_provisional_on_the_income_assumed(self) -> None:
-        """A due somma esente rests on employment income as reddito complessivo."""
+    def test_stated_income_beyond_the_employment_raises_no_issue(self) -> None:
+        """With the income of the year stated, the reddito complessivo is known."""
         outcome = _resolve(Decimal(1200), _opening(), closed=0)
 
+        assert outcome.issues == ()
+
+    def test_unknown_income_beyond_the_employment_is_a_missing_fact(self) -> None:
+        """Other income may remove the entitlement (c. 4): current_year is named."""
+        outcome = _resolve(Decimal(1200), _opening(), closed=0, current_year=None)
+
         (issue,) = outcome.issues
-        assert issue.code == "somma_esente_income_assumed"
+        assert issue.code == "somma_esente_income_unknown"
+        assert issue.status is CalculationStatus.INCOMPLETE
+        assert issue.fact == "current_year"
+
+    def test_income_facts_of_another_year_are_not_used(self) -> None:
+        """Facts of 2025 do not state the reddito complessivo of 2026."""
+        stale = CurrentYearTaxFacts.employment_only(_YEAR - 1, date(_YEAR - 1, 1, 1))
+        outcome = _resolve(Decimal(1200), _opening(), closed=0, current_year=stale)
+
+        assert [i.fact for i in outcome.issues] == ["current_year"]
+
+    def test_unknown_income_matters_only_while_an_amount_is_due(self) -> None:
+        """Nothing due on this employment: more income cannot make it due."""
+        outcome = _resolve(None, _opening(), closed=0, current_year=None)
+
+        assert outcome.issues == ()
+
+    def test_band_is_provisional_with_other_employment_income(self) -> None:
+        """The band of c. 4 is taken on this employer's income alone."""
+        other = replace(_EMPLOYMENT_ONLY, other_employment_income=Decimal(3000))
+        outcome = _resolve(Decimal(1200), _opening(), closed=0, current_year=other)
+
+        (issue,) = outcome.issues
+        assert issue.code == "somma_esente_band_assumed"
         assert issue.status is CalculationStatus.PROVISIONAL
+        assert issue.fact is None
 
 
 class TestAtTheConguaglio:
@@ -317,6 +353,7 @@ def _resolve_on(
         _position(closed),
         _YEAR,
         replace(_POSTING, run=run),
+        _EMPLOYMENT_ONLY,
     )
 
 

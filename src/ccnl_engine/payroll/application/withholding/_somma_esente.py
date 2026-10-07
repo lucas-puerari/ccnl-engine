@@ -36,6 +36,7 @@ from ccnl_engine.payroll.domain.obligations import SOMMA_ESENTE_RECOVERY
 from ccnl_engine.payroll.domain.rounding import money
 
 if TYPE_CHECKING:
+    from ccnl_engine.payroll.domain.current_year import CurrentYearTaxFacts
     from ccnl_engine.payroll.domain.ledger import LedgerEntry
     from ccnl_engine.payroll.domain.pay_items import PayItem
     from ccnl_engine.payroll.domain.period_state import PeriodState
@@ -65,8 +66,9 @@ class SommaEsenteOutcome:
         entries: The matching ledger entry, if any.
         decisions: What the run decided on the credit, empty when the
             credit is not in force and no recovery of it is running.
-        issues: A provisional issue while an amount is due: the reddito
-            complessivo of c. 4 is taken as the employment income.
+        issues: While an amount is due, a missing ``current_year`` when
+            the income beyond this employment is not stated, or a
+            provisional band with employment income of other employers.
     """
 
     amount: Decimal = _ZERO
@@ -79,17 +81,49 @@ class SommaEsenteOutcome:
     issues: tuple[CalculationIssue, ...] = ()
 
 
-#: Other income can only raise the reddito complessivo, so the assumption
-#: matters only while the somma esente is due.
-INCOME_ASSUMED_ISSUE = CalculationIssue(
-    code="somma_esente_income_assumed",
+#: Other income can only raise the reddito complessivo, so the income beyond
+#: this employment matters only while the somma esente is due.
+INCOME_UNKNOWN_ISSUE = CalculationIssue(
+    code="somma_esente_income_unknown",
     message=(
-        "somma_esente: the reddito complessivo of L. 207/2024 art. 1 c. 4 is "
-        "taken as the employment income of this employer; other income may "
-        "remove the entitlement, which the conguaglio or the tax return settles"
+        "somma_esente: the reddito complessivo of L. 207/2024 art. 1 c. 4 "
+        "includes the income beyond this employment, which the run does not "
+        "know: state it in PeriodInput.current_year (zero included); the "
+        "amount shown is computed on this employment alone"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="current_year",
+)
+#: With employment income of other employers the band of c. 4 is taken on
+#: the employment income of this employer alone.
+BAND_ASSUMED_ISSUE = CalculationIssue(
+    code="somma_esente_band_assumed",
+    message=(
+        "somma_esente: the worker has employment income from other employers "
+        "this tax year; the percentage of L. 207/2024 art. 1 c. 4 is taken on "
+        "the employment income of this employer alone, which the conguaglio "
+        "or the tax return settles"
     ),
     status=CalculationStatus.PROVISIONAL,
 )
+
+
+def _income_issues(
+    annual: Decimal, facts: CurrentYearTaxFacts | None, tax_year: int
+) -> tuple[CalculationIssue, ...]:
+    """Return the issues of the income the somma esente was computed on.
+
+    Returns:
+        Nothing when no amount is due; otherwise the missing current-year facts,
+        or the band taken without the income of other employers.
+    """
+    if money(annual) <= _ZERO:
+        return ()
+    if facts is None or facts.tax_year != tax_year:
+        return (INCOME_UNKNOWN_ISSUE,)
+    if facts.other_employment_income > _ZERO:
+        return (BAND_ASSUMED_ISSUE,)
+    return ()
 
 
 def resolve_somma_esente(
@@ -99,6 +133,7 @@ def resolve_somma_esente(
     withholding: WithholdingPosition,
     tax_year: int,
     posting: SommaEsentePosting,
+    current_year: CurrentYearTaxFacts | None,
 ) -> SommaEsenteOutcome:
     """Return the somma esente of the run, its postings and its decision.
 
@@ -112,6 +147,9 @@ def resolve_somma_esente(
         withholding: Position of the payment in the withholding schedule.
         tax_year: Tax year of the run.
         posting: Where the amount is posted.
+        current_year: Income of the tax year beyond this employment, which
+            enters the reddito complessivo of c. 4; ``None`` when not
+            stated.
 
     Returns:
         The outcome; empty when the credit is not in force and nothing of
@@ -152,5 +190,5 @@ def resolve_somma_esente(
         items=items,
         entries=entries,
         decisions=(decision,),
-        issues=(INCOME_ASSUMED_ISSUE,) if money(annual) > _ZERO else (),
+        issues=_income_issues(annual, current_year, tax_year),
     )

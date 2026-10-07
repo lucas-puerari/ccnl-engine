@@ -23,9 +23,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "AbsenceEvent.suspends_accrual": requires_fact(
         "absence",
         "event.suspends_accrual",
-        FactEnforcement.PENDING,
-        "the absence does not suspend the accrual of the extra months and of "
-        "the TFR, whatever its kind",
+        FactEnforcement.REPORTED,
+        "unknown suspension: the days count as accruing, and a rateo of an "
+        "extra month they could change has a missing_fact suspends_accrual "
+        "blocker",
     ),
     "ArrearsEvent.reference_period": requires_fact(
         "contract_renewal_arrears",

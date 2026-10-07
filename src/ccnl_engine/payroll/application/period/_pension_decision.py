@@ -1,11 +1,25 @@
-"""Decision of the pension fund contributions of one run."""
+"""Decision of the pension fund contributions of one run.
+
+Enrolment is voluntary (D.Lgs. 252/2005 art. 1 c. 2), so it is a fact of
+the employment: :class:`~ccnl_engine.payroll.domain.pension_fund\
+.PensionFundEnrolment` or :class:`~ccnl_engine.payroll.domain.pension_fund\
+.NoPensionFund`.  On a CCNL that has funds, an enrolment left unknown leaves
+the contributions undetermined: the decision is incomplete and an issue
+names the fact.  The engine does not infer the destination of the TFR of a
+worker who expressed no choice (art. 8 c. 7).
+"""
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application.period._run_decisions import _ccnl_rule
-from ccnl_engine.payroll.domain.decisions import CalculationDecision, CalculationStatus
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
+from ccnl_engine.payroll.domain.pension_fund import PensionFundEnrolment
 from ccnl_engine.payroll.service.pension_fund import (
     CAPABILITY,
     NOT_ENROLLED,
@@ -23,16 +37,20 @@ if TYPE_CHECKING:
     )
 
 _NOT_IN_BUNDLE = "not_in_bundle"
+#: Reason code of a run whose enrolment in a fund of the CCNL is unknown.
+REQUIRED_FACT_MISSING = "required_fact_missing"
+FACT = "pension_fund"
 
 
 def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
     """Return the rates of the fund the worker is enrolled in.
 
     Returns:
-        ``None`` when the worker is not enrolled.
+        ``None`` when the worker is not enrolled or the enrolment is
+        unknown.
     """
     enrolment = ctx.request.pension_fund
-    if enrolment is None:
+    if not isinstance(enrolment, PensionFundEnrolment):
         return None
     contract = ctx.contract
     return resolve_terms(
@@ -62,8 +80,41 @@ def _inputs(pension: PensionContribution) -> dict[str, Decimal | str]:
     }
 
 
+def enrolment_unknown(ctx: RunContext) -> bool:
+    """Return whether the run cannot tell whether the worker is enrolled.
+
+    Returns:
+        True on a CCNL that has funds when the enrolment is not stated.
+    """
+    return ctx.request.pension_fund is None and bool(
+        ctx.contract.ccnl.parameters.employer_funds
+    )
+
+
+def pension_fund_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of an unknown enrolment.
+
+    Returns:
+        An incomplete issue naming ``pension_fund``, or ``None``.
+    """
+    if not enrolment_unknown(ctx):
+        return None
+    funds = ", ".join(f.code for f in ctx.contract.ccnl.parameters.employer_funds)
+    return CalculationIssue(
+        code="pension_fund_enrolment_unknown",
+        message=(
+            f"the CCNL has pension funds ({funds}) and the enrolment of the "
+            "worker is not stated: the fund contributions and the destination "
+            "of the TFR are undetermined, the amounts shown leave them out; "
+            "state Employment.pension_fund (NoPensionFund when not enrolled)"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=FACT,
+    )
+
+
 def pension_decision(
-    ccnl: CCNL, pension: PensionContribution | None, year: int
+    ccnl: CCNL, pension: PensionContribution | None, year: int, *, unknown: bool
 ) -> CalculationDecision | None:
     """Return the decision recording the pension fund contributions of the run.
 
@@ -71,16 +122,28 @@ def pension_decision(
         ccnl: The applicable CCNL.
         pension: Contributions of the run, ``None`` when not enrolled.
         year: Competence year, the rule version when the CCNL has no ruleset.
+        unknown: Whether the enrolment is unknown on a CCNL with funds.
 
     Returns:
         A decision with reason ``enrolled`` and the employer and employee
         contributions as amount; with reason ``not_enrolled`` when the
-        worker is not enrolled in a fund the CCNL has; ``None`` when the
-        CCNL has no fund.
+        worker is stated not enrolled in a fund the CCNL has; an incomplete
+        one with reason ``required_fact_missing`` when the enrolment is
+        unknown; ``None`` when the CCNL has no fund.
     """
     rule, version = _ccnl_rule(ccnl, year)
+    funds = ",".join(f.code for f in ccnl.parameters.employer_funds)
+    if unknown:
+        return CalculationDecision(
+            capability=CAPABILITY,
+            status=CalculationStatus.INCOMPLETE,
+            reason_code=REQUIRED_FACT_MISSING,
+            rule=rule,
+            rule_version=version,
+            inputs={"funds": funds},
+        )
     if pension is None:
-        if not ccnl.parameters.employer_funds:
+        if not funds:
             return None
         return CalculationDecision(
             capability=CAPABILITY,
@@ -88,7 +151,7 @@ def pension_decision(
             reason_code=NOT_ENROLLED,
             rule=rule,
             rule_version=version,
-            inputs={"funds": ",".join(f.code for f in ccnl.parameters.employer_funds)},
+            inputs={"funds": funds},
         )
     provenance = pension.terms.rate_period.provenance or pension.terms.fund.provenance
     return CalculationDecision(

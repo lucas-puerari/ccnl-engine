@@ -11,7 +11,12 @@ from ccnl_engine.shared.domain.validation import (
     require_str,
 )
 
-__all__ = ["PENSION_FEATURE", "PensionFundEnrolment"]
+__all__ = [
+    "PENSION_FEATURE",
+    "PENSION_FUND_TYPES",
+    "NoPensionFund",
+    "PensionFundEnrolment",
+]
 
 #: Feature reported by the errors of the pension fund enrolment.
 PENSION_FEATURE = "pension_fund"
@@ -63,3 +68,19 @@ class PensionFundEnrolment:
             maximum=_ONE,
         )
         require_bool(self.tfr_to_fund, f"{owner}.tfr_to_fund", feature=PENSION_FEATURE)
+
+
+@dataclass(frozen=True, slots=True)
+class NoPensionFund:
+    """The worker is stated not enrolled in a pension fund of the CCNL.
+
+    It is the fact ``Employment.pension_fund`` left ``None`` does not
+    state: on a CCNL that has funds, an unknown enrolment leaves the
+    contributions to the fund undetermined.  Whether the TFR of a worker
+    who expressed no choice goes to the fund (D.Lgs. 252/2005 art. 8 c. 7)
+    is for the caller to establish: the engine does not infer it.
+    """
+
+
+#: Types that state the enrolment of the worker in a fund of the CCNL.
+PENSION_FUND_TYPES = (PensionFundEnrolment, NoPensionFund)

@@ -31,6 +31,20 @@ class _Irpef:
     family: RunFamily | None
 
 
+def _external_income(inp: _AmountsInput) -> Decimal:
+    """Return the reddito complessivo of the tax year beyond this employment.
+
+    Returns:
+        The external income of the current-year facts of the tax year of
+        the run, zero without them: the somma esente is then computed on
+        this employment alone and flagged (L. 207/2024 art. 1 c. 4).
+    """
+    facts = inp.current_year
+    if facts is None or facts.tax_year != inp.rules.year:
+        return _ZERO
+    return facts.external_income
+
+
 def _pay_period(
     inp: _AmountsInput, taxable: _Taxable, family: RunFamily | None
 ) -> PayPeriod:
@@ -99,5 +113,6 @@ def withhold_irpef(inp: _AmountsInput, taxable: _Taxable) -> _Irpef:
         ulteriore_plan=inp.ulteriore_plan,
         foreign_taxes=inp.foreign_taxes if inp.conguaglio else (),
         fixed_term=inp.fixed_term_in_year,
+        external_income=_external_income(inp),
     )
     return _Irpef(tax=tax, family=family)

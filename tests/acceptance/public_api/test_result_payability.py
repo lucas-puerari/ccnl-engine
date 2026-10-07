@@ -102,7 +102,7 @@ def test_incomplete_coverage_is_not_payable() -> None:
         for b in result.blockers
         if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
     }
-    assert [i.code for i in result.issues] == ["somma_esente_income_assumed"]
+    assert [i.code for i in result.issues] == ["somma_esente_income_unknown"]
     assert result.is_payable is False
     assert gaps == {
         "termination_residual_leave": "unsupported",

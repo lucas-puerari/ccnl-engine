@@ -88,9 +88,15 @@ def annual_items(
 
 
 def somma_esente_items(
-    taxable: Decimal, rules: YearRules, eligible_work_days: int
+    taxable: Decimal,
+    rules: YearRules,
+    eligible_work_days: int,
+    external_income: Decimal = _ZERO,
 ) -> tuple[TaxLineItem, ...]:
     """Return the trace of the somma esente of L. 207/2024, when it is due.
+
+    ``external_income`` is the reddito complessivo beyond this employment
+    (art. 1 c. 4 and 9).
 
     Returns:
         One component when the rules are in force and the amount is
@@ -98,7 +104,9 @@ def somma_esente_items(
     """
     if rules.somma_esente is None:
         return ()
-    amount = somma_esente(taxable, rules.somma_esente, eligible_work_days)
+    amount = somma_esente(
+        taxable, rules.somma_esente, eligible_work_days, external_income
+    )
     if amount <= _ZERO:
         return ()
     return (

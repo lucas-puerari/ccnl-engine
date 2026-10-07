@@ -262,8 +262,10 @@ employment dates and never from the runs already closed:
   `ccnl_engine.contract.domain.compensation`);
 - an `AbsenceEvent` with `suspends_accrual=True` (for example aspettativa non
   retribuita) removes its calendar days from every window. The caller says
-  which absences suspend accrual; an ordinary unpaid absence reduces pay,
-  not the ratei. Absences of the previous year are not known, and a single
+  which absences suspend accrual: `False` for an ordinary unpaid absence,
+  which reduces pay, not the ratei. Left `None`, the days count as accruing
+  and a rateo they could change is `provisional`, with a `missing_fact`
+  blocker for `suspends_accrual`. Absences of the previous year are not known, and a single
   `calculate_period()` call on an extra-month run counts from the employment dates
   only;
 - when the employment ends before an extra month's payment month, the ratei

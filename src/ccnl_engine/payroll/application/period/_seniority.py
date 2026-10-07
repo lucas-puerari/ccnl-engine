@@ -163,7 +163,10 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
             ctx.worker_category,
             apprentice=isinstance(request.contract_type, Apprentice),
         ),
-        gated=tuple(a.code for a in service_gated_allowances(level, request.roles)),
+        gated=tuple(
+            a.code
+            for a in service_gated_allowances(level, request.roles or frozenset())
+        ),
         amount=ctx.chain.seniority,
         source=None if rules.provenance is None else rules.provenance.location,
     )

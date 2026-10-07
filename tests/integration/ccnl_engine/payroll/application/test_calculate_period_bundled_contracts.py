@@ -34,6 +34,7 @@ from ccnl_engine.inputs import (
     ContributableHours,
     CurrentYearTaxFacts,
     EmploymentPeriod,
+    NoPensionFund,
     WeeklyHours,
 )
 from ccnl_engine.results import BlockerCode, CalculationStatus
@@ -123,6 +124,8 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     seniority=new_hire(),
                     category=pricing_category(increments, level.code),
                     employment_period=_HIRED,
+                    roles=frozenset(),
+                    pension_fund=NoPensionFund(),
                 ),
                 employer=EmployerProfile(headcount=Headcount(50)),
                 facts=_DOMESTIC_FACTS if slug in _DOMESTIC else resident(),
