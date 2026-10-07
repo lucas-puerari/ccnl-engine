@@ -2,8 +2,8 @@
 
 The IVS massimale is per worker (L. 335/1995 art. 2 c. 18; INPS circ.
 237/2016 par. 3.1): the base of the other employments of the competence
-year counts toward it.  The engine also counts that base toward the
-threshold of the additional 1% (D.L. 384/1992 art. 3-ter).  Whether the
+year counts toward it, and toward the band of the additional 1% IVS
+(D.L. 384/1992 art. 3-ter; INPS circ. 6/2026 note 10).  Whether the
 base of other employers is stated is a fact
 (:class:`~ccnl_engine.payroll.domain.inps_base.InpsBaseYtd`): ``0`` says
 there is none, ``None`` is unknown.
@@ -61,8 +61,8 @@ def other_employers_issue(
         message=(
             f"the INPS base of the worker's other employments of {ctx.cp.year} "
             "is not stated: it counts toward the IVS massimale (L. 335/1995 "
-            "art. 2 c. 18; INPS circ. 237/2016 par. 3.1) and the engine counts "
-            "it toward the 1% threshold, so the contributions are computed on "
+            "art. 2 c. 18; INPS circ. 237/2016 par. 3.1) and the band of the "
+            "additional 1% IVS, so the contributions are computed on "
             "this employment alone as a simulation; state it in "
             "CurrentYearTaxFacts.other_employment_inps_base (0 for none) or "
             "in the imported OpeningBalances.inps_bases"

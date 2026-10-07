@@ -143,14 +143,20 @@ class PeriodInput:
             income and no waiver.
         current_year: Income of the tax year beyond this employment, which
             the family deductions add to the employment income of the year
-            to get the reddito complessivo.  ``None`` means not known: with
-            a dependent that gives right to a deduction the result is not
-            payable.
-        opening_state: State entering the run.  Use
-            :meth:`~ccnl_engine.payroll.domain.period_state.PeriodState.zero` for
-            the first run of an employment, the ``closing_state`` of the
-            previous run within a tax year, or ``close_tax_year()`` of the
-            last run of the previous year.
+            to get the reddito complessivo, and the INPS base of the other
+            employments of the year.  ``None`` means not known: with a
+            dependent that gives right to a deduction, or INPS rules with a
+            massimale or a 1% threshold and no base of other employments in
+            ``opening_state``, the result is not payable.
+        opening_state: State entering the run, with the history of the
+            employment.  The default
+            :meth:`~ccnl_engine.payroll.domain.period_state.PeriodState.zero`
+            is the fact only for the first run of an employment whose
+            ``employment_period`` starts in the run month; pass the
+            ``closing_state`` of the previous run within a tax year,
+            ``close_tax_year()`` of the last run of the previous year, or
+            imported balances.  A state that misses the history gives a
+            ``missing_fact opening_state`` blocker.
         planned_payments: Payments of the same tax year still planned after
             this one, in payment order, when they differ from the CCNL
             standard calendar.  ``()`` makes this payment the conguaglio:

@@ -114,6 +114,11 @@ keep selecting the contractual values (salary table, seniority, allowances):
   obligations, such as an installment recovery, and the competence runs
   already closed. See
   [Payroll state and the year change](payroll-state.md).
+- `opening_state` holds the history of the employment: the zero state is
+  the fact only for the first run of an employment whose start is stated,
+  and the INPS base of the worker's other employments is a fact too; a run
+  without them is not payable. See
+  [Opening state and imported balances](opening-state.md).
 
 ## Full year: `calculate_competence_year()`
 

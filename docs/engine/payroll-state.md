@@ -15,7 +15,10 @@ has two parts with different lifetimes:
 ## Within a tax year
 
 Pass the `closing_state` of a run as the `opening_state` of the next run.
-`PeriodState.zero()` opens the first run of a new employment. A run whose
+`PeriodState.zero()` opens only the first run of an employment whose start
+is stated; any other run opened without the history of the employment has a
+`missing_fact opening_state` blocker
+(see [Opening state](opening-state.md#history-of-the-employment)). A run whose
 payment is attributed to another tax year than the state
 (see [tax year attribution](index.md)) is rejected with
 `InvalidInputError`.
@@ -191,9 +194,12 @@ does not hold (`UnsupportedTaxYearError`).
 
 The massimale is per worker: the base of earlier or simultaneous
 employments of the same year counts toward it (circ. 237/2016 par. 3.1, on
-the CU of the earlier employer or the worker's declaration). Import it in
-`InpsBaseYtd.other_employers`; it caps the IVS base and the 1% additional
-of this employment, and is never contributed by it. The variable elements
+the CU of the earlier employer or the worker's declaration). State it in
+`CurrentYearTaxFacts.other_employment_inps_base` or import it in
+`InpsBaseYtd.other_employers` (`None` is unknown and blocks, see
+[Opening state](opening-state.md#inps-base-of-other-employments)); it caps
+the IVS base and the 1% additional of this employment, and is never
+contributed by it. The variable elements
 of December that an employer settles with January (DM 7.10.1993) follow the
 January regime for rates and massimale; the engine does not model that
 option and attributes every element of a run to its competence month.
@@ -354,17 +360,22 @@ year is not the last of that calendar, pass `planned_payments=()` on it, or
 compute the year with `calculate_tax_year`.
 
 `PeriodState.zero()` is the state of a new employment: used at the year
-change it drops every obligation, which cannot be told apart from a new
-employment.
+change it would drop every obligation, so a run of an employment begun
+earlier, or whose start is not stated, opened with it has a `missing_fact
+opening_state` blocker.
 
 ```python
+from datetime import date
+
 from ccnl_engine import (
     CompetenceYearPlan, EmployerProfile, Employment, Headcount, PayrollEngine,
 )
+from ccnl_engine.inputs import EmploymentPeriod
 
 engine = PayrollEngine.bundled()
-employment = Employment(
-    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3"
+employment = Employment(  # hired on 1 January 2026: the zero state is the fact
+    ccnl_slug="metalmeccanico-federmeccanica.json", level_code="C3",
+    employment_period=EmploymentPeriod(date(2026, 1, 1)),
 )
 employer = EmployerProfile(headcount=Headcount(50))
 year_2026 = engine.calculate_competence_year(
@@ -528,51 +539,8 @@ accounts, and `remittance_code_consistent` requires a code on every
 `ORDINARY_TAX`, `SEPARATE_TAX` and `CREDITS` entry and rejects a code the
 account does not admit.
 
-## Balances from a previous provider
+## Opening state and balances from a previous provider
 
-`OpeningBalances` takes the progressive totals of a previous payroll
-provider for one tax year, with the recoveries still running, and
-`PayrollEngine.import_opening_balances(balances)` turns them into the
-`PeriodState` of the first run the engine computes: the one entry point for
-totals the engine did not compute. They are validated with the rules of the
-state the engine produces: every amount non-negative with at most two
-decimals, credit recovered not above recognized (`trattamento_*`,
-`somma_esente_*`), taxed fringe not above fringe value, payments
-(`payments`, a tuple of `PaymentId`) of the tax year in payment order, each
-of a different run, YTD totals only with the payments that produced them,
-competence runs closed in earlier tax years (`competence_runs`, e.g. the
-2026 runs paid in 2026 before a December paid in 2027), the INPS base per
-competence year with the base of other employers (`inps_bases`), the surtax
-already settled at an earlier termination (`regional_settled`,
-`municipal_settled`), the shortfalls not yet withheld (`irpef_shortfall`,
-`surtax_shortfall`, `credit_recovery_shortfall`), no recovery opened after
-the tax year, surtax
-obligations (`surtax_obligations`) determined by the conguaglio of an
-earlier year, an acconto withheld (`municipal_advance_withheld`) not
-above the surtax withheld, and IRPEF deferred on written request
-(`deferred_shortfall`) by the conguaglio of `tax_year - 1` only. A violation raises
-`InvalidInputError` with feature `opening_balances`.
-
-```python
-from decimal import Decimal
-
-from ccnl_engine.inputs import OpeningBalances, RecoveryObligation, RecoveryPlan
-
-opening = engine.import_opening_balances(OpeningBalances(
-    tax_year=2027,
-    recoveries=(
-        RecoveryObligation(
-            tax_year=2026,
-            plan=RecoveryPlan(
-                kind="trattamento_integrativo",
-                original_amount=Decimal(160),
-                installment_amount=Decimal(20),
-                installments_total=8,
-                installments_posted=4,
-            ),
-        ),
-    ),
-    inps_bases=(),
-    surtax_obligations=(),
-))
-```
+What a run must open with, the INPS base of the worker's other employments
+and the import of the totals of a previous provider are described in
+[Opening state and imported balances](opening-state.md).

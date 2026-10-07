@@ -59,10 +59,13 @@ class PeriodCalculationRequest:
         ccnl_slug: Knowledge-bundle CCNL filename, e.g.
             ``metalmeccanico-federmeccanica.json``.
         level_code: Worker's contractual level code, e.g. ``C3``.
-        opening_state: State entering this period.  Use
-            :meth:`PeriodState.zero` for the first run of an employment and
+        opening_state: State entering this period, with the history of
+            the employment.  :meth:`PeriodState.zero` is the fact only for
+            the first run of an employment whose start is stated; use
             :func:`~ccnl_engine.payroll.application.close_tax_year\
-.close_tax_year` for the first run of a later tax year.
+.close_tax_year` for the first run of a later tax year.  A state that
+            misses the history gives a ``missing_fact opening_state`` issue
+            (:mod:`~ccnl_engine.payroll.domain.opening_history`).
         employer: The employer; its headcount resolves INPS rates (some
             rates differ by firm size) and its activity the regimes that
             exclude some activities.

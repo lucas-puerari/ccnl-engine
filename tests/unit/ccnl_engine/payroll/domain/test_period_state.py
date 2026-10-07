@@ -44,6 +44,14 @@ class TestPeriodState:
         """The tax year is read from the cash state."""
         assert _paid_january().tax_year == 2026
 
+    def test_history_is_known_unless_the_engine_marks_it(self) -> None:
+        """A state the caller builds states its history; a flag is a bool."""
+        assert PeriodState.zero().history_known
+        with pytest.raises(InvalidInputError) as info:
+            PeriodState(history_known=1)  # type: ignore[arg-type]
+
+        assert info.value.field == "PeriodState.history_known"
+
     def test_rejects_a_payment_of_a_run_not_closed(self) -> None:
         """A payment settles a run the accrual state has closed."""
         with pytest.raises(InvalidInputError, match="has not closed") as info:

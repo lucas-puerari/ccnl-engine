@@ -42,6 +42,8 @@ __all__ = ["FACT", "opening_gap", "opening_state_issue"]
 #: Public fact the issue names.
 FACT = "opening_state"
 _CODE = "opening_state_unknown"
+#: First month of a year the employment starts after: no month is required.
+_NO_MONTH = 13
 _REMEDY = (
     "pass the closing state of the previous run, close_tax_year() of the "
     "previous tax year, or the balances imported with "
@@ -68,10 +70,10 @@ def opening_gap(
         return "it descends from a run that opened without the history"
     year = run_id.year
     earlier = started_on is None or started_on < date(year, 1, 1)
-    first = 1 if earlier or started_on is None else started_on.month
     closed = {
         r.month for r in opening.accrual.runs_of(year) if r.kind is RunKind.REGULAR
     }
+    first = _first_month(year, started_on)
     missing = [month for month in range(first, run_id.month) if month not in closed]
     if missing:
         return f"the regular runs of {year} in months {missing} are not closed in it"
@@ -106,6 +108,19 @@ def opening_state_issue(
         status=CalculationStatus.INCOMPLETE,
         fact=FACT,
     )
+
+
+def _first_month(year: int, started_on: date | None) -> int:
+    """Return the first regular month of ``year`` the employment holds.
+
+    Returns:
+        January for an employment begun earlier or whose start is not
+        stated, the month of the start within ``year``, and a month after
+        December for a start after ``year``.
+    """
+    if started_on is None or started_on.year < year:
+        return 1
+    return started_on.month if started_on.year == year else _NO_MONTH
 
 
 def _carries_nothing(opening: PeriodState) -> bool:
