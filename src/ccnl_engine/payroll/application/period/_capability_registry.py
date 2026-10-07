@@ -45,6 +45,7 @@ from ccnl_engine.payroll.domain.decisions import DecisionOrigin
 from ccnl_engine.payroll.domain.events import BonusEvent
 from ccnl_engine.payroll.domain.requirements import unresolved_requirements
 from ccnl_engine.payroll.domain.run import RunKind
+from ccnl_engine.payroll.domain.trace import TraceState
 from ccnl_engine.shared.domain.errors import DataIntegrityError
 
 if TYPE_CHECKING:
@@ -197,6 +198,23 @@ def case_facts(ctx: RunContext) -> CaseFacts:
     )
 
 
+def _ruled_out(
+    decisions: tuple[CalculationDecision, ...], observed: Mapping[str, str]
+) -> frozenset[str]:
+    """Return the capabilities a decision of the run ruled out.
+
+    Returns:
+        Each capability that took a decision of the engine and is traced
+        not applicable: its every decision gives a not-applicable reason.
+    """
+    return frozenset(
+        d.capability
+        for d in decisions
+        if d.origin is not DecisionOrigin.CALLER_SUPPLIED
+        and observed.get(d.capability) == TraceState.NOT_APPLICABLE
+    )
+
+
 def capability_report(
     catalog: CapabilityCatalog,
     decisions: Iterable[CalculationDecision],
@@ -238,13 +256,6 @@ def capability_report(
         evidence_required=required,
         caller_supplied=caller_supplied_fields(decisions),
         unresolved=unresolved_requirements(
-            catalog,
-            scope,
-            frozenset(
-                d.capability
-                for d in decisions
-                if d.origin is not DecisionOrigin.CALLER_SUPPLIED
-            ),
-            case.absent_facts,
+            catalog, _ruled_out(decisions, observed), case.absent_facts
         ),
     )

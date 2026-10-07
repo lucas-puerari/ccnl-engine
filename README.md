@@ -107,8 +107,8 @@ or `AttributeError`.
 
 `result.is_payable` is the one answer to "can this amount be paid as it is?".
 Payability is fail-closed: a result is payable only when it has no blocker,
-and every capability the registry requires is computed or ruled out by a
-decision of the run or by a fact the caller supplied, never by a default.
+and every capability the registry requires is decided on facts the caller
+supplied or ruled out by a decision of the run, never decided by a default.
 The residence and the family composition are such facts: left `None` they
 add a `requirement_unresolved` blocker (an empty `FamilyComposition()`
 states that there is no dependant). Every defaulted public input field is

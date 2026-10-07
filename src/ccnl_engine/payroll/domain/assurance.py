@@ -124,9 +124,9 @@ class BlockerCode(StrEnum):
             worker must be told about.
         MISSING_FACT: A fact the calculation needs was not supplied.
         REQUIREMENT_UNRESOLVED: A capability required in every run was
-            neither computed nor ruled out: the fact that decides whether
-            it applies was left to its default, and a default never rules
-            a capability out.
+            not ruled out by a decision of the run, and the fact that
+            decides it was left to its default: a default never decides a
+            capability.
         CAPABILITY_NOT_COMPUTED: A capability the catalog promises was not
             computed, could not decide or came out partial.
         RULE_SOURCE_WEAK: An executed capability read a rule whose

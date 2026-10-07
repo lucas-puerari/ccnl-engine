@@ -302,9 +302,10 @@ The gaps alone are a blocklist: a capability whose handler took no decision
 because a fact was left to its default looks `not_applicable`. An entry
 that declares `applicability_facts` (the residence for the regional and
 municipal surtaxes, the family composition for the family deductions) is
-therefore required in every run: it must be computed or ruled out by a
-decision of the run or by a supplied fact, never by a default. Each such
-fact left to its default is an `UnresolvedRequirement` in
+therefore required in every run: it must be ruled out by a decision of the
+run or decided on the supplied facts, never on a default. Each such fact
+left to its default, on a run that did not rule the capability out, is an
+`UnresolvedRequirement` in
 `capability_report.unresolved` and a `requirement_unresolved` blocker. The
 report `status` is the coverage axis of the assurance: `incomplete` with an
 unresolved requirement, otherwise `partial` when every gap is partial and

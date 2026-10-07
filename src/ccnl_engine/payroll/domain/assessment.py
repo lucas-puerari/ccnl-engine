@@ -2,9 +2,9 @@
 
 The assessment is fail-closed.  The capability report holds, besides the
 gaps of the capabilities that apply, the capabilities required in every run
-that the run neither computed nor ruled out by a decision or a supplied
-fact (:mod:`~ccnl_engine.payroll.domain.requirements`): a default never
-rules a capability out.  Each such requirement and each recorded condition
+whose applicability fact was left to its default and that no decision of
+the run ruled out (:mod:`~ccnl_engine.payroll.domain.requirements`): a
+default never decides a capability.  Each such requirement and each recorded condition
 is one :class:`~ccnl_engine.payroll.domain.assurance.ResultBlocker`:
 
 - an issue, whatever its status; a ``missing_fact`` blocker when the issue
@@ -168,9 +168,9 @@ _REMEDIATION: dict[BlockerCode, str] = {
     ),
     BlockerCode.MISSING_FACT: "supply the fact {detail} in the request",
     BlockerCode.REQUIREMENT_UNRESOLVED: (
-        "{feature} applies to every run unless a decision or a supplied fact "
-        "rules it out, and {detail} was left to its default: supply {detail} "
-        "(a value that rules {feature} out is a fact too)"
+        "{feature} is required unless a decision of the run rules it out, and "
+        "{detail} was left to its default: supply {detail} (a value that "
+        "rules {feature} out is a fact too)"
     ),
     BlockerCode.CAPABILITY_NOT_COMPUTED: (
         "{feature} was not computed ({detail}): compute it outside the engine "

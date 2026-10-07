@@ -9,9 +9,9 @@ capability.  Only an applicable capability can leave a gap:
 - a traced capability that could not decide is unresolved;
 - a capability the engine implements in full that came out partial, and a
   partial capability that executed, leave the run partially covered;
-- a required capability neither computed nor ruled out by a decision or a
-  supplied fact is unresolved (:mod:`~ccnl_engine.payroll.domain\
-.requirements`).
+- a required capability whose applicability fact was left to its default,
+  and that no decision of the run ruled out, is unresolved
+  (:mod:`~ccnl_engine.payroll.domain.requirements`).
 
 The report status is the ``coverage`` axis of the result assurance.
 """
@@ -226,8 +226,8 @@ class CapabilityReport:
         caller_supplied: Capabilities whose amounts rest on values the
             caller supplied in place of a rule, each with the names of the
             event fields it took them from.
-        unresolved: Required capabilities the run neither computed nor
-            ruled out by a decision or a supplied fact.
+        unresolved: Required capabilities no decision of the run ruled
+            out, one per applicability fact left to its default.
     """
 
     catalog_year: int

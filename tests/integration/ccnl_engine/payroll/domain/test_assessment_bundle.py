@@ -85,6 +85,7 @@ def test_no_payable_result_has_an_open_coverage_or_weak_rule(
         if result.is_payable
         and (
             result.capability_report.gaps
+            or result.capability_report.unresolved
             or result.issues
             or result.capability_report.caller_supplied
             or _WEAK & set(result.capability_report.rule_sources.values())

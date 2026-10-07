@@ -35,8 +35,9 @@ Full-payslip oracles are kept apart from the reference table cases and from
 the rule oracles, in `tests/fixtures/normative_oracles/payslips/`, and run in
 `tests/acceptance/legal_scenarios/test_full_payslip_concia.py`. The first oracle
 covers the first candidate group for `production`: CCNL Concia UNIC, level
-D2, a whole 2026 competence year with the industria tax and INPS rulesets
-and the Sardegna and Alghero surtaxes. Every expected figure is computed by
+D2, a whole 2026 competence year with the industria tax and INPS rulesets,
+the family deduction rules (no dependant) and the Sardegna and Alghero
+surtaxes. Every expected figure is computed by
 hand in plain Python from a cited source (the signed renewal and its salary
 table, the TUIR, L. 207/2024, L. 199/2025, the INPS rates, the MEF surtax
 tables), never from engine output: salary items, employee INPS and TFR
@@ -52,10 +53,9 @@ Metamorphic tests in `tests/acceptance/legal_scenarios/test_metamorphic_concia.p
 check relations that need no expected amount: an unknown fact is not a known
 zero, a bonus moves only its axes, the order of independent events and the
 split of a year at an exported state change nothing, and the public totals
-are the sums of the postings. Where a relation does not hold yet (unknown
-residence, renewal increments inside the minimo, the TFR quota net of the
-additional IVS contribution) the test is a strict `xfail` that names the
-rule.
+are the sums of the postings. Where a relation does not hold yet (renewal
+increments inside the minimo, the TFR quota net of the additional IVS
+contribution) the test is a strict `xfail` that names the rule.
 
 A wrong rule shared by the engine and a hand calculation that follows the
 same reading still goes undetected.

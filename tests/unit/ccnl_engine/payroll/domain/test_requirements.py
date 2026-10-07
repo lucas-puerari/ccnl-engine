@@ -11,17 +11,14 @@ from ccnl_engine.payroll.domain.capability_catalog import (
     CapabilityImplementation,
     CapabilityLayer,
 )
-from ccnl_engine.payroll.domain.capability_report import (
-    CapabilityReport,
-    CapabilityScope,
-)
+from ccnl_engine.payroll.domain.capability_report import CapabilityReport
 from ccnl_engine.payroll.domain.requirements import (
     UnresolvedRequirement,
     unresolved_requirements,
 )
 
 _REGIONE = "facts.regione"
-_NOT_APPLICABLE = {"addizionale_regionale": CapabilityScope.NOT_APPLICABLE}
+_UNKNOWN = frozenset({_REGIONE})
 _CATALOG = CapabilityCatalog(
     2026,
     (
@@ -46,37 +43,20 @@ _CATALOG = CapabilityCatalog(
 
 
 def test_a_default_does_not_rule_a_capability_out() -> None:
-    """Not applicable, no decision, residence left unknown: unresolved."""
-    unresolved = unresolved_requirements(
-        _CATALOG, _NOT_APPLICABLE, frozenset(), frozenset({_REGIONE})
-    )
+    """Nothing ruled the surtax out and the residence is unknown: unresolved."""
+    unresolved = unresolved_requirements(_CATALOG, frozenset(), _UNKNOWN)
     assert unresolved == (UnresolvedRequirement("addizionale_regionale", _REGIONE),)
 
 
-def test_a_supplied_fact_rules_a_capability_out() -> None:
-    """With the residence stated, a capability left not applicable stands."""
-    assert (
-        unresolved_requirements(_CATALOG, _NOT_APPLICABLE, frozenset(), frozenset())
-        == ()
-    )
+def test_a_supplied_fact_resolves_the_requirement() -> None:
+    """With the residence stated, the surtax is decided on it."""
+    assert unresolved_requirements(_CATALOG, frozenset(), frozenset()) == ()
 
 
 def test_a_decision_rules_a_capability_out() -> None:
     """An employer that does not withhold decides the surtax is not owed."""
-    decided = frozenset({"addizionale_regionale"})
-    unresolved = unresolved_requirements(
-        _CATALOG, _NOT_APPLICABLE, decided, frozenset({_REGIONE})
-    )
-    assert unresolved == ()
-
-
-def test_a_computed_capability_is_resolved() -> None:
-    """An applicable capability is covered by its gaps, not by a requirement."""
-    applicable = {"addizionale_regionale": CapabilityScope.APPLICABLE}
-    unresolved = unresolved_requirements(
-        _CATALOG, applicable, frozenset(), frozenset({_REGIONE})
-    )
-    assert unresolved == ()
+    ruled_out = frozenset({"addizionale_regionale"})
+    assert unresolved_requirements(_CATALOG, ruled_out, _UNKNOWN) == ()
 
 
 def test_an_unresolved_requirement_makes_the_coverage_incomplete() -> None:

@@ -7,8 +7,8 @@ Changes are listed newest first. Older changes are on
 ## Payability is fail-closed on unknown residence and family
 
 A capability the registry declares required (`applicability_facts`) must be
-computed or ruled out by a decision or a supplied fact; a default no longer
-rules it out. Amounts are unchanged.
+ruled out by a decision of the run or decided on the supplied facts; a
+default no longer rules it out. Amounts are unchanged.
 
 | Before | After |
 |---|---|

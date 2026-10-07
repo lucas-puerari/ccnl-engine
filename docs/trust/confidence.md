@@ -6,9 +6,9 @@ why not. Both come from `result.assurance`, a `ResultAssurance` derived from
 the run; neither is set by the caller.
 
 The answer is fail-closed. A run is payable only when every capability it
-requires is computed, or ruled out by a decision of the run or by a fact the
-caller supplied. A default never rules a capability out: a fact left to its
-default is not the fact it stands for.
+requires is computed on facts the caller supplied, or ruled out by a
+decision of the run. A default never decides a capability: a fact left to
+its default is not the fact it stands for.
 
 | Field | Answers |
 |---|---|
@@ -30,12 +30,13 @@ What a run must cover comes from the capability registry of the fiscal year
   stage, an event the request declares, the run that closes the employment)
   must be computed in full; otherwise it is a coverage gap;
 - every capability whose registry entry declares `applicability_facts` is
-  required in every run. It must be computed, or ruled out by a decision of
-  the run, or ruled out by the supplied facts. When the run took no decision
-  for it and one of those facts is left to its default, the capability is
-  neither: each such fact is an `UnresolvedRequirement` in
-  `result.capability_report.unresolved` and a `requirement_unresolved`
-  blocker.
+  required in every run. It must be ruled out by a decision of the run, or
+  decided on the supplied facts. When no decision rules it out and one of
+  those facts is left to its default, each such fact is an
+  `UnresolvedRequirement` in `result.capability_report.unresolved` and a
+  `requirement_unresolved` blocker. A decision the capability took on other
+  facts does not resolve it: posting an installment of last year's surtax
+  does not decide this year's.
 
 The required capabilities and their applicability facts today:
 
@@ -65,7 +66,7 @@ one:
 | `calculation_issue` | `None` | issue code | The run raised an issue (an assumption, a fallback, an unrecovered shortfall) |
 | `calculation_issue` | capability | decision reason | A decision is not `final` |
 | `missing_fact` | `None` | fact name | An issue names a fact the calculation needs and the request did not supply |
-| `requirement_unresolved` | capability | fact path | A required capability took no decision and its applicability fact (e.g. `facts.regione`) was left to its default |
+| `requirement_unresolved` | capability | fact path | No decision ruled out a required capability and its applicability fact (e.g. `facts.regione`) was left to its default |
 | `capability_not_computed` | capability | gap kind | A capability that applies to the run is unsupported, unresolved or partial |
 | `rule_source_weak` | capability | `assumed` or `missing` | An executed capability read a rule weaker than the evidence its registry entry accepts (`derived` for every capability today), or no rule of the run carries a record |
 | `caller_supplied_rule` | capability | field names | The caller supplied a rate or multiplier in place of a bundled rule |
@@ -251,7 +252,7 @@ facts it reads and the weakest evidence its rules may have.
 `not_applicable` or `outside_input` for the run. Only an applicable
 capability can leave a `CapabilityGap`, and each gap is a
 `capability_not_computed` blocker. `capability_report.unresolved` lists the
-required capabilities neither computed nor ruled out (see
+required capabilities left undecided by a default (see
 [Fail-closed payability](#fail-closed-payability)).
 
 | `status` | When |

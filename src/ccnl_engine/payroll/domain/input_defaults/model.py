@@ -45,7 +45,7 @@ class FactEnforcement(StrEnum):
 
     Attributes:
         REQUIREMENT: The fact is an applicability fact of the capability
-            registry: a run where the capability took no decision has a
+            registry: a run that does not rule the capability out has a
             ``requirement_unresolved`` blocker.
         REPORTED: The run raises a ``missing_fact`` issue or an input
             error naming the fact when the capability needs it.

@@ -137,7 +137,7 @@ class CapabilityEntry:
         applicability_facts: Those of :attr:`required_facts` that decide
             whether a ``decided`` capability applies.  The capability is
             then required in every run: left to its default, each of them
-            blocks a run where the capability took no decision (see
+            blocks a run that did not rule the capability out (see
             :mod:`~ccnl_engine.payroll.domain.requirements`).
 
     Raises:

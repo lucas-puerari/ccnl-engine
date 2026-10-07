@@ -8,9 +8,10 @@ are visible.  Two properties of the payability contract
 selects a monetary branch adds a blocker the explicit value does not have,
 and the true value of a fact never has more blockers than the default it
 replaces, otherwise the false default is the one path that looks payable.
-The residence left unknown is the strict xfail
+The residence left unknown is checked by
 ``test_unknown_residence_is_not_no_surtax`` of the legal scenarios.  None
-of these properties holds today: each is a strict xfail on its assertion.
+of the properties below holds today: each is a strict xfail on its
+assertion.
 """
 
 from __future__ import annotations
