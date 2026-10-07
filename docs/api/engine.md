@@ -39,7 +39,7 @@ by slug or CNEL code: the same value the run reports in `result.rulesets`.
 engine = PayrollEngine.bundled(mode="operational")
 ruleset = engine.inspect_ruleset("metalmeccanico-federmeccanica")
 if not ruleset.is_production:
-    print(ruleset.readiness, ruleset.confidence)  # → reviewed unverified
+    print(ruleset.readiness, ruleset.confidence)  # → exploratory unverified
 ```
 
 | `RulesetAssurance` field | Meaning |

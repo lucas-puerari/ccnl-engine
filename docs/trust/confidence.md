@@ -98,8 +98,12 @@ does not compute (INAIL, health funds, maternity, ...) do not apply to an
 ordinary month or are outside the request (see the
 [capability matrix](../contracts/capability-matrix.md)). Every run carries a
 `rule_source_weak` blocker on `somma_esente`, whose cut points are
-reconstructions. Most also read an `assumed` base salary:
-<!-- trust:extra-months-assumed -->121 of 125<!-- /trust:extra-months-assumed -->
+reconstructions. Every run that reads a 2026 sector tax or INPS file is
+also blocked on IRPEF, INPS, TFR and the credits: those rulesets declare
+`source_type: "estimated"`, so their rules are `assumed` (see
+[Provenance](provenance.md#a-label-never-outruns-its-evidence)). Most also
+read an `assumed` base salary:
+<!-- trust:extra-months-assumed -->123 of 125<!-- /trust:extra-months-assumed -->
 CCNLs cite no clause for their number of monthly payments. The bundle holds
 <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing` rules
 (see [Provenance](provenance.md#current-counts)); a run that reads one also

@@ -23,11 +23,11 @@ posted amount.
 | Sickness rule | `ccnl/data/*.json`: `work_rules.sickness_rules` | Per rule |
 | INPS sick-pay indemnity bands | `inps/data/sick-pay-rates.json`: `bands` | Sibling `bands_provenance` |
 | IRPEF brackets | `tax/data/<year>-<sector>.json`: `irpef_brackets` | Sibling `irpef_brackets_provenance` |
-| Art. 13 work deduction, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `sterilizzazione_detrazioni` | Per block |
+| Art. 13 work deduction, its minimum, sterilizzazione | `tax/data/<year>-<sector>.json`: `work_deduction`, `work_deduction.minimum`, `sterilizzazione_detrazioni` | Per block |
 | Trattamento integrativo, ulteriore detrazione, somma esente | `tax/data/<year>-<sector>.json` | Per block |
-| TFR divisor | `tax/data/<year>-<sector>.json`: `tfr` | Per block |
+| TFR divisor, additional IVS deduction | `tax/data/<year>-<sector>.json`: `tfr`, `tfr.additional_ivs` | Per block |
 | Fixed-term addizionale NASpI | `tax/data/<year>-<sector>.json`: `fixed_term_additional_rate` | Sibling `fixed_term_additional_rate_provenance` |
-| INPS rates | `inps/data/<year>-<sector>.json`: `inps`, `apprentice`, `domestic_contributions` | Per block |
+| INPS rates, 1% additional IVS | `inps/data/<year>-<sector>.json`: `inps`, `inps.employee_additional`, `apprentice`, `domestic_contributions` | Per block |
 | Regional and municipal surtax | `surtax/data/regionale-<year>.json`, `comunale-<year>.json` | Per table (file-level `provenance`); an entry may override it |
 | Art. 12 family deductions | `tax/data/family-deductions-<year>.json`: `spouse`, `children`, `other_dependents` | Per block |
 | Fringe-benefit thresholds, PdR limits | `tax/data/variable-pay-rules.json`: `fringe_benefit`, `pdr` | Per block |
@@ -42,6 +42,13 @@ different backing (for example the somma esente cut points, which are
 reconstructions, sit next to the IRPEF brackets of the law). The surtax
 tables come from one MEF publication each, so they carry one record per
 table instead of one per municipality.
+
+A sub-block of a fiscal block that carries its own record (the Art. 13
+minimum, the TFR additional IVS, the 1% employee IVS) is a payable rule of
+its own, with the capabilities of its block: the inventory walks every
+nested record of a block, not a fixed list of keys. The per-row records of
+the surtax tables are the exception: the inventory keeps one rule per
+table, while a run reports the record of the row it read.
 
 Bundled values the run does not read are not payable: the other CCNL work
 rules (overtime bands beyond an hour threshold, conditional or paid per hour
@@ -99,12 +106,37 @@ from a secondary document.
 
 | Status | Meaning | Record requirements |
 |---|---|---|
-| `verified` | A named person checked the value against the cited location on a recorded date | `location`, `extraction.verified_by` and `extraction.verified_at` |
-| `derived` | Taken or computed from a cited document location, without a recorded check | `location` |
+| `verified` | A named person checked the value against the cited location on a recorded date | A citation (below), `extraction.verified_by` and `extraction.verified_at` |
+| `derived` | Taken or computed from a cited document location, without a recorded check | A citation (below) |
 | `assumed` | Adopted without a located citation: an unchecked AI extraction, a reconstruction or estimate, or a value whose clause was never located | `location` optional |
 | `missing` | No source backs the value | no `location` |
 
 The model rejects a record whose status disagrees with what it records.
+
+### A label never outruns its evidence
+
+A `derived` or `verified` record claims a located source, so the loaders
+and the schema gate reject it when:
+
+- it has no **citation**: an http(s) `location.source_document.url` and a
+  `location.section` or `location.page` (the article and comma, or the
+  page of the table). A title without a URL, or a URL without a clause, is
+  not a citation;
+- the ruleset of its file declares `source_type: "estimated"`: the file
+  says its values are approximated without a primary source, so no rule in
+  it can be read from one;
+- its `note` or `transformation` records an estimate.
+
+`extraction.verification_status: "unverified"` is not a reason: it is what
+`derived` means, a value read from a cited location without a recorded
+check. A record that fails is `assumed`, keeping its location, quote and
+transformation, and its note says why.
+`scripts/data/demote_weak_labels.py` applies the rule to the whole bundle
+(every provenance record of every data file, payable or not, and the
+`source_status` of the substitute-tax regimes) and rehashes the files it
+changes; it only lowers labels. A record raised back to `derived` after
+its source is located must drop that note, which the gate reads as an
+estimate.
 Nothing becomes `verified` without a named reviewer and a date: the legacy
 `extraction.verification_status: "verified"` alone, or the file-level
 `verification.human_reviewed_by`, does not say which value was checked by
@@ -126,8 +158,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 0 | 0 | 0 |
-| `derived` | 5 843 | 94 | 5 937 |
-| `assumed` | 530 | 12 | 542 |
+| `derived` | 5 624 | 12 | 5 636 |
+| `assumed` | 749 | 108 | 857 |
 | `missing` | 85 | 0 | 85 |
 
 <!-- /trust:provenance-table -->
@@ -135,7 +167,11 @@ when they drift.
 Of the <!-- trust:rules-missing -->85<!-- /trust:rules-missing --> `missing`
 rules, <!-- trust:accrual-missing -->85<!-- /trust:accrual-missing --> are
 extra-month accrual thresholds of CCNLs whose signed clause is not in the
-bundle. `assumed` covers AI-extracted CCNL values (including
+bundle. `assumed` covers every rule of a ruleset that declares
+`source_type: "estimated"` (the 2026 sector tax and INPS files and a few
+CCNLs), the
+records that cite no URL (the INPS sick-pay bands, the PdR limits), the
+AI-extracted CCNL values (including
 <!-- trust:accrual-assumed -->40<!-- /trust:accrual-assumed --> accrual
 thresholds read from signed texts, each with its article and quote),
 extra-month counts with no located clause, the somma esente cut points, the
@@ -147,20 +183,24 @@ fixed-term exemption and the regional surtax table.
 
 - **Load time.** A schema-0.5 CCNL without a record on a level, salary
   period, allowance, seniority block or additional-months period does not
-  load.
+  load. No CCNL, tax, INPS or surtax file loads with a label that outruns
+  its evidence (see [above](#a-label-never-outruns-its-evidence)): the
+  loader raises `DataIntegrityError`.
 - **CI, schema gate.** `scripts/ci/check_provenance.py --schema` fails when
   any payable rule of the bundle has no record or an unknown status, and
   lists every `missing` record. It also fails when a record lacks the
-  evidence its status or readiness claims (see below) or when a CCNL
-  ruleset id is not `ccnl/<ccnl_id>`.
+  evidence its status or readiness claims (see below), when a label
+  outruns its evidence, when a `reviewed` or `production` CCNL has an
+  `assumed` or `missing` payable rule in its own file or a `confidence`
+  other than `verified`, or when a CCNL ruleset id is not `ccnl/<ccnl_id>`.
+  These errors have no baseline: the gate rejects every one.
   `tests/architecture/test_data_quality.py` runs the same inventory.
 - **CI, evidence gate.** `scripts/ci/check_provenance.py --evidence`
   compares the bundle with the shrink-only baseline
   `scripts/ci/provenance_baseline.json`, which lists every `assumed` or
-  `missing` payable rule, every open model limitation and every `reviewed`
-  or `production` CCNL whose `confidence` is not `verified`. It judges each
-  rule, never the weakest status of a capability, and fails on a rule, a
-  limitation or a readiness claim the baseline does not list, on a rule
+  `missing` payable rule and every open model limitation. It judges each
+  rule, never the weakest status of a capability, and fails on a rule or a
+  limitation the baseline does not list, on a rule
   weaker than its baseline status, and on a baseline entry that no longer
   holds. The counts per capability and per CCNL therefore never grow; the
   gate prints them, and the [capability matrix](../contracts/capability-matrix.md)
@@ -175,17 +215,17 @@ fixed-term exemption and the regional surtax table.
 ## Evidence for promotion
 
 Promoting a rule to `verified`, or a CCNL to readiness `production`, is a
-human task: no script changes a status. The schema gate requires:
+human task: no script raises a status. The schema gate requires:
 
 | Claim | Fields |
 |---|---|
-| Rule `verified` | `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from |
-| CCNL readiness `production` | `verification.owner`, `verification.human_reviewed_by`, `verification.last_reviewed`, `verification.review_due` after the last review, and `confidence` `verified` |
+| Rule `verified` | A citation, `extraction.verified_by`, `extraction.verified_at`, an exact location (`location.page` or `location.section`), and `location.source_document.sha256`, the sha256 of the document file the value was read from |
+| CCNL readiness `reviewed` | `confidence` `verified` and no `assumed` or `missing` payable rule in the CCNL file |
+| CCNL readiness `production` | The `reviewed` evidence, `verification.owner`, `verification.human_reviewed_by`, `verification.last_reviewed` and `verification.review_due` after the last review |
 
 ## Updating the evidence baseline
 
-After sourcing a rule, resolving a limitation or aligning readiness and
-confidence, shrink the baseline and commit it with the data change:
+After sourcing a rule or resolving a limitation, shrink the baseline and commit it with the data change:
 
 ```bash
 python scripts/ci/check_provenance.py --update-baseline

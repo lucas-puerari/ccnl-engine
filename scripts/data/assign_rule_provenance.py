@@ -3,11 +3,11 @@
 CCNL records already cite a document location and an extraction trace; the
 status follows from what they record:
 
+- ``assumed``: a record without a citation (an http(s) document url and a
+  section or page), or an AI extraction without the review below;
 - ``verified``: ``extraction.verification_status`` is ``verified`` and the
   record names the reviewer (``verified_by``) and the date (``verified_at``);
-- ``assumed``: an AI extraction without that review, or a record that
-  cites no location;
-- ``derived``: any other record, all of which cite a section of a document.
+- ``derived``: any other record.
 
 A legacy ``verified`` without reviewer and date becomes ``derived``: the
 record claims a check but does not say who made it or when.  The file-level
@@ -42,6 +42,7 @@ from typing import Any, Final
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.provenance.domain.ruleset_identity import source_hash
+from scripts.ci.provenance_labels import has_citation
 from scripts.data.fiscal_provenance import FISCAL_RECORDS
 
 KNOWLEDGE: Final = (
@@ -59,15 +60,15 @@ def ccnl_status(record: dict[str, Any]) -> str:
         ``verified``, ``assumed`` or ``derived`` (see the module docstring).
     """
     extraction = record.get("extraction") or {}
+    if not has_citation(record.get("location")):
+        return "assumed"
     if (
         extraction.get("verification_status") == "verified"
         and extraction.get("verified_by")
         and extraction.get("verified_at")
     ):
         return "verified"
-    if extraction.get("method") == "ai" or not record.get("location"):
-        return "assumed"
-    return "derived"
+    return "assumed" if extraction.get("method") == "ai" else "derived"
 
 
 def _with_status(record: dict[str, Any], counts: Counter[str]) -> dict[str, Any]:
@@ -160,7 +161,7 @@ def _slot(data: dict[str, Any], block: str) -> tuple[dict[str, Any], str]:
     return data[block], "provenance"
 
 
-def _write(path: Path, data: dict[str, Any], original: str) -> None:
+def write_rehashed(path: Path, data: dict[str, Any], original: str) -> None:
     """Rehash ``data`` when it carries a hash and write it to ``path``.
 
     The indentation of ``original`` is kept, so only the records change.
@@ -180,12 +181,13 @@ def main() -> None:
     ccnl_counts: Counter[str] = Counter()
     for path in sorted((KNOWLEDGE / "ccnl" / "data").glob("*.json")):
         text = path.read_text(encoding="utf-8")
-        _write(path, migrate_ccnl(json.loads(text), ccnl_counts), text)
+        write_rehashed(path, migrate_ccnl(json.loads(text), ccnl_counts), text)
     fiscal_counts: Counter[str] = Counter()
     for name in sorted(FISCAL_RECORDS):
         path = KNOWLEDGE / name
         text = path.read_text(encoding="utf-8")
-        _write(path, migrate_fiscal(name, json.loads(text), fiscal_counts), text)
+        migrated = migrate_fiscal(name, json.loads(text), fiscal_counts)
+        write_rehashed(path, migrated, text)
     print(f"CCNL provenance records: {dict(sorted(ccnl_counts.items()))}")
     print(f"Fiscal provenance records: {dict(sorted(fiscal_counts.items()))}")
 

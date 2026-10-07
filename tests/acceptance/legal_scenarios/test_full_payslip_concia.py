@@ -214,8 +214,23 @@ class TestCandidateGroupEvidence:
         for result in _runs():
             assert {r.identity.id for r in result.rulesets} == _GROUP
 
-    def test_the_only_blocker_is_the_assumed_somma_esente_bands(self) -> None:
-        """The only blocker is the assumed somma esente bands."""
+    def test_the_only_blockers_are_the_assumed_rules_it_reads(self) -> None:
+        """Only assumed rules block: none of the CCNL, family or surtax data.
+
+        The somma esente bands are reconstructions; the INPS and tax rules of
+        ``industria`` sit in rulesets that declare ``source_type``
+        ``estimated``, so the provenance label check labels them assumed.
+        """
+        weak = {
+            "somma_esente",
+            "irpef",
+            "trattamento_integrativo",
+            "ulteriore_detrazione_lavoro",
+            "tfr",
+            "inps_employee",
+            "inps_employer",
+            "ivs_ceiling_eligibility",
+        }
         for result in _runs():
             blockers = {(b.code.value, b.feature, b.detail) for b in result.blockers}
-            assert blockers == {("rule_source_weak", "somma_esente", "assumed")}
+            assert blockers == {("rule_source_weak", f, "assumed") for f in weak}

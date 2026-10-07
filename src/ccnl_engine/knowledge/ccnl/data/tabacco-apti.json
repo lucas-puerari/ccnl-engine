@@ -206,7 +206,7 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -221,7 +221,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     "employer_funds": [
@@ -238,7 +239,7 @@
           ]
         },
         "provenance": {
-          "status": "derived",
+          "status": "assumed",
           "location": {
             "source_document": {
               "document_id": "tabacco-apti-rinnovo-2025",
@@ -249,7 +250,7 @@
             "section": "Art. 47 - Previdenza complementare volontaria",
             "quote": "l'1,50% a decorrere dal 1° luglio 2025 a carico dell'azienda; una quota non inferiore all'1% a carico del lavoratore"
           },
-          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The engine applies the rate to the INPS contribution base, as the schema defines it."
+          "note": "Art. 47 does not state the contribution base: it refers to the rules of the fund. The engine applies the rate to the INPS contribution base, as the schema defines it. Assumed, not derived: its ruleset declares source_type 'estimated'."
         },
         "employee_min_rate": {
           "periods": [
@@ -324,7 +325,7 @@
       "category": "impiegato",
       "description": "Categoria Super — funzioni direttive di particolare rilievo",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -339,7 +340,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -348,7 +350,7 @@
             "valid_until": "2026-01-01",
             "value": "2078.10",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -363,7 +365,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -371,7 +374,7 @@
             "valid_until": "2027-01-01",
             "value": "2147.06",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -386,7 +389,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -394,7 +398,7 @@
             "valid_until": "2028-01-01",
             "value": "2216.02",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -409,7 +413,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -417,7 +422,7 @@
             "valid_until": null,
             "value": "2271.18",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -432,7 +437,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -451,7 +457,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -466,7 +472,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -482,7 +489,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -497,7 +504,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -508,7 +516,7 @@
       "category": "impiegato",
       "description": "1a Categoria — funzioni direttive amministrative o tecniche",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -523,7 +531,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -532,7 +541,7 @@
             "valid_until": "2026-01-01",
             "value": "1922.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -547,7 +556,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -555,7 +565,7 @@
             "valid_until": "2027-01-01",
             "value": "1988.55",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -570,7 +580,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -578,7 +589,7 @@
             "valid_until": "2028-01-01",
             "value": "2054.18",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -593,7 +604,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -601,7 +613,7 @@
             "valid_until": null,
             "value": "2106.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -616,7 +628,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -635,7 +648,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -650,7 +663,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -666,7 +680,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -681,7 +695,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -692,7 +707,7 @@
       "category": "impiegato",
       "description": "2a Categoria — funzioni di concetto con coordinamento",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -707,7 +722,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -716,7 +732,7 @@
             "valid_until": "2026-01-01",
             "value": "1678.01",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -731,7 +747,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -739,7 +756,7 @@
             "valid_until": "2027-01-01",
             "value": "1738.38",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -754,7 +771,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -762,7 +780,7 @@
             "valid_until": "2028-01-01",
             "value": "1798.75",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -777,7 +795,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -785,7 +804,7 @@
             "valid_until": null,
             "value": "1847.04",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -800,7 +819,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -819,7 +839,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -834,7 +854,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -850,7 +871,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -865,7 +886,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -876,7 +898,7 @@
       "category": "impiegato",
       "description": "3a Categoria A — compiti esecutivi tecnici o amministrativi con iniziativa",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -891,7 +913,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -900,7 +923,7 @@
             "valid_until": "2026-01-01",
             "value": "1469.06",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -915,7 +938,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -923,7 +947,7 @@
             "valid_until": "2027-01-01",
             "value": "1524.95",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -938,7 +962,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -946,7 +971,7 @@
             "valid_until": "2028-01-01",
             "value": "1580.84",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -961,7 +986,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -969,7 +995,7 @@
             "valid_until": null,
             "value": "1625.55",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -984,7 +1010,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1003,7 +1030,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1018,7 +1045,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1034,7 +1062,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1049,7 +1077,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1060,7 +1089,7 @@
       "category": "impiegato",
       "description": "3a Categoria B — compiti esecutivi tecnici o amministrativi",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1075,7 +1104,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1084,7 +1114,7 @@
             "valid_until": "2026-01-01",
             "value": "1314.94",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1099,7 +1129,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1107,7 +1138,7 @@
             "valid_until": "2027-01-01",
             "value": "1367.52",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1122,7 +1153,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1130,7 +1162,7 @@
             "valid_until": "2028-01-01",
             "value": "1420.10",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1145,7 +1177,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1153,7 +1186,7 @@
             "valid_until": null,
             "value": "1462.16",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1168,7 +1201,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1187,7 +1221,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1202,7 +1236,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1218,7 +1253,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1233,7 +1268,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1244,7 +1280,7 @@
       "category": "operaio",
       "description": "4a Categoria A — qualificazione per il processo di lavorazione del tabacco",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1259,7 +1295,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1268,7 +1305,7 @@
             "valid_until": "2026-01-01",
             "value": "1194.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1283,7 +1320,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1291,7 +1329,7 @@
             "valid_until": "2027-01-01",
             "value": "1244.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1306,7 +1344,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1314,7 +1353,7 @@
             "valid_until": "2028-01-01",
             "value": "1294.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1329,7 +1368,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1337,7 +1377,7 @@
             "valid_until": null,
             "value": "1334.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1352,7 +1392,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1371,7 +1412,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1386,7 +1427,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1402,7 +1444,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1417,7 +1459,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1428,7 +1471,7 @@
       "category": "operaio",
       "description": "4a Categoria B — conoscenze tecnico-pratiche di controllo o produzione",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1443,7 +1486,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1452,7 +1496,7 @@
             "valid_until": "2026-01-01",
             "value": "1142.43",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1467,7 +1511,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1475,7 +1520,7 @@
             "valid_until": "2027-01-01",
             "value": "1191.31",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1490,7 +1535,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1498,7 +1544,7 @@
             "valid_until": "2028-01-01",
             "value": "1240.19",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1513,7 +1559,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1521,7 +1568,7 @@
             "valid_until": null,
             "value": "1279.29",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1536,7 +1583,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1555,7 +1603,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1570,7 +1618,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1586,7 +1635,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1601,7 +1650,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1612,7 +1662,7 @@
       "category": "operaio",
       "description": "5a Categoria — mansioni operative standard",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1627,7 +1677,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1636,7 +1687,7 @@
             "valid_until": "2026-01-01",
             "value": "1107.52",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1651,7 +1702,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1659,7 +1711,7 @@
             "valid_until": "2027-01-01",
             "value": "1155.65",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1674,7 +1726,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1682,7 +1735,7 @@
             "valid_until": "2028-01-01",
             "value": "1203.78",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1697,7 +1750,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1705,7 +1759,7 @@
             "valid_until": null,
             "value": "1242.28",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1720,7 +1774,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1739,7 +1794,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1754,7 +1809,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1770,7 +1826,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1785,7 +1841,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1796,7 +1853,7 @@
       "category": "operaio",
       "description": "6a Categoria — mansioni semplici di prima assunzione",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "tabacco-apti-rinnovo-2025",
@@ -1811,7 +1868,8 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "verified",
           "effective_from": "2025-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -1820,7 +1878,7 @@
             "valid_until": "2026-01-01",
             "value": "988.31",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1835,7 +1893,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2025-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1843,7 +1902,7 @@
             "valid_until": "2027-01-01",
             "value": "1033.88",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1858,7 +1917,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1866,7 +1926,7 @@
             "valid_until": "2028-01-01",
             "value": "1079.45",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1881,7 +1941,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2027-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1889,7 +1950,7 @@
             "valid_until": null,
             "value": "1115.90",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "tabacco-apti-rinnovo-2025",
@@ -1904,7 +1965,8 @@
                 "extraction_timestamp": "2026-09-18T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2028-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1923,7 +1985,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1938,7 +2000,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1991-11-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         },
         {
@@ -1954,7 +2017,7 @@
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "tabacco-apti-2021",
@@ -1969,7 +2032,8 @@
               "extraction_timestamp": "2026-09-18T00:00:00",
               "verification_status": "verified",
               "effective_from": "1993-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1984,6 +2048,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "5e2e768adc9b332c27a797d319bf57c12c2b4ebb68e105297264ab8ad80696de"
+    "source_hash": "d678c95a3bcc9c822fbddaf343560b55e23dfd508b2922eca53391777cbf0d79"
   }
 }

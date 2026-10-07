@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/docs/gen_coverage_matrix.py -->
-<!-- generated: 2026-10-04 -->
+<!-- generated: 2026-10-07 -->
 
 # CCNL Coverage
 
@@ -30,7 +30,7 @@ Capabilities of the registry by layer and implementation:
 | Layer | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | gross | 3 | 1 | 0 | 4 |
-| net | 15 | 1 | 2 | 8 |
+| net | 16 | 1 | 2 | 8 |
 | work_rules | 3 | 6 | 0 | 3 |
 
 | | Functional coverage of a layer: its weakest capability |
@@ -78,13 +78,13 @@ Capabilities of the registry by layer and implementation:
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 60 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 18 / 1 / 1 | 🧪 | 🤖 |
 | 26 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 27 / 1 / 1 | 🧪 | 🤖 |
-| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 19 / 1 / 1 | 👁 | 🤖 |
-| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 1 / 1 | 👁 | 🤖 |
-| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 17 / 1 / 1 | 👁 | 🤖 |
+| 27 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, company_supplement | 0 / 19 / 1 / 1 | 🧪 | 🤖 |
+| 28 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 — ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 1 / 1 | 🧪 | 🤖 |
+| 29 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 17 / 1 / 1 | 🧪 | 🤖 |
 | 30 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 31 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | 🔲 | 🔲 | 🔲 | base_salary, health_fund_employer | 0 / 36 / 1 / 1 | 🧪 | 🤖 |
 | 32 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
-| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 2 / 1 | 👁 | 🤖 |
+| 33 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 58 / 2 / 1 | 🧪 | 🤖 |
 | 34 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 35 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | 🔲 | 🔲 | 🔲 | — | 0 / 23 / 2 / 0 | 🧪 | 🤖 |
 | 36 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 42 / 1 / 1 | 🧪 | 🤖 |
@@ -93,9 +93,9 @@ Capabilities of the registry by layer and implementation:
 | 39 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 40 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
 | 41 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 35 / 2 / 0 | 🧪 | 🤖 |
-| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 🔲 | 🔲 | 🔲 | bilateral_funds, seniority | 0 / 55 / 1 / 1 | 👁 | 🤖 |
+| 42 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | 🔲 | 🔲 | 🔲 | bilateral_funds, seniority | 0 / 55 / 1 / 1 | 🧪 | 🤖 |
 | 43 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
-| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 28 / 2 / 0 | 👁 | 🤖 |
+| 44 | F012 | [CCNL Edilizia — Industria (ANCE)](edilizia-ance.md) | edilizia | ~550k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 28 / 2 / 0 | 🧪 | 🤖 |
 | 45 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | 🔲 | 🔲 | 🔲 | — | 0 / 170 / 1 / 1 | 🧪 | 🤖 |
 | 46 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 52 / 2 / 0 | 🧪 | 🤖 |
 | 47 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 1 / 1 | 🧪 | 🤖 |
@@ -118,49 +118,49 @@ Capabilities of the registry by layer and implementation:
 | 64 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 98 / 2 / 0 | 🧪 | 🤖 |
 | 65 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
 | 66 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 19 / 2 / 0 | 🧪 | 🤖 |
-| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 15 / 1 / 1 | 👁 | 🤖 |
-| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 13 / 1 / 1 | 👁 | 🤖 |
-| 69 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 | 👁 | 🤖 |
+| 67 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 15 / 1 / 1 | 🧪 | 🤖 |
+| 68 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 13 / 1 / 1 | 🧪 | 🤖 |
+| 69 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
 | 70 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 40 / 2 / 0 | 🧪 | 🤖 |
 | 71 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | 🔲 | 🔲 | 🔲 | — | 0 / 0 / 60 / 0 | 🧪 | 🤖 |
 | 72 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 45 / 1 / 1 | 🧪 | 🤖 |
-| 73 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 79 / 1 / 1 | 👁 | 🤖 |
+| 73 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 79 / 1 / 1 | 🧪 | 🤖 |
 | 74 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | 🔲 | 🔲 | 🔲 | overtime | 0 / 44 / 0 / 1 | 🧪 | 🤖 |
 | 75 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 43 / 1 / 1 | 🧪 | 🤖 |
-| 76 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 6 / 0 | 👁 | 🤖 |
+| 76 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 57 / 6 / 0 | 🧪 | 🤖 |
 | 77 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority, una_tantum | 0 / 0 / 70 / 1 | 🧪 | 🤖 |
 | 78 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 88 / 1 / 1 | 🧪 | 🤖 |
-| 79 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | — | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement | 0 / 18 / 1 / 1 | 👁 | 🤖 |
+| 79 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | — | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inail, inps_employee, inps_employer, seniority, territorial_supplement | 0 / 18 / 1 / 1 | 🧪 | 🤖 |
 | 80 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 20 / 1 / 1 | 🧪 | 🤖 |
 | 81 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | 🔲 | 🔲 | 🔲 | base_salary, leave, seniority, sickness | 0 / 0 / 53 / 1 | 🧪 | 🤖 |
 | 82 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 83 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | 🔲 | 🔲 | 🔲 | base_salary, inps_employer | 0 / 53 / 2 / 0 | 🧪 | 🤖 |
 | 84 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | 🔲 | 🔲 | 🔲 | seniority | 0 / 31 / 2 / 0 | 🧪 | 🤖 |
-| 85 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | 🔲 | 🔲 | 🔲 | seniority | 0 / 20 / 0 / 1 | 🧪 | 🤖 |
-| 86 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | 🔲 | 🔲 | 🔲 | seniority | 0 / 38 / 0 / 1 | 🧪 | 🤖 |
+| 85 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | 🔲 | 🔲 | 🔲 | seniority | 0 / 0 / 20 / 1 | 🧪 | 🤖 |
+| 86 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | 🔲 | 🔲 | 🔲 | seniority | 0 / 0 / 38 / 1 | 🧪 | 🤖 |
 | 87 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | 🔲 | 🔲 | 🔲 | — | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 88 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 47 / 2 / 0 | 🧪 | 🤖 |
 | 89 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 43 / 2 / 0 | 🧪 | 🤖 |
 | 90 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 49 / 2 / 0 | 🧪 | 🤖 |
-| 91 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 🔲 | 🔲 | 🔲 | inps_employee, seniority | 0 / 148 / 2 / 0 | 👁 | 🤖 |
-| 92 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 28 / 1 / 1 | 🧪 | 🤖 |
-| 93 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 21 / 1 / 1 | 🧪 | 🤖 |
+| 91 | K511 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | multiservizi | ~580k | — | 🔲 | 🔲 | 🔲 | inps_employee, seniority | 0 / 148 / 2 / 0 | 🧪 | 🤖 |
+| 92 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 27 / 2 / 1 | 🧪 | 🤖 |
+| 93 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 20 / 2 / 1 | 🧪 | 🤖 |
 | 94 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer, seniority | 0 / 45 / 2 / 0 | 🧪 | 🤖 |
 | 95 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | 🔲 | 🔲 | 🔲 | seniority, una_tantum | 0 / 62 / 2 / 0 | 🧪 | 🤖 |
-| 96 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 4 / 62 / 0 | 👁 | 🤖 |
-| 97 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 40 / 3 / 1 | 🧪 | 🔍 |
+| 96 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 4 / 62 / 0 | 🧪 | 🤖 |
+| 97 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 43 / 1 | 🧪 | 🔍 |
 | 98 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 72 / 2 / 0 | 🧪 | 🤖 |
 | 99 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | 🔲 | 🔲 | 🔲 | seniority | 0 / 47 / 1 / 1 | 🧪 | 🤖 |
 | 100 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
 | 101 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | 🔲 | 🔲 | 🔲 | seniority, worker_category | 0 / 66 / 1 / 1 | 🧪 | 🤖 |
 | 102 | H052 | [CCNL Turismo, Pubblici Esercizi e Ristorazione (Confcommercio)](turismo-confcommercio.md) | turismo | ~300k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 56 / 1 / 1 | 🧪 | 🤖 |
-| 103 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 33 / 1 / 1 | 🧪 | 🧑✓ |
+| 103 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | 🔲 | 🔲 | 🔲 | base_salary | 0 / 0 / 34 / 1 | 🧪 | 🧑✓ |
 | 104 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2023 | 🔲 | 🔲 | 🔲 | seniority | 0 / 48 / 1 / 1 | 🧪 | 🤖 |
 | 105 | HV17 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | 🔲 | 🔲 | 🔲 | seniority | 0 / 46 / 2 / 1 | 🧪 | 🤖 |
-| 106 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 29 / 1 / 1 | 🧪 | 🤖 |
+| 106 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, pension_fund_contribution, seniority, una_tantum | 0 / 0 / 30 / 1 | 🧪 | 🤖 |
 | 107 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | 🔲 | 🔲 | 🔲 | bilateral_funds, health_fund_employer, seniority | 0 / 32 / 2 / 0 | 🧪 | 🤖 |
 | 108 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 59 / 1 / 1 | 🧪 | 🤖 |
-| 109 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 57 / 1 / 1 | 🧪 | 🔍 |
+| 109 | E042 | [CCNL per i dipendenti dalle aziende di lavorazione della foglia di tabacco secco allo stato sciolto](tabacco-apti.md) | lavorazione foglia di tabacco | ~2k | 2025 | 🔲 | 🔲 | 🔲 | pension_fund_contribution, seniority | 0 / 0 / 58 / 1 | 🧪 | 🔍 |
 | 110 | H442 | [CCNL per i dipendenti degli studi e delle attività professionali (Confprofessioni)](studi-professionali-confprofessioni.md) | terziario | ~350k | — | 🔲 | 🔲 | 🔲 | base_salary, seniority | 0 / 42 / 2 / 0 | 🧪 | 🤖 |
 | 111 | K521 | [CCNL per i dipendenti delle imprese artigiane esercenti servizi di pulizia, disinfezione, disinfestazione, derattizzazione e sanificazione](pulizia-artigianato-confartigianato.md) | pulizia artigianato | ~84505 | 2025 | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, holiday_work, inps_employer, leave, night_work, overtime, seniority | 0 / 0 / 86 / 1 | 🧪 | 🤖 |
 | 112 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | 🔲 | 🔲 | 🔲 | seniority | 0 / 37 / 1 / 1 | 🧪 | 🤖 |
@@ -176,7 +176,7 @@ Capabilities of the registry by layer and implementation:
 | 122 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | 🔲 | 🔲 | 🔲 | base_salary, bilateral_funds, inps_employer, seniority | 0 / 64 / 1 / 1 | 🧪 | 🤖 |
 | 123 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | 🔲 | 🔲 | 🔲 | base_salary, inps_employer, seniority | 0 / 29 / 1 / 1 | 🧪 | 🤖 |
 | 124 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | 🔲 | 🔲 | 🔲 | inps_employer | 0 / 70 / 1 / 1 | 🧪 | 🤖 |
-| 125 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 🔲 | 🔲 | 🔲 | seniority, territorial_supplement | 0 / 73 / 2 / 0 | 👁 | 🤖 |
+| 125 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | 🔲 | 🔲 | 🔲 | seniority, territorial_supplement | 0 / 73 / 2 / 0 | 🧪 | 🤖 |
 
 [^1]: Estimated represented population. Individual contracts may cover overlapping worker populations; figures should not be summed to derive total coverage.
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree, not a CNEL-registered agreement. D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).

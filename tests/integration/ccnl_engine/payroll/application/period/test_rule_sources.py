@@ -86,11 +86,12 @@ class TestBundledRun:
         """Executed capabilities report the status of the rules they read."""
         result = _run()
         sources = result.capability_report.rule_sources
-        assert sources["irpef"] is ProvenanceStatus.DERIVED
-        assert sources["tfr"] is ProvenanceStatus.DERIVED
+        # The industria tax ruleset declares source_type "estimated".
+        assert sources["irpef"] is ProvenanceStatus.ASSUMED
+        assert sources["tfr"] is ProvenanceStatus.ASSUMED
         assert sources["somma_esente"] is ProvenanceStatus.ASSUMED
         # A known seniority decides the increments, so their rule is read.
-        assert "seniority" in sources
+        assert sources["seniority"] is ProvenanceStatus.DERIVED
         assert all(i.code != MISSING_SOURCE_CODE for i in result.issues)
 
     def test_assumed_rules_block_payability_without_an_issue(self) -> None:

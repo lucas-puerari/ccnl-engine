@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.contract.domain.identity import CCNLVerification
-from ccnl_engine.contract.domain.ruleset_readiness import ccnl_ruleset_assurance
 from ccnl_engine.knowledge.service.limitation_loader import load_engine_limitations
 from ccnl_engine.provenance.domain.chain import RuleProvenance
 from ccnl_engine.shared.domain.limitation import LimitationStatus
@@ -19,7 +18,6 @@ from scripts.ci.provenance_evidence import (
     compare,
     load_baseline,
     open_limitations,
-    readiness_contradictions,
     report_lines,
     schema_errors,
     snapshot,
@@ -30,7 +28,6 @@ from scripts.docs.coverage_report import bundled_ccnls
 if TYPE_CHECKING:
     from pathlib import Path
 
-_RECORD: dict[str, object] = {"status": "derived", "location": {"section": "Art. 1"}}
 _DIGEST = "0" * 64
 _VERIFIED: dict[str, object] = {
     "status": "verified",
@@ -107,23 +104,15 @@ def _knowledge(root: Path, ccnl: dict[str, object]) -> Path:
     return root
 
 
-def test_snapshot_lists_weak_rules_limitations_and_contradictions(
-    tmp_path: Path,
-) -> None:
-    """Weak rules, open limitations and a readiness claim are recorded."""
+def test_snapshot_lists_weak_rules_and_limitations(tmp_path: Path) -> None:
+    """Weak rules and open limitations are recorded."""
     notes = [
         _note("open_one"),
         _note("closed", status="resolved"),
         {"kind": "info", "text": "no limitation"},
         {**_note("no_capability"), "capability": None},
     ]
-    root = _knowledge(
-        tmp_path,
-        _ccnl(
-            coverage={"notes": notes},
-            verification={"readiness": "reviewed", "confidence": "unverified"},
-        ),
-    )
+    root = _knowledge(tmp_path, _ccnl(coverage={"notes": notes}))
     found = snapshot(root)
     assert found.weak_rules == {
         "ccnl/data/x.json": {
@@ -135,21 +124,18 @@ def test_snapshot_lists_weak_rules_limitations_and_contradictions(
         ENGINE_LIMITATIONS: ("engine_open",),
         "ccnl/data/x.json": ("x/open_one",),
     }
-    assert found.readiness_contradictions == ("ccnl/data/x.json",)
 
 
 def test_tree_without_weak_evidence_has_an_empty_snapshot(tmp_path: Path) -> None:
-    """No open limitation, no contradiction: nothing is listed."""
+    """No open limitation: nothing is listed."""
     root = _knowledge(tmp_path, _ccnl())
     (root / ENGINE_LIMITATIONS).write_text('{"limitations": null}', "utf-8")
     assert open_limitations(root) == {}
-    assert readiness_contradictions(root) == ()
 
 
 _BASE = Snapshot(
     weak_rules={"f.json": {"a": "assumed", "b": "missing", "c": "assumed"}},
     open_limitations={"f.json": ("f/one",)},
-    readiness_contradictions=("f.json",),
 )
 
 
@@ -161,21 +147,19 @@ def test_matching_snapshot_passes() -> None:
 
 
 def test_new_or_weaker_entries_are_growth() -> None:
-    """A new weak rule, a weaker rule, a new limitation or claim all grow."""
+    """A new weak rule, a weaker rule or a new limitation all grow."""
     current = Snapshot(
         weak_rules={
             "f.json": {"a": "missing", "b": "missing", "c": "assumed"},
             "g.json": {"z": "assumed"},
         },
         open_limitations={"f.json": ("f/one", "f/two")},
-        readiness_contradictions=("f.json", "g.json"),
     )
     ratchet = compare(current, _BASE)
     assert ratchet.grown == (
         "f.json: a: assumed became missing",
         "g.json: z: new assumed rule",
         "f.json: new open limitation f/two",
-        "g.json: readiness claims a review confidence does not record",
     )
     assert ratchet.stale == ()
     assert not ratchet.ok
@@ -186,7 +170,6 @@ def test_improved_entries_are_stale() -> None:
     current = Snapshot(
         weak_rules={"f.json": {"a": "assumed", "b": "assumed"}},
         open_limitations={},
-        readiness_contradictions=(),
     )
     ratchet = compare(current, _BASE)
     assert ratchet.grown == ()
@@ -194,7 +177,6 @@ def test_improved_entries_are_stale() -> None:
         "f.json: b: missing is now assumed",
         "f.json: c: no longer assumed",
         "f.json: open limitation f/one no longer open",
-        "f.json: readiness and confidence now agree",
     )
     assert not ratchet.ok
 
@@ -222,11 +204,6 @@ def test_baseline_round_trips(tmp_path: Path) -> None:
             {"weak_rules": {}, "open_limitations": {"f": [1]}},
             TypeError,
             r"open_limitations\[f\] must be a list",
-        ),
-        (
-            {"weak_rules": {}, "open_limitations": {}},
-            TypeError,
-            "readiness_contradictions must be a list",
         ),
     ],
 )
@@ -351,7 +328,7 @@ def test_bundle_meets_the_evidence_its_records_claim() -> None:
 
 
 def test_stdlib_reading_matches_the_engine_models() -> None:
-    """Open limitations and readiness claims agree with the loaded models."""
+    """Open limitations agree with the loaded models."""
     ccnls = bundled_ccnls()
     engine_open = {
         lim.id
@@ -363,9 +340,3 @@ def test_stdlib_reading_matches_the_engine_models() -> None:
     }
     found = snapshot()
     assert {i for ids in found.open_limitations.values() for i in ids} == engine_open
-    contradicting = set()
-    for ccnl in ccnls:
-        assurance = ccnl_ruleset_assurance(ccnl)
-        if assurance is not None and assurance.confidence_contradicts_readiness:
-            contradicting.add(f"ccnl/data/{ccnl.meta.ccnl_id}.json")
-    assert set(found.readiness_contradictions) == contradicting

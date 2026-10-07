@@ -8,7 +8,10 @@ from functools import cache
 from typing import Any
 
 from ccnl_engine.knowledge.service.bundled import read_bundled
-from ccnl_engine.knowledge.service.loader_utils import verify_ruleset_hash
+from ccnl_engine.knowledge.service.loader_utils import (
+    verify_provenance_labels,
+    verify_ruleset_hash,
+)
 from ccnl_engine.shared.domain.errors import DataIntegrityError, UnsupportedTaxYearError
 from ccnl_engine.tax.domain.surtax_rules import (
     ComunaleRaw,
@@ -74,8 +77,8 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
         raise UnsupportedTaxYearError(year) from exc
     reg_payload = json.loads(reg_raw)
     com_payload = json.loads(com_raw)
-    _verify_ruleset_hash(reg_payload, f"regionale-{year}.json")
-    _verify_ruleset_hash(com_payload, f"comunale-{year}.json")
+    _verify_payload(reg_payload, f"regionale-{year}.json")
+    _verify_payload(com_payload, f"comunale-{year}.json")
     if reg_payload.get("year") != year:
         msg = (
             f"regionale-{year}.json year={reg_payload.get('year')!r} "
@@ -103,10 +106,12 @@ def _load_surtax_rules_cached(year: int) -> SurtaxRules:
     )
 
 
-def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
-    """Verify a recorded ``ruleset.source_hash`` against the payload.
+def _verify_payload(payload: dict[str, Any], filename: str) -> None:
+    """Verify the ``ruleset.source_hash`` and the provenance labels.
 
-    Delegates to :func:`~ccnl_engine.knowledge.service.loader_utils\
-.verify_ruleset_hash`.
+    Args:
+        payload: The full JSON payload dict.
+        filename: Source file name, included in any error message.
     """
     verify_ruleset_hash(payload, filename)
+    verify_provenance_labels(payload, filename)

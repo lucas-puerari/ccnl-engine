@@ -6,7 +6,36 @@
     },
     "ccnl/data/agenti-immobiliari-fiaip.json": {
       "accrual_rule": "missing",
-      "additional_months[2025-05-01]": "assumed"
+      "additional_months[2025-05-01]": "assumed",
+      "levels[III].base_salary[2025-05-01]": "assumed",
+      "levels[III].base_salary[2026-01-01]": "assumed",
+      "levels[III].base_salary[2027-01-01]": "assumed",
+      "levels[III].base_salary[2027-05-01]": "assumed",
+      "levels[II].base_salary[2025-05-01]": "assumed",
+      "levels[II].base_salary[2026-01-01]": "assumed",
+      "levels[II].base_salary[2027-01-01]": "assumed",
+      "levels[II].base_salary[2027-05-01]": "assumed",
+      "levels[IV].base_salary[2025-05-01]": "assumed",
+      "levels[IV].base_salary[2026-01-01]": "assumed",
+      "levels[IV].base_salary[2027-01-01]": "assumed",
+      "levels[IV].base_salary[2027-05-01]": "assumed",
+      "levels[I].base_salary[2025-05-01]": "assumed",
+      "levels[I].base_salary[2026-01-01]": "assumed",
+      "levels[I].base_salary[2027-01-01]": "assumed",
+      "levels[I].base_salary[2027-05-01]": "assumed",
+      "levels[Q].base_salary[2025-05-01]": "assumed",
+      "levels[Q].base_salary[2026-01-01]": "assumed",
+      "levels[Q].base_salary[2027-01-01]": "assumed",
+      "levels[Q].base_salary[2027-05-01]": "assumed",
+      "levels[VI].base_salary[2025-05-01]": "assumed",
+      "levels[VI].base_salary[2026-01-01]": "assumed",
+      "levels[VI].base_salary[2027-01-01]": "assumed",
+      "levels[VI].base_salary[2027-05-01]": "assumed",
+      "levels[V].base_salary[2025-05-01]": "assumed",
+      "levels[V].base_salary[2026-01-01]": "assumed",
+      "levels[V].base_salary[2027-01-01]": "assumed",
+      "levels[V].base_salary[2027-05-01]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/agenzie-marittime-i481.json": {
       "accrual_rule": "assumed",
@@ -749,10 +778,68 @@
       "work_rules.sickness_rules": "assumed"
     },
     "ccnl/data/radiotelevisive-radiofonico.json": {
-      "accrual_rule": "missing"
+      "accrual_rule": "missing",
+      "additional_months[2026-01-01]": "assumed",
+      "levels[1].base_salary[2026-01-01]": "assumed",
+      "levels[1].base_salary[2027-06-01]": "assumed",
+      "levels[1].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[2].base_salary[2026-01-01]": "assumed",
+      "levels[2].base_salary[2027-06-01]": "assumed",
+      "levels[2].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[3].base_salary[2026-01-01]": "assumed",
+      "levels[3].base_salary[2027-06-01]": "assumed",
+      "levels[3].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[4].base_salary[2026-01-01]": "assumed",
+      "levels[4].base_salary[2027-06-01]": "assumed",
+      "levels[4].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[5].base_salary[2026-01-01]": "assumed",
+      "levels[5].base_salary[2027-06-01]": "assumed",
+      "levels[5].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[6].base_salary[2026-01-01]": "assumed",
+      "levels[6].base_salary[2027-06-01]": "assumed",
+      "levels[6].fixed_allowances[CONTINGENZA]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/radiotelevisive-televisivo.json": {
-      "accrual_rule": "missing"
+      "accrual_rule": "missing",
+      "additional_months[2026-01-01]": "assumed",
+      "levels[1].base_salary[2026-01-01]": "assumed",
+      "levels[1].base_salary[2027-06-01]": "assumed",
+      "levels[1].base_salary[2028-01-01]": "assumed",
+      "levels[1].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[2].base_salary[2026-01-01]": "assumed",
+      "levels[2].base_salary[2027-06-01]": "assumed",
+      "levels[2].base_salary[2028-01-01]": "assumed",
+      "levels[2].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[3].base_salary[2026-01-01]": "assumed",
+      "levels[3].base_salary[2027-06-01]": "assumed",
+      "levels[3].base_salary[2028-01-01]": "assumed",
+      "levels[3].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[4].base_salary[2026-01-01]": "assumed",
+      "levels[4].base_salary[2027-06-01]": "assumed",
+      "levels[4].base_salary[2028-01-01]": "assumed",
+      "levels[4].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[5].base_salary[2026-01-01]": "assumed",
+      "levels[5].base_salary[2027-06-01]": "assumed",
+      "levels[5].base_salary[2028-01-01]": "assumed",
+      "levels[5].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[6].base_salary[2026-01-01]": "assumed",
+      "levels[6].base_salary[2027-06-01]": "assumed",
+      "levels[6].base_salary[2028-01-01]": "assumed",
+      "levels[6].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[7].base_salary[2026-01-01]": "assumed",
+      "levels[7].base_salary[2027-06-01]": "assumed",
+      "levels[7].base_salary[2028-01-01]": "assumed",
+      "levels[7].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[8].base_salary[2026-01-01]": "assumed",
+      "levels[8].base_salary[2027-06-01]": "assumed",
+      "levels[8].base_salary[2028-01-01]": "assumed",
+      "levels[8].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[9].base_salary[2026-01-01]": "assumed",
+      "levels[9].base_salary[2027-06-01]": "assumed",
+      "levels[9].base_salary[2028-01-01]": "assumed",
+      "levels[9].fixed_allowances[CONTINGENZA]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/recapito-corrispondenza-fise.json": {
       "accrual_rule": "missing",
@@ -788,11 +875,13 @@
     },
     "ccnl/data/sistemazioni-idraulico-forestali-impiegati.json": {
       "accrual_rule": "missing",
-      "additional_months[2026-01-01]": "assumed"
+      "additional_months[2026-01-01]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/sistemazioni-idraulico-forestali-operai.json": {
       "accrual_rule": "missing",
-      "additional_months[2026-01-01]": "assumed"
+      "additional_months[2026-01-01]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/studi-professionali-confprofessioni.json": {
       "accrual_rule": "assumed",
@@ -800,7 +889,64 @@
     },
     "ccnl/data/tabacco-apti.json": {
       "accrual_rule": "missing",
-      "additional_months[2025-01-01]": "assumed"
+      "additional_months[2025-01-01]": "assumed",
+      "employer_funds[ALIFOND].employee_min_rate[2025-07-01]": "assumed",
+      "employer_funds[ALIFOND].rate[2025-07-01]": "assumed",
+      "levels[1S].base_salary[2025-01-01]": "assumed",
+      "levels[1S].base_salary[2026-01-01]": "assumed",
+      "levels[1S].base_salary[2027-01-01]": "assumed",
+      "levels[1S].base_salary[2028-01-01]": "assumed",
+      "levels[1S].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[1S].fixed_allowances[EDR]": "assumed",
+      "levels[1].base_salary[2025-01-01]": "assumed",
+      "levels[1].base_salary[2026-01-01]": "assumed",
+      "levels[1].base_salary[2027-01-01]": "assumed",
+      "levels[1].base_salary[2028-01-01]": "assumed",
+      "levels[1].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[1].fixed_allowances[EDR]": "assumed",
+      "levels[2].base_salary[2025-01-01]": "assumed",
+      "levels[2].base_salary[2026-01-01]": "assumed",
+      "levels[2].base_salary[2027-01-01]": "assumed",
+      "levels[2].base_salary[2028-01-01]": "assumed",
+      "levels[2].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[2].fixed_allowances[EDR]": "assumed",
+      "levels[3A].base_salary[2025-01-01]": "assumed",
+      "levels[3A].base_salary[2026-01-01]": "assumed",
+      "levels[3A].base_salary[2027-01-01]": "assumed",
+      "levels[3A].base_salary[2028-01-01]": "assumed",
+      "levels[3A].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[3A].fixed_allowances[EDR]": "assumed",
+      "levels[3B].base_salary[2025-01-01]": "assumed",
+      "levels[3B].base_salary[2026-01-01]": "assumed",
+      "levels[3B].base_salary[2027-01-01]": "assumed",
+      "levels[3B].base_salary[2028-01-01]": "assumed",
+      "levels[3B].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[3B].fixed_allowances[EDR]": "assumed",
+      "levels[4A].base_salary[2025-01-01]": "assumed",
+      "levels[4A].base_salary[2026-01-01]": "assumed",
+      "levels[4A].base_salary[2027-01-01]": "assumed",
+      "levels[4A].base_salary[2028-01-01]": "assumed",
+      "levels[4A].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[4A].fixed_allowances[EDR]": "assumed",
+      "levels[4B].base_salary[2025-01-01]": "assumed",
+      "levels[4B].base_salary[2026-01-01]": "assumed",
+      "levels[4B].base_salary[2027-01-01]": "assumed",
+      "levels[4B].base_salary[2028-01-01]": "assumed",
+      "levels[4B].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[4B].fixed_allowances[EDR]": "assumed",
+      "levels[5].base_salary[2025-01-01]": "assumed",
+      "levels[5].base_salary[2026-01-01]": "assumed",
+      "levels[5].base_salary[2027-01-01]": "assumed",
+      "levels[5].base_salary[2028-01-01]": "assumed",
+      "levels[5].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[5].fixed_allowances[EDR]": "assumed",
+      "levels[6].base_salary[2025-01-01]": "assumed",
+      "levels[6].base_salary[2026-01-01]": "assumed",
+      "levels[6].base_salary[2027-01-01]": "assumed",
+      "levels[6].base_salary[2028-01-01]": "assumed",
+      "levels[6].fixed_allowances[CONTINGENZA]": "assumed",
+      "levels[6].fixed_allowances[EDR]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/telecomunicazioni-asstel.json": {
       "accrual_rule": "assumed",
@@ -818,7 +964,47 @@
       "accrual_rule": "missing",
       "additional_months[2024-04-01]": "assumed",
       "employer_funds[FONDAPI].rate[2024-04-01]": "assumed",
-      "employer_funds[FONDAPI].rate[2025-03-01]": "assumed"
+      "employer_funds[FONDAPI].rate[2025-03-01]": "assumed",
+      "levels[1].base_salary[2024-04-01]": "assumed",
+      "levels[1].base_salary[2025-01-01]": "assumed",
+      "levels[2].base_salary[2024-04-01]": "assumed",
+      "levels[2].base_salary[2025-01-01]": "assumed",
+      "levels[2].base_salary[2026-01-01]": "assumed",
+      "levels[2].base_salary[2027-01-01]": "assumed",
+      "levels[2bis].base_salary[2024-04-01]": "assumed",
+      "levels[2bis].base_salary[2025-01-01]": "assumed",
+      "levels[2bis].base_salary[2026-01-01]": "assumed",
+      "levels[2bis].base_salary[2027-01-01]": "assumed",
+      "levels[3].base_salary[2024-04-01]": "assumed",
+      "levels[3].base_salary[2025-01-01]": "assumed",
+      "levels[3].base_salary[2026-01-01]": "assumed",
+      "levels[3].base_salary[2027-01-01]": "assumed",
+      "levels[3bis].base_salary[2024-04-01]": "assumed",
+      "levels[3bis].base_salary[2025-01-01]": "assumed",
+      "levels[3bis].base_salary[2026-01-01]": "assumed",
+      "levels[3bis].base_salary[2027-01-01]": "assumed",
+      "levels[4].base_salary[2024-04-01]": "assumed",
+      "levels[4].base_salary[2025-01-01]": "assumed",
+      "levels[4].base_salary[2026-01-01]": "assumed",
+      "levels[4].base_salary[2027-01-01]": "assumed",
+      "levels[5].base_salary[2024-04-01]": "assumed",
+      "levels[5].base_salary[2025-01-01]": "assumed",
+      "levels[5].base_salary[2026-01-01]": "assumed",
+      "levels[5].base_salary[2027-01-01]": "assumed",
+      "levels[6].base_salary[2024-04-01]": "assumed",
+      "levels[6].base_salary[2025-01-01]": "assumed",
+      "levels[6].base_salary[2026-01-01]": "assumed",
+      "levels[6].base_salary[2027-01-01]": "assumed",
+      "levels[7].base_salary[2024-04-01]": "assumed",
+      "levels[7].base_salary[2025-01-01]": "assumed",
+      "levels[7].base_salary[2026-01-01]": "assumed",
+      "levels[7].base_salary[2027-01-01]": "assumed",
+      "levels[8].base_salary[2024-04-01]": "assumed",
+      "levels[8].base_salary[2025-01-01]": "assumed",
+      "levels[8].base_salary[2026-01-01]": "assumed",
+      "levels[8].base_salary[2027-01-01]": "assumed",
+      "levels[8].fixed_allowances[IND_FUN]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/tessile-smi.json": {
       "accrual_rule": "missing",
@@ -850,7 +1036,40 @@
     },
     "ccnl/data/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
-      "additional_months[2023-03-01]": "assumed"
+      "additional_months[2023-03-01]": "assumed",
+      "employer_funds[FONCHIM].rate[2023-03-01]": "assumed",
+      "employer_funds[FONCHIM].rate[2027-01-01]": "assumed",
+      "levels[A].base_salary[2023-03-01]": "assumed",
+      "levels[A].base_salary[2024-01-01]": "assumed",
+      "levels[A].base_salary[2025-04-01]": "assumed",
+      "levels[A].base_salary[2026-01-01]": "assumed",
+      "levels[A].fixed_allowances[TER]": "assumed",
+      "levels[B].base_salary[2023-03-01]": "assumed",
+      "levels[B].base_salary[2024-01-01]": "assumed",
+      "levels[B].base_salary[2025-04-01]": "assumed",
+      "levels[B].base_salary[2026-01-01]": "assumed",
+      "levels[B].fixed_allowances[TER]": "assumed",
+      "levels[C].base_salary[2023-03-01]": "assumed",
+      "levels[C].base_salary[2024-01-01]": "assumed",
+      "levels[C].base_salary[2025-04-01]": "assumed",
+      "levels[C].base_salary[2026-01-01]": "assumed",
+      "levels[C].fixed_allowances[TER]": "assumed",
+      "levels[D].base_salary[2023-03-01]": "assumed",
+      "levels[D].base_salary[2024-01-01]": "assumed",
+      "levels[D].base_salary[2025-04-01]": "assumed",
+      "levels[D].base_salary[2026-01-01]": "assumed",
+      "levels[D].fixed_allowances[TER]": "assumed",
+      "levels[E].base_salary[2023-03-01]": "assumed",
+      "levels[E].base_salary[2024-01-01]": "assumed",
+      "levels[E].base_salary[2025-04-01]": "assumed",
+      "levels[E].base_salary[2026-01-01]": "assumed",
+      "levels[E].fixed_allowances[TER]": "assumed",
+      "levels[F].base_salary[2023-03-01]": "assumed",
+      "levels[F].base_salary[2024-01-01]": "assumed",
+      "levels[F].base_salary[2025-04-01]": "assumed",
+      "levels[F].base_salary[2026-01-01]": "assumed",
+      "levels[F].fixed_allowances[TER]": "assumed",
+      "seniority_increments": "assumed"
     },
     "ccnl/data/vigilanza-privata-assiv.json": {
       "accrual_rule": "assumed",
@@ -865,39 +1084,149 @@
       "additional_months[2023-06-01]": "assumed",
       "additional_months[2024-01-01]": "assumed"
     },
+    "inps/data/2026-agricoltura.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
+    },
     "inps/data/2026-artigianato.json": {
-      "inps": "assumed"
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
+    },
+    "inps/data/2026-credito.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
     },
     "inps/data/2026-edilizia.json": {
-      "inps": "assumed"
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
+    },
+    "inps/data/2026-industria.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
+    },
+    "inps/data/2026-lavoro-domestico.json": {
+      "domestic_contributions": "assumed"
     },
     "inps/data/2026-pubblica-amministrazione.json": {
-      "apprentice": "assumed"
+      "apprentice": "assumed",
+      "inps": "assumed"
+    },
+    "inps/data/2026-terziario.json": {
+      "apprentice": "assumed",
+      "inps": "assumed",
+      "inps.employee_additional": "assumed"
+    },
+    "inps/data/sick-pay-rates.json": {
+      "bands": "assumed"
     },
     "tax/data/2026-agricoltura.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-artigianato.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-credito.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-edilizia.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-industria.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-lavoro-domestico.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-pubblica-amministrazione.json": {
+      "complementary_pension": "assumed",
       "fixed_term_additional_rate": "assumed",
-      "somma_esente": "assumed"
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
     },
     "tax/data/2026-terziario.json": {
-      "somma_esente": "assumed"
+      "complementary_pension": "assumed",
+      "fixed_term_additional_rate": "assumed",
+      "irpef_brackets": "assumed",
+      "somma_esente": "assumed",
+      "sterilizzazione_detrazioni": "assumed",
+      "tfr": "assumed",
+      "tfr.additional_ivs": "assumed",
+      "trattamento_integrativo": "assumed",
+      "ulteriore_detrazione": "assumed",
+      "work_deduction": "assumed",
+      "work_deduction.minimum": "assumed"
+    },
+    "tax/data/variable-pay-rules.json": {
+      "pdr": "assumed"
     }
   },
   "open_limitations": {
@@ -1372,22 +1701,5 @@
       "sickness_cumulation_window",
       "sickness_inps_daily_base"
     ]
-  },
-  "readiness_contradictions": [
-    "ccnl/data/commercio-confcommercio.json",
-    "ccnl/data/cooperative-sociali.json",
-    "ccnl/data/dmo-federdistribuzione.json",
-    "ccnl/data/edilizia-ance.json",
-    "ccnl/data/edilizia-artigianato-cna.json",
-    "ccnl/data/funzioni-locali-aran.json",
-    "ccnl/data/istruzione-ricerca-aran.json",
-    "ccnl/data/lavoro-domestico-convivente.json",
-    "ccnl/data/lavoro-domestico-non-convivente.json",
-    "ccnl/data/logistica-trasporto-confetra.json",
-    "ccnl/data/metalmeccanico-artigianato.json",
-    "ccnl/data/metalmeccanico-federmeccanica.json",
-    "ccnl/data/multiservizi-anip.json",
-    "ccnl/data/operai-agricoli-florovivaisti.json",
-    "ccnl/data/sanita-aran.json"
-  ]
+  }
 }

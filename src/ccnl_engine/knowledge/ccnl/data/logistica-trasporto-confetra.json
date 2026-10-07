@@ -1389,7 +1389,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/2025/09/testo-unico-ccnl-logistica-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1516b196e37757c1ff051f3686649445a9e7289a10b1156a0725181f504e52b",
+    "source_hash": "6e8aa9df26a05bbac95f70501609379feab3a2f027b6982c4cd4fbce5f0d66ce",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1618,7 +1618,7 @@
   },
   "verification": {
     "confidence": "unverified",
-    "readiness": "reviewed",
+    "readiness": "exploratory",
     "verified_cases": 0,
     "last_reviewed": "2026-09-18",
     "human_reviewed_by": "lucas-puerari"

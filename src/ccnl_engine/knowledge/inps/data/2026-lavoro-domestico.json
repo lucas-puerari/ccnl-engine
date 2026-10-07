@@ -29,7 +29,7 @@
       }
     ],
     "provenance": {
-      "status": "derived",
+      "status": "assumed",
       "location": {
         "source_document": {
           "document_id": "inps-circolare-9-2026",
@@ -37,7 +37,8 @@
           "kind": "inps_circolare"
         },
         "section": "contribution table 2026"
-      }
+      },
+      "note": "Assumed, not derived: its ruleset declares source_type 'estimated'; no citation (http(s) url and section or page)."
     }
   },
   "ruleset": {
@@ -48,7 +49,7 @@
     "published_at": "2026-09-07",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "5ce20f743390d40a2928377a9f1ca1d011300b8f9a1b06299b9886ca9b28a4b3",
+    "source_hash": "a39c383a40d1927279b5e152fe6bd0c5c30b941378eab656b802cd861fcd91d6",
     "source_type": "estimated"
   }
 }

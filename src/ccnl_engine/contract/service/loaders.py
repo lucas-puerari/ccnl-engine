@@ -9,7 +9,10 @@ from typing import Any
 
 from ccnl_engine.contract.domain.identity import CCNL
 from ccnl_engine.knowledge.service.bundled import read_bundled
-from ccnl_engine.knowledge.service.loader_utils import verify_ruleset_hash
+from ccnl_engine.knowledge.service.loader_utils import (
+    verify_provenance_labels,
+    verify_ruleset_hash,
+)
 from ccnl_engine.shared.domain.errors import UnknownCcnlError
 
 
@@ -41,14 +44,16 @@ def load_ccnl(filename: str) -> CCNL:
     except FileNotFoundError:
         raise UnknownCcnlError(filename.removesuffix(".json")) from None
     payload = json.loads(raw)
-    _verify_ruleset_hash(payload)
+    _verify_payload(payload, filename)
     return CCNL.model_validate(payload)
 
 
-def _verify_ruleset_hash(payload: dict[str, Any]) -> None:
-    """Verify a recorded ``ruleset.source_hash`` against the payload.
+def _verify_payload(payload: dict[str, Any], filename: str) -> None:
+    """Verify the ``ruleset.source_hash`` and the provenance labels.
 
     Delegates to :func:`~ccnl_engine.knowledge.service.loader_utils\
-.verify_ruleset_hash`.
+.verify_ruleset_hash` and :func:`~ccnl_engine.knowledge.service.loader_utils\
+.verify_provenance_labels`.
     """
-    verify_ruleset_hash(payload)
+    verify_ruleset_hash(payload, filename)
+    verify_provenance_labels(payload, filename)

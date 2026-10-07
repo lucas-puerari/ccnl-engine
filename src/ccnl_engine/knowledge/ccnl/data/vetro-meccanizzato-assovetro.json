@@ -57,7 +57,7 @@
       "category": "operaio",
       "description": "Livello F — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -72,7 +72,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -81,7 +82,7 @@
             "valid_until": "2024-01-01",
             "value": "1577.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -96,7 +97,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -104,7 +106,7 @@
             "valid_until": "2025-04-01",
             "value": "1611.50",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -119,7 +121,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -127,7 +130,7 @@
             "valid_until": "2026-01-01",
             "value": "1646.57",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -142,7 +145,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -150,7 +154,7 @@
             "valid_until": null,
             "value": "1683.88",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -165,7 +169,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -182,7 +187,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -197,13 +202,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -218,7 +224,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -229,7 +236,7 @@
       "category": "operaio",
       "description": "Livello E — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -244,7 +251,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -253,7 +261,7 @@
             "valid_until": "2024-01-01",
             "value": "1703.45",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -268,7 +276,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -276,7 +285,7 @@
             "valid_until": "2025-04-01",
             "value": "1741.06",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -291,7 +300,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -299,7 +309,7 @@
             "valid_until": "2026-01-01",
             "value": "1780.34",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -314,7 +324,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -322,7 +333,7 @@
             "valid_until": null,
             "value": "1822.13",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -337,7 +348,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -354,7 +366,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -369,13 +381,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -390,7 +403,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -401,7 +415,7 @@
       "category": "operaio",
       "description": "Livello D — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -416,7 +430,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -425,7 +440,7 @@
             "valid_until": "2024-01-01",
             "value": "1938.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -440,7 +455,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -448,7 +464,7 @@
             "valid_until": "2025-04-01",
             "value": "1983.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -463,7 +479,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -471,7 +488,7 @@
             "valid_until": "2026-01-01",
             "value": "2030.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -486,7 +503,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -494,7 +512,7 @@
             "valid_until": null,
             "value": "2080.92",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -509,7 +527,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -526,7 +545,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -541,13 +560,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -562,7 +582,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -573,7 +594,7 @@
       "category": "impiegato",
       "description": "Livello C — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -588,7 +609,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -597,7 +619,7 @@
             "valid_until": "2024-01-01",
             "value": "2187.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -612,7 +634,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -620,7 +643,7 @@
             "valid_until": "2025-04-01",
             "value": "2240.40",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -635,7 +658,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -643,7 +667,7 @@
             "valid_until": "2026-01-01",
             "value": "2295.47",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -658,7 +682,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -666,7 +691,7 @@
             "valid_until": null,
             "value": "2354.05",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -681,7 +706,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -698,7 +724,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -713,13 +739,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -734,7 +761,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -745,7 +773,7 @@
       "category": "impiegato",
       "description": "Livello B — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -760,7 +788,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -769,7 +798,7 @@
             "valid_until": "2024-01-01",
             "value": "2427.18",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -784,7 +813,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -792,7 +822,7 @@
             "valid_until": "2025-04-01",
             "value": "2487.29",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -807,7 +837,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -815,7 +846,7 @@
             "valid_until": "2026-01-01",
             "value": "2550.07",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -830,7 +861,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -838,7 +870,7 @@
             "valid_until": null,
             "value": "2616.86",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -853,7 +885,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -870,7 +903,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -885,13 +918,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -906,7 +940,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -917,7 +952,7 @@
       "category": "quadro",
       "description": "Livello A — base",
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -932,7 +967,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "base_salary": {
         "periods": [
@@ -941,7 +977,7 @@
             "valid_until": "2024-01-01",
             "value": "2661.69",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -956,7 +992,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -964,7 +1001,7 @@
             "valid_until": "2025-04-01",
             "value": "2729.19",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -979,7 +1016,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -987,7 +1025,7 @@
             "valid_until": "2026-01-01",
             "value": "2799.69",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "esterinocafasso-vetro-2023-2025",
@@ -1002,7 +1040,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2023-03-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -1010,7 +1049,7 @@
             "valid_until": null,
             "value": "2874.69",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -1025,7 +1064,8 @@
                 "extraction_timestamp": "2026-09-17T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1042,7 +1082,7 @@
                 "valid_until": null,
                 "value": "10.33",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "esterinocafasso-vetro-2023-2025",
@@ -1057,13 +1097,14 @@
                     "extraction_timestamp": "2026-09-17T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2023-03-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "esterinocafasso-vetro-2023-2025",
@@ -1078,7 +1119,8 @@
               "extraction_timestamp": "2026-09-17T00:00:00",
               "verification_status": "verified",
               "effective_from": "2023-03-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -1112,7 +1154,7 @@
       "cadence_months": 24,
       "maximum_count": 5,
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "kitech-vetro-meccanizzato-categ215",
@@ -1127,7 +1169,8 @@
           "extraction_timestamp": "2026-09-17T00:00:00",
           "verification_status": "verified",
           "effective_from": "2023-03-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       },
       "amount_by_level": {
         "A": {
@@ -1191,7 +1234,7 @@
         "code": "FONCHIM",
         "description": "Fondo di Previdenza Complementare per i lavoratori della chimica e settori affini",
         "provenance": {
-          "status": "derived",
+          "status": "assumed",
           "location": {
             "source_document": {
               "document_id": "assovetro-rinnovo-2026-04-09",
@@ -1200,7 +1243,8 @@
               "url": "https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/"
             },
             "section": "Fonchim — contribuzione datoriale"
-          }
+          },
+          "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
         },
         "rate": {
           "periods": [
@@ -1209,7 +1253,7 @@
               "valid_until": "2027-01-01",
               "value": "0.0150",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "assovetro-rinnovo-2026-04-09",
@@ -1219,7 +1263,8 @@
                   },
                   "section": "Fonchim — contribuzione datoriale"
                 },
-                "transformation": "2.0% less the 0.5% increase of 1 January 2027 stated by the source; the source does not state the 1.5% rate itself."
+                "transformation": "2.0% less the 0.5% increase of 1 January 2027 stated by the source; the source does not state the 1.5% rate itself.",
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             },
             {
@@ -1227,7 +1272,7 @@
               "valid_until": null,
               "value": "0.0200",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "assovetro-rinnovo-2026-04-09",
@@ -1243,7 +1288,7 @@
                   "verification_status": "verified",
                   "effective_from": "2027-01-01"
                 },
-                "note": "The source raises the employer contribution by 0.5% from 1 January 2027. An earlier record dated the 2.0% rate from 2026-01-01, against its cited source."
+                "note": "The source raises the employer contribution by 0.5% from 1 January 2027. An earlier record dated the 2.0% rate from 2026-01-01, against its cited source. Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -1310,6 +1355,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "04e9fcda98fcaf46e9843a5949ccca473c1213d2789879fe73127f4415b4aa86"
+    "source_hash": "69e033a456f6c39a5e04fa224e6f190d13ed203876d0bc50b645489ae8c57571"
   }
 }

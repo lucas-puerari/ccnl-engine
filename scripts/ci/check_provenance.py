@@ -8,11 +8,14 @@ Two gates judge the payable rules of the bundled knowledge data (see
   record carries the fields its status or readiness requires (see
   :func:`scripts.ci.provenance_evidence.schema_errors`).  A ``missing``
   record is allowed in the data but listed, because the engine marks any
-  result that reads it incomplete.
+  result that reads it incomplete.  No label may outrun its evidence (see
+  :mod:`scripts.ci.provenance_labels`): a ``derived`` or ``verified``
+  record that is estimated or cites no source, and a ``reviewed`` or
+  ``production`` CCNL with weak rules or an unverified confidence, fail.
 - Evidence gate: a shrink-only ratchet against ``provenance_baseline.json``.
-  It fails on an ``assumed`` or ``missing`` rule, an open model limitation
-  or a readiness contradiction the baseline does not list, on a rule weaker
-  than its baseline status, and on a baseline entry that no longer holds.
+  It fails on an ``assumed`` or ``missing`` rule or an open model
+  limitation the baseline does not list, on a rule weaker than its
+  baseline status, and on a baseline entry that no longer holds.
   It prints the rules per capability and the CCNL files with the most weak
   rules.
 
@@ -64,7 +67,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.ci import payable_rules, provenance_evidence
+from scripts.ci import payable_rules, provenance_evidence, provenance_labels
 
 CASES_DIR = (
     Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "reference_tables"
@@ -190,7 +193,11 @@ def check_rules(root: Path = payable_rules.KNOWLEDGE_DIR) -> bool:
             '"missing" when no source backs the value.',
             file=sys.stderr,
         )
-    evidence = provenance_evidence.schema_errors(rules, root)
+    evidence = [
+        *provenance_evidence.schema_errors(rules, root),
+        *provenance_labels.label_errors(root),
+        *provenance_labels.readiness_errors(rules, root),
+    ]
     if evidence:
         print(
             f"\n{len(evidence)} record(s) without the evidence they claim:\n"
@@ -208,8 +215,8 @@ def _print_ratchet(ratchet: provenance_evidence.Ratchet) -> None:
             file=sys.stderr,
         )
         print(
-            "\nSource the rule with a located citation, resolve the limitation "
-            "or align readiness and confidence. If the weak entry is "
+            "\nSource the rule with a located citation or resolve the "
+            "limitation. If the weak entry is "
             "intended, run --update-baseline --allow-growth and justify it "
             "in the pull request.",
             file=sys.stderr,
@@ -226,11 +233,7 @@ def _print_ratchet(ratchet: provenance_evidence.Ratchet) -> None:
 def _summary(current: provenance_evidence.Snapshot) -> str:
     rules = sum(len(paths) for paths in current.weak_rules.values())
     limitations = sum(len(ids) for ids in current.open_limitations.values())
-    contradictions = len(current.readiness_contradictions)
-    return (
-        f"Weak rules: {rules}; open limitations: {limitations}; "
-        f"readiness contradictions: {contradictions}"
-    )
+    return f"Weak rules: {rules}; open limitations: {limitations}"
 
 
 def check_evidence(

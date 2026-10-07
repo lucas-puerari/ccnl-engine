@@ -95,7 +95,7 @@
           "valid_until": null,
           "value": "173",
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -110,7 +110,8 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -122,7 +123,7 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -137,7 +138,8 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ]
@@ -153,7 +155,7 @@
               "valid_until": null,
               "value": "12.39",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -168,7 +170,8 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -180,7 +183,7 @@
               "valid_until": null,
               "value": "12.91",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -195,7 +198,8 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -207,7 +211,7 @@
               "valid_until": null,
               "value": "15.49",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -222,7 +226,8 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -234,7 +239,7 @@
               "valid_until": null,
               "value": "16.01",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -249,7 +254,8 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -261,7 +267,7 @@
               "valid_until": null,
               "value": "18.08",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -276,7 +282,8 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
@@ -288,7 +295,7 @@
               "valid_until": null,
               "value": "19.63",
               "provenance": {
-                "status": "derived",
+                "status": "assumed",
                 "location": {
                   "source_document": {
                     "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -303,14 +310,15 @@
                   "extraction_timestamp": "2026-09-12T00:00:00",
                   "verification_status": "verified",
                   "effective_from": "2026-01-01"
-                }
+                },
+                "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
               }
             }
           ]
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -325,7 +333,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     }
   },
@@ -341,7 +350,7 @@
             "valid_until": "2027-06-01",
             "value": "725.69",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -356,7 +365,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -364,7 +374,7 @@
             "valid_until": null,
             "value": "778.55",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -379,7 +389,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -396,7 +407,7 @@
                 "valid_until": null,
                 "value": "506.96",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -411,14 +422,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -433,12 +445,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -453,7 +466,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -467,7 +481,7 @@
             "valid_until": "2027-06-01",
             "value": "868.41",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -482,7 +496,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -490,7 +505,7 @@
             "valid_until": null,
             "value": "931.68",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -505,7 +520,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -522,7 +538,7 @@
                 "valid_until": null,
                 "value": "509.71",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -537,14 +553,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -559,12 +576,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -579,7 +597,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -593,7 +612,7 @@
             "valid_until": "2027-06-01",
             "value": "1028.70",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -608,7 +627,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -616,7 +636,7 @@
             "valid_until": null,
             "value": "1103.70",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -631,7 +651,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -648,7 +669,7 @@
                 "valid_until": null,
                 "value": "513.11",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -663,14 +684,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -685,12 +707,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -705,7 +728,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -719,7 +743,7 @@
             "valid_until": "2027-06-01",
             "value": "1204.53",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -734,7 +758,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -742,7 +767,7 @@
             "valid_until": null,
             "value": "1292.26",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -757,7 +782,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -774,7 +800,7 @@
                 "valid_until": null,
                 "value": "515.45",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -789,14 +815,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -811,12 +838,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -831,7 +859,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -845,7 +874,7 @@
             "valid_until": "2027-06-01",
             "value": "1464.26",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -860,7 +889,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -868,7 +898,7 @@
             "valid_until": null,
             "value": "1571.02",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -883,7 +913,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -900,7 +931,7 @@
                 "valid_until": null,
                 "value": "520.49",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -915,14 +946,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -937,12 +969,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -957,7 +990,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     },
     {
@@ -971,7 +1005,7 @@
             "valid_until": "2027-06-01",
             "value": "1632.31",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -986,7 +1020,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           },
           {
@@ -994,7 +1029,7 @@
             "valid_until": null,
             "value": "1751.23",
             "provenance": {
-              "status": "derived",
+              "status": "assumed",
               "location": {
                 "source_document": {
                   "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1009,7 +1044,8 @@
                 "extraction_timestamp": "2026-09-12T00:00:00",
                 "verification_status": "verified",
                 "effective_from": "2026-01-01"
-              }
+              },
+              "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
             }
           }
         ]
@@ -1026,7 +1062,7 @@
                 "valid_until": null,
                 "value": "524.37",
                 "provenance": {
-                  "status": "derived",
+                  "status": "assumed",
                   "location": {
                     "source_document": {
                       "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1041,14 +1077,15 @@
                     "extraction_timestamp": "2026-09-12T00:00:00",
                     "verification_status": "verified",
                     "effective_from": "2026-01-01"
-                  }
+                  },
+                  "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
                 }
               }
             ]
           },
           "apprenticeship_pct_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
                 "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1063,12 +1100,13 @@
               "extraction_timestamp": "2026-09-12T00:00:00",
               "verification_status": "verified",
               "effective_from": "2026-01-01"
-            }
+            },
+            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
           }
         }
       ],
       "provenance": {
-        "status": "derived",
+        "status": "assumed",
         "location": {
           "source_document": {
             "document_id": "ccnl-radiotelevisivo-2026-pdf",
@@ -1083,7 +1121,8 @@
           "extraction_timestamp": "2026-09-12T00:00:00",
           "verification_status": "verified",
           "effective_from": "2026-01-01"
-        }
+        },
+        "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
       }
     }
   ],
@@ -1174,6 +1213,6 @@
     "source": "unavailable",
     "source_type": "estimated",
     "verification_status": "unverified",
-    "source_hash": "7af94b79b3e8e2f37073f90a7e3529d11f30b12f4eac86cfc07f5fad24cd8548"
+    "source_hash": "773033aeca8ff8bf1c6e3bd124a6330cf50d050466aaf86fab5825af32d743aa"
   }
 }

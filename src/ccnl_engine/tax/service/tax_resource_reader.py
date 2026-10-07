@@ -10,6 +10,7 @@ from ccnl_engine.knowledge.service.bundled import read_bundled
 from ccnl_engine.knowledge.service.loader_utils import (
     as_ruleset,
     try_ruleset,
+    verify_provenance_labels,
     verify_ruleset_hash,
 )
 from ccnl_engine.shared.domain.errors import UnsupportedTaxYearError
@@ -43,19 +44,20 @@ def _try_ruleset(raw: dict[str, Any]) -> RulesetIdentity | None:
     return try_ruleset(raw)
 
 
-def _verify_ruleset_hash(payload: dict[str, Any], filename: str) -> None:
-    """Verify the payload's ``ruleset.source_hash``.
+def _verify_payload(payload: dict[str, Any], filename: str) -> None:
+    """Verify the ``ruleset.source_hash`` and the provenance labels.
 
     Args:
         payload: The full JSON payload dict.
         filename: Source file name, included in any error message.
     """
     verify_ruleset_hash(payload, filename)
+    verify_provenance_labels(payload, filename)
 
 
 def _read_json(pkg: Traversable, filename: str) -> dict[str, Any]:
     data: dict[str, Any] = json.loads(read_bundled(pkg, filename))
-    _verify_ruleset_hash(data, filename)
+    _verify_payload(data, filename)
     return data
 
 

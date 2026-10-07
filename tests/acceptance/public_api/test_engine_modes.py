@@ -91,7 +91,7 @@ def test_run_reports_the_readiness_the_catalog_reports() -> None:
     ]
 
     assert ccnl == inspected
-    assert inspected.readiness is summary.readiness is RulesetReadiness.REVIEWED
+    assert inspected.readiness is summary.readiness is RulesetReadiness.EXPLORATORY
     assert inspected.source_hash == inspected.identity.source_hash
     assert _SIMULATION.inspect_ruleset(summary.cnel_code) == inspected
 
