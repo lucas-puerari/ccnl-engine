@@ -129,7 +129,9 @@ without a classification, or on a classification without its field:
     category, contribution history, sector, employer activity, prior-year
     income, current-year income with a dependant, signing date of a
     renewal, contributable hours of a domestic CCNL, a child's birth date,
-    the apprenticeship track among several);
+    the apprenticeship track among several, the additional 1% IVS other
+    employers withheld when their base is imported and a run settles the
+    1%);
   - `pending`: not honoured yet. The default still selects a branch without
     a blocker. Treat these fields as required and state them.
 
@@ -146,7 +148,6 @@ The `pending` fields:
 | `PeriodFacts.has_dependent_children` | The lower fringe-benefit threshold |
 | `Dependent.own_income`, `dependent_from`, `dependent_until`, `allocation_pct`, `cohabiting`, `residency_eligibility` | The condition that grants the art. 12 TUIR deduction is met, for the whole year, in full to this worker |
 | `InpsBaseYtd.other_employers`, `OpeningBalances.inps_bases` | No other employer and no imported base toward the IVS massimale and the 1% threshold |
-| `InpsBaseYtd.other_employers_additional_ivs` | The other employers withheld no additional 1% IVS: the December or termination conguaglio charges the 1% on their base again |
 | `OpeningBalances.surtax_obligations`, `OpeningBalances.recoveries` | Nothing carried from an earlier run of another provider |
 | `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
 | `ArrearsEvent.reference_period` | Not read: arrears of an earlier year are taxed with the run, not separately (art. 17 c. 1 lett. b TUIR) |

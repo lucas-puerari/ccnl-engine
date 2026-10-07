@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.payroll.domain.decisions import CalculationIssue, CalculationStatus
 from ccnl_engine.payroll.domain.run import RunKind
 from ccnl_engine.payroll.service.additional_ivs import AdditionalIvsPosition
 
@@ -19,7 +20,12 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.employment_facts import EmploymentPeriod
     from ccnl_engine.payroll.domain.run import PayrollRunId
 
-__all__ = ["additional_ivs_position"]
+__all__ = ["FACT", "UNKNOWN_CODE", "additional_ivs_issue", "additional_ivs_position"]
+
+#: Fact a settling run needs when other employers have a base of the year.
+FACT = "other_employers_additional_ivs"
+#: Code of the issue of a settlement without the 1% of other employers.
+UNKNOWN_CODE = "other_employers_additional_ivs_unknown"
 
 _DECEMBER = 12
 
@@ -58,4 +64,42 @@ def additional_ivs_position(ctx: RunContext) -> AdditionalIvsPosition:
         month_base=base.base_of_month(run_id.month),
         withheld=base.additional_ivs_withheld,
         settles=settles,
+    )
+
+
+def additional_ivs_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing-fact issue of a settlement short of a fact.
+
+    The conguaglio deducts the 1% other employers withheld on their base
+    of the year (INPS circ. 156/2025 par. 5).  When that base is imported
+    and the 1% is not, the settlement cannot be determined: the run
+    computes it as if they withheld nothing and reports the fact missing.
+
+    Returns:
+        An incomplete issue naming ``other_employers_additional_ivs``, or
+        ``None`` when the run does not settle, the rules do not model the
+        1%, or the fact is known.
+    """
+    inps = ctx.contract.year_rules.inps
+    rule = None if inps is None else inps.employee_additional
+    run_id = ctx.payment.run_id
+    base = ctx.opening.accrual.inps_base(run_id.year)
+    if (
+        rule is None
+        or not additional_ivs_position(ctx).settles
+        or not base.other_employers_withheld_unknown
+    ):
+        return None
+    return CalculationIssue(
+        code=UNKNOWN_CODE,
+        message=(
+            f"the run settles the additional 1% IVS of {run_id.year} "
+            f"(D.L. 384/1992 art. 3-ter) on a base of other employers of "
+            f"{base.other_employers}, but the 1% they withheld on it is not "
+            "stated (InpsBaseYtd.other_employers_additional_ivs); the "
+            "settlement shown deducts nothing for it"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        source=rule.provenance.location if rule.provenance else None,
+        fact=FACT,
     )

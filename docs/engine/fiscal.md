@@ -397,7 +397,10 @@ component is `addizionale_1pct`.
 The 1% withheld is kept per competence year on `InpsBaseYtd.additional_ivs`.
 The bases of other employers count toward the band; import them with what
 those employers withheld, `InpsBaseYtd.other_employers_additional_ivs`, from
-their CU, or the settlement charges the 1% on their base again.
+their CU. Left `None` with a base of other employers, a settling run cannot
+deduct it: it reports the issue `other_employers_additional_ivs_unknown`
+(`incomplete`, `fact="other_employers_additional_ivs"`), so the result has a
+`missing_fact` blocker and is not payable.
 
 **API reference:** [`CalculationDecision`](../api/engine.md#results-and-calculation-status),
 [`REGION_CODES`](../api/models.md#fiscal),

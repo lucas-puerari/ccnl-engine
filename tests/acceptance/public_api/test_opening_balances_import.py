@@ -146,6 +146,39 @@ class TestInpsBaseOfOtherEmployers:
         assert base.additional_ivs == Decimal("60.71")
         assert base.additional_ivs_withheld == Decimal("660.71")
 
+    def test_december_without_the_1pct_of_the_earlier_employer_is_blocked(
+        self,
+    ) -> None:
+        """The base of the earlier employer is known, its 1% is not.
+
+        The conguaglio deducts what other employers withheld (circ. INPS
+        156/2025 par. 5): without it the 60.71 above cannot be settled, so
+        the run reports the fact missing instead of charging 660.71.
+        September, which settles nothing, needs no such fact.
+        """
+        imported = _imported(InpsBaseYtd(2026, other_employers=Decimal("121000.00")))
+        december = _ENGINE.calculate_period(
+            PeriodInput(
+                run=PayrollRun.regular(2026, 12),
+                payment_date=date(2026, 12, 28),
+                employment=_C3,
+                employer=_EMPLOYER,
+                opening_state=imported,
+            )
+        )
+        september = _september(imported)
+
+        def blocked(result: PeriodResult) -> bool:
+            return any(
+                b.code.value == "missing_fact"
+                and b.detail == "other_employers_additional_ivs"
+                for b in result.blockers
+            )
+
+        assert blocked(december)
+        assert not december.is_payable
+        assert not blocked(september)
+
     def test_other_employers_count_as_this_employer_would(self) -> None:
         """Differential: the same base held by this employer gives the same run."""
         other = _september(

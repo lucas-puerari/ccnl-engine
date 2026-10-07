@@ -51,6 +51,28 @@ def test_withheld_counts_this_and_the_other_employers() -> None:
 
 
 @pytest.mark.parametrize(
+    ("other_employers", "withheld", "unknown"),
+    [
+        pytest.param("0", None, False, id="no-other-employer"),
+        pytest.param("1000", None, True, id="base-without-its-1pct"),
+        pytest.param("1000", "0", False, id="stated-zero"),
+    ],
+)
+def test_the_1pct_of_other_employers_is_unknown_only_with_their_base(
+    other_employers: str, withheld: str | None, *, unknown: bool
+) -> None:
+    """An unstated 1% matters only when other employers have a base."""
+    base = InpsBaseYtd(
+        2026,
+        other_employers=Decimal(other_employers),
+        other_employers_additional_ivs=None if withheld is None else Decimal(withheld),
+    )
+
+    assert base.other_employers_withheld_unknown is unknown
+    assert base.additional_ivs_withheld == Decimal(0)
+
+
+@pytest.mark.parametrize(
     ("kwargs", "field"),
     [
         ({"year": 1969}, "InpsBaseYtd.year"),

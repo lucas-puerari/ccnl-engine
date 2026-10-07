@@ -52,7 +52,9 @@ class InpsBaseYtd:
             employers withheld (INPS circ. 156/2025 par. 5).
         other_employers_additional_ivs: Additional 1% IVS the other
             employments withheld on :attr:`other_employers`, as certified;
-            the conguaglio deducts it from the 1% due on the year.
+            the conguaglio deducts it from the 1% due on the year.  ``None``
+            when not stated: with a base of other employers the conguaglio
+            then cannot be settled (:attr:`other_employers_withheld_unknown`).
         month: Competence month of the latest run of this employment,
             ``None`` before the first run of :attr:`year`.
         month_base: INPS base of the runs of this employment of
@@ -69,7 +71,7 @@ class InpsBaseYtd:
     own: Decimal = _ZERO
     other_employers: Decimal = _ZERO
     additional_ivs: Decimal = _ZERO
-    other_employers_additional_ivs: Decimal = _ZERO
+    other_employers_additional_ivs: Decimal | None = None
     month: int | None = None
     month_base: Decimal = _ZERO
 
@@ -88,6 +90,7 @@ class InpsBaseYtd:
                 f"InpsBaseYtd.{name}",
                 feature=_FEATURE,
                 minimum=_ZERO,
+                optional=name == "other_employers_additional_ivs",
             )
         require_decimal(
             self.additional_ivs, "InpsBaseYtd.additional_ivs", feature=_FEATURE
@@ -113,8 +116,20 @@ class InpsBaseYtd:
 
     @property
     def additional_ivs_withheld(self) -> Decimal:
-        """Additional 1% IVS withheld on the year by every employment."""
-        return self.additional_ivs + self.other_employers_additional_ivs
+        """Additional 1% IVS withheld on the year by every employment.
+
+        An unstated 1% of other employers counts as zero here; see
+        :attr:`other_employers_withheld_unknown`.
+        """
+        others = self.other_employers_additional_ivs
+        return self.additional_ivs + (_ZERO if others is None else others)
+
+    @property
+    def other_employers_withheld_unknown(self) -> bool:
+        """Whether other employers have a base but their 1% is not stated."""
+        return (
+            self.other_employers > _ZERO and self.other_employers_additional_ivs is None
+        )
 
     def base_of_month(self, month: int) -> Decimal:
         """Return the INPS base this employment already declared for ``month``.

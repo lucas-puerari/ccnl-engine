@@ -144,9 +144,9 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "InpsBaseYtd.other_employers_additional_ivs": requires_fact(
         "inps_employee",
         "opening_balances.inps_bases.other_employers_additional_ivs",
-        _PENDING,
-        "the other employers withheld no additional 1% IVS: the conguaglio "
-        "charges the 1% on their base again",
+        _REPORTED,
+        "unknown 1% of the other employers: with a base of theirs, a run "
+        "settling the additional 1% IVS has a missing_fact blocker",
     ),
     "InpsBaseYtd.month": absence_is_fact(
         "the next run is the first of this employment in its competence month"

@@ -6,6 +6,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.payroll.application._period_utils import _sum_ledger
+from ccnl_engine.payroll.application.period._additional_ivs import (
+    additional_ivs_issue,
+)
 from ccnl_engine.payroll.application.period._capability_registry import (
     capability_report,
     case_facts,
@@ -136,10 +139,10 @@ def _proration_issues(ctx: RunContext) -> tuple[CalculationIssue, ...]:
     return () if issue is None else (issue,)
 
 
-def _ivs_issues(amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
+def _ivs_issues(ctx: RunContext, amounts: RunAmounts) -> tuple[CalculationIssue, ...]:
     ivs = amounts.ivs_ceiling
-    issue = None if ivs is None else ivs.issue()
-    return () if issue is None else (issue,)
+    issues = (None if ivs is None else ivs.issue(), additional_ivs_issue(ctx))
+    return tuple(issue for issue in issues if issue is not None)
 
 
 def _result(
@@ -196,7 +199,7 @@ def _result(
         + _rule_issues(ctx)
         + _seniority_issues(ctx)
         + _proration_issues(ctx)
-        + _ivs_issues(amounts)
+        + _ivs_issues(ctx, amounts)
         + missing_source_issues(sources),
         decisions=all_decisions,
         rulesets=run_rulesets(ctx, sources),
