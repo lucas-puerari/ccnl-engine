@@ -40,7 +40,7 @@ if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.events import WorkEvent
     from ccnl_engine.payroll.domain.family import FamilyComposition
     from ccnl_engine.payroll.domain.payment import PaymentId
-    from ccnl_engine.payroll.domain.run import PayrollRun
+    from ccnl_engine.payroll.domain.run import PayrollRun, PayrollRunId
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 
@@ -142,6 +142,10 @@ class PeriodCalculationRequest:
             year, in place of the one the state carries.
         pension_fund: Enrolment in a pension fund of the CCNL, ``None``
             when the worker is not enrolled.
+        uncovered_runs: Runs of the competence year the year calculation
+            left out because the bundle holds no pay rules on their date.
+            They are reported once, as ``run_not_computed`` blockers of the
+            year, so the opening state is not judged to miss them.
     """
 
     period_id: PeriodId
@@ -173,6 +177,7 @@ class PeriodCalculationRequest:
     prior_year: PriorYearTaxFacts = field(default_factory=PriorYearTaxFacts)
     current_year: CurrentYearTaxFacts | None = None
     pension_fund: PensionFundEnrolment | None = None
+    uncovered_runs: tuple[PayrollRunId, ...] = ()
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.

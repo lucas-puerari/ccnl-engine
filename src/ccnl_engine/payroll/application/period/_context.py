@@ -157,6 +157,7 @@ class RunContext:
             self.opening,
             self.payment.run_id,
             None if period is None else period.started_on,
+            self.request.uncovered_runs,
         )
 
     @property

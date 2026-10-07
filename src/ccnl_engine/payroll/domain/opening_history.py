@@ -53,7 +53,10 @@ _REMEDY = (
 
 
 def opening_gap(
-    opening: PeriodState, run_id: PayrollRunId, started_on: date | None
+    opening: PeriodState,
+    run_id: PayrollRunId,
+    started_on: date | None,
+    uncovered: tuple[PayrollRunId, ...] = (),
 ) -> str | None:
     """Return what the opening state of ``run_id`` misses of the history.
 
@@ -61,6 +64,9 @@ def opening_gap(
         opening: State the run opens with.
         run_id: The run.
         started_on: First day of the employment, ``None`` when not stated.
+        uncovered: Runs a year calculation left out because the bundle
+            holds no pay rules on their date; already reported as
+            ``run_not_computed`` on the year, they are not missing history.
 
     Returns:
         A description of the missing history, or ``None`` when the state
@@ -71,7 +77,9 @@ def opening_gap(
     year = run_id.year
     earlier = started_on is None or started_on < date(year, 1, 1)
     closed = {
-        r.month for r in opening.accrual.runs_of(year) if r.kind is RunKind.REGULAR
+        r.month
+        for r in (*opening.accrual.runs_of(year), *uncovered)
+        if r.kind is RunKind.REGULAR and r.year == year
     }
     first = _first_month(year, started_on)
     missing = [month for month in range(first, run_id.month) if month not in closed]
@@ -87,14 +95,17 @@ def opening_gap(
 
 
 def opening_state_issue(
-    opening: PeriodState, run_id: PayrollRunId, started_on: date | None
+    opening: PeriodState,
+    run_id: PayrollRunId,
+    started_on: date | None,
+    uncovered: tuple[PayrollRunId, ...] = (),
 ) -> CalculationIssue | None:
     """Return the missing-fact issue of a run opened without its history.
 
     Returns:
         An incomplete issue naming ``opening_state``, or ``None``.
     """
-    gap = opening_gap(opening, run_id, started_on)
+    gap = opening_gap(opening, run_id, started_on, uncovered)
     if gap is None:
         return None
     return CalculationIssue(

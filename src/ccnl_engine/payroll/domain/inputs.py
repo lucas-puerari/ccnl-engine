@@ -40,6 +40,7 @@ from ccnl_engine.shared.domain.validation import (
 if TYPE_CHECKING:
     from ccnl_engine.payroll.domain.accrual import ExtraMonthAccrual
     from ccnl_engine.payroll.domain.events import WorkEvent
+    from ccnl_engine.payroll.domain.run import PayrollRunId
     from ccnl_engine.payroll.domain.withholding_schedule import WithholdingSchedule
 
 __all__ = ["PeriodFacts", "PeriodInput"]
@@ -214,6 +215,7 @@ class PeriodInput:
         extra_month_accrual: ExtraMonthAccrual | None = None,
         extra_month_settlements: tuple[ExtraMonthAccrual, ...] = (),
         withholding_schedule: WithholdingSchedule | None = None,
+        uncovered_runs: tuple[PayrollRunId, ...] = (),
     ) -> PeriodCalculationRequest:
         """Map this input to the request of the period calculation.
 
@@ -227,6 +229,8 @@ class PeriodInput:
                 employment ends before their payment month.
             withholding_schedule: Withholding slots of the tax year.
                 ``None`` uses the standard calendar of the CCNL.
+            uncovered_runs: Runs of the year the year calculation left out
+                because the bundle holds no pay rules on their date.
 
         Returns:
             The validated request.
@@ -261,5 +265,6 @@ class PeriodInput:
             extra_month_accrual=extra_month_accrual,
             extra_month_settlements=extra_month_settlements,
             withholding_schedule=withholding_schedule,
+            uncovered_runs=uncovered_runs,
             planned_payments=self.planned_payments,
         )

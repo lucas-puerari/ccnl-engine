@@ -129,3 +129,13 @@ def test_a_state_that_misses_the_history_has_a_gap(
     assert issue.code == "opening_state_unknown"
     assert issue.status is CalculationStatus.INCOMPLETE
     assert found in issue.message
+
+
+def test_a_month_the_year_left_out_is_not_missing_history() -> None:
+    """A run without pay rules is reported once on the year, not on each run."""
+    february = PayrollRunId(2026, 2, RunKind.REGULAR)
+    left_out = (_JANUARY, PayrollRunId(2025, 12, RunKind.REGULAR))
+
+    assert opening_gap(_ZERO, february, date(2026, 1, 1), left_out) is None
+    assert opening_gap(_ZERO, february, date(2026, 1, 1)) is not None
+    assert opening_state_issue(_ZERO, february, date(2026, 1, 1), left_out) is None

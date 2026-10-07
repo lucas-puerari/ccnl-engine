@@ -72,3 +72,19 @@ def test_a_year_of_an_earlier_employment_opened_from_nothing_blocks_every_run() 
 
     assert all(_misses_history(result) for result in unknown)
     assert not any(_misses_history(result) for result in stated)
+
+
+def test_a_month_without_pay_tables_blocks_the_year_once() -> None:
+    """Igiene Ambientale tables start in February 2026: January is left out.
+
+    The year reports January once as not computed; the later runs do not
+    each report it again as missing history.
+    """
+    employment = replace(
+        CONCIA_D2, ccnl_slug="igiene-ambientale-utilitalia.json", level_code="D1"
+    )
+    year = _ENGINE.calculate_competence_year(competence_year(employment=employment))
+
+    assert [str(u.payment.run_id) for u in year.uncovered_runs] == ["2026-01-regular"]
+    assert not any(_misses_history(result) for result in year.period_results)
+    assert {b.code for b in year.assurance.blockers} >= {BlockerCode.RUN_NOT_COMPUTED}

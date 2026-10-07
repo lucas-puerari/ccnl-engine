@@ -31,6 +31,11 @@ was passed. It reports a `missing_fact opening_state` blocker (issue
   run and on the state `close_tax_year()` opens from it, so every later run
   of the chain blocks too.
 
+A run that a year calculation leaves out because the bundle holds no pay
+rules on its date (`uncovered_runs`, a `run_not_computed` blocker of the
+year) is not counted as missing history: the year reports it once, and the
+runs after it do not report it again.
+
 `PeriodState.zero()` is the fact only for the first run of an employment
 whose start is stated and falls in the month of the run. The same rule
 applies to the first payment of a `CompetenceYearPlan` or a `TaxYearPlan`

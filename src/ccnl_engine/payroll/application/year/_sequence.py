@@ -55,6 +55,7 @@ def compute_payments(
             planned.payment,
             state,
             schedule,
+            uncovered=planned.uncovered,
         )
         result = calculate_period(
             request,
