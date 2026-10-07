@@ -250,8 +250,7 @@ def _trattamento(
     """
     period_tratt, component, next_plan, decisions = resolve_trattamento(
         taxable,
-        annual.gross,
-        annual.work_deduction,
+        annual,
         rules,
         opening_tratt_ytd,
         remaining,

@@ -48,9 +48,9 @@ Sources, each with section and effective date:
   relativa al periodo di riferimento".
 - IRPEF of the year: :func:`.irpef_2026.net_irpef` on the annual taxable
   for 365 days.  No trattamento integrativo: the annual taxable is above
-  15,000 EUR and the art. 13 deduction plus the further deduction stay below
-  the gross IRPEF (D.L. 3/2020 art. 1 cc. 1 and 1-bis).  No somma esente:
-  the income is above 20,000 EUR (L. 207/2024 art. 1 c. 4).  No 5% renewal
+  15,000 EUR and the art. 13 c. 1 deduction, with no art. 12 deduction,
+  stays below the gross IRPEF (D.L. 3/2020 art. 1 c. 1, second period).  No
+  somma esente: the income is above 20,000 EUR (L. 207/2024 art. 1 c. 4).  No 5% renewal
   substitute tax: the 2025 employment income is above 33,000 EUR
   (L. 199/2025 art. 1 c. 7).
 - Surtaxes of 2026, determined at the December conguaglio and withheld in
