@@ -37,7 +37,7 @@ amounts are `Decimal` values in EUR, validated on construction.
 | `WelfareEvent` | `amount` | Welfare benefit; exempt from INPS and IRPEF, no TFR |
 | `BonusEvent` | `amount`, `kind`, `agreement_signed_on` | One-off bonus; `kind` selects ordinary IRPEF, the PdR regime or the renewal regime |
 | `BilateralFundEvent` | `employee_amount`, `employer_amount` | Bilateral or health fund contribution; see [Pay components](pay-components.md#bilateral-funds-fondi-bilaterali) |
-| `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears under tassazione separata (art. 17 TUIR) |
+| `ArrearsEvent` | `amount`, `separate_tax_rate`, `reference_period` | Renewal arrears; see [Renewal arrears](#renewal-arrears) |
 | `TerminationTFREvent` | `amount`, `separate_tax_rate` | TFR settlement at cessazione (art. 19 TUIR) |
 
 ### Overtime multiplier
@@ -221,6 +221,25 @@ renewal increments the result is then provisional. A renewal increment
 (`BonusEvent` with `kind="contract_renewal"`) carries the signing date of its
 renewal in `agreement_signed_on`. See
 [Substitute tax regimes](substitute-tax-regimes.md).
+
+### Renewal arrears
+
+Art. 17 c. 1 lett. b TUIR taxes separately the "emolumenti arretrati per
+prestazioni di lavoro dipendente riferibili ad anni precedenti" received
+by effect of a collective agreement; art. 21 c. 1 sets the rate on half
+the income of the two years before the year of receipt, which the engine
+does not know: the caller supplies it as `separate_tax_rate`.
+`reference_period` is compared with the tax year of the run (a December
+paid by 12 January belongs to its year):
+
+| `reference_period` | Taxation | `contract_renewal_arrears` decision |
+|---|---|---|
+| An earlier tax year | Separate, `amount x separate_tax_rate` on `separate_tax` (code 1002) | `separate_taxation`, final |
+| The tax year of the run | Ordinary IRPEF with the run; the rate is not used | `ordinary_taxation`, final |
+| `None` | Separate, as a simulation, with an `arrears_reference_period_unknown` issue and a `missing_fact reference_period` blocker | `reference_period_unknown`, incomplete |
+| A later year | `InvalidInputError` | |
+
+The arrears enter the INPS base of the run in every case.
 
 ---
 

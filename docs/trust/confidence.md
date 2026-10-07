@@ -139,9 +139,10 @@ without a classification, or on a classification without its field:
     needs it, with a `missing_fact` blocker or an input error (seniority,
     category, contribution history, sector, employer activity, prior-year
     income, current-year income with a dependant, signing date of a
-    renewal, contributable hours of a domestic CCNL, a child's birth date,
-    the own income, residency, cohabitation and share of a dependant that
-    may qualify for an art. 12 TUIR deduction,
+    renewal, reference period of renewal arrears, contributable hours of a
+    domestic CCNL, a child's birth date, the own income, residency,
+    cohabitation and share of a dependant that may qualify for an art. 12
+    TUIR deduction,
     the apprenticeship track among several, the additional 1% IVS other
     employers withheld when their base is imported and a run settles the
     1%, the opening state of a run that is not the first of an employment
@@ -162,7 +163,6 @@ The `pending` fields:
 | `Employment.roles` | No role: no allowance a role unlocks |
 | `Employment.pension_fund` | Not enrolled, with no way to state the non-enrolment |
 | `AbsenceEvent.suspends_accrual` | The absence does not suspend the accrual |
-| `ArrearsEvent.reference_period` | Not read: arrears of an earlier year are taxed with the run, not separately (art. 17 c. 1 lett. b TUIR) |
 
 A `pending` field becomes `requirement` or `reported` when its default can
 be told apart from a stated value (a field that defaults to `True` or `0`

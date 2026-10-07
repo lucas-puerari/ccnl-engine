@@ -30,9 +30,9 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "ArrearsEvent.reference_period": requires_fact(
         "contract_renewal_arrears",
         "event.reference_period",
-        FactEnforcement.PENDING,
-        "not read: arrears of an earlier year are taxed with the run, not "
-        "separately (art. 17 c. 1 lett. b TUIR)",
+        FactEnforcement.REPORTED,
+        "unknown reference year: separate or ordinary taxation (art. 17 c. 1 "
+        "lett. b TUIR) is undetermined, with a blocker",
     ),
     "BonusEvent.kind": absence_is_fact(
         "an ordinary bonus taxed as income; a preferential kind is declared"

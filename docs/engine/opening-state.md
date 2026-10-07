@@ -26,10 +26,15 @@ was passed. It reports a `missing_fact opening_state` blocker (issue
   nothing of an earlier tax year (no run closed, no tax year bound, no
   obligation): January from zero would drop the 2025 surtax and
   recoveries;
-- the state descends from a run that opened without its history.
+- the state descends from a run that opened without its history, or from
+  the conguaglio of a withholding agent computed without `regione` or
+  `comune_belfiore`: that conguaglio determines no surtax of the year, so
+  it withholds no saldo, opens no installment and no municipal acconto of
+  the next year, and drops the acconto the year carried.
   `PeriodState.history_known` is `False` on the closing state of such a
   run and on the state `close_tax_year()` opens from it, so every later run
-  of the chain blocks too.
+  of the chain blocks too, until the chain is recomputed with the missing
+  facts.
 
 A run that a year calculation leaves out because the bundle holds no pay
 rules on its date (`uncovered_runs`, a `run_not_computed` blocker of the

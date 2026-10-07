@@ -70,7 +70,7 @@ formulas or caller-declared amounts.
 | `workplace_injury` | Indennità infortunio INAIL | work_rules | unsupported | outside_input | — | `facts.events[workplace_injury]` | — | unavailable | none bundled |
 | `termination_residual_leave` | Monetizzazione ferie e permessi residui alla cessazione | gross | unsupported | termination_run | — | `facts.residual_leave_hours` | — | unavailable | none bundled |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (importo e aliquota dal chiamante) | net | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `contract_renewal_arrears` | Arretrati rinnovo contratto a tassazione separata (aliquota dal chiamante) | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
+| `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `una_tantum` | Una tantum contrattuale | gross | unsupported | outside_input | — | `facts.events[una_tantum]` | — | unavailable | none bundled |
 | `personal_withholdings` | Trattenute personali (pignoramenti, cessioni del quinto, prestiti) | net | unsupported | outside_input | — | `facts.personal_withholdings` | — | unavailable | none bundled |
 | `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio | net | unsupported | outside_input | — | `facts.other_withholding_agents_income` | — | unavailable | none bundled |

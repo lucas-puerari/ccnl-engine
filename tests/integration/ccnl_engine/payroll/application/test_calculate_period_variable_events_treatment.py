@@ -9,8 +9,15 @@ from __future__ import annotations
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.payroll.application.calculate_period import calculate_period
 from ccnl_engine.payroll.application.reconcile import reconcile
+from ccnl_engine.payroll.domain.assurance import BlockerCode
+from ccnl_engine.payroll.domain.decisions import (
+    CalculationDecision,
+    CalculationStatus,
+)
 from ccnl_engine.payroll.domain.employer import EmployerProfile, Headcount
 from ccnl_engine.payroll.domain.events import (
     AbsenceEvent,
@@ -27,6 +34,7 @@ from ccnl_engine.payroll.domain.period_payroll import PeriodId
 from ccnl_engine.payroll.domain.period_request import PeriodCalculationRequest
 from ccnl_engine.payroll.domain.period_state import PeriodState
 from ccnl_engine.payroll.domain.rounding import money
+from ccnl_engine.shared.domain.errors import InvalidInputError
 
 _CCNL = "metalmeccanico-federmeccanica.json"
 _LEVEL = "C3"
@@ -55,39 +63,93 @@ def _base() -> PeriodCalculationRequest:
     return _req()
 
 
+def _arrears(reference: PeriodId | None) -> ArrearsEvent:
+    return ArrearsEvent(
+        event_date=date(_YEAR, _MONTH, 1),
+        amount=Decimal("2000.00"),
+        separate_tax_rate=Decimal("0.23"),
+        reference_period=reference,
+    )
+
+
+def _account(result: PeriodResult, account: AccountKind) -> Decimal:
+    return sum(
+        (e.amount for e in result.ledger_entries if e.account == account),
+        Decimal(0),
+    )
+
+
+def _arrears_decision(result: PeriodResult) -> CalculationDecision:
+    (decision,) = (
+        d
+        for d in result.decisions
+        if d.capability == "contract_renewal_arrears" and d.rule == "tuir-art17-c1-b"
+    )
+    return decision
+
+
 class TestArrearsEventReferencePeriod:
-    """ArrearsEvent.reference_period stores the origin competence period."""
+    """The reference year selects the taxation of renewal arrears.
 
-    def test_reference_period_stored(self) -> None:
-        """reference_period is retrievable from the event."""
-        ref = PeriodId(year=2025, month=6)
-        evt = ArrearsEvent(
-            event_date=date(_YEAR, _MONTH, 1),
-            amount=Decimal("1000.00"),
-            separate_tax_rate=Decimal("0.23"),
-            reference_period=ref,
-        )
-        assert evt.reference_period == ref
+    Art. 17 c. 1 lett. b TUIR (in force until 31 December 2026,
+    https://www.normattiva.it/uri-res/N2Ls?urn:nir:presidente.repubblica:decreto:1986-12-22;917~art17)
+    taxes separately the "emolumenti arretrati per prestazioni di lavoro
+    dipendente riferibili ad anni precedenti"; arrears of the tax year of
+    the run are ordinary income of the year (art. 51 c. 1 TUIR).
+    """
 
-    def test_reference_period_defaults_none(self) -> None:
-        """reference_period defaults to None when omitted."""
-        evt = ArrearsEvent(
-            event_date=date(_YEAR, _MONTH, 1),
-            amount=Decimal("1000.00"),
-            separate_tax_rate=Decimal("0.23"),
-        )
-        assert evt.reference_period is None
+    def test_earlier_year_is_taxed_separately(self) -> None:
+        """2025 arrears paid in March 2026: 2,000.00 x 0.23 = 460.00 separate."""
+        result = calculate_period(_req(_arrears(PeriodId(year=2025, month=6))))
+        decision = _arrears_decision(result)
 
-    def test_arrears_with_reference_period_runs(self) -> None:
-        """calculate_period succeeds when ArrearsEvent carries a reference_period."""
-        evt = ArrearsEvent(
-            event_date=date(_YEAR, _MONTH, 1),
-            amount=Decimal("500.00"),
-            separate_tax_rate=Decimal("0.20"),
-            reference_period=PeriodId(year=2025, month=3),
+        assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
+        assert decision.reason_code == "separate_taxation"
+        assert decision.status is CalculationStatus.FINAL
+        assert decision.inputs["reference_period"] == "2025-06"
+        assert decision.amount == Decimal("460.00")
+        assert all(b.detail != "reference_period" for b in result.blockers)
+
+    def test_same_year_enters_the_ordinary_irpef_base(self) -> None:
+        """January 2026 arrears paid in March 2026 are ordinary income.
+
+        No separate tax; the taxable income grows by the arrears less the
+        employee contributions they add (art. 51 c. 2 lett. a TUIR).
+        """
+        base = calculate_period(_base())
+        result = calculate_period(_req(_arrears(PeriodId(year=_YEAR, month=1))))
+        added_inps = _account(result, AccountKind.EMPLOYEE_CONTRIBUTIONS) - _account(
+            base, AccountKind.EMPLOYEE_CONTRIBUTIONS
         )
-        result = calculate_period(_req(evt))
-        assert result.period_gross > Decimal(0)
+        taxable = (
+            result.closing_state.cash.earnings.taxable
+            - base.closing_state.cash.earnings.taxable
+        )
+
+        assert _account(result, AccountKind.SEPARATE_TAX) == Decimal(0)
+        assert taxable == Decimal("2000.00") - added_inps
+        assert result.tax_computation.ordinary_tax > base.tax_computation.ordinary_tax
+        assert _arrears_decision(result).reason_code == "ordinary_taxation"
+        assert reconcile(result, PeriodState.zero()).ok
+
+    def test_unknown_year_blocks_the_run(self) -> None:
+        """Without reference_period the taxation is undetermined: a blocker."""
+        result = calculate_period(_req(_arrears(None)))
+        decision = _arrears_decision(result)
+
+        assert _account(result, AccountKind.SEPARATE_TAX) == Decimal("460.00")
+        assert decision.reason_code == "reference_period_unknown"
+        assert decision.status is CalculationStatus.INCOMPLETE
+        assert decision.inputs["reference_period"] == "unknown"
+        assert (BlockerCode.MISSING_FACT, "reference_period") in {
+            (b.code, b.detail) for b in result.blockers
+        }
+        assert not result.is_payable
+
+    def test_later_year_is_rejected(self) -> None:
+        """Arrears cannot refer to a year after the tax year of the run."""
+        with pytest.raises(InvalidInputError, match="after the tax year 2026"):
+            calculate_period(_req(_arrears(PeriodId(year=2027, month=1))))
 
 
 def _tfr(result: object) -> Decimal:

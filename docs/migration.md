@@ -4,6 +4,14 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Negative net, arrears of the year and a conguaglio without residence
+
+| Before | After |
+|---|---|
+| A run whose deductions other than IRPEF and surtax exceeded its pay without unpaid absences (e.g. a large fringe benefit on a part-time salary) raised `DataIntegrityError` (`net_pay_non_negative`) | `OutOfScopeError`, reason `negative_net`, feature `net_pay`, with or without absences; the reason was `withholding_shortfall` with absences |
+| `ArrearsEvent` was always taxed separately at `separate_tax_rate`; `reference_period` was not read | `reference_period` of an earlier tax year than the run: separate taxation at `separate_tax_rate` (art. 17 c. 1 lett. b TUIR); of the tax year of the run: ordinary IRPEF with the run, the rate is not used; `None`: separate taxation as before with a `missing_fact reference_period` blocker; a later year: `InvalidInputError`. Each arrears event records a `contract_renewal_arrears` decision with reason `separate_taxation`, `ordinary_taxation` or `reference_period_unknown` |
+| A conguaglio of a withholding run without `regione` or `comune_belfiore` closed a state that opened the next year without a blocker | Its `closing_state.history_known` is `False`: every later run, the next tax year included, has the `missing_fact opening_state` blocker until it is recomputed with the residence |
+
 ## INPS base raised to the minimum
 
 The INPS base was the pay of the run even below the minimum daily pay of

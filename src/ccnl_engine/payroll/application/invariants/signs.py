@@ -26,10 +26,10 @@ Implemented invariants:
         (INPS msg. 5327/2015 par. 2.3): a credit to the worker can exceed
         the contributions of the run, so an EMPLOYEE_CONTRIBUTIONS entry
         may go down to the credit of the settlement component and no lower.
-    net_pay_non_negative: ``period_net >= 0``.  A run whose unpaid absences
-        leave less pay than the withholdings due is rejected as invalid
-        input before reconciliation, so a negative net reaching this check
-        is an engine error.
+    net_pay_non_negative: ``period_net >= 0``.  A run whose pay does not
+        cover its deductions is refused as out of scope before
+        reconciliation, so a negative net reaching this check is an engine
+        error.
 """
 
 from __future__ import annotations

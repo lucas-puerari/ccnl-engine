@@ -31,8 +31,12 @@ class PeriodState:
     zero state after the start of the employment, or a state descending
     from such a run) is computed as a simulation with a ``missing_fact
     opening_state`` blocker, and its closing state has :attr:`history_known`
-    ``False``, so every later run of the chain blocks too.  Import the
-    balances of the previous provider to restart from a known history.
+    ``False``, so every later run of the chain blocks too.  The same holds
+    for the closing state of a conguaglio of a withholding agent computed
+    without the worker's residence: it determines no surtax of the year
+    and opens none of the obligations of the next.  Import the balances of
+    the previous provider, or recompute the chain with the missing facts,
+    to restart from a known history.
 
     A run closes once (its competence run in :attr:`accrual`) and is paid
     once (its payment in :attr:`cash`).  The same request on the same
@@ -46,8 +50,9 @@ class PeriodState:
             tax year; the payments and accounts restart every tax year.
         history_known: Whether the state accounts for every run of the
             employment before it.  The engine sets it ``False`` on the
-            closing state of a run that opened without that history; a
-            state the caller builds states it.
+            closing state of a run that opened without that history, or of
+            a conguaglio without the residence; a state the caller builds
+            states it.
 
     Raises:
         InvalidInputError: When a field is not of its type, or a payment of
