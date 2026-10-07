@@ -4,6 +4,19 @@ Changes are listed newest first. Older changes are on
 [Migration guide: earlier releases](migration-earlier.md) and
 [Migration guide: inputs and legacy APIs](migration-legacy.md).
 
+## Renewal regime assessed on the minimo
+
+L. 199/2025 art. 1 c. 7 taxes at 5% the 2026 increments of renewals signed
+from 2024 to 2026, which a renewal usually pays inside the minimo. The
+engine assessed the regime only on a `BonusEvent` of kind
+`contract_renewal`; see
+[Substitute-tax regimes](engine/substitute-tax-regimes.md#increments-paid-inside-the-minimo).
+
+| Before | After |
+|---|---|
+| A 2026 run whose minimo comes from a table dated 2024-2026 took no `rinnovo_substitute_tax` decision and taxed the minimo as ordinary income in silence, whatever the 2025 income | It takes one (`inputs["paid_in"] == "minimum"`, amount zero): `final` when a known fact excludes the worker; otherwise `provisional`, with a `missing_fact` blocker naming `employment_income` or `sector`, or, for a worker who meets the requirements, a `calculation_issue` blocker `rinnovo_minimum_increment_unquantified` |
+| `PriorYearTaxFacts()` left a 2026 private run payable as far as the renewal regime went | State `PriorYearTaxFacts(employment_income=...)` and `Employment.sector`; a worker who waived the regime in writing states `waived_regimes={SubstituteTaxRegime.RINNOVO}` |
+
 ## Stating a fact never adds a blocker its default lacks
 
 Several defaults selected a branch without a blocker, so the true fact was the
